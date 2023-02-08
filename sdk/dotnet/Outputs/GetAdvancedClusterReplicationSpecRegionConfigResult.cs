@@ -14,6 +14,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAdvancedClusterReplicationSpecRegionConfigResult
     {
         /// <summary>
+        /// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult> AnalyticsAutoScalings;
+        /// <summary>
         /// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
         /// </summary>
         public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult? AnalyticsSpecs;
@@ -48,6 +52,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetAdvancedClusterReplicationSpecRegionConfigResult(
+            ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult> analyticsAutoScalings,
+
             Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult? analyticsSpecs,
 
             ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult> autoScalings,
@@ -64,6 +70,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string regionName)
         {
+            AnalyticsAutoScalings = analyticsAutoScalings;
             AnalyticsSpecs = analyticsSpecs;
             AutoScalings = autoScalings;
             BackingProviderName = backingProviderName;

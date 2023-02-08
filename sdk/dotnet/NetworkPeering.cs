@@ -92,7 +92,7 @@ namespace Pulumi.Mongodbatlas
     ///     // Create the GCP peer
     ///     var peering = new Gcp.Compute.NetworkPeering("peering", new()
     ///     {
-    ///         Network = @default.Apply(getNetworkResult =&gt; getNetworkResult).Apply(@default =&gt; @default.Apply(getNetworkResult =&gt; getNetworkResult.SelfLink)),
+    ///         Network = @default.Apply(@default =&gt; @default.Apply(getNetworkResult =&gt; getNetworkResult.SelfLink)),
     ///         PeerNetwork = Output.Tuple(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).Apply(values =&gt;
     ///         {
     ///             var atlasGcpProjectId = values.Item1;
@@ -342,7 +342,7 @@ namespace Pulumi.Mongodbatlas
     ///     // Create the GCP peer
     ///     var peering = new Gcp.Compute.NetworkPeering("peering", new()
     ///     {
-    ///         Network = @default.Apply(getNetworkResult =&gt; getNetworkResult).Apply(@default =&gt; @default.Apply(getNetworkResult =&gt; getNetworkResult.SelfLink)),
+    ///         Network = @default.Apply(@default =&gt; @default.Apply(getNetworkResult =&gt; getNetworkResult.SelfLink)),
     ///         PeerNetwork = Output.Tuple(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).Apply(values =&gt;
     ///         {
     ///             var atlasGcpProjectId = values.Item1;

@@ -336,10 +336,10 @@ def get_third_party_integration(enabled: Optional[bool] = None,
     :param str type: Third-Party service integration type
            * PAGER_DUTY
            * DATADOG
-           * NEW_RELIC
+           * NEW_RELIC*
            * OPS_GENIE
            * VICTOR_OPS
-           * FLOWDOCK
+           * FLOWDOCK*
            * WEBHOOK
            * MICROSOFT_TEAMS
            * PROMETHEUS
@@ -420,10 +420,10 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
     :param str type: Third-Party service integration type
            * PAGER_DUTY
            * DATADOG
-           * NEW_RELIC
+           * NEW_RELIC*
            * OPS_GENIE
            * VICTOR_OPS
-           * FLOWDOCK
+           * FLOWDOCK*
            * WEBHOOK
            * MICROSOFT_TEAMS
            * PROMETHEUS

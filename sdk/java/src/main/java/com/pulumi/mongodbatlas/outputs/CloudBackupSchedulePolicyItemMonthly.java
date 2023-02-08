@@ -13,54 +13,62 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CloudBackupSchedulePolicyItemMonthly {
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type`.
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
      * 
      */
     private Integer frequencyInterval;
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     private @Nullable String frequencyType;
+    /**
+     * @return Unique identifier of the backup policy item.
+     * 
+     */
     private @Nullable String id;
     /**
-     * @return Scope of the backup policy item: days, weeks, or months.
+     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
      * 
      */
     private String retentionUnit;
     /**
-     * @return Value to associate with `retention_unit`.
+     * @return Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      * 
      */
     private Integer retentionValue;
 
     private CloudBackupSchedulePolicyItemMonthly() {}
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type`.
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
      * 
      */
     public Integer frequencyInterval() {
         return this.frequencyInterval;
     }
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     public Optional<String> frequencyType() {
         return Optional.ofNullable(this.frequencyType);
     }
+    /**
+     * @return Unique identifier of the backup policy item.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
     /**
-     * @return Scope of the backup policy item: days, weeks, or months.
+     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
      * 
      */
     public String retentionUnit() {
         return this.retentionUnit;
     }
     /**
-     * @return Value to associate with `retention_unit`.
+     * @return Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      * 
      */
     public Integer retentionValue() {

@@ -31,6 +31,11 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     noTableScan: boolean;
     /**
+     * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+     */
+    oplogMinRetentionHours: number;
+    /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
     oplogSizeMb: number;
@@ -45,6 +50,20 @@ export interface AdvancedClusterAdvancedConfiguration {
 }
 
 export interface AdvancedClusterBiConnector {
+    /**
+     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * *
+     * - Set to `true` to enable BI Connector for Atlas.
+     * - Set to `false` to disable BI Connector for Atlas.
+     */
+    enabled: boolean;
+    /**
+     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     */
+    readPreference: string;
+}
+
+export interface AdvancedClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
      * *
@@ -121,6 +140,10 @@ export interface AdvancedClusterReplicationSpec {
 
 export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
+     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+     */
+    analyticsAutoScaling: outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling;
+    /**
      * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
      */
     analyticsSpecs?: outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs;
@@ -155,6 +178,29 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
     regionName: string;
+}
+
+export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling {
+    /**
+     * Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+     */
+    computeEnabled: boolean;
+    /**
+     * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+     */
+    computeMaxInstanceSize: string;
+    /**
+     * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+     */
+    computeMinInstanceSize: string;
+    /**
+     * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+     */
+    computeScaleDownEnabled: boolean;
+    /**
+     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     */
+    diskGbEnabled: boolean;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
@@ -412,6 +458,29 @@ export interface AlertConfigurationThresholdConfig {
     units?: string;
 }
 
+export interface CloudBackupScheduleCopySetting {
+    /**
+     * Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
+     */
+    cloudProvider: string;
+    /**
+     * List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+     */
+    frequencies: string[];
+    /**
+     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+     */
+    regionName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+     */
+    replicationSpecId: string;
+    /**
+     * Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
+     */
+    shouldCopyOplogs: boolean;
+}
+
 export interface CloudBackupScheduleExport {
     /**
      * Unique identifier of the mongodbatlas.CloudBackupSnapshotExportBucket export_bucket_id value.
@@ -425,36 +494,42 @@ export interface CloudBackupScheduleExport {
 
 export interface CloudBackupSchedulePolicyItemDaily {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (daily in this case). The only supported value for daily policies is `1` day.
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
     id: string;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`.
+     * Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
      */
     retentionValue: number;
 }
 
 export interface CloudBackupSchedulePolicyItemHourly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
     id: string;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: string;
     /**
@@ -465,40 +540,46 @@ export interface CloudBackupSchedulePolicyItemHourly {
 
 export interface CloudBackupSchedulePolicyItemMonthly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
     id: string;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`.
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      */
     retentionValue: number;
 }
 
 export interface CloudBackupSchedulePolicyItemWeekly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (weekly in this case). The supported values for weekly policies are `1` through `7`, where `1` represents Monday and `7` represents Sunday.
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
     id: string;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`.
+     * Value to associate with `retentionUnit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
      */
     retentionValue: number;
 }
@@ -631,6 +712,11 @@ export interface ClusterAdvancedConfiguration {
      * When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
      */
     noTableScan: boolean;
+    /**
+     * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+     */
+    oplogMinRetentionHours: number;
     /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
@@ -1020,6 +1106,21 @@ export interface Get509AuthenticationDatabaseUserCertificate {
     subject: string;
 }
 
+export interface GetAccessListApiKeysResult {
+    accessCount: number;
+    /**
+     * Range of IP addresses in CIDR notation to be added to the access list.
+     */
+    cidrBlock: string;
+    created: string;
+    /**
+     * Single IP address to be added to the access list.
+     */
+    ipAddress: string;
+    lastUsed: string;
+    lastUsedAddress: string;
+}
+
 export interface GetAdvancedClusterAdvancedConfiguration {
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -1046,6 +1147,10 @@ export interface GetAdvancedClusterAdvancedConfiguration {
      */
     noTableScan: boolean;
     /**
+     * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     */
+    oplogMinRetentionHours: number;
+    /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
     oplogSizeMb: number;
@@ -1059,7 +1164,7 @@ export interface GetAdvancedClusterAdvancedConfiguration {
     sampleSizeBiConnector: number;
 }
 
-export interface GetAdvancedClusterBiConnector {
+export interface GetAdvancedClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
      */
@@ -1135,6 +1240,10 @@ export interface GetAdvancedClusterReplicationSpec {
 
 export interface GetAdvancedClusterReplicationSpecRegionConfig {
     /**
+     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+     */
+    analyticsAutoScalings: outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling[];
+    /**
      * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
      */
     analyticsSpecs?: outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs;
@@ -1168,6 +1277,30 @@ export interface GetAdvancedClusterReplicationSpecRegionConfig {
     regionName: string;
 }
 
+export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling {
+    /**
+     * Flag that indicates whether instance size auto-scaling is enabled.
+     */
+    computeEnabled: boolean;
+    /**
+     * Maximum instance size to which your cluster can automatically scale (such as M40). 
+     * #### Advanced Configuration
+     */
+    computeMaxInstanceSize: string;
+    /**
+     * Minimum instance size to which your cluster can automatically scale (such as M10).
+     */
+    computeMinInstanceSize: string;
+    /**
+     * Flag that indicates whether the instance size may scale down.
+     */
+    computeScaleDownEnabled: boolean;
+    /**
+     * Flag that indicates whether this cluster enables disk auto-scaling.
+     */
+    diskGbEnabled: boolean;
+}
+
 export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     /**
      * Target throughput (IOPS) desired for AWS storage attached to your cluster.
@@ -1193,7 +1326,8 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
      */
     computeEnabled: boolean;
     /**
-     * Maximum instance size to which your cluster can automatically scale (such as M40).
+     * Maximum instance size to which your cluster can automatically scale (such as M40). 
+     * #### Advanced Configuration
      */
     computeMaxInstanceSize: string;
     /**
@@ -1255,9 +1389,9 @@ export interface GetAdvancedClustersResult {
     advancedConfigurations: outputs.GetAdvancedClustersResultAdvancedConfiguration[];
     backupEnabled: boolean;
     /**
-     * Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+     * Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
      */
-    biConnectors: outputs.GetAdvancedClustersResultBiConnector[];
+    biConnectorConfigs: outputs.GetAdvancedClustersResultBiConnectorConfig[];
     /**
      * Type of the cluster that you want to create.
      */
@@ -1344,6 +1478,10 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      */
     noTableScan: boolean;
     /**
+     * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     */
+    oplogMinRetentionHours: number;
+    /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
     oplogSizeMb: number;
@@ -1357,7 +1495,7 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
     sampleSizeBiConnector: number;
 }
 
-export interface GetAdvancedClustersResultBiConnector {
+export interface GetAdvancedClustersResultBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
      */
@@ -1433,6 +1571,10 @@ export interface GetAdvancedClustersResultReplicationSpec {
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfig {
     /**
+     * Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+     */
+    analyticsAutoScalings: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling[];
+    /**
      * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
      */
     analyticsSpecs?: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs;
@@ -1464,6 +1606,29 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfig {
      * Physical location of your MongoDB cluster.
      */
     regionName: string;
+}
+
+export interface GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling {
+    /**
+     * Flag that indicates whether instance size auto-scaling is enabled.
+     */
+    computeEnabled: boolean;
+    /**
+     * Maximum instance size to which your cluster can automatically scale (such as M40).
+     */
+    computeMaxInstanceSize: string;
+    /**
+     * Minimum instance size to which your cluster can automatically scale (such as M10).
+     */
+    computeMinInstanceSize: string;
+    /**
+     * Flag that indicates whether the instance size may scale down.
+     */
+    computeScaleDownEnabled: boolean;
+    /**
+     * Flag that indicates whether this cluster enables disk auto-scaling.
+     */
+    diskGbEnabled: boolean;
 }
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
@@ -1695,6 +1860,15 @@ export interface GetAlertConfigurationNotification {
     webhookUrl?: string;
 }
 
+export interface GetAlertConfigurationOutput {
+    label?: string;
+    type: string;
+    /**
+     * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     */
+    value: string;
+}
+
 export interface GetAlertConfigurationThresholdConfig {
     /**
      * Operator to apply when checking the current metric value against the threshold value.
@@ -1712,24 +1886,170 @@ export interface GetAlertConfigurationThresholdConfig {
     units: string;
 }
 
+export interface GetAlertConfigurationsListOption {
+    includeCount?: boolean;
+    itemsPerPage?: number;
+    pageNum?: number;
+}
+
+export interface GetAlertConfigurationsResult {
+    /**
+     * The ID of the alert configuration
+     */
+    alertConfigurationId: string;
+    /**
+     * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
+     */
+    created: string;
+    /**
+     * If set to true, the alert configuration is enabled. If enabled is not exported it is set to false.
+     */
+    enabled: boolean;
+    /**
+     * The type of event that will trigger an alert.
+     */
+    eventType: string;
+    /**
+     * Rules to apply when matching an object against this alert configuration
+     */
+    matchers: outputs.GetAlertConfigurationsResultMatcher[];
+    metricThreshold: {[key: string]: string};
+    /**
+     * The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
+     */
+    metricThresholdConfigs: outputs.GetAlertConfigurationsResultMetricThresholdConfig[];
+    notifications: outputs.GetAlertConfigurationsResultNotification[];
+    /**
+     * Requested output string format for the alert configuration
+     */
+    outputs?: outputs.GetAlertConfigurationsResultOutput[];
+    /**
+     * The unique ID for the project to get the alert configurations.
+     */
+    projectId: string;
+    threshold: {[key: string]: string};
+    /**
+     * Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
+     */
+    thresholdConfigs: outputs.GetAlertConfigurationsResultThresholdConfig[];
+    /**
+     * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
+     */
+    updated: string;
+}
+
+export interface GetAlertConfigurationsResultMatcher {
+    fieldName: string;
+    operator: string;
+    value: string;
+}
+
+export interface GetAlertConfigurationsResultMetricThresholdConfig {
+    metricName: string;
+    mode: string;
+    operator: string;
+    threshold: number;
+    units: string;
+}
+
+export interface GetAlertConfigurationsResultNotification {
+    apiToken: string;
+    channelName: string;
+    datadogApiKey: string;
+    datadogRegion: string;
+    delayMin: number;
+    emailAddress: string;
+    emailEnabled: boolean;
+    flowName: string;
+    flowdockApiToken: string;
+    intervalMin: number;
+    microsoftTeamsWebhookUrl?: string;
+    mobileNumber: string;
+    opsGenieApiKey: string;
+    opsGenieRegion: string;
+    orgName: string;
+    roles?: string[];
+    serviceKey: string;
+    smsEnabled: boolean;
+    teamId: string;
+    teamName: string;
+    typeName: string;
+    username: string;
+    victorOpsApiKey: string;
+    victorOpsRoutingKey: string;
+    webhookSecret?: string;
+    webhookUrl?: string;
+}
+
+export interface GetAlertConfigurationsResultOutput {
+    label?: string;
+    type: string;
+    value: string;
+}
+
+export interface GetAlertConfigurationsResultThresholdConfig {
+    operator: string;
+    threshold: number;
+    units: string;
+}
+
+export interface GetApiKeysResult {
+    /**
+     * Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
+     */
+    apiKeyId: string;
+    /**
+     * Description of this Organization API key.
+     */
+    description: string;
+    publicKey: string;
+    /**
+     * Name of the role. This resource returns all the roles the user has in Atlas.
+     */
+    roleNames: string[];
+}
+
+export interface GetCloudBackupScheduleCopySetting {
+    /**
+     * Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
+     */
+    cloudProvider: string;
+    /**
+     * List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+     */
+    frequencies: string[];
+    /**
+     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+     */
+    regionName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+     */
+    replicationSpecId: string;
+    /**
+     * Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
+     */
+    shouldCopyOplogs: boolean;
+}
+
 export interface GetCloudBackupScheduleExport {
     /**
      * Unique identifier of the mongodbatlas.CloudBackupSnapshotExportBucket export_bucket_id value.
      */
     exportBucketId: string;
     /**
-     * Frequency associated with the backup policy item.
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
 }
 
 export interface GetCloudBackupSchedulePolicyItemDaily {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item.
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -1737,22 +2057,22 @@ export interface GetCloudBackupSchedulePolicyItemDaily {
      */
     id: string;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`.
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      */
     retentionValue: number;
 }
 
 export interface GetCloudBackupSchedulePolicyItemHourly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item.
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -1760,22 +2080,22 @@ export interface GetCloudBackupSchedulePolicyItemHourly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`.
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      */
     retentionValue: number;
 }
 
 export interface GetCloudBackupSchedulePolicyItemMonthly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item.
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -1783,22 +2103,22 @@ export interface GetCloudBackupSchedulePolicyItemMonthly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`.
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      */
     retentionValue: number;
 }
 
 export interface GetCloudBackupSchedulePolicyItemWeekly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item.
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -1806,11 +2126,11 @@ export interface GetCloudBackupSchedulePolicyItemWeekly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`.
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      */
     retentionValue: number;
 }
@@ -2251,6 +2571,10 @@ export interface GetClusterAdvancedConfiguration {
      */
     noTableScan: boolean;
     /**
+     * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     */
+    oplogMinRetentionHours: number;
+    /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
     oplogSizeMb: number;
@@ -2435,7 +2759,7 @@ export interface GetClustersResult {
      * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
      * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
      * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
-     * - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+     * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
      * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
      * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
      */
@@ -2590,6 +2914,10 @@ export interface GetClustersResultAdvancedConfiguration {
      * When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
      */
     noTableScan: boolean;
+    /**
+     * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     */
+    oplogMinRetentionHours: number;
     /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
@@ -3867,6 +4195,24 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
 
 export interface GetProjectApiKey {
     apiKeyId: string;
+    roleNames: string[];
+}
+
+export interface GetProjectApiKeysResult {
+    /**
+     * Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
+     */
+    apiKeyId: string;
+    /**
+     * Description of this Project API key.
+     */
+    description: string;
+    privateKey: string;
+    publicKey: string;
+    /**
+     * Name of the role. This resource returns all the roles the user has in Atlas.
+     * The following are valid roles:
+     */
     roleNames: string[];
 }
 

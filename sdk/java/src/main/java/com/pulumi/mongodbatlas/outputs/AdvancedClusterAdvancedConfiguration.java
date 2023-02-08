@@ -44,6 +44,12 @@ public final class AdvancedClusterAdvancedConfiguration {
      */
     private @Nullable Boolean noTableScan;
     /**
+     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+     * 
+     */
+    private @Nullable Integer oplogMinRetentionHours;
+    /**
      * @return The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      * 
      */
@@ -103,6 +109,14 @@ public final class AdvancedClusterAdvancedConfiguration {
         return Optional.ofNullable(this.noTableScan);
     }
     /**
+     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+     * 
+     */
+    public Optional<Integer> oplogMinRetentionHours() {
+        return Optional.ofNullable(this.oplogMinRetentionHours);
+    }
+    /**
      * @return The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      * 
      */
@@ -139,6 +153,7 @@ public final class AdvancedClusterAdvancedConfiguration {
         private @Nullable Boolean javascriptEnabled;
         private @Nullable String minimumEnabledTlsProtocol;
         private @Nullable Boolean noTableScan;
+        private @Nullable Integer oplogMinRetentionHours;
         private @Nullable Integer oplogSizeMb;
         private @Nullable Integer sampleRefreshIntervalBiConnector;
         private @Nullable Integer sampleSizeBiConnector;
@@ -151,6 +166,7 @@ public final class AdvancedClusterAdvancedConfiguration {
     	      this.javascriptEnabled = defaults.javascriptEnabled;
     	      this.minimumEnabledTlsProtocol = defaults.minimumEnabledTlsProtocol;
     	      this.noTableScan = defaults.noTableScan;
+    	      this.oplogMinRetentionHours = defaults.oplogMinRetentionHours;
     	      this.oplogSizeMb = defaults.oplogSizeMb;
     	      this.sampleRefreshIntervalBiConnector = defaults.sampleRefreshIntervalBiConnector;
     	      this.sampleSizeBiConnector = defaults.sampleSizeBiConnector;
@@ -187,6 +203,11 @@ public final class AdvancedClusterAdvancedConfiguration {
             return this;
         }
         @CustomType.Setter
+        public Builder oplogMinRetentionHours(@Nullable Integer oplogMinRetentionHours) {
+            this.oplogMinRetentionHours = oplogMinRetentionHours;
+            return this;
+        }
+        @CustomType.Setter
         public Builder oplogSizeMb(@Nullable Integer oplogSizeMb) {
             this.oplogSizeMb = oplogSizeMb;
             return this;
@@ -209,6 +230,7 @@ public final class AdvancedClusterAdvancedConfiguration {
             o.javascriptEnabled = javascriptEnabled;
             o.minimumEnabledTlsProtocol = minimumEnabledTlsProtocol;
             o.noTableScan = noTableScan;
+            o.oplogMinRetentionHours = oplogMinRetentionHours;
             o.oplogSizeMb = oplogSizeMb;
             o.sampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             o.sampleSizeBiConnector = sampleSizeBiConnector;

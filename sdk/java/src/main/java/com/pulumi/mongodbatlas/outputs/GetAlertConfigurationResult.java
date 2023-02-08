@@ -7,12 +7,14 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationMatcher;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationMetricThresholdConfig;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationNotification;
+import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationOutput;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationThresholdConfig;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAlertConfigurationResult {
@@ -41,6 +43,7 @@ public final class GetAlertConfigurationResult {
     private Map<String,String> metricThreshold;
     private List<GetAlertConfigurationMetricThresholdConfig> metricThresholdConfigs;
     private List<GetAlertConfigurationNotification> notifications;
+    private @Nullable List<GetAlertConfigurationOutput> outputs;
     private String projectId;
     /**
      * @return Threshold value outside of which an alert will be triggered.
@@ -98,6 +101,9 @@ public final class GetAlertConfigurationResult {
     public List<GetAlertConfigurationNotification> notifications() {
         return this.notifications;
     }
+    public List<GetAlertConfigurationOutput> outputs() {
+        return this.outputs == null ? List.of() : this.outputs;
+    }
     public String projectId() {
         return this.projectId;
     }
@@ -137,6 +143,7 @@ public final class GetAlertConfigurationResult {
         private Map<String,String> metricThreshold;
         private List<GetAlertConfigurationMetricThresholdConfig> metricThresholdConfigs;
         private List<GetAlertConfigurationNotification> notifications;
+        private @Nullable List<GetAlertConfigurationOutput> outputs;
         private String projectId;
         private Map<String,String> threshold;
         private List<GetAlertConfigurationThresholdConfig> thresholdConfigs;
@@ -153,6 +160,7 @@ public final class GetAlertConfigurationResult {
     	      this.metricThreshold = defaults.metricThreshold;
     	      this.metricThresholdConfigs = defaults.metricThresholdConfigs;
     	      this.notifications = defaults.notifications;
+    	      this.outputs = defaults.outputs;
     	      this.projectId = defaults.projectId;
     	      this.threshold = defaults.threshold;
     	      this.thresholdConfigs = defaults.thresholdConfigs;
@@ -214,6 +222,14 @@ public final class GetAlertConfigurationResult {
             return notifications(List.of(notifications));
         }
         @CustomType.Setter
+        public Builder outputs(@Nullable List<GetAlertConfigurationOutput> outputs) {
+            this.outputs = outputs;
+            return this;
+        }
+        public Builder outputs(GetAlertConfigurationOutput... outputs) {
+            return outputs(List.of(outputs));
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             this.projectId = Objects.requireNonNull(projectId);
             return this;
@@ -247,6 +263,7 @@ public final class GetAlertConfigurationResult {
             o.metricThreshold = metricThreshold;
             o.metricThresholdConfigs = metricThresholdConfigs;
             o.notifications = notifications;
+            o.outputs = outputs;
             o.projectId = projectId;
             o.threshold = threshold;
             o.thresholdConfigs = thresholdConfigs;

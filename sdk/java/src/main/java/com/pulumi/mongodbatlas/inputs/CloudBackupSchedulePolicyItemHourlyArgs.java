@@ -17,14 +17,14 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
     public static final CloudBackupSchedulePolicyItemHourlyArgs Empty = new CloudBackupSchedulePolicyItemHourlyArgs();
 
     /**
-     * Desired frequency of the new backup policy item specified by `frequency_type`.
+     * Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
      * 
      */
     @Import(name="frequencyInterval", required=true)
     private Output<Integer> frequencyInterval;
 
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type`.
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
      * 
      */
     public Output<Integer> frequencyInterval() {
@@ -32,36 +32,44 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
     }
 
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     @Import(name="frequencyType")
     private @Nullable Output<String> frequencyType;
 
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     public Optional<Output<String>> frequencyType() {
         return Optional.ofNullable(this.frequencyType);
     }
 
+    /**
+     * Unique identifier of the backup policy item.
+     * 
+     */
     @Import(name="id")
     private @Nullable Output<String> id;
 
+    /**
+     * @return Unique identifier of the backup policy item.
+     * 
+     */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
 
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      * 
      */
     @Import(name="retentionUnit", required=true)
     private Output<String> retentionUnit;
 
     /**
-     * @return Scope of the backup policy item: days, weeks, or months.
+     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
      * 
      */
     public Output<String> retentionUnit() {
@@ -112,7 +120,7 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type`.
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
          * 
          * @return builder
          * 
@@ -123,7 +131,7 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type`.
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
          * 
          * @return builder
          * 
@@ -133,7 +141,7 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
         }
 
         /**
-         * @param frequencyType Frequency associated with the export snapshot item.
+         * @param frequencyType Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
          * 
          * @return builder
          * 
@@ -144,7 +152,7 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
         }
 
         /**
-         * @param frequencyType Frequency associated with the export snapshot item.
+         * @param frequencyType Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
          * 
          * @return builder
          * 
@@ -153,17 +161,29 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
             return frequencyType(Output.of(frequencyType));
         }
 
+        /**
+         * @param id Unique identifier of the backup policy item.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param id Unique identifier of the backup policy item.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(String id) {
             return id(Output.of(id));
         }
 
         /**
-         * @param retentionUnit Scope of the backup policy item: days, weeks, or months.
+         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, or `months`.
          * 
          * @return builder
          * 
@@ -174,7 +194,7 @@ public final class CloudBackupSchedulePolicyItemHourlyArgs extends com.pulumi.re
         }
 
         /**
-         * @param retentionUnit Scope of the backup policy item: days, weeks, or months.
+         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, or `months`.
          * 
          * @return builder
          * 

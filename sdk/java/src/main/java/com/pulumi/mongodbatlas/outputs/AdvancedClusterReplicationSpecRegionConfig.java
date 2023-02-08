@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.mongodbatlas.outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs;
@@ -16,6 +17,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AdvancedClusterReplicationSpecRegionConfig {
+    /**
+     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+     * 
+     */
+    private @Nullable AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling analyticsAutoScaling;
     /**
      * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don&#39;t specify this parameter, no analytics nodes deploy to this region. See below
      * 
@@ -61,6 +67,13 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
     private String regionName;
 
     private AdvancedClusterReplicationSpecRegionConfig() {}
+    /**
+     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+     * 
+     */
+    public Optional<AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScaling() {
+        return Optional.ofNullable(this.analyticsAutoScaling);
+    }
     /**
      * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don&#39;t specify this parameter, no analytics nodes deploy to this region. See below
      * 
@@ -130,6 +143,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling analyticsAutoScaling;
         private @Nullable AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
         private @Nullable AdvancedClusterReplicationSpecRegionConfigAutoScaling autoScaling;
         private @Nullable String backingProviderName;
@@ -141,6 +155,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
         public Builder() {}
         public Builder(AdvancedClusterReplicationSpecRegionConfig defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.analyticsAutoScaling = defaults.analyticsAutoScaling;
     	      this.analyticsSpecs = defaults.analyticsSpecs;
     	      this.autoScaling = defaults.autoScaling;
     	      this.backingProviderName = defaults.backingProviderName;
@@ -151,6 +166,11 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
     	      this.regionName = defaults.regionName;
         }
 
+        @CustomType.Setter
+        public Builder analyticsAutoScaling(@Nullable AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling analyticsAutoScaling) {
+            this.analyticsAutoScaling = analyticsAutoScaling;
+            return this;
+        }
         @CustomType.Setter
         public Builder analyticsSpecs(@Nullable AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs) {
             this.analyticsSpecs = analyticsSpecs;
@@ -193,6 +213,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
         }
         public AdvancedClusterReplicationSpecRegionConfig build() {
             final var o = new AdvancedClusterReplicationSpecRegionConfig();
+            o.analyticsAutoScaling = analyticsAutoScaling;
             o.analyticsSpecs = analyticsSpecs;
             o.autoScaling = autoScaling;
             o.backingProviderName = backingProviderName;

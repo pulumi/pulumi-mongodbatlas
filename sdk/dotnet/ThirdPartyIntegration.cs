@@ -156,10 +156,10 @@ namespace Pulumi.Mongodbatlas
         /// Third-Party Integration Settings type 
         /// * PAGER_DUTY
         /// * DATADOG
-        /// * NEW_RELIC
+        /// * NEW_RELIC*
         /// * OPS_GENIE
         /// * VICTOR_OPS
-        /// * FLOWDOCK
+        /// * FLOWDOCK*
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
@@ -458,10 +458,10 @@ namespace Pulumi.Mongodbatlas
         /// Third-Party Integration Settings type 
         /// * PAGER_DUTY
         /// * DATADOG
-        /// * NEW_RELIC
+        /// * NEW_RELIC*
         /// * OPS_GENIE
         /// * VICTOR_OPS
-        /// * FLOWDOCK
+        /// * FLOWDOCK*
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
@@ -727,10 +727,10 @@ namespace Pulumi.Mongodbatlas
         /// Third-Party Integration Settings type 
         /// * PAGER_DUTY
         /// * DATADOG
-        /// * NEW_RELIC
+        /// * NEW_RELIC*
         /// * OPS_GENIE
         /// * VICTOR_OPS
-        /// * FLOWDOCK
+        /// * FLOWDOCK*
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS

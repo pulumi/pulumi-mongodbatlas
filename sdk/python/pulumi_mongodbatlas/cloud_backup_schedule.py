@@ -19,6 +19,7 @@ class CloudBackupScheduleArgs:
                  cluster_name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  auto_export_enabled: Optional[pulumi.Input[bool]] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]]] = None,
                  export: Optional[pulumi.Input['CloudBackupScheduleExportArgs']] = None,
                  policy_item_daily: Optional[pulumi.Input['CloudBackupSchedulePolicyItemDailyArgs']] = None,
                  policy_item_hourly: Optional[pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs']] = None,
@@ -48,6 +49,8 @@ class CloudBackupScheduleArgs:
         pulumi.set(__self__, "project_id", project_id)
         if auto_export_enabled is not None:
             pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
+        if copy_settings is not None:
+            pulumi.set(__self__, "copy_settings", copy_settings)
         if export is not None:
             pulumi.set(__self__, "export", export)
         if policy_item_daily is not None:
@@ -104,6 +107,15 @@ class CloudBackupScheduleArgs:
     @auto_export_enabled.setter
     def auto_export_enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "auto_export_enabled", value)
+
+    @property
+    @pulumi.getter(name="copySettings")
+    def copy_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]]]:
+        return pulumi.get(self, "copy_settings")
+
+    @copy_settings.setter
+    def copy_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]]]):
+        pulumi.set(self, "copy_settings", value)
 
     @property
     @pulumi.getter
@@ -229,6 +241,7 @@ class _CloudBackupScheduleState:
                  auto_export_enabled: Optional[pulumi.Input[bool]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]]] = None,
                  export: Optional[pulumi.Input['CloudBackupScheduleExportArgs']] = None,
                  id_policy: Optional[pulumi.Input[str]] = None,
                  next_snapshot: Optional[pulumi.Input[str]] = None,
@@ -266,6 +279,8 @@ class _CloudBackupScheduleState:
             pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
+        if copy_settings is not None:
+            pulumi.set(__self__, "copy_settings", copy_settings)
         if export is not None:
             pulumi.set(__self__, "export", export)
         if id_policy is not None:
@@ -328,6 +343,15 @@ class _CloudBackupScheduleState:
     @cluster_name.setter
     def cluster_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter(name="copySettings")
+    def copy_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]]]:
+        return pulumi.get(self, "copy_settings")
+
+    @copy_settings.setter
+    def copy_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]]]):
+        pulumi.set(self, "copy_settings", value)
 
     @property
     @pulumi.getter
@@ -490,6 +514,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_export_enabled: Optional[pulumi.Input[bool]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupScheduleCopySettingArgs']]]]] = None,
                  export: Optional[pulumi.Input[pulumi.InputType['CloudBackupScheduleExportArgs']]] = None,
                  policy_item_daily: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemDailyArgs']]] = None,
                  policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']]] = None,
@@ -562,6 +587,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_export_enabled: Optional[pulumi.Input[bool]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupScheduleCopySettingArgs']]]]] = None,
                  export: Optional[pulumi.Input[pulumi.InputType['CloudBackupScheduleExportArgs']]] = None,
                  policy_item_daily: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemDailyArgs']]] = None,
                  policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']]] = None,
@@ -586,6 +612,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
             if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
             __props__.__dict__["cluster_name"] = cluster_name
+            __props__.__dict__["copy_settings"] = copy_settings
             __props__.__dict__["export"] = export
             __props__.__dict__["policy_item_daily"] = policy_item_daily
             __props__.__dict__["policy_item_hourly"] = policy_item_hourly
@@ -615,6 +642,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
             auto_export_enabled: Optional[pulumi.Input[bool]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
+            copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupScheduleCopySettingArgs']]]]] = None,
             export: Optional[pulumi.Input[pulumi.InputType['CloudBackupScheduleExportArgs']]] = None,
             id_policy: Optional[pulumi.Input[str]] = None,
             next_snapshot: Optional[pulumi.Input[str]] = None,
@@ -658,6 +686,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         __props__.__dict__["auto_export_enabled"] = auto_export_enabled
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["cluster_name"] = cluster_name
+        __props__.__dict__["copy_settings"] = copy_settings
         __props__.__dict__["export"] = export
         __props__.__dict__["id_policy"] = id_policy
         __props__.__dict__["next_snapshot"] = next_snapshot
@@ -696,6 +725,11 @@ class CloudBackupSchedule(pulumi.CustomResource):
         The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         """
         return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="copySettings")
+    def copy_settings(self) -> pulumi.Output[Optional[Sequence['outputs.CloudBackupScheduleCopySetting']]]:
+        return pulumi.get(self, "copy_settings")
 
     @property
     @pulumi.getter

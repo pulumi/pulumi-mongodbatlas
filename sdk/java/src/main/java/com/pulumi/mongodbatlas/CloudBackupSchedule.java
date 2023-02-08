@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleState;
+import com.pulumi.mongodbatlas.outputs.CloudBackupScheduleCopySetting;
 import com.pulumi.mongodbatlas.outputs.CloudBackupScheduleExport;
 import com.pulumi.mongodbatlas.outputs.CloudBackupSchedulePolicyItemDaily;
 import com.pulumi.mongodbatlas.outputs.CloudBackupSchedulePolicyItemHourly;
@@ -77,6 +78,12 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      */
     public Output<String> clusterName() {
         return this.clusterName;
+    }
+    @Export(name="copySettings", type=List.class, parameters={CloudBackupScheduleCopySetting.class})
+    private Output</* @Nullable */ List<CloudBackupScheduleCopySetting>> copySettings;
+
+    public Output<Optional<List<CloudBackupScheduleCopySetting>>> copySettings() {
+        return Codegen.optional(this.copySettings);
     }
     @Export(name="export", type=CloudBackupScheduleExport.class, parameters={})
     private Output<CloudBackupScheduleExport> export;

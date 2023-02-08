@@ -9,7 +9,7 @@ import java.lang.String;
 import java.util.Objects;
 
 @CustomType
-public final class GetAdvancedClustersResultBiConnector {
+public final class GetAdvancedClusterBiConnectorConfig {
     /**
      * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
      * 
@@ -21,7 +21,7 @@ public final class GetAdvancedClustersResultBiConnector {
      */
     private String readPreference;
 
-    private GetAdvancedClustersResultBiConnector() {}
+    private GetAdvancedClusterBiConnectorConfig() {}
     /**
      * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
      * 
@@ -41,7 +41,7 @@ public final class GetAdvancedClustersResultBiConnector {
         return new Builder();
     }
 
-    public static Builder builder(GetAdvancedClustersResultBiConnector defaults) {
+    public static Builder builder(GetAdvancedClusterBiConnectorConfig defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
@@ -49,7 +49,7 @@ public final class GetAdvancedClustersResultBiConnector {
         private Boolean enabled;
         private String readPreference;
         public Builder() {}
-        public Builder(GetAdvancedClustersResultBiConnector defaults) {
+        public Builder(GetAdvancedClusterBiConnectorConfig defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.enabled = defaults.enabled;
     	      this.readPreference = defaults.readPreference;
@@ -65,8 +65,8 @@ public final class GetAdvancedClustersResultBiConnector {
             this.readPreference = Objects.requireNonNull(readPreference);
             return this;
         }
-        public GetAdvancedClustersResultBiConnector build() {
-            final var o = new GetAdvancedClustersResultBiConnector();
+        public GetAdvancedClusterBiConnectorConfig build() {
+            final var o = new GetAdvancedClusterBiConnectorConfig();
             o.enabled = enabled;
             o.readPreference = readPreference;
             return o;

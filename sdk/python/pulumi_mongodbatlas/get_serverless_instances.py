@@ -69,7 +69,7 @@ class AwaitableGetServerlessInstancesResult(GetServerlessInstancesResult):
 def get_serverless_instances(project_id: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerlessInstancesResult:
     """
-    `get_serverless_instances` describe all serverless instances. This represents serverless instances that have been created for the specified group id.
+    _get_serverless_instances_ describe all serverless instances. This represents serverless instances that have been created for the specified group id.
 
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
     For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
@@ -103,7 +103,7 @@ def get_serverless_instances(project_id: Optional[str] = None,
 def get_serverless_instances_output(project_id: Optional[pulumi.Input[str]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServerlessInstancesResult]:
     """
-    `get_serverless_instances` describe all serverless instances. This represents serverless instances that have been created for the specified group id.
+    _get_serverless_instances_ describe all serverless instances. This represents serverless instances that have been created for the specified group id.
 
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
     For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).

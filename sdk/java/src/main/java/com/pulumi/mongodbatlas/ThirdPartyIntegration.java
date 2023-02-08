@@ -318,15 +318,19 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * @deprecated
+     * This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
+     * 
      */
+    @Deprecated /* This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release  */
     @Export(name="type", type=String.class, parameters={})
     private Output<String> type;
 
@@ -334,10 +338,10 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * @return Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS

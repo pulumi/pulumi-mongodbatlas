@@ -17,29 +17,30 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
+ * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
  * const testProject = new mongodbatlas.Project("testProject", {
- *     apiKeys: [{
- *         apiKeyId: "61003b299dda8d54a9d7d10c",
- *         roleNames: ["GROUP_READ_ONLY"],
- *     }],
- *     orgId: "<ORG_ID>",
+ *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
  *     teams: [
  *         {
- *             roleNames: ["GROUP_OWNER"],
  *             teamId: "5e0fa8c99ccf641c722fe645",
+ *             roleNames: ["GROUP_OWNER"],
  *         },
  *         {
+ *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
  *             roleNames: [
  *                 "GROUP_READ_ONLY",
  *                 "GROUP_DATA_ACCESS_READ_WRITE",
  *             ],
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
  *         },
  *     ],
+ *     apiKeys: [{
+ *         apiKeyId: "61003b299dda8d54a9d7d10c",
+ *         roleNames: ["GROUP_READ_ONLY"],
+ *     }],
  * });
  * const testProjects = mongodbatlas.getProjects({
- *     itemsPerPage: 5,
  *     pageNum: 1,
+ *     itemsPerPage: 5,
  * });
  * ```
  */
@@ -91,29 +92,30 @@ export interface GetProjectsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
+ * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
  * const testProject = new mongodbatlas.Project("testProject", {
- *     apiKeys: [{
- *         apiKeyId: "61003b299dda8d54a9d7d10c",
- *         roleNames: ["GROUP_READ_ONLY"],
- *     }],
- *     orgId: "<ORG_ID>",
+ *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
  *     teams: [
  *         {
- *             roleNames: ["GROUP_OWNER"],
  *             teamId: "5e0fa8c99ccf641c722fe645",
+ *             roleNames: ["GROUP_OWNER"],
  *         },
  *         {
+ *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
  *             roleNames: [
  *                 "GROUP_READ_ONLY",
  *                 "GROUP_DATA_ACCESS_READ_WRITE",
  *             ],
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
  *         },
  *     ],
+ *     apiKeys: [{
+ *         apiKeyId: "61003b299dda8d54a9d7d10c",
+ *         roleNames: ["GROUP_READ_ONLY"],
+ *     }],
  * });
  * const testProjects = mongodbatlas.getProjects({
- *     itemsPerPage: 5,
  *     pageNum: 1,
+ *     itemsPerPage: 5,
  * });
  * ```
  */

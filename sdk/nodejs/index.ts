@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AccessListApiKeyArgs, AccessListApiKeyState } from "./accessListApiKey";
+export type AccessListApiKey = import("./accessListApiKey").AccessListApiKey;
+export const AccessListApiKey: typeof import("./accessListApiKey").AccessListApiKey = null as any;
+utilities.lazyLoad(exports, ["AccessListApiKey"], () => require("./accessListApiKey"));
+
 export { AdvancedClusterArgs, AdvancedClusterState } from "./advancedCluster";
 export type AdvancedCluster = import("./advancedCluster").AdvancedCluster;
 export const AdvancedCluster: typeof import("./advancedCluster").AdvancedCluster = null as any;
@@ -14,6 +19,11 @@ export { AlertConfigurationArgs, AlertConfigurationState } from "./alertConfigur
 export type AlertConfiguration = import("./alertConfiguration").AlertConfiguration;
 export const AlertConfiguration: typeof import("./alertConfiguration").AlertConfiguration = null as any;
 utilities.lazyLoad(exports, ["AlertConfiguration"], () => require("./alertConfiguration"));
+
+export { ApiKeyArgs, ApiKeyState } from "./apiKey";
+export type ApiKey = import("./apiKey").ApiKey;
+export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
+utilities.lazyLoad(exports, ["ApiKey"], () => require("./apiKey"));
 
 export { AuditingArgs, AuditingState } from "./auditing";
 export type Auditing = import("./auditing").Auditing;
@@ -130,6 +140,16 @@ export const get509AuthenticationDatabaseUser: typeof import("./get509Authentica
 export const get509AuthenticationDatabaseUserOutput: typeof import("./get509AuthenticationDatabaseUser").get509AuthenticationDatabaseUserOutput = null as any;
 utilities.lazyLoad(exports, ["get509AuthenticationDatabaseUser","get509AuthenticationDatabaseUserOutput"], () => require("./get509AuthenticationDatabaseUser"));
 
+export { GetAccessListApiKeyArgs, GetAccessListApiKeyResult, GetAccessListApiKeyOutputArgs } from "./getAccessListApiKey";
+export const getAccessListApiKey: typeof import("./getAccessListApiKey").getAccessListApiKey = null as any;
+export const getAccessListApiKeyOutput: typeof import("./getAccessListApiKey").getAccessListApiKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getAccessListApiKey","getAccessListApiKeyOutput"], () => require("./getAccessListApiKey"));
+
+export { GetAccessListApiKeysArgs, GetAccessListApiKeysResult, GetAccessListApiKeysOutputArgs } from "./getAccessListApiKeys";
+export const getAccessListApiKeys: typeof import("./getAccessListApiKeys").getAccessListApiKeys = null as any;
+export const getAccessListApiKeysOutput: typeof import("./getAccessListApiKeys").getAccessListApiKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getAccessListApiKeys","getAccessListApiKeysOutput"], () => require("./getAccessListApiKeys"));
+
 export { GetAdvancedClusterArgs, GetAdvancedClusterResult, GetAdvancedClusterOutputArgs } from "./getAdvancedCluster";
 export const getAdvancedCluster: typeof import("./getAdvancedCluster").getAdvancedCluster = null as any;
 export const getAdvancedClusterOutput: typeof import("./getAdvancedCluster").getAdvancedClusterOutput = null as any;
@@ -144,6 +164,21 @@ export { GetAlertConfigurationArgs, GetAlertConfigurationResult, GetAlertConfigu
 export const getAlertConfiguration: typeof import("./getAlertConfiguration").getAlertConfiguration = null as any;
 export const getAlertConfigurationOutput: typeof import("./getAlertConfiguration").getAlertConfigurationOutput = null as any;
 utilities.lazyLoad(exports, ["getAlertConfiguration","getAlertConfigurationOutput"], () => require("./getAlertConfiguration"));
+
+export { GetAlertConfigurationsArgs, GetAlertConfigurationsResult, GetAlertConfigurationsOutputArgs } from "./getAlertConfigurations";
+export const getAlertConfigurations: typeof import("./getAlertConfigurations").getAlertConfigurations = null as any;
+export const getAlertConfigurationsOutput: typeof import("./getAlertConfigurations").getAlertConfigurationsOutput = null as any;
+utilities.lazyLoad(exports, ["getAlertConfigurations","getAlertConfigurationsOutput"], () => require("./getAlertConfigurations"));
+
+export { GetApiKeyArgs, GetApiKeyResult, GetApiKeyOutputArgs } from "./getApiKey";
+export const getApiKey: typeof import("./getApiKey").getApiKey = null as any;
+export const getApiKeyOutput: typeof import("./getApiKey").getApiKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getApiKey","getApiKeyOutput"], () => require("./getApiKey"));
+
+export { GetApiKeysArgs, GetApiKeysResult, GetApiKeysOutputArgs } from "./getApiKeys";
+export const getApiKeys: typeof import("./getApiKeys").getApiKeys = null as any;
+export const getApiKeysOutput: typeof import("./getApiKeys").getApiKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getApiKeys","getApiKeysOutput"], () => require("./getApiKeys"));
 
 export { GetAuditingArgs, GetAuditingResult, GetAuditingOutputArgs } from "./getAuditing";
 export const getAuditing: typeof import("./getAuditing").getAuditing = null as any;
@@ -415,6 +450,16 @@ export const getProject: typeof import("./getProject").getProject = null as any;
 export const getProjectOutput: typeof import("./getProject").getProjectOutput = null as any;
 utilities.lazyLoad(exports, ["getProject","getProjectOutput"], () => require("./getProject"));
 
+export { GetProjectApiKeyArgs, GetProjectApiKeyResult, GetProjectApiKeyOutputArgs } from "./getProjectApiKey";
+export const getProjectApiKey: typeof import("./getProjectApiKey").getProjectApiKey = null as any;
+export const getProjectApiKeyOutput: typeof import("./getProjectApiKey").getProjectApiKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectApiKey","getProjectApiKeyOutput"], () => require("./getProjectApiKey"));
+
+export { GetProjectApiKeysArgs, GetProjectApiKeysResult, GetProjectApiKeysOutputArgs } from "./getProjectApiKeys";
+export const getProjectApiKeys: typeof import("./getProjectApiKeys").getProjectApiKeys = null as any;
+export const getProjectApiKeysOutput: typeof import("./getProjectApiKeys").getProjectApiKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectApiKeys","getProjectApiKeysOutput"], () => require("./getProjectApiKeys"));
+
 export { GetProjectInvitationArgs, GetProjectInvitationResult, GetProjectInvitationOutputArgs } from "./getProjectInvitation";
 export const getProjectInvitation: typeof import("./getProjectInvitation").getProjectInvitation = null as any;
 export const getProjectInvitationOutput: typeof import("./getProjectInvitation").getProjectInvitationOutput = null as any;
@@ -429,6 +474,10 @@ export { GetProjectsArgs, GetProjectsResult, GetProjectsOutputArgs } from "./get
 export const getProjects: typeof import("./getProjects").getProjects = null as any;
 export const getProjectsOutput: typeof import("./getProjects").getProjectsOutput = null as any;
 utilities.lazyLoad(exports, ["getProjects","getProjectsOutput"], () => require("./getProjects"));
+
+export { GetRolesOrgIdResult } from "./getRolesOrgId";
+export const getRolesOrgId: typeof import("./getRolesOrgId").getRolesOrgId = null as any;
+utilities.lazyLoad(exports, ["getRolesOrgId"], () => require("./getRolesOrgId"));
 
 export { GetSearchIndexArgs, GetSearchIndexResult, GetSearchIndexOutputArgs } from "./getSearchIndex";
 export const getSearchIndex: typeof import("./getSearchIndex").getSearchIndex = null as any;
@@ -550,6 +599,11 @@ export type Project = import("./project").Project;
 export const Project: typeof import("./project").Project = null as any;
 utilities.lazyLoad(exports, ["Project"], () => require("./project"));
 
+export { ProjectApiKeyArgs, ProjectApiKeyState } from "./projectApiKey";
+export type ProjectApiKey = import("./projectApiKey").ProjectApiKey;
+export const ProjectApiKey: typeof import("./projectApiKey").ProjectApiKey = null as any;
+utilities.lazyLoad(exports, ["ProjectApiKey"], () => require("./projectApiKey"));
+
 export { ProjectInvitationArgs, ProjectInvitationState } from "./projectInvitation";
 export type ProjectInvitation = import("./projectInvitation").ProjectInvitation;
 export const ProjectInvitation: typeof import("./projectInvitation").ProjectInvitation = null as any;
@@ -609,10 +663,14 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "mongodbatlas:index/accessListApiKey:AccessListApiKey":
+                return new AccessListApiKey(name, <any>undefined, { urn })
             case "mongodbatlas:index/advancedCluster:AdvancedCluster":
                 return new AdvancedCluster(name, <any>undefined, { urn })
             case "mongodbatlas:index/alertConfiguration:AlertConfiguration":
                 return new AlertConfiguration(name, <any>undefined, { urn })
+            case "mongodbatlas:index/apiKey:ApiKey":
+                return new ApiKey(name, <any>undefined, { urn })
             case "mongodbatlas:index/auditing:Auditing":
                 return new Auditing(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule":
@@ -689,6 +747,8 @@ const _module = {
                 return new PrivatelinkEndpointServiceServerless(name, <any>undefined, { urn })
             case "mongodbatlas:index/project:Project":
                 return new Project(name, <any>undefined, { urn })
+            case "mongodbatlas:index/projectApiKey:ProjectApiKey":
+                return new ProjectApiKey(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectInvitation:ProjectInvitation":
                 return new ProjectInvitation(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
@@ -710,8 +770,10 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/accessListApiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/advancedCluster", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/alertConfiguration", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/apiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/auditing", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSchedule", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshot", _module)
@@ -750,6 +812,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpoint
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpointServiceAdl", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpointServiceServerless", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectApiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectInvitation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _module)

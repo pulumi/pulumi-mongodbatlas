@@ -5,8 +5,12 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationOutputArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetAlertConfigurationArgs extends com.pulumi.resources.InvokeArgs {
@@ -29,6 +33,23 @@ public final class GetAlertConfigurationArgs extends com.pulumi.resources.Invoke
     }
 
     /**
+     * List of formatted output requested for this alert configuration
+     * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+     * 
+     */
+    @Import(name="outputs")
+    private @Nullable Output<List<GetAlertConfigurationOutputArgs>> outputs;
+
+    /**
+     * @return List of formatted output requested for this alert configuration
+     * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+     * 
+     */
+    public Optional<Output<List<GetAlertConfigurationOutputArgs>>> outputs() {
+        return Optional.ofNullable(this.outputs);
+    }
+
+    /**
      * The ID of the project where the alert configuration will create.
      * 
      */
@@ -47,6 +68,7 @@ public final class GetAlertConfigurationArgs extends com.pulumi.resources.Invoke
 
     private GetAlertConfigurationArgs(GetAlertConfigurationArgs $) {
         this.alertConfigurationId = $.alertConfigurationId;
+        this.outputs = $.outputs;
         this.projectId = $.projectId;
     }
 
@@ -87,6 +109,40 @@ public final class GetAlertConfigurationArgs extends com.pulumi.resources.Invoke
          */
         public Builder alertConfigurationId(String alertConfigurationId) {
             return alertConfigurationId(Output.of(alertConfigurationId));
+        }
+
+        /**
+         * @param outputs List of formatted output requested for this alert configuration
+         * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder outputs(@Nullable Output<List<GetAlertConfigurationOutputArgs>> outputs) {
+            $.outputs = outputs;
+            return this;
+        }
+
+        /**
+         * @param outputs List of formatted output requested for this alert configuration
+         * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder outputs(List<GetAlertConfigurationOutputArgs> outputs) {
+            return outputs(Output.of(outputs));
+        }
+
+        /**
+         * @param outputs List of formatted output requested for this alert configuration
+         * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder outputs(GetAlertConfigurationOutputArgs... outputs) {
+            return outputs(List.of(outputs));
         }
 
         /**

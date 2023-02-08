@@ -34,7 +34,7 @@ type LookupProjectArgs struct {
 
 // A collection of values returned by getProject.
 type LookupProjectResult struct {
-	ApiKeys []GetProjectApiKey `pulumi:"apiKeys"`
+	ApiKeys []GetProjectApiKeyType `pulumi:"apiKeys"`
 	// The number of Atlas clusters deployed in the project.
 	ClusterCount int `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
@@ -104,8 +104,8 @@ func (o LookupProjectResultOutput) ToLookupProjectResultOutputWithContext(ctx co
 	return o
 }
 
-func (o LookupProjectResultOutput) ApiKeys() GetProjectApiKeyArrayOutput {
-	return o.ApplyT(func(v LookupProjectResult) []GetProjectApiKey { return v.ApiKeys }).(GetProjectApiKeyArrayOutput)
+func (o LookupProjectResultOutput) ApiKeys() GetProjectApiKeyTypeArrayOutput {
+	return o.ApplyT(func(v LookupProjectResult) []GetProjectApiKeyType { return v.ApiKeys }).(GetProjectApiKeyTypeArrayOutput)
 }
 
 // The number of Atlas clusters deployed in the project.

@@ -5,7 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterAdvancedConfiguration;
-import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterBiConnector;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterBiConnectorConfig;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterConnectionString;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterLabel;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterReplicationSpec;
@@ -24,10 +24,10 @@ public final class GetAdvancedClusterResult {
     private List<GetAdvancedClusterAdvancedConfiguration> advancedConfigurations;
     private Boolean backupEnabled;
     /**
-     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
      * 
      */
-    private List<GetAdvancedClusterBiConnector> biConnectors;
+    private List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs;
     /**
      * @return Type of the cluster that you want to create.
      * 
@@ -119,11 +119,11 @@ public final class GetAdvancedClusterResult {
         return this.backupEnabled;
     }
     /**
-     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
      * 
      */
-    public List<GetAdvancedClusterBiConnector> biConnectors() {
-        return this.biConnectors;
+    public List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs() {
+        return this.biConnectorConfigs;
     }
     /**
      * @return Type of the cluster that you want to create.
@@ -251,7 +251,7 @@ public final class GetAdvancedClusterResult {
     public static final class Builder {
         private List<GetAdvancedClusterAdvancedConfiguration> advancedConfigurations;
         private Boolean backupEnabled;
-        private List<GetAdvancedClusterBiConnector> biConnectors;
+        private List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs;
         private String clusterType;
         private List<GetAdvancedClusterConnectionString> connectionStrings;
         private String createDate;
@@ -275,7 +275,7 @@ public final class GetAdvancedClusterResult {
     	      Objects.requireNonNull(defaults);
     	      this.advancedConfigurations = defaults.advancedConfigurations;
     	      this.backupEnabled = defaults.backupEnabled;
-    	      this.biConnectors = defaults.biConnectors;
+    	      this.biConnectorConfigs = defaults.biConnectorConfigs;
     	      this.clusterType = defaults.clusterType;
     	      this.connectionStrings = defaults.connectionStrings;
     	      this.createDate = defaults.createDate;
@@ -310,12 +310,12 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
-        public Builder biConnectors(List<GetAdvancedClusterBiConnector> biConnectors) {
-            this.biConnectors = Objects.requireNonNull(biConnectors);
+        public Builder biConnectorConfigs(List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs) {
+            this.biConnectorConfigs = Objects.requireNonNull(biConnectorConfigs);
             return this;
         }
-        public Builder biConnectors(GetAdvancedClusterBiConnector... biConnectors) {
-            return biConnectors(List.of(biConnectors));
+        public Builder biConnectorConfigs(GetAdvancedClusterBiConnectorConfig... biConnectorConfigs) {
+            return biConnectorConfigs(List.of(biConnectorConfigs));
         }
         @CustomType.Setter
         public Builder clusterType(String clusterType) {
@@ -420,7 +420,7 @@ public final class GetAdvancedClusterResult {
             final var o = new GetAdvancedClusterResult();
             o.advancedConfigurations = advancedConfigurations;
             o.backupEnabled = backupEnabled;
-            o.biConnectors = biConnectors;
+            o.biConnectorConfigs = biConnectorConfigs;
             o.clusterType = clusterType;
             o.connectionStrings = connectionStrings;
             o.createDate = createDate;

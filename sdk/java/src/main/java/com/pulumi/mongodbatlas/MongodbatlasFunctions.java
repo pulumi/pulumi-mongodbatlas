@@ -10,12 +10,22 @@ import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;
 import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
+import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
 import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
 import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
 import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationsArgs;
+import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetApiKeyArgs;
+import com.pulumi.mongodbatlas.inputs.GetApiKeyPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetApiKeysArgs;
+import com.pulumi.mongodbatlas.inputs.GetApiKeysPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
 import com.pulumi.mongodbatlas.inputs.GetAuditingPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
@@ -122,6 +132,10 @@ import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceAdlArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceAdlPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectInvitationArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectInvitationPlainArgs;
@@ -147,9 +161,14 @@ import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationsArgs;
 import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationsPlainArgs;
 import com.pulumi.mongodbatlas.outputs.Get509AuthenticationDatabaseUserResult;
+import com.pulumi.mongodbatlas.outputs.GetAccessListApiKeyResult;
+import com.pulumi.mongodbatlas.outputs.GetAccessListApiKeysInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterResult;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationResult;
+import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetApiKeyResult;
+import com.pulumi.mongodbatlas.outputs.GetApiKeysInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAuditingResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupScheduleResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotExportBucketResult;
@@ -203,10 +222,13 @@ import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointServiceAdlResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointServiceServerlessResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointsServiceAdlInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointsServiceServerlessInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectApiKeyResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectApiKeysInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectInvitationResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectIpAccessListResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetRolesOrgIdResult;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexResult;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetServerlessInstanceResult;
@@ -215,6 +237,7 @@ import com.pulumi.mongodbatlas.outputs.GetTeamResult;
 import com.pulumi.mongodbatlas.outputs.GetTeamsResult;
 import com.pulumi.mongodbatlas.outputs.GetThirdPartyIntegrationResult;
 import com.pulumi.mongodbatlas.outputs.GetThirdPartyIntegrationsInvokeResult;
+import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class MongodbatlasFunctions {
@@ -711,6 +734,62 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", TypeShape.of(Get509AuthenticationDatabaseUserResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetAccessListApiKeyResult> getAccessListApiKey(GetAccessListApiKeyArgs args) {
+        return getAccessListApiKey(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetAccessListApiKeyResult> getAccessListApiKeyPlain(GetAccessListApiKeyPlainArgs args) {
+        return getAccessListApiKeyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetAccessListApiKeyResult> getAccessListApiKey(GetAccessListApiKeyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", TypeShape.of(GetAccessListApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetAccessListApiKeyResult> getAccessListApiKeyPlain(GetAccessListApiKeyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", TypeShape.of(GetAccessListApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetAccessListApiKeysInvokeResult> getAccessListApiKeys(GetAccessListApiKeysArgs args) {
+        return getAccessListApiKeys(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetAccessListApiKeysInvokeResult> getAccessListApiKeysPlain(GetAccessListApiKeysPlainArgs args) {
+        return getAccessListApiKeysPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetAccessListApiKeysInvokeResult> getAccessListApiKeys(GetAccessListApiKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", TypeShape.of(GetAccessListApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetAccessListApiKeysInvokeResult> getAccessListApiKeysPlain(GetAccessListApiKeysPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", TypeShape.of(GetAccessListApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -982,41 +1061,69 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetAdvancedClustersInvokeResult> getAdvancedClustersPlain(GetAdvancedClustersPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", TypeShape.of(GetAdvancedClustersInvokeResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
-     */
     public static Output<GetAlertConfigurationResult> getAlertConfiguration(GetAlertConfigurationArgs args) {
         return getAlertConfiguration(args, InvokeOptions.Empty);
     }
-    /**
-     * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
-     */
     public static CompletableFuture<GetAlertConfigurationResult> getAlertConfigurationPlain(GetAlertConfigurationPlainArgs args) {
         return getAlertConfigurationPlain(args, InvokeOptions.Empty);
     }
-    /**
-     * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
-     */
     public static Output<GetAlertConfigurationResult> getAlertConfiguration(GetAlertConfigurationArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", TypeShape.of(GetAlertConfigurationResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
-     */
     public static CompletableFuture<GetAlertConfigurationResult> getAlertConfigurationPlain(GetAlertConfigurationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", TypeShape.of(GetAlertConfigurationResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args) {
+        return getAlertConfigurations(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args) {
+        return getAlertConfigurationsPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", TypeShape.of(GetAlertConfigurationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", TypeShape.of(GetAlertConfigurationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetApiKeyResult> getApiKey(GetApiKeyArgs args) {
+        return getApiKey(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetApiKeyResult> getApiKeyPlain(GetApiKeyPlainArgs args) {
+        return getApiKeyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetApiKeyResult> getApiKey(GetApiKeyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getApiKey:getApiKey", TypeShape.of(GetApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetApiKeyResult> getApiKeyPlain(GetApiKeyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKey:getApiKey", TypeShape.of(GetApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args) {
+        return getApiKeys(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetApiKeysInvokeResult> getApiKeysPlain(GetApiKeysPlainArgs args) {
+        return getApiKeysPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetApiKeysInvokeResult> getApiKeysPlain(GetApiKeysPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.Auditing` describes a Auditing.
@@ -8601,6 +8708,46 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProject:getProject", TypeShape.of(GetProjectResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetProjectApiKeyResult> getProjectApiKey(GetProjectApiKeyArgs args) {
+        return getProjectApiKey(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetProjectApiKeyResult> getProjectApiKeyPlain(GetProjectApiKeyPlainArgs args) {
+        return getProjectApiKeyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetProjectApiKeyResult> getProjectApiKey(GetProjectApiKeyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectApiKey:getProjectApiKey", TypeShape.of(GetProjectApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetProjectApiKeyResult> getProjectApiKeyPlain(GetProjectApiKeyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectApiKey:getProjectApiKey", TypeShape.of(GetProjectApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetProjectApiKeysInvokeResult> getProjectApiKeys(GetProjectApiKeysArgs args) {
+        return getProjectApiKeys(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetProjectApiKeysInvokeResult> getProjectApiKeysPlain(GetProjectApiKeysPlainArgs args) {
+        return getProjectApiKeysPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetProjectApiKeysInvokeResult> getProjectApiKeys(GetProjectApiKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", TypeShape.of(GetProjectApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetProjectApiKeysInvokeResult> getProjectApiKeysPlain(GetProjectApiKeysPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", TypeShape.of(GetProjectApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
@@ -8712,11 +8859,11 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -8731,28 +8878,30 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
+     * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .build())
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
      *                 .build())
-     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
-     *             .teams(            
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(&#34;GROUP_OWNER&#34;)
-     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
-     *                     .build(),
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(                    
-     *                         &#34;GROUP_READ_ONLY&#34;,
-     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
-     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
-     *                     .build())
      *             .build());
      * 
      *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
-     *             .itemsPerPage(5)
      *             .pageNum(1)
+     *             .itemsPerPage(5)
      *             .build());
      * 
      *     }
@@ -8775,11 +8924,11 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -8794,28 +8943,30 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
+     * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .build())
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
      *                 .build())
-     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
-     *             .teams(            
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(&#34;GROUP_OWNER&#34;)
-     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
-     *                     .build(),
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(                    
-     *                         &#34;GROUP_READ_ONLY&#34;,
-     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
-     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
-     *                     .build())
      *             .build());
      * 
      *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
-     *             .itemsPerPage(5)
      *             .pageNum(1)
+     *             .itemsPerPage(5)
      *             .build());
      * 
      *     }
@@ -8838,11 +8989,11 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -8857,28 +9008,30 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
+     * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .build())
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
      *                 .build())
-     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
-     *             .teams(            
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(&#34;GROUP_OWNER&#34;)
-     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
-     *                     .build(),
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(                    
-     *                         &#34;GROUP_READ_ONLY&#34;,
-     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
-     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
-     *                     .build())
      *             .build());
      * 
      *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
-     *             .itemsPerPage(5)
      *             .pageNum(1)
+     *             .itemsPerPage(5)
      *             .build());
      * 
      *     }
@@ -8901,11 +9054,11 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -8920,28 +9073,30 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
+     * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .build())
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
      *                 .build())
-     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
-     *             .teams(            
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(&#34;GROUP_OWNER&#34;)
-     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
-     *                     .build(),
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(                    
-     *                         &#34;GROUP_READ_ONLY&#34;,
-     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
-     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
-     *                     .build())
      *             .build());
      * 
      *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
-     *             .itemsPerPage(5)
      *             .pageNum(1)
+     *             .itemsPerPage(5)
      *             .build());
      * 
      *     }
@@ -8964,11 +9119,11 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -8983,28 +9138,30 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
+     * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .build())
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
      *                 .build())
-     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
-     *             .teams(            
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(&#34;GROUP_OWNER&#34;)
-     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
-     *                     .build(),
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(                    
-     *                         &#34;GROUP_READ_ONLY&#34;,
-     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
-     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
-     *                     .build())
      *             .build());
      * 
      *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
-     *             .itemsPerPage(5)
      *             .pageNum(1)
+     *             .itemsPerPage(5)
      *             .build());
      * 
      *     }
@@ -9027,11 +9184,11 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -9046,28 +9203,30 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
+     * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .build())
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
      *                 .build())
-     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
-     *             .teams(            
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(&#34;GROUP_OWNER&#34;)
-     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
-     *                     .build(),
-     *                 ProjectTeamArgs.builder()
-     *                     .roleNames(                    
-     *                         &#34;GROUP_READ_ONLY&#34;,
-     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
-     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
-     *                     .build())
      *             .build());
      * 
      *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
-     *             .itemsPerPage(5)
      *             .pageNum(1)
+     *             .itemsPerPage(5)
      *             .build());
      * 
      *     }
@@ -9077,6 +9236,222 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetProjectsInvokeResult> getProjectsPlain(GetProjectsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjects:getProjects", TypeShape.of(GetProjectsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * 
+     * ## Example Usage
+     * ### Using project_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getRolesOrgId();
+     * 
+     *         ctx.export(&#34;orgId&#34;, test.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetRolesOrgIdResult> getRolesOrgId() {
+        return getRolesOrgId(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * 
+     * ## Example Usage
+     * ### Using project_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getRolesOrgId();
+     * 
+     *         ctx.export(&#34;orgId&#34;, test.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetRolesOrgIdResult> getRolesOrgIdPlain() {
+        return getRolesOrgIdPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * 
+     * ## Example Usage
+     * ### Using project_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getRolesOrgId();
+     * 
+     *         ctx.export(&#34;orgId&#34;, test.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetRolesOrgIdResult> getRolesOrgId(InvokeArgs args) {
+        return getRolesOrgId(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * 
+     * ## Example Usage
+     * ### Using project_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getRolesOrgId();
+     * 
+     *         ctx.export(&#34;orgId&#34;, test.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetRolesOrgIdResult> getRolesOrgIdPlain(InvokeArgs args) {
+        return getRolesOrgIdPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * 
+     * ## Example Usage
+     * ### Using project_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getRolesOrgId();
+     * 
+     *         ctx.export(&#34;orgId&#34;, test.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetRolesOrgIdResult> getRolesOrgId(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getRolesOrgId:getRolesOrgId", TypeShape.of(GetRolesOrgIdResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * 
+     * ## Example Usage
+     * ### Using project_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getRolesOrgId();
+     * 
+     *         ctx.export(&#34;orgId&#34;, test.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetRolesOrgIdResult> getRolesOrgIdPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getRolesOrgId:getRolesOrgId", TypeShape.of(GetRolesOrgIdResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.SearchIndex` describe a single search indexes. This represents a single search index that have been created.

@@ -6,16 +6,12 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- */
 export function getAlertConfiguration(args: GetAlertConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetAlertConfigurationResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", {
         "alertConfigurationId": args.alertConfigurationId,
+        "outputs": args.outputs,
         "projectId": args.projectId,
     }, opts);
 }
@@ -28,6 +24,11 @@ export interface GetAlertConfigurationArgs {
      * Unique identifier for the alert configuration.
      */
     alertConfigurationId: string;
+    /**
+     * List of formatted output requested for this alert configuration
+     * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+     */
+    outputs?: inputs.GetAlertConfigurationOutput[];
     /**
      * The ID of the project where the alert configuration will create.
      */
@@ -59,6 +60,7 @@ export interface GetAlertConfigurationResult {
     readonly metricThreshold: {[key: string]: string};
     readonly metricThresholdConfigs: outputs.GetAlertConfigurationMetricThresholdConfig[];
     readonly notifications: outputs.GetAlertConfigurationNotification[];
+    readonly outputs?: outputs.GetAlertConfigurationOutput[];
     readonly projectId: string;
     /**
      * Threshold value outside of which an alert will be triggered.
@@ -70,11 +72,6 @@ export interface GetAlertConfigurationResult {
      */
     readonly updated: string;
 }
-/**
- * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- */
 export function getAlertConfigurationOutput(args: GetAlertConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlertConfigurationResult> {
     return pulumi.output(args).apply((a: any) => getAlertConfiguration(a, opts))
 }
@@ -87,6 +84,11 @@ export interface GetAlertConfigurationOutputArgs {
      * Unique identifier for the alert configuration.
      */
     alertConfigurationId: pulumi.Input<string>;
+    /**
+     * List of formatted output requested for this alert configuration
+     * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+     */
+    outputs?: pulumi.Input<pulumi.Input<inputs.GetAlertConfigurationOutputArgs>[]>;
     /**
      * The ID of the project where the alert configuration will create.
      */

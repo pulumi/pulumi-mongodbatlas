@@ -28,29 +28,33 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
-//				ApiKeys: mongodbatlas.ProjectApiKeyArray{
-//					&mongodbatlas.ProjectApiKeyArgs{
-//						ApiKeyId: pulumi.String("61003b299dda8d54a9d7d10c"),
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_READ_ONLY"),
-//						},
-//					},
-//				},
-//				OrgId: pulumi.String("<ORG_ID>"),
+//			testRolesOrgId, err := mongodbatlas.GetRolesOrgId(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				OrgId: *pulumi.String(testRolesOrgId.OrgId),
 //				Teams: mongodbatlas.ProjectTeamArray{
 //					&mongodbatlas.ProjectTeamArgs{
+//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
 //						RoleNames: pulumi.StringArray{
 //							pulumi.String("GROUP_OWNER"),
 //						},
-//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
 //					},
 //					&mongodbatlas.ProjectTeamArgs{
+//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
 //						RoleNames: pulumi.StringArray{
 //							pulumi.String("GROUP_READ_ONLY"),
 //							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
 //						},
-//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
+//					},
+//				},
+//				ApiKeys: mongodbatlas.ProjectApiKeyTypeArray{
+//					&mongodbatlas.ProjectApiKeyTypeArgs{
+//						ApiKeyId: pulumi.String("61003b299dda8d54a9d7d10c"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_READ_ONLY"),
+//						},
 //					},
 //				},
 //			})
@@ -58,8 +62,8 @@ import (
 //				return err
 //			}
 //			_, err = mongodbatlas.LookupProjects(ctx, &mongodbatlas.LookupProjectsArgs{
-//				ItemsPerPage: pulumi.IntRef(5),
 //				PageNum:      pulumi.IntRef(1),
+//				ItemsPerPage: pulumi.IntRef(5),
 //			}, nil)
 //			if err != nil {
 //				return err

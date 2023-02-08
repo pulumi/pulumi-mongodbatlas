@@ -227,7 +227,7 @@ def get_search_index(analyzer: Optional[str] = None,
     :param str cluster_name: The name of the cluster containing the collection with one or more Atlas Search indexes.
     :param str collection_name: Name of the collection the index is on.
     :param str database: Name of the database the collection is in.
-    :param str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
+    :param str index_id: The unique identifier of the Atlas Search index. Use the _get_search_indexes_datasource to find the IDs of all Atlas Search indexes.
     :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
     :param str mappings_fields: Object containing one or more field specifications.
     :param str name: Name of the index.
@@ -303,7 +303,7 @@ def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = No
     :param str cluster_name: The name of the cluster containing the collection with one or more Atlas Search indexes.
     :param str collection_name: Name of the collection the index is on.
     :param str database: Name of the database the collection is in.
-    :param str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
+    :param str index_id: The unique identifier of the Atlas Search index. Use the _get_search_indexes_datasource to find the IDs of all Atlas Search indexes.
     :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
     :param str mappings_fields: Object containing one or more field specifications.
     :param str name: Name of the index.

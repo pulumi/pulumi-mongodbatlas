@@ -22,6 +22,7 @@ class AdvancedClusterArgs:
                  advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']] = None,
+                 bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]] = None,
@@ -40,7 +41,7 @@ class AdvancedClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
         :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-        :param pulumi.Input['AdvancedClusterBiConnectorArgs'] bi_connector: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+        :param pulumi.Input['AdvancedClusterBiConnectorConfigArgs'] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
@@ -59,7 +60,12 @@ class AdvancedClusterArgs:
         if backup_enabled is not None:
             pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector is not None:
+            warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+            pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+        if bi_connector is not None:
             pulumi.set(__self__, "bi_connector", bi_connector)
+        if bi_connector_config is not None:
+            pulumi.set(__self__, "bi_connector_config", bi_connector_config)
         if disk_size_gb is not None:
             pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
@@ -143,14 +149,23 @@ class AdvancedClusterArgs:
     @property
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]:
-        """
-        Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
-        """
         return pulumi.get(self, "bi_connector")
 
     @bi_connector.setter
     def bi_connector(self, value: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]):
         pulumi.set(self, "bi_connector", value)
+
+    @property
+    @pulumi.getter(name="biConnectorConfig")
+    def bi_connector_config(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']]:
+        """
+        Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+        """
+        return pulumi.get(self, "bi_connector_config")
+
+    @bi_connector_config.setter
+    def bi_connector_config(self, value: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']]):
+        pulumi.set(self, "bi_connector_config", value)
 
     @property
     @pulumi.getter(name="diskSizeGb")
@@ -276,6 +291,7 @@ class _AdvancedClusterState:
                  advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']] = None,
+                 bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]]] = None,
@@ -298,7 +314,7 @@ class _AdvancedClusterState:
         Input properties used for looking up and filtering AdvancedCluster resources.
         :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-        :param pulumi.Input['AdvancedClusterBiConnectorArgs'] bi_connector: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+        :param pulumi.Input['AdvancedClusterBiConnectorConfigArgs'] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
                Accepted values include:
@@ -328,7 +344,12 @@ class _AdvancedClusterState:
         if backup_enabled is not None:
             pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector is not None:
+            warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+            pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+        if bi_connector is not None:
             pulumi.set(__self__, "bi_connector", bi_connector)
+        if bi_connector_config is not None:
+            pulumi.set(__self__, "bi_connector_config", bi_connector_config)
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_type is not None:
@@ -391,14 +412,23 @@ class _AdvancedClusterState:
     @property
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]:
-        """
-        Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
-        """
         return pulumi.get(self, "bi_connector")
 
     @bi_connector.setter
     def bi_connector(self, value: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]):
         pulumi.set(self, "bi_connector", value)
+
+    @property
+    @pulumi.getter(name="biConnectorConfig")
+    def bi_connector_config(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']]:
+        """
+        Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+        """
+        return pulumi.get(self, "bi_connector_config")
+
+    @bi_connector_config.setter
+    def bi_connector_config(self, value: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']]):
+        pulumi.set(self, "bi_connector_config", value)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -626,6 +656,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorArgs']]] = None,
+                 bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
@@ -655,7 +686,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-        :param pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorArgs']] bi_connector: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+        :param pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
                Accepted values include:
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
@@ -705,6 +736,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorArgs']]] = None,
+                 bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
@@ -729,7 +761,11 @@ class AdvancedCluster(pulumi.CustomResource):
 
             __props__.__dict__["advanced_configuration"] = advanced_configuration
             __props__.__dict__["backup_enabled"] = backup_enabled
+            if bi_connector is not None and not opts.urn:
+                warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+                pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
             __props__.__dict__["bi_connector"] = bi_connector
+            __props__.__dict__["bi_connector_config"] = bi_connector_config
             if cluster_type is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_type'")
             __props__.__dict__["cluster_type"] = cluster_type
@@ -767,6 +803,7 @@ class AdvancedCluster(pulumi.CustomResource):
             advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
             backup_enabled: Optional[pulumi.Input[bool]] = None,
             bi_connector: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorArgs']]] = None,
+            bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             cluster_type: Optional[pulumi.Input[str]] = None,
             connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterConnectionStringArgs']]]]] = None,
@@ -794,7 +831,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-        :param pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorArgs']] bi_connector: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+        :param pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
                Accepted values include:
@@ -826,6 +863,7 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["advanced_configuration"] = advanced_configuration
         __props__.__dict__["backup_enabled"] = backup_enabled
         __props__.__dict__["bi_connector"] = bi_connector
+        __props__.__dict__["bi_connector_config"] = bi_connector_config
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["cluster_type"] = cluster_type
         __props__.__dict__["connection_strings"] = connection_strings
@@ -863,10 +901,15 @@ class AdvancedCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> pulumi.Output['outputs.AdvancedClusterBiConnector']:
+        return pulumi.get(self, "bi_connector")
+
+    @property
+    @pulumi.getter(name="biConnectorConfig")
+    def bi_connector_config(self) -> pulumi.Output['outputs.AdvancedClusterBiConnectorConfig']:
         """
         Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         """
-        return pulumi.get(self, "bi_connector")
+        return pulumi.get(self, "bi_connector_config")
 
     @property
     @pulumi.getter(name="clusterId")

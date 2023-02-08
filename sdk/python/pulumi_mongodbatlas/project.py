@@ -453,7 +453,23 @@ class Project(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.Project("test",
+        test_roles_org_id = mongodbatlas.get_roles_org_id()
+        test_project = mongodbatlas.Project("testProject",
+            org_id=test_roles_org_id.org_id,
+            project_owner_id="<OWNER_ACCOUNT_ID>",
+            teams=[
+                mongodbatlas.ProjectTeamArgs(
+                    team_id="5e0fa8c99ccf641c722fe645",
+                    role_names=["GROUP_OWNER"],
+                ),
+                mongodbatlas.ProjectTeamArgs(
+                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                    role_names=[
+                        "GROUP_READ_ONLY",
+                        "GROUP_DATA_ACCESS_READ_WRITE",
+                    ],
+                ),
+            ],
             api_keys=[mongodbatlas.ProjectApiKeyArgs(
                 api_key_id="61003b299dda8d54a9d7d10c",
                 role_names=["GROUP_READ_ONLY"],
@@ -462,22 +478,7 @@ class Project(pulumi.CustomResource):
             is_data_explorer_enabled=True,
             is_performance_advisor_enabled=True,
             is_realtime_performance_panel_enabled=True,
-            is_schema_advisor_enabled=True,
-            org_id="<ORG_ID>",
-            project_owner_id="<OWNER_ACCOUNT_ID>",
-            teams=[
-                mongodbatlas.ProjectTeamArgs(
-                    role_names=["GROUP_OWNER"],
-                    team_id="5e0fa8c99ccf641c722fe645",
-                ),
-                mongodbatlas.ProjectTeamArgs(
-                    role_names=[
-                        "GROUP_READ_ONLY",
-                        "GROUP_DATA_ACCESS_READ_WRITE",
-                    ],
-                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                ),
-            ])
+            is_schema_advisor_enabled=True)
         ```
 
         ## Import
@@ -488,7 +489,7 @@ class Project(pulumi.CustomResource):
          $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
         ```
 
-         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+         For more information see[MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -516,7 +517,23 @@ class Project(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.Project("test",
+        test_roles_org_id = mongodbatlas.get_roles_org_id()
+        test_project = mongodbatlas.Project("testProject",
+            org_id=test_roles_org_id.org_id,
+            project_owner_id="<OWNER_ACCOUNT_ID>",
+            teams=[
+                mongodbatlas.ProjectTeamArgs(
+                    team_id="5e0fa8c99ccf641c722fe645",
+                    role_names=["GROUP_OWNER"],
+                ),
+                mongodbatlas.ProjectTeamArgs(
+                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                    role_names=[
+                        "GROUP_READ_ONLY",
+                        "GROUP_DATA_ACCESS_READ_WRITE",
+                    ],
+                ),
+            ],
             api_keys=[mongodbatlas.ProjectApiKeyArgs(
                 api_key_id="61003b299dda8d54a9d7d10c",
                 role_names=["GROUP_READ_ONLY"],
@@ -525,22 +542,7 @@ class Project(pulumi.CustomResource):
             is_data_explorer_enabled=True,
             is_performance_advisor_enabled=True,
             is_realtime_performance_panel_enabled=True,
-            is_schema_advisor_enabled=True,
-            org_id="<ORG_ID>",
-            project_owner_id="<OWNER_ACCOUNT_ID>",
-            teams=[
-                mongodbatlas.ProjectTeamArgs(
-                    role_names=["GROUP_OWNER"],
-                    team_id="5e0fa8c99ccf641c722fe645",
-                ),
-                mongodbatlas.ProjectTeamArgs(
-                    role_names=[
-                        "GROUP_READ_ONLY",
-                        "GROUP_DATA_ACCESS_READ_WRITE",
-                    ],
-                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                ),
-            ])
+            is_schema_advisor_enabled=True)
         ```
 
         ## Import
@@ -551,7 +553,7 @@ class Project(pulumi.CustomResource):
          $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
         ```
 
-         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+         For more information see[MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param ProjectArgs args: The arguments to use to populate this resource's properties.

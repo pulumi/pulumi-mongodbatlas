@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScaling;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs;
@@ -17,6 +18,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAdvancedClusterReplicationSpecRegionConfig {
+    /**
+     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+     * 
+     */
+    private List<GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings;
     /**
      * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
      * 
@@ -59,6 +65,13 @@ public final class GetAdvancedClusterReplicationSpecRegionConfig {
     private String regionName;
 
     private GetAdvancedClusterReplicationSpecRegionConfig() {}
+    /**
+     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+     * 
+     */
+    public List<GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings() {
+        return this.analyticsAutoScalings;
+    }
     /**
      * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
      * 
@@ -125,6 +138,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfig {
     }
     @CustomType.Builder
     public static final class Builder {
+        private List<GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings;
         private @Nullable GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
         private List<GetAdvancedClusterReplicationSpecRegionConfigAutoScaling> autoScalings;
         private String backingProviderName;
@@ -136,6 +150,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfig {
         public Builder() {}
         public Builder(GetAdvancedClusterReplicationSpecRegionConfig defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.analyticsAutoScalings = defaults.analyticsAutoScalings;
     	      this.analyticsSpecs = defaults.analyticsSpecs;
     	      this.autoScalings = defaults.autoScalings;
     	      this.backingProviderName = defaults.backingProviderName;
@@ -146,6 +161,14 @@ public final class GetAdvancedClusterReplicationSpecRegionConfig {
     	      this.regionName = defaults.regionName;
         }
 
+        @CustomType.Setter
+        public Builder analyticsAutoScalings(List<GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings) {
+            this.analyticsAutoScalings = Objects.requireNonNull(analyticsAutoScalings);
+            return this;
+        }
+        public Builder analyticsAutoScalings(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling... analyticsAutoScalings) {
+            return analyticsAutoScalings(List.of(analyticsAutoScalings));
+        }
         @CustomType.Setter
         public Builder analyticsSpecs(@Nullable GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs) {
             this.analyticsSpecs = analyticsSpecs;
@@ -191,6 +214,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfig {
         }
         public GetAdvancedClusterReplicationSpecRegionConfig build() {
             final var o = new GetAdvancedClusterReplicationSpecRegionConfig();
+            o.analyticsAutoScalings = analyticsAutoScalings;
             o.analyticsSpecs = analyticsSpecs;
             o.autoScalings = autoScalings;
             o.backingProviderName = backingProviderName;

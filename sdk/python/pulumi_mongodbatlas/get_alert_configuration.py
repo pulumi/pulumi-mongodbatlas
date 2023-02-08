@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetAlertConfigurationResult',
@@ -22,7 +23,7 @@ class GetAlertConfigurationResult:
     """
     A collection of values returned by getAlertConfiguration.
     """
-    def __init__(__self__, alert_configuration_id=None, created=None, enabled=None, event_type=None, id=None, matchers=None, metric_threshold=None, metric_threshold_configs=None, notifications=None, project_id=None, threshold=None, threshold_configs=None, updated=None):
+    def __init__(__self__, alert_configuration_id=None, created=None, enabled=None, event_type=None, id=None, matchers=None, metric_threshold=None, metric_threshold_configs=None, notifications=None, outputs=None, project_id=None, threshold=None, threshold_configs=None, updated=None):
         if alert_configuration_id and not isinstance(alert_configuration_id, str):
             raise TypeError("Expected argument 'alert_configuration_id' to be a str")
         pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
@@ -50,6 +51,9 @@ class GetAlertConfigurationResult:
         if notifications and not isinstance(notifications, list):
             raise TypeError("Expected argument 'notifications' to be a list")
         pulumi.set(__self__, "notifications", notifications)
+        if outputs and not isinstance(outputs, list):
+            raise TypeError("Expected argument 'outputs' to be a list")
+        pulumi.set(__self__, "outputs", outputs)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -121,6 +125,11 @@ class GetAlertConfigurationResult:
         return pulumi.get(self, "notifications")
 
     @property
+    @pulumi.getter
+    def outputs(self) -> Optional[Sequence['outputs.GetAlertConfigurationOutputResult']]:
+        return pulumi.get(self, "outputs")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
@@ -162,6 +171,7 @@ class AwaitableGetAlertConfigurationResult(GetAlertConfigurationResult):
             metric_threshold=self.metric_threshold,
             metric_threshold_configs=self.metric_threshold_configs,
             notifications=self.notifications,
+            outputs=self.outputs,
             project_id=self.project_id,
             threshold=self.threshold,
             threshold_configs=self.threshold_configs,
@@ -169,19 +179,20 @@ class AwaitableGetAlertConfigurationResult(GetAlertConfigurationResult):
 
 
 def get_alert_configuration(alert_configuration_id: Optional[str] = None,
+                            outputs: Optional[Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']]] = None,
                             project_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlertConfigurationResult:
     """
-    `AlertConfiguration` describes an Alert Configuration.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
+    Use this data source to access information about an existing resource.
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.
+    :param Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']] outputs: List of formatted output requested for this alert configuration
+           * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
     :param str project_id: The ID of the project where the alert configuration will create.
     """
     __args__ = dict()
     __args__['alertConfigurationId'] = alert_configuration_id
+    __args__['outputs'] = outputs
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAlertConfiguration:getAlertConfiguration', __args__, opts=opts, typ=GetAlertConfigurationResult).value
@@ -196,6 +207,7 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
         metric_threshold=__ret__.metric_threshold,
         metric_threshold_configs=__ret__.metric_threshold_configs,
         notifications=__ret__.notifications,
+        outputs=__ret__.outputs,
         project_id=__ret__.project_id,
         threshold=__ret__.threshold,
         threshold_configs=__ret__.threshold_configs,
@@ -204,15 +216,15 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
 
 @_utilities.lift_output_func(get_alert_configuration)
 def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input[str]] = None,
+                                   outputs: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']]]]] = None,
                                    project_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlertConfigurationResult]:
     """
-    `AlertConfiguration` describes an Alert Configuration.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
+    Use this data source to access information about an existing resource.
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.
+    :param Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']] outputs: List of formatted output requested for this alert configuration
+           * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
     :param str project_id: The ID of the project where the alert configuration will create.
     """
     ...

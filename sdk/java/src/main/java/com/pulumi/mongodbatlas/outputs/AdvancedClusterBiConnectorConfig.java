@@ -7,66 +7,74 @@ import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
-public final class GetAdvancedClusterBiConnector {
+public final class AdvancedClusterBiConnectorConfig {
     /**
      * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * *
+     * - Set to `true` to enable BI Connector for Atlas.
+     * - Set to `false` to disable BI Connector for Atlas.
      * 
      */
-    private Boolean enabled;
+    private @Nullable Boolean enabled;
     /**
      * @return Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
      * 
      */
-    private String readPreference;
+    private @Nullable String readPreference;
 
-    private GetAdvancedClusterBiConnector() {}
+    private AdvancedClusterBiConnectorConfig() {}
     /**
      * @return Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * *
+     * - Set to `true` to enable BI Connector for Atlas.
+     * - Set to `false` to disable BI Connector for Atlas.
      * 
      */
-    public Boolean enabled() {
-        return this.enabled;
+    public Optional<Boolean> enabled() {
+        return Optional.ofNullable(this.enabled);
     }
     /**
      * @return Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
      * 
      */
-    public String readPreference() {
-        return this.readPreference;
+    public Optional<String> readPreference() {
+        return Optional.ofNullable(this.readPreference);
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-    public static Builder builder(GetAdvancedClusterBiConnector defaults) {
+    public static Builder builder(AdvancedClusterBiConnectorConfig defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
     public static final class Builder {
-        private Boolean enabled;
-        private String readPreference;
+        private @Nullable Boolean enabled;
+        private @Nullable String readPreference;
         public Builder() {}
-        public Builder(GetAdvancedClusterBiConnector defaults) {
+        public Builder(AdvancedClusterBiConnectorConfig defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.enabled = defaults.enabled;
     	      this.readPreference = defaults.readPreference;
         }
 
         @CustomType.Setter
-        public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+        public Builder enabled(@Nullable Boolean enabled) {
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
-        public Builder readPreference(String readPreference) {
-            this.readPreference = Objects.requireNonNull(readPreference);
+        public Builder readPreference(@Nullable String readPreference) {
+            this.readPreference = readPreference;
             return this;
         }
-        public GetAdvancedClusterBiConnector build() {
-            final var o = new GetAdvancedClusterBiConnector();
+        public AdvancedClusterBiConnectorConfig build() {
+            final var o = new AdvancedClusterBiConnectorConfig();
             o.enabled = enabled;
             o.readPreference = readPreference;
             return o;

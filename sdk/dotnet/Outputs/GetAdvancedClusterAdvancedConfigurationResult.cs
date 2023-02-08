@@ -38,6 +38,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool NoTableScan;
         /// <summary>
+        /// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        /// </summary>
+        public readonly int OplogMinRetentionHours;
+        /// <summary>
         /// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         /// </summary>
         public readonly int OplogSizeMb;
@@ -64,6 +68,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool noTableScan,
 
+            int oplogMinRetentionHours,
+
             int oplogSizeMb,
 
             int sampleRefreshIntervalBiConnector,
@@ -76,6 +82,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             JavascriptEnabled = javascriptEnabled;
             MinimumEnabledTlsProtocol = minimumEnabledTlsProtocol;
             NoTableScan = noTableScan;
+            OplogMinRetentionHours = oplogMinRetentionHours;
             OplogSizeMb = oplogSizeMb;
             SampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             SampleSizeBiConnector = sampleSizeBiConnector;

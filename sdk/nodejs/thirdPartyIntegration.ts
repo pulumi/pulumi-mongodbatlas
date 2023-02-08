@@ -132,13 +132,15 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     * @deprecated This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release 
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -307,13 +309,15 @@ export interface ThirdPartyIntegrationState {
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     * @deprecated This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release 
      */
     type?: pulumi.Input<string>;
     /**
@@ -408,13 +412,15 @@ export interface ThirdPartyIntegrationArgs {
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     * @deprecated This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release 
      */
     type: pulumi.Input<string>;
     /**

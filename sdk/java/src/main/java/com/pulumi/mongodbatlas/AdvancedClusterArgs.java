@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterAdvancedConfigurationArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterBiConnectorArgs;
+import com.pulumi.mongodbatlas.inputs.AdvancedClusterBiConnectorConfigArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterLabelArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
 import java.lang.Boolean;
@@ -47,18 +48,37 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * @deprecated
+     * use bi_connector_config instead
+     * 
+     */
+    @Deprecated /* use bi_connector_config instead */
+    @Import(name="biConnector")
+    private @Nullable Output<AdvancedClusterBiConnectorArgs> biConnector;
+
+    /**
+     * @deprecated
+     * use bi_connector_config instead
+     * 
+     */
+    @Deprecated /* use bi_connector_config instead */
+    public Optional<Output<AdvancedClusterBiConnectorArgs>> biConnector() {
+        return Optional.ofNullable(this.biConnector);
+    }
+
+    /**
      * Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
      * 
      */
-    @Import(name="biConnector")
-    private @Nullable Output<AdvancedClusterBiConnectorArgs> biConnector;
+    @Import(name="biConnectorConfig")
+    private @Nullable Output<AdvancedClusterBiConnectorConfigArgs> biConnectorConfig;
 
     /**
      * @return Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
      * 
      */
-    public Optional<Output<AdvancedClusterBiConnectorArgs>> biConnector() {
-        return Optional.ofNullable(this.biConnector);
+    public Optional<Output<AdvancedClusterBiConnectorConfigArgs>> biConnectorConfig() {
+        return Optional.ofNullable(this.biConnectorConfig);
     }
 
     /**
@@ -256,6 +276,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         this.advancedConfiguration = $.advancedConfiguration;
         this.backupEnabled = $.backupEnabled;
         this.biConnector = $.biConnector;
+        this.biConnectorConfig = $.biConnectorConfig;
         this.clusterType = $.clusterType;
         this.diskSizeGb = $.diskSizeGb;
         this.encryptionAtRestProvider = $.encryptionAtRestProvider;
@@ -322,24 +343,49 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param biConnector Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
-         * 
          * @return builder
          * 
+         * @deprecated
+         * use bi_connector_config instead
+         * 
          */
+        @Deprecated /* use bi_connector_config instead */
         public Builder biConnector(@Nullable Output<AdvancedClusterBiConnectorArgs> biConnector) {
             $.biConnector = biConnector;
             return this;
         }
 
         /**
-         * @param biConnector Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+         * @return builder
+         * 
+         * @deprecated
+         * use bi_connector_config instead
+         * 
+         */
+        @Deprecated /* use bi_connector_config instead */
+        public Builder biConnector(AdvancedClusterBiConnectorArgs biConnector) {
+            return biConnector(Output.of(biConnector));
+        }
+
+        /**
+         * @param biConnectorConfig Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
          * 
          * @return builder
          * 
          */
-        public Builder biConnector(AdvancedClusterBiConnectorArgs biConnector) {
-            return biConnector(Output.of(biConnector));
+        public Builder biConnectorConfig(@Nullable Output<AdvancedClusterBiConnectorConfigArgs> biConnectorConfig) {
+            $.biConnectorConfig = biConnectorConfig;
+            return this;
+        }
+
+        /**
+         * @param biConnectorConfig Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder biConnectorConfig(AdvancedClusterBiConnectorConfigArgs biConnectorConfig) {
+            return biConnectorConfig(Output.of(biConnectorConfig));
         }
 
         /**

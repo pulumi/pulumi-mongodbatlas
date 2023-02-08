@@ -22,16 +22,16 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connectors=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, termination_protection_enabled=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, termination_protection_enabled=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
         if backup_enabled and not isinstance(backup_enabled, bool):
             raise TypeError("Expected argument 'backup_enabled' to be a bool")
         pulumi.set(__self__, "backup_enabled", backup_enabled)
-        if bi_connectors and not isinstance(bi_connectors, list):
-            raise TypeError("Expected argument 'bi_connectors' to be a list")
-        pulumi.set(__self__, "bi_connectors", bi_connectors)
+        if bi_connector_configs and not isinstance(bi_connector_configs, list):
+            raise TypeError("Expected argument 'bi_connector_configs' to be a list")
+        pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
         if cluster_type and not isinstance(cluster_type, str):
             raise TypeError("Expected argument 'cluster_type' to be a str")
         pulumi.set(__self__, "cluster_type", cluster_type)
@@ -101,12 +101,12 @@ class GetAdvancedClusterResult:
         return pulumi.get(self, "backup_enabled")
 
     @property
-    @pulumi.getter(name="biConnectors")
-    def bi_connectors(self) -> Sequence['outputs.GetAdvancedClusterBiConnectorResult']:
+    @pulumi.getter(name="biConnectorConfigs")
+    def bi_connector_configs(self) -> Sequence['outputs.GetAdvancedClusterBiConnectorConfigResult']:
         """
-        Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+        Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
         """
-        return pulumi.get(self, "bi_connectors")
+        return pulumi.get(self, "bi_connector_configs")
 
     @property
     @pulumi.getter(name="clusterType")
@@ -252,7 +252,7 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
         return GetAdvancedClusterResult(
             advanced_configurations=self.advanced_configurations,
             backup_enabled=self.backup_enabled,
-            bi_connectors=self.bi_connectors,
+            bi_connector_configs=self.bi_connector_configs,
             cluster_type=self.cluster_type,
             connection_strings=self.connection_strings,
             create_date=self.create_date,
@@ -301,7 +301,7 @@ def get_advanced_cluster(name: Optional[str] = None,
     return AwaitableGetAdvancedClusterResult(
         advanced_configurations=__ret__.advanced_configurations,
         backup_enabled=__ret__.backup_enabled,
-        bi_connectors=__ret__.bi_connectors,
+        bi_connector_configs=__ret__.bi_connector_configs,
         cluster_type=__ret__.cluster_type,
         connection_strings=__ret__.connection_strings,
         create_date=__ret__.create_date,

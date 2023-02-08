@@ -22,7 +22,7 @@ class GetCloudBackupScheduleResult:
     """
     A collection of values returned by getCloudBackupSchedule.
     """
-    def __init__(__self__, auto_export_enabled=None, cluster_id=None, cluster_name=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None):
+    def __init__(__self__, auto_export_enabled=None, cluster_id=None, cluster_name=None, copy_settings=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None):
         if auto_export_enabled and not isinstance(auto_export_enabled, bool):
             raise TypeError("Expected argument 'auto_export_enabled' to be a bool")
         pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
@@ -32,6 +32,9 @@ class GetCloudBackupScheduleResult:
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
+        if copy_settings and not isinstance(copy_settings, list):
+            raise TypeError("Expected argument 'copy_settings' to be a list")
+        pulumi.set(__self__, "copy_settings", copy_settings)
         if exports and not isinstance(exports, list):
             raise TypeError("Expected argument 'exports' to be a list")
         pulumi.set(__self__, "exports", exports)
@@ -92,6 +95,11 @@ class GetCloudBackupScheduleResult:
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> str:
         return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="copySettings")
+    def copy_settings(self) -> Sequence['outputs.GetCloudBackupScheduleCopySettingResult']:
+        return pulumi.get(self, "copy_settings")
 
     @property
     @pulumi.getter
@@ -201,6 +209,7 @@ class AwaitableGetCloudBackupScheduleResult(GetCloudBackupScheduleResult):
             auto_export_enabled=self.auto_export_enabled,
             cluster_id=self.cluster_id,
             cluster_name=self.cluster_name,
+            copy_settings=self.copy_settings,
             exports=self.exports,
             id=self.id,
             id_policy=self.id_policy,
@@ -238,6 +247,7 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
         auto_export_enabled=__ret__.auto_export_enabled,
         cluster_id=__ret__.cluster_id,
         cluster_name=__ret__.cluster_name,
+        copy_settings=__ret__.copy_settings,
         exports=__ret__.exports,
         id=__ret__.id,
         id_policy=__ret__.id_policy,

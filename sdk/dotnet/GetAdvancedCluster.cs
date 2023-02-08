@@ -99,9 +99,9 @@ namespace Pulumi.Mongodbatlas
         public readonly ImmutableArray<Outputs.GetAdvancedClusterAdvancedConfigurationResult> AdvancedConfigurations;
         public readonly bool BackupEnabled;
         /// <summary>
-        /// Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+        /// Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetAdvancedClusterBiConnectorResult> BiConnectors;
+        public readonly ImmutableArray<Outputs.GetAdvancedClusterBiConnectorConfigResult> BiConnectorConfigs;
         /// <summary>
         /// Type of the cluster that you want to create.
         /// </summary>
@@ -172,7 +172,7 @@ namespace Pulumi.Mongodbatlas
 
             bool backupEnabled,
 
-            ImmutableArray<Outputs.GetAdvancedClusterBiConnectorResult> biConnectors,
+            ImmutableArray<Outputs.GetAdvancedClusterBiConnectorConfigResult> biConnectorConfigs,
 
             string clusterType,
 
@@ -212,7 +212,7 @@ namespace Pulumi.Mongodbatlas
         {
             AdvancedConfigurations = advancedConfigurations;
             BackupEnabled = backupEnabled;
-            BiConnectors = biConnectors;
+            BiConnectorConfigs = biConnectorConfigs;
             ClusterType = clusterType;
             ConnectionStrings = connectionStrings;
             CreateDate = createDate;

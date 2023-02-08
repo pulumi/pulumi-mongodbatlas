@@ -82,6 +82,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ClusterId;
         public readonly string ClusterName;
+        public readonly ImmutableArray<Outputs.GetCloudBackupScheduleCopySettingResult> CopySettings;
         public readonly ImmutableArray<Outputs.GetCloudBackupScheduleExportResult> Exports;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -137,6 +138,8 @@ namespace Pulumi.Mongodbatlas
 
             string clusterName,
 
+            ImmutableArray<Outputs.GetCloudBackupScheduleCopySettingResult> copySettings,
+
             ImmutableArray<Outputs.GetCloudBackupScheduleExportResult> exports,
 
             string id,
@@ -166,6 +169,7 @@ namespace Pulumi.Mongodbatlas
             AutoExportEnabled = autoExportEnabled;
             ClusterId = clusterId;
             ClusterName = clusterName;
+            CopySettings = copySettings;
             Exports = exports;
             Id = id;
             IdPolicy = idPolicy;

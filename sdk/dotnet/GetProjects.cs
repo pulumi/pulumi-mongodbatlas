@@ -27,8 +27,31 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     var testRolesOrgId = Mongodbatlas.GetRolesOrgId.Invoke();
+        /// 
         ///     var testProject = new Mongodbatlas.Project("testProject", new()
         ///     {
+        ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+        ///         Teams = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_READ_ONLY",
+        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+        ///                 },
+        ///             },
+        ///         },
         ///         ApiKeys = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.ProjectApiKeyArgs
@@ -40,33 +63,12 @@ namespace Pulumi.Mongodbatlas
         ///                 },
         ///             },
         ///         },
-        ///         OrgId = "&lt;ORG_ID&gt;",
-        ///         Teams = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-        ///             {
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_OWNER",
-        ///                 },
-        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
-        ///             },
-        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-        ///             {
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_READ_ONLY",
-        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
-        ///                 },
-        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
-        ///             },
-        ///         },
         ///     });
         /// 
         ///     var testProjects = Mongodbatlas.GetProjects.Invoke(new()
         ///     {
-        ///         ItemsPerPage = 5,
         ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
         ///     });
         /// 
         /// });
@@ -93,8 +95,31 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     var testRolesOrgId = Mongodbatlas.GetRolesOrgId.Invoke();
+        /// 
         ///     var testProject = new Mongodbatlas.Project("testProject", new()
         ///     {
+        ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+        ///         Teams = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_READ_ONLY",
+        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+        ///                 },
+        ///             },
+        ///         },
         ///         ApiKeys = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.ProjectApiKeyArgs
@@ -106,33 +131,12 @@ namespace Pulumi.Mongodbatlas
         ///                 },
         ///             },
         ///         },
-        ///         OrgId = "&lt;ORG_ID&gt;",
-        ///         Teams = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-        ///             {
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_OWNER",
-        ///                 },
-        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
-        ///             },
-        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-        ///             {
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_READ_ONLY",
-        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
-        ///                 },
-        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
-        ///             },
-        ///         },
         ///     });
         /// 
         ///     var testProjects = Mongodbatlas.GetProjects.Invoke(new()
         ///     {
-        ///         ItemsPerPage = 5,
         ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
         ///     });
         /// 
         /// });

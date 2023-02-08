@@ -108,9 +108,9 @@ def get_cloud_provider_snapshots(cluster_name: Optional[str] = None,
                                  project_id: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudProviderSnapshotsResult:
     """
-    **WARNING:** This datasource is deprecated, use `get_cloud_backup_snapshots`
+    **WARNING:** This datasource is deprecated, use _get_cloud_backup_snapshots_
 
-    `get_cloud_provider_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+    _get_cloud_provider_snapshots_ provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -144,9 +144,9 @@ def get_cloud_provider_snapshots_output(cluster_name: Optional[pulumi.Input[str]
                                         project_id: Optional[pulumi.Input[str]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderSnapshotsResult]:
     """
-    **WARNING:** This datasource is deprecated, use `get_cloud_backup_snapshots`
+    **WARNING:** This datasource is deprecated, use _get_cloud_backup_snapshots_
 
-    `get_cloud_provider_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+    _get_cloud_provider_snapshots_ provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 

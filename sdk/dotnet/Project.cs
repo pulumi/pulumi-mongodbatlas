@@ -19,8 +19,32 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Project("test", new()
+    ///     var testRolesOrgId = Mongodbatlas.GetRolesOrgId.Invoke();
+    /// 
+    ///     var testProject = new Mongodbatlas.Project("testProject", new()
     ///     {
+    ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+    ///         ProjectOwnerId = "&lt;OWNER_ACCOUNT_ID&gt;",
+    ///         Teams = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+    ///             {
+    ///                 TeamId = "5e0fa8c99ccf641c722fe645",
+    ///                 RoleNames = new[]
+    ///                 {
+    ///                     "GROUP_OWNER",
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+    ///             {
+    ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
+    ///                 RoleNames = new[]
+    ///                 {
+    ///                     "GROUP_READ_ONLY",
+    ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+    ///                 },
+    ///             },
+    ///         },
     ///         ApiKeys = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.ProjectApiKeyArgs
@@ -37,28 +61,6 @@ namespace Pulumi.Mongodbatlas
     ///         IsPerformanceAdvisorEnabled = true,
     ///         IsRealtimePerformancePanelEnabled = true,
     ///         IsSchemaAdvisorEnabled = true,
-    ///         OrgId = "&lt;ORG_ID&gt;",
-    ///         ProjectOwnerId = "&lt;OWNER_ACCOUNT_ID&gt;",
-    ///         Teams = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-    ///             {
-    ///                 RoleNames = new[]
-    ///                 {
-    ///                     "GROUP_OWNER",
-    ///                 },
-    ///                 TeamId = "5e0fa8c99ccf641c722fe645",
-    ///             },
-    ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-    ///             {
-    ///                 RoleNames = new[]
-    ///                 {
-    ///                     "GROUP_READ_ONLY",
-    ///                     "GROUP_DATA_ACCESS_READ_WRITE",
-    ///                 },
-    ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
-    ///             },
-    ///         },
     ///     });
     /// 
     /// });
@@ -72,7 +74,7 @@ namespace Pulumi.Mongodbatlas
     ///  $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
     /// ```
     /// 
-    ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+    ///  For more information see[MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/project:Project")]
     public partial class Project : global::Pulumi.CustomResource

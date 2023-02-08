@@ -17,14 +17,14 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
     public static final CloudBackupSchedulePolicyItemMonthlyArgs Empty = new CloudBackupSchedulePolicyItemMonthlyArgs();
 
     /**
-     * Desired frequency of the new backup policy item specified by `frequency_type`.
+     * Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
      * 
      */
     @Import(name="frequencyInterval", required=true)
     private Output<Integer> frequencyInterval;
 
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type`.
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
      * 
      */
     public Output<Integer> frequencyInterval() {
@@ -32,36 +32,44 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
     }
 
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     @Import(name="frequencyType")
     private @Nullable Output<String> frequencyType;
 
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     public Optional<Output<String>> frequencyType() {
         return Optional.ofNullable(this.frequencyType);
     }
 
+    /**
+     * Unique identifier of the backup policy item.
+     * 
+     */
     @Import(name="id")
     private @Nullable Output<String> id;
 
+    /**
+     * @return Unique identifier of the backup policy item.
+     * 
+     */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
 
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      * 
      */
     @Import(name="retentionUnit", required=true)
     private Output<String> retentionUnit;
 
     /**
-     * @return Scope of the backup policy item: days, weeks, or months.
+     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
      * 
      */
     public Output<String> retentionUnit() {
@@ -69,14 +77,14 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
     }
 
     /**
-     * Value to associate with `retention_unit`.
+     * Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      * 
      */
     @Import(name="retentionValue", required=true)
     private Output<Integer> retentionValue;
 
     /**
-     * @return Value to associate with `retention_unit`.
+     * @return Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      * 
      */
     public Output<Integer> retentionValue() {
@@ -112,7 +120,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type`.
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
          * 
          * @return builder
          * 
@@ -123,7 +131,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type`.
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
          * 
          * @return builder
          * 
@@ -133,7 +141,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param frequencyType Frequency associated with the export snapshot item.
+         * @param frequencyType Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
          * 
          * @return builder
          * 
@@ -144,7 +152,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param frequencyType Frequency associated with the export snapshot item.
+         * @param frequencyType Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
          * 
          * @return builder
          * 
@@ -153,17 +161,29 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
             return frequencyType(Output.of(frequencyType));
         }
 
+        /**
+         * @param id Unique identifier of the backup policy item.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param id Unique identifier of the backup policy item.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(String id) {
             return id(Output.of(id));
         }
 
         /**
-         * @param retentionUnit Scope of the backup policy item: days, weeks, or months.
+         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, or `months`.
          * 
          * @return builder
          * 
@@ -174,7 +194,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param retentionUnit Scope of the backup policy item: days, weeks, or months.
+         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, or `months`.
          * 
          * @return builder
          * 
@@ -184,7 +204,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`.
+         * @param retentionValue Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
          * 
          * @return builder
          * 
@@ -195,7 +215,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`.
+         * @param retentionValue Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
          * 
          * @return builder
          * 

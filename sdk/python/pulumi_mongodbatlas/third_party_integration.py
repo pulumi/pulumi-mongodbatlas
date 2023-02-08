@@ -43,10 +43,10 @@ class ThirdPartyIntegrationArgs:
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
-               * NEW_RELIC
+               * NEW_RELIC*
                * OPS_GENIE
                * VICTOR_OPS
-               * FLOWDOCK
+               * FLOWDOCK*
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
@@ -71,6 +71,9 @@ class ThirdPartyIntegrationArgs:
         :param pulumi.Input[str] write_token: Your Insights Insert Key.
         """
         pulumi.set(__self__, "project_id", project_id)
+        if type is not None:
+            warnings.warn("""This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release """, DeprecationWarning)
+            pulumi.log.warn("""type is deprecated: This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release """)
         pulumi.set(__self__, "type", type)
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
@@ -134,10 +137,10 @@ class ThirdPartyIntegrationArgs:
         Third-Party Integration Settings type 
         * PAGER_DUTY
         * DATADOG
-        * NEW_RELIC
+        * NEW_RELIC*
         * OPS_GENIE
         * VICTOR_OPS
-        * FLOWDOCK
+        * FLOWDOCK*
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
@@ -443,10 +446,10 @@ class _ThirdPartyIntegrationState:
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
-               * NEW_RELIC
+               * NEW_RELIC*
                * OPS_GENIE
                * VICTOR_OPS
-               * FLOWDOCK
+               * FLOWDOCK*
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
@@ -492,6 +495,9 @@ class _ThirdPartyIntegrationState:
             pulumi.set(__self__, "service_key", service_key)
         if team_name is not None:
             pulumi.set(__self__, "team_name", team_name)
+        if type is not None:
+            warnings.warn("""This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release """, DeprecationWarning)
+            pulumi.log.warn("""type is deprecated: This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release """)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if url is not None:
@@ -730,10 +736,10 @@ class _ThirdPartyIntegrationState:
         Third-Party Integration Settings type 
         * PAGER_DUTY
         * DATADOG
-        * NEW_RELIC
+        * NEW_RELIC*
         * OPS_GENIE
         * VICTOR_OPS
-        * FLOWDOCK
+        * FLOWDOCK*
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
@@ -857,10 +863,10 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
-               * NEW_RELIC
+               * NEW_RELIC*
                * OPS_GENIE
                * VICTOR_OPS
-               * FLOWDOCK
+               * FLOWDOCK*
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
@@ -969,6 +975,9 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             __props__.__dict__["team_name"] = team_name
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
+            if type is not None and not opts.urn:
+                warnings.warn("""This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release """, DeprecationWarning)
+                pulumi.log.warn("""type is deprecated: This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release """)
             __props__.__dict__["type"] = type
             __props__.__dict__["url"] = url
             __props__.__dict__["user_name"] = None if user_name is None else pulumi.Output.secret(user_name)
@@ -1035,10 +1044,10 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
-               * NEW_RELIC
+               * NEW_RELIC*
                * OPS_GENIE
                * VICTOR_OPS
-               * FLOWDOCK
+               * FLOWDOCK*
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
@@ -1228,10 +1237,10 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         Third-Party Integration Settings type 
         * PAGER_DUTY
         * DATADOG
-        * NEW_RELIC
+        * NEW_RELIC*
         * OPS_GENIE
         * VICTOR_OPS
-        * FLOWDOCK
+        * FLOWDOCK*
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS

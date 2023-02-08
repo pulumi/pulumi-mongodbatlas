@@ -31,6 +31,11 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     noTableScan?: pulumi.Input<boolean>;
     /**
+     * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+     */
+    oplogMinRetentionHours?: pulumi.Input<number>;
+    /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
     oplogSizeMb?: pulumi.Input<number>;
@@ -45,6 +50,20 @@ export interface AdvancedClusterAdvancedConfiguration {
 }
 
 export interface AdvancedClusterBiConnector {
+    /**
+     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * *
+     * - Set to `true` to enable BI Connector for Atlas.
+     * - Set to `false` to disable BI Connector for Atlas.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     */
+    readPreference?: pulumi.Input<string>;
+}
+
+export interface AdvancedClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
      * *
@@ -121,6 +140,10 @@ export interface AdvancedClusterReplicationSpec {
 
 export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
+     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+     */
+    analyticsAutoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling>;
+    /**
      * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
      */
     analyticsSpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs>;
@@ -155,6 +178,29 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
     regionName: pulumi.Input<string>;
+}
+
+export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling {
+    /**
+     * Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+     */
+    computeEnabled?: pulumi.Input<boolean>;
+    /**
+     * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+     */
+    computeMaxInstanceSize?: pulumi.Input<string>;
+    /**
+     * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+     */
+    computeMinInstanceSize?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+     */
+    computeScaleDownEnabled?: pulumi.Input<boolean>;
+    /**
+     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     */
+    diskGbEnabled?: pulumi.Input<boolean>;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
@@ -412,6 +458,29 @@ export interface AlertConfigurationThresholdConfig {
     units?: pulumi.Input<string>;
 }
 
+export interface CloudBackupScheduleCopySetting {
+    /**
+     * Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
+     */
+    cloudProvider?: pulumi.Input<string>;
+    /**
+     * List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+     */
+    frequencies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+     */
+    regionName?: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+     */
+    replicationSpecId?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
+     */
+    shouldCopyOplogs?: pulumi.Input<boolean>;
+}
+
 export interface CloudBackupScheduleExport {
     /**
      * Unique identifier of the mongodbatlas.CloudBackupSnapshotExportBucket export_bucket_id value.
@@ -425,36 +494,42 @@ export interface CloudBackupScheduleExport {
 
 export interface CloudBackupSchedulePolicyItemDaily {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (daily in this case). The only supported value for daily policies is `1` day.
      */
     frequencyInterval: pulumi.Input<number>;
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
-     * Value to associate with `retentionUnit`.
+     * Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
      */
     retentionValue: pulumi.Input<number>;
 }
 
 export interface CloudBackupSchedulePolicyItemHourly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
      */
     frequencyInterval: pulumi.Input<number>;
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
@@ -465,40 +540,46 @@ export interface CloudBackupSchedulePolicyItemHourly {
 
 export interface CloudBackupSchedulePolicyItemMonthly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
      */
     frequencyInterval: pulumi.Input<number>;
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
-     * Value to associate with `retentionUnit`.
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
      */
     retentionValue: pulumi.Input<number>;
 }
 
 export interface CloudBackupSchedulePolicyItemWeekly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     * Desired frequency of the new backup policy item specified by `frequencyType` (weekly in this case). The supported values for weekly policies are `1` through `7`, where `1` represents Monday and `7` represents Sunday.
      */
     frequencyInterval: pulumi.Input<number>;
     /**
-     * Frequency associated with the export snapshot item.
+     * Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: days, weeks, or months.
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
-     * Value to associate with `retentionUnit`.
+     * Value to associate with `retentionUnit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
      */
     retentionValue: pulumi.Input<number>;
 }
@@ -631,6 +712,11 @@ export interface ClusterAdvancedConfiguration {
      * When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
      */
     noTableScan?: pulumi.Input<boolean>;
+    /**
+     * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+     */
+    oplogMinRetentionHours?: pulumi.Input<number>;
     /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
@@ -1010,6 +1096,36 @@ export interface FederatedSettingsOrgRoleMappingRoleAssignment {
      * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetAlertConfigurationOutput {
+    label?: string;
+    type: string;
+    /**
+     * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     */
+    value?: string;
+}
+
+export interface GetAlertConfigurationOutputArgs {
+    label?: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+    /**
+     * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     */
+    value?: pulumi.Input<string>;
+}
+
+export interface GetAlertConfigurationsListOption {
+    includeCount?: boolean;
+    itemsPerPage?: number;
+    pageNum?: number;
+}
+
+export interface GetAlertConfigurationsListOptionArgs {
+    includeCount?: pulumi.Input<boolean>;
+    itemsPerPage?: pulumi.Input<number>;
+    pageNum?: pulumi.Input<number>;
 }
 
 export interface GetCustomDbRoleInheritedRole {
