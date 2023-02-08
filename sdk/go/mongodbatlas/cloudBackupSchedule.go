@@ -30,8 +30,9 @@ type CloudBackupSchedule struct {
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName pulumi.StringOutput             `pulumi:"clusterName"`
-	Export      CloudBackupScheduleExportOutput `pulumi:"export"`
+	ClusterName  pulumi.StringOutput                       `pulumi:"clusterName"`
+	CopySettings CloudBackupScheduleCopySettingArrayOutput `pulumi:"copySettings"`
+	Export       CloudBackupScheduleExportOutput           `pulumi:"export"`
 	// Unique identifier of the backup policy.
 	IdPolicy pulumi.StringOutput `pulumi:"idPolicy"`
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
@@ -98,8 +99,9 @@ type cloudBackupScheduleState struct {
 	// Unique identifier of the Atlas cluster.
 	ClusterId *string `pulumi:"clusterId"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName *string                    `pulumi:"clusterName"`
-	Export      *CloudBackupScheduleExport `pulumi:"export"`
+	ClusterName  *string                          `pulumi:"clusterName"`
+	CopySettings []CloudBackupScheduleCopySetting `pulumi:"copySettings"`
+	Export       *CloudBackupScheduleExport       `pulumi:"export"`
 	// Unique identifier of the backup policy.
 	IdPolicy *string `pulumi:"idPolicy"`
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
@@ -132,8 +134,9 @@ type CloudBackupScheduleState struct {
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringPtrInput
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName pulumi.StringPtrInput
-	Export      CloudBackupScheduleExportPtrInput
+	ClusterName  pulumi.StringPtrInput
+	CopySettings CloudBackupScheduleCopySettingArrayInput
+	Export       CloudBackupScheduleExportPtrInput
 	// Unique identifier of the backup policy.
 	IdPolicy pulumi.StringPtrInput
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
@@ -168,8 +171,9 @@ type cloudBackupScheduleArgs struct {
 	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
 	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName string                     `pulumi:"clusterName"`
-	Export      *CloudBackupScheduleExport `pulumi:"export"`
+	ClusterName  string                           `pulumi:"clusterName"`
+	CopySettings []CloudBackupScheduleCopySetting `pulumi:"copySettings"`
+	Export       *CloudBackupScheduleExport       `pulumi:"export"`
 	// Daily policy item
 	PolicyItemDaily *CloudBackupSchedulePolicyItemDaily `pulumi:"policyItemDaily"`
 	// Hourly policy item
@@ -197,8 +201,9 @@ type CloudBackupScheduleArgs struct {
 	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
 	AutoExportEnabled pulumi.BoolPtrInput
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName pulumi.StringInput
-	Export      CloudBackupScheduleExportPtrInput
+	ClusterName  pulumi.StringInput
+	CopySettings CloudBackupScheduleCopySettingArrayInput
+	Export       CloudBackupScheduleExportPtrInput
 	// Daily policy item
 	PolicyItemDaily CloudBackupSchedulePolicyItemDailyPtrInput
 	// Hourly policy item
@@ -321,6 +326,10 @@ func (o CloudBackupScheduleOutput) ClusterId() pulumi.StringOutput {
 // The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 func (o CloudBackupScheduleOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+func (o CloudBackupScheduleOutput) CopySettings() CloudBackupScheduleCopySettingArrayOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupScheduleCopySettingArrayOutput { return v.CopySettings }).(CloudBackupScheduleCopySettingArrayOutput)
 }
 
 func (o CloudBackupScheduleOutput) Export() CloudBackupScheduleExportOutput {

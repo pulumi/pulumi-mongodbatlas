@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
 import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleExportArgs;
 import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
 import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
@@ -66,6 +67,13 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
      */
     public Optional<Output<String>> clusterName() {
         return Optional.ofNullable(this.clusterName);
+    }
+
+    @Import(name="copySettings")
+    private @Nullable Output<List<CloudBackupScheduleCopySettingArgs>> copySettings;
+
+    public Optional<Output<List<CloudBackupScheduleCopySettingArgs>>> copySettings() {
+        return Optional.ofNullable(this.copySettings);
     }
 
     @Import(name="export")
@@ -261,6 +269,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         this.autoExportEnabled = $.autoExportEnabled;
         this.clusterId = $.clusterId;
         this.clusterName = $.clusterName;
+        this.copySettings = $.copySettings;
         this.export = $.export;
         this.idPolicy = $.idPolicy;
         this.nextSnapshot = $.nextSnapshot;
@@ -355,6 +364,19 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
          */
         public Builder clusterName(String clusterName) {
             return clusterName(Output.of(clusterName));
+        }
+
+        public Builder copySettings(@Nullable Output<List<CloudBackupScheduleCopySettingArgs>> copySettings) {
+            $.copySettings = copySettings;
+            return this;
+        }
+
+        public Builder copySettings(List<CloudBackupScheduleCopySettingArgs> copySettings) {
+            return copySettings(Output.of(copySettings));
+        }
+
+        public Builder copySettings(CloudBackupScheduleCopySettingArgs... copySettings) {
+            return copySettings(List.of(copySettings));
         }
 
         public Builder export(@Nullable Output<CloudBackupScheduleExportArgs> export) {

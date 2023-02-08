@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.mongodbatlas.outputs.GetCloudBackupScheduleCopySetting;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupScheduleExport;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSchedulePolicyItemDaily;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSchedulePolicyItemHourly;
@@ -28,6 +29,7 @@ public final class GetCloudBackupScheduleResult {
      */
     private String clusterId;
     private String clusterName;
+    private List<GetCloudBackupScheduleCopySetting> copySettings;
     private List<GetCloudBackupScheduleExport> exports;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -103,6 +105,9 @@ public final class GetCloudBackupScheduleResult {
     }
     public String clusterName() {
         return this.clusterName;
+    }
+    public List<GetCloudBackupScheduleCopySetting> copySettings() {
+        return this.copySettings;
     }
     public List<GetCloudBackupScheduleExport> exports() {
         return this.exports;
@@ -200,6 +205,7 @@ public final class GetCloudBackupScheduleResult {
         private Boolean autoExportEnabled;
         private String clusterId;
         private String clusterName;
+        private List<GetCloudBackupScheduleCopySetting> copySettings;
         private List<GetCloudBackupScheduleExport> exports;
         private String id;
         private String idPolicy;
@@ -219,6 +225,7 @@ public final class GetCloudBackupScheduleResult {
     	      this.autoExportEnabled = defaults.autoExportEnabled;
     	      this.clusterId = defaults.clusterId;
     	      this.clusterName = defaults.clusterName;
+    	      this.copySettings = defaults.copySettings;
     	      this.exports = defaults.exports;
     	      this.id = defaults.id;
     	      this.idPolicy = defaults.idPolicy;
@@ -248,6 +255,14 @@ public final class GetCloudBackupScheduleResult {
         public Builder clusterName(String clusterName) {
             this.clusterName = Objects.requireNonNull(clusterName);
             return this;
+        }
+        @CustomType.Setter
+        public Builder copySettings(List<GetCloudBackupScheduleCopySetting> copySettings) {
+            this.copySettings = Objects.requireNonNull(copySettings);
+            return this;
+        }
+        public Builder copySettings(GetCloudBackupScheduleCopySetting... copySettings) {
+            return copySettings(List.of(copySettings));
         }
         @CustomType.Setter
         public Builder exports(List<GetCloudBackupScheduleExport> exports) {
@@ -334,6 +349,7 @@ public final class GetCloudBackupScheduleResult {
             o.autoExportEnabled = autoExportEnabled;
             o.clusterId = clusterId;
             o.clusterName = clusterName;
+            o.copySettings = copySettings;
             o.exports = exports;
             o.id = id;
             o.idPolicy = idPolicy;

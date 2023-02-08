@@ -38,6 +38,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool? NoTableScan;
         /// <summary>
+        /// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        /// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+        /// </summary>
+        public readonly int? OplogMinRetentionHours;
+        /// <summary>
         /// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         /// </summary>
         public readonly int? OplogSizeMb;
@@ -64,6 +69,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool? noTableScan,
 
+            int? oplogMinRetentionHours,
+
             int? oplogSizeMb,
 
             int? sampleRefreshIntervalBiConnector,
@@ -76,6 +83,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             JavascriptEnabled = javascriptEnabled;
             MinimumEnabledTlsProtocol = minimumEnabledTlsProtocol;
             NoTableScan = noTableScan;
+            OplogMinRetentionHours = oplogMinRetentionHours;
             OplogSizeMb = oplogSizeMb;
             SampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             SampleSizeBiConnector = sampleSizeBiConnector;

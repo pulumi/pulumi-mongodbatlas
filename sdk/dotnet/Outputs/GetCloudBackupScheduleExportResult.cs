@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ExportBucketId;
         /// <summary>
-        /// Frequency associated with the backup policy item.
+        /// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         /// </summary>
         public readonly string FrequencyType;
 

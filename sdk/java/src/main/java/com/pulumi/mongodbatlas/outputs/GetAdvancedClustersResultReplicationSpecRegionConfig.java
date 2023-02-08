@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs;
@@ -17,6 +18,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
+    /**
+     * @return Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+     * 
+     */
+    private List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings;
     /**
      * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
      * 
@@ -59,6 +65,13 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
     private String regionName;
 
     private GetAdvancedClustersResultReplicationSpecRegionConfig() {}
+    /**
+     * @return Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+     * 
+     */
+    public List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings() {
+        return this.analyticsAutoScalings;
+    }
     /**
      * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
      * 
@@ -125,6 +138,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
     }
     @CustomType.Builder
     public static final class Builder {
+        private List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings;
         private @Nullable GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
         private List<GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling> autoScalings;
         private String backingProviderName;
@@ -136,6 +150,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
         public Builder() {}
         public Builder(GetAdvancedClustersResultReplicationSpecRegionConfig defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.analyticsAutoScalings = defaults.analyticsAutoScalings;
     	      this.analyticsSpecs = defaults.analyticsSpecs;
     	      this.autoScalings = defaults.autoScalings;
     	      this.backingProviderName = defaults.backingProviderName;
@@ -146,6 +161,14 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
     	      this.regionName = defaults.regionName;
         }
 
+        @CustomType.Setter
+        public Builder analyticsAutoScalings(List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings) {
+            this.analyticsAutoScalings = Objects.requireNonNull(analyticsAutoScalings);
+            return this;
+        }
+        public Builder analyticsAutoScalings(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling... analyticsAutoScalings) {
+            return analyticsAutoScalings(List.of(analyticsAutoScalings));
+        }
         @CustomType.Setter
         public Builder analyticsSpecs(@Nullable GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs) {
             this.analyticsSpecs = analyticsSpecs;
@@ -191,6 +214,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
         }
         public GetAdvancedClustersResultReplicationSpecRegionConfig build() {
             final var o = new GetAdvancedClustersResultReplicationSpecRegionConfig();
+            o.analyticsAutoScalings = analyticsAutoScalings;
             o.analyticsSpecs = analyticsSpecs;
             o.autoScalings = autoScalings;
             o.backingProviderName = backingProviderName;

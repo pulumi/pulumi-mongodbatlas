@@ -5,7 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultAdvancedConfiguration;
-import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultBiConnector;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultBiConnectorConfig;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultConnectionString;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultLabel;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpec;
@@ -24,10 +24,10 @@ public final class GetAdvancedClustersResult {
     private List<GetAdvancedClustersResultAdvancedConfiguration> advancedConfigurations;
     private Boolean backupEnabled;
     /**
-     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
      * 
      */
-    private List<GetAdvancedClustersResultBiConnector> biConnectors;
+    private List<GetAdvancedClustersResultBiConnectorConfig> biConnectorConfigs;
     /**
      * @return Type of the cluster that you want to create.
      * 
@@ -113,11 +113,11 @@ public final class GetAdvancedClustersResult {
         return this.backupEnabled;
     }
     /**
-     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
      * 
      */
-    public List<GetAdvancedClustersResultBiConnector> biConnectors() {
-        return this.biConnectors;
+    public List<GetAdvancedClustersResultBiConnectorConfig> biConnectorConfigs() {
+        return this.biConnectorConfigs;
     }
     /**
      * @return Type of the cluster that you want to create.
@@ -235,7 +235,7 @@ public final class GetAdvancedClustersResult {
     public static final class Builder {
         private List<GetAdvancedClustersResultAdvancedConfiguration> advancedConfigurations;
         private Boolean backupEnabled;
-        private List<GetAdvancedClustersResultBiConnector> biConnectors;
+        private List<GetAdvancedClustersResultBiConnectorConfig> biConnectorConfigs;
         private String clusterType;
         private List<GetAdvancedClustersResultConnectionString> connectionStrings;
         private String createDate;
@@ -257,7 +257,7 @@ public final class GetAdvancedClustersResult {
     	      Objects.requireNonNull(defaults);
     	      this.advancedConfigurations = defaults.advancedConfigurations;
     	      this.backupEnabled = defaults.backupEnabled;
-    	      this.biConnectors = defaults.biConnectors;
+    	      this.biConnectorConfigs = defaults.biConnectorConfigs;
     	      this.clusterType = defaults.clusterType;
     	      this.connectionStrings = defaults.connectionStrings;
     	      this.createDate = defaults.createDate;
@@ -290,12 +290,12 @@ public final class GetAdvancedClustersResult {
             return this;
         }
         @CustomType.Setter
-        public Builder biConnectors(List<GetAdvancedClustersResultBiConnector> biConnectors) {
-            this.biConnectors = Objects.requireNonNull(biConnectors);
+        public Builder biConnectorConfigs(List<GetAdvancedClustersResultBiConnectorConfig> biConnectorConfigs) {
+            this.biConnectorConfigs = Objects.requireNonNull(biConnectorConfigs);
             return this;
         }
-        public Builder biConnectors(GetAdvancedClustersResultBiConnector... biConnectors) {
-            return biConnectors(List.of(biConnectors));
+        public Builder biConnectorConfigs(GetAdvancedClustersResultBiConnectorConfig... biConnectorConfigs) {
+            return biConnectorConfigs(List.of(biConnectorConfigs));
         }
         @CustomType.Setter
         public Builder clusterType(String clusterType) {
@@ -390,7 +390,7 @@ public final class GetAdvancedClustersResult {
             final var o = new GetAdvancedClustersResult();
             o.advancedConfigurations = advancedConfigurations;
             o.backupEnabled = backupEnabled;
-            o.biConnectors = biConnectors;
+            o.biConnectorConfigs = biConnectorConfigs;
             o.clusterType = clusterType;
             o.connectionStrings = connectionStrings;
             o.createDate = createDate;

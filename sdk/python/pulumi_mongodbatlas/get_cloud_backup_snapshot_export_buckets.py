@@ -101,7 +101,7 @@ def get_cloud_backup_snapshot_export_buckets(items_per_page: Optional[int] = Non
                                              project_id: Optional[str] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotExportBucketsResult:
     """
-    `get_cloud_backup_snapshot_export_buckets` datasource allows you to retrieve all the buckets for the specified project.
+    _get_cloud_backup_snapshot_export_buckets_ datasource allows you to retrieve all the buckets for the specified project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -146,7 +146,7 @@ def get_cloud_backup_snapshot_export_buckets_output(items_per_page: Optional[pul
                                                     project_id: Optional[pulumi.Input[str]] = None,
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotExportBucketsResult]:
     """
-    `get_cloud_backup_snapshot_export_buckets` datasource allows you to retrieve all the buckets for the specified project.
+    _get_cloud_backup_snapshot_export_buckets_ datasource allows you to retrieve all the buckets for the specified project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 

@@ -41,8 +41,8 @@ type LookupAdvancedClusterResult struct {
 	// Get the advanced configuration options. See Advanced Configuration below for more details.
 	AdvancedConfigurations []GetAdvancedClusterAdvancedConfiguration `pulumi:"advancedConfigurations"`
 	BackupEnabled          bool                                      `pulumi:"backupEnabled"`
-	// Configuration settings applied to BI Connector for Atlas on this cluster. See below.
-	BiConnectors []GetAdvancedClusterBiConnector `pulumi:"biConnectors"`
+	// Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
+	BiConnectorConfigs []GetAdvancedClusterBiConnectorConfig `pulumi:"biConnectorConfigs"`
 	// Type of the cluster that you want to create.
 	ClusterType string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
@@ -131,9 +131,9 @@ func (o LookupAdvancedClusterResultOutput) BackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.BackupEnabled }).(pulumi.BoolOutput)
 }
 
-// Configuration settings applied to BI Connector for Atlas on this cluster. See below.
-func (o LookupAdvancedClusterResultOutput) BiConnectors() GetAdvancedClusterBiConnectorArrayOutput {
-	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterBiConnector { return v.BiConnectors }).(GetAdvancedClusterBiConnectorArrayOutput)
+// Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
+func (o LookupAdvancedClusterResultOutput) BiConnectorConfigs() GetAdvancedClusterBiConnectorConfigArrayOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterBiConnectorConfig { return v.BiConnectorConfigs }).(GetAdvancedClusterBiConnectorConfigArrayOutput)
 }
 
 // Type of the cluster that you want to create.

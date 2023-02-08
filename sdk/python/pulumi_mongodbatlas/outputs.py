@@ -13,12 +13,14 @@ from . import outputs
 __all__ = [
     'AdvancedClusterAdvancedConfiguration',
     'AdvancedClusterBiConnector',
+    'AdvancedClusterBiConnectorConfig',
     'AdvancedClusterConnectionString',
     'AdvancedClusterConnectionStringPrivateEndpoint',
     'AdvancedClusterConnectionStringPrivateEndpointEndpoint',
     'AdvancedClusterLabel',
     'AdvancedClusterReplicationSpec',
     'AdvancedClusterReplicationSpecRegionConfig',
+    'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling',
     'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs',
     'AdvancedClusterReplicationSpecRegionConfigAutoScaling',
     'AdvancedClusterReplicationSpecRegionConfigElectableSpecs',
@@ -27,6 +29,7 @@ __all__ = [
     'AlertConfigurationMetricThresholdConfig',
     'AlertConfigurationNotification',
     'AlertConfigurationThresholdConfig',
+    'CloudBackupScheduleCopySetting',
     'CloudBackupScheduleExport',
     'CloudBackupSchedulePolicyItemDaily',
     'CloudBackupSchedulePolicyItemHourly',
@@ -87,27 +90,30 @@ __all__ = [
     'ServerlessInstanceLink',
     'X509AuthenticationDatabaseUserCertificate',
     'Get509AuthenticationDatabaseUserCertificateResult',
+    'GetAccessListApiKeysResultResult',
     'GetAdvancedClusterAdvancedConfigurationResult',
-    'GetAdvancedClusterBiConnectorResult',
+    'GetAdvancedClusterBiConnectorConfigResult',
     'GetAdvancedClusterConnectionStringResult',
     'GetAdvancedClusterConnectionStringPrivateEndpointResult',
     'GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult',
     'GetAdvancedClusterLabelResult',
     'GetAdvancedClusterReplicationSpecResult',
     'GetAdvancedClusterReplicationSpecRegionConfigResult',
+    'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult',
     'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult',
     'GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult',
     'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult',
     'GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult',
     'GetAdvancedClustersResultResult',
     'GetAdvancedClustersResultAdvancedConfigurationResult',
-    'GetAdvancedClustersResultBiConnectorResult',
+    'GetAdvancedClustersResultBiConnectorConfigResult',
     'GetAdvancedClustersResultConnectionStringResult',
     'GetAdvancedClustersResultConnectionStringPrivateEndpointResult',
     'GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult',
     'GetAdvancedClustersResultLabelResult',
     'GetAdvancedClustersResultReplicationSpecResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigResult',
+    'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult',
@@ -115,7 +121,17 @@ __all__ = [
     'GetAlertConfigurationMatcherResult',
     'GetAlertConfigurationMetricThresholdConfigResult',
     'GetAlertConfigurationNotificationResult',
+    'GetAlertConfigurationOutputResult',
     'GetAlertConfigurationThresholdConfigResult',
+    'GetAlertConfigurationsListOptionResult',
+    'GetAlertConfigurationsResultResult',
+    'GetAlertConfigurationsResultMatcherResult',
+    'GetAlertConfigurationsResultMetricThresholdConfigResult',
+    'GetAlertConfigurationsResultNotificationResult',
+    'GetAlertConfigurationsResultOutputResult',
+    'GetAlertConfigurationsResultThresholdConfigResult',
+    'GetApiKeysResultResult',
+    'GetCloudBackupScheduleCopySettingResult',
     'GetCloudBackupScheduleExportResult',
     'GetCloudBackupSchedulePolicyItemDailyResult',
     'GetCloudBackupSchedulePolicyItemHourlyResult',
@@ -234,6 +250,7 @@ __all__ = [
     'GetPrivatelinkEndpointsServiceAdlResultResult',
     'GetPrivatelinkEndpointsServiceServerlessResultResult',
     'GetProjectApiKeyResult',
+    'GetProjectApiKeysResultResult',
     'GetProjectTeamResult',
     'GetProjectsResultResult',
     'GetProjectsResultApiKeyResult',
@@ -264,6 +281,8 @@ class AdvancedClusterAdvancedConfiguration(dict):
             suggest = "minimum_enabled_tls_protocol"
         elif key == "noTableScan":
             suggest = "no_table_scan"
+        elif key == "oplogMinRetentionHours":
+            suggest = "oplog_min_retention_hours"
         elif key == "oplogSizeMb":
             suggest = "oplog_size_mb"
         elif key == "sampleRefreshIntervalBiConnector":
@@ -289,6 +308,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
                  javascript_enabled: Optional[bool] = None,
                  minimum_enabled_tls_protocol: Optional[str] = None,
                  no_table_scan: Optional[bool] = None,
+                 oplog_min_retention_hours: Optional[int] = None,
                  oplog_size_mb: Optional[int] = None,
                  sample_refresh_interval_bi_connector: Optional[int] = None,
                  sample_size_bi_connector: Optional[int] = None):
@@ -299,6 +319,8 @@ class AdvancedClusterAdvancedConfiguration(dict):
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
         :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+               * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -315,6 +337,8 @@ class AdvancedClusterAdvancedConfiguration(dict):
             pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         if no_table_scan is not None:
             pulumi.set(__self__, "no_table_scan", no_table_scan)
+        if oplog_min_retention_hours is not None:
+            pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
         if oplog_size_mb is not None:
             pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         if sample_refresh_interval_bi_connector is not None:
@@ -371,6 +395,15 @@ class AdvancedClusterAdvancedConfiguration(dict):
         return pulumi.get(self, "no_table_scan")
 
     @property
+    @pulumi.getter(name="oplogMinRetentionHours")
+    def oplog_min_retention_hours(self) -> Optional[int]:
+        """
+        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+        """
+        return pulumi.get(self, "oplog_min_retention_hours")
+
+    @property
     @pulumi.getter(name="oplogSizeMb")
     def oplog_size_mb(self) -> Optional[int]:
         """
@@ -412,6 +445,60 @@ class AdvancedClusterBiConnector(dict):
 
     def get(self, key: str, default = None) -> Any:
         AdvancedClusterBiConnector.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 read_preference: Optional[str] = None):
+        """
+        :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+               *
+               - Set to `true` to enable BI Connector for Atlas.
+               - Set to `false` to disable BI Connector for Atlas.
+        :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if read_preference is not None:
+            pulumi.set(__self__, "read_preference", read_preference)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+        *
+        - Set to `true` to enable BI Connector for Atlas.
+        - Set to `false` to disable BI Connector for Atlas.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="readPreference")
+    def read_preference(self) -> Optional[str]:
+        """
+        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        return pulumi.get(self, "read_preference")
+
+
+@pulumi.output_type
+class AdvancedClusterBiConnectorConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "readPreference":
+            suggest = "read_preference"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterBiConnectorConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterBiConnectorConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterBiConnectorConfig.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -768,6 +855,8 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
             suggest = "provider_name"
         elif key == "regionName":
             suggest = "region_name"
+        elif key == "analyticsAutoScaling":
+            suggest = "analytics_auto_scaling"
         elif key == "analyticsSpecs":
             suggest = "analytics_specs"
         elif key == "autoScaling":
@@ -794,6 +883,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
                  priority: int,
                  provider_name: str,
                  region_name: str,
+                 analytics_auto_scaling: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling'] = None,
                  analytics_specs: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs'] = None,
                  auto_scaling: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling'] = None,
                  backing_provider_name: Optional[str] = None,
@@ -806,6 +896,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         :param str provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
         :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
         :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
@@ -815,6 +906,8 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "provider_name", provider_name)
         pulumi.set(__self__, "region_name", region_name)
+        if analytics_auto_scaling is not None:
+            pulumi.set(__self__, "analytics_auto_scaling", analytics_auto_scaling)
         if analytics_specs is not None:
             pulumi.set(__self__, "analytics_specs", analytics_specs)
         if auto_scaling is not None:
@@ -852,6 +945,14 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         """
         return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter(name="analyticsAutoScaling")
+    def analytics_auto_scaling(self) -> Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling']:
+        """
+        Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        """
+        return pulumi.get(self, "analytics_auto_scaling")
 
     @property
     @pulumi.getter(name="analyticsSpecs")
@@ -892,6 +993,98 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
         """
         return pulumi.get(self, "read_only_specs")
+
+
+@pulumi.output_type
+class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "computeEnabled":
+            suggest = "compute_enabled"
+        elif key == "computeMaxInstanceSize":
+            suggest = "compute_max_instance_size"
+        elif key == "computeMinInstanceSize":
+            suggest = "compute_min_instance_size"
+        elif key == "computeScaleDownEnabled":
+            suggest = "compute_scale_down_enabled"
+        elif key == "diskGbEnabled":
+            suggest = "disk_gb_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 compute_enabled: Optional[bool] = None,
+                 compute_max_instance_size: Optional[str] = None,
+                 compute_min_instance_size: Optional[str] = None,
+                 compute_scale_down_enabled: Optional[bool] = None,
+                 disk_gb_enabled: Optional[bool] = None):
+        """
+        :param bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+        :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+        :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+        :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        """
+        if compute_enabled is not None:
+            pulumi.set(__self__, "compute_enabled", compute_enabled)
+        if compute_max_instance_size is not None:
+            pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+        if compute_min_instance_size is not None:
+            pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+        if compute_scale_down_enabled is not None:
+            pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+        if disk_gb_enabled is not None:
+            pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+
+    @property
+    @pulumi.getter(name="computeEnabled")
+    def compute_enabled(self) -> Optional[bool]:
+        """
+        Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+        """
+        return pulumi.get(self, "compute_enabled")
+
+    @property
+    @pulumi.getter(name="computeMaxInstanceSize")
+    def compute_max_instance_size(self) -> Optional[str]:
+        """
+        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+        """
+        return pulumi.get(self, "compute_max_instance_size")
+
+    @property
+    @pulumi.getter(name="computeMinInstanceSize")
+    def compute_min_instance_size(self) -> Optional[str]:
+        """
+        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+        """
+        return pulumi.get(self, "compute_min_instance_size")
+
+    @property
+    @pulumi.getter(name="computeScaleDownEnabled")
+    def compute_scale_down_enabled(self) -> Optional[bool]:
+        """
+        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+        """
+        return pulumi.get(self, "compute_scale_down_enabled")
+
+    @property
+    @pulumi.getter(name="diskGbEnabled")
+    def disk_gb_enabled(self) -> Optional[bool]:
+        """
+        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        """
+        return pulumi.get(self, "disk_gb_enabled")
 
 
 @pulumi.output_type
@@ -1817,6 +2010,96 @@ class AlertConfigurationThresholdConfig(dict):
 
 
 @pulumi.output_type
+class CloudBackupScheduleCopySetting(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cloudProvider":
+            suggest = "cloud_provider"
+        elif key == "regionName":
+            suggest = "region_name"
+        elif key == "replicationSpecId":
+            suggest = "replication_spec_id"
+        elif key == "shouldCopyOplogs":
+            suggest = "should_copy_oplogs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupScheduleCopySetting. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupScheduleCopySetting.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupScheduleCopySetting.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cloud_provider: Optional[str] = None,
+                 frequencies: Optional[Sequence[str]] = None,
+                 region_name: Optional[str] = None,
+                 replication_spec_id: Optional[str] = None,
+                 should_copy_oplogs: Optional[bool] = None):
+        """
+        :param str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
+        :param Sequence[str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+        :param str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+        :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
+        """
+        if cloud_provider is not None:
+            pulumi.set(__self__, "cloud_provider", cloud_provider)
+        if frequencies is not None:
+            pulumi.set(__self__, "frequencies", frequencies)
+        if region_name is not None:
+            pulumi.set(__self__, "region_name", region_name)
+        if replication_spec_id is not None:
+            pulumi.set(__self__, "replication_spec_id", replication_spec_id)
+        if should_copy_oplogs is not None:
+            pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> Optional[str]:
+        """
+        Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def frequencies(self) -> Optional[Sequence[str]]:
+        """
+        List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+        """
+        return pulumi.get(self, "frequencies")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> Optional[str]:
+        """
+        Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter(name="replicationSpecId")
+    def replication_spec_id(self) -> Optional[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+        """
+        return pulumi.get(self, "replication_spec_id")
+
+    @property
+    @pulumi.getter(name="shouldCopyOplogs")
+    def should_copy_oplogs(self) -> Optional[bool]:
+        """
+        Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
+        """
+        return pulumi.get(self, "should_copy_oplogs")
+
+
+@pulumi.output_type
 class CloudBackupScheduleExport(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1898,10 +2181,11 @@ class CloudBackupSchedulePolicyItemDaily(dict):
                  frequency_type: Optional[str] = None,
                  id: Optional[str] = None):
         """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
-        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
-        :param int retention_value: Value to associate with `retention_unit`.
-        :param str frequency_type: Frequency associated with the export snapshot item.
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
+        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param int retention_value: Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
+        :param str frequency_type: Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param str id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -1915,7 +2199,7 @@ class CloudBackupSchedulePolicyItemDaily(dict):
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> int:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type`.
+        Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -1923,7 +2207,7 @@ class CloudBackupSchedulePolicyItemDaily(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> str:
         """
-        Scope of the backup policy item: days, weeks, or months.
+        Scope of the backup policy item: `days`, `weeks`, or `months`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -1931,7 +2215,7 @@ class CloudBackupSchedulePolicyItemDaily(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> int:
         """
-        Value to associate with `retention_unit`.
+        Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
         """
         return pulumi.get(self, "retention_value")
 
@@ -1939,13 +2223,16 @@ class CloudBackupSchedulePolicyItemDaily(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
         """
-        Frequency associated with the export snapshot item.
+        Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Unique identifier of the backup policy item.
+        """
         return pulumi.get(self, "id")
 
 
@@ -1981,10 +2268,11 @@ class CloudBackupSchedulePolicyItemHourly(dict):
                  frequency_type: Optional[str] = None,
                  id: Optional[str] = None):
         """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
-        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
+        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`.
-        :param str frequency_type: Frequency associated with the export snapshot item.
+        :param str frequency_type: Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param str id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -1998,7 +2286,7 @@ class CloudBackupSchedulePolicyItemHourly(dict):
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> int:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type`.
+        Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -2006,7 +2294,7 @@ class CloudBackupSchedulePolicyItemHourly(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> str:
         """
-        Scope of the backup policy item: days, weeks, or months.
+        Scope of the backup policy item: `days`, `weeks`, or `months`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2022,13 +2310,16 @@ class CloudBackupSchedulePolicyItemHourly(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
         """
-        Frequency associated with the export snapshot item.
+        Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Unique identifier of the backup policy item.
+        """
         return pulumi.get(self, "id")
 
 
@@ -2064,10 +2355,11 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
                  frequency_type: Optional[str] = None,
                  id: Optional[str] = None):
         """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
-        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
-        :param int retention_value: Value to associate with `retention_unit`.
-        :param str frequency_type: Frequency associated with the export snapshot item.
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param str id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -2081,7 +2373,7 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> int:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type`.
+        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -2089,7 +2381,7 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> str:
         """
-        Scope of the backup policy item: days, weeks, or months.
+        Scope of the backup policy item: `days`, `weeks`, or `months`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2097,7 +2389,7 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> int:
         """
-        Value to associate with `retention_unit`.
+        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
         return pulumi.get(self, "retention_value")
 
@@ -2105,13 +2397,16 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
         """
-        Frequency associated with the export snapshot item.
+        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Unique identifier of the backup policy item.
+        """
         return pulumi.get(self, "id")
 
 
@@ -2147,10 +2442,11 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
                  frequency_type: Optional[str] = None,
                  id: Optional[str] = None):
         """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
-        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
-        :param int retention_value: Value to associate with `retention_unit`.
-        :param str frequency_type: Frequency associated with the export snapshot item.
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (weekly in this case). The supported values for weekly policies are `1` through `7`, where `1` represents Monday and `7` represents Sunday.
+        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param int retention_value: Value to associate with `retention_unit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
+        :param str frequency_type: Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param str id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -2164,7 +2460,7 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> int:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type`.
+        Desired frequency of the new backup policy item specified by `frequency_type` (weekly in this case). The supported values for weekly policies are `1` through `7`, where `1` represents Monday and `7` represents Sunday.
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -2172,7 +2468,7 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> str:
         """
-        Scope of the backup policy item: days, weeks, or months.
+        Scope of the backup policy item: `days`, `weeks`, or `months`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2180,7 +2476,7 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> int:
         """
-        Value to associate with `retention_unit`.
+        Value to associate with `retention_unit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
         """
         return pulumi.get(self, "retention_value")
 
@@ -2188,13 +2484,16 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
         """
-        Frequency associated with the export snapshot item.
+        Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Unique identifier of the backup policy item.
+        """
         return pulumi.get(self, "id")
 
 
@@ -2816,6 +3115,8 @@ class ClusterAdvancedConfiguration(dict):
             suggest = "minimum_enabled_tls_protocol"
         elif key == "noTableScan":
             suggest = "no_table_scan"
+        elif key == "oplogMinRetentionHours":
+            suggest = "oplog_min_retention_hours"
         elif key == "oplogSizeMb":
             suggest = "oplog_size_mb"
         elif key == "sampleRefreshIntervalBiConnector":
@@ -2841,6 +3142,7 @@ class ClusterAdvancedConfiguration(dict):
                  javascript_enabled: Optional[bool] = None,
                  minimum_enabled_tls_protocol: Optional[str] = None,
                  no_table_scan: Optional[bool] = None,
+                 oplog_min_retention_hours: Optional[int] = None,
                  oplog_size_mb: Optional[int] = None,
                  sample_refresh_interval_bi_connector: Optional[int] = None,
                  sample_size_bi_connector: Optional[int] = None):
@@ -2851,6 +3153,8 @@ class ClusterAdvancedConfiguration(dict):
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
         :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+               * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -2867,6 +3171,8 @@ class ClusterAdvancedConfiguration(dict):
             pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         if no_table_scan is not None:
             pulumi.set(__self__, "no_table_scan", no_table_scan)
+        if oplog_min_retention_hours is not None:
+            pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
         if oplog_size_mb is not None:
             pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         if sample_refresh_interval_bi_connector is not None:
@@ -2921,6 +3227,15 @@ class ClusterAdvancedConfiguration(dict):
         When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         """
         return pulumi.get(self, "no_table_scan")
+
+    @property
+    @pulumi.getter(name="oplogMinRetentionHours")
+    def oplog_min_retention_hours(self) -> Optional[int]:
+        """
+        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+        """
+        return pulumi.get(self, "oplog_min_retention_hours")
 
     @property
     @pulumi.getter(name="oplogSizeMb")
@@ -5416,6 +5731,63 @@ class Get509AuthenticationDatabaseUserCertificateResult(dict):
 
 
 @pulumi.output_type
+class GetAccessListApiKeysResultResult(dict):
+    def __init__(__self__, *,
+                 access_count: int,
+                 cidr_block: str,
+                 created: str,
+                 ip_address: str,
+                 last_used: str,
+                 last_used_address: str):
+        """
+        :param str cidr_block: Range of IP addresses in CIDR notation to be added to the access list.
+        :param str ip_address: Single IP address to be added to the access list.
+        """
+        pulumi.set(__self__, "access_count", access_count)
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "last_used", last_used)
+        pulumi.set(__self__, "last_used_address", last_used_address)
+
+    @property
+    @pulumi.getter(name="accessCount")
+    def access_count(self) -> int:
+        return pulumi.get(self, "access_count")
+
+    @property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> str:
+        """
+        Range of IP addresses in CIDR notation to be added to the access list.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        Single IP address to be added to the access list.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="lastUsed")
+    def last_used(self) -> str:
+        return pulumi.get(self, "last_used")
+
+    @property
+    @pulumi.getter(name="lastUsedAddress")
+    def last_used_address(self) -> str:
+        return pulumi.get(self, "last_used_address")
+
+
+@pulumi.output_type
 class GetAdvancedClusterAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
                  default_read_concern: str,
@@ -5424,6 +5796,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
                  javascript_enabled: bool,
                  minimum_enabled_tls_protocol: str,
                  no_table_scan: bool,
+                 oplog_min_retention_hours: int,
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
                  sample_size_bi_connector: int):
@@ -5434,6 +5807,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
         :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -5444,6 +5818,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "javascript_enabled", javascript_enabled)
         pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
@@ -5497,6 +5872,14 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         return pulumi.get(self, "no_table_scan")
 
     @property
+    @pulumi.getter(name="oplogMinRetentionHours")
+    def oplog_min_retention_hours(self) -> int:
+        """
+        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        """
+        return pulumi.get(self, "oplog_min_retention_hours")
+
+    @property
     @pulumi.getter(name="oplogSizeMb")
     def oplog_size_mb(self) -> int:
         """
@@ -5522,7 +5905,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
 
 
 @pulumi.output_type
-class GetAdvancedClusterBiConnectorResult(dict):
+class GetAdvancedClusterBiConnectorConfigResult(dict):
     def __init__(__self__, *,
                  enabled: bool,
                  read_preference: str):
@@ -5759,6 +6142,7 @@ class GetAdvancedClusterReplicationSpecResult(dict):
 @pulumi.output_type
 class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
     def __init__(__self__, *,
+                 analytics_auto_scalings: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult'],
                  auto_scalings: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult'],
                  backing_provider_name: str,
                  priority: int,
@@ -5768,6 +6152,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
                  electable_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult'] = None,
                  read_only_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult'] = None):
         """
+        :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scalings: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
         :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scalings: Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
         :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster.
         :param int priority: Election priority of the region.
@@ -5777,6 +6162,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
         :param 'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param 'GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below
         """
+        pulumi.set(__self__, "analytics_auto_scalings", analytics_auto_scalings)
         pulumi.set(__self__, "auto_scalings", auto_scalings)
         pulumi.set(__self__, "backing_provider_name", backing_provider_name)
         pulumi.set(__self__, "priority", priority)
@@ -5788,6 +6174,14 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
             pulumi.set(__self__, "electable_specs", electable_specs)
         if read_only_specs is not None:
             pulumi.set(__self__, "read_only_specs", read_only_specs)
+
+    @property
+    @pulumi.getter(name="analyticsAutoScalings")
+    def analytics_auto_scalings(self) -> Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult']:
+        """
+        Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+        """
+        return pulumi.get(self, "analytics_auto_scalings")
 
     @property
     @pulumi.getter(name="autoScalings")
@@ -5855,6 +6249,70 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
 
 
 @pulumi.output_type
+class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult(dict):
+    def __init__(__self__, *,
+                 compute_enabled: bool,
+                 compute_max_instance_size: str,
+                 compute_min_instance_size: str,
+                 compute_scale_down_enabled: bool,
+                 disk_gb_enabled: bool):
+        """
+        :param bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
+        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). 
+               #### Advanced Configuration
+        :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
+        :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
+        :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
+        """
+        pulumi.set(__self__, "compute_enabled", compute_enabled)
+        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+
+    @property
+    @pulumi.getter(name="computeEnabled")
+    def compute_enabled(self) -> bool:
+        """
+        Flag that indicates whether instance size auto-scaling is enabled.
+        """
+        return pulumi.get(self, "compute_enabled")
+
+    @property
+    @pulumi.getter(name="computeMaxInstanceSize")
+    def compute_max_instance_size(self) -> str:
+        """
+        Maximum instance size to which your cluster can automatically scale (such as M40). 
+        #### Advanced Configuration
+        """
+        return pulumi.get(self, "compute_max_instance_size")
+
+    @property
+    @pulumi.getter(name="computeMinInstanceSize")
+    def compute_min_instance_size(self) -> str:
+        """
+        Minimum instance size to which your cluster can automatically scale (such as M10).
+        """
+        return pulumi.get(self, "compute_min_instance_size")
+
+    @property
+    @pulumi.getter(name="computeScaleDownEnabled")
+    def compute_scale_down_enabled(self) -> bool:
+        """
+        Flag that indicates whether the instance size may scale down.
+        """
+        return pulumi.get(self, "compute_scale_down_enabled")
+
+    @property
+    @pulumi.getter(name="diskGbEnabled")
+    def disk_gb_enabled(self) -> bool:
+        """
+        Flag that indicates whether this cluster enables disk auto-scaling.
+        """
+        return pulumi.get(self, "disk_gb_enabled")
+
+
+@pulumi.output_type
 class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
     def __init__(__self__, *,
                  instance_size: str,
@@ -5918,7 +6376,8 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
                  disk_gb_enabled: bool):
         """
         :param bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
-        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40).
+        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). 
+               #### Advanced Configuration
         :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
@@ -5941,7 +6400,8 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> str:
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40).
+        Maximum instance size to which your cluster can automatically scale (such as M40). 
+        #### Advanced Configuration
         """
         return pulumi.get(self, "compute_max_instance_size")
 
@@ -6083,7 +6543,7 @@ class GetAdvancedClustersResultResult(dict):
     def __init__(__self__, *,
                  advanced_configurations: Sequence['outputs.GetAdvancedClustersResultAdvancedConfigurationResult'],
                  backup_enabled: bool,
-                 bi_connectors: Sequence['outputs.GetAdvancedClustersResultBiConnectorResult'],
+                 bi_connector_configs: Sequence['outputs.GetAdvancedClustersResultBiConnectorConfigResult'],
                  cluster_type: str,
                  connection_strings: Sequence['outputs.GetAdvancedClustersResultConnectionStringResult'],
                  create_date: str,
@@ -6102,7 +6562,7 @@ class GetAdvancedClustersResultResult(dict):
                  version_release_system: str):
         """
         :param Sequence['GetAdvancedClustersResultAdvancedConfigurationArgs'] advanced_configurations: Get the advanced configuration options. See Advanced Configuration below for more details.
-        :param Sequence['GetAdvancedClustersResultBiConnectorArgs'] bi_connectors: Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+        :param Sequence['GetAdvancedClustersResultBiConnectorConfigArgs'] bi_connector_configs: Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
         :param str cluster_type: Type of the cluster that you want to create.
         :param Sequence['GetAdvancedClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param float disk_size_gb: Capacity, in gigabytes, of the host's root volume.
@@ -6120,7 +6580,7 @@ class GetAdvancedClustersResultResult(dict):
         """
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
         pulumi.set(__self__, "backup_enabled", backup_enabled)
-        pulumi.set(__self__, "bi_connectors", bi_connectors)
+        pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
         pulumi.set(__self__, "cluster_type", cluster_type)
         pulumi.set(__self__, "connection_strings", connection_strings)
         pulumi.set(__self__, "create_date", create_date)
@@ -6152,12 +6612,12 @@ class GetAdvancedClustersResultResult(dict):
         return pulumi.get(self, "backup_enabled")
 
     @property
-    @pulumi.getter(name="biConnectors")
-    def bi_connectors(self) -> Sequence['outputs.GetAdvancedClustersResultBiConnectorResult']:
+    @pulumi.getter(name="biConnectorConfigs")
+    def bi_connector_configs(self) -> Sequence['outputs.GetAdvancedClustersResultBiConnectorConfigResult']:
         """
-        Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+        Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
         """
-        return pulumi.get(self, "bi_connectors")
+        return pulumi.get(self, "bi_connector_configs")
 
     @property
     @pulumi.getter(name="clusterType")
@@ -6291,6 +6751,7 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
                  javascript_enabled: bool,
                  minimum_enabled_tls_protocol: str,
                  no_table_scan: bool,
+                 oplog_min_retention_hours: int,
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
                  sample_size_bi_connector: int):
@@ -6301,6 +6762,7 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
         :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -6311,6 +6773,7 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "javascript_enabled", javascript_enabled)
         pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
@@ -6364,6 +6827,14 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         return pulumi.get(self, "no_table_scan")
 
     @property
+    @pulumi.getter(name="oplogMinRetentionHours")
+    def oplog_min_retention_hours(self) -> int:
+        """
+        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        """
+        return pulumi.get(self, "oplog_min_retention_hours")
+
+    @property
     @pulumi.getter(name="oplogSizeMb")
     def oplog_size_mb(self) -> int:
         """
@@ -6389,7 +6860,7 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
 
 
 @pulumi.output_type
-class GetAdvancedClustersResultBiConnectorResult(dict):
+class GetAdvancedClustersResultBiConnectorConfigResult(dict):
     def __init__(__self__, *,
                  enabled: bool,
                  read_preference: str):
@@ -6626,6 +7097,7 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
 @pulumi.output_type
 class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
     def __init__(__self__, *,
+                 analytics_auto_scalings: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult'],
                  auto_scalings: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult'],
                  backing_provider_name: str,
                  priority: int,
@@ -6635,6 +7107,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
                  electable_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult'] = None,
                  read_only_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult'] = None):
         """
+        :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scalings: Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
         :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs'] auto_scalings: Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
         :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster.
         :param int priority: Election priority of the region.
@@ -6644,6 +7117,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
         :param 'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param 'GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below
         """
+        pulumi.set(__self__, "analytics_auto_scalings", analytics_auto_scalings)
         pulumi.set(__self__, "auto_scalings", auto_scalings)
         pulumi.set(__self__, "backing_provider_name", backing_provider_name)
         pulumi.set(__self__, "priority", priority)
@@ -6655,6 +7129,14 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
             pulumi.set(__self__, "electable_specs", electable_specs)
         if read_only_specs is not None:
             pulumi.set(__self__, "read_only_specs", read_only_specs)
+
+    @property
+    @pulumi.getter(name="analyticsAutoScalings")
+    def analytics_auto_scalings(self) -> Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult']:
+        """
+        Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+        """
+        return pulumi.get(self, "analytics_auto_scalings")
 
     @property
     @pulumi.getter(name="autoScalings")
@@ -6719,6 +7201,68 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
         Hardware specifications for read-only nodes in the region. See below
         """
         return pulumi.get(self, "read_only_specs")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult(dict):
+    def __init__(__self__, *,
+                 compute_enabled: bool,
+                 compute_max_instance_size: str,
+                 compute_min_instance_size: str,
+                 compute_scale_down_enabled: bool,
+                 disk_gb_enabled: bool):
+        """
+        :param bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
+        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40).
+        :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
+        :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
+        :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
+        """
+        pulumi.set(__self__, "compute_enabled", compute_enabled)
+        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+
+    @property
+    @pulumi.getter(name="computeEnabled")
+    def compute_enabled(self) -> bool:
+        """
+        Flag that indicates whether instance size auto-scaling is enabled.
+        """
+        return pulumi.get(self, "compute_enabled")
+
+    @property
+    @pulumi.getter(name="computeMaxInstanceSize")
+    def compute_max_instance_size(self) -> str:
+        """
+        Maximum instance size to which your cluster can automatically scale (such as M40).
+        """
+        return pulumi.get(self, "compute_max_instance_size")
+
+    @property
+    @pulumi.getter(name="computeMinInstanceSize")
+    def compute_min_instance_size(self) -> str:
+        """
+        Minimum instance size to which your cluster can automatically scale (such as M10).
+        """
+        return pulumi.get(self, "compute_min_instance_size")
+
+    @property
+    @pulumi.getter(name="computeScaleDownEnabled")
+    def compute_scale_down_enabled(self) -> bool:
+        """
+        Flag that indicates whether the instance size may scale down.
+        """
+        return pulumi.get(self, "compute_scale_down_enabled")
+
+    @property
+    @pulumi.getter(name="diskGbEnabled")
+    def disk_gb_enabled(self) -> bool:
+        """
+        Flag that indicates whether this cluster enables disk auto-scaling.
+        """
+        return pulumi.get(self, "disk_gb_enabled")
 
 
 @pulumi.output_type
@@ -7353,6 +7897,39 @@ class GetAlertConfigurationNotificationResult(dict):
 
 
 @pulumi.output_type
+class GetAlertConfigurationOutputResult(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 value: str,
+                 label: Optional[str] = None):
+        """
+        :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        """
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+        if label is not None:
+            pulumi.set(__self__, "label", label)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        """
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter
+    def label(self) -> Optional[str]:
+        return pulumi.get(self, "label")
+
+
+@pulumi.output_type
 class GetAlertConfigurationThresholdConfigResult(dict):
     def __init__(__self__, *,
                  operator: str,
@@ -7397,13 +7974,600 @@ class GetAlertConfigurationThresholdConfigResult(dict):
 
 
 @pulumi.output_type
+class GetAlertConfigurationsListOptionResult(dict):
+    def __init__(__self__, *,
+                 include_count: Optional[bool] = None,
+                 items_per_page: Optional[int] = None,
+                 page_num: Optional[int] = None):
+        if include_count is not None:
+            pulumi.set(__self__, "include_count", include_count)
+        if items_per_page is not None:
+            pulumi.set(__self__, "items_per_page", items_per_page)
+        if page_num is not None:
+            pulumi.set(__self__, "page_num", page_num)
+
+    @property
+    @pulumi.getter(name="includeCount")
+    def include_count(self) -> Optional[bool]:
+        return pulumi.get(self, "include_count")
+
+    @property
+    @pulumi.getter(name="itemsPerPage")
+    def items_per_page(self) -> Optional[int]:
+        return pulumi.get(self, "items_per_page")
+
+    @property
+    @pulumi.getter(name="pageNum")
+    def page_num(self) -> Optional[int]:
+        return pulumi.get(self, "page_num")
+
+
+@pulumi.output_type
+class GetAlertConfigurationsResultResult(dict):
+    def __init__(__self__, *,
+                 alert_configuration_id: str,
+                 created: str,
+                 enabled: bool,
+                 event_type: str,
+                 matchers: Sequence['outputs.GetAlertConfigurationsResultMatcherResult'],
+                 metric_threshold: Mapping[str, str],
+                 metric_threshold_configs: Sequence['outputs.GetAlertConfigurationsResultMetricThresholdConfigResult'],
+                 notifications: Sequence['outputs.GetAlertConfigurationsResultNotificationResult'],
+                 project_id: str,
+                 threshold: Mapping[str, str],
+                 threshold_configs: Sequence['outputs.GetAlertConfigurationsResultThresholdConfigResult'],
+                 updated: str,
+                 outputs: Optional[Sequence['outputs.GetAlertConfigurationsResultOutputResult']] = None):
+        """
+        :param str alert_configuration_id: The ID of the alert configuration
+        :param str created: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
+        :param bool enabled: If set to true, the alert configuration is enabled. If enabled is not exported it is set to false.
+        :param str event_type: The type of event that will trigger an alert.
+        :param Sequence['GetAlertConfigurationsResultMatcherArgs'] matchers: Rules to apply when matching an object against this alert configuration
+        :param Sequence['GetAlertConfigurationsResultMetricThresholdConfigArgs'] metric_threshold_configs: The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
+        :param str project_id: The unique ID for the project to get the alert configurations.
+        :param Sequence['GetAlertConfigurationsResultThresholdConfigArgs'] threshold_configs: Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
+        :param str updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
+        :param Sequence['GetAlertConfigurationsResultOutputArgs'] outputs: Requested output string format for the alert configuration
+        """
+        pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "matchers", matchers)
+        pulumi.set(__self__, "metric_threshold", metric_threshold)
+        pulumi.set(__self__, "metric_threshold_configs", metric_threshold_configs)
+        pulumi.set(__self__, "notifications", notifications)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "threshold", threshold)
+        pulumi.set(__self__, "threshold_configs", threshold_configs)
+        pulumi.set(__self__, "updated", updated)
+        if outputs is not None:
+            pulumi.set(__self__, "outputs", outputs)
+
+    @property
+    @pulumi.getter(name="alertConfigurationId")
+    def alert_configuration_id(self) -> str:
+        """
+        The ID of the alert configuration
+        """
+        return pulumi.get(self, "alert_configuration_id")
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        """
+        Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
+        """
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        If set to true, the alert configuration is enabled. If enabled is not exported it is set to false.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> str:
+        """
+        The type of event that will trigger an alert.
+        """
+        return pulumi.get(self, "event_type")
+
+    @property
+    @pulumi.getter
+    def matchers(self) -> Sequence['outputs.GetAlertConfigurationsResultMatcherResult']:
+        """
+        Rules to apply when matching an object against this alert configuration
+        """
+        return pulumi.get(self, "matchers")
+
+    @property
+    @pulumi.getter(name="metricThreshold")
+    def metric_threshold(self) -> Mapping[str, str]:
+        return pulumi.get(self, "metric_threshold")
+
+    @property
+    @pulumi.getter(name="metricThresholdConfigs")
+    def metric_threshold_configs(self) -> Sequence['outputs.GetAlertConfigurationsResultMetricThresholdConfigResult']:
+        """
+        The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
+        """
+        return pulumi.get(self, "metric_threshold_configs")
+
+    @property
+    @pulumi.getter
+    def notifications(self) -> Sequence['outputs.GetAlertConfigurationsResultNotificationResult']:
+        return pulumi.get(self, "notifications")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The unique ID for the project to get the alert configurations.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> Mapping[str, str]:
+        return pulumi.get(self, "threshold")
+
+    @property
+    @pulumi.getter(name="thresholdConfigs")
+    def threshold_configs(self) -> Sequence['outputs.GetAlertConfigurationsResultThresholdConfigResult']:
+        """
+        Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
+        """
+        return pulumi.get(self, "threshold_configs")
+
+    @property
+    @pulumi.getter
+    def updated(self) -> str:
+        """
+        Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
+        """
+        return pulumi.get(self, "updated")
+
+    @property
+    @pulumi.getter
+    def outputs(self) -> Optional[Sequence['outputs.GetAlertConfigurationsResultOutputResult']]:
+        """
+        Requested output string format for the alert configuration
+        """
+        return pulumi.get(self, "outputs")
+
+
+@pulumi.output_type
+class GetAlertConfigurationsResultMatcherResult(dict):
+    def __init__(__self__, *,
+                 field_name: str,
+                 operator: str,
+                 value: str):
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="fieldName")
+    def field_name(self) -> str:
+        return pulumi.get(self, "field_name")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> str:
+        return pulumi.get(self, "operator")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAlertConfigurationsResultMetricThresholdConfigResult(dict):
+    def __init__(__self__, *,
+                 metric_name: str,
+                 mode: str,
+                 operator: str,
+                 threshold: float,
+                 units: str):
+        pulumi.set(__self__, "metric_name", metric_name)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "threshold", threshold)
+        pulumi.set(__self__, "units", units)
+
+    @property
+    @pulumi.getter(name="metricName")
+    def metric_name(self) -> str:
+        return pulumi.get(self, "metric_name")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> str:
+        return pulumi.get(self, "mode")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> str:
+        return pulumi.get(self, "operator")
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> float:
+        return pulumi.get(self, "threshold")
+
+    @property
+    @pulumi.getter
+    def units(self) -> str:
+        return pulumi.get(self, "units")
+
+
+@pulumi.output_type
+class GetAlertConfigurationsResultNotificationResult(dict):
+    def __init__(__self__, *,
+                 api_token: str,
+                 channel_name: str,
+                 datadog_api_key: str,
+                 datadog_region: str,
+                 delay_min: int,
+                 email_address: str,
+                 email_enabled: bool,
+                 flow_name: str,
+                 flowdock_api_token: str,
+                 interval_min: int,
+                 mobile_number: str,
+                 ops_genie_api_key: str,
+                 ops_genie_region: str,
+                 org_name: str,
+                 service_key: str,
+                 sms_enabled: bool,
+                 team_id: str,
+                 team_name: str,
+                 type_name: str,
+                 username: str,
+                 victor_ops_api_key: str,
+                 victor_ops_routing_key: str,
+                 microsoft_teams_webhook_url: Optional[str] = None,
+                 roles: Optional[Sequence[str]] = None,
+                 webhook_secret: Optional[str] = None,
+                 webhook_url: Optional[str] = None):
+        pulumi.set(__self__, "api_token", api_token)
+        pulumi.set(__self__, "channel_name", channel_name)
+        pulumi.set(__self__, "datadog_api_key", datadog_api_key)
+        pulumi.set(__self__, "datadog_region", datadog_region)
+        pulumi.set(__self__, "delay_min", delay_min)
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "email_enabled", email_enabled)
+        pulumi.set(__self__, "flow_name", flow_name)
+        pulumi.set(__self__, "flowdock_api_token", flowdock_api_token)
+        pulumi.set(__self__, "interval_min", interval_min)
+        pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
+        pulumi.set(__self__, "ops_genie_region", ops_genie_region)
+        pulumi.set(__self__, "org_name", org_name)
+        pulumi.set(__self__, "service_key", service_key)
+        pulumi.set(__self__, "sms_enabled", sms_enabled)
+        pulumi.set(__self__, "team_id", team_id)
+        pulumi.set(__self__, "team_name", team_name)
+        pulumi.set(__self__, "type_name", type_name)
+        pulumi.set(__self__, "username", username)
+        pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
+        pulumi.set(__self__, "victor_ops_routing_key", victor_ops_routing_key)
+        if microsoft_teams_webhook_url is not None:
+            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+        if roles is not None:
+            pulumi.set(__self__, "roles", roles)
+        if webhook_secret is not None:
+            pulumi.set(__self__, "webhook_secret", webhook_secret)
+        if webhook_url is not None:
+            pulumi.set(__self__, "webhook_url", webhook_url)
+
+    @property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> str:
+        return pulumi.get(self, "api_token")
+
+    @property
+    @pulumi.getter(name="channelName")
+    def channel_name(self) -> str:
+        return pulumi.get(self, "channel_name")
+
+    @property
+    @pulumi.getter(name="datadogApiKey")
+    def datadog_api_key(self) -> str:
+        return pulumi.get(self, "datadog_api_key")
+
+    @property
+    @pulumi.getter(name="datadogRegion")
+    def datadog_region(self) -> str:
+        return pulumi.get(self, "datadog_region")
+
+    @property
+    @pulumi.getter(name="delayMin")
+    def delay_min(self) -> int:
+        return pulumi.get(self, "delay_min")
+
+    @property
+    @pulumi.getter(name="emailAddress")
+    def email_address(self) -> str:
+        return pulumi.get(self, "email_address")
+
+    @property
+    @pulumi.getter(name="emailEnabled")
+    def email_enabled(self) -> bool:
+        return pulumi.get(self, "email_enabled")
+
+    @property
+    @pulumi.getter(name="flowName")
+    def flow_name(self) -> str:
+        return pulumi.get(self, "flow_name")
+
+    @property
+    @pulumi.getter(name="flowdockApiToken")
+    def flowdock_api_token(self) -> str:
+        return pulumi.get(self, "flowdock_api_token")
+
+    @property
+    @pulumi.getter(name="intervalMin")
+    def interval_min(self) -> int:
+        return pulumi.get(self, "interval_min")
+
+    @property
+    @pulumi.getter(name="mobileNumber")
+    def mobile_number(self) -> str:
+        return pulumi.get(self, "mobile_number")
+
+    @property
+    @pulumi.getter(name="opsGenieApiKey")
+    def ops_genie_api_key(self) -> str:
+        return pulumi.get(self, "ops_genie_api_key")
+
+    @property
+    @pulumi.getter(name="opsGenieRegion")
+    def ops_genie_region(self) -> str:
+        return pulumi.get(self, "ops_genie_region")
+
+    @property
+    @pulumi.getter(name="orgName")
+    def org_name(self) -> str:
+        return pulumi.get(self, "org_name")
+
+    @property
+    @pulumi.getter(name="serviceKey")
+    def service_key(self) -> str:
+        return pulumi.get(self, "service_key")
+
+    @property
+    @pulumi.getter(name="smsEnabled")
+    def sms_enabled(self) -> bool:
+        return pulumi.get(self, "sms_enabled")
+
+    @property
+    @pulumi.getter(name="teamId")
+    def team_id(self) -> str:
+        return pulumi.get(self, "team_id")
+
+    @property
+    @pulumi.getter(name="teamName")
+    def team_name(self) -> str:
+        return pulumi.get(self, "team_name")
+
+    @property
+    @pulumi.getter(name="typeName")
+    def type_name(self) -> str:
+        return pulumi.get(self, "type_name")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="victorOpsApiKey")
+    def victor_ops_api_key(self) -> str:
+        return pulumi.get(self, "victor_ops_api_key")
+
+    @property
+    @pulumi.getter(name="victorOpsRoutingKey")
+    def victor_ops_routing_key(self) -> str:
+        return pulumi.get(self, "victor_ops_routing_key")
+
+    @property
+    @pulumi.getter(name="microsoftTeamsWebhookUrl")
+    def microsoft_teams_webhook_url(self) -> Optional[str]:
+        return pulumi.get(self, "microsoft_teams_webhook_url")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "roles")
+
+    @property
+    @pulumi.getter(name="webhookSecret")
+    def webhook_secret(self) -> Optional[str]:
+        return pulumi.get(self, "webhook_secret")
+
+    @property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> Optional[str]:
+        return pulumi.get(self, "webhook_url")
+
+
+@pulumi.output_type
+class GetAlertConfigurationsResultOutputResult(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 value: str,
+                 label: Optional[str] = None):
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+        if label is not None:
+            pulumi.set(__self__, "label", label)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter
+    def label(self) -> Optional[str]:
+        return pulumi.get(self, "label")
+
+
+@pulumi.output_type
+class GetAlertConfigurationsResultThresholdConfigResult(dict):
+    def __init__(__self__, *,
+                 operator: str,
+                 threshold: float,
+                 units: str):
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "threshold", threshold)
+        pulumi.set(__self__, "units", units)
+
+    @property
+    @pulumi.getter
+    def operator(self) -> str:
+        return pulumi.get(self, "operator")
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> float:
+        return pulumi.get(self, "threshold")
+
+    @property
+    @pulumi.getter
+    def units(self) -> str:
+        return pulumi.get(self, "units")
+
+
+@pulumi.output_type
+class GetApiKeysResultResult(dict):
+    def __init__(__self__, *,
+                 api_key_id: str,
+                 description: str,
+                 public_key: str,
+                 role_names: Sequence[str]):
+        """
+        :param str api_key_id: Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
+        :param str description: Description of this Organization API key.
+        :param Sequence[str] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
+        """
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "public_key", public_key)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="apiKeyId")
+    def api_key_id(self) -> str:
+        """
+        Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
+        """
+        return pulumi.get(self, "api_key_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description of this Organization API key.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> Sequence[str]:
+        """
+        Name of the role. This resource returns all the roles the user has in Atlas.
+        """
+        return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
+class GetCloudBackupScheduleCopySettingResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: str,
+                 frequencies: Sequence[str],
+                 region_name: str,
+                 replication_spec_id: str,
+                 should_copy_oplogs: bool):
+        """
+        :param str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
+        :param Sequence[str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+        :param str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+        :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "frequencies", frequencies)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "replication_spec_id", replication_spec_id)
+        pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        """
+        Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def frequencies(self) -> Sequence[str]:
+        """
+        List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+        """
+        return pulumi.get(self, "frequencies")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter(name="replicationSpecId")
+    def replication_spec_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+        """
+        return pulumi.get(self, "replication_spec_id")
+
+    @property
+    @pulumi.getter(name="shouldCopyOplogs")
+    def should_copy_oplogs(self) -> bool:
+        """
+        Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
+        """
+        return pulumi.get(self, "should_copy_oplogs")
+
+
+@pulumi.output_type
 class GetCloudBackupScheduleExportResult(dict):
     def __init__(__self__, *,
                  export_bucket_id: str,
                  frequency_type: str):
         """
         :param str export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
-        :param str frequency_type: Frequency associated with the backup policy item.
+        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         pulumi.set(__self__, "export_bucket_id", export_bucket_id)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -7420,7 +8584,7 @@ class GetCloudBackupScheduleExportResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> str:
         """
-        Frequency associated with the backup policy item.
+        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -7434,11 +8598,11 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
                  retention_unit: str,
                  retention_value: int):
         """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
-        :param str frequency_type: Frequency associated with the backup policy item.
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
-        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
-        :param int retention_value: Value to associate with `retention_unit`.
+        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -7450,7 +8614,7 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> int:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type`.
+        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -7458,7 +8622,7 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> str:
         """
-        Frequency associated with the backup policy item.
+        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -7474,7 +8638,7 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> str:
         """
-        Scope of the backup policy item: days, weeks, or months.
+        Scope of the backup policy item: `days`, `weeks`, or `months`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -7482,7 +8646,7 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> int:
         """
-        Value to associate with `retention_unit`.
+        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
         return pulumi.get(self, "retention_value")
 
@@ -7496,11 +8660,11 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
                  retention_unit: str,
                  retention_value: int):
         """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
-        :param str frequency_type: Frequency associated with the backup policy item.
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
-        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
-        :param int retention_value: Value to associate with `retention_unit`.
+        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -7512,7 +8676,7 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> int:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type`.
+        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -7520,7 +8684,7 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> str:
         """
-        Frequency associated with the backup policy item.
+        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -7536,7 +8700,7 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> str:
         """
-        Scope of the backup policy item: days, weeks, or months.
+        Scope of the backup policy item: `days`, `weeks`, or `months`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -7544,7 +8708,7 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> int:
         """
-        Value to associate with `retention_unit`.
+        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
         return pulumi.get(self, "retention_value")
 
@@ -7558,11 +8722,11 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
                  retention_unit: str,
                  retention_value: int):
         """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
-        :param str frequency_type: Frequency associated with the backup policy item.
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
-        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
-        :param int retention_value: Value to associate with `retention_unit`.
+        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -7574,7 +8738,7 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> int:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type`.
+        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -7582,7 +8746,7 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> str:
         """
-        Frequency associated with the backup policy item.
+        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -7598,7 +8762,7 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> str:
         """
-        Scope of the backup policy item: days, weeks, or months.
+        Scope of the backup policy item: `days`, `weeks`, or `months`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -7606,7 +8770,7 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> int:
         """
-        Value to associate with `retention_unit`.
+        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
         return pulumi.get(self, "retention_value")
 
@@ -7620,11 +8784,11 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
                  retention_unit: str,
                  retention_value: int):
         """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
-        :param str frequency_type: Frequency associated with the backup policy item.
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
-        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
-        :param int retention_value: Value to associate with `retention_unit`.
+        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -7636,7 +8800,7 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> int:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type`.
+        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -7644,7 +8808,7 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> str:
         """
-        Frequency associated with the backup policy item.
+        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -7660,7 +8824,7 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> str:
         """
-        Scope of the backup policy item: days, weeks, or months.
+        Scope of the backup policy item: `days`, `weeks`, or `months`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -7668,7 +8832,7 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> int:
         """
-        Value to associate with `retention_unit`.
+        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
         return pulumi.get(self, "retention_value")
 
@@ -8858,6 +10022,7 @@ class GetClusterAdvancedConfigurationResult(dict):
                  javascript_enabled: bool,
                  minimum_enabled_tls_protocol: str,
                  no_table_scan: bool,
+                 oplog_min_retention_hours: int,
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
                  sample_size_bi_connector: int):
@@ -8868,6 +10033,7 @@ class GetClusterAdvancedConfigurationResult(dict):
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
         :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -8878,6 +10044,7 @@ class GetClusterAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "javascript_enabled", javascript_enabled)
         pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
@@ -8929,6 +10096,14 @@ class GetClusterAdvancedConfigurationResult(dict):
         When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         """
         return pulumi.get(self, "no_table_scan")
+
+    @property
+    @pulumi.getter(name="oplogMinRetentionHours")
+    def oplog_min_retention_hours(self) -> int:
+        """
+        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        """
+        return pulumi.get(self, "oplog_min_retention_hours")
 
     @property
     @pulumi.getter(name="oplogSizeMb")
@@ -9441,7 +10616,7 @@ class GetClustersResultResult(dict):
                - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
                - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
                - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
-               - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
                - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
                - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
         :param str container_id: The Network Peering Container ID.
@@ -9608,7 +10783,7 @@ class GetClustersResultResult(dict):
         - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
         - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
         - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
-        - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
         - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
         - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
         """
@@ -9867,6 +11042,7 @@ class GetClustersResultAdvancedConfigurationResult(dict):
                  javascript_enabled: bool,
                  minimum_enabled_tls_protocol: str,
                  no_table_scan: bool,
+                 oplog_min_retention_hours: int,
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
                  sample_size_bi_connector: int):
@@ -9877,6 +11053,7 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
         :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -9887,6 +11064,7 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "javascript_enabled", javascript_enabled)
         pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
@@ -9938,6 +11116,14 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         """
         return pulumi.get(self, "no_table_scan")
+
+    @property
+    @pulumi.getter(name="oplogMinRetentionHours")
+    def oplog_min_retention_hours(self) -> int:
+        """
+        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        """
+        return pulumi.get(self, "oplog_min_retention_hours")
 
     @property
     @pulumi.getter(name="oplogSizeMb")
@@ -13872,6 +15058,62 @@ class GetProjectApiKeyResult(dict):
     @property
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
+        return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
+class GetProjectApiKeysResultResult(dict):
+    def __init__(__self__, *,
+                 api_key_id: str,
+                 description: str,
+                 private_key: str,
+                 public_key: str,
+                 role_names: Sequence[str]):
+        """
+        :param str api_key_id: Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
+        :param str description: Description of this Project API key.
+        :param Sequence[str] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
+               The following are valid roles:
+        """
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "private_key", private_key)
+        pulumi.set(__self__, "public_key", public_key)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="apiKeyId")
+    def api_key_id(self) -> str:
+        """
+        Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
+        """
+        return pulumi.get(self, "api_key_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description of this Project API key.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> str:
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> Sequence[str]:
+        """
+        Name of the role. This resource returns all the roles the user has in Atlas.
+        The following are valid roles:
+        """
         return pulumi.get(self, "role_names")
 
 

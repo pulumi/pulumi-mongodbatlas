@@ -25,9 +25,30 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
-//				ApiKeys: mongodbatlas.ProjectApiKeyArray{
-//					&mongodbatlas.ProjectApiKeyArgs{
+//			testRolesOrgId, err := mongodbatlas.GetRolesOrgId(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				OrgId:          *pulumi.String(testRolesOrgId.OrgId),
+//				ProjectOwnerId: pulumi.String("<OWNER_ACCOUNT_ID>"),
+//				Teams: mongodbatlas.ProjectTeamArray{
+//					&mongodbatlas.ProjectTeamArgs{
+//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//						},
+//					},
+//					&mongodbatlas.ProjectTeamArgs{
+//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_READ_ONLY"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//						},
+//					},
+//				},
+//				ApiKeys: mongodbatlas.ProjectApiKeyTypeArray{
+//					&mongodbatlas.ProjectApiKeyTypeArgs{
 //						ApiKeyId: pulumi.String("61003b299dda8d54a9d7d10c"),
 //						RoleNames: pulumi.StringArray{
 //							pulumi.String("GROUP_READ_ONLY"),
@@ -39,23 +60,6 @@ import (
 //				IsPerformanceAdvisorEnabled:                 pulumi.Bool(true),
 //				IsRealtimePerformancePanelEnabled:           pulumi.Bool(true),
 //				IsSchemaAdvisorEnabled:                      pulumi.Bool(true),
-//				OrgId:                                       pulumi.String("<ORG_ID>"),
-//				ProjectOwnerId:                              pulumi.String("<OWNER_ACCOUNT_ID>"),
-//				Teams: mongodbatlas.ProjectTeamArray{
-//					&mongodbatlas.ProjectTeamArgs{
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_OWNER"),
-//						},
-//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
-//					},
-//					&mongodbatlas.ProjectTeamArgs{
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_READ_ONLY"),
-//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
-//						},
-//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
-//					},
-//				},
 //			})
 //			if err != nil {
 //				return err
@@ -76,11 +80,11 @@ import (
 //
 // ```
 //
-//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+//	For more information see[MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
 type Project struct {
 	pulumi.CustomResourceState
 
-	ApiKeys ProjectApiKeyArrayOutput `pulumi:"apiKeys"`
+	ApiKeys ProjectApiKeyTypeArrayOutput `pulumi:"apiKeys"`
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount pulumi.IntOutput `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
@@ -140,7 +144,7 @@ func GetProject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Project resources.
 type projectState struct {
-	ApiKeys []ProjectApiKey `pulumi:"apiKeys"`
+	ApiKeys []ProjectApiKeyType `pulumi:"apiKeys"`
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount *int `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
@@ -169,7 +173,7 @@ type projectState struct {
 }
 
 type ProjectState struct {
-	ApiKeys ProjectApiKeyArrayInput
+	ApiKeys ProjectApiKeyTypeArrayInput
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount pulumi.IntPtrInput
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
@@ -202,7 +206,7 @@ func (ProjectState) ElementType() reflect.Type {
 }
 
 type projectArgs struct {
-	ApiKeys []ProjectApiKey `pulumi:"apiKeys"`
+	ApiKeys []ProjectApiKeyType `pulumi:"apiKeys"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled *bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
@@ -228,7 +232,7 @@ type projectArgs struct {
 
 // The set of arguments for constructing a Project resource.
 type ProjectArgs struct {
-	ApiKeys ProjectApiKeyArrayInput
+	ApiKeys ProjectApiKeyTypeArrayInput
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
@@ -339,8 +343,8 @@ func (o ProjectOutput) ToProjectOutputWithContext(ctx context.Context) ProjectOu
 	return o
 }
 
-func (o ProjectOutput) ApiKeys() ProjectApiKeyArrayOutput {
-	return o.ApplyT(func(v *Project) ProjectApiKeyArrayOutput { return v.ApiKeys }).(ProjectApiKeyArrayOutput)
+func (o ProjectOutput) ApiKeys() ProjectApiKeyTypeArrayOutput {
+	return o.ApplyT(func(v *Project) ProjectApiKeyTypeArrayOutput { return v.ApiKeys }).(ProjectApiKeyTypeArrayOutput)
 }
 
 // The number of Atlas clusters deployed in the project..

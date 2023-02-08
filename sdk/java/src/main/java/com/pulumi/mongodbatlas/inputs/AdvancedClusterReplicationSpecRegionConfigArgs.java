@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
@@ -19,6 +20,21 @@ import javax.annotation.Nullable;
 public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final AdvancedClusterReplicationSpecRegionConfigArgs Empty = new AdvancedClusterReplicationSpecRegionConfigArgs();
+
+    /**
+     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+     * 
+     */
+    @Import(name="analyticsAutoScaling")
+    private @Nullable Output<AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs> analyticsAutoScaling;
+
+    /**
+     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+     * 
+     */
+    public Optional<Output<AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs>> analyticsAutoScaling() {
+        return Optional.ofNullable(this.analyticsAutoScaling);
+    }
 
     /**
      * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don&#39;t specify this parameter, no analytics nodes deploy to this region. See below
@@ -149,6 +165,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
     private AdvancedClusterReplicationSpecRegionConfigArgs() {}
 
     private AdvancedClusterReplicationSpecRegionConfigArgs(AdvancedClusterReplicationSpecRegionConfigArgs $) {
+        this.analyticsAutoScaling = $.analyticsAutoScaling;
         this.analyticsSpecs = $.analyticsSpecs;
         this.autoScaling = $.autoScaling;
         this.backingProviderName = $.backingProviderName;
@@ -175,6 +192,27 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
 
         public Builder(AdvancedClusterReplicationSpecRegionConfigArgs defaults) {
             $ = new AdvancedClusterReplicationSpecRegionConfigArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param analyticsAutoScaling Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+         * 
+         * @return builder
+         * 
+         */
+        public Builder analyticsAutoScaling(@Nullable Output<AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs> analyticsAutoScaling) {
+            $.analyticsAutoScaling = analyticsAutoScaling;
+            return this;
+        }
+
+        /**
+         * @param analyticsAutoScaling Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+         * 
+         * @return builder
+         * 
+         */
+        public Builder analyticsAutoScaling(AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs analyticsAutoScaling) {
+            return analyticsAutoScaling(Output.of(analyticsAutoScaling));
         }
 
         /**

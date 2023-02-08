@@ -20,10 +20,14 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "mongodbatlas:index/accessListApiKey:AccessListApiKey":
+		r = &AccessListApiKey{}
 	case "mongodbatlas:index/advancedCluster:AdvancedCluster":
 		r = &AdvancedCluster{}
 	case "mongodbatlas:index/alertConfiguration:AlertConfiguration":
 		r = &AlertConfiguration{}
+	case "mongodbatlas:index/apiKey:ApiKey":
+		r = &ApiKey{}
 	case "mongodbatlas:index/auditing:Auditing":
 		r = &Auditing{}
 	case "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule":
@@ -100,6 +104,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &PrivatelinkEndpointServiceServerless{}
 	case "mongodbatlas:index/project:Project":
 		r = &Project{}
+	case "mongodbatlas:index/projectApiKey:ProjectApiKey":
+		r = &ProjectApiKey{}
 	case "mongodbatlas:index/projectInvitation:ProjectInvitation":
 		r = &ProjectInvitation{}
 	case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
@@ -146,12 +152,22 @@ func init() {
 	version, _ := PkgVersion()
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/accessListApiKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/advancedCluster",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/alertConfiguration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/apiKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -342,6 +358,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/project",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/projectApiKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

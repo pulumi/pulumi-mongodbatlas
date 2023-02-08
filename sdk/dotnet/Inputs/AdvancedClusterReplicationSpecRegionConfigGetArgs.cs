@@ -13,6 +13,12 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class AdvancedClusterReplicationSpecRegionConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        /// </summary>
+        [Input("analyticsAutoScaling")]
+        public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingGetArgs>? AnalyticsAutoScaling { get; set; }
+
+        /// <summary>
         /// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
         /// </summary>
         [Input("analyticsSpecs")]

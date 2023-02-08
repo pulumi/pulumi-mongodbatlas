@@ -13,7 +13,23 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const test = new mongodbatlas.Project("test", {
+ * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
+ * const testProject = new mongodbatlas.Project("testProject", {
+ *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
+ *     projectOwnerId: "<OWNER_ACCOUNT_ID>",
+ *     teams: [
+ *         {
+ *             teamId: "5e0fa8c99ccf641c722fe645",
+ *             roleNames: ["GROUP_OWNER"],
+ *         },
+ *         {
+ *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
+ *             roleNames: [
+ *                 "GROUP_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *         },
+ *     ],
  *     apiKeys: [{
  *         apiKeyId: "61003b299dda8d54a9d7d10c",
  *         roleNames: ["GROUP_READ_ONLY"],
@@ -23,21 +39,6 @@ import * as utilities from "./utilities";
  *     isPerformanceAdvisorEnabled: true,
  *     isRealtimePerformancePanelEnabled: true,
  *     isSchemaAdvisorEnabled: true,
- *     orgId: "<ORG_ID>",
- *     projectOwnerId: "<OWNER_ACCOUNT_ID>",
- *     teams: [
- *         {
- *             roleNames: ["GROUP_OWNER"],
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *         },
- *         {
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *         },
- *     ],
  * });
  * ```
  *
@@ -49,7 +50,7 @@ import * as utilities from "./utilities";
  *  $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
  * ```
  *
- *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+ *  For more information see[MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
  */
 export class Project extends pulumi.CustomResource {
     /**

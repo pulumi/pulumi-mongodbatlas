@@ -11,19 +11,9 @@ namespace Pulumi.Mongodbatlas
 {
     public static class GetAlertConfiguration
     {
-        /// <summary>
-        /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// </summary>
         public static Task<GetAlertConfigurationResult> InvokeAsync(GetAlertConfigurationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// </summary>
         public static Output<GetAlertConfigurationResult> Invoke(GetAlertConfigurationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationInvokeArgs(), options.WithDefaults());
     }
@@ -36,6 +26,19 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("alertConfigurationId", required: true)]
         public string AlertConfigurationId { get; set; } = null!;
+
+        [Input("outputs")]
+        private List<Inputs.GetAlertConfigurationOutputArgs>? _outputs;
+
+        /// <summary>
+        /// List of formatted output requested for this alert configuration
+        /// * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+        /// </summary>
+        public List<Inputs.GetAlertConfigurationOutputArgs> Outputs
+        {
+            get => _outputs ?? (_outputs = new List<Inputs.GetAlertConfigurationOutputArgs>());
+            set => _outputs = value;
+        }
 
         /// <summary>
         /// The ID of the project where the alert configuration will create.
@@ -56,6 +59,19 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("alertConfigurationId", required: true)]
         public Input<string> AlertConfigurationId { get; set; } = null!;
+
+        [Input("outputs")]
+        private InputList<Inputs.GetAlertConfigurationOutputInputArgs>? _outputs;
+
+        /// <summary>
+        /// List of formatted output requested for this alert configuration
+        /// * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+        /// </summary>
+        public InputList<Inputs.GetAlertConfigurationOutputInputArgs> Outputs
+        {
+            get => _outputs ?? (_outputs = new InputList<Inputs.GetAlertConfigurationOutputInputArgs>());
+            set => _outputs = value;
+        }
 
         /// <summary>
         /// The ID of the project where the alert configuration will create.
@@ -94,6 +110,7 @@ namespace Pulumi.Mongodbatlas
         public readonly ImmutableDictionary<string, string> MetricThreshold;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationMetricThresholdConfigResult> MetricThresholdConfigs;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationNotificationResult> Notifications;
+        public readonly ImmutableArray<Outputs.GetAlertConfigurationOutputResult> Outputs;
         public readonly string ProjectId;
         /// <summary>
         /// Threshold value outside of which an alert will be triggered.
@@ -125,6 +142,8 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetAlertConfigurationNotificationResult> notifications,
 
+            ImmutableArray<Outputs.GetAlertConfigurationOutputResult> outputs,
+
             string projectId,
 
             ImmutableDictionary<string, string> threshold,
@@ -142,6 +161,7 @@ namespace Pulumi.Mongodbatlas
             MetricThreshold = metricThreshold;
             MetricThresholdConfigs = metricThresholdConfigs;
             Notifications = notifications;
+            Outputs = outputs;
             ProjectId = projectId;
             Threshold = threshold;
             ThresholdConfigs = thresholdConfigs;

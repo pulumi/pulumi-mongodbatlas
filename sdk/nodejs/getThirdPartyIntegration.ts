@@ -69,10 +69,10 @@ export interface GetThirdPartyIntegrationArgs {
      * Third-Party service integration type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
@@ -227,10 +227,10 @@ export interface GetThirdPartyIntegrationOutputArgs {
      * Third-Party service integration type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS

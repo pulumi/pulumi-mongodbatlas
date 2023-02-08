@@ -27,10 +27,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
  * import com.pulumi.mongodbatlas.Project;
  * import com.pulumi.mongodbatlas.ProjectArgs;
- * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
  * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
+ * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -44,7 +45,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Project(&#34;test&#34;, ProjectArgs.builder()        
+ *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
+ * 
+ *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+ *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
+ *             .projectOwnerId(&#34;&lt;OWNER_ACCOUNT_ID&gt;&#34;)
+ *             .teams(            
+ *                 ProjectTeamArgs.builder()
+ *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+ *                     .roleNames(&#34;GROUP_OWNER&#34;)
+ *                     .build(),
+ *                 ProjectTeamArgs.builder()
+ *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+ *                     .roleNames(                    
+ *                         &#34;GROUP_READ_ONLY&#34;,
+ *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+ *                     .build())
  *             .apiKeys(ProjectApiKeyArgs.builder()
  *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
  *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
@@ -54,19 +70,6 @@ import javax.annotation.Nullable;
  *             .isPerformanceAdvisorEnabled(true)
  *             .isRealtimePerformancePanelEnabled(true)
  *             .isSchemaAdvisorEnabled(true)
- *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
- *             .projectOwnerId(&#34;&lt;OWNER_ACCOUNT_ID&gt;&#34;)
- *             .teams(            
- *                 ProjectTeamArgs.builder()
- *                     .roleNames(&#34;GROUP_OWNER&#34;)
- *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
- *                     .build(),
- *                 ProjectTeamArgs.builder()
- *                     .roleNames(                    
- *                         &#34;GROUP_READ_ONLY&#34;,
- *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
- *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
- *                     .build())
  *             .build());
  * 
  *     }
@@ -81,7 +84,7 @@ import javax.annotation.Nullable;
  *  $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
  * ```
  * 
- *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+ *  For more information see[MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
  * 
  */
 @ResourceType(type="mongodbatlas:index/project:Project")

@@ -47,6 +47,7 @@ export interface GetCloudBackupScheduleResult {
      */
     readonly clusterId: string;
     readonly clusterName: string;
+    readonly copySettings: outputs.GetCloudBackupScheduleCopySetting[];
     readonly exports: outputs.GetCloudBackupScheduleExport[];
     /**
      * The provider-assigned unique ID for this managed resource.

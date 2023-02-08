@@ -14,6 +14,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class AdvancedClusterReplicationSpecRegionConfig
     {
         /// <summary>
+        /// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        /// </summary>
+        public readonly Outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling? AnalyticsAutoScaling;
+        /// <summary>
         /// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
         /// </summary>
         public readonly Outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs? AnalyticsSpecs;
@@ -51,6 +55,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private AdvancedClusterReplicationSpecRegionConfig(
+            Outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling? analyticsAutoScaling,
+
             Outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs? analyticsSpecs,
 
             Outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling? autoScaling,
@@ -67,6 +73,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string regionName)
         {
+            AnalyticsAutoScaling = analyticsAutoScaling;
             AnalyticsSpecs = analyticsSpecs;
             AutoScaling = autoScaling;
             BackingProviderName = backingProviderName;

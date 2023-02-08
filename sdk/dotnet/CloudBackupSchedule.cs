@@ -41,6 +41,9 @@ namespace Pulumi.Mongodbatlas
         [Output("clusterName")]
         public Output<string> ClusterName { get; private set; } = null!;
 
+        [Output("copySettings")]
+        public Output<ImmutableArray<Outputs.CloudBackupScheduleCopySetting>> CopySettings { get; private set; } = null!;
+
         [Output("export")]
         public Output<Outputs.CloudBackupScheduleExport> Export { get; private set; } = null!;
 
@@ -174,6 +177,14 @@ namespace Pulumi.Mongodbatlas
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
 
+        [Input("copySettings")]
+        private InputList<Inputs.CloudBackupScheduleCopySettingArgs>? _copySettings;
+        public InputList<Inputs.CloudBackupScheduleCopySettingArgs> CopySettings
+        {
+            get => _copySettings ?? (_copySettings = new InputList<Inputs.CloudBackupScheduleCopySettingArgs>());
+            set => _copySettings = value;
+        }
+
         [Input("export")]
         public Input<Inputs.CloudBackupScheduleExportArgs>? Export { get; set; }
 
@@ -274,6 +285,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
+
+        [Input("copySettings")]
+        private InputList<Inputs.CloudBackupScheduleCopySettingGetArgs>? _copySettings;
+        public InputList<Inputs.CloudBackupScheduleCopySettingGetArgs> CopySettings
+        {
+            get => _copySettings ?? (_copySettings = new InputList<Inputs.CloudBackupScheduleCopySettingGetArgs>());
+            set => _copySettings = value;
+        }
 
         [Input("export")]
         public Input<Inputs.CloudBackupScheduleExportGetArgs>? Export { get; set; }

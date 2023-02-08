@@ -108,6 +108,23 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
     }
 
     /**
+     * Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+     * 
+     */
+    @Import(name="oplogMinRetentionHours")
+    private @Nullable Output<Integer> oplogMinRetentionHours;
+
+    /**
+     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+     * 
+     */
+    public Optional<Output<Integer>> oplogMinRetentionHours() {
+        return Optional.ofNullable(this.oplogMinRetentionHours);
+    }
+
+    /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      * 
      */
@@ -161,6 +178,7 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
         this.javascriptEnabled = $.javascriptEnabled;
         this.minimumEnabledTlsProtocol = $.minimumEnabledTlsProtocol;
         this.noTableScan = $.noTableScan;
+        this.oplogMinRetentionHours = $.oplogMinRetentionHours;
         this.oplogSizeMb = $.oplogSizeMb;
         this.sampleRefreshIntervalBiConnector = $.sampleRefreshIntervalBiConnector;
         this.sampleSizeBiConnector = $.sampleSizeBiConnector;
@@ -308,6 +326,29 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
          */
         public Builder noTableScan(Boolean noTableScan) {
             return noTableScan(Output.of(noTableScan));
+        }
+
+        /**
+         * @param oplogMinRetentionHours Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+         * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oplogMinRetentionHours(@Nullable Output<Integer> oplogMinRetentionHours) {
+            $.oplogMinRetentionHours = oplogMinRetentionHours;
+            return this;
+        }
+
+        /**
+         * @param oplogMinRetentionHours Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+         * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oplogMinRetentionHours(Integer oplogMinRetentionHours) {
+            return oplogMinRetentionHours(Output.of(oplogMinRetentionHours));
         }
 
         /**

@@ -35,9 +35,10 @@ type LookupCloudBackupScheduleResult struct {
 	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
 	AutoExportEnabled bool `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
-	ClusterId   string                         `pulumi:"clusterId"`
-	ClusterName string                         `pulumi:"clusterName"`
-	Exports     []GetCloudBackupScheduleExport `pulumi:"exports"`
+	ClusterId    string                              `pulumi:"clusterId"`
+	ClusterName  string                              `pulumi:"clusterName"`
+	CopySettings []GetCloudBackupScheduleCopySetting `pulumi:"copySettings"`
+	Exports      []GetCloudBackupScheduleExport      `pulumi:"exports"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Unique identifier of the backup policy.
@@ -115,6 +116,10 @@ func (o LookupCloudBackupScheduleResultOutput) ClusterId() pulumi.StringOutput {
 
 func (o LookupCloudBackupScheduleResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudBackupScheduleResultOutput) CopySettings() GetCloudBackupScheduleCopySettingArrayOutput {
+	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupScheduleCopySetting { return v.CopySettings }).(GetCloudBackupScheduleCopySettingArrayOutput)
 }
 
 func (o LookupCloudBackupScheduleResultOutput) Exports() GetCloudBackupScheduleExportArrayOutput {

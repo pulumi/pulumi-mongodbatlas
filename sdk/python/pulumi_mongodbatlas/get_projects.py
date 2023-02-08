@@ -85,7 +85,7 @@ def get_projects(items_per_page: Optional[int] = None,
                  page_num: Optional[int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectsResult:
     """
-    `get_projects` describe all Projects. This represents projects that have been created.
+    _get_projects_ describe all Projects. This represents projects that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -95,27 +95,28 @@ def get_projects(items_per_page: Optional[int] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
+    test_roles_org_id = mongodbatlas.get_roles_org_id()
     test_project = mongodbatlas.Project("testProject",
-        api_keys=[mongodbatlas.ProjectApiKeyArgs(
-            api_key_id="61003b299dda8d54a9d7d10c",
-            role_names=["GROUP_READ_ONLY"],
-        )],
-        org_id="<ORG_ID>",
+        org_id=test_roles_org_id.org_id,
         teams=[
             mongodbatlas.ProjectTeamArgs(
-                role_names=["GROUP_OWNER"],
                 team_id="5e0fa8c99ccf641c722fe645",
+                role_names=["GROUP_OWNER"],
             ),
             mongodbatlas.ProjectTeamArgs(
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
                 role_names=[
                     "GROUP_READ_ONLY",
                     "GROUP_DATA_ACCESS_READ_WRITE",
                 ],
-                team_id="5e1dd7b4f2a30ba80a70cd4rw",
             ),
-        ])
-    test_projects = mongodbatlas.get_projects(items_per_page=5,
-        page_num=1)
+        ],
+        api_keys=[mongodbatlas.ProjectApiKeyArgs(
+            api_key_id="61003b299dda8d54a9d7d10c",
+            role_names=["GROUP_READ_ONLY"],
+        )])
+    test_projects = mongodbatlas.get_projects(page_num=1,
+        items_per_page=5)
     ```
 
 
@@ -141,7 +142,7 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
                         page_num: Optional[pulumi.Input[Optional[int]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectsResult]:
     """
-    `get_projects` describe all Projects. This represents projects that have been created.
+    _get_projects_ describe all Projects. This represents projects that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -151,27 +152,28 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
+    test_roles_org_id = mongodbatlas.get_roles_org_id()
     test_project = mongodbatlas.Project("testProject",
-        api_keys=[mongodbatlas.ProjectApiKeyArgs(
-            api_key_id="61003b299dda8d54a9d7d10c",
-            role_names=["GROUP_READ_ONLY"],
-        )],
-        org_id="<ORG_ID>",
+        org_id=test_roles_org_id.org_id,
         teams=[
             mongodbatlas.ProjectTeamArgs(
-                role_names=["GROUP_OWNER"],
                 team_id="5e0fa8c99ccf641c722fe645",
+                role_names=["GROUP_OWNER"],
             ),
             mongodbatlas.ProjectTeamArgs(
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
                 role_names=[
                     "GROUP_READ_ONLY",
                     "GROUP_DATA_ACCESS_READ_WRITE",
                 ],
-                team_id="5e1dd7b4f2a30ba80a70cd4rw",
             ),
-        ])
-    test_projects = mongodbatlas.get_projects(items_per_page=5,
-        page_num=1)
+        ],
+        api_keys=[mongodbatlas.ProjectApiKeyArgs(
+            api_key_id="61003b299dda8d54a9d7d10c",
+            role_names=["GROUP_READ_ONLY"],
+        )])
+    test_projects = mongodbatlas.get_projects(page_num=1,
+        items_per_page=5)
     ```
 
 

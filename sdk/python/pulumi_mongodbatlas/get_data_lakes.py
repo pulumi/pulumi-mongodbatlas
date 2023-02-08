@@ -69,7 +69,7 @@ class AwaitableGetDataLakesResult(GetDataLakesResult):
 def get_data_lakes(project_id: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataLakesResult:
     """
-    `get_data_lakes` describe all Data Lakes.
+    _get_data_lakes_ describe all Data Lakes.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -100,7 +100,7 @@ def get_data_lakes(project_id: Optional[str] = None,
 def get_data_lakes_output(project_id: Optional[pulumi.Input[str]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataLakesResult]:
     """
-    `get_data_lakes` describe all Data Lakes.
+    _get_data_lakes_ describe all Data Lakes.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 

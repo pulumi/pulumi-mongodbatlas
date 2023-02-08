@@ -17,6 +17,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
     private Boolean computeEnabled;
     /**
      * @return Maximum instance size to which your cluster can automatically scale (such as M40).
+     * #### Advanced Configuration
      * 
      */
     private String computeMaxInstanceSize;
@@ -46,6 +47,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
     }
     /**
      * @return Maximum instance size to which your cluster can automatically scale (such as M40).
+     * #### Advanced Configuration
      * 
      */
     public String computeMaxInstanceSize() {

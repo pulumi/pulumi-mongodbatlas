@@ -13,54 +13,62 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CloudBackupSchedulePolicyItemDaily {
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type`.
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
      * 
      */
     private Integer frequencyInterval;
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     private @Nullable String frequencyType;
+    /**
+     * @return Unique identifier of the backup policy item.
+     * 
+     */
     private @Nullable String id;
     /**
-     * @return Scope of the backup policy item: days, weeks, or months.
+     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
      * 
      */
     private String retentionUnit;
     /**
-     * @return Value to associate with `retention_unit`.
+     * @return Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
      * 
      */
     private Integer retentionValue;
 
     private CloudBackupSchedulePolicyItemDaily() {}
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type`.
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
      * 
      */
     public Integer frequencyInterval() {
         return this.frequencyInterval;
     }
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     public Optional<String> frequencyType() {
         return Optional.ofNullable(this.frequencyType);
     }
+    /**
+     * @return Unique identifier of the backup policy item.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
     /**
-     * @return Scope of the backup policy item: days, weeks, or months.
+     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
      * 
      */
     public String retentionUnit() {
         return this.retentionUnit;
     }
     /**
-     * @return Value to associate with `retention_unit`.
+     * @return Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
      * 
      */
     public Integer retentionValue() {

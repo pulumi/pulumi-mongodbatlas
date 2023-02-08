@@ -94,10 +94,10 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
      * Third-Party service integration type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
@@ -110,10 +110,10 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
      * @return Third-Party service integration type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
@@ -227,10 +227,10 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
          * @param type Third-Party service integration type
          * * PAGER_DUTY
          * * DATADOG
-         * * NEW_RELIC
+         * * NEW_RELIC*
          * * OPS_GENIE
          * * VICTOR_OPS
-         * * FLOWDOCK
+         * * FLOWDOCK*
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS

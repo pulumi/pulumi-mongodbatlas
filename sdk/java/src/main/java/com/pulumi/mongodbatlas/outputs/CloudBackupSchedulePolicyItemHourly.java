@@ -13,18 +13,22 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CloudBackupSchedulePolicyItemHourly {
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type`.
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
      * 
      */
     private Integer frequencyInterval;
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     private @Nullable String frequencyType;
+    /**
+     * @return Unique identifier of the backup policy item.
+     * 
+     */
     private @Nullable String id;
     /**
-     * @return Scope of the backup policy item: days, weeks, or months.
+     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
      * 
      */
     private String retentionUnit;
@@ -36,24 +40,28 @@ public final class CloudBackupSchedulePolicyItemHourly {
 
     private CloudBackupSchedulePolicyItemHourly() {}
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type`.
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
      * 
      */
     public Integer frequencyInterval() {
         return this.frequencyInterval;
     }
     /**
-     * @return Frequency associated with the export snapshot item.
+     * @return Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     public Optional<String> frequencyType() {
         return Optional.ofNullable(this.frequencyType);
     }
+    /**
+     * @return Unique identifier of the backup policy item.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
     /**
-     * @return Scope of the backup policy item: days, weeks, or months.
+     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
      * 
      */
     public String retentionUnit() {

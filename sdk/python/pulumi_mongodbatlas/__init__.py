@@ -5,8 +5,10 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .access_list_api_key import *
 from .advanced_cluster import *
 from .alert_configuration import *
+from .api_key import *
 from .auditing import *
 from .cloud_backup_schedule import *
 from .cloud_backup_snapshot import *
@@ -30,9 +32,14 @@ from .federated_settings_identity_provider import *
 from .federated_settings_org_config import *
 from .federated_settings_org_role_mapping import *
 from .get509_authentication_database_user import *
+from .get_access_list_api_key import *
+from .get_access_list_api_keys import *
 from .get_advanced_cluster import *
 from .get_advanced_clusters import *
 from .get_alert_configuration import *
+from .get_alert_configurations import *
+from .get_api_key import *
+from .get_api_keys import *
 from .get_auditing import *
 from .get_cloud_backup_schedule import *
 from .get_cloud_backup_snapshot import *
@@ -87,9 +94,12 @@ from .get_privatelink_endpoint_service_serverless import *
 from .get_privatelink_endpoints_service_adl import *
 from .get_privatelink_endpoints_service_serverless import *
 from .get_project import *
+from .get_project_api_key import *
+from .get_project_api_keys import *
 from .get_project_invitation import *
 from .get_project_ip_access_list import *
 from .get_projects import *
+from .get_roles_org_id import *
 from .get_search_index import *
 from .get_search_indexes import *
 from .get_serverless_instance import *
@@ -114,6 +124,7 @@ from .privatelink_endpoint_serverless import *
 from .privatelink_endpoint_service_adl import *
 from .privatelink_endpoint_service_serverless import *
 from .project import *
+from .project_api_key import *
 from .project_invitation import *
 from .project_ip_access_list import *
 from .provider import *
@@ -138,6 +149,14 @@ _utilities.register(
 [
  {
   "pkg": "mongodbatlas",
+  "mod": "index/accessListApiKey",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/accessListApiKey:AccessListApiKey": "AccessListApiKey"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/advancedCluster",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -150,6 +169,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/alertConfiguration:AlertConfiguration": "AlertConfiguration"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/apiKey",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/apiKey:ApiKey": "ApiKey"
   }
  },
  {
@@ -454,6 +481,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/project:Project": "Project"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/projectApiKey",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/projectApiKey:ProjectApiKey": "ProjectApiKey"
   }
  },
  {

@@ -57,6 +57,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
     public readonly clusterName!: pulumi.Output<string>;
+    public readonly copySettings!: pulumi.Output<outputs.CloudBackupScheduleCopySetting[] | undefined>;
     public readonly export!: pulumi.Output<outputs.CloudBackupScheduleExport>;
     /**
      * Unique identifier of the backup policy.
@@ -123,6 +124,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             resourceInputs["autoExportEnabled"] = state ? state.autoExportEnabled : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["copySettings"] = state ? state.copySettings : undefined;
             resourceInputs["export"] = state ? state.export : undefined;
             resourceInputs["idPolicy"] = state ? state.idPolicy : undefined;
             resourceInputs["nextSnapshot"] = state ? state.nextSnapshot : undefined;
@@ -146,6 +148,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             }
             resourceInputs["autoExportEnabled"] = args ? args.autoExportEnabled : undefined;
             resourceInputs["clusterName"] = args ? args.clusterName : undefined;
+            resourceInputs["copySettings"] = args ? args.copySettings : undefined;
             resourceInputs["export"] = args ? args.export : undefined;
             resourceInputs["policyItemDaily"] = args ? args.policyItemDaily : undefined;
             resourceInputs["policyItemHourly"] = args ? args.policyItemHourly : undefined;
@@ -182,6 +185,7 @@ export interface CloudBackupScheduleState {
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
     clusterName?: pulumi.Input<string>;
+    copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[]>;
     export?: pulumi.Input<inputs.CloudBackupScheduleExport>;
     /**
      * Unique identifier of the backup policy.
@@ -245,6 +249,7 @@ export interface CloudBackupScheduleArgs {
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
     clusterName: pulumi.Input<string>;
+    copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[]>;
     export?: pulumi.Input<inputs.CloudBackupScheduleExport>;
     /**
      * Daily policy item

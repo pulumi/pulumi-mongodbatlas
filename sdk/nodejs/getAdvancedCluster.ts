@@ -53,9 +53,9 @@ export interface GetAdvancedClusterResult {
     readonly advancedConfigurations: outputs.GetAdvancedClusterAdvancedConfiguration[];
     readonly backupEnabled: boolean;
     /**
-     * Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+     * Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `biConnector`
      */
-    readonly biConnectors: outputs.GetAdvancedClusterBiConnector[];
+    readonly biConnectorConfigs: outputs.GetAdvancedClusterBiConnectorConfig[];
     /**
      * Type of the cluster that you want to create.
      */

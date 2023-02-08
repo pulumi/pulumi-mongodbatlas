@@ -79,7 +79,7 @@ def get_event_triggers(app_id: Optional[str] = None,
                        project_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEventTriggersResult:
     """
-    `get_event_triggers` describe all Event Triggers.
+    _get_event_triggers_ describe all Event Triggers.
 
 
     :param str app_id: The ObjectID of your application.
@@ -103,7 +103,7 @@ def get_event_triggers_output(app_id: Optional[pulumi.Input[str]] = None,
                               project_id: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEventTriggersResult]:
     """
-    `get_event_triggers` describe all Event Triggers.
+    _get_event_triggers_ describe all Event Triggers.
 
 
     :param str app_id: The ObjectID of your application.

@@ -289,15 +289,19 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
      * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * @deprecated
+     * This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
+     * 
      */
+    @Deprecated /* This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release  */
     @Import(name="type", required=true)
     private Output<String> type;
 
@@ -305,15 +309,19 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
      * @return Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC
+     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK
+     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * @deprecated
+     * This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
+     * 
      */
+    @Deprecated /* This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release  */
     public Output<String> type() {
         return this.type;
     }
@@ -788,17 +796,21 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
          * @param type Third-Party Integration Settings type
          * * PAGER_DUTY
          * * DATADOG
-         * * NEW_RELIC
+         * * NEW_RELIC*
          * * OPS_GENIE
          * * VICTOR_OPS
-         * * FLOWDOCK
+         * * FLOWDOCK*
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
+         * 
          */
+        @Deprecated /* This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release  */
         public Builder type(Output<String> type) {
             $.type = type;
             return this;
@@ -808,17 +820,21 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
          * @param type Third-Party Integration Settings type
          * * PAGER_DUTY
          * * DATADOG
-         * * NEW_RELIC
+         * * NEW_RELIC*
          * * OPS_GENIE
          * * VICTOR_OPS
-         * * FLOWDOCK
+         * * FLOWDOCK*
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
+         * 
          */
+        @Deprecated /* This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release  */
         public Builder type(String type) {
             return type(Output.of(type));
         }

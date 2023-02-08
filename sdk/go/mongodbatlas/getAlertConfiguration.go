@@ -10,9 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `AlertConfiguration` describes an Alert Configuration.
-//
-// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 func LookupAlertConfiguration(ctx *pulumi.Context, args *LookupAlertConfigurationArgs, opts ...pulumi.InvokeOption) (*LookupAlertConfigurationResult, error) {
 	var rv LookupAlertConfigurationResult
 	err := ctx.Invoke("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args, &rv, opts...)
@@ -26,6 +23,9 @@ func LookupAlertConfiguration(ctx *pulumi.Context, args *LookupAlertConfiguratio
 type LookupAlertConfigurationArgs struct {
 	// Unique identifier for the alert configuration.
 	AlertConfigurationId string `pulumi:"alertConfigurationId"`
+	// List of formatted output requested for this alert configuration
+	// * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+	Outputs []GetAlertConfigurationOutput `pulumi:"outputs"`
 	// The ID of the project where the alert configuration will create.
 	ProjectId string `pulumi:"projectId"`
 }
@@ -45,6 +45,7 @@ type LookupAlertConfigurationResult struct {
 	MetricThreshold        map[string]string                            `pulumi:"metricThreshold"`
 	MetricThresholdConfigs []GetAlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfigs"`
 	Notifications          []GetAlertConfigurationNotification          `pulumi:"notifications"`
+	Outputs                []GetAlertConfigurationOutput                `pulumi:"outputs"`
 	ProjectId              string                                       `pulumi:"projectId"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold        map[string]string                      `pulumi:"threshold"`
@@ -70,6 +71,9 @@ func LookupAlertConfigurationOutput(ctx *pulumi.Context, args LookupAlertConfigu
 type LookupAlertConfigurationOutputArgs struct {
 	// Unique identifier for the alert configuration.
 	AlertConfigurationId pulumi.StringInput `pulumi:"alertConfigurationId"`
+	// List of formatted output requested for this alert configuration
+	// * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+	Outputs GetAlertConfigurationOutputArrayInput `pulumi:"outputs"`
 	// The ID of the project where the alert configuration will create.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
@@ -133,6 +137,10 @@ func (o LookupAlertConfigurationResultOutput) MetricThresholdConfigs() GetAlertC
 
 func (o LookupAlertConfigurationResultOutput) Notifications() GetAlertConfigurationNotificationArrayOutput {
 	return o.ApplyT(func(v LookupAlertConfigurationResult) []GetAlertConfigurationNotification { return v.Notifications }).(GetAlertConfigurationNotificationArrayOutput)
+}
+
+func (o LookupAlertConfigurationResultOutput) Outputs() GetAlertConfigurationOutputArrayOutput {
+	return o.ApplyT(func(v LookupAlertConfigurationResult) []GetAlertConfigurationOutput { return v.Outputs }).(GetAlertConfigurationOutputArrayOutput)
 }
 
 func (o LookupAlertConfigurationResultOutput) ProjectId() pulumi.StringOutput {

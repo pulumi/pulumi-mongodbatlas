@@ -94,13 +94,15 @@ type ThirdPartyIntegration struct {
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC
+	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK
+	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// Deprecated: This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Your webhook URL.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
@@ -235,13 +237,15 @@ type thirdPartyIntegrationState struct {
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC
+	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK
+	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// Deprecated: This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
 	Type *string `pulumi:"type"`
 	// Your webhook URL.
 	Url *string `pulumi:"url"`
@@ -291,13 +295,15 @@ type ThirdPartyIntegrationState struct {
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC
+	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK
+	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// Deprecated: This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
 	Type pulumi.StringPtrInput
 	// Your webhook URL.
 	Url pulumi.StringPtrInput
@@ -351,13 +357,15 @@ type thirdPartyIntegrationArgs struct {
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC
+	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK
+	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// Deprecated: This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
 	Type string `pulumi:"type"`
 	// Your webhook URL.
 	Url *string `pulumi:"url"`
@@ -408,13 +416,15 @@ type ThirdPartyIntegrationArgs struct {
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC
+	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK
+	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// Deprecated: This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
 	Type pulumi.StringInput
 	// Your webhook URL.
 	Url pulumi.StringPtrInput
@@ -607,13 +617,15 @@ func (o ThirdPartyIntegrationOutput) TeamName() pulumi.StringPtrOutput {
 // Third-Party Integration Settings type
 // * PAGER_DUTY
 // * DATADOG
-// * NEW_RELIC
+// * NEW_RELIC*
 // * OPS_GENIE
 // * VICTOR_OPS
-// * FLOWDOCK
+// * FLOWDOCK*
 // * WEBHOOK
 // * MICROSOFT_TEAMS
 // * PROMETHEUS
+//
+// Deprecated: This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
 func (o ThirdPartyIntegrationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
