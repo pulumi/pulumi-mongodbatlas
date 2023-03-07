@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
--
+
 package mongodbatlas
 
 import (
@@ -91,28 +91,25 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "CloudProviderSnapshotRestoreJob"),
 			},
 			"mongodbatlas_cloud_provider_access_authorization": {
-				Tok: makeResource(mainMod, "CloudProviderAccessAuthorization"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte(" "),
-				},
+				Tok:  makeResource(mainMod, "CloudProviderAccessAuthorization"),
+				Docs: noUpstreamDocs,
 			},
 			"mongodbatlas_cloud_provider_access_setup": {
-				Tok: makeResource(mainMod, "CloudProviderAccessSetup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte(" "),
-				},
+				Tok:  makeResource(mainMod, "CloudProviderAccessSetup"),
+				Docs: noUpstreamDocs,
 			},
 			"mongodbatlas_network_peering":    {Tok: makeResource(mainMod, "NetworkPeering")},
 			"mongodbatlas_encryption_at_rest": {Tok: makeResource(mainMod, "EncryptionAtRest")},
 			"mongodbatlas_private_ip_mode":    {Tok: makeResource(mainMod, "PrivateIpMode")},
 			"mongodbatlas_maintenance_window": {Tok: makeResource(mainMod, "MaintenanceWindow")},
 			"mongodbatlas_auditing":           {Tok: makeResource(mainMod, "Auditing")},
-			"mongodbatlas_team":               {Tok: makeResource(mainMod, "Team")},
+			"mongodbatlas_team": {
+				Tok:  makeResource(mainMod, "Team"),
+				Docs: noUpstreamDocs,
+			},
 			"mongodbatlas_teams": {
-				Tok: makeResource(mainMod, "Teams"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte(" "),
-				},
+				Tok:  makeResource(mainMod, "Teams"),
+				Docs: noUpstreamDocs,
 			},
 			"mongodbatlas_global_cluster_config": {Tok: makeResource(mainMod, "GlobalClusterConfig")},
 			"mongodbatlas_alert_configuration":   {Tok: makeResource(mainMod, "AlertConfiguration")},
@@ -152,10 +149,8 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "FederatedSettingsIdentityProvider"),
 			},
 			"mongodbatlas_federated_settings_org_config": {
-				Tok: makeResource(mainMod, "FederatedSettingsOrgConfig"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte(" "),
-				},
+				Tok:  makeResource(mainMod, "FederatedSettingsOrgConfig"),
+				Docs: noUpstreamDocs,
 			},
 			"mongodbatlas_federated_settings_org_role_mapping": {
 				Tok: makeResource(mainMod, "FederatedSettingsOrgRoleMapping"),
@@ -192,12 +187,13 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_cloud_provider_access": {Tok: makeDataSource(mainMod, "getCloudProviderAccess")},
 			"mongodbatlas_maintenance_window":    {Tok: makeDataSource(mainMod, "getMaintenanceWindow")},
 			"mongodbatlas_auditing":              {Tok: makeDataSource(mainMod, "getAuditing")},
-			"mongodbatlas_team":                  {Tok: makeDataSource(mainMod, "getTeam")},
+			"mongodbatlas_team": {
+				Tok:  makeDataSource(mainMod, "getTeam"),
+				Docs: noUpstreamDocs,
+			},
 			"mongodbatlas_teams": {
-				Tok: makeDataSource(mainMod, "getTeams"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte(" "),
-				},
+				Tok:  makeDataSource(mainMod, "getTeams"),
+				Docs: noUpstreamDocs,
 			},
 			"mongodbatlas_global_cluster_config": {Tok: makeDataSource(mainMod, "getGlobalClusterConfig")},
 			"mongodbatlas_alert_configuration":   {Tok: makeDataSource(mainMod, "getAlertConfiguration")},
@@ -313,4 +309,8 @@ func Provider() tfbridge.ProviderInfo {
 	prov.SetAutonaming(255, "-")
 
 	return prov
+}
+
+var noUpstreamDocs = &tfbridge.DocInfo{
+	Markdown: []byte(" "),
 }
