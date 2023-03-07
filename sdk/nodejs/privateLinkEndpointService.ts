@@ -43,6 +43,38 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## Example with Azure
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as azure from "@pulumi/azure";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", {
+ *     projectId: _var.project_id,
+ *     providerName: "AZURE",
+ *     region: "eastus2",
+ * });
+ * const testEndpoint = new azure.privatelink.Endpoint("testEndpoint", {
+ *     location: data.azurerm_resource_group.test.location,
+ *     resourceGroupName: _var.resource_group_name,
+ *     subnetId: azurerm_subnet.test.id,
+ *     privateServiceConnection: {
+ *         name: testPrivateLinkEndpoint.privateLinkServiceName,
+ *         privateConnectionResourceId: testPrivateLinkEndpoint.privateLinkServiceResourceId,
+ *         isManualConnection: true,
+ *         requestMessage: "Azure Private Link test",
+ *     },
+ * });
+ * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", {
+ *     projectId: testPrivateLinkEndpoint.projectId,
+ *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ *     endpointServiceId: testEndpoint.id,
+ *     privateEndpointIpAddress: testEndpoint.privateServiceConnection.apply(privateServiceConnection => privateServiceConnection.privateIpAddress),
+ *     providerName: "AZURE",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.

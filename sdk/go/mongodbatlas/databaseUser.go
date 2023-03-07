@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -72,8 +72,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -82,11 +80,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
-//				AuthDatabaseName: pulumi.String(fmt.Sprintf("$external")),
+//				AuthDatabaseName: pulumi.String("$external"),
 //				Labels: mongodbatlas.DatabaseUserLabelArray{
 //					&mongodbatlas.DatabaseUserLabelArgs{
-//						Key:   pulumi.String(fmt.Sprintf("%vs", "%")),
-//						Value: pulumi.String(fmt.Sprintf("%vs", "%")),
+//						Key:   pulumi.String("%s"),
+//						Value: pulumi.String("%s"),
 //					},
 //				},
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
@@ -119,8 +117,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -131,7 +127,7 @@ import (
 //			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
 //				Username:         pulumi.Any(aws_iam_role.Test.Arn),
 //				ProjectId:        pulumi.String("<PROJECT-ID>"),
-//				AuthDatabaseName: pulumi.String(fmt.Sprintf("$external")),
+//				AuthDatabaseName: pulumi.String("$external"),
 //				AwsIamType:       pulumi.String("ROLE"),
 //				Roles: mongodbatlas.DatabaseUserRoleArray{
 //					&mongodbatlas.DatabaseUserRoleArgs{
@@ -141,8 +137,8 @@ import (
 //				},
 //				Labels: mongodbatlas.DatabaseUserLabelArray{
 //					&mongodbatlas.DatabaseUserLabelArgs{
-//						Key:   pulumi.String(fmt.Sprintf("%vs", "%")),
-//						Value: pulumi.String(fmt.Sprintf("%vs", "%")),
+//						Key:   pulumi.String("%s"),
+//						Value: pulumi.String("%s"),
 //					},
 //				},
 //				Scopes: mongodbatlas.DatabaseUserScopeArray{

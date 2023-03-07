@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -50,8 +50,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -60,70 +58,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewSearchIndex(ctx, "test", &mongodbatlas.SearchIndexArgs{
-//				ProjectId:       pulumi.String(fmt.Sprintf("%v[1]s", "%")),
-//				ClusterName:     pulumi.String(fmt.Sprintf("%v[2]s", "%")),
+//				ProjectId:       pulumi.String("%[1]s"),
+//				ClusterName:     pulumi.String("%[2]s"),
 //				Analyzer:        pulumi.String("lucene.standard"),
 //				CollectionName:  pulumi.String("collection_test"),
 //				Database:        pulumi.String("database_test"),
 //				MappingsDynamic: pulumi.Bool(false),
-//				MappingsFields: pulumi.String(fmt.Sprintf(`{
-//	      "address": {
-//	        "type": "document",
-//	        "fields": {
-//	          "city": {
-//	            "type": "string",
-//	            "analyzer": "lucene.simple",
-//	            "ignoreAbove": 255
-//	          },
-//	          "state": {
-//	            "type": "string",
-//	            "analyzer": "lucene.english"
-//	          }
-//	        }
-//	      },
-//	      "company": {
-//	        "type": "string",
-//	        "analyzer": "lucene.whitespace",
-//	        "multi": {
-//	          "mySecondaryAnalyzer": {
-//	            "type": "string",
-//	            "analyzer": "lucene.french"
-//	          }
-//	        }
-//	      },
-//	      "employees": {
-//	        "type": "string",
-//	        "analyzer": "lucene.standard"
-//	      }
-//	}
-//
-// `)),
-//
-//				SearchAnalyzer: pulumi.String("lucene.standard"),
-//				Analyzers: pulumi.String(fmt.Sprintf(` [{
-//	 "name": "index_analyzer_test_name",
-//	 "charFilters": {
-//
-// "type": "mapping",
-// "mappings": {"\\" : "/"}
-//
-//	   	},
-//	 "tokenizer": {
-//	 "type": "nGram",
-//	 "minGram": 2,
-//	 "maxGram": 5
-//		},
-//	 "tokenFilters": {
-//
-// "type": "length",
-// "min": 20,
-// "max": 33
-//
-//	  	}
-//	}]
-//
-// `)),
-//
+//				MappingsFields:  pulumi.String("{\n      \"address\": {\n        \"type\": \"document\",\n        \"fields\": {\n          \"city\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.simple\",\n            \"ignoreAbove\": 255\n          },\n          \"state\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.english\"\n          }\n        }\n      },\n      \"company\": {\n        \"type\": \"string\",\n        \"analyzer\": \"lucene.whitespace\",\n        \"multi\": {\n          \"mySecondaryAnalyzer\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.french\"\n          }\n        }\n      },\n      \"employees\": {\n        \"type\": \"string\",\n        \"analyzer\": \"lucene.standard\"\n      }\n}\n"),
+//				SearchAnalyzer:  pulumi.String("lucene.standard"),
+//				Analyzers:       pulumi.String(" [{\n \"name\": \"index_analyzer_test_name\",\n \"charFilters\": {\n\"type\": \"mapping\",\n\"mappings\": {\"\\\\\" : \"/\"}\n   	},\n \"tokenizer\": {\n \"type\": \"nGram\",\n \"minGram\": 2,\n \"maxGram\": 5\n	},\n \"tokenFilters\": {\n\"type\": \"length\",\n\"min\": 20,\n\"max\": 33\n   	}\n }]\n"),
 //				Synonyms: mongodbatlas.SearchIndexSynonymArray{
 //					&mongodbatlas.SearchIndexSynonymArgs{
 //						Analyzer:         pulumi.String("lucene.simple"),
