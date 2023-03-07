@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+-
 package mongodbatlas
 
 import (
@@ -22,6 +22,7 @@ import (
 	"github.com/mongodb/terraform-provider-mongodbatlas/mongodbatlas"
 	"github.com/pulumi/pulumi-mongodbatlas/provider/v3/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
@@ -305,10 +306,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	err := prov.ComputeDefaults(tfbridge.TokensSingleModule("mongodbatlas_", mainMod,
-		func(module, name string) (string, error) {
-			return makeToken(module, name), nil
-		}))
+	err := x.ComputeDefaults(&prov, x.TokensSingleModule("mongodbatlas_", mainMod,
+		x.MakeStandardToken(mainPkg)))
 	contract.AssertNoError(err)
 
 	prov.SetAutonaming(255, "-")
