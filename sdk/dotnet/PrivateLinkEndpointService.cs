@@ -62,6 +62,49 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ## Example with Azure
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Azure = Pulumi.Azure;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", new()
+    ///     {
+    ///         ProjectId = @var.Project_id,
+    ///         ProviderName = "AZURE",
+    ///         Region = "eastus2",
+    ///     });
+    /// 
+    ///     var testEndpoint = new Azure.PrivateLink.Endpoint("testEndpoint", new()
+    ///     {
+    ///         Location = data.Azurerm_resource_group.Test.Location,
+    ///         ResourceGroupName = @var.Resource_group_name,
+    ///         SubnetId = azurerm_subnet.Test.Id,
+    ///         PrivateServiceConnection = new Azure.PrivateLink.Inputs.EndpointPrivateServiceConnectionArgs
+    ///         {
+    ///             Name = testPrivateLinkEndpoint.PrivateLinkServiceName,
+    ///             PrivateConnectionResourceId = testPrivateLinkEndpoint.PrivateLinkServiceResourceId,
+    ///             IsManualConnection = true,
+    ///             RequestMessage = "Azure Private Link test",
+    ///         },
+    ///     });
+    /// 
+    ///     var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", new()
+    ///     {
+    ///         ProjectId = testPrivateLinkEndpoint.ProjectId,
+    ///         PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
+    ///         EndpointServiceId = testEndpoint.Id,
+    ///         PrivateEndpointIpAddress = testEndpoint.PrivateServiceConnection.Apply(privateServiceConnection =&gt; privateServiceConnection.PrivateIpAddress),
+    ///         ProviderName = "AZURE",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.

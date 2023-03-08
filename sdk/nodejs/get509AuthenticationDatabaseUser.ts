@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  *     username: "myUsername",
  *     x509Type: "MANAGED",
- *     databaseName: `$external`,
+ *     databaseName: "$external",
  *     roles: [{
  *         roleName: "atlasAdmin",
  *         databaseName: "admin",
@@ -129,7 +129,7 @@ export interface Get509AuthenticationDatabaseUserResult {
  *     projectId: "<PROJECT-ID>",
  *     username: "myUsername",
  *     x509Type: "MANAGED",
- *     databaseName: `$external`,
+ *     databaseName: "$external",
  *     roles: [{
  *         roleName: "atlasAdmin",
  *         databaseName: "admin",

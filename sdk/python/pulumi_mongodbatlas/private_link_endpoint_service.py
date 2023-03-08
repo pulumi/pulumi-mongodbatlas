@@ -446,6 +446,35 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             provider_name="AWS")
         ```
 
+        ## Example with Azure
+
+        ```python
+        import pulumi
+        import pulumi_azure as azure
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
+            project_id=var["project_id"],
+            provider_name="AZURE",
+            region="eastus2")
+        test_endpoint = azure.privatelink.Endpoint("testEndpoint",
+            location=data["azurerm_resource_group"]["test"]["location"],
+            resource_group_name=var["resource_group_name"],
+            subnet_id=azurerm_subnet["test"]["id"],
+            private_service_connection=azure.privatelink.EndpointPrivateServiceConnectionArgs(
+                name=test_private_link_endpoint.private_link_service_name,
+                private_connection_resource_id=test_private_link_endpoint.private_link_service_resource_id,
+                is_manual_connection=True,
+                request_message="Azure Private Link test",
+            ))
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
+            project_id=test_private_link_endpoint.project_id,
+            private_link_id=test_private_link_endpoint.private_link_id,
+            endpoint_service_id=test_endpoint.id,
+            private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,
+            provider_name="AZURE")
+        ```
+
         ## Import
 
         Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -504,6 +533,35 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             private_link_id=test_private_link_endpoint.private_link_id,
             endpoint_service_id=ptfe_service.id,
             provider_name="AWS")
+        ```
+
+        ## Example with Azure
+
+        ```python
+        import pulumi
+        import pulumi_azure as azure
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
+            project_id=var["project_id"],
+            provider_name="AZURE",
+            region="eastus2")
+        test_endpoint = azure.privatelink.Endpoint("testEndpoint",
+            location=data["azurerm_resource_group"]["test"]["location"],
+            resource_group_name=var["resource_group_name"],
+            subnet_id=azurerm_subnet["test"]["id"],
+            private_service_connection=azure.privatelink.EndpointPrivateServiceConnectionArgs(
+                name=test_private_link_endpoint.private_link_service_name,
+                private_connection_resource_id=test_private_link_endpoint.private_link_service_resource_id,
+                is_manual_connection=True,
+                request_message="Azure Private Link test",
+            ))
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
+            project_id=test_private_link_endpoint.project_id,
+            private_link_id=test_private_link_endpoint.private_link_id,
+            endpoint_service_id=test_endpoint.id,
+            private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,
+            provider_name="AZURE")
         ```
 
         ## Import

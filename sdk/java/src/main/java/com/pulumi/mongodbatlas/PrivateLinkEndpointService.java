@@ -78,6 +78,63 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Example with Azure
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import com.pulumi.azure.privatelink.Endpoint;
+ * import com.pulumi.azure.privatelink.EndpointArgs;
+ * import com.pulumi.azure.privatelink.inputs.EndpointPrivateServiceConnectionArgs;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint(&#34;testPrivateLinkEndpoint&#34;, PrivateLinkEndpointArgs.builder()        
+ *             .projectId(var_.project_id())
+ *             .providerName(&#34;AZURE&#34;)
+ *             .region(&#34;eastus2&#34;)
+ *             .build());
+ * 
+ *         var testEndpoint = new Endpoint(&#34;testEndpoint&#34;, EndpointArgs.builder()        
+ *             .location(data.azurerm_resource_group().test().location())
+ *             .resourceGroupName(var_.resource_group_name())
+ *             .subnetId(azurerm_subnet.test().id())
+ *             .privateServiceConnection(EndpointPrivateServiceConnectionArgs.builder()
+ *                 .name(testPrivateLinkEndpoint.privateLinkServiceName())
+ *                 .privateConnectionResourceId(testPrivateLinkEndpoint.privateLinkServiceResourceId())
+ *                 .isManualConnection(true)
+ *                 .requestMessage(&#34;Azure Private Link test&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService(&#34;testPrivateLinkEndpointService&#34;, PrivateLinkEndpointServiceArgs.builder()        
+ *             .projectId(testPrivateLinkEndpoint.projectId())
+ *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+ *             .endpointServiceId(testEndpoint.id())
+ *             .privateEndpointIpAddress(testEndpoint.privateServiceConnection().applyValue(privateServiceConnection -&gt; privateServiceConnection.privateIpAddress()))
+ *             .providerName(&#34;AZURE&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Example with GCP
  * 
  * ```java

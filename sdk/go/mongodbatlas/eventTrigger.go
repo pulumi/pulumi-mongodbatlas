@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,8 +21,6 @@ import (
 // package main
 //
 // import (
-//
-//	"fmt"
 //
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -44,7 +42,7 @@ import (
 //				ConfigDatabase:           pulumi.String("DATABASE NAME"),
 //				ConfigCollection:         pulumi.String("COLLECTION NAME"),
 //				ConfigServiceId:          pulumi.String("SERVICE ID"),
-//				ConfigMatch:              pulumi.String(fmt.Sprintf("{\n  \"updateDescription.updatedFields\": {\n    \"status\": \"blocked\"\n  }\n}\n")),
+//				ConfigMatch:              pulumi.String("{\n  \"updateDescription.updatedFields\": {\n    \"status\": \"blocked\"\n  }\n}\n"),
 //				ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
 //				ConfigFullDocument:       pulumi.Bool(false),
 //				ConfigFullDocumentBefore: pulumi.Bool(false),

@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  *     username: "myUsername",
  *     x509Type: "MANAGED",
- *     databaseName: `$external`,
+ *     databaseName: "$external",
  *     roles: [{
  *         roleName: "atlasAdmin",
  *         databaseName: "admin",

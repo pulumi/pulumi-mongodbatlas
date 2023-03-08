@@ -51,10 +51,10 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.DatabaseUser("test", {
- *     authDatabaseName: `$external`,
+ *     authDatabaseName: "$external",
  *     labels: [{
- *         key: `%s`,
- *         value: `%s`,
+ *         key: "%s",
+ *         value: "%s",
  *     }],
  *     projectId: "<PROJECT-ID>",
  *     roles: [{
@@ -77,15 +77,15 @@ import * as utilities from "./utilities";
  * const test = new mongodbatlas.DatabaseUser("test", {
  *     username: aws_iam_role.test.arn,
  *     projectId: "<PROJECT-ID>",
- *     authDatabaseName: `$external`,
+ *     authDatabaseName: "$external",
  *     awsIamType: "ROLE",
  *     roles: [{
  *         roleName: "readAnyDatabase",
  *         databaseName: "admin",
  *     }],
  *     labels: [{
- *         key: `%s`,
- *         value: `%s`,
+ *         key: "%s",
+ *         value: "%s",
  *     }],
  *     scopes: [{
  *         name: "My cluster name",

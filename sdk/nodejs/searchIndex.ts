@@ -31,8 +31,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.SearchIndex("test", {
- *     projectId: `%[1]s`,
- *     clusterName: `%[2]s`,
+ *     projectId: "%[1]s",
+ *     clusterName: "%[2]s",
  *     analyzer: "lucene.standard",
  *     collectionName: "collection_test",
  *     database: "database_test",
@@ -73,7 +73,7 @@ import * as utilities from "./utilities";
  *  "name": "index_analyzer_test_name",
  *  "charFilters": {
  * "type": "mapping",
- * "mappings": {"\\" : "/"}
+ * "mappings": {"\\\\" : "/"}
  *    	},
  *  "tokenizer": {
  *  "type": "nGram",
