@@ -210,10 +210,7 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[str] = None,
                                       provider_name: Optional[str] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivateLinkEndpointServiceResult:
     """
-    `PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
+    Use this data source to access information about an existing resource.
 
     :param str endpoint_service_id: Unique identifier of the `AWS` or `AZURE` resource.
     :param str private_link_id: Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
@@ -253,10 +250,7 @@ def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulum
                                              provider_name: Optional[pulumi.Input[str]] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateLinkEndpointServiceResult]:
     """
-    `PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
+    Use this data source to access information about an existing resource.
 
     :param str endpoint_service_id: Unique identifier of the `AWS` or `AZURE` resource.
     :param str private_link_id: Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.

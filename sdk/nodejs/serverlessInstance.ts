@@ -7,25 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
- *
- * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
- * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
- *
- * ## Example Usage
- * ### Basic
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.ServerlessInstance("test", {
- *     projectId: "<PROJECT_ID>",
- *     providerSettingsBackingProviderName: "AWS",
- *     providerSettingsProviderName: "SERVERLESS",
- *     providerSettingsRegionName: "US_EAST_1",
- * });
- * ```
- *
  * ## Import
  *
  * Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.

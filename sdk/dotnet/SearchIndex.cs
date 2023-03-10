@@ -189,6 +189,9 @@ namespace Pulumi.Mongodbatlas
         [Output("synonyms")]
         public Output<ImmutableArray<Outputs.SearchIndexSynonym>> Synonyms { get; private set; } = null!;
 
+        [Output("waitForIndexBuildCompletion")]
+        public Output<bool?> WaitForIndexBuildCompletion { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a SearchIndex resource with the given unique name, arguments, and options.
@@ -310,6 +313,9 @@ namespace Pulumi.Mongodbatlas
             set => _synonyms = value;
         }
 
+        [Input("waitForIndexBuildCompletion")]
+        public Input<bool>? WaitForIndexBuildCompletion { get; set; }
+
         public SearchIndexArgs()
         {
         }
@@ -395,6 +401,9 @@ namespace Pulumi.Mongodbatlas
             get => _synonyms ?? (_synonyms = new InputList<Inputs.SearchIndexSynonymGetArgs>());
             set => _synonyms = value;
         }
+
+        [Input("waitForIndexBuildCompletion")]
+        public Input<bool>? WaitForIndexBuildCompletion { get; set; }
 
         public SearchIndexState()
         {

@@ -326,11 +326,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
-     * @deprecated
-     * This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
-     * 
      */
-    @Deprecated /* This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release  */
     @Export(name="type", type=String.class, parameters={})
     private Output<String> type;
 

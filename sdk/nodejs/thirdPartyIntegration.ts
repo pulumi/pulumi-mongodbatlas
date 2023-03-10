@@ -139,8 +139,6 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
-     * @deprecated This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release 
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -316,8 +314,6 @@ export interface ThirdPartyIntegrationState {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
-     * @deprecated This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release 
      */
     type?: pulumi.Input<string>;
     /**
@@ -419,8 +415,6 @@ export interface ThirdPartyIntegrationArgs {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
-     * @deprecated This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release 
      */
     type: pulumi.Input<string>;
     /**

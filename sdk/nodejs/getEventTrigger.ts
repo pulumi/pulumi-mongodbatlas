@@ -25,6 +25,7 @@ export function getEventTrigger(args: GetEventTriggerArgs, opts?: pulumi.InvokeO
 export interface GetEventTriggerArgs {
     /**
      * The ObjectID of your application.
+     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
      */
     appId: string;
     /**
@@ -134,6 +135,7 @@ export function getEventTriggerOutput(args: GetEventTriggerOutputArgs, opts?: pu
 export interface GetEventTriggerOutputArgs {
     /**
      * The ObjectID of your application.
+     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
      */
     appId: pulumi.Input<string>;
     /**

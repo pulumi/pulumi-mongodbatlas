@@ -4345,6 +4345,7 @@ export interface GetSearchIndexesResult {
      * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
      */
     synonyms?: outputs.GetSearchIndexesResultSynonym[];
+    waitForIndexBuildCompletion?: boolean;
 }
 
 export interface GetSearchIndexesResultSynonym {
@@ -4365,6 +4366,7 @@ export interface GetServerlessInstanceLink {
 }
 
 export interface GetServerlessInstancesResult {
+    connectionStringsPrivateEndpointSrvs: string[];
     /**
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      */

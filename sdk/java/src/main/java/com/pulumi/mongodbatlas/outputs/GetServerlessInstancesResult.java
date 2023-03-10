@@ -12,6 +12,7 @@ import java.util.Objects;
 
 @CustomType
 public final class GetServerlessInstancesResult {
+    private List<String> connectionStringsPrivateEndpointSrvs;
     /**
      * @return Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      * 
@@ -71,6 +72,9 @@ public final class GetServerlessInstancesResult {
     private Boolean terminationProtectionEnabled;
 
     private GetServerlessInstancesResult() {}
+    public List<String> connectionStringsPrivateEndpointSrvs() {
+        return this.connectionStringsPrivateEndpointSrvs;
+    }
     /**
      * @return Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      * 
@@ -164,6 +168,7 @@ public final class GetServerlessInstancesResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private List<String> connectionStringsPrivateEndpointSrvs;
         private String connectionStringsStandardSrv;
         private Boolean continuousBackupEnabled;
         private String createDate;
@@ -180,6 +185,7 @@ public final class GetServerlessInstancesResult {
         public Builder() {}
         public Builder(GetServerlessInstancesResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.connectionStringsPrivateEndpointSrvs = defaults.connectionStringsPrivateEndpointSrvs;
     	      this.connectionStringsStandardSrv = defaults.connectionStringsStandardSrv;
     	      this.continuousBackupEnabled = defaults.continuousBackupEnabled;
     	      this.createDate = defaults.createDate;
@@ -195,6 +201,14 @@ public final class GetServerlessInstancesResult {
     	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
         }
 
+        @CustomType.Setter
+        public Builder connectionStringsPrivateEndpointSrvs(List<String> connectionStringsPrivateEndpointSrvs) {
+            this.connectionStringsPrivateEndpointSrvs = Objects.requireNonNull(connectionStringsPrivateEndpointSrvs);
+            return this;
+        }
+        public Builder connectionStringsPrivateEndpointSrvs(String... connectionStringsPrivateEndpointSrvs) {
+            return connectionStringsPrivateEndpointSrvs(List.of(connectionStringsPrivateEndpointSrvs));
+        }
         @CustomType.Setter
         public Builder connectionStringsStandardSrv(String connectionStringsStandardSrv) {
             this.connectionStringsStandardSrv = Objects.requireNonNull(connectionStringsStandardSrv);
@@ -265,6 +279,7 @@ public final class GetServerlessInstancesResult {
         }
         public GetServerlessInstancesResult build() {
             final var o = new GetServerlessInstancesResult();
+            o.connectionStringsPrivateEndpointSrvs = connectionStringsPrivateEndpointSrvs;
             o.connectionStringsStandardSrv = connectionStringsStandardSrv;
             o.continuousBackupEnabled = continuousBackupEnabled;
             o.createDate = createDate;

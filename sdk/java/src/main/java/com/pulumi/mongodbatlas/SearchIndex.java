@@ -318,6 +318,12 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<SearchIndexSynonym>>> synonyms() {
         return Codegen.optional(this.synonyms);
     }
+    @Export(name="waitForIndexBuildCompletion", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> waitForIndexBuildCompletion;
+
+    public Output<Optional<Boolean>> waitForIndexBuildCompletion() {
+        return Codegen.optional(this.waitForIndexBuildCompletion);
+    }
 
     /**
      *

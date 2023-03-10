@@ -10,31 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas.ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
-    /// 
-    /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-    /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-    /// 
-    /// ## Example Usage
-    /// ### Basic
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Mongodbatlas.ServerlessInstance("test", new()
-    ///     {
-    ///         ProjectId = "&lt;PROJECT_ID&gt;",
-    ///         ProviderSettingsBackingProviderName = "AWS",
-    ///         ProviderSettingsProviderName = "SERVERLESS",
-    ///         ProviderSettingsRegionName = "US_EAST_1",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.

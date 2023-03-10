@@ -297,11 +297,7 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
-     * @deprecated
-     * This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
-     * 
      */
-    @Deprecated /* This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release  */
     @Import(name="type")
     private @Nullable Output<String> type;
 
@@ -317,11 +313,7 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
-     * @deprecated
-     * This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
-     * 
      */
-    @Deprecated /* This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release  */
     public Optional<Output<String>> type() {
         return Optional.ofNullable(this.type);
     }
@@ -806,11 +798,7 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          * 
          * @return builder
          * 
-         * @deprecated
-         * This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
-         * 
          */
-        @Deprecated /* This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release  */
         public Builder type(@Nullable Output<String> type) {
             $.type = type;
             return this;
@@ -830,11 +818,7 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          * 
          * @return builder
          * 
-         * @deprecated
-         * This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release
-         * 
          */
-        @Deprecated /* This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release  */
         public Builder type(String type) {
             return type(Output.of(type));
         }

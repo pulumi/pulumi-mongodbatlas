@@ -190,6 +190,13 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.synonyms);
     }
 
+    @Import(name="waitForIndexBuildCompletion")
+    private @Nullable Output<Boolean> waitForIndexBuildCompletion;
+
+    public Optional<Output<Boolean>> waitForIndexBuildCompletion() {
+        return Optional.ofNullable(this.waitForIndexBuildCompletion);
+    }
+
     private SearchIndexArgs() {}
 
     private SearchIndexArgs(SearchIndexArgs $) {
@@ -205,6 +212,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         this.searchAnalyzer = $.searchAnalyzer;
         this.status = $.status;
         this.synonyms = $.synonyms;
+        this.waitForIndexBuildCompletion = $.waitForIndexBuildCompletion;
     }
 
     public static Builder builder() {
@@ -473,6 +481,15 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder synonyms(SearchIndexSynonymArgs... synonyms) {
             return synonyms(List.of(synonyms));
+        }
+
+        public Builder waitForIndexBuildCompletion(@Nullable Output<Boolean> waitForIndexBuildCompletion) {
+            $.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
+            return this;
+        }
+
+        public Builder waitForIndexBuildCompletion(Boolean waitForIndexBuildCompletion) {
+            return waitForIndexBuildCompletion(Output.of(waitForIndexBuildCompletion));
         }
 
         public SearchIndexArgs build() {

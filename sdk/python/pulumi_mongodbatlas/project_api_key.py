@@ -166,6 +166,18 @@ class ProjectApiKey(pulumi.CustomResource):
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectApiKey("test",
+            description="key-name",
+            project_id="<PROJECT_ID>",
+            role_names=["GROUP_OWNER"])
+        ```
+
         ## Import
 
         API Keys must be imported using org ID, API Key ID e.g.
@@ -189,6 +201,18 @@ class ProjectApiKey(pulumi.CustomResource):
                  args: ProjectApiKeyInitArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectApiKey("test",
+            description="key-name",
+            project_id="<PROJECT_ID>",
+            role_names=["GROUP_OWNER"])
+        ```
+
         ## Import
 
         API Keys must be imported using org ID, API Key ID e.g.

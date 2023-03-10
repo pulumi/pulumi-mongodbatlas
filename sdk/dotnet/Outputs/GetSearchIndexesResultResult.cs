@@ -62,6 +62,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSearchIndexesResultSynonymResult> Synonyms;
+        public readonly bool? WaitForIndexBuildCompletion;
 
         [OutputConstructor]
         private GetSearchIndexesResultResult(
@@ -89,7 +90,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string status,
 
-            ImmutableArray<Outputs.GetSearchIndexesResultSynonymResult> synonyms)
+            ImmutableArray<Outputs.GetSearchIndexesResultSynonymResult> synonyms,
+
+            bool? waitForIndexBuildCompletion)
         {
             Analyzer = analyzer;
             Analyzers = analyzers;
@@ -104,6 +107,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             SearchAnalyzer = searchAnalyzer;
             Status = status;
             Synonyms = synonyms;
+            WaitForIndexBuildCompletion = waitForIndexBuildCompletion;
         }
     }
 }

@@ -15373,7 +15373,8 @@ class GetSearchIndexesResultResult(dict):
                  mappings_dynamic: Optional[bool] = None,
                  mappings_fields: Optional[str] = None,
                  search_analyzer: Optional[str] = None,
-                 synonyms: Optional[Sequence['outputs.GetSearchIndexesResultSynonymResult']] = None):
+                 synonyms: Optional[Sequence['outputs.GetSearchIndexesResultSynonymResult']] = None,
+                 wait_for_index_build_completion: Optional[bool] = None):
         """
         :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         :param str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
@@ -15408,6 +15409,8 @@ class GetSearchIndexesResultResult(dict):
             pulumi.set(__self__, "search_analyzer", search_analyzer)
         if synonyms is not None:
             pulumi.set(__self__, "synonyms", synonyms)
+        if wait_for_index_build_completion is not None:
+            pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
 
     @property
     @pulumi.getter
@@ -15510,6 +15513,11 @@ class GetSearchIndexesResultResult(dict):
         """
         return pulumi.get(self, "synonyms")
 
+    @property
+    @pulumi.getter(name="waitForIndexBuildCompletion")
+    def wait_for_index_build_completion(self) -> Optional[bool]:
+        return pulumi.get(self, "wait_for_index_build_completion")
+
 
 @pulumi.output_type
 class GetSearchIndexesResultSynonymResult(dict):
@@ -15569,6 +15577,7 @@ class GetServerlessInstanceLinkResult(dict):
 @pulumi.output_type
 class GetServerlessInstancesResultResult(dict):
     def __init__(__self__, *,
+                 connection_strings_private_endpoint_srvs: Sequence[str],
                  connection_strings_standard_srv: str,
                  continuous_backup_enabled: bool,
                  create_date: str,
@@ -15595,6 +15604,7 @@ class GetServerlessInstancesResultResult(dict):
         :param str state_name: Stage of deployment of this serverless instance when the resource made its request.
         :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
+        pulumi.set(__self__, "connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
         pulumi.set(__self__, "connection_strings_standard_srv", connection_strings_standard_srv)
         pulumi.set(__self__, "continuous_backup_enabled", continuous_backup_enabled)
         pulumi.set(__self__, "create_date", create_date)
@@ -15608,6 +15618,11 @@ class GetServerlessInstancesResultResult(dict):
         pulumi.set(__self__, "provider_settings_region_name", provider_settings_region_name)
         pulumi.set(__self__, "state_name", state_name)
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+
+    @property
+    @pulumi.getter(name="connectionStringsPrivateEndpointSrvs")
+    def connection_strings_private_endpoint_srvs(self) -> Sequence[str]:
+        return pulumi.get(self, "connection_strings_private_endpoint_srvs")
 
     @property
     @pulumi.getter(name="connectionStringsStandardSrv")

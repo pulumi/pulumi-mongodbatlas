@@ -169,6 +169,7 @@ export class SearchIndex extends pulumi.CustomResource {
      * Synonyms mapping definition to use in this index.
      */
     public readonly synonyms!: pulumi.Output<outputs.SearchIndexSynonym[] | undefined>;
+    public readonly waitForIndexBuildCompletion!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a SearchIndex resource with the given unique name, arguments, and options.
@@ -196,6 +197,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["searchAnalyzer"] = state ? state.searchAnalyzer : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["synonyms"] = state ? state.synonyms : undefined;
+            resourceInputs["waitForIndexBuildCompletion"] = state ? state.waitForIndexBuildCompletion : undefined;
         } else {
             const args = argsOrState as SearchIndexArgs | undefined;
             if ((!args || args.analyzer === undefined) && !opts.urn) {
@@ -225,6 +227,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["searchAnalyzer"] = args ? args.searchAnalyzer : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["synonyms"] = args ? args.synonyms : undefined;
+            resourceInputs["waitForIndexBuildCompletion"] = args ? args.waitForIndexBuildCompletion : undefined;
             resourceInputs["indexId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -282,6 +285,7 @@ export interface SearchIndexState {
      * Synonyms mapping definition to use in this index.
      */
     synonyms?: pulumi.Input<pulumi.Input<inputs.SearchIndexSynonym>[]>;
+    waitForIndexBuildCompletion?: pulumi.Input<boolean>;
 }
 
 /**
@@ -333,4 +337,5 @@ export interface SearchIndexArgs {
      * Synonyms mapping definition to use in this index.
      */
     synonyms?: pulumi.Input<pulumi.Input<inputs.SearchIndexSynonym>[]>;
+    waitForIndexBuildCompletion?: pulumi.Input<boolean>;
 }

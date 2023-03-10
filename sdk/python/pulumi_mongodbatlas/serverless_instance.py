@@ -385,24 +385,6 @@ class ServerlessInstance(pulumi.CustomResource):
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
-
-        > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-        For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-
-        ## Example Usage
-        ### Basic
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ServerlessInstance("test",
-            project_id="<PROJECT_ID>",
-            provider_settings_backing_provider_name="AWS",
-            provider_settings_provider_name="SERVERLESS",
-            provider_settings_region_name="US_EAST_1")
-        ```
-
         ## Import
 
         Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.
@@ -431,24 +413,6 @@ class ServerlessInstance(pulumi.CustomResource):
                  args: ServerlessInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
-
-        > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-        For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-
-        ## Example Usage
-        ### Basic
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ServerlessInstance("test",
-            project_id="<PROJECT_ID>",
-            provider_settings_backing_provider_name="AWS",
-            provider_settings_provider_name="SERVERLESS",
-            provider_settings_region_name="US_EAST_1")
-        ```
-
         ## Import
 
         Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.

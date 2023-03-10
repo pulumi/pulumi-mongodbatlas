@@ -10,38 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
-// > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-//
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
-// ## Example Usage
-// ### Basic
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupServerlessInstance(ctx, &mongodbatlas.LookupServerlessInstanceArgs{
-//				Name:      "<SERVERLESS_INSTANCE_NAME>",
-//				ProjectId: "<PROJECT_ID >",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupServerlessInstance(ctx *pulumi.Context, args *LookupServerlessInstanceArgs, opts ...pulumi.InvokeOption) (*LookupServerlessInstanceResult, error) {
 	var rv LookupServerlessInstanceResult
 	err := ctx.Invoke("mongodbatlas:index/getServerlessInstance:getServerlessInstance", args, &rv, opts...)
@@ -66,6 +34,8 @@ type LookupServerlessInstanceArgs struct {
 
 // A collection of values returned by getServerlessInstance.
 type LookupServerlessInstanceResult struct {
+	// List of Serverless Private Endpoint Connections
+	ConnectionStringsPrivateEndpointSrvs []string `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv string `pulumi:"connectionStringsStandardSrv"`
 	// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
@@ -133,6 +103,11 @@ func (o LookupServerlessInstanceResultOutput) ToLookupServerlessInstanceResultOu
 
 func (o LookupServerlessInstanceResultOutput) ToLookupServerlessInstanceResultOutputWithContext(ctx context.Context) LookupServerlessInstanceResultOutput {
 	return o
+}
+
+// List of Serverless Private Endpoint Connections
+func (o LookupServerlessInstanceResultOutput) ConnectionStringsPrivateEndpointSrvs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupServerlessInstanceResult) []string { return v.ConnectionStringsPrivateEndpointSrvs }).(pulumi.StringArrayOutput)
 }
 
 // Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.

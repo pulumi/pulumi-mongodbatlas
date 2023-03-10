@@ -182,10 +182,13 @@ import (
 //	$ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
 //
 // ```
+//
+//	For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
 type EventTrigger struct {
 	pulumi.CustomResourceState
 
 	// The ObjectID of your application.
+	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId pulumi.StringOutput `pulumi:"appId"`
 	// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 	ConfigCollection pulumi.StringOutput `pulumi:"configCollection"`
@@ -270,6 +273,7 @@ func GetEventTrigger(ctx *pulumi.Context,
 // Input properties used for looking up and filtering EventTrigger resources.
 type eventTriggerState struct {
 	// The ObjectID of your application.
+	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId *string `pulumi:"appId"`
 	// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 	ConfigCollection *string `pulumi:"configCollection"`
@@ -317,6 +321,7 @@ type eventTriggerState struct {
 
 type EventTriggerState struct {
 	// The ObjectID of your application.
+	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId pulumi.StringPtrInput
 	// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 	ConfigCollection pulumi.StringPtrInput
@@ -368,6 +373,7 @@ func (EventTriggerState) ElementType() reflect.Type {
 
 type eventTriggerArgs struct {
 	// The ObjectID of your application.
+	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId string `pulumi:"appId"`
 	// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 	ConfigCollection *string `pulumi:"configCollection"`
@@ -411,6 +417,7 @@ type eventTriggerArgs struct {
 // The set of arguments for constructing a EventTrigger resource.
 type EventTriggerArgs struct {
 	// The ObjectID of your application.
+	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId pulumi.StringInput
 	// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 	ConfigCollection pulumi.StringPtrInput
@@ -539,6 +546,7 @@ func (o EventTriggerOutput) ToEventTriggerOutputWithContext(ctx context.Context)
 }
 
 // The ObjectID of your application.
+// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 func (o EventTriggerOutput) AppId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.AppId }).(pulumi.StringOutput)
 }

@@ -27,7 +27,8 @@ class SearchIndexArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
-                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None):
+                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
+                 wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a SearchIndex resource.
         :param pulumi.Input[str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -61,6 +62,8 @@ class SearchIndexArgs:
             pulumi.set(__self__, "status", status)
         if synonyms is not None:
             pulumi.set(__self__, "synonyms", synonyms)
+        if wait_for_index_build_completion is not None:
+            pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
 
     @property
     @pulumi.getter
@@ -203,6 +206,15 @@ class SearchIndexArgs:
     def synonyms(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]):
         pulumi.set(self, "synonyms", value)
 
+    @property
+    @pulumi.getter(name="waitForIndexBuildCompletion")
+    def wait_for_index_build_completion(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "wait_for_index_build_completion")
+
+    @wait_for_index_build_completion.setter
+    def wait_for_index_build_completion(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "wait_for_index_build_completion", value)
+
 
 @pulumi.input_type
 class _SearchIndexState:
@@ -219,7 +231,8 @@ class _SearchIndexState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
-                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None):
+                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
+                 wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering SearchIndex resources.
         :param pulumi.Input[str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -260,6 +273,8 @@ class _SearchIndexState:
             pulumi.set(__self__, "status", status)
         if synonyms is not None:
             pulumi.set(__self__, "synonyms", synonyms)
+        if wait_for_index_build_completion is not None:
+            pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
 
     @property
     @pulumi.getter
@@ -411,6 +426,15 @@ class _SearchIndexState:
     def synonyms(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]):
         pulumi.set(self, "synonyms", value)
 
+    @property
+    @pulumi.getter(name="waitForIndexBuildCompletion")
+    def wait_for_index_build_completion(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "wait_for_index_build_completion")
+
+    @wait_for_index_build_completion.setter
+    def wait_for_index_build_completion(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "wait_for_index_build_completion", value)
+
 
 class SearchIndex(pulumi.CustomResource):
     @overload
@@ -429,6 +453,7 @@ class SearchIndex(pulumi.CustomResource):
                  search_analyzer: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
+                 wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
@@ -651,6 +676,7 @@ class SearchIndex(pulumi.CustomResource):
                  search_analyzer: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
+                 wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -682,6 +708,7 @@ class SearchIndex(pulumi.CustomResource):
             __props__.__dict__["search_analyzer"] = search_analyzer
             __props__.__dict__["status"] = status
             __props__.__dict__["synonyms"] = synonyms
+            __props__.__dict__["wait_for_index_build_completion"] = wait_for_index_build_completion
             __props__.__dict__["index_id"] = None
         super(SearchIndex, __self__).__init__(
             'mongodbatlas:index/searchIndex:SearchIndex',
@@ -705,7 +732,8 @@ class SearchIndex(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             search_analyzer: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None) -> 'SearchIndex':
+            synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
+            wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None) -> 'SearchIndex':
         """
         Get an existing SearchIndex resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -742,6 +770,7 @@ class SearchIndex(pulumi.CustomResource):
         __props__.__dict__["search_analyzer"] = search_analyzer
         __props__.__dict__["status"] = status
         __props__.__dict__["synonyms"] = synonyms
+        __props__.__dict__["wait_for_index_build_completion"] = wait_for_index_build_completion
         return SearchIndex(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -841,4 +870,9 @@ class SearchIndex(pulumi.CustomResource):
         Synonyms mapping definition to use in this index.
         """
         return pulumi.get(self, "synonyms")
+
+    @property
+    @pulumi.getter(name="waitForIndexBuildCompletion")
+    def wait_for_index_build_completion(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "wait_for_index_build_completion")
 
