@@ -34341,7 +34341,8 @@ type GetSearchIndexesResult struct {
 	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
 	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
 	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
-	Synonyms []GetSearchIndexesResultSynonym `pulumi:"synonyms"`
+	Synonyms                    []GetSearchIndexesResultSynonym `pulumi:"synonyms"`
+	WaitForIndexBuildCompletion *bool                           `pulumi:"waitForIndexBuildCompletion"`
 }
 
 // GetSearchIndexesResultInput is an input type that accepts GetSearchIndexesResultArgs and GetSearchIndexesResultOutput values.
@@ -34382,7 +34383,8 @@ type GetSearchIndexesResultArgs struct {
 	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
 	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
 	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
-	Synonyms GetSearchIndexesResultSynonymArrayInput `pulumi:"synonyms"`
+	Synonyms                    GetSearchIndexesResultSynonymArrayInput `pulumi:"synonyms"`
+	WaitForIndexBuildCompletion pulumi.BoolPtrInput                     `pulumi:"waitForIndexBuildCompletion"`
 }
 
 func (GetSearchIndexesResultArgs) ElementType() reflect.Type {
@@ -34500,6 +34502,10 @@ func (o GetSearchIndexesResultOutput) Status() pulumi.StringOutput {
 // * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 func (o GetSearchIndexesResultOutput) Synonyms() GetSearchIndexesResultSynonymArrayOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) []GetSearchIndexesResultSynonym { return v.Synonyms }).(GetSearchIndexesResultSynonymArrayOutput)
+}
+
+func (o GetSearchIndexesResultOutput) WaitForIndexBuildCompletion() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetSearchIndexesResult) *bool { return v.WaitForIndexBuildCompletion }).(pulumi.BoolPtrOutput)
 }
 
 type GetSearchIndexesResultArrayOutput struct{ *pulumi.OutputState }
@@ -34735,6 +34741,7 @@ func (o GetServerlessInstanceLinkArrayOutput) Index(i pulumi.IntInput) GetServer
 }
 
 type GetServerlessInstancesResult struct {
+	ConnectionStringsPrivateEndpointSrvs []string `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv string `pulumi:"connectionStringsStandardSrv"`
 	// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
@@ -34773,6 +34780,7 @@ type GetServerlessInstancesResultInput interface {
 }
 
 type GetServerlessInstancesResultArgs struct {
+	ConnectionStringsPrivateEndpointSrvs pulumi.StringArrayInput `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv pulumi.StringInput `pulumi:"connectionStringsStandardSrv"`
 	// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
@@ -34848,6 +34856,10 @@ func (o GetServerlessInstancesResultOutput) ToGetServerlessInstancesResultOutput
 
 func (o GetServerlessInstancesResultOutput) ToGetServerlessInstancesResultOutputWithContext(ctx context.Context) GetServerlessInstancesResultOutput {
 	return o
+}
+
+func (o GetServerlessInstancesResultOutput) ConnectionStringsPrivateEndpointSrvs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) []string { return v.ConnectionStringsPrivateEndpointSrvs }).(pulumi.StringArrayOutput)
 }
 
 // Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.

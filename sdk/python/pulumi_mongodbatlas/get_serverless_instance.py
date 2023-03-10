@@ -23,7 +23,10 @@ class GetServerlessInstanceResult:
     """
     A collection of values returned by getServerlessInstance.
     """
-    def __init__(__self__, connection_strings_standard_srv=None, continuous_backup_enabled=None, create_date=None, id=None, links=None, mongo_db_version=None, name=None, project_id=None, provider_settings_backing_provider_name=None, provider_settings_provider_name=None, provider_settings_region_name=None, state_name=None, termination_protection_enabled=None):
+    def __init__(__self__, connection_strings_private_endpoint_srvs=None, connection_strings_standard_srv=None, continuous_backup_enabled=None, create_date=None, id=None, links=None, mongo_db_version=None, name=None, project_id=None, provider_settings_backing_provider_name=None, provider_settings_provider_name=None, provider_settings_region_name=None, state_name=None, termination_protection_enabled=None):
+        if connection_strings_private_endpoint_srvs and not isinstance(connection_strings_private_endpoint_srvs, list):
+            raise TypeError("Expected argument 'connection_strings_private_endpoint_srvs' to be a list")
+        pulumi.set(__self__, "connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
         if connection_strings_standard_srv and not isinstance(connection_strings_standard_srv, str):
             raise TypeError("Expected argument 'connection_strings_standard_srv' to be a str")
         pulumi.set(__self__, "connection_strings_standard_srv", connection_strings_standard_srv)
@@ -63,6 +66,14 @@ class GetServerlessInstanceResult:
         if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
             raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+
+    @property
+    @pulumi.getter(name="connectionStringsPrivateEndpointSrvs")
+    def connection_strings_private_endpoint_srvs(self) -> Sequence[str]:
+        """
+        List of Serverless Private Endpoint Connections
+        """
+        return pulumi.get(self, "connection_strings_private_endpoint_srvs")
 
     @property
     @pulumi.getter(name="connectionStringsStandardSrv")
@@ -163,6 +174,7 @@ class AwaitableGetServerlessInstanceResult(GetServerlessInstanceResult):
         if False:
             yield self
         return GetServerlessInstanceResult(
+            connection_strings_private_endpoint_srvs=self.connection_strings_private_endpoint_srvs,
             connection_strings_standard_srv=self.connection_strings_standard_srv,
             continuous_backup_enabled=self.continuous_backup_enabled,
             create_date=self.create_date,
@@ -185,22 +197,7 @@ def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
                             state_name: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerlessInstanceResult:
     """
-    `ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
-    > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-    For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-    ## Example Usage
-    ### Basic
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_two = mongodbatlas.get_serverless_instance(name="<SERVERLESS_INSTANCE_NAME>",
-        project_id="<PROJECT_ID >")
-    ```
-
+    Use this data source to access information about an existing resource.
 
     :param bool continuous_backup_enabled: Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param str name: Human-readable label that identifies your serverless instance.
@@ -217,6 +214,7 @@ def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getServerlessInstance:getServerlessInstance', __args__, opts=opts, typ=GetServerlessInstanceResult).value
 
     return AwaitableGetServerlessInstanceResult(
+        connection_strings_private_endpoint_srvs=__ret__.connection_strings_private_endpoint_srvs,
         connection_strings_standard_srv=__ret__.connection_strings_standard_srv,
         continuous_backup_enabled=__ret__.continuous_backup_enabled,
         create_date=__ret__.create_date,
@@ -240,22 +238,7 @@ def get_serverless_instance_output(continuous_backup_enabled: Optional[pulumi.In
                                    state_name: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServerlessInstanceResult]:
     """
-    `ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
-    > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-    For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-    ## Example Usage
-    ### Basic
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_two = mongodbatlas.get_serverless_instance(name="<SERVERLESS_INSTANCE_NAME>",
-        project_id="<PROJECT_ID >")
-    ```
-
+    Use this data source to access information about an existing resource.
 
     :param bool continuous_backup_enabled: Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param str name: Human-readable label that identifies your serverless instance.

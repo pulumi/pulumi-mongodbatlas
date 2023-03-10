@@ -10,6 +10,28 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.ProjectApiKey("test", new()
+    ///     {
+    ///         Description = "key-name",
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         RoleNames = new[]
+    ///         {
+    ///             "GROUP_OWNER",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// API Keys must be imported using org ID, API Key ID e.g.

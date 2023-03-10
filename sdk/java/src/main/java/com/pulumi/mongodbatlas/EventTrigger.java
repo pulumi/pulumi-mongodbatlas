@@ -212,11 +212,14 @@ import javax.annotation.Nullable;
  *  $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
  * ```
  * 
+ *  For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
+ * 
  */
 @ResourceType(type="mongodbatlas:index/eventTrigger:EventTrigger")
 public class EventTrigger extends com.pulumi.resources.CustomResource {
     /**
      * The ObjectID of your application.
+     * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
      * 
      */
     @Export(name="appId", type=String.class, parameters={})
@@ -224,6 +227,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The ObjectID of your application.
+     * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
      * 
      */
     public Output<String> appId() {

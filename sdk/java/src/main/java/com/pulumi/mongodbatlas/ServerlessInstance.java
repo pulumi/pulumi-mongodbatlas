@@ -17,45 +17,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * `mongodbatlas.ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
- * 
- * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
- * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
- * 
- * ## Example Usage
- * ### Basic
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.ServerlessInstance;
- * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new ServerlessInstance(&#34;test&#34;, ServerlessInstanceArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
- *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
- *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
- *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
  * ## Import
  * 
  * Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.

@@ -11,40 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
-//
-// > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-//
-// ## Example Usage
-// ### Basic
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
-//				ProjectId:                           pulumi.String("<PROJECT_ID>"),
-//				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
-//				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
-//				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.

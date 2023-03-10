@@ -14,6 +14,7 @@ public final class GetEventTriggerPlainArgs extends com.pulumi.resources.InvokeA
 
     /**
      * The ObjectID of your application.
+     * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
      * 
      */
     @Import(name="appId", required=true)
@@ -21,6 +22,7 @@ public final class GetEventTriggerPlainArgs extends com.pulumi.resources.InvokeA
 
     /**
      * @return The ObjectID of your application.
+     * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
      * 
      */
     public String appId() {
@@ -85,6 +87,7 @@ public final class GetEventTriggerPlainArgs extends com.pulumi.resources.InvokeA
 
         /**
          * @param appId The ObjectID of your application.
+         * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
          * 
          * @return builder
          * 

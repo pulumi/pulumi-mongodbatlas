@@ -23,6 +23,7 @@ func LookupEventTrigger(ctx *pulumi.Context, args *LookupEventTriggerArgs, opts 
 // A collection of arguments for invoking getEventTrigger.
 type LookupEventTriggerArgs struct {
 	// The ObjectID of your application.
+	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId string `pulumi:"appId"`
 	// The unique ID for the project to create the trigger.
 	ProjectId string `pulumi:"projectId"`
@@ -93,6 +94,7 @@ func LookupEventTriggerOutput(ctx *pulumi.Context, args LookupEventTriggerOutput
 // A collection of arguments for invoking getEventTrigger.
 type LookupEventTriggerOutputArgs struct {
 	// The ObjectID of your application.
+	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId pulumi.StringInput `pulumi:"appId"`
 	// The unique ID for the project to create the trigger.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`

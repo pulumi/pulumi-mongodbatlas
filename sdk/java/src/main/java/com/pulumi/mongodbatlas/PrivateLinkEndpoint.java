@@ -15,48 +15,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * `mongodbatlas.PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Service that can be created in an Atlas project.
- * 
- * &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
- *   * Organization Owner
- *   * Project Owner
- * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
- * 
- * &gt; **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
- * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new PrivateLinkEndpoint(&#34;test&#34;, PrivateLinkEndpointArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .providerName(&#34;AWS/AZURE&#34;)
- *             .region(&#34;US_EAST_1&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
  * ## Import
  * 
  * Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.

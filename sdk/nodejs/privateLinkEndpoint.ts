@@ -5,29 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Service that can be created in an Atlas project.
- *
- * > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
- *   * Organization Owner
- *   * Project Owner
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
- * > **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.PrivateLinkEndpoint("test", {
- *     projectId: "<PROJECT-ID>",
- *     providerName: "AWS/AZURE",
- *     region: "US_EAST_1",
- * });
- * ```
- *
  * ## Import
  *
  * Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.

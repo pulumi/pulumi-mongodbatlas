@@ -74,6 +74,7 @@ public final class GetSearchIndexesResult {
      * 
      */
     private @Nullable List<GetSearchIndexesResultSynonym> synonyms;
+    private @Nullable Boolean waitForIndexBuildCompletion;
 
     private GetSearchIndexesResult() {}
     /**
@@ -162,6 +163,9 @@ public final class GetSearchIndexesResult {
     public List<GetSearchIndexesResultSynonym> synonyms() {
         return this.synonyms == null ? List.of() : this.synonyms;
     }
+    public Optional<Boolean> waitForIndexBuildCompletion() {
+        return Optional.ofNullable(this.waitForIndexBuildCompletion);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -185,6 +189,7 @@ public final class GetSearchIndexesResult {
         private @Nullable String searchAnalyzer;
         private String status;
         private @Nullable List<GetSearchIndexesResultSynonym> synonyms;
+        private @Nullable Boolean waitForIndexBuildCompletion;
         public Builder() {}
         public Builder(GetSearchIndexesResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -201,6 +206,7 @@ public final class GetSearchIndexesResult {
     	      this.searchAnalyzer = defaults.searchAnalyzer;
     	      this.status = defaults.status;
     	      this.synonyms = defaults.synonyms;
+    	      this.waitForIndexBuildCompletion = defaults.waitForIndexBuildCompletion;
         }
 
         @CustomType.Setter
@@ -271,6 +277,11 @@ public final class GetSearchIndexesResult {
         public Builder synonyms(GetSearchIndexesResultSynonym... synonyms) {
             return synonyms(List.of(synonyms));
         }
+        @CustomType.Setter
+        public Builder waitForIndexBuildCompletion(@Nullable Boolean waitForIndexBuildCompletion) {
+            this.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
+            return this;
+        }
         public GetSearchIndexesResult build() {
             final var o = new GetSearchIndexesResult();
             o.analyzer = analyzer;
@@ -286,6 +297,7 @@ public final class GetSearchIndexesResult {
             o.searchAnalyzer = searchAnalyzer;
             o.status = status;
             o.synonyms = synonyms;
+            o.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
             return o;
         }
     }

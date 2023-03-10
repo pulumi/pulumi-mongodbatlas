@@ -117,6 +117,8 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
  * ```
+ *
+ *  For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
  */
 export class EventTrigger extends pulumi.CustomResource {
     /**
@@ -148,6 +150,7 @@ export class EventTrigger extends pulumi.CustomResource {
 
     /**
      * The ObjectID of your application.
+     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
      */
     public readonly appId!: pulumi.Output<string>;
     /**
@@ -311,6 +314,7 @@ export class EventTrigger extends pulumi.CustomResource {
 export interface EventTriggerState {
     /**
      * The ObjectID of your application.
+     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
      */
     appId?: pulumi.Input<string>;
     /**
@@ -401,6 +405,7 @@ export interface EventTriggerState {
 export interface EventTriggerArgs {
     /**
      * The ObjectID of your application.
+     * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
      */
     appId: pulumi.Input<string>;
     /**

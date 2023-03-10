@@ -10,35 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas.PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Service that can be created in an Atlas project.
-    /// 
-    /// &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
-    ///   * Organization Owner
-    ///   * Project Owner
-    /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-    /// 
-    /// &gt; **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Mongodbatlas.PrivateLinkEndpoint("test", new()
-    ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         ProviderName = "AWS/AZURE",
-    ///         Region = "US_EAST_1",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.

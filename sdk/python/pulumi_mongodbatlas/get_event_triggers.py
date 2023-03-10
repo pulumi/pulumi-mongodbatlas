@@ -83,6 +83,7 @@ def get_event_triggers(app_id: Optional[str] = None,
 
 
     :param str app_id: The ObjectID of your application.
+           * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
     :param str project_id: The unique ID for the project to get all event triggers.
     """
     __args__ = dict()
@@ -107,6 +108,7 @@ def get_event_triggers_output(app_id: Optional[pulumi.Input[str]] = None,
 
 
     :param str app_id: The ObjectID of your application.
+           * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
     :param str project_id: The unique ID for the project to get all event triggers.
     """
     ...

@@ -109,7 +109,8 @@ type SearchIndex struct {
 	SearchAnalyzer pulumi.StringPtrOutput `pulumi:"searchAnalyzer"`
 	Status         pulumi.StringOutput    `pulumi:"status"`
 	// Synonyms mapping definition to use in this index.
-	Synonyms SearchIndexSynonymArrayOutput `pulumi:"synonyms"`
+	Synonyms                    SearchIndexSynonymArrayOutput `pulumi:"synonyms"`
+	WaitForIndexBuildCompletion pulumi.BoolPtrOutput          `pulumi:"waitForIndexBuildCompletion"`
 }
 
 // NewSearchIndex registers a new resource with the given unique name, arguments, and options.
@@ -179,7 +180,8 @@ type searchIndexState struct {
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
 	Status         *string `pulumi:"status"`
 	// Synonyms mapping definition to use in this index.
-	Synonyms []SearchIndexSynonym `pulumi:"synonyms"`
+	Synonyms                    []SearchIndexSynonym `pulumi:"synonyms"`
+	WaitForIndexBuildCompletion *bool                `pulumi:"waitForIndexBuildCompletion"`
 }
 
 type SearchIndexState struct {
@@ -206,7 +208,8 @@ type SearchIndexState struct {
 	SearchAnalyzer pulumi.StringPtrInput
 	Status         pulumi.StringPtrInput
 	// Synonyms mapping definition to use in this index.
-	Synonyms SearchIndexSynonymArrayInput
+	Synonyms                    SearchIndexSynonymArrayInput
+	WaitForIndexBuildCompletion pulumi.BoolPtrInput
 }
 
 func (SearchIndexState) ElementType() reflect.Type {
@@ -236,7 +239,8 @@ type searchIndexArgs struct {
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
 	Status         *string `pulumi:"status"`
 	// Synonyms mapping definition to use in this index.
-	Synonyms []SearchIndexSynonym `pulumi:"synonyms"`
+	Synonyms                    []SearchIndexSynonym `pulumi:"synonyms"`
+	WaitForIndexBuildCompletion *bool                `pulumi:"waitForIndexBuildCompletion"`
 }
 
 // The set of arguments for constructing a SearchIndex resource.
@@ -263,7 +267,8 @@ type SearchIndexArgs struct {
 	SearchAnalyzer pulumi.StringPtrInput
 	Status         pulumi.StringPtrInput
 	// Synonyms mapping definition to use in this index.
-	Synonyms SearchIndexSynonymArrayInput
+	Synonyms                    SearchIndexSynonymArrayInput
+	WaitForIndexBuildCompletion pulumi.BoolPtrInput
 }
 
 func (SearchIndexArgs) ElementType() reflect.Type {
@@ -414,6 +419,10 @@ func (o SearchIndexOutput) Status() pulumi.StringOutput {
 // Synonyms mapping definition to use in this index.
 func (o SearchIndexOutput) Synonyms() SearchIndexSynonymArrayOutput {
 	return o.ApplyT(func(v *SearchIndex) SearchIndexSynonymArrayOutput { return v.Synonyms }).(SearchIndexSynonymArrayOutput)
+}
+
+func (o SearchIndexOutput) WaitForIndexBuildCompletion() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.BoolPtrOutput { return v.WaitForIndexBuildCompletion }).(pulumi.BoolPtrOutput)
 }
 
 type SearchIndexArrayOutput struct{ *pulumi.OutputState }

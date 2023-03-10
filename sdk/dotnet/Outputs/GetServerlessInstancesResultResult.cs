@@ -13,6 +13,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetServerlessInstancesResultResult
     {
+        public readonly ImmutableArray<string> ConnectionStringsPrivateEndpointSrvs;
         /// <summary>
         /// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
         /// </summary>
@@ -62,6 +63,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetServerlessInstancesResultResult(
+            ImmutableArray<string> connectionStringsPrivateEndpointSrvs,
+
             string connectionStringsStandardSrv,
 
             bool continuousBackupEnabled,
@@ -88,6 +91,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool terminationProtectionEnabled)
         {
+            ConnectionStringsPrivateEndpointSrvs = connectionStringsPrivateEndpointSrvs;
             ConnectionStringsStandardSrv = connectionStringsStandardSrv;
             ContinuousBackupEnabled = continuousBackupEnabled;
             CreateDate = createDate;
