@@ -19,6 +19,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ClusterName;
         public readonly string CollName;
+        public readonly string CollectionType;
         public readonly ImmutableArray<Outputs.GetOnlineArchivesResultCriteriaResult> Criterias;
         public readonly string DbName;
         public readonly ImmutableArray<Outputs.GetOnlineArchivesResultPartitionFieldResult> PartitionFields;
@@ -37,6 +38,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string collName,
 
+            string collectionType,
+
             ImmutableArray<Outputs.GetOnlineArchivesResultCriteriaResult> criterias,
 
             string dbName,
@@ -52,6 +55,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ArchiveId = archiveId;
             ClusterName = clusterName;
             CollName = collName;
+            CollectionType = collectionType;
             Criterias = criterias;
             DbName = dbName;
             PartitionFields = partitionFields;

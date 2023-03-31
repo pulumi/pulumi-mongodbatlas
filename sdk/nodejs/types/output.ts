@@ -4093,6 +4093,7 @@ export interface GetOnlineArchivesResult {
      */
     clusterName: string;
     collName: string;
+    collectionType: string;
     criterias: outputs.GetOnlineArchivesResultCriteria[];
     dbName: string;
     partitionFields: outputs.GetOnlineArchivesResultPartitionField[];

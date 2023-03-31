@@ -29,6 +29,8 @@ type OnlineArchive struct {
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// Name of the collection.
 	CollName pulumi.StringOutput `pulumi:"collName"`
+	// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+	CollectionType pulumi.StringOutput `pulumi:"collectionType"`
 	// Criteria to use for archiving data.
 	Criteria OnlineArchiveCriteriaOutput `pulumi:"criteria"`
 	// Name of the database that contains the collection.
@@ -94,6 +96,8 @@ type onlineArchiveState struct {
 	ClusterName *string `pulumi:"clusterName"`
 	// Name of the collection.
 	CollName *string `pulumi:"collName"`
+	// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+	CollectionType *string `pulumi:"collectionType"`
 	// Criteria to use for archiving data.
 	Criteria *OnlineArchiveCriteria `pulumi:"criteria"`
 	// Name of the database that contains the collection.
@@ -116,6 +120,8 @@ type OnlineArchiveState struct {
 	ClusterName pulumi.StringPtrInput
 	// Name of the collection.
 	CollName pulumi.StringPtrInput
+	// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+	CollectionType pulumi.StringPtrInput
 	// Criteria to use for archiving data.
 	Criteria OnlineArchiveCriteriaPtrInput
 	// Name of the database that contains the collection.
@@ -140,6 +146,8 @@ type onlineArchiveArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// Name of the collection.
 	CollName string `pulumi:"collName"`
+	// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+	CollectionType *string `pulumi:"collectionType"`
 	// Criteria to use for archiving data.
 	Criteria OnlineArchiveCriteria `pulumi:"criteria"`
 	// Name of the database that contains the collection.
@@ -159,6 +167,8 @@ type OnlineArchiveArgs struct {
 	ClusterName pulumi.StringInput
 	// Name of the collection.
 	CollName pulumi.StringInput
+	// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+	CollectionType pulumi.StringPtrInput
 	// Criteria to use for archiving data.
 	Criteria OnlineArchiveCriteriaInput
 	// Name of the database that contains the collection.
@@ -272,6 +282,11 @@ func (o OnlineArchiveOutput) ClusterName() pulumi.StringOutput {
 // Name of the collection.
 func (o OnlineArchiveOutput) CollName() pulumi.StringOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.CollName }).(pulumi.StringOutput)
+}
+
+// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+func (o OnlineArchiveOutput) CollectionType() pulumi.StringOutput {
+	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.CollectionType }).(pulumi.StringOutput)
 }
 
 // Criteria to use for archiving data.

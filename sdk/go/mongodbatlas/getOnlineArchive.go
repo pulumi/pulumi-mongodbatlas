@@ -45,6 +45,7 @@ import (
 //
 //   - `dbName`          -  Name of the database that contains the collection.
 //   - `collName`        -  Name of the collection.
+//   - `collectionType`  -  Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
 //   - `criteria`         -  Criteria to use for archiving data.
 //   - `criteria.type`          - Type of criteria (DATE, CUSTOM)
 //   - `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expireAfterDays` parameter.
@@ -80,11 +81,12 @@ type LookupOnlineArchiveArgs struct {
 
 // A collection of values returned by getOnlineArchive.
 type LookupOnlineArchiveResult struct {
-	ArchiveId   string                     `pulumi:"archiveId"`
-	ClusterName string                     `pulumi:"clusterName"`
-	CollName    string                     `pulumi:"collName"`
-	Criterias   []GetOnlineArchiveCriteria `pulumi:"criterias"`
-	DbName      string                     `pulumi:"dbName"`
+	ArchiveId      string                     `pulumi:"archiveId"`
+	ClusterName    string                     `pulumi:"clusterName"`
+	CollName       string                     `pulumi:"collName"`
+	CollectionType string                     `pulumi:"collectionType"`
+	Criterias      []GetOnlineArchiveCriteria `pulumi:"criterias"`
+	DbName         string                     `pulumi:"dbName"`
 	// The provider-assigned unique ID for this managed resource.
 	Id              string                           `pulumi:"id"`
 	PartitionFields []GetOnlineArchivePartitionField `pulumi:"partitionFields"`
@@ -145,6 +147,10 @@ func (o LookupOnlineArchiveResultOutput) ClusterName() pulumi.StringOutput {
 
 func (o LookupOnlineArchiveResultOutput) CollName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOnlineArchiveResult) string { return v.CollName }).(pulumi.StringOutput)
+}
+
+func (o LookupOnlineArchiveResultOutput) CollectionType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) string { return v.CollectionType }).(pulumi.StringOutput)
 }
 
 func (o LookupOnlineArchiveResultOutput) Criterias() GetOnlineArchiveCriteriaArrayOutput {

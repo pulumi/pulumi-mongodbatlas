@@ -32592,6 +32592,7 @@ type GetOnlineArchivesResult struct {
 	// Name of the cluster that contains the collection.
 	ClusterName     string                                  `pulumi:"clusterName"`
 	CollName        string                                  `pulumi:"collName"`
+	CollectionType  string                                  `pulumi:"collectionType"`
 	Criterias       []GetOnlineArchivesResultCriteria       `pulumi:"criterias"`
 	DbName          string                                  `pulumi:"dbName"`
 	PartitionFields []GetOnlineArchivesResultPartitionField `pulumi:"partitionFields"`
@@ -32617,6 +32618,7 @@ type GetOnlineArchivesResultArgs struct {
 	// Name of the cluster that contains the collection.
 	ClusterName     pulumi.StringInput                              `pulumi:"clusterName"`
 	CollName        pulumi.StringInput                              `pulumi:"collName"`
+	CollectionType  pulumi.StringInput                              `pulumi:"collectionType"`
 	Criterias       GetOnlineArchivesResultCriteriaArrayInput       `pulumi:"criterias"`
 	DbName          pulumi.StringInput                              `pulumi:"dbName"`
 	PartitionFields GetOnlineArchivesResultPartitionFieldArrayInput `pulumi:"partitionFields"`
@@ -32688,6 +32690,10 @@ func (o GetOnlineArchivesResultOutput) ClusterName() pulumi.StringOutput {
 
 func (o GetOnlineArchivesResultOutput) CollName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOnlineArchivesResult) string { return v.CollName }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultOutput) CollectionType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResult) string { return v.CollectionType }).(pulumi.StringOutput)
 }
 
 func (o GetOnlineArchivesResultOutput) Criterias() GetOnlineArchivesResultCriteriaArrayOutput {

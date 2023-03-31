@@ -20,6 +20,7 @@ public final class GetOnlineArchivesResult {
      */
     private String clusterName;
     private String collName;
+    private String collectionType;
     private List<GetOnlineArchivesResultCriteria> criterias;
     private String dbName;
     private List<GetOnlineArchivesResultPartitionField> partitionFields;
@@ -44,6 +45,9 @@ public final class GetOnlineArchivesResult {
     }
     public String collName() {
         return this.collName;
+    }
+    public String collectionType() {
+        return this.collectionType;
     }
     public List<GetOnlineArchivesResultCriteria> criterias() {
         return this.criterias;
@@ -80,6 +84,7 @@ public final class GetOnlineArchivesResult {
         private String archiveId;
         private String clusterName;
         private String collName;
+        private String collectionType;
         private List<GetOnlineArchivesResultCriteria> criterias;
         private String dbName;
         private List<GetOnlineArchivesResultPartitionField> partitionFields;
@@ -92,6 +97,7 @@ public final class GetOnlineArchivesResult {
     	      this.archiveId = defaults.archiveId;
     	      this.clusterName = defaults.clusterName;
     	      this.collName = defaults.collName;
+    	      this.collectionType = defaults.collectionType;
     	      this.criterias = defaults.criterias;
     	      this.dbName = defaults.dbName;
     	      this.partitionFields = defaults.partitionFields;
@@ -113,6 +119,11 @@ public final class GetOnlineArchivesResult {
         @CustomType.Setter
         public Builder collName(String collName) {
             this.collName = Objects.requireNonNull(collName);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder collectionType(String collectionType) {
+            this.collectionType = Objects.requireNonNull(collectionType);
             return this;
         }
         @CustomType.Setter
@@ -156,6 +167,7 @@ public final class GetOnlineArchivesResult {
             o.archiveId = archiveId;
             o.clusterName = clusterName;
             o.collName = collName;
+            o.collectionType = collectionType;
             o.criterias = criterias;
             o.dbName = dbName;
             o.partitionFields = partitionFields;

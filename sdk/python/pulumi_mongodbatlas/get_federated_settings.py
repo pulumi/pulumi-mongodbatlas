@@ -104,7 +104,7 @@ class AwaitableGetFederatedSettingsResult(GetFederatedSettingsResult):
 def get_federated_settings(org_id: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedSettingsResult:
     """
-    _get_federated_settings_ provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
+    `get_federated_settings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
 
     ## Example Usage
 
@@ -136,7 +136,7 @@ def get_federated_settings(org_id: Optional[str] = None,
 def get_federated_settings_output(org_id: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsResult]:
     """
-    _get_federated_settings_ provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
+    `get_federated_settings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
 
     ## Example Usage
 

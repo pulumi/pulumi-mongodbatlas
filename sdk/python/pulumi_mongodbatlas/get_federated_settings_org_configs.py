@@ -92,7 +92,7 @@ def get_federated_settings_org_configs(federation_settings_id: Optional[str] = N
                                        page_num: Optional[int] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedSettingsOrgConfigsResult:
     """
-    _get_federated_settings_org_configs_ provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+    `get_federated_settings_org_configs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 
     ## Example Usage
 
@@ -135,7 +135,7 @@ def get_federated_settings_org_configs_output(federation_settings_id: Optional[p
                                               page_num: Optional[pulumi.Input[Optional[int]]] = None,
                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsOrgConfigsResult]:
     """
-    _get_federated_settings_org_configs_ provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+    `get_federated_settings_org_configs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 
     ## Example Usage
 

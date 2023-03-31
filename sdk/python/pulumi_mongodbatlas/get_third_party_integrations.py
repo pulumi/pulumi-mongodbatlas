@@ -72,7 +72,7 @@ class AwaitableGetThirdPartyIntegrationsResult(GetThirdPartyIntegrationsResult):
 def get_third_party_integrations(project_id: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetThirdPartyIntegrationsResult:
     """
-    _get_third_party_integrations_ describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+    `get_third_party_integrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
     applied across the project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -114,7 +114,7 @@ def get_third_party_integrations(project_id: Optional[str] = None,
 def get_third_party_integrations_output(project_id: Optional[pulumi.Input[str]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetThirdPartyIntegrationsResult]:
     """
-    _get_third_party_integrations_ describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+    `get_third_party_integrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
     applied across the project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
