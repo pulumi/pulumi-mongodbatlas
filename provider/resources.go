@@ -304,7 +304,7 @@ func Provider() tfbridge.ProviderInfo {
 
 	err := x.ComputeDefaults(&prov, x.TokensSingleModule("mongodbatlas_", mainMod,
 		x.MakeStandardToken(mainPkg)))
-	contract.AssertNoError(err)
+	contract.AssertNoErrorf(err, "auto token mapping failed")
 
 	prov.SetAutonaming(255, "-")
 
