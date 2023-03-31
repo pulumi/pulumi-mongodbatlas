@@ -42,6 +42,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string> CollName { get; private set; } = null!;
 
         /// <summary>
+        /// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        /// </summary>
+        [Output("collectionType")]
+        public Output<string> CollectionType { get; private set; } = null!;
+
+        /// <summary>
         /// Criteria to use for archiving data.
         /// </summary>
         [Output("criteria")]
@@ -139,6 +145,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string> CollName { get; set; } = null!;
 
         /// <summary>
+        /// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        /// </summary>
+        [Input("collectionType")]
+        public Input<string>? CollectionType { get; set; }
+
+        /// <summary>
         /// Criteria to use for archiving data.
         /// </summary>
         [Input("criteria", required: true)]
@@ -202,6 +214,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("collName")]
         public Input<string>? CollName { get; set; }
+
+        /// <summary>
+        /// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        /// </summary>
+        [Input("collectionType")]
+        public Input<string>? CollectionType { get; set; }
 
         /// <summary>
         /// Criteria to use for archiving data.

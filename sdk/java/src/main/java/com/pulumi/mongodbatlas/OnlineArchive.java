@@ -168,6 +168,20 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
         return this.collName;
     }
     /**
+     * Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * 
+     */
+    @Export(name="collectionType", type=String.class, parameters={})
+    private Output<String> collectionType;
+
+    /**
+     * @return Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * 
+     */
+    public Output<String> collectionType() {
+        return this.collectionType;
+    }
+    /**
      * Criteria to use for archiving data.
      * 
      */

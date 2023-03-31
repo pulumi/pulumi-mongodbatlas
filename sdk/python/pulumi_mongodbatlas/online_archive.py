@@ -21,6 +21,7 @@ class OnlineArchiveArgs:
                  criteria: pulumi.Input['OnlineArchiveCriteriaArgs'],
                  db_name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
+                 collection_type: Optional[pulumi.Input[str]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  sync_creation: Optional[pulumi.Input[bool]] = None):
@@ -31,6 +32,7 @@ class OnlineArchiveArgs:
         :param pulumi.Input['OnlineArchiveCriteriaArgs'] criteria: Criteria to use for archiving data.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
         :param pulumi.Input[str] project_id: The unique ID for the project
+        :param pulumi.Input[str] collection_type: Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
         :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
         :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
         """
@@ -39,6 +41,8 @@ class OnlineArchiveArgs:
         pulumi.set(__self__, "criteria", criteria)
         pulumi.set(__self__, "db_name", db_name)
         pulumi.set(__self__, "project_id", project_id)
+        if collection_type is not None:
+            pulumi.set(__self__, "collection_type", collection_type)
         if partition_fields is not None:
             pulumi.set(__self__, "partition_fields", partition_fields)
         if paused is not None:
@@ -107,6 +111,18 @@ class OnlineArchiveArgs:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="collectionType")
+    def collection_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        """
+        return pulumi.get(self, "collection_type")
+
+    @collection_type.setter
+    def collection_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "collection_type", value)
+
+    @property
     @pulumi.getter(name="partitionFields")
     def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
         """
@@ -146,6 +162,7 @@ class _OnlineArchiveState:
                  archive_id: Optional[pulumi.Input[str]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  coll_name: Optional[pulumi.Input[str]] = None,
+                 collection_type: Optional[pulumi.Input[str]] = None,
                  criteria: Optional[pulumi.Input['OnlineArchiveCriteriaArgs']] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
@@ -158,6 +175,7 @@ class _OnlineArchiveState:
         :param pulumi.Input[str] archive_id: ID of the online archive.
         :param pulumi.Input[str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[str] coll_name: Name of the collection.
+        :param pulumi.Input[str] collection_type: Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
         :param pulumi.Input['OnlineArchiveCriteriaArgs'] criteria: Criteria to use for archiving data.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
         :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
@@ -171,6 +189,8 @@ class _OnlineArchiveState:
             pulumi.set(__self__, "cluster_name", cluster_name)
         if coll_name is not None:
             pulumi.set(__self__, "coll_name", coll_name)
+        if collection_type is not None:
+            pulumi.set(__self__, "collection_type", collection_type)
         if criteria is not None:
             pulumi.set(__self__, "criteria", criteria)
         if db_name is not None:
@@ -221,6 +241,18 @@ class _OnlineArchiveState:
     @coll_name.setter
     def coll_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "coll_name", value)
+
+    @property
+    @pulumi.getter(name="collectionType")
+    def collection_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        """
+        return pulumi.get(self, "collection_type")
+
+    @collection_type.setter
+    def collection_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "collection_type", value)
 
     @property
     @pulumi.getter
@@ -311,6 +343,7 @@ class OnlineArchive(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  coll_name: Optional[pulumi.Input[str]] = None,
+                 collection_type: Optional[pulumi.Input[str]] = None,
                  criteria: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
@@ -333,6 +366,7 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[str] coll_name: Name of the collection.
+        :param pulumi.Input[str] collection_type: Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
         :param pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']] criteria: Criteria to use for archiving data.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
@@ -373,6 +407,7 @@ class OnlineArchive(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  coll_name: Optional[pulumi.Input[str]] = None,
+                 collection_type: Optional[pulumi.Input[str]] = None,
                  criteria: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
@@ -394,6 +429,7 @@ class OnlineArchive(pulumi.CustomResource):
             if coll_name is None and not opts.urn:
                 raise TypeError("Missing required property 'coll_name'")
             __props__.__dict__["coll_name"] = coll_name
+            __props__.__dict__["collection_type"] = collection_type
             if criteria is None and not opts.urn:
                 raise TypeError("Missing required property 'criteria'")
             __props__.__dict__["criteria"] = criteria
@@ -421,6 +457,7 @@ class OnlineArchive(pulumi.CustomResource):
             archive_id: Optional[pulumi.Input[str]] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
             coll_name: Optional[pulumi.Input[str]] = None,
+            collection_type: Optional[pulumi.Input[str]] = None,
             criteria: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']]] = None,
             db_name: Optional[pulumi.Input[str]] = None,
             partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
@@ -438,6 +475,7 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[str] archive_id: ID of the online archive.
         :param pulumi.Input[str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[str] coll_name: Name of the collection.
+        :param pulumi.Input[str] collection_type: Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
         :param pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']] criteria: Criteria to use for archiving data.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
@@ -452,6 +490,7 @@ class OnlineArchive(pulumi.CustomResource):
         __props__.__dict__["archive_id"] = archive_id
         __props__.__dict__["cluster_name"] = cluster_name
         __props__.__dict__["coll_name"] = coll_name
+        __props__.__dict__["collection_type"] = collection_type
         __props__.__dict__["criteria"] = criteria
         __props__.__dict__["db_name"] = db_name
         __props__.__dict__["partition_fields"] = partition_fields
@@ -484,6 +523,14 @@ class OnlineArchive(pulumi.CustomResource):
         Name of the collection.
         """
         return pulumi.get(self, "coll_name")
+
+    @property
+    @pulumi.getter(name="collectionType")
+    def collection_type(self) -> pulumi.Output[str]:
+        """
+        Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        """
+        return pulumi.get(self, "collection_type")
 
     @property
     @pulumi.getter

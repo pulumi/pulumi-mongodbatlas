@@ -50,6 +50,21 @@ public final class OnlineArchiveArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * 
+     */
+    @Import(name="collectionType")
+    private @Nullable Output<String> collectionType;
+
+    /**
+     * @return Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * 
+     */
+    public Optional<Output<String>> collectionType() {
+        return Optional.ofNullable(this.collectionType);
+    }
+
+    /**
      * Criteria to use for archiving data.
      * 
      */
@@ -136,6 +151,7 @@ public final class OnlineArchiveArgs extends com.pulumi.resources.ResourceArgs {
     private OnlineArchiveArgs(OnlineArchiveArgs $) {
         this.clusterName = $.clusterName;
         this.collName = $.collName;
+        this.collectionType = $.collectionType;
         this.criteria = $.criteria;
         this.dbName = $.dbName;
         this.partitionFields = $.partitionFields;
@@ -202,6 +218,27 @@ public final class OnlineArchiveArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder collName(String collName) {
             return collName(Output.of(collName));
+        }
+
+        /**
+         * @param collectionType Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder collectionType(@Nullable Output<String> collectionType) {
+            $.collectionType = collectionType;
+            return this;
+        }
+
+        /**
+         * @param collectionType Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder collectionType(String collectionType) {
+            return collectionType(Output.of(collectionType));
         }
 
         /**

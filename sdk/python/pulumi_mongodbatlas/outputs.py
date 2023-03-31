@@ -14692,6 +14692,7 @@ class GetOnlineArchivesResultResult(dict):
                  archive_id: str,
                  cluster_name: str,
                  coll_name: str,
+                 collection_type: str,
                  criterias: Sequence['outputs.GetOnlineArchivesResultCriteriaResult'],
                  db_name: str,
                  partition_fields: Sequence['outputs.GetOnlineArchivesResultPartitionFieldResult'],
@@ -14705,6 +14706,7 @@ class GetOnlineArchivesResultResult(dict):
         pulumi.set(__self__, "archive_id", archive_id)
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "coll_name", coll_name)
+        pulumi.set(__self__, "collection_type", collection_type)
         pulumi.set(__self__, "criterias", criterias)
         pulumi.set(__self__, "db_name", db_name)
         pulumi.set(__self__, "partition_fields", partition_fields)
@@ -14729,6 +14731,11 @@ class GetOnlineArchivesResultResult(dict):
     @pulumi.getter(name="collName")
     def coll_name(self) -> str:
         return pulumi.get(self, "coll_name")
+
+    @property
+    @pulumi.getter(name="collectionType")
+    def collection_type(self) -> str:
+        return pulumi.get(self, "collection_type")
 
     @property
     @pulumi.getter

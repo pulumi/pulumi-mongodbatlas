@@ -69,7 +69,7 @@ class AwaitableGetNetworkPeeringsResult(GetNetworkPeeringsResult):
 def get_network_peerings(project_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkPeeringsResult:
     """
-    _get_network_peerings_ describes all Network Peering Connections.
+    `get_network_peerings` describes all Network Peering Connections.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
@@ -109,7 +109,7 @@ def get_network_peerings(project_id: Optional[str] = None,
 def get_network_peerings_output(project_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkPeeringsResult]:
     """
-    _get_network_peerings_ describes all Network Peering Connections.
+    `get_network_peerings` describes all Network Peering Connections.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 

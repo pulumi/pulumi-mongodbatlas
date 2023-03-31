@@ -58,6 +58,10 @@ export class OnlineArchive extends pulumi.CustomResource {
      */
     public readonly collName!: pulumi.Output<string>;
     /**
+     * Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+     */
+    public readonly collectionType!: pulumi.Output<string>;
+    /**
      * Criteria to use for archiving data.
      */
     public readonly criteria!: pulumi.Output<outputs.OnlineArchiveCriteria>;
@@ -99,6 +103,7 @@ export class OnlineArchive extends pulumi.CustomResource {
             resourceInputs["archiveId"] = state ? state.archiveId : undefined;
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
             resourceInputs["collName"] = state ? state.collName : undefined;
+            resourceInputs["collectionType"] = state ? state.collectionType : undefined;
             resourceInputs["criteria"] = state ? state.criteria : undefined;
             resourceInputs["dbName"] = state ? state.dbName : undefined;
             resourceInputs["partitionFields"] = state ? state.partitionFields : undefined;
@@ -125,6 +130,7 @@ export class OnlineArchive extends pulumi.CustomResource {
             }
             resourceInputs["clusterName"] = args ? args.clusterName : undefined;
             resourceInputs["collName"] = args ? args.collName : undefined;
+            resourceInputs["collectionType"] = args ? args.collectionType : undefined;
             resourceInputs["criteria"] = args ? args.criteria : undefined;
             resourceInputs["dbName"] = args ? args.dbName : undefined;
             resourceInputs["partitionFields"] = args ? args.partitionFields : undefined;
@@ -155,6 +161,10 @@ export interface OnlineArchiveState {
      * Name of the collection.
      */
     collName?: pulumi.Input<string>;
+    /**
+     * Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+     */
+    collectionType?: pulumi.Input<string>;
     /**
      * Criteria to use for archiving data.
      */
@@ -194,6 +204,10 @@ export interface OnlineArchiveArgs {
      * Name of the collection.
      */
     collName: pulumi.Input<string>;
+    /**
+     * Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+     */
+    collectionType?: pulumi.Input<string>;
     /**
      * Criteria to use for archiving data.
      */

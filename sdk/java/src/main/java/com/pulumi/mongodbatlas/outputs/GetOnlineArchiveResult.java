@@ -16,6 +16,7 @@ public final class GetOnlineArchiveResult {
     private String archiveId;
     private String clusterName;
     private String collName;
+    private String collectionType;
     private List<GetOnlineArchiveCriteria> criterias;
     private String dbName;
     /**
@@ -37,6 +38,9 @@ public final class GetOnlineArchiveResult {
     }
     public String collName() {
         return this.collName;
+    }
+    public String collectionType() {
+        return this.collectionType;
     }
     public List<GetOnlineArchiveCriteria> criterias() {
         return this.criterias;
@@ -76,6 +80,7 @@ public final class GetOnlineArchiveResult {
         private String archiveId;
         private String clusterName;
         private String collName;
+        private String collectionType;
         private List<GetOnlineArchiveCriteria> criterias;
         private String dbName;
         private String id;
@@ -89,6 +94,7 @@ public final class GetOnlineArchiveResult {
     	      this.archiveId = defaults.archiveId;
     	      this.clusterName = defaults.clusterName;
     	      this.collName = defaults.collName;
+    	      this.collectionType = defaults.collectionType;
     	      this.criterias = defaults.criterias;
     	      this.dbName = defaults.dbName;
     	      this.id = defaults.id;
@@ -111,6 +117,11 @@ public final class GetOnlineArchiveResult {
         @CustomType.Setter
         public Builder collName(String collName) {
             this.collName = Objects.requireNonNull(collName);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder collectionType(String collectionType) {
+            this.collectionType = Objects.requireNonNull(collectionType);
             return this;
         }
         @CustomType.Setter
@@ -159,6 +170,7 @@ public final class GetOnlineArchiveResult {
             o.archiveId = archiveId;
             o.clusterName = clusterName;
             o.collName = collName;
+            o.collectionType = collectionType;
             o.criterias = criterias;
             o.dbName = dbName;
             o.id = id;

@@ -29,6 +29,7 @@ import * as utilities from "./utilities";
  * * `archiveId`         - ID of the online archive.
  * * `dbName`          -  Name of the database that contains the collection.
  * * `collName`        -  Name of the collection.
+ * * `collectionType`  -  Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
  * * `criteria`         -  Criteria to use for archiving data.
  * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
  * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expireAfterDays` parameter.
@@ -103,6 +104,7 @@ export interface GetOnlineArchivesResult {
  * * `archiveId`         - ID of the online archive.
  * * `dbName`          -  Name of the database that contains the collection.
  * * `collName`        -  Name of the collection.
+ * * `collectionType`  -  Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
  * * `criteria`         -  Criteria to use for archiving data.
  * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
  * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expireAfterDays` parameter.

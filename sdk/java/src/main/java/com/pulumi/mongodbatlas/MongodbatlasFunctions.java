@@ -6637,6 +6637,7 @@ public final class MongodbatlasFunctions {
      * 
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
+     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria`         -  Criteria to use for archiving data.
      * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
      * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.
@@ -6696,6 +6697,7 @@ public final class MongodbatlasFunctions {
      * 
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
+     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria`         -  Criteria to use for archiving data.
      * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
      * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.
@@ -6755,6 +6757,7 @@ public final class MongodbatlasFunctions {
      * 
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
+     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria`         -  Criteria to use for archiving data.
      * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
      * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.
@@ -6814,6 +6817,7 @@ public final class MongodbatlasFunctions {
      * 
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
+     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria`         -  Criteria to use for archiving data.
      * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
      * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.
@@ -6875,6 +6879,7 @@ public final class MongodbatlasFunctions {
      * * `archive_id`         - ID of the online archive.
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
+     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria`         -  Criteria to use for archiving data.
      * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
      * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.
@@ -6936,6 +6941,7 @@ public final class MongodbatlasFunctions {
      * * `archive_id`         - ID of the online archive.
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
+     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria`         -  Criteria to use for archiving data.
      * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
      * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.
@@ -6997,6 +7003,7 @@ public final class MongodbatlasFunctions {
      * * `archive_id`         - ID of the online archive.
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
+     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria`         -  Criteria to use for archiving data.
      * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
      * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.
@@ -7058,6 +7065,7 @@ public final class MongodbatlasFunctions {
      * * `archive_id`         - ID of the online archive.
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
+     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * * `criteria`         -  Criteria to use for archiving data.
      * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
      * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.

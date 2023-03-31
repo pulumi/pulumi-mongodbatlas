@@ -22,7 +22,7 @@ class GetOnlineArchiveResult:
     """
     A collection of values returned by getOnlineArchive.
     """
-    def __init__(__self__, archive_id=None, cluster_name=None, coll_name=None, criterias=None, db_name=None, id=None, partition_fields=None, paused=None, project_id=None, state=None):
+    def __init__(__self__, archive_id=None, cluster_name=None, coll_name=None, collection_type=None, criterias=None, db_name=None, id=None, partition_fields=None, paused=None, project_id=None, state=None):
         if archive_id and not isinstance(archive_id, str):
             raise TypeError("Expected argument 'archive_id' to be a str")
         pulumi.set(__self__, "archive_id", archive_id)
@@ -32,6 +32,9 @@ class GetOnlineArchiveResult:
         if coll_name and not isinstance(coll_name, str):
             raise TypeError("Expected argument 'coll_name' to be a str")
         pulumi.set(__self__, "coll_name", coll_name)
+        if collection_type and not isinstance(collection_type, str):
+            raise TypeError("Expected argument 'collection_type' to be a str")
+        pulumi.set(__self__, "collection_type", collection_type)
         if criterias and not isinstance(criterias, list):
             raise TypeError("Expected argument 'criterias' to be a list")
         pulumi.set(__self__, "criterias", criterias)
@@ -68,6 +71,11 @@ class GetOnlineArchiveResult:
     @pulumi.getter(name="collName")
     def coll_name(self) -> str:
         return pulumi.get(self, "coll_name")
+
+    @property
+    @pulumi.getter(name="collectionType")
+    def collection_type(self) -> str:
+        return pulumi.get(self, "collection_type")
 
     @property
     @pulumi.getter
@@ -117,6 +125,7 @@ class AwaitableGetOnlineArchiveResult(GetOnlineArchiveResult):
             archive_id=self.archive_id,
             cluster_name=self.cluster_name,
             coll_name=self.coll_name,
+            collection_type=self.collection_type,
             criterias=self.criterias,
             db_name=self.db_name,
             id=self.id,
@@ -149,6 +158,7 @@ def get_online_archive(archive_id: Optional[str] = None,
 
     * `db_name`          -  Name of the database that contains the collection.
     * `coll_name`        -  Name of the collection.
+    * `collection_type`  -  Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
     * `criteria`         -  Criteria to use for archiving data.
     * `criteria.type`          - Type of criteria (DATE, CUSTOM)
     * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.
@@ -180,6 +190,7 @@ def get_online_archive(archive_id: Optional[str] = None,
         archive_id=__ret__.archive_id,
         cluster_name=__ret__.cluster_name,
         coll_name=__ret__.coll_name,
+        collection_type=__ret__.collection_type,
         criterias=__ret__.criterias,
         db_name=__ret__.db_name,
         id=__ret__.id,
@@ -213,6 +224,7 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
 
     * `db_name`          -  Name of the database that contains the collection.
     * `coll_name`        -  Name of the collection.
+    * `collection_type`  -  Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
     * `criteria`         -  Criteria to use for archiving data.
     * `criteria.type`          - Type of criteria (DATE, CUSTOM)
     * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.
