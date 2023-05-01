@@ -16,6 +16,8 @@ package mongodbatlas
 
 import (
 	"fmt"
+	// embed is used to store bridge-metadata.json in the compiled binary
+	_ "embed"
 	"path/filepath"
 	"unicode"
 
@@ -299,12 +301,14 @@ func Provider() tfbridge.ProviderInfo {
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
-		},
+		}, MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}
 
 	err := x.ComputeDefaults(&prov, x.TokensSingleModule("mongodbatlas_", mainMod,
 		x.MakeStandardToken(mainPkg)))
 	contract.AssertNoErrorf(err, "auto token mapping failed")
+	err = x.AutoAliasing(&prov, prov.GetMetadata())
+	contract.AssertNoErrorf(err, "auto aliasing apply failed")
 
 	prov.SetAutonaming(255, "-")
 
@@ -314,3 +318,6 @@ func Provider() tfbridge.ProviderInfo {
 var noUpstreamDocs = &tfbridge.DocInfo{
 	Markdown: []byte(" "),
 }
+
+//go:embed cmd/pulumi-resource-mongodbatlas/bridge-metadata.json
+var metadata []byte
