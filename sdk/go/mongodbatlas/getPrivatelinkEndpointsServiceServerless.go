@@ -30,6 +30,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "testServerlessInstance", &mongodbatlas.ServerlessInstanceArgs{
 //				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				Name:                                pulumi.String("test-db"),
 //				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
 //				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
 //				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
@@ -82,6 +83,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "testServerlessInstance", &mongodbatlas.ServerlessInstanceArgs{
 //				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				Name:                                pulumi.String("test-db"),
 //				ProviderSettingsBackingProviderName: pulumi.String("AZURE"),
 //				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
 //				ProviderSettingsRegionName:          pulumi.String("US_EAST"),

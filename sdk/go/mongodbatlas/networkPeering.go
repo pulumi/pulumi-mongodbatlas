@@ -116,8 +116,8 @@ import (
 //			}
 //			_, err = mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
+//				Name:        pulumi.String("terraform-manually-test"),
 //				NumShards:   pulumi.Int(1),
-//				DiskSizeGb:  pulumi.Float64(5),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{
@@ -184,6 +184,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
+//				Name:        pulumi.String("terraform-manually-test"),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{
@@ -232,7 +233,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
-//				DiskSizeGb:  pulumi.Float64(5),
+//				Name:        pulumi.String("terraform-test"),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{
@@ -308,7 +309,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
-//				DiskSizeGb:  pulumi.Float64(5),
+//				Name:        pulumi.String("terraform-manually-test"),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{
@@ -380,6 +381,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
+//				Name:        pulumi.String("cluster-azure"),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{

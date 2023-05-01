@@ -44,15 +44,15 @@ public final class ServerlessInstanceArgs extends com.pulumi.resources.ResourceA
      * Human-readable label that identifies the serverless instance.
      * 
      */
-    @Import(name="name")
-    private @Nullable Output<String> name;
+    @Import(name="name", required=true)
+    private Output<String> name;
 
     /**
      * @return Human-readable label that identifies the serverless instance.
      * 
      */
-    public Optional<Output<String>> name() {
-        return Optional.ofNullable(this.name);
+    public Output<String> name() {
+        return this.name;
     }
 
     /**
@@ -217,7 +217,7 @@ public final class ServerlessInstanceArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder name(@Nullable Output<String> name) {
+        public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
@@ -359,6 +359,7 @@ public final class ServerlessInstanceArgs extends com.pulumi.resources.ResourceA
         }
 
         public ServerlessInstanceArgs build() {
+            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
             $.providerSettingsBackingProviderName = Objects.requireNonNull($.providerSettingsBackingProviderName, "expected parameter 'providerSettingsBackingProviderName' to be non-null");
             $.providerSettingsProviderName = Objects.requireNonNull($.providerSettingsProviderName, "expected parameter 'providerSettingsProviderName' to be non-null");

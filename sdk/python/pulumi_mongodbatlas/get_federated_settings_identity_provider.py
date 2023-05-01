@@ -237,6 +237,7 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
 
     identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
         federation_settings_id="627a9687f7f7f7f774de306f14",
+        name="mongodb_federation_test",
         associated_domains=["yourdomain.com"],
         sso_debug_enabled=True,
         status="ACTIVE",
@@ -292,6 +293,7 @@ def get_federated_settings_identity_provider_output(federation_settings_id: Opti
 
     identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
         federation_settings_id="627a9687f7f7f7f774de306f14",
+        name="mongodb_federation_test",
         associated_domains=["yourdomain.com"],
         sso_debug_enabled=True,
         status="ACTIVE",

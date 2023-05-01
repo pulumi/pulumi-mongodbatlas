@@ -20,6 +20,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -28,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.Cluster("test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-    ///         DiskSizeGb = 80,
+    ///         Name = "&lt;CLUSTER-NAME&gt;",
     ///         CloudBackup = true,
     ///         ClusterType = "GEOSHARDED",
     ///         ProviderName = "AWS",
@@ -100,6 +101,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -108,6 +110,7 @@ namespace Pulumi.Mongodbatlas
     ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         Name = "cluster-test",
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
@@ -130,7 +133,6 @@ namespace Pulumi.Mongodbatlas
     ///         AutoScalingDiskGbEnabled = true,
     ///         MongoDbMajorVersion = "4.0",
     ///         ProviderName = "AWS",
-    ///         DiskSizeGb = 100,
     ///         ProviderInstanceSizeName = "M40",
     ///     });
     /// 

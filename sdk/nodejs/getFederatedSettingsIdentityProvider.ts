@@ -17,6 +17,7 @@ import * as utilities from "./utilities";
  *
  * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     name: "mongodb_federation_test",
  *     associatedDomains: ["yourdomain.com"],
  *     ssoDebugEnabled: true,
  *     status: "ACTIVE",
@@ -132,6 +133,7 @@ export interface GetFederatedSettingsIdentityProviderResult {
  *
  * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     name: "mongodb_federation_test",
  *     associatedDomains: ["yourdomain.com"],
  *     ssoDebugEnabled: true,
  *     status: "ACTIVE",

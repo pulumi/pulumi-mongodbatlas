@@ -18,6 +18,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Example Usage: Database Trigger with Function
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -27,6 +28,7 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         AppId = "APPLICATION ID",
+    ///         Name = "NAME OF THE TRIGGER",
     ///         Type = "DATABASE",
     ///         FunctionId = "FUNCTION ID",
     ///         Disabled = false,
@@ -62,6 +64,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Example Usage: Database Trigger with EventBridge
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -97,6 +100,7 @@ namespace Pulumi.Mongodbatlas
     ///                 ConfigRegion = "AWS REGIOn",
     ///             },
     ///         },
+    ///         Name = "NAME OF THE TRIGGER",
     ///         ProjectId = "PROJECT ID",
     ///         Type = "DATABASE",
     ///         Unordered = false,
@@ -107,6 +111,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Example Usage: Authentication Trigger
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -122,6 +127,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///         Disabled = false,
     ///         FunctionId = "1",
+    ///         Name = "NAME OF THE TRIGGER",
     ///         ProjectId = "PROJECT ID",
     ///         Type = "AUTHENTICATION",
     ///     });
@@ -131,6 +137,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Example Usage: Scheduled Trigger
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -142,6 +149,7 @@ namespace Pulumi.Mongodbatlas
     ///         ConfigSchedule = "*",
     ///         Disabled = false,
     ///         FunctionId = "1",
+    ///         Name = "NAME OF THE TRIGGER",
     ///         ProjectId = "PROJECT ID",
     ///         Type = "SCHEDULED",
     ///     });
@@ -442,8 +450,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The name of the trigger.
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The unique ID for the project to create the trigger.

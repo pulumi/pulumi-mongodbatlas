@@ -28,6 +28,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -36,7 +37,7 @@ namespace Pulumi.Mongodbatlas
     ///     var myCluster = new Mongodbatlas.Cluster("myCluster", new()
     ///     {
     ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
-    ///         DiskSizeGb = 5,
+    ///         Name = "MyCluster",
     ///         ProviderName = "AWS",
     ///         ProviderRegionName = "EU_WEST_2",
     ///         ProviderInstanceSizeName = "M10",
@@ -77,6 +78,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -85,7 +87,7 @@ namespace Pulumi.Mongodbatlas
     ///     var myCluster = new Mongodbatlas.Cluster("myCluster", new()
     ///     {
     ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
-    ///         DiskSizeGb = 5,
+    ///         Name = "MyCluster",
     ///         ProviderName = "AWS",
     ///         ProviderRegionName = "EU_WEST_2",
     ///         ProviderInstanceSizeName = "M10",

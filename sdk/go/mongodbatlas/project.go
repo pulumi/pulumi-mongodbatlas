@@ -30,6 +30,7 @@ import (
 //				return err
 //			}
 //			_, err = mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				Name:           pulumi.String("project-name"),
 //				OrgId:          *pulumi.String(testRolesOrgId.OrgId),
 //				ProjectOwnerId: pulumi.String("<OWNER_ACCOUNT_ID>"),
 //				Teams: mongodbatlas.ProjectTeamArray{
@@ -119,6 +120,9 @@ func NewProject(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.OrgId == nil {
 		return nil, errors.New("invalid value for required argument 'OrgId'")
 	}
@@ -218,7 +222,7 @@ type projectArgs struct {
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled *bool `pulumi:"isSchemaAdvisorEnabled"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId string `pulumi:"orgId"`
 	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
@@ -244,7 +248,7 @@ type ProjectArgs struct {
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolPtrInput
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringInput
 	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).

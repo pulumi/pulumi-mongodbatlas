@@ -48,12 +48,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+ *             .name(&#34;NAME OF THE PROJECT&#34;)
  *             .orgId(&#34;ORG ID&#34;)
  *             .build());
  * 
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
  *             .projectId(testProject.id())
- *             .diskSizeGb(5)
+ *             .name(&#34;NAME OF THE CLUSTER&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .providerRegionName(&#34;US_EAST_2&#34;)
  *             .providerInstanceSizeName(&#34;M10&#34;)

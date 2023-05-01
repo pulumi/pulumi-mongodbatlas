@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  *     associatedDomains: ["yourdomain.com"],
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     issuerUri: "http://www.okta.com/exk17q7f7f7f7fp50h8",
+ *     name: "mongodb_federation_test",
  *     requestBinding: "HTTP-POST",
  *     responseSignatureAlgorithm: "SHA-256",
  *     ssoDebugEnabled: true,
@@ -138,6 +139,9 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
             if ((!args || args.issuerUri === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'issuerUri'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.requestBinding === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'requestBinding'");
             }
@@ -236,7 +240,7 @@ export interface FederatedSettingsIdentityProviderArgs {
     /**
      * Human-readable label that identifies the identity provider.
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
      * - HTTP POST

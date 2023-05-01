@@ -32,6 +32,7 @@ import (
 //			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
 //				ProjectId:  pulumi.String("PROJECT ID"),
 //				AppId:      pulumi.String("APPLICATION ID"),
+//				Name:       pulumi.String("NAME OF THE TRIGGER"),
 //				Type:       pulumi.String("DATABASE"),
 //				FunctionId: pulumi.String("FUNCTION ID"),
 //				Disabled:   pulumi.Bool(false),
@@ -99,6 +100,7 @@ import (
 //						ConfigRegion:    pulumi.String("AWS REGIOn"),
 //					},
 //				},
+//				Name:      pulumi.String("NAME OF THE TRIGGER"),
 //				ProjectId: pulumi.String("PROJECT ID"),
 //				Type:      pulumi.String("DATABASE"),
 //				Unordered: pulumi.Bool(false),
@@ -132,6 +134,7 @@ import (
 //				},
 //				Disabled:   pulumi.Bool(false),
 //				FunctionId: pulumi.String("1"),
+//				Name:       pulumi.String("NAME OF THE TRIGGER"),
 //				ProjectId:  pulumi.String("PROJECT ID"),
 //				Type:       pulumi.String("AUTHENTICATION"),
 //			})
@@ -161,6 +164,7 @@ import (
 //				ConfigSchedule: pulumi.String("*"),
 //				Disabled:       pulumi.Bool(false),
 //				FunctionId:     pulumi.String("1"),
+//				Name:           pulumi.String("NAME OF THE TRIGGER"),
 //				ProjectId:      pulumi.String("PROJECT ID"),
 //				Type:           pulumi.String("SCHEDULED"),
 //			})
@@ -243,6 +247,9 @@ func NewEventTrigger(ctx *pulumi.Context,
 
 	if args.AppId == nil {
 		return nil, errors.New("invalid value for required argument 'AppId'")
+	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -405,7 +412,7 @@ type eventTriggerArgs struct {
 	// The ID of the function associated with the trigger.
 	FunctionId *string `pulumi:"functionId"`
 	// The name of the trigger.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The unique ID for the project to create the trigger.
 	ProjectId string `pulumi:"projectId"`
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
@@ -449,7 +456,7 @@ type EventTriggerArgs struct {
 	// The ID of the function associated with the trigger.
 	FunctionId pulumi.StringPtrInput
 	// The name of the trigger.
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The unique ID for the project to create the trigger.
 	ProjectId pulumi.StringInput
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`

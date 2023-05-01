@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
  *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .diskSizeGb(80)
+ *             .name(&#34;&lt;CLUSTER-NAME&gt;&#34;)
  *             .cloudBackup(true)
  *             .clusterType(&#34;GEOSHARDED&#34;)
  *             .providerName(&#34;AWS&#34;)
@@ -132,6 +132,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
  *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .name(&#34;cluster-test&#34;)
  *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
@@ -146,7 +147,6 @@ import javax.annotation.Nullable;
  *             .autoScalingDiskGbEnabled(true)
  *             .mongoDbMajorVersion(&#34;4.0&#34;)
  *             .providerName(&#34;AWS&#34;)
- *             .diskSizeGb(100)
  *             .providerInstanceSizeName(&#34;M40&#34;)
  *             .build());
  * 

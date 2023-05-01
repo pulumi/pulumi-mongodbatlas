@@ -129,8 +129,8 @@ import javax.annotation.Nullable;
  * 
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
  *             .projectId(local.project_id())
+ *             .name(&#34;terraform-manually-test&#34;)
  *             .numShards(1)
- *             .diskSizeGb(5)
  *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
@@ -199,6 +199,7 @@ import javax.annotation.Nullable;
  * 
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
  *             .projectId(local.project_id())
+ *             .name(&#34;terraform-manually-test&#34;)
  *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
@@ -254,7 +255,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
  *             .projectId(local.project_id())
- *             .diskSizeGb(5)
+ *             .name(&#34;terraform-test&#34;)
  *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
@@ -325,7 +326,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
  *             .projectId(local.project_id())
- *             .diskSizeGb(5)
+ *             .name(&#34;terraform-manually-test&#34;)
  *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
@@ -394,6 +395,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
  *             .projectId(local.project_id())
+ *             .name(&#34;cluster-azure&#34;)
  *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)

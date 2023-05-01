@@ -73,8 +73,8 @@ import * as utilities from "./utilities";
  * // Create the cluster once the peering connection is completed
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: local.project_id,
+ *     name: "terraform-manually-test",
  *     numShards: 1,
- *     diskSizeGb: 5,
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -122,6 +122,7 @@ import * as utilities from "./utilities";
  * // Create the cluster once the peering connection is completed
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: local.project_id,
+ *     name: "terraform-manually-test",
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -153,7 +154,7 @@ import * as utilities from "./utilities";
  * // does not yet exist for this AWS region
  * const test = new mongodbatlas.Cluster("test", {
  *     projectId: local.project_id,
- *     diskSizeGb: 5,
+ *     name: "terraform-test",
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -202,7 +203,7 @@ import * as utilities from "./utilities";
  * // does not yet exist for this GCP 
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: local.project_id,
- *     diskSizeGb: 5,
+ *     name: "terraform-manually-test",
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -248,6 +249,7 @@ import * as utilities from "./utilities";
  * // does not yet exist for this AZURE region
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: local.project_id,
+ *     name: "cluster-azure",
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,

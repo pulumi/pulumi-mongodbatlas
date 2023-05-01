@@ -17,6 +17,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -30,6 +31,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
     ///         IssuerUri = "http://www.okta.com/exk17q7f7f7f7fp50h8",
+    ///         Name = "mongodb_federation_test",
     ///         RequestBinding = "HTTP-POST",
     ///         ResponseSignatureAlgorithm = "SHA-256",
     ///         SsoDebugEnabled = true,
@@ -188,8 +190,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Human-readable label that identifies the identity provider.
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:

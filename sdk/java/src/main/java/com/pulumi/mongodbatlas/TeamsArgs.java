@@ -8,19 +8,17 @@ import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class TeamsArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final TeamsArgs Empty = new TeamsArgs();
 
-    @Import(name="name")
-    private @Nullable Output<String> name;
+    @Import(name="name", required=true)
+    private Output<String> name;
 
-    public Optional<Output<String>> name() {
-        return Optional.ofNullable(this.name);
+    public Output<String> name() {
+        return this.name;
     }
 
     @Import(name="orgId", required=true)
@@ -63,7 +61,7 @@ public final class TeamsArgs extends com.pulumi.resources.ResourceArgs {
             $ = new TeamsArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder name(@Nullable Output<String> name) {
+        public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
@@ -95,6 +93,7 @@ public final class TeamsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public TeamsArgs build() {
+            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
             $.usernames = Objects.requireNonNull($.usernames, "expected parameter 'usernames' to be non-null");
             return $;

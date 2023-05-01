@@ -292,6 +292,9 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["versionReleaseSystem"] = state ? state.versionReleaseSystem : undefined;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -612,7 +615,7 @@ export interface ClusterArgs {
     /**
      * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */

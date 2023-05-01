@@ -256,8 +256,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         [Input("paused")]
         public Input<bool>? Paused { get; set; }

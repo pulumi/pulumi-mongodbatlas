@@ -173,6 +173,9 @@ export class AdvancedCluster extends pulumi.CustomResource {
             if ((!args || args.clusterType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterType'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -342,7 +345,7 @@ export interface AdvancedClusterArgs {
     /**
      * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     paused?: pulumi.Input<boolean>;
     /**
      * Flag that indicates if the cluster uses Continuous Cloud Backup.

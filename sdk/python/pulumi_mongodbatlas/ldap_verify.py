@@ -334,10 +334,12 @@ class LdapVerify(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_project = mongodbatlas.Project("testProject",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
         test_cluster = mongodbatlas.Cluster("testCluster",
             project_id=test_project.id,
-            disk_size_gb=5,
+            name="NAME OF THE CLUSTER",
             provider_name="AWS",
             provider_region_name="US_EAST_2",
             provider_instance_size_name="M10",
@@ -387,10 +389,12 @@ class LdapVerify(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_project = mongodbatlas.Project("testProject",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
         test_cluster = mongodbatlas.Cluster("testCluster",
             project_id=test_project.id,
-            disk_size_gb=5,
+            name="NAME OF THE CLUSTER",
             provider_name="AWS",
             provider_region_name="US_EAST_2",
             provider_instance_size_name="M10",

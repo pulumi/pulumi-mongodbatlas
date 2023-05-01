@@ -13,7 +13,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORG ID"});
+ * const testProject = new mongodbatlas.Project("testProject", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
  * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("testLdapConfiguration", {
  *     projectId: testProject.id,
  *     authenticationEnabled: true,
@@ -29,7 +32,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORG ID"});
+ * const testProject = new mongodbatlas.Project("testProject", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
  * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("testLdapConfiguration", {
  *     projectId: testProject.id,
  *     authenticationEnabled: true,

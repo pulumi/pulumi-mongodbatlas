@@ -354,7 +354,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
         my_cluster = mongodbatlas.Cluster("myCluster",
             project_id="5cf5a45a9ccf6400e60981b6",
-            disk_size_gb=5,
+            name="MyCluster",
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
@@ -384,7 +384,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
         my_cluster = mongodbatlas.Cluster("myCluster",
             project_id="5cf5a45a9ccf6400e60981b6",
-            disk_size_gb=5,
+            name="MyCluster",
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
@@ -451,7 +451,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
         my_cluster = mongodbatlas.Cluster("myCluster",
             project_id="5cf5a45a9ccf6400e60981b6",
-            disk_size_gb=5,
+            name="MyCluster",
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
@@ -481,7 +481,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
         my_cluster = mongodbatlas.Cluster("myCluster",
             project_id="5cf5a45a9ccf6400e60981b6",
-            disk_size_gb=5,
+            name="MyCluster",
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",

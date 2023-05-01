@@ -111,6 +111,7 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
 
     test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
         project_id="<PROJECT_ID>",
+        name="test-db",
         provider_settings_backing_provider_name="AWS",
         provider_settings_provider_name="SERVERLESS",
         provider_settings_region_name="US_EAST_1",
@@ -137,6 +138,7 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
 
     test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
         project_id="<PROJECT_ID>",
+        name="test-db",
         provider_settings_backing_provider_name="AZURE",
         provider_settings_provider_name="SERVERLESS",
         provider_settings_region_name="US_EAST",
@@ -195,6 +197,7 @@ def get_privatelink_endpoints_service_serverless_output(instance_name: Optional[
 
     test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
         project_id="<PROJECT_ID>",
+        name="test-db",
         provider_settings_backing_provider_name="AWS",
         provider_settings_provider_name="SERVERLESS",
         provider_settings_region_name="US_EAST_1",
@@ -221,6 +224,7 @@ def get_privatelink_endpoints_service_serverless_output(instance_name: Optional[
 
     test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
         project_id="<PROJECT_ID>",
+        name="test-db",
         provider_settings_backing_provider_name="AZURE",
         provider_settings_provider_name="SERVERLESS",
         provider_settings_region_name="US_EAST",

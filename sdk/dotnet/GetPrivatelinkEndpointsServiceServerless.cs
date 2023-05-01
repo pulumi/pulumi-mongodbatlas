@@ -20,6 +20,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -28,6 +29,7 @@ namespace Pulumi.Mongodbatlas
         ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "test-db",
         ///         ProviderSettingsBackingProviderName = "AWS",
         ///         ProviderSettingsProviderName = "SERVERLESS",
         ///         ProviderSettingsRegionName = "US_EAST_1",
@@ -63,6 +65,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -71,6 +74,7 @@ namespace Pulumi.Mongodbatlas
         ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "test-db",
         ///         ProviderSettingsBackingProviderName = "AZURE",
         ///         ProviderSettingsProviderName = "SERVERLESS",
         ///         ProviderSettingsRegionName = "US_EAST",
@@ -114,6 +118,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -122,6 +127,7 @@ namespace Pulumi.Mongodbatlas
         ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "test-db",
         ///         ProviderSettingsBackingProviderName = "AWS",
         ///         ProviderSettingsProviderName = "SERVERLESS",
         ///         ProviderSettingsRegionName = "US_EAST_1",
@@ -157,6 +163,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -165,6 +172,7 @@ namespace Pulumi.Mongodbatlas
         ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "test-db",
         ///         ProviderSettingsBackingProviderName = "AZURE",
         ///         ProviderSettingsProviderName = "SERVERLESS",
         ///         ProviderSettingsRegionName = "US_EAST",

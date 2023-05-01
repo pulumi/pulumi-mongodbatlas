@@ -70,8 +70,8 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class TeamsArgs : global::Pulumi.ResourceArgs
     {
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;

@@ -458,6 +458,121 @@ export interface AlertConfigurationThresholdConfig {
     units?: string;
 }
 
+export interface BackupCompliancePolicyOnDemandPolicyItem {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface BackupCompliancePolicyPolicyItemDaily {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface BackupCompliancePolicyPolicyItemHourly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface BackupCompliancePolicyPolicyItemMonthly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface BackupCompliancePolicyPolicyItemWeekly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
 export interface CloudBackupScheduleCopySetting {
     /**
      * Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
@@ -2007,6 +2122,121 @@ export interface GetApiKeysResult {
      * Name of the role. This resource returns all the roles the user has in Atlas.
      */
     roleNames: string[];
+}
+
+export interface GetBackupCompliancePolicyOnDemandPolicyItem {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemDaily {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemHourly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemMonthly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemWeekly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
 }
 
 export interface GetCloudBackupScheduleCopySetting {

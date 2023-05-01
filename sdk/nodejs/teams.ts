@@ -56,6 +56,9 @@ export class Teams extends pulumi.CustomResource {
             resourceInputs["usernames"] = state ? state.usernames : undefined;
         } else {
             const args = argsOrState as TeamsArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.orgId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
@@ -86,7 +89,7 @@ export interface TeamsState {
  * The set of arguments for constructing a Teams resource.
  */
 export interface TeamsArgs {
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     orgId: pulumi.Input<string>;
     usernames: pulumi.Input<pulumi.Input<string>[]>;
 }

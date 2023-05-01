@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  *
  * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
  *     providerSettingsBackingProviderName: "AWS",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST_1",
@@ -50,6 +51,7 @@ import * as utilities from "./utilities";
  *
  * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
  *     providerSettingsBackingProviderName: "AZURE",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST",
@@ -130,6 +132,7 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
  *
  * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
  *     providerSettingsBackingProviderName: "AWS",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST_1",
@@ -161,6 +164,7 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
  *
  * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
  *     providerSettingsBackingProviderName: "AZURE",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST",

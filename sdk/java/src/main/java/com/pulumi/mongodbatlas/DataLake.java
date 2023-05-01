@@ -48,6 +48,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+ *             .name(&#34;NAME OF THE PROJECT&#34;)
  *             .orgId(&#34;ORGANIZATION ID&#34;)
  *             .build());
  * 
@@ -59,6 +60,7 @@ import javax.annotation.Nullable;
  * 
  *         var basicDs = new DataLake(&#34;basicDs&#34;, DataLakeArgs.builder()        
  *             .projectId(testProject.id())
+ *             .name(&#34;DATA LAKE NAME&#34;)
  *             .aws(DataLakeAwsArgs.builder()
  *                 .roleId(testCloudProviderAccess.roleId())
  *                 .testS3Bucket(&#34;TEST S3 BUCKET NAME&#34;)

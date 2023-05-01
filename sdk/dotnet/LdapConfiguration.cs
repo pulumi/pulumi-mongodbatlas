@@ -14,6 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -21,6 +22,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var testProject = new Mongodbatlas.Project("testProject", new()
     ///     {
+    ///         Name = "NAME OF THE PROJECT",
     ///         OrgId = "ORG ID",
     ///     });
     /// 
@@ -40,6 +42,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -47,6 +50,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var testProject = new Mongodbatlas.Project("testProject", new()
     ///     {
+    ///         Name = "NAME OF THE PROJECT",
     ///         OrgId = "ORG ID",
     ///     });
     /// 

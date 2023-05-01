@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *
  * const myCluster = new mongodbatlas.Cluster("myCluster", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
- *     diskSizeGb: 5,
+ *     name: "MyCluster",
  *     providerName: "AWS",
  *     providerRegionName: "EU_WEST_2",
  *     providerInstanceSizeName: "M10",
@@ -63,7 +63,7 @@ import * as utilities from "./utilities";
  *
  * const myCluster = new mongodbatlas.Cluster("myCluster", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
- *     diskSizeGb: 5,
+ *     name: "MyCluster",
  *     providerName: "AWS",
  *     providerRegionName: "EU_WEST_2",
  *     providerInstanceSizeName: "M10",

@@ -33,6 +33,7 @@ import (
 //				return err
 //			}
 //			_, err = mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("project-name"),
 //				OrgId: *pulumi.String(testRolesOrgId.OrgId),
 //				Teams: mongodbatlas.ProjectTeamArray{
 //					&mongodbatlas.ProjectTeamArgs{

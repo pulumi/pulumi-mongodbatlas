@@ -17,6 +17,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
@@ -59,6 +60,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Gcp = Pulumi.Gcp;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
@@ -105,8 +107,8 @@ namespace Pulumi.Mongodbatlas
     ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
     ///     {
     ///         ProjectId = local.Project_id,
+    ///         Name = "terraform-manually-test",
     ///         NumShards = 1,
-    ///         DiskSizeGb = 5,
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
@@ -143,6 +145,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -176,6 +179,7 @@ namespace Pulumi.Mongodbatlas
     ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
     ///     {
     ///         ProjectId = local.Project_id,
+    ///         Name = "terraform-manually-test",
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
@@ -214,6 +218,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Example with AWS
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
@@ -225,7 +230,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.Cluster("test", new()
     ///     {
     ///         ProjectId = local.Project_id,
-    ///         DiskSizeGb = 5,
+    ///         Name = "terraform-test",
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
@@ -287,6 +292,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Example with GCP
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Gcp = Pulumi.Gcp;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
@@ -298,7 +304,7 @@ namespace Pulumi.Mongodbatlas
     ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
     ///     {
     ///         ProjectId = local.Project_id,
-    ///         DiskSizeGb = 5,
+    ///         Name = "terraform-manually-test",
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
@@ -357,6 +363,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -369,6 +376,7 @@ namespace Pulumi.Mongodbatlas
     ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
     ///     {
     ///         ProjectId = local.Project_id,
+    ///         Name = "cluster-azure",
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {

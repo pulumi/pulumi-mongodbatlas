@@ -20,6 +20,7 @@ import * as utilities from "./utilities";
  * const test = new mongodbatlas.EventTrigger("test", {
  *     projectId: "PROJECT ID",
  *     appId: "APPLICATION ID",
+ *     name: "NAME OF THE TRIGGER",
  *     type: "DATABASE",
  *     functionId: "FUNCTION ID",
  *     disabled: false,
@@ -75,6 +76,7 @@ import * as utilities from "./utilities";
  *             configRegion: "AWS REGIOn",
  *         },
  *     },
+ *     name: "NAME OF THE TRIGGER",
  *     projectId: "PROJECT ID",
  *     type: "DATABASE",
  *     unordered: false,
@@ -91,6 +93,7 @@ import * as utilities from "./utilities";
  *     configProviders: ["anon-user"],
  *     disabled: false,
  *     functionId: "1",
+ *     name: "NAME OF THE TRIGGER",
  *     projectId: "PROJECT ID",
  *     type: "AUTHENTICATION",
  * });
@@ -105,6 +108,7 @@ import * as utilities from "./utilities";
  *     configSchedule: "*",
  *     disabled: false,
  *     functionId: "1",
+ *     name: "NAME OF THE TRIGGER",
  *     projectId: "PROJECT ID",
  *     type: "SCHEDULED",
  * });
@@ -273,6 +277,9 @@ export class EventTrigger extends pulumi.CustomResource {
             const args = argsOrState as EventTriggerArgs | undefined;
             if ((!args || args.appId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'appId'");
+            }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
             }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
@@ -466,7 +473,7 @@ export interface EventTriggerArgs {
     /**
      * The name of the trigger.
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the trigger.
      */

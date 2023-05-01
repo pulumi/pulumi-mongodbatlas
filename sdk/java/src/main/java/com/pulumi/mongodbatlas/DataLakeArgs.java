@@ -59,15 +59,15 @@ public final class DataLakeArgs extends com.pulumi.resources.ResourceArgs {
      * Name of the Atlas Data Lake.
      * 
      */
-    @Import(name="name")
-    private @Nullable Output<String> name;
+    @Import(name="name", required=true)
+    private Output<String> name;
 
     /**
      * @return Name of the Atlas Data Lake.
      * 
      */
-    public Optional<Output<String>> name() {
-        return Optional.ofNullable(this.name);
+    public Output<String> name() {
+        return this.name;
     }
 
     /**
@@ -168,7 +168,7 @@ public final class DataLakeArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder name(@Nullable Output<String> name) {
+        public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
@@ -206,6 +206,7 @@ public final class DataLakeArgs extends com.pulumi.resources.ResourceArgs {
 
         public DataLakeArgs build() {
             $.aws = Objects.requireNonNull($.aws, "expected parameter 'aws' to be non-null");
+            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
             return $;
         }

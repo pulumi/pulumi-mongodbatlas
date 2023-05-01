@@ -21,6 +21,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Using CIDR Block
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -38,6 +39,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Using IP Address
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -55,6 +57,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Using an AWS Security Group
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 

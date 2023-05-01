@@ -27,12 +27,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewSearchIndex(ctx, "test", &mongodbatlas.SearchIndexArgs{
+//			_, err := mongodbatlas.NewSearchIndex(ctx, "test-basic-search-index", &mongodbatlas.SearchIndexArgs{
 //				Analyzer:        pulumi.String("lucene.standard"),
 //				ClusterName:     pulumi.String("<CLUSTER_NAME>"),
 //				CollectionName:  pulumi.String("collection_test"),
 //				Database:        pulumi.String("database_test"),
 //				MappingsDynamic: pulumi.Bool(true),
+//				Name:            pulumi.String("test-basic-search-index"),
 //				ProjectId:       pulumi.String("<PROJECT_ID>"),
 //				SearchAnalyzer:  pulumi.String("lucene.standard"),
 //			})
@@ -57,7 +58,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewSearchIndex(ctx, "test", &mongodbatlas.SearchIndexArgs{
+//			_, err := mongodbatlas.NewSearchIndex(ctx, "test-advanced-search-index", &mongodbatlas.SearchIndexArgs{
 //				ProjectId:       pulumi.String("%[1]s"),
 //				ClusterName:     pulumi.String("%[2]s"),
 //				Analyzer:        pulumi.String("lucene.standard"),
@@ -65,6 +66,7 @@ import (
 //				Database:        pulumi.String("database_test"),
 //				MappingsDynamic: pulumi.Bool(false),
 //				MappingsFields:  pulumi.String("{\n      \"address\": {\n        \"type\": \"document\",\n        \"fields\": {\n          \"city\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.simple\",\n            \"ignoreAbove\": 255\n          },\n          \"state\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.english\"\n          }\n        }\n      },\n      \"company\": {\n        \"type\": \"string\",\n        \"analyzer\": \"lucene.whitespace\",\n        \"multi\": {\n          \"mySecondaryAnalyzer\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.french\"\n          }\n        }\n      },\n      \"employees\": {\n        \"type\": \"string\",\n        \"analyzer\": \"lucene.standard\"\n      }\n}\n"),
+//				Name:            pulumi.String("test-advanced-search-index"),
 //				SearchAnalyzer:  pulumi.String("lucene.standard"),
 //				Analyzers:       pulumi.String(" [{\n \"name\": \"index_analyzer_test_name\",\n \"charFilters\": {\n\"type\": \"mapping\",\n\"mappings\": {\"\\\\\" : \"/\"}\n   	},\n \"tokenizer\": {\n \"type\": \"nGram\",\n \"minGram\": 2,\n \"maxGram\": 5\n	},\n \"tokenFilters\": {\n\"type\": \"length\",\n\"min\": 20,\n\"max\": 33\n   	}\n }]\n"),
 //				Synonyms: mongodbatlas.SearchIndexSynonymArray{
@@ -99,7 +101,7 @@ type SearchIndex struct {
 	IndexId  pulumi.StringOutput `pulumi:"indexId"`
 	// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic pulumi.BoolPtrOutput `pulumi:"mappingsDynamic"`
-	// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+	// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields pulumi.StringPtrOutput `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -131,6 +133,9 @@ func NewSearchIndex(ctx *pulumi.Context,
 	}
 	if args.Database == nil {
 		return nil, errors.New("invalid value for required argument 'Database'")
+	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -170,7 +175,7 @@ type searchIndexState struct {
 	IndexId  *string `pulumi:"indexId"`
 	// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
-	// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+	// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields *string `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
 	Name *string `pulumi:"name"`
@@ -198,7 +203,7 @@ type SearchIndexState struct {
 	IndexId  pulumi.StringPtrInput
 	// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic pulumi.BoolPtrInput
-	// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+	// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields pulumi.StringPtrInput
 	// The name of the search index you want to create.
 	Name pulumi.StringPtrInput
@@ -229,10 +234,10 @@ type searchIndexArgs struct {
 	Database string `pulumi:"database"`
 	// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
-	// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+	// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields *string `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The ID of the organization or project you want to create the search index within.
 	ProjectId string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -257,10 +262,10 @@ type SearchIndexArgs struct {
 	Database pulumi.StringInput
 	// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic pulumi.BoolPtrInput
-	// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+	// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields pulumi.StringPtrInput
 	// The name of the search index you want to create.
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The ID of the organization or project you want to create the search index within.
 	ProjectId pulumi.StringInput
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -392,7 +397,7 @@ func (o SearchIndexOutput) MappingsDynamic() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.BoolPtrOutput { return v.MappingsDynamic }).(pulumi.BoolPtrOutput)
 }
 
-// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 func (o SearchIndexOutput) MappingsFields() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.MappingsFields }).(pulumi.StringPtrOutput)
 }

@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  *
  * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
  * const testProject = new mongodbatlas.Project("testProject", {
+ *     name: "project-name",
  *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
  *     teams: [
  *         {
@@ -94,6 +95,7 @@ export interface GetProjectsResult {
  *
  * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
  * const testProject = new mongodbatlas.Project("testProject", {
+ *     name: "project-name",
  *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
  *     teams: [
  *         {

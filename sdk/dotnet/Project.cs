@@ -14,6 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -23,6 +24,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///     var testProject = new Mongodbatlas.Project("testProject", new()
     ///     {
+    ///         Name = "project-name",
     ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
     ///         ProjectOwnerId = "&lt;OWNER_ACCOUNT_ID&gt;",
     ///         Teams = new[]
@@ -244,8 +246,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The ID of the organization you want to create the project within.

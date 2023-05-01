@@ -97,6 +97,7 @@ def get_projects(items_per_page: Optional[int] = None,
 
     test_roles_org_id = mongodbatlas.get_roles_org_id()
     test_project = mongodbatlas.Project("testProject",
+        name="project-name",
         org_id=test_roles_org_id.org_id,
         teams=[
             mongodbatlas.ProjectTeamArgs(
@@ -154,6 +155,7 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
 
     test_roles_org_id = mongodbatlas.get_roles_org_id()
     test_project = mongodbatlas.Project("testProject",
+        name="project-name",
         org_id=test_roles_org_id.org_id,
         teams=[
             mongodbatlas.ProjectTeamArgs(

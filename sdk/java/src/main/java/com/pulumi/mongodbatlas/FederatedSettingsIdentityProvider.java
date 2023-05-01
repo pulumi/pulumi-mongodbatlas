@@ -46,6 +46,7 @@ import javax.annotation.Nullable;
  *             .associatedDomains(&#34;yourdomain.com&#34;)
  *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
  *             .issuerUri(&#34;http://www.okta.com/exk17q7f7f7f7fp50h8&#34;)
+ *             .name(&#34;mongodb_federation_test&#34;)
  *             .requestBinding(&#34;HTTP-POST&#34;)
  *             .responseSignatureAlgorithm(&#34;SHA-256&#34;)
  *             .ssoDebugEnabled(true)

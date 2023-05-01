@@ -14,16 +14,24 @@ __all__ = ['TeamsArgs', 'Teams']
 @pulumi.input_type
 class TeamsArgs:
     def __init__(__self__, *,
+                 name: pulumi.Input[str],
                  org_id: pulumi.Input[str],
-                 usernames: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 name: Optional[pulumi.Input[str]] = None):
+                 usernames: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         The set of arguments for constructing a Teams resource.
         """
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "org_id", org_id)
         pulumi.set(__self__, "usernames", usernames)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="orgId")
@@ -42,15 +50,6 @@ class TeamsArgs:
     @usernames.setter
     def usernames(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "usernames", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -158,6 +157,8 @@ class Teams(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TeamsArgs.__new__(TeamsArgs)
 
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if org_id is None and not opts.urn:
                 raise TypeError("Missing required property 'org_id'")

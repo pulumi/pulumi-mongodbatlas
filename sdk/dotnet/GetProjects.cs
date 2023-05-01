@@ -22,6 +22,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -31,6 +32,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     var testProject = new Mongodbatlas.Project("testProject", new()
         ///     {
+        ///         Name = "project-name",
         ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
         ///         Teams = new[]
         ///         {
@@ -90,6 +92,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -99,6 +102,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     var testProject = new Mongodbatlas.Project("testProject", new()
         ///     {
+        ///         Name = "project-name",
         ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
         ///         Teams = new[]
         ///         {

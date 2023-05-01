@@ -16,26 +16,27 @@ __all__ = ['ServerlessInstanceArgs', 'ServerlessInstance']
 @pulumi.input_type
 class ServerlessInstanceArgs:
     def __init__(__self__, *,
+                 name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  provider_settings_backing_provider_name: pulumi.Input[str],
                  provider_settings_provider_name: pulumi.Input[str],
                  provider_settings_region_name: pulumi.Input[str],
                  continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
                  links: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a ServerlessInstance resource.
+        :param pulumi.Input[str] name: Human-readable label that identifies the serverless instance.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the serverless instance within.
         :param pulumi.Input[str] provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         :param pulumi.Input[bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
-        :param pulumi.Input[str] name: Human-readable label that identifies the serverless instance.
         :param pulumi.Input[str] state_name: Stage of deployment of this serverless instance when the resource made its request.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_settings_backing_provider_name", provider_settings_backing_provider_name)
         pulumi.set(__self__, "provider_settings_provider_name", provider_settings_provider_name)
@@ -44,12 +45,22 @@ class ServerlessInstanceArgs:
             pulumi.set(__self__, "continuous_backup_enabled", continuous_backup_enabled)
         if links is not None:
             pulumi.set(__self__, "links", links)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
         if state_name is not None:
             pulumi.set(__self__, "state_name", state_name)
         if termination_protection_enabled is not None:
             pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Human-readable label that identifies the serverless instance.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -119,18 +130,6 @@ class ServerlessInstanceArgs:
     @links.setter
     def links(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]]):
         pulumi.set(self, "links", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Human-readable label that identifies the serverless instance.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="stateName")
@@ -458,6 +457,8 @@ class ServerlessInstance(pulumi.CustomResource):
 
             __props__.__dict__["continuous_backup_enabled"] = continuous_backup_enabled
             __props__.__dict__["links"] = links
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")

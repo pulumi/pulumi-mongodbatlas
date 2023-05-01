@@ -14,7 +14,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORGANIZATION ID"});
+ * const testProject = new mongodbatlas.Project("testProject", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORGANIZATION ID",
+ * });
  * const testCloudProviderAccess = new mongodbatlas.CloudProviderAccess("testCloudProviderAccess", {
  *     projectId: testProject.id,
  *     providerName: "AWS",
@@ -22,6 +25,7 @@ import * as utilities from "./utilities";
  * });
  * const basicDs = new mongodbatlas.DataLake("basicDs", {
  *     projectId: testProject.id,
+ *     name: "DATA LAKE NAME",
  *     aws: {
  *         roleId: testCloudProviderAccess.roleId,
  *         testS3Bucket: "TEST S3 BUCKET NAME",
@@ -148,6 +152,9 @@ export class DataLake extends pulumi.CustomResource {
             if ((!args || args.aws === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'aws'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -244,7 +251,7 @@ export interface DataLakeArgs {
     /**
      * Name of the Atlas Data Lake.
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The unique ID for the project to create a data lake.
      */

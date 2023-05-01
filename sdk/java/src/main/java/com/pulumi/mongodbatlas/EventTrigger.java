@@ -50,6 +50,7 @@ import javax.annotation.Nullable;
  *         var test = new EventTrigger(&#34;test&#34;, EventTriggerArgs.builder()        
  *             .projectId(&#34;PROJECT ID&#34;)
  *             .appId(&#34;APPLICATION ID&#34;)
+ *             .name(&#34;NAME OF THE TRIGGER&#34;)
  *             .type(&#34;DATABASE&#34;)
  *             .functionId(&#34;FUNCTION ID&#34;)
  *             .disabled(false)
@@ -126,6 +127,7 @@ import javax.annotation.Nullable;
  *                     .configRegion(&#34;AWS REGIOn&#34;)
  *                     .build())
  *                 .build())
+ *             .name(&#34;NAME OF THE TRIGGER&#34;)
  *             .projectId(&#34;PROJECT ID&#34;)
  *             .type(&#34;DATABASE&#34;)
  *             .unordered(false)
@@ -162,6 +164,7 @@ import javax.annotation.Nullable;
  *             .configProviders(&#34;anon-user&#34;)
  *             .disabled(false)
  *             .functionId(&#34;1&#34;)
+ *             .name(&#34;NAME OF THE TRIGGER&#34;)
  *             .projectId(&#34;PROJECT ID&#34;)
  *             .type(&#34;AUTHENTICATION&#34;)
  *             .build());
@@ -196,6 +199,7 @@ import javax.annotation.Nullable;
  *             .configSchedule(&#34;*&#34;)
  *             .disabled(false)
  *             .functionId(&#34;1&#34;)
+ *             .name(&#34;NAME OF THE TRIGGER&#34;)
  *             .projectId(&#34;PROJECT ID&#34;)
  *             .type(&#34;SCHEDULED&#34;)
  *             .build());

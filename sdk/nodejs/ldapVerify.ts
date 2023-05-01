@@ -15,10 +15,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORG ID"});
+ * const testProject = new mongodbatlas.Project("testProject", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: testProject.id,
- *     diskSizeGb: 5,
+ *     name: "NAME OF THE CLUSTER",
  *     providerName: "AWS",
  *     providerRegionName: "US_EAST_2",
  *     providerInstanceSizeName: "M10",

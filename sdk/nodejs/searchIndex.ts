@@ -15,12 +15,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const test = new mongodbatlas.SearchIndex("test", {
+ * const test_basic_search_index = new mongodbatlas.SearchIndex("test-basic-search-index", {
  *     analyzer: "lucene.standard",
  *     clusterName: "<CLUSTER_NAME>",
  *     collectionName: "collection_test",
  *     database: "database_test",
  *     mappingsDynamic: true,
+ *     name: "test-basic-search-index",
  *     projectId: "<PROJECT_ID>",
  *     searchAnalyzer: "lucene.standard",
  * });
@@ -30,7 +31,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const test = new mongodbatlas.SearchIndex("test", {
+ * const test_advanced_search_index = new mongodbatlas.SearchIndex("test-advanced-search-index", {
  *     projectId: "%[1]s",
  *     clusterName: "%[2]s",
  *     analyzer: "lucene.standard",
@@ -68,6 +69,7 @@ import * as utilities from "./utilities";
  *       }
  * }
  * `,
+ *     name: "test-advanced-search-index",
  *     searchAnalyzer: "lucene.standard",
  *     analyzers: ` [{
  *  "name": "index_analyzer_test_name",
@@ -149,7 +151,7 @@ export class SearchIndex extends pulumi.CustomResource {
      */
     public readonly mappingsDynamic!: pulumi.Output<boolean | undefined>;
     /**
-     * attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
     public readonly mappingsFields!: pulumi.Output<string | undefined>;
     /**
@@ -212,6 +214,9 @@ export class SearchIndex extends pulumi.CustomResource {
             if ((!args || args.database === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'database'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -265,7 +270,7 @@ export interface SearchIndexState {
      */
     mappingsDynamic?: pulumi.Input<boolean>;
     /**
-     * attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
     mappingsFields?: pulumi.Input<string>;
     /**
@@ -317,13 +322,13 @@ export interface SearchIndexArgs {
      */
     mappingsDynamic?: pulumi.Input<boolean>;
     /**
-     * attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
     mappingsFields?: pulumi.Input<string>;
     /**
      * The name of the search index you want to create.
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The ID of the organization or project you want to create the search index within.
      */

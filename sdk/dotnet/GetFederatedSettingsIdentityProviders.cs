@@ -21,6 +21,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -29,6 +30,7 @@ namespace Pulumi.Mongodbatlas
         ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
         ///     {
         ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         Name = "mongodb_federation_test",
         ///         AssociatedDomains = new[]
         ///         {
         ///             "yourdomain.com",
@@ -62,6 +64,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -70,6 +73,7 @@ namespace Pulumi.Mongodbatlas
         ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
         ///     {
         ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         Name = "mongodb_federation_test",
         ///         AssociatedDomains = new[]
         ///         {
         ///             "yourdomain.com",

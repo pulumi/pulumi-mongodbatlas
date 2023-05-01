@@ -43,12 +43,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SearchIndex(&#34;test&#34;, SearchIndexArgs.builder()        
+ *         var test_basic_search_index = new SearchIndex(&#34;test-basic-search-index&#34;, SearchIndexArgs.builder()        
  *             .analyzer(&#34;lucene.standard&#34;)
  *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
  *             .collectionName(&#34;collection_test&#34;)
  *             .database(&#34;database_test&#34;)
  *             .mappingsDynamic(true)
+ *             .name(&#34;test-basic-search-index&#34;)
  *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
  *             .searchAnalyzer(&#34;lucene.standard&#34;)
  *             .build());
@@ -79,7 +80,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SearchIndex(&#34;test&#34;, SearchIndexArgs.builder()        
+ *         var test_advanced_search_index = new SearchIndex(&#34;test-advanced-search-index&#34;, SearchIndexArgs.builder()        
  *             .projectId(&#34;%[1]s&#34;)
  *             .clusterName(&#34;%[2]s&#34;)
  *             .analyzer(&#34;lucene.standard&#34;)
@@ -118,6 +119,7 @@ import javax.annotation.Nullable;
  *       }
  * }
  *             &#34;&#34;&#34;)
+ *             .name(&#34;test-advanced-search-index&#34;)
  *             .searchAnalyzer(&#34;lucene.standard&#34;)
  *             .analyzers(&#34;&#34;&#34;
  *  [{
@@ -243,14 +245,14 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.mappingsDynamic);
     }
     /**
-     * attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
     @Export(name="mappingsFields", type=String.class, parameters={})
     private Output</* @Nullable */ String> mappingsFields;
 
     /**
-     * @return attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+     * @return attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
     public Output<Optional<String>> mappingsFields() {

@@ -27,6 +27,9 @@ func NewTeams(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.OrgId == nil {
 		return nil, errors.New("invalid value for required argument 'OrgId'")
 	}
@@ -73,14 +76,14 @@ func (TeamsState) ElementType() reflect.Type {
 }
 
 type teamsArgs struct {
-	Name      *string  `pulumi:"name"`
+	Name      string   `pulumi:"name"`
 	OrgId     string   `pulumi:"orgId"`
 	Usernames []string `pulumi:"usernames"`
 }
 
 // The set of arguments for constructing a Teams resource.
 type TeamsArgs struct {
-	Name      pulumi.StringPtrInput
+	Name      pulumi.StringInput
 	OrgId     pulumi.StringInput
 	Usernames pulumi.StringArrayInput
 }

@@ -379,7 +379,9 @@ class LdapConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_project = mongodbatlas.Project("testProject",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
         test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
             project_id=test_project.id,
             authentication_enabled=True,
@@ -394,7 +396,9 @@ class LdapConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_project = mongodbatlas.Project("testProject",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
         test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
             project_id=test_project.id,
             authentication_enabled=True,
@@ -449,7 +453,9 @@ class LdapConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_project = mongodbatlas.Project("testProject",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
         test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
             project_id=test_project.id,
             authentication_enabled=True,
@@ -464,7 +470,9 @@ class LdapConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_project = mongodbatlas.Project("testProject",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
         test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
             project_id=test_project.id,
             authentication_enabled=True,

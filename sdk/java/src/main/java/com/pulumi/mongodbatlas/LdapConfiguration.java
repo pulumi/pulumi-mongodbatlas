@@ -44,6 +44,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+ *             .name(&#34;NAME OF THE PROJECT&#34;)
  *             .orgId(&#34;ORG ID&#34;)
  *             .build());
  * 
@@ -85,6 +86,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+ *             .name(&#34;NAME OF THE PROJECT&#34;)
  *             .orgId(&#34;ORG ID&#34;)
  *             .build());
  * 

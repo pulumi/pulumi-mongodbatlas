@@ -28,6 +28,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			identityProvider, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identityProvider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
 //				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
+//				Name:                 pulumi.String("mongodb_federation_test"),
 //				AssociatedDomains: pulumi.StringArray{
 //					pulumi.String("yourdomain.com"),
 //				},

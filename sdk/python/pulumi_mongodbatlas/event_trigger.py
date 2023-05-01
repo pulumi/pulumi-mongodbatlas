@@ -17,6 +17,7 @@ __all__ = ['EventTriggerArgs', 'EventTrigger']
 class EventTriggerArgs:
     def __init__(__self__, *,
                  app_id: pulumi.Input[str],
+                 name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  type: pulumi.Input[str],
                  config_collection: Optional[pulumi.Input[str]] = None,
@@ -33,12 +34,12 @@ class EventTriggerArgs:
                  disabled: Optional[pulumi.Input[bool]] = None,
                  event_processors: Optional[pulumi.Input['EventTriggerEventProcessorsArgs']] = None,
                  function_id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
                  unordered: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a EventTrigger resource.
         :param pulumi.Input[str] app_id: The ObjectID of your application.
                * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
+        :param pulumi.Input[str] name: The name of the trigger.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the trigger.
         :param pulumi.Input[str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
         :param pulumi.Input[str] config_collection: Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
@@ -56,10 +57,10 @@ class EventTriggerArgs:
                * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
                * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
         :param pulumi.Input[str] function_id: The ID of the function associated with the trigger.
-        :param pulumi.Input[str] name: The name of the trigger.
         :param pulumi.Input[bool] unordered: Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
         """
         pulumi.set(__self__, "app_id", app_id)
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "type", type)
         if config_collection is not None:
@@ -90,8 +91,6 @@ class EventTriggerArgs:
             pulumi.set(__self__, "event_processors", event_processors)
         if function_id is not None:
             pulumi.set(__self__, "function_id", function_id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
         if unordered is not None:
             pulumi.set(__self__, "unordered", unordered)
 
@@ -107,6 +106,18 @@ class EventTriggerArgs:
     @app_id.setter
     def app_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "app_id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        The name of the trigger.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -298,18 +309,6 @@ class EventTriggerArgs:
     @function_id.setter
     def function_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "function_id", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the trigger.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -721,6 +720,7 @@ class EventTrigger(pulumi.CustomResource):
         test = mongodbatlas.EventTrigger("test",
             project_id="PROJECT ID",
             app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
             type="DATABASE",
             function_id="FUNCTION ID",
             disabled=False,
@@ -775,6 +775,7 @@ class EventTrigger(pulumi.CustomResource):
                     config_region="AWS REGIOn",
                 ),
             ),
+            name="NAME OF THE TRIGGER",
             project_id="PROJECT ID",
             type="DATABASE",
             unordered=False)
@@ -790,6 +791,7 @@ class EventTrigger(pulumi.CustomResource):
             config_providers=["anon-user"],
             disabled=False,
             function_id="1",
+            name="NAME OF THE TRIGGER",
             project_id="PROJECT ID",
             type="AUTHENTICATION")
         ```
@@ -803,6 +805,7 @@ class EventTrigger(pulumi.CustomResource):
             config_schedule="*",
             disabled=False,
             function_id="1",
+            name="NAME OF THE TRIGGER",
             project_id="PROJECT ID",
             type="SCHEDULED")
         ```
@@ -861,6 +864,7 @@ class EventTrigger(pulumi.CustomResource):
         test = mongodbatlas.EventTrigger("test",
             project_id="PROJECT ID",
             app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
             type="DATABASE",
             function_id="FUNCTION ID",
             disabled=False,
@@ -915,6 +919,7 @@ class EventTrigger(pulumi.CustomResource):
                     config_region="AWS REGIOn",
                 ),
             ),
+            name="NAME OF THE TRIGGER",
             project_id="PROJECT ID",
             type="DATABASE",
             unordered=False)
@@ -930,6 +935,7 @@ class EventTrigger(pulumi.CustomResource):
             config_providers=["anon-user"],
             disabled=False,
             function_id="1",
+            name="NAME OF THE TRIGGER",
             project_id="PROJECT ID",
             type="AUTHENTICATION")
         ```
@@ -943,6 +949,7 @@ class EventTrigger(pulumi.CustomResource):
             config_schedule="*",
             disabled=False,
             function_id="1",
+            name="NAME OF THE TRIGGER",
             project_id="PROJECT ID",
             type="SCHEDULED")
         ```
@@ -1017,6 +1024,8 @@ class EventTrigger(pulumi.CustomResource):
             __props__.__dict__["disabled"] = disabled
             __props__.__dict__["event_processors"] = event_processors
             __props__.__dict__["function_id"] = function_id
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")

@@ -48,6 +48,7 @@ import javax.annotation.Nullable;
  *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
  * 
  *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+ *             .name(&#34;project-name&#34;)
  *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
  *             .projectOwnerId(&#34;&lt;OWNER_ACCOUNT_ID&gt;&#34;)
  *             .teams(            

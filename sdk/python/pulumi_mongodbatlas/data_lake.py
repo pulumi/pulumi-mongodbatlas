@@ -17,26 +17,25 @@ __all__ = ['DataLakeArgs', 'DataLake']
 class DataLakeArgs:
     def __init__(__self__, *,
                  aws: pulumi.Input['DataLakeAwsArgs'],
+                 name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
-                 data_process_region: Optional[pulumi.Input['DataLakeDataProcessRegionArgs']] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 data_process_region: Optional[pulumi.Input['DataLakeDataProcessRegionArgs']] = None):
         """
         The set of arguments for constructing a DataLake resource.
         :param pulumi.Input['DataLakeAwsArgs'] aws: AWS provider of the cloud service where Data Lake can access the S3 Bucket.
                * `aws.0.role_id` - (Required) Unique identifier of the role that Data Lake can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `aws.0.test_s3_bucket`.
                * `aws.0.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `aws.0.role_id`.
+        :param pulumi.Input[str] name: Name of the Atlas Data Lake.
         :param pulumi.Input[str] project_id: The unique ID for the project to create a data lake.
         :param pulumi.Input['DataLakeDataProcessRegionArgs'] data_process_region: The cloud provider region to which Atlas Data Lake routes client connections for data processing. Set to `null` to direct Atlas Data Lake to route client connections to the region nearest to the client based on DNS resolution.
                * `data_process_region.0.cloud_provider` - (Required) Name of the cloud service provider. Atlas Data Lake only supports AWS.
                * `data_process_region.0.region` - (Required). Name of the region to which Data Lake routes client connections for data processing. Atlas Data Lake only supports the following regions:
-        :param pulumi.Input[str] name: Name of the Atlas Data Lake.
         """
         pulumi.set(__self__, "aws", aws)
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
         if data_process_region is not None:
             pulumi.set(__self__, "data_process_region", data_process_region)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -51,6 +50,18 @@ class DataLakeArgs:
     @aws.setter
     def aws(self, value: pulumi.Input['DataLakeAwsArgs']):
         pulumi.set(self, "aws", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name of the Atlas Data Lake.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -77,18 +88,6 @@ class DataLakeArgs:
     @data_process_region.setter
     def data_process_region(self, value: Optional[pulumi.Input['DataLakeDataProcessRegionArgs']]):
         pulumi.set(self, "data_process_region", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the Atlas Data Lake.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -289,13 +288,16 @@ class DataLake(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORGANIZATION ID")
+        test_project = mongodbatlas.Project("testProject",
+            name="NAME OF THE PROJECT",
+            org_id="ORGANIZATION ID")
         test_cloud_provider_access = mongodbatlas.CloudProviderAccess("testCloudProviderAccess",
             project_id=test_project.id,
             provider_name="AWS",
             iam_assumed_role_arn="AWS ROLE ID")
         basic_ds = mongodbatlas.DataLake("basicDs",
             project_id=test_project.id,
+            name="DATA LAKE NAME",
             aws=mongodbatlas.DataLakeAwsArgs(
                 role_id=test_cloud_provider_access.role_id,
                 test_s3_bucket="TEST S3 BUCKET NAME",
@@ -337,13 +339,16 @@ class DataLake(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORGANIZATION ID")
+        test_project = mongodbatlas.Project("testProject",
+            name="NAME OF THE PROJECT",
+            org_id="ORGANIZATION ID")
         test_cloud_provider_access = mongodbatlas.CloudProviderAccess("testCloudProviderAccess",
             project_id=test_project.id,
             provider_name="AWS",
             iam_assumed_role_arn="AWS ROLE ID")
         basic_ds = mongodbatlas.DataLake("basicDs",
             project_id=test_project.id,
+            name="DATA LAKE NAME",
             aws=mongodbatlas.DataLakeAwsArgs(
                 role_id=test_cloud_provider_access.role_id,
                 test_s3_bucket="TEST S3 BUCKET NAME",
@@ -392,6 +397,8 @@ class DataLake(pulumi.CustomResource):
                 raise TypeError("Missing required property 'aws'")
             __props__.__dict__["aws"] = aws
             __props__.__dict__["data_process_region"] = data_process_region
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")

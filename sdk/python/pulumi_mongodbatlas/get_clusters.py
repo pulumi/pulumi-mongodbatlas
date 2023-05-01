@@ -85,7 +85,7 @@ def get_clusters(project_id: Optional[str] = None,
 
     test_cluster = mongodbatlas.Cluster("testCluster",
         project_id="<YOUR-PROJECT-ID>",
-        disk_size_gb=100,
+        name="cluster-test",
         cluster_type="REPLICASET",
         replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
             num_shards=1,
@@ -137,7 +137,7 @@ def get_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
 
     test_cluster = mongodbatlas.Cluster("testCluster",
         project_id="<YOUR-PROJECT-ID>",
-        disk_size_gb=100,
+        name="cluster-test",
         cluster_type="REPLICASET",
         replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
             num_shards=1,

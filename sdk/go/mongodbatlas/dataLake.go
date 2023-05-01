@@ -27,6 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("NAME OF THE PROJECT"),
 //				OrgId: pulumi.String("ORGANIZATION ID"),
 //			})
 //			if err != nil {
@@ -42,6 +43,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewDataLake(ctx, "basicDs", &mongodbatlas.DataLakeArgs{
 //				ProjectId: testProject.ID(),
+//				Name:      pulumi.String("DATA LAKE NAME"),
 //				Aws: &mongodbatlas.DataLakeAwsArgs{
 //					RoleId:       testCloudProviderAccess.RoleId,
 //					TestS3Bucket: pulumi.String("TEST S3 BUCKET NAME"),
@@ -119,6 +121,9 @@ func NewDataLake(ctx *pulumi.Context,
 
 	if args.Aws == nil {
 		return nil, errors.New("invalid value for required argument 'Aws'")
+	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -240,7 +245,7 @@ type dataLakeArgs struct {
 	// * `data_process_region.0.region` - (Required). Name of the region to which Data Lake routes client connections for data processing. Atlas Data Lake only supports the following regions:
 	DataProcessRegion *DataLakeDataProcessRegion `pulumi:"dataProcessRegion"`
 	// Name of the Atlas Data Lake.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The unique ID for the project to create a data lake.
 	ProjectId string `pulumi:"projectId"`
 }
@@ -256,7 +261,7 @@ type DataLakeArgs struct {
 	// * `data_process_region.0.region` - (Required). Name of the region to which Data Lake routes client connections for data processing. Atlas Data Lake only supports the following regions:
 	DataProcessRegion DataLakeDataProcessRegionPtrInput
 	// Name of the Atlas Data Lake.
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The unique ID for the project to create a data lake.
 	ProjectId pulumi.StringInput
 }

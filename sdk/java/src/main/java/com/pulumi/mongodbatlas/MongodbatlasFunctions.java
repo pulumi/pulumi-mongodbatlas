@@ -28,6 +28,8 @@ import com.pulumi.mongodbatlas.inputs.GetApiKeysArgs;
 import com.pulumi.mongodbatlas.inputs.GetApiKeysPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
 import com.pulumi.mongodbatlas.inputs.GetAuditingPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
+import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSchedulePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotArgs;
@@ -170,6 +172,7 @@ import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetApiKeyResult;
 import com.pulumi.mongodbatlas.outputs.GetApiKeysInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAuditingResult;
+import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupScheduleResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotExportBucketResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotExportBucketsInvokeResult;
@@ -878,6 +881,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleCluster = new Cluster(&#34;exampleCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+     *             .name(&#34;cluster-test&#34;)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
@@ -933,6 +937,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleCluster = new Cluster(&#34;exampleCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+     *             .name(&#34;cluster-test&#34;)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
@@ -988,6 +993,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleCluster = new Cluster(&#34;exampleCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+     *             .name(&#34;cluster-test&#34;)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
@@ -1043,6 +1049,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleCluster = new Cluster(&#34;exampleCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+     *             .name(&#34;cluster-test&#34;)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .regionConfigs(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
@@ -1160,6 +1167,18 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetAuditingResult> getAuditingPlain(GetAuditingPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAuditing:getAuditing", TypeShape.of(GetAuditingResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetBackupCompliancePolicyResult> getBackupCompliancePolicy(GetBackupCompliancePolicyArgs args) {
+        return getBackupCompliancePolicy(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetBackupCompliancePolicyResult> getBackupCompliancePolicyPlain(GetBackupCompliancePolicyPlainArgs args) {
+        return getBackupCompliancePolicyPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetBackupCompliancePolicyResult> getBackupCompliancePolicy(GetBackupCompliancePolicyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetBackupCompliancePolicyResult> getBackupCompliancePolicyPlain(GetBackupCompliancePolicyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
@@ -3177,7 +3196,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
-     *             .diskSizeGb(100)
+     *             .name(&#34;cluster-test&#34;)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .numShards(1)
@@ -3242,7 +3261,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
-     *             .diskSizeGb(100)
+     *             .name(&#34;cluster-test&#34;)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .numShards(1)
@@ -3307,7 +3326,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
-     *             .diskSizeGb(100)
+     *             .name(&#34;cluster-test&#34;)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .numShards(1)
@@ -3372,7 +3391,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
-     *             .diskSizeGb(100)
+     *             .name(&#34;cluster-test&#34;)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .numShards(1)
@@ -4670,6 +4689,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
      *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
      *             .status(&#34;ACTIVE&#34;)
@@ -4721,6 +4741,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
      *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
      *             .status(&#34;ACTIVE&#34;)
@@ -4772,6 +4793,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
      *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
      *             .status(&#34;ACTIVE&#34;)
@@ -4823,6 +4845,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
      *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
      *             .status(&#34;ACTIVE&#34;)
@@ -4874,6 +4897,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
      *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
      *             .status(&#34;ACTIVE&#34;)
@@ -4922,6 +4946,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
      *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
      *             .status(&#34;ACTIVE&#34;)
@@ -4970,6 +4995,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
      *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
      *             .status(&#34;ACTIVE&#34;)
@@ -5018,6 +5044,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
      *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
      *             .status(&#34;ACTIVE&#34;)
@@ -7624,6 +7651,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .name(&#34;test-db&#34;)
      *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
      *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
      *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
@@ -7683,6 +7711,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .name(&#34;test-db&#34;)
      *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
      *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
      *             .providerSettingsRegionName(&#34;US_EAST&#34;)
@@ -7751,6 +7780,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .name(&#34;test-db&#34;)
      *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
      *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
      *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
@@ -7810,6 +7840,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .name(&#34;test-db&#34;)
      *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
      *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
      *             .providerSettingsRegionName(&#34;US_EAST&#34;)
@@ -7878,6 +7909,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .name(&#34;test-db&#34;)
      *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
      *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
      *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
@@ -7937,6 +7969,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .name(&#34;test-db&#34;)
      *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
      *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
      *             .providerSettingsRegionName(&#34;US_EAST&#34;)
@@ -8005,6 +8038,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .name(&#34;test-db&#34;)
      *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
      *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
      *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
@@ -8064,6 +8098,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .name(&#34;test-db&#34;)
      *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
      *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
      *             .providerSettingsRegionName(&#34;US_EAST&#34;)
@@ -8337,6 +8372,7 @@ public final class MongodbatlasFunctions {
      *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
      * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .name(&#34;project-name&#34;)
      *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
      *             .teams(            
      *                 ProjectTeamArgs.builder()
@@ -8402,6 +8438,7 @@ public final class MongodbatlasFunctions {
      *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
      * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .name(&#34;project-name&#34;)
      *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
      *             .teams(            
      *                 ProjectTeamArgs.builder()
@@ -8467,6 +8504,7 @@ public final class MongodbatlasFunctions {
      *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
      * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .name(&#34;project-name&#34;)
      *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
      *             .teams(            
      *                 ProjectTeamArgs.builder()
@@ -8532,6 +8570,7 @@ public final class MongodbatlasFunctions {
      *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
      * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .name(&#34;project-name&#34;)
      *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
      *             .teams(            
      *                 ProjectTeamArgs.builder()
@@ -8597,6 +8636,7 @@ public final class MongodbatlasFunctions {
      *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
      * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .name(&#34;project-name&#34;)
      *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
      *             .teams(            
      *                 ProjectTeamArgs.builder()
@@ -8662,6 +8702,7 @@ public final class MongodbatlasFunctions {
      *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
      * 
      *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .name(&#34;project-name&#34;)
      *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
      *             .teams(            
      *                 ProjectTeamArgs.builder()

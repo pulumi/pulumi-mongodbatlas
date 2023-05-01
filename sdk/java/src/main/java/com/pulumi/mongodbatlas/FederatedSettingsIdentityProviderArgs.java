@@ -66,15 +66,15 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
      * Human-readable label that identifies the identity provider.
      * 
      */
-    @Import(name="name")
-    private @Nullable Output<String> name;
+    @Import(name="name", required=true)
+    private Output<String> name;
 
     /**
      * @return Human-readable label that identifies the identity provider.
      * 
      */
-    public Optional<Output<String>> name() {
-        return Optional.ofNullable(this.name);
+    public Output<String> name() {
+        return this.name;
     }
 
     /**
@@ -267,7 +267,7 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
          * @return builder
          * 
          */
-        public Builder name(@Nullable Output<String> name) {
+        public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
@@ -394,6 +394,7 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
         public FederatedSettingsIdentityProviderArgs build() {
             $.federationSettingsId = Objects.requireNonNull($.federationSettingsId, "expected parameter 'federationSettingsId' to be non-null");
             $.issuerUri = Objects.requireNonNull($.issuerUri, "expected parameter 'issuerUri' to be non-null");
+            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             $.requestBinding = Objects.requireNonNull($.requestBinding, "expected parameter 'requestBinding' to be non-null");
             $.responseSignatureAlgorithm = Objects.requireNonNull($.responseSignatureAlgorithm, "expected parameter 'responseSignatureAlgorithm' to be non-null");
             $.ssoDebugEnabled = Objects.requireNonNull($.ssoDebugEnabled, "expected parameter 'ssoDebugEnabled' to be non-null");

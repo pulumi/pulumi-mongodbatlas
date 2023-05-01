@@ -59,6 +59,9 @@ func NewServerlessInstance(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
@@ -157,7 +160,7 @@ type serverlessInstanceArgs struct {
 	ContinuousBackupEnabled *bool                    `pulumi:"continuousBackupEnabled"`
 	Links                   []ServerlessInstanceLink `pulumi:"links"`
 	// Human-readable label that identifies the serverless instance.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The ID of the organization or project you want to create the serverless instance within.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
@@ -178,7 +181,7 @@ type ServerlessInstanceArgs struct {
 	ContinuousBackupEnabled pulumi.BoolPtrInput
 	Links                   ServerlessInstanceLinkArrayInput
 	// Human-readable label that identifies the serverless instance.
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// The ID of the organization or project you want to create the serverless instance within.
 	ProjectId pulumi.StringInput
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.

@@ -34,6 +34,7 @@ import (
 //				},
 //				FederationSettingsId:       pulumi.String("627a9687f7f7f7f774de306f14"),
 //				IssuerUri:                  pulumi.String("http://www.okta.com/exk17q7f7f7f7fp50h8"),
+//				Name:                       pulumi.String("mongodb_federation_test"),
 //				RequestBinding:             pulumi.String("HTTP-POST"),
 //				ResponseSignatureAlgorithm: pulumi.String("SHA-256"),
 //				SsoDebugEnabled:            pulumi.Bool(true),
@@ -99,6 +100,9 @@ func NewFederatedSettingsIdentityProvider(ctx *pulumi.Context,
 	}
 	if args.IssuerUri == nil {
 		return nil, errors.New("invalid value for required argument 'IssuerUri'")
+	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	if args.RequestBinding == nil {
 		return nil, errors.New("invalid value for required argument 'RequestBinding'")
@@ -198,7 +202,7 @@ type federatedSettingsIdentityProviderArgs struct {
 	// Unique string that identifies the issuer of the SAML
 	IssuerUri string `pulumi:"issuerUri"`
 	// Human-readable label that identifies the identity provider.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
 	// - HTTP POST
 	// - HTTP REDIRECT
@@ -222,7 +226,7 @@ type FederatedSettingsIdentityProviderArgs struct {
 	// Unique string that identifies the issuer of the SAML
 	IssuerUri pulumi.StringInput
 	// Human-readable label that identifies the identity provider.
-	Name pulumi.StringPtrInput
+	Name pulumi.StringInput
 	// SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
 	// - HTTP POST
 	// - HTTP REDIRECT

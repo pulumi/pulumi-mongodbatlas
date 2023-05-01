@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
  * const testProject = new mongodbatlas.Project("testProject", {
+ *     name: "project-name",
  *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
  *     projectOwnerId: "<OWNER_ACCOUNT_ID>",
  *     teams: [
@@ -160,6 +161,9 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["withDefaultAlertsSettings"] = state ? state.withDefaultAlertsSettings : undefined;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.orgId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
@@ -267,7 +271,7 @@ export interface ProjectArgs {
     /**
      * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The ID of the organization you want to create the project within.
      */

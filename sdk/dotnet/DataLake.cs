@@ -15,6 +15,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -22,6 +23,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var testProject = new Mongodbatlas.Project("testProject", new()
     ///     {
+    ///         Name = "NAME OF THE PROJECT",
     ///         OrgId = "ORGANIZATION ID",
     ///     });
     /// 
@@ -35,6 +37,7 @@ namespace Pulumi.Mongodbatlas
     ///     var basicDs = new Mongodbatlas.DataLake("basicDs", new()
     ///     {
     ///         ProjectId = testProject.Id,
+    ///         Name = "DATA LAKE NAME",
     ///         Aws = new Mongodbatlas.Inputs.DataLakeAwsArgs
     ///         {
     ///             RoleId = testCloudProviderAccess.RoleId,
@@ -193,8 +196,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Name of the Atlas Data Lake.
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The unique ID for the project to create a data lake.

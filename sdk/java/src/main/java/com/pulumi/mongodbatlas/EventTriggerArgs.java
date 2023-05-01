@@ -245,15 +245,15 @@ public final class EventTriggerArgs extends com.pulumi.resources.ResourceArgs {
      * The name of the trigger.
      * 
      */
-    @Import(name="name")
-    private @Nullable Output<String> name;
+    @Import(name="name", required=true)
+    private Output<String> name;
 
     /**
      * @return The name of the trigger.
      * 
      */
-    public Optional<Output<String>> name() {
-        return Optional.ofNullable(this.name);
+    public Output<String> name() {
+        return this.name;
     }
 
     /**
@@ -678,7 +678,7 @@ public final class EventTriggerArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder name(@Nullable Output<String> name) {
+        public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
@@ -758,6 +758,7 @@ public final class EventTriggerArgs extends com.pulumi.resources.ResourceArgs {
 
         public EventTriggerArgs build() {
             $.appId = Objects.requireNonNull($.appId, "expected parameter 'appId' to be non-null");
+            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
             $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
             return $;

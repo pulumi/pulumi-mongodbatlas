@@ -16,18 +16,20 @@ namespace Pulumi.Mongodbatlas
     /// ### Basic
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.SearchIndex("test", new()
+    ///     var test_basic_search_index = new Mongodbatlas.SearchIndex("test-basic-search-index", new()
     ///     {
     ///         Analyzer = "lucene.standard",
     ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
     ///         CollectionName = "collection_test",
     ///         Database = "database_test",
     ///         MappingsDynamic = true,
+    ///         Name = "test-basic-search-index",
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         SearchAnalyzer = "lucene.standard",
     ///     });
@@ -37,12 +39,13 @@ namespace Pulumi.Mongodbatlas
     /// ### Advanced (with custom analyzers)
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.SearchIndex("test", new()
+    ///     var test_advanced_search_index = new Mongodbatlas.SearchIndex("test-advanced-search-index", new()
     ///     {
     ///         ProjectId = "%[1]s",
     ///         ClusterName = "%[2]s",
@@ -81,6 +84,7 @@ namespace Pulumi.Mongodbatlas
     ///       }
     /// }
     /// ",
+    ///         Name = "test-advanced-search-index",
     ///         SearchAnalyzer = "lucene.standard",
     ///         Analyzers = @" [{
     ///  ""name"": ""index_analyzer_test_name"",
@@ -157,7 +161,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool?> MappingsDynamic { get; private set; } = null!;
 
         /// <summary>
-        /// attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Output("mappingsFields")]
         public Output<string?> MappingsFields { get; private set; } = null!;
@@ -275,7 +279,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? MappingsDynamic { get; set; }
 
         /// <summary>
-        /// attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Input("mappingsFields")]
         public Input<string>? MappingsFields { get; set; }
@@ -283,8 +287,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The name of the search index you want to create.
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The ID of the organization or project you want to create the search index within.
@@ -364,7 +368,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? MappingsDynamic { get; set; }
 
         /// <summary>
-        /// attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Input("mappingsFields")]
         public Input<string>? MappingsFields { get; set; }

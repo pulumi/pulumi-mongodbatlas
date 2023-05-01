@@ -202,6 +202,7 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
 
         test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
             project_id="<PROJECT_ID>",
+            name="test-db",
             provider_settings_backing_provider_name="AWS",
             provider_settings_provider_name="SERVERLESS",
             provider_settings_region_name="US_EAST_1",
@@ -243,6 +244,7 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
 
         test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
             project_id="<PROJECT_ID>",
+            name="test-db",
             provider_settings_backing_provider_name="AWS",
             provider_settings_provider_name="SERVERLESS",
             provider_settings_region_name="US_EAST_1",

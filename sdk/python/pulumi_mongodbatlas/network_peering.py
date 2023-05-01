@@ -727,8 +727,8 @@ class NetworkPeering(pulumi.CustomResource):
         # Create the cluster once the peering connection is completed
         test_cluster = mongodbatlas.Cluster("testCluster",
             project_id=local["project_id"],
+            name="terraform-manually-test",
             num_shards=1,
-            disk_size_gb=5,
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -772,6 +772,7 @@ class NetworkPeering(pulumi.CustomResource):
         # Create the cluster once the peering connection is completed
         test_cluster = mongodbatlas.Cluster("testCluster",
             project_id=local["project_id"],
+            name="terraform-manually-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -801,7 +802,7 @@ class NetworkPeering(pulumi.CustomResource):
         # does not yet exist for this AWS region
         test = mongodbatlas.Cluster("test",
             project_id=local["project_id"],
-            disk_size_gb=5,
+            name="terraform-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -847,7 +848,7 @@ class NetworkPeering(pulumi.CustomResource):
         # does not yet exist for this GCP 
         test_cluster = mongodbatlas.Cluster("testCluster",
             project_id=local["project_id"],
-            disk_size_gb=5,
+            name="terraform-manually-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -888,6 +889,7 @@ class NetworkPeering(pulumi.CustomResource):
         # does not yet exist for this AZURE region
         test_cluster = mongodbatlas.Cluster("testCluster",
             project_id=local["project_id"],
+            name="cluster-azure",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -1007,8 +1009,8 @@ class NetworkPeering(pulumi.CustomResource):
         # Create the cluster once the peering connection is completed
         test_cluster = mongodbatlas.Cluster("testCluster",
             project_id=local["project_id"],
+            name="terraform-manually-test",
             num_shards=1,
-            disk_size_gb=5,
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -1052,6 +1054,7 @@ class NetworkPeering(pulumi.CustomResource):
         # Create the cluster once the peering connection is completed
         test_cluster = mongodbatlas.Cluster("testCluster",
             project_id=local["project_id"],
+            name="terraform-manually-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -1081,7 +1084,7 @@ class NetworkPeering(pulumi.CustomResource):
         # does not yet exist for this AWS region
         test = mongodbatlas.Cluster("test",
             project_id=local["project_id"],
-            disk_size_gb=5,
+            name="terraform-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -1127,7 +1130,7 @@ class NetworkPeering(pulumi.CustomResource):
         # does not yet exist for this GCP 
         test_cluster = mongodbatlas.Cluster("testCluster",
             project_id=local["project_id"],
-            disk_size_gb=5,
+            name="terraform-manually-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -1168,6 +1171,7 @@ class NetworkPeering(pulumi.CustomResource):
         # does not yet exist for this AZURE region
         test_cluster = mongodbatlas.Cluster("testCluster",
             project_id=local["project_id"],
+            name="cluster-azure",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,

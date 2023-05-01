@@ -17,6 +17,7 @@ __all__ = ['AdvancedClusterArgs', 'AdvancedCluster']
 class AdvancedClusterArgs:
     def __init__(__self__, *,
                  cluster_type: pulumi.Input[str],
+                 name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  replication_specs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]],
                  advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
@@ -27,7 +28,6 @@ class AdvancedClusterArgs:
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
@@ -37,6 +37,7 @@ class AdvancedClusterArgs:
         The set of arguments for constructing a AdvancedCluster resource.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
                Accepted values include:
+        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
         :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
@@ -46,13 +47,13 @@ class AdvancedClusterArgs:
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
-        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
         pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "replication_specs", replication_specs)
         if advanced_configuration is not None:
@@ -74,8 +75,6 @@ class AdvancedClusterArgs:
             pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version is not None:
             pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
         if paused is not None:
             pulumi.set(__self__, "paused", paused)
         if pit_enabled is not None:
@@ -99,6 +98,18 @@ class AdvancedClusterArgs:
     @cluster_type.setter
     def cluster_type(self, value: pulumi.Input[str]):
         pulumi.set(self, "cluster_type", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -214,18 +225,6 @@ class AdvancedClusterArgs:
     @mongo_db_major_version.setter
     def mongo_db_major_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mongo_db_major_version", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -773,6 +772,8 @@ class AdvancedCluster(pulumi.CustomResource):
             __props__.__dict__["encryption_at_rest_provider"] = encryption_at_rest_provider
             __props__.__dict__["labels"] = labels
             __props__.__dict__["mongo_db_major_version"] = mongo_db_major_version
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["paused"] = paused
             __props__.__dict__["pit_enabled"] = pit_enabled

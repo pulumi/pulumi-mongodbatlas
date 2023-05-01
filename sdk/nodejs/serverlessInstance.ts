@@ -123,6 +123,9 @@ export class ServerlessInstance extends pulumi.CustomResource {
             resourceInputs["terminationProtectionEnabled"] = state ? state.terminationProtectionEnabled : undefined;
         } else {
             const args = argsOrState as ServerlessInstanceArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -221,7 +224,7 @@ export interface ServerlessInstanceArgs {
     /**
      * Human-readable label that identifies the serverless instance.
      */
-    name?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The ID of the organization or project you want to create the serverless instance within.
      */

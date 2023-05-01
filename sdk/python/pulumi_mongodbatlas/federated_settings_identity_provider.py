@@ -16,17 +16,18 @@ class FederatedSettingsIdentityProviderArgs:
     def __init__(__self__, *,
                  federation_settings_id: pulumi.Input[str],
                  issuer_uri: pulumi.Input[str],
+                 name: pulumi.Input[str],
                  request_binding: pulumi.Input[str],
                  response_signature_algorithm: pulumi.Input[str],
                  sso_debug_enabled: pulumi.Input[bool],
                  sso_url: pulumi.Input[str],
                  status: pulumi.Input[str],
-                 associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a FederatedSettingsIdentityProvider resource.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the SAML
+        :param pulumi.Input[str] name: Human-readable label that identifies the identity provider.
         :param pulumi.Input[str] request_binding: SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
                - HTTP POST
                - HTTP REDIRECT
@@ -35,10 +36,10 @@ class FederatedSettingsIdentityProviderArgs:
         :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
-        :param pulumi.Input[str] name: Human-readable label that identifies the identity provider.
         """
         pulumi.set(__self__, "federation_settings_id", federation_settings_id)
         pulumi.set(__self__, "issuer_uri", issuer_uri)
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "request_binding", request_binding)
         pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
         pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
@@ -46,8 +47,6 @@ class FederatedSettingsIdentityProviderArgs:
         pulumi.set(__self__, "status", status)
         if associated_domains is not None:
             pulumi.set(__self__, "associated_domains", associated_domains)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="federationSettingsId")
@@ -72,6 +71,18 @@ class FederatedSettingsIdentityProviderArgs:
     @issuer_uri.setter
     def issuer_uri(self, value: pulumi.Input[str]):
         pulumi.set(self, "issuer_uri", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Human-readable label that identifies the identity provider.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="requestBinding")
@@ -146,18 +157,6 @@ class FederatedSettingsIdentityProviderArgs:
     @associated_domains.setter
     def associated_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "associated_domains", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Human-readable label that identifies the identity provider.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -361,6 +360,7 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             associated_domains=["yourdomain.com"],
             federation_settings_id="627a9687f7f7f7f774de306f14",
             issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
+            name="mongodb_federation_test",
             request_binding="HTTP-POST",
             response_signature_algorithm="SHA-256",
             sso_debug_enabled=True,
@@ -412,6 +412,7 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             associated_domains=["yourdomain.com"],
             federation_settings_id="627a9687f7f7f7f774de306f14",
             issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
+            name="mongodb_federation_test",
             request_binding="HTTP-POST",
             response_signature_algorithm="SHA-256",
             sso_debug_enabled=True,
@@ -469,6 +470,8 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             if issuer_uri is None and not opts.urn:
                 raise TypeError("Missing required property 'issuer_uri'")
             __props__.__dict__["issuer_uri"] = issuer_uri
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if request_binding is None and not opts.urn:
                 raise TypeError("Missing required property 'request_binding'")

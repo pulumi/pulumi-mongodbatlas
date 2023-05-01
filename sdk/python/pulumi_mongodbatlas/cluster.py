@@ -16,6 +16,7 @@ __all__ = ['ClusterArgs', 'Cluster']
 @pulumi.input_type
 class ClusterArgs:
     def __init__(__self__, *,
+                 name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  provider_instance_size_name: pulumi.Input[str],
                  provider_name: pulumi.Input[str],
@@ -33,7 +34,6 @@ class ClusterArgs:
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
                  num_shards: Optional[pulumi.Input[int]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
@@ -51,6 +51,7 @@ class ClusterArgs:
                  version_release_system: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
+        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
@@ -75,7 +76,6 @@ class ClusterArgs:
                * Cannot be used with Azure clusters
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
-        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
@@ -93,6 +93,7 @@ class ClusterArgs:
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -127,8 +128,6 @@ class ClusterArgs:
             pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version is not None:
             pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
         if num_shards is not None:
             pulumi.set(__self__, "num_shards", num_shards)
         if paused is not None:
@@ -165,6 +164,18 @@ class ClusterArgs:
             pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
             pulumi.set(__self__, "version_release_system", version_release_system)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -372,18 +383,6 @@ class ClusterArgs:
     @mongo_db_major_version.setter
     def mongo_db_major_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mongo_db_major_version", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="numShards")
@@ -1489,6 +1488,8 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["encryption_at_rest_provider"] = encryption_at_rest_provider
             __props__.__dict__["labels"] = labels
             __props__.__dict__["mongo_db_major_version"] = mongo_db_major_version
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["num_shards"] = num_shards
             __props__.__dict__["paused"] = paused

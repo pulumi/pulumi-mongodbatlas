@@ -196,7 +196,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         test = mongodbatlas.Cluster("test",
             project_id="<YOUR-PROJECT-ID>",
-            disk_size_gb=80,
+            name="<CLUSTER-NAME>",
             cloud_backup=True,
             cluster_type="GEOSHARDED",
             provider_name="AWS",
@@ -247,6 +247,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
             project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -261,7 +262,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
             auto_scaling_disk_gb_enabled=True,
             mongo_db_major_version="4.0",
             provider_name="AWS",
-            disk_size_gb=100,
             provider_instance_size_name="M40")
         config = mongodbatlas.GlobalClusterConfig("config",
             project_id=mongodbatlas_cluster["test"]["project_id"],
@@ -315,7 +315,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         test = mongodbatlas.Cluster("test",
             project_id="<YOUR-PROJECT-ID>",
-            disk_size_gb=80,
+            name="<CLUSTER-NAME>",
             cloud_backup=True,
             cluster_type="GEOSHARDED",
             provider_name="AWS",
@@ -366,6 +366,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
             project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -380,7 +381,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
             auto_scaling_disk_gb_enabled=True,
             mongo_db_major_version="4.0",
             provider_name="AWS",
-            disk_size_gb=100,
             provider_instance_size_name="M40")
         config = mongodbatlas.GlobalClusterConfig("config",
             project_id=mongodbatlas_cluster["test"]["project_id"],

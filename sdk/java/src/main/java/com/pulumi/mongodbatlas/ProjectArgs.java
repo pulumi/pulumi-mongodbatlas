@@ -105,15 +105,15 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
      * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
      * 
      */
-    @Import(name="name")
-    private @Nullable Output<String> name;
+    @Import(name="name", required=true)
+    private Output<String> name;
 
     /**
      * @return The name of the project you want to create. (Cannot be changed via this Provider after creation.)
      * 
      */
-    public Optional<Output<String>> name() {
-        return Optional.ofNullable(this.name);
+    public Output<String> name() {
+        return this.name;
     }
 
     /**
@@ -342,7 +342,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder name(@Nullable Output<String> name) {
+        public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
@@ -455,6 +455,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ProjectArgs build() {
+            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
             return $;
         }

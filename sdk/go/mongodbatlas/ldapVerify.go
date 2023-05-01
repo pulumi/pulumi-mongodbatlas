@@ -28,6 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("NAME OF THE PROJECT"),
 //				OrgId: pulumi.String("ORG ID"),
 //			})
 //			if err != nil {
@@ -35,7 +36,7 @@ import (
 //			}
 //			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:                testProject.ID(),
-//				DiskSizeGb:               pulumi.Float64(5),
+//				Name:                     pulumi.String("NAME OF THE CLUSTER"),
 //				ProviderName:             pulumi.String("AWS"),
 //				ProviderRegionName:       pulumi.String("US_EAST_2"),
 //				ProviderInstanceSizeName: pulumi.String("M10"),

@@ -161,8 +161,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Human-readable label that identifies the serverless instance.
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         /// <summary>
         /// The ID of the organization or project you want to create the serverless instance within.
