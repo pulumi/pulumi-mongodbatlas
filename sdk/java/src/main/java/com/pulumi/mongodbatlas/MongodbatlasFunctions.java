@@ -28,6 +28,8 @@ import com.pulumi.mongodbatlas.inputs.GetApiKeysArgs;
 import com.pulumi.mongodbatlas.inputs.GetApiKeysPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
 import com.pulumi.mongodbatlas.inputs.GetAuditingPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
+import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSchedulePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotArgs;
@@ -170,6 +172,7 @@ import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetApiKeyResult;
 import com.pulumi.mongodbatlas.outputs.GetApiKeysInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAuditingResult;
+import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupScheduleResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotExportBucketResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotExportBucketsInvokeResult;
@@ -1160,6 +1163,18 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetAuditingResult> getAuditingPlain(GetAuditingPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAuditing:getAuditing", TypeShape.of(GetAuditingResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetBackupCompliancePolicyResult> getBackupCompliancePolicy(GetBackupCompliancePolicyArgs args) {
+        return getBackupCompliancePolicy(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetBackupCompliancePolicyResult> getBackupCompliancePolicyPlain(GetBackupCompliancePolicyPlainArgs args) {
+        return getBackupCompliancePolicyPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetBackupCompliancePolicyResult> getBackupCompliancePolicy(GetBackupCompliancePolicyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetBackupCompliancePolicyResult> getBackupCompliancePolicyPlain(GetBackupCompliancePolicyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
@@ -3177,7 +3192,6 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
-     *             .diskSizeGb(100)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .numShards(1)
@@ -3242,7 +3256,6 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
-     *             .diskSizeGb(100)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .numShards(1)
@@ -3307,7 +3320,6 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
-     *             .diskSizeGb(100)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .numShards(1)
@@ -3372,7 +3384,6 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
      *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
-     *             .diskSizeGb(100)
      *             .clusterType(&#34;REPLICASET&#34;)
      *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
      *                 .numShards(1)

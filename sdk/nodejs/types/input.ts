@@ -458,6 +458,121 @@ export interface AlertConfigurationThresholdConfig {
     units?: pulumi.Input<string>;
 }
 
+export interface BackupCompliancePolicyOnDemandPolicyItem {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface BackupCompliancePolicyPolicyItemDaily {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface BackupCompliancePolicyPolicyItemHourly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface BackupCompliancePolicyPolicyItemMonthly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface BackupCompliancePolicyPolicyItemWeekly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
 export interface CloudBackupScheduleCopySetting {
     /**
      * Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
@@ -1126,6 +1241,236 @@ export interface GetAlertConfigurationsListOptionArgs {
     includeCount?: pulumi.Input<boolean>;
     itemsPerPage?: pulumi.Input<number>;
     pageNum?: pulumi.Input<number>;
+}
+
+export interface GetBackupCompliancePolicyOnDemandPolicyItem {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval?: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit?: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue?: number;
+}
+
+export interface GetBackupCompliancePolicyOnDemandPolicyItemArgs {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval?: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit?: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue?: pulumi.Input<number>;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemDaily {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemDailyArgs {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemHourly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemHourlyArgs {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemMonthly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemMonthlyArgs {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemWeekly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemWeeklyArgs {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     */
+    retentionValue: pulumi.Input<number>;
 }
 
 export interface GetCustomDbRoleInheritedRole {

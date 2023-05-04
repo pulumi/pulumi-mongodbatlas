@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  *
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: "<YOUR-PROJECT-ID>",
- *     diskSizeGb: 100,
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -93,7 +92,6 @@ export interface GetClustersResult {
  *
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: "<YOUR-PROJECT-ID>",
- *     diskSizeGb: 100,
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,

@@ -16,6 +16,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -29,7 +30,6 @@ namespace Pulumi.Mongodbatlas
     ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
     ///     {
     ///         ProjectId = testProject.Id,
-    ///         DiskSizeGb = 5,
     ///         ProviderName = "AWS",
     ///         ProviderRegionName = "US_EAST_2",
     ///         ProviderInstanceSizeName = "M10",

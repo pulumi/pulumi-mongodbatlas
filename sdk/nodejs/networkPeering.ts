@@ -74,7 +74,6 @@ import * as utilities from "./utilities";
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: local.project_id,
  *     numShards: 1,
- *     diskSizeGb: 5,
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -153,7 +152,6 @@ import * as utilities from "./utilities";
  * // does not yet exist for this AWS region
  * const test = new mongodbatlas.Cluster("test", {
  *     projectId: local.project_id,
- *     diskSizeGb: 5,
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -202,7 +200,6 @@ import * as utilities from "./utilities";
  * // does not yet exist for this GCP 
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: local.project_id,
- *     diskSizeGb: 5,
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,

@@ -53,7 +53,6 @@ import javax.annotation.Nullable;
  * 
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
  *             .projectId(testProject.id())
- *             .diskSizeGb(5)
  *             .providerName(&#34;AWS&#34;)
  *             .providerRegionName(&#34;US_EAST_2&#34;)
  *             .providerInstanceSizeName(&#34;M10&#34;)

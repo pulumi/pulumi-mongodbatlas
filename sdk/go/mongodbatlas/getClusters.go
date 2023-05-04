@@ -34,7 +34,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
-//				DiskSizeGb:  pulumi.Float64(100),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{

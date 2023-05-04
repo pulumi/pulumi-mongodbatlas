@@ -3339,6 +3339,911 @@ func (o AlertConfigurationThresholdConfigPtrOutput) Units() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+type BackupCompliancePolicyOnDemandPolicyItem struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType *string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id *string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// BackupCompliancePolicyOnDemandPolicyItemInput is an input type that accepts BackupCompliancePolicyOnDemandPolicyItemArgs and BackupCompliancePolicyOnDemandPolicyItemOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyOnDemandPolicyItemInput` via:
+//
+//	BackupCompliancePolicyOnDemandPolicyItemArgs{...}
+type BackupCompliancePolicyOnDemandPolicyItemInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyOnDemandPolicyItemOutput() BackupCompliancePolicyOnDemandPolicyItemOutput
+	ToBackupCompliancePolicyOnDemandPolicyItemOutputWithContext(context.Context) BackupCompliancePolicyOnDemandPolicyItemOutput
+}
+
+type BackupCompliancePolicyOnDemandPolicyItemArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (BackupCompliancePolicyOnDemandPolicyItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyOnDemandPolicyItem)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyOnDemandPolicyItemArgs) ToBackupCompliancePolicyOnDemandPolicyItemOutput() BackupCompliancePolicyOnDemandPolicyItemOutput {
+	return i.ToBackupCompliancePolicyOnDemandPolicyItemOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyOnDemandPolicyItemArgs) ToBackupCompliancePolicyOnDemandPolicyItemOutputWithContext(ctx context.Context) BackupCompliancePolicyOnDemandPolicyItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyOnDemandPolicyItemOutput)
+}
+
+func (i BackupCompliancePolicyOnDemandPolicyItemArgs) ToBackupCompliancePolicyOnDemandPolicyItemPtrOutput() BackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return i.ToBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyOnDemandPolicyItemArgs) ToBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyOnDemandPolicyItemOutput).ToBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(ctx)
+}
+
+// BackupCompliancePolicyOnDemandPolicyItemPtrInput is an input type that accepts BackupCompliancePolicyOnDemandPolicyItemArgs, BackupCompliancePolicyOnDemandPolicyItemPtr and BackupCompliancePolicyOnDemandPolicyItemPtrOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyOnDemandPolicyItemPtrInput` via:
+//
+//	        BackupCompliancePolicyOnDemandPolicyItemArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackupCompliancePolicyOnDemandPolicyItemPtrInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyOnDemandPolicyItemPtrOutput() BackupCompliancePolicyOnDemandPolicyItemPtrOutput
+	ToBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(context.Context) BackupCompliancePolicyOnDemandPolicyItemPtrOutput
+}
+
+type backupCompliancePolicyOnDemandPolicyItemPtrType BackupCompliancePolicyOnDemandPolicyItemArgs
+
+func BackupCompliancePolicyOnDemandPolicyItemPtr(v *BackupCompliancePolicyOnDemandPolicyItemArgs) BackupCompliancePolicyOnDemandPolicyItemPtrInput {
+	return (*backupCompliancePolicyOnDemandPolicyItemPtrType)(v)
+}
+
+func (*backupCompliancePolicyOnDemandPolicyItemPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackupCompliancePolicyOnDemandPolicyItem)(nil)).Elem()
+}
+
+func (i *backupCompliancePolicyOnDemandPolicyItemPtrType) ToBackupCompliancePolicyOnDemandPolicyItemPtrOutput() BackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return i.ToBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(context.Background())
+}
+
+func (i *backupCompliancePolicyOnDemandPolicyItemPtrType) ToBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyOnDemandPolicyItemPtrOutput)
+}
+
+type BackupCompliancePolicyOnDemandPolicyItemOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyOnDemandPolicyItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyOnDemandPolicyItem)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyOnDemandPolicyItemOutput) ToBackupCompliancePolicyOnDemandPolicyItemOutput() BackupCompliancePolicyOnDemandPolicyItemOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyOnDemandPolicyItemOutput) ToBackupCompliancePolicyOnDemandPolicyItemOutputWithContext(ctx context.Context) BackupCompliancePolicyOnDemandPolicyItemOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyOnDemandPolicyItemOutput) ToBackupCompliancePolicyOnDemandPolicyItemPtrOutput() BackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return o.ToBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(context.Background())
+}
+
+func (o BackupCompliancePolicyOnDemandPolicyItemOutput) ToBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackupCompliancePolicyOnDemandPolicyItem) *BackupCompliancePolicyOnDemandPolicyItem {
+		return &v
+	}).(BackupCompliancePolicyOnDemandPolicyItemPtrOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o BackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o BackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o BackupCompliancePolicyOnDemandPolicyItemOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o BackupCompliancePolicyOnDemandPolicyItemOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o BackupCompliancePolicyOnDemandPolicyItemOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type BackupCompliancePolicyOnDemandPolicyItemPtrOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyOnDemandPolicyItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackupCompliancePolicyOnDemandPolicyItem)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) ToBackupCompliancePolicyOnDemandPolicyItemPtrOutput() BackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) ToBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) Elem() BackupCompliancePolicyOnDemandPolicyItemOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) BackupCompliancePolicyOnDemandPolicyItem {
+		if v != nil {
+			return *v
+		}
+		var ret BackupCompliancePolicyOnDemandPolicyItem
+		return ret
+	}).(BackupCompliancePolicyOnDemandPolicyItemOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionUnit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionValue
+	}).(pulumi.IntPtrOutput)
+}
+
+type BackupCompliancePolicyPolicyItemDaily struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType *string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id *string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// BackupCompliancePolicyPolicyItemDailyInput is an input type that accepts BackupCompliancePolicyPolicyItemDailyArgs and BackupCompliancePolicyPolicyItemDailyOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemDailyInput` via:
+//
+//	BackupCompliancePolicyPolicyItemDailyArgs{...}
+type BackupCompliancePolicyPolicyItemDailyInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemDailyOutput() BackupCompliancePolicyPolicyItemDailyOutput
+	ToBackupCompliancePolicyPolicyItemDailyOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemDailyOutput
+}
+
+type BackupCompliancePolicyPolicyItemDailyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (BackupCompliancePolicyPolicyItemDailyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemDaily)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyPolicyItemDailyArgs) ToBackupCompliancePolicyPolicyItemDailyOutput() BackupCompliancePolicyPolicyItemDailyOutput {
+	return i.ToBackupCompliancePolicyPolicyItemDailyOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemDailyArgs) ToBackupCompliancePolicyPolicyItemDailyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemDailyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemDailyOutput)
+}
+
+func (i BackupCompliancePolicyPolicyItemDailyArgs) ToBackupCompliancePolicyPolicyItemDailyPtrOutput() BackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return i.ToBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemDailyArgs) ToBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemDailyOutput).ToBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(ctx)
+}
+
+// BackupCompliancePolicyPolicyItemDailyPtrInput is an input type that accepts BackupCompliancePolicyPolicyItemDailyArgs, BackupCompliancePolicyPolicyItemDailyPtr and BackupCompliancePolicyPolicyItemDailyPtrOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemDailyPtrInput` via:
+//
+//	        BackupCompliancePolicyPolicyItemDailyArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackupCompliancePolicyPolicyItemDailyPtrInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemDailyPtrOutput() BackupCompliancePolicyPolicyItemDailyPtrOutput
+	ToBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemDailyPtrOutput
+}
+
+type backupCompliancePolicyPolicyItemDailyPtrType BackupCompliancePolicyPolicyItemDailyArgs
+
+func BackupCompliancePolicyPolicyItemDailyPtr(v *BackupCompliancePolicyPolicyItemDailyArgs) BackupCompliancePolicyPolicyItemDailyPtrInput {
+	return (*backupCompliancePolicyPolicyItemDailyPtrType)(v)
+}
+
+func (*backupCompliancePolicyPolicyItemDailyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackupCompliancePolicyPolicyItemDaily)(nil)).Elem()
+}
+
+func (i *backupCompliancePolicyPolicyItemDailyPtrType) ToBackupCompliancePolicyPolicyItemDailyPtrOutput() BackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return i.ToBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(context.Background())
+}
+
+func (i *backupCompliancePolicyPolicyItemDailyPtrType) ToBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemDailyPtrOutput)
+}
+
+type BackupCompliancePolicyPolicyItemDailyOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemDailyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemDaily)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemDailyOutput) ToBackupCompliancePolicyPolicyItemDailyOutput() BackupCompliancePolicyPolicyItemDailyOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemDailyOutput) ToBackupCompliancePolicyPolicyItemDailyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemDailyOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemDailyOutput) ToBackupCompliancePolicyPolicyItemDailyPtrOutput() BackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return o.ToBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(context.Background())
+}
+
+func (o BackupCompliancePolicyPolicyItemDailyOutput) ToBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackupCompliancePolicyPolicyItemDaily) *BackupCompliancePolicyPolicyItemDaily {
+		return &v
+	}).(BackupCompliancePolicyPolicyItemDailyPtrOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o BackupCompliancePolicyPolicyItemDailyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o BackupCompliancePolicyPolicyItemDailyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o BackupCompliancePolicyPolicyItemDailyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o BackupCompliancePolicyPolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o BackupCompliancePolicyPolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type BackupCompliancePolicyPolicyItemDailyPtrOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemDailyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackupCompliancePolicyPolicyItemDaily)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) ToBackupCompliancePolicyPolicyItemDailyPtrOutput() BackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) ToBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) Elem() BackupCompliancePolicyPolicyItemDailyOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) BackupCompliancePolicyPolicyItemDaily {
+		if v != nil {
+			return *v
+		}
+		var ret BackupCompliancePolicyPolicyItemDaily
+		return ret
+	}).(BackupCompliancePolicyPolicyItemDailyOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionUnit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionValue
+	}).(pulumi.IntPtrOutput)
+}
+
+type BackupCompliancePolicyPolicyItemHourly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType *string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id *string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// BackupCompliancePolicyPolicyItemHourlyInput is an input type that accepts BackupCompliancePolicyPolicyItemHourlyArgs and BackupCompliancePolicyPolicyItemHourlyOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemHourlyInput` via:
+//
+//	BackupCompliancePolicyPolicyItemHourlyArgs{...}
+type BackupCompliancePolicyPolicyItemHourlyInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemHourlyOutput() BackupCompliancePolicyPolicyItemHourlyOutput
+	ToBackupCompliancePolicyPolicyItemHourlyOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemHourlyOutput
+}
+
+type BackupCompliancePolicyPolicyItemHourlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (BackupCompliancePolicyPolicyItemHourlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemHourly)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyPolicyItemHourlyArgs) ToBackupCompliancePolicyPolicyItemHourlyOutput() BackupCompliancePolicyPolicyItemHourlyOutput {
+	return i.ToBackupCompliancePolicyPolicyItemHourlyOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemHourlyArgs) ToBackupCompliancePolicyPolicyItemHourlyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemHourlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemHourlyOutput)
+}
+
+func (i BackupCompliancePolicyPolicyItemHourlyArgs) ToBackupCompliancePolicyPolicyItemHourlyPtrOutput() BackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return i.ToBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemHourlyArgs) ToBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemHourlyOutput).ToBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(ctx)
+}
+
+// BackupCompliancePolicyPolicyItemHourlyPtrInput is an input type that accepts BackupCompliancePolicyPolicyItemHourlyArgs, BackupCompliancePolicyPolicyItemHourlyPtr and BackupCompliancePolicyPolicyItemHourlyPtrOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemHourlyPtrInput` via:
+//
+//	        BackupCompliancePolicyPolicyItemHourlyArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackupCompliancePolicyPolicyItemHourlyPtrInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemHourlyPtrOutput() BackupCompliancePolicyPolicyItemHourlyPtrOutput
+	ToBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemHourlyPtrOutput
+}
+
+type backupCompliancePolicyPolicyItemHourlyPtrType BackupCompliancePolicyPolicyItemHourlyArgs
+
+func BackupCompliancePolicyPolicyItemHourlyPtr(v *BackupCompliancePolicyPolicyItemHourlyArgs) BackupCompliancePolicyPolicyItemHourlyPtrInput {
+	return (*backupCompliancePolicyPolicyItemHourlyPtrType)(v)
+}
+
+func (*backupCompliancePolicyPolicyItemHourlyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackupCompliancePolicyPolicyItemHourly)(nil)).Elem()
+}
+
+func (i *backupCompliancePolicyPolicyItemHourlyPtrType) ToBackupCompliancePolicyPolicyItemHourlyPtrOutput() BackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return i.ToBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(context.Background())
+}
+
+func (i *backupCompliancePolicyPolicyItemHourlyPtrType) ToBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemHourlyPtrOutput)
+}
+
+type BackupCompliancePolicyPolicyItemHourlyOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemHourlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemHourly)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemHourlyOutput) ToBackupCompliancePolicyPolicyItemHourlyOutput() BackupCompliancePolicyPolicyItemHourlyOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemHourlyOutput) ToBackupCompliancePolicyPolicyItemHourlyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemHourlyOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemHourlyOutput) ToBackupCompliancePolicyPolicyItemHourlyPtrOutput() BackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return o.ToBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(context.Background())
+}
+
+func (o BackupCompliancePolicyPolicyItemHourlyOutput) ToBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackupCompliancePolicyPolicyItemHourly) *BackupCompliancePolicyPolicyItemHourly {
+		return &v
+	}).(BackupCompliancePolicyPolicyItemHourlyPtrOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o BackupCompliancePolicyPolicyItemHourlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o BackupCompliancePolicyPolicyItemHourlyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o BackupCompliancePolicyPolicyItemHourlyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o BackupCompliancePolicyPolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o BackupCompliancePolicyPolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type BackupCompliancePolicyPolicyItemHourlyPtrOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemHourlyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackupCompliancePolicyPolicyItemHourly)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) ToBackupCompliancePolicyPolicyItemHourlyPtrOutput() BackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) ToBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) Elem() BackupCompliancePolicyPolicyItemHourlyOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) BackupCompliancePolicyPolicyItemHourly {
+		if v != nil {
+			return *v
+		}
+		var ret BackupCompliancePolicyPolicyItemHourly
+		return ret
+	}).(BackupCompliancePolicyPolicyItemHourlyOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionUnit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionValue
+	}).(pulumi.IntPtrOutput)
+}
+
+type BackupCompliancePolicyPolicyItemMonthly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType *string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id *string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// BackupCompliancePolicyPolicyItemMonthlyInput is an input type that accepts BackupCompliancePolicyPolicyItemMonthlyArgs and BackupCompliancePolicyPolicyItemMonthlyOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemMonthlyInput` via:
+//
+//	BackupCompliancePolicyPolicyItemMonthlyArgs{...}
+type BackupCompliancePolicyPolicyItemMonthlyInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemMonthlyOutput() BackupCompliancePolicyPolicyItemMonthlyOutput
+	ToBackupCompliancePolicyPolicyItemMonthlyOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemMonthlyOutput
+}
+
+type BackupCompliancePolicyPolicyItemMonthlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (BackupCompliancePolicyPolicyItemMonthlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemMonthly)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyPolicyItemMonthlyArgs) ToBackupCompliancePolicyPolicyItemMonthlyOutput() BackupCompliancePolicyPolicyItemMonthlyOutput {
+	return i.ToBackupCompliancePolicyPolicyItemMonthlyOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemMonthlyArgs) ToBackupCompliancePolicyPolicyItemMonthlyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemMonthlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemMonthlyOutput)
+}
+
+// BackupCompliancePolicyPolicyItemMonthlyArrayInput is an input type that accepts BackupCompliancePolicyPolicyItemMonthlyArray and BackupCompliancePolicyPolicyItemMonthlyArrayOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemMonthlyArrayInput` via:
+//
+//	BackupCompliancePolicyPolicyItemMonthlyArray{ BackupCompliancePolicyPolicyItemMonthlyArgs{...} }
+type BackupCompliancePolicyPolicyItemMonthlyArrayInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemMonthlyArrayOutput() BackupCompliancePolicyPolicyItemMonthlyArrayOutput
+	ToBackupCompliancePolicyPolicyItemMonthlyArrayOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemMonthlyArrayOutput
+}
+
+type BackupCompliancePolicyPolicyItemMonthlyArray []BackupCompliancePolicyPolicyItemMonthlyInput
+
+func (BackupCompliancePolicyPolicyItemMonthlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackupCompliancePolicyPolicyItemMonthly)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyPolicyItemMonthlyArray) ToBackupCompliancePolicyPolicyItemMonthlyArrayOutput() BackupCompliancePolicyPolicyItemMonthlyArrayOutput {
+	return i.ToBackupCompliancePolicyPolicyItemMonthlyArrayOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemMonthlyArray) ToBackupCompliancePolicyPolicyItemMonthlyArrayOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemMonthlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemMonthlyArrayOutput)
+}
+
+type BackupCompliancePolicyPolicyItemMonthlyOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemMonthlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemMonthly)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemMonthlyOutput) ToBackupCompliancePolicyPolicyItemMonthlyOutput() BackupCompliancePolicyPolicyItemMonthlyOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemMonthlyOutput) ToBackupCompliancePolicyPolicyItemMonthlyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemMonthlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o BackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o BackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o BackupCompliancePolicyPolicyItemMonthlyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o BackupCompliancePolicyPolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o BackupCompliancePolicyPolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type BackupCompliancePolicyPolicyItemMonthlyArrayOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemMonthlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackupCompliancePolicyPolicyItemMonthly)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemMonthlyArrayOutput) ToBackupCompliancePolicyPolicyItemMonthlyArrayOutput() BackupCompliancePolicyPolicyItemMonthlyArrayOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemMonthlyArrayOutput) ToBackupCompliancePolicyPolicyItemMonthlyArrayOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemMonthlyArrayOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemMonthlyArrayOutput) Index(i pulumi.IntInput) BackupCompliancePolicyPolicyItemMonthlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BackupCompliancePolicyPolicyItemMonthly {
+		return vs[0].([]BackupCompliancePolicyPolicyItemMonthly)[vs[1].(int)]
+	}).(BackupCompliancePolicyPolicyItemMonthlyOutput)
+}
+
+type BackupCompliancePolicyPolicyItemWeekly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType *string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id *string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// BackupCompliancePolicyPolicyItemWeeklyInput is an input type that accepts BackupCompliancePolicyPolicyItemWeeklyArgs and BackupCompliancePolicyPolicyItemWeeklyOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemWeeklyInput` via:
+//
+//	BackupCompliancePolicyPolicyItemWeeklyArgs{...}
+type BackupCompliancePolicyPolicyItemWeeklyInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemWeeklyOutput() BackupCompliancePolicyPolicyItemWeeklyOutput
+	ToBackupCompliancePolicyPolicyItemWeeklyOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemWeeklyOutput
+}
+
+type BackupCompliancePolicyPolicyItemWeeklyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (BackupCompliancePolicyPolicyItemWeeklyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemWeekly)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyPolicyItemWeeklyArgs) ToBackupCompliancePolicyPolicyItemWeeklyOutput() BackupCompliancePolicyPolicyItemWeeklyOutput {
+	return i.ToBackupCompliancePolicyPolicyItemWeeklyOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemWeeklyArgs) ToBackupCompliancePolicyPolicyItemWeeklyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemWeeklyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemWeeklyOutput)
+}
+
+// BackupCompliancePolicyPolicyItemWeeklyArrayInput is an input type that accepts BackupCompliancePolicyPolicyItemWeeklyArray and BackupCompliancePolicyPolicyItemWeeklyArrayOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemWeeklyArrayInput` via:
+//
+//	BackupCompliancePolicyPolicyItemWeeklyArray{ BackupCompliancePolicyPolicyItemWeeklyArgs{...} }
+type BackupCompliancePolicyPolicyItemWeeklyArrayInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemWeeklyArrayOutput() BackupCompliancePolicyPolicyItemWeeklyArrayOutput
+	ToBackupCompliancePolicyPolicyItemWeeklyArrayOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemWeeklyArrayOutput
+}
+
+type BackupCompliancePolicyPolicyItemWeeklyArray []BackupCompliancePolicyPolicyItemWeeklyInput
+
+func (BackupCompliancePolicyPolicyItemWeeklyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackupCompliancePolicyPolicyItemWeekly)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyPolicyItemWeeklyArray) ToBackupCompliancePolicyPolicyItemWeeklyArrayOutput() BackupCompliancePolicyPolicyItemWeeklyArrayOutput {
+	return i.ToBackupCompliancePolicyPolicyItemWeeklyArrayOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemWeeklyArray) ToBackupCompliancePolicyPolicyItemWeeklyArrayOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemWeeklyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemWeeklyArrayOutput)
+}
+
+type BackupCompliancePolicyPolicyItemWeeklyOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemWeeklyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemWeekly)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemWeeklyOutput) ToBackupCompliancePolicyPolicyItemWeeklyOutput() BackupCompliancePolicyPolicyItemWeeklyOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemWeeklyOutput) ToBackupCompliancePolicyPolicyItemWeeklyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemWeeklyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o BackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o BackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o BackupCompliancePolicyPolicyItemWeeklyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o BackupCompliancePolicyPolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o BackupCompliancePolicyPolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type BackupCompliancePolicyPolicyItemWeeklyArrayOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemWeeklyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackupCompliancePolicyPolicyItemWeekly)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemWeeklyArrayOutput) ToBackupCompliancePolicyPolicyItemWeeklyArrayOutput() BackupCompliancePolicyPolicyItemWeeklyArrayOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemWeeklyArrayOutput) ToBackupCompliancePolicyPolicyItemWeeklyArrayOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemWeeklyArrayOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemWeeklyArrayOutput) Index(i pulumi.IntInput) BackupCompliancePolicyPolicyItemWeeklyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BackupCompliancePolicyPolicyItemWeekly {
+		return vs[0].([]BackupCompliancePolicyPolicyItemWeekly)[vs[1].(int)]
+	}).(BackupCompliancePolicyPolicyItemWeeklyOutput)
+}
+
 type CloudBackupScheduleCopySetting struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider *string `pulumi:"cloudProvider"`
@@ -18140,6 +19045,911 @@ func (o GetApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetApiKeysResultOu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiKeysResult {
 		return vs[0].([]GetApiKeysResult)[vs[1].(int)]
 	}).(GetApiKeysResultOutput)
+}
+
+type GetBackupCompliancePolicyOnDemandPolicyItem struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetBackupCompliancePolicyOnDemandPolicyItemInput is an input type that accepts GetBackupCompliancePolicyOnDemandPolicyItemArgs and GetBackupCompliancePolicyOnDemandPolicyItemOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyOnDemandPolicyItemInput` via:
+//
+//	GetBackupCompliancePolicyOnDemandPolicyItemArgs{...}
+type GetBackupCompliancePolicyOnDemandPolicyItemInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyOnDemandPolicyItemOutput() GetBackupCompliancePolicyOnDemandPolicyItemOutput
+	ToGetBackupCompliancePolicyOnDemandPolicyItemOutputWithContext(context.Context) GetBackupCompliancePolicyOnDemandPolicyItemOutput
+}
+
+type GetBackupCompliancePolicyOnDemandPolicyItemArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetBackupCompliancePolicyOnDemandPolicyItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyOnDemandPolicyItem)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyOnDemandPolicyItemArgs) ToGetBackupCompliancePolicyOnDemandPolicyItemOutput() GetBackupCompliancePolicyOnDemandPolicyItemOutput {
+	return i.ToGetBackupCompliancePolicyOnDemandPolicyItemOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyOnDemandPolicyItemArgs) ToGetBackupCompliancePolicyOnDemandPolicyItemOutputWithContext(ctx context.Context) GetBackupCompliancePolicyOnDemandPolicyItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyOnDemandPolicyItemOutput)
+}
+
+func (i GetBackupCompliancePolicyOnDemandPolicyItemArgs) ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutput() GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return i.ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyOnDemandPolicyItemArgs) ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyOnDemandPolicyItemOutput).ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(ctx)
+}
+
+// GetBackupCompliancePolicyOnDemandPolicyItemPtrInput is an input type that accepts GetBackupCompliancePolicyOnDemandPolicyItemArgs, GetBackupCompliancePolicyOnDemandPolicyItemPtr and GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyOnDemandPolicyItemPtrInput` via:
+//
+//	        GetBackupCompliancePolicyOnDemandPolicyItemArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetBackupCompliancePolicyOnDemandPolicyItemPtrInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutput() GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput
+	ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(context.Context) GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput
+}
+
+type getBackupCompliancePolicyOnDemandPolicyItemPtrType GetBackupCompliancePolicyOnDemandPolicyItemArgs
+
+func GetBackupCompliancePolicyOnDemandPolicyItemPtr(v *GetBackupCompliancePolicyOnDemandPolicyItemArgs) GetBackupCompliancePolicyOnDemandPolicyItemPtrInput {
+	return (*getBackupCompliancePolicyOnDemandPolicyItemPtrType)(v)
+}
+
+func (*getBackupCompliancePolicyOnDemandPolicyItemPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBackupCompliancePolicyOnDemandPolicyItem)(nil)).Elem()
+}
+
+func (i *getBackupCompliancePolicyOnDemandPolicyItemPtrType) ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutput() GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return i.ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(context.Background())
+}
+
+func (i *getBackupCompliancePolicyOnDemandPolicyItemPtrType) ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput)
+}
+
+type GetBackupCompliancePolicyOnDemandPolicyItemOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyOnDemandPolicyItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyOnDemandPolicyItem)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) ToGetBackupCompliancePolicyOnDemandPolicyItemOutput() GetBackupCompliancePolicyOnDemandPolicyItemOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) ToGetBackupCompliancePolicyOnDemandPolicyItemOutputWithContext(ctx context.Context) GetBackupCompliancePolicyOnDemandPolicyItemOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutput() GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return o.ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(context.Background())
+}
+
+func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetBackupCompliancePolicyOnDemandPolicyItem) *GetBackupCompliancePolicyOnDemandPolicyItem {
+		return &v
+	}).(GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBackupCompliancePolicyOnDemandPolicyItem)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput) ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutput() GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput) ToGetBackupCompliancePolicyOnDemandPolicyItemPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput) Elem() GetBackupCompliancePolicyOnDemandPolicyItemOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyOnDemandPolicyItem) GetBackupCompliancePolicyOnDemandPolicyItem {
+		if v != nil {
+			return *v
+		}
+		var ret GetBackupCompliancePolicyOnDemandPolicyItem
+		return ret
+	}).(GetBackupCompliancePolicyOnDemandPolicyItemOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyOnDemandPolicyItem) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyOnDemandPolicyItem) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyOnDemandPolicyItem) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyOnDemandPolicyItem) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionUnit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyOnDemandPolicyItem) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionValue
+	}).(pulumi.IntPtrOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemDaily struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetBackupCompliancePolicyPolicyItemDailyInput is an input type that accepts GetBackupCompliancePolicyPolicyItemDailyArgs and GetBackupCompliancePolicyPolicyItemDailyOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemDailyInput` via:
+//
+//	GetBackupCompliancePolicyPolicyItemDailyArgs{...}
+type GetBackupCompliancePolicyPolicyItemDailyInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemDailyOutput() GetBackupCompliancePolicyPolicyItemDailyOutput
+	ToGetBackupCompliancePolicyPolicyItemDailyOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemDailyOutput
+}
+
+type GetBackupCompliancePolicyPolicyItemDailyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetBackupCompliancePolicyPolicyItemDailyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemDaily)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyPolicyItemDailyArgs) ToGetBackupCompliancePolicyPolicyItemDailyOutput() GetBackupCompliancePolicyPolicyItemDailyOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemDailyOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemDailyArgs) ToGetBackupCompliancePolicyPolicyItemDailyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemDailyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemDailyOutput)
+}
+
+func (i GetBackupCompliancePolicyPolicyItemDailyArgs) ToGetBackupCompliancePolicyPolicyItemDailyPtrOutput() GetBackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemDailyArgs) ToGetBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemDailyOutput).ToGetBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(ctx)
+}
+
+// GetBackupCompliancePolicyPolicyItemDailyPtrInput is an input type that accepts GetBackupCompliancePolicyPolicyItemDailyArgs, GetBackupCompliancePolicyPolicyItemDailyPtr and GetBackupCompliancePolicyPolicyItemDailyPtrOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemDailyPtrInput` via:
+//
+//	        GetBackupCompliancePolicyPolicyItemDailyArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetBackupCompliancePolicyPolicyItemDailyPtrInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemDailyPtrOutput() GetBackupCompliancePolicyPolicyItemDailyPtrOutput
+	ToGetBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemDailyPtrOutput
+}
+
+type getBackupCompliancePolicyPolicyItemDailyPtrType GetBackupCompliancePolicyPolicyItemDailyArgs
+
+func GetBackupCompliancePolicyPolicyItemDailyPtr(v *GetBackupCompliancePolicyPolicyItemDailyArgs) GetBackupCompliancePolicyPolicyItemDailyPtrInput {
+	return (*getBackupCompliancePolicyPolicyItemDailyPtrType)(v)
+}
+
+func (*getBackupCompliancePolicyPolicyItemDailyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBackupCompliancePolicyPolicyItemDaily)(nil)).Elem()
+}
+
+func (i *getBackupCompliancePolicyPolicyItemDailyPtrType) ToGetBackupCompliancePolicyPolicyItemDailyPtrOutput() GetBackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(context.Background())
+}
+
+func (i *getBackupCompliancePolicyPolicyItemDailyPtrType) ToGetBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemDailyPtrOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemDailyOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemDailyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemDaily)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemDailyOutput) ToGetBackupCompliancePolicyPolicyItemDailyOutput() GetBackupCompliancePolicyPolicyItemDailyOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemDailyOutput) ToGetBackupCompliancePolicyPolicyItemDailyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemDailyOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemDailyOutput) ToGetBackupCompliancePolicyPolicyItemDailyPtrOutput() GetBackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return o.ToGetBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(context.Background())
+}
+
+func (o GetBackupCompliancePolicyPolicyItemDailyOutput) ToGetBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetBackupCompliancePolicyPolicyItemDaily) *GetBackupCompliancePolicyPolicyItemDaily {
+		return &v
+	}).(GetBackupCompliancePolicyPolicyItemDailyPtrOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o GetBackupCompliancePolicyPolicyItemDailyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetBackupCompliancePolicyPolicyItemDailyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetBackupCompliancePolicyPolicyItemDailyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o GetBackupCompliancePolicyPolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o GetBackupCompliancePolicyPolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemDailyPtrOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemDailyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBackupCompliancePolicyPolicyItemDaily)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemDailyPtrOutput) ToGetBackupCompliancePolicyPolicyItemDailyPtrOutput() GetBackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemDailyPtrOutput) ToGetBackupCompliancePolicyPolicyItemDailyPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemDailyPtrOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemDailyPtrOutput) Elem() GetBackupCompliancePolicyPolicyItemDailyOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemDaily) GetBackupCompliancePolicyPolicyItemDaily {
+		if v != nil {
+			return *v
+		}
+		var ret GetBackupCompliancePolicyPolicyItemDaily
+		return ret
+	}).(GetBackupCompliancePolicyPolicyItemDailyOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o GetBackupCompliancePolicyPolicyItemDailyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemDaily) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetBackupCompliancePolicyPolicyItemDailyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemDaily) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetBackupCompliancePolicyPolicyItemDailyPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemDaily) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o GetBackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemDaily) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionUnit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o GetBackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemDaily) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionValue
+	}).(pulumi.IntPtrOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemHourly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetBackupCompliancePolicyPolicyItemHourlyInput is an input type that accepts GetBackupCompliancePolicyPolicyItemHourlyArgs and GetBackupCompliancePolicyPolicyItemHourlyOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemHourlyInput` via:
+//
+//	GetBackupCompliancePolicyPolicyItemHourlyArgs{...}
+type GetBackupCompliancePolicyPolicyItemHourlyInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemHourlyOutput() GetBackupCompliancePolicyPolicyItemHourlyOutput
+	ToGetBackupCompliancePolicyPolicyItemHourlyOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemHourlyOutput
+}
+
+type GetBackupCompliancePolicyPolicyItemHourlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetBackupCompliancePolicyPolicyItemHourlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemHourly)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyPolicyItemHourlyArgs) ToGetBackupCompliancePolicyPolicyItemHourlyOutput() GetBackupCompliancePolicyPolicyItemHourlyOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemHourlyOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemHourlyArgs) ToGetBackupCompliancePolicyPolicyItemHourlyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemHourlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemHourlyOutput)
+}
+
+func (i GetBackupCompliancePolicyPolicyItemHourlyArgs) ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutput() GetBackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemHourlyArgs) ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemHourlyOutput).ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(ctx)
+}
+
+// GetBackupCompliancePolicyPolicyItemHourlyPtrInput is an input type that accepts GetBackupCompliancePolicyPolicyItemHourlyArgs, GetBackupCompliancePolicyPolicyItemHourlyPtr and GetBackupCompliancePolicyPolicyItemHourlyPtrOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemHourlyPtrInput` via:
+//
+//	        GetBackupCompliancePolicyPolicyItemHourlyArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetBackupCompliancePolicyPolicyItemHourlyPtrInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutput() GetBackupCompliancePolicyPolicyItemHourlyPtrOutput
+	ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemHourlyPtrOutput
+}
+
+type getBackupCompliancePolicyPolicyItemHourlyPtrType GetBackupCompliancePolicyPolicyItemHourlyArgs
+
+func GetBackupCompliancePolicyPolicyItemHourlyPtr(v *GetBackupCompliancePolicyPolicyItemHourlyArgs) GetBackupCompliancePolicyPolicyItemHourlyPtrInput {
+	return (*getBackupCompliancePolicyPolicyItemHourlyPtrType)(v)
+}
+
+func (*getBackupCompliancePolicyPolicyItemHourlyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBackupCompliancePolicyPolicyItemHourly)(nil)).Elem()
+}
+
+func (i *getBackupCompliancePolicyPolicyItemHourlyPtrType) ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutput() GetBackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(context.Background())
+}
+
+func (i *getBackupCompliancePolicyPolicyItemHourlyPtrType) ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemHourlyPtrOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemHourlyOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemHourlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemHourly)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) ToGetBackupCompliancePolicyPolicyItemHourlyOutput() GetBackupCompliancePolicyPolicyItemHourlyOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) ToGetBackupCompliancePolicyPolicyItemHourlyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemHourlyOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutput() GetBackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return o.ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(context.Background())
+}
+
+func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetBackupCompliancePolicyPolicyItemHourly) *GetBackupCompliancePolicyPolicyItemHourly {
+		return &v
+	}).(GetBackupCompliancePolicyPolicyItemHourlyPtrOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemHourlyPtrOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemHourlyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBackupCompliancePolicyPolicyItemHourly)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemHourlyPtrOutput) ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutput() GetBackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemHourlyPtrOutput) ToGetBackupCompliancePolicyPolicyItemHourlyPtrOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemHourlyPtrOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemHourlyPtrOutput) Elem() GetBackupCompliancePolicyPolicyItemHourlyOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemHourly) GetBackupCompliancePolicyPolicyItemHourly {
+		if v != nil {
+			return *v
+		}
+		var ret GetBackupCompliancePolicyPolicyItemHourly
+		return ret
+	}).(GetBackupCompliancePolicyPolicyItemHourlyOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o GetBackupCompliancePolicyPolicyItemHourlyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemHourly) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetBackupCompliancePolicyPolicyItemHourlyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemHourly) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetBackupCompliancePolicyPolicyItemHourlyPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemHourly) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o GetBackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemHourly) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionUnit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o GetBackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetBackupCompliancePolicyPolicyItemHourly) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionValue
+	}).(pulumi.IntPtrOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemMonthly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetBackupCompliancePolicyPolicyItemMonthlyInput is an input type that accepts GetBackupCompliancePolicyPolicyItemMonthlyArgs and GetBackupCompliancePolicyPolicyItemMonthlyOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemMonthlyInput` via:
+//
+//	GetBackupCompliancePolicyPolicyItemMonthlyArgs{...}
+type GetBackupCompliancePolicyPolicyItemMonthlyInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemMonthlyOutput() GetBackupCompliancePolicyPolicyItemMonthlyOutput
+	ToGetBackupCompliancePolicyPolicyItemMonthlyOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemMonthlyOutput
+}
+
+type GetBackupCompliancePolicyPolicyItemMonthlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetBackupCompliancePolicyPolicyItemMonthlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemMonthly)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyPolicyItemMonthlyArgs) ToGetBackupCompliancePolicyPolicyItemMonthlyOutput() GetBackupCompliancePolicyPolicyItemMonthlyOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemMonthlyOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemMonthlyArgs) ToGetBackupCompliancePolicyPolicyItemMonthlyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemMonthlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemMonthlyOutput)
+}
+
+// GetBackupCompliancePolicyPolicyItemMonthlyArrayInput is an input type that accepts GetBackupCompliancePolicyPolicyItemMonthlyArray and GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemMonthlyArrayInput` via:
+//
+//	GetBackupCompliancePolicyPolicyItemMonthlyArray{ GetBackupCompliancePolicyPolicyItemMonthlyArgs{...} }
+type GetBackupCompliancePolicyPolicyItemMonthlyArrayInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemMonthlyArrayOutput() GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput
+	ToGetBackupCompliancePolicyPolicyItemMonthlyArrayOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput
+}
+
+type GetBackupCompliancePolicyPolicyItemMonthlyArray []GetBackupCompliancePolicyPolicyItemMonthlyInput
+
+func (GetBackupCompliancePolicyPolicyItemMonthlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupCompliancePolicyPolicyItemMonthly)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyPolicyItemMonthlyArray) ToGetBackupCompliancePolicyPolicyItemMonthlyArrayOutput() GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemMonthlyArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemMonthlyArray) ToGetBackupCompliancePolicyPolicyItemMonthlyArrayOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemMonthlyOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemMonthlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemMonthly)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) ToGetBackupCompliancePolicyPolicyItemMonthlyOutput() GetBackupCompliancePolicyPolicyItemMonthlyOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) ToGetBackupCompliancePolicyPolicyItemMonthlyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemMonthlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupCompliancePolicyPolicyItemMonthly)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput) ToGetBackupCompliancePolicyPolicyItemMonthlyArrayOutput() GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput) ToGetBackupCompliancePolicyPolicyItemMonthlyArrayOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput) Index(i pulumi.IntInput) GetBackupCompliancePolicyPolicyItemMonthlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackupCompliancePolicyPolicyItemMonthly {
+		return vs[0].([]GetBackupCompliancePolicyPolicyItemMonthly)[vs[1].(int)]
+	}).(GetBackupCompliancePolicyPolicyItemMonthlyOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemWeekly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetBackupCompliancePolicyPolicyItemWeeklyInput is an input type that accepts GetBackupCompliancePolicyPolicyItemWeeklyArgs and GetBackupCompliancePolicyPolicyItemWeeklyOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemWeeklyInput` via:
+//
+//	GetBackupCompliancePolicyPolicyItemWeeklyArgs{...}
+type GetBackupCompliancePolicyPolicyItemWeeklyInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemWeeklyOutput() GetBackupCompliancePolicyPolicyItemWeeklyOutput
+	ToGetBackupCompliancePolicyPolicyItemWeeklyOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemWeeklyOutput
+}
+
+type GetBackupCompliancePolicyPolicyItemWeeklyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetBackupCompliancePolicyPolicyItemWeeklyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemWeekly)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyPolicyItemWeeklyArgs) ToGetBackupCompliancePolicyPolicyItemWeeklyOutput() GetBackupCompliancePolicyPolicyItemWeeklyOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemWeeklyOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemWeeklyArgs) ToGetBackupCompliancePolicyPolicyItemWeeklyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemWeeklyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemWeeklyOutput)
+}
+
+// GetBackupCompliancePolicyPolicyItemWeeklyArrayInput is an input type that accepts GetBackupCompliancePolicyPolicyItemWeeklyArray and GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemWeeklyArrayInput` via:
+//
+//	GetBackupCompliancePolicyPolicyItemWeeklyArray{ GetBackupCompliancePolicyPolicyItemWeeklyArgs{...} }
+type GetBackupCompliancePolicyPolicyItemWeeklyArrayInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemWeeklyArrayOutput() GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput
+	ToGetBackupCompliancePolicyPolicyItemWeeklyArrayOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput
+}
+
+type GetBackupCompliancePolicyPolicyItemWeeklyArray []GetBackupCompliancePolicyPolicyItemWeeklyInput
+
+func (GetBackupCompliancePolicyPolicyItemWeeklyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupCompliancePolicyPolicyItemWeekly)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyPolicyItemWeeklyArray) ToGetBackupCompliancePolicyPolicyItemWeeklyArrayOutput() GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemWeeklyArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemWeeklyArray) ToGetBackupCompliancePolicyPolicyItemWeeklyArrayOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemWeeklyOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemWeeklyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemWeekly)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) ToGetBackupCompliancePolicyPolicyItemWeeklyOutput() GetBackupCompliancePolicyPolicyItemWeeklyOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) ToGetBackupCompliancePolicyPolicyItemWeeklyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemWeeklyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, or `months`.
+func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupCompliancePolicyPolicyItemWeekly)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput) ToGetBackupCompliancePolicyPolicyItemWeeklyArrayOutput() GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput) ToGetBackupCompliancePolicyPolicyItemWeeklyArrayOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput) Index(i pulumi.IntInput) GetBackupCompliancePolicyPolicyItemWeeklyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackupCompliancePolicyPolicyItemWeekly {
+		return vs[0].([]GetBackupCompliancePolicyPolicyItemWeekly)[vs[1].(int)]
+	}).(GetBackupCompliancePolicyPolicyItemWeeklyOutput)
 }
 
 type GetCloudBackupScheduleCopySetting struct {
@@ -35368,6 +37178,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationNotificationArrayInput)(nil)).Elem(), AlertConfigurationNotificationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationThresholdConfigInput)(nil)).Elem(), AlertConfigurationThresholdConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationThresholdConfigPtrInput)(nil)).Elem(), AlertConfigurationThresholdConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyOnDemandPolicyItemInput)(nil)).Elem(), BackupCompliancePolicyOnDemandPolicyItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyOnDemandPolicyItemPtrInput)(nil)).Elem(), BackupCompliancePolicyOnDemandPolicyItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemDailyInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemDailyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemDailyPtrInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemDailyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemHourlyInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemHourlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemHourlyPtrInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemHourlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemMonthlyInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemMonthlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemMonthlyArrayInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemMonthlyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemWeeklyInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemWeeklyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemWeeklyArrayInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemWeeklyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingInput)(nil)).Elem(), CloudBackupScheduleCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingArrayInput)(nil)).Elem(), CloudBackupScheduleCopySettingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleExportInput)(nil)).Elem(), CloudBackupScheduleExportArgs{})
@@ -35574,6 +37394,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationsResultThresholdConfigArrayInput)(nil)).Elem(), GetAlertConfigurationsResultThresholdConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiKeysResultInput)(nil)).Elem(), GetApiKeysResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiKeysResultArrayInput)(nil)).Elem(), GetApiKeysResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyOnDemandPolicyItemInput)(nil)).Elem(), GetBackupCompliancePolicyOnDemandPolicyItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyOnDemandPolicyItemPtrInput)(nil)).Elem(), GetBackupCompliancePolicyOnDemandPolicyItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemDailyInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemDailyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemDailyPtrInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemDailyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemHourlyInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemHourlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemHourlyPtrInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemHourlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemMonthlyInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemMonthlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemMonthlyArrayInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemMonthlyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemWeeklyInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemWeeklyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemWeeklyArrayInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemWeeklyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingArrayInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleExportInput)(nil)).Elem(), GetCloudBackupScheduleExportArgs{})
@@ -35872,6 +37702,16 @@ func init() {
 	pulumi.RegisterOutputType(AlertConfigurationNotificationArrayOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationThresholdConfigOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationThresholdConfigPtrOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyOnDemandPolicyItemOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyOnDemandPolicyItemPtrOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemDailyOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemDailyPtrOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemHourlyOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemHourlyPtrOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemMonthlyOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemMonthlyArrayOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemWeeklyOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemWeeklyArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleExportOutput{})
@@ -36078,6 +37918,16 @@ func init() {
 	pulumi.RegisterOutputType(GetAlertConfigurationsResultThresholdConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetApiKeysResultOutput{})
 	pulumi.RegisterOutputType(GetApiKeysResultArrayOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyOnDemandPolicyItemOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemDailyOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemDailyPtrOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemHourlyOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemHourlyPtrOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemMonthlyOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemWeeklyOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleExportOutput{})

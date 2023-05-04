@@ -117,7 +117,6 @@ import (
 //			_, err = mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
 //				NumShards:   pulumi.Int(1),
-//				DiskSizeGb:  pulumi.Float64(5),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{
@@ -232,7 +231,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
-//				DiskSizeGb:  pulumi.Float64(5),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{
@@ -308,7 +306,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
-//				DiskSizeGb:  pulumi.Float64(5),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{

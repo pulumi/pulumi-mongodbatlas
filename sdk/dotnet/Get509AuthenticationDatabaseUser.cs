@@ -24,6 +24,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -73,6 +74,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -126,6 +128,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -175,6 +178,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
