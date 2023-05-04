@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const test = new mongodbatlas.SearchIndex("test", {
+ * const test_basic_search_index = new mongodbatlas.SearchIndex("test-basic-search-index", {
  *     analyzer: "lucene.standard",
  *     clusterName: "<CLUSTER_NAME>",
  *     collectionName: "collection_test",
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const test = new mongodbatlas.SearchIndex("test", {
+ * const test_advanced_search_index = new mongodbatlas.SearchIndex("test-advanced-search-index", {
  *     projectId: "%[1]s",
  *     clusterName: "%[2]s",
  *     analyzer: "lucene.standard",
@@ -149,7 +149,7 @@ export class SearchIndex extends pulumi.CustomResource {
      */
     public readonly mappingsDynamic!: pulumi.Output<boolean | undefined>;
     /**
-     * attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
     public readonly mappingsFields!: pulumi.Output<string | undefined>;
     /**
@@ -265,7 +265,7 @@ export interface SearchIndexState {
      */
     mappingsDynamic?: pulumi.Input<boolean>;
     /**
-     * attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
     mappingsFields?: pulumi.Input<string>;
     /**
@@ -317,7 +317,7 @@ export interface SearchIndexArgs {
      */
     mappingsDynamic?: pulumi.Input<boolean>;
     /**
-     * attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
     mappingsFields?: pulumi.Input<string>;
     /**

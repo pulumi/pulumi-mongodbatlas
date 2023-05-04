@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORG ID"});
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: testProject.id,
- *     diskSizeGb: 5,
  *     providerName: "AWS",
  *     providerRegionName: "US_EAST_2",
  *     providerInstanceSizeName: "M10",

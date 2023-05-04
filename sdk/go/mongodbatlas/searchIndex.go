@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewSearchIndex(ctx, "test", &mongodbatlas.SearchIndexArgs{
+//			_, err := mongodbatlas.NewSearchIndex(ctx, "test-basic-search-index", &mongodbatlas.SearchIndexArgs{
 //				Analyzer:        pulumi.String("lucene.standard"),
 //				ClusterName:     pulumi.String("<CLUSTER_NAME>"),
 //				CollectionName:  pulumi.String("collection_test"),
@@ -57,7 +57,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewSearchIndex(ctx, "test", &mongodbatlas.SearchIndexArgs{
+//			_, err := mongodbatlas.NewSearchIndex(ctx, "test-advanced-search-index", &mongodbatlas.SearchIndexArgs{
 //				ProjectId:       pulumi.String("%[1]s"),
 //				ClusterName:     pulumi.String("%[2]s"),
 //				Analyzer:        pulumi.String("lucene.standard"),
@@ -99,7 +99,7 @@ type SearchIndex struct {
 	IndexId  pulumi.StringOutput `pulumi:"indexId"`
 	// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic pulumi.BoolPtrOutput `pulumi:"mappingsDynamic"`
-	// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+	// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields pulumi.StringPtrOutput `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -170,7 +170,7 @@ type searchIndexState struct {
 	IndexId  *string `pulumi:"indexId"`
 	// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
-	// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+	// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields *string `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
 	Name *string `pulumi:"name"`
@@ -198,7 +198,7 @@ type SearchIndexState struct {
 	IndexId  pulumi.StringPtrInput
 	// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic pulumi.BoolPtrInput
-	// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+	// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields pulumi.StringPtrInput
 	// The name of the search index you want to create.
 	Name pulumi.StringPtrInput
@@ -229,7 +229,7 @@ type searchIndexArgs struct {
 	Database string `pulumi:"database"`
 	// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
-	// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+	// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields *string `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
 	Name *string `pulumi:"name"`
@@ -257,7 +257,7 @@ type SearchIndexArgs struct {
 	Database pulumi.StringInput
 	// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic pulumi.BoolPtrInput
-	// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+	// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields pulumi.StringPtrInput
 	// The name of the search index you want to create.
 	Name pulumi.StringPtrInput
@@ -392,7 +392,7 @@ func (o SearchIndexOutput) MappingsDynamic() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.BoolPtrOutput { return v.MappingsDynamic }).(pulumi.BoolPtrOutput)
 }
 
-// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+// attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 func (o SearchIndexOutput) MappingsFields() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.MappingsFields }).(pulumi.StringPtrOutput)
 }

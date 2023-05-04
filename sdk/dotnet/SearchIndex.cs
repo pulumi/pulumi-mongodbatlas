@@ -16,12 +16,13 @@ namespace Pulumi.Mongodbatlas
     /// ### Basic
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.SearchIndex("test", new()
+    ///     var test_basic_search_index = new Mongodbatlas.SearchIndex("test-basic-search-index", new()
     ///     {
     ///         Analyzer = "lucene.standard",
     ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
@@ -37,12 +38,13 @@ namespace Pulumi.Mongodbatlas
     /// ### Advanced (with custom analyzers)
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.SearchIndex("test", new()
+    ///     var test_advanced_search_index = new Mongodbatlas.SearchIndex("test-advanced-search-index", new()
     ///     {
     ///         ProjectId = "%[1]s",
     ///         ClusterName = "%[2]s",
@@ -157,7 +159,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool?> MappingsDynamic { get; private set; } = null!;
 
         /// <summary>
-        /// attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Output("mappingsFields")]
         public Output<string?> MappingsFields { get; private set; } = null!;
@@ -275,7 +277,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? MappingsDynamic { get; set; }
 
         /// <summary>
-        /// attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Input("mappingsFields")]
         public Input<string>? MappingsFields { get; set; }
@@ -364,7 +366,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? MappingsDynamic { get; set; }
 
         /// <summary>
-        /// attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Input("mappingsFields")]
         public Input<string>? MappingsFields { get; set; }

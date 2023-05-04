@@ -46,7 +46,6 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var myCluster = new Cluster(&#34;myCluster&#34;, ClusterArgs.builder()        
  *             .projectId(&#34;5cf5a45a9ccf6400e60981b6&#34;)
- *             .diskSizeGb(5)
  *             .providerName(&#34;AWS&#34;)
  *             .providerRegionName(&#34;EU_WEST_2&#34;)
  *             .providerInstanceSizeName(&#34;M10&#34;)

@@ -20,6 +20,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Using project_id attribute to query
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 

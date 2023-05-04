@@ -116,14 +116,14 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
     @Import(name="mappingsFields")
     private @Nullable Output<String> mappingsFields;
 
     /**
-     * @return attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+     * @return attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
     public Optional<Output<String>> mappingsFields() {
@@ -377,7 +377,7 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mappingsFields attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+         * @param mappingsFields attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
          * 
          * @return builder
          * 
@@ -388,7 +388,7 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mappingsFields attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+         * @param mappingsFields attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
          * 
          * @return builder
          * 

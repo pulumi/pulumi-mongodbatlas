@@ -41,7 +41,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
-//				DiskSizeGb:               pulumi.Float64(5),
 //				ProviderName:             pulumi.String("AWS"),
 //				ProviderRegionName:       pulumi.String("EU_WEST_2"),
 //				ProviderInstanceSizeName: pulumi.String("M10"),
@@ -95,7 +94,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
-//				DiskSizeGb:               pulumi.Float64(5),
 //				ProviderName:             pulumi.String("AWS"),
 //				ProviderRegionName:       pulumi.String("EU_WEST_2"),
 //				ProviderInstanceSizeName: pulumi.String("M10"),

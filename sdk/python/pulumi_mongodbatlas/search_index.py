@@ -38,7 +38,7 @@ class SearchIndexArgs:
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
         :param pulumi.Input[bool] mappings_dynamic: Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
-        :param pulumi.Input[str] mappings_fields: attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        :param pulumi.Input[str] mappings_fields: attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[str] name: The name of the search index you want to create.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
@@ -153,7 +153,7 @@ class SearchIndexArgs:
     @pulumi.getter(name="mappingsFields")
     def mappings_fields(self) -> Optional[pulumi.Input[str]]:
         """
-        attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         """
         return pulumi.get(self, "mappings_fields")
 
@@ -241,7 +241,7 @@ class _SearchIndexState:
         :param pulumi.Input[str] collection_name: Name of the collection the index is on.
         :param pulumi.Input[str] database: Name of the database the collection is in.
         :param pulumi.Input[bool] mappings_dynamic: Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
-        :param pulumi.Input[str] mappings_fields: attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        :param pulumi.Input[str] mappings_fields: attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[str] name: The name of the search index you want to create.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -361,7 +361,7 @@ class _SearchIndexState:
     @pulumi.getter(name="mappingsFields")
     def mappings_fields(self) -> Optional[pulumi.Input[str]]:
         """
-        attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         """
         return pulumi.get(self, "mappings_fields")
 
@@ -464,7 +464,7 @@ class SearchIndex(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.SearchIndex("test",
+        test_basic_search_index = mongodbatlas.SearchIndex("test-basic-search-index",
             analyzer="lucene.standard",
             cluster_name="<CLUSTER_NAME>",
             collection_name="collection_test",
@@ -478,7 +478,7 @@ class SearchIndex(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.SearchIndex("test",
+        test_advanced_search_index = mongodbatlas.SearchIndex("test-advanced-search-index",
             project_id="%[1]s",
             cluster_name="%[2]s",
             analyzer="lucene.standard",
@@ -550,7 +550,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[str] collection_name: Name of the collection the index is on.
         :param pulumi.Input[str] database: Name of the database the collection is in.
         :param pulumi.Input[bool] mappings_dynamic: Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
-        :param pulumi.Input[str] mappings_fields: attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        :param pulumi.Input[str] mappings_fields: attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[str] name: The name of the search index you want to create.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -571,7 +571,7 @@ class SearchIndex(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.SearchIndex("test",
+        test_basic_search_index = mongodbatlas.SearchIndex("test-basic-search-index",
             analyzer="lucene.standard",
             cluster_name="<CLUSTER_NAME>",
             collection_name="collection_test",
@@ -585,7 +585,7 @@ class SearchIndex(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.SearchIndex("test",
+        test_advanced_search_index = mongodbatlas.SearchIndex("test-advanced-search-index",
             project_id="%[1]s",
             cluster_name="%[2]s",
             analyzer="lucene.standard",
@@ -747,7 +747,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[str] collection_name: Name of the collection the index is on.
         :param pulumi.Input[str] database: Name of the database the collection is in.
         :param pulumi.Input[bool] mappings_dynamic: Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
-        :param pulumi.Input[str] mappings_fields: attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        :param pulumi.Input[str] mappings_fields: attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[str] name: The name of the search index you want to create.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -830,7 +830,7 @@ class SearchIndex(pulumi.CustomResource):
     @pulumi.getter(name="mappingsFields")
     def mappings_fields(self) -> pulumi.Output[Optional[str]]:
         """
-        attribute is required when `mappings_dynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+        attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         """
         return pulumi.get(self, "mappings_fields")
 

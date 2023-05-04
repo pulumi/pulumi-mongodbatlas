@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  *
  * const test = new mongodbatlas.Cluster("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
- *     diskSizeGb: 80,
  *     cloudBackup: true,
  *     clusterType: "GEOSHARDED",
  *     providerName: "AWS",
@@ -88,7 +87,6 @@ import * as utilities from "./utilities";
  *     autoScalingDiskGbEnabled: true,
  *     mongoDbMajorVersion: "4.0",
  *     providerName: "AWS",
- *     diskSizeGb: 100,
  *     providerInstanceSizeName: "M40",
  * });
  * const config = new mongodbatlas.GlobalClusterConfig("config", {

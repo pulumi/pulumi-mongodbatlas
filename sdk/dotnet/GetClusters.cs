@@ -26,6 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -34,7 +35,6 @@ namespace Pulumi.Mongodbatlas
         ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-        ///         DiskSizeGb = 100,
         ///         ClusterType = "REPLICASET",
         ///         ReplicationSpecs = new[]
         ///         {
@@ -87,6 +87,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -95,7 +96,6 @@ namespace Pulumi.Mongodbatlas
         ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-        ///         DiskSizeGb = 100,
         ///         ClusterType = "REPLICASET",
         ///         ReplicationSpecs = new[]
         ///         {

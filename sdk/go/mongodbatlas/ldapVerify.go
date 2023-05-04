@@ -35,7 +35,6 @@ import (
 //			}
 //			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:                testProject.ID(),
-//				DiskSizeGb:               pulumi.Float64(5),
 //				ProviderName:             pulumi.String("AWS"),
 //				ProviderRegionName:       pulumi.String("US_EAST_2"),
 //				ProviderInstanceSizeName: pulumi.String("M10"),

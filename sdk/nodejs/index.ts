@@ -30,6 +30,11 @@ export type Auditing = import("./auditing").Auditing;
 export const Auditing: typeof import("./auditing").Auditing = null as any;
 utilities.lazyLoad(exports, ["Auditing"], () => require("./auditing"));
 
+export { BackupCompliancePolicyArgs, BackupCompliancePolicyState } from "./backupCompliancePolicy";
+export type BackupCompliancePolicy = import("./backupCompliancePolicy").BackupCompliancePolicy;
+export const BackupCompliancePolicy: typeof import("./backupCompliancePolicy").BackupCompliancePolicy = null as any;
+utilities.lazyLoad(exports, ["BackupCompliancePolicy"], () => require("./backupCompliancePolicy"));
+
 export { CloudBackupScheduleArgs, CloudBackupScheduleState } from "./cloudBackupSchedule";
 export type CloudBackupSchedule = import("./cloudBackupSchedule").CloudBackupSchedule;
 export const CloudBackupSchedule: typeof import("./cloudBackupSchedule").CloudBackupSchedule = null as any;
@@ -184,6 +189,11 @@ export { GetAuditingArgs, GetAuditingResult, GetAuditingOutputArgs } from "./get
 export const getAuditing: typeof import("./getAuditing").getAuditing = null as any;
 export const getAuditingOutput: typeof import("./getAuditing").getAuditingOutput = null as any;
 utilities.lazyLoad(exports, ["getAuditing","getAuditingOutput"], () => require("./getAuditing"));
+
+export { GetBackupCompliancePolicyArgs, GetBackupCompliancePolicyResult, GetBackupCompliancePolicyOutputArgs } from "./getBackupCompliancePolicy";
+export const getBackupCompliancePolicy: typeof import("./getBackupCompliancePolicy").getBackupCompliancePolicy = null as any;
+export const getBackupCompliancePolicyOutput: typeof import("./getBackupCompliancePolicy").getBackupCompliancePolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getBackupCompliancePolicy","getBackupCompliancePolicyOutput"], () => require("./getBackupCompliancePolicy"));
 
 export { GetCloudBackupScheduleArgs, GetCloudBackupScheduleResult, GetCloudBackupScheduleOutputArgs } from "./getCloudBackupSchedule";
 export const getCloudBackupSchedule: typeof import("./getCloudBackupSchedule").getCloudBackupSchedule = null as any;
@@ -673,6 +683,8 @@ const _module = {
                 return new ApiKey(name, <any>undefined, { urn })
             case "mongodbatlas:index/auditing:Auditing":
                 return new Auditing(name, <any>undefined, { urn })
+            case "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy":
+                return new BackupCompliancePolicy(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule":
                 return new CloudBackupSchedule(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot":
@@ -775,6 +787,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/advancedCluster", _
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/alertConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/apiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/auditing", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/backupCompliancePolicy", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSchedule", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshot", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshotExportBucket", _module)

@@ -10,6 +10,7 @@ from .advanced_cluster import *
 from .alert_configuration import *
 from .api_key import *
 from .auditing import *
+from .backup_compliance_policy import *
 from .cloud_backup_schedule import *
 from .cloud_backup_snapshot import *
 from .cloud_backup_snapshot_export_bucket import *
@@ -41,6 +42,7 @@ from .get_alert_configurations import *
 from .get_api_key import *
 from .get_api_keys import *
 from .get_auditing import *
+from .get_backup_compliance_policy import *
 from .get_cloud_backup_schedule import *
 from .get_cloud_backup_snapshot import *
 from .get_cloud_backup_snapshot_export_bucket import *
@@ -185,6 +187,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/auditing:Auditing": "Auditing"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/backupCompliancePolicy",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy": "BackupCompliancePolicy"
   }
  },
  {

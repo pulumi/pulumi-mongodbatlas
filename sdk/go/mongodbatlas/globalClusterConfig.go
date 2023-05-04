@@ -33,7 +33,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
 //				ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-//				DiskSizeGb:               pulumi.Float64(80),
 //				CloudBackup:              pulumi.Bool(true),
 //				ClusterType:              pulumi.String("GEOSHARDED"),
 //				ProviderName:             pulumi.String("AWS"),
@@ -130,7 +129,6 @@ import (
 //				AutoScalingDiskGbEnabled: pulumi.Bool(true),
 //				MongoDbMajorVersion:      pulumi.String("4.0"),
 //				ProviderName:             pulumi.String("AWS"),
-//				DiskSizeGb:               pulumi.Float64(100),
 //				ProviderInstanceSizeName: pulumi.String("M40"),
 //			})
 //			if err != nil {

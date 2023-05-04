@@ -18,6 +18,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Example Usage: Database Trigger with Function
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -62,6 +63,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Example Usage: Database Trigger with EventBridge
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -107,6 +109,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Example Usage: Authentication Trigger
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -131,6 +134,7 @@ namespace Pulumi.Mongodbatlas
     /// ### Example Usage: Scheduled Trigger
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
