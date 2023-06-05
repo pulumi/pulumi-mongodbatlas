@@ -60,6 +60,10 @@ export function getOnlineArchives(args: GetOnlineArchivesArgs, opts?: pulumi.Inv
 export interface GetOnlineArchivesArgs {
     /**
      * Name of the cluster that contains the collection.
+     *
+     * # Attributes Reference
+     *
+     * In addition to all arguments above, the following attributes are exported:
      */
     clusterName: string;
     /**
@@ -130,6 +134,10 @@ export function getOnlineArchivesOutput(args: GetOnlineArchivesOutputArgs, opts?
 export interface GetOnlineArchivesOutputArgs {
     /**
      * Name of the cluster that contains the collection.
+     *
+     * # Attributes Reference
+     *
+     * In addition to all arguments above, the following attributes are exported:
      */
     clusterName: pulumi.Input<string>;
     /**

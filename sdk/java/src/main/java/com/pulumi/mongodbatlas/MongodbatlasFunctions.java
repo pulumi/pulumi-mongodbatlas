@@ -1064,15 +1064,39 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetAdvancedClustersInvokeResult> getAdvancedClustersPlain(GetAdvancedClustersPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", TypeShape.of(GetAdvancedClustersInvokeResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     */
     public static Output<GetAlertConfigurationResult> getAlertConfiguration(GetAlertConfigurationArgs args) {
         return getAlertConfiguration(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     */
     public static CompletableFuture<GetAlertConfigurationResult> getAlertConfigurationPlain(GetAlertConfigurationPlainArgs args) {
         return getAlertConfigurationPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     */
     public static Output<GetAlertConfigurationResult> getAlertConfiguration(GetAlertConfigurationArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", TypeShape.of(GetAlertConfigurationResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     */
     public static CompletableFuture<GetAlertConfigurationResult> getAlertConfigurationPlain(GetAlertConfigurationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", TypeShape.of(GetAlertConfigurationResult.class), args, Utilities.withVersion(options));
     }
@@ -6373,6 +6397,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getNetworkContainers:getNetworkContainers", TypeShape.of(GetNetworkContainersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * &gt; **NOTE:** If you need to get an existing container ID see the How-To Guide.
+     * 
      * ## Example Usage
      * 
      */
@@ -6380,6 +6410,12 @@ public final class MongodbatlasFunctions {
         return getNetworkPeering(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * &gt; **NOTE:** If you need to get an existing container ID see the How-To Guide.
+     * 
      * ## Example Usage
      * 
      */
@@ -6387,6 +6423,12 @@ public final class MongodbatlasFunctions {
         return getNetworkPeeringPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * &gt; **NOTE:** If you need to get an existing container ID see the How-To Guide.
+     * 
      * ## Example Usage
      * 
      */
@@ -6394,6 +6436,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getNetworkPeering:getNetworkPeering", TypeShape.of(GetNetworkPeeringResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+     * 
+     * &gt; **NOTE:** If you need to get an existing container ID see the How-To Guide.
+     * 
      * ## Example Usage
      * 
      */

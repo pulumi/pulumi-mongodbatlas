@@ -48,12 +48,16 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
     /**
      * Single IP address to be added to the access list.
      * 
+     * &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+     * 
      */
     @Import(name="ipAddress")
     private @Nullable Output<String> ipAddress;
 
     /**
      * @return Single IP address to be added to the access list.
+     * 
+     * &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
      * 
      */
     public Optional<Output<String>> ipAddress() {
@@ -147,6 +151,8 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
         /**
          * @param ipAddress Single IP address to be added to the access list.
          * 
+         * &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+         * 
          * @return builder
          * 
          */
@@ -157,6 +163,8 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
 
         /**
          * @param ipAddress Single IP address to be added to the access list.
+         * 
+         * &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
          * 
          * @return builder
          * 

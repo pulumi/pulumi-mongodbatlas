@@ -95,8 +95,8 @@ def get_online_archives(cluster_name: Optional[str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_online_archives(project_id=var["project_id"],
-        cluster_name=var["cluster_name"])
+    test = mongodbatlas.get_online_archives(project_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+        cluster_name=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     ```
     ## Attributes reference
 
@@ -123,6 +123,10 @@ def get_online_archives(cluster_name: Optional[str] = None,
 
 
     :param str cluster_name: Name of the cluster that contains the collection.
+           
+           # Attributes Reference
+           
+           In addition to all arguments above, the following attributes are exported:
     :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
@@ -154,8 +158,8 @@ def get_online_archives_output(cluster_name: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_online_archives(project_id=var["project_id"],
-        cluster_name=var["cluster_name"])
+    test = mongodbatlas.get_online_archives(project_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+        cluster_name=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     ```
     ## Attributes reference
 
@@ -182,6 +186,10 @@ def get_online_archives_output(cluster_name: Optional[pulumi.Input[str]] = None,
 
 
     :param str cluster_name: Name of the cluster that contains the collection.
+           
+           # Attributes Reference
+           
+           In addition to all arguments above, the following attributes are exported:
     :param str project_id: The unique ID for the project.
     """
     ...

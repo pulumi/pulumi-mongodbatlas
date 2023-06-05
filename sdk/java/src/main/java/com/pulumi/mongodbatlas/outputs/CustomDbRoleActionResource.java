@@ -17,6 +17,8 @@ public final class CustomDbRoleActionResource {
     /**
      * @return Database on which the inherited role is granted.
      * 
+     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+     * 
      */
     private @Nullable String databaseName;
 
@@ -29,6 +31,8 @@ public final class CustomDbRoleActionResource {
     }
     /**
      * @return Database on which the inherited role is granted.
+     * 
+     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
      * 
      */
     public Optional<String> databaseName() {

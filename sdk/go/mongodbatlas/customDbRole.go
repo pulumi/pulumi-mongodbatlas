@@ -183,6 +183,13 @@ type CustomDbRole struct {
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Name of the custom role.
+	//
+	// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+	//
+	// * Is a name already used by an existing custom role in the project
+	// * Is a name of any of the built-in roles
+	// * Is `atlasAdmin`
+	// * Starts with `xgen-`
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
 }
 
@@ -226,6 +233,13 @@ type customDbRoleState struct {
 	// The unique ID for the project to create the database user.
 	ProjectId *string `pulumi:"projectId"`
 	// Name of the custom role.
+	//
+	// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+	//
+	// * Is a name already used by an existing custom role in the project
+	// * Is a name of any of the built-in roles
+	// * Is `atlasAdmin`
+	// * Starts with `xgen-`
 	RoleName *string `pulumi:"roleName"`
 }
 
@@ -235,6 +249,13 @@ type CustomDbRoleState struct {
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringPtrInput
 	// Name of the custom role.
+	//
+	// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+	//
+	// * Is a name already used by an existing custom role in the project
+	// * Is a name of any of the built-in roles
+	// * Is `atlasAdmin`
+	// * Starts with `xgen-`
 	RoleName pulumi.StringPtrInput
 }
 
@@ -248,6 +269,13 @@ type customDbRoleArgs struct {
 	// The unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
 	// Name of the custom role.
+	//
+	// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+	//
+	// * Is a name already used by an existing custom role in the project
+	// * Is a name of any of the built-in roles
+	// * Is `atlasAdmin`
+	// * Starts with `xgen-`
 	RoleName string `pulumi:"roleName"`
 }
 
@@ -258,6 +286,13 @@ type CustomDbRoleArgs struct {
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringInput
 	// Name of the custom role.
+	//
+	// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+	//
+	// * Is a name already used by an existing custom role in the project
+	// * Is a name of any of the built-in roles
+	// * Is `atlasAdmin`
+	// * Starts with `xgen-`
 	RoleName pulumi.StringInput
 }
 
@@ -362,6 +397,13 @@ func (o CustomDbRoleOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Name of the custom role.
+//
+// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+//
+// * Is a name already used by an existing custom role in the project
+// * Is a name of any of the built-in roles
+// * Is `atlasAdmin`
+// * Starts with `xgen-`
 func (o CustomDbRoleOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomDbRole) pulumi.StringOutput { return v.RoleName }).(pulumi.StringOutput)
 }

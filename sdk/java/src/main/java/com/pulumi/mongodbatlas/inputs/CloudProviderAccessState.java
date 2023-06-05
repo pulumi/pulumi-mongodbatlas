@@ -140,12 +140,16 @@ public final class CloudProviderAccessState extends com.pulumi.resources.Resourc
     /**
      * Unique ID of this role returned by mongodb atlas api
      * 
+     * Conditional
+     * 
      */
     @Import(name="roleId")
     private @Nullable Output<String> roleId;
 
     /**
      * @return Unique ID of this role returned by mongodb atlas api
+     * 
+     * Conditional
      * 
      */
     public Optional<Output<String>> roleId() {
@@ -365,6 +369,8 @@ public final class CloudProviderAccessState extends com.pulumi.resources.Resourc
         /**
          * @param roleId Unique ID of this role returned by mongodb atlas api
          * 
+         * Conditional
+         * 
          * @return builder
          * 
          */
@@ -375,6 +381,8 @@ public final class CloudProviderAccessState extends com.pulumi.resources.Resourc
 
         /**
          * @param roleId Unique ID of this role returned by mongodb atlas api
+         * 
+         * Conditional
          * 
          * @return builder
          * 

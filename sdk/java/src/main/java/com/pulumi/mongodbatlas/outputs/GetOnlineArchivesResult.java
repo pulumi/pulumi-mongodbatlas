@@ -17,6 +17,10 @@ public final class GetOnlineArchivesResult {
     /**
      * @return Name of the cluster that contains the collection.
      * 
+     * # Attributes Reference
+     * 
+     * In addition to all arguments above, the following attributes are exported:
+     * 
      */
     private String clusterName;
     private String collName;
@@ -38,6 +42,10 @@ public final class GetOnlineArchivesResult {
     }
     /**
      * @return Name of the cluster that contains the collection.
+     * 
+     * # Attributes Reference
+     * 
+     * In addition to all arguments above, the following attributes are exported:
      * 
      */
     public String clusterName() {

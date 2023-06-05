@@ -148,9 +148,17 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
     public Output<String> errMsg() {
         return this.errMsg;
     }
+    /**
+     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+     * 
+     */
     @Export(name="exportBucketId", type=String.class, parameters={})
     private Output<String> exportBucketId;
 
+    /**
+     * @return Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+     * 
+     */
     public Output<String> exportBucketId() {
         return this.exportBucketId;
     }
@@ -216,9 +224,17 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
     public Output<String> projectId() {
         return this.projectId;
     }
+    /**
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+     * 
+     */
     @Export(name="snapshotId", type=String.class, parameters={})
     private Output<String> snapshotId;
 
+    /**
+     * @return Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+     * 
+     */
     public Output<String> snapshotId() {
         return this.snapshotId;
     }

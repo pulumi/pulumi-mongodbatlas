@@ -25,7 +25,9 @@ class CloudBackupSnapshotExportJobArgs:
         The set of arguments for constructing a CloudBackupSnapshotExportJob resource.
         :param pulumi.Input[str] cluster_name: Name of the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+        :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "custom_datas", custom_datas)
@@ -60,6 +62,9 @@ class CloudBackupSnapshotExportJobArgs:
     @property
     @pulumi.getter(name="exportBucketId")
     def export_bucket_id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+        """
         return pulumi.get(self, "export_bucket_id")
 
     @export_bucket_id.setter
@@ -81,6 +86,9 @@ class CloudBackupSnapshotExportJobArgs:
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+        """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
@@ -112,10 +120,12 @@ class _CloudBackupSnapshotExportJobState:
         :param pulumi.Input[str] created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         :param pulumi.Input[str] err_msg: Error message, only if the export job failed.
+        :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
         :param pulumi.Input[str] export_job_id: Unique identifier of the export job.
                * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         :param pulumi.Input[str] finished_at: Timestamp in ISO 8601 date and time format in UTC when the export job completes.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
         :param pulumi.Input[str] state: Status of the export job. Value can be one of the following:
         """
         if cluster_name is not None:
@@ -210,6 +220,9 @@ class _CloudBackupSnapshotExportJobState:
     @property
     @pulumi.getter(name="exportBucketId")
     def export_bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+        """
         return pulumi.get(self, "export_bucket_id")
 
     @export_bucket_id.setter
@@ -283,6 +296,9 @@ class _CloudBackupSnapshotExportJobState:
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+        """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
@@ -350,7 +366,9 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Name of the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobCustomDataArgs']]]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+        :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
         """
         ...
     @overload
@@ -480,10 +498,12 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobCustomDataArgs']]]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         :param pulumi.Input[str] err_msg: Error message, only if the export job failed.
+        :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
         :param pulumi.Input[str] export_job_id: Unique identifier of the export job.
                * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         :param pulumi.Input[str] finished_at: Timestamp in ISO 8601 date and time format in UTC when the export job completes.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
         :param pulumi.Input[str] state: Status of the export job. Value can be one of the following:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -549,6 +569,9 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
     @property
     @pulumi.getter(name="exportBucketId")
     def export_bucket_id(self) -> pulumi.Output[str]:
+        """
+        Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+        """
         return pulumi.get(self, "export_bucket_id")
 
     @property
@@ -594,6 +617,9 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> pulumi.Output[str]:
+        """
+        Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+        """
         return pulumi.get(self, "snapshot_id")
 
     @property

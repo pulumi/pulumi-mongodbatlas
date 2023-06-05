@@ -19,6 +19,12 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.DataLake` provides a Data Lake resource.
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * 
+ * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
+ * 
  * ## Example Usage
  * ### S
  * ```java

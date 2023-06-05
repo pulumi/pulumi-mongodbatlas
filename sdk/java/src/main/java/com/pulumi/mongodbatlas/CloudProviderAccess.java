@@ -17,6 +17,154 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccess;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Additional Examples
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Additional Examples
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var setupOnly = new CloudProviderAccessSetup(&#34;setupOnly&#34;, CloudProviderAccessSetupArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .build());
+ * 
+ *         var authRole = new CloudProviderAccessAuthorization(&#34;authRole&#34;, CloudProviderAccessAuthorizationArgs.builder()        
+ *             .projectId(setupOnly.projectId())
+ *             .roleId(setupOnly.roleId())
+ *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+ *                 .iamAssumedRoleArn(&#34;arn:aws:iam::772401394250:role/test-user-role&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ## Authorize role
+ * 
+ * Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccess;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
+ *             .iamAssumedRoleArn(&#34;arn:aws:iam::772401394250:role/test-user-role&#34;)
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ## mongodbatlas.CloudProviderAccess (optional)
+ * 
+ * This is the first resource in the two-resource path as described above.
+ * 
+ * `mongodbatlas.CloudProviderAccessSetup` Allows you to only register AWS IAM roles in Atlas.
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ * 
+ * ## mongodbatlas_cloud_provider_authorization (optional)
+ * 
+ * This is the second resource in the two-resource path as described above.
+ * `mongodbatlas.CloudProviderAccessAuthorization`  Allows you to authorize an AWS IAM roles in Atlas.
+ * 
  * ## Import
  * 
  * The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
@@ -143,12 +291,16 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
     /**
      * Unique ID of this role returned by mongodb atlas api
      * 
+     * Conditional
+     * 
      */
     @Export(name="roleId", type=String.class, parameters={})
     private Output<String> roleId;
 
     /**
      * @return Unique ID of this role returned by mongodb atlas api
+     * 
+     * Conditional
      * 
      */
     public Output<String> roleId() {

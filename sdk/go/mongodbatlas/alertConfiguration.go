@@ -206,6 +206,10 @@ type AlertConfiguration struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
+	//
+	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+	//
+	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType pulumi.StringOutput                  `pulumi:"eventType"`
 	Matchers  AlertConfigurationMatcherArrayOutput `pulumi:"matchers"`
 	// Deprecated: use metric_threshold_config instead
@@ -268,6 +272,10 @@ type alertConfigurationState struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled *bool `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
+	//
+	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+	//
+	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType *string                     `pulumi:"eventType"`
 	Matchers  []AlertConfigurationMatcher `pulumi:"matchers"`
 	// Deprecated: use metric_threshold_config instead
@@ -293,6 +301,10 @@ type AlertConfigurationState struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled pulumi.BoolPtrInput
 	// The type of event that will trigger an alert.
+	//
+	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+	//
+	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType pulumi.StringPtrInput
 	Matchers  AlertConfigurationMatcherArrayInput
 	// Deprecated: use metric_threshold_config instead
@@ -318,6 +330,10 @@ type alertConfigurationArgs struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled *bool `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
+	//
+	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+	//
+	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType string                      `pulumi:"eventType"`
 	Matchers  []AlertConfigurationMatcher `pulumi:"matchers"`
 	// Deprecated: use metric_threshold_config instead
@@ -338,6 +354,10 @@ type AlertConfigurationArgs struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled pulumi.BoolPtrInput
 	// The type of event that will trigger an alert.
+	//
+	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+	//
+	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType pulumi.StringInput
 	Matchers  AlertConfigurationMatcherArrayInput
 	// Deprecated: use metric_threshold_config instead
@@ -456,6 +476,10 @@ func (o AlertConfigurationOutput) Enabled() pulumi.BoolOutput {
 }
 
 // The type of event that will trigger an alert.
+//
+// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+//
+// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 func (o AlertConfigurationOutput) EventType() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlertConfiguration) pulumi.StringOutput { return v.EventType }).(pulumi.StringOutput)
 }

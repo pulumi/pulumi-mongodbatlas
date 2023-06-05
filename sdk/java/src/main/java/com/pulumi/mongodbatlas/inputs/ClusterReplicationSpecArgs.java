@@ -66,12 +66,16 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
     /**
      * Name for the zone in a Global Cluster.
      * 
+     * **Region Config**
+     * 
      */
     @Import(name="zoneName")
     private @Nullable Output<String> zoneName;
 
     /**
      * @return Name for the zone in a Global Cluster.
+     * 
+     * **Region Config**
      * 
      */
     public Optional<Output<String>> zoneName() {
@@ -181,6 +185,8 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
         /**
          * @param zoneName Name for the zone in a Global Cluster.
          * 
+         * **Region Config**
+         * 
          * @return builder
          * 
          */
@@ -191,6 +197,8 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
 
         /**
          * @param zoneName Name for the zone in a Global Cluster.
+         * 
+         * **Region Config**
          * 
          * @return builder
          * 

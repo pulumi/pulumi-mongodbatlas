@@ -24,6 +24,8 @@ class AuditingArgs:
         :param pulumi.Input[bool] audit_authorization_success: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         :param pulumi.Input[str] audit_filter: JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+               
+               > **NOTE:** Auditing created by API Keys must belong to an existing organization.
         """
         pulumi.set(__self__, "project_id", project_id)
         if audit_authorization_success is not None:
@@ -74,6 +76,8 @@ class AuditingArgs:
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+
+        > **NOTE:** Auditing created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "enabled")
 
@@ -99,6 +103,8 @@ class _AuditingState:
                * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
                * FILTER_JSON - auditing configured via Atlas custom filter or API.
         :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+               
+               > **NOTE:** Auditing created by API Keys must belong to an existing organization.
         :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing.
         """
         if audit_authorization_success is not None:
@@ -156,6 +162,8 @@ class _AuditingState:
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+
+        > **NOTE:** Auditing created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "enabled")
 
@@ -217,6 +225,8 @@ class Auditing(pulumi.CustomResource):
         :param pulumi.Input[bool] audit_authorization_success: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         :param pulumi.Input[str] audit_filter: JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+               
+               > **NOTE:** Auditing created by API Keys must belong to an existing organization.
         :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing.
         """
         ...
@@ -315,6 +325,8 @@ class Auditing(pulumi.CustomResource):
                * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
                * FILTER_JSON - auditing configured via Atlas custom filter or API.
         :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+               
+               > **NOTE:** Auditing created by API Keys must belong to an existing organization.
         :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -360,6 +372,8 @@ class Auditing(pulumi.CustomResource):
     def enabled(self) -> pulumi.Output[bool]:
         """
         Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+
+        > **NOTE:** Auditing created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "enabled")
 

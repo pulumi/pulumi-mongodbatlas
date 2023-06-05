@@ -16,12 +16,20 @@ public final class GetPrivatelinkEndpointsServiceAdlArgs extends com.pulumi.reso
     /**
      * The unique ID for the project.
      * 
+     * # Attributes Reference
+     * 
+     * In addition to all arguments above, the following attributes are exported:
+     * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
      * @return The unique ID for the project.
+     * 
+     * # Attributes Reference
+     * 
+     * In addition to all arguments above, the following attributes are exported:
      * 
      */
     public Output<String> projectId() {
@@ -55,6 +63,10 @@ public final class GetPrivatelinkEndpointsServiceAdlArgs extends com.pulumi.reso
         /**
          * @param projectId The unique ID for the project.
          * 
+         * # Attributes Reference
+         * 
+         * In addition to all arguments above, the following attributes are exported:
+         * 
          * @return builder
          * 
          */
@@ -65,6 +77,10 @@ public final class GetPrivatelinkEndpointsServiceAdlArgs extends com.pulumi.reso
 
         /**
          * @param projectId The unique ID for the project.
+         * 
+         * # Attributes Reference
+         * 
+         * In addition to all arguments above, the following attributes are exported:
          * 
          * @return builder
          * 

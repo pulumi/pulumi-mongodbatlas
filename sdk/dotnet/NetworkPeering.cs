@@ -10,6 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
+    /// 
+    /// Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
+    /// 
+    /// &gt; **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See disable Peering Only mode to disable.
+    /// 
+    /// &gt; **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
+    ///     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+    ///     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+    ///     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+    ///     Microsoft.Network/virtualNetworks/peer/action
+    /// For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+    /// 
+    /// &gt; **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
+    /// 
+    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+    /// 
     /// ## Example Usage
     /// 
     /// ### Container &amp; Peering Connection
@@ -501,6 +518,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the network peer to which Atlas connects.
+        /// 
+        /// **AZURE ONLY:**
         /// </summary>
         [Output("networkName")]
         public Output<string> NetworkName { get; private set; } = null!;
@@ -519,6 +538,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+        /// 
+        /// **AWS ONLY:**
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
@@ -531,6 +552,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// AWS VPC CIDR block or subnet.
+        /// 
+        /// **GCP ONLY:**
         /// </summary>
         [Output("routeTableCidrBlock")]
         public Output<string> RouteTableCidrBlock { get; private set; } = null!;
@@ -655,6 +678,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the network peer to which Atlas connects.
+        /// 
+        /// **AZURE ONLY:**
         /// </summary>
         [Input("networkName")]
         public Input<string>? NetworkName { get; set; }
@@ -667,6 +692,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+        /// 
+        /// **AWS ONLY:**
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
@@ -679,6 +706,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// AWS VPC CIDR block or subnet.
+        /// 
+        /// **GCP ONLY:**
         /// </summary>
         [Input("routeTableCidrBlock")]
         public Input<string>? RouteTableCidrBlock { get; set; }
@@ -780,6 +809,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the network peer to which Atlas connects.
+        /// 
+        /// **AZURE ONLY:**
         /// </summary>
         [Input("networkName")]
         public Input<string>? NetworkName { get; set; }
@@ -798,6 +829,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+        /// 
+        /// **AWS ONLY:**
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
@@ -810,6 +843,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// AWS VPC CIDR block or subnet.
+        /// 
+        /// **GCP ONLY:**
         /// </summary>
         [Input("routeTableCidrBlock")]
         public Input<string>? RouteTableCidrBlock { get; set; }

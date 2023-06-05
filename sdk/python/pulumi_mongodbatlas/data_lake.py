@@ -282,6 +282,12 @@ class DataLake(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        `DataLake` provides a Data Lake resource.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
+
         ## Example Usage
         ### S
 
@@ -330,6 +336,12 @@ class DataLake(pulumi.CustomResource):
                  args: DataLakeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `DataLake` provides a Data Lake resource.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
+
         ## Example Usage
         ### S
 

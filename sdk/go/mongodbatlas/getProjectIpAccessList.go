@@ -34,6 +34,8 @@ type LookupProjectIpAccessListArgs struct {
 	// Range of IP addresses in CIDR notation to be added to the access list.
 	CidrBlock *string `pulumi:"cidrBlock"`
 	// Single IP address to be added to the access list.
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	IpAddress *string `pulumi:"ipAddress"`
 	// Unique identifier for the project to which you want to add one or more access list entries.
 	ProjectId string `pulumi:"projectId"`
@@ -71,6 +73,8 @@ type LookupProjectIpAccessListOutputArgs struct {
 	// Range of IP addresses in CIDR notation to be added to the access list.
 	CidrBlock pulumi.StringPtrInput `pulumi:"cidrBlock"`
 	// Single IP address to be added to the access list.
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
 	// Unique identifier for the project to which you want to add one or more access list entries.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`

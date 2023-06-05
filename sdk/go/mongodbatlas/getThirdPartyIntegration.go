@@ -77,6 +77,8 @@ type LookupThirdPartyIntegrationArgs struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// *resource is now deprecated and will be removed in the next major version, 1.9.0
 	Type string `pulumi:"type"`
 	// Your Prometheus username.
 	UserName *string `pulumi:"userName"`
@@ -164,6 +166,8 @@ type LookupThirdPartyIntegrationOutputArgs struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// *resource is now deprecated and will be removed in the next major version, 1.9.0
 	Type pulumi.StringInput `pulumi:"type"`
 	// Your Prometheus username.
 	UserName pulumi.StringPtrInput `pulumi:"userName"`

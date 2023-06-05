@@ -39,6 +39,8 @@ export interface GetProjectIpAccessListArgs {
     cidrBlock?: string;
     /**
      * Single IP address to be added to the access list.
+     *
+     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      */
     ipAddress?: string;
     /**
@@ -92,6 +94,8 @@ export interface GetProjectIpAccessListOutputArgs {
     cidrBlock?: pulumi.Input<string>;
     /**
      * Single IP address to be added to the access list.
+     *
+     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      */
     ipAddress?: pulumi.Input<string>;
     /**

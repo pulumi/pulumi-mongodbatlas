@@ -45,21 +45,9 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     public Output<ClusterAdvancedConfiguration> advancedConfiguration() {
         return this.advancedConfiguration;
     }
-    /**
-     * Specifies whether cluster tier auto-scaling is enabled. The default is false.
-     * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
-     * - Set to `false` to disable cluster tier auto-scaling.
-     * 
-     */
     @Export(name="autoScalingComputeEnabled", type=Boolean.class, parameters={})
     private Output<Boolean> autoScalingComputeEnabled;
 
-    /**
-     * @return Specifies whether cluster tier auto-scaling is enabled. The default is false.
-     * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
-     * - Set to `false` to disable cluster tier auto-scaling.
-     * 
-     */
     public Output<Boolean> autoScalingComputeEnabled() {
         return this.autoScalingComputeEnabled;
     }
@@ -84,6 +72,8 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * - Set to `true` to enable disk auto-scaling.
      * - Set to `false` to disable disk auto-scaling.
      * 
+     * &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
+     * 
      */
     @Export(name="autoScalingDiskGbEnabled", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> autoScalingDiskGbEnabled;
@@ -93,12 +83,22 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * - Set to `true` to enable disk auto-scaling.
      * - Set to `false` to disable disk auto-scaling.
      * 
+     * &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
+     * 
      */
     public Output<Optional<Boolean>> autoScalingDiskGbEnabled() {
         return Codegen.optional(this.autoScalingDiskGbEnabled);
     }
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
+     * 
+     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+     * 
+     * The possible values are:
+     * 
+     * - AWS - Amazon AWS
+     * - GCP - Google Cloud Platform
+     * - AZURE - Microsoft Azure
      * 
      */
     @Export(name="backingProviderName", type=String.class, parameters={})
@@ -107,19 +107,79 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     /**
      * @return Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      * 
+     * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+     * 
+     * The possible values are:
+     * 
+     * - AWS - Amazon AWS
+     * - GCP - Google Cloud Platform
+     * - AZURE - Microsoft Azure
+     * 
      */
     public Output<String> backingProviderName() {
         return this.backingProviderName;
     }
     /**
-     * Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+     * Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+     * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+     * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+     * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *     }
+     * }
+     * ```
+     * * The default value is false.  M10 and above only.
      * 
      */
     @Export(name="backupEnabled", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> backupEnabled;
 
     /**
-     * @return Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+     * @return Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+     * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+     * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+     * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *     }
+     * }
+     * ```
+     * * The default value is false.  M10 and above only.
      * 
      */
     public Output<Optional<Boolean>> backupEnabled() {
@@ -157,17 +217,9 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     public Output<ClusterBiConnectorConfig> biConnectorConfig() {
         return this.biConnectorConfig;
     }
-    /**
-     * Flag indicating if the cluster uses Cloud Backup for backups.
-     * 
-     */
     @Export(name="cloudBackup", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> cloudBackup;
 
-    /**
-     * @return Flag indicating if the cluster uses Cloud Backup for backups.
-     * 
-     */
     public Output<Optional<Boolean>> cloudBackup() {
         return Codegen.optional(this.cloudBackup);
     }
@@ -188,12 +240,22 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     /**
      * Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      * 
+     * &gt; **WHEN SHOULD YOU USE CLUSTERTYPE?**
+     * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
+     * 
+     * Accepted values include:
+     * 
      */
     @Export(name="clusterType", type=String.class, parameters={})
     private Output<String> clusterType;
 
     /**
      * @return Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
+     * 
+     * &gt; **WHEN SHOULD YOU USE CLUSTERTYPE?**
+     * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
+     * 
+     * Accepted values include:
      * 
      */
     public Output<String> clusterType() {
@@ -518,12 +580,16 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     /**
      * Cloud service provider on which the servers are provisioned.
      * 
+     * The possible values are:
+     * 
      */
     @Export(name="providerName", type=String.class, parameters={})
     private Output<String> providerName;
 
     /**
      * @return Cloud service provider on which the servers are provisioned.
+     * 
+     * The possible values are:
      * 
      */
     public Output<String> providerName() {

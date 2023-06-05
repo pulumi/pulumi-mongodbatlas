@@ -105,6 +105,10 @@ def get_privatelink_endpoints_service_adl(project_id: Optional[str] = None,
 
 
     :param str project_id: The unique ID for the project.
+           
+           # Attributes Reference
+           
+           In addition to all arguments above, the following attributes are exported:
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -144,5 +148,9 @@ def get_privatelink_endpoints_service_adl_output(project_id: Optional[pulumi.Inp
 
 
     :param str project_id: The unique ID for the project.
+           
+           # Attributes Reference
+           
+           In addition to all arguments above, the following attributes are exported:
     """
     ...

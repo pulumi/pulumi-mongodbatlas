@@ -114,12 +114,16 @@ public class Auditing extends com.pulumi.resources.CustomResource {
     /**
      * Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
      * 
+     * &gt; **NOTE:** Auditing created by API Keys must belong to an existing organization.
+     * 
      */
     @Export(name="enabled", type=Boolean.class, parameters={})
     private Output<Boolean> enabled;
 
     /**
      * @return Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+     * 
+     * &gt; **NOTE:** Auditing created by API Keys must belong to an existing organization.
      * 
      */
     public Output<Boolean> enabled() {

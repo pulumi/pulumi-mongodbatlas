@@ -20,6 +20,10 @@ type AdvancedClusterAdvancedConfiguration struct {
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	//
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol *string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan *bool `pulumi:"noTableScan"`
@@ -55,6 +59,10 @@ type AdvancedClusterAdvancedConfigurationArgs struct {
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	//
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol pulumi.StringPtrInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolPtrInput `pulumi:"noTableScan"`
@@ -167,6 +175,10 @@ func (o AdvancedClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.B
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+//
+// - TLS1_0
+// - TLS1_1
+// - TLS1_2
 func (o AdvancedClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringPtrOutput)
 }
@@ -262,6 +274,10 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulum
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+//
+// - TLS1_0
+// - TLS1_1
+// - TLS1_2
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -329,6 +345,12 @@ type AdvancedClusterBiConnector struct {
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled *bool `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	//
+	// - Set to "primary" to have BI Connector for Atlas read from the primary.
+	//
+	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+	//
+	// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 	ReadPreference *string `pulumi:"readPreference"`
 }
 
@@ -350,6 +372,12 @@ type AdvancedClusterBiConnectorArgs struct {
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	//
+	// - Set to "primary" to have BI Connector for Atlas read from the primary.
+	//
+	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+	//
+	// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 	ReadPreference pulumi.StringPtrInput `pulumi:"readPreference"`
 }
 
@@ -439,6 +467,12 @@ func (o AdvancedClusterBiConnectorOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+//
+// - Set to "primary" to have BI Connector for Atlas read from the primary.
+//
+// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+//
+// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 func (o AdvancedClusterBiConnectorOutput) ReadPreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterBiConnector) *string { return v.ReadPreference }).(pulumi.StringPtrOutput)
 }
@@ -481,6 +515,12 @@ func (o AdvancedClusterBiConnectorPtrOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+//
+// - Set to "primary" to have BI Connector for Atlas read from the primary.
+//
+// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+//
+// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 func (o AdvancedClusterBiConnectorPtrOutput) ReadPreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterBiConnector) *string {
 		if v == nil {
@@ -497,6 +537,12 @@ type AdvancedClusterBiConnectorConfig struct {
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled *bool `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	//
+	// - Set to "primary" to have BI Connector for Atlas read from the primary.
+	//
+	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+	//
+	// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 	ReadPreference *string `pulumi:"readPreference"`
 }
 
@@ -518,6 +564,12 @@ type AdvancedClusterBiConnectorConfigArgs struct {
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	//
+	// - Set to "primary" to have BI Connector for Atlas read from the primary.
+	//
+	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+	//
+	// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 	ReadPreference pulumi.StringPtrInput `pulumi:"readPreference"`
 }
 
@@ -607,6 +659,12 @@ func (o AdvancedClusterBiConnectorConfigOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+//
+// - Set to "primary" to have BI Connector for Atlas read from the primary.
+//
+// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+//
+// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 func (o AdvancedClusterBiConnectorConfigOutput) ReadPreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterBiConnectorConfig) *string { return v.ReadPreference }).(pulumi.StringPtrOutput)
 }
@@ -649,6 +707,12 @@ func (o AdvancedClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutpu
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+//
+// - Set to "primary" to have BI Connector for Atlas read from the primary.
+//
+// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+//
+// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 func (o AdvancedClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterBiConnectorConfig) *string {
 		if v == nil {
@@ -1446,7 +1510,6 @@ func (o AdvancedClusterReplicationSpecRegionConfigArrayOutput) Index(i pulumi.In
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling struct {
-	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
 	ComputeEnabled *bool `pulumi:"computeEnabled"`
 	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
 	ComputeMaxInstanceSize *string `pulumi:"computeMaxInstanceSize"`
@@ -1470,7 +1533,6 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingInput interfa
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs struct {
-	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
 	ComputeEnabled pulumi.BoolPtrInput `pulumi:"computeEnabled"`
 	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
 	ComputeMaxInstanceSize pulumi.StringPtrInput `pulumi:"computeMaxInstanceSize"`
@@ -1559,7 +1621,6 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) To
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 }
 
-// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) ComputeEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling) *bool { return v.ComputeEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -1614,7 +1675,6 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput)
 }
 
-// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput) ComputeEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling) *bool {
 		if v == nil {
@@ -1859,7 +1919,6 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) NodeC
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
-	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
 	ComputeEnabled *bool `pulumi:"computeEnabled"`
 	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
 	ComputeMaxInstanceSize *string `pulumi:"computeMaxInstanceSize"`
@@ -1883,7 +1942,6 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScalingInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
-	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
 	ComputeEnabled pulumi.BoolPtrInput `pulumi:"computeEnabled"`
 	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
 	ComputeMaxInstanceSize pulumi.StringPtrInput `pulumi:"computeMaxInstanceSize"`
@@ -1972,7 +2030,6 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ToAdvancedC
 	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput)
 }
 
-// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.ComputeEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -2021,7 +2078,6 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) Elem() A
 	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput)
 }
 
-// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool {
 		if v == nil {
@@ -2461,6 +2517,16 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) NodeCo
 
 type AlertConfigurationMatcher struct {
 	// Name of the field in the target object to match on.
+	//
+	// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+	// |:----------           |:-------------       |:------                 |
+	// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+	// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+	// | `PORT`              | `CLUSTER_NAME`      |                         |
+	// | `HOSTNAME_AND_PORT` |                     |                         |
+	// | `REPLICA_SET_NAME`  |                     |                         |
+	//
+	// All other types of alerts do not support matchers.
 	FieldName *string `pulumi:"fieldName"`
 	// If omitted, the configuration is disabled.
 	// Accepted values are:
@@ -2484,6 +2550,16 @@ type AlertConfigurationMatcherInput interface {
 
 type AlertConfigurationMatcherArgs struct {
 	// Name of the field in the target object to match on.
+	//
+	// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+	// |:----------           |:-------------       |:------                 |
+	// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+	// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+	// | `PORT`              | `CLUSTER_NAME`      |                         |
+	// | `HOSTNAME_AND_PORT` |                     |                         |
+	// | `REPLICA_SET_NAME`  |                     |                         |
+	//
+	// All other types of alerts do not support matchers.
 	FieldName pulumi.StringPtrInput `pulumi:"fieldName"`
 	// If omitted, the configuration is disabled.
 	// Accepted values are:
@@ -2546,6 +2622,16 @@ func (o AlertConfigurationMatcherOutput) ToAlertConfigurationMatcherOutputWithCo
 }
 
 // Name of the field in the target object to match on.
+//
+// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+// |:----------           |:-------------       |:------                 |
+// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+// | `PORT`              | `CLUSTER_NAME`      |                         |
+// | `HOSTNAME_AND_PORT` |                     |                         |
+// | `REPLICA_SET_NAME`  |                     |                         |
+//
+// All other types of alerts do not support matchers.
 func (o AlertConfigurationMatcherOutput) FieldName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMatcher) *string { return v.FieldName }).(pulumi.StringPtrOutput)
 }
@@ -2849,6 +2935,16 @@ type AlertConfigurationNotification struct {
 	OrgName *string `pulumi:"orgName"`
 	// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 	// Accepted values are:
+	//
+	// | Project roles                   | Organization roles  |
+	// |:----------                      |:-----------         |
+	// | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
+	// | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
+	// | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
+	// | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
+	// | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
+	// | `GROUP_OWNER`                   |                     |
+	// | `GROUP_READ_ONLY`               |                     |
 	Roles []string `pulumi:"roles"`
 	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	ServiceKey *string `pulumi:"serviceKey"`
@@ -2917,6 +3013,16 @@ type AlertConfigurationNotificationArgs struct {
 	OrgName pulumi.StringPtrInput `pulumi:"orgName"`
 	// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 	// Accepted values are:
+	//
+	// | Project roles                   | Organization roles  |
+	// |:----------                      |:-----------         |
+	// | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
+	// | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
+	// | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
+	// | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
+	// | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
+	// | `GROUP_OWNER`                   |                     |
+	// | `GROUP_READ_ONLY`               |                     |
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
 	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	ServiceKey pulumi.StringPtrInput `pulumi:"serviceKey"`
@@ -3069,6 +3175,16 @@ func (o AlertConfigurationNotificationOutput) OrgName() pulumi.StringPtrOutput {
 
 // Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 // Accepted values are:
+//
+// | Project roles                   | Organization roles  |
+// |:----------                      |:-----------         |
+// | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
+// | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
+// | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
+// | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
+// | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
+// | `GROUP_OWNER`                   |                     |
+// | `GROUP_READ_ONLY`               |                     |
 func (o AlertConfigurationNotificationOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }
@@ -6707,6 +6823,10 @@ type ClusterAdvancedConfiguration struct {
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	//
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol *string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan *bool `pulumi:"noTableScan"`
@@ -6742,6 +6862,10 @@ type ClusterAdvancedConfigurationArgs struct {
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	//
+	// - TLS1_0
+	// - TLS1_1
+	// - TLS1_2
 	MinimumEnabledTlsProtocol pulumi.StringPtrInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolPtrInput `pulumi:"noTableScan"`
@@ -6854,6 +6978,10 @@ func (o ClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolPtrOu
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+//
+// - TLS1_0
+// - TLS1_1
+// - TLS1_2
 func (o ClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringPtrOutput)
 }
@@ -6949,6 +7077,10 @@ func (o ClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulumi.BoolPt
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+//
+// - TLS1_0
+// - TLS1_1
+// - TLS1_2
 func (o ClusterAdvancedConfigurationPtrOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -7016,6 +7148,12 @@ type ClusterBiConnectorConfig struct {
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled *bool `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	//
+	// - Set to "primary" to have BI Connector for Atlas read from the primary.
+	//
+	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+	//
+	// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 	ReadPreference *string `pulumi:"readPreference"`
 }
 
@@ -7037,6 +7175,12 @@ type ClusterBiConnectorConfigArgs struct {
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	//
+	// - Set to "primary" to have BI Connector for Atlas read from the primary.
+	//
+	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+	//
+	// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 	ReadPreference pulumi.StringPtrInput `pulumi:"readPreference"`
 }
 
@@ -7126,6 +7270,12 @@ func (o ClusterBiConnectorConfigOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+//
+// - Set to "primary" to have BI Connector for Atlas read from the primary.
+//
+// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+//
+// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 func (o ClusterBiConnectorConfigOutput) ReadPreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterBiConnectorConfig) *string { return v.ReadPreference }).(pulumi.StringPtrOutput)
 }
@@ -7168,6 +7318,12 @@ func (o ClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+//
+// - Set to "primary" to have BI Connector for Atlas read from the primary.
+//
+// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+//
+// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 func (o ClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterBiConnectorConfig) *string {
 		if v == nil {
@@ -7430,6 +7586,8 @@ func (o ClusterConnectionStringPrivateEndpointArrayOutput) Index(i pulumi.IntInp
 type ClusterConnectionStringPrivateEndpointEndpoint struct {
 	EndpointId *string `pulumi:"endpointId"`
 	// Cloud service provider on which the servers are provisioned.
+	//
+	// The possible values are:
 	ProviderName *string `pulumi:"providerName"`
 	Region       *string `pulumi:"region"`
 }
@@ -7448,6 +7606,8 @@ type ClusterConnectionStringPrivateEndpointEndpointInput interface {
 type ClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
 	// Cloud service provider on which the servers are provisioned.
+	//
+	// The possible values are:
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
 	Region       pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -7508,6 +7668,8 @@ func (o ClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulum
 }
 
 // Cloud service provider on which the servers are provisioned.
+//
+// The possible values are:
 func (o ClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
@@ -7650,6 +7812,8 @@ type ClusterReplicationSpec struct {
 	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
 	RegionsConfigs []ClusterReplicationSpecRegionsConfig `pulumi:"regionsConfigs"`
 	// Name for the zone in a Global Cluster.
+	//
+	// **Region Config**
 	ZoneName *string `pulumi:"zoneName"`
 }
 
@@ -7672,6 +7836,8 @@ type ClusterReplicationSpecArgs struct {
 	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
 	RegionsConfigs ClusterReplicationSpecRegionsConfigArrayInput `pulumi:"regionsConfigs"`
 	// Name for the zone in a Global Cluster.
+	//
+	// **Region Config**
 	ZoneName pulumi.StringPtrInput `pulumi:"zoneName"`
 }
 
@@ -7742,6 +7908,8 @@ func (o ClusterReplicationSpecOutput) RegionsConfigs() ClusterReplicationSpecReg
 }
 
 // Name for the zone in a Global Cluster.
+//
+// **Region Config**
 func (o ClusterReplicationSpecOutput) ZoneName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) *string { return v.ZoneName }).(pulumi.StringPtrOutput)
 }
@@ -8287,6 +8455,18 @@ type CustomDbRoleAction struct {
 	// > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
 	Action string `pulumi:"action"`
 	// Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
+	//
+	// * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+	//
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+	//
+	// * `resources.#.database_name`	Database on which the action is granted.
+	//
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+	//
+	// * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+	//
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
 	Resources []CustomDbRoleActionResource `pulumi:"resources"`
 }
 
@@ -8306,6 +8486,18 @@ type CustomDbRoleActionArgs struct {
 	// > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
 	Action pulumi.StringInput `pulumi:"action"`
 	// Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
+	//
+	// * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+	//
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+	//
+	// * `resources.#.database_name`	Database on which the action is granted.
+	//
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+	//
+	// * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+	//
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
 	Resources CustomDbRoleActionResourceArrayInput `pulumi:"resources"`
 }
 
@@ -8367,6 +8559,18 @@ func (o CustomDbRoleActionOutput) Action() pulumi.StringOutput {
 }
 
 // Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
+//
+// * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+//
+// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+//
+// * `resources.#.database_name`	Database on which the action is granted.
+//
+// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+//
+// * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+//
+// > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
 func (o CustomDbRoleActionOutput) Resources() CustomDbRoleActionResourceArrayOutput {
 	return o.ApplyT(func(v CustomDbRoleAction) []CustomDbRoleActionResource { return v.Resources }).(CustomDbRoleActionResourceArrayOutput)
 }
@@ -8395,6 +8599,8 @@ type CustomDbRoleActionResource struct {
 	Cluster        *bool   `pulumi:"cluster"`
 	CollectionName *string `pulumi:"collectionName"`
 	// Database on which the inherited role is granted.
+	//
+	// > **NOTE** This value should be admin for all roles except read and readWrite.
 	DatabaseName *string `pulumi:"databaseName"`
 }
 
@@ -8413,6 +8619,8 @@ type CustomDbRoleActionResourceArgs struct {
 	Cluster        pulumi.BoolPtrInput   `pulumi:"cluster"`
 	CollectionName pulumi.StringPtrInput `pulumi:"collectionName"`
 	// Database on which the inherited role is granted.
+	//
+	// > **NOTE** This value should be admin for all roles except read and readWrite.
 	DatabaseName pulumi.StringPtrInput `pulumi:"databaseName"`
 }
 
@@ -8476,6 +8684,8 @@ func (o CustomDbRoleActionResourceOutput) CollectionName() pulumi.StringPtrOutpu
 }
 
 // Database on which the inherited role is granted.
+//
+// > **NOTE** This value should be admin for all roles except read and readWrite.
 func (o CustomDbRoleActionResourceOutput) DatabaseName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CustomDbRoleActionResource) *string { return v.DatabaseName }).(pulumi.StringPtrOutput)
 }
@@ -8502,6 +8712,8 @@ func (o CustomDbRoleActionResourceArrayOutput) Index(i pulumi.IntInput) CustomDb
 
 type CustomDbRoleInheritedRole struct {
 	// Database on which the inherited role is granted.
+	//
+	// > **NOTE** This value should be admin for all roles except read and readWrite.
 	DatabaseName string `pulumi:"databaseName"`
 	// Name of the inherited role. This can either be another custom role or a built-in role.
 	RoleName string `pulumi:"roleName"`
@@ -8520,6 +8732,8 @@ type CustomDbRoleInheritedRoleInput interface {
 
 type CustomDbRoleInheritedRoleArgs struct {
 	// Database on which the inherited role is granted.
+	//
+	// > **NOTE** This value should be admin for all roles except read and readWrite.
 	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
 	// Name of the inherited role. This can either be another custom role or a built-in role.
 	RoleName pulumi.StringInput `pulumi:"roleName"`
@@ -8577,6 +8791,8 @@ func (o CustomDbRoleInheritedRoleOutput) ToCustomDbRoleInheritedRoleOutputWithCo
 }
 
 // Database on which the inherited role is granted.
+//
+// > **NOTE** This value should be admin for all roles except read and readWrite.
 func (o CustomDbRoleInheritedRoleOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v CustomDbRoleInheritedRole) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
@@ -12409,6 +12625,22 @@ type SearchIndexSynonym struct {
 	// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
 	// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
 	// * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
 	Analyzer string `pulumi:"analyzer"`
 	// Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
 	Name string `pulumi:"name"`
@@ -12435,6 +12667,22 @@ type SearchIndexSynonymArgs struct {
 	// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
 	// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
 	// * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
 	Analyzer pulumi.StringInput `pulumi:"analyzer"`
 	// Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
 	Name pulumi.StringInput `pulumi:"name"`
@@ -12500,6 +12748,25 @@ func (o SearchIndexSynonymOutput) ToSearchIndexSynonymOutputWithContext(ctx cont
 // * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
 // * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
 // * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
 func (o SearchIndexSynonymOutput) Analyzer() pulumi.StringOutput {
 	return o.ApplyT(func(v SearchIndexSynonym) string { return v.Analyzer }).(pulumi.StringOutput)
 }
@@ -18933,6 +19200,8 @@ type GetApiKeysResult struct {
 	Description string `pulumi:"description"`
 	PublicKey   string `pulumi:"publicKey"`
 	// Name of the role. This resource returns all the roles the user has in Atlas.
+	//
+	// The following are valid roles:
 	RoleNames []string `pulumi:"roleNames"`
 }
 
@@ -18954,6 +19223,8 @@ type GetApiKeysResultArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	PublicKey   pulumi.StringInput `pulumi:"publicKey"`
 	// Name of the role. This resource returns all the roles the user has in Atlas.
+	//
+	// The following are valid roles:
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
 }
 
@@ -19023,6 +19294,8 @@ func (o GetApiKeysResultOutput) PublicKey() pulumi.StringOutput {
 }
 
 // Name of the role. This resource returns all the roles the user has in Atlas.
+//
+// The following are valid roles:
 func (o GetApiKeysResultOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetApiKeysResult) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
@@ -34400,6 +34673,10 @@ func (o GetOnlineArchivePartitionFieldArrayOutput) Index(i pulumi.IntInput) GetO
 type GetOnlineArchivesResult struct {
 	ArchiveId string `pulumi:"archiveId"`
 	// Name of the cluster that contains the collection.
+	//
+	// # Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	ClusterName     string                                  `pulumi:"clusterName"`
 	CollName        string                                  `pulumi:"collName"`
 	CollectionType  string                                  `pulumi:"collectionType"`
@@ -34426,6 +34703,10 @@ type GetOnlineArchivesResultInput interface {
 type GetOnlineArchivesResultArgs struct {
 	ArchiveId pulumi.StringInput `pulumi:"archiveId"`
 	// Name of the cluster that contains the collection.
+	//
+	// # Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	ClusterName     pulumi.StringInput                              `pulumi:"clusterName"`
 	CollName        pulumi.StringInput                              `pulumi:"collName"`
 	CollectionType  pulumi.StringInput                              `pulumi:"collectionType"`
@@ -34494,6 +34775,10 @@ func (o GetOnlineArchivesResultOutput) ArchiveId() pulumi.StringOutput {
 }
 
 // Name of the cluster that contains the collection.
+//
+// # Attributes Reference
+//
+// In addition to all arguments above, the following attributes are exported:
 func (o GetOnlineArchivesResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOnlineArchivesResult) string { return v.ClusterName }).(pulumi.StringOutput)
 }
@@ -35001,6 +35286,8 @@ func (o GetPrivatelinkEndpointsServiceAdlLinkArrayOutput) Index(i pulumi.IntInpu
 
 type GetPrivatelinkEndpointsServiceAdlResult struct {
 	// Human-readable string to associate with this private endpoint.
+	//
+	// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/) Documentation for more information.
 	Comment string `pulumi:"comment"`
 	// Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
 	EndpointId string `pulumi:"endpointId"`
@@ -35023,6 +35310,8 @@ type GetPrivatelinkEndpointsServiceAdlResultInput interface {
 
 type GetPrivatelinkEndpointsServiceAdlResultArgs struct {
 	// Human-readable string to associate with this private endpoint.
+	//
+	// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/) Documentation for more information.
 	Comment pulumi.StringInput `pulumi:"comment"`
 	// Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
@@ -35084,6 +35373,8 @@ func (o GetPrivatelinkEndpointsServiceAdlResultOutput) ToGetPrivatelinkEndpoints
 }
 
 // Human-readable string to associate with this private endpoint.
+//
+// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/) Documentation for more information.
 func (o GetPrivatelinkEndpointsServiceAdlResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceAdlResult) string { return v.Comment }).(pulumi.StringOutput)
 }
@@ -35636,6 +35927,8 @@ type GetProjectsResult struct {
 	// The ID of the organization you want to create the project within.
 	OrgId string `pulumi:"orgId"`
 	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+	//
+	// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
 	RegionUsageRestrictions string                  `pulumi:"regionUsageRestrictions"`
 	Teams                   []GetProjectsResultTeam `pulumi:"teams"`
 }
@@ -35677,6 +35970,8 @@ type GetProjectsResultArgs struct {
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+	//
+	// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
 	RegionUsageRestrictions pulumi.StringInput              `pulumi:"regionUsageRestrictions"`
 	Teams                   GetProjectsResultTeamArrayInput `pulumi:"teams"`
 }
@@ -35790,6 +36085,8 @@ func (o GetProjectsResultOutput) OrgId() pulumi.StringOutput {
 }
 
 // If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+//
+// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
 func (o GetProjectsResultOutput) RegionUsageRestrictions() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.RegionUsageRestrictions }).(pulumi.StringOutput)
 }

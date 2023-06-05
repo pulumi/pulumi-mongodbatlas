@@ -297,6 +297,10 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * 
+     * Additional values based on Type
+     * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
@@ -312,6 +316,10 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * 
+     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * 
+     * Additional values based on Type
      * 
      */
     public Optional<Output<String>> type() {
@@ -796,6 +804,10 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
          * 
+         * *resource is now deprecated and will be removed in the next major version, 1.9.0
+         * 
+         * Additional values based on Type
+         * 
          * @return builder
          * 
          */
@@ -815,6 +827,10 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
+         * 
+         * *resource is now deprecated and will be removed in the next major version, 1.9.0
+         * 
+         * Additional values based on Type
          * 
          * @return builder
          * 

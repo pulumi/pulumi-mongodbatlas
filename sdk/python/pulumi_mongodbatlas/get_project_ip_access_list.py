@@ -111,6 +111,8 @@ def get_project_ip_access_list(aws_security_group: Optional[str] = None,
     :param str aws_security_group: Unique identifier of the AWS security group to add to the access list.
     :param str cidr_block: Range of IP addresses in CIDR notation to be added to the access list.
     :param str ip_address: Single IP address to be added to the access list.
+           
+           > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
     :param str project_id: Unique identifier for the project to which you want to add one or more access list entries.
     """
     __args__ = dict()
@@ -150,6 +152,8 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     :param str aws_security_group: Unique identifier of the AWS security group to add to the access list.
     :param str cidr_block: Range of IP addresses in CIDR notation to be added to the access list.
     :param str ip_address: Single IP address to be added to the access list.
+           
+           > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
     :param str project_id: Unique identifier for the project to which you want to add one or more access list entries.
     """
     ...

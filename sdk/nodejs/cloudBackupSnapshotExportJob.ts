@@ -89,6 +89,9 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      * Error message, only if the export job failed.
      */
     public /*out*/ readonly errMsg!: pulumi.Output<string>;
+    /**
+     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+     */
     public readonly exportBucketId!: pulumi.Output<string>;
     /**
      * Unique identifier of the export job.
@@ -106,6 +109,9 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+     */
     public readonly snapshotId!: pulumi.Output<string>;
     /**
      * Status of the export job. Value can be one of the following:
@@ -200,6 +206,9 @@ export interface CloudBackupSnapshotExportJobState {
      * Error message, only if the export job failed.
      */
     errMsg?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+     */
     exportBucketId?: pulumi.Input<string>;
     /**
      * Unique identifier of the export job.
@@ -217,6 +226,9 @@ export interface CloudBackupSnapshotExportJobState {
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+     */
     snapshotId?: pulumi.Input<string>;
     /**
      * Status of the export job. Value can be one of the following:
@@ -236,10 +248,16 @@ export interface CloudBackupSnapshotExportJobArgs {
      * Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      */
     customDatas: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobCustomData>[]>;
+    /**
+     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+     */
     exportBucketId: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+     */
     snapshotId: pulumi.Input<string>;
 }

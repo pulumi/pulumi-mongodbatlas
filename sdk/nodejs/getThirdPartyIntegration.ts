@@ -76,6 +76,8 @@ export interface GetThirdPartyIntegrationArgs {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     * *resource is now deprecated and will be removed in the next major version, 1.9.0
      */
     type: string;
     /**
@@ -234,6 +236,8 @@ export interface GetThirdPartyIntegrationOutputArgs {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     * *resource is now deprecated and will be removed in the next major version, 1.9.0
      */
     type: pulumi.Input<string>;
     /**

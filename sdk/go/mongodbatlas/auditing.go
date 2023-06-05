@@ -66,6 +66,8 @@ type Auditing struct {
 	// * FILTER_JSON - auditing configured via Atlas custom filter or API.
 	ConfigurationType pulumi.StringOutput `pulumi:"configurationType"`
 	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+	//
+	// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The unique ID for the project to configure auditing.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -113,6 +115,8 @@ type auditingState struct {
 	// * FILTER_JSON - auditing configured via Atlas custom filter or API.
 	ConfigurationType *string `pulumi:"configurationType"`
 	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+	//
+	// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 	Enabled *bool `pulumi:"enabled"`
 	// The unique ID for the project to configure auditing.
 	ProjectId *string `pulumi:"projectId"`
@@ -129,6 +133,8 @@ type AuditingState struct {
 	// * FILTER_JSON - auditing configured via Atlas custom filter or API.
 	ConfigurationType pulumi.StringPtrInput
 	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+	//
+	// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 	Enabled pulumi.BoolPtrInput
 	// The unique ID for the project to configure auditing.
 	ProjectId pulumi.StringPtrInput
@@ -144,6 +150,8 @@ type auditingArgs struct {
 	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
 	AuditFilter *string `pulumi:"auditFilter"`
 	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+	//
+	// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 	Enabled *bool `pulumi:"enabled"`
 	// The unique ID for the project to configure auditing.
 	ProjectId string `pulumi:"projectId"`
@@ -156,6 +164,8 @@ type AuditingArgs struct {
 	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
 	AuditFilter pulumi.StringPtrInput
 	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+	//
+	// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 	Enabled pulumi.BoolPtrInput
 	// The unique ID for the project to configure auditing.
 	ProjectId pulumi.StringInput
@@ -267,6 +277,8 @@ func (o AuditingOutput) ConfigurationType() pulumi.StringOutput {
 }
 
 // Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+//
+// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 func (o AuditingOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Auditing) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }

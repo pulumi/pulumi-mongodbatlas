@@ -78,9 +78,6 @@ namespace Pulumi.Mongodbatlas
         [Output("autoDefer")]
         public Output<bool> AutoDefer { get; private set; } = null!;
 
-        /// <summary>
-        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-        /// </summary>
         [Output("autoDeferOnceEnabled")]
         public Output<bool> AutoDeferOnceEnabled { get; private set; } = null!;
 
@@ -172,9 +169,6 @@ namespace Pulumi.Mongodbatlas
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
 
-        /// <summary>
-        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-        /// </summary>
         [Input("autoDeferOnceEnabled")]
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
@@ -222,9 +216,6 @@ namespace Pulumi.Mongodbatlas
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
 
-        /// <summary>
-        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-        /// </summary>
         [Input("autoDeferOnceEnabled")]
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 

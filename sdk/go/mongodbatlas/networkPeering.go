@@ -11,6 +11,25 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
+//
+// Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
+//
+// > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See disable Peering Only mode to disable.
+//
+// > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
+//
+//	Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+//	Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+//	Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+//	Microsoft.Network/virtualNetworks/peer/action
+//
+// For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+//
+// > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the projectIpWhitelist resource.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+//
 // ## Example Usage
 //
 // ### Container & Peering Connection
@@ -457,16 +476,22 @@ type NetworkPeering struct {
 	// GCP project ID of the owner of the network peer.
 	GcpProjectId pulumi.StringOutput `pulumi:"gcpProjectId"`
 	// Name of the network peer to which Atlas connects.
+	//
+	// **AZURE ONLY:**
 	NetworkName pulumi.StringOutput `pulumi:"networkName"`
 	// Unique identifier of the Atlas network peer.
 	PeerId pulumi.StringOutput `pulumi:"peerId"`
 	// The unique ID for the MongoDB Atlas project to create the database user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+	//
+	// **AWS ONLY:**
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// Name of your Azure resource group.
 	ResourceGroupName pulumi.StringOutput `pulumi:"resourceGroupName"`
 	// AWS VPC CIDR block or subnet.
+	//
+	// **GCP ONLY:**
 	RouteTableCidrBlock pulumi.StringOutput `pulumi:"routeTableCidrBlock"`
 	// Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -542,16 +567,22 @@ type networkPeeringState struct {
 	// GCP project ID of the owner of the network peer.
 	GcpProjectId *string `pulumi:"gcpProjectId"`
 	// Name of the network peer to which Atlas connects.
+	//
+	// **AZURE ONLY:**
 	NetworkName *string `pulumi:"networkName"`
 	// Unique identifier of the Atlas network peer.
 	PeerId *string `pulumi:"peerId"`
 	// The unique ID for the MongoDB Atlas project to create the database user.
 	ProjectId *string `pulumi:"projectId"`
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+	//
+	// **AWS ONLY:**
 	ProviderName *string `pulumi:"providerName"`
 	// Name of your Azure resource group.
 	ResourceGroupName *string `pulumi:"resourceGroupName"`
 	// AWS VPC CIDR block or subnet.
+	//
+	// **GCP ONLY:**
 	RouteTableCidrBlock *string `pulumi:"routeTableCidrBlock"`
 	// Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
 	Status *string `pulumi:"status"`
@@ -590,16 +621,22 @@ type NetworkPeeringState struct {
 	// GCP project ID of the owner of the network peer.
 	GcpProjectId pulumi.StringPtrInput
 	// Name of the network peer to which Atlas connects.
+	//
+	// **AZURE ONLY:**
 	NetworkName pulumi.StringPtrInput
 	// Unique identifier of the Atlas network peer.
 	PeerId pulumi.StringPtrInput
 	// The unique ID for the MongoDB Atlas project to create the database user.
 	ProjectId pulumi.StringPtrInput
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+	//
+	// **AWS ONLY:**
 	ProviderName pulumi.StringPtrInput
 	// Name of your Azure resource group.
 	ResourceGroupName pulumi.StringPtrInput
 	// AWS VPC CIDR block or subnet.
+	//
+	// **GCP ONLY:**
 	RouteTableCidrBlock pulumi.StringPtrInput
 	// Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
 	Status pulumi.StringPtrInput
@@ -633,14 +670,20 @@ type networkPeeringArgs struct {
 	// GCP project ID of the owner of the network peer.
 	GcpProjectId *string `pulumi:"gcpProjectId"`
 	// Name of the network peer to which Atlas connects.
+	//
+	// **AZURE ONLY:**
 	NetworkName *string `pulumi:"networkName"`
 	// The unique ID for the MongoDB Atlas project to create the database user.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+	//
+	// **AWS ONLY:**
 	ProviderName string `pulumi:"providerName"`
 	// Name of your Azure resource group.
 	ResourceGroupName *string `pulumi:"resourceGroupName"`
 	// AWS VPC CIDR block or subnet.
+	//
+	// **GCP ONLY:**
 	RouteTableCidrBlock *string `pulumi:"routeTableCidrBlock"`
 	// Name of your Azure VNet.
 	VnetName *string `pulumi:"vnetName"`
@@ -667,14 +710,20 @@ type NetworkPeeringArgs struct {
 	// GCP project ID of the owner of the network peer.
 	GcpProjectId pulumi.StringPtrInput
 	// Name of the network peer to which Atlas connects.
+	//
+	// **AZURE ONLY:**
 	NetworkName pulumi.StringPtrInput
 	// The unique ID for the MongoDB Atlas project to create the database user.
 	ProjectId pulumi.StringInput
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+	//
+	// **AWS ONLY:**
 	ProviderName pulumi.StringInput
 	// Name of your Azure resource group.
 	ResourceGroupName pulumi.StringPtrInput
 	// AWS VPC CIDR block or subnet.
+	//
+	// **GCP ONLY:**
 	RouteTableCidrBlock pulumi.StringPtrInput
 	// Name of your Azure VNet.
 	VnetName pulumi.StringPtrInput
@@ -837,6 +886,8 @@ func (o NetworkPeeringOutput) GcpProjectId() pulumi.StringOutput {
 }
 
 // Name of the network peer to which Atlas connects.
+//
+// **AZURE ONLY:**
 func (o NetworkPeeringOutput) NetworkName() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.NetworkName }).(pulumi.StringOutput)
 }
@@ -852,6 +903,8 @@ func (o NetworkPeeringOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+//
+// **AWS ONLY:**
 func (o NetworkPeeringOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
 }
@@ -862,6 +915,8 @@ func (o NetworkPeeringOutput) ResourceGroupName() pulumi.StringOutput {
 }
 
 // AWS VPC CIDR block or subnet.
+//
+// **GCP ONLY:**
 func (o NetworkPeeringOutput) RouteTableCidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.RouteTableCidrBlock }).(pulumi.StringOutput)
 }

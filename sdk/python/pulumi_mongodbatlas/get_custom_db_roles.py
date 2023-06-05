@@ -94,7 +94,7 @@ def get_custom_db_roles(project_id: Optional[str] = None,
                 database_name="admin",
             ),
         ])
-    test_custom_db_roles = mongodbatlas.get_custom_db_roles(project_id=mongodbatlas_custom_db_role["test"]["project_id"])
+    test_custom_db_roles = mongodbatlas.get_custom_db_roles(project_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     ```
 
 
@@ -140,7 +140,7 @@ def get_custom_db_roles_output(project_id: Optional[pulumi.Input[str]] = None,
                 database_name="admin",
             ),
         ])
-    test_custom_db_roles = mongodbatlas.get_custom_db_roles(project_id=mongodbatlas_custom_db_role["test"]["project_id"])
+    test_custom_db_roles = mongodbatlas.get_custom_db_roles(project_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     ```
 
 

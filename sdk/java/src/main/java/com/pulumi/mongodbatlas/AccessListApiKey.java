@@ -94,12 +94,16 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
     /**
      * Unique identifier for the Organization API Key for which you want to create a new access list entry.
      * 
+     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+     * 
      */
     @Export(name="apiKeyId", type=String.class, parameters={})
     private Output<String> apiKeyId;
 
     /**
      * @return Unique identifier for the Organization API Key for which you want to create a new access list entry.
+     * 
+     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
      * 
      */
     public Output<String> apiKeyId() {

@@ -30,19 +30,9 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.advancedConfiguration);
     }
 
-    /**
-     * Flag that indicates whether the cluster can perform backups.
-     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-     * 
-     */
     @Import(name="backupEnabled")
     private @Nullable Output<Boolean> backupEnabled;
 
-    /**
-     * @return Flag that indicates whether the cluster can perform backups.
-     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-     * 
-     */
     public Optional<Output<Boolean>> backupEnabled() {
         return Optional.ofNullable(this.backupEnabled);
     }
@@ -319,25 +309,11 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
             return advancedConfiguration(Output.of(advancedConfiguration));
         }
 
-        /**
-         * @param backupEnabled Flag that indicates whether the cluster can perform backups.
-         * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-         * 
-         * @return builder
-         * 
-         */
         public Builder backupEnabled(@Nullable Output<Boolean> backupEnabled) {
             $.backupEnabled = backupEnabled;
             return this;
         }
 
-        /**
-         * @param backupEnabled Flag that indicates whether the cluster can perform backups.
-         * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-         * 
-         * @return builder
-         * 
-         */
         public Builder backupEnabled(Boolean backupEnabled) {
             return backupEnabled(Output.of(backupEnabled));
         }

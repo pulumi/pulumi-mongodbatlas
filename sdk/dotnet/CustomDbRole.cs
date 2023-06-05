@@ -200,6 +200,13 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the custom role.
+        /// 
+        /// &gt; **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+        /// 
+        /// * Is a name already used by an existing custom role in the project
+        /// * Is a name of any of the built-in roles
+        /// * Is `atlasAdmin`
+        /// * Starts with `xgen-`
         /// </summary>
         [Output("roleName")]
         public Output<string> RoleName { get; private set; } = null!;
@@ -274,6 +281,13 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the custom role.
+        /// 
+        /// &gt; **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+        /// 
+        /// * Is a name already used by an existing custom role in the project
+        /// * Is a name of any of the built-in roles
+        /// * Is `atlasAdmin`
+        /// * Starts with `xgen-`
         /// </summary>
         [Input("roleName", required: true)]
         public Input<string> RoleName { get; set; } = null!;
@@ -310,6 +324,13 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the custom role.
+        /// 
+        /// &gt; **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+        /// 
+        /// * Is a name already used by an existing custom role in the project
+        /// * Is a name of any of the built-in roles
+        /// * Is `atlasAdmin`
+        /// * Starts with `xgen-`
         /// </summary>
         [Input("roleName")]
         public Input<string>? RoleName { get; set; }

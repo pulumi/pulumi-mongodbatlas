@@ -14,6 +14,8 @@ namespace Pulumi.Mongodbatlas.Inputs
     {
         /// <summary>
         /// Database on which the inherited role is granted.
+        /// 
+        /// &gt; **NOTE** This value should be admin for all roles except read and readWrite.
         /// </summary>
         [Input("databaseName", required: true)]
         public Input<string> DatabaseName { get; set; } = null!;

@@ -25,21 +25,45 @@ import (
 type Cluster struct {
 	pulumi.CustomResourceState
 
-	AdvancedConfiguration ClusterAdvancedConfigurationOutput `pulumi:"advancedConfiguration"`
-	// Specifies whether cluster tier auto-scaling is enabled. The default is false.
-	// - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
-	// - Set to `false` to disable cluster tier auto-scaling.
-	AutoScalingComputeEnabled pulumi.BoolOutput `pulumi:"autoScalingComputeEnabled"`
+	AdvancedConfiguration     ClusterAdvancedConfigurationOutput `pulumi:"advancedConfiguration"`
+	AutoScalingComputeEnabled pulumi.BoolOutput                  `pulumi:"autoScalingComputeEnabled"`
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
 	AutoScalingComputeScaleDownEnabled pulumi.BoolOutput `pulumi:"autoScalingComputeScaleDownEnabled"`
 	// Specifies whether disk auto-scaling is enabled. The default is true.
 	// - Set to `true` to enable disk auto-scaling.
 	// - Set to `false` to disable disk auto-scaling.
+	//
+	// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
 	AutoScalingDiskGbEnabled pulumi.BoolPtrOutput `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
+	//
+	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+	//
+	// The possible values are:
+	//
+	// - AWS - Amazon AWS
+	// - GCP - Google Cloud Platform
+	// - AZURE - Microsoft Azure
 	BackingProviderName pulumi.StringOutput `pulumi:"backingProviderName"`
-	// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+	// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+	// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+	// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+	// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	// * The default value is false.  M10 and above only.
 	BackupEnabled pulumi.BoolPtrOutput `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
@@ -47,11 +71,15 @@ type Cluster struct {
 	BiConnector pulumi.StringMapOutput `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigOutput `pulumi:"biConnectorConfig"`
-	// Flag indicating if the cluster uses Cloud Backup for backups.
-	CloudBackup pulumi.BoolPtrOutput `pulumi:"cloudBackup"`
+	CloudBackup       pulumi.BoolPtrOutput           `pulumi:"cloudBackup"`
 	// The cluster ID.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
+	//
+	// > **WHEN SHOULD YOU USE CLUSTERTYPE?**
+	// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
+	//
+	// Accepted values include:
 	ClusterType pulumi.StringOutput `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings ClusterConnectionStringArrayOutput `pulumi:"connectionStrings"`
@@ -106,6 +134,8 @@ type Cluster struct {
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
 	ProviderInstanceSizeName pulumi.StringOutput `pulumi:"providerInstanceSizeName"`
 	// Cloud service provider on which the servers are provisioned.
+	//
+	// The possible values are:
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -172,21 +202,45 @@ func GetCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Cluster resources.
 type clusterState struct {
-	AdvancedConfiguration *ClusterAdvancedConfiguration `pulumi:"advancedConfiguration"`
-	// Specifies whether cluster tier auto-scaling is enabled. The default is false.
-	// - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
-	// - Set to `false` to disable cluster tier auto-scaling.
-	AutoScalingComputeEnabled *bool `pulumi:"autoScalingComputeEnabled"`
+	AdvancedConfiguration     *ClusterAdvancedConfiguration `pulumi:"advancedConfiguration"`
+	AutoScalingComputeEnabled *bool                         `pulumi:"autoScalingComputeEnabled"`
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
 	AutoScalingComputeScaleDownEnabled *bool `pulumi:"autoScalingComputeScaleDownEnabled"`
 	// Specifies whether disk auto-scaling is enabled. The default is true.
 	// - Set to `true` to enable disk auto-scaling.
 	// - Set to `false` to disable disk auto-scaling.
+	//
+	// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
 	AutoScalingDiskGbEnabled *bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
+	//
+	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+	//
+	// The possible values are:
+	//
+	// - AWS - Amazon AWS
+	// - GCP - Google Cloud Platform
+	// - AZURE - Microsoft Azure
 	BackingProviderName *string `pulumi:"backingProviderName"`
-	// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+	// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+	// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+	// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+	// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	// * The default value is false.  M10 and above only.
 	BackupEnabled *bool `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
@@ -194,11 +248,15 @@ type clusterState struct {
 	BiConnector map[string]string `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig *ClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
-	// Flag indicating if the cluster uses Cloud Backup for backups.
-	CloudBackup *bool `pulumi:"cloudBackup"`
+	CloudBackup       *bool                     `pulumi:"cloudBackup"`
 	// The cluster ID.
 	ClusterId *string `pulumi:"clusterId"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
+	//
+	// > **WHEN SHOULD YOU USE CLUSTERTYPE?**
+	// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
+	//
+	// Accepted values include:
 	ClusterType *string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []ClusterConnectionString `pulumi:"connectionStrings"`
@@ -253,6 +311,8 @@ type clusterState struct {
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
 	ProviderInstanceSizeName *string `pulumi:"providerInstanceSizeName"`
 	// Cloud service provider on which the servers are provisioned.
+	//
+	// The possible values are:
 	ProviderName *string `pulumi:"providerName"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -282,10 +342,7 @@ type clusterState struct {
 }
 
 type ClusterState struct {
-	AdvancedConfiguration ClusterAdvancedConfigurationPtrInput
-	// Specifies whether cluster tier auto-scaling is enabled. The default is false.
-	// - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
-	// - Set to `false` to disable cluster tier auto-scaling.
+	AdvancedConfiguration     ClusterAdvancedConfigurationPtrInput
 	AutoScalingComputeEnabled pulumi.BoolPtrInput
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
@@ -293,10 +350,37 @@ type ClusterState struct {
 	// Specifies whether disk auto-scaling is enabled. The default is true.
 	// - Set to `true` to enable disk auto-scaling.
 	// - Set to `false` to disable disk auto-scaling.
+	//
+	// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
 	AutoScalingDiskGbEnabled pulumi.BoolPtrInput
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
+	//
+	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+	//
+	// The possible values are:
+	//
+	// - AWS - Amazon AWS
+	// - GCP - Google Cloud Platform
+	// - AZURE - Microsoft Azure
 	BackingProviderName pulumi.StringPtrInput
-	// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+	// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+	// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+	// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+	// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	// * The default value is false.  M10 and above only.
 	BackupEnabled pulumi.BoolPtrInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
@@ -304,11 +388,15 @@ type ClusterState struct {
 	BiConnector pulumi.StringMapInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigPtrInput
-	// Flag indicating if the cluster uses Cloud Backup for backups.
-	CloudBackup pulumi.BoolPtrInput
+	CloudBackup       pulumi.BoolPtrInput
 	// The cluster ID.
 	ClusterId pulumi.StringPtrInput
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
+	//
+	// > **WHEN SHOULD YOU USE CLUSTERTYPE?**
+	// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
+	//
+	// Accepted values include:
 	ClusterType pulumi.StringPtrInput
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings ClusterConnectionStringArrayInput
@@ -363,6 +451,8 @@ type ClusterState struct {
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
 	ProviderInstanceSizeName pulumi.StringPtrInput
 	// Cloud service provider on which the servers are provisioned.
+	//
+	// The possible values are:
 	ProviderName pulumi.StringPtrInput
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -396,21 +486,45 @@ func (ClusterState) ElementType() reflect.Type {
 }
 
 type clusterArgs struct {
-	AdvancedConfiguration *ClusterAdvancedConfiguration `pulumi:"advancedConfiguration"`
-	// Specifies whether cluster tier auto-scaling is enabled. The default is false.
-	// - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
-	// - Set to `false` to disable cluster tier auto-scaling.
-	AutoScalingComputeEnabled *bool `pulumi:"autoScalingComputeEnabled"`
+	AdvancedConfiguration     *ClusterAdvancedConfiguration `pulumi:"advancedConfiguration"`
+	AutoScalingComputeEnabled *bool                         `pulumi:"autoScalingComputeEnabled"`
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
 	AutoScalingComputeScaleDownEnabled *bool `pulumi:"autoScalingComputeScaleDownEnabled"`
 	// Specifies whether disk auto-scaling is enabled. The default is true.
 	// - Set to `true` to enable disk auto-scaling.
 	// - Set to `false` to disable disk auto-scaling.
+	//
+	// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
 	AutoScalingDiskGbEnabled *bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
+	//
+	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+	//
+	// The possible values are:
+	//
+	// - AWS - Amazon AWS
+	// - GCP - Google Cloud Platform
+	// - AZURE - Microsoft Azure
 	BackingProviderName *string `pulumi:"backingProviderName"`
-	// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+	// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+	// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+	// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+	// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	// * The default value is false.  M10 and above only.
 	BackupEnabled *bool `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
@@ -418,9 +532,13 @@ type clusterArgs struct {
 	BiConnector map[string]string `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig *ClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
-	// Flag indicating if the cluster uses Cloud Backup for backups.
-	CloudBackup *bool `pulumi:"cloudBackup"`
+	CloudBackup       *bool                     `pulumi:"cloudBackup"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
+	//
+	// > **WHEN SHOULD YOU USE CLUSTERTYPE?**
+	// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
+	//
+	// Accepted values include:
 	ClusterType *string `pulumi:"clusterType"`
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
 	// * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -462,6 +580,8 @@ type clusterArgs struct {
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
 	ProviderInstanceSizeName string `pulumi:"providerInstanceSizeName"`
 	// Cloud service provider on which the servers are provisioned.
+	//
+	// The possible values are:
 	ProviderName string `pulumi:"providerName"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -480,10 +600,7 @@ type clusterArgs struct {
 
 // The set of arguments for constructing a Cluster resource.
 type ClusterArgs struct {
-	AdvancedConfiguration ClusterAdvancedConfigurationPtrInput
-	// Specifies whether cluster tier auto-scaling is enabled. The default is false.
-	// - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
-	// - Set to `false` to disable cluster tier auto-scaling.
+	AdvancedConfiguration     ClusterAdvancedConfigurationPtrInput
 	AutoScalingComputeEnabled pulumi.BoolPtrInput
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
@@ -491,10 +608,37 @@ type ClusterArgs struct {
 	// Specifies whether disk auto-scaling is enabled. The default is true.
 	// - Set to `true` to enable disk auto-scaling.
 	// - Set to `false` to disable disk auto-scaling.
+	//
+	// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
 	AutoScalingDiskGbEnabled pulumi.BoolPtrInput
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
+	//
+	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+	//
+	// The possible values are:
+	//
+	// - AWS - Amazon AWS
+	// - GCP - Google Cloud Platform
+	// - AZURE - Microsoft Azure
 	BackingProviderName pulumi.StringPtrInput
-	// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+	// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+	// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+	// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+	// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	// * The default value is false.  M10 and above only.
 	BackupEnabled pulumi.BoolPtrInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
@@ -502,9 +646,13 @@ type ClusterArgs struct {
 	BiConnector pulumi.StringMapInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigPtrInput
-	// Flag indicating if the cluster uses Cloud Backup for backups.
-	CloudBackup pulumi.BoolPtrInput
+	CloudBackup       pulumi.BoolPtrInput
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
+	//
+	// > **WHEN SHOULD YOU USE CLUSTERTYPE?**
+	// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
+	//
+	// Accepted values include:
 	ClusterType pulumi.StringPtrInput
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
 	// * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -546,6 +694,8 @@ type ClusterArgs struct {
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
 	ProviderInstanceSizeName pulumi.StringInput
 	// Cloud service provider on which the servers are provisioned.
+	//
+	// The possible values are:
 	ProviderName pulumi.StringInput
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -653,9 +803,6 @@ func (o ClusterOutput) AdvancedConfiguration() ClusterAdvancedConfigurationOutpu
 	return o.ApplyT(func(v *Cluster) ClusterAdvancedConfigurationOutput { return v.AdvancedConfiguration }).(ClusterAdvancedConfigurationOutput)
 }
 
-// Specifies whether cluster tier auto-scaling is enabled. The default is false.
-// - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
-// - Set to `false` to disable cluster tier auto-scaling.
 func (o ClusterOutput) AutoScalingComputeEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.AutoScalingComputeEnabled }).(pulumi.BoolOutput)
 }
@@ -669,16 +816,46 @@ func (o ClusterOutput) AutoScalingComputeScaleDownEnabled() pulumi.BoolOutput {
 // Specifies whether disk auto-scaling is enabled. The default is true.
 // - Set to `true` to enable disk auto-scaling.
 // - Set to `false` to disable disk auto-scaling.
+//
+// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
 func (o ClusterOutput) AutoScalingDiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.AutoScalingDiskGbEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // Cloud service provider on which the server for a multi-tenant cluster is provisioned.
+//
+// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
+//
+// The possible values are:
+//
+// - AWS - Amazon AWS
+// - GCP - Google Cloud Platform
+// - AZURE - Microsoft Azure
 func (o ClusterOutput) BackingProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.BackingProviderName }).(pulumi.StringOutput)
 }
 
-// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			return nil
+//		})
+//	}
+//
+// ```
+// * The default value is false.  M10 and above only.
 func (o ClusterOutput) BackupEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.BackupEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -695,7 +872,6 @@ func (o ClusterOutput) BiConnectorConfig() ClusterBiConnectorConfigOutput {
 	return o.ApplyT(func(v *Cluster) ClusterBiConnectorConfigOutput { return v.BiConnectorConfig }).(ClusterBiConnectorConfigOutput)
 }
 
-// Flag indicating if the cluster uses Cloud Backup for backups.
 func (o ClusterOutput) CloudBackup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.CloudBackup }).(pulumi.BoolPtrOutput)
 }
@@ -706,6 +882,11 @@ func (o ClusterOutput) ClusterId() pulumi.StringOutput {
 }
 
 // Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
+//
+// > **WHEN SHOULD YOU USE CLUSTERTYPE?**
+// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
+//
+// Accepted values include:
 func (o ClusterOutput) ClusterType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ClusterType }).(pulumi.StringOutput)
 }
@@ -832,6 +1013,8 @@ func (o ClusterOutput) ProviderInstanceSizeName() pulumi.StringOutput {
 }
 
 // Cloud service provider on which the servers are provisioned.
+//
+// The possible values are:
 func (o ClusterOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
 }

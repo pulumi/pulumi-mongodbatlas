@@ -10,6 +10,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `AlertConfiguration` describes an Alert Configuration.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 func LookupAlertConfiguration(ctx *pulumi.Context, args *LookupAlertConfigurationArgs, opts ...pulumi.InvokeOption) (*LookupAlertConfigurationResult, error) {
 	var rv LookupAlertConfigurationResult
 	err := ctx.Invoke("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args, &rv, opts...)

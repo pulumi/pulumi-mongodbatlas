@@ -32,17 +32,9 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.autoDefer);
     }
 
-    /**
-     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-     * 
-     */
     @Import(name="autoDeferOnceEnabled")
     private @Nullable Output<Boolean> autoDeferOnceEnabled;
 
-    /**
-     * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-     * 
-     */
     public Optional<Output<Boolean>> autoDeferOnceEnabled() {
         return Optional.ofNullable(this.autoDeferOnceEnabled);
     }
@@ -173,23 +165,11 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
             return autoDefer(Output.of(autoDefer));
         }
 
-        /**
-         * @param autoDeferOnceEnabled Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoDeferOnceEnabled(@Nullable Output<Boolean> autoDeferOnceEnabled) {
             $.autoDeferOnceEnabled = autoDeferOnceEnabled;
             return this;
         }
 
-        /**
-         * @param autoDeferOnceEnabled Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoDeferOnceEnabled(Boolean autoDeferOnceEnabled) {
             return autoDeferOnceEnabled(Output.of(autoDeferOnceEnabled));
         }

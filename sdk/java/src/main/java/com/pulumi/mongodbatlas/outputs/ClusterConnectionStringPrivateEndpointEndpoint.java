@@ -15,6 +15,8 @@ public final class ClusterConnectionStringPrivateEndpointEndpoint {
     /**
      * @return Cloud service provider on which the servers are provisioned.
      * 
+     * The possible values are:
+     * 
      */
     private @Nullable String providerName;
     private @Nullable String region;
@@ -25,6 +27,8 @@ public final class ClusterConnectionStringPrivateEndpointEndpoint {
     }
     /**
      * @return Cloud service provider on which the servers are provisioned.
+     * 
+     * The possible values are:
      * 
      */
     public Optional<String> providerName() {

@@ -10,6 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `NetworkPeering` describes a Network Peering Connection.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+//
+// > **NOTE:** If you need to get an existing container ID see the How-To Guide.
+//
 // ## Example Usage
 func LookupNetworkPeering(ctx *pulumi.Context, args *LookupNetworkPeeringArgs, opts ...pulumi.InvokeOption) (*LookupNetworkPeeringResult, error) {
 	var rv LookupNetworkPeeringResult

@@ -46,10 +46,6 @@ export class AdvancedCluster extends pulumi.CustomResource {
     }
 
     public readonly advancedConfiguration!: pulumi.Output<outputs.AdvancedClusterAdvancedConfiguration>;
-    /**
-     * Flag that indicates whether the cluster can perform backups.
-     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-     */
     public readonly backupEnabled!: pulumi.Output<boolean>;
     /**
      * @deprecated use bi_connector_config instead
@@ -212,10 +208,6 @@ export class AdvancedCluster extends pulumi.CustomResource {
  */
 export interface AdvancedClusterState {
     advancedConfiguration?: pulumi.Input<inputs.AdvancedClusterAdvancedConfiguration>;
-    /**
-     * Flag that indicates whether the cluster can perform backups.
-     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-     */
     backupEnabled?: pulumi.Input<boolean>;
     /**
      * @deprecated use bi_connector_config instead
@@ -305,10 +297,6 @@ export interface AdvancedClusterState {
  */
 export interface AdvancedClusterArgs {
     advancedConfiguration?: pulumi.Input<inputs.AdvancedClusterAdvancedConfiguration>;
-    /**
-     * Flag that indicates whether the cluster can perform backups.
-     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-     */
     backupEnabled?: pulumi.Input<boolean>;
     /**
      * @deprecated use bi_connector_config instead

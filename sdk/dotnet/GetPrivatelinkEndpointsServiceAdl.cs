@@ -97,6 +97,10 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The unique ID for the project.
+        /// 
+        /// # Attributes Reference
+        /// 
+        /// In addition to all arguments above, the following attributes are exported:
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -111,6 +115,10 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// The unique ID for the project.
+        /// 
+        /// # Attributes Reference
+        /// 
+        /// In addition to all arguments above, the following attributes are exported:
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

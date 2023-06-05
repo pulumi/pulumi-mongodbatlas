@@ -11,6 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `DataLake` provides a Data Lake resource.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+//
+// > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
+//
 // ## Example Usage
 // ### S
 //

@@ -343,6 +343,8 @@ def get_third_party_integration(enabled: Optional[bool] = None,
            * WEBHOOK
            * MICROSOFT_TEAMS
            * PROMETHEUS
+           
+           *resource is now deprecated and will be removed in the next major version, 1.9.0
     :param str user_name: Your Prometheus username.
     """
     __args__ = dict()
@@ -427,6 +429,8 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
            * WEBHOOK
            * MICROSOFT_TEAMS
            * PROMETHEUS
+           
+           *resource is now deprecated and will be removed in the next major version, 1.9.0
     :param str user_name: Your Prometheus username.
     """
     ...

@@ -20,6 +20,18 @@ public final class CustomDbRoleAction {
     /**
      * @return Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
      * 
+     * * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+     * 
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+     * 
+     * * `resources.#.database_name`	Database on which the action is granted.
+     * 
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+     * 
+     * * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+     * 
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+     * 
      */
     private List<CustomDbRoleActionResource> resources;
 
@@ -34,6 +46,18 @@ public final class CustomDbRoleAction {
     }
     /**
      * @return Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
+     * 
+     * * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+     * 
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+     * 
+     * * `resources.#.database_name`	Database on which the action is granted.
+     * 
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+     * 
+     * * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+     * 
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
      * 
      */
     public List<CustomDbRoleActionResource> resources() {

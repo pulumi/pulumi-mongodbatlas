@@ -18,12 +18,32 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
     /**
      * Name of the field in the target object to match on.
      * 
+     * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+     * |:----------           |:-------------       |:------                 |
+     * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+     * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+     * | `PORT`              | `CLUSTER_NAME`      |                         |
+     * | `HOSTNAME_AND_PORT` |                     |                         |
+     * | `REPLICA_SET_NAME`  |                     |                         |
+     * 
+     * All other types of alerts do not support matchers.
+     * 
      */
     @Import(name="fieldName")
     private @Nullable Output<String> fieldName;
 
     /**
      * @return Name of the field in the target object to match on.
+     * 
+     * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+     * |:----------           |:-------------       |:------                 |
+     * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+     * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+     * | `PORT`              | `CLUSTER_NAME`      |                         |
+     * | `HOSTNAME_AND_PORT` |                     |                         |
+     * | `REPLICA_SET_NAME`  |                     |                         |
+     * 
+     * All other types of alerts do not support matchers.
      * 
      */
     public Optional<Output<String>> fieldName() {
@@ -95,6 +115,16 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         /**
          * @param fieldName Name of the field in the target object to match on.
          * 
+         * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+         * |:----------           |:-------------       |:------                 |
+         * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+         * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+         * | `PORT`              | `CLUSTER_NAME`      |                         |
+         * | `HOSTNAME_AND_PORT` |                     |                         |
+         * | `REPLICA_SET_NAME`  |                     |                         |
+         * 
+         * All other types of alerts do not support matchers.
+         * 
          * @return builder
          * 
          */
@@ -105,6 +135,16 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
 
         /**
          * @param fieldName Name of the field in the target object to match on.
+         * 
+         * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+         * |:----------           |:-------------       |:------                 |
+         * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+         * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+         * | `PORT`              | `CLUSTER_NAME`      |                         |
+         * | `HOSTNAME_AND_PORT` |                     |                         |
+         * | `REPLICA_SET_NAME`  |                     |                         |
+         * 
+         * All other types of alerts do not support matchers.
          * 
          * @return builder
          * 

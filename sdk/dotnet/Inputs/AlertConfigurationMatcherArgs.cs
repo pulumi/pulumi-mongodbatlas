@@ -14,6 +14,18 @@ namespace Pulumi.Mongodbatlas.Inputs
     {
         /// <summary>
         /// Name of the field in the target object to match on.
+        /// 
+        /// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+        /// |:----------           |:-------------       |:------                 |
+        /// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+        /// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+        /// | `PORT`              | `CLUSTER_NAME`      |                         |
+        /// | `HOSTNAME_AND_PORT` |                     |                         |
+        /// | `REPLICA_SET_NAME`  |                     |                         |
+        /// 
+        /// 
+        /// 
+        /// All other types of alerts do not support matchers.
         /// </summary>
         [Input("fieldName")]
         public Input<string>? FieldName { get; set; }

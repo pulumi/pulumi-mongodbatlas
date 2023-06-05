@@ -12,9 +12,6 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
-        /// </summary>
         [Input("computeEnabled")]
         public Input<bool>? ComputeEnabled { get; set; }
 

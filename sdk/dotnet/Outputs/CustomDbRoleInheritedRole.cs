@@ -15,6 +15,8 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         /// <summary>
         /// Database on which the inherited role is granted.
+        /// 
+        /// &gt; **NOTE** This value should be admin for all roles except read and readWrite.
         /// </summary>
         public readonly string DatabaseName;
         /// <summary>
