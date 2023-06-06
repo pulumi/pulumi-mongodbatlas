@@ -91,8 +91,7 @@ type MaintenanceWindow struct {
 	pulumi.CustomResourceState
 
 	// Defer any scheduled maintenance for the given project for one week.
-	AutoDefer pulumi.BoolOutput `pulumi:"autoDefer"`
-	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+	AutoDefer            pulumi.BoolOutput `pulumi:"autoDefer"`
 	AutoDeferOnceEnabled pulumi.BoolOutput `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
 	DayOfWeek pulumi.IntOutput `pulumi:"dayOfWeek"`
@@ -141,8 +140,7 @@ func GetMaintenanceWindow(ctx *pulumi.Context,
 // Input properties used for looking up and filtering MaintenanceWindow resources.
 type maintenanceWindowState struct {
 	// Defer any scheduled maintenance for the given project for one week.
-	AutoDefer *bool `pulumi:"autoDefer"`
-	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+	AutoDefer            *bool `pulumi:"autoDefer"`
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
 	DayOfWeek *int `pulumi:"dayOfWeek"`
@@ -160,8 +158,7 @@ type maintenanceWindowState struct {
 
 type MaintenanceWindowState struct {
 	// Defer any scheduled maintenance for the given project for one week.
-	AutoDefer pulumi.BoolPtrInput
-	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+	AutoDefer            pulumi.BoolPtrInput
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
 	DayOfWeek pulumi.IntPtrInput
@@ -183,8 +180,7 @@ func (MaintenanceWindowState) ElementType() reflect.Type {
 
 type maintenanceWindowArgs struct {
 	// Defer any scheduled maintenance for the given project for one week.
-	AutoDefer *bool `pulumi:"autoDefer"`
-	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+	AutoDefer            *bool `pulumi:"autoDefer"`
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
 	DayOfWeek *int `pulumi:"dayOfWeek"`
@@ -201,8 +197,7 @@ type maintenanceWindowArgs struct {
 // The set of arguments for constructing a MaintenanceWindow resource.
 type MaintenanceWindowArgs struct {
 	// Defer any scheduled maintenance for the given project for one week.
-	AutoDefer pulumi.BoolPtrInput
-	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+	AutoDefer            pulumi.BoolPtrInput
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
 	DayOfWeek pulumi.IntPtrInput
@@ -308,7 +303,6 @@ func (o MaintenanceWindowOutput) AutoDefer() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDefer }).(pulumi.BoolOutput)
 }
 
-// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
 func (o MaintenanceWindowOutput) AutoDeferOnceEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDeferOnceEnabled }).(pulumi.BoolOutput)
 }

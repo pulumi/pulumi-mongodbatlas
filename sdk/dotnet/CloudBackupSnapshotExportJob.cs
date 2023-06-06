@@ -90,6 +90,9 @@ namespace Pulumi.Mongodbatlas
         [Output("errMsg")]
         public Output<string> ErrMsg { get; private set; } = null!;
 
+        /// <summary>
+        /// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+        /// </summary>
         [Output("exportBucketId")]
         public Output<string> ExportBucketId { get; private set; } = null!;
 
@@ -121,6 +124,9 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+        /// </summary>
         [Output("snapshotId")]
         public Output<string> SnapshotId { get; private set; } = null!;
 
@@ -194,6 +200,9 @@ namespace Pulumi.Mongodbatlas
             set => _customDatas = value;
         }
 
+        /// <summary>
+        /// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+        /// </summary>
         [Input("exportBucketId", required: true)]
         public Input<string> ExportBucketId { get; set; } = null!;
 
@@ -203,6 +212,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+        /// </summary>
         [Input("snapshotId", required: true)]
         public Input<string> SnapshotId { get; set; } = null!;
 
@@ -256,6 +268,9 @@ namespace Pulumi.Mongodbatlas
         [Input("errMsg")]
         public Input<string>? ErrMsg { get; set; }
 
+        /// <summary>
+        /// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+        /// </summary>
         [Input("exportBucketId")]
         public Input<string>? ExportBucketId { get; set; }
 
@@ -287,6 +302,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+        /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
 

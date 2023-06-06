@@ -146,6 +146,8 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
+        /// 
+        /// *resource is now deprecated and will be removed in the next major version, 1.9.0
         /// </summary>
         [Input("type", required: true)]
         public string Type { get; set; } = null!;
@@ -231,6 +233,8 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
+        /// 
+        /// *resource is now deprecated and will be removed in the next major version, 1.9.0
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

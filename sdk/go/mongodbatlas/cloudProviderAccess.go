@@ -11,6 +11,136 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewCloudProviderAccess(ctx, "testRole", &mongodbatlas.CloudProviderAccessArgs{
+//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Additional Examples
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "testRole", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Additional Examples
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setupOnly", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "authRole", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: setupOnly.ProjectId,
+//				RoleId:    setupOnly.RoleId,
+//				Aws: &mongodbatlas.CloudProviderAccessAuthorizationAwsArgs{
+//					IamAssumedRoleArn: pulumi.String("arn:aws:iam::772401394250:role/test-user-role"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ## Authorize role
+//
+// Once the resource is created add the field `iamAssumedRoleArn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewCloudProviderAccess(ctx, "testRole", &mongodbatlas.CloudProviderAccessArgs{
+//				IamAssumedRoleArn: pulumi.String("arn:aws:iam::772401394250:role/test-user-role"),
+//				ProjectId:         pulumi.String("<PROJECT-ID>"),
+//				ProviderName:      pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## CloudProviderAccess (optional)
+//
+// This is the first resource in the two-resource path as described above.
+//
+// `CloudProviderAccessSetup` Allows you to only register AWS IAM roles in Atlas.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## mongodbatlasCloudProviderAuthorization (optional)
+//
+// This is the second resource in the two-resource path as described above.
+// `CloudProviderAccessAuthorization`  Allows you to authorize an AWS IAM roles in Atlas.
+//
 // ## Import
 //
 // The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
@@ -40,6 +170,8 @@ type CloudProviderAccess struct {
 	// The cloud provider for which to create a new role. Currently only AWS is supported.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// Unique ID of this role returned by mongodb atlas api
+	//
+	// Conditional
 	RoleId pulumi.StringOutput `pulumi:"roleId"`
 }
 
@@ -95,6 +227,8 @@ type cloudProviderAccessState struct {
 	// The cloud provider for which to create a new role. Currently only AWS is supported.
 	ProviderName *string `pulumi:"providerName"`
 	// Unique ID of this role returned by mongodb atlas api
+	//
+	// Conditional
 	RoleId *string `pulumi:"roleId"`
 }
 
@@ -116,6 +250,8 @@ type CloudProviderAccessState struct {
 	// The cloud provider for which to create a new role. Currently only AWS is supported.
 	ProviderName pulumi.StringPtrInput
 	// Unique ID of this role returned by mongodb atlas api
+	//
+	// Conditional
 	RoleId pulumi.StringPtrInput
 }
 
@@ -270,6 +406,8 @@ func (o CloudProviderAccessOutput) ProviderName() pulumi.StringOutput {
 }
 
 // Unique ID of this role returned by mongodb atlas api
+//
+// Conditional
 func (o CloudProviderAccessOutput) RoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringOutput { return v.RoleId }).(pulumi.StringOutput)
 }

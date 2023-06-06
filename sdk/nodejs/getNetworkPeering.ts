@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * > **NOTE:** If you need to get an existing container ID see the How-To Guide.
+ *
  * ## Example Usage
  */
 export function getNetworkPeering(args: GetNetworkPeeringArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringResult> {
@@ -113,6 +119,12 @@ export interface GetNetworkPeeringResult {
     readonly vpcId: string;
 }
 /**
+ * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * > **NOTE:** If you need to get an existing container ID see the How-To Guide.
+ *
  * ## Example Usage
  */
 export function getNetworkPeeringOutput(args: GetNetworkPeeringOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkPeeringResult> {

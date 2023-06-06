@@ -13,9 +13,6 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class AdvancedClusterReplicationSpecRegionConfigAutoScaling
     {
-        /// <summary>
-        /// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
-        /// </summary>
         public readonly bool? ComputeEnabled;
         /// <summary>
         /// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.

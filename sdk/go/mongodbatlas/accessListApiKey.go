@@ -80,6 +80,8 @@ type AccessListApiKey struct {
 	pulumi.CustomResourceState
 
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
+	//
+	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
 	ApiKeyId pulumi.StringOutput `pulumi:"apiKeyId"`
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringOutput `pulumi:"cidrBlock"`
@@ -125,6 +127,8 @@ func GetAccessListApiKey(ctx *pulumi.Context,
 // Input properties used for looking up and filtering AccessListApiKey resources.
 type accessListApiKeyState struct {
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
+	//
+	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
 	ApiKeyId *string `pulumi:"apiKeyId"`
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
 	CidrBlock *string `pulumi:"cidrBlock"`
@@ -136,6 +140,8 @@ type accessListApiKeyState struct {
 
 type AccessListApiKeyState struct {
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
+	//
+	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
 	ApiKeyId pulumi.StringPtrInput
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringPtrInput
@@ -151,6 +157,8 @@ func (AccessListApiKeyState) ElementType() reflect.Type {
 
 type accessListApiKeyArgs struct {
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
+	//
+	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
 	CidrBlock *string `pulumi:"cidrBlock"`
@@ -163,6 +171,8 @@ type accessListApiKeyArgs struct {
 // The set of arguments for constructing a AccessListApiKey resource.
 type AccessListApiKeyArgs struct {
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
+	//
+	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
 	ApiKeyId pulumi.StringInput
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringPtrInput
@@ -260,6 +270,8 @@ func (o AccessListApiKeyOutput) ToAccessListApiKeyOutputWithContext(ctx context.
 }
 
 // Unique identifier for the Organization API Key for which you want to create a new access list entry.
+//
+// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
 func (o AccessListApiKeyOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessListApiKey) pulumi.StringOutput { return v.ApiKeyId }).(pulumi.StringOutput)
 }

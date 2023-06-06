@@ -11,6 +11,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// > **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
+//
+// > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
+//
+// > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
+//
+// > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
+//
 // ## Example Usage
 //
 // ```go
@@ -101,6 +113,10 @@ type ThirdPartyIntegration struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	//
+	// Additional values based on Type
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Your webhook URL.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
@@ -242,6 +258,10 @@ type thirdPartyIntegrationState struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	//
+	// Additional values based on Type
 	Type *string `pulumi:"type"`
 	// Your webhook URL.
 	Url *string `pulumi:"url"`
@@ -298,6 +318,10 @@ type ThirdPartyIntegrationState struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	//
+	// Additional values based on Type
 	Type pulumi.StringPtrInput
 	// Your webhook URL.
 	Url pulumi.StringPtrInput
@@ -358,6 +382,10 @@ type thirdPartyIntegrationArgs struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	//
+	// Additional values based on Type
 	Type string `pulumi:"type"`
 	// Your webhook URL.
 	Url *string `pulumi:"url"`
@@ -415,6 +443,10 @@ type ThirdPartyIntegrationArgs struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	//
+	// Additional values based on Type
 	Type pulumi.StringInput
 	// Your webhook URL.
 	Url pulumi.StringPtrInput
@@ -614,6 +646,10 @@ func (o ThirdPartyIntegrationOutput) TeamName() pulumi.StringPtrOutput {
 // * WEBHOOK
 // * MICROSOFT_TEAMS
 // * PROMETHEUS
+//
+// *resource is now deprecated and will be removed in the next major version, 1.9.0
+//
+// Additional values based on Type
 func (o ThirdPartyIntegrationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

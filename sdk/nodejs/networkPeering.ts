@@ -5,6 +5,23 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
+ *
+ * Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
+ *
+ * > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See disable Peering Only mode to disable.
+ *
+ * > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
+ *     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+ *     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+ *     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+ *     Microsoft.Network/virtualNetworks/peer/action
+ * For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+ *
+ * > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the projectIpWhitelist resource.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
  * ## Example Usage
  *
  * ### Container & Peering Connection
@@ -359,6 +376,8 @@ export class NetworkPeering extends pulumi.CustomResource {
     public readonly gcpProjectId!: pulumi.Output<string>;
     /**
      * Name of the network peer to which Atlas connects.
+     *
+     * **AZURE ONLY:**
      */
     public readonly networkName!: pulumi.Output<string>;
     /**
@@ -371,6 +390,8 @@ export class NetworkPeering extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+     *
+     * **AWS ONLY:**
      */
     public readonly providerName!: pulumi.Output<string>;
     /**
@@ -379,6 +400,8 @@ export class NetworkPeering extends pulumi.CustomResource {
     public readonly resourceGroupName!: pulumi.Output<string>;
     /**
      * AWS VPC CIDR block or subnet.
+     *
+     * **GCP ONLY:**
      */
     public readonly routeTableCidrBlock!: pulumi.Output<string>;
     /**
@@ -529,6 +552,8 @@ export interface NetworkPeeringState {
     gcpProjectId?: pulumi.Input<string>;
     /**
      * Name of the network peer to which Atlas connects.
+     *
+     * **AZURE ONLY:**
      */
     networkName?: pulumi.Input<string>;
     /**
@@ -541,6 +566,8 @@ export interface NetworkPeeringState {
     projectId?: pulumi.Input<string>;
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+     *
+     * **AWS ONLY:**
      */
     providerName?: pulumi.Input<string>;
     /**
@@ -549,6 +576,8 @@ export interface NetworkPeeringState {
     resourceGroupName?: pulumi.Input<string>;
     /**
      * AWS VPC CIDR block or subnet.
+     *
+     * **GCP ONLY:**
      */
     routeTableCidrBlock?: pulumi.Input<string>;
     /**
@@ -605,6 +634,8 @@ export interface NetworkPeeringArgs {
     gcpProjectId?: pulumi.Input<string>;
     /**
      * Name of the network peer to which Atlas connects.
+     *
+     * **AZURE ONLY:**
      */
     networkName?: pulumi.Input<string>;
     /**
@@ -613,6 +644,8 @@ export interface NetworkPeeringArgs {
     projectId: pulumi.Input<string>;
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+     *
+     * **AWS ONLY:**
      */
     providerName: pulumi.Input<string>;
     /**
@@ -621,6 +654,8 @@ export interface NetworkPeeringArgs {
     resourceGroupName?: pulumi.Input<string>;
     /**
      * AWS VPC CIDR block or subnet.
+     *
+     * **GCP ONLY:**
      */
     routeTableCidrBlock?: pulumi.Input<string>;
     /**

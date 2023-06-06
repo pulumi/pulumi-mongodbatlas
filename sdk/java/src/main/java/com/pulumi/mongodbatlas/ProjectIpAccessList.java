@@ -186,12 +186,16 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
     /**
      * Comment to add to the access list entry.
      * 
+     * &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+     * 
      */
     @Export(name="comment", type=String.class, parameters={})
     private Output<String> comment;
 
     /**
      * @return Comment to add to the access list entry.
+     * 
+     * &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
      * 
      */
     public Output<String> comment() {

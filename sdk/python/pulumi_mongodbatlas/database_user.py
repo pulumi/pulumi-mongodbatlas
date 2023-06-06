@@ -382,6 +382,14 @@ class DatabaseUser(pulumi.CustomResource):
                  x509_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        `DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
+
+        Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
+
         ## Example Usage
         ### S
 
@@ -493,6 +501,14 @@ class DatabaseUser(pulumi.CustomResource):
                  args: DatabaseUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
+
+        Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
+
         ## Example Usage
         ### S
 

@@ -24,6 +24,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string PublicKey;
         /// <summary>
         /// Name of the role. This resource returns all the roles the user has in Atlas.
+        /// 
+        /// The following are valid roles:
         /// </summary>
         public readonly ImmutableArray<string> RoleNames;
 

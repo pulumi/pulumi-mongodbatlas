@@ -5,6 +5,18 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * > **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
+ *
+ * > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
+ *
+ * > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
+ *
+ * > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -139,6 +151,10 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     *
+     * Additional values based on Type
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -314,6 +330,10 @@ export interface ThirdPartyIntegrationState {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     *
+     * Additional values based on Type
      */
     type?: pulumi.Input<string>;
     /**
@@ -415,6 +435,10 @@ export interface ThirdPartyIntegrationArgs {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     *
+     * Additional values based on Type
      */
     type: pulumi.Input<string>;
     /**

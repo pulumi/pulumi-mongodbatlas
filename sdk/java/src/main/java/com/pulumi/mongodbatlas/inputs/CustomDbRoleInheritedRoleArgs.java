@@ -16,12 +16,16 @@ public final class CustomDbRoleInheritedRoleArgs extends com.pulumi.resources.Re
     /**
      * Database on which the inherited role is granted.
      * 
+     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+     * 
      */
     @Import(name="databaseName", required=true)
     private Output<String> databaseName;
 
     /**
      * @return Database on which the inherited role is granted.
+     * 
+     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
      * 
      */
     public Output<String> databaseName() {
@@ -71,6 +75,8 @@ public final class CustomDbRoleInheritedRoleArgs extends com.pulumi.resources.Re
         /**
          * @param databaseName Database on which the inherited role is granted.
          * 
+         * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+         * 
          * @return builder
          * 
          */
@@ -81,6 +87,8 @@ public final class CustomDbRoleInheritedRoleArgs extends com.pulumi.resources.Re
 
         /**
          * @param databaseName Database on which the inherited role is granted.
+         * 
+         * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
          * 
          * @return builder
          * 

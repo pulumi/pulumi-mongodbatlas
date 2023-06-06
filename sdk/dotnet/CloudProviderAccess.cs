@@ -10,6 +10,104 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Additional Examples
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Additional Examples
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setupOnly", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("authRole", new()
+    ///     {
+    ///         ProjectId = setupOnly.ProjectId,
+    ///         RoleId = setupOnly.RoleId,
+    ///         Aws = new Mongodbatlas.Inputs.CloudProviderAccessAuthorizationAwsArgs
+    ///         {
+    ///             IamAssumedRoleArn = "arn:aws:iam::772401394250:role/test-user-role",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ## Authorize role
+    /// 
+    /// Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
+    ///     {
+    ///         IamAssumedRoleArn = "arn:aws:iam::772401394250:role/test-user-role",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## mongodbatlas.CloudProviderAccess (optional)
+    /// 
+    /// This is the first resource in the two-resource path as described above.
+    /// 
+    /// `mongodbatlas.CloudProviderAccessSetup` Allows you to only register AWS IAM roles in Atlas.
+    /// 
+    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    /// 
+    /// ## mongodbatlas_cloud_provider_authorization (optional)
+    /// 
+    /// This is the second resource in the two-resource path as described above.
+    /// `mongodbatlas.CloudProviderAccessAuthorization`  Allows you to authorize an AWS IAM roles in Atlas.
+    /// 
     /// ## Import
     /// 
     /// The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
@@ -71,6 +169,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique ID of this role returned by mongodb atlas api
+        /// 
+        /// Conditional
         /// </summary>
         [Output("roleId")]
         public Output<string> RoleId { get; private set; } = null!;
@@ -203,6 +303,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique ID of this role returned by mongodb atlas api
+        /// 
+        /// Conditional
         /// </summary>
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }

@@ -32,6 +32,8 @@ public final class ClusterReplicationSpec {
     /**
      * @return Name for the zone in a Global Cluster.
      * 
+     * **Region Config**
+     * 
      */
     private @Nullable String zoneName;
 
@@ -59,6 +61,8 @@ public final class ClusterReplicationSpec {
     }
     /**
      * @return Name for the zone in a Global Cluster.
+     * 
+     * **Region Config**
      * 
      */
     public Optional<String> zoneName() {

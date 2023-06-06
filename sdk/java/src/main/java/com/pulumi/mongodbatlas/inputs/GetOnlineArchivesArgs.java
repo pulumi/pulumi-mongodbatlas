@@ -16,12 +16,20 @@ public final class GetOnlineArchivesArgs extends com.pulumi.resources.InvokeArgs
     /**
      * Name of the cluster that contains the collection.
      * 
+     * # Attributes Reference
+     * 
+     * In addition to all arguments above, the following attributes are exported:
+     * 
      */
     @Import(name="clusterName", required=true)
     private Output<String> clusterName;
 
     /**
      * @return Name of the cluster that contains the collection.
+     * 
+     * # Attributes Reference
+     * 
+     * In addition to all arguments above, the following attributes are exported:
      * 
      */
     public Output<String> clusterName() {
@@ -71,6 +79,10 @@ public final class GetOnlineArchivesArgs extends com.pulumi.resources.InvokeArgs
         /**
          * @param clusterName Name of the cluster that contains the collection.
          * 
+         * # Attributes Reference
+         * 
+         * In addition to all arguments above, the following attributes are exported:
+         * 
          * @return builder
          * 
          */
@@ -81,6 +93,10 @@ public final class GetOnlineArchivesArgs extends com.pulumi.resources.InvokeArgs
 
         /**
          * @param clusterName Name of the cluster that contains the collection.
+         * 
+         * # Attributes Reference
+         * 
+         * In addition to all arguments above, the following attributes are exported:
          * 
          * @return builder
          * 

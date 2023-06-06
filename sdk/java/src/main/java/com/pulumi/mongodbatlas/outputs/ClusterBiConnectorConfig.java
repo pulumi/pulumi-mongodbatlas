@@ -23,6 +23,12 @@ public final class ClusterBiConnectorConfig {
     /**
      * @return Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
      * 
+     * - Set to &#34;primary&#34; to have BI Connector for Atlas read from the primary.
+     * 
+     * - Set to &#34;secondary&#34; to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+     * 
+     * - Set to &#34;analytics&#34; to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
+     * 
      */
     private @Nullable String readPreference;
 
@@ -39,6 +45,12 @@ public final class ClusterBiConnectorConfig {
     }
     /**
      * @return Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     * 
+     * - Set to &#34;primary&#34; to have BI Connector for Atlas read from the primary.
+     * 
+     * - Set to &#34;secondary&#34; to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+     * 
+     * - Set to &#34;analytics&#34; to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
      * 
      */
     public Optional<String> readPreference() {

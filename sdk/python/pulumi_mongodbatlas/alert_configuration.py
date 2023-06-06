@@ -28,6 +28,10 @@ class AlertConfigurationArgs:
         """
         The set of arguments for constructing a AlertConfiguration resource.
         :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
+               
+               > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+               
+               > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] threshold: Threshold value outside of which an alert will be triggered.
@@ -59,6 +63,10 @@ class AlertConfigurationArgs:
     def event_type(self) -> pulumi.Input[str]:
         """
         The type of event that will trigger an alert.
+
+        > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+
+        > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         """
         return pulumi.get(self, "event_type")
 
@@ -169,6 +177,10 @@ class _AlertConfigurationState:
         :param pulumi.Input[str] created: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
+               
+               > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+               
+               > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] threshold: Threshold value outside of which an alert will be triggered.
         :param pulumi.Input[str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -245,6 +257,10 @@ class _AlertConfigurationState:
     def event_type(self) -> Optional[pulumi.Input[str]]:
         """
         The type of event that will trigger an alert.
+
+        > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+
+        > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         """
         return pulumi.get(self, "event_type")
 
@@ -480,6 +496,10 @@ class AlertConfiguration(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
+               
+               > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+               
+               > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] threshold: Threshold value outside of which an alert will be triggered.
         """
@@ -706,6 +726,10 @@ class AlertConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] created: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
+               
+               > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+               
+               > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] threshold: Threshold value outside of which an alert will be triggered.
         :param pulumi.Input[str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -757,6 +781,10 @@ class AlertConfiguration(pulumi.CustomResource):
     def event_type(self) -> pulumi.Output[str]:
         """
         The type of event that will trigger an alert.
+
+        > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+
+        > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         """
         return pulumi.get(self, "event_type")
 

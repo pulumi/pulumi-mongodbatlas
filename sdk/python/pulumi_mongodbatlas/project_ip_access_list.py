@@ -25,6 +25,8 @@ class ProjectIpAccessListArgs:
         :param pulumi.Input[str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] comment: Comment to add to the access list entry.
+               
+               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -78,6 +80,8 @@ class ProjectIpAccessListArgs:
     def comment(self) -> Optional[pulumi.Input[str]]:
         """
         Comment to add to the access list entry.
+
+        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         """
         return pulumi.get(self, "comment")
 
@@ -111,6 +115,8 @@ class _ProjectIpAccessListState:
         :param pulumi.Input[str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] comment: Comment to add to the access list entry.
+               
+               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
         """
@@ -154,6 +160,8 @@ class _ProjectIpAccessListState:
     def comment(self) -> Optional[pulumi.Input[str]]:
         """
         Comment to add to the access list entry.
+
+        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         """
         return pulumi.get(self, "comment")
 
@@ -268,6 +276,8 @@ class ProjectIpAccessList(pulumi.CustomResource):
         :param pulumi.Input[str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] comment: Comment to add to the access list entry.
+               
+               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
         """
@@ -404,6 +414,8 @@ class ProjectIpAccessList(pulumi.CustomResource):
         :param pulumi.Input[str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] comment: Comment to add to the access list entry.
+               
+               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
         """
@@ -439,6 +451,8 @@ class ProjectIpAccessList(pulumi.CustomResource):
     def comment(self) -> pulumi.Output[str]:
         """
         Comment to add to the access list entry.
+
+        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         """
         return pulumi.get(self, "comment")
 

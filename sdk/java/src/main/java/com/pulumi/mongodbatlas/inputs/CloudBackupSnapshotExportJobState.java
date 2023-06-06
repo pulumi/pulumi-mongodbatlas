@@ -94,9 +94,17 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
         return Optional.ofNullable(this.errMsg);
     }
 
+    /**
+     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+     * 
+     */
     @Import(name="exportBucketId")
     private @Nullable Output<String> exportBucketId;
 
+    /**
+     * @return Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+     * 
+     */
     public Optional<Output<String>> exportBucketId() {
         return Optional.ofNullable(this.exportBucketId);
     }
@@ -169,9 +177,17 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
         return Optional.ofNullable(this.projectId);
     }
 
+    /**
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+     * 
+     */
     @Import(name="snapshotId")
     private @Nullable Output<String> snapshotId;
 
+    /**
+     * @return Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+     * 
+     */
     public Optional<Output<String>> snapshotId() {
         return Optional.ofNullable(this.snapshotId);
     }
@@ -353,11 +369,23 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
             return errMsg(Output.of(errMsg));
         }
 
+        /**
+         * @param exportBucketId Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+         * 
+         * @return builder
+         * 
+         */
         public Builder exportBucketId(@Nullable Output<String> exportBucketId) {
             $.exportBucketId = exportBucketId;
             return this;
         }
 
+        /**
+         * @param exportBucketId Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+         * 
+         * @return builder
+         * 
+         */
         public Builder exportBucketId(String exportBucketId) {
             return exportBucketId(Output.of(exportBucketId));
         }
@@ -454,11 +482,23 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param snapshotId Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+         * 
+         * @return builder
+         * 
+         */
         public Builder snapshotId(@Nullable Output<String> snapshotId) {
             $.snapshotId = snapshotId;
             return this;
         }
 
+        /**
+         * @param snapshotId Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
+         * 
+         * @return builder
+         * 
+         */
         public Builder snapshotId(String snapshotId) {
             return snapshotId(Output.of(snapshotId));
         }

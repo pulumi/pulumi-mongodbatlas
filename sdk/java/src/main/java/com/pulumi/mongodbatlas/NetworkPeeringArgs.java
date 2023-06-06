@@ -137,12 +137,16 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * Name of the network peer to which Atlas connects.
      * 
+     * **AZURE ONLY:**
+     * 
      */
     @Import(name="networkName")
     private @Nullable Output<String> networkName;
 
     /**
      * @return Name of the network peer to which Atlas connects.
+     * 
+     * **AZURE ONLY:**
      * 
      */
     public Optional<Output<String>> networkName() {
@@ -167,12 +171,16 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
      * 
+     * **AWS ONLY:**
+     * 
      */
     @Import(name="providerName", required=true)
     private Output<String> providerName;
 
     /**
      * @return Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+     * 
+     * **AWS ONLY:**
      * 
      */
     public Output<String> providerName() {
@@ -197,12 +205,16 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * AWS VPC CIDR block or subnet.
      * 
+     * **GCP ONLY:**
+     * 
      */
     @Import(name="routeTableCidrBlock")
     private @Nullable Output<String> routeTableCidrBlock;
 
     /**
      * @return AWS VPC CIDR block or subnet.
+     * 
+     * **GCP ONLY:**
      * 
      */
     public Optional<Output<String>> routeTableCidrBlock() {
@@ -446,6 +458,8 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param networkName Name of the network peer to which Atlas connects.
          * 
+         * **AZURE ONLY:**
+         * 
          * @return builder
          * 
          */
@@ -456,6 +470,8 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param networkName Name of the network peer to which Atlas connects.
+         * 
+         * **AZURE ONLY:**
          * 
          * @return builder
          * 
@@ -488,6 +504,8 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param providerName Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
          * 
+         * **AWS ONLY:**
+         * 
          * @return builder
          * 
          */
@@ -498,6 +516,8 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param providerName Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+         * 
+         * **AWS ONLY:**
          * 
          * @return builder
          * 
@@ -530,6 +550,8 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param routeTableCidrBlock AWS VPC CIDR block or subnet.
          * 
+         * **GCP ONLY:**
+         * 
          * @return builder
          * 
          */
@@ -540,6 +562,8 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param routeTableCidrBlock AWS VPC CIDR block or subnet.
+         * 
+         * **GCP ONLY:**
          * 
          * @return builder
          * 

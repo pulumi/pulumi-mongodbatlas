@@ -29,6 +29,8 @@ export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): 
 export interface GetProjectArgs {
     /**
      * The unique ID for the project.
+     *
+     * > **IMPORTANT:** Either `projectId` or `name` must be configurated.
      */
     name?: string;
     /**
@@ -109,6 +111,8 @@ export function getProjectOutput(args?: GetProjectOutputArgs, opts?: pulumi.Invo
 export interface GetProjectOutputArgs {
     /**
      * The unique ID for the project.
+     *
+     * > **IMPORTANT:** Either `projectId` or `name` must be configurated.
      */
     name?: pulumi.Input<string>;
     /**

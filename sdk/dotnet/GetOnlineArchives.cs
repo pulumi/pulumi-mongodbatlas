@@ -125,6 +125,10 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Name of the cluster that contains the collection.
+        /// 
+        /// # Attributes Reference
+        /// 
+        /// In addition to all arguments above, the following attributes are exported:
         /// </summary>
         [Input("clusterName", required: true)]
         public string ClusterName { get; set; } = null!;
@@ -145,6 +149,10 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Name of the cluster that contains the collection.
+        /// 
+        /// # Attributes Reference
+        /// 
+        /// In addition to all arguments above, the following attributes are exported:
         /// </summary>
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;

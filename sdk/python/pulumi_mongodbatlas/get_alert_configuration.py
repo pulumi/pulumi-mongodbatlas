@@ -183,7 +183,10 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
                             project_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlertConfigurationResult:
     """
-    Use this data source to access information about an existing resource.
+    `AlertConfiguration` describes an Alert Configuration.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.
     :param Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']] outputs: List of formatted output requested for this alert configuration
@@ -220,7 +223,10 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
                                    project_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlertConfigurationResult]:
     """
-    Use this data source to access information about an existing resource.
+    `AlertConfiguration` describes an Alert Configuration.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.
     :param Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']] outputs: List of formatted output requested for this alert configuration

@@ -27,6 +27,8 @@ func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.
 // A collection of arguments for invoking getProject.
 type LookupProjectArgs struct {
 	// The unique ID for the project.
+	//
+	// > **IMPORTANT:** Either `projectId` or `name` must be configurated.
 	Name *string `pulumi:"name"`
 	// The unique ID for the project.
 	ProjectId *string `pulumi:"projectId"`
@@ -80,6 +82,8 @@ func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts
 // A collection of arguments for invoking getProject.
 type LookupProjectOutputArgs struct {
 	// The unique ID for the project.
+	//
+	// > **IMPORTANT:** Either `projectId` or `name` must be configurated.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The unique ID for the project.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`

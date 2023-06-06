@@ -194,6 +194,11 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        `privatelink_endpoint_serverless` Provides a Serverless PrivateLink Endpoint resource.
+        This is the first of two resources required to configure PrivateLink for Serverless, the second is mongodbatlas_privatelink_endpoint_service_serverless.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
         ## Example Usage
         ### AWS Example
         ```python
@@ -235,6 +240,11 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
                  args: PrivatelinkEndpointServerlessArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `privatelink_endpoint_serverless` Provides a Serverless PrivateLink Endpoint resource.
+        This is the first of two resources required to configure PrivateLink for Serverless, the second is mongodbatlas_privatelink_endpoint_service_serverless.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
         ## Example Usage
         ### AWS Example
         ```python

@@ -69,6 +69,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+        /// 
+        /// &gt; **NOTE:** Auditing created by API Keys must belong to an existing organization.
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
@@ -139,6 +141,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+        /// 
+        /// &gt; **NOTE:** Auditing created by API Keys must belong to an existing organization.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -180,6 +184,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+        /// 
+        /// &gt; **NOTE:** Auditing created by API Keys must belong to an existing organization.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

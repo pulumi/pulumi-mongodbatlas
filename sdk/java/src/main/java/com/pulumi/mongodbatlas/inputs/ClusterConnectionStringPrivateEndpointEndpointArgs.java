@@ -25,12 +25,16 @@ public final class ClusterConnectionStringPrivateEndpointEndpointArgs extends co
     /**
      * Cloud service provider on which the servers are provisioned.
      * 
+     * The possible values are:
+     * 
      */
     @Import(name="providerName")
     private @Nullable Output<String> providerName;
 
     /**
      * @return Cloud service provider on which the servers are provisioned.
+     * 
+     * The possible values are:
      * 
      */
     public Optional<Output<String>> providerName() {
@@ -82,6 +86,8 @@ public final class ClusterConnectionStringPrivateEndpointEndpointArgs extends co
         /**
          * @param providerName Cloud service provider on which the servers are provisioned.
          * 
+         * The possible values are:
+         * 
          * @return builder
          * 
          */
@@ -92,6 +98,8 @@ public final class ClusterConnectionStringPrivateEndpointEndpointArgs extends co
 
         /**
          * @param providerName Cloud service provider on which the servers are provisioned.
+         * 
+         * The possible values are:
          * 
          * @return builder
          * 

@@ -40,12 +40,18 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
     /**
      * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
      * 
+     * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+     * 
      */
     @Export(name="autoExportEnabled", type=Boolean.class, parameters={})
     private Output<Boolean> autoExportEnabled;
 
     /**
      * @return Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     * 
+     * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      * 
      */
     public Output<Boolean> autoExportEnabled() {
@@ -231,17 +237,9 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
     public Output<Integer> restoreWindowDays() {
         return this.restoreWindowDays;
     }
-    /**
-     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-     * 
-     */
     @Export(name="updateSnapshots", type=Boolean.class, parameters={})
     private Output<Boolean> updateSnapshots;
 
-    /**
-     * @return Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-     * 
-     */
     public Output<Boolean> updateSnapshots() {
         return this.updateSnapshots;
     }

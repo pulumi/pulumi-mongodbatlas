@@ -11,6 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `privatelinkEndpointServerless` Provides a Serverless PrivateLink Endpoint resource.
+// This is the first of two resources required to configure PrivateLink for Serverless, the second is mongodbatlas_privatelink_endpoint_service_serverless.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+//
 // ## Example Usage
 // ### AWS Example
 // ```go

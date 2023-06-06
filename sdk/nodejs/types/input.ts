@@ -24,6 +24,10 @@ export interface AdvancedClusterAdvancedConfiguration {
     javascriptEnabled?: pulumi.Input<boolean>;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     *
+     * - TLS1_0
+     * - TLS1_1
+     * - TLS1_2
      */
     minimumEnabledTlsProtocol?: pulumi.Input<string>;
     /**
@@ -59,6 +63,12 @@ export interface AdvancedClusterBiConnector {
     enabled?: pulumi.Input<boolean>;
     /**
      * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     *
+     * - Set to "primary" to have BI Connector for Atlas read from the primary.
+     *
+     * - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+     *
+     * - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
      */
     readPreference?: pulumi.Input<string>;
 }
@@ -73,6 +83,12 @@ export interface AdvancedClusterBiConnectorConfig {
     enabled?: pulumi.Input<boolean>;
     /**
      * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     *
+     * - Set to "primary" to have BI Connector for Atlas read from the primary.
+     *
+     * - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+     *
+     * - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
      */
     readPreference?: pulumi.Input<string>;
 }
@@ -181,9 +197,6 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling {
-    /**
-     * Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
-     */
     computeEnabled?: pulumi.Input<boolean>;
     /**
      * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
@@ -223,9 +236,6 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
-    /**
-     * Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
-     */
     computeEnabled?: pulumi.Input<boolean>;
     /**
      * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
@@ -286,6 +296,18 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
 export interface AlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
+     *
+     * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+     * |:----------           |:-------------       |:------                 |
+     * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+     * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+     * | `PORT`              | `CLUSTER_NAME`      |                         |
+     * | `HOSTNAME_AND_PORT` |                     |                         |
+     * | `REPLICA_SET_NAME`  |                     |                         |
+     *
+     *
+     *
+     * All other types of alerts do not support matchers.
      */
     fieldName?: pulumi.Input<string>;
     /**
@@ -393,6 +415,16 @@ export interface AlertConfigurationNotification {
     /**
      * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
+     *
+     * | Project roles                   | Organization roles  |
+     * |:----------                      |:-----------         |
+     * | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
+     * | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
+     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
+     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
+     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
+     * | `GROUP_OWNER`                   |                     |
+     * | `GROUP_READ_ONLY`               |                     |
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -821,6 +853,10 @@ export interface ClusterAdvancedConfiguration {
     javascriptEnabled?: pulumi.Input<boolean>;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     *
+     * - TLS1_0
+     * - TLS1_1
+     * - TLS1_2
      */
     minimumEnabledTlsProtocol?: pulumi.Input<string>;
     /**
@@ -856,6 +892,12 @@ export interface ClusterBiConnectorConfig {
     enabled?: pulumi.Input<boolean>;
     /**
      * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     *
+     * - Set to "primary" to have BI Connector for Atlas read from the primary.
+     *
+     * - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+     *
+     * - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
      */
     readPreference?: pulumi.Input<string>;
 }
@@ -887,6 +929,8 @@ export interface ClusterConnectionStringPrivateEndpointEndpoint {
     endpointId?: pulumi.Input<string>;
     /**
      * Cloud service provider on which the servers are provisioned.
+     *
+     * The possible values are:
      */
     providerName?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
@@ -918,6 +962,9 @@ export interface ClusterReplicationSpec {
     regionsConfigs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpecRegionsConfig>[]>;
     /**
      * Name for the zone in a Global Cluster.
+     *
+     *
+     * **Region Config**
      */
     zoneName?: pulumi.Input<string>;
 }
@@ -992,6 +1039,18 @@ export interface CustomDbRoleAction {
     action: pulumi.Input<string>;
     /**
      * Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
+     *
+     * * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+     *
+     * > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+     *
+     * * `resources.#.database_name`	Database on which the action is granted.
+     *
+     * > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+     *
+     * * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+     *
+     * > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
      */
     resources: pulumi.Input<pulumi.Input<inputs.CustomDbRoleActionResource>[]>;
 }
@@ -1001,6 +1060,8 @@ export interface CustomDbRoleActionResource {
     collectionName?: pulumi.Input<string>;
     /**
      * Database on which the inherited role is granted.
+     *
+     * > **NOTE** This value should be admin for all roles except read and readWrite.
      */
     databaseName?: pulumi.Input<string>;
 }
@@ -1008,6 +1069,8 @@ export interface CustomDbRoleActionResource {
 export interface CustomDbRoleInheritedRole {
     /**
      * Database on which the inherited role is granted.
+     *
+     * > **NOTE** This value should be admin for all roles except read and readWrite.
      */
     databaseName: pulumi.Input<string>;
     /**
@@ -1687,6 +1750,14 @@ export interface SearchIndexSynonym {
      * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
      * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
      * * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * ```
+     *
+     *
+     *
+     * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
      */
     analyzer: pulumi.Input<string>;
     /**

@@ -35,6 +35,8 @@ class NetworkPeeringArgs:
         :param pulumi.Input[str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project to create the database user.
         :param pulumi.Input[str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+               
+               **AWS ONLY:**
         :param pulumi.Input[str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         :param pulumi.Input[str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
         :param pulumi.Input[str] aws_account_id: AWS Account ID of the owner of the peer VPC.
@@ -42,8 +44,12 @@ class NetworkPeeringArgs:
         :param pulumi.Input[str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
         :param pulumi.Input[str] gcp_project_id: GCP project ID of the owner of the network peer.
         :param pulumi.Input[str] network_name: Name of the network peer to which Atlas connects.
+               
+               **AZURE ONLY:**
         :param pulumi.Input[str] resource_group_name: Name of your Azure resource group.
         :param pulumi.Input[str] route_table_cidr_block: AWS VPC CIDR block or subnet.
+               
+               **GCP ONLY:**
         :param pulumi.Input[str] vnet_name: Name of your Azure VNet.
         :param pulumi.Input[str] vpc_id: Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
         """
@@ -106,6 +112,8 @@ class NetworkPeeringArgs:
     def provider_name(self) -> pulumi.Input[str]:
         """
         Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+
+        **AWS ONLY:**
         """
         return pulumi.get(self, "provider_name")
 
@@ -208,6 +216,8 @@ class NetworkPeeringArgs:
     def network_name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the network peer to which Atlas connects.
+
+        **AZURE ONLY:**
         """
         return pulumi.get(self, "network_name")
 
@@ -232,6 +242,8 @@ class NetworkPeeringArgs:
     def route_table_cidr_block(self) -> Optional[pulumi.Input[str]]:
         """
         AWS VPC CIDR block or subnet.
+
+        **GCP ONLY:**
         """
         return pulumi.get(self, "route_table_cidr_block")
 
@@ -305,11 +317,17 @@ class _NetworkPeeringState:
         :param pulumi.Input[str] error_state_name: Error state, if any. The VPC peering connection error state value can be one of the following: `REJECTED`, `EXPIRED`, `INVALID_ARGUMENT`.
         :param pulumi.Input[str] gcp_project_id: GCP project ID of the owner of the network peer.
         :param pulumi.Input[str] network_name: Name of the network peer to which Atlas connects.
+               
+               **AZURE ONLY:**
         :param pulumi.Input[str] peer_id: Unique identifier of the Atlas network peer.
         :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project to create the database user.
         :param pulumi.Input[str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+               
+               **AWS ONLY:**
         :param pulumi.Input[str] resource_group_name: Name of your Azure resource group.
         :param pulumi.Input[str] route_table_cidr_block: AWS VPC CIDR block or subnet.
+               
+               **GCP ONLY:**
         :param pulumi.Input[str] status: Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
         :param pulumi.Input[str] status_name: (AWS Only) The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
         :param pulumi.Input[str] vnet_name: Name of your Azure VNet.
@@ -528,6 +546,8 @@ class _NetworkPeeringState:
     def network_name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the network peer to which Atlas connects.
+
+        **AZURE ONLY:**
         """
         return pulumi.get(self, "network_name")
 
@@ -564,6 +584,8 @@ class _NetworkPeeringState:
     def provider_name(self) -> Optional[pulumi.Input[str]]:
         """
         Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+
+        **AWS ONLY:**
         """
         return pulumi.get(self, "provider_name")
 
@@ -588,6 +610,8 @@ class _NetworkPeeringState:
     def route_table_cidr_block(self) -> Optional[pulumi.Input[str]]:
         """
         AWS VPC CIDR block or subnet.
+
+        **GCP ONLY:**
         """
         return pulumi.get(self, "route_table_cidr_block")
 
@@ -667,6 +691,23 @@ class NetworkPeering(pulumi.CustomResource):
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
+
+        Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
+
+        > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See disable Peering Only mode to disable.
+
+        > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
+            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+            Microsoft.Network/virtualNetworks/peer/action
+        For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+
+        > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
         ## Example Usage
 
         ### Container & Peering Connection
@@ -930,10 +971,16 @@ class NetworkPeering(pulumi.CustomResource):
         :param pulumi.Input[str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         :param pulumi.Input[str] gcp_project_id: GCP project ID of the owner of the network peer.
         :param pulumi.Input[str] network_name: Name of the network peer to which Atlas connects.
+               
+               **AZURE ONLY:**
         :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project to create the database user.
         :param pulumi.Input[str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+               
+               **AWS ONLY:**
         :param pulumi.Input[str] resource_group_name: Name of your Azure resource group.
         :param pulumi.Input[str] route_table_cidr_block: AWS VPC CIDR block or subnet.
+               
+               **GCP ONLY:**
         :param pulumi.Input[str] vnet_name: Name of your Azure VNet.
         :param pulumi.Input[str] vpc_id: Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
         """
@@ -944,6 +991,23 @@ class NetworkPeering(pulumi.CustomResource):
                  args: NetworkPeeringArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
+
+        Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
+
+        > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See disable Peering Only mode to disable.
+
+        > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
+            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+            Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+            Microsoft.Network/virtualNetworks/peer/action
+        For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+
+        > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
         ## Example Usage
 
         ### Container & Peering Connection
@@ -1320,11 +1384,17 @@ class NetworkPeering(pulumi.CustomResource):
         :param pulumi.Input[str] error_state_name: Error state, if any. The VPC peering connection error state value can be one of the following: `REJECTED`, `EXPIRED`, `INVALID_ARGUMENT`.
         :param pulumi.Input[str] gcp_project_id: GCP project ID of the owner of the network peer.
         :param pulumi.Input[str] network_name: Name of the network peer to which Atlas connects.
+               
+               **AZURE ONLY:**
         :param pulumi.Input[str] peer_id: Unique identifier of the Atlas network peer.
         :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project to create the database user.
         :param pulumi.Input[str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+               
+               **AWS ONLY:**
         :param pulumi.Input[str] resource_group_name: Name of your Azure resource group.
         :param pulumi.Input[str] route_table_cidr_block: AWS VPC CIDR block or subnet.
+               
+               **GCP ONLY:**
         :param pulumi.Input[str] status: Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
         :param pulumi.Input[str] status_name: (AWS Only) The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
         :param pulumi.Input[str] vnet_name: Name of your Azure VNet.
@@ -1468,6 +1538,8 @@ class NetworkPeering(pulumi.CustomResource):
     def network_name(self) -> pulumi.Output[str]:
         """
         Name of the network peer to which Atlas connects.
+
+        **AZURE ONLY:**
         """
         return pulumi.get(self, "network_name")
 
@@ -1492,6 +1564,8 @@ class NetworkPeering(pulumi.CustomResource):
     def provider_name(self) -> pulumi.Output[str]:
         """
         Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+
+        **AWS ONLY:**
         """
         return pulumi.get(self, "provider_name")
 
@@ -1508,6 +1582,8 @@ class NetworkPeering(pulumi.CustomResource):
     def route_table_cidr_block(self) -> pulumi.Output[str]:
         """
         AWS VPC CIDR block or subnet.
+
+        **GCP ONLY:**
         """
         return pulumi.get(self, "route_table_cidr_block")
 

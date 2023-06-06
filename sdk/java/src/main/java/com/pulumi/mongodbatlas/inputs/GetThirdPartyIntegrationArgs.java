@@ -103,6 +103,8 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
@@ -118,6 +120,8 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * 
+     * *resource is now deprecated and will be removed in the next major version, 1.9.0
      * 
      */
     public Output<String> type() {
@@ -286,6 +290,8 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
          * 
+         * *resource is now deprecated and will be removed in the next major version, 1.9.0
+         * 
          * @return builder
          * 
          */
@@ -305,6 +311,8 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
+         * 
+         * *resource is now deprecated and will be removed in the next major version, 1.9.0
          * 
          * @return builder
          * 

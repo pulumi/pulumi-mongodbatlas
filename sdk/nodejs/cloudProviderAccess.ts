@@ -7,6 +7,73 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccess("testRole", {
+ *     projectId: "<PROJECT-ID>",
+ *     providerName: "AWS",
+ * });
+ * ```
+ * ### Additional Examples
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
+ *     projectId: "<PROJECT-ID>",
+ *     providerName: "AWS",
+ * });
+ * ```
+ * ### Additional Examples
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setupOnly", {
+ *     projectId: "<PROJECT-ID>",
+ *     providerName: "AWS",
+ * });
+ * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("authRole", {
+ *     projectId: setupOnly.projectId,
+ *     roleId: setupOnly.roleId,
+ *     aws: {
+ *         iamAssumedRoleArn: "arn:aws:iam::772401394250:role/test-user-role",
+ *     },
+ * });
+ * ```
+ * ## Authorize role
+ *
+ * Once the resource is created add the field `iamAssumedRoleArn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccess("testRole", {
+ *     iamAssumedRoleArn: "arn:aws:iam::772401394250:role/test-user-role",
+ *     projectId: "<PROJECT-ID>",
+ *     providerName: "AWS",
+ * });
+ * ```
+ *
+ * ## mongodbatlas.CloudProviderAccess (optional)
+ *
+ * This is the first resource in the two-resource path as described above.
+ *
+ * `mongodbatlas.CloudProviderAccessSetup` Allows you to only register AWS IAM roles in Atlas.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## mongodbatlasCloudProviderAuthorization (optional)
+ *
+ * This is the second resource in the two-resource path as described above.
+ * `mongodbatlas.CloudProviderAccessAuthorization`  Allows you to authorize an AWS IAM roles in Atlas.
+ *
  * ## Import
  *
  * The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
@@ -77,6 +144,8 @@ export class CloudProviderAccess extends pulumi.CustomResource {
     public readonly providerName!: pulumi.Output<string>;
     /**
      * Unique ID of this role returned by mongodb atlas api
+     *
+     * Conditional
      */
     public /*out*/ readonly roleId!: pulumi.Output<string>;
 
@@ -163,6 +232,8 @@ export interface CloudProviderAccessState {
     providerName?: pulumi.Input<string>;
     /**
      * Unique ID of this role returned by mongodb atlas api
+     *
+     * Conditional
      */
     roleId?: pulumi.Input<string>;
 }

@@ -26,9 +26,7 @@ type AdvancedCluster struct {
 	pulumi.CustomResourceState
 
 	AdvancedConfiguration AdvancedClusterAdvancedConfigurationOutput `pulumi:"advancedConfiguration"`
-	// Flag that indicates whether the cluster can perform backups.
-	// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-	BackupEnabled pulumi.BoolOutput `pulumi:"backupEnabled"`
+	BackupEnabled         pulumi.BoolOutput                          `pulumi:"backupEnabled"`
 	// Deprecated: use bi_connector_config instead
 	BiConnector AdvancedClusterBiConnectorOutput `pulumi:"biConnector"`
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -115,9 +113,7 @@ func GetAdvancedCluster(ctx *pulumi.Context,
 // Input properties used for looking up and filtering AdvancedCluster resources.
 type advancedClusterState struct {
 	AdvancedConfiguration *AdvancedClusterAdvancedConfiguration `pulumi:"advancedConfiguration"`
-	// Flag that indicates whether the cluster can perform backups.
-	// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-	BackupEnabled *bool `pulumi:"backupEnabled"`
+	BackupEnabled         *bool                                 `pulumi:"backupEnabled"`
 	// Deprecated: use bi_connector_config instead
 	BiConnector *AdvancedClusterBiConnector `pulumi:"biConnector"`
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -167,9 +163,7 @@ type advancedClusterState struct {
 
 type AdvancedClusterState struct {
 	AdvancedConfiguration AdvancedClusterAdvancedConfigurationPtrInput
-	// Flag that indicates whether the cluster can perform backups.
-	// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-	BackupEnabled pulumi.BoolPtrInput
+	BackupEnabled         pulumi.BoolPtrInput
 	// Deprecated: use bi_connector_config instead
 	BiConnector AdvancedClusterBiConnectorPtrInput
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -223,9 +217,7 @@ func (AdvancedClusterState) ElementType() reflect.Type {
 
 type advancedClusterArgs struct {
 	AdvancedConfiguration *AdvancedClusterAdvancedConfiguration `pulumi:"advancedConfiguration"`
-	// Flag that indicates whether the cluster can perform backups.
-	// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-	BackupEnabled *bool `pulumi:"backupEnabled"`
+	BackupEnabled         *bool                                 `pulumi:"backupEnabled"`
 	// Deprecated: use bi_connector_config instead
 	BiConnector *AdvancedClusterBiConnector `pulumi:"biConnector"`
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -261,9 +253,7 @@ type advancedClusterArgs struct {
 // The set of arguments for constructing a AdvancedCluster resource.
 type AdvancedClusterArgs struct {
 	AdvancedConfiguration AdvancedClusterAdvancedConfigurationPtrInput
-	// Flag that indicates whether the cluster can perform backups.
-	// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-	BackupEnabled pulumi.BoolPtrInput
+	BackupEnabled         pulumi.BoolPtrInput
 	// Deprecated: use bi_connector_config instead
 	BiConnector AdvancedClusterBiConnectorPtrInput
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -387,8 +377,6 @@ func (o AdvancedClusterOutput) AdvancedConfiguration() AdvancedClusterAdvancedCo
 	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterAdvancedConfigurationOutput { return v.AdvancedConfiguration }).(AdvancedClusterAdvancedConfigurationOutput)
 }
 
-// Flag that indicates whether the cluster can perform backups.
-// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
 func (o AdvancedClusterOutput) BackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.BoolOutput { return v.BackupEnabled }).(pulumi.BoolOutput)
 }

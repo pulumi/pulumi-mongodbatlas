@@ -12,6 +12,8 @@ public final class CustomDbRoleInheritedRole {
     /**
      * @return Database on which the inherited role is granted.
      * 
+     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+     * 
      */
     private String databaseName;
     /**
@@ -23,6 +25,8 @@ public final class CustomDbRoleInheritedRole {
     private CustomDbRoleInheritedRole() {}
     /**
      * @return Database on which the inherited role is granted.
+     * 
+     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
      * 
      */
     public String databaseName() {

@@ -116,17 +116,9 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
     public Output<Boolean> autoDefer() {
         return this.autoDefer;
     }
-    /**
-     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-     * 
-     */
     @Export(name="autoDeferOnceEnabled", type=Boolean.class, parameters={})
     private Output<Boolean> autoDeferOnceEnabled;
 
-    /**
-     * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
-     * 
-     */
     public Output<Boolean> autoDeferOnceEnabled() {
         return this.autoDeferOnceEnabled;
     }

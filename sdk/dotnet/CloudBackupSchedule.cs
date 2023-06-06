@@ -25,6 +25,9 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        /// 
+        /// true - enables automatic export of cloud backup snapshots to the AWS bucket
+        /// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         /// </summary>
         [Output("autoExportEnabled")]
         public Output<bool> AutoExportEnabled { get; private set; } = null!;
@@ -107,9 +110,6 @@ namespace Pulumi.Mongodbatlas
         [Output("restoreWindowDays")]
         public Output<int> RestoreWindowDays { get; private set; } = null!;
 
-        /// <summary>
-        /// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-        /// </summary>
         [Output("updateSnapshots")]
         public Output<bool> UpdateSnapshots { get; private set; } = null!;
 
@@ -167,6 +167,9 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        /// 
+        /// true - enables automatic export of cloud backup snapshots to the AWS bucket
+        /// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         /// </summary>
         [Input("autoExportEnabled")]
         public Input<bool>? AutoExportEnabled { get; set; }
@@ -248,9 +251,6 @@ namespace Pulumi.Mongodbatlas
         [Input("restoreWindowDays")]
         public Input<int>? RestoreWindowDays { get; set; }
 
-        /// <summary>
-        /// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-        /// </summary>
         [Input("updateSnapshots")]
         public Input<bool>? UpdateSnapshots { get; set; }
 
@@ -270,6 +270,9 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        /// 
+        /// true - enables automatic export of cloud backup snapshots to the AWS bucket
+        /// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         /// </summary>
         [Input("autoExportEnabled")]
         public Input<bool>? AutoExportEnabled { get; set; }
@@ -369,9 +372,6 @@ namespace Pulumi.Mongodbatlas
         [Input("restoreWindowDays")]
         public Input<int>? RestoreWindowDays { get; set; }
 
-        /// <summary>
-        /// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-        /// </summary>
         [Input("updateSnapshots")]
         public Input<bool>? UpdateSnapshots { get; set; }
 

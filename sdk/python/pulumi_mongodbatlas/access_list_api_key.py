@@ -21,6 +21,8 @@ class AccessListApiKeyArgs:
         """
         The set of arguments for constructing a AccessListApiKey resource.
         :param pulumi.Input[str] api_key_id: Unique identifier for the Organization API Key for which you want to create a new access list entry.
+               
+               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
         :param pulumi.Input[str] org_id: Unique identifier for the organinzation to which you want to add one or more access list entries.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list.
@@ -37,6 +39,8 @@ class AccessListApiKeyArgs:
     def api_key_id(self) -> pulumi.Input[str]:
         """
         Unique identifier for the Organization API Key for which you want to create a new access list entry.
+
+        > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
         """
         return pulumi.get(self, "api_key_id")
 
@@ -91,6 +95,8 @@ class _AccessListApiKeyState:
         """
         Input properties used for looking up and filtering AccessListApiKey resources.
         :param pulumi.Input[str] api_key_id: Unique identifier for the Organization API Key for which you want to create a new access list entry.
+               
+               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list.
         :param pulumi.Input[str] org_id: Unique identifier for the organinzation to which you want to add one or more access list entries.
@@ -109,6 +115,8 @@ class _AccessListApiKeyState:
     def api_key_id(self) -> Optional[pulumi.Input[str]]:
         """
         Unique identifier for the Organization API Key for which you want to create a new access list entry.
+
+        > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
         """
         return pulumi.get(self, "api_key_id")
 
@@ -199,6 +207,8 @@ class AccessListApiKey(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_key_id: Unique identifier for the Organization API Key for which you want to create a new access list entry.
+               
+               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list.
         :param pulumi.Input[str] org_id: Unique identifier for the organinzation to which you want to add one or more access list entries.
@@ -300,6 +310,8 @@ class AccessListApiKey(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_key_id: Unique identifier for the Organization API Key for which you want to create a new access list entry.
+               
+               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list.
         :param pulumi.Input[str] org_id: Unique identifier for the organinzation to which you want to add one or more access list entries.
@@ -319,6 +331,8 @@ class AccessListApiKey(pulumi.CustomResource):
     def api_key_id(self) -> pulumi.Output[str]:
         """
         Unique identifier for the Organization API Key for which you want to create a new access list entry.
+
+        > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
         """
         return pulumi.get(self, "api_key_id")
 

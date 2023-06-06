@@ -27,6 +27,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly ImmutableArray<Outputs.ClusterReplicationSpecRegionsConfig> RegionsConfigs;
         /// <summary>
         /// Name for the zone in a Global Cluster.
+        /// 
+        /// 
+        /// **Region Config**
         /// </summary>
         public readonly string? ZoneName;
 

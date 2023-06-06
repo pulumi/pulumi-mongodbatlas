@@ -15,6 +15,8 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         /// <summary>
         /// Human-readable string to associate with this private endpoint.
+        /// 
+        /// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/) Documentation for more information.
         /// </summary>
         public readonly string Comment;
         /// <summary>

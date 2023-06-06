@@ -10,6 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `privatelink_endpoint_serverless` Provides a Serverless PrivateLink Endpoint resource.
+    /// This is the first of two resources required to configure PrivateLink for Serverless, the second is mongodbatlas_privatelink_endpoint_service_serverless.
+    /// 
+    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+    /// 
     /// ## Example Usage
     /// ### AWS Example
     /// ```csharp

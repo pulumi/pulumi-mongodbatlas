@@ -12,10 +12,6 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AdvancedClusterReplicationSpecRegionConfigAutoScaling {
-    /**
-     * @return Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
-     * 
-     */
     private @Nullable Boolean computeEnabled;
     /**
      * @return Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
@@ -39,10 +35,6 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScaling {
     private @Nullable Boolean diskGbEnabled;
 
     private AdvancedClusterReplicationSpecRegionConfigAutoScaling() {}
-    /**
-     * @return Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
-     * 
-     */
     public Optional<Boolean> computeEnabled() {
         return Optional.ofNullable(this.computeEnabled);
     }

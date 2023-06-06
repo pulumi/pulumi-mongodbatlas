@@ -35,6 +35,9 @@ class CloudBackupScheduleArgs:
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+               
+               true - enables automatic export of cloud backup snapshots to the AWS bucket
+               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input['CloudBackupSchedulePolicyItemDailyArgs'] policy_item_daily: Daily policy item
         :param pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs'] policy_item_hourly: Hourly policy item
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]] policy_item_monthlies: Monthly policy item
@@ -42,7 +45,6 @@ class CloudBackupScheduleArgs:
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-        :param pulumi.Input[bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
         :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
@@ -101,6 +103,9 @@ class CloudBackupScheduleArgs:
     def auto_export_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+
+        true - enables automatic export of cloud backup snapshots to the AWS bucket
+        false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -213,9 +218,6 @@ class CloudBackupScheduleArgs:
     @property
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-        """
         return pulumi.get(self, "update_snapshots")
 
     @update_snapshots.setter
@@ -258,6 +260,9 @@ class _CloudBackupScheduleState:
         """
         Input properties used for looking up and filtering CloudBackupSchedule resources.
         :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+               
+               true - enables automatic export of cloud backup snapshots to the AWS bucket
+               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] id_policy: Unique identifier of the backup policy.
@@ -270,7 +275,6 @@ class _CloudBackupScheduleState:
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-        :param pulumi.Input[bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
         :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         if auto_export_enabled is not None:
@@ -313,6 +317,9 @@ class _CloudBackupScheduleState:
     def auto_export_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+
+        true - enables automatic export of cloud backup snapshots to the AWS bucket
+        false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -485,9 +492,6 @@ class _CloudBackupScheduleState:
     @property
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-        """
         return pulumi.get(self, "update_snapshots")
 
     @update_snapshots.setter
@@ -541,6 +545,9 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+               
+               true - enables automatic export of cloud backup snapshots to the AWS bucket
+               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemDailyArgs']] policy_item_daily: Daily policy item
         :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']] policy_item_hourly: Hourly policy item
@@ -550,7 +557,6 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-        :param pulumi.Input[bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
         :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         ...
@@ -664,6 +670,9 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+               
+               true - enables automatic export of cloud backup snapshots to the AWS bucket
+               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] id_policy: Unique identifier of the backup policy.
@@ -676,7 +685,6 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-        :param pulumi.Input[bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
         :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -707,6 +715,9 @@ class CloudBackupSchedule(pulumi.CustomResource):
     def auto_export_enabled(self) -> pulumi.Output[bool]:
         """
         Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+
+        true - enables automatic export of cloud backup snapshots to the AWS bucket
+        false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -819,9 +830,6 @@ class CloudBackupSchedule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> pulumi.Output[bool]:
-        """
-        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-        """
         return pulumi.get(self, "update_snapshots")
 
     @property

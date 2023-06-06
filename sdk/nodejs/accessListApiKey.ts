@@ -69,6 +69,8 @@ export class AccessListApiKey extends pulumi.CustomResource {
 
     /**
      * Unique identifier for the Organization API Key for which you want to create a new access list entry.
+     *
+     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
      */
     public readonly apiKeyId!: pulumi.Output<string>;
     /**
@@ -125,6 +127,8 @@ export class AccessListApiKey extends pulumi.CustomResource {
 export interface AccessListApiKeyState {
     /**
      * Unique identifier for the Organization API Key for which you want to create a new access list entry.
+     *
+     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
      */
     apiKeyId?: pulumi.Input<string>;
     /**
@@ -147,6 +151,8 @@ export interface AccessListApiKeyState {
 export interface AccessListApiKeyArgs {
     /**
      * Unique identifier for the Organization API Key for which you want to create a new access list entry.
+     *
+     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
      */
     apiKeyId: pulumi.Input<string>;
     /**

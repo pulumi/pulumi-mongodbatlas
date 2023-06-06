@@ -114,6 +114,8 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
     public readonly cidrBlock!: pulumi.Output<string>;
     /**
      * Comment to add to the access list entry.
+     *
+     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      */
     public readonly comment!: pulumi.Output<string>;
     /**
@@ -173,6 +175,8 @@ export interface ProjectIpAccessListState {
     cidrBlock?: pulumi.Input<string>;
     /**
      * Comment to add to the access list entry.
+     *
+     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      */
     comment?: pulumi.Input<string>;
     /**
@@ -199,6 +203,8 @@ export interface ProjectIpAccessListArgs {
     cidrBlock?: pulumi.Input<string>;
     /**
      * Comment to add to the access list entry.
+     *
+     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      */
     comment?: pulumi.Input<string>;
     /**

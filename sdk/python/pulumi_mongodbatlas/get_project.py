@@ -207,6 +207,8 @@ def get_project(name: Optional[str] = None,
 
 
     :param str name: The unique ID for the project.
+           
+           > **IMPORTANT:** Either `project_id` or `name` must be configurated.
     :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
@@ -245,6 +247,8 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
 
 
     :param str name: The unique ID for the project.
+           
+           > **IMPORTANT:** Either `project_id` or `name` must be configurated.
     :param str project_id: The unique ID for the project.
     """
     ...

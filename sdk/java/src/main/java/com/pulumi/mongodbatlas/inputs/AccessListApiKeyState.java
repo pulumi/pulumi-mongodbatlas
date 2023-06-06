@@ -18,12 +18,16 @@ public final class AccessListApiKeyState extends com.pulumi.resources.ResourceAr
     /**
      * Unique identifier for the Organization API Key for which you want to create a new access list entry.
      * 
+     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+     * 
      */
     @Import(name="apiKeyId")
     private @Nullable Output<String> apiKeyId;
 
     /**
      * @return Unique identifier for the Organization API Key for which you want to create a new access list entry.
+     * 
+     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
      * 
      */
     public Optional<Output<String>> apiKeyId() {
@@ -105,6 +109,8 @@ public final class AccessListApiKeyState extends com.pulumi.resources.ResourceAr
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to create a new access list entry.
          * 
+         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+         * 
          * @return builder
          * 
          */
@@ -115,6 +121,8 @@ public final class AccessListApiKeyState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to create a new access list entry.
+         * 
+         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
          * 
          * @return builder
          * 

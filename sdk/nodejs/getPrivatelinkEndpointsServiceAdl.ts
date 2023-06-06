@@ -43,6 +43,10 @@ export function getPrivatelinkEndpointsServiceAdl(args: GetPrivatelinkEndpointsS
 export interface GetPrivatelinkEndpointsServiceAdlArgs {
     /**
      * The unique ID for the project.
+     *
+     * # Attributes Reference
+     *
+     * In addition to all arguments above, the following attributes are exported:
      */
     projectId: string;
 }
@@ -93,6 +97,10 @@ export function getPrivatelinkEndpointsServiceAdlOutput(args: GetPrivatelinkEndp
 export interface GetPrivatelinkEndpointsServiceAdlOutputArgs {
     /**
      * The unique ID for the project.
+     *
+     * # Attributes Reference
+     *
+     * In addition to all arguments above, the following attributes are exported:
      */
     projectId: pulumi.Input<string>;
 }

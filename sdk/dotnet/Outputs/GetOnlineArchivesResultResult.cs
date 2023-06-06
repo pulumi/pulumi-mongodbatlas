@@ -16,6 +16,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string ArchiveId;
         /// <summary>
         /// Name of the cluster that contains the collection.
+        /// 
+        /// # Attributes Reference
+        /// 
+        /// In addition to all arguments above, the following attributes are exported:
         /// </summary>
         public readonly string ClusterName;
         public readonly string CollName;

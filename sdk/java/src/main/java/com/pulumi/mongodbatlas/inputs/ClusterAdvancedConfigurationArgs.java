@@ -80,12 +80,20 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
      * 
+     * - TLS1_0
+     * - TLS1_1
+     * - TLS1_2
+     * 
      */
     @Import(name="minimumEnabledTlsProtocol")
     private @Nullable Output<String> minimumEnabledTlsProtocol;
 
     /**
      * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     * 
+     * - TLS1_0
+     * - TLS1_1
+     * - TLS1_2
      * 
      */
     public Optional<Output<String>> minimumEnabledTlsProtocol() {
@@ -289,6 +297,10 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
         /**
          * @param minimumEnabledTlsProtocol Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
          * 
+         * - TLS1_0
+         * - TLS1_1
+         * - TLS1_2
+         * 
          * @return builder
          * 
          */
@@ -299,6 +311,10 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
 
         /**
          * @param minimumEnabledTlsProtocol Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+         * 
+         * - TLS1_0
+         * - TLS1_1
+         * - TLS1_2
          * 
          * @return builder
          * 

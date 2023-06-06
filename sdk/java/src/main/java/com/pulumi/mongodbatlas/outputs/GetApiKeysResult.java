@@ -24,6 +24,8 @@ public final class GetApiKeysResult {
     /**
      * @return Name of the role. This resource returns all the roles the user has in Atlas.
      * 
+     * The following are valid roles:
+     * 
      */
     private List<String> roleNames;
 
@@ -47,6 +49,8 @@ public final class GetApiKeysResult {
     }
     /**
      * @return Name of the role. This resource returns all the roles the user has in Atlas.
+     * 
+     * The following are valid roles:
      * 
      */
     public List<String> roleNames() {

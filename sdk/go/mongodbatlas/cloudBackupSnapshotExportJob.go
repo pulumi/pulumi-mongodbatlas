@@ -78,7 +78,8 @@ type CloudBackupSnapshotExportJob struct {
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas CloudBackupSnapshotExportJobCustomDataArrayOutput `pulumi:"customDatas"`
 	// Error message, only if the export job failed.
-	ErrMsg         pulumi.StringOutput `pulumi:"errMsg"`
+	ErrMsg pulumi.StringOutput `pulumi:"errMsg"`
+	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
 	ExportBucketId pulumi.StringOutput `pulumi:"exportBucketId"`
 	// Unique identifier of the export job.
 	// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
@@ -89,7 +90,8 @@ type CloudBackupSnapshotExportJob struct {
 	FinishedAt pulumi.StringOutput `pulumi:"finishedAt"`
 	Prefix     pulumi.StringOutput `pulumi:"prefix"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
-	ProjectId  pulumi.StringOutput `pulumi:"projectId"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId pulumi.StringOutput `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
 	State pulumi.StringOutput `pulumi:"state"`
@@ -148,7 +150,8 @@ type cloudBackupSnapshotExportJobState struct {
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas []CloudBackupSnapshotExportJobCustomData `pulumi:"customDatas"`
 	// Error message, only if the export job failed.
-	ErrMsg         *string `pulumi:"errMsg"`
+	ErrMsg *string `pulumi:"errMsg"`
+	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
 	ExportBucketId *string `pulumi:"exportBucketId"`
 	// Unique identifier of the export job.
 	// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
@@ -159,7 +162,8 @@ type cloudBackupSnapshotExportJobState struct {
 	FinishedAt *string `pulumi:"finishedAt"`
 	Prefix     *string `pulumi:"prefix"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
-	ProjectId  *string `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
+	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId *string `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
 	State *string `pulumi:"state"`
@@ -175,7 +179,8 @@ type CloudBackupSnapshotExportJobState struct {
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas CloudBackupSnapshotExportJobCustomDataArrayInput
 	// Error message, only if the export job failed.
-	ErrMsg         pulumi.StringPtrInput
+	ErrMsg pulumi.StringPtrInput
+	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
 	ExportBucketId pulumi.StringPtrInput
 	// Unique identifier of the export job.
 	// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
@@ -186,7 +191,8 @@ type CloudBackupSnapshotExportJobState struct {
 	FinishedAt pulumi.StringPtrInput
 	Prefix     pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
-	ProjectId  pulumi.StringPtrInput
+	ProjectId pulumi.StringPtrInput
+	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId pulumi.StringPtrInput
 	// Status of the export job. Value can be one of the following:
 	State pulumi.StringPtrInput
@@ -200,10 +206,12 @@ type cloudBackupSnapshotExportJobArgs struct {
 	// Name of the Atlas cluster whose snapshot you want to export.
 	ClusterName string `pulumi:"clusterName"`
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
-	CustomDatas    []CloudBackupSnapshotExportJobCustomData `pulumi:"customDatas"`
-	ExportBucketId string                                   `pulumi:"exportBucketId"`
+	CustomDatas []CloudBackupSnapshotExportJobCustomData `pulumi:"customDatas"`
+	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
+	ExportBucketId string `pulumi:"exportBucketId"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
-	ProjectId  string `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
+	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId string `pulumi:"snapshotId"`
 }
 
@@ -212,10 +220,12 @@ type CloudBackupSnapshotExportJobArgs struct {
 	// Name of the Atlas cluster whose snapshot you want to export.
 	ClusterName pulumi.StringInput
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
-	CustomDatas    CloudBackupSnapshotExportJobCustomDataArrayInput
+	CustomDatas CloudBackupSnapshotExportJobCustomDataArrayInput
+	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
 	ExportBucketId pulumi.StringInput
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
-	ProjectId  pulumi.StringInput
+	ProjectId pulumi.StringInput
+	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId pulumi.StringInput
 }
 
@@ -335,6 +345,7 @@ func (o CloudBackupSnapshotExportJobOutput) ErrMsg() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ErrMsg }).(pulumi.StringOutput)
 }
 
+// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
 func (o CloudBackupSnapshotExportJobOutput) ExportBucketId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ExportBucketId }).(pulumi.StringOutput)
 }
@@ -367,6 +378,7 @@ func (o CloudBackupSnapshotExportJobOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 func (o CloudBackupSnapshotExportJobOutput) SnapshotId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.SnapshotId }).(pulumi.StringOutput)
 }

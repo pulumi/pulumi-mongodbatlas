@@ -142,6 +142,8 @@ type ProjectIpAccessList struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringOutput `pulumi:"cidrBlock"`
 	// Comment to add to the access list entry.
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	Comment pulumi.StringOutput `pulumi:"comment"`
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
@@ -186,6 +188,8 @@ type projectIpAccessListState struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
 	CidrBlock *string `pulumi:"cidrBlock"`
 	// Comment to add to the access list entry.
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	Comment *string `pulumi:"comment"`
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress *string `pulumi:"ipAddress"`
@@ -199,6 +203,8 @@ type ProjectIpAccessListState struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringPtrInput
 	// Comment to add to the access list entry.
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	Comment pulumi.StringPtrInput
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress pulumi.StringPtrInput
@@ -216,6 +222,8 @@ type projectIpAccessListArgs struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
 	CidrBlock *string `pulumi:"cidrBlock"`
 	// Comment to add to the access list entry.
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	Comment *string `pulumi:"comment"`
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress *string `pulumi:"ipAddress"`
@@ -230,6 +238,8 @@ type ProjectIpAccessListArgs struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringPtrInput
 	// Comment to add to the access list entry.
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	Comment pulumi.StringPtrInput
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress pulumi.StringPtrInput
@@ -335,6 +345,8 @@ func (o ProjectIpAccessListOutput) CidrBlock() pulumi.StringOutput {
 }
 
 // Comment to add to the access list entry.
+//
+// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 func (o ProjectIpAccessListOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectIpAccessList) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
 }

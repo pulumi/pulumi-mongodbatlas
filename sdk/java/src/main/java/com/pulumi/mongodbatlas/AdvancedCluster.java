@@ -43,19 +43,9 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     public Output<AdvancedClusterAdvancedConfiguration> advancedConfiguration() {
         return this.advancedConfiguration;
     }
-    /**
-     * Flag that indicates whether the cluster can perform backups.
-     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-     * 
-     */
     @Export(name="backupEnabled", type=Boolean.class, parameters={})
     private Output<Boolean> backupEnabled;
 
-    /**
-     * @return Flag that indicates whether the cluster can perform backups.
-     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-     * 
-     */
     public Output<Boolean> backupEnabled() {
         return this.backupEnabled;
     }

@@ -12,6 +12,13 @@ namespace Pulumi.Mongodbatlas
     public static class GetNetworkPeering
     {
         /// <summary>
+        /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// &gt; **NOTE:** If you need to get an existing container ID see the How-To Guide.
+        /// 
+        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% /examples %}}
@@ -20,6 +27,13 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// &gt; **NOTE:** If you need to get an existing container ID see the How-To Guide.
+        /// 
+        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% /examples %}}

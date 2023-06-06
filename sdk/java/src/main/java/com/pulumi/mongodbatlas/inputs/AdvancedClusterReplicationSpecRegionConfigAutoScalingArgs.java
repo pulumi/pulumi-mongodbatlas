@@ -16,17 +16,9 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs ext
 
     public static final AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs Empty = new AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs();
 
-    /**
-     * Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
-     * 
-     */
     @Import(name="computeEnabled")
     private @Nullable Output<Boolean> computeEnabled;
 
-    /**
-     * @return Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
-     * 
-     */
     public Optional<Output<Boolean>> computeEnabled() {
         return Optional.ofNullable(this.computeEnabled);
     }
@@ -119,23 +111,11 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs ext
             $ = new AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param computeEnabled Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
-         * 
-         * @return builder
-         * 
-         */
         public Builder computeEnabled(@Nullable Output<Boolean> computeEnabled) {
             $.computeEnabled = computeEnabled;
             return this;
         }
 
-        /**
-         * @param computeEnabled Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
-         * 
-         * @return builder
-         * 
-         */
         public Builder computeEnabled(Boolean computeEnabled) {
             return computeEnabled(Output.of(computeEnabled));
         }

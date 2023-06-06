@@ -59,6 +59,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string OrgId;
         /// <summary>
         /// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+        /// 
+        /// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
         /// </summary>
         public readonly string RegionUsageRestrictions;
         public readonly ImmutableArray<Outputs.GetProjectsResultTeamResult> Teams;

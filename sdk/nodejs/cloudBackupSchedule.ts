@@ -47,6 +47,9 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
 
     /**
      * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     *
+     * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      */
     public readonly autoExportEnabled!: pulumi.Output<boolean>;
     /**
@@ -99,9 +102,6 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
     public readonly restoreWindowDays!: pulumi.Output<number>;
-    /**
-     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-     */
     public readonly updateSnapshots!: pulumi.Output<boolean>;
     /**
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
@@ -175,6 +175,9 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
 export interface CloudBackupScheduleState {
     /**
      * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     *
+     * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      */
     autoExportEnabled?: pulumi.Input<boolean>;
     /**
@@ -227,9 +230,6 @@ export interface CloudBackupScheduleState {
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
     restoreWindowDays?: pulumi.Input<number>;
-    /**
-     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-     */
     updateSnapshots?: pulumi.Input<boolean>;
     /**
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
@@ -243,6 +243,9 @@ export interface CloudBackupScheduleState {
 export interface CloudBackupScheduleArgs {
     /**
      * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     *
+     * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      */
     autoExportEnabled?: pulumi.Input<boolean>;
     /**
@@ -283,9 +286,6 @@ export interface CloudBackupScheduleArgs {
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
     restoreWindowDays?: pulumi.Input<number>;
-    /**
-     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-     */
     updateSnapshots?: pulumi.Input<boolean>;
     /**
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).

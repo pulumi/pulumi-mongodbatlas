@@ -297,6 +297,12 @@ def get_network_peering(peering_id: Optional[str] = None,
                         project_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkPeeringResult:
     """
+    `NetworkPeering` describes a Network Peering Connection.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    > **NOTE:** If you need to get an existing container ID see the How-To Guide.
+
     ## Example Usage
 
 
@@ -340,6 +346,12 @@ def get_network_peering_output(peering_id: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkPeeringResult]:
     """
+    `NetworkPeering` describes a Network Peering Connection.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    > **NOTE:** If you need to get an existing container ID see the How-To Guide.
+
     ## Example Usage
 
 

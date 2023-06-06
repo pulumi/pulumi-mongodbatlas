@@ -58,6 +58,10 @@ func LookupPrivatelinkEndpointsServiceAdl(ctx *pulumi.Context, args *LookupPriva
 // A collection of arguments for invoking getPrivatelinkEndpointsServiceAdl.
 type LookupPrivatelinkEndpointsServiceAdlArgs struct {
 	// The unique ID for the project.
+	//
+	// # Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -87,6 +91,10 @@ func LookupPrivatelinkEndpointsServiceAdlOutput(ctx *pulumi.Context, args Lookup
 // A collection of arguments for invoking getPrivatelinkEndpointsServiceAdl.
 type LookupPrivatelinkEndpointsServiceAdlOutputArgs struct {
 	// The unique ID for the project.
+	//
+	// # Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

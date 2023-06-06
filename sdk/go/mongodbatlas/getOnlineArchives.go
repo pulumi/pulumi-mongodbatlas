@@ -74,6 +74,10 @@ func LookupOnlineArchives(ctx *pulumi.Context, args *LookupOnlineArchivesArgs, o
 // A collection of arguments for invoking getOnlineArchives.
 type LookupOnlineArchivesArgs struct {
 	// Name of the cluster that contains the collection.
+	//
+	// # Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	ClusterName string `pulumi:"clusterName"`
 	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
@@ -105,6 +109,10 @@ func LookupOnlineArchivesOutput(ctx *pulumi.Context, args LookupOnlineArchivesOu
 // A collection of arguments for invoking getOnlineArchives.
 type LookupOnlineArchivesOutputArgs struct {
 	// Name of the cluster that contains the collection.
+	//
+	// # Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// The unique ID for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`

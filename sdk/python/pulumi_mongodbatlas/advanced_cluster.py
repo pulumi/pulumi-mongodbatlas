@@ -39,8 +39,6 @@ class AdvancedClusterArgs:
                Accepted values include:
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
-        :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
-               If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
         :param pulumi.Input['AdvancedClusterBiConnectorConfigArgs'] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
@@ -136,10 +134,6 @@ class AdvancedClusterArgs:
     @property
     @pulumi.getter(name="backupEnabled")
     def backup_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Flag that indicates whether the cluster can perform backups.
-        If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-        """
         return pulumi.get(self, "backup_enabled")
 
     @backup_enabled.setter
@@ -312,8 +306,6 @@ class _AdvancedClusterState:
                  version_release_system: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AdvancedCluster resources.
-        :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
-               If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
         :param pulumi.Input['AdvancedClusterBiConnectorConfigArgs'] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
@@ -399,10 +391,6 @@ class _AdvancedClusterState:
     @property
     @pulumi.getter(name="backupEnabled")
     def backup_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Flag that indicates whether the cluster can perform backups.
-        If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-        """
         return pulumi.get(self, "backup_enabled")
 
     @backup_enabled.setter
@@ -684,8 +672,6 @@ class AdvancedCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
-               If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
         :param pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
                Accepted values include:
@@ -829,8 +815,6 @@ class AdvancedCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
-               If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
         :param pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
@@ -892,10 +876,6 @@ class AdvancedCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="backupEnabled")
     def backup_enabled(self) -> pulumi.Output[bool]:
-        """
-        Flag that indicates whether the cluster can perform backups.
-        If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-        """
         return pulumi.get(self, "backup_enabled")
 
     @property

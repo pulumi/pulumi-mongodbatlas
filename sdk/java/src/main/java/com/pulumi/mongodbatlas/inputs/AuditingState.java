@@ -70,12 +70,16 @@ public final class AuditingState extends com.pulumi.resources.ResourceArgs {
     /**
      * Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
      * 
+     * &gt; **NOTE:** Auditing created by API Keys must belong to an existing organization.
+     * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
      * @return Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+     * 
+     * &gt; **NOTE:** Auditing created by API Keys must belong to an existing organization.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -197,6 +201,8 @@ public final class AuditingState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param enabled Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
          * 
+         * &gt; **NOTE:** Auditing created by API Keys must belong to an existing organization.
+         * 
          * @return builder
          * 
          */
@@ -207,6 +213,8 @@ public final class AuditingState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param enabled Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+         * 
+         * &gt; **NOTE:** Auditing created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 

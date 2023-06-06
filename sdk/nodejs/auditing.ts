@@ -76,6 +76,8 @@ export class Auditing extends pulumi.CustomResource {
     public /*out*/ readonly configurationType!: pulumi.Output<string>;
     /**
      * Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+     *
+     * > **NOTE:** Auditing created by API Keys must belong to an existing organization.
      */
     public readonly enabled!: pulumi.Output<boolean>;
     /**
@@ -138,6 +140,8 @@ export interface AuditingState {
     configurationType?: pulumi.Input<string>;
     /**
      * Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+     *
+     * > **NOTE:** Auditing created by API Keys must belong to an existing organization.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -160,6 +164,8 @@ export interface AuditingArgs {
     auditFilter?: pulumi.Input<string>;
     /**
      * Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+     *
+     * > **NOTE:** Auditing created by API Keys must belong to an existing organization.
      */
     enabled?: pulumi.Input<boolean>;
     /**

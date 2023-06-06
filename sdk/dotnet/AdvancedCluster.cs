@@ -26,10 +26,6 @@ namespace Pulumi.Mongodbatlas
         [Output("advancedConfiguration")]
         public Output<Outputs.AdvancedClusterAdvancedConfiguration> AdvancedConfiguration { get; private set; } = null!;
 
-        /// <summary>
-        /// Flag that indicates whether the cluster can perform backups.
-        /// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-        /// </summary>
         [Output("backupEnabled")]
         public Output<bool> BackupEnabled { get; private set; } = null!;
 
@@ -200,10 +196,6 @@ namespace Pulumi.Mongodbatlas
         [Input("advancedConfiguration")]
         public Input<Inputs.AdvancedClusterAdvancedConfigurationArgs>? AdvancedConfiguration { get; set; }
 
-        /// <summary>
-        /// Flag that indicates whether the cluster can perform backups.
-        /// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-        /// </summary>
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
 
@@ -315,10 +307,6 @@ namespace Pulumi.Mongodbatlas
         [Input("advancedConfiguration")]
         public Input<Inputs.AdvancedClusterAdvancedConfigurationGetArgs>? AdvancedConfiguration { get; set; }
 
-        /// <summary>
-        /// Flag that indicates whether the cluster can perform backups.
-        /// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
-        /// </summary>
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
 

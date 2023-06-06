@@ -24,6 +24,13 @@ class CustomDbRoleArgs:
         The set of arguments for constructing a CustomDbRole resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] role_name: Name of the custom role.
+               
+               > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+               
+               * Is a name already used by an existing custom role in the project
+               * Is a name of any of the built-in roles
+               * Is `atlasAdmin`
+               * Starts with `xgen-`
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "role_name", role_name)
@@ -49,6 +56,13 @@ class CustomDbRoleArgs:
     def role_name(self) -> pulumi.Input[str]:
         """
         Name of the custom role.
+
+        > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+
+        * Is a name already used by an existing custom role in the project
+        * Is a name of any of the built-in roles
+        * Is `atlasAdmin`
+        * Starts with `xgen-`
         """
         return pulumi.get(self, "role_name")
 
@@ -86,6 +100,13 @@ class _CustomDbRoleState:
         Input properties used for looking up and filtering CustomDbRole resources.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] role_name: Name of the custom role.
+               
+               > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+               
+               * Is a name already used by an existing custom role in the project
+               * Is a name of any of the built-in roles
+               * Is `atlasAdmin`
+               * Starts with `xgen-`
         """
         if actions is not None:
             pulumi.set(__self__, "actions", actions)
@@ -131,6 +152,13 @@ class _CustomDbRoleState:
     def role_name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the custom role.
+
+        > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+
+        * Is a name already used by an existing custom role in the project
+        * Is a name of any of the built-in roles
+        * Is `atlasAdmin`
+        * Starts with `xgen-`
         """
         return pulumi.get(self, "role_name")
 
@@ -259,6 +287,13 @@ class CustomDbRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] role_name: Name of the custom role.
+               
+               > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+               
+               * Is a name already used by an existing custom role in the project
+               * Is a name of any of the built-in roles
+               * Is `atlasAdmin`
+               * Starts with `xgen-`
         """
         ...
     @overload
@@ -431,6 +466,13 @@ class CustomDbRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] role_name: Name of the custom role.
+               
+               > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+               
+               * Is a name already used by an existing custom role in the project
+               * Is a name of any of the built-in roles
+               * Is `atlasAdmin`
+               * Starts with `xgen-`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -465,6 +507,13 @@ class CustomDbRole(pulumi.CustomResource):
     def role_name(self) -> pulumi.Output[str]:
         """
         Name of the custom role.
+
+        > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
+
+        * Is a name already used by an existing custom role in the project
+        * Is a name of any of the built-in roles
+        * Is `atlasAdmin`
+        * Starts with `xgen-`
         """
         return pulumi.get(self, "role_name")
 

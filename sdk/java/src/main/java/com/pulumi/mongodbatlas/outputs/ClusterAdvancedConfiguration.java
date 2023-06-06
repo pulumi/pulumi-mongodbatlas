@@ -36,6 +36,10 @@ public final class ClusterAdvancedConfiguration {
     /**
      * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
      * 
+     * - TLS1_0
+     * - TLS1_1
+     * - TLS1_2
+     * 
      */
     private @Nullable String minimumEnabledTlsProtocol;
     /**
@@ -96,6 +100,10 @@ public final class ClusterAdvancedConfiguration {
     }
     /**
      * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     * 
+     * - TLS1_0
+     * - TLS1_1
+     * - TLS1_2
      * 
      */
     public Optional<String> minimumEnabledTlsProtocol() {
