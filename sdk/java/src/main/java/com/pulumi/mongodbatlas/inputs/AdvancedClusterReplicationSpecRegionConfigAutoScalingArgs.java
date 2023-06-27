@@ -68,17 +68,9 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs ext
         return Optional.ofNullable(this.computeScaleDownEnabled);
     }
 
-    /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
-     * 
-     */
     @Import(name="diskGbEnabled")
     private @Nullable Output<Boolean> diskGbEnabled;
 
-    /**
-     * @return Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
-     * 
-     */
     public Optional<Output<Boolean>> diskGbEnabled() {
         return Optional.ofNullable(this.diskGbEnabled);
     }
@@ -183,23 +175,11 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs ext
             return computeScaleDownEnabled(Output.of(computeScaleDownEnabled));
         }
 
-        /**
-         * @param diskGbEnabled Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
-         * 
-         * @return builder
-         * 
-         */
         public Builder diskGbEnabled(@Nullable Output<Boolean> diskGbEnabled) {
             $.diskGbEnabled = diskGbEnabled;
             return this;
         }
 
-        /**
-         * @param diskGbEnabled Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
-         * 
-         * @return builder
-         * 
-         */
         public Builder diskGbEnabled(Boolean diskGbEnabled) {
             return diskGbEnabled(Output.of(diskGbEnabled));
         }

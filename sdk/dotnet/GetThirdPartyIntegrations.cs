@@ -16,44 +16,6 @@ namespace Pulumi.Mongodbatlas
         /// applied across the project. 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("testPagerDuty", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
-        ///         Type = "PAGER_DUTY",
-        ///         ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
-        ///     });
-        /// 
-        ///     var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
-        ///         Type = "FLOWDOCK",
-        ///         FlowName = "&lt;FLOW-NAME&gt;",
-        ///         ApiToken = "&lt;API-TOKEN&gt;",
-        ///         OrgName = "&lt;ORG-NAME&gt;",
-        ///     });
-        /// 
-        ///     var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new()
-        ///     {
-        ///         ProjectId = testPagerDuty.ProjectId,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetThirdPartyIntegrationsResult> InvokeAsync(GetThirdPartyIntegrationsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetThirdPartyIntegrationsResult>("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args ?? new GetThirdPartyIntegrationsArgs(), options.WithDefaults());
@@ -63,44 +25,6 @@ namespace Pulumi.Mongodbatlas
         /// applied across the project. 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("testPagerDuty", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
-        ///         Type = "PAGER_DUTY",
-        ///         ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
-        ///     });
-        /// 
-        ///     var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
-        ///         Type = "FLOWDOCK",
-        ///         FlowName = "&lt;FLOW-NAME&gt;",
-        ///         ApiToken = "&lt;API-TOKEN&gt;",
-        ///         OrgName = "&lt;ORG-NAME&gt;",
-        ///     });
-        /// 
-        ///     var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new()
-        ///     {
-        ///         ProjectId = testPagerDuty.ProjectId,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetThirdPartyIntegrationsResult> Invoke(GetThirdPartyIntegrationsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationsResult>("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args ?? new GetThirdPartyIntegrationsInvokeArgs(), options.WithDefaults());

@@ -2,10 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ * ### Create And Assign PAK Together
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -65,13 +68,17 @@ export class ProjectApiKey extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     public /*out*/ readonly privateKey!: pulumi.Output<string>;
+    public readonly projectAssignments!: pulumi.Output<outputs.ProjectApiKeyProjectAssignment[] | undefined>;
+    /**
+     * Project ID to assign to Access Key
+     */
     public readonly projectId!: pulumi.Output<string>;
     public /*out*/ readonly publicKey!: pulumi.Output<string>;
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      */
-    public readonly roleNames!: pulumi.Output<string[]>;
+    public readonly roleNames!: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a ProjectApiKey resource with the given unique name, arguments, and options.
@@ -89,6 +96,7 @@ export class ProjectApiKey extends pulumi.CustomResource {
             resourceInputs["apiKeyId"] = state ? state.apiKeyId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["projectAssignments"] = state ? state.projectAssignments : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
             resourceInputs["roleNames"] = state ? state.roleNames : undefined;
@@ -100,10 +108,8 @@ export class ProjectApiKey extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.roleNames === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'roleNames'");
-            }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["projectAssignments"] = args ? args.projectAssignments : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["roleNames"] = args ? args.roleNames : undefined;
             resourceInputs["apiKeyId"] = undefined /*out*/;
@@ -130,10 +136,14 @@ export interface ProjectApiKeyState {
      */
     description?: pulumi.Input<string>;
     privateKey?: pulumi.Input<string>;
+    projectAssignments?: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;
+    /**
+     * Project ID to assign to Access Key
+     */
     projectId?: pulumi.Input<string>;
     publicKey?: pulumi.Input<string>;
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      */
     roleNames?: pulumi.Input<pulumi.Input<string>[]>;
@@ -147,10 +157,14 @@ export interface ProjectApiKeyArgs {
      * Description of this Organization API key.
      */
     description: pulumi.Input<string>;
+    projectAssignments?: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;
+    /**
+     * Project ID to assign to Access Key
+     */
     projectId: pulumi.Input<string>;
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      */
-    roleNames: pulumi.Input<pulumi.Input<string>[]>;
+    roleNames?: pulumi.Input<pulumi.Input<string>[]>;
 }

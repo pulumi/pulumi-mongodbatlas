@@ -20,6 +20,7 @@ class ProjectArgs:
                  api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
                  is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
                  is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
@@ -33,6 +34,7 @@ class ProjectArgs:
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        :param pulumi.Input[bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
@@ -43,11 +45,16 @@ class ProjectArgs:
         """
         pulumi.set(__self__, "org_id", org_id)
         if api_keys is not None:
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
+            pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
+        if api_keys is not None:
             pulumi.set(__self__, "api_keys", api_keys)
         if is_collect_database_specifics_statistics_enabled is not None:
             pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         if is_data_explorer_enabled is not None:
             pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        if is_extended_storage_sizes_enabled is not None:
+            pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
         if is_performance_advisor_enabled is not None:
             pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
         if is_realtime_performance_panel_enabled is not None:
@@ -109,6 +116,18 @@ class ProjectArgs:
     @is_data_explorer_enabled.setter
     def is_data_explorer_enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "is_data_explorer_enabled", value)
+
+    @property
+    @pulumi.getter(name="isExtendedStorageSizesEnabled")
+    def is_extended_storage_sizes_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+        """
+        return pulumi.get(self, "is_extended_storage_sizes_enabled")
+
+    @is_extended_storage_sizes_enabled.setter
+    def is_extended_storage_sizes_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_extended_storage_sizes_enabled", value)
 
     @property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")
@@ -212,6 +231,7 @@ class _ProjectState:
                  created: Optional[pulumi.Input[str]] = None,
                  is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
                  is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
@@ -227,6 +247,7 @@ class _ProjectState:
         :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project..
         :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        :param pulumi.Input[bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
@@ -237,6 +258,9 @@ class _ProjectState:
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
         if api_keys is not None:
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
+            pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
+        if api_keys is not None:
             pulumi.set(__self__, "api_keys", api_keys)
         if cluster_count is not None:
             pulumi.set(__self__, "cluster_count", cluster_count)
@@ -246,6 +270,8 @@ class _ProjectState:
             pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         if is_data_explorer_enabled is not None:
             pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        if is_extended_storage_sizes_enabled is not None:
+            pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
         if is_performance_advisor_enabled is not None:
             pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
         if is_realtime_performance_panel_enabled is not None:
@@ -321,6 +347,18 @@ class _ProjectState:
     @is_data_explorer_enabled.setter
     def is_data_explorer_enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "is_data_explorer_enabled", value)
+
+    @property
+    @pulumi.getter(name="isExtendedStorageSizesEnabled")
+    def is_extended_storage_sizes_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+        """
+        return pulumi.get(self, "is_extended_storage_sizes_enabled")
+
+    @is_extended_storage_sizes_enabled.setter
+    def is_extended_storage_sizes_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_extended_storage_sizes_enabled", value)
 
     @property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")
@@ -436,6 +474,7 @@ class Project(pulumi.CustomResource):
                  api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
                  is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
                  is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
@@ -476,6 +515,7 @@ class Project(pulumi.CustomResource):
             )],
             is_collect_database_specifics_statistics_enabled=True,
             is_data_explorer_enabled=True,
+            is_extended_storage_sizes_enabled=True,
             is_performance_advisor_enabled=True,
             is_realtime_performance_panel_enabled=True,
             is_schema_advisor_enabled=True)
@@ -495,6 +535,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        :param pulumi.Input[bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
@@ -540,6 +581,7 @@ class Project(pulumi.CustomResource):
             )],
             is_collect_database_specifics_statistics_enabled=True,
             is_data_explorer_enabled=True,
+            is_extended_storage_sizes_enabled=True,
             is_performance_advisor_enabled=True,
             is_realtime_performance_panel_enabled=True,
             is_schema_advisor_enabled=True)
@@ -573,6 +615,7 @@ class Project(pulumi.CustomResource):
                  api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
                  is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
                  is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
@@ -591,9 +634,13 @@ class Project(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
+            if api_keys is not None and not opts.urn:
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
+                pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
             __props__.__dict__["api_keys"] = api_keys
             __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
             __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled
+            __props__.__dict__["is_extended_storage_sizes_enabled"] = is_extended_storage_sizes_enabled
             __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
             __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
             __props__.__dict__["is_schema_advisor_enabled"] = is_schema_advisor_enabled
@@ -622,6 +669,7 @@ class Project(pulumi.CustomResource):
             created: Optional[pulumi.Input[str]] = None,
             is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
             is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+            is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
             is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
             is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
             is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
@@ -642,6 +690,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project..
         :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        :param pulumi.Input[bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
@@ -660,6 +709,7 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["created"] = created
         __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
         __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled
+        __props__.__dict__["is_extended_storage_sizes_enabled"] = is_extended_storage_sizes_enabled
         __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
         __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
         __props__.__dict__["is_schema_advisor_enabled"] = is_schema_advisor_enabled
@@ -707,6 +757,14 @@ class Project(pulumi.CustomResource):
         Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
         """
         return pulumi.get(self, "is_data_explorer_enabled")
+
+    @property
+    @pulumi.getter(name="isExtendedStorageSizesEnabled")
+    def is_extended_storage_sizes_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+        """
+        return pulumi.get(self, "is_extended_storage_sizes_enabled")
 
     @property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")

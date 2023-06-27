@@ -10,12 +10,15 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.ProjectApiKeyState;
+import com.pulumi.mongodbatlas.outputs.ProjectApiKeyProjectAssignment;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * ### Create And Assign PAK Together
  * ```java
  * package generated_program;
  * 
@@ -94,9 +97,23 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
     public Output<String> privateKey() {
         return this.privateKey;
     }
+    @Export(name="projectAssignments", type=List.class, parameters={ProjectApiKeyProjectAssignment.class})
+    private Output</* @Nullable */ List<ProjectApiKeyProjectAssignment>> projectAssignments;
+
+    public Output<Optional<List<ProjectApiKeyProjectAssignment>>> projectAssignments() {
+        return Codegen.optional(this.projectAssignments);
+    }
+    /**
+     * Project ID to assign to Access Key
+     * 
+     */
     @Export(name="projectId", type=String.class, parameters={})
     private Output<String> projectId;
 
+    /**
+     * @return Project ID to assign to Access Key
+     * 
+     */
     public Output<String> projectId() {
         return this.projectId;
     }
@@ -107,20 +124,20 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
         return this.publicKey;
     }
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      * 
      */
     @Export(name="roleNames", type=List.class, parameters={String.class})
-    private Output<List<String>> roleNames;
+    private Output</* @Nullable */ List<String>> roleNames;
 
     /**
-     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * @return Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      * 
      */
-    public Output<List<String>> roleNames() {
-        return this.roleNames;
+    public Output<Optional<List<String>>> roleNames() {
+        return Codegen.optional(this.roleNames);
     }
 
     /**

@@ -14,6 +14,7 @@ public final class GetAdvancedClusterConnectionStringPrivateEndpoint {
     private String connectionString;
     private List<GetAdvancedClusterConnectionStringPrivateEndpointEndpoint> endpoints;
     private String srvConnectionString;
+    private String srvShardOptimizedConnectionString;
     private String type;
 
     private GetAdvancedClusterConnectionStringPrivateEndpoint() {}
@@ -25,6 +26,9 @@ public final class GetAdvancedClusterConnectionStringPrivateEndpoint {
     }
     public String srvConnectionString() {
         return this.srvConnectionString;
+    }
+    public String srvShardOptimizedConnectionString() {
+        return this.srvShardOptimizedConnectionString;
     }
     public String type() {
         return this.type;
@@ -42,6 +46,7 @@ public final class GetAdvancedClusterConnectionStringPrivateEndpoint {
         private String connectionString;
         private List<GetAdvancedClusterConnectionStringPrivateEndpointEndpoint> endpoints;
         private String srvConnectionString;
+        private String srvShardOptimizedConnectionString;
         private String type;
         public Builder() {}
         public Builder(GetAdvancedClusterConnectionStringPrivateEndpoint defaults) {
@@ -49,6 +54,7 @@ public final class GetAdvancedClusterConnectionStringPrivateEndpoint {
     	      this.connectionString = defaults.connectionString;
     	      this.endpoints = defaults.endpoints;
     	      this.srvConnectionString = defaults.srvConnectionString;
+    	      this.srvShardOptimizedConnectionString = defaults.srvShardOptimizedConnectionString;
     	      this.type = defaults.type;
         }
 
@@ -71,6 +77,11 @@ public final class GetAdvancedClusterConnectionStringPrivateEndpoint {
             return this;
         }
         @CustomType.Setter
+        public Builder srvShardOptimizedConnectionString(String srvShardOptimizedConnectionString) {
+            this.srvShardOptimizedConnectionString = Objects.requireNonNull(srvShardOptimizedConnectionString);
+            return this;
+        }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
@@ -80,6 +91,7 @@ public final class GetAdvancedClusterConnectionStringPrivateEndpoint {
             o.connectionString = connectionString;
             o.endpoints = endpoints;
             o.srvConnectionString = srvConnectionString;
+            o.srvShardOptimizedConnectionString = srvShardOptimizedConnectionString;
             o.type = type;
             return o;
         }

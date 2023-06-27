@@ -52,13 +52,6 @@ export class Cluster extends pulumi.CustomResource {
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
     public readonly autoScalingComputeScaleDownEnabled!: pulumi.Output<boolean>;
-    /**
-     * Specifies whether disk auto-scaling is enabled. The default is true.
-     * - Set to `true` to enable disk auto-scaling.
-     * - Set to `false` to disable disk auto-scaling.
-     *
-     * > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
-     */
     public readonly autoScalingDiskGbEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
@@ -223,6 +216,10 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly replicationSpecs!: pulumi.Output<outputs.ClusterReplicationSpec[]>;
     /**
+     * Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     */
+    public readonly retainBackupsEnabled!: pulumi.Output<boolean | undefined>;
+    /**
      * current snapshot schedule and retention settings for the cluster.
      */
     public /*out*/ readonly snapshotBackupPolicies!: pulumi.Output<outputs.ClusterSnapshotBackupPolicy[]>;
@@ -301,6 +298,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["providerVolumeType"] = state ? state.providerVolumeType : undefined;
             resourceInputs["replicationFactor"] = state ? state.replicationFactor : undefined;
             resourceInputs["replicationSpecs"] = state ? state.replicationSpecs : undefined;
+            resourceInputs["retainBackupsEnabled"] = state ? state.retainBackupsEnabled : undefined;
             resourceInputs["snapshotBackupPolicies"] = state ? state.snapshotBackupPolicies : undefined;
             resourceInputs["srvAddress"] = state ? state.srvAddress : undefined;
             resourceInputs["stateName"] = state ? state.stateName : undefined;
@@ -348,6 +346,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["providerVolumeType"] = args ? args.providerVolumeType : undefined;
             resourceInputs["replicationFactor"] = args ? args.replicationFactor : undefined;
             resourceInputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
+            resourceInputs["retainBackupsEnabled"] = args ? args.retainBackupsEnabled : undefined;
             resourceInputs["terminationProtectionEnabled"] = args ? args.terminationProtectionEnabled : undefined;
             resourceInputs["versionReleaseSystem"] = args ? args.versionReleaseSystem : undefined;
             resourceInputs["clusterId"] = undefined /*out*/;
@@ -378,13 +377,6 @@ export interface ClusterState {
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
     autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
-    /**
-     * Specifies whether disk auto-scaling is enabled. The default is true.
-     * - Set to `true` to enable disk auto-scaling.
-     * - Set to `false` to disable disk auto-scaling.
-     *
-     * > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
-     */
     autoScalingDiskGbEnabled?: pulumi.Input<boolean>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
@@ -549,6 +541,10 @@ export interface ClusterState {
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
     /**
+     * Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     */
+    retainBackupsEnabled?: pulumi.Input<boolean>;
+    /**
      * current snapshot schedule and retention settings for the cluster.
      */
     snapshotBackupPolicies?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicy>[]>;
@@ -587,13 +583,6 @@ export interface ClusterArgs {
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
     autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
-    /**
-     * Specifies whether disk auto-scaling is enabled. The default is true.
-     * - Set to `true` to enable disk auto-scaling.
-     * - Set to `false` to disable disk auto-scaling.
-     *
-     * > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
-     */
     autoScalingDiskGbEnabled?: pulumi.Input<boolean>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
@@ -728,6 +717,10 @@ export interface ClusterArgs {
      * Configuration for cluster regions.  See Replication Spec below for more details.
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
+    /**
+     * Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     */
+    retainBackupsEnabled?: pulumi.Input<boolean>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */

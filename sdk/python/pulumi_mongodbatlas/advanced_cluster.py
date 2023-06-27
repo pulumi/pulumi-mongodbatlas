@@ -30,6 +30,7 @@ class AdvancedClusterArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
+                 retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None):
@@ -39,6 +40,15 @@ class AdvancedClusterArgs:
                Accepted values include:
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
+        :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
+               If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+               
+               Backup uses:
+               [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+               [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+               If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
+               
+               This parameter defaults to false.
         :param pulumi.Input['AdvancedClusterBiConnectorConfigArgs'] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
@@ -46,6 +56,7 @@ class AdvancedClusterArgs:
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
+        :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
@@ -78,6 +89,8 @@ class AdvancedClusterArgs:
             pulumi.set(__self__, "paused", paused)
         if pit_enabled is not None:
             pulumi.set(__self__, "pit_enabled", pit_enabled)
+        if retain_backups_enabled is not None:
+            pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
         if root_cert_type is not None:
             pulumi.set(__self__, "root_cert_type", root_cert_type)
         if termination_protection_enabled is not None:
@@ -134,6 +147,17 @@ class AdvancedClusterArgs:
     @property
     @pulumi.getter(name="backupEnabled")
     def backup_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether the cluster can perform backups.
+        If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+
+        Backup uses:
+        [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+        [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+        If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
+
+        This parameter defaults to false.
+        """
         return pulumi.get(self, "backup_enabled")
 
     @backup_enabled.setter
@@ -243,6 +267,18 @@ class AdvancedClusterArgs:
         pulumi.set(self, "pit_enabled", value)
 
     @property
+    @pulumi.getter(name="retainBackupsEnabled")
+    def retain_backups_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        """
+        return pulumi.get(self, "retain_backups_enabled")
+
+    @retain_backups_enabled.setter
+    def retain_backups_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "retain_backups_enabled", value)
+
+    @property
     @pulumi.getter(name="rootCertType")
     def root_cert_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -300,12 +336,22 @@ class _AdvancedClusterState:
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]] = None,
+                 retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AdvancedCluster resources.
+        :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
+               If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+               
+               Backup uses:
+               [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+               [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+               If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
+               
+               This parameter defaults to false.
         :param pulumi.Input['AdvancedClusterBiConnectorConfigArgs'] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
@@ -320,6 +366,7 @@ class _AdvancedClusterState:
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
+        :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
                - IDLE
@@ -370,6 +417,8 @@ class _AdvancedClusterState:
             pulumi.set(__self__, "project_id", project_id)
         if replication_specs is not None:
             pulumi.set(__self__, "replication_specs", replication_specs)
+        if retain_backups_enabled is not None:
+            pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
         if root_cert_type is not None:
             pulumi.set(__self__, "root_cert_type", root_cert_type)
         if state_name is not None:
@@ -391,6 +440,17 @@ class _AdvancedClusterState:
     @property
     @pulumi.getter(name="backupEnabled")
     def backup_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether the cluster can perform backups.
+        If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+
+        Backup uses:
+        [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+        [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+        If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
+
+        This parameter defaults to false.
+        """
         return pulumi.get(self, "backup_enabled")
 
     @backup_enabled.setter
@@ -582,6 +642,18 @@ class _AdvancedClusterState:
         pulumi.set(self, "replication_specs", value)
 
     @property
+    @pulumi.getter(name="retainBackupsEnabled")
+    def retain_backups_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        """
+        return pulumi.get(self, "retain_backups_enabled")
+
+    @retain_backups_enabled.setter
+    def retain_backups_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "retain_backups_enabled", value)
+
+    @property
     @pulumi.getter(name="rootCertType")
     def root_cert_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -655,6 +727,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]]] = None,
+                 retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
@@ -672,6 +745,15 @@ class AdvancedCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
+               If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+               
+               Backup uses:
+               [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+               [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+               If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
+               
+               This parameter defaults to false.
         :param pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
                Accepted values include:
@@ -683,6 +765,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
+        :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
@@ -733,6 +816,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]]] = None,
+                 retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
@@ -768,6 +852,7 @@ class AdvancedCluster(pulumi.CustomResource):
             if replication_specs is None and not opts.urn:
                 raise TypeError("Missing required property 'replication_specs'")
             __props__.__dict__["replication_specs"] = replication_specs
+            __props__.__dict__["retain_backups_enabled"] = retain_backups_enabled
             __props__.__dict__["root_cert_type"] = root_cert_type
             __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
             __props__.__dict__["version_release_system"] = version_release_system
@@ -804,6 +889,7 @@ class AdvancedCluster(pulumi.CustomResource):
             pit_enabled: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]]] = None,
+            retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
             root_cert_type: Optional[pulumi.Input[str]] = None,
             state_name: Optional[pulumi.Input[str]] = None,
             termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
@@ -815,6 +901,15 @@ class AdvancedCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
+               If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+               
+               Backup uses:
+               [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+               [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+               If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
+               
+               This parameter defaults to false.
         :param pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
@@ -829,6 +924,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
+        :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
                - IDLE
@@ -862,6 +958,7 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["pit_enabled"] = pit_enabled
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["replication_specs"] = replication_specs
+        __props__.__dict__["retain_backups_enabled"] = retain_backups_enabled
         __props__.__dict__["root_cert_type"] = root_cert_type
         __props__.__dict__["state_name"] = state_name
         __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
@@ -876,6 +973,17 @@ class AdvancedCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="backupEnabled")
     def backup_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether the cluster can perform backups.
+        If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+
+        Backup uses:
+        [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+        [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+        If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
+
+        This parameter defaults to false.
+        """
         return pulumi.get(self, "backup_enabled")
 
     @property
@@ -997,6 +1105,14 @@ class AdvancedCluster(pulumi.CustomResource):
         Configuration for cluster regions and the hardware provisioned in them. See below
         """
         return pulumi.get(self, "replication_specs")
+
+    @property
+    @pulumi.getter(name="retainBackupsEnabled")
+    def retain_backups_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        """
+        return pulumi.get(self, "retain_backups_enabled")
 
     @property
     @pulumi.getter(name="rootCertType")

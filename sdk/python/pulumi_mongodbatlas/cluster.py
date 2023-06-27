@@ -47,6 +47,7 @@ class ClusterArgs:
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
+                 retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None):
         """
@@ -58,11 +59,6 @@ class ClusterArgs:
                The possible values are:
         :param pulumi.Input[bool] auto_scaling_compute_scale_down_enabled: Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
                - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
-        :param pulumi.Input[bool] auto_scaling_disk_gb_enabled: Specifies whether disk auto-scaling is enabled. The default is true.
-               - Set to `true` to enable disk auto-scaling.
-               - Set to `false` to disable disk auto-scaling.
-               
-               > **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
                
                This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
@@ -110,6 +106,7 @@ class ClusterArgs:
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
@@ -181,6 +178,8 @@ class ClusterArgs:
             pulumi.set(__self__, "replication_factor", replication_factor)
         if replication_specs is not None:
             pulumi.set(__self__, "replication_specs", replication_specs)
+        if retain_backups_enabled is not None:
+            pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
         if termination_protection_enabled is not None:
             pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
@@ -258,13 +257,6 @@ class ClusterArgs:
     @property
     @pulumi.getter(name="autoScalingDiskGbEnabled")
     def auto_scaling_disk_gb_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies whether disk auto-scaling is enabled. The default is true.
-        - Set to `true` to enable disk auto-scaling.
-        - Set to `false` to disable disk auto-scaling.
-
-        > **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-        """
         return pulumi.get(self, "auto_scaling_disk_gb_enabled")
 
     @auto_scaling_disk_gb_enabled.setter
@@ -577,6 +569,18 @@ class ClusterArgs:
         pulumi.set(self, "replication_specs", value)
 
     @property
+    @pulumi.getter(name="retainBackupsEnabled")
+    def retain_backups_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        """
+        return pulumi.get(self, "retain_backups_enabled")
+
+    @retain_backups_enabled.setter
+    def retain_backups_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "retain_backups_enabled", value)
+
+    @property
     @pulumi.getter(name="terminationProtectionEnabled")
     def termination_protection_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -643,6 +647,7 @@ class _ClusterState:
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
+                 retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]] = None,
                  srv_address: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
@@ -652,11 +657,6 @@ class _ClusterState:
         Input properties used for looking up and filtering Cluster resources.
         :param pulumi.Input[bool] auto_scaling_compute_scale_down_enabled: Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
                - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
-        :param pulumi.Input[bool] auto_scaling_disk_gb_enabled: Specifies whether disk auto-scaling is enabled. The default is true.
-               - Set to `true` to enable disk auto-scaling.
-               - Set to `false` to disable disk auto-scaling.
-               
-               > **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
                
                This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
@@ -716,6 +716,7 @@ class _ClusterState:
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
         :param pulumi.Input[str] srv_address: Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
@@ -815,6 +816,8 @@ class _ClusterState:
             pulumi.set(__self__, "replication_factor", replication_factor)
         if replication_specs is not None:
             pulumi.set(__self__, "replication_specs", replication_specs)
+        if retain_backups_enabled is not None:
+            pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
         if snapshot_backup_policies is not None:
             pulumi.set(__self__, "snapshot_backup_policies", snapshot_backup_policies)
         if srv_address is not None:
@@ -860,13 +863,6 @@ class _ClusterState:
     @property
     @pulumi.getter(name="autoScalingDiskGbEnabled")
     def auto_scaling_disk_gb_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies whether disk auto-scaling is enabled. The default is true.
-        - Set to `true` to enable disk auto-scaling.
-        - Set to `false` to disable disk auto-scaling.
-
-        > **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-        """
         return pulumi.get(self, "auto_scaling_disk_gb_enabled")
 
     @auto_scaling_disk_gb_enabled.setter
@@ -1310,6 +1306,18 @@ class _ClusterState:
         pulumi.set(self, "replication_specs", value)
 
     @property
+    @pulumi.getter(name="retainBackupsEnabled")
+    def retain_backups_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        """
+        return pulumi.get(self, "retain_backups_enabled")
+
+    @retain_backups_enabled.setter
+    def retain_backups_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "retain_backups_enabled", value)
+
+    @property
     @pulumi.getter(name="snapshotBackupPolicies")
     def snapshot_backup_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]]:
         """
@@ -1412,6 +1420,7 @@ class Cluster(pulumi.CustomResource):
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+                 retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1430,11 +1439,6 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_scaling_compute_scale_down_enabled: Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
                - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
-        :param pulumi.Input[bool] auto_scaling_disk_gb_enabled: Specifies whether disk auto-scaling is enabled. The default is true.
-               - Set to `true` to enable disk auto-scaling.
-               - Set to `false` to disable disk auto-scaling.
-               
-               > **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
                
                This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
@@ -1487,6 +1491,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
@@ -1553,6 +1558,7 @@ class Cluster(pulumi.CustomResource):
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+                 retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1610,6 +1616,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["provider_volume_type"] = provider_volume_type
             __props__.__dict__["replication_factor"] = replication_factor
             __props__.__dict__["replication_specs"] = replication_specs
+            __props__.__dict__["retain_backups_enabled"] = retain_backups_enabled
             __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
             __props__.__dict__["version_release_system"] = version_release_system
             __props__.__dict__["cluster_id"] = None
@@ -1672,6 +1679,7 @@ class Cluster(pulumi.CustomResource):
             provider_volume_type: Optional[pulumi.Input[str]] = None,
             replication_factor: Optional[pulumi.Input[int]] = None,
             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+            retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
             snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]]] = None,
             srv_address: Optional[pulumi.Input[str]] = None,
             state_name: Optional[pulumi.Input[str]] = None,
@@ -1686,11 +1694,6 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_scaling_compute_scale_down_enabled: Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
                - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
-        :param pulumi.Input[bool] auto_scaling_disk_gb_enabled: Specifies whether disk auto-scaling is enabled. The default is true.
-               - Set to `true` to enable disk auto-scaling.
-               - Set to `false` to disable disk auto-scaling.
-               
-               > **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
                
                This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
@@ -1750,6 +1753,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
         :param pulumi.Input[str] srv_address: Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
@@ -1805,6 +1809,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["provider_volume_type"] = provider_volume_type
         __props__.__dict__["replication_factor"] = replication_factor
         __props__.__dict__["replication_specs"] = replication_specs
+        __props__.__dict__["retain_backups_enabled"] = retain_backups_enabled
         __props__.__dict__["snapshot_backup_policies"] = snapshot_backup_policies
         __props__.__dict__["srv_address"] = srv_address
         __props__.__dict__["state_name"] = state_name
@@ -1834,13 +1839,6 @@ class Cluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="autoScalingDiskGbEnabled")
     def auto_scaling_disk_gb_enabled(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Specifies whether disk auto-scaling is enabled. The default is true.
-        - Set to `true` to enable disk auto-scaling.
-        - Set to `false` to disable disk auto-scaling.
-
-        > **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-        """
         return pulumi.get(self, "auto_scaling_disk_gb_enabled")
 
     @property
@@ -2138,6 +2136,14 @@ class Cluster(pulumi.CustomResource):
         Configuration for cluster regions.  See Replication Spec below for more details.
         """
         return pulumi.get(self, "replication_specs")
+
+    @property
+    @pulumi.getter(name="retainBackupsEnabled")
+    def retain_backups_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        """
+        return pulumi.get(self, "retain_backups_enabled")
 
     @property
     @pulumi.getter(name="snapshotBackupPolicies")

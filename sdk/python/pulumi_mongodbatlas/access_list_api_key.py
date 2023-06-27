@@ -22,8 +22,8 @@ class AccessListApiKeyArgs:
         The set of arguments for constructing a AccessListApiKey resource.
         :param pulumi.Input[str] api_key_id: Unique identifier for the Organization API Key for which you want to create a new access list entry.
                
-               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
-        :param pulumi.Input[str] org_id: Unique identifier for the organinzation to which you want to add one or more access list entries.
+               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
+        :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list.
         """
@@ -40,7 +40,7 @@ class AccessListApiKeyArgs:
         """
         Unique identifier for the Organization API Key for which you want to create a new access list entry.
 
-        > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+        > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
         """
         return pulumi.get(self, "api_key_id")
 
@@ -52,7 +52,7 @@ class AccessListApiKeyArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Input[str]:
         """
-        Unique identifier for the organinzation to which you want to add one or more access list entries.
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
         return pulumi.get(self, "org_id")
 
@@ -96,10 +96,10 @@ class _AccessListApiKeyState:
         Input properties used for looking up and filtering AccessListApiKey resources.
         :param pulumi.Input[str] api_key_id: Unique identifier for the Organization API Key for which you want to create a new access list entry.
                
-               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list.
-        :param pulumi.Input[str] org_id: Unique identifier for the organinzation to which you want to add one or more access list entries.
+        :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
         if api_key_id is not None:
             pulumi.set(__self__, "api_key_id", api_key_id)
@@ -116,7 +116,7 @@ class _AccessListApiKeyState:
         """
         Unique identifier for the Organization API Key for which you want to create a new access list entry.
 
-        > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+        > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
         """
         return pulumi.get(self, "api_key_id")
 
@@ -152,7 +152,7 @@ class _AccessListApiKeyState:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique identifier for the organinzation to which you want to add one or more access list entries.
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
         return pulumi.get(self, "org_id")
 
@@ -202,16 +202,16 @@ class AccessListApiKey(pulumi.CustomResource):
          $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
         ```
 
-         For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createAccessListEntriesForOneOrganizationApiKey)
+         For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_key_id: Unique identifier for the Organization API Key for which you want to create a new access list entry.
                
-               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list.
-        :param pulumi.Input[str] org_id: Unique identifier for the organinzation to which you want to add one or more access list entries.
+        :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
         ...
     @overload
@@ -250,7 +250,7 @@ class AccessListApiKey(pulumi.CustomResource):
          $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
         ```
 
-         For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createAccessListEntriesForOneOrganizationApiKey)
+         For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
 
         :param str resource_name: The name of the resource.
         :param AccessListApiKeyArgs args: The arguments to use to populate this resource's properties.
@@ -311,10 +311,10 @@ class AccessListApiKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_key_id: Unique identifier for the Organization API Key for which you want to create a new access list entry.
                
-               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+               > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list.
-        :param pulumi.Input[str] org_id: Unique identifier for the organinzation to which you want to add one or more access list entries.
+        :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -332,7 +332,7 @@ class AccessListApiKey(pulumi.CustomResource):
         """
         Unique identifier for the Organization API Key for which you want to create a new access list entry.
 
-        > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+        > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
         """
         return pulumi.get(self, "api_key_id")
 
@@ -356,7 +356,7 @@ class AccessListApiKey(pulumi.CustomResource):
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Output[str]:
         """
-        Unique identifier for the organinzation to which you want to add one or more access list entries.
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
         return pulumi.get(self, "org_id")
 

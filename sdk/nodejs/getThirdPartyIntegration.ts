@@ -8,24 +8,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testFlowdock = new mongodbatlas.ThirdPartyIntegration("testFlowdock", {
- *     projectId: "<PROJECT-ID>",
- *     type: "FLOWDOCK",
- *     flowName: "<FLOW-NAME>",
- *     apiToken: "<API-TOKEN>",
- *     orgName: "<ORG-NAME>",
- * });
- * const test = mongodbatlas.getThirdPartyIntegrationOutput({
- *     projectId: testFlowdock.projectId,
- * });
- * ```
  */
 export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationResult> {
 
@@ -78,6 +60,7 @@ export interface GetThirdPartyIntegrationArgs {
      * * PROMETHEUS
      *
      * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
      */
     type: string;
     /**
@@ -108,10 +91,6 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly enabled?: boolean;
     /**
-     * Your Flowdock Flow name.
-     */
-    readonly flowName: string;
-    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -123,15 +102,7 @@ export interface GetThirdPartyIntegrationResult {
      * Your Microsoft Teams incoming webhook URL.
      */
     readonly microsoftTeamsWebhookUrl?: string;
-    /**
-     * Your Flowdock organization name.
-     */
-    readonly orgName: string;
     readonly projectId: string;
-    /**
-     * Your Insights Query Key.
-     */
-    readonly readToken: string;
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
      */
@@ -169,33 +140,11 @@ export interface GetThirdPartyIntegrationResult {
      * Your Prometheus username.
      */
     readonly userName?: string;
-    /**
-     * Your Insights Insert Key.
-     */
-    readonly writeToken: string;
 }
 /**
  * `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testFlowdock = new mongodbatlas.ThirdPartyIntegration("testFlowdock", {
- *     projectId: "<PROJECT-ID>",
- *     type: "FLOWDOCK",
- *     flowName: "<FLOW-NAME>",
- *     apiToken: "<API-TOKEN>",
- *     orgName: "<ORG-NAME>",
- * });
- * const test = mongodbatlas.getThirdPartyIntegrationOutput({
- *     projectId: testFlowdock.projectId,
- * });
- * ```
  */
 export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationResult> {
     return pulumi.output(args).apply((a: any) => getThirdPartyIntegration(a, opts))
@@ -238,6 +187,7 @@ export interface GetThirdPartyIntegrationOutputArgs {
      * * PROMETHEUS
      *
      * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
      */
     type: pulumi.Input<string>;
     /**

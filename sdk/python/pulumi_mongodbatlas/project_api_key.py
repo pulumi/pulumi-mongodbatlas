@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ProjectApiKeyInitArgs', 'ProjectApiKey']
 
@@ -16,16 +18,21 @@ class ProjectApiKeyInitArgs:
     def __init__(__self__, *,
                  description: pulumi.Input[str],
                  project_id: pulumi.Input[str],
-                 role_names: pulumi.Input[Sequence[pulumi.Input[str]]]):
+                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None,
+                 role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a ProjectApiKey resource.
         :param pulumi.Input[str] description: Description of this Organization API key.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        :param pulumi.Input[str] project_id: Project ID to assign to Access Key
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
                The following are valid roles:
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "role_names", role_names)
+        if project_assignments is not None:
+            pulumi.set(__self__, "project_assignments", project_assignments)
+        if role_names is not None:
+            pulumi.set(__self__, "role_names", role_names)
 
     @property
     @pulumi.getter
@@ -42,6 +49,9 @@ class ProjectApiKeyInitArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
+        """
+        Project ID to assign to Access Key
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -49,16 +59,25 @@ class ProjectApiKeyInitArgs:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="projectAssignments")
+    def project_assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]]:
+        return pulumi.get(self, "project_assignments")
+
+    @project_assignments.setter
+    def project_assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]]):
+        pulumi.set(self, "project_assignments", value)
+
+    @property
     @pulumi.getter(name="roleNames")
-    def role_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+    def role_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        Name of the role. This resource returns all the roles the user has in Atlas.
         The following are valid roles:
         """
         return pulumi.get(self, "role_names")
 
     @role_names.setter
-    def role_names(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+    def role_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "role_names", value)
 
 
@@ -68,6 +87,7 @@ class _ProjectApiKeyState:
                  api_key_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -75,7 +95,8 @@ class _ProjectApiKeyState:
         Input properties used for looking up and filtering ProjectApiKey resources.
         :param pulumi.Input[str] api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
         :param pulumi.Input[str] description: Description of this Organization API key.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        :param pulumi.Input[str] project_id: Project ID to assign to Access Key
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
                The following are valid roles:
         """
         if api_key_id is not None:
@@ -84,6 +105,8 @@ class _ProjectApiKeyState:
             pulumi.set(__self__, "description", description)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if project_assignments is not None:
+            pulumi.set(__self__, "project_assignments", project_assignments)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if public_key is not None:
@@ -125,8 +148,20 @@ class _ProjectApiKeyState:
         pulumi.set(self, "private_key", value)
 
     @property
+    @pulumi.getter(name="projectAssignments")
+    def project_assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]]:
+        return pulumi.get(self, "project_assignments")
+
+    @project_assignments.setter
+    def project_assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]]):
+        pulumi.set(self, "project_assignments", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Project ID to assign to Access Key
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -146,7 +181,7 @@ class _ProjectApiKeyState:
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        Name of the role. This resource returns all the roles the user has in Atlas.
         The following are valid roles:
         """
         return pulumi.get(self, "role_names")
@@ -162,11 +197,13 @@ class ProjectApiKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyProjectAssignmentArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         ## Example Usage
+        ### Create And Assign PAK Together
 
         ```python
         import pulumi
@@ -191,7 +228,8 @@ class ProjectApiKey(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of this Organization API key.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        :param pulumi.Input[str] project_id: Project ID to assign to Access Key
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
                The following are valid roles:
         """
         ...
@@ -202,6 +240,7 @@ class ProjectApiKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+        ### Create And Assign PAK Together
 
         ```python
         import pulumi
@@ -239,6 +278,7 @@ class ProjectApiKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyProjectAssignmentArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -253,11 +293,10 @@ class ProjectApiKey(pulumi.CustomResource):
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
+            __props__.__dict__["project_assignments"] = project_assignments
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
-            if role_names is None and not opts.urn:
-                raise TypeError("Missing required property 'role_names'")
             __props__.__dict__["role_names"] = role_names
             __props__.__dict__["api_key_id"] = None
             __props__.__dict__["private_key"] = None
@@ -277,6 +316,7 @@ class ProjectApiKey(pulumi.CustomResource):
             api_key_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
+            project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyProjectAssignmentArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             public_key: Optional[pulumi.Input[str]] = None,
             role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'ProjectApiKey':
@@ -289,7 +329,8 @@ class ProjectApiKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
         :param pulumi.Input[str] description: Description of this Organization API key.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        :param pulumi.Input[str] project_id: Project ID to assign to Access Key
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
                The following are valid roles:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -299,6 +340,7 @@ class ProjectApiKey(pulumi.CustomResource):
         __props__.__dict__["api_key_id"] = api_key_id
         __props__.__dict__["description"] = description
         __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["project_assignments"] = project_assignments
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_key"] = public_key
         __props__.__dict__["role_names"] = role_names
@@ -326,8 +368,16 @@ class ProjectApiKey(pulumi.CustomResource):
         return pulumi.get(self, "private_key")
 
     @property
+    @pulumi.getter(name="projectAssignments")
+    def project_assignments(self) -> pulumi.Output[Optional[Sequence['outputs.ProjectApiKeyProjectAssignment']]]:
+        return pulumi.get(self, "project_assignments")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
+        """
+        Project ID to assign to Access Key
+        """
         return pulumi.get(self, "project_id")
 
     @property
@@ -337,9 +387,9 @@ class ProjectApiKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="roleNames")
-    def role_names(self) -> pulumi.Output[Sequence[str]]:
+    def role_names(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        Name of the role. This resource returns all the roles the user has in Atlas.
         The following are valid roles:
         """
         return pulumi.get(self, "role_names")

@@ -113,6 +113,7 @@ export interface AdvancedClusterConnectionStringPrivateEndpoint {
     connectionString: string;
     endpoints: outputs.AdvancedClusterConnectionStringPrivateEndpointEndpoint[];
     srvConnectionString: string;
+    srvShardOptimizedConnectionString: string;
     type: string;
 }
 
@@ -230,7 +231,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      */
     instanceSize: string;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: number;
 }
@@ -249,9 +250,6 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
      * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
      */
     computeScaleDownEnabled: boolean;
-    /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
-     */
     diskGbEnabled: boolean;
 }
 
@@ -269,7 +267,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     instanceSize: string;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: number;
 }
@@ -288,7 +286,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     instanceSize: string;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: number;
 }
@@ -381,14 +379,6 @@ export interface AlertConfigurationNotification {
      */
     emailEnabled?: boolean;
     /**
-     * Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-     */
-    flowName?: string;
-    /**
-     * The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     */
-    flowdockApiToken?: string;
-    /**
      * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
      */
     intervalMin?: number;
@@ -408,10 +398,6 @@ export interface AlertConfigurationNotification {
      * Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
      */
     opsGenieRegion?: string;
-    /**
-     * Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-     */
-    orgName?: string;
     /**
      * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
@@ -804,36 +790,6 @@ export interface CloudProviderAccessSetupAwsConfig {
     atlasAwsAccountArn: string;
 }
 
-export interface CloudProviderSnapshotBackupPolicyPolicy {
-    id: string;
-    policyItems: outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem[];
-}
-
-export interface CloudProviderSnapshotBackupPolicyPolicyPolicyItem {
-    frequencyInterval: number;
-    frequencyType: string;
-    id: string;
-    retentionUnit: string;
-    retentionValue: number;
-}
-
-export interface CloudProviderSnapshotRestoreJobDeliveryTypeConfig {
-    automated?: boolean;
-    download?: boolean;
-    oplogInc?: number;
-    oplogTs?: number;
-    pointInTime?: boolean;
-    pointInTimeUtcSeconds?: number;
-    /**
-     * Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
-     */
-    targetClusterName?: string;
-    /**
-     * Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
-     */
-    targetProjectId?: string;
-}
-
 export interface ClusterAdvancedConfiguration {
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -922,6 +878,7 @@ export interface ClusterConnectionStringPrivateEndpoint {
     connectionString: string;
     endpoints: outputs.ClusterConnectionStringPrivateEndpointEndpoint[];
     srvConnectionString: string;
+    srvShardOptimizedConnectionString: string;
     type: string;
 }
 
@@ -945,6 +902,21 @@ export interface ClusterLabel {
      * The value that you want to write.
      */
     value: string;
+}
+
+export interface ClusterOutageSimulationOutageFilter {
+    /**
+     * The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     */
+    cloudProvider: string;
+    /**
+     * The Atlas name of the region to undergo an outage simulation.
+     */
+    regionName: string;
+    /**
+     * The type of cluster outage simulation. Following values are supported:
+     */
+    type: string;
 }
 
 export interface ClusterReplicationSpec {
@@ -1090,6 +1062,101 @@ export interface DataLakeAws {
 export interface DataLakeDataProcessRegion {
     cloudProvider: string;
     region: string;
+}
+
+export interface DataLakePipelineIngestionSchedule {
+    frequencyInterval: number;
+    frequencyType: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+     */
+    id: string;
+    retentionUnit: string;
+    retentionValue: number;
+}
+
+export interface DataLakePipelineSink {
+    /**
+     * Ordered fields used to physically organize data in the destination.
+     * * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
+     * * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
+     */
+    partitionFields?: outputs.DataLakePipelineSinkPartitionField[];
+    /**
+     * Target cloud provider for this Data Lake Pipeline.
+     */
+    provider: string;
+    /**
+     * Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
+     */
+    region: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type?: string;
+}
+
+export interface DataLakePipelineSinkPartitionField {
+    fieldName: string;
+    order: number;
+}
+
+export interface DataLakePipelineSnapshot {
+    copyRegion: string;
+    createdAt: string;
+    expiresAt: string;
+    frequencyYype: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+     */
+    id: string;
+    masterKey: string;
+    mongodVersion: string;
+    policies?: string[];
+    /**
+     * Target cloud provider for this Data Lake Pipeline.
+     */
+    provider?: string;
+    replicaSetName: string;
+    size: number;
+    snapshotType: string;
+    status: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type: string;
+}
+
+export interface DataLakePipelineSource {
+    /**
+     * Human-readable name that identifies the cluster.
+     */
+    clusterName?: string;
+    /**
+     * Human-readable name that identifies the collection.
+     */
+    collectionName?: string;
+    /**
+     * Human-readable name that identifies the database.
+     */
+    databaseName?: string;
+    policyItemId?: string;
+    /**
+     * The unique ID for the project to create a data lake pipeline.
+     */
+    projectId: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type?: string;
+}
+
+export interface DataLakePipelineTransformation {
+    field?: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type?: string;
 }
 
 export interface DataLakeStorageDatabase {
@@ -1260,6 +1327,140 @@ export interface EventTriggerEventProcessorsAwsEventbridge {
     configRegion?: string;
 }
 
+export interface FederatedDatabaseInstanceCloudProviderConfig {
+    aws: outputs.FederatedDatabaseInstanceCloudProviderConfigAws;
+}
+
+export interface FederatedDatabaseInstanceCloudProviderConfigAws {
+    /**
+     * Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
+     */
+    externalId: string;
+    /**
+     * Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
+     * * `s3:GetObject`
+     * * `s3:ListBucket`
+     * * `s3:GetObjectVersion`
+     */
+    iamAssumedRoleArn: string;
+    /**
+     * Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
+     */
+    iamUserArn: string;
+    /**
+     * Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+     */
+    roleId: string;
+    /**
+     * Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
+     * ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
+     */
+    testS3Bucket: string;
+}
+
+export interface FederatedDatabaseInstanceDataProcessRegion {
+    /**
+     * Name of the cloud service provider. Atlas Federated Database only supports AWS.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+     */
+    region: string;
+}
+
+export interface FederatedDatabaseInstanceStorageDatabase {
+    collections?: outputs.FederatedDatabaseInstanceStorageDatabaseCollection[];
+    maxWildcardCollections: number;
+    /**
+     * Name of the Atlas Federated Database Instance.
+     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
+     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     */
+    name?: string;
+    views?: outputs.FederatedDatabaseInstanceStorageDatabaseView[];
+}
+
+export interface FederatedDatabaseInstanceStorageDatabaseCollection {
+    dataSources?: outputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSource[];
+    /**
+     * Name of the Atlas Federated Database Instance.
+     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
+     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     */
+    name?: string;
+}
+
+export interface FederatedDatabaseInstanceStorageDatabaseCollectionDataSource {
+    allowInsecure?: boolean;
+    collection?: string;
+    collectionRegex?: string;
+    database?: string;
+    databaseRegex?: string;
+    defaultFormat?: string;
+    path?: string;
+    provenanceFieldName?: string;
+    storeName?: string;
+    urls?: string[];
+}
+
+export interface FederatedDatabaseInstanceStorageDatabaseView {
+    /**
+     * Name of the Atlas Federated Database Instance.
+     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
+     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     */
+    name: string;
+    pipeline: string;
+    source: string;
+}
+
+export interface FederatedDatabaseInstanceStorageStore {
+    additionalStorageClasses?: string[];
+    allowInsecure?: boolean;
+    bucket?: string;
+    clusterId?: string;
+    clusterName?: string;
+    defaultFormat?: string;
+    delimiter?: string;
+    includeTags?: boolean;
+    /**
+     * Name of the Atlas Federated Database Instance.
+     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
+     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     */
+    name?: string;
+    prefix?: string;
+    /**
+     * The unique ID for the project to create a Federated Database Instance.
+     */
+    projectId?: string;
+    provider?: string;
+    public?: string;
+    readPreference?: outputs.FederatedDatabaseInstanceStorageStoreReadPreference;
+    /**
+     * Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+     */
+    region?: string;
+    urls?: string[];
+}
+
+export interface FederatedDatabaseInstanceStorageStoreReadPreference {
+    maxStalenessSeconds?: number;
+    mode?: string;
+    tags: outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTag[];
+}
+
+export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
+    /**
+     * Name of the Atlas Federated Database Instance.
+     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
+     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     */
+    name?: string;
+    value?: string;
+}
+
 export interface FederatedSettingsOrgRoleMappingRoleAssignment {
     /**
      * Unique identifier of the project to which you want the role mapping to apply.
@@ -1373,6 +1574,7 @@ export interface GetAdvancedClusterConnectionStringPrivateEndpoint {
     connectionString: string;
     endpoints: outputs.GetAdvancedClusterConnectionStringPrivateEndpointEndpoint[];
     srvConnectionString: string;
+    srvShardOptimizedConnectionString: string;
     type: string;
 }
 
@@ -1493,7 +1695,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      */
     instanceSize: string;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: number;
 }
@@ -1536,7 +1738,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     instanceSize: string;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: number;
 }
@@ -1555,7 +1757,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     instanceSize: string;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: number;
 }
@@ -1704,6 +1906,7 @@ export interface GetAdvancedClustersResultConnectionStringPrivateEndpoint {
     connectionString: string;
     endpoints: outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint[];
     srvConnectionString: string;
+    srvShardOptimizedConnectionString: string;
     type: string;
 }
 
@@ -1823,7 +2026,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSp
      */
     instanceSize: string;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: number;
 }
@@ -1865,7 +2068,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigElectableSp
      */
     instanceSize: string;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: number;
 }
@@ -1884,7 +2087,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpe
      */
     instanceSize: string;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: number;
 }
@@ -1960,14 +2163,6 @@ export interface GetAlertConfigurationNotification {
      */
     emailEnabled: boolean;
     /**
-     * Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-     */
-    flowName: string;
-    /**
-     * The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     */
-    flowdockApiToken: string;
-    /**
      * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
      */
     intervalMin: number;
@@ -1987,10 +2182,6 @@ export interface GetAlertConfigurationNotification {
      * Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
      */
     opsGenieRegion: string;
-    /**
-     * Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-     */
-    orgName: string;
     /**
      * Atlas role in current Project or Organization. Atlas returns this value if you set `typeName` to `ORG` or `GROUP`.
      */
@@ -2138,14 +2329,11 @@ export interface GetAlertConfigurationsResultNotification {
     delayMin: number;
     emailAddress: string;
     emailEnabled: boolean;
-    flowName: string;
-    flowdockApiToken: string;
     intervalMin: number;
     microsoftTeamsWebhookUrl?: string;
     mobileNumber: string;
     opsGenieApiKey: string;
     opsGenieRegion: string;
-    orgName: string;
     roles?: string[];
     serviceKey: string;
     smsEnabled: boolean;
@@ -2730,116 +2918,6 @@ export interface GetCloudProviderAccessSetupAwsConfig {
     atlasAwsAccountArn: string;
 }
 
-export interface GetCloudProviderSnapshotBackupPolicyPolicy {
-    id: string;
-    policyItems: outputs.GetCloudProviderSnapshotBackupPolicyPolicyPolicyItem[];
-}
-
-export interface GetCloudProviderSnapshotBackupPolicyPolicyPolicyItem {
-    frequencyInterval: number;
-    frequencyType: string;
-    id: string;
-    retentionUnit: string;
-    retentionValue: number;
-}
-
-export interface GetCloudProviderSnapshotRestoreJobsResult {
-    /**
-     * Indicates whether the restore job was canceled.
-     */
-    cancelled: boolean;
-    /**
-     * UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     */
-    createdAt: string;
-    /**
-     * Type of restore job to create. Possible values are: automated and download.
-     */
-    deliveryType: string;
-    /**
-     * One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
-     */
-    deliveryUrls: string[];
-    /**
-     * Indicates whether the restore job expired.
-     */
-    expired: boolean;
-    /**
-     * UTC ISO 8601 formatted point in time when the restore job expires.
-     */
-    expiresAt: string;
-    /**
-     * UTC ISO 8601 formatted point in time when the restore job completed.
-     */
-    finishedAt: string;
-    /**
-     * The unique identifier of the restore job.
-     */
-    id: string;
-    oplogInc: number;
-    oplogTs: number;
-    pointInTimeUtcSeconds: number;
-    /**
-     * Unique identifier of the source snapshot ID of the restore job.
-     */
-    snapshotId: string;
-    /**
-     * Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
-     */
-    targetClusterName: string;
-    /**
-     * Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
-     */
-    targetProjectId: string;
-    /**
-     * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-     */
-    timestamp: string;
-}
-
-export interface GetCloudProviderSnapshotsResult {
-    /**
-     * UTC ISO 8601 formatted point in time when Atlas took the snapshot.
-     */
-    createdAt: string;
-    /**
-     * UDescription of the snapshot. Only present for on-demand snapshots.
-     */
-    description: string;
-    /**
-     * UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
-     */
-    expiresAt: string;
-    /**
-     * Unique identifier of the snapshot.
-     */
-    id: string;
-    /**
-     * Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
-     */
-    masterKeyUuid: string;
-    /**
-     * Version of the MongoDB server.
-     */
-    mongodVersion: string;
-    /**
-     * Specified the type of snapshot. Valid values are onDemand and scheduled.
-     */
-    snapshotType: string;
-    /**
-     * Current status of the snapshot. One of the following values: queued, inProgress, completed, failed.
-     */
-    status: string;
-    /**
-     * Specifies the size of the snapshot in bytes.
-     */
-    storageSizeBytes: number;
-    /**
-     * Specifies the type of cluster: replicaSet or shardedCluster.
-     */
-    type: string;
-}
-
 export interface GetClusterAdvancedConfiguration {
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -2908,6 +2986,7 @@ export interface GetClusterConnectionStringPrivateEndpoint {
     connectionString: string;
     endpoints: outputs.GetClusterConnectionStringPrivateEndpointEndpoint[];
     srvConnectionString: string;
+    srvShardOptimizedConnectionString: string;
     type: string;
 }
 
@@ -2929,6 +3008,21 @@ export interface GetClusterLabel {
      * The value that represents the key.
      */
     value: string;
+}
+
+export interface GetClusterOutageSimulationOutageFilter {
+    /**
+     * The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     */
+    cloudProvider: string;
+    /**
+     * The Atlas name of the region undergoing an outage simulation.
+     */
+    regionName: string;
+    /**
+     * The type of cluster outage simulation. Following values are supported:
+     */
+    type: string;
 }
 
 export interface GetClusterReplicationSpec {
@@ -3052,6 +3146,7 @@ export interface GetClustersResult {
      * - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
      * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
      * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
      * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
      * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
@@ -3252,6 +3347,7 @@ export interface GetClustersResultConnectionStringPrivateEndpoint {
     connectionString: string;
     endpoints: outputs.GetClustersResultConnectionStringPrivateEndpointEndpoint[];
     srvConnectionString: string;
+    srvShardOptimizedConnectionString: string;
     type: string;
 }
 
@@ -3429,6 +3525,253 @@ export interface GetDataLakeAw {
 export interface GetDataLakeDataProcessRegion {
     cloudProvider: string;
     region: string;
+}
+
+export interface GetDataLakePipelineIngestionSchedule {
+    frequencyInterval: number;
+    frequencyType: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+     */
+    id: string;
+    retentionUnit: string;
+    retentionValue: number;
+}
+
+export interface GetDataLakePipelineRunStat {
+    /**
+     * Total data size in bytes exported for this pipeline run.
+     */
+    bytesExported: number;
+    /**
+     * Number of docs ingested for a this pipeline run.
+     */
+    numDocs: number;
+}
+
+export interface GetDataLakePipelineRunsResult {
+    /**
+     * Backup schedule interval of the Data Lake Pipeline.
+     */
+    backupFrequencyType: string;
+    /**
+     * Timestamp that indicates when the pipeline run was created.
+     */
+    createdDate: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
+     */
+    id: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
+     */
+    lastUpdatedDate: string;
+    /**
+     * Processing phase of the Data Lake Pipeline.
+     */
+    phase: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies a Data Lake Pipeline.
+     */
+    pipelineId: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
+     */
+    pipelineRunId: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies the snapshot of a cluster.
+     */
+    snapshotId: string;
+    /**
+     * State of the pipeline run.
+     */
+    state: string;
+    /**
+     * Runtime statistics for this Data Lake Pipeline run.
+     */
+    stats: outputs.GetDataLakePipelineRunsResultStat[];
+}
+
+export interface GetDataLakePipelineRunsResultStat {
+    /**
+     * Total data size in bytes exported for this pipeline run.
+     */
+    bytesExported: number;
+    /**
+     * Number of docs ingested for a this pipeline run.
+     */
+    numDocs: number;
+}
+
+export interface GetDataLakePipelineSink {
+    /**
+     * Ordered fields used to physically organize data in the destination.
+     * * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
+     * * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
+     */
+    partitionFields: outputs.GetDataLakePipelineSinkPartitionField[];
+    /**
+     * Target cloud provider for this Data Lake Pipeline.
+     */
+    provider: string;
+    /**
+     * Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
+     */
+    region: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type: string;
+}
+
+export interface GetDataLakePipelineSinkPartitionField {
+    fieldName: string;
+    order: number;
+}
+
+export interface GetDataLakePipelineSnapshot {
+    copyRegion: string;
+    createdAt: string;
+    expiresAt: string;
+    frequencyYype: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+     */
+    id: string;
+    masterKey: string;
+    mongodVersion: string;
+    policies: string[];
+    /**
+     * Target cloud provider for this Data Lake Pipeline.
+     */
+    provider: string;
+    replicaSetName: string;
+    size: number;
+    status: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type: string;
+}
+
+export interface GetDataLakePipelineSource {
+    /**
+     * Human-readable name that identifies the cluster.
+     */
+    clusterName: string;
+    /**
+     * Human-readable name that identifies the collection.
+     */
+    collectionName: string;
+    /**
+     * Human-readable name that identifies the database.
+     */
+    databaseName: string;
+    /**
+     * The unique ID for the project to create a Data Lake Pipeline.
+     */
+    projectId: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type: string;
+}
+
+export interface GetDataLakePipelineTransformation {
+    field: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type: string;
+}
+
+export interface GetDataLakePipelinesResult {
+    /**
+     * Timestamp that indicates when the Data Lake Pipeline was created.
+     */
+    createdDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+     */
+    id: string;
+    /**
+     * Timestamp that indicates the last time that the Data Lake Pipeline was updated.
+     */
+    lastUpdatedDate: string;
+    name: string;
+    /**
+     * The unique ID for the project to create a data lake pipeline.
+     */
+    projectId: string;
+    sinks: outputs.GetDataLakePipelinesResultSink[];
+    sources: outputs.GetDataLakePipelinesResultSource[];
+    /**
+     * State of this Data Lake Pipeline.
+     */
+    state: string;
+    /**
+     * Fields to be excluded for this Data Lake Pipeline.
+     * * `transformations.#.field` - Key in the document.
+     * * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
+     */
+    transformations: outputs.GetDataLakePipelinesResultTransformation[];
+}
+
+export interface GetDataLakePipelinesResultSink {
+    /**
+     * Ordered fields used to physically organize data in the destination.
+     * * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
+     * * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
+     */
+    partitionFields: outputs.GetDataLakePipelinesResultSinkPartitionField[];
+    /**
+     * Target cloud provider for this Data Lake Pipeline.
+     */
+    provider: string;
+    /**
+     * Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
+     */
+    region: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type: string;
+}
+
+export interface GetDataLakePipelinesResultSinkPartitionField {
+    fieldName: string;
+    order: number;
+}
+
+export interface GetDataLakePipelinesResultSource {
+    /**
+     * Human-readable name that identifies the cluster.
+     */
+    clusterName: string;
+    /**
+     * Human-readable name that identifies the collection.
+     */
+    collectionName: string;
+    /**
+     * Human-readable name that identifies the database.
+     */
+    databaseName: string;
+    /**
+     * The unique ID for the project to create a data lake pipeline.
+     */
+    projectId: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type: string;
+}
+
+export interface GetDataLakePipelinesResultTransformation {
+    field: string;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type: string;
 }
 
 export interface GetDataLakeStorageDatabase {
@@ -3772,6 +4115,320 @@ export interface GetEventTriggersResultEventProcessor {
 export interface GetEventTriggersResultEventProcessorAwsEventbridge {
     configAccountId: string;
     configRegion: string;
+}
+
+export interface GetFederatedDatabaseInstanceCloudProviderConfig {
+    aws: outputs.GetFederatedDatabaseInstanceCloudProviderConfigAws;
+}
+
+export interface GetFederatedDatabaseInstanceCloudProviderConfigAws {
+    /**
+     * Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
+     */
+    externalId: string;
+    /**
+     * Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
+     * * `s3:GetObject`
+     * * `s3:ListBucket`
+     * * `s3:GetObjectVersion`
+     */
+    iamAssumedRoleArn: string;
+    /**
+     * Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
+     */
+    iamUserArn: string;
+    /**
+     * Unique identifier of the role that the data lake can use to access the data stores.
+     */
+    roleId: string;
+    testS3Bucket: string;
+}
+
+export interface GetFederatedDatabaseInstanceDataProcessRegion {
+    /**
+     * Name of the cloud service provider. Atlas Federated Database only supports AWS.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the region to which the Federanted Instnace routes client connections for data processing.
+     */
+    region: string;
+}
+
+export interface GetFederatedDatabaseInstanceStorageDatabase {
+    collections: outputs.GetFederatedDatabaseInstanceStorageDatabaseCollection[];
+    maxWildcardCollections: number;
+    /**
+     * Name of the Atlas Federated Database Instance.
+     */
+    name: string;
+    views: outputs.GetFederatedDatabaseInstanceStorageDatabaseView[];
+}
+
+export interface GetFederatedDatabaseInstanceStorageDatabaseCollection {
+    dataSources: outputs.GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource[];
+    /**
+     * Name of the Atlas Federated Database Instance.
+     */
+    name: string;
+}
+
+export interface GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource {
+    allowInsecure: boolean;
+    collection: string;
+    collectionRegex: string;
+    database: string;
+    databaseRegex: string;
+    defaultFormat: string;
+    path: string;
+    provenanceFieldName: string;
+    storeName: string;
+    urls: string[];
+}
+
+export interface GetFederatedDatabaseInstanceStorageDatabaseView {
+    /**
+     * Name of the Atlas Federated Database Instance.
+     */
+    name: string;
+    pipeline: string;
+    source: string;
+}
+
+export interface GetFederatedDatabaseInstanceStorageStore {
+    additionalStorageClasses: string[];
+    allowInsecure: boolean;
+    bucket: string;
+    clusterId: string;
+    clusterName: string;
+    defaultFormat: string;
+    delimiter: string;
+    includeTags: boolean;
+    /**
+     * Name of the Atlas Federated Database Instance.
+     */
+    name: string;
+    prefix: string;
+    /**
+     * The unique ID for the project to create a Federated Database Instance.
+     */
+    projectId: string;
+    provider: string;
+    public: string;
+    readPreferences: outputs.GetFederatedDatabaseInstanceStorageStoreReadPreference[];
+    /**
+     * Name of the region to which the Federanted Instnace routes client connections for data processing.
+     */
+    region: string;
+    urls: string[];
+}
+
+export interface GetFederatedDatabaseInstanceStorageStoreReadPreference {
+    maxStalenessSeconds: number;
+    mode: string;
+    tags: outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag[];
+}
+
+export interface GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag {
+    /**
+     * Name of the Atlas Federated Database Instance.
+     */
+    name: string;
+    value: string;
+}
+
+export interface GetFederatedDatabaseInstancesResult {
+    cloudProviderConfig: outputs.GetFederatedDatabaseInstancesResultCloudProviderConfig;
+    dataProcessRegions: outputs.GetFederatedDatabaseInstancesResultDataProcessRegion[];
+    /**
+     * The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
+     */
+    hostnames: string[];
+    name: string;
+    /**
+     * The unique ID for the project to create a Federated Database Instance.
+     */
+    projectId: string;
+    /**
+     * Current state of the Federated Database Instance:
+     */
+    state: string;
+    /**
+     * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+     * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
+     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+     * * `storage_databases.#.collections.#.name` - Name of the collection.
+     * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
+     * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
+     * * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
+     * * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
+     * * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
+     * * `storage_databases.#.collections.#.data_sources.#.allow_insecure` - Flag that validates the scheme in the specified URLs. If true, allows insecure HTTP scheme, doesn't verify the server's certificate chain and hostname, and accepts any certificate with any hostname presented by the server. If false, allows secure HTTPS scheme only.
+     * * `storage_databases.#.collections.#.data_sources.#.database_regex` - Regex pattern to use for creating the wildcard database.
+     * * `storage_databases.#.collections.#.data_sources.#.collection` - Human-readable label that identifies the collection in the database.
+     * * `storage_databases.#.collections.#.data_sources.#.collection_regex` - Regex pattern to use for creating the wildcard (*) collection.
+     * * `storage_databases.#.collections.#.data_sources.#.provenance_field_name` - Name for the field that includes the provenance of the documents in the results.
+     * * `storage_databases.#.collections.#.data_sources.#.storeName` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
+     * * `storage_databases.#.collections.#.data_sources.#.urls` - URLs of the publicly accessible data files. You can't specify URLs that require authentication.
+     * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://docs.mongodb.com/manual/core/views/).
+     * * `storage_databases.#.views.#.name` - Name of the view.
+     * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
+     * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
+     */
+    storageDatabases: outputs.GetFederatedDatabaseInstancesResultStorageDatabase[];
+    /**
+     * Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+     * * `storage_stores.#.name` - Name of the data store.
+     * * `storage_stores.#.provider` - Defines where the data is stored.
+     * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
+     * * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+     * * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
+     * * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
+     * * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
+     * * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
+     * * `storage_stores.#.cluster_id` - ID of the Cluster the Online Archive belongs to.
+     * * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
+     * * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
+     * * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+     * * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
+     * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
+     * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
+     * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
+     * * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
+     * * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
+     * * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+     */
+    storageStores: outputs.GetFederatedDatabaseInstancesResultStorageStore[];
+}
+
+export interface GetFederatedDatabaseInstancesResultCloudProviderConfig {
+    aws: outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAws;
+}
+
+export interface GetFederatedDatabaseInstancesResultCloudProviderConfigAws {
+    /**
+     * Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
+     */
+    externalId: string;
+    /**
+     * Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
+     * * `s3:GetObject`
+     * * `s3:ListBucket`
+     * * `s3:GetObjectVersion`
+     */
+    iamAssumedRoleArn: string;
+    /**
+     * Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
+     */
+    iamUserArn: string;
+    /**
+     * Unique identifier of the role that the data lake can use to access the data stores.
+     * #### `dataProcessRegion` - The cloud provider region to which the Federated Instance routes client connections for data processing.
+     */
+    roleId: string;
+    testS3Bucket: string;
+}
+
+export interface GetFederatedDatabaseInstancesResultDataProcessRegion {
+    /**
+     * Name of the cloud service provider. Atlas Federated Database only supports AWS.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the region to which the Federanted Instnace routes client connections for data processing.
+     */
+    region: string;
+}
+
+export interface GetFederatedDatabaseInstancesResultStorageDatabase {
+    collections: outputs.GetFederatedDatabaseInstancesResultStorageDatabaseCollection[];
+    maxWildcardCollections: number;
+    name: string;
+    views: outputs.GetFederatedDatabaseInstancesResultStorageDatabaseView[];
+}
+
+export interface GetFederatedDatabaseInstancesResultStorageDatabaseCollection {
+    dataSources: outputs.GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSource[];
+    name: string;
+}
+
+export interface GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSource {
+    allowInsecure: boolean;
+    collection: string;
+    collectionRegex: string;
+    database: string;
+    databaseRegex: string;
+    defaultFormat: string;
+    path: string;
+    provenanceFieldName: string;
+    storeName: string;
+    urls: string[];
+}
+
+export interface GetFederatedDatabaseInstancesResultStorageDatabaseView {
+    name: string;
+    pipeline: string;
+    source: string;
+}
+
+export interface GetFederatedDatabaseInstancesResultStorageStore {
+    additionalStorageClasses: string[];
+    allowInsecure: boolean;
+    bucket: string;
+    clusterId: string;
+    clusterName: string;
+    defaultFormat: string;
+    delimiter: string;
+    includeTags: boolean;
+    name: string;
+    prefix: string;
+    /**
+     * The unique ID for the project to create a Federated Database Instance.
+     */
+    projectId: string;
+    provider: string;
+    public: string;
+    readPreferences: outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreference[];
+    /**
+     * Name of the region to which the Federanted Instnace routes client connections for data processing.
+     */
+    region: string;
+    urls: string[];
+}
+
+export interface GetFederatedDatabaseInstancesResultStorageStoreReadPreference {
+    maxStalenessSeconds: number;
+    mode: string;
+    tags: outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag[];
+}
+
+export interface GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag {
+    name: string;
+    value: string;
+}
+
+export interface GetFederatedQueryLimitsResult {
+    /**
+     * Amount that indicates the current usage of the limit.
+     */
+    currentUsage: number;
+    /**
+     * Default value of the limit.
+     */
+    defaultLimit: number;
+    lastModifiedDate: string;
+    limitName: string;
+    maximumLimit: number;
+    overrunPolicy: string;
+    /**
+     * The unique ID for the project to create a Federated Database Instance.
+     */
+    projectId: string;
+    /**
+     * Name of the Atlas Federated Database Instance.
+     */
+    tenantName: string;
+    value: number;
 }
 
 export interface GetFederatedSettingsIdentityProviderAssociatedOrg {
@@ -4418,6 +5075,34 @@ export interface GetOnlineArchivesResultPartitionField {
     order: number;
 }
 
+export interface GetOrganizationLink {
+    href: string;
+    rel: string;
+}
+
+export interface GetOrganizationsResult {
+    /**
+     * Autogenerated Unique ID for this data source.
+     */
+    id: string;
+    /**
+     * Flag that indicates whether this organization has been deleted.
+     *
+     * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
+     */
+    isDeleted: boolean;
+    links: outputs.GetOrganizationsResultLink[];
+    /**
+     * Human-readable label that identifies the organization.
+     */
+    name: string;
+}
+
+export interface GetOrganizationsResultLink {
+    href: string;
+    rel: string;
+}
+
 export interface GetPrivateLinkEndpointServiceEndpoint {
     /**
      * Forwarding rule that corresponds to the endpoint you created in GCP.
@@ -4435,6 +5120,25 @@ export interface GetPrivateLinkEndpointServiceEndpoint {
      * Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      */
     status: string;
+}
+
+export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult {
+    /**
+     * Human-readable string to associate with this private endpoint.
+     */
+    comment: string;
+    /**
+     * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
+     */
+    endpointId: string;
+    /**
+     * Human-readable label that identifies the cloud service provider.
+     */
+    providerName: string;
+    /**
+     * Human-readable label that identifies the resource type associated with this private endpoint.
+     */
+    type: string;
 }
 
 export interface GetPrivatelinkEndpointsServiceAdlLink {
@@ -4549,6 +5253,10 @@ export interface GetProjectsResult {
      */
     isDataExplorerEnabled: boolean;
     /**
+     * Flag that indicates whether to enable extended storage sizes for the specified project.
+     */
+    isExtendedStorageSizesEnabled?: boolean;
+    /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      */
     isPerformanceAdvisorEnabled: boolean;
@@ -4603,7 +5311,7 @@ export interface GetSearchIndexesResult {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      */
-    analyzer: string;
+    analyzer?: string;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      */
@@ -4743,10 +5451,6 @@ export interface GetThirdPartyIntegrationsResult {
      */
     enabled?: boolean;
     /**
-     * Your Flowdock Flow name.
-     */
-    flowName: string;
-    /**
      * Your License Key.
      */
     licenseKey: string;
@@ -4755,17 +5459,9 @@ export interface GetThirdPartyIntegrationsResult {
      */
     microsoftTeamsWebhookUrl?: string;
     /**
-     * Your Flowdock organization name.
-     */
-    orgName: string;
-    /**
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId: string;
-    /**
-     * Your Insights Query Key.
-     */
-    readToken: string;
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
      */
@@ -4803,10 +5499,6 @@ export interface GetThirdPartyIntegrationsResult {
      * Your Prometheus username.
      */
     userName?: string;
-    /**
-     * Your Insights Insert Key.
-     */
-    writeToken: string;
 }
 
 export interface GlobalClusterConfigCustomZoneMapping {
@@ -4898,11 +5590,25 @@ export interface PrivateLinkEndpointServiceEndpoint {
 export interface ProjectApiKey {
     /**
      * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     *
+     * **WARNING:** The `apiKeys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `mongodbatlas.ProjectApiKey`  resource instead.
      */
     apiKeyId: string;
     /**
      * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
      * The following are valid roles:
+     * The following are valid roles:
+     */
+    roleNames: string[];
+}
+
+export interface ProjectApiKeyProjectAssignment {
+    /**
+     * Project ID to assign to Access Key
+     */
+    projectId: string;
+    /**
+     * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      */
     roleNames: string[];

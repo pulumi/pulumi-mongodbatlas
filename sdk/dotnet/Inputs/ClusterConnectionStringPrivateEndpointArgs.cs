@@ -26,6 +26,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("srvConnectionString")]
         public Input<string>? SrvConnectionString { get; set; }
 
+        [Input("srvShardOptimizedConnectionString")]
+        public Input<string>? SrvShardOptimizedConnectionString { get; set; }
+
         [Input("type")]
         public Input<string>? Type { get; set; }
 

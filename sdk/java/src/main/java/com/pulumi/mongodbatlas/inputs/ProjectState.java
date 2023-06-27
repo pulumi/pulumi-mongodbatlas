@@ -20,9 +20,21 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
 
     public static final ProjectState Empty = new ProjectState();
 
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
     @Import(name="apiKeys")
     private @Nullable Output<List<ProjectApiKeyArgs>> apiKeys;
 
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
     public Optional<Output<List<ProjectApiKeyArgs>>> apiKeys() {
         return Optional.ofNullable(this.apiKeys);
     }
@@ -85,6 +97,21 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> isDataExplorerEnabled() {
         return Optional.ofNullable(this.isDataExplorerEnabled);
+    }
+
+    /**
+     * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+     * 
+     */
+    @Import(name="isExtendedStorageSizesEnabled")
+    private @Nullable Output<Boolean> isExtendedStorageSizesEnabled;
+
+    /**
+     * @return Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+     * 
+     */
+    public Optional<Output<Boolean>> isExtendedStorageSizesEnabled() {
+        return Optional.ofNullable(this.isExtendedStorageSizesEnabled);
     }
 
     /**
@@ -222,6 +249,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         this.created = $.created;
         this.isCollectDatabaseSpecificsStatisticsEnabled = $.isCollectDatabaseSpecificsStatisticsEnabled;
         this.isDataExplorerEnabled = $.isDataExplorerEnabled;
+        this.isExtendedStorageSizesEnabled = $.isExtendedStorageSizesEnabled;
         this.isPerformanceAdvisorEnabled = $.isPerformanceAdvisorEnabled;
         this.isRealtimePerformancePanelEnabled = $.isRealtimePerformancePanelEnabled;
         this.isSchemaAdvisorEnabled = $.isSchemaAdvisorEnabled;
@@ -251,15 +279,39 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
             $ = new ProjectState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
+         * 
+         */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
         public Builder apiKeys(@Nullable Output<List<ProjectApiKeyArgs>> apiKeys) {
             $.apiKeys = apiKeys;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
+         * 
+         */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
         public Builder apiKeys(List<ProjectApiKeyArgs> apiKeys) {
             return apiKeys(Output.of(apiKeys));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
+         * 
+         */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
         public Builder apiKeys(ProjectApiKeyArgs... apiKeys) {
             return apiKeys(List.of(apiKeys));
         }
@@ -346,6 +398,27 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder isDataExplorerEnabled(Boolean isDataExplorerEnabled) {
             return isDataExplorerEnabled(Output.of(isDataExplorerEnabled));
+        }
+
+        /**
+         * @param isExtendedStorageSizesEnabled Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isExtendedStorageSizesEnabled(@Nullable Output<Boolean> isExtendedStorageSizesEnabled) {
+            $.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
+            return this;
+        }
+
+        /**
+         * @param isExtendedStorageSizesEnabled Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isExtendedStorageSizesEnabled(Boolean isExtendedStorageSizesEnabled) {
+            return isExtendedStorageSizesEnabled(Output.of(isExtendedStorageSizesEnabled));
         }
 
         /**

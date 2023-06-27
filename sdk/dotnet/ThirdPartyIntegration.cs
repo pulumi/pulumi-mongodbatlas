@@ -15,34 +15,13 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
     /// &gt; **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
+    ///  **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
     /// 
     /// &gt; **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
     /// 
     /// &gt; **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
     /// 
     /// &gt; **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new()
-    ///     {
-    ///         ApiToken = "&lt;API-TOKEN&gt;",
-    ///         FlowName = "&lt;FLOW-NAME&gt;",
-    ///         OrgName = "&lt;ORG-NAME&gt;",
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         Type = "FLOWDOCK",
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// 
     /// ## Import
     /// 
@@ -58,22 +37,10 @@ namespace Pulumi.Mongodbatlas
     public partial class ThirdPartyIntegration : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Unique identifier of your New Relic account.
-        /// </summary>
-        [Output("accountId")]
-        public Output<string?> AccountId { get; private set; } = null!;
-
-        /// <summary>
         /// Your API Key.
         /// </summary>
         [Output("apiKey")]
         public Output<string?> ApiKey { get; private set; } = null!;
-
-        /// <summary>
-        /// Your API Token.
-        /// </summary>
-        [Output("apiToken")]
-        public Output<string?> ApiToken { get; private set; } = null!;
 
         [Output("channelName")]
         public Output<string?> ChannelName { get; private set; } = null!;
@@ -85,28 +52,10 @@ namespace Pulumi.Mongodbatlas
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// Your Flowdock Flow name.
-        /// </summary>
-        [Output("flowName")]
-        public Output<string?> FlowName { get; private set; } = null!;
-
-        /// <summary>
-        /// Your License Key.
-        /// </summary>
-        [Output("licenseKey")]
-        public Output<string?> LicenseKey { get; private set; } = null!;
-
-        /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
         /// </summary>
         [Output("microsoftTeamsWebhookUrl")]
         public Output<string?> MicrosoftTeamsWebhookUrl { get; private set; } = null!;
-
-        /// <summary>
-        /// Your Flowdock organization name.
-        /// </summary>
-        [Output("orgName")]
-        public Output<string?> OrgName { get; private set; } = null!;
 
         /// <summary>
         /// Your Prometheus password.
@@ -119,12 +68,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
-
-        /// <summary>
-        /// Your Insights Query Key.
-        /// </summary>
-        [Output("readToken")]
-        public Output<string?> ReadToken { get; private set; } = null!;
 
         /// <summary>
         /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
@@ -196,12 +139,6 @@ namespace Pulumi.Mongodbatlas
         [Output("userName")]
         public Output<string?> UserName { get; private set; } = null!;
 
-        /// <summary>
-        /// Your Insights Insert Key.
-        /// </summary>
-        [Output("writeToken")]
-        public Output<string?> WriteToken { get; private set; } = null!;
-
 
         /// <summary>
         /// Create a ThirdPartyIntegration resource with the given unique name, arguments, and options.
@@ -228,17 +165,13 @@ namespace Pulumi.Mongodbatlas
                 AdditionalSecretOutputs =
                 {
                     "apiKey",
-                    "apiToken",
-                    "licenseKey",
                     "microsoftTeamsWebhookUrl",
                     "password",
-                    "readToken",
                     "routingKey",
                     "secret",
                     "serviceDiscovery",
                     "serviceKey",
                     "userName",
-                    "writeToken",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -263,12 +196,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ThirdPartyIntegrationArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Unique identifier of your New Relic account.
-        /// </summary>
-        [Input("accountId")]
-        public Input<string>? AccountId { get; set; }
-
         [Input("apiKey")]
         private Input<string>? _apiKey;
 
@@ -285,22 +212,6 @@ namespace Pulumi.Mongodbatlas
             }
         }
 
-        [Input("apiToken")]
-        private Input<string>? _apiToken;
-
-        /// <summary>
-        /// Your API Token.
-        /// </summary>
-        public Input<string>? ApiToken
-        {
-            get => _apiToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _apiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
         [Input("channelName")]
         public Input<string>? ChannelName { get; set; }
 
@@ -309,28 +220,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
-
-        /// <summary>
-        /// Your Flowdock Flow name.
-        /// </summary>
-        [Input("flowName")]
-        public Input<string>? FlowName { get; set; }
-
-        [Input("licenseKey")]
-        private Input<string>? _licenseKey;
-
-        /// <summary>
-        /// Your License Key.
-        /// </summary>
-        public Input<string>? LicenseKey
-        {
-            get => _licenseKey;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _licenseKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
 
         [Input("microsoftTeamsWebhookUrl")]
         private Input<string>? _microsoftTeamsWebhookUrl;
@@ -347,12 +236,6 @@ namespace Pulumi.Mongodbatlas
                 _microsoftTeamsWebhookUrl = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
-
-        /// <summary>
-        /// Your Flowdock organization name.
-        /// </summary>
-        [Input("orgName")]
-        public Input<string>? OrgName { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
@@ -375,22 +258,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
-
-        [Input("readToken")]
-        private Input<string>? _readToken;
-
-        /// <summary>
-        /// Your Insights Query Key.
-        /// </summary>
-        public Input<string>? ReadToken
-        {
-            get => _readToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _readToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
 
         /// <summary>
         /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
@@ -512,22 +379,6 @@ namespace Pulumi.Mongodbatlas
             }
         }
 
-        [Input("writeToken")]
-        private Input<string>? _writeToken;
-
-        /// <summary>
-        /// Your Insights Insert Key.
-        /// </summary>
-        public Input<string>? WriteToken
-        {
-            get => _writeToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _writeToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
         public ThirdPartyIntegrationArgs()
         {
         }
@@ -536,12 +387,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ThirdPartyIntegrationState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Unique identifier of your New Relic account.
-        /// </summary>
-        [Input("accountId")]
-        public Input<string>? AccountId { get; set; }
-
         [Input("apiKey")]
         private Input<string>? _apiKey;
 
@@ -558,22 +403,6 @@ namespace Pulumi.Mongodbatlas
             }
         }
 
-        [Input("apiToken")]
-        private Input<string>? _apiToken;
-
-        /// <summary>
-        /// Your API Token.
-        /// </summary>
-        public Input<string>? ApiToken
-        {
-            get => _apiToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _apiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
         [Input("channelName")]
         public Input<string>? ChannelName { get; set; }
 
@@ -582,28 +411,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
-
-        /// <summary>
-        /// Your Flowdock Flow name.
-        /// </summary>
-        [Input("flowName")]
-        public Input<string>? FlowName { get; set; }
-
-        [Input("licenseKey")]
-        private Input<string>? _licenseKey;
-
-        /// <summary>
-        /// Your License Key.
-        /// </summary>
-        public Input<string>? LicenseKey
-        {
-            get => _licenseKey;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _licenseKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
 
         [Input("microsoftTeamsWebhookUrl")]
         private Input<string>? _microsoftTeamsWebhookUrl;
@@ -620,12 +427,6 @@ namespace Pulumi.Mongodbatlas
                 _microsoftTeamsWebhookUrl = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
-
-        /// <summary>
-        /// Your Flowdock organization name.
-        /// </summary>
-        [Input("orgName")]
-        public Input<string>? OrgName { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
@@ -648,22 +449,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
-
-        [Input("readToken")]
-        private Input<string>? _readToken;
-
-        /// <summary>
-        /// Your Insights Query Key.
-        /// </summary>
-        public Input<string>? ReadToken
-        {
-            get => _readToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _readToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
 
         /// <summary>
         /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
@@ -782,22 +567,6 @@ namespace Pulumi.Mongodbatlas
             {
                 var emptySecret = Output.CreateSecret(0);
                 _userName = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        [Input("writeToken")]
-        private Input<string>? _writeToken;
-
-        /// <summary>
-        /// Your Insights Insert Key.
-        /// </summary>
-        public Input<string>? WriteToken
-        {
-            get => _writeToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _writeToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 

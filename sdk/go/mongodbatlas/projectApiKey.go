@@ -12,6 +12,7 @@ import (
 )
 
 // ## Example Usage
+// ### Create And Assign PAK Together
 //
 // ```go
 // package main
@@ -58,11 +59,13 @@ type ProjectApiKey struct {
 	// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
 	ApiKeyId pulumi.StringOutput `pulumi:"apiKeyId"`
 	// Description of this Organization API key.
-	Description pulumi.StringOutput `pulumi:"description"`
-	PrivateKey  pulumi.StringOutput `pulumi:"privateKey"`
-	ProjectId   pulumi.StringOutput `pulumi:"projectId"`
-	PublicKey   pulumi.StringOutput `pulumi:"publicKey"`
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	Description        pulumi.StringOutput                       `pulumi:"description"`
+	PrivateKey         pulumi.StringOutput                       `pulumi:"privateKey"`
+	ProjectAssignments ProjectApiKeyProjectAssignmentArrayOutput `pulumi:"projectAssignments"`
+	// Project ID to assign to Access Key
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
 	RoleNames pulumi.StringArrayOutput `pulumi:"roleNames"`
 }
@@ -79,9 +82,6 @@ func NewProjectApiKey(ctx *pulumi.Context,
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
-	}
-	if args.RoleNames == nil {
-		return nil, errors.New("invalid value for required argument 'RoleNames'")
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"privateKey",
@@ -112,11 +112,13 @@ type projectApiKeyState struct {
 	// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
 	ApiKeyId *string `pulumi:"apiKeyId"`
 	// Description of this Organization API key.
-	Description *string `pulumi:"description"`
-	PrivateKey  *string `pulumi:"privateKey"`
-	ProjectId   *string `pulumi:"projectId"`
-	PublicKey   *string `pulumi:"publicKey"`
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	Description        *string                          `pulumi:"description"`
+	PrivateKey         *string                          `pulumi:"privateKey"`
+	ProjectAssignments []ProjectApiKeyProjectAssignment `pulumi:"projectAssignments"`
+	// Project ID to assign to Access Key
+	ProjectId *string `pulumi:"projectId"`
+	PublicKey *string `pulumi:"publicKey"`
+	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
 	RoleNames []string `pulumi:"roleNames"`
 }
@@ -125,11 +127,13 @@ type ProjectApiKeyState struct {
 	// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
 	ApiKeyId pulumi.StringPtrInput
 	// Description of this Organization API key.
-	Description pulumi.StringPtrInput
-	PrivateKey  pulumi.StringPtrInput
-	ProjectId   pulumi.StringPtrInput
-	PublicKey   pulumi.StringPtrInput
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	Description        pulumi.StringPtrInput
+	PrivateKey         pulumi.StringPtrInput
+	ProjectAssignments ProjectApiKeyProjectAssignmentArrayInput
+	// Project ID to assign to Access Key
+	ProjectId pulumi.StringPtrInput
+	PublicKey pulumi.StringPtrInput
+	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
 	RoleNames pulumi.StringArrayInput
 }
@@ -140,9 +144,11 @@ func (ProjectApiKeyState) ElementType() reflect.Type {
 
 type projectApiKeyArgs struct {
 	// Description of this Organization API key.
-	Description string `pulumi:"description"`
-	ProjectId   string `pulumi:"projectId"`
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	Description        string                           `pulumi:"description"`
+	ProjectAssignments []ProjectApiKeyProjectAssignment `pulumi:"projectAssignments"`
+	// Project ID to assign to Access Key
+	ProjectId string `pulumi:"projectId"`
+	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
 	RoleNames []string `pulumi:"roleNames"`
 }
@@ -150,9 +156,11 @@ type projectApiKeyArgs struct {
 // The set of arguments for constructing a ProjectApiKey resource.
 type ProjectApiKeyArgs struct {
 	// Description of this Organization API key.
-	Description pulumi.StringInput
-	ProjectId   pulumi.StringInput
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	Description        pulumi.StringInput
+	ProjectAssignments ProjectApiKeyProjectAssignmentArrayInput
+	// Project ID to assign to Access Key
+	ProjectId pulumi.StringInput
+	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
 	RoleNames pulumi.StringArrayInput
 }
@@ -258,6 +266,11 @@ func (o ProjectApiKeyOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectApiKey) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
+func (o ProjectApiKeyOutput) ProjectAssignments() ProjectApiKeyProjectAssignmentArrayOutput {
+	return o.ApplyT(func(v *ProjectApiKey) ProjectApiKeyProjectAssignmentArrayOutput { return v.ProjectAssignments }).(ProjectApiKeyProjectAssignmentArrayOutput)
+}
+
+// Project ID to assign to Access Key
 func (o ProjectApiKeyOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectApiKey) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -266,7 +279,7 @@ func (o ProjectApiKeyOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectApiKey) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }
 
-// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+// Name of the role. This resource returns all the roles the user has in Atlas.
 // The following are valid roles:
 func (o ProjectApiKeyOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ProjectApiKey) pulumi.StringArrayOutput { return v.RoleNames }).(pulumi.StringArrayOutput)

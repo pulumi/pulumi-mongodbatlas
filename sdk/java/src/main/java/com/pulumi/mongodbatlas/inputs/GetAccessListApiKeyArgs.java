@@ -16,7 +16,7 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
     /**
      * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
      * *
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+     * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
      * 
      */
     @Import(name="apiKeyId", required=true)
@@ -25,7 +25,7 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
     /**
      * @return Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
      * *
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+     * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
      * 
      */
     public Output<String> apiKeyId() {
@@ -48,14 +48,14 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
-     * Unique identifier for the Organization to which you want to retrieve one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      * 
      */
     @Import(name="orgId", required=true)
     private Output<String> orgId;
 
     /**
-     * @return Unique identifier for the Organization to which you want to retrieve one or more access list entries.
+     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      * 
      */
     public Output<String> orgId() {
@@ -91,7 +91,7 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
          * *
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+         * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
          * *
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+         * -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don&#39;t set both.
          * 
          * @return builder
          * 
@@ -135,7 +135,7 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param orgId Unique identifier for the Organization to which you want to retrieve one or more access list entries.
+         * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
          * 
          * @return builder
          * 
@@ -146,7 +146,7 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param orgId Unique identifier for the Organization to which you want to retrieve one or more access list entries.
+         * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
          * 
          * @return builder
          * 

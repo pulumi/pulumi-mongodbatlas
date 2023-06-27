@@ -34,7 +34,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
         /// *
-        /// &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+        /// -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.
         /// </summary>
         [Input("apiKeyId", required: true)]
         public string ApiKeyId { get; set; } = null!;
@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas
         public string IpAddress { get; set; } = null!;
 
         /// <summary>
-        /// Unique identifier for the Organization to which you want to retrieve one or more access list entries.
+        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         /// </summary>
         [Input("orgId", required: true)]
         public string OrgId { get; set; } = null!;
@@ -62,7 +62,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
         /// *
-        /// &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address`.
+        /// -&gt;**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.
         /// </summary>
         [Input("apiKeyId", required: true)]
         public Input<string> ApiKeyId { get; set; } = null!;
@@ -74,7 +74,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> IpAddress { get; set; } = null!;
 
         /// <summary>
-        /// Unique identifier for the Organization to which you want to retrieve one or more access list entries.
+        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         /// </summary>
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;

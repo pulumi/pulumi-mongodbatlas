@@ -62,14 +62,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs 
     }
 
     /**
-     * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      * 
      */
     @Import(name="nodeCount")
     private @Nullable Output<Integer> nodeCount;
 
     /**
-     * @return Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     * @return Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      * 
      */
     public Optional<Output<Integer>> nodeCount() {
@@ -167,7 +167,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs 
         }
 
         /**
-         * @param nodeCount Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+         * @param nodeCount Number of nodes of the given type for MongoDB Atlas to deploy to the region.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs 
         }
 
         /**
-         * @param nodeCount Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+         * @param nodeCount Number of nodes of the given type for MongoDB Atlas to deploy to the region.
          * 
          * @return builder
          * 

@@ -38,6 +38,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool IsDataExplorerEnabled;
         /// <summary>
+        /// Flag that indicates whether to enable extended storage sizes for the specified project.
+        /// </summary>
+        public readonly bool? IsExtendedStorageSizesEnabled;
+        /// <summary>
         /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         /// </summary>
         public readonly bool IsPerformanceAdvisorEnabled;
@@ -79,6 +83,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool isDataExplorerEnabled,
 
+            bool? isExtendedStorageSizesEnabled,
+
             bool isPerformanceAdvisorEnabled,
 
             bool isRealtimePerformancePanelEnabled,
@@ -99,6 +105,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Id = id;
             IsCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
             IsDataExplorerEnabled = isDataExplorerEnabled;
+            IsExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
             IsPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             IsRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
             IsSchemaAdvisorEnabled = isSchemaAdvisorEnabled;

@@ -46,6 +46,17 @@ export class AdvancedCluster extends pulumi.CustomResource {
     }
 
     public readonly advancedConfiguration!: pulumi.Output<outputs.AdvancedClusterAdvancedConfiguration>;
+    /**
+     * Flag that indicates whether the cluster can perform backups.
+     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+     *
+     * Backup uses:
+     * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+     * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+     * If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
+     *
+     * This parameter defaults to false.
+     */
     public readonly backupEnabled!: pulumi.Output<boolean>;
     /**
      * @deprecated use bi_connector_config instead
@@ -107,6 +118,10 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public readonly replicationSpecs!: pulumi.Output<outputs.AdvancedClusterReplicationSpec[]>;
     /**
+     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+     */
+    public readonly retainBackupsEnabled!: pulumi.Output<boolean | undefined>;
+    /**
      * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      */
     public readonly rootCertType!: pulumi.Output<string>;
@@ -160,6 +175,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["pitEnabled"] = state ? state.pitEnabled : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["replicationSpecs"] = state ? state.replicationSpecs : undefined;
+            resourceInputs["retainBackupsEnabled"] = state ? state.retainBackupsEnabled : undefined;
             resourceInputs["rootCertType"] = state ? state.rootCertType : undefined;
             resourceInputs["stateName"] = state ? state.stateName : undefined;
             resourceInputs["terminationProtectionEnabled"] = state ? state.terminationProtectionEnabled : undefined;
@@ -189,6 +205,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["pitEnabled"] = args ? args.pitEnabled : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
+            resourceInputs["retainBackupsEnabled"] = args ? args.retainBackupsEnabled : undefined;
             resourceInputs["rootCertType"] = args ? args.rootCertType : undefined;
             resourceInputs["terminationProtectionEnabled"] = args ? args.terminationProtectionEnabled : undefined;
             resourceInputs["versionReleaseSystem"] = args ? args.versionReleaseSystem : undefined;
@@ -208,6 +225,17 @@ export class AdvancedCluster extends pulumi.CustomResource {
  */
 export interface AdvancedClusterState {
     advancedConfiguration?: pulumi.Input<inputs.AdvancedClusterAdvancedConfiguration>;
+    /**
+     * Flag that indicates whether the cluster can perform backups.
+     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+     *
+     * Backup uses:
+     * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+     * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+     * If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
+     *
+     * This parameter defaults to false.
+     */
     backupEnabled?: pulumi.Input<boolean>;
     /**
      * @deprecated use bi_connector_config instead
@@ -269,6 +297,10 @@ export interface AdvancedClusterState {
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterReplicationSpec>[]>;
     /**
+     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+     */
+    retainBackupsEnabled?: pulumi.Input<boolean>;
+    /**
      * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      */
     rootCertType?: pulumi.Input<string>;
@@ -297,6 +329,17 @@ export interface AdvancedClusterState {
  */
 export interface AdvancedClusterArgs {
     advancedConfiguration?: pulumi.Input<inputs.AdvancedClusterAdvancedConfiguration>;
+    /**
+     * Flag that indicates whether the cluster can perform backups.
+     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+     *
+     * Backup uses:
+     * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+     * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+     * If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
+     *
+     * This parameter defaults to false.
+     */
     backupEnabled?: pulumi.Input<boolean>;
     /**
      * @deprecated use bi_connector_config instead
@@ -344,6 +387,10 @@ export interface AdvancedClusterArgs {
      * Configuration for cluster regions and the hardware provisioned in them. See below
      */
     replicationSpecs: pulumi.Input<pulumi.Input<inputs.AdvancedClusterReplicationSpec>[]>;
+    /**
+     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+     */
+    retainBackupsEnabled?: pulumi.Input<boolean>;
     /**
      * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      */

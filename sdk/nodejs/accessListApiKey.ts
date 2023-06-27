@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  *  $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
  * ```
  *
- *  For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createAccessListEntriesForOneOrganizationApiKey)
+ *  For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
  */
 export class AccessListApiKey extends pulumi.CustomResource {
     /**
@@ -70,7 +70,7 @@ export class AccessListApiKey extends pulumi.CustomResource {
     /**
      * Unique identifier for the Organization API Key for which you want to create a new access list entry.
      *
-     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
      */
     public readonly apiKeyId!: pulumi.Output<string>;
     /**
@@ -82,7 +82,7 @@ export class AccessListApiKey extends pulumi.CustomResource {
      */
     public readonly ipAddress!: pulumi.Output<string>;
     /**
-     * Unique identifier for the organinzation to which you want to add one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
     public readonly orgId!: pulumi.Output<string>;
 
@@ -128,7 +128,7 @@ export interface AccessListApiKeyState {
     /**
      * Unique identifier for the Organization API Key for which you want to create a new access list entry.
      *
-     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
      */
     apiKeyId?: pulumi.Input<string>;
     /**
@@ -140,7 +140,7 @@ export interface AccessListApiKeyState {
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * Unique identifier for the organinzation to which you want to add one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
     orgId?: pulumi.Input<string>;
 }
@@ -152,7 +152,7 @@ export interface AccessListApiKeyArgs {
     /**
      * Unique identifier for the Organization API Key for which you want to create a new access list entry.
      *
-     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
      */
     apiKeyId: pulumi.Input<string>;
     /**
@@ -164,7 +164,7 @@ export interface AccessListApiKeyArgs {
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * Unique identifier for the organinzation to which you want to add one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
     orgId: pulumi.Input<string>;
 }

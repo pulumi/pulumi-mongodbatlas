@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         /// </summary>
-        public readonly string Analyzer;
+        public readonly string? Analyzer;
         /// <summary>
         /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
         /// </summary>
@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetSearchIndexesResultResult(
-            string analyzer,
+            string? analyzer,
 
             string? analyzers,
 

@@ -50,16 +50,6 @@ public final class GetAlertConfigurationNotification {
      */
     private Boolean emailEnabled;
     /**
-     * @return Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-     * 
-     */
-    private String flowName;
-    /**
-     * @return The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     * 
-     */
-    private String flowdockApiToken;
-    /**
      * @return Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
      * 
      */
@@ -84,11 +74,6 @@ public final class GetAlertConfigurationNotification {
      * 
      */
     private String opsGenieRegion;
-    /**
-     * @return Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-     * 
-     */
-    private String orgName;
     /**
      * @return Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
      * 
@@ -197,20 +182,6 @@ public final class GetAlertConfigurationNotification {
         return this.emailEnabled;
     }
     /**
-     * @return Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-     * 
-     */
-    public String flowName() {
-        return this.flowName;
-    }
-    /**
-     * @return The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     * 
-     */
-    public String flowdockApiToken() {
-        return this.flowdockApiToken;
-    }
-    /**
      * @return Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
      * 
      */
@@ -244,13 +215,6 @@ public final class GetAlertConfigurationNotification {
      */
     public String opsGenieRegion() {
         return this.opsGenieRegion;
-    }
-    /**
-     * @return Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-     * 
-     */
-    public String orgName() {
-        return this.orgName;
     }
     /**
      * @return Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
@@ -347,14 +311,11 @@ public final class GetAlertConfigurationNotification {
         private Integer delayMin;
         private String emailAddress;
         private Boolean emailEnabled;
-        private String flowName;
-        private String flowdockApiToken;
         private Integer intervalMin;
         private @Nullable String microsoftTeamsWebhookUrl;
         private String mobileNumber;
         private String opsGenieApiKey;
         private String opsGenieRegion;
-        private String orgName;
         private @Nullable List<String> roles;
         private String serviceKey;
         private Boolean smsEnabled;
@@ -376,14 +337,11 @@ public final class GetAlertConfigurationNotification {
     	      this.delayMin = defaults.delayMin;
     	      this.emailAddress = defaults.emailAddress;
     	      this.emailEnabled = defaults.emailEnabled;
-    	      this.flowName = defaults.flowName;
-    	      this.flowdockApiToken = defaults.flowdockApiToken;
     	      this.intervalMin = defaults.intervalMin;
     	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
     	      this.mobileNumber = defaults.mobileNumber;
     	      this.opsGenieApiKey = defaults.opsGenieApiKey;
     	      this.opsGenieRegion = defaults.opsGenieRegion;
-    	      this.orgName = defaults.orgName;
     	      this.roles = defaults.roles;
     	      this.serviceKey = defaults.serviceKey;
     	      this.smsEnabled = defaults.smsEnabled;
@@ -433,16 +391,6 @@ public final class GetAlertConfigurationNotification {
             return this;
         }
         @CustomType.Setter
-        public Builder flowName(String flowName) {
-            this.flowName = Objects.requireNonNull(flowName);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder flowdockApiToken(String flowdockApiToken) {
-            this.flowdockApiToken = Objects.requireNonNull(flowdockApiToken);
-            return this;
-        }
-        @CustomType.Setter
         public Builder intervalMin(Integer intervalMin) {
             this.intervalMin = Objects.requireNonNull(intervalMin);
             return this;
@@ -465,11 +413,6 @@ public final class GetAlertConfigurationNotification {
         @CustomType.Setter
         public Builder opsGenieRegion(String opsGenieRegion) {
             this.opsGenieRegion = Objects.requireNonNull(opsGenieRegion);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder orgName(String orgName) {
-            this.orgName = Objects.requireNonNull(orgName);
             return this;
         }
         @CustomType.Setter
@@ -539,14 +482,11 @@ public final class GetAlertConfigurationNotification {
             o.delayMin = delayMin;
             o.emailAddress = emailAddress;
             o.emailEnabled = emailEnabled;
-            o.flowName = flowName;
-            o.flowdockApiToken = flowdockApiToken;
             o.intervalMin = intervalMin;
             o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             o.mobileNumber = mobileNumber;
             o.opsGenieApiKey = opsGenieApiKey;
             o.opsGenieRegion = opsGenieRegion;
-            o.orgName = orgName;
             o.roles = roles;
             o.serviceKey = serviceKey;
             o.smsEnabled = smsEnabled;

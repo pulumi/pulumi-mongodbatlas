@@ -124,36 +124,6 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     }
 
     /**
-     * Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-     * 
-     */
-    @Import(name="flowName")
-    private @Nullable Output<String> flowName;
-
-    /**
-     * @return Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-     * 
-     */
-    public Optional<Output<String>> flowName() {
-        return Optional.ofNullable(this.flowName);
-    }
-
-    /**
-     * The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     * 
-     */
-    @Import(name="flowdockApiToken")
-    private @Nullable Output<String> flowdockApiToken;
-
-    /**
-     * @return The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     * 
-     */
-    public Optional<Output<String>> flowdockApiToken() {
-        return Optional.ofNullable(this.flowdockApiToken);
-    }
-
-    /**
      * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
      * 
      */
@@ -226,21 +196,6 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
      */
     public Optional<Output<String>> opsGenieRegion() {
         return Optional.ofNullable(this.opsGenieRegion);
-    }
-
-    /**
-     * Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-     * 
-     */
-    @Import(name="orgName")
-    private @Nullable Output<String> orgName;
-
-    /**
-     * @return Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-     * 
-     */
-    public Optional<Output<String>> orgName() {
-        return Optional.ofNullable(this.orgName);
     }
 
     /**
@@ -442,14 +397,11 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         this.delayMin = $.delayMin;
         this.emailAddress = $.emailAddress;
         this.emailEnabled = $.emailEnabled;
-        this.flowName = $.flowName;
-        this.flowdockApiToken = $.flowdockApiToken;
         this.intervalMin = $.intervalMin;
         this.microsoftTeamsWebhookUrl = $.microsoftTeamsWebhookUrl;
         this.mobileNumber = $.mobileNumber;
         this.opsGenieApiKey = $.opsGenieApiKey;
         this.opsGenieRegion = $.opsGenieRegion;
-        this.orgName = $.orgName;
         this.roles = $.roles;
         this.serviceKey = $.serviceKey;
         this.smsEnabled = $.smsEnabled;
@@ -629,48 +581,6 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param flowName Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-         * 
-         * @return builder
-         * 
-         */
-        public Builder flowName(@Nullable Output<String> flowName) {
-            $.flowName = flowName;
-            return this;
-        }
-
-        /**
-         * @param flowName Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-         * 
-         * @return builder
-         * 
-         */
-        public Builder flowName(String flowName) {
-            return flowName(Output.of(flowName));
-        }
-
-        /**
-         * @param flowdockApiToken The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder flowdockApiToken(@Nullable Output<String> flowdockApiToken) {
-            $.flowdockApiToken = flowdockApiToken;
-            return this;
-        }
-
-        /**
-         * @param flowdockApiToken The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder flowdockApiToken(String flowdockApiToken) {
-            return flowdockApiToken(Output.of(flowdockApiToken));
-        }
-
-        /**
          * @param intervalMin Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
          * 
          * @return builder
@@ -773,27 +683,6 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
          */
         public Builder opsGenieRegion(String opsGenieRegion) {
             return opsGenieRegion(Output.of(opsGenieRegion));
-        }
-
-        /**
-         * @param orgName Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder orgName(@Nullable Output<String> orgName) {
-            $.orgName = orgName;
-            return this;
-        }
-
-        /**
-         * @param orgName Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder orgName(String orgName) {
-            return orgName(Output.of(orgName));
         }
 
         /**

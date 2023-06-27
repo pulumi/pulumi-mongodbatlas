@@ -57,6 +57,7 @@ import (
 //				},
 //				IsCollectDatabaseSpecificsStatisticsEnabled: pulumi.Bool(true),
 //				IsDataExplorerEnabled:                       pulumi.Bool(true),
+//				IsExtendedStorageSizesEnabled:               pulumi.Bool(true),
 //				IsPerformanceAdvisorEnabled:                 pulumi.Bool(true),
 //				IsRealtimePerformancePanelEnabled:           pulumi.Bool(true),
 //				IsSchemaAdvisorEnabled:                      pulumi.Bool(true),
@@ -84,6 +85,7 @@ import (
 type Project struct {
 	pulumi.CustomResourceState
 
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
 	ApiKeys ProjectApiKeyTypeArrayOutput `pulumi:"apiKeys"`
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount pulumi.IntOutput `pulumi:"clusterCount"`
@@ -93,6 +95,8 @@ type Project struct {
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolOutput `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
 	IsDataExplorerEnabled pulumi.BoolOutput `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+	IsExtendedStorageSizesEnabled pulumi.BoolOutput `pulumi:"isExtendedStorageSizesEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 	IsPerformanceAdvisorEnabled pulumi.BoolOutput `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
@@ -144,6 +148,7 @@ func GetProject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Project resources.
 type projectState struct {
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
 	ApiKeys []ProjectApiKeyType `pulumi:"apiKeys"`
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount *int `pulumi:"clusterCount"`
@@ -153,6 +158,8 @@ type projectState struct {
 	IsCollectDatabaseSpecificsStatisticsEnabled *bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
 	IsDataExplorerEnabled *bool `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+	IsExtendedStorageSizesEnabled *bool `pulumi:"isExtendedStorageSizesEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 	IsPerformanceAdvisorEnabled *bool `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
@@ -173,6 +180,7 @@ type projectState struct {
 }
 
 type ProjectState struct {
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
 	ApiKeys ProjectApiKeyTypeArrayInput
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount pulumi.IntPtrInput
@@ -182,6 +190,8 @@ type ProjectState struct {
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
 	IsDataExplorerEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+	IsExtendedStorageSizesEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 	IsPerformanceAdvisorEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
@@ -206,11 +216,14 @@ func (ProjectState) ElementType() reflect.Type {
 }
 
 type projectArgs struct {
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
 	ApiKeys []ProjectApiKeyType `pulumi:"apiKeys"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled *bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
 	IsDataExplorerEnabled *bool `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+	IsExtendedStorageSizesEnabled *bool `pulumi:"isExtendedStorageSizesEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 	IsPerformanceAdvisorEnabled *bool `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
@@ -232,11 +245,14 @@ type projectArgs struct {
 
 // The set of arguments for constructing a Project resource.
 type ProjectArgs struct {
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
 	ApiKeys ProjectApiKeyTypeArrayInput
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
 	IsDataExplorerEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+	IsExtendedStorageSizesEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 	IsPerformanceAdvisorEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
@@ -343,6 +359,7 @@ func (o ProjectOutput) ToProjectOutputWithContext(ctx context.Context) ProjectOu
 	return o
 }
 
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
 func (o ProjectOutput) ApiKeys() ProjectApiKeyTypeArrayOutput {
 	return o.ApplyT(func(v *Project) ProjectApiKeyTypeArrayOutput { return v.ApiKeys }).(ProjectApiKeyTypeArrayOutput)
 }
@@ -365,6 +382,11 @@ func (o ProjectOutput) IsCollectDatabaseSpecificsStatisticsEnabled() pulumi.Bool
 // Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
 func (o ProjectOutput) IsDataExplorerEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsDataExplorerEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+func (o ProjectOutput) IsExtendedStorageSizesEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsExtendedStorageSizesEnabled }).(pulumi.BoolOutput)
 }
 
 // Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.

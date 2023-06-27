@@ -30,9 +30,33 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.advancedConfiguration);
     }
 
+    /**
+     * Flag that indicates whether the cluster can perform backups.
+     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+     * 
+     * Backup uses:
+     * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+     * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+     * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
+     * 
+     * This parameter defaults to false.
+     * 
+     */
     @Import(name="backupEnabled")
     private @Nullable Output<Boolean> backupEnabled;
 
+    /**
+     * @return Flag that indicates whether the cluster can perform backups.
+     * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+     * 
+     * Backup uses:
+     * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+     * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+     * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
+     * 
+     * This parameter defaults to false.
+     * 
+     */
     public Optional<Output<Boolean>> backupEnabled() {
         return Optional.ofNullable(this.backupEnabled);
     }
@@ -216,6 +240,21 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+     * 
+     */
+    @Import(name="retainBackupsEnabled")
+    private @Nullable Output<Boolean> retainBackupsEnabled;
+
+    /**
+     * @return Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+     * 
+     */
+    public Optional<Output<Boolean>> retainBackupsEnabled() {
+        return Optional.ofNullable(this.retainBackupsEnabled);
+    }
+
+    /**
      * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      * 
      */
@@ -277,6 +316,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         this.pitEnabled = $.pitEnabled;
         this.projectId = $.projectId;
         this.replicationSpecs = $.replicationSpecs;
+        this.retainBackupsEnabled = $.retainBackupsEnabled;
         this.rootCertType = $.rootCertType;
         this.terminationProtectionEnabled = $.terminationProtectionEnabled;
         this.versionReleaseSystem = $.versionReleaseSystem;
@@ -309,11 +349,39 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
             return advancedConfiguration(Output.of(advancedConfiguration));
         }
 
+        /**
+         * @param backupEnabled Flag that indicates whether the cluster can perform backups.
+         * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+         * 
+         * Backup uses:
+         * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+         * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+         * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
+         * 
+         * This parameter defaults to false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder backupEnabled(@Nullable Output<Boolean> backupEnabled) {
             $.backupEnabled = backupEnabled;
             return this;
         }
 
+        /**
+         * @param backupEnabled Flag that indicates whether the cluster can perform backups.
+         * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+         * 
+         * Backup uses:
+         * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+         * [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+         * If &#34;`backup_enabled`&#34; : `false`, the cluster doesn&#39;t use Atlas backups.
+         * 
+         * This parameter defaults to false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder backupEnabled(Boolean backupEnabled) {
             return backupEnabled(Output.of(backupEnabled));
         }
@@ -582,6 +650,27 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder replicationSpecs(AdvancedClusterReplicationSpecArgs... replicationSpecs) {
             return replicationSpecs(List.of(replicationSpecs));
+        }
+
+        /**
+         * @param retainBackupsEnabled Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retainBackupsEnabled(@Nullable Output<Boolean> retainBackupsEnabled) {
+            $.retainBackupsEnabled = retainBackupsEnabled;
+            return this;
+        }
+
+        /**
+         * @param retainBackupsEnabled Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retainBackupsEnabled(Boolean retainBackupsEnabled) {
+            return retainBackupsEnabled(Output.of(retainBackupsEnabled));
         }
 
         /**

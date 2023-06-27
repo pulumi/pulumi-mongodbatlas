@@ -59,6 +59,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///         IsCollectDatabaseSpecificsStatisticsEnabled = true,
     ///         IsDataExplorerEnabled = true,
+    ///         IsExtendedStorageSizesEnabled = true,
     ///         IsPerformanceAdvisorEnabled = true,
     ///         IsRealtimePerformancePanelEnabled = true,
     ///         IsSchemaAdvisorEnabled = true,
@@ -106,6 +107,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("isDataExplorerEnabled")]
         public Output<bool> IsDataExplorerEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+        /// </summary>
+        [Output("isExtendedStorageSizesEnabled")]
+        public Output<bool> IsExtendedStorageSizesEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
@@ -206,6 +213,7 @@ namespace Pulumi.Mongodbatlas
     {
         [Input("apiKeys")]
         private InputList<Inputs.ProjectApiKeyArgs>? _apiKeys;
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key")]
         public InputList<Inputs.ProjectApiKeyArgs> ApiKeys
         {
             get => _apiKeys ?? (_apiKeys = new InputList<Inputs.ProjectApiKeyArgs>());
@@ -223,6 +231,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("isDataExplorerEnabled")]
         public Input<bool>? IsDataExplorerEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+        /// </summary>
+        [Input("isExtendedStorageSizesEnabled")]
+        public Input<bool>? IsExtendedStorageSizesEnabled { get; set; }
 
         /// <summary>
         /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
@@ -290,6 +304,7 @@ namespace Pulumi.Mongodbatlas
     {
         [Input("apiKeys")]
         private InputList<Inputs.ProjectApiKeyGetArgs>? _apiKeys;
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key")]
         public InputList<Inputs.ProjectApiKeyGetArgs> ApiKeys
         {
             get => _apiKeys ?? (_apiKeys = new InputList<Inputs.ProjectApiKeyGetArgs>());
@@ -319,6 +334,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("isDataExplorerEnabled")]
         public Input<bool>? IsDataExplorerEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+        /// </summary>
+        [Input("isExtendedStorageSizesEnabled")]
+        public Input<bool>? IsExtendedStorageSizesEnabled { get; set; }
 
         /// <summary>
         /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.

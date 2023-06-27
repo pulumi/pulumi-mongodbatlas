@@ -36,13 +36,6 @@ namespace Pulumi.Mongodbatlas
         [Output("autoScalingComputeScaleDownEnabled")]
         public Output<bool> AutoScalingComputeScaleDownEnabled { get; private set; } = null!;
 
-        /// <summary>
-        /// Specifies whether disk auto-scaling is enabled. The default is true.
-        /// - Set to `true` to enable disk auto-scaling.
-        /// - Set to `false` to disable disk auto-scaling.
-        /// 
-        /// &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-        /// </summary>
         [Output("autoScalingDiskGbEnabled")]
         public Output<bool?> AutoScalingDiskGbEnabled { get; private set; } = null!;
 
@@ -279,6 +272,12 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.ClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
 
         /// <summary>
+        /// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        /// </summary>
+        [Output("retainBackupsEnabled")]
+        public Output<bool?> RetainBackupsEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// current snapshot schedule and retention settings for the cluster.
         /// </summary>
         [Output("snapshotBackupPolicies")]
@@ -373,13 +372,6 @@ namespace Pulumi.Mongodbatlas
         [Input("autoScalingComputeScaleDownEnabled")]
         public Input<bool>? AutoScalingComputeScaleDownEnabled { get; set; }
 
-        /// <summary>
-        /// Specifies whether disk auto-scaling is enabled. The default is true.
-        /// - Set to `true` to enable disk auto-scaling.
-        /// - Set to `false` to disable disk auto-scaling.
-        /// 
-        /// &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-        /// </summary>
         [Input("autoScalingDiskGbEnabled")]
         public Input<bool>? AutoScalingDiskGbEnabled { get; set; }
 
@@ -589,6 +581,12 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
+        /// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        /// </summary>
+        [Input("retainBackupsEnabled")]
+        public Input<bool>? RetainBackupsEnabled { get; set; }
+
+        /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
         [Input("terminationProtectionEnabled")]
@@ -621,13 +619,6 @@ namespace Pulumi.Mongodbatlas
         [Input("autoScalingComputeScaleDownEnabled")]
         public Input<bool>? AutoScalingComputeScaleDownEnabled { get; set; }
 
-        /// <summary>
-        /// Specifies whether disk auto-scaling is enabled. The default is true.
-        /// - Set to `true` to enable disk auto-scaling.
-        /// - Set to `false` to disable disk auto-scaling.
-        /// 
-        /// &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-        /// </summary>
         [Input("autoScalingDiskGbEnabled")]
         public Input<bool>? AutoScalingDiskGbEnabled { get; set; }
 
@@ -886,6 +877,12 @@ namespace Pulumi.Mongodbatlas
             get => _replicationSpecs ?? (_replicationSpecs = new InputList<Inputs.ClusterReplicationSpecGetArgs>());
             set => _replicationSpecs = value;
         }
+
+        /// <summary>
+        /// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        /// </summary>
+        [Input("retainBackupsEnabled")]
+        public Input<bool>? RetainBackupsEnabled { get; set; }
 
         [Input("snapshotBackupPolicies")]
         private InputList<Inputs.ClusterSnapshotBackupPolicyGetArgs>? _snapshotBackupPolicies;

@@ -68,6 +68,10 @@ export interface GetProjectResult {
      */
     readonly isDataExplorerEnabled: boolean;
     /**
+     * Flag that indicates whether to enable extended storage sizes for the specified project.
+     */
+    readonly isExtendedStorageSizesEnabled: boolean;
+    /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      */
     readonly isPerformanceAdvisorEnabled: boolean;

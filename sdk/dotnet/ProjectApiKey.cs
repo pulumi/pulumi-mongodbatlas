@@ -11,6 +11,7 @@ namespace Pulumi.Mongodbatlas
 {
     /// <summary>
     /// ## Example Usage
+    /// ### Create And Assign PAK Together
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -61,6 +62,12 @@ namespace Pulumi.Mongodbatlas
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
 
+        [Output("projectAssignments")]
+        public Output<ImmutableArray<Outputs.ProjectApiKeyProjectAssignment>> ProjectAssignments { get; private set; } = null!;
+
+        /// <summary>
+        /// Project ID to assign to Access Key
+        /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
@@ -68,7 +75,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> PublicKey { get; private set; } = null!;
 
         /// <summary>
-        /// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        /// Name of the role. This resource returns all the roles the user has in Atlas.
         /// The following are valid roles:
         /// </summary>
         [Output("roleNames")]
@@ -130,14 +137,25 @@ namespace Pulumi.Mongodbatlas
         [Input("description", required: true)]
         public Input<string> Description { get; set; } = null!;
 
+        [Input("projectAssignments")]
+        private InputList<Inputs.ProjectApiKeyProjectAssignmentArgs>? _projectAssignments;
+        public InputList<Inputs.ProjectApiKeyProjectAssignmentArgs> ProjectAssignments
+        {
+            get => _projectAssignments ?? (_projectAssignments = new InputList<Inputs.ProjectApiKeyProjectAssignmentArgs>());
+            set => _projectAssignments = value;
+        }
+
+        /// <summary>
+        /// Project ID to assign to Access Key
+        /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
-        [Input("roleNames", required: true)]
+        [Input("roleNames")]
         private InputList<string>? _roleNames;
 
         /// <summary>
-        /// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        /// Name of the role. This resource returns all the roles the user has in Atlas.
         /// The following are valid roles:
         /// </summary>
         public InputList<string> RoleNames
@@ -178,6 +196,17 @@ namespace Pulumi.Mongodbatlas
             }
         }
 
+        [Input("projectAssignments")]
+        private InputList<Inputs.ProjectApiKeyProjectAssignmentGetArgs>? _projectAssignments;
+        public InputList<Inputs.ProjectApiKeyProjectAssignmentGetArgs> ProjectAssignments
+        {
+            get => _projectAssignments ?? (_projectAssignments = new InputList<Inputs.ProjectApiKeyProjectAssignmentGetArgs>());
+            set => _projectAssignments = value;
+        }
+
+        /// <summary>
+        /// Project ID to assign to Access Key
+        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
@@ -188,7 +217,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roleNames;
 
         /// <summary>
-        /// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        /// Name of the role. This resource returns all the roles the user has in Atlas.
         /// The following are valid roles:
         /// </summary>
         public InputList<string> RoleNames

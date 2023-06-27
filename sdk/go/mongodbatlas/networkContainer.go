@@ -112,7 +112,7 @@ import (
 //
 // ## Import
 //
-// Clusters can be imported using project ID and network peering container id, in the format `PROJECTID-CONTAINER-ID`, e.g.
+// Network Peering Containers can be imported using project ID and network peering container id, in the format `PROJECTID-CONTAINER-ID`, e.g.
 //
 // ```sh
 //

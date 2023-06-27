@@ -50,16 +50,6 @@ public final class AlertConfigurationNotification {
      */
     private @Nullable Boolean emailEnabled;
     /**
-     * @return Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-     * 
-     */
-    private @Nullable String flowName;
-    /**
-     * @return The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     * 
-     */
-    private @Nullable String flowdockApiToken;
-    /**
      * @return Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
      * 
      */
@@ -84,11 +74,6 @@ public final class AlertConfigurationNotification {
      * 
      */
     private @Nullable String opsGenieRegion;
-    /**
-     * @return Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-     * 
-     */
-    private @Nullable String orgName;
     /**
      * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
@@ -208,20 +193,6 @@ public final class AlertConfigurationNotification {
         return Optional.ofNullable(this.emailEnabled);
     }
     /**
-     * @return Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-     * 
-     */
-    public Optional<String> flowName() {
-        return Optional.ofNullable(this.flowName);
-    }
-    /**
-     * @return The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     * 
-     */
-    public Optional<String> flowdockApiToken() {
-        return Optional.ofNullable(this.flowdockApiToken);
-    }
-    /**
      * @return Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
      * 
      */
@@ -255,13 +226,6 @@ public final class AlertConfigurationNotification {
      */
     public Optional<String> opsGenieRegion() {
         return Optional.ofNullable(this.opsGenieRegion);
-    }
-    /**
-     * @return Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-     * 
-     */
-    public Optional<String> orgName() {
-        return Optional.ofNullable(this.orgName);
     }
     /**
      * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
@@ -369,14 +333,11 @@ public final class AlertConfigurationNotification {
         private @Nullable Integer delayMin;
         private @Nullable String emailAddress;
         private @Nullable Boolean emailEnabled;
-        private @Nullable String flowName;
-        private @Nullable String flowdockApiToken;
         private @Nullable Integer intervalMin;
         private @Nullable String microsoftTeamsWebhookUrl;
         private @Nullable String mobileNumber;
         private @Nullable String opsGenieApiKey;
         private @Nullable String opsGenieRegion;
-        private @Nullable String orgName;
         private @Nullable List<String> roles;
         private @Nullable String serviceKey;
         private @Nullable Boolean smsEnabled;
@@ -398,14 +359,11 @@ public final class AlertConfigurationNotification {
     	      this.delayMin = defaults.delayMin;
     	      this.emailAddress = defaults.emailAddress;
     	      this.emailEnabled = defaults.emailEnabled;
-    	      this.flowName = defaults.flowName;
-    	      this.flowdockApiToken = defaults.flowdockApiToken;
     	      this.intervalMin = defaults.intervalMin;
     	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
     	      this.mobileNumber = defaults.mobileNumber;
     	      this.opsGenieApiKey = defaults.opsGenieApiKey;
     	      this.opsGenieRegion = defaults.opsGenieRegion;
-    	      this.orgName = defaults.orgName;
     	      this.roles = defaults.roles;
     	      this.serviceKey = defaults.serviceKey;
     	      this.smsEnabled = defaults.smsEnabled;
@@ -455,16 +413,6 @@ public final class AlertConfigurationNotification {
             return this;
         }
         @CustomType.Setter
-        public Builder flowName(@Nullable String flowName) {
-            this.flowName = flowName;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder flowdockApiToken(@Nullable String flowdockApiToken) {
-            this.flowdockApiToken = flowdockApiToken;
-            return this;
-        }
-        @CustomType.Setter
         public Builder intervalMin(@Nullable Integer intervalMin) {
             this.intervalMin = intervalMin;
             return this;
@@ -487,11 +435,6 @@ public final class AlertConfigurationNotification {
         @CustomType.Setter
         public Builder opsGenieRegion(@Nullable String opsGenieRegion) {
             this.opsGenieRegion = opsGenieRegion;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder orgName(@Nullable String orgName) {
-            this.orgName = orgName;
             return this;
         }
         @CustomType.Setter
@@ -561,14 +504,11 @@ public final class AlertConfigurationNotification {
             o.delayMin = delayMin;
             o.emailAddress = emailAddress;
             o.emailEnabled = emailEnabled;
-            o.flowName = flowName;
-            o.flowdockApiToken = flowdockApiToken;
             o.intervalMin = intervalMin;
             o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             o.mobileNumber = mobileNumber;
             o.opsGenieApiKey = opsGenieApiKey;
             o.opsGenieRegion = opsGenieRegion;
-            o.orgName = orgName;
             o.roles = roles;
             o.serviceKey = serviceKey;
             o.smsEnabled = smsEnabled;

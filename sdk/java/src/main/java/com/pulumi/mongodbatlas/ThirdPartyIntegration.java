@@ -22,6 +22,7 @@ import javax.annotation.Nullable;
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
  * &gt; **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
+ *  **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
  * 
  * &gt; **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
  * 
@@ -30,6 +31,7 @@ import javax.annotation.Nullable;
  * &gt; **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
  * 
  * ## Example Usage
+ * 
  * ```java
  * package generated_program;
  * 
@@ -77,20 +79,6 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration")
 public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     /**
-     * Unique identifier of your New Relic account.
-     * 
-     */
-    @Export(name="accountId", type=String.class, parameters={})
-    private Output</* @Nullable */ String> accountId;
-
-    /**
-     * @return Unique identifier of your New Relic account.
-     * 
-     */
-    public Output<Optional<String>> accountId() {
-        return Codegen.optional(this.accountId);
-    }
-    /**
      * Your API Key.
      * 
      */
@@ -103,20 +91,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> apiKey() {
         return Codegen.optional(this.apiKey);
-    }
-    /**
-     * Your API Token.
-     * 
-     */
-    @Export(name="apiToken", type=String.class, parameters={})
-    private Output</* @Nullable */ String> apiToken;
-
-    /**
-     * @return Your API Token.
-     * 
-     */
-    public Output<Optional<String>> apiToken() {
-        return Codegen.optional(this.apiToken);
     }
     @Export(name="channelName", type=String.class, parameters={})
     private Output</* @Nullable */ String> channelName;
@@ -139,34 +113,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.enabled);
     }
     /**
-     * Your Flowdock Flow name.
-     * 
-     */
-    @Export(name="flowName", type=String.class, parameters={})
-    private Output</* @Nullable */ String> flowName;
-
-    /**
-     * @return Your Flowdock Flow name.
-     * 
-     */
-    public Output<Optional<String>> flowName() {
-        return Codegen.optional(this.flowName);
-    }
-    /**
-     * Your License Key.
-     * 
-     */
-    @Export(name="licenseKey", type=String.class, parameters={})
-    private Output</* @Nullable */ String> licenseKey;
-
-    /**
-     * @return Your License Key.
-     * 
-     */
-    public Output<Optional<String>> licenseKey() {
-        return Codegen.optional(this.licenseKey);
-    }
-    /**
      * Your Microsoft Teams incoming webhook URL.
      * 
      */
@@ -179,20 +125,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> microsoftTeamsWebhookUrl() {
         return Codegen.optional(this.microsoftTeamsWebhookUrl);
-    }
-    /**
-     * Your Flowdock organization name.
-     * 
-     */
-    @Export(name="orgName", type=String.class, parameters={})
-    private Output</* @Nullable */ String> orgName;
-
-    /**
-     * @return Your Flowdock organization name.
-     * 
-     */
-    public Output<Optional<String>> orgName() {
-        return Codegen.optional(this.orgName);
     }
     /**
      * Your Prometheus password.
@@ -221,20 +153,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      */
     public Output<String> projectId() {
         return this.projectId;
-    }
-    /**
-     * Your Insights Query Key.
-     * 
-     */
-    @Export(name="readToken", type=String.class, parameters={})
-    private Output</* @Nullable */ String> readToken;
-
-    /**
-     * @return Your Insights Query Key.
-     * 
-     */
-    public Output<Optional<String>> readToken() {
-        return Codegen.optional(this.readToken);
     }
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
@@ -394,20 +312,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> userName() {
         return Codegen.optional(this.userName);
     }
-    /**
-     * Your Insights Insert Key.
-     * 
-     */
-    @Export(name="writeToken", type=String.class, parameters={})
-    private Output</* @Nullable */ String> writeToken;
-
-    /**
-     * @return Your Insights Insert Key.
-     * 
-     */
-    public Output<Optional<String>> writeToken() {
-        return Codegen.optional(this.writeToken);
-    }
 
     /**
      *
@@ -443,17 +347,13 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
                 "apiKey",
-                "apiToken",
-                "licenseKey",
                 "microsoftTeamsWebhookUrl",
                 "password",
-                "readToken",
                 "routingKey",
                 "secret",
                 "serviceDiscovery",
                 "serviceKey",
-                "userName",
-                "writeToken"
+                "userName"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

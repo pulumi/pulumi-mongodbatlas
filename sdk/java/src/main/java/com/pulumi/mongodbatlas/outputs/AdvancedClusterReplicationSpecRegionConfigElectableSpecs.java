@@ -28,7 +28,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     private String instanceSize;
     /**
-     * @return Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     * @return Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      * 
      */
     private @Nullable Integer nodeCount;
@@ -56,7 +56,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
         return this.instanceSize;
     }
     /**
-     * @return Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     * @return Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      * 
      */
     public Optional<Integer> nodeCount() {

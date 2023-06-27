@@ -16,11 +16,11 @@ __all__ = ['SearchIndexArgs', 'SearchIndex']
 @pulumi.input_type
 class SearchIndexArgs:
     def __init__(__self__, *,
-                 analyzer: pulumi.Input[str],
                  cluster_name: pulumi.Input[str],
                  collection_name: pulumi.Input[str],
                  database: pulumi.Input[str],
                  project_id: pulumi.Input[str],
+                 analyzer: Optional[pulumi.Input[str]] = None,
                  analyzers: Optional[pulumi.Input[str]] = None,
                  mappings_dynamic: Optional[pulumi.Input[bool]] = None,
                  mappings_fields: Optional[pulumi.Input[str]] = None,
@@ -31,11 +31,11 @@ class SearchIndexArgs:
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a SearchIndex resource.
-        :param pulumi.Input[str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] cluster_name: The name of the cluster where you want to create the search index within.
         :param pulumi.Input[str] collection_name: Name of the collection the index is on.
         :param pulumi.Input[str] database: Name of the database the collection is in.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
+        :param pulumi.Input[str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
         :param pulumi.Input[bool] mappings_dynamic: Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
         :param pulumi.Input[str] mappings_fields: attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
@@ -43,11 +43,12 @@ class SearchIndexArgs:
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         """
-        pulumi.set(__self__, "analyzer", analyzer)
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "collection_name", collection_name)
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "project_id", project_id)
+        if analyzer is not None:
+            pulumi.set(__self__, "analyzer", analyzer)
         if analyzers is not None:
             pulumi.set(__self__, "analyzers", analyzers)
         if mappings_dynamic is not None:
@@ -64,18 +65,6 @@ class SearchIndexArgs:
             pulumi.set(__self__, "synonyms", synonyms)
         if wait_for_index_build_completion is not None:
             pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
-
-    @property
-    @pulumi.getter
-    def analyzer(self) -> pulumi.Input[str]:
-        """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
-        """
-        return pulumi.get(self, "analyzer")
-
-    @analyzer.setter
-    def analyzer(self, value: pulumi.Input[str]):
-        pulumi.set(self, "analyzer", value)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -124,6 +113,18 @@ class SearchIndexArgs:
     @project_id.setter
     def project_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def analyzer(self) -> Optional[pulumi.Input[str]]:
+        """
+        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        """
+        return pulumi.get(self, "analyzer")
+
+    @analyzer.setter
+    def analyzer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "analyzer", value)
 
     @property
     @pulumi.getter
@@ -686,8 +687,6 @@ class SearchIndex(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SearchIndexArgs.__new__(SearchIndexArgs)
 
-            if analyzer is None and not opts.urn:
-                raise TypeError("Missing required property 'analyzer'")
             __props__.__dict__["analyzer"] = analyzer
             __props__.__dict__["analyzers"] = analyzers
             if cluster_name is None and not opts.urn:
@@ -775,7 +774,7 @@ class SearchIndex(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def analyzer(self) -> pulumi.Output[str]:
+    def analyzer(self) -> pulumi.Output[Optional[str]]:
         """
         [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """

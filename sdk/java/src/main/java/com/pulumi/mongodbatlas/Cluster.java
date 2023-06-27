@@ -67,25 +67,9 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     public Output<Boolean> autoScalingComputeScaleDownEnabled() {
         return this.autoScalingComputeScaleDownEnabled;
     }
-    /**
-     * Specifies whether disk auto-scaling is enabled. The default is true.
-     * - Set to `true` to enable disk auto-scaling.
-     * - Set to `false` to disable disk auto-scaling.
-     * 
-     * &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-     * 
-     */
     @Export(name="autoScalingDiskGbEnabled", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> autoScalingDiskGbEnabled;
 
-    /**
-     * @return Specifies whether disk auto-scaling is enabled. The default is true.
-     * - Set to `true` to enable disk auto-scaling.
-     * - Set to `false` to disable disk auto-scaling.
-     * 
-     * &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-     * 
-     */
     public Output<Optional<Boolean>> autoScalingDiskGbEnabled() {
         return Codegen.optional(this.autoScalingDiskGbEnabled);
     }
@@ -652,6 +636,20 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      */
     public Output<List<ClusterReplicationSpec>> replicationSpecs() {
         return this.replicationSpecs;
+    }
+    /**
+     * Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * 
+     */
+    @Export(name="retainBackupsEnabled", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> retainBackupsEnabled;
+
+    /**
+     * @return Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * 
+     */
+    public Output<Optional<Boolean>> retainBackupsEnabled() {
+        return Codegen.optional(this.retainBackupsEnabled);
     }
     /**
      * current snapshot schedule and retention settings for the cluster.

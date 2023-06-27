@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -53,9 +54,24 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.privateKey);
     }
 
+    @Import(name="projectAssignments")
+    private @Nullable Output<List<ProjectApiKeyProjectAssignmentArgs>> projectAssignments;
+
+    public Optional<Output<List<ProjectApiKeyProjectAssignmentArgs>>> projectAssignments() {
+        return Optional.ofNullable(this.projectAssignments);
+    }
+
+    /**
+     * Project ID to assign to Access Key
+     * 
+     */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
+    /**
+     * @return Project ID to assign to Access Key
+     * 
+     */
     public Optional<Output<String>> projectId() {
         return Optional.ofNullable(this.projectId);
     }
@@ -68,7 +84,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      * 
      */
@@ -76,7 +92,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
     private @Nullable Output<List<String>> roleNames;
 
     /**
-     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * @return Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      * 
      */
@@ -90,6 +106,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         this.apiKeyId = $.apiKeyId;
         this.description = $.description;
         this.privateKey = $.privateKey;
+        this.projectAssignments = $.projectAssignments;
         this.projectId = $.projectId;
         this.publicKey = $.publicKey;
         this.roleNames = $.roleNames;
@@ -164,11 +181,36 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
             return privateKey(Output.of(privateKey));
         }
 
+        public Builder projectAssignments(@Nullable Output<List<ProjectApiKeyProjectAssignmentArgs>> projectAssignments) {
+            $.projectAssignments = projectAssignments;
+            return this;
+        }
+
+        public Builder projectAssignments(List<ProjectApiKeyProjectAssignmentArgs> projectAssignments) {
+            return projectAssignments(Output.of(projectAssignments));
+        }
+
+        public Builder projectAssignments(ProjectApiKeyProjectAssignmentArgs... projectAssignments) {
+            return projectAssignments(List.of(projectAssignments));
+        }
+
+        /**
+         * @param projectId Project ID to assign to Access Key
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(@Nullable Output<String> projectId) {
             $.projectId = projectId;
             return this;
         }
 
+        /**
+         * @param projectId Project ID to assign to Access Key
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
         }
@@ -183,7 +225,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
          * The following are valid roles:
          * 
          * @return builder
@@ -195,7 +237,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
          * The following are valid roles:
          * 
          * @return builder
@@ -206,7 +248,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
          * The following are valid roles:
          * 
          * @return builder

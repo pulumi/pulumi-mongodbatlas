@@ -26,6 +26,17 @@ namespace Pulumi.Mongodbatlas
         [Output("advancedConfiguration")]
         public Output<Outputs.AdvancedClusterAdvancedConfiguration> AdvancedConfiguration { get; private set; } = null!;
 
+        /// <summary>
+        /// Flag that indicates whether the cluster can perform backups.
+        /// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+        /// 
+        /// Backup uses:
+        /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+        /// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+        /// If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
+        /// 
+        /// This parameter defaults to false.
+        /// </summary>
         [Output("backupEnabled")]
         public Output<bool> BackupEnabled { get; private set; } = null!;
 
@@ -118,6 +129,12 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.AdvancedClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
 
         /// <summary>
+        /// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        /// </summary>
+        [Output("retainBackupsEnabled")]
+        public Output<bool?> RetainBackupsEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         /// </summary>
         [Output("rootCertType")]
@@ -196,6 +213,17 @@ namespace Pulumi.Mongodbatlas
         [Input("advancedConfiguration")]
         public Input<Inputs.AdvancedClusterAdvancedConfigurationArgs>? AdvancedConfiguration { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether the cluster can perform backups.
+        /// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+        /// 
+        /// Backup uses:
+        /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+        /// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+        /// If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
+        /// 
+        /// This parameter defaults to false.
+        /// </summary>
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
 
@@ -279,6 +307,12 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
+        /// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        /// </summary>
+        [Input("retainBackupsEnabled")]
+        public Input<bool>? RetainBackupsEnabled { get; set; }
+
+        /// <summary>
         /// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         /// </summary>
         [Input("rootCertType")]
@@ -307,6 +341,17 @@ namespace Pulumi.Mongodbatlas
         [Input("advancedConfiguration")]
         public Input<Inputs.AdvancedClusterAdvancedConfigurationGetArgs>? AdvancedConfiguration { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether the cluster can perform backups.
+        /// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+        /// 
+        /// Backup uses:
+        /// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+        /// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+        /// If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
+        /// 
+        /// This parameter defaults to false.
+        /// </summary>
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
 
@@ -415,6 +460,12 @@ namespace Pulumi.Mongodbatlas
             get => _replicationSpecs ?? (_replicationSpecs = new InputList<Inputs.AdvancedClusterReplicationSpecGetArgs>());
             set => _replicationSpecs = value;
         }
+
+        /// <summary>
+        /// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        /// </summary>
+        [Input("retainBackupsEnabled")]
+        public Input<bool>? RetainBackupsEnabled { get; set; }
 
         /// <summary>
         /// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).

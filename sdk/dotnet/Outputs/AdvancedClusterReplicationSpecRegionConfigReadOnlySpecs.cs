@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string InstanceSize;
         /// <summary>
-        /// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        /// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         /// </summary>
         public readonly int? NodeCount;
 
