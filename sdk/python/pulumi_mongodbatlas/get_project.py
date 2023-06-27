@@ -22,7 +22,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, api_keys=None, cluster_count=None, created=None, id=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, teams=None):
+    def __init__(__self__, api_keys=None, cluster_count=None, created=None, id=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, teams=None):
         if api_keys and not isinstance(api_keys, list):
             raise TypeError("Expected argument 'api_keys' to be a list")
         pulumi.set(__self__, "api_keys", api_keys)
@@ -41,6 +41,9 @@ class GetProjectResult:
         if is_data_explorer_enabled and not isinstance(is_data_explorer_enabled, bool):
             raise TypeError("Expected argument 'is_data_explorer_enabled' to be a bool")
         pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        if is_extended_storage_sizes_enabled and not isinstance(is_extended_storage_sizes_enabled, bool):
+            raise TypeError("Expected argument 'is_extended_storage_sizes_enabled' to be a bool")
+        pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
         if is_performance_advisor_enabled and not isinstance(is_performance_advisor_enabled, bool):
             raise TypeError("Expected argument 'is_performance_advisor_enabled' to be a bool")
         pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
@@ -115,6 +118,14 @@ class GetProjectResult:
         return pulumi.get(self, "is_data_explorer_enabled")
 
     @property
+    @pulumi.getter(name="isExtendedStorageSizesEnabled")
+    def is_extended_storage_sizes_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable extended storage sizes for the specified project.
+        """
+        return pulumi.get(self, "is_extended_storage_sizes_enabled")
+
+    @property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")
     def is_performance_advisor_enabled(self) -> bool:
         """
@@ -185,6 +196,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             id=self.id,
             is_collect_database_specifics_statistics_enabled=self.is_collect_database_specifics_statistics_enabled,
             is_data_explorer_enabled=self.is_data_explorer_enabled,
+            is_extended_storage_sizes_enabled=self.is_extended_storage_sizes_enabled,
             is_performance_advisor_enabled=self.is_performance_advisor_enabled,
             is_realtime_performance_panel_enabled=self.is_realtime_performance_panel_enabled,
             is_schema_advisor_enabled=self.is_schema_advisor_enabled,
@@ -224,6 +236,7 @@ def get_project(name: Optional[str] = None,
         id=__ret__.id,
         is_collect_database_specifics_statistics_enabled=__ret__.is_collect_database_specifics_statistics_enabled,
         is_data_explorer_enabled=__ret__.is_data_explorer_enabled,
+        is_extended_storage_sizes_enabled=__ret__.is_extended_storage_sizes_enabled,
         is_performance_advisor_enabled=__ret__.is_performance_advisor_enabled,
         is_realtime_performance_panel_enabled=__ret__.is_realtime_performance_panel_enabled,
         is_schema_advisor_enabled=__ret__.is_schema_advisor_enabled,

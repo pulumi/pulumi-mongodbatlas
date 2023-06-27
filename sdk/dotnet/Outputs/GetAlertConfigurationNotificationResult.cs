@@ -42,14 +42,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool EmailEnabled;
         /// <summary>
-        /// Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-        /// </summary>
-        public readonly string FlowName;
-        /// <summary>
-        /// The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        /// </summary>
-        public readonly string FlowdockApiToken;
-        /// <summary>
         /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
         /// </summary>
         public readonly int IntervalMin;
@@ -69,10 +61,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         /// </summary>
         public readonly string OpsGenieRegion;
-        /// <summary>
-        /// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-        /// </summary>
-        public readonly string OrgName;
         /// <summary>
         /// Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
         /// </summary>
@@ -135,10 +123,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool emailEnabled,
 
-            string flowName,
-
-            string flowdockApiToken,
-
             int intervalMin,
 
             string? microsoftTeamsWebhookUrl,
@@ -148,8 +132,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             string opsGenieApiKey,
 
             string opsGenieRegion,
-
-            string orgName,
 
             ImmutableArray<string> roles,
 
@@ -180,14 +162,11 @@ namespace Pulumi.Mongodbatlas.Outputs
             DelayMin = delayMin;
             EmailAddress = emailAddress;
             EmailEnabled = emailEnabled;
-            FlowName = flowName;
-            FlowdockApiToken = flowdockApiToken;
             IntervalMin = intervalMin;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             MobileNumber = mobileNumber;
             OpsGenieApiKey = opsGenieApiKey;
             OpsGenieRegion = opsGenieRegion;
-            OrgName = orgName;
             Roles = roles;
             ServiceKey = serviceKey;
             SmsEnabled = smsEnabled;

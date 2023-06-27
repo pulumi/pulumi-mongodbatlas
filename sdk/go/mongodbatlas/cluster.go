@@ -29,13 +29,8 @@ type Cluster struct {
 	AutoScalingComputeEnabled pulumi.BoolOutput                  `pulumi:"autoScalingComputeEnabled"`
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
-	AutoScalingComputeScaleDownEnabled pulumi.BoolOutput `pulumi:"autoScalingComputeScaleDownEnabled"`
-	// Specifies whether disk auto-scaling is enabled. The default is true.
-	// - Set to `true` to enable disk auto-scaling.
-	// - Set to `false` to disable disk auto-scaling.
-	//
-	// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
-	AutoScalingDiskGbEnabled pulumi.BoolPtrOutput `pulumi:"autoScalingDiskGbEnabled"`
+	AutoScalingComputeScaleDownEnabled pulumi.BoolOutput    `pulumi:"autoScalingComputeScaleDownEnabled"`
+	AutoScalingDiskGbEnabled           pulumi.BoolPtrOutput `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
 	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
@@ -146,6 +141,8 @@ type Cluster struct {
 	ReplicationFactor pulumi.IntOutput `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs ClusterReplicationSpecArrayOutput `pulumi:"replicationSpecs"`
+	// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+	RetainBackupsEnabled pulumi.BoolPtrOutput `pulumi:"retainBackupsEnabled"`
 	// current snapshot schedule and retention settings for the cluster.
 	SnapshotBackupPolicies ClusterSnapshotBackupPolicyArrayOutput `pulumi:"snapshotBackupPolicies"`
 	// Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
@@ -207,12 +204,7 @@ type clusterState struct {
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
 	AutoScalingComputeScaleDownEnabled *bool `pulumi:"autoScalingComputeScaleDownEnabled"`
-	// Specifies whether disk auto-scaling is enabled. The default is true.
-	// - Set to `true` to enable disk auto-scaling.
-	// - Set to `false` to disable disk auto-scaling.
-	//
-	// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
-	AutoScalingDiskGbEnabled *bool `pulumi:"autoScalingDiskGbEnabled"`
+	AutoScalingDiskGbEnabled           *bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
 	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
@@ -323,6 +315,8 @@ type clusterState struct {
 	ReplicationFactor *int `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs []ClusterReplicationSpec `pulumi:"replicationSpecs"`
+	// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
 	// current snapshot schedule and retention settings for the cluster.
 	SnapshotBackupPolicies []ClusterSnapshotBackupPolicy `pulumi:"snapshotBackupPolicies"`
 	// Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
@@ -347,12 +341,7 @@ type ClusterState struct {
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
 	AutoScalingComputeScaleDownEnabled pulumi.BoolPtrInput
-	// Specifies whether disk auto-scaling is enabled. The default is true.
-	// - Set to `true` to enable disk auto-scaling.
-	// - Set to `false` to disable disk auto-scaling.
-	//
-	// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
-	AutoScalingDiskGbEnabled pulumi.BoolPtrInput
+	AutoScalingDiskGbEnabled           pulumi.BoolPtrInput
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
 	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
@@ -463,6 +452,8 @@ type ClusterState struct {
 	ReplicationFactor pulumi.IntPtrInput
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs ClusterReplicationSpecArrayInput
+	// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+	RetainBackupsEnabled pulumi.BoolPtrInput
 	// current snapshot schedule and retention settings for the cluster.
 	SnapshotBackupPolicies ClusterSnapshotBackupPolicyArrayInput
 	// Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
@@ -491,12 +482,7 @@ type clusterArgs struct {
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
 	AutoScalingComputeScaleDownEnabled *bool `pulumi:"autoScalingComputeScaleDownEnabled"`
-	// Specifies whether disk auto-scaling is enabled. The default is true.
-	// - Set to `true` to enable disk auto-scaling.
-	// - Set to `false` to disable disk auto-scaling.
-	//
-	// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
-	AutoScalingDiskGbEnabled *bool `pulumi:"autoScalingDiskGbEnabled"`
+	AutoScalingDiskGbEnabled           *bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
 	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
@@ -592,6 +578,8 @@ type clusterArgs struct {
 	ReplicationFactor *int `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs []ClusterReplicationSpec `pulumi:"replicationSpecs"`
+	// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled *bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
@@ -605,12 +593,7 @@ type ClusterArgs struct {
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
 	AutoScalingComputeScaleDownEnabled pulumi.BoolPtrInput
-	// Specifies whether disk auto-scaling is enabled. The default is true.
-	// - Set to `true` to enable disk auto-scaling.
-	// - Set to `false` to disable disk auto-scaling.
-	//
-	// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
-	AutoScalingDiskGbEnabled pulumi.BoolPtrInput
+	AutoScalingDiskGbEnabled           pulumi.BoolPtrInput
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
 	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
@@ -706,6 +689,8 @@ type ClusterArgs struct {
 	ReplicationFactor pulumi.IntPtrInput
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs ClusterReplicationSpecArrayInput
+	// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+	RetainBackupsEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolPtrInput
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
@@ -813,11 +798,6 @@ func (o ClusterOutput) AutoScalingComputeScaleDownEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.AutoScalingComputeScaleDownEnabled }).(pulumi.BoolOutput)
 }
 
-// Specifies whether disk auto-scaling is enabled. The default is true.
-// - Set to `true` to enable disk auto-scaling.
-// - Set to `false` to disable disk auto-scaling.
-//
-// > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
 func (o ClusterOutput) AutoScalingDiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.AutoScalingDiskGbEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -1038,6 +1018,11 @@ func (o ClusterOutput) ReplicationFactor() pulumi.IntOutput {
 // Configuration for cluster regions.  See Replication Spec below for more details.
 func (o ClusterOutput) ReplicationSpecs() ClusterReplicationSpecArrayOutput {
 	return o.ApplyT(func(v *Cluster) ClusterReplicationSpecArrayOutput { return v.ReplicationSpecs }).(ClusterReplicationSpecArrayOutput)
+}
+
+// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+func (o ClusterOutput) RetainBackupsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.RetainBackupsEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // current snapshot schedule and retention settings for the cluster.

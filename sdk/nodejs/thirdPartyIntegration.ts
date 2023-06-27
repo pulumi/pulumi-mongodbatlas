@@ -10,27 +10,13 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * > **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
+ *  **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
  *
  * > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
  *
  * > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
  *
  * > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testFlowdock = new mongodbatlas.ThirdPartyIntegration("testFlowdock", {
- *     apiToken: "<API-TOKEN>",
- *     flowName: "<FLOW-NAME>",
- *     orgName: "<ORG-NAME>",
- *     projectId: "<PROJECT-ID>",
- *     type: "FLOWDOCK",
- * });
- * ```
  *
  * ## Import
  *
@@ -71,38 +57,18 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     }
 
     /**
-     * Unique identifier of your New Relic account.
-     */
-    public readonly accountId!: pulumi.Output<string | undefined>;
-    /**
      * Your API Key.
      */
     public readonly apiKey!: pulumi.Output<string | undefined>;
-    /**
-     * Your API Token.
-     */
-    public readonly apiToken!: pulumi.Output<string | undefined>;
     public readonly channelName!: pulumi.Output<string | undefined>;
     /**
      * Whether your cluster has Prometheus enabled.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
-     * Your Flowdock Flow name.
-     */
-    public readonly flowName!: pulumi.Output<string | undefined>;
-    /**
-     * Your License Key.
-     */
-    public readonly licenseKey!: pulumi.Output<string | undefined>;
-    /**
      * Your Microsoft Teams incoming webhook URL.
      */
     public readonly microsoftTeamsWebhookUrl!: pulumi.Output<string | undefined>;
-    /**
-     * Your Flowdock organization name.
-     */
-    public readonly orgName!: pulumi.Output<string | undefined>;
     /**
      * Your Prometheus password.
      */
@@ -111,10 +77,6 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * The unique ID for the project to get all Third-Party service integrations
      */
     public readonly projectId!: pulumi.Output<string>;
-    /**
-     * Your Insights Query Key.
-     */
-    public readonly readToken!: pulumi.Output<string | undefined>;
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
      */
@@ -165,10 +127,6 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * Your Prometheus username.
      */
     public readonly userName!: pulumi.Output<string | undefined>;
-    /**
-     * Your Insights Insert Key.
-     */
-    public readonly writeToken!: pulumi.Output<string | undefined>;
 
     /**
      * Create a ThirdPartyIntegration resource with the given unique name, arguments, and options.
@@ -183,18 +141,12 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ThirdPartyIntegrationState | undefined;
-            resourceInputs["accountId"] = state ? state.accountId : undefined;
             resourceInputs["apiKey"] = state ? state.apiKey : undefined;
-            resourceInputs["apiToken"] = state ? state.apiToken : undefined;
             resourceInputs["channelName"] = state ? state.channelName : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["flowName"] = state ? state.flowName : undefined;
-            resourceInputs["licenseKey"] = state ? state.licenseKey : undefined;
             resourceInputs["microsoftTeamsWebhookUrl"] = state ? state.microsoftTeamsWebhookUrl : undefined;
-            resourceInputs["orgName"] = state ? state.orgName : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["readToken"] = state ? state.readToken : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["routingKey"] = state ? state.routingKey : undefined;
             resourceInputs["scheme"] = state ? state.scheme : undefined;
@@ -205,7 +157,6 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
             resourceInputs["userName"] = state ? state.userName : undefined;
-            resourceInputs["writeToken"] = state ? state.writeToken : undefined;
         } else {
             const args = argsOrState as ThirdPartyIntegrationArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -214,18 +165,12 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["accountId"] = args ? args.accountId : undefined;
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
-            resourceInputs["apiToken"] = args?.apiToken ? pulumi.secret(args.apiToken) : undefined;
             resourceInputs["channelName"] = args ? args.channelName : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["flowName"] = args ? args.flowName : undefined;
-            resourceInputs["licenseKey"] = args?.licenseKey ? pulumi.secret(args.licenseKey) : undefined;
             resourceInputs["microsoftTeamsWebhookUrl"] = args?.microsoftTeamsWebhookUrl ? pulumi.secret(args.microsoftTeamsWebhookUrl) : undefined;
-            resourceInputs["orgName"] = args ? args.orgName : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["readToken"] = args?.readToken ? pulumi.secret(args.readToken) : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["routingKey"] = args?.routingKey ? pulumi.secret(args.routingKey) : undefined;
             resourceInputs["scheme"] = args ? args.scheme : undefined;
@@ -236,10 +181,9 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
             resourceInputs["userName"] = args?.userName ? pulumi.secret(args.userName) : undefined;
-            resourceInputs["writeToken"] = args?.writeToken ? pulumi.secret(args.writeToken) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["apiKey", "apiToken", "licenseKey", "microsoftTeamsWebhookUrl", "password", "readToken", "routingKey", "secret", "serviceDiscovery", "serviceKey", "userName", "writeToken"] };
+        const secretOpts = { additionalSecretOutputs: ["apiKey", "microsoftTeamsWebhookUrl", "password", "routingKey", "secret", "serviceDiscovery", "serviceKey", "userName"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(ThirdPartyIntegration.__pulumiType, name, resourceInputs, opts);
     }
@@ -250,38 +194,18 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
  */
 export interface ThirdPartyIntegrationState {
     /**
-     * Unique identifier of your New Relic account.
-     */
-    accountId?: pulumi.Input<string>;
-    /**
      * Your API Key.
      */
     apiKey?: pulumi.Input<string>;
-    /**
-     * Your API Token.
-     */
-    apiToken?: pulumi.Input<string>;
     channelName?: pulumi.Input<string>;
     /**
      * Whether your cluster has Prometheus enabled.
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * Your Flowdock Flow name.
-     */
-    flowName?: pulumi.Input<string>;
-    /**
-     * Your License Key.
-     */
-    licenseKey?: pulumi.Input<string>;
-    /**
      * Your Microsoft Teams incoming webhook URL.
      */
     microsoftTeamsWebhookUrl?: pulumi.Input<string>;
-    /**
-     * Your Flowdock organization name.
-     */
-    orgName?: pulumi.Input<string>;
     /**
      * Your Prometheus password.
      */
@@ -290,10 +214,6 @@ export interface ThirdPartyIntegrationState {
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId?: pulumi.Input<string>;
-    /**
-     * Your Insights Query Key.
-     */
-    readToken?: pulumi.Input<string>;
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
      */
@@ -344,10 +264,6 @@ export interface ThirdPartyIntegrationState {
      * Your Prometheus username.
      */
     userName?: pulumi.Input<string>;
-    /**
-     * Your Insights Insert Key.
-     */
-    writeToken?: pulumi.Input<string>;
 }
 
 /**
@@ -355,38 +271,18 @@ export interface ThirdPartyIntegrationState {
  */
 export interface ThirdPartyIntegrationArgs {
     /**
-     * Unique identifier of your New Relic account.
-     */
-    accountId?: pulumi.Input<string>;
-    /**
      * Your API Key.
      */
     apiKey?: pulumi.Input<string>;
-    /**
-     * Your API Token.
-     */
-    apiToken?: pulumi.Input<string>;
     channelName?: pulumi.Input<string>;
     /**
      * Whether your cluster has Prometheus enabled.
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * Your Flowdock Flow name.
-     */
-    flowName?: pulumi.Input<string>;
-    /**
-     * Your License Key.
-     */
-    licenseKey?: pulumi.Input<string>;
-    /**
      * Your Microsoft Teams incoming webhook URL.
      */
     microsoftTeamsWebhookUrl?: pulumi.Input<string>;
-    /**
-     * Your Flowdock organization name.
-     */
-    orgName?: pulumi.Input<string>;
     /**
      * Your Prometheus password.
      */
@@ -395,10 +291,6 @@ export interface ThirdPartyIntegrationArgs {
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId: pulumi.Input<string>;
-    /**
-     * Your Insights Query Key.
-     */
-    readToken?: pulumi.Input<string>;
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
      */
@@ -449,8 +341,4 @@ export interface ThirdPartyIntegrationArgs {
      * Your Prometheus username.
      */
     userName?: pulumi.Input<string>;
-    /**
-     * Your Insights Insert Key.
-     */
-    writeToken?: pulumi.Input<string>;
 }

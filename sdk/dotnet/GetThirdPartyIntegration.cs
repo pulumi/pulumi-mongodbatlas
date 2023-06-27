@@ -15,37 +15,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
-        ///         Type = "FLOWDOCK",
-        ///         FlowName = "&lt;FLOW-NAME&gt;",
-        ///         ApiToken = "&lt;API-TOKEN&gt;",
-        ///         OrgName = "&lt;ORG-NAME&gt;",
-        ///     });
-        /// 
-        ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
-        ///     {
-        ///         ProjectId = testFlowdock.ProjectId,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetThirdPartyIntegrationResult> InvokeAsync(GetThirdPartyIntegrationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationArgs(), options.WithDefaults());
@@ -54,37 +23,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
-        ///         Type = "FLOWDOCK",
-        ///         FlowName = "&lt;FLOW-NAME&gt;",
-        ///         ApiToken = "&lt;API-TOKEN&gt;",
-        ///         OrgName = "&lt;ORG-NAME&gt;",
-        ///     });
-        /// 
-        ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
-        ///     {
-        ///         ProjectId = testFlowdock.ProjectId,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetThirdPartyIntegrationResult> Invoke(GetThirdPartyIntegrationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationInvokeArgs(), options.WithDefaults());
@@ -148,6 +86,7 @@ namespace Pulumi.Mongodbatlas
         /// * PROMETHEUS
         /// 
         /// *resource is now deprecated and will be removed in the next major version, 1.9.0
+        /// **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
         /// </summary>
         [Input("type", required: true)]
         public string Type { get; set; } = null!;
@@ -235,6 +174,7 @@ namespace Pulumi.Mongodbatlas
         /// * PROMETHEUS
         /// 
         /// *resource is now deprecated and will be removed in the next major version, 1.9.0
+        /// **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -283,10 +223,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// Your Flowdock Flow name.
-        /// </summary>
-        public readonly string FlowName;
-        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -298,15 +234,7 @@ namespace Pulumi.Mongodbatlas
         /// Your Microsoft Teams incoming webhook URL.
         /// </summary>
         public readonly string? MicrosoftTeamsWebhookUrl;
-        /// <summary>
-        /// Your Flowdock organization name.
-        /// </summary>
-        public readonly string OrgName;
         public readonly string ProjectId;
-        /// <summary>
-        /// Your Insights Query Key.
-        /// </summary>
-        public readonly string ReadToken;
         /// <summary>
         /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
         /// </summary>
@@ -344,10 +272,6 @@ namespace Pulumi.Mongodbatlas
         /// Your Prometheus username.
         /// </summary>
         public readonly string? UserName;
-        /// <summary>
-        /// Your Insights Insert Key.
-        /// </summary>
-        public readonly string WriteToken;
 
         [OutputConstructor]
         private GetThirdPartyIntegrationResult(
@@ -361,19 +285,13 @@ namespace Pulumi.Mongodbatlas
 
             bool? enabled,
 
-            string flowName,
-
             string id,
 
             string licenseKey,
 
             string? microsoftTeamsWebhookUrl,
 
-            string orgName,
-
             string projectId,
-
-            string readToken,
 
             string region,
 
@@ -393,22 +311,17 @@ namespace Pulumi.Mongodbatlas
 
             string url,
 
-            string? userName,
-
-            string writeToken)
+            string? userName)
         {
             AccountId = accountId;
             ApiKey = apiKey;
             ApiToken = apiToken;
             ChannelName = channelName;
             Enabled = enabled;
-            FlowName = flowName;
             Id = id;
             LicenseKey = licenseKey;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
-            OrgName = orgName;
             ProjectId = projectId;
-            ReadToken = readToken;
             Region = region;
             RoutingKey = routingKey;
             Scheme = scheme;
@@ -419,7 +332,6 @@ namespace Pulumi.Mongodbatlas
             Type = type;
             Url = url;
             UserName = userName;
-            WriteToken = writeToken;
         }
     }
 }

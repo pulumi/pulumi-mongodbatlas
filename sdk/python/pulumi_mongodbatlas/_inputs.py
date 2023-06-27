@@ -47,15 +47,13 @@ __all__ = [
     'CloudProviderAccessAuthorizationFeatureUsageArgs',
     'CloudProviderAccessFeatureUsageArgs',
     'CloudProviderAccessSetupAwsConfigArgs',
-    'CloudProviderSnapshotBackupPolicyPolicyArgs',
-    'CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs',
-    'CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs',
     'ClusterAdvancedConfigurationArgs',
     'ClusterBiConnectorConfigArgs',
     'ClusterConnectionStringArgs',
     'ClusterConnectionStringPrivateEndpointArgs',
     'ClusterConnectionStringPrivateEndpointEndpointArgs',
     'ClusterLabelArgs',
+    'ClusterOutageSimulationOutageFilterArgs',
     'ClusterReplicationSpecArgs',
     'ClusterReplicationSpecRegionsConfigArgs',
     'ClusterSnapshotBackupPolicyArgs',
@@ -66,6 +64,12 @@ __all__ = [
     'CustomDbRoleInheritedRoleArgs',
     'DataLakeAwsArgs',
     'DataLakeDataProcessRegionArgs',
+    'DataLakePipelineIngestionScheduleArgs',
+    'DataLakePipelineSinkArgs',
+    'DataLakePipelineSinkPartitionFieldArgs',
+    'DataLakePipelineSnapshotArgs',
+    'DataLakePipelineSourceArgs',
+    'DataLakePipelineTransformationArgs',
     'DataLakeStorageDatabaseArgs',
     'DataLakeStorageDatabaseCollectionArgs',
     'DataLakeStorageDatabaseCollectionDataSourceArgs',
@@ -79,6 +83,16 @@ __all__ = [
     'EncryptionAtRestGoogleCloudKmsConfigArgs',
     'EventTriggerEventProcessorsArgs',
     'EventTriggerEventProcessorsAwsEventbridgeArgs',
+    'FederatedDatabaseInstanceCloudProviderConfigArgs',
+    'FederatedDatabaseInstanceCloudProviderConfigAwsArgs',
+    'FederatedDatabaseInstanceDataProcessRegionArgs',
+    'FederatedDatabaseInstanceStorageDatabaseArgs',
+    'FederatedDatabaseInstanceStorageDatabaseCollectionArgs',
+    'FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs',
+    'FederatedDatabaseInstanceStorageDatabaseViewArgs',
+    'FederatedDatabaseInstanceStorageStoreArgs',
+    'FederatedDatabaseInstanceStorageStoreReadPreferenceArgs',
+    'FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs',
     'FederatedSettingsOrgRoleMappingRoleAssignmentArgs',
     'GlobalClusterConfigCustomZoneMappingArgs',
     'GlobalClusterConfigManagedNamespaceArgs',
@@ -89,6 +103,7 @@ __all__ = [
     'OnlineArchivePartitionFieldArgs',
     'PrivateLinkEndpointServiceEndpointArgs',
     'ProjectApiKeyArgs',
+    'ProjectApiKeyProjectAssignmentArgs',
     'ProjectTeamArgs',
     'ProviderAssumeRoleArgs',
     'SearchIndexSynonymArgs',
@@ -102,6 +117,8 @@ __all__ = [
     'GetBackupCompliancePolicyPolicyItemMonthlyArgs',
     'GetBackupCompliancePolicyPolicyItemWeeklyArgs',
     'GetCustomDbRoleInheritedRoleArgs',
+    'GetFederatedDatabaseInstanceCloudProviderConfigArgs',
+    'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs',
     'GetGlobalClusterConfigManagedNamespaceArgs',
     'GetServerlessInstanceLinkArgs',
 ]
@@ -498,6 +515,7 @@ class AdvancedClusterConnectionStringPrivateEndpointArgs:
                  connection_string: Optional[pulumi.Input[str]] = None,
                  endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointEndpointArgs']]]] = None,
                  srv_connection_string: Optional[pulumi.Input[str]] = None,
+                 srv_shard_optimized_connection_string: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         if connection_string is not None:
             pulumi.set(__self__, "connection_string", connection_string)
@@ -505,6 +523,8 @@ class AdvancedClusterConnectionStringPrivateEndpointArgs:
             pulumi.set(__self__, "endpoints", endpoints)
         if srv_connection_string is not None:
             pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        if srv_shard_optimized_connection_string is not None:
+            pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -534,6 +554,15 @@ class AdvancedClusterConnectionStringPrivateEndpointArgs:
     @srv_connection_string.setter
     def srv_connection_string(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "srv_connection_string", value)
+
+    @property
+    @pulumi.getter(name="srvShardOptimizedConnectionString")
+    def srv_shard_optimized_connection_string(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "srv_shard_optimized_connection_string")
+
+    @srv_shard_optimized_connection_string.setter
+    def srv_shard_optimized_connection_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "srv_shard_optimized_connection_string", value)
 
     @property
     @pulumi.getter
@@ -959,7 +988,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
         :param pulumi.Input[str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param pulumi.Input[int] disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param pulumi.Input[str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-        :param pulumi.Input[int] node_count: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        :param pulumi.Input[int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
@@ -1009,7 +1038,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         return pulumi.get(self, "node_count")
 
@@ -1030,7 +1059,6 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
         :param pulumi.Input[str] compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
         :param pulumi.Input[str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
         :param pulumi.Input[bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
-        :param pulumi.Input[bool] disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
         """
         if compute_enabled is not None:
             pulumi.set(__self__, "compute_enabled", compute_enabled)
@@ -1091,9 +1119,6 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     @property
     @pulumi.getter(name="diskGbEnabled")
     def disk_gb_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
-        """
         return pulumi.get(self, "disk_gb_enabled")
 
     @disk_gb_enabled.setter
@@ -1112,7 +1137,7 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
         :param pulumi.Input[str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param pulumi.Input[int] disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param pulumi.Input[str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-        :param pulumi.Input[int] node_count: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        :param pulumi.Input[int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
@@ -1162,7 +1187,7 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         return pulumi.get(self, "node_count")
 
@@ -1182,7 +1207,7 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
         :param pulumi.Input[str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param pulumi.Input[int] disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param pulumi.Input[str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-        :param pulumi.Input[int] node_count: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        :param pulumi.Input[int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
@@ -1232,7 +1257,7 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         return pulumi.get(self, "node_count")
 
@@ -1433,14 +1458,11 @@ class AlertConfigurationNotificationArgs:
                  delay_min: Optional[pulumi.Input[int]] = None,
                  email_address: Optional[pulumi.Input[str]] = None,
                  email_enabled: Optional[pulumi.Input[bool]] = None,
-                 flow_name: Optional[pulumi.Input[str]] = None,
-                 flowdock_api_token: Optional[pulumi.Input[str]] = None,
                  interval_min: Optional[pulumi.Input[int]] = None,
                  microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
                  mobile_number: Optional[pulumi.Input[str]] = None,
                  ops_genie_api_key: Optional[pulumi.Input[str]] = None,
                  ops_genie_region: Optional[pulumi.Input[str]] = None,
-                 org_name: Optional[pulumi.Input[str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_key: Optional[pulumi.Input[str]] = None,
                  sms_enabled: Optional[pulumi.Input[bool]] = None,
@@ -1460,14 +1482,11 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[int] delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param pulumi.Input[str] email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param pulumi.Input[bool] email_enabled: Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-        :param pulumi.Input[str] flow_name: Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-        :param pulumi.Input[str] flowdock_api_token: The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[int] interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         :param pulumi.Input[str] microsoft_teams_webhook_url: Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
         :param pulumi.Input[str] mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         :param pulumi.Input[str] ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[str] ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
-        :param pulumi.Input[str] org_name: Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
                Accepted values are:
                
@@ -1506,10 +1525,6 @@ class AlertConfigurationNotificationArgs:
             pulumi.set(__self__, "email_address", email_address)
         if email_enabled is not None:
             pulumi.set(__self__, "email_enabled", email_enabled)
-        if flow_name is not None:
-            pulumi.set(__self__, "flow_name", flow_name)
-        if flowdock_api_token is not None:
-            pulumi.set(__self__, "flowdock_api_token", flowdock_api_token)
         if interval_min is not None:
             pulumi.set(__self__, "interval_min", interval_min)
         if microsoft_teams_webhook_url is not None:
@@ -1520,8 +1535,6 @@ class AlertConfigurationNotificationArgs:
             pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
         if ops_genie_region is not None:
             pulumi.set(__self__, "ops_genie_region", ops_genie_region)
-        if org_name is not None:
-            pulumi.set(__self__, "org_name", org_name)
         if roles is not None:
             pulumi.set(__self__, "roles", roles)
         if service_key is not None:
@@ -1630,30 +1643,6 @@ class AlertConfigurationNotificationArgs:
         pulumi.set(self, "email_enabled", value)
 
     @property
-    @pulumi.getter(name="flowName")
-    def flow_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-        """
-        return pulumi.get(self, "flow_name")
-
-    @flow_name.setter
-    def flow_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "flow_name", value)
-
-    @property
-    @pulumi.getter(name="flowdockApiToken")
-    def flowdock_api_token(self) -> Optional[pulumi.Input[str]]:
-        """
-        The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        """
-        return pulumi.get(self, "flowdock_api_token")
-
-    @flowdock_api_token.setter
-    def flowdock_api_token(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "flowdock_api_token", value)
-
-    @property
     @pulumi.getter(name="intervalMin")
     def interval_min(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1712,18 +1701,6 @@ class AlertConfigurationNotificationArgs:
     @ops_genie_region.setter
     def ops_genie_region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ops_genie_region", value)
-
-    @property
-    @pulumi.getter(name="orgName")
-    def org_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-        """
-        return pulumi.get(self, "org_name")
-
-    @org_name.setter
-    def org_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "org_name", value)
 
     @property
     @pulumi.getter
@@ -3163,204 +3140,6 @@ class CloudProviderAccessSetupAwsConfigArgs:
 
 
 @pulumi.input_type
-class CloudProviderSnapshotBackupPolicyPolicyArgs:
-    def __init__(__self__, *,
-                 id: pulumi.Input[str],
-                 policy_items: pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs']]]):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "policy_items", policy_items)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter(name="policyItems")
-    def policy_items(self) -> pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs']]]:
-        return pulumi.get(self, "policy_items")
-
-    @policy_items.setter
-    def policy_items(self, value: pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs']]]):
-        pulumi.set(self, "policy_items", value)
-
-
-@pulumi.input_type
-class CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs:
-    def __init__(__self__, *,
-                 frequency_interval: pulumi.Input[int],
-                 frequency_type: pulumi.Input[str],
-                 id: pulumi.Input[str],
-                 retention_unit: pulumi.Input[str],
-                 retention_value: pulumi.Input[int]):
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
-
-    @property
-    @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> pulumi.Input[int]:
-        return pulumi.get(self, "frequency_interval")
-
-    @frequency_interval.setter
-    def frequency_interval(self, value: pulumi.Input[int]):
-        pulumi.set(self, "frequency_interval", value)
-
-    @property
-    @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "frequency_type")
-
-    @frequency_type.setter
-    def frequency_type(self, value: pulumi.Input[str]):
-        pulumi.set(self, "frequency_type", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter(name="retentionUnit")
-    def retention_unit(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "retention_unit")
-
-    @retention_unit.setter
-    def retention_unit(self, value: pulumi.Input[str]):
-        pulumi.set(self, "retention_unit", value)
-
-    @property
-    @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> pulumi.Input[int]:
-        return pulumi.get(self, "retention_value")
-
-    @retention_value.setter
-    def retention_value(self, value: pulumi.Input[int]):
-        pulumi.set(self, "retention_value", value)
-
-
-@pulumi.input_type
-class CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs:
-    def __init__(__self__, *,
-                 automated: Optional[pulumi.Input[bool]] = None,
-                 download: Optional[pulumi.Input[bool]] = None,
-                 oplog_inc: Optional[pulumi.Input[int]] = None,
-                 oplog_ts: Optional[pulumi.Input[int]] = None,
-                 point_in_time: Optional[pulumi.Input[bool]] = None,
-                 point_in_time_utc_seconds: Optional[pulumi.Input[int]] = None,
-                 target_cluster_name: Optional[pulumi.Input[str]] = None,
-                 target_project_id: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] target_cluster_name: Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
-        :param pulumi.Input[str] target_project_id: Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
-        """
-        if automated is not None:
-            pulumi.set(__self__, "automated", automated)
-        if download is not None:
-            pulumi.set(__self__, "download", download)
-        if oplog_inc is not None:
-            pulumi.set(__self__, "oplog_inc", oplog_inc)
-        if oplog_ts is not None:
-            pulumi.set(__self__, "oplog_ts", oplog_ts)
-        if point_in_time is not None:
-            pulumi.set(__self__, "point_in_time", point_in_time)
-        if point_in_time_utc_seconds is not None:
-            pulumi.set(__self__, "point_in_time_utc_seconds", point_in_time_utc_seconds)
-        if target_cluster_name is not None:
-            pulumi.set(__self__, "target_cluster_name", target_cluster_name)
-        if target_project_id is not None:
-            pulumi.set(__self__, "target_project_id", target_project_id)
-
-    @property
-    @pulumi.getter
-    def automated(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "automated")
-
-    @automated.setter
-    def automated(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "automated", value)
-
-    @property
-    @pulumi.getter
-    def download(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "download")
-
-    @download.setter
-    def download(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "download", value)
-
-    @property
-    @pulumi.getter(name="oplogInc")
-    def oplog_inc(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "oplog_inc")
-
-    @oplog_inc.setter
-    def oplog_inc(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "oplog_inc", value)
-
-    @property
-    @pulumi.getter(name="oplogTs")
-    def oplog_ts(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "oplog_ts")
-
-    @oplog_ts.setter
-    def oplog_ts(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "oplog_ts", value)
-
-    @property
-    @pulumi.getter(name="pointInTime")
-    def point_in_time(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "point_in_time")
-
-    @point_in_time.setter
-    def point_in_time(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "point_in_time", value)
-
-    @property
-    @pulumi.getter(name="pointInTimeUtcSeconds")
-    def point_in_time_utc_seconds(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "point_in_time_utc_seconds")
-
-    @point_in_time_utc_seconds.setter
-    def point_in_time_utc_seconds(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "point_in_time_utc_seconds", value)
-
-    @property
-    @pulumi.getter(name="targetClusterName")
-    def target_cluster_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
-        """
-        return pulumi.get(self, "target_cluster_name")
-
-    @target_cluster_name.setter
-    def target_cluster_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "target_cluster_name", value)
-
-    @property
-    @pulumi.getter(name="targetProjectId")
-    def target_project_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
-        """
-        return pulumi.get(self, "target_project_id")
-
-    @target_project_id.setter
-    def target_project_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "target_project_id", value)
-
-
-@pulumi.input_type
 class ClusterAdvancedConfigurationArgs:
     def __init__(__self__, *,
                  default_read_concern: Optional[pulumi.Input[str]] = None,
@@ -3695,6 +3474,7 @@ class ClusterConnectionStringPrivateEndpointArgs:
                  connection_string: Optional[pulumi.Input[str]] = None,
                  endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]] = None,
                  srv_connection_string: Optional[pulumi.Input[str]] = None,
+                 srv_shard_optimized_connection_string: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         if connection_string is not None:
             pulumi.set(__self__, "connection_string", connection_string)
@@ -3702,6 +3482,8 @@ class ClusterConnectionStringPrivateEndpointArgs:
             pulumi.set(__self__, "endpoints", endpoints)
         if srv_connection_string is not None:
             pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        if srv_shard_optimized_connection_string is not None:
+            pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -3731,6 +3513,15 @@ class ClusterConnectionStringPrivateEndpointArgs:
     @srv_connection_string.setter
     def srv_connection_string(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "srv_connection_string", value)
+
+    @property
+    @pulumi.getter(name="srvShardOptimizedConnectionString")
+    def srv_shard_optimized_connection_string(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "srv_shard_optimized_connection_string")
+
+    @srv_shard_optimized_connection_string.setter
+    def srv_shard_optimized_connection_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "srv_shard_optimized_connection_string", value)
 
     @property
     @pulumi.getter
@@ -3830,6 +3621,59 @@ class ClusterLabelArgs:
     @value.setter
     def value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ClusterOutageSimulationOutageFilterArgs:
+    def __init__(__self__, *,
+                 cloud_provider: pulumi.Input[str],
+                 region_name: pulumi.Input[str],
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] cloud_provider: The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+        :param pulumi.Input[str] region_name: The Atlas name of the region to undergo an outage simulation.
+        :param pulumi.Input[str] type: The type of cluster outage simulation. Following values are supported:
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region_name", region_name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> pulumi.Input[str]:
+        """
+        The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @cloud_provider.setter
+    def cloud_provider(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cloud_provider", value)
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> pulumi.Input[str]:
+        """
+        The Atlas name of the region to undergo an outage simulation.
+        """
+        return pulumi.get(self, "region_name")
+
+    @region_name.setter
+    def region_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region_name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of cluster outage simulation. Following values are supported:
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -4462,6 +4306,500 @@ class DataLakeDataProcessRegionArgs:
     @region.setter
     def region(self, value: pulumi.Input[str]):
         pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class DataLakePipelineIngestionScheduleArgs:
+    def __init__(__self__, *,
+                 frequency_interval: Optional[pulumi.Input[int]] = None,
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 retention_unit: Optional[pulumi.Input[str]] = None,
+                 retention_value: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+        """
+        if frequency_interval is not None:
+            pulumi.set(__self__, "frequency_interval", frequency_interval)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if retention_unit is not None:
+            pulumi.set(__self__, "retention_unit", retention_unit)
+        if retention_value is not None:
+            pulumi.set(__self__, "retention_value", retention_value)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "frequency_interval")
+
+    @frequency_interval.setter
+    def frequency_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "frequency_interval", value)
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "retention_unit")
+
+    @retention_unit.setter
+    def retention_unit(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "retention_unit", value)
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "retention_value")
+
+    @retention_value.setter
+    def retention_value(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retention_value", value)
+
+
+@pulumi.input_type
+class DataLakePipelineSinkArgs:
+    def __init__(__self__, *,
+                 partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineSinkPartitionFieldArgs']]]] = None,
+                 provider: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['DataLakePipelineSinkPartitionFieldArgs']]] partition_fields: Ordered fields used to physically organize data in the destination.
+               * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
+               * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
+        :param pulumi.Input[str] provider: Target cloud provider for this Data Lake Pipeline.
+        :param pulumi.Input[str] region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
+        :param pulumi.Input[str] type: Type of ingestion source of this Data Lake Pipeline.
+        """
+        if partition_fields is not None:
+            pulumi.set(__self__, "partition_fields", partition_fields)
+        if provider is not None:
+            pulumi.set(__self__, "provider", provider)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="partitionFields")
+    def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineSinkPartitionFieldArgs']]]]:
+        """
+        Ordered fields used to physically organize data in the destination.
+        * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
+        * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
+        """
+        return pulumi.get(self, "partition_fields")
+
+    @partition_fields.setter
+    def partition_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineSinkPartitionFieldArgs']]]]):
+        pulumi.set(self, "partition_fields", value)
+
+    @property
+    @pulumi.getter
+    def provider(self) -> Optional[pulumi.Input[str]]:
+        """
+        Target cloud provider for this Data Lake Pipeline.
+        """
+        return pulumi.get(self, "provider")
+
+    @provider.setter
+    def provider(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of ingestion source of this Data Lake Pipeline.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class DataLakePipelineSinkPartitionFieldArgs:
+    def __init__(__self__, *,
+                 field_name: pulumi.Input[str],
+                 order: pulumi.Input[int]):
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "order", order)
+
+    @property
+    @pulumi.getter(name="fieldName")
+    def field_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "field_name")
+
+    @field_name.setter
+    def field_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "field_name", value)
+
+    @property
+    @pulumi.getter
+    def order(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "order")
+
+    @order.setter
+    def order(self, value: pulumi.Input[int]):
+        pulumi.set(self, "order", value)
+
+
+@pulumi.input_type
+class DataLakePipelineSnapshotArgs:
+    def __init__(__self__, *,
+                 copy_region: Optional[pulumi.Input[str]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 expires_at: Optional[pulumi.Input[str]] = None,
+                 frequency_yype: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 master_key: Optional[pulumi.Input[str]] = None,
+                 mongod_version: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 provider: Optional[pulumi.Input[str]] = None,
+                 replica_set_name: Optional[pulumi.Input[str]] = None,
+                 size: Optional[pulumi.Input[int]] = None,
+                 snapshot_type: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+        :param pulumi.Input[str] provider: Target cloud provider for this Data Lake Pipeline.
+        :param pulumi.Input[str] type: Type of ingestion source of this Data Lake Pipeline.
+        """
+        if copy_region is not None:
+            pulumi.set(__self__, "copy_region", copy_region)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+        if frequency_yype is not None:
+            pulumi.set(__self__, "frequency_yype", frequency_yype)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if master_key is not None:
+            pulumi.set(__self__, "master_key", master_key)
+        if mongod_version is not None:
+            pulumi.set(__self__, "mongod_version", mongod_version)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if provider is not None:
+            pulumi.set(__self__, "provider", provider)
+        if replica_set_name is not None:
+            pulumi.set(__self__, "replica_set_name", replica_set_name)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if snapshot_type is not None:
+            pulumi.set(__self__, "snapshot_type", snapshot_type)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="copyRegion")
+    def copy_region(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "copy_region")
+
+    @copy_region.setter
+    def copy_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "copy_region", value)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "expires_at")
+
+    @expires_at.setter
+    def expires_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expires_at", value)
+
+    @property
+    @pulumi.getter(name="frequencyYype")
+    def frequency_yype(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "frequency_yype")
+
+    @frequency_yype.setter
+    def frequency_yype(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_yype", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="masterKey")
+    def master_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "master_key")
+
+    @master_key.setter
+    def master_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "master_key", value)
+
+    @property
+    @pulumi.getter(name="mongodVersion")
+    def mongod_version(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mongod_version")
+
+    @mongod_version.setter
+    def mongod_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mongod_version", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter
+    def provider(self) -> Optional[pulumi.Input[str]]:
+        """
+        Target cloud provider for this Data Lake Pipeline.
+        """
+        return pulumi.get(self, "provider")
+
+    @provider.setter
+    def provider(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider", value)
+
+    @property
+    @pulumi.getter(name="replicaSetName")
+    def replica_set_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "replica_set_name")
+
+    @replica_set_name.setter
+    def replica_set_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "replica_set_name", value)
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "size", value)
+
+    @property
+    @pulumi.getter(name="snapshotType")
+    def snapshot_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "snapshot_type")
+
+    @snapshot_type.setter
+    def snapshot_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_type", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of ingestion source of this Data Lake Pipeline.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class DataLakePipelineSourceArgs:
+    def __init__(__self__, *,
+                 cluster_name: Optional[pulumi.Input[str]] = None,
+                 collection_name: Optional[pulumi.Input[str]] = None,
+                 database_name: Optional[pulumi.Input[str]] = None,
+                 policy_item_id: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] cluster_name: Human-readable name that identifies the cluster.
+        :param pulumi.Input[str] collection_name: Human-readable name that identifies the collection.
+        :param pulumi.Input[str] database_name: Human-readable name that identifies the database.
+        :param pulumi.Input[str] project_id: The unique ID for the project to create a data lake pipeline.
+        :param pulumi.Input[str] type: Type of ingestion source of this Data Lake Pipeline.
+        """
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if collection_name is not None:
+            pulumi.set(__self__, "collection_name", collection_name)
+        if database_name is not None:
+            pulumi.set(__self__, "database_name", database_name)
+        if policy_item_id is not None:
+            pulumi.set(__self__, "policy_item_id", policy_item_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable name that identifies the cluster.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter(name="collectionName")
+    def collection_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable name that identifies the collection.
+        """
+        return pulumi.get(self, "collection_name")
+
+    @collection_name.setter
+    def collection_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "collection_name", value)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable name that identifies the database.
+        """
+        return pulumi.get(self, "database_name")
+
+    @database_name.setter
+    def database_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "database_name", value)
+
+    @property
+    @pulumi.getter(name="policyItemId")
+    def policy_item_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "policy_item_id")
+
+    @policy_item_id.setter
+    def policy_item_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy_item_id", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique ID for the project to create a data lake pipeline.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of ingestion source of this Data Lake Pipeline.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class DataLakePipelineTransformationArgs:
+    def __init__(__self__, *,
+                 field: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: Type of ingestion source of this Data Lake Pipeline.
+        """
+        if field is not None:
+            pulumi.set(__self__, "field", field)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def field(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "field", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of ingestion source of this Data Lake Pipeline.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -5233,6 +5571,725 @@ class EventTriggerEventProcessorsAwsEventbridgeArgs:
 
 
 @pulumi.input_type
+class FederatedDatabaseInstanceCloudProviderConfigArgs:
+    def __init__(__self__, *,
+                 aws: pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']):
+        pulumi.set(__self__, "aws", aws)
+
+    @property
+    @pulumi.getter
+    def aws(self) -> pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']:
+        return pulumi.get(self, "aws")
+
+    @aws.setter
+    def aws(self, value: pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']):
+        pulumi.set(self, "aws", value)
+
+
+@pulumi.input_type
+class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
+    def __init__(__self__, *,
+                 role_id: pulumi.Input[str],
+                 test_s3_bucket: pulumi.Input[str],
+                 external_id: Optional[pulumi.Input[str]] = None,
+                 iam_assumed_role_arn: Optional[pulumi.Input[str]] = None,
+                 iam_user_arn: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] role_id: Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
+        :param pulumi.Input[str] test_s3_bucket: Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+               ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
+        :param pulumi.Input[str] external_id: Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
+        :param pulumi.Input[str] iam_assumed_role_arn: Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
+               * `s3:GetObject`
+               * `s3:ListBucket`
+               * `s3:GetObjectVersion`
+        :param pulumi.Input[str] iam_user_arn: Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
+        """
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
+        if iam_assumed_role_arn is not None:
+            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        if iam_user_arn is not None:
+            pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role_id", value)
+
+    @property
+    @pulumi.getter(name="testS3Bucket")
+    def test_s3_bucket(self) -> pulumi.Input[str]:
+        """
+        Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+        ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
+        """
+        return pulumi.get(self, "test_s3_bucket")
+
+    @test_s3_bucket.setter
+    def test_s3_bucket(self, value: pulumi.Input[str]):
+        pulumi.set(self, "test_s3_bucket", value)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
+
+    @property
+    @pulumi.getter(name="iamAssumedRoleArn")
+    def iam_assumed_role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
+        * `s3:GetObject`
+        * `s3:ListBucket`
+        * `s3:GetObjectVersion`
+        """
+        return pulumi.get(self, "iam_assumed_role_arn")
+
+    @iam_assumed_role_arn.setter
+    def iam_assumed_role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_assumed_role_arn", value)
+
+    @property
+    @pulumi.getter(name="iamUserArn")
+    def iam_user_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
+        """
+        return pulumi.get(self, "iam_user_arn")
+
+    @iam_user_arn.setter
+    def iam_user_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_user_arn", value)
+
+
+@pulumi.input_type
+class FederatedDatabaseInstanceDataProcessRegionArgs:
+    def __init__(__self__, *,
+                 cloud_provider: pulumi.Input[str],
+                 region: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] cloud_provider: Name of the cloud service provider. Atlas Federated Database only supports AWS.
+        :param pulumi.Input[str] region: Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> pulumi.Input[str]:
+        """
+        Name of the cloud service provider. Atlas Federated Database only supports AWS.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @cloud_provider.setter
+    def cloud_provider(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cloud_provider", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[str]:
+        """
+        Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class FederatedDatabaseInstanceStorageDatabaseArgs:
+    def __init__(__self__, *,
+                 collections: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]] = None,
+                 max_wildcard_collections: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 views: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
+               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
+               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        """
+        if collections is not None:
+            pulumi.set(__self__, "collections", collections)
+        if max_wildcard_collections is not None:
+            pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if views is not None:
+            pulumi.set(__self__, "views", views)
+
+    @property
+    @pulumi.getter
+    def collections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]]:
+        return pulumi.get(self, "collections")
+
+    @collections.setter
+    def collections(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]]):
+        pulumi.set(self, "collections", value)
+
+    @property
+    @pulumi.getter(name="maxWildcardCollections")
+    def max_wildcard_collections(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max_wildcard_collections")
+
+    @max_wildcard_collections.setter
+    def max_wildcard_collections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_wildcard_collections", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Atlas Federated Database Instance.
+        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
+        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def views(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]]:
+        return pulumi.get(self, "views")
+
+    @views.setter
+    def views(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]]):
+        pulumi.set(self, "views", value)
+
+
+@pulumi.input_type
+class FederatedDatabaseInstanceStorageDatabaseCollectionArgs:
+    def __init__(__self__, *,
+                 data_sources: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
+               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
+               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        """
+        if data_sources is not None:
+            pulumi.set(__self__, "data_sources", data_sources)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="dataSources")
+    def data_sources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]]:
+        return pulumi.get(self, "data_sources")
+
+    @data_sources.setter
+    def data_sources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]]):
+        pulumi.set(self, "data_sources", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Atlas Federated Database Instance.
+        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
+        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs:
+    def __init__(__self__, *,
+                 allow_insecure: Optional[pulumi.Input[bool]] = None,
+                 collection: Optional[pulumi.Input[str]] = None,
+                 collection_regex: Optional[pulumi.Input[str]] = None,
+                 database: Optional[pulumi.Input[str]] = None,
+                 database_regex: Optional[pulumi.Input[str]] = None,
+                 default_format: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 provenance_field_name: Optional[pulumi.Input[str]] = None,
+                 store_name: Optional[pulumi.Input[str]] = None,
+                 urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        if allow_insecure is not None:
+            pulumi.set(__self__, "allow_insecure", allow_insecure)
+        if collection is not None:
+            pulumi.set(__self__, "collection", collection)
+        if collection_regex is not None:
+            pulumi.set(__self__, "collection_regex", collection_regex)
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+        if database_regex is not None:
+            pulumi.set(__self__, "database_regex", database_regex)
+        if default_format is not None:
+            pulumi.set(__self__, "default_format", default_format)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if provenance_field_name is not None:
+            pulumi.set(__self__, "provenance_field_name", provenance_field_name)
+        if store_name is not None:
+            pulumi.set(__self__, "store_name", store_name)
+        if urls is not None:
+            pulumi.set(__self__, "urls", urls)
+
+    @property
+    @pulumi.getter(name="allowInsecure")
+    def allow_insecure(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "allow_insecure")
+
+    @allow_insecure.setter
+    def allow_insecure(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_insecure", value)
+
+    @property
+    @pulumi.getter
+    def collection(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "collection")
+
+    @collection.setter
+    def collection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "collection", value)
+
+    @property
+    @pulumi.getter(name="collectionRegex")
+    def collection_regex(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "collection_regex")
+
+    @collection_regex.setter
+    def collection_regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "collection_regex", value)
+
+    @property
+    @pulumi.getter
+    def database(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "database", value)
+
+    @property
+    @pulumi.getter(name="databaseRegex")
+    def database_regex(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "database_regex")
+
+    @database_regex.setter
+    def database_regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "database_regex", value)
+
+    @property
+    @pulumi.getter(name="defaultFormat")
+    def default_format(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_format")
+
+    @default_format.setter
+    def default_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_format", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="provenanceFieldName")
+    def provenance_field_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "provenance_field_name")
+
+    @provenance_field_name.setter
+    def provenance_field_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provenance_field_name", value)
+
+    @property
+    @pulumi.getter(name="storeName")
+    def store_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "store_name")
+
+    @store_name.setter
+    def store_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "store_name", value)
+
+    @property
+    @pulumi.getter
+    def urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "urls")
+
+    @urls.setter
+    def urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "urls", value)
+
+
+@pulumi.input_type
+class FederatedDatabaseInstanceStorageDatabaseViewArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 pipeline: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
+               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
+               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pipeline is not None:
+            pulumi.set(__self__, "pipeline", pipeline)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Atlas Federated Database Instance.
+        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
+        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def pipeline(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pipeline")
+
+    @pipeline.setter
+    def pipeline(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pipeline", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source", value)
+
+
+@pulumi.input_type
+class FederatedDatabaseInstanceStorageStoreArgs:
+    def __init__(__self__, *,
+                 additional_storage_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_insecure: Optional[pulumi.Input[bool]] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 cluster_id: Optional[pulumi.Input[str]] = None,
+                 cluster_name: Optional[pulumi.Input[str]] = None,
+                 default_format: Optional[pulumi.Input[str]] = None,
+                 delimiter: Optional[pulumi.Input[str]] = None,
+                 include_tags: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 provider: Optional[pulumi.Input[str]] = None,
+                 public: Optional[pulumi.Input[str]] = None,
+                 read_preference: Optional[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
+               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
+               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
+        :param pulumi.Input[str] region: Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+        """
+        if additional_storage_classes is not None:
+            pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+        if allow_insecure is not None:
+            pulumi.set(__self__, "allow_insecure", allow_insecure)
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if default_format is not None:
+            pulumi.set(__self__, "default_format", default_format)
+        if delimiter is not None:
+            pulumi.set(__self__, "delimiter", delimiter)
+        if include_tags is not None:
+            pulumi.set(__self__, "include_tags", include_tags)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if provider is not None:
+            pulumi.set(__self__, "provider", provider)
+        if public is not None:
+            pulumi.set(__self__, "public", public)
+        if read_preference is not None:
+            pulumi.set(__self__, "read_preference", read_preference)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if urls is not None:
+            pulumi.set(__self__, "urls", urls)
+
+    @property
+    @pulumi.getter(name="additionalStorageClasses")
+    def additional_storage_classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "additional_storage_classes")
+
+    @additional_storage_classes.setter
+    def additional_storage_classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "additional_storage_classes", value)
+
+    @property
+    @pulumi.getter(name="allowInsecure")
+    def allow_insecure(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "allow_insecure")
+
+    @allow_insecure.setter
+    def allow_insecure(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_insecure", value)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cluster_id")
+
+    @cluster_id.setter
+    def cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_id", value)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter(name="defaultFormat")
+    def default_format(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_format")
+
+    @default_format.setter
+    def default_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_format", value)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "delimiter")
+
+    @delimiter.setter
+    def delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delimiter", value)
+
+    @property
+    @pulumi.getter(name="includeTags")
+    def include_tags(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "include_tags")
+
+    @include_tags.setter
+    def include_tags(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "include_tags", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Atlas Federated Database Instance.
+        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
+        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefix", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique ID for the project to create a Federated Database Instance.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def provider(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "provider")
+
+    @provider.setter
+    def provider(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider", value)
+
+    @property
+    @pulumi.getter
+    def public(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "public")
+
+    @public.setter
+    def public(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public", value)
+
+    @property
+    @pulumi.getter(name="readPreference")
+    def read_preference(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']]:
+        return pulumi.get(self, "read_preference")
+
+    @read_preference.setter
+    def read_preference(self, value: Optional[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']]):
+        pulumi.set(self, "read_preference", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "urls")
+
+    @urls.setter
+    def urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "urls", value)
+
+
+@pulumi.input_type
+class FederatedDatabaseInstanceStorageStoreReadPreferenceArgs:
+    def __init__(__self__, *,
+                 max_staleness_seconds: Optional[pulumi.Input[int]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs']]]] = None):
+        if max_staleness_seconds is not None:
+            pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter(name="maxStalenessSeconds")
+    def max_staleness_seconds(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max_staleness_seconds")
+
+    @max_staleness_seconds.setter
+    def max_staleness_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_staleness_seconds", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
+               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
+               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Atlas Federated Database Instance.
+        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
+        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class FederatedSettingsOrgRoleMappingRoleAssignmentArgs:
     def __init__(__self__, *,
                  group_id: Optional[pulumi.Input[str]] = None,
@@ -5698,6 +6755,8 @@ class ProjectApiKeyArgs:
                  role_names: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         :param pulumi.Input[str] api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+               
+               **WARNING:** The `api_keys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `ProjectApiKey`  resource instead.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
                The following are valid roles:
                The following are valid roles:
@@ -5710,6 +6769,8 @@ class ProjectApiKeyArgs:
     def api_key_id(self) -> pulumi.Input[str]:
         """
         The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+
+        **WARNING:** The `api_keys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `ProjectApiKey`  resource instead.
         """
         return pulumi.get(self, "api_key_id")
 
@@ -5723,6 +6784,45 @@ class ProjectApiKeyArgs:
         """
         Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
         The following are valid roles:
+        The following are valid roles:
+        """
+        return pulumi.get(self, "role_names")
+
+    @role_names.setter
+    def role_names(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "role_names", value)
+
+
+@pulumi.input_type
+class ProjectApiKeyProjectAssignmentArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[str],
+                 role_names: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[str] project_id: Project ID to assign to Access Key
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
+               The following are valid roles:
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        Project ID to assign to Access Key
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Name of the role. This resource returns all the roles the user has in Atlas.
         The following are valid roles:
         """
         return pulumi.get(self, "role_names")
@@ -6604,6 +7704,106 @@ class GetCustomDbRoleInheritedRoleArgs:
     @role_name.setter
     def role_name(self, value: str):
         pulumi.set(self, "role_name", value)
+
+
+@pulumi.input_type
+class GetFederatedDatabaseInstanceCloudProviderConfigArgs:
+    def __init__(__self__, *,
+                 aws: 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs'):
+        pulumi.set(__self__, "aws", aws)
+
+    @property
+    @pulumi.getter
+    def aws(self) -> 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs':
+        return pulumi.get(self, "aws")
+
+    @aws.setter
+    def aws(self, value: 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs'):
+        pulumi.set(self, "aws", value)
+
+
+@pulumi.input_type
+class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs:
+    def __init__(__self__, *,
+                 external_id: str,
+                 iam_assumed_role_arn: str,
+                 iam_user_arn: str,
+                 role_id: str,
+                 test_s3_bucket: str):
+        """
+        :param str external_id: Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
+        :param str iam_assumed_role_arn: Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
+               * `s3:GetObject`
+               * `s3:ListBucket`
+               * `s3:GetObjectVersion`
+        :param str iam_user_arn: Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
+        :param str role_id: Unique identifier of the role that the data lake can use to access the data stores.
+        """
+        pulumi.set(__self__, "external_id", external_id)
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> str:
+        """
+        Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: str):
+        pulumi.set(self, "external_id", value)
+
+    @property
+    @pulumi.getter(name="iamAssumedRoleArn")
+    def iam_assumed_role_arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
+        * `s3:GetObject`
+        * `s3:ListBucket`
+        * `s3:GetObjectVersion`
+        """
+        return pulumi.get(self, "iam_assumed_role_arn")
+
+    @iam_assumed_role_arn.setter
+    def iam_assumed_role_arn(self, value: str):
+        pulumi.set(self, "iam_assumed_role_arn", value)
+
+    @property
+    @pulumi.getter(name="iamUserArn")
+    def iam_user_arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
+        """
+        return pulumi.get(self, "iam_user_arn")
+
+    @iam_user_arn.setter
+    def iam_user_arn(self, value: str):
+        pulumi.set(self, "iam_user_arn", value)
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> str:
+        """
+        Unique identifier of the role that the data lake can use to access the data stores.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: str):
+        pulumi.set(self, "role_id", value)
+
+    @property
+    @pulumi.getter(name="testS3Bucket")
+    def test_s3_bucket(self) -> str:
+        return pulumi.get(self, "test_s3_bucket")
+
+    @test_s3_bucket.setter
+    def test_s3_bucket(self, value: str):
+        pulumi.set(self, "test_s3_bucket", value)
 
 
 @pulumi.input_type

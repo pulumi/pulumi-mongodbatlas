@@ -150,8 +150,8 @@ def get_online_archive(archive_id: Optional[str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_online_archive(project_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
-        cluster_name=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+    test = mongodbatlas.get_online_archive(project_id=var["project_id"],
+        cluster_name=var["cluster_name"],
         archive_id="5ebad3c1fe9c0ab8d37d61e1")
     ```
     ## Attributes reference
@@ -216,8 +216,8 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_online_archive(project_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
-        cluster_name=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+    test = mongodbatlas.get_online_archive(project_id=var["project_id"],
+        cluster_name=var["cluster_name"],
         archive_id="5ebad3c1fe9c0ab8d37d61e1")
     ```
     ## Attributes reference

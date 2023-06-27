@@ -17,41 +17,13 @@ import (
 //
 // > **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
 //
+//	**Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
+//
 // > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 //
 // > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
 //
 // > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testFlowdock", &mongodbatlas.ThirdPartyIntegrationArgs{
-//				ApiToken:  pulumi.String("<API-TOKEN>"),
-//				FlowName:  pulumi.String("<FLOW-NAME>"),
-//				OrgName:   pulumi.String("<ORG-NAME>"),
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
-//				Type:      pulumi.String("FLOWDOCK"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 //
 // ## Import
 //
@@ -67,29 +39,17 @@ import (
 type ThirdPartyIntegration struct {
 	pulumi.CustomResourceState
 
-	// Unique identifier of your New Relic account.
-	AccountId pulumi.StringPtrOutput `pulumi:"accountId"`
 	// Your API Key.
-	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
-	// Your API Token.
-	ApiToken    pulumi.StringPtrOutput `pulumi:"apiToken"`
+	ApiKey      pulumi.StringPtrOutput `pulumi:"apiKey"`
 	ChannelName pulumi.StringPtrOutput `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	// Your Flowdock Flow name.
-	FlowName pulumi.StringPtrOutput `pulumi:"flowName"`
-	// Your License Key.
-	LicenseKey pulumi.StringPtrOutput `pulumi:"licenseKey"`
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrOutput `pulumi:"microsoftTeamsWebhookUrl"`
-	// Your Flowdock organization name.
-	OrgName pulumi.StringPtrOutput `pulumi:"orgName"`
 	// Your Prometheus password.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Your Insights Query Key.
-	ReadToken pulumi.StringPtrOutput `pulumi:"readToken"`
 	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// An optional field for your Routing Key.
@@ -122,8 +82,6 @@ type ThirdPartyIntegration struct {
 	Url pulumi.StringPtrOutput `pulumi:"url"`
 	// Your Prometheus username.
 	UserName pulumi.StringPtrOutput `pulumi:"userName"`
-	// Your Insights Insert Key.
-	WriteToken pulumi.StringPtrOutput `pulumi:"writeToken"`
 }
 
 // NewThirdPartyIntegration registers a new resource with the given unique name, arguments, and options.
@@ -142,20 +100,11 @@ func NewThirdPartyIntegration(ctx *pulumi.Context,
 	if args.ApiKey != nil {
 		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
 	}
-	if args.ApiToken != nil {
-		args.ApiToken = pulumi.ToSecret(args.ApiToken).(pulumi.StringPtrInput)
-	}
-	if args.LicenseKey != nil {
-		args.LicenseKey = pulumi.ToSecret(args.LicenseKey).(pulumi.StringPtrInput)
-	}
 	if args.MicrosoftTeamsWebhookUrl != nil {
 		args.MicrosoftTeamsWebhookUrl = pulumi.ToSecret(args.MicrosoftTeamsWebhookUrl).(pulumi.StringPtrInput)
 	}
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
-	}
-	if args.ReadToken != nil {
-		args.ReadToken = pulumi.ToSecret(args.ReadToken).(pulumi.StringPtrInput)
 	}
 	if args.RoutingKey != nil {
 		args.RoutingKey = pulumi.ToSecret(args.RoutingKey).(pulumi.StringPtrInput)
@@ -172,22 +121,15 @@ func NewThirdPartyIntegration(ctx *pulumi.Context,
 	if args.UserName != nil {
 		args.UserName = pulumi.ToSecret(args.UserName).(pulumi.StringPtrInput)
 	}
-	if args.WriteToken != nil {
-		args.WriteToken = pulumi.ToSecret(args.WriteToken).(pulumi.StringPtrInput)
-	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"apiKey",
-		"apiToken",
-		"licenseKey",
 		"microsoftTeamsWebhookUrl",
 		"password",
-		"readToken",
 		"routingKey",
 		"secret",
 		"serviceDiscovery",
 		"serviceKey",
 		"userName",
-		"writeToken",
 	})
 	opts = append(opts, secrets)
 	var resource ThirdPartyIntegration
@@ -212,29 +154,17 @@ func GetThirdPartyIntegration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ThirdPartyIntegration resources.
 type thirdPartyIntegrationState struct {
-	// Unique identifier of your New Relic account.
-	AccountId *string `pulumi:"accountId"`
 	// Your API Key.
-	ApiKey *string `pulumi:"apiKey"`
-	// Your API Token.
-	ApiToken    *string `pulumi:"apiToken"`
+	ApiKey      *string `pulumi:"apiKey"`
 	ChannelName *string `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled *bool `pulumi:"enabled"`
-	// Your Flowdock Flow name.
-	FlowName *string `pulumi:"flowName"`
-	// Your License Key.
-	LicenseKey *string `pulumi:"licenseKey"`
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
-	// Your Flowdock organization name.
-	OrgName *string `pulumi:"orgName"`
 	// Your Prometheus password.
 	Password *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId *string `pulumi:"projectId"`
-	// Your Insights Query Key.
-	ReadToken *string `pulumi:"readToken"`
 	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
 	Region *string `pulumi:"region"`
 	// An optional field for your Routing Key.
@@ -267,34 +197,20 @@ type thirdPartyIntegrationState struct {
 	Url *string `pulumi:"url"`
 	// Your Prometheus username.
 	UserName *string `pulumi:"userName"`
-	// Your Insights Insert Key.
-	WriteToken *string `pulumi:"writeToken"`
 }
 
 type ThirdPartyIntegrationState struct {
-	// Unique identifier of your New Relic account.
-	AccountId pulumi.StringPtrInput
 	// Your API Key.
-	ApiKey pulumi.StringPtrInput
-	// Your API Token.
-	ApiToken    pulumi.StringPtrInput
+	ApiKey      pulumi.StringPtrInput
 	ChannelName pulumi.StringPtrInput
 	// Whether your cluster has Prometheus enabled.
 	Enabled pulumi.BoolPtrInput
-	// Your Flowdock Flow name.
-	FlowName pulumi.StringPtrInput
-	// Your License Key.
-	LicenseKey pulumi.StringPtrInput
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput
-	// Your Flowdock organization name.
-	OrgName pulumi.StringPtrInput
 	// Your Prometheus password.
 	Password pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringPtrInput
-	// Your Insights Query Key.
-	ReadToken pulumi.StringPtrInput
 	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
 	Region pulumi.StringPtrInput
 	// An optional field for your Routing Key.
@@ -327,8 +243,6 @@ type ThirdPartyIntegrationState struct {
 	Url pulumi.StringPtrInput
 	// Your Prometheus username.
 	UserName pulumi.StringPtrInput
-	// Your Insights Insert Key.
-	WriteToken pulumi.StringPtrInput
 }
 
 func (ThirdPartyIntegrationState) ElementType() reflect.Type {
@@ -336,29 +250,17 @@ func (ThirdPartyIntegrationState) ElementType() reflect.Type {
 }
 
 type thirdPartyIntegrationArgs struct {
-	// Unique identifier of your New Relic account.
-	AccountId *string `pulumi:"accountId"`
 	// Your API Key.
-	ApiKey *string `pulumi:"apiKey"`
-	// Your API Token.
-	ApiToken    *string `pulumi:"apiToken"`
+	ApiKey      *string `pulumi:"apiKey"`
 	ChannelName *string `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled *bool `pulumi:"enabled"`
-	// Your Flowdock Flow name.
-	FlowName *string `pulumi:"flowName"`
-	// Your License Key.
-	LicenseKey *string `pulumi:"licenseKey"`
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
-	// Your Flowdock organization name.
-	OrgName *string `pulumi:"orgName"`
 	// Your Prometheus password.
 	Password *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
-	// Your Insights Query Key.
-	ReadToken *string `pulumi:"readToken"`
 	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
 	Region *string `pulumi:"region"`
 	// An optional field for your Routing Key.
@@ -391,35 +293,21 @@ type thirdPartyIntegrationArgs struct {
 	Url *string `pulumi:"url"`
 	// Your Prometheus username.
 	UserName *string `pulumi:"userName"`
-	// Your Insights Insert Key.
-	WriteToken *string `pulumi:"writeToken"`
 }
 
 // The set of arguments for constructing a ThirdPartyIntegration resource.
 type ThirdPartyIntegrationArgs struct {
-	// Unique identifier of your New Relic account.
-	AccountId pulumi.StringPtrInput
 	// Your API Key.
-	ApiKey pulumi.StringPtrInput
-	// Your API Token.
-	ApiToken    pulumi.StringPtrInput
+	ApiKey      pulumi.StringPtrInput
 	ChannelName pulumi.StringPtrInput
 	// Whether your cluster has Prometheus enabled.
 	Enabled pulumi.BoolPtrInput
-	// Your Flowdock Flow name.
-	FlowName pulumi.StringPtrInput
-	// Your License Key.
-	LicenseKey pulumi.StringPtrInput
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput
-	// Your Flowdock organization name.
-	OrgName pulumi.StringPtrInput
 	// Your Prometheus password.
 	Password pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput
-	// Your Insights Query Key.
-	ReadToken pulumi.StringPtrInput
 	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
 	Region pulumi.StringPtrInput
 	// An optional field for your Routing Key.
@@ -452,8 +340,6 @@ type ThirdPartyIntegrationArgs struct {
 	Url pulumi.StringPtrInput
 	// Your Prometheus username.
 	UserName pulumi.StringPtrInput
-	// Your Insights Insert Key.
-	WriteToken pulumi.StringPtrInput
 }
 
 func (ThirdPartyIntegrationArgs) ElementType() reflect.Type {
@@ -543,19 +429,9 @@ func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationOutputWithContext(ct
 	return o
 }
 
-// Unique identifier of your New Relic account.
-func (o ThirdPartyIntegrationOutput) AccountId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.AccountId }).(pulumi.StringPtrOutput)
-}
-
 // Your API Key.
 func (o ThirdPartyIntegrationOutput) ApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
-}
-
-// Your API Token.
-func (o ThirdPartyIntegrationOutput) ApiToken() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ApiToken }).(pulumi.StringPtrOutput)
 }
 
 func (o ThirdPartyIntegrationOutput) ChannelName() pulumi.StringPtrOutput {
@@ -567,24 +443,9 @@ func (o ThirdPartyIntegrationOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// Your Flowdock Flow name.
-func (o ThirdPartyIntegrationOutput) FlowName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.FlowName }).(pulumi.StringPtrOutput)
-}
-
-// Your License Key.
-func (o ThirdPartyIntegrationOutput) LicenseKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.LicenseKey }).(pulumi.StringPtrOutput)
-}
-
 // Your Microsoft Teams incoming webhook URL.
 func (o ThirdPartyIntegrationOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
-}
-
-// Your Flowdock organization name.
-func (o ThirdPartyIntegrationOutput) OrgName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.OrgName }).(pulumi.StringPtrOutput)
 }
 
 // Your Prometheus password.
@@ -595,11 +456,6 @@ func (o ThirdPartyIntegrationOutput) Password() pulumi.StringPtrOutput {
 // The unique ID for the project to get all Third-Party service integrations
 func (o ThirdPartyIntegrationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// Your Insights Query Key.
-func (o ThirdPartyIntegrationOutput) ReadToken() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ReadToken }).(pulumi.StringPtrOutput)
 }
 
 // Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
@@ -662,11 +518,6 @@ func (o ThirdPartyIntegrationOutput) Url() pulumi.StringPtrOutput {
 // Your Prometheus username.
 func (o ThirdPartyIntegrationOutput) UserName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
-}
-
-// Your Insights Insert Key.
-func (o ThirdPartyIntegrationOutput) WriteToken() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.WriteToken }).(pulumi.StringPtrOutput)
 }
 
 type ThirdPartyIntegrationArrayOutput struct{ *pulumi.OutputState }

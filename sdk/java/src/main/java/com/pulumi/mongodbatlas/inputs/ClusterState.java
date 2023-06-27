@@ -57,25 +57,9 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.autoScalingComputeScaleDownEnabled);
     }
 
-    /**
-     * Specifies whether disk auto-scaling is enabled. The default is true.
-     * - Set to `true` to enable disk auto-scaling.
-     * - Set to `false` to disable disk auto-scaling.
-     * 
-     * &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-     * 
-     */
     @Import(name="autoScalingDiskGbEnabled")
     private @Nullable Output<Boolean> autoScalingDiskGbEnabled;
 
-    /**
-     * @return Specifies whether disk auto-scaling is enabled. The default is true.
-     * - Set to `true` to enable disk auto-scaling.
-     * - Set to `false` to disable disk auto-scaling.
-     * 
-     * &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-     * 
-     */
     public Optional<Output<Boolean>> autoScalingDiskGbEnabled() {
         return Optional.ofNullable(this.autoScalingDiskGbEnabled);
     }
@@ -692,6 +676,21 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * 
+     */
+    @Import(name="retainBackupsEnabled")
+    private @Nullable Output<Boolean> retainBackupsEnabled;
+
+    /**
+     * @return Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * 
+     */
+    public Optional<Output<Boolean>> retainBackupsEnabled() {
+        return Optional.ofNullable(this.retainBackupsEnabled);
+    }
+
+    /**
      * current snapshot schedule and retention settings for the cluster.
      * 
      */
@@ -820,6 +819,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         this.providerVolumeType = $.providerVolumeType;
         this.replicationFactor = $.replicationFactor;
         this.replicationSpecs = $.replicationSpecs;
+        this.retainBackupsEnabled = $.retainBackupsEnabled;
         this.snapshotBackupPolicies = $.snapshotBackupPolicies;
         this.srvAddress = $.srvAddress;
         this.stateName = $.stateName;
@@ -886,31 +886,11 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
             return autoScalingComputeScaleDownEnabled(Output.of(autoScalingComputeScaleDownEnabled));
         }
 
-        /**
-         * @param autoScalingDiskGbEnabled Specifies whether disk auto-scaling is enabled. The default is true.
-         * - Set to `true` to enable disk auto-scaling.
-         * - Set to `false` to disable disk auto-scaling.
-         * 
-         * &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoScalingDiskGbEnabled(@Nullable Output<Boolean> autoScalingDiskGbEnabled) {
             $.autoScalingDiskGbEnabled = autoScalingDiskGbEnabled;
             return this;
         }
 
-        /**
-         * @param autoScalingDiskGbEnabled Specifies whether disk auto-scaling is enabled. The default is true.
-         * - Set to `true` to enable disk auto-scaling.
-         * - Set to `false` to disable disk auto-scaling.
-         * 
-         * &gt; **NOTE:** If `provider_name` is set to `TENANT`, the parameter `auto_scaling_disk_gb_enabled` will be ignored.
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoScalingDiskGbEnabled(Boolean autoScalingDiskGbEnabled) {
             return autoScalingDiskGbEnabled(Output.of(autoScalingDiskGbEnabled));
         }
@@ -1742,6 +1722,27 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder replicationSpecs(ClusterReplicationSpecArgs... replicationSpecs) {
             return replicationSpecs(List.of(replicationSpecs));
+        }
+
+        /**
+         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retainBackupsEnabled(@Nullable Output<Boolean> retainBackupsEnabled) {
+            $.retainBackupsEnabled = retainBackupsEnabled;
+            return this;
+        }
+
+        /**
+         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retainBackupsEnabled(Boolean retainBackupsEnabled) {
+            return retainBackupsEnabled(Output.of(retainBackupsEnabled));
         }
 
         /**

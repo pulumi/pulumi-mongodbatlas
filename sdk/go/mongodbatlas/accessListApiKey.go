@@ -75,19 +75,19 @@ import (
 //
 // ```
 //
-//	For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createAccessListEntriesForOneOrganizationApiKey)
+//	For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
 type AccessListApiKey struct {
 	pulumi.CustomResourceState
 
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
 	//
-	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
 	ApiKeyId pulumi.StringOutput `pulumi:"apiKeyId"`
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringOutput `pulumi:"cidrBlock"`
 	// Single IP address to be added to the access list.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// Unique identifier for the organinzation to which you want to add one or more access list entries.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 }
 
@@ -128,26 +128,26 @@ func GetAccessListApiKey(ctx *pulumi.Context,
 type accessListApiKeyState struct {
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
 	//
-	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
 	ApiKeyId *string `pulumi:"apiKeyId"`
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
 	CidrBlock *string `pulumi:"cidrBlock"`
 	// Single IP address to be added to the access list.
 	IpAddress *string `pulumi:"ipAddress"`
-	// Unique identifier for the organinzation to which you want to add one or more access list entries.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId *string `pulumi:"orgId"`
 }
 
 type AccessListApiKeyState struct {
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
 	//
-	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
 	ApiKeyId pulumi.StringPtrInput
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringPtrInput
 	// Single IP address to be added to the access list.
 	IpAddress pulumi.StringPtrInput
-	// Unique identifier for the organinzation to which you want to add one or more access list entries.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringPtrInput
 }
 
@@ -158,13 +158,13 @@ func (AccessListApiKeyState) ElementType() reflect.Type {
 type accessListApiKeyArgs struct {
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
 	//
-	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
 	CidrBlock *string `pulumi:"cidrBlock"`
 	// Single IP address to be added to the access list.
 	IpAddress *string `pulumi:"ipAddress"`
-	// Unique identifier for the organinzation to which you want to add one or more access list entries.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId string `pulumi:"orgId"`
 }
 
@@ -172,13 +172,13 @@ type accessListApiKeyArgs struct {
 type AccessListApiKeyArgs struct {
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
 	//
-	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
 	ApiKeyId pulumi.StringInput
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringPtrInput
 	// Single IP address to be added to the access list.
 	IpAddress pulumi.StringPtrInput
-	// Unique identifier for the organinzation to which you want to add one or more access list entries.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringInput
 }
 
@@ -271,7 +271,7 @@ func (o AccessListApiKeyOutput) ToAccessListApiKeyOutputWithContext(ctx context.
 
 // Unique identifier for the Organization API Key for which you want to create a new access list entry.
 //
-// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` but not both.
 func (o AccessListApiKeyOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessListApiKey) pulumi.StringOutput { return v.ApiKeyId }).(pulumi.StringOutput)
 }
@@ -286,7 +286,7 @@ func (o AccessListApiKeyOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessListApiKey) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// Unique identifier for the organinzation to which you want to add one or more access list entries.
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 func (o AccessListApiKeyOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessListApiKey) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }

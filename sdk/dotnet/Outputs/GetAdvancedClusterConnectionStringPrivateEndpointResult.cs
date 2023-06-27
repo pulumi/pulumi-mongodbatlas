@@ -16,6 +16,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string ConnectionString;
         public readonly ImmutableArray<Outputs.GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult> Endpoints;
         public readonly string SrvConnectionString;
+        public readonly string SrvShardOptimizedConnectionString;
         public readonly string Type;
 
         [OutputConstructor]
@@ -26,11 +27,14 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string srvConnectionString,
 
+            string srvShardOptimizedConnectionString,
+
             string type)
         {
             ConnectionString = connectionString;
             Endpoints = endpoints;
             SrvConnectionString = srvConnectionString;
+            SrvShardOptimizedConnectionString = srvShardOptimizedConnectionString;
             Type = type;
         }
     }

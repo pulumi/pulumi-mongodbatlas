@@ -14,6 +14,8 @@ namespace Pulumi.Mongodbatlas.Inputs
     {
         /// <summary>
         /// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        /// 
+        /// **WARNING:** The `api_keys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `mongodbatlas.ProjectApiKey`  resource instead.
         /// </summary>
         [Input("apiKeyId", required: true)]
         public Input<string> ApiKeyId { get; set; } = null!;

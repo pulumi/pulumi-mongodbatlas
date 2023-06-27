@@ -113,6 +113,7 @@ export interface AdvancedClusterConnectionStringPrivateEndpoint {
     connectionString?: pulumi.Input<string>;
     endpoints?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterConnectionStringPrivateEndpointEndpoint>[]>;
     srvConnectionString?: pulumi.Input<string>;
+    srvShardOptimizedConnectionString?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
 }
 
@@ -230,7 +231,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      */
     instanceSize: pulumi.Input<string>;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: pulumi.Input<number>;
 }
@@ -249,9 +250,6 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
      * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
      */
     computeScaleDownEnabled?: pulumi.Input<boolean>;
-    /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
-     */
     diskGbEnabled?: pulumi.Input<boolean>;
 }
 
@@ -269,7 +267,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     instanceSize: pulumi.Input<string>;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: pulumi.Input<number>;
 }
@@ -288,7 +286,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     instanceSize: pulumi.Input<string>;
     /**
-     * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount?: pulumi.Input<number>;
 }
@@ -381,14 +379,6 @@ export interface AlertConfigurationNotification {
      */
     emailEnabled?: pulumi.Input<boolean>;
     /**
-     * Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-     */
-    flowName?: pulumi.Input<string>;
-    /**
-     * The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     */
-    flowdockApiToken?: pulumi.Input<string>;
-    /**
      * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
      */
     intervalMin?: pulumi.Input<number>;
@@ -408,10 +398,6 @@ export interface AlertConfigurationNotification {
      * Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
      */
     opsGenieRegion?: pulumi.Input<string>;
-    /**
-     * Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-     */
-    orgName?: pulumi.Input<string>;
     /**
      * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
@@ -804,36 +790,6 @@ export interface CloudProviderAccessSetupAwsConfig {
     atlasAwsAccountArn?: pulumi.Input<string>;
 }
 
-export interface CloudProviderSnapshotBackupPolicyPolicy {
-    id: pulumi.Input<string>;
-    policyItems: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem>[]>;
-}
-
-export interface CloudProviderSnapshotBackupPolicyPolicyPolicyItem {
-    frequencyInterval: pulumi.Input<number>;
-    frequencyType: pulumi.Input<string>;
-    id: pulumi.Input<string>;
-    retentionUnit: pulumi.Input<string>;
-    retentionValue: pulumi.Input<number>;
-}
-
-export interface CloudProviderSnapshotRestoreJobDeliveryTypeConfig {
-    automated?: pulumi.Input<boolean>;
-    download?: pulumi.Input<boolean>;
-    oplogInc?: pulumi.Input<number>;
-    oplogTs?: pulumi.Input<number>;
-    pointInTime?: pulumi.Input<boolean>;
-    pointInTimeUtcSeconds?: pulumi.Input<number>;
-    /**
-     * Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
-     */
-    targetClusterName?: pulumi.Input<string>;
-    /**
-     * Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
-     */
-    targetProjectId?: pulumi.Input<string>;
-}
-
 export interface ClusterAdvancedConfiguration {
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -922,6 +878,7 @@ export interface ClusterConnectionStringPrivateEndpoint {
     connectionString?: pulumi.Input<string>;
     endpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringPrivateEndpointEndpoint>[]>;
     srvConnectionString?: pulumi.Input<string>;
+    srvShardOptimizedConnectionString?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
 }
 
@@ -945,6 +902,21 @@ export interface ClusterLabel {
      * The value that you want to write.
      */
     value?: pulumi.Input<string>;
+}
+
+export interface ClusterOutageSimulationOutageFilter {
+    /**
+     * The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     */
+    cloudProvider: pulumi.Input<string>;
+    /**
+     * The Atlas name of the region to undergo an outage simulation.
+     */
+    regionName: pulumi.Input<string>;
+    /**
+     * The type of cluster outage simulation. Following values are supported:
+     */
+    type?: pulumi.Input<string>;
 }
 
 export interface ClusterReplicationSpec {
@@ -1090,6 +1062,101 @@ export interface DataLakeAws {
 export interface DataLakeDataProcessRegion {
     cloudProvider: pulumi.Input<string>;
     region: pulumi.Input<string>;
+}
+
+export interface DataLakePipelineIngestionSchedule {
+    frequencyInterval?: pulumi.Input<number>;
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+     */
+    id?: pulumi.Input<string>;
+    retentionUnit?: pulumi.Input<string>;
+    retentionValue?: pulumi.Input<number>;
+}
+
+export interface DataLakePipelineSink {
+    /**
+     * Ordered fields used to physically organize data in the destination.
+     * * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
+     * * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
+     */
+    partitionFields?: pulumi.Input<pulumi.Input<inputs.DataLakePipelineSinkPartitionField>[]>;
+    /**
+     * Target cloud provider for this Data Lake Pipeline.
+     */
+    provider?: pulumi.Input<string>;
+    /**
+     * Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface DataLakePipelineSinkPartitionField {
+    fieldName: pulumi.Input<string>;
+    order: pulumi.Input<number>;
+}
+
+export interface DataLakePipelineSnapshot {
+    copyRegion?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string>;
+    frequencyYype?: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
+     */
+    id?: pulumi.Input<string>;
+    masterKey?: pulumi.Input<string>;
+    mongodVersion?: pulumi.Input<string>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Target cloud provider for this Data Lake Pipeline.
+     */
+    provider?: pulumi.Input<string>;
+    replicaSetName?: pulumi.Input<string>;
+    size?: pulumi.Input<number>;
+    snapshotType?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface DataLakePipelineSource {
+    /**
+     * Human-readable name that identifies the cluster.
+     */
+    clusterName?: pulumi.Input<string>;
+    /**
+     * Human-readable name that identifies the collection.
+     */
+    collectionName?: pulumi.Input<string>;
+    /**
+     * Human-readable name that identifies the database.
+     */
+    databaseName?: pulumi.Input<string>;
+    policyItemId?: pulumi.Input<string>;
+    /**
+     * The unique ID for the project to create a data lake pipeline.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface DataLakePipelineTransformation {
+    field?: pulumi.Input<string>;
+    /**
+     * Type of ingestion source of this Data Lake Pipeline.
+     */
+    type?: pulumi.Input<string>;
 }
 
 export interface DataLakeStorageDatabase {
@@ -1258,6 +1325,140 @@ export interface EventTriggerEventProcessors {
 export interface EventTriggerEventProcessorsAwsEventbridge {
     configAccountId?: pulumi.Input<string>;
     configRegion?: pulumi.Input<string>;
+}
+
+export interface FederatedDatabaseInstanceCloudProviderConfig {
+    aws: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigAws>;
+}
+
+export interface FederatedDatabaseInstanceCloudProviderConfigAws {
+    /**
+     * Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
+     */
+    externalId?: pulumi.Input<string>;
+    /**
+     * Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
+     * * `s3:GetObject`
+     * * `s3:ListBucket`
+     * * `s3:GetObjectVersion`
+     */
+    iamAssumedRoleArn?: pulumi.Input<string>;
+    /**
+     * Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
+     */
+    iamUserArn?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+     */
+    roleId: pulumi.Input<string>;
+    /**
+     * Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
+     * ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
+     */
+    testS3Bucket: pulumi.Input<string>;
+}
+
+export interface FederatedDatabaseInstanceDataProcessRegion {
+    /**
+     * Name of the cloud service provider. Atlas Federated Database only supports AWS.
+     */
+    cloudProvider: pulumi.Input<string>;
+    /**
+     * Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+     */
+    region: pulumi.Input<string>;
+}
+
+export interface FederatedDatabaseInstanceStorageDatabase {
+    collections?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseCollection>[]>;
+    maxWildcardCollections?: pulumi.Input<number>;
+    /**
+     * Name of the Atlas Federated Database Instance.
+     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
+     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     */
+    name?: pulumi.Input<string>;
+    views?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseView>[]>;
+}
+
+export interface FederatedDatabaseInstanceStorageDatabaseCollection {
+    dataSources?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSource>[]>;
+    /**
+     * Name of the Atlas Federated Database Instance.
+     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
+     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     */
+    name?: pulumi.Input<string>;
+}
+
+export interface FederatedDatabaseInstanceStorageDatabaseCollectionDataSource {
+    allowInsecure?: pulumi.Input<boolean>;
+    collection?: pulumi.Input<string>;
+    collectionRegex?: pulumi.Input<string>;
+    database?: pulumi.Input<string>;
+    databaseRegex?: pulumi.Input<string>;
+    defaultFormat?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
+    provenanceFieldName?: pulumi.Input<string>;
+    storeName?: pulumi.Input<string>;
+    urls?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface FederatedDatabaseInstanceStorageDatabaseView {
+    /**
+     * Name of the Atlas Federated Database Instance.
+     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
+     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     */
+    name?: pulumi.Input<string>;
+    pipeline?: pulumi.Input<string>;
+    source?: pulumi.Input<string>;
+}
+
+export interface FederatedDatabaseInstanceStorageStore {
+    additionalStorageClasses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowInsecure?: pulumi.Input<boolean>;
+    bucket?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string>;
+    defaultFormat?: pulumi.Input<string>;
+    delimiter?: pulumi.Input<string>;
+    includeTags?: pulumi.Input<boolean>;
+    /**
+     * Name of the Atlas Federated Database Instance.
+     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
+     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     */
+    name?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string>;
+    /**
+     * The unique ID for the project to create a Federated Database Instance.
+     */
+    projectId?: pulumi.Input<string>;
+    provider?: pulumi.Input<string>;
+    public?: pulumi.Input<string>;
+    readPreference?: pulumi.Input<inputs.FederatedDatabaseInstanceStorageStoreReadPreference>;
+    /**
+     * Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+     */
+    region?: pulumi.Input<string>;
+    urls?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface FederatedDatabaseInstanceStorageStoreReadPreference {
+    maxStalenessSeconds?: pulumi.Input<number>;
+    mode?: pulumi.Input<string>;
+    tags?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTag>[]>;
+}
+
+export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
+    /**
+     * Name of the Atlas Federated Database Instance.
+     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
+     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     */
+    name?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface FederatedSettingsOrgRoleMappingRoleAssignment {
@@ -1558,6 +1759,60 @@ export interface GetCustomDbRoleInheritedRoleArgs {
     roleName?: pulumi.Input<string>;
 }
 
+export interface GetFederatedDatabaseInstanceCloudProviderConfig {
+    aws?: inputs.GetFederatedDatabaseInstanceCloudProviderConfigAws;
+}
+
+export interface GetFederatedDatabaseInstanceCloudProviderConfigArgs {
+    aws?: pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs>;
+}
+
+export interface GetFederatedDatabaseInstanceCloudProviderConfigAws {
+    /**
+     * Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
+     */
+    externalId?: string;
+    /**
+     * Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
+     * * `s3:GetObject`
+     * * `s3:ListBucket`
+     * * `s3:GetObjectVersion`
+     */
+    iamAssumedRoleArn?: string;
+    /**
+     * Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
+     */
+    iamUserArn?: string;
+    /**
+     * Unique identifier of the role that the data lake can use to access the data stores.
+     */
+    roleId?: string;
+    testS3Bucket?: string;
+}
+
+export interface GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs {
+    /**
+     * Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
+     */
+    externalId?: pulumi.Input<string>;
+    /**
+     * Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
+     * * `s3:GetObject`
+     * * `s3:ListBucket`
+     * * `s3:GetObjectVersion`
+     */
+    iamAssumedRoleArn?: pulumi.Input<string>;
+    /**
+     * Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
+     */
+    iamUserArn?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the role that the data lake can use to access the data stores.
+     */
+    roleId?: pulumi.Input<string>;
+    testS3Bucket?: pulumi.Input<string>;
+}
+
 export interface GetGlobalClusterConfigManagedNamespace {
     /**
      * (Required) The name of the collection associated with the managed namespace.
@@ -1703,11 +1958,25 @@ export interface PrivateLinkEndpointServiceEndpoint {
 export interface ProjectApiKey {
     /**
      * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     *
+     * **WARNING:** The `apiKeys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `mongodbatlas.ProjectApiKey`  resource instead.
      */
     apiKeyId: pulumi.Input<string>;
     /**
      * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
      * The following are valid roles:
+     * The following are valid roles:
+     */
+    roleNames: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface ProjectApiKeyProjectAssignment {
+    /**
+     * Project ID to assign to Access Key
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;

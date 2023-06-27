@@ -34,11 +34,6 @@ public final class GetThirdPartyIntegrationResult {
      */
     private @Nullable Boolean enabled;
     /**
-     * @return Your Flowdock Flow name.
-     * 
-     */
-    private String flowName;
-    /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
@@ -53,17 +48,7 @@ public final class GetThirdPartyIntegrationResult {
      * 
      */
     private @Nullable String microsoftTeamsWebhookUrl;
-    /**
-     * @return Your Flowdock organization name.
-     * 
-     */
-    private String orgName;
     private String projectId;
-    /**
-     * @return Your Insights Query Key.
-     * 
-     */
-    private String readToken;
     /**
      * @return Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
      * 
@@ -110,11 +95,6 @@ public final class GetThirdPartyIntegrationResult {
      * 
      */
     private @Nullable String userName;
-    /**
-     * @return Your Insights Insert Key.
-     * 
-     */
-    private String writeToken;
 
     private GetThirdPartyIntegrationResult() {}
     /**
@@ -149,13 +129,6 @@ public final class GetThirdPartyIntegrationResult {
         return Optional.ofNullable(this.enabled);
     }
     /**
-     * @return Your Flowdock Flow name.
-     * 
-     */
-    public String flowName() {
-        return this.flowName;
-    }
-    /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
@@ -176,22 +149,8 @@ public final class GetThirdPartyIntegrationResult {
     public Optional<String> microsoftTeamsWebhookUrl() {
         return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
     }
-    /**
-     * @return Your Flowdock organization name.
-     * 
-     */
-    public String orgName() {
-        return this.orgName;
-    }
     public String projectId() {
         return this.projectId;
-    }
-    /**
-     * @return Your Insights Query Key.
-     * 
-     */
-    public String readToken() {
-        return this.readToken;
     }
     /**
      * @return Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
@@ -259,13 +218,6 @@ public final class GetThirdPartyIntegrationResult {
     public Optional<String> userName() {
         return Optional.ofNullable(this.userName);
     }
-    /**
-     * @return Your Insights Insert Key.
-     * 
-     */
-    public String writeToken() {
-        return this.writeToken;
-    }
 
     public static Builder builder() {
         return new Builder();
@@ -281,13 +233,10 @@ public final class GetThirdPartyIntegrationResult {
         private String apiToken;
         private String channelName;
         private @Nullable Boolean enabled;
-        private String flowName;
         private String id;
         private String licenseKey;
         private @Nullable String microsoftTeamsWebhookUrl;
-        private String orgName;
         private String projectId;
-        private String readToken;
         private String region;
         private String routingKey;
         private @Nullable String scheme;
@@ -298,7 +247,6 @@ public final class GetThirdPartyIntegrationResult {
         private String type;
         private String url;
         private @Nullable String userName;
-        private String writeToken;
         public Builder() {}
         public Builder(GetThirdPartyIntegrationResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -307,13 +255,10 @@ public final class GetThirdPartyIntegrationResult {
     	      this.apiToken = defaults.apiToken;
     	      this.channelName = defaults.channelName;
     	      this.enabled = defaults.enabled;
-    	      this.flowName = defaults.flowName;
     	      this.id = defaults.id;
     	      this.licenseKey = defaults.licenseKey;
     	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
-    	      this.orgName = defaults.orgName;
     	      this.projectId = defaults.projectId;
-    	      this.readToken = defaults.readToken;
     	      this.region = defaults.region;
     	      this.routingKey = defaults.routingKey;
     	      this.scheme = defaults.scheme;
@@ -324,7 +269,6 @@ public final class GetThirdPartyIntegrationResult {
     	      this.type = defaults.type;
     	      this.url = defaults.url;
     	      this.userName = defaults.userName;
-    	      this.writeToken = defaults.writeToken;
         }
 
         @CustomType.Setter
@@ -353,11 +297,6 @@ public final class GetThirdPartyIntegrationResult {
             return this;
         }
         @CustomType.Setter
-        public Builder flowName(String flowName) {
-            this.flowName = Objects.requireNonNull(flowName);
-            return this;
-        }
-        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
@@ -373,18 +312,8 @@ public final class GetThirdPartyIntegrationResult {
             return this;
         }
         @CustomType.Setter
-        public Builder orgName(String orgName) {
-            this.orgName = Objects.requireNonNull(orgName);
-            return this;
-        }
-        @CustomType.Setter
         public Builder projectId(String projectId) {
             this.projectId = Objects.requireNonNull(projectId);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder readToken(String readToken) {
-            this.readToken = Objects.requireNonNull(readToken);
             return this;
         }
         @CustomType.Setter
@@ -437,11 +366,6 @@ public final class GetThirdPartyIntegrationResult {
             this.userName = userName;
             return this;
         }
-        @CustomType.Setter
-        public Builder writeToken(String writeToken) {
-            this.writeToken = Objects.requireNonNull(writeToken);
-            return this;
-        }
         public GetThirdPartyIntegrationResult build() {
             final var o = new GetThirdPartyIntegrationResult();
             o.accountId = accountId;
@@ -449,13 +373,10 @@ public final class GetThirdPartyIntegrationResult {
             o.apiToken = apiToken;
             o.channelName = channelName;
             o.enabled = enabled;
-            o.flowName = flowName;
             o.id = id;
             o.licenseKey = licenseKey;
             o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
-            o.orgName = orgName;
             o.projectId = projectId;
-            o.readToken = readToken;
             o.region = region;
             o.routingKey = routingKey;
             o.scheme = scheme;
@@ -466,7 +387,6 @@ public final class GetThirdPartyIntegrationResult {
             o.type = type;
             o.url = url;
             o.userName = userName;
-            o.writeToken = writeToken;
             return o;
         }
     }

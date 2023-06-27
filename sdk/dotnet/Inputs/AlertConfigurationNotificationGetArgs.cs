@@ -75,28 +75,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<bool>? EmailEnabled { get; set; }
 
         /// <summary>
-        /// Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-        /// </summary>
-        [Input("flowName")]
-        public Input<string>? FlowName { get; set; }
-
-        [Input("flowdockApiToken")]
-        private Input<string>? _flowdockApiToken;
-
-        /// <summary>
-        /// The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        /// </summary>
-        public Input<string>? FlowdockApiToken
-        {
-            get => _flowdockApiToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _flowdockApiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        /// <summary>
         /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         /// </summary>
         [Input("intervalMin")]
@@ -145,12 +123,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// </summary>
         [Input("opsGenieRegion")]
         public Input<string>? OpsGenieRegion { get; set; }
-
-        /// <summary>
-        /// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-        /// </summary>
-        [Input("orgName")]
-        public Input<string>? OrgName { get; set; }
 
         [Input("roles")]
         private InputList<string>? _roles;

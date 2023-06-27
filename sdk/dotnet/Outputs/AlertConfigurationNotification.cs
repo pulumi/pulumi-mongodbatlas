@@ -42,14 +42,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool? EmailEnabled;
         /// <summary>
-        /// Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-        /// </summary>
-        public readonly string? FlowName;
-        /// <summary>
-        /// The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        /// </summary>
-        public readonly string? FlowdockApiToken;
-        /// <summary>
         /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         /// </summary>
         public readonly int? IntervalMin;
@@ -69,10 +61,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         /// </summary>
         public readonly string? OpsGenieRegion;
-        /// <summary>
-        /// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-        /// </summary>
-        public readonly string? OrgName;
         /// <summary>
         /// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         /// Accepted values are:
@@ -146,10 +134,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool? emailEnabled,
 
-            string? flowName,
-
-            string? flowdockApiToken,
-
             int? intervalMin,
 
             string? microsoftTeamsWebhookUrl,
@@ -159,8 +143,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             string? opsGenieApiKey,
 
             string? opsGenieRegion,
-
-            string? orgName,
 
             ImmutableArray<string> roles,
 
@@ -191,14 +173,11 @@ namespace Pulumi.Mongodbatlas.Outputs
             DelayMin = delayMin;
             EmailAddress = emailAddress;
             EmailEnabled = emailEnabled;
-            FlowName = flowName;
-            FlowdockApiToken = flowdockApiToken;
             IntervalMin = intervalMin;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             MobileNumber = mobileNumber;
             OpsGenieApiKey = opsGenieApiKey;
             OpsGenieRegion = opsGenieRegion;
-            OrgName = orgName;
             Roles = roles;
             ServiceKey = serviceKey;
             SmsEnabled = smsEnabled;

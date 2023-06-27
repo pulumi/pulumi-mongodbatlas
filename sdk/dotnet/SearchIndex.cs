@@ -123,7 +123,7 @@ namespace Pulumi.Mongodbatlas
         /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         /// </summary>
         [Output("analyzer")]
-        public Output<string> Analyzer { get; private set; } = null!;
+        public Output<string?> Analyzer { get; private set; } = null!;
 
         /// <summary>
         /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
@@ -243,8 +243,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         /// </summary>
-        [Input("analyzer", required: true)]
-        public Input<string> Analyzer { get; set; } = null!;
+        [Input("analyzer")]
+        public Input<string>? Analyzer { get; set; }
 
         /// <summary>
         /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.

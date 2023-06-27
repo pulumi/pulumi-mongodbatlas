@@ -19,16 +19,17 @@ from .cloud_backup_snapshot_restore_job import *
 from .cloud_provider_access import *
 from .cloud_provider_access_authorization import *
 from .cloud_provider_access_setup import *
-from .cloud_provider_snapshot import *
-from .cloud_provider_snapshot_backup_policy import *
-from .cloud_provider_snapshot_restore_job import *
 from .cluster import *
+from .cluster_outage_simulation import *
 from .custom_db_role import *
 from .custom_dns_configuration_cluster_aws import *
 from .data_lake import *
+from .data_lake_pipeline import *
 from .database_user import *
 from .encryption_at_rest import *
 from .event_trigger import *
+from .federated_database_instance import *
+from .federated_query_limit import *
 from .federated_settings_identity_provider import *
 from .federated_settings_org_config import *
 from .federated_settings_org_role_mapping import *
@@ -54,22 +55,26 @@ from .get_cloud_backup_snapshot_restore_jobs import *
 from .get_cloud_backup_snapshots import *
 from .get_cloud_provider_access import *
 from .get_cloud_provider_access_setup import *
-from .get_cloud_provider_snapshot import *
-from .get_cloud_provider_snapshot_backup_policy import *
-from .get_cloud_provider_snapshot_restore_job import *
-from .get_cloud_provider_snapshot_restore_jobs import *
-from .get_cloud_provider_snapshots import *
 from .get_cluster import *
+from .get_cluster_outage_simulation import *
 from .get_clusters import *
 from .get_custom_db_role import *
 from .get_custom_db_roles import *
 from .get_custom_dns_configuration_cluster_aws import *
 from .get_data_lake import *
+from .get_data_lake_pipeline import *
+from .get_data_lake_pipeline_run import *
+from .get_data_lake_pipeline_runs import *
+from .get_data_lake_pipelines import *
 from .get_data_lakes import *
 from .get_database_user import *
 from .get_database_users import *
 from .get_event_trigger import *
 from .get_event_triggers import *
+from .get_federated_database_instance import *
+from .get_federated_database_instances import *
+from .get_federated_query_limit import *
+from .get_federated_query_limits import *
 from .get_federated_settings import *
 from .get_federated_settings_identity_provider import *
 from .get_federated_settings_identity_providers import *
@@ -88,10 +93,14 @@ from .get_network_peerings import *
 from .get_online_archive import *
 from .get_online_archives import *
 from .get_org_invitation import *
+from .get_organization import *
+from .get_organizations import *
 from .get_private_endpoint_regional_mode import *
 from .get_private_link_endpoint import *
 from .get_private_link_endpoint_service import *
 from .get_privatelink_endpoint_service_adl import *
+from .get_privatelink_endpoint_service_data_federation_online_archive import *
+from .get_privatelink_endpoint_service_data_federation_online_archives import *
 from .get_privatelink_endpoint_service_serverless import *
 from .get_privatelink_endpoints_service_adl import *
 from .get_privatelink_endpoints_service_serverless import *
@@ -118,12 +127,13 @@ from .network_container import *
 from .network_peering import *
 from .online_archive import *
 from .org_invitation import *
+from .organization import *
 from .private_endpoint_regional_mode import *
-from .private_ip_mode import *
 from .private_link_endpoint import *
 from .private_link_endpoint_service import *
 from .privatelink_endpoint_serverless import *
 from .privatelink_endpoint_service_adl import *
+from .privatelink_endpoint_service_data_federation_online_archive import *
 from .privatelink_endpoint_service_serverless import *
 from .project import *
 from .project_api_key import *
@@ -263,34 +273,18 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
-  "mod": "index/cloudProviderSnapshot",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot": "CloudProviderSnapshot"
-  }
- },
- {
-  "pkg": "mongodbatlas",
-  "mod": "index/cloudProviderSnapshotBackupPolicy",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy": "CloudProviderSnapshotBackupPolicy"
-  }
- },
- {
-  "pkg": "mongodbatlas",
-  "mod": "index/cloudProviderSnapshotRestoreJob",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob": "CloudProviderSnapshotRestoreJob"
-  }
- },
- {
-  "pkg": "mongodbatlas",
   "mod": "index/cluster",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/clusterOutageSimulation",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation": "ClusterOutageSimulation"
   }
  },
  {
@@ -319,6 +313,14 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/dataLakePipeline",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/dataLakePipeline:DataLakePipeline": "DataLakePipeline"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/databaseUser",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -339,6 +341,22 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/eventTrigger:EventTrigger": "EventTrigger"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/federatedDatabaseInstance",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance": "FederatedDatabaseInstance"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/federatedQueryLimit",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit": "FederatedQueryLimit"
   }
  },
  {
@@ -431,18 +449,18 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
-  "mod": "index/privateEndpointRegionalMode",
+  "mod": "index/organization",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
-   "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode": "PrivateEndpointRegionalMode"
+   "mongodbatlas:index/organization:Organization": "Organization"
   }
  },
  {
   "pkg": "mongodbatlas",
-  "mod": "index/privateIpMode",
+  "mod": "index/privateEndpointRegionalMode",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
-   "mongodbatlas:index/privateIpMode:PrivateIpMode": "PrivateIpMode"
+   "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode": "PrivateEndpointRegionalMode"
   }
  },
  {
@@ -475,6 +493,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl": "PrivatelinkEndpointServiceAdl"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/privatelinkEndpointServiceDataFederationOnlineArchive",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive": "PrivatelinkEndpointServiceDataFederationOnlineArchive"
   }
  },
  {

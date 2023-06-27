@@ -20,14 +20,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly int DelayMin;
         public readonly string EmailAddress;
         public readonly bool EmailEnabled;
-        public readonly string FlowName;
-        public readonly string FlowdockApiToken;
         public readonly int IntervalMin;
         public readonly string? MicrosoftTeamsWebhookUrl;
         public readonly string MobileNumber;
         public readonly string OpsGenieApiKey;
         public readonly string OpsGenieRegion;
-        public readonly string OrgName;
         public readonly ImmutableArray<string> Roles;
         public readonly string ServiceKey;
         public readonly bool SmsEnabled;
@@ -56,10 +53,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool emailEnabled,
 
-            string flowName,
-
-            string flowdockApiToken,
-
             int intervalMin,
 
             string? microsoftTeamsWebhookUrl,
@@ -69,8 +62,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             string opsGenieApiKey,
 
             string opsGenieRegion,
-
-            string orgName,
 
             ImmutableArray<string> roles,
 
@@ -101,14 +92,11 @@ namespace Pulumi.Mongodbatlas.Outputs
             DelayMin = delayMin;
             EmailAddress = emailAddress;
             EmailEnabled = emailEnabled;
-            FlowName = flowName;
-            FlowdockApiToken = flowdockApiToken;
             IntervalMin = intervalMin;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             MobileNumber = mobileNumber;
             OpsGenieApiKey = opsGenieApiKey;
             OpsGenieRegion = opsGenieRegion;
-            OrgName = orgName;
             Roles = roles;
             ServiceKey = serviceKey;
             SmsEnabled = smsEnabled;

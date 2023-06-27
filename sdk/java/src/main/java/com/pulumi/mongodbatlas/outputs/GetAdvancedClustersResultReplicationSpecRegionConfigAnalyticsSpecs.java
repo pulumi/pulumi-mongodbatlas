@@ -28,7 +28,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAnalytics
      */
     private String instanceSize;
     /**
-     * @return Number of read-only nodes for Atlas to deploy to the region.
+     * @return Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      * 
      */
     private @Nullable Integer nodeCount;
@@ -56,7 +56,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAnalytics
         return this.instanceSize;
     }
     /**
-     * @return Number of read-only nodes for Atlas to deploy to the region.
+     * @return Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      * 
      */
     public Optional<Integer> nodeCount() {

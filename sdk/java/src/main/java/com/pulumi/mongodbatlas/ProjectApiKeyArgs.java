@@ -5,9 +5,12 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
@@ -29,34 +32,50 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         return this.description;
     }
 
+    @Import(name="projectAssignments")
+    private @Nullable Output<List<ProjectApiKeyProjectAssignmentArgs>> projectAssignments;
+
+    public Optional<Output<List<ProjectApiKeyProjectAssignmentArgs>>> projectAssignments() {
+        return Optional.ofNullable(this.projectAssignments);
+    }
+
+    /**
+     * Project ID to assign to Access Key
+     * 
+     */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
+    /**
+     * @return Project ID to assign to Access Key
+     * 
+     */
     public Output<String> projectId() {
         return this.projectId;
     }
 
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      * 
      */
-    @Import(name="roleNames", required=true)
-    private Output<List<String>> roleNames;
+    @Import(name="roleNames")
+    private @Nullable Output<List<String>> roleNames;
 
     /**
-     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * @return Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
      * 
      */
-    public Output<List<String>> roleNames() {
-        return this.roleNames;
+    public Optional<Output<List<String>>> roleNames() {
+        return Optional.ofNullable(this.roleNames);
     }
 
     private ProjectApiKeyArgs() {}
 
     private ProjectApiKeyArgs(ProjectApiKeyArgs $) {
         this.description = $.description;
+        this.projectAssignments = $.projectAssignments;
         this.projectId = $.projectId;
         this.roleNames = $.roleNames;
     }
@@ -100,29 +119,54 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
             return description(Output.of(description));
         }
 
+        public Builder projectAssignments(@Nullable Output<List<ProjectApiKeyProjectAssignmentArgs>> projectAssignments) {
+            $.projectAssignments = projectAssignments;
+            return this;
+        }
+
+        public Builder projectAssignments(List<ProjectApiKeyProjectAssignmentArgs> projectAssignments) {
+            return projectAssignments(Output.of(projectAssignments));
+        }
+
+        public Builder projectAssignments(ProjectApiKeyProjectAssignmentArgs... projectAssignments) {
+            return projectAssignments(List.of(projectAssignments));
+        }
+
+        /**
+         * @param projectId Project ID to assign to Access Key
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(Output<String> projectId) {
             $.projectId = projectId;
             return this;
         }
 
+        /**
+         * @param projectId Project ID to assign to Access Key
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
         }
 
         /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
          * The following are valid roles:
          * 
          * @return builder
          * 
          */
-        public Builder roleNames(Output<List<String>> roleNames) {
+        public Builder roleNames(@Nullable Output<List<String>> roleNames) {
             $.roleNames = roleNames;
             return this;
         }
 
         /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
          * The following are valid roles:
          * 
          * @return builder
@@ -133,7 +177,7 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
          * The following are valid roles:
          * 
          * @return builder
@@ -146,7 +190,6 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         public ProjectApiKeyArgs build() {
             $.description = Objects.requireNonNull($.description, "expected parameter 'description' to be non-null");
             $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.roleNames = Objects.requireNonNull($.roleNames, "expected parameter 'roleNames' to be non-null");
             return $;
         }
     }

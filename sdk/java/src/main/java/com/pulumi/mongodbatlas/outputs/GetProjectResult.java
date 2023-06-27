@@ -46,6 +46,11 @@ public final class GetProjectResult {
      */
     private Boolean isDataExplorerEnabled;
     /**
+     * @return Flag that indicates whether to enable extended storage sizes for the specified project.
+     * 
+     */
+    private Boolean isExtendedStorageSizesEnabled;
+    /**
      * @return Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      * 
      */
@@ -121,6 +126,13 @@ public final class GetProjectResult {
         return this.isDataExplorerEnabled;
     }
     /**
+     * @return Flag that indicates whether to enable extended storage sizes for the specified project.
+     * 
+     */
+    public Boolean isExtendedStorageSizesEnabled() {
+        return this.isExtendedStorageSizesEnabled;
+    }
+    /**
      * @return Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      * 
      */
@@ -184,6 +196,7 @@ public final class GetProjectResult {
         private String id;
         private Boolean isCollectDatabaseSpecificsStatisticsEnabled;
         private Boolean isDataExplorerEnabled;
+        private Boolean isExtendedStorageSizesEnabled;
         private Boolean isPerformanceAdvisorEnabled;
         private Boolean isRealtimePerformancePanelEnabled;
         private Boolean isSchemaAdvisorEnabled;
@@ -201,6 +214,7 @@ public final class GetProjectResult {
     	      this.id = defaults.id;
     	      this.isCollectDatabaseSpecificsStatisticsEnabled = defaults.isCollectDatabaseSpecificsStatisticsEnabled;
     	      this.isDataExplorerEnabled = defaults.isDataExplorerEnabled;
+    	      this.isExtendedStorageSizesEnabled = defaults.isExtendedStorageSizesEnabled;
     	      this.isPerformanceAdvisorEnabled = defaults.isPerformanceAdvisorEnabled;
     	      this.isRealtimePerformancePanelEnabled = defaults.isRealtimePerformancePanelEnabled;
     	      this.isSchemaAdvisorEnabled = defaults.isSchemaAdvisorEnabled;
@@ -242,6 +256,11 @@ public final class GetProjectResult {
         @CustomType.Setter
         public Builder isDataExplorerEnabled(Boolean isDataExplorerEnabled) {
             this.isDataExplorerEnabled = Objects.requireNonNull(isDataExplorerEnabled);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder isExtendedStorageSizesEnabled(Boolean isExtendedStorageSizesEnabled) {
+            this.isExtendedStorageSizesEnabled = Objects.requireNonNull(isExtendedStorageSizesEnabled);
             return this;
         }
         @CustomType.Setter
@@ -295,6 +314,7 @@ public final class GetProjectResult {
             o.id = id;
             o.isCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
             o.isDataExplorerEnabled = isDataExplorerEnabled;
+            o.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
             o.isPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             o.isRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
             o.isSchemaAdvisorEnabled = isSchemaAdvisorEnabled;

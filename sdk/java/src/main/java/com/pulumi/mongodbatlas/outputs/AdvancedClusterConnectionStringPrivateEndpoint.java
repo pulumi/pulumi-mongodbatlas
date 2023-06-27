@@ -16,6 +16,7 @@ public final class AdvancedClusterConnectionStringPrivateEndpoint {
     private @Nullable String connectionString;
     private @Nullable List<AdvancedClusterConnectionStringPrivateEndpointEndpoint> endpoints;
     private @Nullable String srvConnectionString;
+    private @Nullable String srvShardOptimizedConnectionString;
     private @Nullable String type;
 
     private AdvancedClusterConnectionStringPrivateEndpoint() {}
@@ -27,6 +28,9 @@ public final class AdvancedClusterConnectionStringPrivateEndpoint {
     }
     public Optional<String> srvConnectionString() {
         return Optional.ofNullable(this.srvConnectionString);
+    }
+    public Optional<String> srvShardOptimizedConnectionString() {
+        return Optional.ofNullable(this.srvShardOptimizedConnectionString);
     }
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
@@ -44,6 +48,7 @@ public final class AdvancedClusterConnectionStringPrivateEndpoint {
         private @Nullable String connectionString;
         private @Nullable List<AdvancedClusterConnectionStringPrivateEndpointEndpoint> endpoints;
         private @Nullable String srvConnectionString;
+        private @Nullable String srvShardOptimizedConnectionString;
         private @Nullable String type;
         public Builder() {}
         public Builder(AdvancedClusterConnectionStringPrivateEndpoint defaults) {
@@ -51,6 +56,7 @@ public final class AdvancedClusterConnectionStringPrivateEndpoint {
     	      this.connectionString = defaults.connectionString;
     	      this.endpoints = defaults.endpoints;
     	      this.srvConnectionString = defaults.srvConnectionString;
+    	      this.srvShardOptimizedConnectionString = defaults.srvShardOptimizedConnectionString;
     	      this.type = defaults.type;
         }
 
@@ -73,6 +79,11 @@ public final class AdvancedClusterConnectionStringPrivateEndpoint {
             return this;
         }
         @CustomType.Setter
+        public Builder srvShardOptimizedConnectionString(@Nullable String srvShardOptimizedConnectionString) {
+            this.srvShardOptimizedConnectionString = srvShardOptimizedConnectionString;
+            return this;
+        }
+        @CustomType.Setter
         public Builder type(@Nullable String type) {
             this.type = type;
             return this;
@@ -82,6 +93,7 @@ public final class AdvancedClusterConnectionStringPrivateEndpoint {
             o.connectionString = connectionString;
             o.endpoints = endpoints;
             o.srvConnectionString = srvConnectionString;
+            o.srvShardOptimizedConnectionString = srvShardOptimizedConnectionString;
             o.type = type;
             return o;
         }

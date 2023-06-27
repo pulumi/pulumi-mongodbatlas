@@ -48,26 +48,28 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CloudProviderAccessAuthorization{}
 	case "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup":
 		r = &CloudProviderAccessSetup{}
-	case "mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot":
-		r = &CloudProviderSnapshot{}
-	case "mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy":
-		r = &CloudProviderSnapshotBackupPolicy{}
-	case "mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob":
-		r = &CloudProviderSnapshotRestoreJob{}
 	case "mongodbatlas:index/cluster:Cluster":
 		r = &Cluster{}
+	case "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation":
+		r = &ClusterOutageSimulation{}
 	case "mongodbatlas:index/customDbRole:CustomDbRole":
 		r = &CustomDbRole{}
 	case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
 		r = &CustomDnsConfigurationClusterAws{}
 	case "mongodbatlas:index/dataLake:DataLake":
 		r = &DataLake{}
+	case "mongodbatlas:index/dataLakePipeline:DataLakePipeline":
+		r = &DataLakePipeline{}
 	case "mongodbatlas:index/databaseUser:DatabaseUser":
 		r = &DatabaseUser{}
 	case "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
 		r = &EncryptionAtRest{}
 	case "mongodbatlas:index/eventTrigger:EventTrigger":
 		r = &EventTrigger{}
+	case "mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance":
+		r = &FederatedDatabaseInstance{}
+	case "mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit":
+		r = &FederatedQueryLimit{}
 	case "mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider":
 		r = &FederatedSettingsIdentityProvider{}
 	case "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig":
@@ -90,10 +92,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OnlineArchive{}
 	case "mongodbatlas:index/orgInvitation:OrgInvitation":
 		r = &OrgInvitation{}
+	case "mongodbatlas:index/organization:Organization":
+		r = &Organization{}
 	case "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode":
 		r = &PrivateEndpointRegionalMode{}
-	case "mongodbatlas:index/privateIpMode:PrivateIpMode":
-		r = &PrivateIpMode{}
 	case "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
 		r = &PrivateLinkEndpoint{}
 	case "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService":
@@ -102,6 +104,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &PrivatelinkEndpointServerless{}
 	case "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl":
 		r = &PrivatelinkEndpointServiceAdl{}
+	case "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive":
+		r = &PrivatelinkEndpointServiceDataFederationOnlineArchive{}
 	case "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless":
 		r = &PrivatelinkEndpointServiceServerless{}
 	case "mongodbatlas:index/project:Project":
@@ -224,22 +228,12 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
-		"index/cloudProviderSnapshot",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"mongodbatlas",
-		"index/cloudProviderSnapshotBackupPolicy",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"mongodbatlas",
-		"index/cloudProviderSnapshotRestoreJob",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"mongodbatlas",
 		"index/cluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/clusterOutageSimulation",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -259,6 +253,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/dataLakePipeline",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/databaseUser",
 		&module{version},
 	)
@@ -270,6 +269,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/eventTrigger",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/federatedDatabaseInstance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/federatedQueryLimit",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -329,12 +338,12 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
-		"index/privateEndpointRegionalMode",
+		"index/organization",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
-		"index/privateIpMode",
+		"index/privateEndpointRegionalMode",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -355,6 +364,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/privatelinkEndpointServiceAdl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/privatelinkEndpointServiceDataFederationOnlineArchive",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

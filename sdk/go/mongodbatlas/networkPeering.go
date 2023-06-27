@@ -438,7 +438,7 @@ import (
 //
 // ## Import
 //
-// Clusters can be imported using project ID and network peering id, in the format `PROJECTID-PEERID-PROVIDERNAME`, e.g.
+// Network Peering Connections can be imported using project ID and network peering id, in the format `PROJECTID-PEERID-PROVIDERNAME`, e.g.
 //
 // ```sh
 //

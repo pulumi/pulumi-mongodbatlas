@@ -21,7 +21,7 @@ class GetThirdPartyIntegrationResult:
     """
     A collection of values returned by getThirdPartyIntegration.
     """
-    def __init__(__self__, account_id=None, api_key=None, api_token=None, channel_name=None, enabled=None, flow_name=None, id=None, license_key=None, microsoft_teams_webhook_url=None, org_name=None, project_id=None, read_token=None, region=None, routing_key=None, scheme=None, secret=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None, write_token=None):
+    def __init__(__self__, account_id=None, api_key=None, api_token=None, channel_name=None, enabled=None, id=None, license_key=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, scheme=None, secret=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
         if account_id and not isinstance(account_id, str):
             raise TypeError("Expected argument 'account_id' to be a str")
         pulumi.set(__self__, "account_id", account_id)
@@ -37,9 +37,6 @@ class GetThirdPartyIntegrationResult:
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         pulumi.set(__self__, "enabled", enabled)
-        if flow_name and not isinstance(flow_name, str):
-            raise TypeError("Expected argument 'flow_name' to be a str")
-        pulumi.set(__self__, "flow_name", flow_name)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -49,15 +46,9 @@ class GetThirdPartyIntegrationResult:
         if microsoft_teams_webhook_url and not isinstance(microsoft_teams_webhook_url, str):
             raise TypeError("Expected argument 'microsoft_teams_webhook_url' to be a str")
         pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
-        if org_name and not isinstance(org_name, str):
-            raise TypeError("Expected argument 'org_name' to be a str")
-        pulumi.set(__self__, "org_name", org_name)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
-        if read_token and not isinstance(read_token, str):
-            raise TypeError("Expected argument 'read_token' to be a str")
-        pulumi.set(__self__, "read_token", read_token)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -88,9 +79,6 @@ class GetThirdPartyIntegrationResult:
         if user_name and not isinstance(user_name, str):
             raise TypeError("Expected argument 'user_name' to be a str")
         pulumi.set(__self__, "user_name", user_name)
-        if write_token and not isinstance(write_token, str):
-            raise TypeError("Expected argument 'write_token' to be a str")
-        pulumi.set(__self__, "write_token", write_token)
 
     @property
     @pulumi.getter(name="accountId")
@@ -130,14 +118,6 @@ class GetThirdPartyIntegrationResult:
         return pulumi.get(self, "enabled")
 
     @property
-    @pulumi.getter(name="flowName")
-    def flow_name(self) -> str:
-        """
-        Your Flowdock Flow name.
-        """
-        return pulumi.get(self, "flow_name")
-
-    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -162,25 +142,9 @@ class GetThirdPartyIntegrationResult:
         return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @property
-    @pulumi.getter(name="orgName")
-    def org_name(self) -> str:
-        """
-        Your Flowdock organization name.
-        """
-        return pulumi.get(self, "org_name")
-
-    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
-
-    @property
-    @pulumi.getter(name="readToken")
-    def read_token(self) -> str:
-        """
-        Your Insights Query Key.
-        """
-        return pulumi.get(self, "read_token")
 
     @property
     @pulumi.getter
@@ -259,14 +223,6 @@ class GetThirdPartyIntegrationResult:
         """
         return pulumi.get(self, "user_name")
 
-    @property
-    @pulumi.getter(name="writeToken")
-    def write_token(self) -> str:
-        """
-        Your Insights Insert Key.
-        """
-        return pulumi.get(self, "write_token")
-
 
 class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
     # pylint: disable=using-constant-test
@@ -279,13 +235,10 @@ class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
             api_token=self.api_token,
             channel_name=self.channel_name,
             enabled=self.enabled,
-            flow_name=self.flow_name,
             id=self.id,
             license_key=self.license_key,
             microsoft_teams_webhook_url=self.microsoft_teams_webhook_url,
-            org_name=self.org_name,
             project_id=self.project_id,
-            read_token=self.read_token,
             region=self.region,
             routing_key=self.routing_key,
             scheme=self.scheme,
@@ -295,8 +248,7 @@ class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
             team_name=self.team_name,
             type=self.type,
             url=self.url,
-            user_name=self.user_name,
-            write_token=self.write_token)
+            user_name=self.user_name)
 
 
 def get_third_party_integration(enabled: Optional[bool] = None,
@@ -311,21 +263,6 @@ def get_third_party_integration(enabled: Optional[bool] = None,
     `ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_flowdock = mongodbatlas.ThirdPartyIntegration("testFlowdock",
-        project_id="<PROJECT-ID>",
-        type="FLOWDOCK",
-        flow_name="<FLOW-NAME>",
-        api_token="<API-TOKEN>",
-        org_name="<ORG-NAME>")
-    test = mongodbatlas.get_third_party_integration_output(project_id=test_flowdock.project_id)
-    ```
 
 
     :param bool enabled: Whether your cluster has Prometheus enabled.
@@ -345,6 +282,7 @@ def get_third_party_integration(enabled: Optional[bool] = None,
            * PROMETHEUS
            
            *resource is now deprecated and will be removed in the next major version, 1.9.0
+           **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
     :param str user_name: Your Prometheus username.
     """
     __args__ = dict()
@@ -364,13 +302,10 @@ def get_third_party_integration(enabled: Optional[bool] = None,
         api_token=__ret__.api_token,
         channel_name=__ret__.channel_name,
         enabled=__ret__.enabled,
-        flow_name=__ret__.flow_name,
         id=__ret__.id,
         license_key=__ret__.license_key,
         microsoft_teams_webhook_url=__ret__.microsoft_teams_webhook_url,
-        org_name=__ret__.org_name,
         project_id=__ret__.project_id,
-        read_token=__ret__.read_token,
         region=__ret__.region,
         routing_key=__ret__.routing_key,
         scheme=__ret__.scheme,
@@ -380,8 +315,7 @@ def get_third_party_integration(enabled: Optional[bool] = None,
         team_name=__ret__.team_name,
         type=__ret__.type,
         url=__ret__.url,
-        user_name=__ret__.user_name,
-        write_token=__ret__.write_token)
+        user_name=__ret__.user_name)
 
 
 @_utilities.lift_output_func(get_third_party_integration)
@@ -397,21 +331,6 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
     `ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_flowdock = mongodbatlas.ThirdPartyIntegration("testFlowdock",
-        project_id="<PROJECT-ID>",
-        type="FLOWDOCK",
-        flow_name="<FLOW-NAME>",
-        api_token="<API-TOKEN>",
-        org_name="<ORG-NAME>")
-    test = mongodbatlas.get_third_party_integration_output(project_id=test_flowdock.project_id)
-    ```
 
 
     :param bool enabled: Whether your cluster has Prometheus enabled.
@@ -431,6 +350,7 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
            * PROMETHEUS
            
            *resource is now deprecated and will be removed in the next major version, 1.9.0
+           **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
     :param str user_name: Your Prometheus username.
     """
     ...

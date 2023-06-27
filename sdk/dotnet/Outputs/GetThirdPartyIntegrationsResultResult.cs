@@ -31,10 +31,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// Your Flowdock Flow name.
-        /// </summary>
-        public readonly string FlowName;
-        /// <summary>
         /// Your License Key.
         /// </summary>
         public readonly string LicenseKey;
@@ -43,17 +39,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? MicrosoftTeamsWebhookUrl;
         /// <summary>
-        /// Your Flowdock organization name.
-        /// </summary>
-        public readonly string OrgName;
-        /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
         /// </summary>
         public readonly string ProjectId;
-        /// <summary>
-        /// Your Insights Query Key.
-        /// </summary>
-        public readonly string ReadToken;
         /// <summary>
         /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
         /// </summary>
@@ -91,10 +79,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Your Prometheus username.
         /// </summary>
         public readonly string? UserName;
-        /// <summary>
-        /// Your Insights Insert Key.
-        /// </summary>
-        public readonly string WriteToken;
 
         [OutputConstructor]
         private GetThirdPartyIntegrationsResultResult(
@@ -108,17 +92,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool? enabled,
 
-            string flowName,
-
             string licenseKey,
 
             string? microsoftTeamsWebhookUrl,
 
-            string orgName,
-
             string projectId,
-
-            string readToken,
 
             string region,
 
@@ -138,21 +116,16 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string url,
 
-            string? userName,
-
-            string writeToken)
+            string? userName)
         {
             AccountId = accountId;
             ApiKey = apiKey;
             ApiToken = apiToken;
             ChannelName = channelName;
             Enabled = enabled;
-            FlowName = flowName;
             LicenseKey = licenseKey;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
-            OrgName = orgName;
             ProjectId = projectId;
-            ReadToken = readToken;
             Region = region;
             RoutingKey = routingKey;
             Scheme = scheme;
@@ -163,7 +136,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             Type = type;
             Url = url;
             UserName = userName;
-            WriteToken = writeToken;
         }
     }
 }

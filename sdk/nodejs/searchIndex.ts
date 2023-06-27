@@ -126,7 +126,7 @@ export class SearchIndex extends pulumi.CustomResource {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    public readonly analyzer!: pulumi.Output<string>;
+    public readonly analyzer!: pulumi.Output<string | undefined>;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
      */
@@ -200,9 +200,6 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["waitForIndexBuildCompletion"] = state ? state.waitForIndexBuildCompletion : undefined;
         } else {
             const args = argsOrState as SearchIndexArgs | undefined;
-            if ((!args || args.analyzer === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'analyzer'");
-            }
             if ((!args || args.clusterName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
@@ -295,7 +292,7 @@ export interface SearchIndexArgs {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    analyzer: pulumi.Input<string>;
+    analyzer?: pulumi.Input<string>;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
      */

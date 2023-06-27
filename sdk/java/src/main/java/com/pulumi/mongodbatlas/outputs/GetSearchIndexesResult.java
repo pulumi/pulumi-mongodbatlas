@@ -18,7 +18,7 @@ public final class GetSearchIndexesResult {
      * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      * 
      */
-    private String analyzer;
+    private @Nullable String analyzer;
     /**
      * @return [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      * 
@@ -81,8 +81,8 @@ public final class GetSearchIndexesResult {
      * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      * 
      */
-    public String analyzer() {
-        return this.analyzer;
+    public Optional<String> analyzer() {
+        return Optional.ofNullable(this.analyzer);
     }
     /**
      * @return [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
@@ -176,7 +176,7 @@ public final class GetSearchIndexesResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String analyzer;
+        private @Nullable String analyzer;
         private @Nullable String analyzers;
         private String clusterName;
         private String collectionName;
@@ -210,8 +210,8 @@ public final class GetSearchIndexesResult {
         }
 
         @CustomType.Setter
-        public Builder analyzer(String analyzer) {
-            this.analyzer = Objects.requireNonNull(analyzer);
+        public Builder analyzer(@Nullable String analyzer) {
+            this.analyzer = analyzer;
             return this;
         }
         @CustomType.Setter

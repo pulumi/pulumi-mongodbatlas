@@ -17,21 +17,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
     public static final ThirdPartyIntegrationState Empty = new ThirdPartyIntegrationState();
 
     /**
-     * Unique identifier of your New Relic account.
-     * 
-     */
-    @Import(name="accountId")
-    private @Nullable Output<String> accountId;
-
-    /**
-     * @return Unique identifier of your New Relic account.
-     * 
-     */
-    public Optional<Output<String>> accountId() {
-        return Optional.ofNullable(this.accountId);
-    }
-
-    /**
      * Your API Key.
      * 
      */
@@ -44,21 +29,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      */
     public Optional<Output<String>> apiKey() {
         return Optional.ofNullable(this.apiKey);
-    }
-
-    /**
-     * Your API Token.
-     * 
-     */
-    @Import(name="apiToken")
-    private @Nullable Output<String> apiToken;
-
-    /**
-     * @return Your API Token.
-     * 
-     */
-    public Optional<Output<String>> apiToken() {
-        return Optional.ofNullable(this.apiToken);
     }
 
     @Import(name="channelName")
@@ -84,36 +54,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
     }
 
     /**
-     * Your Flowdock Flow name.
-     * 
-     */
-    @Import(name="flowName")
-    private @Nullable Output<String> flowName;
-
-    /**
-     * @return Your Flowdock Flow name.
-     * 
-     */
-    public Optional<Output<String>> flowName() {
-        return Optional.ofNullable(this.flowName);
-    }
-
-    /**
-     * Your License Key.
-     * 
-     */
-    @Import(name="licenseKey")
-    private @Nullable Output<String> licenseKey;
-
-    /**
-     * @return Your License Key.
-     * 
-     */
-    public Optional<Output<String>> licenseKey() {
-        return Optional.ofNullable(this.licenseKey);
-    }
-
-    /**
      * Your Microsoft Teams incoming webhook URL.
      * 
      */
@@ -126,21 +66,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      */
     public Optional<Output<String>> microsoftTeamsWebhookUrl() {
         return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
-    }
-
-    /**
-     * Your Flowdock organization name.
-     * 
-     */
-    @Import(name="orgName")
-    private @Nullable Output<String> orgName;
-
-    /**
-     * @return Your Flowdock organization name.
-     * 
-     */
-    public Optional<Output<String>> orgName() {
-        return Optional.ofNullable(this.orgName);
     }
 
     /**
@@ -171,21 +96,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      */
     public Optional<Output<String>> projectId() {
         return Optional.ofNullable(this.projectId);
-    }
-
-    /**
-     * Your Insights Query Key.
-     * 
-     */
-    @Import(name="readToken")
-    private @Nullable Output<String> readToken;
-
-    /**
-     * @return Your Insights Query Key.
-     * 
-     */
-    public Optional<Output<String>> readToken() {
-        return Optional.ofNullable(this.readToken);
     }
 
     /**
@@ -356,36 +266,15 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.userName);
     }
 
-    /**
-     * Your Insights Insert Key.
-     * 
-     */
-    @Import(name="writeToken")
-    private @Nullable Output<String> writeToken;
-
-    /**
-     * @return Your Insights Insert Key.
-     * 
-     */
-    public Optional<Output<String>> writeToken() {
-        return Optional.ofNullable(this.writeToken);
-    }
-
     private ThirdPartyIntegrationState() {}
 
     private ThirdPartyIntegrationState(ThirdPartyIntegrationState $) {
-        this.accountId = $.accountId;
         this.apiKey = $.apiKey;
-        this.apiToken = $.apiToken;
         this.channelName = $.channelName;
         this.enabled = $.enabled;
-        this.flowName = $.flowName;
-        this.licenseKey = $.licenseKey;
         this.microsoftTeamsWebhookUrl = $.microsoftTeamsWebhookUrl;
-        this.orgName = $.orgName;
         this.password = $.password;
         this.projectId = $.projectId;
-        this.readToken = $.readToken;
         this.region = $.region;
         this.routingKey = $.routingKey;
         this.scheme = $.scheme;
@@ -396,7 +285,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
         this.type = $.type;
         this.url = $.url;
         this.userName = $.userName;
-        this.writeToken = $.writeToken;
     }
 
     public static Builder builder() {
@@ -418,27 +306,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param accountId Unique identifier of your New Relic account.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder accountId(@Nullable Output<String> accountId) {
-            $.accountId = accountId;
-            return this;
-        }
-
-        /**
-         * @param accountId Unique identifier of your New Relic account.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder accountId(String accountId) {
-            return accountId(Output.of(accountId));
-        }
-
-        /**
          * @param apiKey Your API Key.
          * 
          * @return builder
@@ -457,27 +324,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          */
         public Builder apiKey(String apiKey) {
             return apiKey(Output.of(apiKey));
-        }
-
-        /**
-         * @param apiToken Your API Token.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder apiToken(@Nullable Output<String> apiToken) {
-            $.apiToken = apiToken;
-            return this;
-        }
-
-        /**
-         * @param apiToken Your API Token.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder apiToken(String apiToken) {
-            return apiToken(Output.of(apiToken));
         }
 
         public Builder channelName(@Nullable Output<String> channelName) {
@@ -511,48 +357,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param flowName Your Flowdock Flow name.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder flowName(@Nullable Output<String> flowName) {
-            $.flowName = flowName;
-            return this;
-        }
-
-        /**
-         * @param flowName Your Flowdock Flow name.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder flowName(String flowName) {
-            return flowName(Output.of(flowName));
-        }
-
-        /**
-         * @param licenseKey Your License Key.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder licenseKey(@Nullable Output<String> licenseKey) {
-            $.licenseKey = licenseKey;
-            return this;
-        }
-
-        /**
-         * @param licenseKey Your License Key.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder licenseKey(String licenseKey) {
-            return licenseKey(Output.of(licenseKey));
-        }
-
-        /**
          * @param microsoftTeamsWebhookUrl Your Microsoft Teams incoming webhook URL.
          * 
          * @return builder
@@ -571,27 +375,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          */
         public Builder microsoftTeamsWebhookUrl(String microsoftTeamsWebhookUrl) {
             return microsoftTeamsWebhookUrl(Output.of(microsoftTeamsWebhookUrl));
-        }
-
-        /**
-         * @param orgName Your Flowdock organization name.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder orgName(@Nullable Output<String> orgName) {
-            $.orgName = orgName;
-            return this;
-        }
-
-        /**
-         * @param orgName Your Flowdock organization name.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder orgName(String orgName) {
-            return orgName(Output.of(orgName));
         }
 
         /**
@@ -634,27 +417,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
-        }
-
-        /**
-         * @param readToken Your Insights Query Key.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder readToken(@Nullable Output<String> readToken) {
-            $.readToken = readToken;
-            return this;
-        }
-
-        /**
-         * @param readToken Your Insights Query Key.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder readToken(String readToken) {
-            return readToken(Output.of(readToken));
         }
 
         /**
@@ -879,27 +641,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          */
         public Builder userName(String userName) {
             return userName(Output.of(userName));
-        }
-
-        /**
-         * @param writeToken Your Insights Insert Key.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder writeToken(@Nullable Output<String> writeToken) {
-            $.writeToken = writeToken;
-            return this;
-        }
-
-        /**
-         * @param writeToken Your Insights Insert Key.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder writeToken(String writeToken) {
-            return writeToken(Output.of(writeToken));
         }
 
         public ThirdPartyIntegrationState build() {

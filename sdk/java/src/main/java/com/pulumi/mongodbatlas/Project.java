@@ -67,6 +67,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .isCollectDatabaseSpecificsStatisticsEnabled(true)
  *             .isDataExplorerEnabled(true)
+ *             .isExtendedStorageSizesEnabled(true)
  *             .isPerformanceAdvisorEnabled(true)
  *             .isRealtimePerformancePanelEnabled(true)
  *             .isSchemaAdvisorEnabled(true)
@@ -89,6 +90,12 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/project:Project")
 public class Project extends com.pulumi.resources.CustomResource {
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
     @Export(name="apiKeys", type=List.class, parameters={ProjectApiKey.class})
     private Output<List<ProjectApiKey>> apiKeys;
 
@@ -150,6 +157,20 @@ public class Project extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> isDataExplorerEnabled() {
         return this.isDataExplorerEnabled;
+    }
+    /**
+     * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+     * 
+     */
+    @Export(name="isExtendedStorageSizesEnabled", type=Boolean.class, parameters={})
+    private Output<Boolean> isExtendedStorageSizesEnabled;
+
+    /**
+     * @return Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+     * 
+     */
+    public Output<Boolean> isExtendedStorageSizesEnabled() {
+        return this.isExtendedStorageSizesEnabled;
     }
     /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.

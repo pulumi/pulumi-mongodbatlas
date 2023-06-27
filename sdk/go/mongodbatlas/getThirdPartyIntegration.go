@@ -13,39 +13,6 @@ import (
 // `ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testFlowdock, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testFlowdock", &mongodbatlas.ThirdPartyIntegrationArgs{
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
-//				Type:      pulumi.String("FLOWDOCK"),
-//				FlowName:  pulumi.String("<FLOW-NAME>"),
-//				ApiToken:  pulumi.String("<API-TOKEN>"),
-//				OrgName:   pulumi.String("<ORG-NAME>"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = mongodbatlas.LookupThirdPartyIntegrationOutput(ctx, mongodbatlas.GetThirdPartyIntegrationOutputArgs{
-//				ProjectId: testFlowdock.ProjectId,
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupThirdPartyIntegration(ctx *pulumi.Context, args *LookupThirdPartyIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupThirdPartyIntegrationResult, error) {
 	var rv LookupThirdPartyIntegrationResult
 	err := ctx.Invoke("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args, &rv, opts...)
@@ -79,6 +46,7 @@ type LookupThirdPartyIntegrationArgs struct {
 	// * PROMETHEUS
 	//
 	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	// **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
 	Type string `pulumi:"type"`
 	// Your Prometheus username.
 	UserName *string `pulumi:"userName"`
@@ -95,19 +63,13 @@ type LookupThirdPartyIntegrationResult struct {
 	ChannelName string `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled *bool `pulumi:"enabled"`
-	// Your Flowdock Flow name.
-	FlowName string `pulumi:"flowName"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Your License Key.
 	LicenseKey string `pulumi:"licenseKey"`
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
-	// Your Flowdock organization name.
-	OrgName   string `pulumi:"orgName"`
-	ProjectId string `pulumi:"projectId"`
-	// Your Insights Query Key.
-	ReadToken string `pulumi:"readToken"`
+	ProjectId                string  `pulumi:"projectId"`
 	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
@@ -127,8 +89,6 @@ type LookupThirdPartyIntegrationResult struct {
 	Url string `pulumi:"url"`
 	// Your Prometheus username.
 	UserName *string `pulumi:"userName"`
-	// Your Insights Insert Key.
-	WriteToken string `pulumi:"writeToken"`
 }
 
 func LookupThirdPartyIntegrationOutput(ctx *pulumi.Context, args LookupThirdPartyIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupThirdPartyIntegrationResultOutput {
@@ -168,6 +128,7 @@ type LookupThirdPartyIntegrationOutputArgs struct {
 	// * PROMETHEUS
 	//
 	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	// **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
 	Type pulumi.StringInput `pulumi:"type"`
 	// Your Prometheus username.
 	UserName pulumi.StringPtrInput `pulumi:"userName"`
@@ -216,11 +177,6 @@ func (o LookupThirdPartyIntegrationResultOutput) Enabled() pulumi.BoolPtrOutput 
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// Your Flowdock Flow name.
-func (o LookupThirdPartyIntegrationResultOutput) FlowName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.FlowName }).(pulumi.StringOutput)
-}
-
 // The provider-assigned unique ID for this managed resource.
 func (o LookupThirdPartyIntegrationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
@@ -236,18 +192,8 @@ func (o LookupThirdPartyIntegrationResultOutput) MicrosoftTeamsWebhookUrl() pulu
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
 }
 
-// Your Flowdock organization name.
-func (o LookupThirdPartyIntegrationResultOutput) OrgName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.OrgName }).(pulumi.StringOutput)
-}
-
 func (o LookupThirdPartyIntegrationResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// Your Insights Query Key.
-func (o LookupThirdPartyIntegrationResultOutput) ReadToken() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ReadToken }).(pulumi.StringOutput)
 }
 
 // Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
@@ -297,11 +243,6 @@ func (o LookupThirdPartyIntegrationResultOutput) Url() pulumi.StringOutput {
 // Your Prometheus username.
 func (o LookupThirdPartyIntegrationResultOutput) UserName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *string { return v.UserName }).(pulumi.StringPtrOutput)
-}
-
-// Your Insights Insert Key.
-func (o LookupThirdPartyIntegrationResultOutput) WriteToken() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.WriteToken }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -103,6 +103,7 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
      * * PROMETHEUS
      * 
      * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
      * 
      */
     @Import(name="type", required=true)
@@ -121,6 +122,7 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
      * * PROMETHEUS
      * 
      * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
      * 
      */
     public String type() {
@@ -240,6 +242,7 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
          * * PROMETHEUS
          * 
          * *resource is now deprecated and will be removed in the next major version, 1.9.0
+         * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
          * 
          * @return builder
          * 

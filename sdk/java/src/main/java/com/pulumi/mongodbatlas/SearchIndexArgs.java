@@ -22,15 +22,15 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      * 
      */
-    @Import(name="analyzer", required=true)
-    private Output<String> analyzer;
+    @Import(name="analyzer")
+    private @Nullable Output<String> analyzer;
 
     /**
      * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      * 
      */
-    public Output<String> analyzer() {
-        return this.analyzer;
+    public Optional<Output<String>> analyzer() {
+        return Optional.ofNullable(this.analyzer);
     }
 
     /**
@@ -239,7 +239,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder analyzer(Output<String> analyzer) {
+        public Builder analyzer(@Nullable Output<String> analyzer) {
             $.analyzer = analyzer;
             return this;
         }
@@ -493,7 +493,6 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SearchIndexArgs build() {
-            $.analyzer = Objects.requireNonNull($.analyzer, "expected parameter 'analyzer' to be non-null");
             $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
             $.collectionName = Objects.requireNonNull($.collectionName, "expected parameter 'collectionName' to be non-null");
             $.database = Objects.requireNonNull($.database, "expected parameter 'database' to be non-null");

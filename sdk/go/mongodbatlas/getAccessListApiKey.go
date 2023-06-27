@@ -24,11 +24,11 @@ func LookupAccessListApiKey(ctx *pulumi.Context, args *LookupAccessListApiKeyArg
 type LookupAccessListApiKeyArgs struct {
 	// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
 	// *
-	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+	// ->**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don't set both.
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// Single IP address to be added to the access list.
 	IpAddress string `pulumi:"ipAddress"`
-	// Unique identifier for the Organization to which you want to retrieve one or more access list entries.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId string `pulumi:"orgId"`
 }
 
@@ -63,11 +63,11 @@ func LookupAccessListApiKeyOutput(ctx *pulumi.Context, args LookupAccessListApiK
 type LookupAccessListApiKeyOutputArgs struct {
 	// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
 	// *
-	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+	// ->**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don't set both.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
 	// Single IP address to be added to the access list.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// Unique identifier for the Organization to which you want to retrieve one or more access list entries.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 }
 

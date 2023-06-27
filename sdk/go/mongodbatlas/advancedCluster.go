@@ -26,7 +26,16 @@ type AdvancedCluster struct {
 	pulumi.CustomResourceState
 
 	AdvancedConfiguration AdvancedClusterAdvancedConfigurationOutput `pulumi:"advancedConfiguration"`
-	BackupEnabled         pulumi.BoolOutput                          `pulumi:"backupEnabled"`
+	// Flag that indicates whether the cluster can perform backups.
+	// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+	//
+	// Backup uses:
+	// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+	// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+	// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
+	//
+	// This parameter defaults to false.
+	BackupEnabled pulumi.BoolOutput `pulumi:"backupEnabled"`
 	// Deprecated: use bi_connector_config instead
 	BiConnector AdvancedClusterBiConnectorOutput `pulumi:"biConnector"`
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -58,6 +67,8 @@ type AdvancedCluster struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Configuration for cluster regions and the hardware provisioned in them. See below
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayOutput `pulumi:"replicationSpecs"`
+	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+	RetainBackupsEnabled pulumi.BoolPtrOutput `pulumi:"retainBackupsEnabled"`
 	// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
 	RootCertType pulumi.StringOutput `pulumi:"rootCertType"`
 	// Current state of the cluster. The possible states are:
@@ -113,7 +124,16 @@ func GetAdvancedCluster(ctx *pulumi.Context,
 // Input properties used for looking up and filtering AdvancedCluster resources.
 type advancedClusterState struct {
 	AdvancedConfiguration *AdvancedClusterAdvancedConfiguration `pulumi:"advancedConfiguration"`
-	BackupEnabled         *bool                                 `pulumi:"backupEnabled"`
+	// Flag that indicates whether the cluster can perform backups.
+	// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+	//
+	// Backup uses:
+	// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+	// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+	// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
+	//
+	// This parameter defaults to false.
+	BackupEnabled *bool `pulumi:"backupEnabled"`
 	// Deprecated: use bi_connector_config instead
 	BiConnector *AdvancedClusterBiConnector `pulumi:"biConnector"`
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -145,6 +165,8 @@ type advancedClusterState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Configuration for cluster regions and the hardware provisioned in them. See below
 	ReplicationSpecs []AdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
+	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
 	// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
 	RootCertType *string `pulumi:"rootCertType"`
 	// Current state of the cluster. The possible states are:
@@ -163,7 +185,16 @@ type advancedClusterState struct {
 
 type AdvancedClusterState struct {
 	AdvancedConfiguration AdvancedClusterAdvancedConfigurationPtrInput
-	BackupEnabled         pulumi.BoolPtrInput
+	// Flag that indicates whether the cluster can perform backups.
+	// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+	//
+	// Backup uses:
+	// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+	// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+	// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
+	//
+	// This parameter defaults to false.
+	BackupEnabled pulumi.BoolPtrInput
 	// Deprecated: use bi_connector_config instead
 	BiConnector AdvancedClusterBiConnectorPtrInput
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -195,6 +226,8 @@ type AdvancedClusterState struct {
 	ProjectId pulumi.StringPtrInput
 	// Configuration for cluster regions and the hardware provisioned in them. See below
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayInput
+	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+	RetainBackupsEnabled pulumi.BoolPtrInput
 	// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
 	RootCertType pulumi.StringPtrInput
 	// Current state of the cluster. The possible states are:
@@ -217,7 +250,16 @@ func (AdvancedClusterState) ElementType() reflect.Type {
 
 type advancedClusterArgs struct {
 	AdvancedConfiguration *AdvancedClusterAdvancedConfiguration `pulumi:"advancedConfiguration"`
-	BackupEnabled         *bool                                 `pulumi:"backupEnabled"`
+	// Flag that indicates whether the cluster can perform backups.
+	// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+	//
+	// Backup uses:
+	// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+	// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+	// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
+	//
+	// This parameter defaults to false.
+	BackupEnabled *bool `pulumi:"backupEnabled"`
 	// Deprecated: use bi_connector_config instead
 	BiConnector *AdvancedClusterBiConnector `pulumi:"biConnector"`
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -242,6 +284,8 @@ type advancedClusterArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// Configuration for cluster regions and the hardware provisioned in them. See below
 	ReplicationSpecs []AdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
+	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
 	// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
 	RootCertType *string `pulumi:"rootCertType"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
@@ -253,7 +297,16 @@ type advancedClusterArgs struct {
 // The set of arguments for constructing a AdvancedCluster resource.
 type AdvancedClusterArgs struct {
 	AdvancedConfiguration AdvancedClusterAdvancedConfigurationPtrInput
-	BackupEnabled         pulumi.BoolPtrInput
+	// Flag that indicates whether the cluster can perform backups.
+	// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+	//
+	// Backup uses:
+	// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+	// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+	// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
+	//
+	// This parameter defaults to false.
+	BackupEnabled pulumi.BoolPtrInput
 	// Deprecated: use bi_connector_config instead
 	BiConnector AdvancedClusterBiConnectorPtrInput
 	// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -278,6 +331,8 @@ type AdvancedClusterArgs struct {
 	ProjectId pulumi.StringInput
 	// Configuration for cluster regions and the hardware provisioned in them. See below
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayInput
+	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+	RetainBackupsEnabled pulumi.BoolPtrInput
 	// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
 	RootCertType pulumi.StringPtrInput
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
@@ -377,6 +432,15 @@ func (o AdvancedClusterOutput) AdvancedConfiguration() AdvancedClusterAdvancedCo
 	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterAdvancedConfigurationOutput { return v.AdvancedConfiguration }).(AdvancedClusterAdvancedConfigurationOutput)
 }
 
+// Flag that indicates whether the cluster can perform backups.
+// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+//
+// Backup uses:
+// [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+// [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/#std-label-m2-m5-snapshots) for tenant clusters.
+// If "`backupEnabled`" : `false`, the cluster doesn't use Atlas backups.
+//
+// This parameter defaults to false.
 func (o AdvancedClusterOutput) BackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.BoolOutput { return v.BackupEnabled }).(pulumi.BoolOutput)
 }
@@ -458,6 +522,11 @@ func (o AdvancedClusterOutput) ProjectId() pulumi.StringOutput {
 // Configuration for cluster regions and the hardware provisioned in them. See below
 func (o AdvancedClusterOutput) ReplicationSpecs() AdvancedClusterReplicationSpecArrayOutput {
 	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterReplicationSpecArrayOutput { return v.ReplicationSpecs }).(AdvancedClusterReplicationSpecArrayOutput)
+}
+
+// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+func (o AdvancedClusterOutput) RetainBackupsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.BoolPtrOutput { return v.RetainBackupsEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).

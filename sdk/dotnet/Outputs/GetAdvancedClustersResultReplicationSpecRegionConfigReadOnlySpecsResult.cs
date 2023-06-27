@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string InstanceSize;
         /// <summary>
-        /// Number of read-only nodes for Atlas to deploy to the region.
+        /// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         /// </summary>
         public readonly int? NodeCount;
 

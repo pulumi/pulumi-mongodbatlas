@@ -27,7 +27,7 @@ export interface GetAccessListApiKeysArgs {
     /**
      * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
      * *
-     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` not both.
      */
     apiKeyId: string;
     /**
@@ -35,7 +35,7 @@ export interface GetAccessListApiKeysArgs {
      */
     itemsPerPage?: number;
     /**
-     * Unique identifier for the Organization to which you want to retrieve one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
     orgId: string;
     /**
@@ -72,7 +72,7 @@ export interface GetAccessListApiKeysOutputArgs {
     /**
      * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
      * *
-     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress`.
+     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` not both.
      */
     apiKeyId: pulumi.Input<string>;
     /**
@@ -80,7 +80,7 @@ export interface GetAccessListApiKeysOutputArgs {
      */
     itemsPerPage?: pulumi.Input<number>;
     /**
-     * Unique identifier for the Organization to which you want to retrieve one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
     orgId: pulumi.Input<string>;
     /**

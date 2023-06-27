@@ -157,14 +157,14 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="analyzer", type=String.class, parameters={})
-    private Output<String> analyzer;
+    private Output</* @Nullable */ String> analyzer;
 
     /**
      * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      * 
      */
-    public Output<String> analyzer() {
-        return this.analyzer;
+    public Output<Optional<String>> analyzer() {
+        return Codegen.optional(this.analyzer);
     }
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.

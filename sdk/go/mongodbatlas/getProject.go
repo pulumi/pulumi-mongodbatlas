@@ -50,6 +50,8 @@ type LookupProjectResult struct {
 	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
 	IsDataExplorerEnabled bool `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether to enable extended storage sizes for the specified project.
+	IsExtendedStorageSizesEnabled bool `pulumi:"isExtendedStorageSizesEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 	IsPerformanceAdvisorEnabled bool `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
@@ -138,6 +140,11 @@ func (o LookupProjectResultOutput) IsCollectDatabaseSpecificsStatisticsEnabled()
 // Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
 func (o LookupProjectResultOutput) IsDataExplorerEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsDataExplorerEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable extended storage sizes for the specified project.
+func (o LookupProjectResultOutput) IsExtendedStorageSizesEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsExtendedStorageSizesEnabled }).(pulumi.BoolOutput)
 }
 
 // Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.

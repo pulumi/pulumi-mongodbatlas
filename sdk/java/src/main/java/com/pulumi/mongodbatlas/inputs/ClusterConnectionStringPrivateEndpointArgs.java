@@ -38,6 +38,13 @@ public final class ClusterConnectionStringPrivateEndpointArgs extends com.pulumi
         return Optional.ofNullable(this.srvConnectionString);
     }
 
+    @Import(name="srvShardOptimizedConnectionString")
+    private @Nullable Output<String> srvShardOptimizedConnectionString;
+
+    public Optional<Output<String>> srvShardOptimizedConnectionString() {
+        return Optional.ofNullable(this.srvShardOptimizedConnectionString);
+    }
+
     @Import(name="type")
     private @Nullable Output<String> type;
 
@@ -51,6 +58,7 @@ public final class ClusterConnectionStringPrivateEndpointArgs extends com.pulumi
         this.connectionString = $.connectionString;
         this.endpoints = $.endpoints;
         this.srvConnectionString = $.srvConnectionString;
+        this.srvShardOptimizedConnectionString = $.srvShardOptimizedConnectionString;
         this.type = $.type;
     }
 
@@ -101,6 +109,15 @@ public final class ClusterConnectionStringPrivateEndpointArgs extends com.pulumi
 
         public Builder srvConnectionString(String srvConnectionString) {
             return srvConnectionString(Output.of(srvConnectionString));
+        }
+
+        public Builder srvShardOptimizedConnectionString(@Nullable Output<String> srvShardOptimizedConnectionString) {
+            $.srvShardOptimizedConnectionString = srvShardOptimizedConnectionString;
+            return this;
+        }
+
+        public Builder srvShardOptimizedConnectionString(String srvShardOptimizedConnectionString) {
+            return srvShardOptimizedConnectionString(Output.of(srvShardOptimizedConnectionString));
         }
 
         public Builder type(@Nullable Output<String> type) {

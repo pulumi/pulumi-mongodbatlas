@@ -21,14 +21,11 @@ public final class GetAlertConfigurationsResultNotification {
     private Integer delayMin;
     private String emailAddress;
     private Boolean emailEnabled;
-    private String flowName;
-    private String flowdockApiToken;
     private Integer intervalMin;
     private @Nullable String microsoftTeamsWebhookUrl;
     private String mobileNumber;
     private String opsGenieApiKey;
     private String opsGenieRegion;
-    private String orgName;
     private @Nullable List<String> roles;
     private String serviceKey;
     private Boolean smsEnabled;
@@ -63,12 +60,6 @@ public final class GetAlertConfigurationsResultNotification {
     public Boolean emailEnabled() {
         return this.emailEnabled;
     }
-    public String flowName() {
-        return this.flowName;
-    }
-    public String flowdockApiToken() {
-        return this.flowdockApiToken;
-    }
     public Integer intervalMin() {
         return this.intervalMin;
     }
@@ -83,9 +74,6 @@ public final class GetAlertConfigurationsResultNotification {
     }
     public String opsGenieRegion() {
         return this.opsGenieRegion;
-    }
-    public String orgName() {
-        return this.orgName;
     }
     public List<String> roles() {
         return this.roles == null ? List.of() : this.roles;
@@ -137,14 +125,11 @@ public final class GetAlertConfigurationsResultNotification {
         private Integer delayMin;
         private String emailAddress;
         private Boolean emailEnabled;
-        private String flowName;
-        private String flowdockApiToken;
         private Integer intervalMin;
         private @Nullable String microsoftTeamsWebhookUrl;
         private String mobileNumber;
         private String opsGenieApiKey;
         private String opsGenieRegion;
-        private String orgName;
         private @Nullable List<String> roles;
         private String serviceKey;
         private Boolean smsEnabled;
@@ -166,14 +151,11 @@ public final class GetAlertConfigurationsResultNotification {
     	      this.delayMin = defaults.delayMin;
     	      this.emailAddress = defaults.emailAddress;
     	      this.emailEnabled = defaults.emailEnabled;
-    	      this.flowName = defaults.flowName;
-    	      this.flowdockApiToken = defaults.flowdockApiToken;
     	      this.intervalMin = defaults.intervalMin;
     	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
     	      this.mobileNumber = defaults.mobileNumber;
     	      this.opsGenieApiKey = defaults.opsGenieApiKey;
     	      this.opsGenieRegion = defaults.opsGenieRegion;
-    	      this.orgName = defaults.orgName;
     	      this.roles = defaults.roles;
     	      this.serviceKey = defaults.serviceKey;
     	      this.smsEnabled = defaults.smsEnabled;
@@ -223,16 +205,6 @@ public final class GetAlertConfigurationsResultNotification {
             return this;
         }
         @CustomType.Setter
-        public Builder flowName(String flowName) {
-            this.flowName = Objects.requireNonNull(flowName);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder flowdockApiToken(String flowdockApiToken) {
-            this.flowdockApiToken = Objects.requireNonNull(flowdockApiToken);
-            return this;
-        }
-        @CustomType.Setter
         public Builder intervalMin(Integer intervalMin) {
             this.intervalMin = Objects.requireNonNull(intervalMin);
             return this;
@@ -255,11 +227,6 @@ public final class GetAlertConfigurationsResultNotification {
         @CustomType.Setter
         public Builder opsGenieRegion(String opsGenieRegion) {
             this.opsGenieRegion = Objects.requireNonNull(opsGenieRegion);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder orgName(String orgName) {
-            this.orgName = Objects.requireNonNull(orgName);
             return this;
         }
         @CustomType.Setter
@@ -329,14 +296,11 @@ public final class GetAlertConfigurationsResultNotification {
             o.delayMin = delayMin;
             o.emailAddress = emailAddress;
             o.emailEnabled = emailEnabled;
-            o.flowName = flowName;
-            o.flowdockApiToken = flowdockApiToken;
             o.intervalMin = intervalMin;
             o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             o.mobileNumber = mobileNumber;
             o.opsGenieApiKey = opsGenieApiKey;
             o.opsGenieRegion = opsGenieRegion;
-            o.orgName = orgName;
             o.roles = roles;
             o.serviceKey = serviceKey;
             o.smsEnabled = smsEnabled;
