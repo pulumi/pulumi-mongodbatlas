@@ -80,16 +80,12 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_custom_dns_configuration_cluster_aws": {
 				Tok: makeResource(mainMod, "CustomDnsConfigurationClusterAws"),
 			},
-			"mongodbatlas_database_user":           {Tok: makeResource(mainMod, "DatabaseUser")},
-			"mongodbatlas_project":                 {Tok: makeResource(mainMod, "Project")},
-			"mongodbatlas_cluster":                 {Tok: makeResource(mainMod, "Cluster")},
-			"mongodbatlas_cloud_provider_snapshot": {Tok: makeResource(mainMod, "CloudProviderSnapshot")},
-			"mongodbatlas_cloud_provider_access":   {Tok: makeResource(mainMod, "CloudProviderAccess")},
-			"mongodbatlas_cloud_backup_schedule":   {Tok: makeResource(mainMod, "CloudBackupSchedule")},
-			"mongodbatlas_network_container":       {Tok: makeResource(mainMod, "NetworkContainer")},
-			"mongodbatlas_cloud_provider_snapshot_restore_job": {
-				Tok: makeResource(mainMod, "CloudProviderSnapshotRestoreJob"),
-			},
+			"mongodbatlas_database_user":         {Tok: makeResource(mainMod, "DatabaseUser")},
+			"mongodbatlas_project":               {Tok: makeResource(mainMod, "Project")},
+			"mongodbatlas_cluster":               {Tok: makeResource(mainMod, "Cluster")},
+			"mongodbatlas_cloud_provider_access": {Tok: makeResource(mainMod, "CloudProviderAccess")},
+			"mongodbatlas_cloud_backup_schedule": {Tok: makeResource(mainMod, "CloudBackupSchedule")},
+			"mongodbatlas_network_container":     {Tok: makeResource(mainMod, "NetworkContainer")},
 			"mongodbatlas_cloud_provider_access_authorization": {
 				Tok:  makeResource(mainMod, "CloudProviderAccessAuthorization"),
 				Docs: noUpstreamDocs,
@@ -100,7 +96,6 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"mongodbatlas_network_peering":    {Tok: makeResource(mainMod, "NetworkPeering")},
 			"mongodbatlas_encryption_at_rest": {Tok: makeResource(mainMod, "EncryptionAtRest")},
-			"mongodbatlas_private_ip_mode":    {Tok: makeResource(mainMod, "PrivateIpMode")},
 			"mongodbatlas_maintenance_window": {Tok: makeResource(mainMod, "MaintenanceWindow")},
 			"mongodbatlas_auditing":           {Tok: makeResource(mainMod, "Auditing")},
 			"mongodbatlas_team": {
@@ -115,9 +110,6 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_alert_configuration":   {Tok: makeResource(mainMod, "AlertConfiguration")},
 			"mongodbatlas_x509_authentication_database_user": {
 				Tok: makeResource(mainMod, "X509AuthenticationDatabaseUser"),
-			},
-			"mongodbatlas_cloud_provider_snapshot_backup_policy": {
-				Tok: makeResource(mainMod, "CloudProviderSnapshotBackupPolicy"),
 			},
 			"mongodbatlas_project_ip_access_list":       {Tok: makeResource(mainMod, "ProjectIpAccessList")},
 			"mongodbatlas_third_party_integration":      {Tok: makeResource(mainMod, "ThirdPartyIntegration")},
@@ -136,9 +128,6 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"mongodbatlas_cloud_backup_snapshot_export_job": {
 				Tok: makeResource(mainMod, "CloudBackupSnapshotExportJob"),
-			},
-			"mongodbatlas_cloud_backup_snapshot_restore_job": {
-				Tok: makeResource(mainMod, "CloudBackupSnapshotRestoreJob"),
 			},
 			"mongodbatlas_org_invitation": {Tok: makeResource(mainMod, "OrgInvitation")},
 			"mongodbatlas_privatelink_endpoint_service_adl": {
@@ -178,9 +167,6 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_network_containers": {Tok: makeDataSource(mainMod, "getNetworkContainers")},
 			"mongodbatlas_network_peering":    {Tok: makeDataSource(mainMod, "getNetworkPeering")},
 			"mongodbatlas_network_peerings":   {Tok: makeDataSource(mainMod, "getNetworkPeerings")},
-			"mongodbatlas_cloud_provider_snapshot_restore_job": {
-				Tok: makeDataSource(mainMod, "getCloudProviderSnapshotRestoreJob"),
-			},
 			"mongodbatlas_cloud_provider_snapshot_restore_jobs": {
 				Tok: makeDataSource(mainMod, "getCloudProviderSnapshotRestoreJobs"),
 			},
