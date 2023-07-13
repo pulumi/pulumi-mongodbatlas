@@ -69,7 +69,7 @@ type Auditing struct {
 	//
 	// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
-	// The unique ID for the project to configure auditing.
+	// The unique ID for the project to configure auditing. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 }
 
@@ -118,7 +118,7 @@ type auditingState struct {
 	//
 	// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 	Enabled *bool `pulumi:"enabled"`
-	// The unique ID for the project to configure auditing.
+	// The unique ID for the project to configure auditing. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
 	ProjectId *string `pulumi:"projectId"`
 }
 
@@ -136,7 +136,7 @@ type AuditingState struct {
 	//
 	// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 	Enabled pulumi.BoolPtrInput
-	// The unique ID for the project to configure auditing.
+	// The unique ID for the project to configure auditing. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
 	ProjectId pulumi.StringPtrInput
 }
 
@@ -153,7 +153,7 @@ type auditingArgs struct {
 	//
 	// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 	Enabled *bool `pulumi:"enabled"`
-	// The unique ID for the project to configure auditing.
+	// The unique ID for the project to configure auditing. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -167,7 +167,7 @@ type AuditingArgs struct {
 	//
 	// > **NOTE:** Auditing created by API Keys must belong to an existing organization.
 	Enabled pulumi.BoolPtrInput
-	// The unique ID for the project to configure auditing.
+	// The unique ID for the project to configure auditing. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
 	ProjectId pulumi.StringInput
 }
 
@@ -283,7 +283,7 @@ func (o AuditingOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Auditing) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// The unique ID for the project to configure auditing.
+// The unique ID for the project to configure auditing. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
 func (o AuditingOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Auditing) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

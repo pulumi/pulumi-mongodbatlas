@@ -99,14 +99,14 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
     }
 
     /**
-     * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+     * Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+     * @return Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
      * 
      */
     public Optional<Output<String>> region() {
@@ -199,15 +199,15 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * * NEW_RELIC*
+     * * FLOWDOCK*
      * 
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * *resource has now been fully deprecated as part of v1.10.0 release
      * 
      * Additional values based on Type
      * 
@@ -219,15 +219,15 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      * @return Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * * NEW_RELIC*
+     * * FLOWDOCK*
      * 
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * *resource has now been fully deprecated as part of v1.10.0 release
      * 
      * Additional values based on Type
      * 
@@ -420,7 +420,7 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param region Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+         * @param region Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
          * 
          * @return builder
          * 
@@ -431,7 +431,7 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param region Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+         * @param region Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
          * 
          * @return builder
          * 
@@ -558,15 +558,15 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          * @param type Third-Party Integration Settings type
          * * PAGER_DUTY
          * * DATADOG
-         * * NEW_RELIC*
          * * OPS_GENIE
          * * VICTOR_OPS
-         * * FLOWDOCK*
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
+         * * NEW_RELIC*
+         * * FLOWDOCK*
          * 
-         * *resource is now deprecated and will be removed in the next major version, 1.9.0
+         * *resource has now been fully deprecated as part of v1.10.0 release
          * 
          * Additional values based on Type
          * 
@@ -582,15 +582,15 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          * @param type Third-Party Integration Settings type
          * * PAGER_DUTY
          * * DATADOG
-         * * NEW_RELIC*
          * * OPS_GENIE
          * * VICTOR_OPS
-         * * FLOWDOCK*
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
+         * * NEW_RELIC*
+         * * FLOWDOCK*
          * 
-         * *resource is now deprecated and will be removed in the next major version, 1.9.0
+         * *resource has now been fully deprecated as part of v1.10.0 release
          * 
          * Additional values based on Type
          * 

@@ -76,7 +76,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to configure auditing.
+        /// The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -148,7 +148,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to configure auditing.
+        /// The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -191,7 +191,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to configure auditing.
+        /// The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

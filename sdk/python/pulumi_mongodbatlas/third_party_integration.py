@@ -36,22 +36,22 @@ class ThirdPartyIntegrationArgs:
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
-               * NEW_RELIC*
                * OPS_GENIE
                * VICTOR_OPS
-               * FLOWDOCK*
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
+               * NEW_RELIC*
+               * FLOWDOCK*
                
-               *resource is now deprecated and will be removed in the next major version, 1.9.0
+               *resource has now been fully deprecated as part of v1.10.0 release
                
                Additional values based on Type
         :param pulumi.Input[str] api_key: Your API Key.
         :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
-        :param pulumi.Input[str] region: Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
@@ -110,15 +110,15 @@ class ThirdPartyIntegrationArgs:
         Third-Party Integration Settings type 
         * PAGER_DUTY
         * DATADOG
-        * NEW_RELIC*
         * OPS_GENIE
         * VICTOR_OPS
-        * FLOWDOCK*
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
+        * NEW_RELIC*
+        * FLOWDOCK*
 
-        *resource is now deprecated and will be removed in the next major version, 1.9.0
+        *resource has now been fully deprecated as part of v1.10.0 release
 
         Additional values based on Type
         """
@@ -189,7 +189,7 @@ class ThirdPartyIntegrationArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         """
         return pulumi.get(self, "region")
 
@@ -317,7 +317,7 @@ class _ThirdPartyIntegrationState:
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
@@ -326,15 +326,15 @@ class _ThirdPartyIntegrationState:
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
-               * NEW_RELIC*
                * OPS_GENIE
                * VICTOR_OPS
-               * FLOWDOCK*
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
+               * NEW_RELIC*
+               * FLOWDOCK*
                
-               *resource is now deprecated and will be removed in the next major version, 1.9.0
+               *resource has now been fully deprecated as part of v1.10.0 release
                
                Additional values based on Type
         :param pulumi.Input[str] url: Your webhook URL.
@@ -446,7 +446,7 @@ class _ThirdPartyIntegrationState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         """
         return pulumi.get(self, "region")
 
@@ -530,15 +530,15 @@ class _ThirdPartyIntegrationState:
         Third-Party Integration Settings type 
         * PAGER_DUTY
         * DATADOG
-        * NEW_RELIC*
         * OPS_GENIE
         * VICTOR_OPS
-        * FLOWDOCK*
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
+        * NEW_RELIC*
+        * FLOWDOCK*
 
-        *resource is now deprecated and will be removed in the next major version, 1.9.0
+        *resource has now been fully deprecated as part of v1.10.0 release
 
         Additional values based on Type
         """
@@ -600,8 +600,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        > **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
-         **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
+        > **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
 
         > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 
@@ -626,7 +625,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
@@ -635,15 +634,15 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
-               * NEW_RELIC*
                * OPS_GENIE
                * VICTOR_OPS
-               * FLOWDOCK*
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
+               * NEW_RELIC*
+               * FLOWDOCK*
                
-               *resource is now deprecated and will be removed in the next major version, 1.9.0
+               *resource has now been fully deprecated as part of v1.10.0 release
                
                Additional values based on Type
         :param pulumi.Input[str] url: Your webhook URL.
@@ -660,8 +659,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        > **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
-         **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
+        > **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
 
         > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 
@@ -779,7 +777,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
@@ -788,15 +786,15 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
-               * NEW_RELIC*
                * OPS_GENIE
                * VICTOR_OPS
-               * FLOWDOCK*
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
+               * NEW_RELIC*
+               * FLOWDOCK*
                
-               *resource is now deprecated and will be removed in the next major version, 1.9.0
+               *resource has now been fully deprecated as part of v1.10.0 release
                
                Additional values based on Type
         :param pulumi.Input[str] url: Your webhook URL.
@@ -873,7 +871,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[Optional[str]]:
         """
-        Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         """
         return pulumi.get(self, "region")
 
@@ -929,15 +927,15 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         Third-Party Integration Settings type 
         * PAGER_DUTY
         * DATADOG
-        * NEW_RELIC*
         * OPS_GENIE
         * VICTOR_OPS
-        * FLOWDOCK*
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
+        * NEW_RELIC*
+        * FLOWDOCK*
 
-        *resource is now deprecated and will be removed in the next major version, 1.9.0
+        *resource has now been fully deprecated as part of v1.10.0 release
 
         Additional values based on Type
         """

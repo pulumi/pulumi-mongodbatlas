@@ -122,12 +122,12 @@ def get_alert_configurations(list_options: Optional[Sequence[pulumi.InputType['G
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAlertConfigurations:getAlertConfigurations', __args__, opts=opts, typ=GetAlertConfigurationsResult).value
 
     return AwaitableGetAlertConfigurationsResult(
-        id=__ret__.id,
-        list_options=__ret__.list_options,
-        output_types=__ret__.output_types,
-        project_id=__ret__.project_id,
-        results=__ret__.results,
-        total_count=__ret__.total_count)
+        id=pulumi.get(__ret__, 'id'),
+        list_options=pulumi.get(__ret__, 'list_options'),
+        output_types=pulumi.get(__ret__, 'output_types'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'),
+        total_count=pulumi.get(__ret__, 'total_count'))
 
 
 @_utilities.lift_output_func(get_alert_configurations)

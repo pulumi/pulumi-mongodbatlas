@@ -61,6 +61,7 @@ public final class GetClustersResultAdvancedConfiguration {
      * 
      */
     private Integer sampleSizeBiConnector;
+    private Integer transactionLifetimeLimitSeconds;
 
     private GetClustersResultAdvancedConfiguration() {}
     /**
@@ -133,6 +134,9 @@ public final class GetClustersResultAdvancedConfiguration {
     public Integer sampleSizeBiConnector() {
         return this.sampleSizeBiConnector;
     }
+    public Integer transactionLifetimeLimitSeconds() {
+        return this.transactionLifetimeLimitSeconds;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -153,6 +157,7 @@ public final class GetClustersResultAdvancedConfiguration {
         private Integer oplogSizeMb;
         private Integer sampleRefreshIntervalBiConnector;
         private Integer sampleSizeBiConnector;
+        private Integer transactionLifetimeLimitSeconds;
         public Builder() {}
         public Builder(GetClustersResultAdvancedConfiguration defaults) {
     	      Objects.requireNonNull(defaults);
@@ -166,6 +171,7 @@ public final class GetClustersResultAdvancedConfiguration {
     	      this.oplogSizeMb = defaults.oplogSizeMb;
     	      this.sampleRefreshIntervalBiConnector = defaults.sampleRefreshIntervalBiConnector;
     	      this.sampleSizeBiConnector = defaults.sampleSizeBiConnector;
+    	      this.transactionLifetimeLimitSeconds = defaults.transactionLifetimeLimitSeconds;
         }
 
         @CustomType.Setter
@@ -218,6 +224,11 @@ public final class GetClustersResultAdvancedConfiguration {
             this.sampleSizeBiConnector = Objects.requireNonNull(sampleSizeBiConnector);
             return this;
         }
+        @CustomType.Setter
+        public Builder transactionLifetimeLimitSeconds(Integer transactionLifetimeLimitSeconds) {
+            this.transactionLifetimeLimitSeconds = Objects.requireNonNull(transactionLifetimeLimitSeconds);
+            return this;
+        }
         public GetClustersResultAdvancedConfiguration build() {
             final var o = new GetClustersResultAdvancedConfiguration();
             o.defaultReadConcern = defaultReadConcern;
@@ -230,6 +241,7 @@ public final class GetClustersResultAdvancedConfiguration {
             o.oplogSizeMb = oplogSizeMb;
             o.sampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             o.sampleSizeBiConnector = sampleSizeBiConnector;
+            o.transactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
             return o;
         }
     }

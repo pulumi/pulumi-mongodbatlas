@@ -74,5 +74,5 @@ def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getRolesOrgId:getRolesOrgId', __args__, opts=opts, typ=GetRolesOrgIdResult).value
 
     return AwaitableGetRolesOrgIdResult(
-        id=__ret__.id,
-        org_id=__ret__.org_id)
+        id=pulumi.get(__ret__, 'id'),
+        org_id=pulumi.get(__ret__, 'org_id'))

@@ -7,6 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.Project` provides a Project resource. This allows project to be created.
+ *
+ * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -118,7 +122,7 @@ export class Project extends pulumi.CustomResource {
      */
     public readonly isSchemaAdvisorEnabled!: pulumi.Output<boolean>;
     /**
-     * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+     * The name of the project you want to create.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -234,7 +238,7 @@ export interface ProjectState {
      */
     isSchemaAdvisorEnabled?: pulumi.Input<boolean>;
     /**
-     * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+     * The name of the project you want to create.
      */
     name?: pulumi.Input<string>;
     /**
@@ -289,7 +293,7 @@ export interface ProjectArgs {
      */
     isSchemaAdvisorEnabled?: pulumi.Input<boolean>;
     /**
-     * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+     * The name of the project you want to create.
      */
     name?: pulumi.Input<string>;
     /**

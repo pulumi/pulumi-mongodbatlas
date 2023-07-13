@@ -226,21 +226,21 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService', __args__, opts=opts, typ=GetPrivateLinkEndpointServiceResult).value
 
     return AwaitableGetPrivateLinkEndpointServiceResult(
-        aws_connection_status=__ret__.aws_connection_status,
-        azure_status=__ret__.azure_status,
-        delete_requested=__ret__.delete_requested,
-        endpoint_service_id=__ret__.endpoint_service_id,
-        endpoints=__ret__.endpoints,
-        error_message=__ret__.error_message,
-        gcp_status=__ret__.gcp_status,
-        id=__ret__.id,
-        interface_endpoint_id=__ret__.interface_endpoint_id,
-        private_endpoint_connection_name=__ret__.private_endpoint_connection_name,
-        private_endpoint_ip_address=__ret__.private_endpoint_ip_address,
-        private_endpoint_resource_id=__ret__.private_endpoint_resource_id,
-        private_link_id=__ret__.private_link_id,
-        project_id=__ret__.project_id,
-        provider_name=__ret__.provider_name)
+        aws_connection_status=pulumi.get(__ret__, 'aws_connection_status'),
+        azure_status=pulumi.get(__ret__, 'azure_status'),
+        delete_requested=pulumi.get(__ret__, 'delete_requested'),
+        endpoint_service_id=pulumi.get(__ret__, 'endpoint_service_id'),
+        endpoints=pulumi.get(__ret__, 'endpoints'),
+        error_message=pulumi.get(__ret__, 'error_message'),
+        gcp_status=pulumi.get(__ret__, 'gcp_status'),
+        id=pulumi.get(__ret__, 'id'),
+        interface_endpoint_id=pulumi.get(__ret__, 'interface_endpoint_id'),
+        private_endpoint_connection_name=pulumi.get(__ret__, 'private_endpoint_connection_name'),
+        private_endpoint_ip_address=pulumi.get(__ret__, 'private_endpoint_ip_address'),
+        private_endpoint_resource_id=pulumi.get(__ret__, 'private_endpoint_resource_id'),
+        private_link_id=pulumi.get(__ret__, 'private_link_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        provider_name=pulumi.get(__ret__, 'provider_name'))
 
 
 @_utilities.lift_output_func(get_private_link_endpoint_service)

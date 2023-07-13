@@ -61,6 +61,11 @@ public final class GetClusterAdvancedConfiguration {
      * 
      */
     private Integer sampleSizeBiConnector;
+    /**
+     * @return Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * 
+     */
+    private Integer transactionLifetimeLimitSeconds;
 
     private GetClusterAdvancedConfiguration() {}
     /**
@@ -133,6 +138,13 @@ public final class GetClusterAdvancedConfiguration {
     public Integer sampleSizeBiConnector() {
         return this.sampleSizeBiConnector;
     }
+    /**
+     * @return Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * 
+     */
+    public Integer transactionLifetimeLimitSeconds() {
+        return this.transactionLifetimeLimitSeconds;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -153,6 +165,7 @@ public final class GetClusterAdvancedConfiguration {
         private Integer oplogSizeMb;
         private Integer sampleRefreshIntervalBiConnector;
         private Integer sampleSizeBiConnector;
+        private Integer transactionLifetimeLimitSeconds;
         public Builder() {}
         public Builder(GetClusterAdvancedConfiguration defaults) {
     	      Objects.requireNonNull(defaults);
@@ -166,6 +179,7 @@ public final class GetClusterAdvancedConfiguration {
     	      this.oplogSizeMb = defaults.oplogSizeMb;
     	      this.sampleRefreshIntervalBiConnector = defaults.sampleRefreshIntervalBiConnector;
     	      this.sampleSizeBiConnector = defaults.sampleSizeBiConnector;
+    	      this.transactionLifetimeLimitSeconds = defaults.transactionLifetimeLimitSeconds;
         }
 
         @CustomType.Setter
@@ -218,6 +232,11 @@ public final class GetClusterAdvancedConfiguration {
             this.sampleSizeBiConnector = Objects.requireNonNull(sampleSizeBiConnector);
             return this;
         }
+        @CustomType.Setter
+        public Builder transactionLifetimeLimitSeconds(Integer transactionLifetimeLimitSeconds) {
+            this.transactionLifetimeLimitSeconds = Objects.requireNonNull(transactionLifetimeLimitSeconds);
+            return this;
+        }
         public GetClusterAdvancedConfiguration build() {
             final var o = new GetClusterAdvancedConfiguration();
             o.defaultReadConcern = defaultReadConcern;
@@ -230,6 +249,7 @@ public final class GetClusterAdvancedConfiguration {
             o.oplogSizeMb = oplogSizeMb;
             o.sampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             o.sampleSizeBiConnector = sampleSizeBiConnector;
+            o.transactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
             return o;
         }
     }

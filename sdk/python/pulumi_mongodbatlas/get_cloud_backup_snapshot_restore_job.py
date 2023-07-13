@@ -252,24 +252,24 @@ def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob', __args__, opts=opts, typ=GetCloudBackupSnapshotRestoreJobResult).value
 
     return AwaitableGetCloudBackupSnapshotRestoreJobResult(
-        cancelled=__ret__.cancelled,
-        cluster_name=__ret__.cluster_name,
-        created_at=__ret__.created_at,
-        delivery_type=__ret__.delivery_type,
-        delivery_urls=__ret__.delivery_urls,
-        expired=__ret__.expired,
-        expires_at=__ret__.expires_at,
-        finished_at=__ret__.finished_at,
-        id=__ret__.id,
-        job_id=__ret__.job_id,
-        oplog_inc=__ret__.oplog_inc,
-        oplog_ts=__ret__.oplog_ts,
-        point_in_time_utc_seconds=__ret__.point_in_time_utc_seconds,
-        project_id=__ret__.project_id,
-        snapshot_id=__ret__.snapshot_id,
-        target_cluster_name=__ret__.target_cluster_name,
-        target_project_id=__ret__.target_project_id,
-        timestamp=__ret__.timestamp)
+        cancelled=pulumi.get(__ret__, 'cancelled'),
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        delivery_type=pulumi.get(__ret__, 'delivery_type'),
+        delivery_urls=pulumi.get(__ret__, 'delivery_urls'),
+        expired=pulumi.get(__ret__, 'expired'),
+        expires_at=pulumi.get(__ret__, 'expires_at'),
+        finished_at=pulumi.get(__ret__, 'finished_at'),
+        id=pulumi.get(__ret__, 'id'),
+        job_id=pulumi.get(__ret__, 'job_id'),
+        oplog_inc=pulumi.get(__ret__, 'oplog_inc'),
+        oplog_ts=pulumi.get(__ret__, 'oplog_ts'),
+        point_in_time_utc_seconds=pulumi.get(__ret__, 'point_in_time_utc_seconds'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
+        target_cluster_name=pulumi.get(__ret__, 'target_cluster_name'),
+        target_project_id=pulumi.get(__ret__, 'target_project_id'),
+        timestamp=pulumi.get(__ret__, 'timestamp'))
 
 
 @_utilities.lift_output_func(get_cloud_backup_snapshot_restore_job)

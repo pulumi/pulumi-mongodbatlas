@@ -12,25 +12,73 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class OnlineArchiveCriteria {
+    /**
+     * @return Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
+     * 
+     */
     private @Nullable String dateField;
+    /**
+     * @return Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * 
+     */
     private @Nullable String dateFormat;
+    /**
+     * @return Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+     * 
+     * The only field required for criteria type `CUSTOM`
+     * 
+     */
     private @Nullable Integer expireAfterDays;
+    /**
+     * @return JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
+     * 
+     */
     private @Nullable String query;
+    /**
+     * @return Type of criteria (DATE, CUSTOM)
+     * 
+     * The following fields are required for criteria type `DATE`
+     * 
+     */
     private String type;
 
     private OnlineArchiveCriteria() {}
+    /**
+     * @return Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
+     * 
+     */
     public Optional<String> dateField() {
         return Optional.ofNullable(this.dateField);
     }
+    /**
+     * @return Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * 
+     */
     public Optional<String> dateFormat() {
         return Optional.ofNullable(this.dateFormat);
     }
+    /**
+     * @return Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+     * 
+     * The only field required for criteria type `CUSTOM`
+     * 
+     */
     public Optional<Integer> expireAfterDays() {
         return Optional.ofNullable(this.expireAfterDays);
     }
+    /**
+     * @return JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
+     * 
+     */
     public Optional<String> query() {
         return Optional.ofNullable(this.query);
     }
+    /**
+     * @return Type of criteria (DATE, CUSTOM)
+     * 
+     * The following fields are required for criteria type `DATE`
+     * 
+     */
     public String type() {
         return this.type;
     }

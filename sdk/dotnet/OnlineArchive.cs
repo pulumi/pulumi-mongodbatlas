@@ -77,6 +77,9 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        [Output("schedule")]
+        public Output<Outputs.OnlineArchiveSchedule?> Schedule { get; private set; } = null!;
+
         /// <summary>
         /// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         /// </summary>
@@ -186,6 +189,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        [Input("schedule")]
+        public Input<Inputs.OnlineArchiveScheduleArgs>? Schedule { get; set; }
+
         [Input("syncCreation")]
         public Input<bool>? SyncCreation { get; set; }
 
@@ -256,6 +262,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("schedule")]
+        public Input<Inputs.OnlineArchiveScheduleGetArgs>? Schedule { get; set; }
 
         /// <summary>
         /// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted

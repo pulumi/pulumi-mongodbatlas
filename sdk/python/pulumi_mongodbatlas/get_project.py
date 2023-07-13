@@ -88,8 +88,9 @@ class GetProjectResult:
         """
         The ISO-8601-formatted timestamp of when Atlas created the project.
         * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-        * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-        The following are valid roles:
+        * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+        * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
+        * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         """
         return pulumi.get(self, "created")
 
@@ -153,7 +154,7 @@ class GetProjectResult:
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        The name of the project you want to create.
         """
         return pulumi.get(self, "name")
 
@@ -230,21 +231,21 @@ def get_project(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProject:getProject', __args__, opts=opts, typ=GetProjectResult).value
 
     return AwaitableGetProjectResult(
-        api_keys=__ret__.api_keys,
-        cluster_count=__ret__.cluster_count,
-        created=__ret__.created,
-        id=__ret__.id,
-        is_collect_database_specifics_statistics_enabled=__ret__.is_collect_database_specifics_statistics_enabled,
-        is_data_explorer_enabled=__ret__.is_data_explorer_enabled,
-        is_extended_storage_sizes_enabled=__ret__.is_extended_storage_sizes_enabled,
-        is_performance_advisor_enabled=__ret__.is_performance_advisor_enabled,
-        is_realtime_performance_panel_enabled=__ret__.is_realtime_performance_panel_enabled,
-        is_schema_advisor_enabled=__ret__.is_schema_advisor_enabled,
-        name=__ret__.name,
-        org_id=__ret__.org_id,
-        project_id=__ret__.project_id,
-        region_usage_restrictions=__ret__.region_usage_restrictions,
-        teams=__ret__.teams)
+        api_keys=pulumi.get(__ret__, 'api_keys'),
+        cluster_count=pulumi.get(__ret__, 'cluster_count'),
+        created=pulumi.get(__ret__, 'created'),
+        id=pulumi.get(__ret__, 'id'),
+        is_collect_database_specifics_statistics_enabled=pulumi.get(__ret__, 'is_collect_database_specifics_statistics_enabled'),
+        is_data_explorer_enabled=pulumi.get(__ret__, 'is_data_explorer_enabled'),
+        is_extended_storage_sizes_enabled=pulumi.get(__ret__, 'is_extended_storage_sizes_enabled'),
+        is_performance_advisor_enabled=pulumi.get(__ret__, 'is_performance_advisor_enabled'),
+        is_realtime_performance_panel_enabled=pulumi.get(__ret__, 'is_realtime_performance_panel_enabled'),
+        is_schema_advisor_enabled=pulumi.get(__ret__, 'is_schema_advisor_enabled'),
+        name=pulumi.get(__ret__, 'name'),
+        org_id=pulumi.get(__ret__, 'org_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region_usage_restrictions=pulumi.get(__ret__, 'region_usage_restrictions'),
+        teams=pulumi.get(__ret__, 'teams'))
 
 
 @_utilities.lift_output_func(get_project)

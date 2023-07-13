@@ -259,22 +259,22 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider', __args__, opts=opts, typ=GetFederatedSettingsIdentityProviderResult).value
 
     return AwaitableGetFederatedSettingsIdentityProviderResult(
-        acs_url=__ret__.acs_url,
-        associated_domains=__ret__.associated_domains,
-        associated_orgs=__ret__.associated_orgs,
-        audience_uri=__ret__.audience_uri,
-        display_name=__ret__.display_name,
-        federation_settings_id=__ret__.federation_settings_id,
-        id=__ret__.id,
-        identity_provider_id=__ret__.identity_provider_id,
-        issuer_uri=__ret__.issuer_uri,
-        okta_idp_id=__ret__.okta_idp_id,
-        pem_file_infos=__ret__.pem_file_infos,
-        request_binding=__ret__.request_binding,
-        response_signature_algorithm=__ret__.response_signature_algorithm,
-        sso_debug_enabled=__ret__.sso_debug_enabled,
-        sso_url=__ret__.sso_url,
-        status=__ret__.status)
+        acs_url=pulumi.get(__ret__, 'acs_url'),
+        associated_domains=pulumi.get(__ret__, 'associated_domains'),
+        associated_orgs=pulumi.get(__ret__, 'associated_orgs'),
+        audience_uri=pulumi.get(__ret__, 'audience_uri'),
+        display_name=pulumi.get(__ret__, 'display_name'),
+        federation_settings_id=pulumi.get(__ret__, 'federation_settings_id'),
+        id=pulumi.get(__ret__, 'id'),
+        identity_provider_id=pulumi.get(__ret__, 'identity_provider_id'),
+        issuer_uri=pulumi.get(__ret__, 'issuer_uri'),
+        okta_idp_id=pulumi.get(__ret__, 'okta_idp_id'),
+        pem_file_infos=pulumi.get(__ret__, 'pem_file_infos'),
+        request_binding=pulumi.get(__ret__, 'request_binding'),
+        response_signature_algorithm=pulumi.get(__ret__, 'response_signature_algorithm'),
+        sso_debug_enabled=pulumi.get(__ret__, 'sso_debug_enabled'),
+        sso_url=pulumi.get(__ret__, 'sso_url'),
+        status=pulumi.get(__ret__, 'status'))
 
 
 @_utilities.lift_output_func(get_federated_settings_identity_provider)

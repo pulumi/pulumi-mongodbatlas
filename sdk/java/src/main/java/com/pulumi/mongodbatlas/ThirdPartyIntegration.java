@@ -21,8 +21,7 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
- * &gt; **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
- *  **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
+ * &gt; **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
  * 
  * &gt; **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
  * 
@@ -155,14 +154,14 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+     * Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
      * 
      */
     @Export(name="region", type=String.class, parameters={})
     private Output</* @Nullable */ String> region;
 
     /**
-     * @return Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+     * @return Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
      * 
      */
     public Output<Optional<String>> region() {
@@ -248,15 +247,15 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * * NEW_RELIC*
+     * * FLOWDOCK*
      * 
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * *resource has now been fully deprecated as part of v1.10.0 release
      * 
      * Additional values based on Type
      * 
@@ -268,15 +267,15 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * @return Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * * NEW_RELIC*
+     * * FLOWDOCK*
      * 
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * *resource has now been fully deprecated as part of v1.10.0 release
      * 
      * Additional values based on Type
      * 

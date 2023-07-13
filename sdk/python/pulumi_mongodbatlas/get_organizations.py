@@ -131,13 +131,13 @@ def get_organizations(include_deleted_orgs: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getOrganizations:getOrganizations', __args__, opts=opts, typ=GetOrganizationsResult).value
 
     return AwaitableGetOrganizationsResult(
-        id=__ret__.id,
-        include_deleted_orgs=__ret__.include_deleted_orgs,
-        items_per_page=__ret__.items_per_page,
-        name=__ret__.name,
-        page_num=__ret__.page_num,
-        results=__ret__.results,
-        total_count=__ret__.total_count)
+        id=pulumi.get(__ret__, 'id'),
+        include_deleted_orgs=pulumi.get(__ret__, 'include_deleted_orgs'),
+        items_per_page=pulumi.get(__ret__, 'items_per_page'),
+        name=pulumi.get(__ret__, 'name'),
+        page_num=pulumi.get(__ret__, 'page_num'),
+        results=pulumi.get(__ret__, 'results'),
+        total_count=pulumi.get(__ret__, 'total_count'))
 
 
 @_utilities.lift_output_func(get_organizations)

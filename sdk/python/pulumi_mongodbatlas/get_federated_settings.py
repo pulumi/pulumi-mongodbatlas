@@ -124,12 +124,12 @@ def get_federated_settings(org_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedSettings:getFederatedSettings', __args__, opts=opts, typ=GetFederatedSettingsResult).value
 
     return AwaitableGetFederatedSettingsResult(
-        federated_domains=__ret__.federated_domains,
-        has_role_mappings=__ret__.has_role_mappings,
-        id=__ret__.id,
-        identity_provider_id=__ret__.identity_provider_id,
-        identity_provider_status=__ret__.identity_provider_status,
-        org_id=__ret__.org_id)
+        federated_domains=pulumi.get(__ret__, 'federated_domains'),
+        has_role_mappings=pulumi.get(__ret__, 'has_role_mappings'),
+        id=pulumi.get(__ret__, 'id'),
+        identity_provider_id=pulumi.get(__ret__, 'identity_provider_id'),
+        identity_provider_status=pulumi.get(__ret__, 'identity_provider_status'),
+        org_id=pulumi.get(__ret__, 'org_id'))
 
 
 @_utilities.lift_output_func(get_federated_settings)

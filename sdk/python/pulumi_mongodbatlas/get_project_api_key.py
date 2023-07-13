@@ -130,13 +130,13 @@ def get_project_api_key(api_key_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProjectApiKey:getProjectApiKey', __args__, opts=opts, typ=GetProjectApiKeyResult).value
 
     return AwaitableGetProjectApiKeyResult(
-        api_key_id=__ret__.api_key_id,
-        description=__ret__.description,
-        id=__ret__.id,
-        private_key=__ret__.private_key,
-        project_id=__ret__.project_id,
-        public_key=__ret__.public_key,
-        role_names=__ret__.role_names)
+        api_key_id=pulumi.get(__ret__, 'api_key_id'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        private_key=pulumi.get(__ret__, 'private_key'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        public_key=pulumi.get(__ret__, 'public_key'),
+        role_names=pulumi.get(__ret__, 'role_names'))
 
 
 @_utilities.lift_output_func(get_project_api_key)

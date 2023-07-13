@@ -239,6 +239,7 @@ def get_cloud_backup_snapshot(cluster_name: Optional[str] = None,
 
 
     :param str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
+    :param str project_id: The unique identifier of the project for the Atlas cluster.
     :param str snapshot_id: The unique identifier of the snapshot you want to retrieve.
     """
     __args__ = dict()
@@ -249,23 +250,23 @@ def get_cloud_backup_snapshot(cluster_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot', __args__, opts=opts, typ=GetCloudBackupSnapshotResult).value
 
     return AwaitableGetCloudBackupSnapshotResult(
-        cloud_provider=__ret__.cloud_provider,
-        cluster_name=__ret__.cluster_name,
-        created_at=__ret__.created_at,
-        description=__ret__.description,
-        expires_at=__ret__.expires_at,
-        id=__ret__.id,
-        master_key_uuid=__ret__.master_key_uuid,
-        members=__ret__.members,
-        mongod_version=__ret__.mongod_version,
-        project_id=__ret__.project_id,
-        replica_set_name=__ret__.replica_set_name,
-        snapshot_id=__ret__.snapshot_id,
-        snapshot_ids=__ret__.snapshot_ids,
-        snapshot_type=__ret__.snapshot_type,
-        status=__ret__.status,
-        storage_size_bytes=__ret__.storage_size_bytes,
-        type=__ret__.type)
+        cloud_provider=pulumi.get(__ret__, 'cloud_provider'),
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        description=pulumi.get(__ret__, 'description'),
+        expires_at=pulumi.get(__ret__, 'expires_at'),
+        id=pulumi.get(__ret__, 'id'),
+        master_key_uuid=pulumi.get(__ret__, 'master_key_uuid'),
+        members=pulumi.get(__ret__, 'members'),
+        mongod_version=pulumi.get(__ret__, 'mongod_version'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        replica_set_name=pulumi.get(__ret__, 'replica_set_name'),
+        snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
+        snapshot_ids=pulumi.get(__ret__, 'snapshot_ids'),
+        snapshot_type=pulumi.get(__ret__, 'snapshot_type'),
+        status=pulumi.get(__ret__, 'status'),
+        storage_size_bytes=pulumi.get(__ret__, 'storage_size_bytes'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_cloud_backup_snapshot)
@@ -280,6 +281,7 @@ def get_cloud_backup_snapshot_output(cluster_name: Optional[pulumi.Input[str]] =
 
 
     :param str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
+    :param str project_id: The unique identifier of the project for the Atlas cluster.
     :param str snapshot_id: The unique identifier of the snapshot you want to retrieve.
     """
     ...

@@ -217,20 +217,20 @@ def get_network_container(container_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getNetworkContainer:getNetworkContainer', __args__, opts=opts, typ=GetNetworkContainerResult).value
 
     return AwaitableGetNetworkContainerResult(
-        atlas_cidr_block=__ret__.atlas_cidr_block,
-        azure_subscription_id=__ret__.azure_subscription_id,
-        container_id=__ret__.container_id,
-        gcp_project_id=__ret__.gcp_project_id,
-        id=__ret__.id,
-        network_name=__ret__.network_name,
-        project_id=__ret__.project_id,
-        provider_name=__ret__.provider_name,
-        provisioned=__ret__.provisioned,
-        region=__ret__.region,
-        region_name=__ret__.region_name,
-        regions=__ret__.regions,
-        vnet_name=__ret__.vnet_name,
-        vpc_id=__ret__.vpc_id)
+        atlas_cidr_block=pulumi.get(__ret__, 'atlas_cidr_block'),
+        azure_subscription_id=pulumi.get(__ret__, 'azure_subscription_id'),
+        container_id=pulumi.get(__ret__, 'container_id'),
+        gcp_project_id=pulumi.get(__ret__, 'gcp_project_id'),
+        id=pulumi.get(__ret__, 'id'),
+        network_name=pulumi.get(__ret__, 'network_name'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        provider_name=pulumi.get(__ret__, 'provider_name'),
+        provisioned=pulumi.get(__ret__, 'provisioned'),
+        region=pulumi.get(__ret__, 'region'),
+        region_name=pulumi.get(__ret__, 'region_name'),
+        regions=pulumi.get(__ret__, 'regions'),
+        vnet_name=pulumi.get(__ret__, 'vnet_name'),
+        vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
 
 @_utilities.lift_output_func(get_network_container)

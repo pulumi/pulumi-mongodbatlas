@@ -116,12 +116,12 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[str] = No
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket', __args__, opts=opts, typ=GetCloudBackupSnapshotExportBucketResult).value
 
     return AwaitableGetCloudBackupSnapshotExportBucketResult(
-        bucket_name=__ret__.bucket_name,
-        cloud_provider=__ret__.cloud_provider,
-        export_bucket_id=__ret__.export_bucket_id,
-        iam_role_id=__ret__.iam_role_id,
-        id=__ret__.id,
-        project_id=__ret__.project_id)
+        bucket_name=pulumi.get(__ret__, 'bucket_name'),
+        cloud_provider=pulumi.get(__ret__, 'cloud_provider'),
+        export_bucket_id=pulumi.get(__ret__, 'export_bucket_id'),
+        iam_role_id=pulumi.get(__ret__, 'iam_role_id'),
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'))
 
 
 @_utilities.lift_output_func(get_cloud_backup_snapshot_export_bucket)

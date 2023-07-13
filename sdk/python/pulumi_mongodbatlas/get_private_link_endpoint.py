@@ -211,20 +211,20 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint', __args__, opts=opts, typ=GetPrivateLinkEndpointResult).value
 
     return AwaitableGetPrivateLinkEndpointResult(
-        endpoint_group_names=__ret__.endpoint_group_names,
-        endpoint_service_name=__ret__.endpoint_service_name,
-        error_message=__ret__.error_message,
-        id=__ret__.id,
-        interface_endpoints=__ret__.interface_endpoints,
-        private_endpoints=__ret__.private_endpoints,
-        private_link_id=__ret__.private_link_id,
-        private_link_service_name=__ret__.private_link_service_name,
-        private_link_service_resource_id=__ret__.private_link_service_resource_id,
-        project_id=__ret__.project_id,
-        provider_name=__ret__.provider_name,
-        region_name=__ret__.region_name,
-        service_attachment_names=__ret__.service_attachment_names,
-        status=__ret__.status)
+        endpoint_group_names=pulumi.get(__ret__, 'endpoint_group_names'),
+        endpoint_service_name=pulumi.get(__ret__, 'endpoint_service_name'),
+        error_message=pulumi.get(__ret__, 'error_message'),
+        id=pulumi.get(__ret__, 'id'),
+        interface_endpoints=pulumi.get(__ret__, 'interface_endpoints'),
+        private_endpoints=pulumi.get(__ret__, 'private_endpoints'),
+        private_link_id=pulumi.get(__ret__, 'private_link_id'),
+        private_link_service_name=pulumi.get(__ret__, 'private_link_service_name'),
+        private_link_service_resource_id=pulumi.get(__ret__, 'private_link_service_resource_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        provider_name=pulumi.get(__ret__, 'provider_name'),
+        region_name=pulumi.get(__ret__, 'region_name'),
+        service_attachment_names=pulumi.get(__ret__, 'service_attachment_names'),
+        status=pulumi.get(__ret__, 'status'))
 
 
 @_utilities.lift_output_func(get_private_link_endpoint)

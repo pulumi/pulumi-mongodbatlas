@@ -181,17 +181,17 @@ def get_ldap_configuration(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getLdapConfiguration:getLdapConfiguration', __args__, opts=opts, typ=GetLdapConfigurationResult).value
 
     return AwaitableGetLdapConfigurationResult(
-        authentication_enabled=__ret__.authentication_enabled,
-        authorization_enabled=__ret__.authorization_enabled,
-        authz_query_template=__ret__.authz_query_template,
-        bind_password=__ret__.bind_password,
-        bind_username=__ret__.bind_username,
-        ca_certificate=__ret__.ca_certificate,
-        hostname=__ret__.hostname,
-        id=__ret__.id,
-        port=__ret__.port,
-        project_id=__ret__.project_id,
-        user_to_dn_mappings=__ret__.user_to_dn_mappings)
+        authentication_enabled=pulumi.get(__ret__, 'authentication_enabled'),
+        authorization_enabled=pulumi.get(__ret__, 'authorization_enabled'),
+        authz_query_template=pulumi.get(__ret__, 'authz_query_template'),
+        bind_password=pulumi.get(__ret__, 'bind_password'),
+        bind_username=pulumi.get(__ret__, 'bind_username'),
+        ca_certificate=pulumi.get(__ret__, 'ca_certificate'),
+        hostname=pulumi.get(__ret__, 'hostname'),
+        id=pulumi.get(__ret__, 'id'),
+        port=pulumi.get(__ret__, 'port'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        user_to_dn_mappings=pulumi.get(__ret__, 'user_to_dn_mappings'))
 
 
 @_utilities.lift_output_func(get_ldap_configuration)

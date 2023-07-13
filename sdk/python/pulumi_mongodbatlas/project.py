@@ -38,7 +38,7 @@ class ProjectArgs:
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-        :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        :param pulumi.Input[str] name: The name of the project you want to create.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
@@ -87,6 +87,9 @@ class ProjectArgs:
     @property
     @pulumi.getter(name="apiKeys")
     def api_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]:
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
+        pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
+
         return pulumi.get(self, "api_keys")
 
     @api_keys.setter
@@ -169,7 +172,7 @@ class ProjectArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        The name of the project you want to create.
         """
         return pulumi.get(self, "name")
 
@@ -251,7 +254,7 @@ class _ProjectState:
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-        :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        :param pulumi.Input[str] name: The name of the project you want to create.
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
@@ -294,6 +297,9 @@ class _ProjectState:
     @property
     @pulumi.getter(name="apiKeys")
     def api_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]:
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
+        pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
+
         return pulumi.get(self, "api_keys")
 
     @api_keys.setter
@@ -400,7 +406,7 @@ class _ProjectState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        The name of the project you want to create.
         """
         return pulumi.get(self, "name")
 
@@ -486,6 +492,10 @@ class Project(pulumi.CustomResource):
                  with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        `Project` provides a Project resource. This allows project to be created.
+
+        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
         ## Example Usage
 
         ```python
@@ -539,7 +549,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-        :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        :param pulumi.Input[str] name: The name of the project you want to create.
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
@@ -552,6 +562,10 @@ class Project(pulumi.CustomResource):
                  args: ProjectArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `Project` provides a Project resource. This allows project to be created.
+
+        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
         ## Example Usage
 
         ```python
@@ -694,7 +708,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-        :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        :param pulumi.Input[str] name: The name of the project you want to create.
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
@@ -724,6 +738,9 @@ class Project(pulumi.CustomResource):
     @property
     @pulumi.getter(name="apiKeys")
     def api_keys(self) -> pulumi.Output[Sequence['outputs.ProjectApiKey']]:
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
+        pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
+
         return pulumi.get(self, "api_keys")
 
     @property
@@ -794,7 +811,7 @@ class Project(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        The name of the project you want to create.
         """
         return pulumi.get(self, "name")
 

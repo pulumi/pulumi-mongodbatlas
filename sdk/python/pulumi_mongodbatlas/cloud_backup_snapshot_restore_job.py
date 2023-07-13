@@ -86,6 +86,9 @@ class CloudBackupSnapshotRestoreJobArgs:
     @property
     @pulumi.getter(name="deliveryType")
     def delivery_type(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
+        pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+
         return pulumi.get(self, "delivery_type")
 
     @delivery_type.setter
@@ -221,6 +224,9 @@ class _CloudBackupSnapshotRestoreJobState:
     @property
     @pulumi.getter(name="deliveryType")
     def delivery_type(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
+        pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+
         return pulumi.get(self, "delivery_type")
 
     @delivery_type.setter
@@ -546,6 +552,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
     @property
     @pulumi.getter(name="deliveryType")
     def delivery_type(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
+        pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+
         return pulumi.get(self, "delivery_type")
 
     @property

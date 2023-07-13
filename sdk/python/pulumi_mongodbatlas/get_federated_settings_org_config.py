@@ -165,15 +165,15 @@ def get_federated_settings_org_config(federation_settings_id: Optional[str] = No
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig', __args__, opts=opts, typ=GetFederatedSettingsOrgConfigResult).value
 
     return AwaitableGetFederatedSettingsOrgConfigResult(
-        domain_allow_lists=__ret__.domain_allow_lists,
-        domain_restriction_enabled=__ret__.domain_restriction_enabled,
-        federation_settings_id=__ret__.federation_settings_id,
-        id=__ret__.id,
-        identity_provider_id=__ret__.identity_provider_id,
-        org_id=__ret__.org_id,
-        post_auth_role_grants=__ret__.post_auth_role_grants,
-        role_mappings=__ret__.role_mappings,
-        user_conflicts=__ret__.user_conflicts)
+        domain_allow_lists=pulumi.get(__ret__, 'domain_allow_lists'),
+        domain_restriction_enabled=pulumi.get(__ret__, 'domain_restriction_enabled'),
+        federation_settings_id=pulumi.get(__ret__, 'federation_settings_id'),
+        id=pulumi.get(__ret__, 'id'),
+        identity_provider_id=pulumi.get(__ret__, 'identity_provider_id'),
+        org_id=pulumi.get(__ret__, 'org_id'),
+        post_auth_role_grants=pulumi.get(__ret__, 'post_auth_role_grants'),
+        role_mappings=pulumi.get(__ret__, 'role_mappings'),
+        user_conflicts=pulumi.get(__ret__, 'user_conflicts'))
 
 
 @_utilities.lift_output_func(get_federated_settings_org_config)

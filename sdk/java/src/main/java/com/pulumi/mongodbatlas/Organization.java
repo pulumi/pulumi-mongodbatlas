@@ -12,6 +12,7 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.OrganizationState;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -71,6 +72,20 @@ public class Organization extends com.pulumi.resources.CustomResource {
 
     public Output<String> description() {
         return this.description;
+    }
+    /**
+     * (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     * 
+     */
+    @Export(name="federationSettingsId", type=String.class, parameters={})
+    private Output</* @Nullable */ String> federationSettingsId;
+
+    /**
+     * @return (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     * 
+     */
+    public Output<Optional<String>> federationSettingsId() {
+        return Codegen.optional(this.federationSettingsId);
     }
     /**
      * The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -135,16 +150,14 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return this.publicKey;
     }
     /**
-     * List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-     * The following are valid roles:
+     * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
      * 
      */
     @Export(name="roleNames", type=List.class, parameters={String.class})
     private Output<List<String>> roleNames;
 
     /**
-     * @return List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-     * The following are valid roles:
+     * @return List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
      * 
      */
     public Output<List<String>> roleNames() {

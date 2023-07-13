@@ -638,14 +638,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.replicationSpecs;
     }
     /**
-     * Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
      * 
      */
     @Export(name="retainBackupsEnabled", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> retainBackupsEnabled;
 
     /**
-     * @return Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * @return Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
      * 
      */
     public Output<Optional<Boolean>> retainBackupsEnabled() {

@@ -51,6 +51,10 @@ export interface AdvancedClusterAdvancedConfiguration {
      * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
     sampleSizeBiConnector?: pulumi.Input<number>;
+    /**
+     * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     */
+    transactionLifetimeLimitSeconds?: pulumi.Input<number>;
 }
 
 export interface AdvancedClusterBiConnector {
@@ -836,6 +840,10 @@ export interface ClusterAdvancedConfiguration {
      * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
     sampleSizeBiConnector?: pulumi.Input<number>;
+    /**
+     * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     */
+    transactionLifetimeLimitSeconds?: pulumi.Input<number>;
 }
 
 export interface ClusterBiConnectorConfig {
@@ -1923,17 +1931,76 @@ export interface LdapVerifyValidation {
 }
 
 export interface OnlineArchiveCriteria {
+    /**
+     * Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
+     */
     dateField?: pulumi.Input<string>;
+    /**
+     * Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     */
     dateFormat?: pulumi.Input<string>;
+    /**
+     * Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+     *
+     * The only field required for criteria type `CUSTOM`
+     */
     expireAfterDays?: pulumi.Input<number>;
+    /**
+     * JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
+     */
     query?: pulumi.Input<string>;
+    /**
+     * Type of criteria (DATE, CUSTOM)
+     *
+     * The following fields are required for criteria type `DATE`
+     */
     type: pulumi.Input<string>;
 }
 
 export interface OnlineArchivePartitionField {
+    /**
+     * Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+     */
     fieldName: pulumi.Input<string>;
+    /**
+     * Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+     */
     fieldType?: pulumi.Input<string>;
+    /**
+     * Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
+     */
     order: pulumi.Input<number>;
+}
+
+export interface OnlineArchiveSchedule {
+    /**
+     * Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
+     */
+    dayOfMonth?: pulumi.Input<number>;
+    /**
+     * Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
+     */
+    dayOfWeek?: pulumi.Input<number>;
+    /**
+     * Hour of the day when the scheduled window to run one online archive ends.
+     */
+    endHour?: pulumi.Input<number>;
+    /**
+     * Minute of the hour when the scheduled window to run one online archive ends.
+     */
+    endMinute?: pulumi.Input<number>;
+    /**
+     * Hour of the day when the when the scheduled window to run one online archive starts.
+     */
+    startHour?: pulumi.Input<number>;
+    /**
+     * Minute of the hour when the scheduled window to run one online archive starts.
+     */
+    startMinute?: pulumi.Input<number>;
+    /**
+     * Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     */
+    type: pulumi.Input<string>;
 }
 
 export interface PrivateLinkEndpointServiceEndpoint {
@@ -1963,9 +2030,9 @@ export interface ProjectApiKey {
      */
     apiKeyId: pulumi.Input<string>;
     /**
-     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-     * The following are valid roles:
-     * The following are valid roles:
+     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -1984,8 +2051,9 @@ export interface ProjectApiKeyProjectAssignment {
 
 export interface ProjectTeam {
     /**
-     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-     * The following are valid roles:
+     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
     /**

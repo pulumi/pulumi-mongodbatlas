@@ -68,6 +68,11 @@ public final class ClusterAdvancedConfiguration {
      * 
      */
     private @Nullable Integer sampleSizeBiConnector;
+    /**
+     * @return Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * 
+     */
+    private @Nullable Integer transactionLifetimeLimitSeconds;
 
     private ClusterAdvancedConfiguration() {}
     /**
@@ -145,6 +150,13 @@ public final class ClusterAdvancedConfiguration {
     public Optional<Integer> sampleSizeBiConnector() {
         return Optional.ofNullable(this.sampleSizeBiConnector);
     }
+    /**
+     * @return Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * 
+     */
+    public Optional<Integer> transactionLifetimeLimitSeconds() {
+        return Optional.ofNullable(this.transactionLifetimeLimitSeconds);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -165,6 +177,7 @@ public final class ClusterAdvancedConfiguration {
         private @Nullable Integer oplogSizeMb;
         private @Nullable Integer sampleRefreshIntervalBiConnector;
         private @Nullable Integer sampleSizeBiConnector;
+        private @Nullable Integer transactionLifetimeLimitSeconds;
         public Builder() {}
         public Builder(ClusterAdvancedConfiguration defaults) {
     	      Objects.requireNonNull(defaults);
@@ -178,6 +191,7 @@ public final class ClusterAdvancedConfiguration {
     	      this.oplogSizeMb = defaults.oplogSizeMb;
     	      this.sampleRefreshIntervalBiConnector = defaults.sampleRefreshIntervalBiConnector;
     	      this.sampleSizeBiConnector = defaults.sampleSizeBiConnector;
+    	      this.transactionLifetimeLimitSeconds = defaults.transactionLifetimeLimitSeconds;
         }
 
         @CustomType.Setter
@@ -230,6 +244,11 @@ public final class ClusterAdvancedConfiguration {
             this.sampleSizeBiConnector = sampleSizeBiConnector;
             return this;
         }
+        @CustomType.Setter
+        public Builder transactionLifetimeLimitSeconds(@Nullable Integer transactionLifetimeLimitSeconds) {
+            this.transactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
+            return this;
+        }
         public ClusterAdvancedConfiguration build() {
             final var o = new ClusterAdvancedConfiguration();
             o.defaultReadConcern = defaultReadConcern;
@@ -242,6 +261,7 @@ public final class ClusterAdvancedConfiguration {
             o.oplogSizeMb = oplogSizeMb;
             o.sampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             o.sampleSizeBiConnector = sampleSizeBiConnector;
+            o.transactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
             return o;
         }
     }

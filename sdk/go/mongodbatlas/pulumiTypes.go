@@ -36,6 +36,8 @@ type AdvancedClusterAdvancedConfiguration struct {
 	SampleRefreshIntervalBiConnector *int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector *int `pulumi:"sampleSizeBiConnector"`
+	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+	TransactionLifetimeLimitSeconds *int `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 // AdvancedClusterAdvancedConfigurationInput is an input type that accepts AdvancedClusterAdvancedConfigurationArgs and AdvancedClusterAdvancedConfigurationOutput values.
@@ -75,6 +77,8 @@ type AdvancedClusterAdvancedConfigurationArgs struct {
 	SampleRefreshIntervalBiConnector pulumi.IntPtrInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector pulumi.IntPtrInput `pulumi:"sampleSizeBiConnector"`
+	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+	TransactionLifetimeLimitSeconds pulumi.IntPtrInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 func (AdvancedClusterAdvancedConfigurationArgs) ElementType() reflect.Type {
@@ -209,6 +213,11 @@ func (o AdvancedClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulu
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.SampleSizeBiConnector }).(pulumi.IntPtrOutput)
 }
 
+// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+func (o AdvancedClusterAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntPtrOutput)
+}
+
 type AdvancedClusterAdvancedConfigurationPtrOutput struct{ *pulumi.OutputState }
 
 func (AdvancedClusterAdvancedConfigurationPtrOutput) ElementType() reflect.Type {
@@ -335,6 +344,16 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() p
 			return nil
 		}
 		return v.SampleSizeBiConnector
+	}).(pulumi.IntPtrOutput)
+}
+
+// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) TransactionLifetimeLimitSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TransactionLifetimeLimitSeconds
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -6350,6 +6369,8 @@ type ClusterAdvancedConfiguration struct {
 	SampleRefreshIntervalBiConnector *int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector *int `pulumi:"sampleSizeBiConnector"`
+	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+	TransactionLifetimeLimitSeconds *int `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 // ClusterAdvancedConfigurationInput is an input type that accepts ClusterAdvancedConfigurationArgs and ClusterAdvancedConfigurationOutput values.
@@ -6389,6 +6410,8 @@ type ClusterAdvancedConfigurationArgs struct {
 	SampleRefreshIntervalBiConnector pulumi.IntPtrInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector pulumi.IntPtrInput `pulumi:"sampleSizeBiConnector"`
+	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+	TransactionLifetimeLimitSeconds pulumi.IntPtrInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 func (ClusterAdvancedConfigurationArgs) ElementType() reflect.Type {
@@ -6523,6 +6546,11 @@ func (o ClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntPt
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.SampleSizeBiConnector }).(pulumi.IntPtrOutput)
 }
 
+// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+func (o ClusterAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntPtrOutput)
+}
+
 type ClusterAdvancedConfigurationPtrOutput struct{ *pulumi.OutputState }
 
 func (ClusterAdvancedConfigurationPtrOutput) ElementType() reflect.Type {
@@ -6649,6 +6677,16 @@ func (o ClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() pulumi.In
 			return nil
 		}
 		return v.SampleSizeBiConnector
+	}).(pulumi.IntPtrOutput)
+}
+
+// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+func (o ClusterAdvancedConfigurationPtrOutput) TransactionLifetimeLimitSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TransactionLifetimeLimitSeconds
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -13765,11 +13803,20 @@ func (o LdapVerifyValidationArrayOutput) Index(i pulumi.IntInput) LdapVerifyVali
 }
 
 type OnlineArchiveCriteria struct {
-	DateField       *string `pulumi:"dateField"`
-	DateFormat      *string `pulumi:"dateFormat"`
-	ExpireAfterDays *int    `pulumi:"expireAfterDays"`
-	Query           *string `pulumi:"query"`
-	Type            string  `pulumi:"type"`
+	// Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
+	DateField *string `pulumi:"dateField"`
+	// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+	DateFormat *string `pulumi:"dateFormat"`
+	// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+	//
+	// The only field required for criteria type `CUSTOM`
+	ExpireAfterDays *int `pulumi:"expireAfterDays"`
+	// JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
+	Query *string `pulumi:"query"`
+	// Type of criteria (DATE, CUSTOM)
+	//
+	// The following fields are required for criteria type `DATE`
+	Type string `pulumi:"type"`
 }
 
 // OnlineArchiveCriteriaInput is an input type that accepts OnlineArchiveCriteriaArgs and OnlineArchiveCriteriaOutput values.
@@ -13784,11 +13831,20 @@ type OnlineArchiveCriteriaInput interface {
 }
 
 type OnlineArchiveCriteriaArgs struct {
-	DateField       pulumi.StringPtrInput `pulumi:"dateField"`
-	DateFormat      pulumi.StringPtrInput `pulumi:"dateFormat"`
-	ExpireAfterDays pulumi.IntPtrInput    `pulumi:"expireAfterDays"`
-	Query           pulumi.StringPtrInput `pulumi:"query"`
-	Type            pulumi.StringInput    `pulumi:"type"`
+	// Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
+	DateField pulumi.StringPtrInput `pulumi:"dateField"`
+	// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+	DateFormat pulumi.StringPtrInput `pulumi:"dateFormat"`
+	// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+	//
+	// The only field required for criteria type `CUSTOM`
+	ExpireAfterDays pulumi.IntPtrInput `pulumi:"expireAfterDays"`
+	// JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
+	Query pulumi.StringPtrInput `pulumi:"query"`
+	// Type of criteria (DATE, CUSTOM)
+	//
+	// The following fields are required for criteria type `DATE`
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (OnlineArchiveCriteriaArgs) ElementType() reflect.Type {
@@ -13868,22 +13924,31 @@ func (o OnlineArchiveCriteriaOutput) ToOnlineArchiveCriteriaPtrOutputWithContext
 	}).(OnlineArchiveCriteriaPtrOutput)
 }
 
+// Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
 func (o OnlineArchiveCriteriaOutput) DateField() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveCriteria) *string { return v.DateField }).(pulumi.StringPtrOutput)
 }
 
+// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
 func (o OnlineArchiveCriteriaOutput) DateFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveCriteria) *string { return v.DateFormat }).(pulumi.StringPtrOutput)
 }
 
+// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+//
+// The only field required for criteria type `CUSTOM`
 func (o OnlineArchiveCriteriaOutput) ExpireAfterDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveCriteria) *int { return v.ExpireAfterDays }).(pulumi.IntPtrOutput)
 }
 
+// JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
 func (o OnlineArchiveCriteriaOutput) Query() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveCriteria) *string { return v.Query }).(pulumi.StringPtrOutput)
 }
 
+// Type of criteria (DATE, CUSTOM)
+//
+// The following fields are required for criteria type `DATE`
 func (o OnlineArchiveCriteriaOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v OnlineArchiveCriteria) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -13912,6 +13977,7 @@ func (o OnlineArchiveCriteriaPtrOutput) Elem() OnlineArchiveCriteriaOutput {
 	}).(OnlineArchiveCriteriaOutput)
 }
 
+// Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
 func (o OnlineArchiveCriteriaPtrOutput) DateField() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveCriteria) *string {
 		if v == nil {
@@ -13921,6 +13987,7 @@ func (o OnlineArchiveCriteriaPtrOutput) DateField() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
 func (o OnlineArchiveCriteriaPtrOutput) DateFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveCriteria) *string {
 		if v == nil {
@@ -13930,6 +13997,9 @@ func (o OnlineArchiveCriteriaPtrOutput) DateFormat() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+//
+// The only field required for criteria type `CUSTOM`
 func (o OnlineArchiveCriteriaPtrOutput) ExpireAfterDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveCriteria) *int {
 		if v == nil {
@@ -13939,6 +14009,7 @@ func (o OnlineArchiveCriteriaPtrOutput) ExpireAfterDays() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
 func (o OnlineArchiveCriteriaPtrOutput) Query() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveCriteria) *string {
 		if v == nil {
@@ -13948,6 +14019,9 @@ func (o OnlineArchiveCriteriaPtrOutput) Query() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Type of criteria (DATE, CUSTOM)
+//
+// The following fields are required for criteria type `DATE`
 func (o OnlineArchiveCriteriaPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveCriteria) *string {
 		if v == nil {
@@ -13958,9 +14032,12 @@ func (o OnlineArchiveCriteriaPtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 type OnlineArchivePartitionField struct {
-	FieldName string  `pulumi:"fieldName"`
+	// Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+	FieldName string `pulumi:"fieldName"`
+	// Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
 	FieldType *string `pulumi:"fieldType"`
-	Order     int     `pulumi:"order"`
+	// Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
+	Order int `pulumi:"order"`
 }
 
 // OnlineArchivePartitionFieldInput is an input type that accepts OnlineArchivePartitionFieldArgs and OnlineArchivePartitionFieldOutput values.
@@ -13975,9 +14052,12 @@ type OnlineArchivePartitionFieldInput interface {
 }
 
 type OnlineArchivePartitionFieldArgs struct {
-	FieldName pulumi.StringInput    `pulumi:"fieldName"`
+	// Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+	FieldName pulumi.StringInput `pulumi:"fieldName"`
+	// Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
 	FieldType pulumi.StringPtrInput `pulumi:"fieldType"`
-	Order     pulumi.IntInput       `pulumi:"order"`
+	// Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
+	Order pulumi.IntInput `pulumi:"order"`
 }
 
 func (OnlineArchivePartitionFieldArgs) ElementType() reflect.Type {
@@ -14031,14 +14111,17 @@ func (o OnlineArchivePartitionFieldOutput) ToOnlineArchivePartitionFieldOutputWi
 	return o
 }
 
+// Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
 func (o OnlineArchivePartitionFieldOutput) FieldName() pulumi.StringOutput {
 	return o.ApplyT(func(v OnlineArchivePartitionField) string { return v.FieldName }).(pulumi.StringOutput)
 }
 
+// Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
 func (o OnlineArchivePartitionFieldOutput) FieldType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchivePartitionField) *string { return v.FieldType }).(pulumi.StringPtrOutput)
 }
 
+// Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
 func (o OnlineArchivePartitionFieldOutput) Order() pulumi.IntOutput {
 	return o.ApplyT(func(v OnlineArchivePartitionField) int { return v.Order }).(pulumi.IntOutput)
 }
@@ -14061,6 +14144,257 @@ func (o OnlineArchivePartitionFieldArrayOutput) Index(i pulumi.IntInput) OnlineA
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OnlineArchivePartitionField {
 		return vs[0].([]OnlineArchivePartitionField)[vs[1].(int)]
 	}).(OnlineArchivePartitionFieldOutput)
+}
+
+type OnlineArchiveSchedule struct {
+	// Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
+	DayOfMonth *int `pulumi:"dayOfMonth"`
+	// Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
+	DayOfWeek *int `pulumi:"dayOfWeek"`
+	// Hour of the day when the scheduled window to run one online archive ends.
+	EndHour *int `pulumi:"endHour"`
+	// Minute of the hour when the scheduled window to run one online archive ends.
+	EndMinute *int `pulumi:"endMinute"`
+	// Hour of the day when the when the scheduled window to run one online archive starts.
+	StartHour *int `pulumi:"startHour"`
+	// Minute of the hour when the scheduled window to run one online archive starts.
+	StartMinute *int `pulumi:"startMinute"`
+	// Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+	Type string `pulumi:"type"`
+}
+
+// OnlineArchiveScheduleInput is an input type that accepts OnlineArchiveScheduleArgs and OnlineArchiveScheduleOutput values.
+// You can construct a concrete instance of `OnlineArchiveScheduleInput` via:
+//
+//	OnlineArchiveScheduleArgs{...}
+type OnlineArchiveScheduleInput interface {
+	pulumi.Input
+
+	ToOnlineArchiveScheduleOutput() OnlineArchiveScheduleOutput
+	ToOnlineArchiveScheduleOutputWithContext(context.Context) OnlineArchiveScheduleOutput
+}
+
+type OnlineArchiveScheduleArgs struct {
+	// Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
+	DayOfMonth pulumi.IntPtrInput `pulumi:"dayOfMonth"`
+	// Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
+	DayOfWeek pulumi.IntPtrInput `pulumi:"dayOfWeek"`
+	// Hour of the day when the scheduled window to run one online archive ends.
+	EndHour pulumi.IntPtrInput `pulumi:"endHour"`
+	// Minute of the hour when the scheduled window to run one online archive ends.
+	EndMinute pulumi.IntPtrInput `pulumi:"endMinute"`
+	// Hour of the day when the when the scheduled window to run one online archive starts.
+	StartHour pulumi.IntPtrInput `pulumi:"startHour"`
+	// Minute of the hour when the scheduled window to run one online archive starts.
+	StartMinute pulumi.IntPtrInput `pulumi:"startMinute"`
+	// Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (OnlineArchiveScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OnlineArchiveSchedule)(nil)).Elem()
+}
+
+func (i OnlineArchiveScheduleArgs) ToOnlineArchiveScheduleOutput() OnlineArchiveScheduleOutput {
+	return i.ToOnlineArchiveScheduleOutputWithContext(context.Background())
+}
+
+func (i OnlineArchiveScheduleArgs) ToOnlineArchiveScheduleOutputWithContext(ctx context.Context) OnlineArchiveScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveScheduleOutput)
+}
+
+func (i OnlineArchiveScheduleArgs) ToOnlineArchiveSchedulePtrOutput() OnlineArchiveSchedulePtrOutput {
+	return i.ToOnlineArchiveSchedulePtrOutputWithContext(context.Background())
+}
+
+func (i OnlineArchiveScheduleArgs) ToOnlineArchiveSchedulePtrOutputWithContext(ctx context.Context) OnlineArchiveSchedulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveScheduleOutput).ToOnlineArchiveSchedulePtrOutputWithContext(ctx)
+}
+
+// OnlineArchiveSchedulePtrInput is an input type that accepts OnlineArchiveScheduleArgs, OnlineArchiveSchedulePtr and OnlineArchiveSchedulePtrOutput values.
+// You can construct a concrete instance of `OnlineArchiveSchedulePtrInput` via:
+//
+//	        OnlineArchiveScheduleArgs{...}
+//
+//	or:
+//
+//	        nil
+type OnlineArchiveSchedulePtrInput interface {
+	pulumi.Input
+
+	ToOnlineArchiveSchedulePtrOutput() OnlineArchiveSchedulePtrOutput
+	ToOnlineArchiveSchedulePtrOutputWithContext(context.Context) OnlineArchiveSchedulePtrOutput
+}
+
+type onlineArchiveSchedulePtrType OnlineArchiveScheduleArgs
+
+func OnlineArchiveSchedulePtr(v *OnlineArchiveScheduleArgs) OnlineArchiveSchedulePtrInput {
+	return (*onlineArchiveSchedulePtrType)(v)
+}
+
+func (*onlineArchiveSchedulePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OnlineArchiveSchedule)(nil)).Elem()
+}
+
+func (i *onlineArchiveSchedulePtrType) ToOnlineArchiveSchedulePtrOutput() OnlineArchiveSchedulePtrOutput {
+	return i.ToOnlineArchiveSchedulePtrOutputWithContext(context.Background())
+}
+
+func (i *onlineArchiveSchedulePtrType) ToOnlineArchiveSchedulePtrOutputWithContext(ctx context.Context) OnlineArchiveSchedulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveSchedulePtrOutput)
+}
+
+type OnlineArchiveScheduleOutput struct{ *pulumi.OutputState }
+
+func (OnlineArchiveScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OnlineArchiveSchedule)(nil)).Elem()
+}
+
+func (o OnlineArchiveScheduleOutput) ToOnlineArchiveScheduleOutput() OnlineArchiveScheduleOutput {
+	return o
+}
+
+func (o OnlineArchiveScheduleOutput) ToOnlineArchiveScheduleOutputWithContext(ctx context.Context) OnlineArchiveScheduleOutput {
+	return o
+}
+
+func (o OnlineArchiveScheduleOutput) ToOnlineArchiveSchedulePtrOutput() OnlineArchiveSchedulePtrOutput {
+	return o.ToOnlineArchiveSchedulePtrOutputWithContext(context.Background())
+}
+
+func (o OnlineArchiveScheduleOutput) ToOnlineArchiveSchedulePtrOutputWithContext(ctx context.Context) OnlineArchiveSchedulePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v OnlineArchiveSchedule) *OnlineArchiveSchedule {
+		return &v
+	}).(OnlineArchiveSchedulePtrOutput)
+}
+
+// Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
+func (o OnlineArchiveScheduleOutput) DayOfMonth() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveSchedule) *int { return v.DayOfMonth }).(pulumi.IntPtrOutput)
+}
+
+// Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
+func (o OnlineArchiveScheduleOutput) DayOfWeek() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveSchedule) *int { return v.DayOfWeek }).(pulumi.IntPtrOutput)
+}
+
+// Hour of the day when the scheduled window to run one online archive ends.
+func (o OnlineArchiveScheduleOutput) EndHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveSchedule) *int { return v.EndHour }).(pulumi.IntPtrOutput)
+}
+
+// Minute of the hour when the scheduled window to run one online archive ends.
+func (o OnlineArchiveScheduleOutput) EndMinute() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveSchedule) *int { return v.EndMinute }).(pulumi.IntPtrOutput)
+}
+
+// Hour of the day when the when the scheduled window to run one online archive starts.
+func (o OnlineArchiveScheduleOutput) StartHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveSchedule) *int { return v.StartHour }).(pulumi.IntPtrOutput)
+}
+
+// Minute of the hour when the scheduled window to run one online archive starts.
+func (o OnlineArchiveScheduleOutput) StartMinute() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveSchedule) *int { return v.StartMinute }).(pulumi.IntPtrOutput)
+}
+
+// Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+func (o OnlineArchiveScheduleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v OnlineArchiveSchedule) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type OnlineArchiveSchedulePtrOutput struct{ *pulumi.OutputState }
+
+func (OnlineArchiveSchedulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OnlineArchiveSchedule)(nil)).Elem()
+}
+
+func (o OnlineArchiveSchedulePtrOutput) ToOnlineArchiveSchedulePtrOutput() OnlineArchiveSchedulePtrOutput {
+	return o
+}
+
+func (o OnlineArchiveSchedulePtrOutput) ToOnlineArchiveSchedulePtrOutputWithContext(ctx context.Context) OnlineArchiveSchedulePtrOutput {
+	return o
+}
+
+func (o OnlineArchiveSchedulePtrOutput) Elem() OnlineArchiveScheduleOutput {
+	return o.ApplyT(func(v *OnlineArchiveSchedule) OnlineArchiveSchedule {
+		if v != nil {
+			return *v
+		}
+		var ret OnlineArchiveSchedule
+		return ret
+	}).(OnlineArchiveScheduleOutput)
+}
+
+// Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
+func (o OnlineArchiveSchedulePtrOutput) DayOfMonth() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveSchedule) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DayOfMonth
+	}).(pulumi.IntPtrOutput)
+}
+
+// Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
+func (o OnlineArchiveSchedulePtrOutput) DayOfWeek() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveSchedule) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DayOfWeek
+	}).(pulumi.IntPtrOutput)
+}
+
+// Hour of the day when the scheduled window to run one online archive ends.
+func (o OnlineArchiveSchedulePtrOutput) EndHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveSchedule) *int {
+		if v == nil {
+			return nil
+		}
+		return v.EndHour
+	}).(pulumi.IntPtrOutput)
+}
+
+// Minute of the hour when the scheduled window to run one online archive ends.
+func (o OnlineArchiveSchedulePtrOutput) EndMinute() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveSchedule) *int {
+		if v == nil {
+			return nil
+		}
+		return v.EndMinute
+	}).(pulumi.IntPtrOutput)
+}
+
+// Hour of the day when the when the scheduled window to run one online archive starts.
+func (o OnlineArchiveSchedulePtrOutput) StartHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveSchedule) *int {
+		if v == nil {
+			return nil
+		}
+		return v.StartHour
+	}).(pulumi.IntPtrOutput)
+}
+
+// Minute of the hour when the scheduled window to run one online archive starts.
+func (o OnlineArchiveSchedulePtrOutput) StartMinute() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveSchedule) *int {
+		if v == nil {
+			return nil
+		}
+		return v.StartMinute
+	}).(pulumi.IntPtrOutput)
+}
+
+// Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+func (o OnlineArchiveSchedulePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveSchedule) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 type PrivateLinkEndpointServiceEndpoint struct {
@@ -14192,9 +14526,9 @@ type ProjectApiKeyType struct {
 	//
 	// **WARNING:** The `apiKeys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `ProjectApiKey`  resource instead.
 	ApiKeyId string `pulumi:"apiKeyId"`
-	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-	// The following are valid roles:
-	// The following are valid roles:
+	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	RoleNames []string `pulumi:"roleNames"`
 }
 
@@ -14214,9 +14548,9 @@ type ProjectApiKeyTypeArgs struct {
 	//
 	// **WARNING:** The `apiKeys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `ProjectApiKey`  resource instead.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
-	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-	// The following are valid roles:
-	// The following are valid roles:
+	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
 }
 
@@ -14278,9 +14612,9 @@ func (o ProjectApiKeyTypeOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v ProjectApiKeyType) string { return v.ApiKeyId }).(pulumi.StringOutput)
 }
 
-// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-// The following are valid roles:
-// The following are valid roles:
+// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+//
+// > **NOTE:** Project created by API Keys must belong to an existing organization.
 func (o ProjectApiKeyTypeOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProjectApiKeyType) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
@@ -14415,8 +14749,9 @@ func (o ProjectApiKeyProjectAssignmentArrayOutput) Index(i pulumi.IntInput) Proj
 }
 
 type ProjectTeam struct {
-	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-	// The following are valid roles:
+	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	RoleNames []string `pulumi:"roleNames"`
 	// The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 	TeamId string `pulumi:"teamId"`
@@ -14434,8 +14769,9 @@ type ProjectTeamInput interface {
 }
 
 type ProjectTeamArgs struct {
-	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-	// The following are valid roles:
+	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
 	// The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 	TeamId pulumi.StringInput `pulumi:"teamId"`
@@ -14492,8 +14828,9 @@ func (o ProjectTeamOutput) ToProjectTeamOutputWithContext(ctx context.Context) P
 	return o
 }
 
-// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-// The following are valid roles:
+// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+//
+// > **NOTE:** Project created by API Keys must belong to an existing organization.
 func (o ProjectTeamOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProjectTeam) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
@@ -15466,6 +15803,8 @@ type GetAdvancedClusterAdvancedConfiguration struct {
 	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+	TransactionLifetimeLimitSeconds int `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 // GetAdvancedClusterAdvancedConfigurationInput is an input type that accepts GetAdvancedClusterAdvancedConfigurationArgs and GetAdvancedClusterAdvancedConfigurationOutput values.
@@ -15500,6 +15839,8 @@ type GetAdvancedClusterAdvancedConfigurationArgs struct {
 	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+	TransactionLifetimeLimitSeconds pulumi.IntInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 func (GetAdvancedClusterAdvancedConfigurationArgs) ElementType() reflect.Type {
@@ -15601,6 +15942,11 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) SampleRefreshIntervalBiCo
 // Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o GetAdvancedClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntOutput)
 }
 
 type GetAdvancedClusterAdvancedConfigurationArrayOutput struct{ *pulumi.OutputState }
@@ -17661,7 +18007,8 @@ type GetAdvancedClustersResultAdvancedConfiguration struct {
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+	SampleSizeBiConnector           int `pulumi:"sampleSizeBiConnector"`
+	TransactionLifetimeLimitSeconds int `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 // GetAdvancedClustersResultAdvancedConfigurationInput is an input type that accepts GetAdvancedClustersResultAdvancedConfigurationArgs and GetAdvancedClustersResultAdvancedConfigurationOutput values.
@@ -17695,7 +18042,8 @@ type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	SampleSizeBiConnector           pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	TransactionLifetimeLimitSeconds pulumi.IntInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 func (GetAdvancedClustersResultAdvancedConfigurationArgs) ElementType() reflect.Type {
@@ -17797,6 +18145,10 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) SampleRefreshInter
 // Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntOutput)
 }
 
 type GetAdvancedClustersResultAdvancedConfigurationArrayOutput struct{ *pulumi.OutputState }
@@ -24934,6 +25286,8 @@ type GetClusterAdvancedConfiguration struct {
 	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+	TransactionLifetimeLimitSeconds int `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 // GetClusterAdvancedConfigurationInput is an input type that accepts GetClusterAdvancedConfigurationArgs and GetClusterAdvancedConfigurationOutput values.
@@ -24968,6 +25322,8 @@ type GetClusterAdvancedConfigurationArgs struct {
 	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+	TransactionLifetimeLimitSeconds pulumi.IntInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 func (GetClusterAdvancedConfigurationArgs) ElementType() reflect.Type {
@@ -25069,6 +25425,11 @@ func (o GetClusterAdvancedConfigurationOutput) SampleRefreshIntervalBiConnector(
 // Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o GetClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+func (o GetClusterAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntOutput)
 }
 
 type GetClusterAdvancedConfigurationArrayOutput struct{ *pulumi.OutputState }
@@ -26929,7 +27290,8 @@ type GetClustersResultAdvancedConfiguration struct {
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+	SampleSizeBiConnector           int `pulumi:"sampleSizeBiConnector"`
+	TransactionLifetimeLimitSeconds int `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 // GetClustersResultAdvancedConfigurationInput is an input type that accepts GetClustersResultAdvancedConfigurationArgs and GetClustersResultAdvancedConfigurationOutput values.
@@ -26963,7 +27325,8 @@ type GetClustersResultAdvancedConfigurationArgs struct {
 	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
 	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	SampleSizeBiConnector           pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+	TransactionLifetimeLimitSeconds pulumi.IntInput `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 func (GetClustersResultAdvancedConfigurationArgs) ElementType() reflect.Type {
@@ -27065,6 +27428,10 @@ func (o GetClustersResultAdvancedConfigurationOutput) SampleRefreshIntervalBiCon
 // Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o GetClustersResultAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+func (o GetClustersResultAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntOutput)
 }
 
 type GetClustersResultAdvancedConfigurationArrayOutput struct{ *pulumi.OutputState }
@@ -41051,6 +41418,136 @@ func (o GetOnlineArchivePartitionFieldArrayOutput) Index(i pulumi.IntInput) GetO
 	}).(GetOnlineArchivePartitionFieldOutput)
 }
 
+type GetOnlineArchiveSchedule struct {
+	DayOfMonth  *int   `pulumi:"dayOfMonth"`
+	DayOfWeek   *int   `pulumi:"dayOfWeek"`
+	EndHour     int    `pulumi:"endHour"`
+	EndMinute   int    `pulumi:"endMinute"`
+	StartHour   int    `pulumi:"startHour"`
+	StartMinute int    `pulumi:"startMinute"`
+	Type        string `pulumi:"type"`
+}
+
+// GetOnlineArchiveScheduleInput is an input type that accepts GetOnlineArchiveScheduleArgs and GetOnlineArchiveScheduleOutput values.
+// You can construct a concrete instance of `GetOnlineArchiveScheduleInput` via:
+//
+//	GetOnlineArchiveScheduleArgs{...}
+type GetOnlineArchiveScheduleInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchiveScheduleOutput() GetOnlineArchiveScheduleOutput
+	ToGetOnlineArchiveScheduleOutputWithContext(context.Context) GetOnlineArchiveScheduleOutput
+}
+
+type GetOnlineArchiveScheduleArgs struct {
+	DayOfMonth  pulumi.IntPtrInput `pulumi:"dayOfMonth"`
+	DayOfWeek   pulumi.IntPtrInput `pulumi:"dayOfWeek"`
+	EndHour     pulumi.IntInput    `pulumi:"endHour"`
+	EndMinute   pulumi.IntInput    `pulumi:"endMinute"`
+	StartHour   pulumi.IntInput    `pulumi:"startHour"`
+	StartMinute pulumi.IntInput    `pulumi:"startMinute"`
+	Type        pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetOnlineArchiveScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchiveSchedule)(nil)).Elem()
+}
+
+func (i GetOnlineArchiveScheduleArgs) ToGetOnlineArchiveScheduleOutput() GetOnlineArchiveScheduleOutput {
+	return i.ToGetOnlineArchiveScheduleOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchiveScheduleArgs) ToGetOnlineArchiveScheduleOutputWithContext(ctx context.Context) GetOnlineArchiveScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchiveScheduleOutput)
+}
+
+// GetOnlineArchiveScheduleArrayInput is an input type that accepts GetOnlineArchiveScheduleArray and GetOnlineArchiveScheduleArrayOutput values.
+// You can construct a concrete instance of `GetOnlineArchiveScheduleArrayInput` via:
+//
+//	GetOnlineArchiveScheduleArray{ GetOnlineArchiveScheduleArgs{...} }
+type GetOnlineArchiveScheduleArrayInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchiveScheduleArrayOutput() GetOnlineArchiveScheduleArrayOutput
+	ToGetOnlineArchiveScheduleArrayOutputWithContext(context.Context) GetOnlineArchiveScheduleArrayOutput
+}
+
+type GetOnlineArchiveScheduleArray []GetOnlineArchiveScheduleInput
+
+func (GetOnlineArchiveScheduleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchiveSchedule)(nil)).Elem()
+}
+
+func (i GetOnlineArchiveScheduleArray) ToGetOnlineArchiveScheduleArrayOutput() GetOnlineArchiveScheduleArrayOutput {
+	return i.ToGetOnlineArchiveScheduleArrayOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchiveScheduleArray) ToGetOnlineArchiveScheduleArrayOutputWithContext(ctx context.Context) GetOnlineArchiveScheduleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchiveScheduleArrayOutput)
+}
+
+type GetOnlineArchiveScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchiveScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchiveSchedule)(nil)).Elem()
+}
+
+func (o GetOnlineArchiveScheduleOutput) ToGetOnlineArchiveScheduleOutput() GetOnlineArchiveScheduleOutput {
+	return o
+}
+
+func (o GetOnlineArchiveScheduleOutput) ToGetOnlineArchiveScheduleOutputWithContext(ctx context.Context) GetOnlineArchiveScheduleOutput {
+	return o
+}
+
+func (o GetOnlineArchiveScheduleOutput) DayOfMonth() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetOnlineArchiveSchedule) *int { return v.DayOfMonth }).(pulumi.IntPtrOutput)
+}
+
+func (o GetOnlineArchiveScheduleOutput) DayOfWeek() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetOnlineArchiveSchedule) *int { return v.DayOfWeek }).(pulumi.IntPtrOutput)
+}
+
+func (o GetOnlineArchiveScheduleOutput) EndHour() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchiveSchedule) int { return v.EndHour }).(pulumi.IntOutput)
+}
+
+func (o GetOnlineArchiveScheduleOutput) EndMinute() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchiveSchedule) int { return v.EndMinute }).(pulumi.IntOutput)
+}
+
+func (o GetOnlineArchiveScheduleOutput) StartHour() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchiveSchedule) int { return v.StartHour }).(pulumi.IntOutput)
+}
+
+func (o GetOnlineArchiveScheduleOutput) StartMinute() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchiveSchedule) int { return v.StartMinute }).(pulumi.IntOutput)
+}
+
+func (o GetOnlineArchiveScheduleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchiveSchedule) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetOnlineArchiveScheduleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchiveScheduleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchiveSchedule)(nil)).Elem()
+}
+
+func (o GetOnlineArchiveScheduleArrayOutput) ToGetOnlineArchiveScheduleArrayOutput() GetOnlineArchiveScheduleArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchiveScheduleArrayOutput) ToGetOnlineArchiveScheduleArrayOutputWithContext(ctx context.Context) GetOnlineArchiveScheduleArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchiveScheduleArrayOutput) Index(i pulumi.IntInput) GetOnlineArchiveScheduleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchiveSchedule {
+		return vs[0].([]GetOnlineArchiveSchedule)[vs[1].(int)]
+	}).(GetOnlineArchiveScheduleOutput)
+}
+
 type GetOnlineArchivesResult struct {
 	ArchiveId string `pulumi:"archiveId"`
 	// Name of the cluster that contains the collection.
@@ -41066,8 +41563,9 @@ type GetOnlineArchivesResult struct {
 	PartitionFields []GetOnlineArchivesResultPartitionField `pulumi:"partitionFields"`
 	Paused          bool                                    `pulumi:"paused"`
 	// The unique ID for the project.
-	ProjectId string `pulumi:"projectId"`
-	State     string `pulumi:"state"`
+	ProjectId string                            `pulumi:"projectId"`
+	Schedules []GetOnlineArchivesResultSchedule `pulumi:"schedules"`
+	State     string                            `pulumi:"state"`
 }
 
 // GetOnlineArchivesResultInput is an input type that accepts GetOnlineArchivesResultArgs and GetOnlineArchivesResultOutput values.
@@ -41096,8 +41594,9 @@ type GetOnlineArchivesResultArgs struct {
 	PartitionFields GetOnlineArchivesResultPartitionFieldArrayInput `pulumi:"partitionFields"`
 	Paused          pulumi.BoolInput                                `pulumi:"paused"`
 	// The unique ID for the project.
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	State     pulumi.StringInput `pulumi:"state"`
+	ProjectId pulumi.StringInput                        `pulumi:"projectId"`
+	Schedules GetOnlineArchivesResultScheduleArrayInput `pulumi:"schedules"`
+	State     pulumi.StringInput                        `pulumi:"state"`
 }
 
 func (GetOnlineArchivesResultArgs) ElementType() reflect.Type {
@@ -41191,6 +41690,10 @@ func (o GetOnlineArchivesResultOutput) Paused() pulumi.BoolOutput {
 // The unique ID for the project.
 func (o GetOnlineArchivesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOnlineArchivesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultOutput) Schedules() GetOnlineArchivesResultScheduleArrayOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResult) []GetOnlineArchivesResultSchedule { return v.Schedules }).(GetOnlineArchivesResultScheduleArrayOutput)
 }
 
 func (o GetOnlineArchivesResultOutput) State() pulumi.StringOutput {
@@ -41439,6 +41942,136 @@ func (o GetOnlineArchivesResultPartitionFieldArrayOutput) Index(i pulumi.IntInpu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchivesResultPartitionField {
 		return vs[0].([]GetOnlineArchivesResultPartitionField)[vs[1].(int)]
 	}).(GetOnlineArchivesResultPartitionFieldOutput)
+}
+
+type GetOnlineArchivesResultSchedule struct {
+	DayOfMonth  *int   `pulumi:"dayOfMonth"`
+	DayOfWeek   *int   `pulumi:"dayOfWeek"`
+	EndHour     int    `pulumi:"endHour"`
+	EndMinute   int    `pulumi:"endMinute"`
+	StartHour   int    `pulumi:"startHour"`
+	StartMinute int    `pulumi:"startMinute"`
+	Type        string `pulumi:"type"`
+}
+
+// GetOnlineArchivesResultScheduleInput is an input type that accepts GetOnlineArchivesResultScheduleArgs and GetOnlineArchivesResultScheduleOutput values.
+// You can construct a concrete instance of `GetOnlineArchivesResultScheduleInput` via:
+//
+//	GetOnlineArchivesResultScheduleArgs{...}
+type GetOnlineArchivesResultScheduleInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivesResultScheduleOutput() GetOnlineArchivesResultScheduleOutput
+	ToGetOnlineArchivesResultScheduleOutputWithContext(context.Context) GetOnlineArchivesResultScheduleOutput
+}
+
+type GetOnlineArchivesResultScheduleArgs struct {
+	DayOfMonth  pulumi.IntPtrInput `pulumi:"dayOfMonth"`
+	DayOfWeek   pulumi.IntPtrInput `pulumi:"dayOfWeek"`
+	EndHour     pulumi.IntInput    `pulumi:"endHour"`
+	EndMinute   pulumi.IntInput    `pulumi:"endMinute"`
+	StartHour   pulumi.IntInput    `pulumi:"startHour"`
+	StartMinute pulumi.IntInput    `pulumi:"startMinute"`
+	Type        pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetOnlineArchivesResultScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivesResultSchedule)(nil)).Elem()
+}
+
+func (i GetOnlineArchivesResultScheduleArgs) ToGetOnlineArchivesResultScheduleOutput() GetOnlineArchivesResultScheduleOutput {
+	return i.ToGetOnlineArchivesResultScheduleOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivesResultScheduleArgs) ToGetOnlineArchivesResultScheduleOutputWithContext(ctx context.Context) GetOnlineArchivesResultScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivesResultScheduleOutput)
+}
+
+// GetOnlineArchivesResultScheduleArrayInput is an input type that accepts GetOnlineArchivesResultScheduleArray and GetOnlineArchivesResultScheduleArrayOutput values.
+// You can construct a concrete instance of `GetOnlineArchivesResultScheduleArrayInput` via:
+//
+//	GetOnlineArchivesResultScheduleArray{ GetOnlineArchivesResultScheduleArgs{...} }
+type GetOnlineArchivesResultScheduleArrayInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivesResultScheduleArrayOutput() GetOnlineArchivesResultScheduleArrayOutput
+	ToGetOnlineArchivesResultScheduleArrayOutputWithContext(context.Context) GetOnlineArchivesResultScheduleArrayOutput
+}
+
+type GetOnlineArchivesResultScheduleArray []GetOnlineArchivesResultScheduleInput
+
+func (GetOnlineArchivesResultScheduleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivesResultSchedule)(nil)).Elem()
+}
+
+func (i GetOnlineArchivesResultScheduleArray) ToGetOnlineArchivesResultScheduleArrayOutput() GetOnlineArchivesResultScheduleArrayOutput {
+	return i.ToGetOnlineArchivesResultScheduleArrayOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivesResultScheduleArray) ToGetOnlineArchivesResultScheduleArrayOutputWithContext(ctx context.Context) GetOnlineArchivesResultScheduleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivesResultScheduleArrayOutput)
+}
+
+type GetOnlineArchivesResultScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivesResultScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivesResultSchedule)(nil)).Elem()
+}
+
+func (o GetOnlineArchivesResultScheduleOutput) ToGetOnlineArchivesResultScheduleOutput() GetOnlineArchivesResultScheduleOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultScheduleOutput) ToGetOnlineArchivesResultScheduleOutputWithContext(ctx context.Context) GetOnlineArchivesResultScheduleOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultScheduleOutput) DayOfMonth() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultSchedule) *int { return v.DayOfMonth }).(pulumi.IntPtrOutput)
+}
+
+func (o GetOnlineArchivesResultScheduleOutput) DayOfWeek() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultSchedule) *int { return v.DayOfWeek }).(pulumi.IntPtrOutput)
+}
+
+func (o GetOnlineArchivesResultScheduleOutput) EndHour() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultSchedule) int { return v.EndHour }).(pulumi.IntOutput)
+}
+
+func (o GetOnlineArchivesResultScheduleOutput) EndMinute() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultSchedule) int { return v.EndMinute }).(pulumi.IntOutput)
+}
+
+func (o GetOnlineArchivesResultScheduleOutput) StartHour() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultSchedule) int { return v.StartHour }).(pulumi.IntOutput)
+}
+
+func (o GetOnlineArchivesResultScheduleOutput) StartMinute() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultSchedule) int { return v.StartMinute }).(pulumi.IntOutput)
+}
+
+func (o GetOnlineArchivesResultScheduleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultSchedule) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetOnlineArchivesResultScheduleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivesResultScheduleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivesResultSchedule)(nil)).Elem()
+}
+
+func (o GetOnlineArchivesResultScheduleArrayOutput) ToGetOnlineArchivesResultScheduleArrayOutput() GetOnlineArchivesResultScheduleArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultScheduleArrayOutput) ToGetOnlineArchivesResultScheduleArrayOutputWithContext(ctx context.Context) GetOnlineArchivesResultScheduleArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultScheduleArrayOutput) Index(i pulumi.IntInput) GetOnlineArchivesResultScheduleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchivesResultSchedule {
+		return vs[0].([]GetOnlineArchivesResultSchedule)[vs[1].(int)]
+	}).(GetOnlineArchivesResultScheduleOutput)
 }
 
 type GetOrganizationLink struct {
@@ -42739,8 +43372,9 @@ type GetProjectsResult struct {
 	ClusterCount int `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-	//   The following are valid roles:
+	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+	// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+	// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 	Created string `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id string `pulumi:"id"`
@@ -42756,7 +43390,7 @@ type GetProjectsResult struct {
 	IsRealtimePerformancePanelEnabled bool `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
-	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+	// The name of the project you want to create.
 	Name string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId string `pulumi:"orgId"`
@@ -42784,8 +43418,9 @@ type GetProjectsResultArgs struct {
 	ClusterCount pulumi.IntInput `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-	//   The following are valid roles:
+	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+	// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+	// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 	Created pulumi.StringInput `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -42801,7 +43436,7 @@ type GetProjectsResultArgs struct {
 	IsRealtimePerformancePanelEnabled pulumi.BoolInput `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolInput `pulumi:"isSchemaAdvisorEnabled"`
-	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+	// The name of the project you want to create.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
@@ -42873,9 +43508,10 @@ func (o GetProjectsResultOutput) ClusterCount() pulumi.IntOutput {
 }
 
 // The ISO-8601-formatted timestamp of when Atlas created the project.
-//   - `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-//   - `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-//     The following are valid roles:
+// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 func (o GetProjectsResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Created }).(pulumi.StringOutput)
 }
@@ -42915,7 +43551,7 @@ func (o GetProjectsResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
 }
 
-// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+// The name of the project you want to create.
 func (o GetProjectsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -44426,6 +45062,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveCriteriaPtrInput)(nil)).Elem(), OnlineArchiveCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchivePartitionFieldInput)(nil)).Elem(), OnlineArchivePartitionFieldArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchivePartitionFieldArrayInput)(nil)).Elem(), OnlineArchivePartitionFieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveScheduleInput)(nil)).Elem(), OnlineArchiveScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveSchedulePtrInput)(nil)).Elem(), OnlineArchiveScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointServiceEndpointInput)(nil)).Elem(), PrivateLinkEndpointServiceEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointServiceEndpointArrayInput)(nil)).Elem(), PrivateLinkEndpointServiceEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectApiKeyTypeInput)(nil)).Elem(), ProjectApiKeyTypeArgs{})
@@ -44822,12 +45460,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchiveCriteriaArrayInput)(nil)).Elem(), GetOnlineArchiveCriteriaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivePartitionFieldInput)(nil)).Elem(), GetOnlineArchivePartitionFieldArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivePartitionFieldArrayInput)(nil)).Elem(), GetOnlineArchivePartitionFieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchiveScheduleInput)(nil)).Elem(), GetOnlineArchiveScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchiveScheduleArrayInput)(nil)).Elem(), GetOnlineArchiveScheduleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultInput)(nil)).Elem(), GetOnlineArchivesResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultArrayInput)(nil)).Elem(), GetOnlineArchivesResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultCriteriaInput)(nil)).Elem(), GetOnlineArchivesResultCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultCriteriaArrayInput)(nil)).Elem(), GetOnlineArchivesResultCriteriaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultPartitionFieldInput)(nil)).Elem(), GetOnlineArchivesResultPartitionFieldArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultPartitionFieldArrayInput)(nil)).Elem(), GetOnlineArchivesResultPartitionFieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultScheduleInput)(nil)).Elem(), GetOnlineArchivesResultScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultScheduleArrayInput)(nil)).Elem(), GetOnlineArchivesResultScheduleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationLinkInput)(nil)).Elem(), GetOrganizationLinkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationLinkArrayInput)(nil)).Elem(), GetOrganizationLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationsResultInput)(nil)).Elem(), GetOrganizationsResultArgs{})
@@ -45052,6 +45694,8 @@ func init() {
 	pulumi.RegisterOutputType(OnlineArchiveCriteriaPtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchivePartitionFieldOutput{})
 	pulumi.RegisterOutputType(OnlineArchivePartitionFieldArrayOutput{})
+	pulumi.RegisterOutputType(OnlineArchiveScheduleOutput{})
+	pulumi.RegisterOutputType(OnlineArchiveSchedulePtrOutput{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointServiceEndpointOutput{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointServiceEndpointArrayOutput{})
 	pulumi.RegisterOutputType(ProjectApiKeyTypeOutput{})
@@ -45448,12 +46092,16 @@ func init() {
 	pulumi.RegisterOutputType(GetOnlineArchiveCriteriaArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivePartitionFieldOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivePartitionFieldArrayOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchiveScheduleOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchiveScheduleArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultCriteriaOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultCriteriaArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldArrayOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivesResultScheduleOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivesResultScheduleArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationLinkOutput{})
 	pulumi.RegisterOutputType(GetOrganizationLinkArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationsResultOutput{})

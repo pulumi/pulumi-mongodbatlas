@@ -20,6 +20,10 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.Project` provides a Project resource. This allows project to be created.
+ * 
+ * &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+ * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -215,14 +219,14 @@ public class Project extends com.pulumi.resources.CustomResource {
         return this.isSchemaAdvisorEnabled;
     }
     /**
-     * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+     * The name of the project you want to create.
      * 
      */
     @Export(name="name", type=String.class, parameters={})
     private Output<String> name;
 
     /**
-     * @return The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+     * @return The name of the project you want to create.
      * 
      */
     public Output<String> name() {

@@ -17,17 +17,20 @@ class OrganizationArgs:
                  description: pulumi.Input[str],
                  org_owner_id: pulumi.Input[str],
                  role_names: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 federation_settings_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Organization resource.
         :param pulumi.Input[str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys.  [https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-               The following are valid roles:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
+        :param pulumi.Input[str] federation_settings_id: (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
         :param pulumi.Input[str] name: The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "org_owner_id", org_owner_id)
         pulumi.set(__self__, "role_names", role_names)
+        if federation_settings_id is not None:
+            pulumi.set(__self__, "federation_settings_id", federation_settings_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -56,14 +59,25 @@ class OrganizationArgs:
     @pulumi.getter(name="roleNames")
     def role_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-        The following are valid roles:
+        List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         """
         return pulumi.get(self, "role_names")
 
     @role_names.setter
     def role_names(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "role_names", value)
+
+    @property
+    @pulumi.getter(name="federationSettingsId")
+    def federation_settings_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        """
+        return pulumi.get(self, "federation_settings_id")
+
+    @federation_settings_id.setter
+    def federation_settings_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "federation_settings_id", value)
 
     @property
     @pulumi.getter
@@ -82,6 +96,7 @@ class OrganizationArgs:
 class _OrganizationState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
+                 federation_settings_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  org_owner_id: Optional[pulumi.Input[str]] = None,
@@ -90,15 +105,17 @@ class _OrganizationState:
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
+        :param pulumi.Input[str] federation_settings_id: (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
         :param pulumi.Input[str] name: The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The organization id.
         :param pulumi.Input[str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys.  [https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
         :param pulumi.Input[str] public_key: Public API key value set for the specified organization API key.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-               The following are valid roles:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if federation_settings_id is not None:
+            pulumi.set(__self__, "federation_settings_id", federation_settings_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if org_id is not None:
@@ -120,6 +137,18 @@ class _OrganizationState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="federationSettingsId")
+    def federation_settings_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        """
+        return pulumi.get(self, "federation_settings_id")
+
+    @federation_settings_id.setter
+    def federation_settings_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "federation_settings_id", value)
 
     @property
     @pulumi.getter
@@ -182,8 +211,7 @@ class _OrganizationState:
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-        The following are valid roles:
+        List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         """
         return pulumi.get(self, "role_names")
 
@@ -198,6 +226,7 @@ class Organization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 federation_settings_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_owner_id: Optional[pulumi.Input[str]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -233,10 +262,10 @@ class Organization(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] federation_settings_id: (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
         :param pulumi.Input[str] name: The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys.  [https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-               The following are valid roles:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         """
         ...
     @overload
@@ -289,6 +318,7 @@ class Organization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 federation_settings_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_owner_id: Optional[pulumi.Input[str]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -304,6 +334,7 @@ class Organization(pulumi.CustomResource):
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
+            __props__.__dict__["federation_settings_id"] = federation_settings_id
             __props__.__dict__["name"] = name
             if org_owner_id is None and not opts.urn:
                 raise TypeError("Missing required property 'org_owner_id'")
@@ -327,6 +358,7 @@ class Organization(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
+            federation_settings_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
             org_owner_id: Optional[pulumi.Input[str]] = None,
@@ -340,18 +372,19 @@ class Organization(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] federation_settings_id: (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
         :param pulumi.Input[str] name: The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The organization id.
         :param pulumi.Input[str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys.  [https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
         :param pulumi.Input[str] public_key: Public API key value set for the specified organization API key.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-               The following are valid roles:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _OrganizationState.__new__(_OrganizationState)
 
         __props__.__dict__["description"] = description
+        __props__.__dict__["federation_settings_id"] = federation_settings_id
         __props__.__dict__["name"] = name
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["org_owner_id"] = org_owner_id
@@ -364,6 +397,14 @@ class Organization(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="federationSettingsId")
+    def federation_settings_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        """
+        return pulumi.get(self, "federation_settings_id")
 
     @property
     @pulumi.getter
@@ -406,8 +447,7 @@ class Organization(pulumi.CustomResource):
     @pulumi.getter(name="roleNames")
     def role_names(self) -> pulumi.Output[Sequence[str]]:
         """
-        List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-        The following are valid roles:
+        List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         """
         return pulumi.get(self, "role_names")
 

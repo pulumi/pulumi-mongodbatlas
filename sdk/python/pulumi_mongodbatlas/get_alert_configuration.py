@@ -201,20 +201,20 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAlertConfiguration:getAlertConfiguration', __args__, opts=opts, typ=GetAlertConfigurationResult).value
 
     return AwaitableGetAlertConfigurationResult(
-        alert_configuration_id=__ret__.alert_configuration_id,
-        created=__ret__.created,
-        enabled=__ret__.enabled,
-        event_type=__ret__.event_type,
-        id=__ret__.id,
-        matchers=__ret__.matchers,
-        metric_threshold=__ret__.metric_threshold,
-        metric_threshold_configs=__ret__.metric_threshold_configs,
-        notifications=__ret__.notifications,
-        outputs=__ret__.outputs,
-        project_id=__ret__.project_id,
-        threshold=__ret__.threshold,
-        threshold_configs=__ret__.threshold_configs,
-        updated=__ret__.updated)
+        alert_configuration_id=pulumi.get(__ret__, 'alert_configuration_id'),
+        created=pulumi.get(__ret__, 'created'),
+        enabled=pulumi.get(__ret__, 'enabled'),
+        event_type=pulumi.get(__ret__, 'event_type'),
+        id=pulumi.get(__ret__, 'id'),
+        matchers=pulumi.get(__ret__, 'matchers'),
+        metric_threshold=pulumi.get(__ret__, 'metric_threshold'),
+        metric_threshold_configs=pulumi.get(__ret__, 'metric_threshold_configs'),
+        notifications=pulumi.get(__ret__, 'notifications'),
+        outputs=pulumi.get(__ret__, 'outputs'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        threshold=pulumi.get(__ret__, 'threshold'),
+        threshold_configs=pulumi.get(__ret__, 'threshold_configs'),
+        updated=pulumi.get(__ret__, 'updated'))
 
 
 @_utilities.lift_output_func(get_alert_configuration)

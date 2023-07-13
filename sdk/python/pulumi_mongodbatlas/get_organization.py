@@ -110,11 +110,11 @@ def get_organization(org_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult).value
 
     return AwaitableGetOrganizationResult(
-        id=__ret__.id,
-        is_deleted=__ret__.is_deleted,
-        links=__ret__.links,
-        name=__ret__.name,
-        org_id=__ret__.org_id)
+        id=pulumi.get(__ret__, 'id'),
+        is_deleted=pulumi.get(__ret__, 'is_deleted'),
+        links=pulumi.get(__ret__, 'links'),
+        name=pulumi.get(__ret__, 'name'),
+        org_id=pulumi.get(__ret__, 'org_id'))
 
 
 @_utilities.lift_output_func(get_organization)

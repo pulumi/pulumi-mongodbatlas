@@ -160,14 +160,14 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+     * The name of the project you want to create.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+     * @return The name of the project you want to create.
      * 
      */
     public Optional<Output<String>> name() {
@@ -485,7 +485,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+         * @param name The name of the project you want to create.
          * 
          * @return builder
          * 
@@ -496,7 +496,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+         * @param name The name of the project you want to create.
          * 
          * @return builder
          * 

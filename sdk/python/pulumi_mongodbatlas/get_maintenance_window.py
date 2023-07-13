@@ -130,13 +130,13 @@ def get_maintenance_window(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow', __args__, opts=opts, typ=GetMaintenanceWindowResult).value
 
     return AwaitableGetMaintenanceWindowResult(
-        auto_defer_once_enabled=__ret__.auto_defer_once_enabled,
-        day_of_week=__ret__.day_of_week,
-        hour_of_day=__ret__.hour_of_day,
-        id=__ret__.id,
-        number_of_deferrals=__ret__.number_of_deferrals,
-        project_id=__ret__.project_id,
-        start_asap=__ret__.start_asap)
+        auto_defer_once_enabled=pulumi.get(__ret__, 'auto_defer_once_enabled'),
+        day_of_week=pulumi.get(__ret__, 'day_of_week'),
+        hour_of_day=pulumi.get(__ret__, 'hour_of_day'),
+        id=pulumi.get(__ret__, 'id'),
+        number_of_deferrals=pulumi.get(__ret__, 'number_of_deferrals'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        start_asap=pulumi.get(__ret__, 'start_asap'))
 
 
 @_utilities.lift_output_func(get_maintenance_window)

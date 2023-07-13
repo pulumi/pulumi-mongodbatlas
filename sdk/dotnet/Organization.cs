@@ -56,6 +56,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
+        /// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        /// </summary>
+        [Output("federationSettingsId")]
+        public Output<string?> FederationSettingsId { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         /// </summary>
         [Output("name")]
@@ -83,8 +89,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> PublicKey { get; private set; } = null!;
 
         /// <summary>
-        /// List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-        /// The following are valid roles:
+        /// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         /// </summary>
         [Output("roleNames")]
         public Output<ImmutableArray<string>> RoleNames { get; private set; } = null!;
@@ -144,6 +149,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Description { get; set; } = null!;
 
         /// <summary>
+        /// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        /// </summary>
+        [Input("federationSettingsId")]
+        public Input<string>? FederationSettingsId { get; set; }
+
+        /// <summary>
         /// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         /// </summary>
         [Input("name")]
@@ -159,8 +170,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roleNames;
 
         /// <summary>
-        /// List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-        /// The following are valid roles:
+        /// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         /// </summary>
         public InputList<string> RoleNames
         {
@@ -178,6 +188,12 @@ namespace Pulumi.Mongodbatlas
     {
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        /// </summary>
+        [Input("federationSettingsId")]
+        public Input<string>? FederationSettingsId { get; set; }
 
         /// <summary>
         /// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -229,8 +245,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roleNames;
 
         /// <summary>
-        /// List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-        /// The following are valid roles:
+        /// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         /// </summary>
         public InputList<string> RoleNames
         {

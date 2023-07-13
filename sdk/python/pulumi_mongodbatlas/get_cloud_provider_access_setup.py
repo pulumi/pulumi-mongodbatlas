@@ -141,13 +141,13 @@ def get_cloud_provider_access_setup(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup', __args__, opts=opts, typ=GetCloudProviderAccessSetupResult).value
 
     return AwaitableGetCloudProviderAccessSetupResult(
-        aws=__ret__.aws,
-        aws_configs=__ret__.aws_configs,
-        created_date=__ret__.created_date,
-        id=__ret__.id,
-        project_id=__ret__.project_id,
-        provider_name=__ret__.provider_name,
-        role_id=__ret__.role_id)
+        aws=pulumi.get(__ret__, 'aws'),
+        aws_configs=pulumi.get(__ret__, 'aws_configs'),
+        created_date=pulumi.get(__ret__, 'created_date'),
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        provider_name=pulumi.get(__ret__, 'provider_name'),
+        role_id=pulumi.get(__ret__, 'role_id'))
 
 
 @_utilities.lift_output_func(get_cloud_provider_access_setup)

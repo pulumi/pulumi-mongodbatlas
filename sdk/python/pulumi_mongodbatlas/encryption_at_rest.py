@@ -71,6 +71,9 @@ class EncryptionAtRestArgs:
         """
         Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
+        warnings.warn("""use aws_kms_config instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_kms is deprecated: use aws_kms_config instead""")
+
         return pulumi.get(self, "aws_kms")
 
     @aws_kms.setter
@@ -92,6 +95,9 @@ class EncryptionAtRestArgs:
         """
         Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
+        warnings.warn("""use azure_key_vault_config instead""", DeprecationWarning)
+        pulumi.log.warn("""azure_key_vault is deprecated: use azure_key_vault_config instead""")
+
         return pulumi.get(self, "azure_key_vault")
 
     @azure_key_vault.setter
@@ -113,6 +119,9 @@ class EncryptionAtRestArgs:
         """
         Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
+        warnings.warn("""use google_cloud_kms_config instead""", DeprecationWarning)
+        pulumi.log.warn("""google_cloud_kms is deprecated: use google_cloud_kms_config instead""")
+
         return pulumi.get(self, "google_cloud_kms")
 
     @google_cloud_kms.setter
@@ -176,6 +185,9 @@ class _EncryptionAtRestState:
         """
         Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
+        warnings.warn("""use aws_kms_config instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_kms is deprecated: use aws_kms_config instead""")
+
         return pulumi.get(self, "aws_kms")
 
     @aws_kms.setter
@@ -197,6 +209,9 @@ class _EncryptionAtRestState:
         """
         Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
+        warnings.warn("""use azure_key_vault_config instead""", DeprecationWarning)
+        pulumi.log.warn("""azure_key_vault is deprecated: use azure_key_vault_config instead""")
+
         return pulumi.get(self, "azure_key_vault")
 
     @azure_key_vault.setter
@@ -218,6 +233,9 @@ class _EncryptionAtRestState:
         """
         Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
+        warnings.warn("""use google_cloud_kms_config instead""", DeprecationWarning)
+        pulumi.log.warn("""google_cloud_kms is deprecated: use google_cloud_kms_config instead""")
+
         return pulumi.get(self, "google_cloud_kms")
 
     @google_cloud_kms.setter
@@ -393,6 +411,9 @@ class EncryptionAtRest(pulumi.CustomResource):
         """
         Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
+        warnings.warn("""use aws_kms_config instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_kms is deprecated: use aws_kms_config instead""")
+
         return pulumi.get(self, "aws_kms")
 
     @property
@@ -406,6 +427,9 @@ class EncryptionAtRest(pulumi.CustomResource):
         """
         Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
+        warnings.warn("""use azure_key_vault_config instead""", DeprecationWarning)
+        pulumi.log.warn("""azure_key_vault is deprecated: use azure_key_vault_config instead""")
+
         return pulumi.get(self, "azure_key_vault")
 
     @property
@@ -419,6 +443,9 @@ class EncryptionAtRest(pulumi.CustomResource):
         """
         Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
+        warnings.warn("""use google_cloud_kms_config instead""", DeprecationWarning)
+        pulumi.log.warn("""google_cloud_kms is deprecated: use google_cloud_kms_config instead""")
+
         return pulumi.get(self, "google_cloud_kms")
 
     @property

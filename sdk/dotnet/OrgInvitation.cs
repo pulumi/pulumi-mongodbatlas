@@ -124,12 +124,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-        /// * ORG_OWNER
-        /// * ORG_GROUP_CREATOR
-        /// * ORG_BILLING_ADMIN
-        /// * ORG_READ_ONLY
-        /// * ORG_MEMBER
+        /// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<string>> Roles { get; private set; } = null!;
@@ -202,12 +197,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roles;
 
         /// <summary>
-        /// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-        /// * ORG_OWNER
-        /// * ORG_GROUP_CREATOR
-        /// * ORG_BILLING_ADMIN
-        /// * ORG_READ_ONLY
-        /// * ORG_MEMBER
+        /// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         /// </summary>
         public InputList<string> Roles
         {
@@ -275,12 +265,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roles;
 
         /// <summary>
-        /// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-        /// * ORG_OWNER
-        /// * ORG_GROUP_CREATOR
-        /// * ORG_BILLING_ADMIN
-        /// * ORG_READ_ONLY
-        /// * ORG_MEMBER
+        /// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         /// </summary>
         public InputList<string> Roles
         {

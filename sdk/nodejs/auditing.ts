@@ -81,7 +81,7 @@ export class Auditing extends pulumi.CustomResource {
      */
     public readonly enabled!: pulumi.Output<boolean>;
     /**
-     * The unique ID for the project to configure auditing.
+     * The unique ID for the project to configure auditing. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
      */
     public readonly projectId!: pulumi.Output<string>;
 
@@ -145,7 +145,7 @@ export interface AuditingState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The unique ID for the project to configure auditing.
+     * The unique ID for the project to configure auditing. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
      */
     projectId?: pulumi.Input<string>;
 }
@@ -169,7 +169,7 @@ export interface AuditingArgs {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The unique ID for the project to configure auditing.
+     * The unique ID for the project to configure auditing. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
      */
     projectId: pulumi.Input<string>;
 }

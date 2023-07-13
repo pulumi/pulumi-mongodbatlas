@@ -11,6 +11,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `Project` provides a Project resource. This allows project to be created.
+//
+// > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+//
 // ## Example Usage
 //
 // ```go
@@ -103,7 +107,7 @@ type Project struct {
 	IsRealtimePerformancePanelEnabled pulumi.BoolOutput `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolOutput `pulumi:"isSchemaAdvisorEnabled"`
-	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+	// The name of the project you want to create.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
@@ -166,7 +170,7 @@ type projectState struct {
 	IsRealtimePerformancePanelEnabled *bool `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled *bool `pulumi:"isSchemaAdvisorEnabled"`
-	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+	// The name of the project you want to create.
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId *string `pulumi:"orgId"`
@@ -198,7 +202,7 @@ type ProjectState struct {
 	IsRealtimePerformancePanelEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolPtrInput
-	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+	// The name of the project you want to create.
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringPtrInput
@@ -230,7 +234,7 @@ type projectArgs struct {
 	IsRealtimePerformancePanelEnabled *bool `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled *bool `pulumi:"isSchemaAdvisorEnabled"`
-	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+	// The name of the project you want to create.
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId string `pulumi:"orgId"`
@@ -259,7 +263,7 @@ type ProjectArgs struct {
 	IsRealtimePerformancePanelEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolPtrInput
-	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+	// The name of the project you want to create.
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringInput
@@ -404,7 +408,7 @@ func (o ProjectOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
 }
 
-// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+// The name of the project you want to create.
 func (o ProjectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

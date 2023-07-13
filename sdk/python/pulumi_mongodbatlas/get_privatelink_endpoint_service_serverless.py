@@ -165,17 +165,17 @@ def get_privatelink_endpoint_service_serverless(endpoint_id: Optional[str] = Non
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless', __args__, opts=opts, typ=GetPrivatelinkEndpointServiceServerlessResult).value
 
     return AwaitableGetPrivatelinkEndpointServiceServerlessResult(
-        cloud_provider_endpoint_id=__ret__.cloud_provider_endpoint_id,
-        comment=__ret__.comment,
-        endpoint_id=__ret__.endpoint_id,
-        endpoint_service_name=__ret__.endpoint_service_name,
-        error_message=__ret__.error_message,
-        id=__ret__.id,
-        instance_name=__ret__.instance_name,
-        private_endpoint_ip_address=__ret__.private_endpoint_ip_address,
-        private_link_service_resource_id=__ret__.private_link_service_resource_id,
-        project_id=__ret__.project_id,
-        status=__ret__.status)
+        cloud_provider_endpoint_id=pulumi.get(__ret__, 'cloud_provider_endpoint_id'),
+        comment=pulumi.get(__ret__, 'comment'),
+        endpoint_id=pulumi.get(__ret__, 'endpoint_id'),
+        endpoint_service_name=pulumi.get(__ret__, 'endpoint_service_name'),
+        error_message=pulumi.get(__ret__, 'error_message'),
+        id=pulumi.get(__ret__, 'id'),
+        instance_name=pulumi.get(__ret__, 'instance_name'),
+        private_endpoint_ip_address=pulumi.get(__ret__, 'private_endpoint_ip_address'),
+        private_link_service_resource_id=pulumi.get(__ret__, 'private_link_service_resource_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        status=pulumi.get(__ret__, 'status'))
 
 
 @_utilities.lift_output_func(get_privatelink_endpoint_service_serverless)

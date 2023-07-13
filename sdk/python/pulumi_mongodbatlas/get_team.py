@@ -95,11 +95,11 @@ def get_team(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getTeam:getTeam', __args__, opts=opts, typ=GetTeamResult).value
 
     return AwaitableGetTeamResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        org_id=__ret__.org_id,
-        team_id=__ret__.team_id,
-        usernames=__ret__.usernames)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        org_id=pulumi.get(__ret__, 'org_id'),
+        team_id=pulumi.get(__ret__, 'team_id'),
+        usernames=pulumi.get(__ret__, 'usernames'))
 
 
 @_utilities.lift_output_func(get_team)

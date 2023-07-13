@@ -113,10 +113,10 @@ def get_network_containers(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getNetworkContainers:getNetworkContainers', __args__, opts=opts, typ=GetNetworkContainersResult).value
 
     return AwaitableGetNetworkContainersResult(
-        id=__ret__.id,
-        project_id=__ret__.project_id,
-        provider_name=__ret__.provider_name,
-        results=__ret__.results)
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        provider_name=pulumi.get(__ret__, 'provider_name'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_network_containers)

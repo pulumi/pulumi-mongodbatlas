@@ -96,12 +96,7 @@ class GetOrgInvitationResult:
     @pulumi.getter
     def roles(self) -> Sequence[str]:
         """
-        Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-        * ORG_OWNER
-        * ORG_GROUP_CREATOR
-        * ORG_BILLING_ADMIN
-        * ORG_READ_ONLY
-        * ORG_MEMBER
+        Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         """
         return pulumi.get(self, "roles")
 
@@ -156,15 +151,15 @@ def get_org_invitation(invitation_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getOrgInvitation:getOrgInvitation', __args__, opts=opts, typ=GetOrgInvitationResult).value
 
     return AwaitableGetOrgInvitationResult(
-        created_at=__ret__.created_at,
-        expires_at=__ret__.expires_at,
-        id=__ret__.id,
-        invitation_id=__ret__.invitation_id,
-        inviter_username=__ret__.inviter_username,
-        org_id=__ret__.org_id,
-        roles=__ret__.roles,
-        teams_ids=__ret__.teams_ids,
-        username=__ret__.username)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        expires_at=pulumi.get(__ret__, 'expires_at'),
+        id=pulumi.get(__ret__, 'id'),
+        invitation_id=pulumi.get(__ret__, 'invitation_id'),
+        inviter_username=pulumi.get(__ret__, 'inviter_username'),
+        org_id=pulumi.get(__ret__, 'org_id'),
+        roles=pulumi.get(__ret__, 'roles'),
+        teams_ids=pulumi.get(__ret__, 'teams_ids'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get_org_invitation)

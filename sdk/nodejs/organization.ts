@@ -64,6 +64,10 @@ export class Organization extends pulumi.CustomResource {
 
     public readonly description!: pulumi.Output<string>;
     /**
+     * (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     */
+    public readonly federationSettingsId!: pulumi.Output<string | undefined>;
+    /**
      * The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
      */
     public readonly name!: pulumi.Output<string>;
@@ -81,8 +85,7 @@ export class Organization extends pulumi.CustomResource {
      */
     public /*out*/ readonly publicKey!: pulumi.Output<string>;
     /**
-     * List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-     * The following are valid roles:
+     * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
      */
     public readonly roleNames!: pulumi.Output<string[]>;
 
@@ -100,6 +103,7 @@ export class Organization extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as OrganizationState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["orgOwnerId"] = state ? state.orgOwnerId : undefined;
@@ -118,6 +122,7 @@ export class Organization extends pulumi.CustomResource {
                 throw new Error("Missing required property 'roleNames'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgOwnerId"] = args ? args.orgOwnerId : undefined;
             resourceInputs["roleNames"] = args ? args.roleNames : undefined;
@@ -138,6 +143,10 @@ export class Organization extends pulumi.CustomResource {
 export interface OrganizationState {
     description?: pulumi.Input<string>;
     /**
+     * (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     */
+    federationSettingsId?: pulumi.Input<string>;
+    /**
      * The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
      */
     name?: pulumi.Input<string>;
@@ -155,8 +164,7 @@ export interface OrganizationState {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-     * The following are valid roles:
+     * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
      */
     roleNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -167,6 +175,10 @@ export interface OrganizationState {
 export interface OrganizationArgs {
     description: pulumi.Input<string>;
     /**
+     * (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     */
+    federationSettingsId?: pulumi.Input<string>;
+    /**
      * The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
      */
     name?: pulumi.Input<string>;
@@ -175,8 +187,7 @@ export interface OrganizationArgs {
      */
     orgOwnerId: pulumi.Input<string>;
     /**
-     * List of Organization roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key.
-     * The following are valid roles:
+     * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
 }

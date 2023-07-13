@@ -77,6 +77,12 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("sampleSizeBiConnector")]
         public Input<int>? SampleSizeBiConnector { get; set; }
 
+        /// <summary>
+        /// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        /// </summary>
+        [Input("transactionLifetimeLimitSeconds")]
+        public Input<int>? TransactionLifetimeLimitSeconds { get; set; }
+
         public ClusterAdvancedConfigurationGetArgs()
         {
         }

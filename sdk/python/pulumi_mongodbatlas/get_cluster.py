@@ -43,10 +43,6 @@ class GetClusterResult:
         pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector and not isinstance(bi_connector, dict):
             raise TypeError("Expected argument 'bi_connector' to be a dict")
-        if bi_connector is not None:
-            warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-            pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
-
         pulumi.set(__self__, "bi_connector", bi_connector)
         if bi_connector_configs and not isinstance(bi_connector_configs, list):
             raise TypeError("Expected argument 'bi_connector_configs' to be a list")
@@ -211,6 +207,9 @@ class GetClusterResult:
         """
         Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
+        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+
         return pulumi.get(self, "bi_connector")
 
     @property
@@ -573,49 +572,49 @@ def get_cluster(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult).value
 
     return AwaitableGetClusterResult(
-        advanced_configurations=__ret__.advanced_configurations,
-        auto_scaling_compute_enabled=__ret__.auto_scaling_compute_enabled,
-        auto_scaling_compute_scale_down_enabled=__ret__.auto_scaling_compute_scale_down_enabled,
-        auto_scaling_disk_gb_enabled=__ret__.auto_scaling_disk_gb_enabled,
-        backing_provider_name=__ret__.backing_provider_name,
-        backup_enabled=__ret__.backup_enabled,
-        bi_connector=__ret__.bi_connector,
-        bi_connector_configs=__ret__.bi_connector_configs,
-        cluster_type=__ret__.cluster_type,
-        connection_strings=__ret__.connection_strings,
-        container_id=__ret__.container_id,
-        disk_size_gb=__ret__.disk_size_gb,
-        encryption_at_rest_provider=__ret__.encryption_at_rest_provider,
-        id=__ret__.id,
-        labels=__ret__.labels,
-        mongo_db_major_version=__ret__.mongo_db_major_version,
-        mongo_db_version=__ret__.mongo_db_version,
-        mongo_uri=__ret__.mongo_uri,
-        mongo_uri_updated=__ret__.mongo_uri_updated,
-        mongo_uri_with_options=__ret__.mongo_uri_with_options,
-        name=__ret__.name,
-        num_shards=__ret__.num_shards,
-        paused=__ret__.paused,
-        pit_enabled=__ret__.pit_enabled,
-        project_id=__ret__.project_id,
-        provider_auto_scaling_compute_max_instance_size=__ret__.provider_auto_scaling_compute_max_instance_size,
-        provider_auto_scaling_compute_min_instance_size=__ret__.provider_auto_scaling_compute_min_instance_size,
-        provider_backup_enabled=__ret__.provider_backup_enabled,
-        provider_disk_iops=__ret__.provider_disk_iops,
-        provider_disk_type_name=__ret__.provider_disk_type_name,
-        provider_encrypt_ebs_volume=__ret__.provider_encrypt_ebs_volume,
-        provider_encrypt_ebs_volume_flag=__ret__.provider_encrypt_ebs_volume_flag,
-        provider_instance_size_name=__ret__.provider_instance_size_name,
-        provider_name=__ret__.provider_name,
-        provider_region_name=__ret__.provider_region_name,
-        provider_volume_type=__ret__.provider_volume_type,
-        replication_factor=__ret__.replication_factor,
-        replication_specs=__ret__.replication_specs,
-        snapshot_backup_policies=__ret__.snapshot_backup_policies,
-        srv_address=__ret__.srv_address,
-        state_name=__ret__.state_name,
-        termination_protection_enabled=__ret__.termination_protection_enabled,
-        version_release_system=__ret__.version_release_system)
+        advanced_configurations=pulumi.get(__ret__, 'advanced_configurations'),
+        auto_scaling_compute_enabled=pulumi.get(__ret__, 'auto_scaling_compute_enabled'),
+        auto_scaling_compute_scale_down_enabled=pulumi.get(__ret__, 'auto_scaling_compute_scale_down_enabled'),
+        auto_scaling_disk_gb_enabled=pulumi.get(__ret__, 'auto_scaling_disk_gb_enabled'),
+        backing_provider_name=pulumi.get(__ret__, 'backing_provider_name'),
+        backup_enabled=pulumi.get(__ret__, 'backup_enabled'),
+        bi_connector=pulumi.get(__ret__, 'bi_connector'),
+        bi_connector_configs=pulumi.get(__ret__, 'bi_connector_configs'),
+        cluster_type=pulumi.get(__ret__, 'cluster_type'),
+        connection_strings=pulumi.get(__ret__, 'connection_strings'),
+        container_id=pulumi.get(__ret__, 'container_id'),
+        disk_size_gb=pulumi.get(__ret__, 'disk_size_gb'),
+        encryption_at_rest_provider=pulumi.get(__ret__, 'encryption_at_rest_provider'),
+        id=pulumi.get(__ret__, 'id'),
+        labels=pulumi.get(__ret__, 'labels'),
+        mongo_db_major_version=pulumi.get(__ret__, 'mongo_db_major_version'),
+        mongo_db_version=pulumi.get(__ret__, 'mongo_db_version'),
+        mongo_uri=pulumi.get(__ret__, 'mongo_uri'),
+        mongo_uri_updated=pulumi.get(__ret__, 'mongo_uri_updated'),
+        mongo_uri_with_options=pulumi.get(__ret__, 'mongo_uri_with_options'),
+        name=pulumi.get(__ret__, 'name'),
+        num_shards=pulumi.get(__ret__, 'num_shards'),
+        paused=pulumi.get(__ret__, 'paused'),
+        pit_enabled=pulumi.get(__ret__, 'pit_enabled'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        provider_auto_scaling_compute_max_instance_size=pulumi.get(__ret__, 'provider_auto_scaling_compute_max_instance_size'),
+        provider_auto_scaling_compute_min_instance_size=pulumi.get(__ret__, 'provider_auto_scaling_compute_min_instance_size'),
+        provider_backup_enabled=pulumi.get(__ret__, 'provider_backup_enabled'),
+        provider_disk_iops=pulumi.get(__ret__, 'provider_disk_iops'),
+        provider_disk_type_name=pulumi.get(__ret__, 'provider_disk_type_name'),
+        provider_encrypt_ebs_volume=pulumi.get(__ret__, 'provider_encrypt_ebs_volume'),
+        provider_encrypt_ebs_volume_flag=pulumi.get(__ret__, 'provider_encrypt_ebs_volume_flag'),
+        provider_instance_size_name=pulumi.get(__ret__, 'provider_instance_size_name'),
+        provider_name=pulumi.get(__ret__, 'provider_name'),
+        provider_region_name=pulumi.get(__ret__, 'provider_region_name'),
+        provider_volume_type=pulumi.get(__ret__, 'provider_volume_type'),
+        replication_factor=pulumi.get(__ret__, 'replication_factor'),
+        replication_specs=pulumi.get(__ret__, 'replication_specs'),
+        snapshot_backup_policies=pulumi.get(__ret__, 'snapshot_backup_policies'),
+        srv_address=pulumi.get(__ret__, 'srv_address'),
+        state_name=pulumi.get(__ret__, 'state_name'),
+        termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'),
+        version_release_system=pulumi.get(__ret__, 'version_release_system'))
 
 
 @_utilities.lift_output_func(get_cluster)

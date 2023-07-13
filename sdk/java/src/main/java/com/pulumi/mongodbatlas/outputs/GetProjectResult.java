@@ -25,8 +25,9 @@ public final class GetProjectResult {
     /**
      * @return The ISO-8601-formatted timestamp of when Atlas created the project.
      * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-     *   The following are valid roles:
+     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
+     * * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * 
      */
     private String created;
@@ -66,7 +67,7 @@ public final class GetProjectResult {
      */
     private Boolean isSchemaAdvisorEnabled;
     /**
-     * @return The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+     * @return The name of the project you want to create.
      * 
      */
     private @Nullable String name;
@@ -97,8 +98,9 @@ public final class GetProjectResult {
     /**
      * @return The ISO-8601-formatted timestamp of when Atlas created the project.
      * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-     *   The following are valid roles:
+     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
+     * * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * 
      */
     public String created() {
@@ -154,7 +156,7 @@ public final class GetProjectResult {
         return this.isSchemaAdvisorEnabled;
     }
     /**
-     * @return The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+     * @return The name of the project you want to create.
      * 
      */
     public Optional<String> name() {

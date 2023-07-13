@@ -138,15 +138,15 @@ def get_access_list_api_key(api_key_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAccessListApiKey:getAccessListApiKey', __args__, opts=opts, typ=GetAccessListApiKeyResult).value
 
     return AwaitableGetAccessListApiKeyResult(
-        access_count=__ret__.access_count,
-        api_key_id=__ret__.api_key_id,
-        cidr_block=__ret__.cidr_block,
-        created=__ret__.created,
-        id=__ret__.id,
-        ip_address=__ret__.ip_address,
-        last_used=__ret__.last_used,
-        last_used_address=__ret__.last_used_address,
-        org_id=__ret__.org_id)
+        access_count=pulumi.get(__ret__, 'access_count'),
+        api_key_id=pulumi.get(__ret__, 'api_key_id'),
+        cidr_block=pulumi.get(__ret__, 'cidr_block'),
+        created=pulumi.get(__ret__, 'created'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_address=pulumi.get(__ret__, 'ip_address'),
+        last_used=pulumi.get(__ret__, 'last_used'),
+        last_used_address=pulumi.get(__ret__, 'last_used_address'),
+        org_id=pulumi.get(__ret__, 'org_id'))
 
 
 @_utilities.lift_output_func(get_access_list_api_key)

@@ -117,12 +117,12 @@ def get_auditing(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAuditing:getAuditing', __args__, opts=opts, typ=GetAuditingResult).value
 
     return AwaitableGetAuditingResult(
-        audit_authorization_success=__ret__.audit_authorization_success,
-        audit_filter=__ret__.audit_filter,
-        configuration_type=__ret__.configuration_type,
-        enabled=__ret__.enabled,
-        id=__ret__.id,
-        project_id=__ret__.project_id)
+        audit_authorization_success=pulumi.get(__ret__, 'audit_authorization_success'),
+        audit_filter=pulumi.get(__ret__, 'audit_filter'),
+        configuration_type=pulumi.get(__ret__, 'configuration_type'),
+        enabled=pulumi.get(__ret__, 'enabled'),
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'))
 
 
 @_utilities.lift_output_func(get_auditing)

@@ -81,6 +81,7 @@ export class OnlineArchive extends pulumi.CustomResource {
      * The unique ID for the project
      */
     public readonly projectId!: pulumi.Output<string>;
+    public readonly schedule!: pulumi.Output<outputs.OnlineArchiveSchedule | undefined>;
     /**
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      */
@@ -109,6 +110,7 @@ export class OnlineArchive extends pulumi.CustomResource {
             resourceInputs["partitionFields"] = state ? state.partitionFields : undefined;
             resourceInputs["paused"] = state ? state.paused : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["schedule"] = state ? state.schedule : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["syncCreation"] = state ? state.syncCreation : undefined;
         } else {
@@ -136,6 +138,7 @@ export class OnlineArchive extends pulumi.CustomResource {
             resourceInputs["partitionFields"] = args ? args.partitionFields : undefined;
             resourceInputs["paused"] = args ? args.paused : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["schedule"] = args ? args.schedule : undefined;
             resourceInputs["syncCreation"] = args ? args.syncCreation : undefined;
             resourceInputs["archiveId"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
@@ -185,6 +188,7 @@ export interface OnlineArchiveState {
      * The unique ID for the project
      */
     projectId?: pulumi.Input<string>;
+    schedule?: pulumi.Input<inputs.OnlineArchiveSchedule>;
     /**
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      */
@@ -228,5 +232,6 @@ export interface OnlineArchiveArgs {
      * The unique ID for the project
      */
     projectId: pulumi.Input<string>;
+    schedule?: pulumi.Input<inputs.OnlineArchiveSchedule>;
     syncCreation?: pulumi.Input<boolean>;
 }

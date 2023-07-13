@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.OnlineArchiveCriteriaArgs;
 import com.pulumi.mongodbatlas.inputs.OnlineArchivePartitionFieldArgs;
+import com.pulumi.mongodbatlas.inputs.OnlineArchiveScheduleArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -154,6 +155,13 @@ public final class OnlineArchiveState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.projectId);
     }
 
+    @Import(name="schedule")
+    private @Nullable Output<OnlineArchiveScheduleArgs> schedule;
+
+    public Optional<Output<OnlineArchiveScheduleArgs>> schedule() {
+        return Optional.ofNullable(this.schedule);
+    }
+
     /**
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
@@ -188,6 +196,7 @@ public final class OnlineArchiveState extends com.pulumi.resources.ResourceArgs 
         this.partitionFields = $.partitionFields;
         this.paused = $.paused;
         this.projectId = $.projectId;
+        this.schedule = $.schedule;
         this.state = $.state;
         this.syncCreation = $.syncCreation;
     }
@@ -407,6 +416,15 @@ public final class OnlineArchiveState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        public Builder schedule(@Nullable Output<OnlineArchiveScheduleArgs> schedule) {
+            $.schedule = schedule;
+            return this;
+        }
+
+        public Builder schedule(OnlineArchiveScheduleArgs schedule) {
+            return schedule(Output.of(schedule));
         }
 
         /**
