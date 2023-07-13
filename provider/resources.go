@@ -19,13 +19,15 @@ import (
 	"path/filepath"
 	"unicode"
 
+	// Enable embedding metadata
+	_ "embed"
+
 	"github.com/mongodb/terraform-provider-mongodbatlas/mongodbatlas"
 	"github.com/pulumi/pulumi-mongodbatlas/provider/v3/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
+	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 
 // all of the token components used below.
@@ -55,6 +57,9 @@ func makeResource(mod string, res string) tokens.Type {
 	return tokens.Type(makeToken(mod, res))
 }
 
+//go:emebed cmd/pulumi-resource-mongodbatlas/bridge-metadata.json
+var metadata []byte
+
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
@@ -71,10 +76,12 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-mongodbatlas",
 		GitHubOrg:   "mongodb",
+		Version:     version.Version,
 		Config: map[string]*tfbridge.SchemaInfo{
 			"private_key": {MarkAsOptional: &trueValue},
 			"public_key":  {MarkAsOptional: &trueValue},
 		},
+		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"mongodbatlas_custom_db_role": {Tok: makeResource(mainMod, "CustomDbRole")},
 			"mongodbatlas_custom_dns_configuration_cluster_aws": {
@@ -288,11 +295,12 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	err := x.ComputeDefaults(&prov, x.TokensSingleModule("mongodbatlas_", mainMod,
-		x.MakeStandardToken(mainPkg)))
-	contract.AssertNoErrorf(err, "auto token mapping failed")
+	prov.MustComputeTokens(tks.SingleModule("mongodbatlas_", mainMod,
+		tks.MakeStandard(mainPkg)))
 
 	prov.SetAutonaming(255, "-")
+
+	prov.MustApplyAutoAliases()
 
 	return prov
 }
