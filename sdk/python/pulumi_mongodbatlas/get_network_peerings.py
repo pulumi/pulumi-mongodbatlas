@@ -100,9 +100,9 @@ def get_network_peerings(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getNetworkPeerings:getNetworkPeerings', __args__, opts=opts, typ=GetNetworkPeeringsResult).value
 
     return AwaitableGetNetworkPeeringsResult(
-        id=__ret__.id,
-        project_id=__ret__.project_id,
-        results=__ret__.results)
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_network_peerings)

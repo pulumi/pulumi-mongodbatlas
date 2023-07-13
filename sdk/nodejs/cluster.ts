@@ -216,7 +216,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly replicationSpecs!: pulumi.Output<outputs.ClusterReplicationSpec[]>;
     /**
-     * Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
      */
     public readonly retainBackupsEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -541,7 +541,7 @@ export interface ClusterState {
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
     /**
-     * Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
      */
     retainBackupsEnabled?: pulumi.Input<boolean>;
     /**
@@ -718,7 +718,7 @@ export interface ClusterArgs {
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
     /**
-     * Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
      */
     retainBackupsEnabled?: pulumi.Input<boolean>;
     /**

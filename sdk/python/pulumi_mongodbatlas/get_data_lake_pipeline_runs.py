@@ -94,10 +94,10 @@ def get_data_lake_pipeline_runs(pipeline_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns', __args__, opts=opts, typ=GetDataLakePipelineRunsResult).value
 
     return AwaitableGetDataLakePipelineRunsResult(
-        id=__ret__.id,
-        pipeline_name=__ret__.pipeline_name,
-        project_id=__ret__.project_id,
-        results=__ret__.results)
+        id=pulumi.get(__ret__, 'id'),
+        pipeline_name=pulumi.get(__ret__, 'pipeline_name'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_data_lake_pipeline_runs)

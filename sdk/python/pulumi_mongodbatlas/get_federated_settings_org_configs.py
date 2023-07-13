@@ -122,11 +122,11 @@ def get_federated_settings_org_configs(federation_settings_id: Optional[str] = N
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs', __args__, opts=opts, typ=GetFederatedSettingsOrgConfigsResult).value
 
     return AwaitableGetFederatedSettingsOrgConfigsResult(
-        federation_settings_id=__ret__.federation_settings_id,
-        id=__ret__.id,
-        items_per_page=__ret__.items_per_page,
-        page_num=__ret__.page_num,
-        results=__ret__.results)
+        federation_settings_id=pulumi.get(__ret__, 'federation_settings_id'),
+        id=pulumi.get(__ret__, 'id'),
+        items_per_page=pulumi.get(__ret__, 'items_per_page'),
+        page_num=pulumi.get(__ret__, 'page_num'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_federated_settings_org_configs)

@@ -155,13 +155,13 @@ def get_cloud_backup_snapshot_restore_jobs(cluster_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs', __args__, opts=opts, typ=GetCloudBackupSnapshotRestoreJobsResult).value
 
     return AwaitableGetCloudBackupSnapshotRestoreJobsResult(
-        cluster_name=__ret__.cluster_name,
-        id=__ret__.id,
-        items_per_page=__ret__.items_per_page,
-        page_num=__ret__.page_num,
-        project_id=__ret__.project_id,
-        results=__ret__.results,
-        total_count=__ret__.total_count)
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        id=pulumi.get(__ret__, 'id'),
+        items_per_page=pulumi.get(__ret__, 'items_per_page'),
+        page_num=pulumi.get(__ret__, 'page_num'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'),
+        total_count=pulumi.get(__ret__, 'total_count'))
 
 
 @_utilities.lift_output_func(get_cloud_backup_snapshot_restore_jobs)

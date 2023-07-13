@@ -119,12 +119,12 @@ def get_privatelink_endpoint_service_adl(endpoint_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl', __args__, opts=opts, typ=GetPrivatelinkEndpointServiceAdlResult).value
 
     return AwaitableGetPrivatelinkEndpointServiceAdlResult(
-        comment=__ret__.comment,
-        endpoint_id=__ret__.endpoint_id,
-        id=__ret__.id,
-        project_id=__ret__.project_id,
-        provider_name=__ret__.provider_name,
-        type=__ret__.type)
+        comment=pulumi.get(__ret__, 'comment'),
+        endpoint_id=pulumi.get(__ret__, 'endpoint_id'),
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        provider_name=pulumi.get(__ret__, 'provider_name'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_privatelink_endpoint_service_adl)

@@ -170,16 +170,16 @@ def get_federated_query_limit(limit_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit', __args__, opts=opts, typ=GetFederatedQueryLimitResult).value
 
     return AwaitableGetFederatedQueryLimitResult(
-        current_usage=__ret__.current_usage,
-        default_limit=__ret__.default_limit,
-        id=__ret__.id,
-        last_modified_date=__ret__.last_modified_date,
-        limit_name=__ret__.limit_name,
-        maximum_limit=__ret__.maximum_limit,
-        overrun_policy=__ret__.overrun_policy,
-        project_id=__ret__.project_id,
-        tenant_name=__ret__.tenant_name,
-        value=__ret__.value)
+        current_usage=pulumi.get(__ret__, 'current_usage'),
+        default_limit=pulumi.get(__ret__, 'default_limit'),
+        id=pulumi.get(__ret__, 'id'),
+        last_modified_date=pulumi.get(__ret__, 'last_modified_date'),
+        limit_name=pulumi.get(__ret__, 'limit_name'),
+        maximum_limit=pulumi.get(__ret__, 'maximum_limit'),
+        overrun_policy=pulumi.get(__ret__, 'overrun_policy'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        tenant_name=pulumi.get(__ret__, 'tenant_name'),
+        value=pulumi.get(__ret__, 'value'))
 
 
 @_utilities.lift_output_func(get_federated_query_limit)

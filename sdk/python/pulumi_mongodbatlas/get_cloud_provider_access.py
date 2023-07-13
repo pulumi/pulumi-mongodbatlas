@@ -94,9 +94,9 @@ def get_cloud_provider_access(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess', __args__, opts=opts, typ=GetCloudProviderAccessResult).value
 
     return AwaitableGetCloudProviderAccessResult(
-        aws_iam_roles=__ret__.aws_iam_roles,
-        id=__ret__.id,
-        project_id=__ret__.project_id)
+        aws_iam_roles=pulumi.get(__ret__, 'aws_iam_roles'),
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'))
 
 
 @_utilities.lift_output_func(get_cloud_provider_access)

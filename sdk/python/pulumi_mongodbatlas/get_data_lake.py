@@ -179,15 +179,15 @@ def get_data_lake(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getDataLake:getDataLake', __args__, opts=opts, typ=GetDataLakeResult).value
 
     return AwaitableGetDataLakeResult(
-        aws=__ret__.aws,
-        data_process_regions=__ret__.data_process_regions,
-        hostnames=__ret__.hostnames,
-        id=__ret__.id,
-        name=__ret__.name,
-        project_id=__ret__.project_id,
-        state=__ret__.state,
-        storage_databases=__ret__.storage_databases,
-        storage_stores=__ret__.storage_stores)
+        aws=pulumi.get(__ret__, 'aws'),
+        data_process_regions=pulumi.get(__ret__, 'data_process_regions'),
+        hostnames=pulumi.get(__ret__, 'hostnames'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        state=pulumi.get(__ret__, 'state'),
+        storage_databases=pulumi.get(__ret__, 'storage_databases'),
+        storage_stores=pulumi.get(__ret__, 'storage_stores'))
 
 
 @_utilities.lift_output_func(get_data_lake)

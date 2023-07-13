@@ -29,6 +29,9 @@ export interface GetCloudBackupSnapshotArgs {
      * The name of the Atlas cluster that contains the snapshot you want to retrieve.
      */
     clusterName: string;
+    /**
+     * The unique identifier of the project for the Atlas cluster.
+     */
     projectId: string;
     /**
      * The unique identifier of the snapshot you want to retrieve.
@@ -117,6 +120,9 @@ export interface GetCloudBackupSnapshotOutputArgs {
      * The name of the Atlas cluster that contains the snapshot you want to retrieve.
      */
     clusterName: pulumi.Input<string>;
+    /**
+     * The unique identifier of the project for the Atlas cluster.
+     */
     projectId: pulumi.Input<string>;
     /**
      * The unique identifier of the snapshot you want to retrieve.

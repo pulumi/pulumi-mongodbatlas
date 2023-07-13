@@ -158,11 +158,11 @@ def get509_authentication_database_user(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser', __args__, opts=opts, typ=Get509AuthenticationDatabaseUserResult).value
 
     return AwaitableGet509AuthenticationDatabaseUserResult(
-        certificates=__ret__.certificates,
-        customer_x509_cas=__ret__.customer_x509_cas,
-        id=__ret__.id,
-        project_id=__ret__.project_id,
-        username=__ret__.username)
+        certificates=pulumi.get(__ret__, 'certificates'),
+        customer_x509_cas=pulumi.get(__ret__, 'customer_x509_cas'),
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get509_authentication_database_user)

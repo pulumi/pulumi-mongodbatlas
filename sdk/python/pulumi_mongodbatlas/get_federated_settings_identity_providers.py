@@ -123,11 +123,11 @@ def get_federated_settings_identity_providers(federation_settings_id: Optional[s
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders', __args__, opts=opts, typ=GetFederatedSettingsIdentityProvidersResult).value
 
     return AwaitableGetFederatedSettingsIdentityProvidersResult(
-        federation_settings_id=__ret__.federation_settings_id,
-        id=__ret__.id,
-        items_per_page=__ret__.items_per_page,
-        page_num=__ret__.page_num,
-        results=__ret__.results)
+        federation_settings_id=pulumi.get(__ret__, 'federation_settings_id'),
+        id=pulumi.get(__ret__, 'id'),
+        items_per_page=pulumi.get(__ret__, 'items_per_page'),
+        page_num=pulumi.get(__ret__, 'page_num'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_federated_settings_identity_providers)

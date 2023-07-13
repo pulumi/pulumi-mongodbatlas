@@ -129,6 +129,9 @@ class DatabaseUserArgs:
         """
         Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         """
+        warnings.warn("""use auth_database_name instead""", DeprecationWarning)
+        pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
+
         return pulumi.get(self, "database_name")
 
     @database_name.setter
@@ -270,6 +273,9 @@ class _DatabaseUserState:
         """
         Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         """
+        warnings.warn("""use auth_database_name instead""", DeprecationWarning)
+        pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
+
         return pulumi.get(self, "database_name")
 
     @database_name.setter
@@ -736,6 +742,9 @@ class DatabaseUser(pulumi.CustomResource):
         """
         Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         """
+        warnings.warn("""use auth_database_name instead""", DeprecationWarning)
+        pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
+
         return pulumi.get(self, "database_name")
 
     @property

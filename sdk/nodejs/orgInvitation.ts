@@ -105,12 +105,7 @@ export class OrgInvitation extends pulumi.CustomResource {
      */
     public readonly orgId!: pulumi.Output<string>;
     /**
-     * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-     * * ORG_OWNER
-     * * ORG_GROUP_CREATOR
-     * * ORG_BILLING_ADMIN
-     * * ORG_READ_ONLY
-     * * ORG_MEMBER
+     * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      */
     public readonly roles!: pulumi.Output<string[]>;
     /**
@@ -193,12 +188,7 @@ export interface OrgInvitationState {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-     * * ORG_OWNER
-     * * ORG_GROUP_CREATOR
-     * * ORG_BILLING_ADMIN
-     * * ORG_READ_ONLY
-     * * ORG_MEMBER
+     * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -220,12 +210,7 @@ export interface OrgInvitationArgs {
      */
     orgId: pulumi.Input<string>;
     /**
-     * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-     * * ORG_OWNER
-     * * ORG_GROUP_CREATOR
-     * * ORG_BILLING_ADMIN
-     * * ORG_READ_ONLY
-     * * ORG_MEMBER
+     * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      */
     roles: pulumi.Input<pulumi.Input<string>[]>;
     /**

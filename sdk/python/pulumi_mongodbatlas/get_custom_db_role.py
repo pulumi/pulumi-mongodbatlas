@@ -135,11 +135,11 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[pulumi.InputType['GetC
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCustomDbRole:getCustomDbRole', __args__, opts=opts, typ=GetCustomDbRoleResult).value
 
     return AwaitableGetCustomDbRoleResult(
-        actions=__ret__.actions,
-        id=__ret__.id,
-        inherited_roles=__ret__.inherited_roles,
-        project_id=__ret__.project_id,
-        role_name=__ret__.role_name)
+        actions=pulumi.get(__ret__, 'actions'),
+        id=pulumi.get(__ret__, 'id'),
+        inherited_roles=pulumi.get(__ret__, 'inherited_roles'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        role_name=pulumi.get(__ret__, 'role_name'))
 
 
 @_utilities.lift_output_func(get_custom_db_role)

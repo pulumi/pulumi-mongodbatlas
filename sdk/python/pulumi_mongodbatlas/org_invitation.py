@@ -21,12 +21,7 @@ class OrgInvitationArgs:
         """
         The set of arguments for constructing a OrgInvitation resource.
         :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-               * ORG_OWNER
-               * ORG_GROUP_CREATOR
-               * ORG_BILLING_ADMIN
-               * ORG_READ_ONLY
-               * ORG_MEMBER
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         :param pulumi.Input[str] username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] teams_ids: An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
         """
@@ -52,12 +47,7 @@ class OrgInvitationArgs:
     @pulumi.getter
     def roles(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-        * ORG_OWNER
-        * ORG_GROUP_CREATOR
-        * ORG_BILLING_ADMIN
-        * ORG_READ_ONLY
-        * ORG_MEMBER
+        Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         """
         return pulumi.get(self, "roles")
 
@@ -108,12 +98,7 @@ class _OrgInvitationState:
         :param pulumi.Input[str] invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
         :param pulumi.Input[str] inviter_username: Atlas user who invited `username` to the organization.
         :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-               * ORG_OWNER
-               * ORG_GROUP_CREATOR
-               * ORG_BILLING_ADMIN
-               * ORG_READ_ONLY
-               * ORG_MEMBER
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] teams_ids: An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
         :param pulumi.Input[str] username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
         """
@@ -198,12 +183,7 @@ class _OrgInvitationState:
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-        * ORG_OWNER
-        * ORG_GROUP_CREATOR
-        * ORG_BILLING_ADMIN
-        * ORG_READ_ONLY
-        * ORG_MEMBER
+        Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         """
         return pulumi.get(self, "roles")
 
@@ -298,12 +278,7 @@ class OrgInvitation(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-               * ORG_OWNER
-               * ORG_GROUP_CREATOR
-               * ORG_BILLING_ADMIN
-               * ORG_READ_ONLY
-               * ORG_MEMBER
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] teams_ids: An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
         :param pulumi.Input[str] username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
         """
@@ -434,12 +409,7 @@ class OrgInvitation(pulumi.CustomResource):
         :param pulumi.Input[str] invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
         :param pulumi.Input[str] inviter_username: Atlas user who invited `username` to the organization.
         :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-               * ORG_OWNER
-               * ORG_GROUP_CREATOR
-               * ORG_BILLING_ADMIN
-               * ORG_READ_ONLY
-               * ORG_MEMBER
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] teams_ids: An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
         :param pulumi.Input[str] username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
         """
@@ -501,12 +471,7 @@ class OrgInvitation(pulumi.CustomResource):
     @pulumi.getter
     def roles(self) -> pulumi.Output[Sequence[str]]:
         """
-        Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-        * ORG_OWNER
-        * ORG_GROUP_CREATOR
-        * ORG_BILLING_ADMIN
-        * ORG_READ_ONLY
-        * ORG_MEMBER
+        Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         """
         return pulumi.get(self, "roles")
 

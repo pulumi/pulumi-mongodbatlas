@@ -202,19 +202,19 @@ def get_data_lake_pipeline_run(pipeline_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun', __args__, opts=opts, typ=GetDataLakePipelineRunResult).value
 
     return AwaitableGetDataLakePipelineRunResult(
-        backup_frequency_type=__ret__.backup_frequency_type,
-        created_date=__ret__.created_date,
-        dataset_name=__ret__.dataset_name,
-        id=__ret__.id,
-        last_updated_date=__ret__.last_updated_date,
-        phase=__ret__.phase,
-        pipeline_id=__ret__.pipeline_id,
-        pipeline_name=__ret__.pipeline_name,
-        pipeline_run_id=__ret__.pipeline_run_id,
-        project_id=__ret__.project_id,
-        snapshot_id=__ret__.snapshot_id,
-        state=__ret__.state,
-        stats=__ret__.stats)
+        backup_frequency_type=pulumi.get(__ret__, 'backup_frequency_type'),
+        created_date=pulumi.get(__ret__, 'created_date'),
+        dataset_name=pulumi.get(__ret__, 'dataset_name'),
+        id=pulumi.get(__ret__, 'id'),
+        last_updated_date=pulumi.get(__ret__, 'last_updated_date'),
+        phase=pulumi.get(__ret__, 'phase'),
+        pipeline_id=pulumi.get(__ret__, 'pipeline_id'),
+        pipeline_name=pulumi.get(__ret__, 'pipeline_name'),
+        pipeline_run_id=pulumi.get(__ret__, 'pipeline_run_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
+        state=pulumi.get(__ret__, 'state'),
+        stats=pulumi.get(__ret__, 'stats'))
 
 
 @_utilities.lift_output_func(get_data_lake_pipeline_run)

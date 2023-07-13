@@ -26,7 +26,8 @@ func LookupCloudBackupSnapshot(ctx *pulumi.Context, args *LookupCloudBackupSnaps
 type LookupCloudBackupSnapshotArgs struct {
 	// The name of the Atlas cluster that contains the snapshot you want to retrieve.
 	ClusterName string `pulumi:"clusterName"`
-	ProjectId   string `pulumi:"projectId"`
+	// The unique identifier of the project for the Atlas cluster.
+	ProjectId string `pulumi:"projectId"`
 	// The unique identifier of the snapshot you want to retrieve.
 	SnapshotId string `pulumi:"snapshotId"`
 }
@@ -83,7 +84,8 @@ func LookupCloudBackupSnapshotOutput(ctx *pulumi.Context, args LookupCloudBackup
 type LookupCloudBackupSnapshotOutputArgs struct {
 	// The name of the Atlas cluster that contains the snapshot you want to retrieve.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	ProjectId   pulumi.StringInput `pulumi:"projectId"`
+	// The unique identifier of the project for the Atlas cluster.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The unique identifier of the snapshot you want to retrieve.
 	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
 }

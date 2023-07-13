@@ -66,14 +66,14 @@ public final class AuditingArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The unique ID for the project to configure auditing.
+     * The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to configure auditing.
+     * @return The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
      * 
      */
     public Output<String> projectId() {
@@ -175,7 +175,7 @@ public final class AuditingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId The unique ID for the project to configure auditing.
+         * @param projectId The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
          * 
          * @return builder
          * 
@@ -186,7 +186,7 @@ public final class AuditingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId The unique ID for the project to configure auditing.
+         * @param projectId The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
          * 
          * @return builder
          * 

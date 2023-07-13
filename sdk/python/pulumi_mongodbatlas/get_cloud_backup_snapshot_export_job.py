@@ -220,21 +220,21 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob', __args__, opts=opts, typ=GetCloudBackupSnapshotExportJobResult).value
 
     return AwaitableGetCloudBackupSnapshotExportJobResult(
-        cluster_name=__ret__.cluster_name,
-        components=__ret__.components,
-        created_at=__ret__.created_at,
-        custom_datas=__ret__.custom_datas,
-        err_msg=__ret__.err_msg,
-        export_bucket_id=__ret__.export_bucket_id,
-        export_job_id=__ret__.export_job_id,
-        export_status_exported_collections=__ret__.export_status_exported_collections,
-        export_status_total_collections=__ret__.export_status_total_collections,
-        finished_at=__ret__.finished_at,
-        id=__ret__.id,
-        prefix=__ret__.prefix,
-        project_id=__ret__.project_id,
-        snapshot_id=__ret__.snapshot_id,
-        state=__ret__.state)
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        components=pulumi.get(__ret__, 'components'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        custom_datas=pulumi.get(__ret__, 'custom_datas'),
+        err_msg=pulumi.get(__ret__, 'err_msg'),
+        export_bucket_id=pulumi.get(__ret__, 'export_bucket_id'),
+        export_job_id=pulumi.get(__ret__, 'export_job_id'),
+        export_status_exported_collections=pulumi.get(__ret__, 'export_status_exported_collections'),
+        export_status_total_collections=pulumi.get(__ret__, 'export_status_total_collections'),
+        finished_at=pulumi.get(__ret__, 'finished_at'),
+        id=pulumi.get(__ret__, 'id'),
+        prefix=pulumi.get(__ret__, 'prefix'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
+        state=pulumi.get(__ret__, 'state'))
 
 
 @_utilities.lift_output_func(get_cloud_backup_snapshot_export_job)

@@ -15,9 +15,7 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
-// > **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
-//
-//	**Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
+// > **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
 //
 // > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 //
@@ -50,7 +48,7 @@ type ThirdPartyIntegration struct {
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey pulumi.StringPtrOutput `pulumi:"routingKey"`
@@ -66,15 +64,15 @@ type ThirdPartyIntegration struct {
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	// * NEW_RELIC*
+	// * FLOWDOCK*
 	//
-	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	// *resource has now been fully deprecated as part of v1.10.0 release
 	//
 	// Additional values based on Type
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -165,7 +163,7 @@ type thirdPartyIntegrationState struct {
 	Password *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId *string `pulumi:"projectId"`
-	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
 	Region *string `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey *string `pulumi:"routingKey"`
@@ -181,15 +179,15 @@ type thirdPartyIntegrationState struct {
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	// * NEW_RELIC*
+	// * FLOWDOCK*
 	//
-	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	// *resource has now been fully deprecated as part of v1.10.0 release
 	//
 	// Additional values based on Type
 	Type *string `pulumi:"type"`
@@ -211,7 +209,7 @@ type ThirdPartyIntegrationState struct {
 	Password pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringPtrInput
-	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
 	Region pulumi.StringPtrInput
 	// An optional field for your Routing Key.
 	RoutingKey pulumi.StringPtrInput
@@ -227,15 +225,15 @@ type ThirdPartyIntegrationState struct {
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	// * NEW_RELIC*
+	// * FLOWDOCK*
 	//
-	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	// *resource has now been fully deprecated as part of v1.10.0 release
 	//
 	// Additional values based on Type
 	Type pulumi.StringPtrInput
@@ -261,7 +259,7 @@ type thirdPartyIntegrationArgs struct {
 	Password *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
-	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
 	Region *string `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey *string `pulumi:"routingKey"`
@@ -277,15 +275,15 @@ type thirdPartyIntegrationArgs struct {
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	// * NEW_RELIC*
+	// * FLOWDOCK*
 	//
-	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	// *resource has now been fully deprecated as part of v1.10.0 release
 	//
 	// Additional values based on Type
 	Type string `pulumi:"type"`
@@ -308,7 +306,7 @@ type ThirdPartyIntegrationArgs struct {
 	Password pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput
-	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
 	Region pulumi.StringPtrInput
 	// An optional field for your Routing Key.
 	RoutingKey pulumi.StringPtrInput
@@ -324,15 +322,15 @@ type ThirdPartyIntegrationArgs struct {
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	// * NEW_RELIC*
+	// * FLOWDOCK*
 	//
-	// *resource is now deprecated and will be removed in the next major version, 1.9.0
+	// *resource has now been fully deprecated as part of v1.10.0 release
 	//
 	// Additional values based on Type
 	Type pulumi.StringInput
@@ -458,7 +456,7 @@ func (o ThirdPartyIntegrationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
 func (o ThirdPartyIntegrationOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -495,15 +493,15 @@ func (o ThirdPartyIntegrationOutput) TeamName() pulumi.StringPtrOutput {
 // Third-Party Integration Settings type
 // * PAGER_DUTY
 // * DATADOG
-// * NEW_RELIC*
 // * OPS_GENIE
 // * VICTOR_OPS
-// * FLOWDOCK*
 // * WEBHOOK
 // * MICROSOFT_TEAMS
 // * PROMETHEUS
+// * NEW_RELIC*
+// * FLOWDOCK*
 //
-// *resource is now deprecated and will be removed in the next major version, 1.9.0
+// *resource has now been fully deprecated as part of v1.10.0 release
 //
 // Additional values based on Type
 func (o ThirdPartyIntegrationOutput) Type() pulumi.StringOutput {

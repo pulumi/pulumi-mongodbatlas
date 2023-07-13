@@ -105,10 +105,10 @@ def get_federated_query_limits(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits', __args__, opts=opts, typ=GetFederatedQueryLimitsResult).value
 
     return AwaitableGetFederatedQueryLimitsResult(
-        id=__ret__.id,
-        project_id=__ret__.project_id,
-        results=__ret__.results,
-        tenant_name=__ret__.tenant_name)
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'),
+        tenant_name=pulumi.get(__ret__, 'tenant_name'))
 
 
 @_utilities.lift_output_func(get_federated_query_limits)

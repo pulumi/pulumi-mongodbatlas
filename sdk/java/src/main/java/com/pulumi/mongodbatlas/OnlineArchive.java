@@ -12,6 +12,7 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.OnlineArchiveState;
 import com.pulumi.mongodbatlas.outputs.OnlineArchiveCriteria;
 import com.pulumi.mongodbatlas.outputs.OnlineArchivePartitionField;
+import com.pulumi.mongodbatlas.outputs.OnlineArchiveSchedule;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -39,6 +40,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.OnlineArchiveArgs;
  * import com.pulumi.mongodbatlas.inputs.OnlineArchivePartitionFieldArgs;
  * import com.pulumi.mongodbatlas.inputs.OnlineArchiveCriteriaArgs;
+ * import com.pulumi.mongodbatlas.inputs.OnlineArchiveScheduleArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -70,6 +72,13 @@ import javax.annotation.Nullable;
  *                 .type(&#34;DATE&#34;)
  *                 .dateField(&#34;created&#34;)
  *                 .expireAfterDays(5)
+ *                 .build())
+ *             .schedule(OnlineArchiveScheduleArgs.builder()
+ *                 .type(&#34;DAILY&#34;)
+ *                 .endHour(1)
+ *                 .endMinute(1)
+ *                 .startHour(1)
+ *                 .startMinute(1)
  *                 .build())
  *             .build());
  * 
@@ -250,6 +259,12 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      */
     public Output<String> projectId() {
         return this.projectId;
+    }
+    @Export(name="schedule", type=OnlineArchiveSchedule.class, parameters={})
+    private Output</* @Nullable */ OnlineArchiveSchedule> schedule;
+
+    public Output<Optional<OnlineArchiveSchedule>> schedule() {
+        return Codegen.optional(this.schedule);
     }
     /**
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted

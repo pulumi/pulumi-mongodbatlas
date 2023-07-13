@@ -143,14 +143,14 @@ def get_project_invitation(invitation_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProjectInvitation:getProjectInvitation', __args__, opts=opts, typ=GetProjectInvitationResult).value
 
     return AwaitableGetProjectInvitationResult(
-        created_at=__ret__.created_at,
-        expires_at=__ret__.expires_at,
-        id=__ret__.id,
-        invitation_id=__ret__.invitation_id,
-        inviter_username=__ret__.inviter_username,
-        project_id=__ret__.project_id,
-        roles=__ret__.roles,
-        username=__ret__.username)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        expires_at=pulumi.get(__ret__, 'expires_at'),
+        id=pulumi.get(__ret__, 'id'),
+        invitation_id=pulumi.get(__ret__, 'invitation_id'),
+        inviter_username=pulumi.get(__ret__, 'inviter_username'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        roles=pulumi.get(__ret__, 'roles'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get_project_invitation)

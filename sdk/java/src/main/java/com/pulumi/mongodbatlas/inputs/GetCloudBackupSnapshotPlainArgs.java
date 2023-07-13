@@ -27,9 +27,17 @@ public final class GetCloudBackupSnapshotPlainArgs extends com.pulumi.resources.
         return this.clusterName;
     }
 
+    /**
+     * The unique identifier of the project for the Atlas cluster.
+     * 
+     */
     @Import(name="projectId", required=true)
     private String projectId;
 
+    /**
+     * @return The unique identifier of the project for the Atlas cluster.
+     * 
+     */
     public String projectId() {
         return this.projectId;
     }
@@ -86,6 +94,12 @@ public final class GetCloudBackupSnapshotPlainArgs extends com.pulumi.resources.
             return this;
         }
 
+        /**
+         * @param projectId The unique identifier of the project for the Atlas cluster.
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(String projectId) {
             $.projectId = projectId;
             return this;

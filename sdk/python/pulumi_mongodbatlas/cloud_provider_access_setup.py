@@ -74,6 +74,9 @@ class _CloudProviderAccessSetupState:
     @property
     @pulumi.getter
     def aws(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        warnings.warn("""use aws_config instead""", DeprecationWarning)
+        pulumi.log.warn("""aws is deprecated: use aws_config instead""")
+
         return pulumi.get(self, "aws")
 
     @aws.setter
@@ -222,6 +225,9 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     @property
     @pulumi.getter
     def aws(self) -> pulumi.Output[Mapping[str, str]]:
+        warnings.warn("""use aws_config instead""", DeprecationWarning)
+        pulumi.log.warn("""aws is deprecated: use aws_config instead""")
+
         return pulumi.get(self, "aws")
 
     @property

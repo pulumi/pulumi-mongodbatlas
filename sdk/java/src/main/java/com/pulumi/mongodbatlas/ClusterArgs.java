@@ -562,14 +562,14 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
      * 
      */
     @Import(name="retainBackupsEnabled")
     private @Nullable Output<Boolean> retainBackupsEnabled;
 
     /**
-     * @return Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+     * @return Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
      * 
      */
     public Optional<Output<Boolean>> retainBackupsEnabled() {
@@ -1377,7 +1377,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
          * 
          * @return builder
          * 
@@ -1388,7 +1388,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
          * 
          * @return builder
          * 

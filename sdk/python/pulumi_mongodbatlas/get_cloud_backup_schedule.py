@@ -244,23 +244,23 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule', __args__, opts=opts, typ=GetCloudBackupScheduleResult).value
 
     return AwaitableGetCloudBackupScheduleResult(
-        auto_export_enabled=__ret__.auto_export_enabled,
-        cluster_id=__ret__.cluster_id,
-        cluster_name=__ret__.cluster_name,
-        copy_settings=__ret__.copy_settings,
-        exports=__ret__.exports,
-        id=__ret__.id,
-        id_policy=__ret__.id_policy,
-        next_snapshot=__ret__.next_snapshot,
-        policy_item_dailies=__ret__.policy_item_dailies,
-        policy_item_hourlies=__ret__.policy_item_hourlies,
-        policy_item_monthlies=__ret__.policy_item_monthlies,
-        policy_item_weeklies=__ret__.policy_item_weeklies,
-        project_id=__ret__.project_id,
-        reference_hour_of_day=__ret__.reference_hour_of_day,
-        reference_minute_of_hour=__ret__.reference_minute_of_hour,
-        restore_window_days=__ret__.restore_window_days,
-        use_org_and_group_names_in_export_prefix=__ret__.use_org_and_group_names_in_export_prefix)
+        auto_export_enabled=pulumi.get(__ret__, 'auto_export_enabled'),
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        copy_settings=pulumi.get(__ret__, 'copy_settings'),
+        exports=pulumi.get(__ret__, 'exports'),
+        id=pulumi.get(__ret__, 'id'),
+        id_policy=pulumi.get(__ret__, 'id_policy'),
+        next_snapshot=pulumi.get(__ret__, 'next_snapshot'),
+        policy_item_dailies=pulumi.get(__ret__, 'policy_item_dailies'),
+        policy_item_hourlies=pulumi.get(__ret__, 'policy_item_hourlies'),
+        policy_item_monthlies=pulumi.get(__ret__, 'policy_item_monthlies'),
+        policy_item_weeklies=pulumi.get(__ret__, 'policy_item_weeklies'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        reference_hour_of_day=pulumi.get(__ret__, 'reference_hour_of_day'),
+        reference_minute_of_hour=pulumi.get(__ret__, 'reference_minute_of_hour'),
+        restore_window_days=pulumi.get(__ret__, 'restore_window_days'),
+        use_org_and_group_names_in_export_prefix=pulumi.get(__ret__, 'use_org_and_group_names_in_export_prefix'))
 
 
 @_utilities.lift_output_func(get_cloud_backup_schedule)

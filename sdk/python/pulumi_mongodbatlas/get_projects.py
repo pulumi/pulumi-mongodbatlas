@@ -130,11 +130,11 @@ def get_projects(items_per_page: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProjects:getProjects', __args__, opts=opts, typ=GetProjectsResult).value
 
     return AwaitableGetProjectsResult(
-        id=__ret__.id,
-        items_per_page=__ret__.items_per_page,
-        page_num=__ret__.page_num,
-        results=__ret__.results,
-        total_count=__ret__.total_count)
+        id=pulumi.get(__ret__, 'id'),
+        items_per_page=pulumi.get(__ret__, 'items_per_page'),
+        page_num=pulumi.get(__ret__, 'page_num'),
+        results=pulumi.get(__ret__, 'results'),
+        total_count=pulumi.get(__ret__, 'total_count'))
 
 
 @_utilities.lift_output_func(get_projects)

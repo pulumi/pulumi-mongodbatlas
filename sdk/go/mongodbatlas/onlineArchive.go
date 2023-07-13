@@ -40,7 +40,8 @@ type OnlineArchive struct {
 	// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
 	Paused pulumi.BoolOutput `pulumi:"paused"`
 	// The unique ID for the project
-	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	ProjectId pulumi.StringOutput            `pulumi:"projectId"`
+	Schedule  OnlineArchiveSchedulePtrOutput `pulumi:"schedule"`
 	// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
 	State        pulumi.StringOutput  `pulumi:"state"`
 	SyncCreation pulumi.BoolPtrOutput `pulumi:"syncCreation"`
@@ -107,7 +108,8 @@ type onlineArchiveState struct {
 	// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
 	Paused *bool `pulumi:"paused"`
 	// The unique ID for the project
-	ProjectId *string `pulumi:"projectId"`
+	ProjectId *string                `pulumi:"projectId"`
+	Schedule  *OnlineArchiveSchedule `pulumi:"schedule"`
 	// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
 	State        *string `pulumi:"state"`
 	SyncCreation *bool   `pulumi:"syncCreation"`
@@ -132,6 +134,7 @@ type OnlineArchiveState struct {
 	Paused pulumi.BoolPtrInput
 	// The unique ID for the project
 	ProjectId pulumi.StringPtrInput
+	Schedule  OnlineArchiveSchedulePtrInput
 	// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
 	State        pulumi.StringPtrInput
 	SyncCreation pulumi.BoolPtrInput
@@ -157,8 +160,9 @@ type onlineArchiveArgs struct {
 	// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
 	Paused *bool `pulumi:"paused"`
 	// The unique ID for the project
-	ProjectId    string `pulumi:"projectId"`
-	SyncCreation *bool  `pulumi:"syncCreation"`
+	ProjectId    string                 `pulumi:"projectId"`
+	Schedule     *OnlineArchiveSchedule `pulumi:"schedule"`
+	SyncCreation *bool                  `pulumi:"syncCreation"`
 }
 
 // The set of arguments for constructing a OnlineArchive resource.
@@ -179,6 +183,7 @@ type OnlineArchiveArgs struct {
 	Paused pulumi.BoolPtrInput
 	// The unique ID for the project
 	ProjectId    pulumi.StringInput
+	Schedule     OnlineArchiveSchedulePtrInput
 	SyncCreation pulumi.BoolPtrInput
 }
 
@@ -312,6 +317,10 @@ func (o OnlineArchiveOutput) Paused() pulumi.BoolOutput {
 // The unique ID for the project
 func (o OnlineArchiveOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o OnlineArchiveOutput) Schedule() OnlineArchiveSchedulePtrOutput {
+	return o.ApplyT(func(v *OnlineArchive) OnlineArchiveSchedulePtrOutput { return v.Schedule }).(OnlineArchiveSchedulePtrOutput)
 }
 
 // Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted

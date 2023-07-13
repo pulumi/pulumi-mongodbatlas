@@ -119,6 +119,9 @@ class AlertConfigurationArgs:
     @property
     @pulumi.getter(name="metricThreshold")
     def metric_threshold(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
+        pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+
         return pulumi.get(self, "metric_threshold")
 
     @metric_threshold.setter
@@ -140,6 +143,9 @@ class AlertConfigurationArgs:
         """
         Threshold value outside of which an alert will be triggered.
         """
+        warnings.warn("""use threshold_config instead""", DeprecationWarning)
+        pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
+
         return pulumi.get(self, "threshold")
 
     @threshold.setter
@@ -280,6 +286,9 @@ class _AlertConfigurationState:
     @property
     @pulumi.getter(name="metricThreshold")
     def metric_threshold(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
+        pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+
         return pulumi.get(self, "metric_threshold")
 
     @metric_threshold.setter
@@ -322,6 +331,9 @@ class _AlertConfigurationState:
         """
         Threshold value outside of which an alert will be triggered.
         """
+        warnings.warn("""use threshold_config instead""", DeprecationWarning)
+        pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
+
         return pulumi.get(self, "threshold")
 
     @threshold.setter
@@ -796,6 +808,9 @@ class AlertConfiguration(pulumi.CustomResource):
     @property
     @pulumi.getter(name="metricThreshold")
     def metric_threshold(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
+        pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+
         return pulumi.get(self, "metric_threshold")
 
     @property
@@ -822,6 +837,9 @@ class AlertConfiguration(pulumi.CustomResource):
         """
         Threshold value outside of which an alert will be triggered.
         """
+        warnings.warn("""use threshold_config instead""", DeprecationWarning)
+        pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
+
         return pulumi.get(self, "threshold")
 
     @property

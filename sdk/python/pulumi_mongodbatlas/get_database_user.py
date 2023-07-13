@@ -31,10 +31,6 @@ class GetDatabaseUserResult:
         pulumi.set(__self__, "aws_iam_type", aws_iam_type)
         if database_name and not isinstance(database_name, str):
             raise TypeError("Expected argument 'database_name' to be a str")
-        if database_name is not None:
-            warnings.warn("""use auth_database_name instead""", DeprecationWarning)
-            pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
-
         pulumi.set(__self__, "database_name", database_name)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
@@ -80,6 +76,9 @@ class GetDatabaseUserResult:
         """
         Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         """
+        warnings.warn("""use auth_database_name instead""", DeprecationWarning)
+        pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
+
         return pulumi.get(self, "database_name")
 
     @property
@@ -184,17 +183,17 @@ def get_database_user(auth_database_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getDatabaseUser:getDatabaseUser', __args__, opts=opts, typ=GetDatabaseUserResult).value
 
     return AwaitableGetDatabaseUserResult(
-        auth_database_name=__ret__.auth_database_name,
-        aws_iam_type=__ret__.aws_iam_type,
-        database_name=__ret__.database_name,
-        id=__ret__.id,
-        labels=__ret__.labels,
-        ldap_auth_type=__ret__.ldap_auth_type,
-        project_id=__ret__.project_id,
-        roles=__ret__.roles,
-        scopes=__ret__.scopes,
-        username=__ret__.username,
-        x509_type=__ret__.x509_type)
+        auth_database_name=pulumi.get(__ret__, 'auth_database_name'),
+        aws_iam_type=pulumi.get(__ret__, 'aws_iam_type'),
+        database_name=pulumi.get(__ret__, 'database_name'),
+        id=pulumi.get(__ret__, 'id'),
+        labels=pulumi.get(__ret__, 'labels'),
+        ldap_auth_type=pulumi.get(__ret__, 'ldap_auth_type'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        roles=pulumi.get(__ret__, 'roles'),
+        scopes=pulumi.get(__ret__, 'scopes'),
+        username=pulumi.get(__ret__, 'username'),
+        x509_type=pulumi.get(__ret__, 'x509_type'))
 
 
 @_utilities.lift_output_func(get_database_user)

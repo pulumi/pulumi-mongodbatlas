@@ -198,17 +198,17 @@ def get_data_lake_pipeline(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getDataLakePipeline:getDataLakePipeline', __args__, opts=opts, typ=GetDataLakePipelineResult).value
 
     return AwaitableGetDataLakePipelineResult(
-        created_date=__ret__.created_date,
-        id=__ret__.id,
-        ingestion_schedules=__ret__.ingestion_schedules,
-        last_updated_date=__ret__.last_updated_date,
-        name=__ret__.name,
-        project_id=__ret__.project_id,
-        sinks=__ret__.sinks,
-        snapshots=__ret__.snapshots,
-        sources=__ret__.sources,
-        state=__ret__.state,
-        transformations=__ret__.transformations)
+        created_date=pulumi.get(__ret__, 'created_date'),
+        id=pulumi.get(__ret__, 'id'),
+        ingestion_schedules=pulumi.get(__ret__, 'ingestion_schedules'),
+        last_updated_date=pulumi.get(__ret__, 'last_updated_date'),
+        name=pulumi.get(__ret__, 'name'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        sinks=pulumi.get(__ret__, 'sinks'),
+        snapshots=pulumi.get(__ret__, 'snapshots'),
+        sources=pulumi.get(__ret__, 'sources'),
+        state=pulumi.get(__ret__, 'state'),
+        transformations=pulumi.get(__ret__, 'transformations'))
 
 
 @_utilities.lift_output_func(get_data_lake_pipeline)

@@ -110,11 +110,11 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig', __args__, opts=opts, typ=GetGlobalClusterConfigResult).value
 
     return AwaitableGetGlobalClusterConfigResult(
-        cluster_name=__ret__.cluster_name,
-        custom_zone_mapping=__ret__.custom_zone_mapping,
-        id=__ret__.id,
-        managed_namespaces=__ret__.managed_namespaces,
-        project_id=__ret__.project_id)
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        custom_zone_mapping=pulumi.get(__ret__, 'custom_zone_mapping'),
+        id=pulumi.get(__ret__, 'id'),
+        managed_namespaces=pulumi.get(__ret__, 'managed_namespaces'),
+        project_id=pulumi.get(__ret__, 'project_id'))
 
 
 @_utilities.lift_output_func(get_global_cluster_config)

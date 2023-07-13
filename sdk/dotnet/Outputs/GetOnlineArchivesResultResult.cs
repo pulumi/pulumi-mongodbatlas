@@ -32,6 +32,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The unique ID for the project.
         /// </summary>
         public readonly string ProjectId;
+        public readonly ImmutableArray<Outputs.GetOnlineArchivesResultScheduleResult> Schedules;
         public readonly string State;
 
         [OutputConstructor]
@@ -54,6 +55,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string projectId,
 
+            ImmutableArray<Outputs.GetOnlineArchivesResultScheduleResult> schedules,
+
             string state)
         {
             ArchiveId = archiveId;
@@ -65,6 +68,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             PartitionFields = partitionFields;
             Paused = paused;
             ProjectId = projectId;
+            Schedules = schedules;
             State = state;
         }
     }

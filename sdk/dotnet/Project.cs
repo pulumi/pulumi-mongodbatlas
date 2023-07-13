@@ -10,6 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.Project` provides a Project resource. This allows project to be created.
+    /// 
+    /// &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -133,7 +137,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> IsSchemaAdvisorEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        /// The name of the project you want to create.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -257,7 +261,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? IsSchemaAdvisorEnabled { get; set; }
 
         /// <summary>
-        /// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        /// The name of the project you want to create.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -360,7 +364,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? IsSchemaAdvisorEnabled { get; set; }
 
         /// <summary>
-        /// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        /// The name of the project you want to create.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

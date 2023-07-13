@@ -115,12 +115,12 @@ def get_access_list_api_keys(api_key_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys', __args__, opts=opts, typ=GetAccessListApiKeysResult).value
 
     return AwaitableGetAccessListApiKeysResult(
-        api_key_id=__ret__.api_key_id,
-        id=__ret__.id,
-        items_per_page=__ret__.items_per_page,
-        org_id=__ret__.org_id,
-        page_num=__ret__.page_num,
-        results=__ret__.results)
+        api_key_id=pulumi.get(__ret__, 'api_key_id'),
+        id=pulumi.get(__ret__, 'id'),
+        items_per_page=pulumi.get(__ret__, 'items_per_page'),
+        org_id=pulumi.get(__ret__, 'org_id'),
+        page_num=pulumi.get(__ret__, 'page_num'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_access_list_api_keys)

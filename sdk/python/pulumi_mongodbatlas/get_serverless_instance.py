@@ -214,20 +214,20 @@ def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getServerlessInstance:getServerlessInstance', __args__, opts=opts, typ=GetServerlessInstanceResult).value
 
     return AwaitableGetServerlessInstanceResult(
-        connection_strings_private_endpoint_srvs=__ret__.connection_strings_private_endpoint_srvs,
-        connection_strings_standard_srv=__ret__.connection_strings_standard_srv,
-        continuous_backup_enabled=__ret__.continuous_backup_enabled,
-        create_date=__ret__.create_date,
-        id=__ret__.id,
-        links=__ret__.links,
-        mongo_db_version=__ret__.mongo_db_version,
-        name=__ret__.name,
-        project_id=__ret__.project_id,
-        provider_settings_backing_provider_name=__ret__.provider_settings_backing_provider_name,
-        provider_settings_provider_name=__ret__.provider_settings_provider_name,
-        provider_settings_region_name=__ret__.provider_settings_region_name,
-        state_name=__ret__.state_name,
-        termination_protection_enabled=__ret__.termination_protection_enabled)
+        connection_strings_private_endpoint_srvs=pulumi.get(__ret__, 'connection_strings_private_endpoint_srvs'),
+        connection_strings_standard_srv=pulumi.get(__ret__, 'connection_strings_standard_srv'),
+        continuous_backup_enabled=pulumi.get(__ret__, 'continuous_backup_enabled'),
+        create_date=pulumi.get(__ret__, 'create_date'),
+        id=pulumi.get(__ret__, 'id'),
+        links=pulumi.get(__ret__, 'links'),
+        mongo_db_version=pulumi.get(__ret__, 'mongo_db_version'),
+        name=pulumi.get(__ret__, 'name'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        provider_settings_backing_provider_name=pulumi.get(__ret__, 'provider_settings_backing_provider_name'),
+        provider_settings_provider_name=pulumi.get(__ret__, 'provider_settings_provider_name'),
+        provider_settings_region_name=pulumi.get(__ret__, 'provider_settings_region_name'),
+        state_name=pulumi.get(__ret__, 'state_name'),
+        termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'))
 
 
 @_utilities.lift_output_func(get_serverless_instance)

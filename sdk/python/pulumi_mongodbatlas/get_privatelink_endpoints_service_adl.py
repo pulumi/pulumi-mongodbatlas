@@ -116,11 +116,11 @@ def get_privatelink_endpoints_service_adl(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivatelinkEndpointsServiceAdl:getPrivatelinkEndpointsServiceAdl', __args__, opts=opts, typ=GetPrivatelinkEndpointsServiceAdlResult).value
 
     return AwaitableGetPrivatelinkEndpointsServiceAdlResult(
-        id=__ret__.id,
-        links=__ret__.links,
-        project_id=__ret__.project_id,
-        results=__ret__.results,
-        total_count=__ret__.total_count)
+        id=pulumi.get(__ret__, 'id'),
+        links=pulumi.get(__ret__, 'links'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'),
+        total_count=pulumi.get(__ret__, 'total_count'))
 
 
 @_utilities.lift_output_func(get_privatelink_endpoints_service_adl)

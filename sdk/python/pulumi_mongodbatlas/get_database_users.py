@@ -121,9 +121,9 @@ def get_database_users(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getDatabaseUsers:getDatabaseUsers', __args__, opts=opts, typ=GetDatabaseUsersResult).value
 
     return AwaitableGetDatabaseUsersResult(
-        id=__ret__.id,
-        project_id=__ret__.project_id,
-        results=__ret__.results)
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_database_users)

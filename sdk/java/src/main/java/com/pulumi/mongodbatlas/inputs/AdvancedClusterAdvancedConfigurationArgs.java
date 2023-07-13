@@ -177,6 +177,21 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         return Optional.ofNullable(this.sampleSizeBiConnector);
     }
 
+    /**
+     * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * 
+     */
+    @Import(name="transactionLifetimeLimitSeconds")
+    private @Nullable Output<Integer> transactionLifetimeLimitSeconds;
+
+    /**
+     * @return Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> transactionLifetimeLimitSeconds() {
+        return Optional.ofNullable(this.transactionLifetimeLimitSeconds);
+    }
+
     private AdvancedClusterAdvancedConfigurationArgs() {}
 
     private AdvancedClusterAdvancedConfigurationArgs(AdvancedClusterAdvancedConfigurationArgs $) {
@@ -190,6 +205,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         this.oplogSizeMb = $.oplogSizeMb;
         this.sampleRefreshIntervalBiConnector = $.sampleRefreshIntervalBiConnector;
         this.sampleSizeBiConnector = $.sampleSizeBiConnector;
+        this.transactionLifetimeLimitSeconds = $.transactionLifetimeLimitSeconds;
     }
 
     public static Builder builder() {
@@ -428,6 +444,27 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
          */
         public Builder sampleSizeBiConnector(Integer sampleSizeBiConnector) {
             return sampleSizeBiConnector(Output.of(sampleSizeBiConnector));
+        }
+
+        /**
+         * @param transactionLifetimeLimitSeconds Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder transactionLifetimeLimitSeconds(@Nullable Output<Integer> transactionLifetimeLimitSeconds) {
+            $.transactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
+            return this;
+        }
+
+        /**
+         * @param transactionLifetimeLimitSeconds Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder transactionLifetimeLimitSeconds(Integer transactionLifetimeLimitSeconds) {
+            return transactionLifetimeLimitSeconds(Output.of(transactionLifetimeLimitSeconds));
         }
 
         public AdvancedClusterAdvancedConfigurationArgs build() {

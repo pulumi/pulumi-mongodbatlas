@@ -219,21 +219,21 @@ def get_backup_compliance_policy(on_demand_policy_item: Optional[pulumi.InputTyp
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy', __args__, opts=opts, typ=GetBackupCompliancePolicyResult).value
 
     return AwaitableGetBackupCompliancePolicyResult(
-        authorized_email=__ret__.authorized_email,
-        copy_protection_enabled=__ret__.copy_protection_enabled,
-        encryption_at_rest_enabled=__ret__.encryption_at_rest_enabled,
-        id=__ret__.id,
-        on_demand_policy_item=__ret__.on_demand_policy_item,
-        pit_enabled=__ret__.pit_enabled,
-        policy_item_daily=__ret__.policy_item_daily,
-        policy_item_hourly=__ret__.policy_item_hourly,
-        policy_item_monthlies=__ret__.policy_item_monthlies,
-        policy_item_weeklies=__ret__.policy_item_weeklies,
-        project_id=__ret__.project_id,
-        restore_window_days=__ret__.restore_window_days,
-        state=__ret__.state,
-        updated_date=__ret__.updated_date,
-        updated_user=__ret__.updated_user)
+        authorized_email=pulumi.get(__ret__, 'authorized_email'),
+        copy_protection_enabled=pulumi.get(__ret__, 'copy_protection_enabled'),
+        encryption_at_rest_enabled=pulumi.get(__ret__, 'encryption_at_rest_enabled'),
+        id=pulumi.get(__ret__, 'id'),
+        on_demand_policy_item=pulumi.get(__ret__, 'on_demand_policy_item'),
+        pit_enabled=pulumi.get(__ret__, 'pit_enabled'),
+        policy_item_daily=pulumi.get(__ret__, 'policy_item_daily'),
+        policy_item_hourly=pulumi.get(__ret__, 'policy_item_hourly'),
+        policy_item_monthlies=pulumi.get(__ret__, 'policy_item_monthlies'),
+        policy_item_weeklies=pulumi.get(__ret__, 'policy_item_weeklies'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        restore_window_days=pulumi.get(__ret__, 'restore_window_days'),
+        state=pulumi.get(__ret__, 'state'),
+        updated_date=pulumi.get(__ret__, 'updated_date'),
+        updated_user=pulumi.get(__ret__, 'updated_user'))
 
 
 @_utilities.lift_output_func(get_backup_compliance_policy)

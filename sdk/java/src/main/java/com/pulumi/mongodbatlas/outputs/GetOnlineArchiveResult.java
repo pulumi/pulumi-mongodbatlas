@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchiveCriteria;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivePartitionField;
+import com.pulumi.mongodbatlas.outputs.GetOnlineArchiveSchedule;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -27,6 +28,7 @@ public final class GetOnlineArchiveResult {
     private List<GetOnlineArchivePartitionField> partitionFields;
     private Boolean paused;
     private String projectId;
+    private List<GetOnlineArchiveSchedule> schedules;
     private String state;
 
     private GetOnlineArchiveResult() {}
@@ -64,6 +66,9 @@ public final class GetOnlineArchiveResult {
     public String projectId() {
         return this.projectId;
     }
+    public List<GetOnlineArchiveSchedule> schedules() {
+        return this.schedules;
+    }
     public String state() {
         return this.state;
     }
@@ -87,6 +92,7 @@ public final class GetOnlineArchiveResult {
         private List<GetOnlineArchivePartitionField> partitionFields;
         private Boolean paused;
         private String projectId;
+        private List<GetOnlineArchiveSchedule> schedules;
         private String state;
         public Builder() {}
         public Builder(GetOnlineArchiveResult defaults) {
@@ -101,6 +107,7 @@ public final class GetOnlineArchiveResult {
     	      this.partitionFields = defaults.partitionFields;
     	      this.paused = defaults.paused;
     	      this.projectId = defaults.projectId;
+    	      this.schedules = defaults.schedules;
     	      this.state = defaults.state;
         }
 
@@ -161,6 +168,14 @@ public final class GetOnlineArchiveResult {
             return this;
         }
         @CustomType.Setter
+        public Builder schedules(List<GetOnlineArchiveSchedule> schedules) {
+            this.schedules = Objects.requireNonNull(schedules);
+            return this;
+        }
+        public Builder schedules(GetOnlineArchiveSchedule... schedules) {
+            return schedules(List.of(schedules));
+        }
+        @CustomType.Setter
         public Builder state(String state) {
             this.state = Objects.requireNonNull(state);
             return this;
@@ -177,6 +192,7 @@ public final class GetOnlineArchiveResult {
             o.partitionFields = partitionFields;
             o.paused = paused;
             o.projectId = projectId;
+            o.schedules = schedules;
             o.state = state;
             return o;
         }

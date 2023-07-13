@@ -196,24 +196,14 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
         return this.orgId;
     }
     /**
-     * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-     * * ORG_OWNER
-     * * ORG_GROUP_CREATOR
-     * * ORG_BILLING_ADMIN
-     * * ORG_READ_ONLY
-     * * ORG_MEMBER
+     * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * 
      */
     @Export(name="roles", type=List.class, parameters={String.class})
     private Output<List<String>> roles;
 
     /**
-     * @return Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-     * * ORG_OWNER
-     * * ORG_GROUP_CREATOR
-     * * ORG_BILLING_ADMIN
-     * * ORG_READ_ONLY
-     * * ORG_MEMBER
+     * @return Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * 
      */
     public Output<List<String>> roles() {

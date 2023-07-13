@@ -157,15 +157,15 @@ def get_ldap_verify(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getLdapVerify:getLdapVerify', __args__, opts=opts, typ=GetLdapVerifyResult).value
 
     return AwaitableGetLdapVerifyResult(
-        bind_username=__ret__.bind_username,
-        hostname=__ret__.hostname,
-        id=__ret__.id,
-        links=__ret__.links,
-        port=__ret__.port,
-        project_id=__ret__.project_id,
-        request_id=__ret__.request_id,
-        status=__ret__.status,
-        validations=__ret__.validations)
+        bind_username=pulumi.get(__ret__, 'bind_username'),
+        hostname=pulumi.get(__ret__, 'hostname'),
+        id=pulumi.get(__ret__, 'id'),
+        links=pulumi.get(__ret__, 'links'),
+        port=pulumi.get(__ret__, 'port'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        request_id=pulumi.get(__ret__, 'request_id'),
+        status=pulumi.get(__ret__, 'status'),
+        validations=pulumi.get(__ret__, 'validations'))
 
 
 @_utilities.lift_output_func(get_ldap_verify)

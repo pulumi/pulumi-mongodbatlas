@@ -79,9 +79,9 @@ def get_privatelink_endpoint_service_data_federation_online_archives(project_id:
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives', __args__, opts=opts, typ=GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult).value
 
     return AwaitableGetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult(
-        id=__ret__.id,
-        project_id=__ret__.project_id,
-        results=__ret__.results)
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_privatelink_endpoint_service_data_federation_online_archives)

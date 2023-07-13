@@ -102,6 +102,7 @@ __all__ = [
     'LdapVerifyValidation',
     'OnlineArchiveCriteria',
     'OnlineArchivePartitionField',
+    'OnlineArchiveSchedule',
     'PrivateLinkEndpointServiceEndpoint',
     'ProjectApiKey',
     'ProjectApiKeyProjectAssignment',
@@ -300,9 +301,11 @@ __all__ = [
     'GetNetworkPeeringsResultResult',
     'GetOnlineArchiveCriteriaResult',
     'GetOnlineArchivePartitionFieldResult',
+    'GetOnlineArchiveScheduleResult',
     'GetOnlineArchivesResultResult',
     'GetOnlineArchivesResultCriteriaResult',
     'GetOnlineArchivesResultPartitionFieldResult',
+    'GetOnlineArchivesResultScheduleResult',
     'GetOrganizationLinkResult',
     'GetOrganizationsResultResult',
     'GetOrganizationsResultLinkResult',
@@ -351,6 +354,8 @@ class AdvancedClusterAdvancedConfiguration(dict):
             suggest = "sample_refresh_interval_bi_connector"
         elif key == "sampleSizeBiConnector":
             suggest = "sample_size_bi_connector"
+        elif key == "transactionLifetimeLimitSeconds":
+            suggest = "transaction_lifetime_limit_seconds"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterAdvancedConfiguration. Access the value via the '{suggest}' property getter instead.")
@@ -373,7 +378,8 @@ class AdvancedClusterAdvancedConfiguration(dict):
                  oplog_min_retention_hours: Optional[int] = None,
                  oplog_size_mb: Optional[int] = None,
                  sample_refresh_interval_bi_connector: Optional[int] = None,
-                 sample_size_bi_connector: Optional[int] = None):
+                 sample_size_bi_connector: Optional[int] = None,
+                 transaction_lifetime_limit_seconds: Optional[int] = None):
         """
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
@@ -390,6 +396,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         if default_read_concern is not None:
             pulumi.set(__self__, "default_read_concern", default_read_concern)
@@ -411,6 +418,8 @@ class AdvancedClusterAdvancedConfiguration(dict):
             pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
             pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        if transaction_lifetime_limit_seconds is not None:
+            pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -496,6 +505,14 @@ class AdvancedClusterAdvancedConfiguration(dict):
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
+
+    @property
+    @pulumi.getter(name="transactionLifetimeLimitSeconds")
+    def transaction_lifetime_limit_seconds(self) -> Optional[int]:
+        """
+        Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        """
+        return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
 
 @pulumi.output_type
@@ -683,11 +700,17 @@ class AdvancedClusterConnectionString(dict):
     @property
     @pulumi.getter(name="awsPrivateLink")
     def aws_private_link(self) -> Optional[Mapping[str, Any]]:
+        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+
         return pulumi.get(self, "aws_private_link")
 
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
     def aws_private_link_srv(self) -> Optional[Mapping[str, Any]]:
+        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+
         return pulumi.get(self, "aws_private_link_srv")
 
     @property
@@ -3447,6 +3470,8 @@ class ClusterAdvancedConfiguration(dict):
             suggest = "sample_refresh_interval_bi_connector"
         elif key == "sampleSizeBiConnector":
             suggest = "sample_size_bi_connector"
+        elif key == "transactionLifetimeLimitSeconds":
+            suggest = "transaction_lifetime_limit_seconds"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ClusterAdvancedConfiguration. Access the value via the '{suggest}' property getter instead.")
@@ -3469,7 +3494,8 @@ class ClusterAdvancedConfiguration(dict):
                  oplog_min_retention_hours: Optional[int] = None,
                  oplog_size_mb: Optional[int] = None,
                  sample_refresh_interval_bi_connector: Optional[int] = None,
-                 sample_size_bi_connector: Optional[int] = None):
+                 sample_size_bi_connector: Optional[int] = None,
+                 transaction_lifetime_limit_seconds: Optional[int] = None):
         """
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
@@ -3486,6 +3512,7 @@ class ClusterAdvancedConfiguration(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         if default_read_concern is not None:
             pulumi.set(__self__, "default_read_concern", default_read_concern)
@@ -3507,6 +3534,8 @@ class ClusterAdvancedConfiguration(dict):
             pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
             pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        if transaction_lifetime_limit_seconds is not None:
+            pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -3592,6 +3621,14 @@ class ClusterAdvancedConfiguration(dict):
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
+
+    @property
+    @pulumi.getter(name="transactionLifetimeLimitSeconds")
+    def transaction_lifetime_limit_seconds(self) -> Optional[int]:
+        """
+        Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        """
+        return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
 
 @pulumi.output_type
@@ -3713,11 +3750,17 @@ class ClusterConnectionString(dict):
     @property
     @pulumi.getter(name="awsPrivateLink")
     def aws_private_link(self) -> Optional[Mapping[str, Any]]:
+        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+
         return pulumi.get(self, "aws_private_link")
 
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
     def aws_private_link_srv(self) -> Optional[Mapping[str, Any]]:
+        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+
         return pulumi.get(self, "aws_private_link_srv")
 
     @property
@@ -6883,6 +6926,17 @@ class OnlineArchiveCriteria(dict):
                  date_format: Optional[str] = None,
                  expire_after_days: Optional[int] = None,
                  query: Optional[str] = None):
+        """
+        :param str type: Type of criteria (DATE, CUSTOM)
+               
+               The following fields are required for criteria type `DATE`
+        :param str date_field: Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
+        :param str date_format: Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+        :param int expire_after_days: Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+               
+               The only field required for criteria type `CUSTOM`
+        :param str query: JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
+        """
         pulumi.set(__self__, "type", type)
         if date_field is not None:
             pulumi.set(__self__, "date_field", date_field)
@@ -6896,26 +6950,45 @@ class OnlineArchiveCriteria(dict):
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        Type of criteria (DATE, CUSTOM)
+
+        The following fields are required for criteria type `DATE`
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="dateField")
     def date_field(self) -> Optional[str]:
+        """
+        Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
+        """
         return pulumi.get(self, "date_field")
 
     @property
     @pulumi.getter(name="dateFormat")
     def date_format(self) -> Optional[str]:
+        """
+        Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+        """
         return pulumi.get(self, "date_format")
 
     @property
     @pulumi.getter(name="expireAfterDays")
     def expire_after_days(self) -> Optional[int]:
+        """
+        Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+
+        The only field required for criteria type `CUSTOM`
+        """
         return pulumi.get(self, "expire_after_days")
 
     @property
     @pulumi.getter
     def query(self) -> Optional[str]:
+        """
+        JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
+        """
         return pulumi.get(self, "query")
 
 
@@ -6944,6 +7017,11 @@ class OnlineArchivePartitionField(dict):
                  field_name: str,
                  order: int,
                  field_type: Optional[str] = None):
+        """
+        :param str field_name: Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+        :param int order: Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
+        :param str field_type: Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+        """
         pulumi.set(__self__, "field_name", field_name)
         pulumi.set(__self__, "order", order)
         if field_type is not None:
@@ -6952,17 +7030,143 @@ class OnlineArchivePartitionField(dict):
     @property
     @pulumi.getter(name="fieldName")
     def field_name(self) -> str:
+        """
+        Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+        """
         return pulumi.get(self, "field_name")
 
     @property
     @pulumi.getter
     def order(self) -> int:
+        """
+        Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
+        """
         return pulumi.get(self, "order")
 
     @property
     @pulumi.getter(name="fieldType")
     def field_type(self) -> Optional[str]:
+        """
+        Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+        """
         return pulumi.get(self, "field_type")
+
+
+@pulumi.output_type
+class OnlineArchiveSchedule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dayOfMonth":
+            suggest = "day_of_month"
+        elif key == "dayOfWeek":
+            suggest = "day_of_week"
+        elif key == "endHour":
+            suggest = "end_hour"
+        elif key == "endMinute":
+            suggest = "end_minute"
+        elif key == "startHour":
+            suggest = "start_hour"
+        elif key == "startMinute":
+            suggest = "start_minute"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OnlineArchiveSchedule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OnlineArchiveSchedule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OnlineArchiveSchedule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: str,
+                 day_of_month: Optional[int] = None,
+                 day_of_week: Optional[int] = None,
+                 end_hour: Optional[int] = None,
+                 end_minute: Optional[int] = None,
+                 start_hour: Optional[int] = None,
+                 start_minute: Optional[int] = None):
+        """
+        :param str type: Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+        :param int day_of_month: Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
+        :param int day_of_week: Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
+        :param int end_hour: Hour of the day when the scheduled window to run one online archive ends.
+        :param int end_minute: Minute of the hour when the scheduled window to run one online archive ends.
+        :param int start_hour: Hour of the day when the when the scheduled window to run one online archive starts.
+        :param int start_minute: Minute of the hour when the scheduled window to run one online archive starts.
+        """
+        pulumi.set(__self__, "type", type)
+        if day_of_month is not None:
+            pulumi.set(__self__, "day_of_month", day_of_month)
+        if day_of_week is not None:
+            pulumi.set(__self__, "day_of_week", day_of_week)
+        if end_hour is not None:
+            pulumi.set(__self__, "end_hour", end_hour)
+        if end_minute is not None:
+            pulumi.set(__self__, "end_minute", end_minute)
+        if start_hour is not None:
+            pulumi.set(__self__, "start_hour", start_hour)
+        if start_minute is not None:
+            pulumi.set(__self__, "start_minute", start_minute)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="dayOfMonth")
+    def day_of_month(self) -> Optional[int]:
+        """
+        Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
+        """
+        return pulumi.get(self, "day_of_month")
+
+    @property
+    @pulumi.getter(name="dayOfWeek")
+    def day_of_week(self) -> Optional[int]:
+        """
+        Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
+        """
+        return pulumi.get(self, "day_of_week")
+
+    @property
+    @pulumi.getter(name="endHour")
+    def end_hour(self) -> Optional[int]:
+        """
+        Hour of the day when the scheduled window to run one online archive ends.
+        """
+        return pulumi.get(self, "end_hour")
+
+    @property
+    @pulumi.getter(name="endMinute")
+    def end_minute(self) -> Optional[int]:
+        """
+        Minute of the hour when the scheduled window to run one online archive ends.
+        """
+        return pulumi.get(self, "end_minute")
+
+    @property
+    @pulumi.getter(name="startHour")
+    def start_hour(self) -> Optional[int]:
+        """
+        Hour of the day when the when the scheduled window to run one online archive starts.
+        """
+        return pulumi.get(self, "start_hour")
+
+    @property
+    @pulumi.getter(name="startMinute")
+    def start_minute(self) -> Optional[int]:
+        """
+        Minute of the hour when the scheduled window to run one online archive starts.
+        """
+        return pulumi.get(self, "start_minute")
 
 
 @pulumi.output_type
@@ -7069,9 +7273,9 @@ class ProjectApiKey(dict):
         :param str api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
                
                **WARNING:** The `api_keys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `ProjectApiKey`  resource instead.
-        :param Sequence[str] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-               The following are valid roles:
-               The following are valid roles:
+        :param Sequence[str] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+               
+               > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         pulumi.set(__self__, "api_key_id", api_key_id)
         pulumi.set(__self__, "role_names", role_names)
@@ -7090,9 +7294,9 @@ class ProjectApiKey(dict):
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
         """
-        Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-        The following are valid roles:
-        The following are valid roles:
+        Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "role_names")
 
@@ -7172,8 +7376,9 @@ class ProjectTeam(dict):
                  role_names: Sequence[str],
                  team_id: str):
         """
-        :param Sequence[str] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-               The following are valid roles:
+        :param Sequence[str] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+               
+               > **NOTE:** Project created by API Keys must belong to an existing organization.
         :param str team_id: The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         """
         pulumi.set(__self__, "role_names", role_names)
@@ -7183,8 +7388,9 @@ class ProjectTeam(dict):
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
         """
-        Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-        The following are valid roles:
+        Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "role_names")
 
@@ -7478,7 +7684,8 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
                  oplog_min_retention_hours: int,
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
-                 sample_size_bi_connector: int):
+                 sample_size_bi_connector: int,
+                 transaction_lifetime_limit_seconds: int):
         """
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
@@ -7490,6 +7697,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
@@ -7501,6 +7709,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -7582,6 +7791,14 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         """
         return pulumi.get(self, "sample_size_bi_connector")
 
+    @property
+    @pulumi.getter(name="transactionLifetimeLimitSeconds")
+    def transaction_lifetime_limit_seconds(self) -> int:
+        """
+        Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        """
+        return pulumi.get(self, "transaction_lifetime_limit_seconds")
+
 
 @pulumi.output_type
 class GetAdvancedClusterBiConnectorConfigResult(dict):
@@ -7633,11 +7850,17 @@ class GetAdvancedClusterConnectionStringResult(dict):
     @property
     @pulumi.getter(name="awsPrivateLink")
     def aws_private_link(self) -> Mapping[str, Any]:
+        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+
         return pulumi.get(self, "aws_private_link")
 
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
     def aws_private_link_srv(self) -> Mapping[str, Any]:
+        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+
         return pulumi.get(self, "aws_private_link_srv")
 
     @property
@@ -8440,7 +8663,8 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
                  oplog_min_retention_hours: int,
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
-                 sample_size_bi_connector: int):
+                 sample_size_bi_connector: int,
+                 transaction_lifetime_limit_seconds: int):
         """
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
@@ -8463,6 +8687,7 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -8544,6 +8769,11 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         """
         return pulumi.get(self, "sample_size_bi_connector")
 
+    @property
+    @pulumi.getter(name="transactionLifetimeLimitSeconds")
+    def transaction_lifetime_limit_seconds(self) -> int:
+        return pulumi.get(self, "transaction_lifetime_limit_seconds")
+
 
 @pulumi.output_type
 class GetAdvancedClustersResultBiConnectorConfigResult(dict):
@@ -8595,11 +8825,17 @@ class GetAdvancedClustersResultConnectionStringResult(dict):
     @property
     @pulumi.getter(name="awsPrivateLink")
     def aws_private_link(self) -> Mapping[str, Any]:
+        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+
         return pulumi.get(self, "aws_private_link")
 
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
     def aws_private_link_srv(self) -> Mapping[str, Any]:
+        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+
         return pulumi.get(self, "aws_private_link_srv")
 
     @property
@@ -11642,7 +11878,8 @@ class GetClusterAdvancedConfigurationResult(dict):
                  oplog_min_retention_hours: int,
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
-                 sample_size_bi_connector: int):
+                 sample_size_bi_connector: int,
+                 transaction_lifetime_limit_seconds: int):
         """
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
@@ -11654,6 +11891,7 @@ class GetClusterAdvancedConfigurationResult(dict):
         :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
@@ -11665,6 +11903,7 @@ class GetClusterAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -11745,6 +11984,14 @@ class GetClusterAdvancedConfigurationResult(dict):
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
+
+    @property
+    @pulumi.getter(name="transactionLifetimeLimitSeconds")
+    def transaction_lifetime_limit_seconds(self) -> int:
+        """
+        Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        """
+        return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
 
 @pulumi.output_type
@@ -12415,6 +12662,9 @@ class GetClustersResultResult(dict):
         """
         Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
+        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+
         return pulumi.get(self, "bi_connector")
 
     @property
@@ -12711,7 +12961,8 @@ class GetClustersResultAdvancedConfigurationResult(dict):
                  oplog_min_retention_hours: int,
                  oplog_size_mb: int,
                  sample_refresh_interval_bi_connector: int,
-                 sample_size_bi_connector: int):
+                 sample_size_bi_connector: int,
+                 transaction_lifetime_limit_seconds: int):
         """
         :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
@@ -12734,6 +12985,7 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -12814,6 +13066,11 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
+
+    @property
+    @pulumi.getter(name="transactionLifetimeLimitSeconds")
+    def transaction_lifetime_limit_seconds(self) -> int:
+        return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
 
 @pulumi.output_type
@@ -18246,6 +18503,62 @@ class GetOnlineArchivePartitionFieldResult(dict):
 
 
 @pulumi.output_type
+class GetOnlineArchiveScheduleResult(dict):
+    def __init__(__self__, *,
+                 end_hour: int,
+                 end_minute: int,
+                 start_hour: int,
+                 start_minute: int,
+                 type: str,
+                 day_of_month: Optional[int] = None,
+                 day_of_week: Optional[int] = None):
+        pulumi.set(__self__, "end_hour", end_hour)
+        pulumi.set(__self__, "end_minute", end_minute)
+        pulumi.set(__self__, "start_hour", start_hour)
+        pulumi.set(__self__, "start_minute", start_minute)
+        pulumi.set(__self__, "type", type)
+        if day_of_month is not None:
+            pulumi.set(__self__, "day_of_month", day_of_month)
+        if day_of_week is not None:
+            pulumi.set(__self__, "day_of_week", day_of_week)
+
+    @property
+    @pulumi.getter(name="endHour")
+    def end_hour(self) -> int:
+        return pulumi.get(self, "end_hour")
+
+    @property
+    @pulumi.getter(name="endMinute")
+    def end_minute(self) -> int:
+        return pulumi.get(self, "end_minute")
+
+    @property
+    @pulumi.getter(name="startHour")
+    def start_hour(self) -> int:
+        return pulumi.get(self, "start_hour")
+
+    @property
+    @pulumi.getter(name="startMinute")
+    def start_minute(self) -> int:
+        return pulumi.get(self, "start_minute")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="dayOfMonth")
+    def day_of_month(self) -> Optional[int]:
+        return pulumi.get(self, "day_of_month")
+
+    @property
+    @pulumi.getter(name="dayOfWeek")
+    def day_of_week(self) -> Optional[int]:
+        return pulumi.get(self, "day_of_week")
+
+
+@pulumi.output_type
 class GetOnlineArchivesResultResult(dict):
     def __init__(__self__, *,
                  archive_id: str,
@@ -18257,6 +18570,7 @@ class GetOnlineArchivesResultResult(dict):
                  partition_fields: Sequence['outputs.GetOnlineArchivesResultPartitionFieldResult'],
                  paused: bool,
                  project_id: str,
+                 schedules: Sequence['outputs.GetOnlineArchivesResultScheduleResult'],
                  state: str):
         """
         :param str cluster_name: Name of the cluster that contains the collection.
@@ -18275,6 +18589,7 @@ class GetOnlineArchivesResultResult(dict):
         pulumi.set(__self__, "partition_fields", partition_fields)
         pulumi.set(__self__, "paused", paused)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "schedules", schedules)
         pulumi.set(__self__, "state", state)
 
     @property
@@ -18331,6 +18646,11 @@ class GetOnlineArchivesResultResult(dict):
         The unique ID for the project.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def schedules(self) -> Sequence['outputs.GetOnlineArchivesResultScheduleResult']:
+        return pulumi.get(self, "schedules")
 
     @property
     @pulumi.getter
@@ -18402,6 +18722,62 @@ class GetOnlineArchivesResultPartitionFieldResult(dict):
     @pulumi.getter
     def order(self) -> int:
         return pulumi.get(self, "order")
+
+
+@pulumi.output_type
+class GetOnlineArchivesResultScheduleResult(dict):
+    def __init__(__self__, *,
+                 end_hour: int,
+                 end_minute: int,
+                 start_hour: int,
+                 start_minute: int,
+                 type: str,
+                 day_of_month: Optional[int] = None,
+                 day_of_week: Optional[int] = None):
+        pulumi.set(__self__, "end_hour", end_hour)
+        pulumi.set(__self__, "end_minute", end_minute)
+        pulumi.set(__self__, "start_hour", start_hour)
+        pulumi.set(__self__, "start_minute", start_minute)
+        pulumi.set(__self__, "type", type)
+        if day_of_month is not None:
+            pulumi.set(__self__, "day_of_month", day_of_month)
+        if day_of_week is not None:
+            pulumi.set(__self__, "day_of_week", day_of_week)
+
+    @property
+    @pulumi.getter(name="endHour")
+    def end_hour(self) -> int:
+        return pulumi.get(self, "end_hour")
+
+    @property
+    @pulumi.getter(name="endMinute")
+    def end_minute(self) -> int:
+        return pulumi.get(self, "end_minute")
+
+    @property
+    @pulumi.getter(name="startHour")
+    def start_hour(self) -> int:
+        return pulumi.get(self, "start_hour")
+
+    @property
+    @pulumi.getter(name="startMinute")
+    def start_minute(self) -> int:
+        return pulumi.get(self, "start_minute")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="dayOfMonth")
+    def day_of_month(self) -> Optional[int]:
+        return pulumi.get(self, "day_of_month")
+
+    @property
+    @pulumi.getter(name="dayOfWeek")
+    def day_of_week(self) -> Optional[int]:
+        return pulumi.get(self, "day_of_week")
 
 
 @pulumi.output_type
@@ -18875,15 +19251,16 @@ class GetProjectsResultResult(dict):
         :param int cluster_count: The number of Atlas clusters deployed in the project.
         :param str created: The ISO-8601-formatted timestamp of when Atlas created the project.
                * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-               * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-               The following are valid roles:
+               * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+               * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+               * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         :param str id: Autogenerated Unique ID for this data source.
         :param bool is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param bool is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
         :param bool is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param bool is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param bool is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-        :param str name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        :param str name: The name of the project you want to create.
         :param str org_id: The ID of the organization you want to create the project within.
         :param str region_usage_restrictions: If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
                
@@ -18925,8 +19302,9 @@ class GetProjectsResultResult(dict):
         """
         The ISO-8601-formatted timestamp of when Atlas created the project.
         * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-        * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-        The following are valid roles:
+        * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+        * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+        * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         """
         return pulumi.get(self, "created")
 
@@ -18982,7 +19360,7 @@ class GetProjectsResultResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        The name of the project you want to create.
         """
         return pulumi.get(self, "name")
 

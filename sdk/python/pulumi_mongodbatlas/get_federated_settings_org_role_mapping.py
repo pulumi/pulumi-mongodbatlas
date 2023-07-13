@@ -159,12 +159,12 @@ def get_federated_settings_org_role_mapping(federation_settings_id: Optional[str
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping', __args__, opts=opts, typ=GetFederatedSettingsOrgRoleMappingResult).value
 
     return AwaitableGetFederatedSettingsOrgRoleMappingResult(
-        external_group_name=__ret__.external_group_name,
-        federation_settings_id=__ret__.federation_settings_id,
-        id=__ret__.id,
-        org_id=__ret__.org_id,
-        role_assignments=__ret__.role_assignments,
-        role_mapping_id=__ret__.role_mapping_id)
+        external_group_name=pulumi.get(__ret__, 'external_group_name'),
+        federation_settings_id=pulumi.get(__ret__, 'federation_settings_id'),
+        id=pulumi.get(__ret__, 'id'),
+        org_id=pulumi.get(__ret__, 'org_id'),
+        role_assignments=pulumi.get(__ret__, 'role_assignments'),
+        role_mapping_id=pulumi.get(__ret__, 'role_mapping_id'))
 
 
 @_utilities.lift_output_func(get_federated_settings_org_role_mapping)

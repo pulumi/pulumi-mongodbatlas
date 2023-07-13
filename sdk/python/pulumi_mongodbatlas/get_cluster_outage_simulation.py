@@ -137,13 +137,13 @@ def get_cluster_outage_simulation(cluster_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation', __args__, opts=opts, typ=GetClusterOutageSimulationResult).value
 
     return AwaitableGetClusterOutageSimulationResult(
-        cluster_name=__ret__.cluster_name,
-        id=__ret__.id,
-        outage_filters=__ret__.outage_filters,
-        project_id=__ret__.project_id,
-        simulation_id=__ret__.simulation_id,
-        start_request_date=__ret__.start_request_date,
-        state=__ret__.state)
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        id=pulumi.get(__ret__, 'id'),
+        outage_filters=pulumi.get(__ret__, 'outage_filters'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        simulation_id=pulumi.get(__ret__, 'simulation_id'),
+        start_request_date=pulumi.get(__ret__, 'start_request_date'),
+        state=pulumi.get(__ret__, 'state'))
 
 
 @_utilities.lift_output_func(get_cluster_outage_simulation)

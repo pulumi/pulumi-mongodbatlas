@@ -168,12 +168,12 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless', __args__, opts=opts, typ=GetPrivatelinkEndpointsServiceServerlessResult).value
 
     return AwaitableGetPrivatelinkEndpointsServiceServerlessResult(
-        id=__ret__.id,
-        instance_name=__ret__.instance_name,
-        items_per_page=__ret__.items_per_page,
-        page_num=__ret__.page_num,
-        project_id=__ret__.project_id,
-        results=__ret__.results)
+        id=pulumi.get(__ret__, 'id'),
+        instance_name=pulumi.get(__ret__, 'instance_name'),
+        items_per_page=pulumi.get(__ret__, 'items_per_page'),
+        page_num=pulumi.get(__ret__, 'page_num'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_privatelink_endpoints_service_serverless)

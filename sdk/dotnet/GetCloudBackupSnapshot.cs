@@ -37,6 +37,9 @@ namespace Pulumi.Mongodbatlas
         [Input("clusterName", required: true)]
         public string ClusterName { get; set; } = null!;
 
+        /// <summary>
+        /// The unique identifier of the project for the Atlas cluster.
+        /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
@@ -60,6 +63,9 @@ namespace Pulumi.Mongodbatlas
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
 
+        /// <summary>
+        /// The unique identifier of the project for the Atlas cluster.
+        /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 

@@ -167,6 +167,9 @@ class AdvancedClusterArgs:
     @property
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]:
+        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+
         return pulumi.get(self, "bi_connector")
 
     @bi_connector.setter
@@ -460,6 +463,9 @@ class _AdvancedClusterState:
     @property
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]:
+        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+
         return pulumi.get(self, "bi_connector")
 
     @bi_connector.setter
@@ -989,6 +995,9 @@ class AdvancedCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> pulumi.Output['outputs.AdvancedClusterBiConnector']:
+        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+
         return pulumi.get(self, "bi_connector")
 
     @property

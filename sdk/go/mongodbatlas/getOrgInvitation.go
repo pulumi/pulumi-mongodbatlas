@@ -42,12 +42,7 @@ type LookupOrgInvitationResult struct {
 	// Atlas user who invited `username` to the organization.
 	InviterUsername string `pulumi:"inviterUsername"`
 	OrgId           string `pulumi:"orgId"`
-	// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-	// * ORG_OWNER
-	// * ORG_GROUP_CREATOR
-	// * ORG_BILLING_ADMIN
-	// * ORG_READ_ONLY
-	// * ORG_MEMBER
+	// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 	Roles []string `pulumi:"roles"`
 	// An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
 	TeamsIds []string `pulumi:"teamsIds"`
@@ -124,12 +119,7 @@ func (o LookupOrgInvitationResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrgInvitationResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
 
-// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-// * ORG_OWNER
-// * ORG_GROUP_CREATOR
-// * ORG_BILLING_ADMIN
-// * ORG_READ_ONLY
-// * ORG_MEMBER
+// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 func (o LookupOrgInvitationResultOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupOrgInvitationResult) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }

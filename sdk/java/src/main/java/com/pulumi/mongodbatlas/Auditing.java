@@ -130,14 +130,14 @@ public class Auditing extends com.pulumi.resources.CustomResource {
         return this.enabled;
     }
     /**
-     * The unique ID for the project to configure auditing.
+     * The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
      * 
      */
     @Export(name="projectId", type=String.class, parameters={})
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to configure auditing.
+     * @return The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
      * 
      */
     public Output<String> projectId() {

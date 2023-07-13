@@ -106,7 +106,7 @@ class ClusterArgs:
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
-        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
@@ -308,6 +308,9 @@ class ClusterArgs:
         """
         Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
+        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+
         return pulumi.get(self, "bi_connector")
 
     @bi_connector.setter
@@ -476,6 +479,9 @@ class ClusterArgs:
         """
         Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
         """
+        warnings.warn("""This field is deprecated,please use cloud_backup instead""", DeprecationWarning)
+        pulumi.log.warn("""provider_backup_enabled is deprecated: This field is deprecated,please use cloud_backup instead""")
+
         return pulumi.get(self, "provider_backup_enabled")
 
     @provider_backup_enabled.setter
@@ -513,6 +519,9 @@ class ClusterArgs:
         """
         **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
+        warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
+        pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
+
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
     @provider_encrypt_ebs_volume.setter
@@ -572,7 +581,7 @@ class ClusterArgs:
     @pulumi.getter(name="retainBackupsEnabled")
     def retain_backups_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         """
         return pulumi.get(self, "retain_backups_enabled")
 
@@ -716,7 +725,7 @@ class _ClusterState:
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
-        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
         :param pulumi.Input[str] srv_address: Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
@@ -914,6 +923,9 @@ class _ClusterState:
         """
         Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
+        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+
         return pulumi.get(self, "bi_connector")
 
     @bi_connector.setter
@@ -1178,6 +1190,9 @@ class _ClusterState:
         """
         Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
         """
+        warnings.warn("""This field is deprecated,please use cloud_backup instead""", DeprecationWarning)
+        pulumi.log.warn("""provider_backup_enabled is deprecated: This field is deprecated,please use cloud_backup instead""")
+
         return pulumi.get(self, "provider_backup_enabled")
 
     @provider_backup_enabled.setter
@@ -1215,6 +1230,9 @@ class _ClusterState:
         """
         **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
+        warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
+        pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
+
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
     @provider_encrypt_ebs_volume.setter
@@ -1309,7 +1327,7 @@ class _ClusterState:
     @pulumi.getter(name="retainBackupsEnabled")
     def retain_backups_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         """
         return pulumi.get(self, "retain_backups_enabled")
 
@@ -1491,7 +1509,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
-        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
@@ -1753,7 +1771,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
-        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
         :param pulumi.Input[str] srv_address: Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
@@ -1878,6 +1896,9 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
+        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+
         return pulumi.get(self, "bi_connector")
 
     @property
@@ -2054,6 +2075,9 @@ class Cluster(pulumi.CustomResource):
         """
         Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
         """
+        warnings.warn("""This field is deprecated,please use cloud_backup instead""", DeprecationWarning)
+        pulumi.log.warn("""provider_backup_enabled is deprecated: This field is deprecated,please use cloud_backup instead""")
+
         return pulumi.get(self, "provider_backup_enabled")
 
     @property
@@ -2079,6 +2103,9 @@ class Cluster(pulumi.CustomResource):
         """
         **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
+        warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
+        pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
+
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
     @property
@@ -2141,7 +2168,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="retainBackupsEnabled")
     def retain_backups_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+        Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         """
         return pulumi.get(self, "retain_backups_enabled")
 

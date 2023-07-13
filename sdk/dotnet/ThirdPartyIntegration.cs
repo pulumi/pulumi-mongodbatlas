@@ -14,8 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
-    /// &gt; **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
-    ///  **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
+    /// &gt; **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
     /// 
     /// &gt; **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
     /// 
@@ -70,7 +69,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        /// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -112,15 +111,15 @@ namespace Pulumi.Mongodbatlas
         /// Third-Party Integration Settings type 
         /// * PAGER_DUTY
         /// * DATADOG
-        /// * NEW_RELIC*
         /// * OPS_GENIE
         /// * VICTOR_OPS
-        /// * FLOWDOCK*
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
+        /// * NEW_RELIC*
+        /// * FLOWDOCK*
         /// 
-        /// *resource is now deprecated and will be removed in the next major version, 1.9.0
+        /// *resource has now been fully deprecated as part of v1.10.0 release
         /// 
         /// Additional values based on Type
         /// </summary>
@@ -260,7 +259,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        /// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -342,15 +341,15 @@ namespace Pulumi.Mongodbatlas
         /// Third-Party Integration Settings type 
         /// * PAGER_DUTY
         /// * DATADOG
-        /// * NEW_RELIC*
         /// * OPS_GENIE
         /// * VICTOR_OPS
-        /// * FLOWDOCK*
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
+        /// * NEW_RELIC*
+        /// * FLOWDOCK*
         /// 
-        /// *resource is now deprecated and will be removed in the next major version, 1.9.0
+        /// *resource has now been fully deprecated as part of v1.10.0 release
         /// 
         /// Additional values based on Type
         /// </summary>
@@ -451,7 +450,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        /// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -533,15 +532,15 @@ namespace Pulumi.Mongodbatlas
         /// Third-Party Integration Settings type 
         /// * PAGER_DUTY
         /// * DATADOG
-        /// * NEW_RELIC*
         /// * OPS_GENIE
         /// * VICTOR_OPS
-        /// * FLOWDOCK*
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
+        /// * NEW_RELIC*
+        /// * FLOWDOCK*
         /// 
-        /// *resource is now deprecated and will be removed in the next major version, 1.9.0
+        /// *resource has now been fully deprecated as part of v1.10.0 release
         /// 
         /// Additional values based on Type
         /// </summary>

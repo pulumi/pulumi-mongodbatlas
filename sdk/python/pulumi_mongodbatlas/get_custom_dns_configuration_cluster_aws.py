@@ -81,9 +81,9 @@ def get_custom_dns_configuration_cluster_aws(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws', __args__, opts=opts, typ=GetCustomDnsConfigurationClusterAwsResult).value
 
     return AwaitableGetCustomDnsConfigurationClusterAwsResult(
-        enabled=__ret__.enabled,
-        id=__ret__.id,
-        project_id=__ret__.project_id)
+        enabled=pulumi.get(__ret__, 'enabled'),
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'))
 
 
 @_utilities.lift_output_func(get_custom_dns_configuration_cluster_aws)

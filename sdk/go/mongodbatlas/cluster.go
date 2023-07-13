@@ -141,7 +141,7 @@ type Cluster struct {
 	ReplicationFactor pulumi.IntOutput `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs ClusterReplicationSpecArrayOutput `pulumi:"replicationSpecs"`
-	// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+	// Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
 	RetainBackupsEnabled pulumi.BoolPtrOutput `pulumi:"retainBackupsEnabled"`
 	// current snapshot schedule and retention settings for the cluster.
 	SnapshotBackupPolicies ClusterSnapshotBackupPolicyArrayOutput `pulumi:"snapshotBackupPolicies"`
@@ -315,7 +315,7 @@ type clusterState struct {
 	ReplicationFactor *int `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs []ClusterReplicationSpec `pulumi:"replicationSpecs"`
-	// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+	// Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
 	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
 	// current snapshot schedule and retention settings for the cluster.
 	SnapshotBackupPolicies []ClusterSnapshotBackupPolicy `pulumi:"snapshotBackupPolicies"`
@@ -452,7 +452,7 @@ type ClusterState struct {
 	ReplicationFactor pulumi.IntPtrInput
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs ClusterReplicationSpecArrayInput
-	// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+	// Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
 	RetainBackupsEnabled pulumi.BoolPtrInput
 	// current snapshot schedule and retention settings for the cluster.
 	SnapshotBackupPolicies ClusterSnapshotBackupPolicyArrayInput
@@ -578,7 +578,7 @@ type clusterArgs struct {
 	ReplicationFactor *int `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs []ClusterReplicationSpec `pulumi:"replicationSpecs"`
-	// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+	// Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
 	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled *bool `pulumi:"terminationProtectionEnabled"`
@@ -689,7 +689,7 @@ type ClusterArgs struct {
 	ReplicationFactor pulumi.IntPtrInput
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs ClusterReplicationSpecArrayInput
-	// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+	// Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
 	RetainBackupsEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolPtrInput
@@ -1020,7 +1020,7 @@ func (o ClusterOutput) ReplicationSpecs() ClusterReplicationSpecArrayOutput {
 	return o.ApplyT(func(v *Cluster) ClusterReplicationSpecArrayOutput { return v.ReplicationSpecs }).(ClusterReplicationSpecArrayOutput)
 }
 
-// Set to true to retain backup snapshots for the deleted cluster. The default value is false. M10 and above only.
+// Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
 func (o ClusterOutput) RetainBackupsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.RetainBackupsEnabled }).(pulumi.BoolPtrOutput)
 }

@@ -160,15 +160,15 @@ def get_search_indexes(cluster_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getSearchIndexes:getSearchIndexes', __args__, opts=opts, typ=GetSearchIndexesResult).value
 
     return AwaitableGetSearchIndexesResult(
-        cluster_name=__ret__.cluster_name,
-        collection_name=__ret__.collection_name,
-        database=__ret__.database,
-        id=__ret__.id,
-        items_per_page=__ret__.items_per_page,
-        page_num=__ret__.page_num,
-        project_id=__ret__.project_id,
-        results=__ret__.results,
-        total_count=__ret__.total_count)
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        collection_name=pulumi.get(__ret__, 'collection_name'),
+        database=pulumi.get(__ret__, 'database'),
+        id=pulumi.get(__ret__, 'id'),
+        items_per_page=pulumi.get(__ret__, 'items_per_page'),
+        page_num=pulumi.get(__ret__, 'page_num'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'),
+        total_count=pulumi.get(__ret__, 'total_count'))
 
 
 @_utilities.lift_output_func(get_search_indexes)

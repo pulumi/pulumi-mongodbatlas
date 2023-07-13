@@ -24,6 +24,7 @@ class OnlineArchiveArgs:
                  collection_type: Optional[pulumi.Input[str]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
+                 schedule: Optional[pulumi.Input['OnlineArchiveScheduleArgs']] = None,
                  sync_creation: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a OnlineArchive resource.
@@ -47,6 +48,8 @@ class OnlineArchiveArgs:
             pulumi.set(__self__, "partition_fields", partition_fields)
         if paused is not None:
             pulumi.set(__self__, "paused", paused)
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
         if sync_creation is not None:
             pulumi.set(__self__, "sync_creation", sync_creation)
 
@@ -147,6 +150,15 @@ class OnlineArchiveArgs:
         pulumi.set(self, "paused", value)
 
     @property
+    @pulumi.getter
+    def schedule(self) -> Optional[pulumi.Input['OnlineArchiveScheduleArgs']]:
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: Optional[pulumi.Input['OnlineArchiveScheduleArgs']]):
+        pulumi.set(self, "schedule", value)
+
+    @property
     @pulumi.getter(name="syncCreation")
     def sync_creation(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "sync_creation")
@@ -168,6 +180,7 @@ class _OnlineArchiveState:
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 schedule: Optional[pulumi.Input['OnlineArchiveScheduleArgs']] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  sync_creation: Optional[pulumi.Input[bool]] = None):
         """
@@ -201,6 +214,8 @@ class _OnlineArchiveState:
             pulumi.set(__self__, "paused", paused)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
         if state is not None:
             pulumi.set(__self__, "state", state)
         if sync_creation is not None:
@@ -316,6 +331,15 @@ class _OnlineArchiveState:
 
     @property
     @pulumi.getter
+    def schedule(self) -> Optional[pulumi.Input['OnlineArchiveScheduleArgs']]:
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: Optional[pulumi.Input['OnlineArchiveScheduleArgs']]):
+        pulumi.set(self, "schedule", value)
+
+    @property
+    @pulumi.getter
     def state(self) -> Optional[pulumi.Input[str]]:
         """
         Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
@@ -349,6 +373,7 @@ class OnlineArchive(pulumi.CustomResource):
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 schedule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']]] = None,
                  sync_creation: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -413,6 +438,7 @@ class OnlineArchive(pulumi.CustomResource):
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 schedule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']]] = None,
                  sync_creation: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -441,6 +467,7 @@ class OnlineArchive(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["schedule"] = schedule
             __props__.__dict__["sync_creation"] = sync_creation
             __props__.__dict__["archive_id"] = None
             __props__.__dict__["state"] = None
@@ -463,6 +490,7 @@ class OnlineArchive(pulumi.CustomResource):
             partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
             paused: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            schedule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']]] = None,
             state: Optional[pulumi.Input[str]] = None,
             sync_creation: Optional[pulumi.Input[bool]] = None) -> 'OnlineArchive':
         """
@@ -496,6 +524,7 @@ class OnlineArchive(pulumi.CustomResource):
         __props__.__dict__["partition_fields"] = partition_fields
         __props__.__dict__["paused"] = paused
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["schedule"] = schedule
         __props__.__dict__["state"] = state
         __props__.__dict__["sync_creation"] = sync_creation
         return OnlineArchive(resource_name, opts=opts, __props__=__props__)
@@ -571,6 +600,11 @@ class OnlineArchive(pulumi.CustomResource):
         The unique ID for the project
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Output[Optional['outputs.OnlineArchiveSchedule']]:
+        return pulumi.get(self, "schedule")
 
     @property
     @pulumi.getter

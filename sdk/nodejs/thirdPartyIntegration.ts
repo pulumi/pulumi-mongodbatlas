@@ -9,8 +9,7 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
- * > **WARNING:** This field type has values (NEW_RELIC, FLOWDOCK) that are deprecated and will be removed in 1.9.0 release release
- *  **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
+ * > **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
  *
  * > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
  *
@@ -78,7 +77,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+     * Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
      */
     public readonly region!: pulumi.Output<string | undefined>;
     /**
@@ -106,15 +105,15 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * * NEW_RELIC*
+     * * FLOWDOCK*
      *
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * *resource has now been fully deprecated as part of v1.10.0 release
      *
      * Additional values based on Type
      */
@@ -215,7 +214,7 @@ export interface ThirdPartyIntegrationState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+     * Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
      */
     region?: pulumi.Input<string>;
     /**
@@ -243,15 +242,15 @@ export interface ThirdPartyIntegrationState {
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * * NEW_RELIC*
+     * * FLOWDOCK*
      *
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * *resource has now been fully deprecated as part of v1.10.0 release
      *
      * Additional values based on Type
      */
@@ -292,7 +291,7 @@ export interface ThirdPartyIntegrationArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+     * Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
      */
     region?: pulumi.Input<string>;
     /**
@@ -320,15 +319,15 @@ export interface ThirdPartyIntegrationArgs {
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * * NEW_RELIC*
+     * * FLOWDOCK*
      *
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
+     * *resource has now been fully deprecated as part of v1.10.0 release
      *
      * Additional values based on Type
      */

@@ -216,15 +216,15 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance', __args__, opts=opts, typ=GetFederatedDatabaseInstanceResult).value
 
     return AwaitableGetFederatedDatabaseInstanceResult(
-        cloud_provider_config=__ret__.cloud_provider_config,
-        data_process_regions=__ret__.data_process_regions,
-        hostnames=__ret__.hostnames,
-        id=__ret__.id,
-        name=__ret__.name,
-        project_id=__ret__.project_id,
-        state=__ret__.state,
-        storage_databases=__ret__.storage_databases,
-        storage_stores=__ret__.storage_stores)
+        cloud_provider_config=pulumi.get(__ret__, 'cloud_provider_config'),
+        data_process_regions=pulumi.get(__ret__, 'data_process_regions'),
+        hostnames=pulumi.get(__ret__, 'hostnames'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        state=pulumi.get(__ret__, 'state'),
+        storage_databases=pulumi.get(__ret__, 'storage_databases'),
+        storage_stores=pulumi.get(__ret__, 'storage_stores'))
 
 
 @_utilities.lift_output_func(get_federated_database_instance)

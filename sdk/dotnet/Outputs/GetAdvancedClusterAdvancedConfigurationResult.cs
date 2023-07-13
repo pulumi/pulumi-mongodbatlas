@@ -53,6 +53,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         /// </summary>
         public readonly int SampleSizeBiConnector;
+        /// <summary>
+        /// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        /// </summary>
+        public readonly int TransactionLifetimeLimitSeconds;
 
         [OutputConstructor]
         private GetAdvancedClusterAdvancedConfigurationResult(
@@ -74,7 +78,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             int sampleRefreshIntervalBiConnector,
 
-            int sampleSizeBiConnector)
+            int sampleSizeBiConnector,
+
+            int transactionLifetimeLimitSeconds)
         {
             DefaultReadConcern = defaultReadConcern;
             DefaultWriteConcern = defaultWriteConcern;
@@ -86,6 +92,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             OplogSizeMb = oplogSizeMb;
             SampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             SampleSizeBiConnector = sampleSizeBiConnector;
+            TransactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
         }
     }
 }

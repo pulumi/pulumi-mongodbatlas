@@ -124,12 +124,12 @@ def get_project_ip_access_list(aws_security_group: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList', __args__, opts=opts, typ=GetProjectIpAccessListResult).value
 
     return AwaitableGetProjectIpAccessListResult(
-        aws_security_group=__ret__.aws_security_group,
-        cidr_block=__ret__.cidr_block,
-        comment=__ret__.comment,
-        id=__ret__.id,
-        ip_address=__ret__.ip_address,
-        project_id=__ret__.project_id)
+        aws_security_group=pulumi.get(__ret__, 'aws_security_group'),
+        cidr_block=pulumi.get(__ret__, 'cidr_block'),
+        comment=pulumi.get(__ret__, 'comment'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_address=pulumi.get(__ret__, 'ip_address'),
+        project_id=pulumi.get(__ret__, 'project_id'))
 
 
 @_utilities.lift_output_func(get_project_ip_access_list)

@@ -39,10 +39,17 @@ import (
 //					pulumi.String("INSERT"),
 //					pulumi.String("UPDATE"),
 //				},
-//				ConfigDatabase:           pulumi.String("DATABASE NAME"),
-//				ConfigCollection:         pulumi.String("COLLECTION NAME"),
-//				ConfigServiceId:          pulumi.String("SERVICE ID"),
-//				ConfigMatch:              pulumi.String("{\n  \"updateDescription.updatedFields\": {\n    \"status\": \"blocked\"\n  }\n}\n"),
+//				ConfigDatabase:   pulumi.String("DATABASE NAME"),
+//				ConfigCollection: pulumi.String("COLLECTION NAME"),
+//				ConfigServiceId:  pulumi.String("SERVICE ID"),
+//				ConfigMatch: pulumi.String(`{
+//	  "updateDescription.updatedFields": {
+//	    "status": "blocked"
+//	  }
+//	}
+//
+// `),
+//
 //				ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
 //				ConfigFullDocument:       pulumi.Bool(false),
 //				ConfigFullDocumentBefore: pulumi.Bool(false),

@@ -20,9 +20,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ApiKeyId;
         /// <summary>
-        /// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-        /// The following are valid roles:
-        /// The following are valid roles:
+        /// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+        /// 
+        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
         public readonly ImmutableArray<string> RoleNames;
 

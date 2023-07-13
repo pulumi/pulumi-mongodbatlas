@@ -15,16 +15,18 @@ public final class ProjectTeamArgs extends com.pulumi.resources.ResourceArgs {
     public static final ProjectTeamArgs Empty = new ProjectTeamArgs();
 
     /**
-     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-     * The following are valid roles:
+     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
      * 
      */
     @Import(name="roleNames", required=true)
     private Output<List<String>> roleNames;
 
     /**
-     * @return Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-     * The following are valid roles:
+     * @return Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
      * 
      */
     public Output<List<String>> roleNames() {
@@ -72,8 +74,9 @@ public final class ProjectTeamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-         * The following are valid roles:
+         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+         * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 
@@ -84,8 +87,9 @@ public final class ProjectTeamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-         * The following are valid roles:
+         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+         * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 
@@ -95,8 +99,9 @@ public final class ProjectTeamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
-         * The following are valid roles:
+         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+         * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 

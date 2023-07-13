@@ -86,9 +86,9 @@ def get_advanced_clusters(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAdvancedClusters:getAdvancedClusters', __args__, opts=opts, typ=GetAdvancedClustersResult).value
 
     return AwaitableGetAdvancedClustersResult(
-        id=__ret__.id,
-        project_id=__ret__.project_id,
-        results=__ret__.results)
+        id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_advanced_clusters)

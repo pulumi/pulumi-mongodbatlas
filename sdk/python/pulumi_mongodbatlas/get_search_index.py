@@ -251,20 +251,20 @@ def get_search_index(analyzer: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getSearchIndex:getSearchIndex', __args__, opts=opts, typ=GetSearchIndexResult).value
 
     return AwaitableGetSearchIndexResult(
-        analyzer=__ret__.analyzer,
-        analyzers=__ret__.analyzers,
-        cluster_name=__ret__.cluster_name,
-        collection_name=__ret__.collection_name,
-        database=__ret__.database,
-        id=__ret__.id,
-        index_id=__ret__.index_id,
-        mappings_dynamic=__ret__.mappings_dynamic,
-        mappings_fields=__ret__.mappings_fields,
-        name=__ret__.name,
-        project_id=__ret__.project_id,
-        search_analyzer=__ret__.search_analyzer,
-        status=__ret__.status,
-        synonyms=__ret__.synonyms)
+        analyzer=pulumi.get(__ret__, 'analyzer'),
+        analyzers=pulumi.get(__ret__, 'analyzers'),
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        collection_name=pulumi.get(__ret__, 'collection_name'),
+        database=pulumi.get(__ret__, 'database'),
+        id=pulumi.get(__ret__, 'id'),
+        index_id=pulumi.get(__ret__, 'index_id'),
+        mappings_dynamic=pulumi.get(__ret__, 'mappings_dynamic'),
+        mappings_fields=pulumi.get(__ret__, 'mappings_fields'),
+        name=pulumi.get(__ret__, 'name'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        search_analyzer=pulumi.get(__ret__, 'search_analyzer'),
+        status=pulumi.get(__ret__, 'status'),
+        synonyms=pulumi.get(__ret__, 'synonyms'))
 
 
 @_utilities.lift_output_func(get_search_index)
