@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -72,6 +73,7 @@ import (
 //
 // See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
 func LookupOnlineArchive(ctx *pulumi.Context, args *LookupOnlineArchiveArgs, opts ...pulumi.InvokeOption) (*LookupOnlineArchiveResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOnlineArchiveResult
 	err := ctx.Invoke("mongodbatlas:index/getOnlineArchive:getOnlineArchive", args, &rv, opts...)
 	if err != nil {

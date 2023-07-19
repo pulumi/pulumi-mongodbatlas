@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -130,6 +131,7 @@ func NewThirdPartyIntegration(ctx *pulumi.Context,
 		"userName",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ThirdPartyIntegration
 	err := ctx.RegisterResource("mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration", name, args, &resource, opts...)
 	if err != nil {

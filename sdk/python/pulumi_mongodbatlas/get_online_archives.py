@@ -114,7 +114,7 @@ def get_online_archives(cluster_name: Optional[str] = None,
 
     ### Schedule
 
-    * `type`          - Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+    * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
     * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
     * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
     * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
@@ -183,7 +183,7 @@ def get_online_archives_output(cluster_name: Optional[pulumi.Input[str]] = None,
 
     ### Schedule
 
-    * `type`          - Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+    * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
     * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
     * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
     * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.

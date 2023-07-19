@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -243,6 +244,7 @@ func NewAlertConfiguration(ctx *pulumi.Context,
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AlertConfiguration
 	err := ctx.RegisterResource("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, args, &resource, opts...)
 	if err != nil {

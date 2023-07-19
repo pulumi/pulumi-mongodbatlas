@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 func LookupLdapVerify(ctx *pulumi.Context, args *LookupLdapVerifyArgs, opts ...pulumi.InvokeOption) (*LookupLdapVerifyResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLdapVerifyResult
 	err := ctx.Invoke("mongodbatlas:index/getLdapVerify:getLdapVerify", args, &rv, opts...)
 	if err != nil {

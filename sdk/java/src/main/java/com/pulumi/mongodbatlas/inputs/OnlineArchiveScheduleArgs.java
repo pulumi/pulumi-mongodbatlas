@@ -107,14 +107,14 @@ public final class OnlineArchiveScheduleArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     * Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     * @return Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
      * 
      */
     public Output<String> type() {
@@ -278,7 +278,7 @@ public final class OnlineArchiveScheduleArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param type Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+         * @param type Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
          * 
          * @return builder
          * 
@@ -289,7 +289,7 @@ public final class OnlineArchiveScheduleArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param type Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+         * @param type Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
          * 
          * @return builder
          * 

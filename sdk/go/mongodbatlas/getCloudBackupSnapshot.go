@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 func LookupCloudBackupSnapshot(ctx *pulumi.Context, args *LookupCloudBackupSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotResult
 	err := ctx.Invoke("mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot", args, &rv, opts...)
 	if err != nil {

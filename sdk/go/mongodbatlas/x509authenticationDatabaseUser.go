@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -168,6 +169,7 @@ func NewX509AuthenticationDatabaseUser(ctx *pulumi.Context,
 		"customerX509Cas",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource X509AuthenticationDatabaseUser
 	err := ctx.RegisterResource("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", name, args, &resource, opts...)
 	if err != nil {

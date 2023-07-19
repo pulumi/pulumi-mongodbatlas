@@ -7,8 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AdvancedClusterAdvancedConfiguration struct {
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -14159,7 +14162,7 @@ type OnlineArchiveSchedule struct {
 	StartHour *int `pulumi:"startHour"`
 	// Minute of the hour when the scheduled window to run one online archive starts.
 	StartMinute *int `pulumi:"startMinute"`
-	// Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+	// Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
 	Type string `pulumi:"type"`
 }
 
@@ -14187,7 +14190,7 @@ type OnlineArchiveScheduleArgs struct {
 	StartHour pulumi.IntPtrInput `pulumi:"startHour"`
 	// Minute of the hour when the scheduled window to run one online archive starts.
 	StartMinute pulumi.IntPtrInput `pulumi:"startMinute"`
-	// Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+	// Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -14298,7 +14301,7 @@ func (o OnlineArchiveScheduleOutput) StartMinute() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveSchedule) *int { return v.StartMinute }).(pulumi.IntPtrOutput)
 }
 
-// Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+// Type of schedule (“DAILY` ,  `MONTHLY` ,  `WEEKLY`).
 func (o OnlineArchiveScheduleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v OnlineArchiveSchedule) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -14387,7 +14390,7 @@ func (o OnlineArchiveSchedulePtrOutput) StartMinute() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+// Type of schedule (“DAILY` ,  `MONTHLY` ,  `WEEKLY`).
 func (o OnlineArchiveSchedulePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveSchedule) *string {
 		if v == nil {

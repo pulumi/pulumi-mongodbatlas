@@ -6777,7 +6777,7 @@ class OnlineArchiveScheduleArgs:
                  start_hour: Optional[pulumi.Input[int]] = None,
                  start_minute: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] type: Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+        :param pulumi.Input[str] type: Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
         :param pulumi.Input[int] day_of_month: Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
         :param pulumi.Input[int] day_of_week: Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
         :param pulumi.Input[int] end_hour: Hour of the day when the scheduled window to run one online archive ends.
@@ -6803,7 +6803,7 @@ class OnlineArchiveScheduleArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+        Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
         """
         return pulumi.get(self, "type")
 

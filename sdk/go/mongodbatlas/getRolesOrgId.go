@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -34,6 +35,7 @@ import (
 //
 // ```
 func GetRolesOrgId(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetRolesOrgIdResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRolesOrgIdResult
 	err := ctx.Invoke("mongodbatlas:index/getRolesOrgId:getRolesOrgId", nil, &rv, opts...)
 	if err != nil {

@@ -8063,7 +8063,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Schedule
      * 
-     * * `type`          - Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     * * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
      * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
      * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
      * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
@@ -8131,7 +8131,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Schedule
      * 
-     * * `type`          - Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     * * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
      * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
      * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
      * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
@@ -8199,7 +8199,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Schedule
      * 
-     * * `type`          - Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     * * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
      * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
      * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
      * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
@@ -8267,7 +8267,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Schedule
      * 
-     * * `type`          - Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     * * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
      * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
      * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
      * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.

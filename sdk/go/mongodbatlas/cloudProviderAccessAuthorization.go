@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -34,6 +35,7 @@ func NewCloudProviderAccessAuthorization(ctx *pulumi.Context,
 	if args.RoleId == nil {
 		return nil, errors.New("invalid value for required argument 'RoleId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudProviderAccessAuthorization
 	err := ctx.RegisterResource("mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization", name, args, &resource, opts...)
 	if err != nil {

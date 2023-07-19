@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 func LookupDataLakePipelineRuns(ctx *pulumi.Context, args *LookupDataLakePipelineRunsArgs, opts ...pulumi.InvokeOption) (*LookupDataLakePipelineRunsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDataLakePipelineRunsResult
 	err := ctx.Invoke("mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns", args, &rv, opts...)
 	if err != nil {

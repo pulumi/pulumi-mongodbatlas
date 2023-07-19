@@ -5648,21 +5648,21 @@ export interface OnlineArchiveSchedule {
     /**
      * Hour of the day when the scheduled window to run one online archive ends.
      */
-    endHour: number;
+    endHour?: number;
     /**
      * Minute of the hour when the scheduled window to run one online archive ends.
      */
-    endMinute: number;
+    endMinute?: number;
     /**
      * Hour of the day when the when the scheduled window to run one online archive starts.
      */
-    startHour: number;
+    startHour?: number;
     /**
      * Minute of the hour when the scheduled window to run one online archive starts.
      */
-    startMinute: number;
+    startMinute?: number;
     /**
-     * Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     * Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
      */
     type: string;
 }

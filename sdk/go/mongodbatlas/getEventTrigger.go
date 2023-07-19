@@ -7,11 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // `EventTrigger` describe an Event Trigger.
 func LookupEventTrigger(ctx *pulumi.Context, args *LookupEventTriggerArgs, opts ...pulumi.InvokeOption) (*LookupEventTriggerResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupEventTriggerResult
 	err := ctx.Invoke("mongodbatlas:index/getEventTrigger:getEventTrigger", args, &rv, opts...)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,6 +45,7 @@ import (
 //
 // ```
 func LookupFederatedQueryLimit(ctx *pulumi.Context, args *LookupFederatedQueryLimitArgs, opts ...pulumi.InvokeOption) (*LookupFederatedQueryLimitResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedQueryLimitResult
 	err := ctx.Invoke("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", args, &rv, opts...)
 	if err != nil {

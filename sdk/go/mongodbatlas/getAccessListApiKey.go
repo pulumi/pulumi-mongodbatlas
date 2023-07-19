@@ -7,11 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // ## Example Usage
 func LookupAccessListApiKey(ctx *pulumi.Context, args *LookupAccessListApiKeyArgs, opts ...pulumi.InvokeOption) (*LookupAccessListApiKeyResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccessListApiKeyResult
 	err := ctx.Invoke("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", args, &rv, opts...)
 	if err != nil {

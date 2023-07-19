@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -49,6 +50,7 @@ import (
 //
 // ```
 func LookupCloudBackupSnapshotExportBuckets(ctx *pulumi.Context, args *LookupCloudBackupSnapshotExportBucketsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotExportBucketsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotExportBucketsResult
 	err := ctx.Invoke("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args, &rv, opts...)
 	if err != nil {

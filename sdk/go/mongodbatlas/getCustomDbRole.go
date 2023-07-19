@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -65,6 +66,7 @@ import (
 //
 // ```
 func LookupCustomDbRole(ctx *pulumi.Context, args *LookupCustomDbRoleArgs, opts ...pulumi.InvokeOption) (*LookupCustomDbRoleResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCustomDbRoleResult
 	err := ctx.Invoke("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args, &rv, opts...)
 	if err != nil {

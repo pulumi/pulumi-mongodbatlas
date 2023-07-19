@@ -7,11 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // `OrgInvitation` describes an invitation for a user to join an Atlas organization.
 func LookupOrgInvitation(ctx *pulumi.Context, args *LookupOrgInvitationArgs, opts ...pulumi.InvokeOption) (*LookupOrgInvitationResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOrgInvitationResult
 	err := ctx.Invoke("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args, &rv, opts...)
 	if err != nil {

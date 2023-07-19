@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ import (
 //
 // ## Example Usage
 func LookupProjectInvitation(ctx *pulumi.Context, args *LookupProjectInvitationArgs, opts ...pulumi.InvokeOption) (*LookupProjectInvitationResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectInvitationResult
 	err := ctx.Invoke("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args, &rv, opts...)
 	if err != nil {

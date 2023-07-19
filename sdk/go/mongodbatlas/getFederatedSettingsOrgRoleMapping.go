@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -74,6 +75,7 @@ import (
 //
 // ```
 func LookupFederatedSettingsOrgRoleMapping(ctx *pulumi.Context, args *LookupFederatedSettingsOrgRoleMappingArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsOrgRoleMappingResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsOrgRoleMappingResult
 	err := ctx.Invoke("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args, &rv, opts...)
 	if err != nil {

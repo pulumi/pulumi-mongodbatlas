@@ -1998,7 +1998,7 @@ export interface OnlineArchiveSchedule {
      */
     startMinute?: pulumi.Input<number>;
     /**
-     * Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     * Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
      */
     type: pulumi.Input<string>;
 }
