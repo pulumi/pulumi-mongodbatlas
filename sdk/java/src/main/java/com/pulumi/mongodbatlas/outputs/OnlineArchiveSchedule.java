@@ -43,7 +43,7 @@ public final class OnlineArchiveSchedule {
      */
     private @Nullable Integer startMinute;
     /**
-     * @return Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     * @return Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
      * 
      */
     private String type;
@@ -92,7 +92,7 @@ public final class OnlineArchiveSchedule {
         return Optional.ofNullable(this.startMinute);
     }
     /**
-     * @return Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+     * @return Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
      * 
      */
     public String type() {

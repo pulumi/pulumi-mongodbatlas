@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -47,6 +48,7 @@ import (
 //
 // ```
 func LookupPrivatelinkEndpointsServiceAdl(ctx *pulumi.Context, args *LookupPrivatelinkEndpointsServiceAdlArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointsServiceAdlResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivatelinkEndpointsServiceAdlResult
 	err := ctx.Invoke("mongodbatlas:index/getPrivatelinkEndpointsServiceAdl:getPrivatelinkEndpointsServiceAdl", args, &rv, opts...)
 	if err != nil {

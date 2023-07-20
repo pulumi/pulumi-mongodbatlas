@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,6 +41,7 @@ import (
 //
 // ```
 func LookupDataLakes(ctx *pulumi.Context, args *LookupDataLakesArgs, opts ...pulumi.InvokeOption) (*LookupDataLakesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDataLakesResult
 	err := ctx.Invoke("mongodbatlas:index/getDataLakes:getDataLakes", args, &rv, opts...)
 	if err != nil {

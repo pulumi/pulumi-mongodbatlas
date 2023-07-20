@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -42,6 +43,7 @@ import (
 //
 // ```
 func LookupSearchIndex(ctx *pulumi.Context, args *LookupSearchIndexArgs, opts ...pulumi.InvokeOption) (*LookupSearchIndexResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSearchIndexResult
 	err := ctx.Invoke("mongodbatlas:index/getSearchIndex:getSearchIndex", args, &rv, opts...)
 	if err != nil {

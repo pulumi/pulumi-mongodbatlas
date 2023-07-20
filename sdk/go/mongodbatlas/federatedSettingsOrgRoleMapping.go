@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -113,6 +114,7 @@ func NewFederatedSettingsOrgRoleMapping(ctx *pulumi.Context,
 	if args.RoleAssignments == nil {
 		return nil, errors.New("invalid value for required argument 'RoleAssignments'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FederatedSettingsOrgRoleMapping
 	err := ctx.RegisterResource("mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping", name, args, &resource, opts...)
 	if err != nil {

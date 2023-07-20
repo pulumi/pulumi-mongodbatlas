@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -160,6 +161,7 @@ func NewLdapConfiguration(ctx *pulumi.Context,
 		"bindPassword",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LdapConfiguration
 	err := ctx.RegisterResource("mongodbatlas:index/ldapConfiguration:LdapConfiguration", name, args, &resource, opts...)
 	if err != nil {

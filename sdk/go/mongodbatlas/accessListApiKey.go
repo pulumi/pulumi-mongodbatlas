@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -104,6 +105,7 @@ func NewAccessListApiKey(ctx *pulumi.Context,
 	if args.OrgId == nil {
 		return nil, errors.New("invalid value for required argument 'OrgId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AccessListApiKey
 	err := ctx.RegisterResource("mongodbatlas:index/accessListApiKey:AccessListApiKey", name, args, &resource, opts...)
 	if err != nil {

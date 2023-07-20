@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -65,6 +66,7 @@ import (
 //
 // ```
 func LookupClusters(ctx *pulumi.Context, args *LookupClustersArgs, opts ...pulumi.InvokeOption) (*LookupClustersResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClustersResult
 	err := ctx.Invoke("mongodbatlas:index/getClusters:getClusters", args, &rv, opts...)
 	if err != nil {

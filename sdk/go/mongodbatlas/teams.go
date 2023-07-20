@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,6 +34,7 @@ func NewTeams(ctx *pulumi.Context,
 	if args.Usernames == nil {
 		return nil, errors.New("invalid value for required argument 'Usernames'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Teams
 	err := ctx.RegisterResource("mongodbatlas:index/teams:Teams", name, args, &resource, opts...)
 	if err != nil {

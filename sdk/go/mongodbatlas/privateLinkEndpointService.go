@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -81,6 +82,7 @@ func NewPrivateLinkEndpointService(ctx *pulumi.Context,
 	if args.ProviderName == nil {
 		return nil, errors.New("invalid value for required argument 'ProviderName'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PrivateLinkEndpointService
 	err := ctx.RegisterResource("mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService", name, args, &resource, opts...)
 	if err != nil {

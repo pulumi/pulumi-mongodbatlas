@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -43,6 +44,7 @@ import (
 //
 // ```
 func LookupServerlessInstances(ctx *pulumi.Context, args *LookupServerlessInstancesArgs, opts ...pulumi.InvokeOption) (*LookupServerlessInstancesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupServerlessInstancesResult
 	err := ctx.Invoke("mongodbatlas:index/getServerlessInstances:getServerlessInstances", args, &rv, opts...)
 	if err != nil {

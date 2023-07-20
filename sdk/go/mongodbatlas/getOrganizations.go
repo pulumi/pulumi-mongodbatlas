@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,6 +40,7 @@ import (
 //
 // ```
 func LookupOrganizations(ctx *pulumi.Context, args *LookupOrganizationsArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOrganizationsResult
 	err := ctx.Invoke("mongodbatlas:index/getOrganizations:getOrganizations", args, &rv, opts...)
 	if err != nil {

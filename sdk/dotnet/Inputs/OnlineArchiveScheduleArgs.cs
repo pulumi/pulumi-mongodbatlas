@@ -49,7 +49,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<int>? StartMinute { get; set; }
 
         /// <summary>
-        /// Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+        /// Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

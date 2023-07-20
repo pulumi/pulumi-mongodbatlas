@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -56,7 +57,7 @@ import (
 //
 // ### Schedule
 //
-// * `type`          - Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+// * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
 // * `startHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
 // * `endHour`      - Hour of the day when the scheduled window to run one online archive ends.
 // * `startMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
@@ -69,6 +70,7 @@ import (
 // * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
 // * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
 func LookupOnlineArchives(ctx *pulumi.Context, args *LookupOnlineArchivesArgs, opts ...pulumi.InvokeOption) (*LookupOnlineArchivesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOnlineArchivesResult
 	err := ctx.Invoke("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args, &rv, opts...)
 	if err != nil {

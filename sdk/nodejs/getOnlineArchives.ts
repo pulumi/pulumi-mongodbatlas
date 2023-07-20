@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  *
  * ### Schedule
  *
- * * `type`          - Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+ * * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
  * * `startHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
  * * `endHour`      - Hour of the day when the scheduled window to run one online archive ends.
  * * `startMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
@@ -123,7 +123,7 @@ export interface GetOnlineArchivesResult {
  *
  * ### Schedule
  *
- * * `type`          - Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+ * * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
  * * `startHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
  * * `endHour`      - Hour of the day when the scheduled window to run one online archive ends.
  * * `startMinute`   - Minute of the hour when the scheduled window to run one online archive starts.

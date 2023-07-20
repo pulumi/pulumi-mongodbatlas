@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -519,6 +520,7 @@ func NewNetworkPeering(ctx *pulumi.Context,
 	if args.ProviderName == nil {
 		return nil, errors.New("invalid value for required argument 'ProviderName'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource NetworkPeering
 	err := ctx.RegisterResource("mongodbatlas:index/networkPeering:NetworkPeering", name, args, &resource, opts...)
 	if err != nil {

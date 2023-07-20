@@ -7090,7 +7090,7 @@ class OnlineArchiveSchedule(dict):
                  start_hour: Optional[int] = None,
                  start_minute: Optional[int] = None):
         """
-        :param str type: Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+        :param str type: Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
         :param int day_of_month: Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
         :param int day_of_week: Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
         :param int end_hour: Hour of the day when the scheduled window to run one online archive ends.
@@ -7116,7 +7116,7 @@ class OnlineArchiveSchedule(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+        Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
         """
         return pulumi.get(self, "type")
 

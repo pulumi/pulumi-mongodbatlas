@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -49,6 +50,7 @@ import (
 //
 // ```
 func LookupFederatedSettingsOrgConfigs(ctx *pulumi.Context, args *LookupFederatedSettingsOrgConfigsArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsOrgConfigsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsOrgConfigsResult
 	err := ctx.Invoke("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", args, &rv, opts...)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,6 +45,7 @@ import (
 //
 // ```
 func LookupCloudProviderAccess(ctx *pulumi.Context, args *LookupCloudProviderAccessArgs, opts ...pulumi.InvokeOption) (*LookupCloudProviderAccessResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudProviderAccessResult
 	err := ctx.Invoke("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", args, &rv, opts...)
 	if err != nil {

@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 func GetAssumeRole(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:assumeRole")

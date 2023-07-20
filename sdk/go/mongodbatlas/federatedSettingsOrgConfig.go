@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -41,6 +42,7 @@ func NewFederatedSettingsOrgConfig(ctx *pulumi.Context,
 	if args.OrgId == nil {
 		return nil, errors.New("invalid value for required argument 'OrgId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FederatedSettingsOrgConfig
 	err := ctx.RegisterResource("mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig", name, args, &resource, opts...)
 	if err != nil {

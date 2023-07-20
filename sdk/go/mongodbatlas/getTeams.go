@@ -7,10 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupTeams(ctx *pulumi.Context, args *LookupTeamsArgs, opts ...pulumi.InvokeOption) (*LookupTeamsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTeamsResult
 	err := ctx.Invoke("mongodbatlas:index/getTeams:getTeams", args, &rv, opts...)
 	if err != nil {

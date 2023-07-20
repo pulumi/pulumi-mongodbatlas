@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -80,6 +81,7 @@ func NewCloudBackupSnapshot(ctx *pulumi.Context,
 	if args.RetentionInDays == nil {
 		return nil, errors.New("invalid value for required argument 'RetentionInDays'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudBackupSnapshot
 	err := ctx.RegisterResource("mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot", name, args, &resource, opts...)
 	if err != nil {

@@ -7,10 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupProjectApiKeys(ctx *pulumi.Context, args *LookupProjectApiKeysArgs, opts ...pulumi.InvokeOption) (*LookupProjectApiKeysResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectApiKeysResult
 	err := ctx.Invoke("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", args, &rv, opts...)
 	if err != nil {

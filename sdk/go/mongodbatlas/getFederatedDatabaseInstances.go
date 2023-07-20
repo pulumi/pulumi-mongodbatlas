@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ import (
 //
 // ## Example Usage
 func LookupFederatedDatabaseInstances(ctx *pulumi.Context, args *LookupFederatedDatabaseInstancesArgs, opts ...pulumi.InvokeOption) (*LookupFederatedDatabaseInstancesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedDatabaseInstancesResult
 	err := ctx.Invoke("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args, &rv, opts...)
 	if err != nil {

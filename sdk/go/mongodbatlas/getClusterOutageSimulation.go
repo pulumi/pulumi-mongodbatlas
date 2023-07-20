@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,6 +39,7 @@ import (
 //
 // ```
 func LookupClusterOutageSimulation(ctx *pulumi.Context, args *LookupClusterOutageSimulationArgs, opts ...pulumi.InvokeOption) (*LookupClusterOutageSimulationResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClusterOutageSimulationResult
 	err := ctx.Invoke("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", args, &rv, opts...)
 	if err != nil {

@@ -38,7 +38,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int? StartMinute;
         /// <summary>
-        /// Type of schedule (`DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`).
+        /// Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
         /// </summary>
         public readonly string Type;
 
