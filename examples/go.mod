@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-mongodbatlas/examples/v2
 
-go 1.19
+go 1.20
 
 require github.com/pulumi/pulumi/pkg/v3 v3.19.0
 
