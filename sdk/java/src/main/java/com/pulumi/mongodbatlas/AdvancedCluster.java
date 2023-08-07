@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/advancedCluster:AdvancedCluster")
 public class AdvancedCluster extends com.pulumi.resources.CustomResource {
-    @Export(name="advancedConfiguration", type=AdvancedClusterAdvancedConfiguration.class, parameters={})
+    @Export(name="advancedConfiguration", refs={AdvancedClusterAdvancedConfiguration.class}, tree="[0]")
     private Output<AdvancedClusterAdvancedConfiguration> advancedConfiguration;
 
     public Output<AdvancedClusterAdvancedConfiguration> advancedConfiguration() {
@@ -55,7 +55,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * This parameter defaults to false.
      * 
      */
-    @Export(name="backupEnabled", type=Boolean.class, parameters={})
+    @Export(name="backupEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> backupEnabled;
 
     /**
@@ -79,7 +79,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use bi_connector_config instead */
-    @Export(name="biConnector", type=AdvancedClusterBiConnector.class, parameters={})
+    @Export(name="biConnector", refs={AdvancedClusterBiConnector.class}, tree="[0]")
     private Output<AdvancedClusterBiConnector> biConnector;
 
     public Output<AdvancedClusterBiConnector> biConnector() {
@@ -89,7 +89,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
      * 
      */
-    @Export(name="biConnectorConfig", type=AdvancedClusterBiConnectorConfig.class, parameters={})
+    @Export(name="biConnectorConfig", refs={AdvancedClusterBiConnectorConfig.class}, tree="[0]")
     private Output<AdvancedClusterBiConnectorConfig> biConnectorConfig;
 
     /**
@@ -103,7 +103,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * The cluster ID.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -118,7 +118,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Accepted values include:
      * 
      */
-    @Export(name="clusterType", type=String.class, parameters={})
+    @Export(name="clusterType", refs={String.class}, tree="[0]")
     private Output<String> clusterType;
 
     /**
@@ -133,7 +133,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
-    @Export(name="connectionStrings", type=List.class, parameters={AdvancedClusterConnectionString.class})
+    @Export(name="connectionStrings", refs={List.class,AdvancedClusterConnectionString.class}, tree="[0,1]")
     private Output<List<AdvancedClusterConnectionString>> connectionStrings;
 
     /**
@@ -143,7 +143,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     public Output<List<AdvancedClusterConnectionString>> connectionStrings() {
         return this.connectionStrings;
     }
-    @Export(name="createDate", type=String.class, parameters={})
+    @Export(name="createDate", refs={String.class}, tree="[0]")
     private Output<String> createDate;
 
     public Output<String> createDate() {
@@ -153,7 +153,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
      * 
      */
-    @Export(name="diskSizeGb", type=Double.class, parameters={})
+    @Export(name="diskSizeGb", refs={Double.class}, tree="[0]")
     private Output<Double> diskSizeGb;
 
     /**
@@ -167,7 +167,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
      * 
      */
-    @Export(name="encryptionAtRestProvider", type=String.class, parameters={})
+    @Export(name="encryptionAtRestProvider", refs={String.class}, tree="[0]")
     private Output<String> encryptionAtRestProvider;
 
     /**
@@ -181,7 +181,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
      * 
      */
-    @Export(name="labels", type=List.class, parameters={AdvancedClusterLabel.class})
+    @Export(name="labels", refs={List.class,AdvancedClusterLabel.class}, tree="[0,1]")
     private Output<List<AdvancedClusterLabel>> labels;
 
     /**
@@ -195,7 +195,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
      * 
      */
-    @Export(name="mongoDbMajorVersion", type=String.class, parameters={})
+    @Export(name="mongoDbMajorVersion", refs={String.class}, tree="[0]")
     private Output<String> mongoDbMajorVersion;
 
     /**
@@ -209,7 +209,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
      * 
      */
-    @Export(name="mongoDbVersion", type=String.class, parameters={})
+    @Export(name="mongoDbVersion", refs={String.class}, tree="[0]")
     private Output<String> mongoDbVersion;
 
     /**
@@ -223,7 +223,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -233,7 +233,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="paused", type=Boolean.class, parameters={})
+    @Export(name="paused", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> paused;
 
     public Output<Optional<Boolean>> paused() {
@@ -243,7 +243,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
      */
-    @Export(name="pitEnabled", type=Boolean.class, parameters={})
+    @Export(name="pitEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> pitEnabled;
 
     /**
@@ -257,7 +257,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Unique ID for the project to create the database user.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -271,7 +271,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Configuration for cluster regions and the hardware provisioned in them. See below
      * 
      */
-    @Export(name="replicationSpecs", type=List.class, parameters={AdvancedClusterReplicationSpec.class})
+    @Export(name="replicationSpecs", refs={List.class,AdvancedClusterReplicationSpec.class}, tree="[0,1]")
     private Output<List<AdvancedClusterReplicationSpec>> replicationSpecs;
 
     /**
@@ -285,7 +285,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
      * 
      */
-    @Export(name="retainBackupsEnabled", type=Boolean.class, parameters={})
+    @Export(name="retainBackupsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> retainBackupsEnabled;
 
     /**
@@ -299,7 +299,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      * 
      */
-    @Export(name="rootCertType", type=String.class, parameters={})
+    @Export(name="rootCertType", refs={String.class}, tree="[0]")
     private Output<String> rootCertType;
 
     /**
@@ -319,7 +319,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * - REPAIRING
      * 
      */
-    @Export(name="stateName", type=String.class, parameters={})
+    @Export(name="stateName", refs={String.class}, tree="[0]")
     private Output<String> stateName;
 
     /**
@@ -339,7 +339,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
-    @Export(name="terminationProtectionEnabled", type=Boolean.class, parameters={})
+    @Export(name="terminationProtectionEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> terminationProtectionEnabled;
 
     /**
@@ -353,7 +353,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
-    @Export(name="versionReleaseSystem", type=String.class, parameters={})
+    @Export(name="versionReleaseSystem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> versionReleaseSystem;
 
     /**

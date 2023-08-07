@@ -67,7 +67,7 @@ public class Auditing extends com.pulumi.resources.CustomResource {
      * Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
      * 
      */
-    @Export(name="auditAuthorizationSuccess", type=Boolean.class, parameters={})
+    @Export(name="auditAuthorizationSuccess", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> auditAuthorizationSuccess;
 
     /**
@@ -81,7 +81,7 @@ public class Auditing extends com.pulumi.resources.CustomResource {
      * JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
      * 
      */
-    @Export(name="auditFilter", type=String.class, parameters={})
+    @Export(name="auditFilter", refs={String.class}, tree="[0]")
     private Output<String> auditFilter;
 
     /**
@@ -98,7 +98,7 @@ public class Auditing extends com.pulumi.resources.CustomResource {
      * * FILTER_JSON - auditing configured via Atlas custom filter or API.
      * 
      */
-    @Export(name="configurationType", type=String.class, parameters={})
+    @Export(name="configurationType", refs={String.class}, tree="[0]")
     private Output<String> configurationType;
 
     /**
@@ -117,7 +117,7 @@ public class Auditing extends com.pulumi.resources.CustomResource {
      * &gt; **NOTE:** Auditing created by API Keys must belong to an existing organization.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
     /**
@@ -133,7 +133,7 @@ public class Auditing extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**

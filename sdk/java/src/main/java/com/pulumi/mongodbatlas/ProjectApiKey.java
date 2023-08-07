@@ -109,7 +109,7 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
      * Unique identifier for this Project API key.
      * 
      */
-    @Export(name="apiKeyId", type=String.class, parameters={})
+    @Export(name="apiKeyId", refs={String.class}, tree="[0]")
     private Output<String> apiKeyId;
 
     /**
@@ -123,7 +123,7 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
      * Description of this Project API key.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -133,13 +133,13 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
     public Output<String> description() {
         return this.description;
     }
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     public Output<String> privateKey() {
         return this.privateKey;
     }
-    @Export(name="projectAssignments", type=List.class, parameters={ProjectApiKeyProjectAssignment.class})
+    @Export(name="projectAssignments", refs={List.class,ProjectApiKeyProjectAssignment.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProjectApiKeyProjectAssignment>> projectAssignments;
 
     public Output<Optional<List<ProjectApiKeyProjectAssignment>>> projectAssignments() {
@@ -149,7 +149,7 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
      * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -159,7 +159,7 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
     public Output<String> projectId() {
         return this.projectId;
     }
-    @Export(name="publicKey", type=String.class, parameters={})
+    @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 
     public Output<String> publicKey() {
@@ -175,7 +175,7 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
-    @Export(name="roleNames", type=List.class, parameters={String.class})
+    @Export(name="roleNames", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> roleNames;
 
     /**

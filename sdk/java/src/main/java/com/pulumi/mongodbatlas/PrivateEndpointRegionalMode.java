@@ -36,7 +36,7 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
      *   You can create only sharded clusters when you enable the regionalized private endpoint setting. You can&#39;t create replica sets.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -53,7 +53,7 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
      * Unique identifier for the project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**

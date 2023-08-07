@@ -23,19 +23,19 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="pulumi:providers:mongodbatlas")
 public class Provider extends com.pulumi.resources.ProviderResource {
-    @Export(name="awsAccessKeyId", type=String.class, parameters={})
+    @Export(name="awsAccessKeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsAccessKeyId;
 
     public Output<Optional<String>> awsAccessKeyId() {
         return Codegen.optional(this.awsAccessKeyId);
     }
-    @Export(name="awsSecretAccessKey", type=String.class, parameters={})
+    @Export(name="awsSecretAccessKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsSecretAccessKey;
 
     public Output<Optional<String>> awsSecretAccessKey() {
         return Codegen.optional(this.awsSecretAccessKey);
     }
-    @Export(name="awsSessionToken", type=String.class, parameters={})
+    @Export(name="awsSessionToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsSessionToken;
 
     public Output<Optional<String>> awsSessionToken() {
@@ -45,7 +45,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * MongoDB Atlas Base URL
      * 
      */
-    @Export(name="baseUrl", type=String.class, parameters={})
+    @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseUrl;
 
     /**
@@ -59,7 +59,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * MongoDB Atlas Programmatic Private Key
      * 
      */
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privateKey;
 
     /**
@@ -73,7 +73,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * MongoDB Atlas Programmatic Public Key
      * 
      */
-    @Export(name="publicKey", type=String.class, parameters={})
+    @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> publicKey;
 
     /**
@@ -87,7 +87,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * MongoDB Realm Base URL
      * 
      */
-    @Export(name="realmBaseUrl", type=String.class, parameters={})
+    @Export(name="realmBaseUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> realmBaseUrl;
 
     /**
@@ -97,19 +97,19 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     public Output<Optional<String>> realmBaseUrl() {
         return Codegen.optional(this.realmBaseUrl);
     }
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     public Output<Optional<String>> region() {
         return Codegen.optional(this.region);
     }
-    @Export(name="secretName", type=String.class, parameters={})
+    @Export(name="secretName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secretName;
 
     public Output<Optional<String>> secretName() {
         return Codegen.optional(this.secretName);
     }
-    @Export(name="stsEndpoint", type=String.class, parameters={})
+    @Export(name="stsEndpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> stsEndpoint;
 
     public Output<Optional<String>> stsEndpoint() {

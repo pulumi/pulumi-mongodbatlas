@@ -129,7 +129,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -143,7 +143,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
      * 
      */
-    @Export(name="expiresAt", type=String.class, parameters={})
+    @Export(name="expiresAt", refs={String.class}, tree="[0]")
     private Output<String> expiresAt;
 
     /**
@@ -157,7 +157,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
      * 
      */
-    @Export(name="invitationId", type=String.class, parameters={})
+    @Export(name="invitationId", refs={String.class}, tree="[0]")
     private Output<String> invitationId;
 
     /**
@@ -171,7 +171,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * Atlas user who invited `username` to the organization.
      * 
      */
-    @Export(name="inviterUsername", type=String.class, parameters={})
+    @Export(name="inviterUsername", refs={String.class}, tree="[0]")
     private Output<String> inviterUsername;
 
     /**
@@ -185,7 +185,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
      * 
      */
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output<String> orgId;
 
     /**
@@ -199,7 +199,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * 
      */
-    @Export(name="roles", type=List.class, parameters={String.class})
+    @Export(name="roles", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roles;
 
     /**
@@ -213,7 +213,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
      * 
      */
-    @Export(name="teamsIds", type=List.class, parameters={String.class})
+    @Export(name="teamsIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> teamsIds;
 
     /**
@@ -227,7 +227,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**

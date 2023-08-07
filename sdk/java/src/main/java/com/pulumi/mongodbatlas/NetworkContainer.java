@@ -151,7 +151,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.
      * 
      */
-    @Export(name="atlasCidrBlock", type=String.class, parameters={})
+    @Export(name="atlasCidrBlock", refs={String.class}, tree="[0]")
     private Output<String> atlasCidrBlock;
 
     /**
@@ -172,7 +172,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * Unique identifier of the Azure subscription in which the VNet resides.
      * 
      */
-    @Export(name="azureSubscriptionId", type=String.class, parameters={})
+    @Export(name="azureSubscriptionId", refs={String.class}, tree="[0]")
     private Output<String> azureSubscriptionId;
 
     /**
@@ -186,7 +186,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * The Network Peering Container ID.
      * 
      */
-    @Export(name="containerId", type=String.class, parameters={})
+    @Export(name="containerId", refs={String.class}, tree="[0]")
     private Output<String> containerId;
 
     /**
@@ -200,7 +200,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      * 
      */
-    @Export(name="gcpProjectId", type=String.class, parameters={})
+    @Export(name="gcpProjectId", refs={String.class}, tree="[0]")
     private Output<String> gcpProjectId;
 
     /**
@@ -214,7 +214,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      * 
      */
-    @Export(name="networkName", type=String.class, parameters={})
+    @Export(name="networkName", refs={String.class}, tree="[0]")
     private Output<String> networkName;
 
     /**
@@ -228,7 +228,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * Unique identifier for the Atlas project for this Network Peering Container.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -242,7 +242,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
      * 
      */
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> providerName;
 
     /**
@@ -256,7 +256,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * Indicates whether the project has Network Peering connections deployed in the container.
      * 
      */
-    @Export(name="provisioned", type=Boolean.class, parameters={})
+    @Export(name="provisioned", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> provisioned;
 
     /**
@@ -270,7 +270,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -284,7 +284,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      * 
      */
-    @Export(name="regionName", type=String.class, parameters={})
+    @Export(name="regionName", refs={String.class}, tree="[0]")
     private Output<String> regionName;
 
     /**
@@ -298,7 +298,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
      * 
      */
-    @Export(name="regions", type=List.class, parameters={String.class})
+    @Export(name="regions", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> regions;
 
     /**
@@ -312,7 +312,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      * 
      */
-    @Export(name="vnetName", type=String.class, parameters={})
+    @Export(name="vnetName", refs={String.class}, tree="[0]")
     private Output<String> vnetName;
 
     /**
@@ -326,7 +326,7 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * Unique identifier of Atlas&#39; AWS VPC.
      * 
      */
-    @Export(name="vpcId", type=String.class, parameters={})
+    @Export(name="vpcId", refs={String.class}, tree="[0]")
     private Output<String> vpcId;
 
     /**

@@ -111,7 +111,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-    @Export(name="apiKeys", type=List.class, parameters={ProjectApiKey.class})
+    @Export(name="apiKeys", refs={List.class,ProjectApiKey.class}, tree="[0,1]")
     private Output<List<ProjectApiKey>> apiKeys;
 
     public Output<List<ProjectApiKey>> apiKeys() {
@@ -121,7 +121,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * The number of Atlas clusters deployed in the project..
      * 
      */
-    @Export(name="clusterCount", type=Integer.class, parameters={})
+    @Export(name="clusterCount", refs={Integer.class}, tree="[0]")
     private Output<Integer> clusterCount;
 
     /**
@@ -135,7 +135,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * The ISO-8601-formatted timestamp of when Atlas created the project..
      * 
      */
-    @Export(name="created", type=String.class, parameters={})
+    @Export(name="created", refs={String.class}, tree="[0]")
     private Output<String> created;
 
     /**
@@ -149,7 +149,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
      * 
      */
-    @Export(name="isCollectDatabaseSpecificsStatisticsEnabled", type=Boolean.class, parameters={})
+    @Export(name="isCollectDatabaseSpecificsStatisticsEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isCollectDatabaseSpecificsStatisticsEnabled;
 
     /**
@@ -163,7 +163,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
      * 
      */
-    @Export(name="isDataExplorerEnabled", type=Boolean.class, parameters={})
+    @Export(name="isDataExplorerEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isDataExplorerEnabled;
 
     /**
@@ -177,7 +177,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
      * 
      */
-    @Export(name="isExtendedStorageSizesEnabled", type=Boolean.class, parameters={})
+    @Export(name="isExtendedStorageSizesEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isExtendedStorageSizesEnabled;
 
     /**
@@ -191,7 +191,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      * 
      */
-    @Export(name="isPerformanceAdvisorEnabled", type=Boolean.class, parameters={})
+    @Export(name="isPerformanceAdvisorEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isPerformanceAdvisorEnabled;
 
     /**
@@ -205,7 +205,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
      * 
      */
-    @Export(name="isRealtimePerformancePanelEnabled", type=Boolean.class, parameters={})
+    @Export(name="isRealtimePerformancePanelEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isRealtimePerformancePanelEnabled;
 
     /**
@@ -219,7 +219,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      * 
      */
-    @Export(name="isSchemaAdvisorEnabled", type=Boolean.class, parameters={})
+    @Export(name="isSchemaAdvisorEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isSchemaAdvisorEnabled;
 
     /**
@@ -229,7 +229,7 @@ public class Project extends com.pulumi.resources.CustomResource {
     public Output<Boolean> isSchemaAdvisorEnabled() {
         return this.isSchemaAdvisorEnabled;
     }
-    @Export(name="limits", type=List.class, parameters={ProjectLimit.class})
+    @Export(name="limits", refs={List.class,ProjectLimit.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProjectLimit>> limits;
 
     public Output<Optional<List<ProjectLimit>>> limits() {
@@ -239,7 +239,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * The name of the project you want to create.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -253,7 +253,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * The ID of the organization you want to create the project within.
      * 
      */
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output<String> orgId;
 
     /**
@@ -267,7 +267,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
      * 
      */
-    @Export(name="projectOwnerId", type=String.class, parameters={})
+    @Export(name="projectOwnerId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> projectOwnerId;
 
     /**
@@ -281,7 +281,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      * 
      */
-    @Export(name="regionUsageRestrictions", type=String.class, parameters={})
+    @Export(name="regionUsageRestrictions", refs={String.class}, tree="[0]")
     private Output<String> regionUsageRestrictions;
 
     /**
@@ -291,7 +291,7 @@ public class Project extends com.pulumi.resources.CustomResource {
     public Output<String> regionUsageRestrictions() {
         return this.regionUsageRestrictions;
     }
-    @Export(name="teams", type=List.class, parameters={ProjectTeam.class})
+    @Export(name="teams", refs={List.class,ProjectTeam.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProjectTeam>> teams;
 
     public Output<Optional<List<ProjectTeam>>> teams() {
@@ -301,7 +301,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
      * 
      */
-    @Export(name="withDefaultAlertsSettings", type=Boolean.class, parameters={})
+    @Export(name="withDefaultAlertsSettings", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> withDefaultAlertsSettings;
 
     /**

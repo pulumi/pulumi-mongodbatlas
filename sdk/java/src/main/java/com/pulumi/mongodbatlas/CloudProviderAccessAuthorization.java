@@ -20,37 +20,37 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization")
 public class CloudProviderAccessAuthorization extends com.pulumi.resources.CustomResource {
-    @Export(name="authorizedDate", type=String.class, parameters={})
+    @Export(name="authorizedDate", refs={String.class}, tree="[0]")
     private Output<String> authorizedDate;
 
     public Output<String> authorizedDate() {
         return this.authorizedDate;
     }
-    @Export(name="aws", type=CloudProviderAccessAuthorizationAws.class, parameters={})
+    @Export(name="aws", refs={CloudProviderAccessAuthorizationAws.class}, tree="[0]")
     private Output</* @Nullable */ CloudProviderAccessAuthorizationAws> aws;
 
     public Output<Optional<CloudProviderAccessAuthorizationAws>> aws() {
         return Codegen.optional(this.aws);
     }
-    @Export(name="azure", type=CloudProviderAccessAuthorizationAzure.class, parameters={})
+    @Export(name="azure", refs={CloudProviderAccessAuthorizationAzure.class}, tree="[0]")
     private Output</* @Nullable */ CloudProviderAccessAuthorizationAzure> azure;
 
     public Output<Optional<CloudProviderAccessAuthorizationAzure>> azure() {
         return Codegen.optional(this.azure);
     }
-    @Export(name="featureUsages", type=List.class, parameters={CloudProviderAccessAuthorizationFeatureUsage.class})
+    @Export(name="featureUsages", refs={List.class,CloudProviderAccessAuthorizationFeatureUsage.class}, tree="[0,1]")
     private Output<List<CloudProviderAccessAuthorizationFeatureUsage>> featureUsages;
 
     public Output<List<CloudProviderAccessAuthorizationFeatureUsage>> featureUsages() {
         return this.featureUsages;
     }
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     public Output<String> projectId() {
         return this.projectId;
     }
-    @Export(name="roleId", type=String.class, parameters={})
+    @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output<String> roleId;
 
     public Output<String> roleId() {

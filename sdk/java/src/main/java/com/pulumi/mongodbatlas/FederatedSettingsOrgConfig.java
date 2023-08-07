@@ -18,37 +18,37 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig")
 public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResource {
-    @Export(name="domainAllowLists", type=List.class, parameters={String.class})
+    @Export(name="domainAllowLists", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> domainAllowLists;
 
     public Output<Optional<List<String>>> domainAllowLists() {
         return Codegen.optional(this.domainAllowLists);
     }
-    @Export(name="domainRestrictionEnabled", type=Boolean.class, parameters={})
+    @Export(name="domainRestrictionEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> domainRestrictionEnabled;
 
     public Output<Boolean> domainRestrictionEnabled() {
         return this.domainRestrictionEnabled;
     }
-    @Export(name="federationSettingsId", type=String.class, parameters={})
+    @Export(name="federationSettingsId", refs={String.class}, tree="[0]")
     private Output<String> federationSettingsId;
 
     public Output<String> federationSettingsId() {
         return this.federationSettingsId;
     }
-    @Export(name="identityProviderId", type=String.class, parameters={})
+    @Export(name="identityProviderId", refs={String.class}, tree="[0]")
     private Output<String> identityProviderId;
 
     public Output<String> identityProviderId() {
         return this.identityProviderId;
     }
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output<String> orgId;
 
     public Output<String> orgId() {
         return this.orgId;
     }
-    @Export(name="postAuthRoleGrants", type=List.class, parameters={String.class})
+    @Export(name="postAuthRoleGrants", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> postAuthRoleGrants;
 
     public Output<Optional<List<String>>> postAuthRoleGrants() {

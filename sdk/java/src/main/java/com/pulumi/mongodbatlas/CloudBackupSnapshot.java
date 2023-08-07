@@ -87,7 +87,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Cloud provider that stores this snapshot.
      * 
      */
-    @Export(name="cloudProvider", type=String.class, parameters={})
+    @Export(name="cloudProvider", refs={String.class}, tree="[0]")
     private Output<String> cloudProvider;
 
     /**
@@ -101,7 +101,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * The name of the Atlas cluster that contains the snapshots you want to retrieve.
      * 
      */
-    @Export(name="clusterName", type=String.class, parameters={})
+    @Export(name="clusterName", refs={String.class}, tree="[0]")
     private Output<String> clusterName;
 
     /**
@@ -115,7 +115,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * UTC ISO 8601 formatted point in time when Atlas took the snapshot.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -129,7 +129,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Description of the on-demand snapshot.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -143,7 +143,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
      * 
      */
-    @Export(name="expiresAt", type=String.class, parameters={})
+    @Export(name="expiresAt", refs={String.class}, tree="[0]")
     private Output<String> expiresAt;
 
     /**
@@ -157,7 +157,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
      * 
      */
-    @Export(name="masterKeyUuid", type=String.class, parameters={})
+    @Export(name="masterKeyUuid", refs={String.class}, tree="[0]")
     private Output<String> masterKeyUuid;
 
     /**
@@ -171,7 +171,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
      * 
      */
-    @Export(name="members", type=List.class, parameters={CloudBackupSnapshotMember.class})
+    @Export(name="members", refs={List.class,CloudBackupSnapshotMember.class}, tree="[0,1]")
     private Output<List<CloudBackupSnapshotMember>> members;
 
     /**
@@ -185,7 +185,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Version of the MongoDB server.
      * 
      */
-    @Export(name="mongodVersion", type=String.class, parameters={})
+    @Export(name="mongodVersion", refs={String.class}, tree="[0]")
     private Output<String> mongodVersion;
 
     /**
@@ -199,7 +199,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * The unique identifier of the project for the Atlas cluster.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -213,7 +213,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Label given to a shard or config server from which Atlas took this snapshot.
      * 
      */
-    @Export(name="replicaSetName", type=String.class, parameters={})
+    @Export(name="replicaSetName", refs={String.class}, tree="[0]")
     private Output<String> replicaSetName;
 
     /**
@@ -227,7 +227,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
      * 
      */
-    @Export(name="retentionInDays", type=Integer.class, parameters={})
+    @Export(name="retentionInDays", refs={Integer.class}, tree="[0]")
     private Output<Integer> retentionInDays;
 
     /**
@@ -241,7 +241,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Unique identifier of the snapshot.
      * 
      */
-    @Export(name="snapshotId", type=String.class, parameters={})
+    @Export(name="snapshotId", refs={String.class}, tree="[0]")
     private Output<String> snapshotId;
 
     /**
@@ -255,7 +255,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[n].id` parameters. This allows you to map a snapshot to its shard or config server name.
      * 
      */
-    @Export(name="snapshotIds", type=List.class, parameters={String.class})
+    @Export(name="snapshotIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> snapshotIds;
 
     /**
@@ -269,7 +269,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Specified the type of snapshot. Valid values are onDemand and scheduled.
      * 
      */
-    @Export(name="snapshotType", type=String.class, parameters={})
+    @Export(name="snapshotType", refs={String.class}, tree="[0]")
     private Output<String> snapshotType;
 
     /**
@@ -283,7 +283,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -297,7 +297,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Specifies the size of the snapshot in bytes.
      * 
      */
-    @Export(name="storageSizeBytes", type=Integer.class, parameters={})
+    @Export(name="storageSizeBytes", refs={Integer.class}, tree="[0]")
     private Output<Integer> storageSizeBytes;
 
     /**
@@ -311,7 +311,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * Specifies the type of cluster: replicaSet or shardedCluster.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

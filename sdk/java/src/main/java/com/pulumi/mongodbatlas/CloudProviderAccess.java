@@ -164,7 +164,7 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
      * Unique external ID Atlas uses when assuming the IAM role in your AWS account.
      * 
      */
-    @Export(name="atlasAssumedRoleExternalId", type=String.class, parameters={})
+    @Export(name="atlasAssumedRoleExternalId", refs={String.class}, tree="[0]")
     private Output<String> atlasAssumedRoleExternalId;
 
     /**
@@ -178,7 +178,7 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
      * ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
      * 
      */
-    @Export(name="atlasAwsAccountArn", type=String.class, parameters={})
+    @Export(name="atlasAwsAccountArn", refs={String.class}, tree="[0]")
     private Output<String> atlasAwsAccountArn;
 
     /**
@@ -192,7 +192,7 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
      * Date on which this role was authorized.
      * 
      */
-    @Export(name="authorizedDate", type=String.class, parameters={})
+    @Export(name="authorizedDate", refs={String.class}, tree="[0]")
     private Output<String> authorizedDate;
 
     /**
@@ -206,7 +206,7 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
      * Date on which this role was created.
      * 
      */
-    @Export(name="createdDate", type=String.class, parameters={})
+    @Export(name="createdDate", refs={String.class}, tree="[0]")
     private Output<String> createdDate;
 
     /**
@@ -220,7 +220,7 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
      * Atlas features this AWS IAM role is linked to.
      * 
      */
-    @Export(name="featureUsages", type=List.class, parameters={CloudProviderAccessFeatureUsage.class})
+    @Export(name="featureUsages", refs={List.class,CloudProviderAccessFeatureUsage.class}, tree="[0,1]")
     private Output<List<CloudProviderAccessFeatureUsage>> featureUsages;
 
     /**
@@ -234,7 +234,7 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
      * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
      * 
      */
-    @Export(name="iamAssumedRoleArn", type=String.class, parameters={})
+    @Export(name="iamAssumedRoleArn", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamAssumedRoleArn;
 
     /**
@@ -248,7 +248,7 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
      * The unique ID for the project
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -262,7 +262,7 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
      * The cloud provider for which to create a new role. Currently only AWS is supported.
      * 
      */
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
@@ -278,7 +278,7 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
      * Conditional
      * 
      */
-    @Export(name="roleId", type=String.class, parameters={})
+    @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output<String> roleId;
 
     /**

@@ -64,7 +64,7 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      * Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
      * 
      */
-    @Export(name="bucketName", type=String.class, parameters={})
+    @Export(name="bucketName", refs={String.class}, tree="[0]")
     private Output<String> bucketName;
 
     /**
@@ -78,7 +78,7 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      * Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
      * 
      */
-    @Export(name="cloudProvider", type=String.class, parameters={})
+    @Export(name="cloudProvider", refs={String.class}, tree="[0]")
     private Output<String> cloudProvider;
 
     /**
@@ -92,7 +92,7 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      * Unique identifier of the snapshot export bucket.
      * 
      */
-    @Export(name="exportBucketId", type=String.class, parameters={})
+    @Export(name="exportBucketId", refs={String.class}, tree="[0]")
     private Output<String> exportBucketId;
 
     /**
@@ -106,7 +106,7 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
      * 
      */
-    @Export(name="iamRoleId", type=String.class, parameters={})
+    @Export(name="iamRoleId", refs={String.class}, tree="[0]")
     private Output<String> iamRoleId;
 
     /**
@@ -120,7 +120,7 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      * The unique identifier of the project for the Atlas cluster.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**

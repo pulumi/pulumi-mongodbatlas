@@ -75,7 +75,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * Human-readable string to associate with this private endpoint.
      * 
      */
-    @Export(name="comment", type=String.class, parameters={})
+    @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
     /**
@@ -89,7 +89,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
      * 
      */
-    @Export(name="endpointId", type=String.class, parameters={})
+    @Export(name="endpointId", refs={String.class}, tree="[0]")
     private Output<String> endpointId;
 
     /**
@@ -103,7 +103,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -117,7 +117,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * Human-readable label that identifies the cloud service provider.
      * 
      */
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
@@ -131,7 +131,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * Human-readable label that identifies the resource type associated with this private endpoint.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

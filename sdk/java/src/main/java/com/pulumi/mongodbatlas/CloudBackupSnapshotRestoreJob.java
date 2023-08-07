@@ -36,7 +36,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * Indicates whether the restore job was canceled.
      * 
      */
-    @Export(name="cancelled", type=Boolean.class, parameters={})
+    @Export(name="cancelled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> cancelled;
 
     /**
@@ -50,7 +50,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * The name of the Atlas cluster whose snapshot you want to restore.
      * 
      */
-    @Export(name="clusterName", type=String.class, parameters={})
+    @Export(name="clusterName", refs={String.class}, tree="[0]")
     private Output<String> clusterName;
 
     /**
@@ -64,7 +64,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * UTC ISO 8601 formatted point in time when Atlas created the restore job.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -80,7 +80,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * 
      */
     @Deprecated /* use delivery_type_config instead */
-    @Export(name="deliveryType", type=Map.class, parameters={String.class, String.class})
+    @Export(name="deliveryType", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> deliveryType;
 
     public Output<Optional<Map<String,String>>> deliveryType() {
@@ -98,7 +98,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
      * 
      */
-    @Export(name="deliveryTypeConfig", type=CloudBackupSnapshotRestoreJobDeliveryTypeConfig.class, parameters={})
+    @Export(name="deliveryTypeConfig", refs={CloudBackupSnapshotRestoreJobDeliveryTypeConfig.class}, tree="[0]")
     private Output</* @Nullable */ CloudBackupSnapshotRestoreJobDeliveryTypeConfig> deliveryTypeConfig;
 
     /**
@@ -120,7 +120,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
      * 
      */
-    @Export(name="deliveryUrls", type=List.class, parameters={String.class})
+    @Export(name="deliveryUrls", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> deliveryUrls;
 
     /**
@@ -134,7 +134,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * Indicates whether the restore job expired.
      * 
      */
-    @Export(name="expired", type=Boolean.class, parameters={})
+    @Export(name="expired", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> expired;
 
     /**
@@ -148,7 +148,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * UTC ISO 8601 formatted point in time when the restore job expires.
      * 
      */
-    @Export(name="expiresAt", type=String.class, parameters={})
+    @Export(name="expiresAt", refs={String.class}, tree="[0]")
     private Output<String> expiresAt;
 
     /**
@@ -162,7 +162,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * UTC ISO 8601 formatted point in time when the restore job completed.
      * 
      */
-    @Export(name="finishedAt", type=String.class, parameters={})
+    @Export(name="finishedAt", refs={String.class}, tree="[0]")
     private Output<String> finishedAt;
 
     /**
@@ -176,7 +176,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -190,7 +190,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * Unique identifier of the snapshot to restore.
      * 
      */
-    @Export(name="snapshotId", type=String.class, parameters={})
+    @Export(name="snapshotId", refs={String.class}, tree="[0]")
     private Output<String> snapshotId;
 
     /**
@@ -204,7 +204,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * The unique identifier of the restore job.
      * 
      */
-    @Export(name="snapshotRestoreJobId", type=String.class, parameters={})
+    @Export(name="snapshotRestoreJobId", refs={String.class}, tree="[0]")
     private Output<String> snapshotRestoreJobId;
 
     /**
@@ -218,7 +218,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
      * 
      */
-    @Export(name="timestamp", type=String.class, parameters={})
+    @Export(name="timestamp", refs={String.class}, tree="[0]")
     private Output<String> timestamp;
 
     /**

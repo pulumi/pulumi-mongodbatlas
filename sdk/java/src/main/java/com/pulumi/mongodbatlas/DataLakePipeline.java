@@ -44,7 +44,7 @@ public class DataLakePipeline extends com.pulumi.resources.CustomResource {
      * Timestamp that indicates when the Data Lake Pipeline was created.
      * 
      */
-    @Export(name="createdDate", type=String.class, parameters={})
+    @Export(name="createdDate", refs={String.class}, tree="[0]")
     private Output<String> createdDate;
 
     /**
@@ -63,7 +63,7 @@ public class DataLakePipeline extends com.pulumi.resources.CustomResource {
      * * `ingestion_schedules.#.retention_value` - Duration in days, weeks, or months that MongoDB Atlas retains the snapshot.
      * 
      */
-    @Export(name="ingestionSchedules", type=List.class, parameters={DataLakePipelineIngestionSchedule.class})
+    @Export(name="ingestionSchedules", refs={List.class,DataLakePipelineIngestionSchedule.class}, tree="[0,1]")
     private Output<List<DataLakePipelineIngestionSchedule>> ingestionSchedules;
 
     /**
@@ -82,7 +82,7 @@ public class DataLakePipeline extends com.pulumi.resources.CustomResource {
      * Timestamp that indicates the last time that the Data Lake Pipeline was updated.
      * 
      */
-    @Export(name="lastUpdatedDate", type=String.class, parameters={})
+    @Export(name="lastUpdatedDate", refs={String.class}, tree="[0]")
     private Output<String> lastUpdatedDate;
 
     /**
@@ -96,7 +96,7 @@ public class DataLakePipeline extends com.pulumi.resources.CustomResource {
      * Name of the Atlas Data Lake Pipeline.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -110,7 +110,7 @@ public class DataLakePipeline extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to create a data lake pipeline.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -120,7 +120,7 @@ public class DataLakePipeline extends com.pulumi.resources.CustomResource {
     public Output<String> projectId() {
         return this.projectId;
     }
-    @Export(name="sink", type=DataLakePipelineSink.class, parameters={})
+    @Export(name="sink", refs={DataLakePipelineSink.class}, tree="[0]")
     private Output</* @Nullable */ DataLakePipelineSink> sink;
 
     public Output<Optional<DataLakePipelineSink>> sink() {
@@ -144,7 +144,7 @@ public class DataLakePipeline extends com.pulumi.resources.CustomResource {
      * * `snapshots.#.policies` - List that contains unique identifiers for the policy items.
      * 
      */
-    @Export(name="snapshots", type=List.class, parameters={DataLakePipelineSnapshot.class})
+    @Export(name="snapshots", refs={List.class,DataLakePipelineSnapshot.class}, tree="[0,1]")
     private Output<List<DataLakePipelineSnapshot>> snapshots;
 
     /**
@@ -168,7 +168,7 @@ public class DataLakePipeline extends com.pulumi.resources.CustomResource {
     public Output<List<DataLakePipelineSnapshot>> snapshots() {
         return this.snapshots;
     }
-    @Export(name="source", type=DataLakePipelineSource.class, parameters={})
+    @Export(name="source", refs={DataLakePipelineSource.class}, tree="[0]")
     private Output</* @Nullable */ DataLakePipelineSource> source;
 
     public Output<Optional<DataLakePipelineSource>> source() {
@@ -178,7 +178,7 @@ public class DataLakePipeline extends com.pulumi.resources.CustomResource {
      * State of this Data Lake Pipeline.
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
@@ -194,7 +194,7 @@ public class DataLakePipeline extends com.pulumi.resources.CustomResource {
      * * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
      * 
      */
-    @Export(name="transformations", type=List.class, parameters={DataLakePipelineTransformation.class})
+    @Export(name="transformations", refs={List.class,DataLakePipelineTransformation.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DataLakePipelineTransformation>> transformations;
 
     /**

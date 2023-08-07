@@ -183,7 +183,7 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
      * The name of the Global Cluster.
      * 
      */
-    @Export(name="clusterName", type=String.class, parameters={})
+    @Export(name="clusterName", refs={String.class}, tree="[0]")
     private Output<String> clusterName;
 
     /**
@@ -197,7 +197,7 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
      * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      * 
      */
-    @Export(name="customZoneMapping", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="customZoneMapping", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> customZoneMapping;
 
     /**
@@ -211,7 +211,7 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
      * 
      */
-    @Export(name="customZoneMappings", type=List.class, parameters={GlobalClusterConfigCustomZoneMapping.class})
+    @Export(name="customZoneMappings", refs={List.class,GlobalClusterConfigCustomZoneMapping.class}, tree="[0,1]")
     private Output</* @Nullable */ List<GlobalClusterConfigCustomZoneMapping>> customZoneMappings;
 
     /**
@@ -225,7 +225,7 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
      * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
      * 
      */
-    @Export(name="managedNamespaces", type=List.class, parameters={GlobalClusterConfigManagedNamespace.class})
+    @Export(name="managedNamespaces", refs={List.class,GlobalClusterConfigManagedNamespace.class}, tree="[0,1]")
     private Output<List<GlobalClusterConfigManagedNamespace>> managedNamespaces;
 
     /**
@@ -239,7 +239,7 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to create the database user.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**

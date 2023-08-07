@@ -82,7 +82,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * Name of the Atlas cluster whose snapshot you want to export.
      * 
      */
-    @Export(name="clusterName", type=String.class, parameters={})
+    @Export(name="clusterName", refs={String.class}, tree="[0]")
     private Output<String> clusterName;
 
     /**
@@ -96,7 +96,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
      * 
      */
-    @Export(name="components", type=List.class, parameters={CloudBackupSnapshotExportJobComponent.class})
+    @Export(name="components", refs={List.class,CloudBackupSnapshotExportJobComponent.class}, tree="[0,1]")
     private Output<List<CloudBackupSnapshotExportJobComponent>> components;
 
     /**
@@ -110,7 +110,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * Timestamp in ISO 8601 date and time format in UTC when the export job was created.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -124,7 +124,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      * 
      */
-    @Export(name="customDatas", type=List.class, parameters={CloudBackupSnapshotExportJobCustomData.class})
+    @Export(name="customDatas", refs={List.class,CloudBackupSnapshotExportJobCustomData.class}, tree="[0,1]")
     private Output<List<CloudBackupSnapshotExportJobCustomData>> customDatas;
 
     /**
@@ -138,7 +138,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * Error message, only if the export job failed.
      * 
      */
-    @Export(name="errMsg", type=String.class, parameters={})
+    @Export(name="errMsg", refs={String.class}, tree="[0]")
     private Output<String> errMsg;
 
     /**
@@ -152,7 +152,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
      * 
      */
-    @Export(name="exportBucketId", type=String.class, parameters={})
+    @Export(name="exportBucketId", refs={String.class}, tree="[0]")
     private Output<String> exportBucketId;
 
     /**
@@ -167,7 +167,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
      * 
      */
-    @Export(name="exportJobId", type=String.class, parameters={})
+    @Export(name="exportJobId", refs={String.class}, tree="[0]")
     private Output<String> exportJobId;
 
     /**
@@ -178,13 +178,13 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
     public Output<String> exportJobId() {
         return this.exportJobId;
     }
-    @Export(name="exportStatusExportedCollections", type=Integer.class, parameters={})
+    @Export(name="exportStatusExportedCollections", refs={Integer.class}, tree="[0]")
     private Output<Integer> exportStatusExportedCollections;
 
     public Output<Integer> exportStatusExportedCollections() {
         return this.exportStatusExportedCollections;
     }
-    @Export(name="exportStatusTotalCollections", type=Integer.class, parameters={})
+    @Export(name="exportStatusTotalCollections", refs={Integer.class}, tree="[0]")
     private Output<Integer> exportStatusTotalCollections;
 
     public Output<Integer> exportStatusTotalCollections() {
@@ -194,7 +194,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * Timestamp in ISO 8601 date and time format in UTC when the export job completes.
      * 
      */
-    @Export(name="finishedAt", type=String.class, parameters={})
+    @Export(name="finishedAt", refs={String.class}, tree="[0]")
     private Output<String> finishedAt;
 
     /**
@@ -204,7 +204,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
     public Output<String> finishedAt() {
         return this.finishedAt;
     }
-    @Export(name="prefix", type=String.class, parameters={})
+    @Export(name="prefix", refs={String.class}, tree="[0]")
     private Output<String> prefix;
 
     public Output<String> prefix() {
@@ -214,7 +214,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -228,7 +228,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
      * 
      */
-    @Export(name="snapshotId", type=String.class, parameters={})
+    @Export(name="snapshotId", refs={String.class}, tree="[0]")
     private Output<String> snapshotId;
 
     /**
@@ -242,7 +242,7 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * Status of the export job. Value can be one of the following:
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**

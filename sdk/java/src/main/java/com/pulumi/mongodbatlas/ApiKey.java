@@ -32,7 +32,7 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
      * Unique identifier for this Organization API key.
      * 
      */
-    @Export(name="apiKeyId", type=String.class, parameters={})
+    @Export(name="apiKeyId", refs={String.class}, tree="[0]")
     private Output<String> apiKeyId;
 
     /**
@@ -46,7 +46,7 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
      * Description of this Organization API key.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -60,7 +60,7 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
      * Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
      * 
      */
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output<String> orgId;
 
     /**
@@ -70,13 +70,13 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
     public Output<String> orgId() {
         return this.orgId;
     }
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     public Output<String> privateKey() {
         return this.privateKey;
     }
-    @Export(name="publicKey", type=String.class, parameters={})
+    @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 
     public Output<String> publicKey() {
@@ -87,7 +87,7 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
      * The following are valid roles:
      * 
      */
-    @Export(name="roleNames", type=List.class, parameters={String.class})
+    @Export(name="roleNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roleNames;
 
     /**

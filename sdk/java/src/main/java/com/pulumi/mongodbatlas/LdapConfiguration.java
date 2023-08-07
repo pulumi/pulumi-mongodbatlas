@@ -124,7 +124,7 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
      * Specifies whether user authentication with LDAP is enabled.
      * 
      */
-    @Export(name="authenticationEnabled", type=Boolean.class, parameters={})
+    @Export(name="authenticationEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> authenticationEnabled;
 
     /**
@@ -138,7 +138,7 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
      * Specifies whether user authorization with LDAP is enabled. You cannot enable user authorization with LDAP without first enabling user authentication with LDAP.
      * 
      */
-    @Export(name="authorizationEnabled", type=Boolean.class, parameters={})
+    @Export(name="authorizationEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> authorizationEnabled;
 
     /**
@@ -152,7 +152,7 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
      * An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
      * 
      */
-    @Export(name="authzQueryTemplate", type=String.class, parameters={})
+    @Export(name="authzQueryTemplate", refs={String.class}, tree="[0]")
     private Output<String> authzQueryTemplate;
 
     /**
@@ -166,7 +166,7 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
      * The password used to authenticate the `bind_username`.
      * 
      */
-    @Export(name="bindPassword", type=String.class, parameters={})
+    @Export(name="bindPassword", refs={String.class}, tree="[0]")
     private Output<String> bindPassword;
 
     /**
@@ -180,7 +180,7 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
      * The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
      * 
      */
-    @Export(name="bindUsername", type=String.class, parameters={})
+    @Export(name="bindUsername", refs={String.class}, tree="[0]")
     private Output<String> bindUsername;
 
     /**
@@ -194,7 +194,7 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
      * CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
      * 
      */
-    @Export(name="caCertificate", type=String.class, parameters={})
+    @Export(name="caCertificate", refs={String.class}, tree="[0]")
     private Output<String> caCertificate;
 
     /**
@@ -208,7 +208,7 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
      * The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
      * 
      */
-    @Export(name="hostname", type=String.class, parameters={})
+    @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output<String> hostname;
 
     /**
@@ -222,7 +222,7 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
      * The port to which the LDAP server listens for client connections. Default: `636`
      * 
      */
-    @Export(name="port", type=Integer.class, parameters={})
+    @Export(name="port", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> port;
 
     /**
@@ -236,7 +236,7 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to configure LDAP.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -253,7 +253,7 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
      * * `user_to_dn_mapping.0.ldap_query` - (Optional) An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
      * 
      */
-    @Export(name="userToDnMappings", type=List.class, parameters={LdapConfigurationUserToDnMapping.class})
+    @Export(name="userToDnMappings", refs={List.class,LdapConfigurationUserToDnMapping.class}, tree="[0,1]")
     private Output<List<LdapConfigurationUserToDnMapping>> userToDnMappings;
 
     /**

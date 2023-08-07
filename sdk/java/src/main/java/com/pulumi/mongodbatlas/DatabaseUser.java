@@ -194,7 +194,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * Accepted values include:
      * 
      */
-    @Export(name="authDatabaseName", type=String.class, parameters={})
+    @Export(name="authDatabaseName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> authDatabaseName;
 
     /**
@@ -209,7 +209,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
      * 
      */
-    @Export(name="awsIamType", type=String.class, parameters={})
+    @Export(name="awsIamType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsIamType;
 
     /**
@@ -227,7 +227,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use auth_database_name instead */
-    @Export(name="databaseName", type=String.class, parameters={})
+    @Export(name="databaseName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> databaseName;
 
     /**
@@ -237,7 +237,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> databaseName() {
         return Codegen.optional(this.databaseName);
     }
-    @Export(name="labels", type=List.class, parameters={DatabaseUserLabel.class})
+    @Export(name="labels", refs={List.class,DatabaseUserLabel.class}, tree="[0,1]")
     private Output<List<DatabaseUserLabel>> labels;
 
     public Output<List<DatabaseUserLabel>> labels() {
@@ -247,7 +247,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
      * 
      */
-    @Export(name="ldapAuthType", type=String.class, parameters={})
+    @Export(name="ldapAuthType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ldapAuthType;
 
     /**
@@ -257,7 +257,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> ldapAuthType() {
         return Codegen.optional(this.ldapAuthType);
     }
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     public Output<Optional<String>> password() {
@@ -267,7 +267,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to create the database user.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -281,7 +281,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      * 
      */
-    @Export(name="roles", type=List.class, parameters={DatabaseUserRole.class})
+    @Export(name="roles", refs={List.class,DatabaseUserRole.class}, tree="[0,1]")
     private Output<List<DatabaseUserRole>> roles;
 
     /**
@@ -291,7 +291,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
     public Output<List<DatabaseUserRole>> roles() {
         return this.roles;
     }
-    @Export(name="scopes", type=List.class, parameters={DatabaseUserScope.class})
+    @Export(name="scopes", refs={List.class,DatabaseUserScope.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DatabaseUserScope>> scopes;
 
     public Output<Optional<List<DatabaseUserScope>>> scopes() {
@@ -301,7 +301,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**
@@ -315,7 +315,7 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
      * 
      */
-    @Export(name="x509Type", type=String.class, parameters={})
+    @Export(name="x509Type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> x509Type;
 
     /**

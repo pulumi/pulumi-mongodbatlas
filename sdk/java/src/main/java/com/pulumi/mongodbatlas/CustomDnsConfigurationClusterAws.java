@@ -71,7 +71,7 @@ public class CustomDnsConfigurationClusterAws extends com.pulumi.resources.Custo
      * Indicates whether the project&#39;s clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
     /**
@@ -85,7 +85,7 @@ public class CustomDnsConfigurationClusterAws extends com.pulumi.resources.Custo
      * Required 	Unique identifier for the project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**

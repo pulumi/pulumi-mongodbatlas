@@ -32,7 +32,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
      * 
      */
-    @Export(name="endpointGroupNames", type=List.class, parameters={String.class})
+    @Export(name="endpointGroupNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> endpointGroupNames;
 
     /**
@@ -46,7 +46,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
      * 
      */
-    @Export(name="endpointServiceName", type=String.class, parameters={})
+    @Export(name="endpointServiceName", refs={String.class}, tree="[0]")
     private Output<String> endpointServiceName;
 
     /**
@@ -61,7 +61,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * AWS:
      * 
      */
-    @Export(name="errorMessage", type=String.class, parameters={})
+    @Export(name="errorMessage", refs={String.class}, tree="[0]")
     private Output<String> errorMessage;
 
     /**
@@ -77,7 +77,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * AZURE:
      * 
      */
-    @Export(name="interfaceEndpoints", type=List.class, parameters={String.class})
+    @Export(name="interfaceEndpoints", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> interfaceEndpoints;
 
     /**
@@ -92,7 +92,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * All private endpoints that you have added to this Azure Private Link Service.
      * 
      */
-    @Export(name="privateEndpoints", type=List.class, parameters={String.class})
+    @Export(name="privateEndpoints", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> privateEndpoints;
 
     /**
@@ -106,7 +106,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * Unique identifier of the AWS PrivateLink connection.
      * 
      */
-    @Export(name="privateLinkId", type=String.class, parameters={})
+    @Export(name="privateLinkId", refs={String.class}, tree="[0]")
     private Output<String> privateLinkId;
 
     /**
@@ -121,7 +121,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * GCP:
      * 
      */
-    @Export(name="privateLinkServiceName", type=String.class, parameters={})
+    @Export(name="privateLinkServiceName", refs={String.class}, tree="[0]")
     private Output<String> privateLinkServiceName;
 
     /**
@@ -132,7 +132,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
     public Output<String> privateLinkServiceName() {
         return this.privateLinkServiceName;
     }
-    @Export(name="privateLinkServiceResourceId", type=String.class, parameters={})
+    @Export(name="privateLinkServiceResourceId", refs={String.class}, tree="[0]")
     private Output<String> privateLinkServiceResourceId;
 
     public Output<String> privateLinkServiceResourceId() {
@@ -142,7 +142,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * Required 	Unique identifier for the project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -156,7 +156,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
      * 
      */
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
@@ -171,7 +171,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -186,7 +186,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * GCP region for the Private Service Connect endpoint service.
      * 
      */
-    @Export(name="regionName", type=String.class, parameters={})
+    @Export(name="regionName", refs={String.class}, tree="[0]")
     private Output<String> regionName;
 
     /**
@@ -200,7 +200,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
      * 
      */
-    @Export(name="serviceAttachmentNames", type=List.class, parameters={String.class})
+    @Export(name="serviceAttachmentNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> serviceAttachmentNames;
 
     /**
@@ -215,7 +215,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      * AWS:
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

@@ -106,7 +106,7 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
      * Defer any scheduled maintenance for the given project for one week.
      * 
      */
-    @Export(name="autoDefer", type=Boolean.class, parameters={})
+    @Export(name="autoDefer", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoDefer;
 
     /**
@@ -116,7 +116,7 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
     public Output<Boolean> autoDefer() {
         return this.autoDefer;
     }
-    @Export(name="autoDeferOnceEnabled", type=Boolean.class, parameters={})
+    @Export(name="autoDeferOnceEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoDeferOnceEnabled;
 
     public Output<Boolean> autoDeferOnceEnabled() {
@@ -126,7 +126,7 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
      * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
      * 
      */
-    @Export(name="dayOfWeek", type=Integer.class, parameters={})
+    @Export(name="dayOfWeek", refs={Integer.class}, tree="[0]")
     private Output<Integer> dayOfWeek;
 
     /**
@@ -140,7 +140,7 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
      * Defer the next scheduled maintenance for the given project for one week.
      * 
      */
-    @Export(name="defer", type=Boolean.class, parameters={})
+    @Export(name="defer", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> defer;
 
     /**
@@ -154,7 +154,7 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
      * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
      * 
      */
-    @Export(name="hourOfDay", type=Integer.class, parameters={})
+    @Export(name="hourOfDay", refs={Integer.class}, tree="[0]")
     private Output<Integer> hourOfDay;
 
     /**
@@ -168,7 +168,7 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
      * Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
      * 
      */
-    @Export(name="numberOfDeferrals", type=Integer.class, parameters={})
+    @Export(name="numberOfDeferrals", refs={Integer.class}, tree="[0]")
     private Output<Integer> numberOfDeferrals;
 
     /**
@@ -182,7 +182,7 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
      * The unique identifier of the project for the Maintenance Window.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -196,7 +196,7 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
      */
-    @Export(name="startAsap", type=Boolean.class, parameters={})
+    @Export(name="startAsap", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> startAsap;
 
     /**

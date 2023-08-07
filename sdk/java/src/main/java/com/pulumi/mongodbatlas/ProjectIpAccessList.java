@@ -159,7 +159,7 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      * Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
      * 
      */
-    @Export(name="awsSecurityGroup", type=String.class, parameters={})
+    @Export(name="awsSecurityGroup", refs={String.class}, tree="[0]")
     private Output<String> awsSecurityGroup;
 
     /**
@@ -173,7 +173,7 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      * Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
      * 
      */
-    @Export(name="cidrBlock", type=String.class, parameters={})
+    @Export(name="cidrBlock", refs={String.class}, tree="[0]")
     private Output<String> cidrBlock;
 
     /**
@@ -189,7 +189,7 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      * &gt; **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
      * 
      */
-    @Export(name="comment", type=String.class, parameters={})
+    @Export(name="comment", refs={String.class}, tree="[0]")
     private Output<String> comment;
 
     /**
@@ -205,7 +205,7 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      * Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
      * 
      */
-    @Export(name="ipAddress", type=String.class, parameters={})
+    @Export(name="ipAddress", refs={String.class}, tree="[0]")
     private Output<String> ipAddress;
 
     /**
@@ -219,7 +219,7 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      * Unique identifier for the project to which you want to add one or more access list entries.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**

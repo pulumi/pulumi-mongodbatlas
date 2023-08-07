@@ -44,7 +44,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      * 
      */
-    @Export(name="autoExportEnabled", type=Boolean.class, parameters={})
+    @Export(name="autoExportEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoExportEnabled;
 
     /**
@@ -61,7 +61,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * Unique identifier of the Atlas cluster.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -75,7 +75,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      * 
      */
-    @Export(name="clusterName", type=String.class, parameters={})
+    @Export(name="clusterName", refs={String.class}, tree="[0]")
     private Output<String> clusterName;
 
     /**
@@ -85,13 +85,13 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
     public Output<String> clusterName() {
         return this.clusterName;
     }
-    @Export(name="copySettings", type=List.class, parameters={CloudBackupScheduleCopySetting.class})
+    @Export(name="copySettings", refs={List.class,CloudBackupScheduleCopySetting.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CloudBackupScheduleCopySetting>> copySettings;
 
     public Output<Optional<List<CloudBackupScheduleCopySetting>>> copySettings() {
         return Codegen.optional(this.copySettings);
     }
-    @Export(name="export", type=CloudBackupScheduleExport.class, parameters={})
+    @Export(name="export", refs={CloudBackupScheduleExport.class}, tree="[0]")
     private Output<CloudBackupScheduleExport> export;
 
     public Output<CloudBackupScheduleExport> export() {
@@ -101,7 +101,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * Unique identifier of the backup policy.
      * 
      */
-    @Export(name="idPolicy", type=String.class, parameters={})
+    @Export(name="idPolicy", refs={String.class}, tree="[0]")
     private Output<String> idPolicy;
 
     /**
@@ -115,7 +115,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
      * 
      */
-    @Export(name="nextSnapshot", type=String.class, parameters={})
+    @Export(name="nextSnapshot", refs={String.class}, tree="[0]")
     private Output<String> nextSnapshot;
 
     /**
@@ -129,7 +129,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * Daily policy item
      * 
      */
-    @Export(name="policyItemDaily", type=CloudBackupSchedulePolicyItemDaily.class, parameters={})
+    @Export(name="policyItemDaily", refs={CloudBackupSchedulePolicyItemDaily.class}, tree="[0]")
     private Output</* @Nullable */ CloudBackupSchedulePolicyItemDaily> policyItemDaily;
 
     /**
@@ -143,7 +143,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * Hourly policy item
      * 
      */
-    @Export(name="policyItemHourly", type=CloudBackupSchedulePolicyItemHourly.class, parameters={})
+    @Export(name="policyItemHourly", refs={CloudBackupSchedulePolicyItemHourly.class}, tree="[0]")
     private Output</* @Nullable */ CloudBackupSchedulePolicyItemHourly> policyItemHourly;
 
     /**
@@ -157,7 +157,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * Monthly policy item
      * 
      */
-    @Export(name="policyItemMonthlies", type=List.class, parameters={CloudBackupSchedulePolicyItemMonthly.class})
+    @Export(name="policyItemMonthlies", refs={List.class,CloudBackupSchedulePolicyItemMonthly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CloudBackupSchedulePolicyItemMonthly>> policyItemMonthlies;
 
     /**
@@ -171,7 +171,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * Weekly policy item
      * 
      */
-    @Export(name="policyItemWeeklies", type=List.class, parameters={CloudBackupSchedulePolicyItemWeekly.class})
+    @Export(name="policyItemWeeklies", refs={List.class,CloudBackupSchedulePolicyItemWeekly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CloudBackupSchedulePolicyItemWeekly>> policyItemWeeklies;
 
     /**
@@ -185,7 +185,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * The unique identifier of the project for the Atlas cluster.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -199,7 +199,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
      * 
      */
-    @Export(name="referenceHourOfDay", type=Integer.class, parameters={})
+    @Export(name="referenceHourOfDay", refs={Integer.class}, tree="[0]")
     private Output<Integer> referenceHourOfDay;
 
     /**
@@ -213,7 +213,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
      * 
      */
-    @Export(name="referenceMinuteOfHour", type=Integer.class, parameters={})
+    @Export(name="referenceMinuteOfHour", refs={Integer.class}, tree="[0]")
     private Output<Integer> referenceMinuteOfHour;
 
     /**
@@ -227,7 +227,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      * 
      */
-    @Export(name="restoreWindowDays", type=Integer.class, parameters={})
+    @Export(name="restoreWindowDays", refs={Integer.class}, tree="[0]")
     private Output<Integer> restoreWindowDays;
 
     /**
@@ -237,7 +237,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
     public Output<Integer> restoreWindowDays() {
         return this.restoreWindowDays;
     }
-    @Export(name="updateSnapshots", type=Boolean.class, parameters={})
+    @Export(name="updateSnapshots", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> updateSnapshots;
 
     public Output<Boolean> updateSnapshots() {
@@ -247,7 +247,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
      * 
      */
-    @Export(name="useOrgAndGroupNamesInExportPrefix", type=Boolean.class, parameters={})
+    @Export(name="useOrgAndGroupNamesInExportPrefix", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> useOrgAndGroupNamesInExportPrefix;
 
     /**

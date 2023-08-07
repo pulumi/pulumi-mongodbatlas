@@ -171,7 +171,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * Array of objects where each details one unexpired database user certificate.
      * 
      */
-    @Export(name="certificates", type=List.class, parameters={X509AuthenticationDatabaseUserCertificate.class})
+    @Export(name="certificates", refs={List.class,X509AuthenticationDatabaseUserCertificate.class}, tree="[0,1]")
     private Output<List<X509AuthenticationDatabaseUserCertificate>> certificates;
 
     /**
@@ -185,7 +185,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * Contains the last X.509 certificate and private key created for a database user.
      * 
      */
-    @Export(name="currentCertificate", type=String.class, parameters={})
+    @Export(name="currentCertificate", refs={String.class}, tree="[0]")
     private Output<String> currentCertificate;
 
     /**
@@ -199,7 +199,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * PEM string containing one or more customer CAs for database user authentication.
      * 
      */
-    @Export(name="customerX509Cas", type=String.class, parameters={})
+    @Export(name="customerX509Cas", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> customerX509Cas;
 
     /**
@@ -213,7 +213,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
      * 
      */
-    @Export(name="monthsUntilExpiration", type=Integer.class, parameters={})
+    @Export(name="monthsUntilExpiration", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> monthsUntilExpiration;
 
     /**
@@ -227,7 +227,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * Identifier for the Atlas project associated with the X.509 configuration.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -241,7 +241,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * Username of the database user to create a certificate for.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> username;
 
     /**

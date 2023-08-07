@@ -39,13 +39,13 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/cluster:Cluster")
 public class Cluster extends com.pulumi.resources.CustomResource {
-    @Export(name="advancedConfiguration", type=ClusterAdvancedConfiguration.class, parameters={})
+    @Export(name="advancedConfiguration", refs={ClusterAdvancedConfiguration.class}, tree="[0]")
     private Output<ClusterAdvancedConfiguration> advancedConfiguration;
 
     public Output<ClusterAdvancedConfiguration> advancedConfiguration() {
         return this.advancedConfiguration;
     }
-    @Export(name="autoScalingComputeEnabled", type=Boolean.class, parameters={})
+    @Export(name="autoScalingComputeEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoScalingComputeEnabled;
 
     public Output<Boolean> autoScalingComputeEnabled() {
@@ -56,7 +56,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      * 
      */
-    @Export(name="autoScalingComputeScaleDownEnabled", type=Boolean.class, parameters={})
+    @Export(name="autoScalingComputeScaleDownEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoScalingComputeScaleDownEnabled;
 
     /**
@@ -67,7 +67,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     public Output<Boolean> autoScalingComputeScaleDownEnabled() {
         return this.autoScalingComputeScaleDownEnabled;
     }
-    @Export(name="autoScalingDiskGbEnabled", type=Boolean.class, parameters={})
+    @Export(name="autoScalingDiskGbEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> autoScalingDiskGbEnabled;
 
     public Output<Optional<Boolean>> autoScalingDiskGbEnabled() {
@@ -85,7 +85,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * - AZURE - Microsoft Azure
      * 
      */
-    @Export(name="backingProviderName", type=String.class, parameters={})
+    @Export(name="backingProviderName", refs={String.class}, tree="[0]")
     private Output<String> backingProviderName;
 
     /**
@@ -133,7 +133,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * * The default value is false.  M10 and above only.
      * 
      */
-    @Export(name="backupEnabled", type=Boolean.class, parameters={})
+    @Export(name="backupEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> backupEnabled;
 
     /**
@@ -177,7 +177,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use bi_connector_config instead */
-    @Export(name="biConnector", type=Map.class, parameters={String.class, String.class})
+    @Export(name="biConnector", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> biConnector;
 
     /**
@@ -191,7 +191,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      * 
      */
-    @Export(name="biConnectorConfig", type=ClusterBiConnectorConfig.class, parameters={})
+    @Export(name="biConnectorConfig", refs={ClusterBiConnectorConfig.class}, tree="[0]")
     private Output<ClusterBiConnectorConfig> biConnectorConfig;
 
     /**
@@ -201,7 +201,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     public Output<ClusterBiConnectorConfig> biConnectorConfig() {
         return this.biConnectorConfig;
     }
-    @Export(name="cloudBackup", type=Boolean.class, parameters={})
+    @Export(name="cloudBackup", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> cloudBackup;
 
     public Output<Optional<Boolean>> cloudBackup() {
@@ -211,7 +211,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * The cluster ID.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -230,7 +230,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Accepted values include:
      * 
      */
-    @Export(name="clusterType", type=String.class, parameters={})
+    @Export(name="clusterType", refs={String.class}, tree="[0]")
     private Output<String> clusterType;
 
     /**
@@ -249,7 +249,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
-    @Export(name="connectionStrings", type=List.class, parameters={ClusterConnectionString.class})
+    @Export(name="connectionStrings", refs={List.class,ClusterConnectionString.class}, tree="[0,1]")
     private Output<List<ClusterConnectionString>> connectionStrings;
 
     /**
@@ -263,7 +263,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
      * 
      */
-    @Export(name="containerId", type=String.class, parameters={})
+    @Export(name="containerId", refs={String.class}, tree="[0]")
     private Output<String> containerId;
 
     /**
@@ -281,7 +281,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * * Cannot be used with Azure clusters
      * 
      */
-    @Export(name="diskSizeGb", type=Double.class, parameters={})
+    @Export(name="diskSizeGb", refs={Double.class}, tree="[0]")
     private Output<Double> diskSizeGb;
 
     /**
@@ -299,7 +299,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      * 
      */
-    @Export(name="encryptionAtRestProvider", type=String.class, parameters={})
+    @Export(name="encryptionAtRestProvider", refs={String.class}, tree="[0]")
     private Output<String> encryptionAtRestProvider;
 
     /**
@@ -309,7 +309,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     public Output<String> encryptionAtRestProvider() {
         return this.encryptionAtRestProvider;
     }
-    @Export(name="labels", type=List.class, parameters={ClusterLabel.class})
+    @Export(name="labels", refs={List.class,ClusterLabel.class}, tree="[0,1]")
     private Output<List<ClusterLabel>> labels;
 
     public Output<List<ClusterLabel>> labels() {
@@ -319,7 +319,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      * 
      */
-    @Export(name="mongoDbMajorVersion", type=String.class, parameters={})
+    @Export(name="mongoDbMajorVersion", refs={String.class}, tree="[0]")
     private Output<String> mongoDbMajorVersion;
 
     /**
@@ -333,7 +333,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
      * 
      */
-    @Export(name="mongoDbVersion", type=String.class, parameters={})
+    @Export(name="mongoDbVersion", refs={String.class}, tree="[0]")
     private Output<String> mongoDbVersion;
 
     /**
@@ -347,7 +347,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
      * 
      */
-    @Export(name="mongoUri", type=String.class, parameters={})
+    @Export(name="mongoUri", refs={String.class}, tree="[0]")
     private Output<String> mongoUri;
 
     /**
@@ -361,7 +361,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
      * 
      */
-    @Export(name="mongoUriUpdated", type=String.class, parameters={})
+    @Export(name="mongoUriUpdated", refs={String.class}, tree="[0]")
     private Output<String> mongoUriUpdated;
 
     /**
@@ -375,7 +375,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
      * 
      */
-    @Export(name="mongoUriWithOptions", type=String.class, parameters={})
+    @Export(name="mongoUriWithOptions", refs={String.class}, tree="[0]")
     private Output<String> mongoUriWithOptions;
 
     /**
@@ -389,7 +389,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -403,7 +403,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
-    @Export(name="numShards", type=Integer.class, parameters={})
+    @Export(name="numShards", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> numShards;
 
     /**
@@ -413,7 +413,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> numShards() {
         return Codegen.optional(this.numShards);
     }
-    @Export(name="paused", type=Boolean.class, parameters={})
+    @Export(name="paused", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> paused;
 
     public Output<Optional<Boolean>> paused() {
@@ -423,7 +423,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
      * 
      */
-    @Export(name="pitEnabled", type=Boolean.class, parameters={})
+    @Export(name="pitEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> pitEnabled;
 
     /**
@@ -437,7 +437,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to create the database user.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -451,7 +451,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
      * 
      */
-    @Export(name="providerAutoScalingComputeMaxInstanceSize", type=String.class, parameters={})
+    @Export(name="providerAutoScalingComputeMaxInstanceSize", refs={String.class}, tree="[0]")
     private Output<String> providerAutoScalingComputeMaxInstanceSize;
 
     /**
@@ -465,7 +465,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
      * 
      */
-    @Export(name="providerAutoScalingComputeMinInstanceSize", type=String.class, parameters={})
+    @Export(name="providerAutoScalingComputeMinInstanceSize", refs={String.class}, tree="[0]")
     private Output<String> providerAutoScalingComputeMinInstanceSize;
 
     /**
@@ -483,7 +483,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* This field is deprecated,please use cloud_backup instead */
-    @Export(name="providerBackupEnabled", type=Boolean.class, parameters={})
+    @Export(name="providerBackupEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> providerBackupEnabled;
 
     /**
@@ -498,7 +498,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
      * 
      */
-    @Export(name="providerDiskIops", type=Integer.class, parameters={})
+    @Export(name="providerDiskIops", refs={Integer.class}, tree="[0]")
     private Output<Integer> providerDiskIops;
 
     /**
@@ -513,7 +513,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
      * 
      */
-    @Export(name="providerDiskTypeName", type=String.class, parameters={})
+    @Export(name="providerDiskTypeName", refs={String.class}, tree="[0]")
     private Output<String> providerDiskTypeName;
 
     /**
@@ -531,7 +531,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* All EBS volumes are encrypted by default, the option to disable encryption has been removed */
-    @Export(name="providerEncryptEbsVolume", type=Boolean.class, parameters={})
+    @Export(name="providerEncryptEbsVolume", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> providerEncryptEbsVolume;
 
     /**
@@ -541,7 +541,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     public Output<Boolean> providerEncryptEbsVolume() {
         return this.providerEncryptEbsVolume;
     }
-    @Export(name="providerEncryptEbsVolumeFlag", type=Boolean.class, parameters={})
+    @Export(name="providerEncryptEbsVolumeFlag", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> providerEncryptEbsVolumeFlag;
 
     public Output<Boolean> providerEncryptEbsVolumeFlag() {
@@ -551,7 +551,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
      * 
      */
-    @Export(name="providerInstanceSizeName", type=String.class, parameters={})
+    @Export(name="providerInstanceSizeName", refs={String.class}, tree="[0]")
     private Output<String> providerInstanceSizeName;
 
     /**
@@ -567,7 +567,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * The possible values are:
      * 
      */
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
@@ -584,7 +584,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
      * 
      */
-    @Export(name="providerRegionName", type=String.class, parameters={})
+    @Export(name="providerRegionName", refs={String.class}, tree="[0]")
     private Output<String> providerRegionName;
 
     /**
@@ -599,7 +599,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
      * 
      */
-    @Export(name="providerVolumeType", type=String.class, parameters={})
+    @Export(name="providerVolumeType", refs={String.class}, tree="[0]")
     private Output<String> providerVolumeType;
 
     /**
@@ -613,7 +613,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      * 
      */
-    @Export(name="replicationFactor", type=Integer.class, parameters={})
+    @Export(name="replicationFactor", refs={Integer.class}, tree="[0]")
     private Output<Integer> replicationFactor;
 
     /**
@@ -627,7 +627,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Configuration for cluster regions.  See Replication Spec below for more details.
      * 
      */
-    @Export(name="replicationSpecs", type=List.class, parameters={ClusterReplicationSpec.class})
+    @Export(name="replicationSpecs", refs={List.class,ClusterReplicationSpec.class}, tree="[0,1]")
     private Output<List<ClusterReplicationSpec>> replicationSpecs;
 
     /**
@@ -641,7 +641,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
      * 
      */
-    @Export(name="retainBackupsEnabled", type=Boolean.class, parameters={})
+    @Export(name="retainBackupsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> retainBackupsEnabled;
 
     /**
@@ -655,7 +655,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * current snapshot schedule and retention settings for the cluster.
      * 
      */
-    @Export(name="snapshotBackupPolicies", type=List.class, parameters={ClusterSnapshotBackupPolicy.class})
+    @Export(name="snapshotBackupPolicies", refs={List.class,ClusterSnapshotBackupPolicy.class}, tree="[0,1]")
     private Output<List<ClusterSnapshotBackupPolicy>> snapshotBackupPolicies;
 
     /**
@@ -669,7 +669,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
      * 
      */
-    @Export(name="srvAddress", type=String.class, parameters={})
+    @Export(name="srvAddress", refs={String.class}, tree="[0]")
     private Output<String> srvAddress;
 
     /**
@@ -689,7 +689,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * - REPAIRING
      * 
      */
-    @Export(name="stateName", type=String.class, parameters={})
+    @Export(name="stateName", refs={String.class}, tree="[0]")
     private Output<String> stateName;
 
     /**
@@ -709,7 +709,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
-    @Export(name="terminationProtectionEnabled", type=Boolean.class, parameters={})
+    @Export(name="terminationProtectionEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> terminationProtectionEnabled;
 
     /**
@@ -723,7 +723,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
-    @Export(name="versionReleaseSystem", type=String.class, parameters={})
+    @Export(name="versionReleaseSystem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> versionReleaseSystem;
 
     /**
