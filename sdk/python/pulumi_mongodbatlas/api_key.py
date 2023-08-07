@@ -77,7 +77,7 @@ class _ApiKeyState:
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering ApiKey resources.
-        :param pulumi.Input[str] api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        :param pulumi.Input[str] api_key_id: Unique identifier for this Organization API key.
         :param pulumi.Input[str] description: Description of this Organization API key.
         :param pulumi.Input[str] org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
@@ -100,7 +100,7 @@ class _ApiKeyState:
     @pulumi.getter(name="apiKeyId")
     def api_key_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        Unique identifier for this Organization API key.
         """
         return pulumi.get(self, "api_key_id")
 
@@ -272,7 +272,7 @@ class ApiKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        :param pulumi.Input[str] api_key_id: Unique identifier for this Organization API key.
         :param pulumi.Input[str] description: Description of this Organization API key.
         :param pulumi.Input[str] org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
@@ -294,7 +294,7 @@ class ApiKey(pulumi.CustomResource):
     @pulumi.getter(name="apiKeyId")
     def api_key_id(self) -> pulumi.Output[str]:
         """
-        The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        Unique identifier for this Organization API key.
         """
         return pulumi.get(self, "api_key_id")
 

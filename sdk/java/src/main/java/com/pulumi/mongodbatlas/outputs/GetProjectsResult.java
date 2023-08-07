@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetProjectsResultApiKey;
+import com.pulumi.mongodbatlas.outputs.GetProjectsResultLimit;
 import com.pulumi.mongodbatlas.outputs.GetProjectsResultTeam;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -28,6 +29,11 @@ public final class GetProjectsResult {
      * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
      * * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * * `limits.#.name` - Human-readable label that identifies this project limit.
+     * * `limits.#.value` - Amount the limit is set to.
+     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+     * * `limits.#.default_limit` - Default value of the limit.
+     * * `limits.#.maximum_limit` - Maximum value of the limit.
      * 
      */
     private String created;
@@ -66,6 +72,7 @@ public final class GetProjectsResult {
      * 
      */
     private Boolean isSchemaAdvisorEnabled;
+    private List<GetProjectsResultLimit> limits;
     /**
      * @return The name of the project you want to create.
      * 
@@ -102,6 +109,11 @@ public final class GetProjectsResult {
      * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
      * * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * * `limits.#.name` - Human-readable label that identifies this project limit.
+     * * `limits.#.value` - Amount the limit is set to.
+     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+     * * `limits.#.default_limit` - Default value of the limit.
+     * * `limits.#.maximum_limit` - Maximum value of the limit.
      * 
      */
     public String created() {
@@ -156,6 +168,9 @@ public final class GetProjectsResult {
     public Boolean isSchemaAdvisorEnabled() {
         return this.isSchemaAdvisorEnabled;
     }
+    public List<GetProjectsResultLimit> limits() {
+        return this.limits;
+    }
     /**
      * @return The name of the project you want to create.
      * 
@@ -202,6 +217,7 @@ public final class GetProjectsResult {
         private Boolean isPerformanceAdvisorEnabled;
         private Boolean isRealtimePerformancePanelEnabled;
         private Boolean isSchemaAdvisorEnabled;
+        private List<GetProjectsResultLimit> limits;
         private String name;
         private String orgId;
         private String regionUsageRestrictions;
@@ -219,6 +235,7 @@ public final class GetProjectsResult {
     	      this.isPerformanceAdvisorEnabled = defaults.isPerformanceAdvisorEnabled;
     	      this.isRealtimePerformancePanelEnabled = defaults.isRealtimePerformancePanelEnabled;
     	      this.isSchemaAdvisorEnabled = defaults.isSchemaAdvisorEnabled;
+    	      this.limits = defaults.limits;
     	      this.name = defaults.name;
     	      this.orgId = defaults.orgId;
     	      this.regionUsageRestrictions = defaults.regionUsageRestrictions;
@@ -279,6 +296,14 @@ public final class GetProjectsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder limits(List<GetProjectsResultLimit> limits) {
+            this.limits = Objects.requireNonNull(limits);
+            return this;
+        }
+        public Builder limits(GetProjectsResultLimit... limits) {
+            return limits(List.of(limits));
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
@@ -313,6 +338,7 @@ public final class GetProjectsResult {
             o.isPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             o.isRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
             o.isSchemaAdvisorEnabled = isSchemaAdvisorEnabled;
+            o.limits = limits;
             o.name = name;
             o.orgId = orgId;
             o.regionUsageRestrictions = regionUsageRestrictions;

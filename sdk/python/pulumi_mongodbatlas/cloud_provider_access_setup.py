@@ -17,12 +17,15 @@ __all__ = ['CloudProviderAccessSetupArgs', 'CloudProviderAccessSetup']
 class CloudProviderAccessSetupArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[str],
-                 provider_name: pulumi.Input[str]):
+                 provider_name: pulumi.Input[str],
+                 azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None):
         """
         The set of arguments for constructing a CloudProviderAccessSetup resource.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
+        if azure_configs is not None:
+            pulumi.set(__self__, "azure_configs", azure_configs)
 
     @property
     @pulumi.getter(name="projectId")
@@ -42,13 +45,24 @@ class CloudProviderAccessSetupArgs:
     def provider_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "provider_name", value)
 
+    @property
+    @pulumi.getter(name="azureConfigs")
+    def azure_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]]:
+        return pulumi.get(self, "azure_configs")
+
+    @azure_configs.setter
+    def azure_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]]):
+        pulumi.set(self, "azure_configs", value)
+
 
 @pulumi.input_type
 class _CloudProviderAccessSetupState:
     def __init__(__self__, *,
                  aws: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]]] = None,
+                 azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None,
                  created_date: Optional[pulumi.Input[str]] = None,
+                 last_updated_date: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None):
@@ -62,8 +76,12 @@ class _CloudProviderAccessSetupState:
             pulumi.set(__self__, "aws", aws)
         if aws_configs is not None:
             pulumi.set(__self__, "aws_configs", aws_configs)
+        if azure_configs is not None:
+            pulumi.set(__self__, "azure_configs", azure_configs)
         if created_date is not None:
             pulumi.set(__self__, "created_date", created_date)
+        if last_updated_date is not None:
+            pulumi.set(__self__, "last_updated_date", last_updated_date)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if provider_name is not None:
@@ -93,6 +111,15 @@ class _CloudProviderAccessSetupState:
         pulumi.set(self, "aws_configs", value)
 
     @property
+    @pulumi.getter(name="azureConfigs")
+    def azure_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]]:
+        return pulumi.get(self, "azure_configs")
+
+    @azure_configs.setter
+    def azure_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]]):
+        pulumi.set(self, "azure_configs", value)
+
+    @property
     @pulumi.getter(name="createdDate")
     def created_date(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "created_date")
@@ -100,6 +127,15 @@ class _CloudProviderAccessSetupState:
     @created_date.setter
     def created_date(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "created_date", value)
+
+    @property
+    @pulumi.getter(name="lastUpdatedDate")
+    def last_updated_date(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "last_updated_date")
+
+    @last_updated_date.setter
+    def last_updated_date(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "last_updated_date", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -134,6 +170,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAzureConfigArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -165,6 +202,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAzureConfigArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -176,6 +214,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CloudProviderAccessSetupArgs.__new__(CloudProviderAccessSetupArgs)
 
+            __props__.__dict__["azure_configs"] = azure_configs
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -185,6 +224,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
             __props__.__dict__["aws"] = None
             __props__.__dict__["aws_configs"] = None
             __props__.__dict__["created_date"] = None
+            __props__.__dict__["last_updated_date"] = None
             __props__.__dict__["role_id"] = None
         super(CloudProviderAccessSetup, __self__).__init__(
             'mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup',
@@ -198,7 +238,9 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             aws: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAwsConfigArgs']]]]] = None,
+            azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAzureConfigArgs']]]]] = None,
             created_date: Optional[pulumi.Input[str]] = None,
+            last_updated_date: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             provider_name: Optional[pulumi.Input[str]] = None,
             role_id: Optional[pulumi.Input[str]] = None) -> 'CloudProviderAccessSetup':
@@ -216,7 +258,9 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
 
         __props__.__dict__["aws"] = aws
         __props__.__dict__["aws_configs"] = aws_configs
+        __props__.__dict__["azure_configs"] = azure_configs
         __props__.__dict__["created_date"] = created_date
+        __props__.__dict__["last_updated_date"] = last_updated_date
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["provider_name"] = provider_name
         __props__.__dict__["role_id"] = role_id
@@ -236,9 +280,19 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         return pulumi.get(self, "aws_configs")
 
     @property
+    @pulumi.getter(name="azureConfigs")
+    def azure_configs(self) -> pulumi.Output[Optional[Sequence['outputs.CloudProviderAccessSetupAzureConfig']]]:
+        return pulumi.get(self, "azure_configs")
+
+    @property
     @pulumi.getter(name="createdDate")
     def created_date(self) -> pulumi.Output[str]:
         return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter(name="lastUpdatedDate")
+    def last_updated_date(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "last_updated_date")
 
     @property
     @pulumi.getter(name="projectId")

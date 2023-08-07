@@ -455,7 +455,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      * 
      */
-    @Export(name="accepterRegionName", type=String.class, parameters={})
+    @Export(name="accepterRegionName", refs={String.class}, tree="[0]")
     private Output<String> accepterRegionName;
 
     /**
@@ -465,7 +465,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
     public Output<String> accepterRegionName() {
         return this.accepterRegionName;
     }
-    @Export(name="atlasCidrBlock", type=String.class, parameters={})
+    @Export(name="atlasCidrBlock", refs={String.class}, tree="[0]")
     private Output<String> atlasCidrBlock;
 
     public Output<String> atlasCidrBlock() {
@@ -475,7 +475,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
      * 
      */
-    @Export(name="atlasGcpProjectId", type=String.class, parameters={})
+    @Export(name="atlasGcpProjectId", refs={String.class}, tree="[0]")
     private Output<String> atlasGcpProjectId;
 
     /**
@@ -485,13 +485,13 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
     public Output<String> atlasGcpProjectId() {
         return this.atlasGcpProjectId;
     }
-    @Export(name="atlasId", type=String.class, parameters={})
+    @Export(name="atlasId", refs={String.class}, tree="[0]")
     private Output<String> atlasId;
 
     public Output<String> atlasId() {
         return this.atlasId;
     }
-    @Export(name="atlasVpcName", type=String.class, parameters={})
+    @Export(name="atlasVpcName", refs={String.class}, tree="[0]")
     private Output<String> atlasVpcName;
 
     public Output<String> atlasVpcName() {
@@ -501,7 +501,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * AWS Account ID of the owner of the peer VPC.
      * 
      */
-    @Export(name="awsAccountId", type=String.class, parameters={})
+    @Export(name="awsAccountId", refs={String.class}, tree="[0]")
     private Output<String> awsAccountId;
 
     /**
@@ -515,7 +515,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Unique identifier for an Azure AD directory.
      * 
      */
-    @Export(name="azureDirectoryId", type=String.class, parameters={})
+    @Export(name="azureDirectoryId", refs={String.class}, tree="[0]")
     private Output<String> azureDirectoryId;
 
     /**
@@ -529,7 +529,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Unique identifier of the Azure subscription in which the VNet resides.
      * 
      */
-    @Export(name="azureSubscriptionId", type=String.class, parameters={})
+    @Export(name="azureSubscriptionId", refs={String.class}, tree="[0]")
     private Output<String> azureSubscriptionId;
 
     /**
@@ -543,7 +543,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Unique identifier of the Atlas network peering container.
      * 
      */
-    @Export(name="connectionId", type=String.class, parameters={})
+    @Export(name="connectionId", refs={String.class}, tree="[0]")
     private Output<String> connectionId;
 
     /**
@@ -557,7 +557,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
      * 
      */
-    @Export(name="containerId", type=String.class, parameters={})
+    @Export(name="containerId", refs={String.class}, tree="[0]")
     private Output<String> containerId;
 
     /**
@@ -571,7 +571,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * When `&#34;status&#34; : &#34;FAILED&#34;`, Atlas provides a description of the error.
      * 
      */
-    @Export(name="errorMessage", type=String.class, parameters={})
+    @Export(name="errorMessage", refs={String.class}, tree="[0]")
     private Output<String> errorMessage;
 
     /**
@@ -585,7 +585,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
      * 
      */
-    @Export(name="errorState", type=String.class, parameters={})
+    @Export(name="errorState", refs={String.class}, tree="[0]")
     private Output<String> errorState;
 
     /**
@@ -599,7 +599,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Error state, if any. The VPC peering connection error state value can be one of the following: `REJECTED`, `EXPIRED`, `INVALID_ARGUMENT`.
      * 
      */
-    @Export(name="errorStateName", type=String.class, parameters={})
+    @Export(name="errorStateName", refs={String.class}, tree="[0]")
     private Output<String> errorStateName;
 
     /**
@@ -613,7 +613,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * GCP project ID of the owner of the network peer.
      * 
      */
-    @Export(name="gcpProjectId", type=String.class, parameters={})
+    @Export(name="gcpProjectId", refs={String.class}, tree="[0]")
     private Output<String> gcpProjectId;
 
     /**
@@ -629,7 +629,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * **AZURE ONLY:**
      * 
      */
-    @Export(name="networkName", type=String.class, parameters={})
+    @Export(name="networkName", refs={String.class}, tree="[0]")
     private Output<String> networkName;
 
     /**
@@ -645,7 +645,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Unique identifier of the Atlas network peer.
      * 
      */
-    @Export(name="peerId", type=String.class, parameters={})
+    @Export(name="peerId", refs={String.class}, tree="[0]")
     private Output<String> peerId;
 
     /**
@@ -659,7 +659,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * The unique ID for the MongoDB Atlas project to create the database user.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -675,7 +675,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * **AWS ONLY:**
      * 
      */
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
@@ -691,7 +691,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Name of your Azure resource group.
      * 
      */
-    @Export(name="resourceGroupName", type=String.class, parameters={})
+    @Export(name="resourceGroupName", refs={String.class}, tree="[0]")
     private Output<String> resourceGroupName;
 
     /**
@@ -707,7 +707,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * **GCP ONLY:**
      * 
      */
-    @Export(name="routeTableCidrBlock", type=String.class, parameters={})
+    @Export(name="routeTableCidrBlock", refs={String.class}, tree="[0]")
     private Output<String> routeTableCidrBlock;
 
     /**
@@ -723,7 +723,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -737,7 +737,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * (AWS Only) The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
      * 
      */
-    @Export(name="statusName", type=String.class, parameters={})
+    @Export(name="statusName", refs={String.class}, tree="[0]")
     private Output<String> statusName;
 
     /**
@@ -751,7 +751,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Name of your Azure VNet.
      * 
      */
-    @Export(name="vnetName", type=String.class, parameters={})
+    @Export(name="vnetName", refs={String.class}, tree="[0]")
     private Output<String> vnetName;
 
     /**
@@ -765,7 +765,7 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
      * Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
      * 
      */
-    @Export(name="vpcId", type=String.class, parameters={})
+    @Export(name="vpcId", refs={String.class}, tree="[0]")
     private Output<String> vpcId;
 
     /**

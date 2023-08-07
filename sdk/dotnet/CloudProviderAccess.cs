@@ -22,13 +22,13 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
     ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProjectId = "64259ee860c43338194b0f8e",
     ///         ProviderName = "AWS",
     ///     });
     /// 
     /// });
     /// ```
-    /// ### Additional Examples
+    /// ### With AWS
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -40,13 +40,14 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
     ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProjectId = "64259ee860c43338194b0f8e",
     ///         ProviderName = "AWS",
     ///     });
     /// 
     /// });
     /// ```
-    /// ### Additional Examples
+    /// ### With Azure
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -55,20 +56,19 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setupOnly", new()
+    ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
     ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         ProviderName = "AWS",
-    ///     });
-    /// 
-    ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("authRole", new()
-    ///     {
-    ///         ProjectId = setupOnly.ProjectId,
-    ///         RoleId = setupOnly.RoleId,
-    ///         Aws = new Mongodbatlas.Inputs.CloudProviderAccessAuthorizationAwsArgs
+    ///         AzureConfigs = new[]
     ///         {
-    ///             IamAssumedRoleArn = "arn:aws:iam::772401394250:role/test-user-role",
+    ///             new Mongodbatlas.Inputs.CloudProviderAccessSetupAzureConfigArgs
+    ///             {
+    ///                 AtlasAzureAppId = "9f2deb0d-be22-4524-a403-df531868bac0",
+    ///                 ServicePrincipalId = "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+    ///                 TenantId = "91402384-d71e-22f5-22dd-759e272cdc1c",
+    ///             },
     ///         },
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///         ProviderName = "AZURE",
     ///     });
     /// 
     /// });
@@ -95,19 +95,6 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ## mongodbatlas.CloudProviderAccess (optional)
-    /// 
-    /// This is the first resource in the two-resource path as described above.
-    /// 
-    /// `mongodbatlas.CloudProviderAccessSetup` Allows you to only register AWS IAM roles in Atlas.
-    /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-    /// 
-    /// ## mongodbatlas_cloud_provider_authorization (optional)
-    /// 
-    /// This is the second resource in the two-resource path as described above.
-    /// `mongodbatlas.CloudProviderAccessAuthorization`  Allows you to authorize an AWS IAM roles in Atlas.
-    /// 
     /// ## Import
     /// 
     /// The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
@@ -115,6 +102,8 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
     /// ```
+    /// 
+    ///  See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccess:CloudProviderAccess")]
     public partial class CloudProviderAccess : global::Pulumi.CustomResource

@@ -90,7 +90,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
      * 
      */
-    @Export(name="authzQueryTemplate", type=String.class, parameters={})
+    @Export(name="authzQueryTemplate", refs={String.class}, tree="[0]")
     private Output<String> authzQueryTemplate;
 
     /**
@@ -104,7 +104,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * The password used to authenticate the `bind_username`.
      * 
      */
-    @Export(name="bindPassword", type=String.class, parameters={})
+    @Export(name="bindPassword", refs={String.class}, tree="[0]")
     private Output<String> bindPassword;
 
     /**
@@ -118,7 +118,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
      * 
      */
-    @Export(name="bindUsername", type=String.class, parameters={})
+    @Export(name="bindUsername", refs={String.class}, tree="[0]")
     private Output<String> bindUsername;
 
     /**
@@ -132,7 +132,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
      * 
      */
-    @Export(name="caCertificate", type=String.class, parameters={})
+    @Export(name="caCertificate", refs={String.class}, tree="[0]")
     private Output<String> caCertificate;
 
     /**
@@ -146,7 +146,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
      * 
      */
-    @Export(name="hostname", type=String.class, parameters={})
+    @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output<String> hostname;
 
     /**
@@ -160,7 +160,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
      * 
      */
-    @Export(name="links", type=List.class, parameters={LdapVerifyLink.class})
+    @Export(name="links", refs={List.class,LdapVerifyLink.class}, tree="[0,1]")
     private Output<List<LdapVerifyLink>> links;
 
     /**
@@ -174,7 +174,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * The port to which the LDAP server listens for client connections. Default: `636`
      * 
      */
-    @Export(name="port", type=Integer.class, parameters={})
+    @Export(name="port", refs={Integer.class}, tree="[0]")
     private Output<Integer> port;
 
     /**
@@ -188,7 +188,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to configure LDAP.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -202,7 +202,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
      * 
      */
-    @Export(name="requestId", type=String.class, parameters={})
+    @Export(name="requestId", refs={String.class}, tree="[0]")
     private Output<String> requestId;
 
     /**
@@ -216,7 +216,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -230,7 +230,7 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
      * 
      */
-    @Export(name="validations", type=List.class, parameters={LdapVerifyValidation.class})
+    @Export(name="validations", refs={List.class,LdapVerifyValidation.class}, tree="[0,1]")
     private Output<List<LdapVerifyValidation>> validations;
 
     /**

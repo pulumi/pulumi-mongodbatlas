@@ -18,6 +18,9 @@ namespace Pulumi.Mongodbatlas
         [Output("aws")]
         public Output<Outputs.CloudProviderAccessAuthorizationAws?> Aws { get; private set; } = null!;
 
+        [Output("azure")]
+        public Output<Outputs.CloudProviderAccessAuthorizationAzure?> Azure { get; private set; } = null!;
+
         [Output("featureUsages")]
         public Output<ImmutableArray<Outputs.CloudProviderAccessAuthorizationFeatureUsage>> FeatureUsages { get; private set; } = null!;
 
@@ -76,6 +79,9 @@ namespace Pulumi.Mongodbatlas
         [Input("aws")]
         public Input<Inputs.CloudProviderAccessAuthorizationAwsArgs>? Aws { get; set; }
 
+        [Input("azure")]
+        public Input<Inputs.CloudProviderAccessAuthorizationAzureArgs>? Azure { get; set; }
+
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
@@ -95,6 +101,9 @@ namespace Pulumi.Mongodbatlas
 
         [Input("aws")]
         public Input<Inputs.CloudProviderAccessAuthorizationAwsGetArgs>? Aws { get; set; }
+
+        [Input("azure")]
+        public Input<Inputs.CloudProviderAccessAuthorizationAzureGetArgs>? Azure { get; set; }
 
         [Input("featureUsages")]
         private InputList<Inputs.CloudProviderAccessAuthorizationFeatureUsageGetArgs>? _featureUsages;

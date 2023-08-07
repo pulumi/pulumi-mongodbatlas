@@ -156,7 +156,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      * 
      */
-    @Export(name="analyzer", type=String.class, parameters={})
+    @Export(name="analyzer", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> analyzer;
 
     /**
@@ -170,7 +170,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
      * 
      */
-    @Export(name="analyzers", type=String.class, parameters={})
+    @Export(name="analyzers", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> analyzers;
 
     /**
@@ -184,7 +184,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * The name of the cluster where you want to create the search index within.
      * 
      */
-    @Export(name="clusterName", type=String.class, parameters={})
+    @Export(name="clusterName", refs={String.class}, tree="[0]")
     private Output<String> clusterName;
 
     /**
@@ -198,7 +198,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * Name of the collection the index is on.
      * 
      */
-    @Export(name="collectionName", type=String.class, parameters={})
+    @Export(name="collectionName", refs={String.class}, tree="[0]")
     private Output<String> collectionName;
 
     /**
@@ -212,7 +212,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * Name of the database the collection is in.
      * 
      */
-    @Export(name="database", type=String.class, parameters={})
+    @Export(name="database", refs={String.class}, tree="[0]")
     private Output<String> database;
 
     /**
@@ -222,7 +222,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
     public Output<String> database() {
         return this.database;
     }
-    @Export(name="indexId", type=String.class, parameters={})
+    @Export(name="indexId", refs={String.class}, tree="[0]")
     private Output<String> indexId;
 
     public Output<String> indexId() {
@@ -232,7 +232,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
      * 
      */
-    @Export(name="mappingsDynamic", type=Boolean.class, parameters={})
+    @Export(name="mappingsDynamic", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> mappingsDynamic;
 
     /**
@@ -246,7 +246,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
-    @Export(name="mappingsFields", type=String.class, parameters={})
+    @Export(name="mappingsFields", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mappingsFields;
 
     /**
@@ -260,7 +260,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * The name of the search index you want to create.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -274,7 +274,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * The ID of the organization or project you want to create the search index within.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -288,7 +288,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      * 
      */
-    @Export(name="searchAnalyzer", type=String.class, parameters={})
+    @Export(name="searchAnalyzer", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> searchAnalyzer;
 
     /**
@@ -298,7 +298,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> searchAnalyzer() {
         return Codegen.optional(this.searchAnalyzer);
     }
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     public Output<String> status() {
@@ -308,7 +308,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      * Synonyms mapping definition to use in this index.
      * 
      */
-    @Export(name="synonyms", type=List.class, parameters={SearchIndexSynonym.class})
+    @Export(name="synonyms", refs={List.class,SearchIndexSynonym.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SearchIndexSynonym>> synonyms;
 
     /**
@@ -318,7 +318,7 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<SearchIndexSynonym>>> synonyms() {
         return Codegen.optional(this.synonyms);
     }
-    @Export(name="waitForIndexBuildCompletion", type=Boolean.class, parameters={})
+    @Export(name="waitForIndexBuildCompletion", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> waitForIndexBuildCompletion;
 
     public Output<Optional<Boolean>> waitForIndexBuildCompletion() {

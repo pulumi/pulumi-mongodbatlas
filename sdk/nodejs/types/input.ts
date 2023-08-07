@@ -779,6 +779,12 @@ export interface CloudProviderAccessAuthorizationAws {
     iamAssumedRoleArn: pulumi.Input<string>;
 }
 
+export interface CloudProviderAccessAuthorizationAzure {
+    atlasAzureAppId: pulumi.Input<string>;
+    servicePrincipalId: pulumi.Input<string>;
+    tenantId: pulumi.Input<string>;
+}
+
 export interface CloudProviderAccessAuthorizationFeatureUsage {
     featureId?: pulumi.Input<{[key: string]: any}>;
     featureType?: pulumi.Input<string>;
@@ -792,6 +798,12 @@ export interface CloudProviderAccessFeatureUsage {
 export interface CloudProviderAccessSetupAwsConfig {
     atlasAssumedRoleExternalId?: pulumi.Input<string>;
     atlasAwsAccountArn?: pulumi.Input<string>;
+}
+
+export interface CloudProviderAccessSetupAzureConfig {
+    atlasAzureAppId: pulumi.Input<string>;
+    servicePrincipalId: pulumi.Input<string>;
+    tenantId: pulumi.Input<string>;
 }
 
 export interface ClusterAdvancedConfiguration {
@@ -1745,6 +1757,36 @@ export interface GetBackupCompliancePolicyPolicyItemWeeklyArgs {
     retentionValue: pulumi.Input<number>;
 }
 
+export interface GetCloudProviderAccessSetupAzureConfig {
+    /**
+     * Azure Active Directory Application ID of Atlas.
+     */
+    atlasAzureAppId?: string;
+    /**
+     * UUID string that identifies the Azure Service Principal.
+     */
+    servicePrincipalId?: string;
+    /**
+     * UUID String that identifies the Azure Active Directory Tenant ID.
+     */
+    tenantId?: string;
+}
+
+export interface GetCloudProviderAccessSetupAzureConfigArgs {
+    /**
+     * Azure Active Directory Application ID of Atlas.
+     */
+    atlasAzureAppId?: pulumi.Input<string>;
+    /**
+     * UUID string that identifies the Azure Service Principal.
+     */
+    servicePrincipalId?: pulumi.Input<string>;
+    /**
+     * UUID String that identifies the Azure Active Directory Tenant ID.
+     */
+    tenantId?: pulumi.Input<string>;
+}
+
 export interface GetCustomDbRoleInheritedRole {
     /**
      * (Required) Database on which the inherited role is granted.
@@ -2043,10 +2085,23 @@ export interface ProjectApiKeyProjectAssignment {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface ProjectLimit {
+    currentUsage?: pulumi.Input<number>;
+    defaultLimit?: pulumi.Input<number>;
+    maximumLimit?: pulumi.Input<number>;
+    /**
+     * Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+     */
+    value: pulumi.Input<number>;
 }
 
 export interface ProjectTeam {

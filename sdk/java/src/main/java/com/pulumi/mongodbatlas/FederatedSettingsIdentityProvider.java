@@ -74,7 +74,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * List that contains the domains associated with the identity provider.
      * 
      */
-    @Export(name="associatedDomains", type=List.class, parameters={String.class})
+    @Export(name="associatedDomains", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> associatedDomains;
 
     /**
@@ -88,7 +88,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      * 
      */
-    @Export(name="federationSettingsId", type=String.class, parameters={})
+    @Export(name="federationSettingsId", refs={String.class}, tree="[0]")
     private Output<String> federationSettingsId;
 
     /**
@@ -102,7 +102,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * Unique string that identifies the issuer of the SAML
      * 
      */
-    @Export(name="issuerUri", type=String.class, parameters={})
+    @Export(name="issuerUri", refs={String.class}, tree="[0]")
     private Output<String> issuerUri;
 
     /**
@@ -116,7 +116,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * Human-readable label that identifies the identity provider.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -130,7 +130,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * Unique 20-hexadecimal digit string that identifies the IdP.
      * 
      */
-    @Export(name="oktaIdpId", type=String.class, parameters={})
+    @Export(name="oktaIdpId", refs={String.class}, tree="[0]")
     private Output<String> oktaIdpId;
 
     /**
@@ -146,7 +146,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * - HTTP REDIRECT
      * 
      */
-    @Export(name="requestBinding", type=String.class, parameters={})
+    @Export(name="requestBinding", refs={String.class}, tree="[0]")
     private Output<String> requestBinding;
 
     /**
@@ -162,7 +162,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
      * 
      */
-    @Export(name="responseSignatureAlgorithm", type=String.class, parameters={})
+    @Export(name="responseSignatureAlgorithm", refs={String.class}, tree="[0]")
     private Output<String> responseSignatureAlgorithm;
 
     /**
@@ -176,7 +176,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * Flag that indicates whether the identity provider has SSO debug enabled.
      * 
      */
-    @Export(name="ssoDebugEnabled", type=Boolean.class, parameters={})
+    @Export(name="ssoDebugEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> ssoDebugEnabled;
 
     /**
@@ -190,7 +190,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * Unique string that identifies the intended audience of the SAML assertion.
      * 
      */
-    @Export(name="ssoUrl", type=String.class, parameters={})
+    @Export(name="ssoUrl", refs={String.class}, tree="[0]")
     private Output<String> ssoUrl;
 
     /**
@@ -204,7 +204,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

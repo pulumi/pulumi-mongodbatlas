@@ -869,7 +869,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[str]]:
+    def region(self) -> pulumi.Output[str]:
         """
         Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         """

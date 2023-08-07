@@ -115,6 +115,10 @@ from .get_search_index import *
 from .get_search_indexes import *
 from .get_serverless_instance import *
 from .get_serverless_instances import *
+from .get_shared_tier_restore_job import *
+from .get_shared_tier_restore_jobs import *
+from .get_shared_tier_snapshot import *
+from .get_shared_tier_snapshots import *
 from .get_team import *
 from .get_teams import *
 from .get_third_party_integration import *

@@ -69,7 +69,9 @@ class AwaitableGetCloudProviderAccessResult(GetCloudProviderAccessResult):
 def get_cloud_provider_access(project_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudProviderAccessResult:
     """
-    `CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+    **WARNING:** The data source `CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `CloudProviderAccessSetup` instead.
+
+    `CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -80,7 +82,7 @@ def get_cloud_provider_access(project_id: Optional[str] = None,
     import pulumi_mongodbatlas as mongodbatlas
 
     test_role = mongodbatlas.CloudProviderAccess("testRole",
-        project_id="<PROJECT-ID>",
+        project_id="64259ee860c43338194b0f8e",
         provider_name="AWS")
     all = mongodbatlas.get_cloud_provider_access_output(project_id=test_role.project_id)
     ```
@@ -103,7 +105,9 @@ def get_cloud_provider_access(project_id: Optional[str] = None,
 def get_cloud_provider_access_output(project_id: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderAccessResult]:
     """
-    `CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+    **WARNING:** The data source `CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `CloudProviderAccessSetup` instead.
+
+    `CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -114,7 +118,7 @@ def get_cloud_provider_access_output(project_id: Optional[pulumi.Input[str]] = N
     import pulumi_mongodbatlas as mongodbatlas
 
     test_role = mongodbatlas.CloudProviderAccess("testRole",
-        project_id="<PROJECT-ID>",
+        project_id="64259ee860c43338194b0f8e",
         provider_name="AWS")
     all = mongodbatlas.get_cloud_provider_access_output(project_id=test_role.project_id)
     ```

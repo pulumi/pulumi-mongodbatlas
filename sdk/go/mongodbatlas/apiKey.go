@@ -26,7 +26,7 @@ import (
 type ApiKey struct {
 	pulumi.CustomResourceState
 
-	// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+	// Unique identifier for this Organization API key.
 	ApiKeyId pulumi.StringOutput `pulumi:"apiKeyId"`
 	// Description of this Organization API key.
 	Description pulumi.StringOutput `pulumi:"description"`
@@ -82,7 +82,7 @@ func GetApiKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApiKey resources.
 type apiKeyState struct {
-	// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+	// Unique identifier for this Organization API key.
 	ApiKeyId *string `pulumi:"apiKeyId"`
 	// Description of this Organization API key.
 	Description *string `pulumi:"description"`
@@ -96,7 +96,7 @@ type apiKeyState struct {
 }
 
 type ApiKeyState struct {
-	// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+	// Unique identifier for this Organization API key.
 	ApiKeyId pulumi.StringPtrInput
 	// Description of this Organization API key.
 	Description pulumi.StringPtrInput
@@ -221,7 +221,7 @@ func (o ApiKeyOutput) ToApiKeyOutputWithContext(ctx context.Context) ApiKeyOutpu
 	return o
 }
 
-// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+// Unique identifier for this Organization API key.
 func (o ApiKeyOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApiKey) pulumi.StringOutput { return v.ApiKeyId }).(pulumi.StringOutput)
 }

@@ -212,10 +212,10 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[str] = None,
     """
     Use this data source to access information about an existing resource.
 
-    :param str endpoint_service_id: Unique identifier of the `AWS` or `AZURE` resource.
+    :param str endpoint_service_id: Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
     :param str private_link_id: Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
     :param str project_id: Unique identifier for the project.
-    :param str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+    :param str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
     """
     __args__ = dict()
     __args__['endpointServiceId'] = endpoint_service_id
@@ -252,9 +252,9 @@ def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulum
     """
     Use this data source to access information about an existing resource.
 
-    :param str endpoint_service_id: Unique identifier of the `AWS` or `AZURE` resource.
+    :param str endpoint_service_id: Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
     :param str private_link_id: Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
     :param str project_id: Unique identifier for the project.
-    :param str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+    :param str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
     """
     ...

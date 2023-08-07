@@ -60,6 +60,16 @@ import (
 //						},
 //					},
 //				},
+//				Limits: mongodbatlas.ProjectLimitArray{
+//					&mongodbatlas.ProjectLimitArgs{
+//						Name:  pulumi.String("atlas.project.deployment.clusters"),
+//						Value: pulumi.Int(26),
+//					},
+//					&mongodbatlas.ProjectLimitArgs{
+//						Name:  pulumi.String("atlas.project.deployment.nodesPerPrivateLinkRegion"),
+//						Value: pulumi.Int(51),
+//					},
+//				},
 //				IsCollectDatabaseSpecificsStatisticsEnabled: pulumi.Bool(true),
 //				IsDataExplorerEnabled:                       pulumi.Bool(true),
 //				IsExtendedStorageSizesEnabled:               pulumi.Bool(true),
@@ -107,7 +117,8 @@ type Project struct {
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 	IsRealtimePerformancePanelEnabled pulumi.BoolOutput `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-	IsSchemaAdvisorEnabled pulumi.BoolOutput `pulumi:"isSchemaAdvisorEnabled"`
+	IsSchemaAdvisorEnabled pulumi.BoolOutput       `pulumi:"isSchemaAdvisorEnabled"`
+	Limits                 ProjectLimitArrayOutput `pulumi:"limits"`
 	// The name of the project you want to create.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -171,7 +182,8 @@ type projectState struct {
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 	IsRealtimePerformancePanelEnabled *bool `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-	IsSchemaAdvisorEnabled *bool `pulumi:"isSchemaAdvisorEnabled"`
+	IsSchemaAdvisorEnabled *bool          `pulumi:"isSchemaAdvisorEnabled"`
+	Limits                 []ProjectLimit `pulumi:"limits"`
 	// The name of the project you want to create.
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -204,6 +216,7 @@ type ProjectState struct {
 	IsRealtimePerformancePanelEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolPtrInput
+	Limits                 ProjectLimitArrayInput
 	// The name of the project you want to create.
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.
@@ -235,7 +248,8 @@ type projectArgs struct {
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 	IsRealtimePerformancePanelEnabled *bool `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-	IsSchemaAdvisorEnabled *bool `pulumi:"isSchemaAdvisorEnabled"`
+	IsSchemaAdvisorEnabled *bool          `pulumi:"isSchemaAdvisorEnabled"`
+	Limits                 []ProjectLimit `pulumi:"limits"`
 	// The name of the project you want to create.
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -265,6 +279,7 @@ type ProjectArgs struct {
 	IsRealtimePerformancePanelEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolPtrInput
+	Limits                 ProjectLimitArrayInput
 	// The name of the project you want to create.
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.
@@ -408,6 +423,10 @@ func (o ProjectOutput) IsRealtimePerformancePanelEnabled() pulumi.BoolOutput {
 // Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 func (o ProjectOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
+}
+
+func (o ProjectOutput) Limits() ProjectLimitArrayOutput {
+	return o.ApplyT(func(v *Project) ProjectLimitArrayOutput { return v.Limits }).(ProjectLimitArrayOutput)
 }
 
 // The name of the project you want to create.

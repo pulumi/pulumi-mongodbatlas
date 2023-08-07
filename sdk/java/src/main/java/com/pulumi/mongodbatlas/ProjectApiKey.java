@@ -41,9 +41,51 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new ProjectApiKey(&#34;test&#34;, ProjectApiKeyArgs.builder()        
- *             .description(&#34;key-name&#34;)
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .description(&#34;Description of your API key&#34;)
+ *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
  *             .roleNames(&#34;GROUP_OWNER&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Create And Assign PAK To Multiple Projects
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.ProjectApiKey;
+ * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
+ * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new ProjectApiKey(&#34;test&#34;, ProjectApiKeyArgs.builder()        
+ *             .description(&#34;Description of your API key&#34;)
+ *             .projectAssignments(            
+ *                 ProjectApiKeyProjectAssignmentArgs.builder()
+ *                     .projectId(&#34;64259ee860c43338194b0f8e&#34;)
+ *                     .roleNames(                    
+ *                         &#34;GROUP_READ_ONLY&#34;,
+ *                         &#34;GROUP_OWNER&#34;)
+ *                     .build(),
+ *                 ProjectApiKeyProjectAssignmentArgs.builder()
+ *                     .projectId(&#34;74259ee860c43338194b0f8e&#34;)
+ *                     .roleNames(&#34;GROUP_READ_ONLY&#34;)
+ *                     .build())
+ *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
  *             .build());
  * 
  *     }
@@ -64,76 +106,82 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/projectApiKey:ProjectApiKey")
 public class ProjectApiKey extends com.pulumi.resources.CustomResource {
     /**
-     * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     * Unique identifier for this Project API key.
      * 
      */
-    @Export(name="apiKeyId", type=String.class, parameters={})
+    @Export(name="apiKeyId", refs={String.class}, tree="[0]")
     private Output<String> apiKeyId;
 
     /**
-     * @return The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     * @return Unique identifier for this Project API key.
      * 
      */
     public Output<String> apiKeyId() {
         return this.apiKeyId;
     }
     /**
-     * Description of this Organization API key.
+     * Description of this Project API key.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
-     * @return Description of this Organization API key.
+     * @return Description of this Project API key.
      * 
      */
     public Output<String> description() {
         return this.description;
     }
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     public Output<String> privateKey() {
         return this.privateKey;
     }
-    @Export(name="projectAssignments", type=List.class, parameters={ProjectApiKeyProjectAssignment.class})
+    @Export(name="projectAssignments", refs={List.class,ProjectApiKeyProjectAssignment.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProjectApiKeyProjectAssignment>> projectAssignments;
 
     public Output<Optional<List<ProjectApiKeyProjectAssignment>>> projectAssignments() {
         return Codegen.optional(this.projectAssignments);
     }
     /**
-     * Project ID to assign to Access Key
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Project ID to assign to Access Key
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public Output<String> projectId() {
         return this.projectId;
     }
-    @Export(name="publicKey", type=String.class, parameters={})
+    @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 
     public Output<String> publicKey() {
         return this.publicKey;
     }
     /**
-     * Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      * 
      */
-    @Export(name="roleNames", type=List.class, parameters={String.class})
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
+    @Export(name="roleNames", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> roleNames;
 
     /**
-     * @return Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
      * 
      */
     public Output<Optional<List<String>>> roleNames() {

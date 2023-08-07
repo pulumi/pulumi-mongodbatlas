@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetProjectApiKey;
+import com.pulumi.mongodbatlas.outputs.GetProjectLimit;
 import com.pulumi.mongodbatlas.outputs.GetProjectTeam;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -28,6 +29,11 @@ public final class GetProjectResult {
      * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
      * * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * * `limits.#.name` - Human-readable label that identifies this project limit.
+     * * `limits.#.value` - Amount the limit is set to.
+     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+     * * `limits.#.default_limit` - Default value of the limit.
+     * * `limits.#.maximum_limit` - Maximum value of the limit.
      * 
      */
     private String created;
@@ -66,6 +72,7 @@ public final class GetProjectResult {
      * 
      */
     private Boolean isSchemaAdvisorEnabled;
+    private List<GetProjectLimit> limits;
     /**
      * @return The name of the project you want to create.
      * 
@@ -101,6 +108,11 @@ public final class GetProjectResult {
      * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
      * * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * * `limits.#.name` - Human-readable label that identifies this project limit.
+     * * `limits.#.value` - Amount the limit is set to.
+     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+     * * `limits.#.default_limit` - Default value of the limit.
+     * * `limits.#.maximum_limit` - Maximum value of the limit.
      * 
      */
     public String created() {
@@ -155,6 +167,9 @@ public final class GetProjectResult {
     public Boolean isSchemaAdvisorEnabled() {
         return this.isSchemaAdvisorEnabled;
     }
+    public List<GetProjectLimit> limits() {
+        return this.limits;
+    }
     /**
      * @return The name of the project you want to create.
      * 
@@ -202,6 +217,7 @@ public final class GetProjectResult {
         private Boolean isPerformanceAdvisorEnabled;
         private Boolean isRealtimePerformancePanelEnabled;
         private Boolean isSchemaAdvisorEnabled;
+        private List<GetProjectLimit> limits;
         private @Nullable String name;
         private String orgId;
         private @Nullable String projectId;
@@ -220,6 +236,7 @@ public final class GetProjectResult {
     	      this.isPerformanceAdvisorEnabled = defaults.isPerformanceAdvisorEnabled;
     	      this.isRealtimePerformancePanelEnabled = defaults.isRealtimePerformancePanelEnabled;
     	      this.isSchemaAdvisorEnabled = defaults.isSchemaAdvisorEnabled;
+    	      this.limits = defaults.limits;
     	      this.name = defaults.name;
     	      this.orgId = defaults.orgId;
     	      this.projectId = defaults.projectId;
@@ -281,6 +298,14 @@ public final class GetProjectResult {
             return this;
         }
         @CustomType.Setter
+        public Builder limits(List<GetProjectLimit> limits) {
+            this.limits = Objects.requireNonNull(limits);
+            return this;
+        }
+        public Builder limits(GetProjectLimit... limits) {
+            return limits(List.of(limits));
+        }
+        @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
             return this;
@@ -320,6 +345,7 @@ public final class GetProjectResult {
             o.isPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             o.isRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
             o.isSchemaAdvisorEnabled = isSchemaAdvisorEnabled;
+            o.limits = limits;
             o.name = name;
             o.orgId = orgId;
             o.projectId = projectId;

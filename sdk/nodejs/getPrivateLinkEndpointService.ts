@@ -22,7 +22,7 @@ export function getPrivateLinkEndpointService(args: GetPrivateLinkEndpointServic
  */
 export interface GetPrivateLinkEndpointServiceArgs {
     /**
-     * Unique identifier of the `AWS` or `AZURE` resource.
+     * Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
      */
     endpointServiceId: string;
     /**
@@ -34,7 +34,7 @@ export interface GetPrivateLinkEndpointServiceArgs {
      */
     projectId: string;
     /**
-     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
      */
     providerName: string;
 }
@@ -104,7 +104,7 @@ export function getPrivateLinkEndpointServiceOutput(args: GetPrivateLinkEndpoint
  */
 export interface GetPrivateLinkEndpointServiceOutputArgs {
     /**
-     * Unique identifier of the `AWS` or `AZURE` resource.
+     * Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
      */
     endpointServiceId: pulumi.Input<string>;
     /**
@@ -116,7 +116,7 @@ export interface GetPrivateLinkEndpointServiceOutputArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
      */
     providerName: pulumi.Input<string>;
 }

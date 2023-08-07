@@ -240,33 +240,33 @@ class CloudProviderAccess(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test_role = mongodbatlas.CloudProviderAccess("testRole",
-            project_id="<PROJECT-ID>",
+            project_id="64259ee860c43338194b0f8e",
             provider_name="AWS")
         ```
-        ### Additional Examples
+        ### With AWS
 
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
-            project_id="<PROJECT-ID>",
+            project_id="64259ee860c43338194b0f8e",
             provider_name="AWS")
         ```
-        ### Additional Examples
+        ### With Azure
+
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        setup_only = mongodbatlas.CloudProviderAccessSetup("setupOnly",
-            project_id="<PROJECT-ID>",
-            provider_name="AWS")
-        auth_role = mongodbatlas.CloudProviderAccessAuthorization("authRole",
-            project_id=setup_only.project_id,
-            role_id=setup_only.role_id,
-            aws=mongodbatlas.CloudProviderAccessAuthorizationAwsArgs(
-                iam_assumed_role_arn="arn:aws:iam::772401394250:role/test-user-role",
-            ))
+        test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+            azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
+                atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
+                service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+                tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
+            )],
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="AZURE")
         ```
         ## Authorize role
 
@@ -282,19 +282,6 @@ class CloudProviderAccess(pulumi.CustomResource):
             provider_name="AWS")
         ```
 
-        ## CloudProviderAccess (optional)
-
-        This is the first resource in the two-resource path as described above.
-
-        `CloudProviderAccessSetup` Allows you to only register AWS IAM roles in Atlas.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-        ## mongodbatlas_cloud_provider_authorization (optional)
-
-        This is the second resource in the two-resource path as described above.
-        `CloudProviderAccessAuthorization`  Allows you to authorize an AWS IAM roles in Atlas.
-
         ## Import
 
         The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
@@ -302,6 +289,8 @@ class CloudProviderAccess(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
         ```
+
+         See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -323,33 +312,33 @@ class CloudProviderAccess(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test_role = mongodbatlas.CloudProviderAccess("testRole",
-            project_id="<PROJECT-ID>",
+            project_id="64259ee860c43338194b0f8e",
             provider_name="AWS")
         ```
-        ### Additional Examples
+        ### With AWS
 
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
-            project_id="<PROJECT-ID>",
+            project_id="64259ee860c43338194b0f8e",
             provider_name="AWS")
         ```
-        ### Additional Examples
+        ### With Azure
+
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        setup_only = mongodbatlas.CloudProviderAccessSetup("setupOnly",
-            project_id="<PROJECT-ID>",
-            provider_name="AWS")
-        auth_role = mongodbatlas.CloudProviderAccessAuthorization("authRole",
-            project_id=setup_only.project_id,
-            role_id=setup_only.role_id,
-            aws=mongodbatlas.CloudProviderAccessAuthorizationAwsArgs(
-                iam_assumed_role_arn="arn:aws:iam::772401394250:role/test-user-role",
-            ))
+        test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+            azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
+                atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
+                service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+                tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
+            )],
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="AZURE")
         ```
         ## Authorize role
 
@@ -365,19 +354,6 @@ class CloudProviderAccess(pulumi.CustomResource):
             provider_name="AWS")
         ```
 
-        ## CloudProviderAccess (optional)
-
-        This is the first resource in the two-resource path as described above.
-
-        `CloudProviderAccessSetup` Allows you to only register AWS IAM roles in Atlas.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-        ## mongodbatlas_cloud_provider_authorization (optional)
-
-        This is the second resource in the two-resource path as described above.
-        `CloudProviderAccessAuthorization`  Allows you to authorize an AWS IAM roles in Atlas.
-
         ## Import
 
         The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
@@ -385,6 +361,8 @@ class CloudProviderAccess(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
         ```
+
+         See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param CloudProviderAccessArgs args: The arguments to use to populate this resource's properties.

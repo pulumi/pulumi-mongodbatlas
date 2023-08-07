@@ -220,7 +220,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * Unique identifier for the alert configuration.
      * 
      */
-    @Export(name="alertConfigurationId", type=String.class, parameters={})
+    @Export(name="alertConfigurationId", refs={String.class}, tree="[0]")
     private Output<String> alertConfigurationId;
 
     /**
@@ -234,7 +234,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
      * 
      */
-    @Export(name="created", type=String.class, parameters={})
+    @Export(name="created", refs={String.class}, tree="[0]")
     private Output<String> created;
 
     /**
@@ -248,7 +248,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
     /**
@@ -266,7 +266,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * &gt; **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
      * 
      */
-    @Export(name="eventType", type=String.class, parameters={})
+    @Export(name="eventType", refs={String.class}, tree="[0]")
     private Output<String> eventType;
 
     /**
@@ -280,7 +280,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
     public Output<String> eventType() {
         return this.eventType;
     }
-    @Export(name="matchers", type=List.class, parameters={AlertConfigurationMatcher.class})
+    @Export(name="matchers", refs={List.class,AlertConfigurationMatcher.class}, tree="[0,1]")
     private Output</* @Nullable */ List<AlertConfigurationMatcher>> matchers;
 
     public Output<Optional<List<AlertConfigurationMatcher>>> matchers() {
@@ -292,19 +292,19 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use metric_threshold_config instead */
-    @Export(name="metricThreshold", type=Map.class, parameters={String.class, String.class})
+    @Export(name="metricThreshold", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> metricThreshold;
 
     public Output<Optional<Map<String,String>>> metricThreshold() {
         return Codegen.optional(this.metricThreshold);
     }
-    @Export(name="metricThresholdConfig", type=AlertConfigurationMetricThresholdConfig.class, parameters={})
+    @Export(name="metricThresholdConfig", refs={AlertConfigurationMetricThresholdConfig.class}, tree="[0]")
     private Output</* @Nullable */ AlertConfigurationMetricThresholdConfig> metricThresholdConfig;
 
     public Output<Optional<AlertConfigurationMetricThresholdConfig>> metricThresholdConfig() {
         return Codegen.optional(this.metricThresholdConfig);
     }
-    @Export(name="notifications", type=List.class, parameters={AlertConfigurationNotification.class})
+    @Export(name="notifications", refs={List.class,AlertConfigurationNotification.class}, tree="[0,1]")
     private Output<List<AlertConfigurationNotification>> notifications;
 
     public Output<List<AlertConfigurationNotification>> notifications() {
@@ -314,7 +314,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * The ID of the project where the alert configuration will create.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -332,7 +332,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use threshold_config instead */
-    @Export(name="threshold", type=Map.class, parameters={String.class, String.class})
+    @Export(name="threshold", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> threshold;
 
     /**
@@ -342,7 +342,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,String>>> threshold() {
         return Codegen.optional(this.threshold);
     }
-    @Export(name="thresholdConfig", type=AlertConfigurationThresholdConfig.class, parameters={})
+    @Export(name="thresholdConfig", refs={AlertConfigurationThresholdConfig.class}, tree="[0]")
     private Output</* @Nullable */ AlertConfigurationThresholdConfig> thresholdConfig;
 
     public Output<Optional<AlertConfigurationThresholdConfig>> thresholdConfig() {
@@ -352,7 +352,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      * 
      */
-    @Export(name="updated", type=String.class, parameters={})
+    @Export(name="updated", refs={String.class}, tree="[0]")
     private Output<String> updated;
 
     /**

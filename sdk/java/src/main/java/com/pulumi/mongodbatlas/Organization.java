@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/organization:Organization")
 public class Organization extends com.pulumi.resources.CustomResource {
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     public Output<String> description() {
@@ -77,7 +77,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
      * 
      */
-    @Export(name="federationSettingsId", type=String.class, parameters={})
+    @Export(name="federationSettingsId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> federationSettingsId;
 
     /**
@@ -91,7 +91,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -105,7 +105,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * The organization id.
      * 
      */
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output<String> orgId;
 
     /**
@@ -119,7 +119,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys.  [https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
      * 
      */
-    @Export(name="orgOwnerId", type=String.class, parameters={})
+    @Export(name="orgOwnerId", refs={String.class}, tree="[0]")
     private Output<String> orgOwnerId;
 
     /**
@@ -129,7 +129,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
     public Output<String> orgOwnerId() {
         return this.orgOwnerId;
     }
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     public Output<String> privateKey() {
@@ -139,7 +139,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * Public API key value set for the specified organization API key.
      * 
      */
-    @Export(name="publicKey", type=String.class, parameters={})
+    @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 
     /**
@@ -153,7 +153,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
      * 
      */
-    @Export(name="roleNames", type=List.class, parameters={String.class})
+    @Export(name="roleNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roleNames;
 
     /**

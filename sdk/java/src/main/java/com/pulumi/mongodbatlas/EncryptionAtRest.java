@@ -41,7 +41,7 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use aws_kms_config instead */
-    @Export(name="awsKms", type=Map.class, parameters={String.class, String.class})
+    @Export(name="awsKms", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> awsKms;
 
     /**
@@ -51,7 +51,7 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,String>>> awsKms() {
         return Codegen.optional(this.awsKms);
     }
-    @Export(name="awsKmsConfig", type=EncryptionAtRestAwsKmsConfig.class, parameters={})
+    @Export(name="awsKmsConfig", refs={EncryptionAtRestAwsKmsConfig.class}, tree="[0]")
     private Output</* @Nullable */ EncryptionAtRestAwsKmsConfig> awsKmsConfig;
 
     public Output<Optional<EncryptionAtRestAwsKmsConfig>> awsKmsConfig() {
@@ -65,7 +65,7 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use azure_key_vault_config instead */
-    @Export(name="azureKeyVault", type=Map.class, parameters={String.class, String.class})
+    @Export(name="azureKeyVault", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> azureKeyVault;
 
     /**
@@ -75,7 +75,7 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,String>>> azureKeyVault() {
         return Codegen.optional(this.azureKeyVault);
     }
-    @Export(name="azureKeyVaultConfig", type=EncryptionAtRestAzureKeyVaultConfig.class, parameters={})
+    @Export(name="azureKeyVaultConfig", refs={EncryptionAtRestAzureKeyVaultConfig.class}, tree="[0]")
     private Output</* @Nullable */ EncryptionAtRestAzureKeyVaultConfig> azureKeyVaultConfig;
 
     public Output<Optional<EncryptionAtRestAzureKeyVaultConfig>> azureKeyVaultConfig() {
@@ -89,7 +89,7 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use google_cloud_kms_config instead */
-    @Export(name="googleCloudKms", type=Map.class, parameters={String.class, String.class})
+    @Export(name="googleCloudKms", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> googleCloudKms;
 
     /**
@@ -99,7 +99,7 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,String>>> googleCloudKms() {
         return Codegen.optional(this.googleCloudKms);
     }
-    @Export(name="googleCloudKmsConfig", type=EncryptionAtRestGoogleCloudKmsConfig.class, parameters={})
+    @Export(name="googleCloudKmsConfig", refs={EncryptionAtRestGoogleCloudKmsConfig.class}, tree="[0]")
     private Output</* @Nullable */ EncryptionAtRestGoogleCloudKmsConfig> googleCloudKmsConfig;
 
     public Output<Optional<EncryptionAtRestGoogleCloudKmsConfig>> googleCloudKmsConfig() {
@@ -109,7 +109,7 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
      * The unique identifier for the project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**

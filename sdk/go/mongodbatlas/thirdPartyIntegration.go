@@ -50,7 +50,7 @@ type ThirdPartyIntegration struct {
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey pulumi.StringPtrOutput `pulumi:"routingKey"`
 	// Your Prometheus protocol scheme configured for requests.
@@ -459,8 +459,8 @@ func (o ThirdPartyIntegrationOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
-func (o ThirdPartyIntegrationOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // An optional field for your Routing Key.

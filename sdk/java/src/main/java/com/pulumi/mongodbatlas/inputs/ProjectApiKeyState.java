@@ -18,14 +18,14 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
     public static final ProjectApiKeyState Empty = new ProjectApiKeyState();
 
     /**
-     * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     * Unique identifier for this Project API key.
      * 
      */
     @Import(name="apiKeyId")
     private @Nullable Output<String> apiKeyId;
 
     /**
-     * @return The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     * @return Unique identifier for this Project API key.
      * 
      */
     public Optional<Output<String>> apiKeyId() {
@@ -33,14 +33,14 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Description of this Organization API key.
+     * Description of this Project API key.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Description of this Organization API key.
+     * @return Description of this Project API key.
      * 
      */
     public Optional<Output<String>> description() {
@@ -62,14 +62,14 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Project ID to assign to Access Key
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return Project ID to assign to Access Key
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -84,18 +84,28 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
     @Import(name="roleNames")
     private @Nullable Output<List<String>> roleNames;
 
     /**
-     * @return Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
     public Optional<Output<List<String>>> roleNames() {
         return Optional.ofNullable(this.roleNames);
     }
@@ -131,7 +141,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param apiKeyId The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+         * @param apiKeyId Unique identifier for this Project API key.
          * 
          * @return builder
          * 
@@ -142,7 +152,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param apiKeyId The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+         * @param apiKeyId Unique identifier for this Project API key.
          * 
          * @return builder
          * 
@@ -152,7 +162,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param description Description of this Organization API key.
+         * @param description Description of this Project API key.
          * 
          * @return builder
          * 
@@ -163,7 +173,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param description Description of this Organization API key.
+         * @param description Description of this Project API key.
          * 
          * @return builder
          * 
@@ -195,7 +205,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param projectId Project ID to assign to Access Key
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 
@@ -206,7 +216,7 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param projectId Project ID to assign to Access Key
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 
@@ -225,35 +235,50 @@ public final class ProjectApiKeyState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
-         * The following are valid roles:
+         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+         * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 
+         * @deprecated
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
+         * 
          */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
         public Builder roleNames(@Nullable Output<List<String>> roleNames) {
             $.roleNames = roleNames;
             return this;
         }
 
         /**
-         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
-         * The following are valid roles:
+         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+         * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 
+         * @deprecated
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
+         * 
          */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
         public Builder roleNames(List<String> roleNames) {
             return roleNames(Output.of(roleNames));
         }
 
         /**
-         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
-         * The following are valid roles:
+         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+         * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 
+         * @deprecated
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
+         * 
          */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
         public Builder roleNames(String... roleNames) {
             return roleNames(List.of(roleNames));
         }

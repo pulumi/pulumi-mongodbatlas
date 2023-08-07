@@ -71,7 +71,7 @@ public class PrivatelinkEndpointServiceAdl extends com.pulumi.resources.CustomRe
      * Human-readable string to associate with this private endpoint.
      * 
      */
-    @Export(name="comment", type=String.class, parameters={})
+    @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
     /**
@@ -85,7 +85,7 @@ public class PrivatelinkEndpointServiceAdl extends com.pulumi.resources.CustomRe
      * Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
      * 
      */
-    @Export(name="endpointId", type=String.class, parameters={})
+    @Export(name="endpointId", refs={String.class}, tree="[0]")
     private Output<String> endpointId;
 
     /**
@@ -99,7 +99,7 @@ public class PrivatelinkEndpointServiceAdl extends com.pulumi.resources.CustomRe
      * Unique 24-digit hexadecimal string that identifies the project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -113,7 +113,7 @@ public class PrivatelinkEndpointServiceAdl extends com.pulumi.resources.CustomRe
      * Human-readable label that identifies the cloud provider for this endpoint. Atlas supports AWS only. If empty, defaults to AWS.
      * 
      */
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
@@ -127,7 +127,7 @@ public class PrivatelinkEndpointServiceAdl extends com.pulumi.resources.CustomRe
      * Human-readable label that identifies the type of resource to associate with this private endpoint. Atlas supports `DATA_LAKE` only. If empty, defaults to `DATA_LAKE`.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

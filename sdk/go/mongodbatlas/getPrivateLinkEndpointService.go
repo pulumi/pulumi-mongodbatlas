@@ -23,13 +23,13 @@ func LookupPrivateLinkEndpointService(ctx *pulumi.Context, args *LookupPrivateLi
 
 // A collection of arguments for invoking getPrivateLinkEndpointService.
 type LookupPrivateLinkEndpointServiceArgs struct {
-	// Unique identifier of the `AWS` or `AZURE` resource.
+	// Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
 	EndpointServiceId string `pulumi:"endpointServiceId"`
 	// Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
 	PrivateLinkId string `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId string `pulumi:"projectId"`
-	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
 	ProviderName string `pulumi:"providerName"`
 }
 
@@ -81,13 +81,13 @@ func LookupPrivateLinkEndpointServiceOutput(ctx *pulumi.Context, args LookupPriv
 
 // A collection of arguments for invoking getPrivateLinkEndpointService.
 type LookupPrivateLinkEndpointServiceOutputArgs struct {
-	// Unique identifier of the `AWS` or `AZURE` resource.
+	// Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
 	EndpointServiceId pulumi.StringInput `pulumi:"endpointServiceId"`
 	// Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
 	PrivateLinkId pulumi.StringInput `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 }
 

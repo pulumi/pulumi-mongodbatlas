@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .projectId(&#34;64b926dd56206839b1c8bae9&#34;)
  *             .username(&#34;myUsername&#34;)
  *             .x509Type(&#34;MANAGED&#34;)
  *             .databaseName(&#34;$external&#34;)
@@ -80,7 +80,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
- * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+ * ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
  * ```java
  * package generated_program;
  * 
@@ -89,6 +89,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
  * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+ * import com.pulumi.mongodbatlas.DatabaseUser;
+ * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -125,6 +129,21 @@ import javax.annotation.Nullable;
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .build());
  * 
+ *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
+ *             .databaseName(&#34;$external&#34;)
+ *             .labels(DatabaseUserLabelArgs.builder()
+ *                 .key(&#34;My Key&#34;)
+ *                 .value(&#34;My Value&#34;)
+ *                 .build())
+ *             .projectId(&#34;64b926dd56206839b1c8bae9&#34;)
+ *             .roles(DatabaseUserRoleArgs.builder()
+ *                 .databaseName(&#34;admin&#34;)
+ *                 .roleName(&#34;atlasAdmin&#34;)
+ *                 .build())
+ *             .username(&#34;myUsername&#34;)
+ *             .x509Type(&#34;CUSTOMER&#34;)
+ *             .build());
+ * 
  *     }
  * }
  * ```
@@ -152,7 +171,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * Array of objects where each details one unexpired database user certificate.
      * 
      */
-    @Export(name="certificates", type=List.class, parameters={X509AuthenticationDatabaseUserCertificate.class})
+    @Export(name="certificates", refs={List.class,X509AuthenticationDatabaseUserCertificate.class}, tree="[0,1]")
     private Output<List<X509AuthenticationDatabaseUserCertificate>> certificates;
 
     /**
@@ -166,7 +185,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * Contains the last X.509 certificate and private key created for a database user.
      * 
      */
-    @Export(name="currentCertificate", type=String.class, parameters={})
+    @Export(name="currentCertificate", refs={String.class}, tree="[0]")
     private Output<String> currentCertificate;
 
     /**
@@ -180,7 +199,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * PEM string containing one or more customer CAs for database user authentication.
      * 
      */
-    @Export(name="customerX509Cas", type=String.class, parameters={})
+    @Export(name="customerX509Cas", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> customerX509Cas;
 
     /**
@@ -194,7 +213,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
      * 
      */
-    @Export(name="monthsUntilExpiration", type=Integer.class, parameters={})
+    @Export(name="monthsUntilExpiration", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> monthsUntilExpiration;
 
     /**
@@ -208,7 +227,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * Identifier for the Atlas project associated with the X.509 configuration.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -222,7 +241,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * Username of the database user to create a certificate for.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> username;
 
     /**

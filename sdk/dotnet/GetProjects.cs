@@ -64,6 +64,14 @@ namespace Pulumi.Mongodbatlas
         ///                 },
         ///             },
         ///         },
+        ///         Limits = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+        ///             {
+        ///                 Name = "atlas.project.deployment.clusters",
+        ///                 Value = 26,
+        ///             },
+        ///         },
         ///     });
         /// 
         ///     var testProjects = Mongodbatlas.GetProjects.Invoke(new()
@@ -131,6 +139,14 @@ namespace Pulumi.Mongodbatlas
         ///                 {
         ///                     "GROUP_READ_ONLY",
         ///                 },
+        ///             },
+        ///         },
+        ///         Limits = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+        ///             {
+        ///                 Name = "atlas.project.deployment.clusters",
+        ///                 Value = 26,
         ///             },
         ///         },
         ///     });

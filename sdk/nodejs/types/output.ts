@@ -779,6 +779,12 @@ export interface CloudProviderAccessAuthorizationAws {
     iamAssumedRoleArn: string;
 }
 
+export interface CloudProviderAccessAuthorizationAzure {
+    atlasAzureAppId: string;
+    servicePrincipalId: string;
+    tenantId: string;
+}
+
 export interface CloudProviderAccessAuthorizationFeatureUsage {
     featureId: {[key: string]: any};
     featureType: string;
@@ -792,6 +798,12 @@ export interface CloudProviderAccessFeatureUsage {
 export interface CloudProviderAccessSetupAwsConfig {
     atlasAssumedRoleExternalId: string;
     atlasAwsAccountArn: string;
+}
+
+export interface CloudProviderAccessSetupAzureConfig {
+    atlasAzureAppId: string;
+    servicePrincipalId: string;
+    tenantId: string;
 }
 
 export interface ClusterAdvancedConfiguration {
@@ -2929,6 +2941,21 @@ export interface GetCloudProviderAccessSetupAwsConfig {
      * ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
      */
     atlasAwsAccountArn: string;
+}
+
+export interface GetCloudProviderAccessSetupAzureConfig {
+    /**
+     * Azure Active Directory Application ID of Atlas.
+     */
+    atlasAzureAppId: string;
+    /**
+     * UUID string that identifies the Azure Service Principal.
+     */
+    servicePrincipalId: string;
+    /**
+     * UUID String that identifies the Azure Active Directory Tenant ID.
+     */
+    tenantId: string;
 }
 
 export interface GetClusterAdvancedConfiguration {
@@ -5243,6 +5270,17 @@ export interface GetProjectApiKey {
     roleNames: string[];
 }
 
+export interface GetProjectApiKeyProjectAssignment {
+    /**
+     * The unique ID for the project.
+     */
+    projectId: string;
+    /**
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+     */
+    roleNames: string[];
+}
+
 export interface GetProjectApiKeysResult {
     /**
      * Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
@@ -5253,12 +5291,44 @@ export interface GetProjectApiKeysResult {
      */
     description: string;
     privateKey: string;
+    projectAssignments?: outputs.GetProjectApiKeysResultProjectAssignment[];
     publicKey: string;
     /**
-     * Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
+     *
+     *
+     * See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+     *
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      */
     roleNames: string[];
+}
+
+export interface GetProjectApiKeysResultProjectAssignment {
+    /**
+     * Project ID to assign to Access Key
+     */
+    projectId: string;
+    /**
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+     *
+     *
+     * See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+     */
+    roleNames: string[];
+}
+
+export interface GetProjectLimit {
+    currentUsage: number;
+    defaultLimit: number;
+    maximumLimit: number;
+    /**
+     * The unique ID for the project.
+     *
+     * > **IMPORTANT:** Either `projectId` or `name` must be configurated.
+     */
+    name: string;
+    value: number;
 }
 
 export interface GetProjectTeam {
@@ -5278,6 +5348,11 @@ export interface GetProjectsResult {
      * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
      * * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * * `limits.#.name` - Human-readable label that identifies this project limit.
+     * * `limits.#.value` - Amount the limit is set to.
+     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+     * * `limits.#.default_limit` - Default value of the limit.
+     * * `limits.#.maximum_limit` - Maximum value of the limit.
      */
     created: string;
     /**
@@ -5308,6 +5383,7 @@ export interface GetProjectsResult {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      */
     isSchemaAdvisorEnabled: boolean;
+    limits: outputs.GetProjectsResultLimit[];
     /**
      * The name of the project you want to create.
      */
@@ -5328,6 +5404,17 @@ export interface GetProjectsResult {
 export interface GetProjectsResultApiKey {
     apiKeyId: string;
     roleNames: string[];
+}
+
+export interface GetProjectsResultLimit {
+    currentUsage: number;
+    defaultLimit: number;
+    maximumLimit: number;
+    /**
+     * The name of the project you want to create.
+     */
+    name: string;
+    value: number;
 }
 
 export interface GetProjectsResultTeam {
@@ -5470,6 +5557,30 @@ export interface GetServerlessInstancesResult {
 export interface GetServerlessInstancesResultLink {
     href: string;
     rel: string;
+}
+
+export interface GetSharedTierRestoreJobsResult {
+    deliveryType: string;
+    expirationDate: string;
+    jobId: string;
+    restoreFinishedDate: string;
+    restoreScheduledDate: string;
+    snapshotFinishedDate: string;
+    snapshotId: string;
+    snapshotUrl: string;
+    status: string;
+    targetDeploymentItemName: string;
+    targetProjectId: string;
+}
+
+export interface GetSharedTierSnapshotsResult {
+    expiration: string;
+    finishTime: string;
+    mongoDbVersion: string;
+    scheduledTime: string;
+    snapshotId: string;
+    startTime: string;
+    status: string;
 }
 
 export interface GetThirdPartyIntegrationsResult {
@@ -5707,10 +5818,23 @@ export interface ProjectApiKeyProjectAssignment {
      */
     projectId: string;
     /**
-     * Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
      */
     roleNames: string[];
+}
+
+export interface ProjectLimit {
+    currentUsage: number;
+    defaultLimit: number;
+    maximumLimit: number;
+    /**
+     * Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+     */
+    name: string;
+    /**
+     * Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+     */
+    value: number;
 }
 
 export interface ProjectTeam {

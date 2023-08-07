@@ -15,9 +15,33 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.ProjectApiKey("test", {
- *     description: "key-name",
- *     projectId: "<PROJECT_ID>",
+ *     description: "Description of your API key",
+ *     projectId: "64259ee860c43338194b0f8e",
  *     roleNames: ["GROUP_OWNER"],
+ * });
+ * ```
+ * ### Create And Assign PAK To Multiple Projects
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.ProjectApiKey("test", {
+ *     description: "Description of your API key",
+ *     projectAssignments: [
+ *         {
+ *             projectId: "64259ee860c43338194b0f8e",
+ *             roleNames: [
+ *                 "GROUP_READ_ONLY",
+ *                 "GROUP_OWNER",
+ *             ],
+ *         },
+ *         {
+ *             projectId: "74259ee860c43338194b0f8e",
+ *             roleNames: ["GROUP_READ_ONLY"],
+ *         },
+ *     ],
+ *     projectId: "64259ee860c43338194b0f8e",
  * });
  * ```
  *
@@ -60,23 +84,26 @@ export class ProjectApiKey extends pulumi.CustomResource {
     }
 
     /**
-     * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     * Unique identifier for this Project API key.
      */
     public /*out*/ readonly apiKeyId!: pulumi.Output<string>;
     /**
-     * Description of this Organization API key.
+     * Description of this Project API key.
      */
     public readonly description!: pulumi.Output<string>;
     public /*out*/ readonly privateKey!: pulumi.Output<string>;
     public readonly projectAssignments!: pulumi.Output<outputs.ProjectApiKeyProjectAssignment[] | undefined>;
     /**
-     * Project ID to assign to Access Key
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     public readonly projectId!: pulumi.Output<string>;
     public /*out*/ readonly publicKey!: pulumi.Output<string>;
     /**
-     * Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
+     *
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      */
     public readonly roleNames!: pulumi.Output<string[] | undefined>;
 
@@ -128,23 +155,26 @@ export class ProjectApiKey extends pulumi.CustomResource {
  */
 export interface ProjectApiKeyState {
     /**
-     * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     * Unique identifier for this Project API key.
      */
     apiKeyId?: pulumi.Input<string>;
     /**
-     * Description of this Organization API key.
+     * Description of this Project API key.
      */
     description?: pulumi.Input<string>;
     privateKey?: pulumi.Input<string>;
     projectAssignments?: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;
     /**
-     * Project ID to assign to Access Key
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId?: pulumi.Input<string>;
     publicKey?: pulumi.Input<string>;
     /**
-     * Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
+     *
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      */
     roleNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -154,17 +184,20 @@ export interface ProjectApiKeyState {
  */
 export interface ProjectApiKeyArgs {
     /**
-     * Description of this Organization API key.
+     * Description of this Project API key.
      */
     description: pulumi.Input<string>;
     projectAssignments?: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;
     /**
-     * Project ID to assign to Access Key
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
     /**
-     * Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
+     *
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      */
     roleNames?: pulumi.Input<pulumi.Input<string>[]>;
 }

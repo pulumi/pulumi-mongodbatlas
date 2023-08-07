@@ -17,14 +17,14 @@ public final class ApiKeyState extends com.pulumi.resources.ResourceArgs {
     public static final ApiKeyState Empty = new ApiKeyState();
 
     /**
-     * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     * Unique identifier for this Organization API key.
      * 
      */
     @Import(name="apiKeyId")
     private @Nullable Output<String> apiKeyId;
 
     /**
-     * @return The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     * @return Unique identifier for this Organization API key.
      * 
      */
     public Optional<Output<String>> apiKeyId() {
@@ -122,7 +122,7 @@ public final class ApiKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param apiKeyId The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+         * @param apiKeyId Unique identifier for this Organization API key.
          * 
          * @return builder
          * 
@@ -133,7 +133,7 @@ public final class ApiKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param apiKeyId The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+         * @param apiKeyId Unique identifier for this Organization API key.
          * 
          * @return builder
          * 

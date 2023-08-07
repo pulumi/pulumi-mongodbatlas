@@ -42,7 +42,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
      * 
      */
-    @Export(name="authorizedEmail", type=String.class, parameters={})
+    @Export(name="authorizedEmail", refs={String.class}, tree="[0]")
     private Output<String> authorizedEmail;
 
     /**
@@ -56,7 +56,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      * 
      */
-    @Export(name="copyProtectionEnabled", type=Boolean.class, parameters={})
+    @Export(name="copyProtectionEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> copyProtectionEnabled;
 
     /**
@@ -70,7 +70,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
-    @Export(name="encryptionAtRestEnabled", type=Boolean.class, parameters={})
+    @Export(name="encryptionAtRestEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> encryptionAtRestEnabled;
 
     /**
@@ -80,7 +80,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
     public Output<Boolean> encryptionAtRestEnabled() {
         return this.encryptionAtRestEnabled;
     }
-    @Export(name="onDemandPolicyItem", type=BackupCompliancePolicyOnDemandPolicyItem.class, parameters={})
+    @Export(name="onDemandPolicyItem", refs={BackupCompliancePolicyOnDemandPolicyItem.class}, tree="[0]")
     private Output<BackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItem;
 
     public Output<BackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItem() {
@@ -90,7 +90,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
-    @Export(name="pitEnabled", type=Boolean.class, parameters={})
+    @Export(name="pitEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> pitEnabled;
 
     /**
@@ -100,25 +100,25 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
     public Output<Boolean> pitEnabled() {
         return this.pitEnabled;
     }
-    @Export(name="policyItemDaily", type=BackupCompliancePolicyPolicyItemDaily.class, parameters={})
+    @Export(name="policyItemDaily", refs={BackupCompliancePolicyPolicyItemDaily.class}, tree="[0]")
     private Output</* @Nullable */ BackupCompliancePolicyPolicyItemDaily> policyItemDaily;
 
     public Output<Optional<BackupCompliancePolicyPolicyItemDaily>> policyItemDaily() {
         return Codegen.optional(this.policyItemDaily);
     }
-    @Export(name="policyItemHourly", type=BackupCompliancePolicyPolicyItemHourly.class, parameters={})
+    @Export(name="policyItemHourly", refs={BackupCompliancePolicyPolicyItemHourly.class}, tree="[0]")
     private Output</* @Nullable */ BackupCompliancePolicyPolicyItemHourly> policyItemHourly;
 
     public Output<Optional<BackupCompliancePolicyPolicyItemHourly>> policyItemHourly() {
         return Codegen.optional(this.policyItemHourly);
     }
-    @Export(name="policyItemMonthlies", type=List.class, parameters={BackupCompliancePolicyPolicyItemMonthly.class})
+    @Export(name="policyItemMonthlies", refs={List.class,BackupCompliancePolicyPolicyItemMonthly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<BackupCompliancePolicyPolicyItemMonthly>> policyItemMonthlies;
 
     public Output<Optional<List<BackupCompliancePolicyPolicyItemMonthly>>> policyItemMonthlies() {
         return Codegen.optional(this.policyItemMonthlies);
     }
-    @Export(name="policyItemWeeklies", type=List.class, parameters={BackupCompliancePolicyPolicyItemWeekly.class})
+    @Export(name="policyItemWeeklies", refs={List.class,BackupCompliancePolicyPolicyItemWeekly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<BackupCompliancePolicyPolicyItemWeekly>> policyItemWeeklies;
 
     public Output<Optional<List<BackupCompliancePolicyPolicyItemWeekly>>> policyItemWeeklies() {
@@ -128,7 +128,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -142,7 +142,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can&#39;t exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
      * 
      */
-    @Export(name="restoreWindowDays", type=Integer.class, parameters={})
+    @Export(name="restoreWindowDays", refs={Integer.class}, tree="[0]")
     private Output<Integer> restoreWindowDays;
 
     /**
@@ -156,7 +156,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * Label that indicates the state of the Backup Compliance Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
@@ -170,7 +170,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * ISO 8601 timestamp format in UTC that indicates when the user updated the Data Protection Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
      * 
      */
-    @Export(name="updatedDate", type=String.class, parameters={})
+    @Export(name="updatedDate", refs={String.class}, tree="[0]")
     private Output<String> updatedDate;
 
     /**
@@ -184,7 +184,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * Email address that identifies the user who updated the Backup Compliance Policy settings. MongoDB Cloud ignores this email setting when you enable or update the Backup Compliance Policy settings.
      * 
      */
-    @Export(name="updatedUser", type=String.class, parameters={})
+    @Export(name="updatedUser", refs={String.class}, tree="[0]")
     private Output<String> updatedUser;
 
     /**

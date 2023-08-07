@@ -222,7 +222,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
      * 
      */
-    @Export(name="appId", type=String.class, parameters={})
+    @Export(name="appId", refs={String.class}, tree="[0]")
     private Output<String> appId;
 
     /**
@@ -237,7 +237,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      * 
      */
-    @Export(name="configCollection", type=String.class, parameters={})
+    @Export(name="configCollection", refs={String.class}, tree="[0]")
     private Output<String> configCollection;
 
     /**
@@ -251,7 +251,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
      * 
      */
-    @Export(name="configDatabase", type=String.class, parameters={})
+    @Export(name="configDatabase", refs={String.class}, tree="[0]")
     private Output<String> configDatabase;
 
     /**
@@ -265,7 +265,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      * 
      */
-    @Export(name="configFullDocument", type=Boolean.class, parameters={})
+    @Export(name="configFullDocument", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> configFullDocument;
 
     /**
@@ -275,7 +275,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
     public Output<Boolean> configFullDocument() {
         return this.configFullDocument;
     }
-    @Export(name="configFullDocumentBefore", type=Boolean.class, parameters={})
+    @Export(name="configFullDocumentBefore", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> configFullDocumentBefore;
 
     public Output<Boolean> configFullDocumentBefore() {
@@ -285,7 +285,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      * 
      */
-    @Export(name="configMatch", type=String.class, parameters={})
+    @Export(name="configMatch", refs={String.class}, tree="[0]")
     private Output<String> configMatch;
 
     /**
@@ -299,7 +299,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
      * 
      */
-    @Export(name="configOperationType", type=String.class, parameters={})
+    @Export(name="configOperationType", refs={String.class}, tree="[0]")
     private Output<String> configOperationType;
 
     /**
@@ -313,7 +313,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
      * 
      */
-    @Export(name="configOperationTypes", type=List.class, parameters={String.class})
+    @Export(name="configOperationTypes", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> configOperationTypes;
 
     /**
@@ -327,7 +327,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      * 
      */
-    @Export(name="configProject", type=String.class, parameters={})
+    @Export(name="configProject", refs={String.class}, tree="[0]")
     private Output<String> configProject;
 
     /**
@@ -341,7 +341,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
      * 
      */
-    @Export(name="configProviders", type=List.class, parameters={String.class})
+    @Export(name="configProviders", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> configProviders;
 
     /**
@@ -355,7 +355,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
      * 
      */
-    @Export(name="configSchedule", type=String.class, parameters={})
+    @Export(name="configSchedule", refs={String.class}, tree="[0]")
     private Output<String> configSchedule;
 
     /**
@@ -365,7 +365,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
     public Output<String> configSchedule() {
         return this.configSchedule;
     }
-    @Export(name="configScheduleType", type=String.class, parameters={})
+    @Export(name="configScheduleType", refs={String.class}, tree="[0]")
     private Output<String> configScheduleType;
 
     public Output<String> configScheduleType() {
@@ -375,7 +375,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
      * 
      */
-    @Export(name="configServiceId", type=String.class, parameters={})
+    @Export(name="configServiceId", refs={String.class}, tree="[0]")
     private Output<String> configServiceId;
 
     /**
@@ -389,7 +389,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Default: `false` If `true`, the trigger is disabled.
      * 
      */
-    @Export(name="disabled", type=Boolean.class, parameters={})
+    @Export(name="disabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> disabled;
 
     /**
@@ -405,7 +405,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      * 
      */
-    @Export(name="eventProcessors", type=EventTriggerEventProcessors.class, parameters={})
+    @Export(name="eventProcessors", refs={EventTriggerEventProcessors.class}, tree="[0]")
     private Output</* @Nullable */ EventTriggerEventProcessors> eventProcessors;
 
     /**
@@ -421,7 +421,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * The ID of the function associated with the trigger.
      * 
      */
-    @Export(name="functionId", type=String.class, parameters={})
+    @Export(name="functionId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> functionId;
 
     /**
@@ -435,7 +435,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * The name of the function associated with the trigger.
      * 
      */
-    @Export(name="functionName", type=String.class, parameters={})
+    @Export(name="functionName", refs={String.class}, tree="[0]")
     private Output<String> functionName;
 
     /**
@@ -449,7 +449,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * The name of the trigger.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -463,7 +463,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to create the trigger.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -477,7 +477,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * The unique ID of the trigger.
      * 
      */
-    @Export(name="triggerId", type=String.class, parameters={})
+    @Export(name="triggerId", refs={String.class}, tree="[0]")
     private Output<String> triggerId;
 
     /**
@@ -491,7 +491,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -505,7 +505,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
      * 
      */
-    @Export(name="unordered", type=Boolean.class, parameters={})
+    @Export(name="unordered", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> unordered;
 
     /**

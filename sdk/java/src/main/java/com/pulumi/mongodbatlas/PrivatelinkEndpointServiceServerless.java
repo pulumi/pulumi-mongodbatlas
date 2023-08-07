@@ -32,7 +32,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * Unique string that identifies the private endpoint&#39;s network interface.
      * 
      */
-    @Export(name="cloudProviderEndpointId", type=String.class, parameters={})
+    @Export(name="cloudProviderEndpointId", refs={String.class}, tree="[0]")
     private Output<String> cloudProviderEndpointId;
 
     /**
@@ -46,7 +46,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * Human-readable string to associate with this private endpoint.
      * 
      */
-    @Export(name="comment", type=String.class, parameters={})
+    @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
     /**
@@ -60,7 +60,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * Unique 24-hexadecimal digit string that identifies the private endpoint.
      * 
      */
-    @Export(name="endpointId", type=String.class, parameters={})
+    @Export(name="endpointId", refs={String.class}, tree="[0]")
     private Output<String> endpointId;
 
     /**
@@ -74,7 +74,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * Human-readable label that identifies the serverless instance.
      * 
      */
-    @Export(name="instanceName", type=String.class, parameters={})
+    @Export(name="instanceName", refs={String.class}, tree="[0]")
     private Output<String> instanceName;
 
     /**
@@ -88,7 +88,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
      * 
      */
-    @Export(name="privateEndpointIpAddress", type=String.class, parameters={})
+    @Export(name="privateEndpointIpAddress", refs={String.class}, tree="[0]")
     private Output<String> privateEndpointIpAddress;
 
     /**
@@ -102,7 +102,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
      * 
      */
-    @Export(name="privateLinkServiceResourceId", type=String.class, parameters={})
+    @Export(name="privateLinkServiceResourceId", refs={String.class}, tree="[0]")
     private Output<String> privateLinkServiceResourceId;
 
     /**
@@ -116,7 +116,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * Unique 24-digit hexadecimal string that identifies the project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -130,7 +130,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE`.
      * 
      */
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
@@ -144,7 +144,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

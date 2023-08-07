@@ -170,13 +170,13 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/customDbRole:CustomDbRole")
 public class CustomDbRole extends com.pulumi.resources.CustomResource {
-    @Export(name="actions", type=List.class, parameters={CustomDbRoleAction.class})
+    @Export(name="actions", refs={List.class,CustomDbRoleAction.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CustomDbRoleAction>> actions;
 
     public Output<Optional<List<CustomDbRoleAction>>> actions() {
         return Codegen.optional(this.actions);
     }
-    @Export(name="inheritedRoles", type=List.class, parameters={CustomDbRoleInheritedRole.class})
+    @Export(name="inheritedRoles", refs={List.class,CustomDbRoleInheritedRole.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CustomDbRoleInheritedRole>> inheritedRoles;
 
     public Output<Optional<List<CustomDbRoleInheritedRole>>> inheritedRoles() {
@@ -186,7 +186,7 @@ public class CustomDbRole extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to create the database user.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -207,7 +207,7 @@ public class CustomDbRole extends com.pulumi.resources.CustomResource {
      * * Starts with `xgen-`
      * 
      */
-    @Export(name="roleName", type=String.class, parameters={})
+    @Export(name="roleName", refs={String.class}, tree="[0]")
     private Output<String> roleName;
 
     /**

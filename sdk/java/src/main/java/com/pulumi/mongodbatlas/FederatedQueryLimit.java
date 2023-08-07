@@ -74,7 +74,7 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
      * Amount that indicates the current usage of the limit.
      * 
      */
-    @Export(name="currentUsage", type=Integer.class, parameters={})
+    @Export(name="currentUsage", refs={Integer.class}, tree="[0]")
     private Output<Integer> currentUsage;
 
     /**
@@ -88,7 +88,7 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
      * Default value of the limit.
      * 
      */
-    @Export(name="defaultLimit", type=Integer.class, parameters={})
+    @Export(name="defaultLimit", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> defaultLimit;
 
     /**
@@ -98,7 +98,7 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> defaultLimit() {
         return Codegen.optional(this.defaultLimit);
     }
-    @Export(name="lastModifiedDate", type=String.class, parameters={})
+    @Export(name="lastModifiedDate", refs={String.class}, tree="[0]")
     private Output<String> lastModifiedDate;
 
     public Output<String> lastModifiedDate() {
@@ -112,7 +112,7 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
      * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      * 
      */
-    @Export(name="limitName", type=String.class, parameters={})
+    @Export(name="limitName", refs={String.class}, tree="[0]")
     private Output<String> limitName;
 
     /**
@@ -126,7 +126,7 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
     public Output<String> limitName() {
         return this.limitName;
     }
-    @Export(name="maximumLimit", type=Integer.class, parameters={})
+    @Export(name="maximumLimit", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maximumLimit;
 
     public Output<Optional<Integer>> maximumLimit() {
@@ -136,7 +136,7 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
      * String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are &#34;BLOCK&#34; OR &#34;BLOCK_AND_KILL&#34;
      * 
      */
-    @Export(name="overrunPolicy", type=String.class, parameters={})
+    @Export(name="overrunPolicy", refs={String.class}, tree="[0]")
     private Output<String> overrunPolicy;
 
     /**
@@ -150,7 +150,7 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to create a Federated Database Instance.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -164,7 +164,7 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
      * Name of the Atlas Federated Database Instance.
      * 
      */
-    @Export(name="tenantName", type=String.class, parameters={})
+    @Export(name="tenantName", refs={String.class}, tree="[0]")
     private Output<String> tenantName;
 
     /**
@@ -178,7 +178,7 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
      * Amount to set the limit to.
      * 
      */
-    @Export(name="value", type=Integer.class, parameters={})
+    @Export(name="value", refs={Integer.class}, tree="[0]")
     private Output<Integer> value;
 
     /**

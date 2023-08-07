@@ -16,25 +16,25 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="mongodbatlas:index/team:Team")
 public class Team extends com.pulumi.resources.CustomResource {
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     public Output<String> name() {
         return this.name;
     }
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output<String> orgId;
 
     public Output<String> orgId() {
         return this.orgId;
     }
-    @Export(name="teamId", type=String.class, parameters={})
+    @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output<String> teamId;
 
     public Output<String> teamId() {
         return this.teamId;
     }
-    @Export(name="usernames", type=List.class, parameters={String.class})
+    @Export(name="usernames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> usernames;
 
     public Output<List<String>> usernames() {

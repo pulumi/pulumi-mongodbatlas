@@ -10,6 +10,36 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
+    /// 
+    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
+    ///     {
+    ///         OrgId = @var.Atlas_org_id,
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+    ///     {
+    ///         ProjectId = atlas_project.Id,
+    ///         EndpointId = "&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;",
+    ///         ProviderName = "AWS",
+    ///         Comment = "Test",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Private Endpoint Service resource for Data Federation and Online Archive can be imported using project ID, endpoint ID, in the format `project_id`--`endpoint_id`, e.g.

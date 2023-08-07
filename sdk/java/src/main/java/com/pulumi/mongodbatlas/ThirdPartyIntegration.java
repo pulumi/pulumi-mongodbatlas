@@ -81,7 +81,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Your API Key.
      * 
      */
-    @Export(name="apiKey", type=String.class, parameters={})
+    @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
     /**
@@ -91,7 +91,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> apiKey() {
         return Codegen.optional(this.apiKey);
     }
-    @Export(name="channelName", type=String.class, parameters={})
+    @Export(name="channelName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> channelName;
 
     public Output<Optional<String>> channelName() {
@@ -101,7 +101,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Whether your cluster has Prometheus enabled.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
@@ -115,7 +115,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Your Microsoft Teams incoming webhook URL.
      * 
      */
-    @Export(name="microsoftTeamsWebhookUrl", type=String.class, parameters={})
+    @Export(name="microsoftTeamsWebhookUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> microsoftTeamsWebhookUrl;
 
     /**
@@ -129,7 +129,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Your Prometheus password.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
@@ -143,7 +143,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to get all Third-Party service integrations
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -157,21 +157,21 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
-    private Output</* @Nullable */ String> region;
+    @Export(name="region", refs={String.class}, tree="[0]")
+    private Output<String> region;
 
     /**
      * @return Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
      * 
      */
-    public Output<Optional<String>> region() {
-        return Codegen.optional(this.region);
+    public Output<String> region() {
+        return this.region;
     }
     /**
      * An optional field for your Routing Key.
      * 
      */
-    @Export(name="routingKey", type=String.class, parameters={})
+    @Export(name="routingKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> routingKey;
 
     /**
@@ -185,7 +185,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Your Prometheus protocol scheme configured for requests.
      * 
      */
-    @Export(name="scheme", type=String.class, parameters={})
+    @Export(name="scheme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> scheme;
 
     /**
@@ -199,7 +199,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * An optional field for your webhook secret.
      * 
      */
-    @Export(name="secret", type=String.class, parameters={})
+    @Export(name="secret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secret;
 
     /**
@@ -213,7 +213,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Indicates which service discovery method is used, either file or http.
      * 
      */
-    @Export(name="serviceDiscovery", type=String.class, parameters={})
+    @Export(name="serviceDiscovery", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serviceDiscovery;
 
     /**
@@ -227,7 +227,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Your Service Key.
      * 
      */
-    @Export(name="serviceKey", type=String.class, parameters={})
+    @Export(name="serviceKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serviceKey;
 
     /**
@@ -237,7 +237,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> serviceKey() {
         return Codegen.optional(this.serviceKey);
     }
-    @Export(name="teamName", type=String.class, parameters={})
+    @Export(name="teamName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamName;
 
     public Output<Optional<String>> teamName() {
@@ -260,7 +260,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Additional values based on Type
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -287,7 +287,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Your webhook URL.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> url;
 
     /**
@@ -301,7 +301,7 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * Your Prometheus username.
      * 
      */
-    @Export(name="userName", type=String.class, parameters={})
+    @Export(name="userName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userName;
 
     /**

@@ -16,12 +16,14 @@ type CloudProviderAccessSetup struct {
 	pulumi.CustomResourceState
 
 	// Deprecated: use aws_config instead
-	Aws          pulumi.StringMapOutput                       `pulumi:"aws"`
-	AwsConfigs   CloudProviderAccessSetupAwsConfigArrayOutput `pulumi:"awsConfigs"`
-	CreatedDate  pulumi.StringOutput                          `pulumi:"createdDate"`
-	ProjectId    pulumi.StringOutput                          `pulumi:"projectId"`
-	ProviderName pulumi.StringOutput                          `pulumi:"providerName"`
-	RoleId       pulumi.StringOutput                          `pulumi:"roleId"`
+	Aws             pulumi.StringMapOutput                         `pulumi:"aws"`
+	AwsConfigs      CloudProviderAccessSetupAwsConfigArrayOutput   `pulumi:"awsConfigs"`
+	AzureConfigs    CloudProviderAccessSetupAzureConfigArrayOutput `pulumi:"azureConfigs"`
+	CreatedDate     pulumi.StringOutput                            `pulumi:"createdDate"`
+	LastUpdatedDate pulumi.StringOutput                            `pulumi:"lastUpdatedDate"`
+	ProjectId       pulumi.StringOutput                            `pulumi:"projectId"`
+	ProviderName    pulumi.StringOutput                            `pulumi:"providerName"`
+	RoleId          pulumi.StringOutput                            `pulumi:"roleId"`
 }
 
 // NewCloudProviderAccessSetup registers a new resource with the given unique name, arguments, and options.
@@ -61,22 +63,26 @@ func GetCloudProviderAccessSetup(ctx *pulumi.Context,
 // Input properties used for looking up and filtering CloudProviderAccessSetup resources.
 type cloudProviderAccessSetupState struct {
 	// Deprecated: use aws_config instead
-	Aws          map[string]string                   `pulumi:"aws"`
-	AwsConfigs   []CloudProviderAccessSetupAwsConfig `pulumi:"awsConfigs"`
-	CreatedDate  *string                             `pulumi:"createdDate"`
-	ProjectId    *string                             `pulumi:"projectId"`
-	ProviderName *string                             `pulumi:"providerName"`
-	RoleId       *string                             `pulumi:"roleId"`
+	Aws             map[string]string                     `pulumi:"aws"`
+	AwsConfigs      []CloudProviderAccessSetupAwsConfig   `pulumi:"awsConfigs"`
+	AzureConfigs    []CloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
+	CreatedDate     *string                               `pulumi:"createdDate"`
+	LastUpdatedDate *string                               `pulumi:"lastUpdatedDate"`
+	ProjectId       *string                               `pulumi:"projectId"`
+	ProviderName    *string                               `pulumi:"providerName"`
+	RoleId          *string                               `pulumi:"roleId"`
 }
 
 type CloudProviderAccessSetupState struct {
 	// Deprecated: use aws_config instead
-	Aws          pulumi.StringMapInput
-	AwsConfigs   CloudProviderAccessSetupAwsConfigArrayInput
-	CreatedDate  pulumi.StringPtrInput
-	ProjectId    pulumi.StringPtrInput
-	ProviderName pulumi.StringPtrInput
-	RoleId       pulumi.StringPtrInput
+	Aws             pulumi.StringMapInput
+	AwsConfigs      CloudProviderAccessSetupAwsConfigArrayInput
+	AzureConfigs    CloudProviderAccessSetupAzureConfigArrayInput
+	CreatedDate     pulumi.StringPtrInput
+	LastUpdatedDate pulumi.StringPtrInput
+	ProjectId       pulumi.StringPtrInput
+	ProviderName    pulumi.StringPtrInput
+	RoleId          pulumi.StringPtrInput
 }
 
 func (CloudProviderAccessSetupState) ElementType() reflect.Type {
@@ -84,12 +90,14 @@ func (CloudProviderAccessSetupState) ElementType() reflect.Type {
 }
 
 type cloudProviderAccessSetupArgs struct {
-	ProjectId    string `pulumi:"projectId"`
-	ProviderName string `pulumi:"providerName"`
+	AzureConfigs []CloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
+	ProjectId    string                                `pulumi:"projectId"`
+	ProviderName string                                `pulumi:"providerName"`
 }
 
 // The set of arguments for constructing a CloudProviderAccessSetup resource.
 type CloudProviderAccessSetupArgs struct {
+	AzureConfigs CloudProviderAccessSetupAzureConfigArrayInput
 	ProjectId    pulumi.StringInput
 	ProviderName pulumi.StringInput
 }
@@ -190,8 +198,18 @@ func (o CloudProviderAccessSetupOutput) AwsConfigs() CloudProviderAccessSetupAws
 	return o.ApplyT(func(v *CloudProviderAccessSetup) CloudProviderAccessSetupAwsConfigArrayOutput { return v.AwsConfigs }).(CloudProviderAccessSetupAwsConfigArrayOutput)
 }
 
+func (o CloudProviderAccessSetupOutput) AzureConfigs() CloudProviderAccessSetupAzureConfigArrayOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetup) CloudProviderAccessSetupAzureConfigArrayOutput {
+		return v.AzureConfigs
+	}).(CloudProviderAccessSetupAzureConfigArrayOutput)
+}
+
 func (o CloudProviderAccessSetupOutput) CreatedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessSetupOutput) LastUpdatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.LastUpdatedDate }).(pulumi.StringOutput)
 }
 
 func (o CloudProviderAccessSetupOutput) ProjectId() pulumi.StringOutput {

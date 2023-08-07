@@ -44,9 +44,11 @@ __all__ = [
     'CloudBackupSnapshotMemberArgs',
     'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs',
     'CloudProviderAccessAuthorizationAwsArgs',
+    'CloudProviderAccessAuthorizationAzureArgs',
     'CloudProviderAccessAuthorizationFeatureUsageArgs',
     'CloudProviderAccessFeatureUsageArgs',
     'CloudProviderAccessSetupAwsConfigArgs',
+    'CloudProviderAccessSetupAzureConfigArgs',
     'ClusterAdvancedConfigurationArgs',
     'ClusterBiConnectorConfigArgs',
     'ClusterConnectionStringArgs',
@@ -105,6 +107,7 @@ __all__ = [
     'PrivateLinkEndpointServiceEndpointArgs',
     'ProjectApiKeyArgs',
     'ProjectApiKeyProjectAssignmentArgs',
+    'ProjectLimitArgs',
     'ProjectTeamArgs',
     'ProviderAssumeRoleArgs',
     'SearchIndexSynonymArgs',
@@ -117,6 +120,7 @@ __all__ = [
     'GetBackupCompliancePolicyPolicyItemHourlyArgs',
     'GetBackupCompliancePolicyPolicyItemMonthlyArgs',
     'GetBackupCompliancePolicyPolicyItemWeeklyArgs',
+    'GetCloudProviderAccessSetupAzureConfigArgs',
     'GetCustomDbRoleInheritedRoleArgs',
     'GetFederatedDatabaseInstanceCloudProviderConfigArgs',
     'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs',
@@ -3076,6 +3080,44 @@ class CloudProviderAccessAuthorizationAwsArgs:
 
 
 @pulumi.input_type
+class CloudProviderAccessAuthorizationAzureArgs:
+    def __init__(__self__, *,
+                 atlas_azure_app_id: pulumi.Input[str],
+                 service_principal_id: pulumi.Input[str],
+                 tenant_id: pulumi.Input[str]):
+        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="atlasAzureAppId")
+    def atlas_azure_app_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "atlas_azure_app_id")
+
+    @atlas_azure_app_id.setter
+    def atlas_azure_app_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "atlas_azure_app_id", value)
+
+    @property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "service_principal_id")
+
+    @service_principal_id.setter
+    def service_principal_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "service_principal_id", value)
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "tenant_id", value)
+
+
+@pulumi.input_type
 class CloudProviderAccessAuthorizationFeatureUsageArgs:
     def __init__(__self__, *,
                  feature_id: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -3160,6 +3202,44 @@ class CloudProviderAccessSetupAwsConfigArgs:
     @atlas_aws_account_arn.setter
     def atlas_aws_account_arn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "atlas_aws_account_arn", value)
+
+
+@pulumi.input_type
+class CloudProviderAccessSetupAzureConfigArgs:
+    def __init__(__self__, *,
+                 atlas_azure_app_id: pulumi.Input[str],
+                 service_principal_id: pulumi.Input[str],
+                 tenant_id: pulumi.Input[str]):
+        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="atlasAzureAppId")
+    def atlas_azure_app_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "atlas_azure_app_id")
+
+    @atlas_azure_app_id.setter
+    def atlas_azure_app_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "atlas_azure_app_id", value)
+
+    @property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "service_principal_id")
+
+    @service_principal_id.setter
+    def service_principal_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "service_principal_id", value)
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "tenant_id", value)
 
 
 @pulumi.input_type
@@ -7007,8 +7087,7 @@ class ProjectApiKeyProjectAssignmentArgs:
                  role_names: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         :param pulumi.Input[str] project_id: Project ID to assign to Access Key
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
-               The following are valid roles:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "role_names", role_names)
@@ -7029,14 +7108,86 @@ class ProjectApiKeyProjectAssignmentArgs:
     @pulumi.getter(name="roleNames")
     def role_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Name of the role. This resource returns all the roles the user has in Atlas.
-        The following are valid roles:
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
         return pulumi.get(self, "role_names")
 
     @role_names.setter
     def role_names(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "role_names", value)
+
+
+@pulumi.input_type
+class ProjectLimitArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[int],
+                 current_usage: Optional[pulumi.Input[int]] = None,
+                 default_limit: Optional[pulumi.Input[int]] = None,
+                 maximum_limit: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] name: Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+        :param pulumi.Input[int] value: Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if current_usage is not None:
+            pulumi.set(__self__, "current_usage", current_usage)
+        if default_limit is not None:
+            pulumi.set(__self__, "default_limit", default_limit)
+        if maximum_limit is not None:
+            pulumi.set(__self__, "maximum_limit", maximum_limit)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[int]:
+        """
+        Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter(name="currentUsage")
+    def current_usage(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "current_usage")
+
+    @current_usage.setter
+    def current_usage(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "current_usage", value)
+
+    @property
+    @pulumi.getter(name="defaultLimit")
+    def default_limit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "default_limit")
+
+    @default_limit.setter
+    def default_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_limit", value)
+
+    @property
+    @pulumi.getter(name="maximumLimit")
+    def maximum_limit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "maximum_limit")
+
+    @maximum_limit.setter
+    def maximum_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "maximum_limit", value)
 
 
 @pulumi.input_type
@@ -7879,6 +8030,58 @@ class GetBackupCompliancePolicyPolicyItemWeeklyArgs:
     @retention_value.setter
     def retention_value(self, value: int):
         pulumi.set(self, "retention_value", value)
+
+
+@pulumi.input_type
+class GetCloudProviderAccessSetupAzureConfigArgs:
+    def __init__(__self__, *,
+                 atlas_azure_app_id: str,
+                 service_principal_id: str,
+                 tenant_id: str):
+        """
+        :param str atlas_azure_app_id: Azure Active Directory Application ID of Atlas.
+        :param str service_principal_id: UUID string that identifies the Azure Service Principal.
+        :param str tenant_id: UUID String that identifies the Azure Active Directory Tenant ID.
+        """
+        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="atlasAzureAppId")
+    def atlas_azure_app_id(self) -> str:
+        """
+        Azure Active Directory Application ID of Atlas.
+        """
+        return pulumi.get(self, "atlas_azure_app_id")
+
+    @atlas_azure_app_id.setter
+    def atlas_azure_app_id(self, value: str):
+        pulumi.set(self, "atlas_azure_app_id", value)
+
+    @property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> str:
+        """
+        UUID string that identifies the Azure Service Principal.
+        """
+        return pulumi.get(self, "service_principal_id")
+
+    @service_principal_id.setter
+    def service_principal_id(self, value: str):
+        pulumi.set(self, "service_principal_id", value)
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> str:
+        """
+        UUID String that identifies the Azure Active Directory Tenant ID.
+        """
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: str):
+        pulumi.set(self, "tenant_id", value)
 
 
 @pulumi.input_type

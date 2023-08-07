@@ -45,9 +45,11 @@ __all__ = [
     'CloudBackupSnapshotMember',
     'CloudBackupSnapshotRestoreJobDeliveryTypeConfig',
     'CloudProviderAccessAuthorizationAws',
+    'CloudProviderAccessAuthorizationAzure',
     'CloudProviderAccessAuthorizationFeatureUsage',
     'CloudProviderAccessFeatureUsage',
     'CloudProviderAccessSetupAwsConfig',
+    'CloudProviderAccessSetupAzureConfig',
     'ClusterAdvancedConfiguration',
     'ClusterBiConnectorConfig',
     'ClusterConnectionString',
@@ -106,6 +108,7 @@ __all__ = [
     'PrivateLinkEndpointServiceEndpoint',
     'ProjectApiKey',
     'ProjectApiKeyProjectAssignment',
+    'ProjectLimit',
     'ProjectTeam',
     'SearchIndexSynonym',
     'ServerlessInstanceLink',
@@ -176,6 +179,7 @@ __all__ = [
     'GetCloudProviderAccessAwsIamRoleResult',
     'GetCloudProviderAccessAwsIamRoleFeatureUsageResult',
     'GetCloudProviderAccessSetupAwsConfigResult',
+    'GetCloudProviderAccessSetupAzureConfigResult',
     'GetClusterAdvancedConfigurationResult',
     'GetClusterBiConnectorConfigResult',
     'GetClusterConnectionStringResult',
@@ -315,10 +319,14 @@ __all__ = [
     'GetPrivatelinkEndpointsServiceAdlResultResult',
     'GetPrivatelinkEndpointsServiceServerlessResultResult',
     'GetProjectApiKeyResult',
+    'GetProjectApiKeyProjectAssignmentResult',
     'GetProjectApiKeysResultResult',
+    'GetProjectApiKeysResultProjectAssignmentResult',
+    'GetProjectLimitResult',
     'GetProjectTeamResult',
     'GetProjectsResultResult',
     'GetProjectsResultApiKeyResult',
+    'GetProjectsResultLimitResult',
     'GetProjectsResultTeamResult',
     'GetSearchIndexSynonymResult',
     'GetSearchIndexesResultResult',
@@ -326,6 +334,8 @@ __all__ = [
     'GetServerlessInstanceLinkResult',
     'GetServerlessInstancesResultResult',
     'GetServerlessInstancesResultLinkResult',
+    'GetSharedTierRestoreJobsResultResult',
+    'GetSharedTierSnapshotsResultResult',
     'GetThirdPartyIntegrationsResultResult',
 ]
 
@@ -3326,6 +3336,53 @@ class CloudProviderAccessAuthorizationAws(dict):
 
 
 @pulumi.output_type
+class CloudProviderAccessAuthorizationAzure(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "atlasAzureAppId":
+            suggest = "atlas_azure_app_id"
+        elif key == "servicePrincipalId":
+            suggest = "service_principal_id"
+        elif key == "tenantId":
+            suggest = "tenant_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessAuthorizationAzure. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderAccessAuthorizationAzure.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderAccessAuthorizationAzure.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 atlas_azure_app_id: str,
+                 service_principal_id: str,
+                 tenant_id: str):
+        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="atlasAzureAppId")
+    def atlas_azure_app_id(self) -> str:
+        return pulumi.get(self, "atlas_azure_app_id")
+
+    @property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> str:
+        return pulumi.get(self, "service_principal_id")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> str:
+        return pulumi.get(self, "tenant_id")
+
+
+@pulumi.output_type
 class CloudProviderAccessAuthorizationFeatureUsage(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3443,6 +3500,53 @@ class CloudProviderAccessSetupAwsConfig(dict):
     @pulumi.getter(name="atlasAwsAccountArn")
     def atlas_aws_account_arn(self) -> Optional[str]:
         return pulumi.get(self, "atlas_aws_account_arn")
+
+
+@pulumi.output_type
+class CloudProviderAccessSetupAzureConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "atlasAzureAppId":
+            suggest = "atlas_azure_app_id"
+        elif key == "servicePrincipalId":
+            suggest = "service_principal_id"
+        elif key == "tenantId":
+            suggest = "tenant_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessSetupAzureConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderAccessSetupAzureConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderAccessSetupAzureConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 atlas_azure_app_id: str,
+                 service_principal_id: str,
+                 tenant_id: str):
+        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="atlasAzureAppId")
+    def atlas_azure_app_id(self) -> str:
+        return pulumi.get(self, "atlas_azure_app_id")
+
+    @property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> str:
+        return pulumi.get(self, "service_principal_id")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> str:
+        return pulumi.get(self, "tenant_id")
 
 
 @pulumi.output_type
@@ -7327,8 +7431,7 @@ class ProjectApiKeyProjectAssignment(dict):
                  role_names: Sequence[str]):
         """
         :param str project_id: Project ID to assign to Access Key
-        :param Sequence[str] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
-               The following are valid roles:
+        :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "role_names", role_names)
@@ -7345,10 +7448,83 @@ class ProjectApiKeyProjectAssignment(dict):
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
         """
-        Name of the role. This resource returns all the roles the user has in Atlas.
-        The following are valid roles:
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
         return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
+class ProjectLimit(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "currentUsage":
+            suggest = "current_usage"
+        elif key == "defaultLimit":
+            suggest = "default_limit"
+        elif key == "maximumLimit":
+            suggest = "maximum_limit"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProjectLimit. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProjectLimit.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProjectLimit.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 value: int,
+                 current_usage: Optional[int] = None,
+                 default_limit: Optional[int] = None,
+                 maximum_limit: Optional[int] = None):
+        """
+        :param str name: Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+        :param int value: Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if current_usage is not None:
+            pulumi.set(__self__, "current_usage", current_usage)
+        if default_limit is not None:
+            pulumi.set(__self__, "default_limit", default_limit)
+        if maximum_limit is not None:
+            pulumi.set(__self__, "maximum_limit", maximum_limit)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> int:
+        """
+        Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+        """
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter(name="currentUsage")
+    def current_usage(self) -> Optional[int]:
+        return pulumi.get(self, "current_usage")
+
+    @property
+    @pulumi.getter(name="defaultLimit")
+    def default_limit(self) -> Optional[int]:
+        return pulumi.get(self, "default_limit")
+
+    @property
+    @pulumi.getter(name="maximumLimit")
+    def maximum_limit(self) -> Optional[int]:
+        return pulumi.get(self, "maximum_limit")
 
 
 @pulumi.output_type
@@ -11864,6 +12040,46 @@ class GetCloudProviderAccessSetupAwsConfigResult(dict):
         ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
         """
         return pulumi.get(self, "atlas_aws_account_arn")
+
+
+@pulumi.output_type
+class GetCloudProviderAccessSetupAzureConfigResult(dict):
+    def __init__(__self__, *,
+                 atlas_azure_app_id: str,
+                 service_principal_id: str,
+                 tenant_id: str):
+        """
+        :param str atlas_azure_app_id: Azure Active Directory Application ID of Atlas.
+        :param str service_principal_id: UUID string that identifies the Azure Service Principal.
+        :param str tenant_id: UUID String that identifies the Azure Active Directory Tenant ID.
+        """
+        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="atlasAzureAppId")
+    def atlas_azure_app_id(self) -> str:
+        """
+        Azure Active Directory Application ID of Atlas.
+        """
+        return pulumi.get(self, "atlas_azure_app_id")
+
+    @property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> str:
+        """
+        UUID string that identifies the Azure Service Principal.
+        """
+        return pulumi.get(self, "service_principal_id")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> str:
+        """
+        UUID String that identifies the Azure Active Directory Tenant ID.
+        """
+        return pulumi.get(self, "tenant_id")
 
 
 @pulumi.output_type
@@ -19156,24 +19372,58 @@ class GetProjectApiKeyResult(dict):
 
 
 @pulumi.output_type
+class GetProjectApiKeyProjectAssignmentResult(dict):
+    def __init__(__self__, *,
+                 project_id: str,
+                 role_names: Sequence[str]):
+        """
+        :param str project_id: The unique ID for the project.
+        :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The unique ID for the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> Sequence[str]:
+        """
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+        """
+        return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
 class GetProjectApiKeysResultResult(dict):
     def __init__(__self__, *,
                  api_key_id: str,
                  description: str,
                  private_key: str,
                  public_key: str,
-                 role_names: Sequence[str]):
+                 role_names: Sequence[str],
+                 project_assignments: Optional[Sequence['outputs.GetProjectApiKeysResultProjectAssignmentResult']] = None):
         """
         :param str api_key_id: Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
         :param str description: Description of this Project API key.
-        :param Sequence[str] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
-               The following are valid roles:
+        :param Sequence[str] role_names: Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+               
+               
+               See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
         """
         pulumi.set(__self__, "api_key_id", api_key_id)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "public_key", public_key)
         pulumi.set(__self__, "role_names", role_names)
+        if project_assignments is not None:
+            pulumi.set(__self__, "project_assignments", project_assignments)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -19205,10 +19455,105 @@ class GetProjectApiKeysResultResult(dict):
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
         """
-        Name of the role. This resource returns all the roles the user has in Atlas.
-        The following are valid roles:
+        Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+
+
+        See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+        """
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
+        pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
+
+        return pulumi.get(self, "role_names")
+
+    @property
+    @pulumi.getter(name="projectAssignments")
+    def project_assignments(self) -> Optional[Sequence['outputs.GetProjectApiKeysResultProjectAssignmentResult']]:
+        return pulumi.get(self, "project_assignments")
+
+
+@pulumi.output_type
+class GetProjectApiKeysResultProjectAssignmentResult(dict):
+    def __init__(__self__, *,
+                 project_id: str,
+                 role_names: Sequence[str]):
+        """
+        :param str project_id: Project ID to assign to Access Key
+        :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+               
+               
+               See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Project ID to assign to Access Key
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> Sequence[str]:
+        """
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+
+
+        See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
         """
         return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
+class GetProjectLimitResult(dict):
+    def __init__(__self__, *,
+                 current_usage: int,
+                 default_limit: int,
+                 maximum_limit: int,
+                 name: str,
+                 value: int):
+        """
+        :param str name: The unique ID for the project.
+               
+               > **IMPORTANT:** Either `project_id` or `name` must be configurated.
+        """
+        pulumi.set(__self__, "current_usage", current_usage)
+        pulumi.set(__self__, "default_limit", default_limit)
+        pulumi.set(__self__, "maximum_limit", maximum_limit)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="currentUsage")
+    def current_usage(self) -> int:
+        return pulumi.get(self, "current_usage")
+
+    @property
+    @pulumi.getter(name="defaultLimit")
+    def default_limit(self) -> int:
+        return pulumi.get(self, "default_limit")
+
+    @property
+    @pulumi.getter(name="maximumLimit")
+    def maximum_limit(self) -> int:
+        return pulumi.get(self, "maximum_limit")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique ID for the project.
+
+        > **IMPORTANT:** Either `project_id` or `name` must be configurated.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> int:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -19242,6 +19587,7 @@ class GetProjectsResultResult(dict):
                  is_performance_advisor_enabled: bool,
                  is_realtime_performance_panel_enabled: bool,
                  is_schema_advisor_enabled: bool,
+                 limits: Sequence['outputs.GetProjectsResultLimitResult'],
                  name: str,
                  org_id: str,
                  region_usage_restrictions: str,
@@ -19254,6 +19600,11 @@ class GetProjectsResultResult(dict):
                * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
                * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
                * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+               * `limits.#.name` - Human-readable label that identifies this project limit.
+               * `limits.#.value` - Amount the limit is set to.
+               * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+               * `limits.#.default_limit` - Default value of the limit.
+               * `limits.#.maximum_limit` - Maximum value of the limit.
         :param str id: Autogenerated Unique ID for this data source.
         :param bool is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param bool is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
@@ -19276,6 +19627,7 @@ class GetProjectsResultResult(dict):
         pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
         pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        pulumi.set(__self__, "limits", limits)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "org_id", org_id)
         pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
@@ -19305,6 +19657,11 @@ class GetProjectsResultResult(dict):
         * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
         * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+        * `limits.#.name` - Human-readable label that identifies this project limit.
+        * `limits.#.value` - Amount the limit is set to.
+        * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+        * `limits.#.default_limit` - Default value of the limit.
+        * `limits.#.maximum_limit` - Maximum value of the limit.
         """
         return pulumi.get(self, "created")
 
@@ -19355,6 +19712,11 @@ class GetProjectsResultResult(dict):
         Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         """
         return pulumi.get(self, "is_schema_advisor_enabled")
+
+    @property
+    @pulumi.getter
+    def limits(self) -> Sequence['outputs.GetProjectsResultLimitResult']:
+        return pulumi.get(self, "limits")
 
     @property
     @pulumi.getter
@@ -19413,6 +19775,52 @@ class GetProjectsResultApiKeyResult(dict):
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
         return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
+class GetProjectsResultLimitResult(dict):
+    def __init__(__self__, *,
+                 current_usage: int,
+                 default_limit: int,
+                 maximum_limit: int,
+                 name: str,
+                 value: int):
+        """
+        :param str name: The name of the project you want to create.
+        """
+        pulumi.set(__self__, "current_usage", current_usage)
+        pulumi.set(__self__, "default_limit", default_limit)
+        pulumi.set(__self__, "maximum_limit", maximum_limit)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="currentUsage")
+    def current_usage(self) -> int:
+        return pulumi.get(self, "current_usage")
+
+    @property
+    @pulumi.getter(name="defaultLimit")
+    def default_limit(self) -> int:
+        return pulumi.get(self, "default_limit")
+
+    @property
+    @pulumi.getter(name="maximumLimit")
+    def maximum_limit(self) -> int:
+        return pulumi.get(self, "maximum_limit")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the project you want to create.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> int:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -19853,6 +20261,142 @@ class GetServerlessInstancesResultLinkResult(dict):
     @pulumi.getter
     def rel(self) -> str:
         return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
+class GetSharedTierRestoreJobsResultResult(dict):
+    def __init__(__self__, *,
+                 delivery_type: str,
+                 expiration_date: str,
+                 job_id: str,
+                 restore_finished_date: str,
+                 restore_scheduled_date: str,
+                 snapshot_finished_date: str,
+                 snapshot_id: str,
+                 snapshot_url: str,
+                 status: str,
+                 target_deployment_item_name: str,
+                 target_project_id: str):
+        pulumi.set(__self__, "delivery_type", delivery_type)
+        pulumi.set(__self__, "expiration_date", expiration_date)
+        pulumi.set(__self__, "job_id", job_id)
+        pulumi.set(__self__, "restore_finished_date", restore_finished_date)
+        pulumi.set(__self__, "restore_scheduled_date", restore_scheduled_date)
+        pulumi.set(__self__, "snapshot_finished_date", snapshot_finished_date)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "snapshot_url", snapshot_url)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "target_deployment_item_name", target_deployment_item_name)
+        pulumi.set(__self__, "target_project_id", target_project_id)
+
+    @property
+    @pulumi.getter(name="deliveryType")
+    def delivery_type(self) -> str:
+        return pulumi.get(self, "delivery_type")
+
+    @property
+    @pulumi.getter(name="expirationDate")
+    def expiration_date(self) -> str:
+        return pulumi.get(self, "expiration_date")
+
+    @property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> str:
+        return pulumi.get(self, "job_id")
+
+    @property
+    @pulumi.getter(name="restoreFinishedDate")
+    def restore_finished_date(self) -> str:
+        return pulumi.get(self, "restore_finished_date")
+
+    @property
+    @pulumi.getter(name="restoreScheduledDate")
+    def restore_scheduled_date(self) -> str:
+        return pulumi.get(self, "restore_scheduled_date")
+
+    @property
+    @pulumi.getter(name="snapshotFinishedDate")
+    def snapshot_finished_date(self) -> str:
+        return pulumi.get(self, "snapshot_finished_date")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="snapshotUrl")
+    def snapshot_url(self) -> str:
+        return pulumi.get(self, "snapshot_url")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="targetDeploymentItemName")
+    def target_deployment_item_name(self) -> str:
+        return pulumi.get(self, "target_deployment_item_name")
+
+    @property
+    @pulumi.getter(name="targetProjectId")
+    def target_project_id(self) -> str:
+        return pulumi.get(self, "target_project_id")
+
+
+@pulumi.output_type
+class GetSharedTierSnapshotsResultResult(dict):
+    def __init__(__self__, *,
+                 expiration: str,
+                 finish_time: str,
+                 mongo_db_version: str,
+                 scheduled_time: str,
+                 snapshot_id: str,
+                 start_time: str,
+                 status: str):
+        pulumi.set(__self__, "expiration", expiration)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "scheduled_time", scheduled_time)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def expiration(self) -> str:
+        return pulumi.get(self, "expiration")
+
+    @property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> str:
+        return pulumi.get(self, "finish_time")
+
+    @property
+    @pulumi.getter(name="mongoDbVersion")
+    def mongo_db_version(self) -> str:
+        return pulumi.get(self, "mongo_db_version")
+
+    @property
+    @pulumi.getter(name="scheduledTime")
+    def scheduled_time(self) -> str:
+        return pulumi.get(self, "scheduled_time")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type

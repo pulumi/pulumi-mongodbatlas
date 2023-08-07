@@ -93,7 +93,7 @@ public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.Custom
      * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
      * 
      */
-    @Export(name="externalGroupName", type=String.class, parameters={})
+    @Export(name="externalGroupName", refs={String.class}, tree="[0]")
     private Output<String> externalGroupName;
 
     /**
@@ -107,7 +107,7 @@ public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.Custom
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      * 
      */
-    @Export(name="federationSettingsId", type=String.class, parameters={})
+    @Export(name="federationSettingsId", refs={String.class}, tree="[0]")
     private Output<String> federationSettingsId;
 
     /**
@@ -121,7 +121,7 @@ public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.Custom
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      * 
      */
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output<String> orgId;
 
     /**
@@ -135,7 +135,7 @@ public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.Custom
      * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
      * 
      */
-    @Export(name="roleAssignments", type=List.class, parameters={FederatedSettingsOrgRoleMappingRoleAssignment.class})
+    @Export(name="roleAssignments", refs={List.class,FederatedSettingsOrgRoleMappingRoleAssignment.class}, tree="[0,1]")
     private Output<List<FederatedSettingsOrgRoleMappingRoleAssignment>> roleAssignments;
 
     /**

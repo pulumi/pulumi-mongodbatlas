@@ -11,9 +11,11 @@ import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupState;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupAwsConfig;
+import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupAzureConfig;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 @ResourceType(type="mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup")
@@ -24,37 +26,49 @@ public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResourc
      * 
      */
     @Deprecated /* use aws_config instead */
-    @Export(name="aws", type=Map.class, parameters={String.class, String.class})
+    @Export(name="aws", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> aws;
 
     public Output<Map<String,String>> aws() {
         return this.aws;
     }
-    @Export(name="awsConfigs", type=List.class, parameters={CloudProviderAccessSetupAwsConfig.class})
+    @Export(name="awsConfigs", refs={List.class,CloudProviderAccessSetupAwsConfig.class}, tree="[0,1]")
     private Output<List<CloudProviderAccessSetupAwsConfig>> awsConfigs;
 
     public Output<List<CloudProviderAccessSetupAwsConfig>> awsConfigs() {
         return this.awsConfigs;
     }
-    @Export(name="createdDate", type=String.class, parameters={})
+    @Export(name="azureConfigs", refs={List.class,CloudProviderAccessSetupAzureConfig.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<CloudProviderAccessSetupAzureConfig>> azureConfigs;
+
+    public Output<Optional<List<CloudProviderAccessSetupAzureConfig>>> azureConfigs() {
+        return Codegen.optional(this.azureConfigs);
+    }
+    @Export(name="createdDate", refs={String.class}, tree="[0]")
     private Output<String> createdDate;
 
     public Output<String> createdDate() {
         return this.createdDate;
     }
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="lastUpdatedDate", refs={String.class}, tree="[0]")
+    private Output<String> lastUpdatedDate;
+
+    public Output<String> lastUpdatedDate() {
+        return this.lastUpdatedDate;
+    }
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     public Output<String> projectId() {
         return this.projectId;
     }
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     public Output<String> providerName() {
         return this.providerName;
     }
-    @Export(name="roleId", type=String.class, parameters={})
+    @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output<String> roleId;
 
     public Output<String> roleId() {

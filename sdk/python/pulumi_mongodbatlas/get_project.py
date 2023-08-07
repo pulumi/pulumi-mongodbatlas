@@ -22,7 +22,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, api_keys=None, cluster_count=None, created=None, id=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, teams=None):
+    def __init__(__self__, api_keys=None, cluster_count=None, created=None, id=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, teams=None):
         if api_keys and not isinstance(api_keys, list):
             raise TypeError("Expected argument 'api_keys' to be a list")
         pulumi.set(__self__, "api_keys", api_keys)
@@ -53,6 +53,9 @@ class GetProjectResult:
         if is_schema_advisor_enabled and not isinstance(is_schema_advisor_enabled, bool):
             raise TypeError("Expected argument 'is_schema_advisor_enabled' to be a bool")
         pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        if limits and not isinstance(limits, list):
+            raise TypeError("Expected argument 'limits' to be a list")
+        pulumi.set(__self__, "limits", limits)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -91,6 +94,11 @@ class GetProjectResult:
         * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
         * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+        * `limits.#.name` - Human-readable label that identifies this project limit.
+        * `limits.#.value` - Amount the limit is set to.
+        * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+        * `limits.#.default_limit` - Default value of the limit.
+        * `limits.#.maximum_limit` - Maximum value of the limit.
         """
         return pulumi.get(self, "created")
 
@@ -152,6 +160,11 @@ class GetProjectResult:
 
     @property
     @pulumi.getter
+    def limits(self) -> Sequence['outputs.GetProjectLimitResult']:
+        return pulumi.get(self, "limits")
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[str]:
         """
         The name of the project you want to create.
@@ -201,6 +214,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             is_performance_advisor_enabled=self.is_performance_advisor_enabled,
             is_realtime_performance_panel_enabled=self.is_realtime_performance_panel_enabled,
             is_schema_advisor_enabled=self.is_schema_advisor_enabled,
+            limits=self.limits,
             name=self.name,
             org_id=self.org_id,
             project_id=self.project_id,
@@ -241,6 +255,7 @@ def get_project(name: Optional[str] = None,
         is_performance_advisor_enabled=pulumi.get(__ret__, 'is_performance_advisor_enabled'),
         is_realtime_performance_panel_enabled=pulumi.get(__ret__, 'is_realtime_performance_panel_enabled'),
         is_schema_advisor_enabled=pulumi.get(__ret__, 'is_schema_advisor_enabled'),
+        limits=pulumi.get(__ret__, 'limits'),
         name=pulumi.get(__ret__, 'name'),
         org_id=pulumi.get(__ret__, 'org_id'),
         project_id=pulumi.get(__ret__, 'project_id'),

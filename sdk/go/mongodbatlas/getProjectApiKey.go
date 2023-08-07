@@ -37,13 +37,15 @@ type LookupProjectApiKeyResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Private key for this Organization API key.
-	PrivateKey string `pulumi:"privateKey"`
-	// Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	PrivateKey         string                              `pulumi:"privateKey"`
+	ProjectAssignments []GetProjectApiKeyProjectAssignment `pulumi:"projectAssignments"`
+	// Project ID to assign to Access Key
 	ProjectId string `pulumi:"projectId"`
 	// Public key for this Organization API key.
 	PublicKey string `pulumi:"publicKey"`
-	// Name of the role. This resource returns all the roles the user has in Atlas.
-	// The following are valid roles:
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+	//
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
 	RoleNames []string `pulumi:"roleNames"`
 }
 
@@ -105,7 +107,11 @@ func (o LookupProjectApiKeyResultOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectApiKeyResult) string { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
-// Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+func (o LookupProjectApiKeyResultOutput) ProjectAssignments() GetProjectApiKeyProjectAssignmentArrayOutput {
+	return o.ApplyT(func(v LookupProjectApiKeyResult) []GetProjectApiKeyProjectAssignment { return v.ProjectAssignments }).(GetProjectApiKeyProjectAssignmentArrayOutput)
+}
+
+// Project ID to assign to Access Key
 func (o LookupProjectApiKeyResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectApiKeyResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -115,8 +121,9 @@ func (o LookupProjectApiKeyResultOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectApiKeyResult) string { return v.PublicKey }).(pulumi.StringOutput)
 }
 
-// Name of the role. This resource returns all the roles the user has in Atlas.
-// The following are valid roles:
+// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+//
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
 func (o LookupProjectApiKeyResultOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupProjectApiKeyResult) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }

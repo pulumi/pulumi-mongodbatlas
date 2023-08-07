@@ -72,7 +72,7 @@ namespace Pulumi.Mongodbatlas
         /// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// An optional field for your Routing Key.

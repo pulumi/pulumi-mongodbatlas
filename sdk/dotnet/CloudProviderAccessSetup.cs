@@ -18,8 +18,14 @@ namespace Pulumi.Mongodbatlas
         [Output("awsConfigs")]
         public Output<ImmutableArray<Outputs.CloudProviderAccessSetupAwsConfig>> AwsConfigs { get; private set; } = null!;
 
+        [Output("azureConfigs")]
+        public Output<ImmutableArray<Outputs.CloudProviderAccessSetupAzureConfig>> AzureConfigs { get; private set; } = null!;
+
         [Output("createdDate")]
         public Output<string> CreatedDate { get; private set; } = null!;
+
+        [Output("lastUpdatedDate")]
+        public Output<string> LastUpdatedDate { get; private set; } = null!;
 
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -76,6 +82,14 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class CloudProviderAccessSetupArgs : global::Pulumi.ResourceArgs
     {
+        [Input("azureConfigs")]
+        private InputList<Inputs.CloudProviderAccessSetupAzureConfigArgs>? _azureConfigs;
+        public InputList<Inputs.CloudProviderAccessSetupAzureConfigArgs> AzureConfigs
+        {
+            get => _azureConfigs ?? (_azureConfigs = new InputList<Inputs.CloudProviderAccessSetupAzureConfigArgs>());
+            set => _azureConfigs = value;
+        }
+
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
@@ -107,8 +121,19 @@ namespace Pulumi.Mongodbatlas
             set => _awsConfigs = value;
         }
 
+        [Input("azureConfigs")]
+        private InputList<Inputs.CloudProviderAccessSetupAzureConfigGetArgs>? _azureConfigs;
+        public InputList<Inputs.CloudProviderAccessSetupAzureConfigGetArgs> AzureConfigs
+        {
+            get => _azureConfigs ?? (_azureConfigs = new InputList<Inputs.CloudProviderAccessSetupAzureConfigGetArgs>());
+            set => _azureConfigs = value;
+        }
+
         [Input("createdDate")]
         public Input<string>? CreatedDate { get; set; }
+
+        [Input("lastUpdatedDate")]
+        public Input<string>? LastUpdatedDate { get; set; }
 
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

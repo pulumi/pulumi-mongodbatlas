@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAzureArgs;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,6 +22,13 @@ public final class CloudProviderAccessAuthorizationArgs extends com.pulumi.resou
 
     public Optional<Output<CloudProviderAccessAuthorizationAwsArgs>> aws() {
         return Optional.ofNullable(this.aws);
+    }
+
+    @Import(name="azure")
+    private @Nullable Output<CloudProviderAccessAuthorizationAzureArgs> azure;
+
+    public Optional<Output<CloudProviderAccessAuthorizationAzureArgs>> azure() {
+        return Optional.ofNullable(this.azure);
     }
 
     @Import(name="projectId", required=true)
@@ -41,6 +49,7 @@ public final class CloudProviderAccessAuthorizationArgs extends com.pulumi.resou
 
     private CloudProviderAccessAuthorizationArgs(CloudProviderAccessAuthorizationArgs $) {
         this.aws = $.aws;
+        this.azure = $.azure;
         this.projectId = $.projectId;
         this.roleId = $.roleId;
     }
@@ -70,6 +79,15 @@ public final class CloudProviderAccessAuthorizationArgs extends com.pulumi.resou
 
         public Builder aws(CloudProviderAccessAuthorizationAwsArgs aws) {
             return aws(Output.of(aws));
+        }
+
+        public Builder azure(@Nullable Output<CloudProviderAccessAuthorizationAzureArgs> azure) {
+            $.azure = azure;
+            return this;
+        }
+
+        public Builder azure(CloudProviderAccessAuthorizationAzureArgs azure) {
+            return azure(Output.of(azure));
         }
 
         public Builder projectId(Output<String> projectId) {

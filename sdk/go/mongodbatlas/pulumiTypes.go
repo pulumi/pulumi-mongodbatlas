@@ -6046,6 +6046,169 @@ func (o CloudProviderAccessAuthorizationAwsPtrOutput) IamAssumedRoleArn() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
+type CloudProviderAccessAuthorizationAzure struct {
+	AtlasAzureAppId    string `pulumi:"atlasAzureAppId"`
+	ServicePrincipalId string `pulumi:"servicePrincipalId"`
+	TenantId           string `pulumi:"tenantId"`
+}
+
+// CloudProviderAccessAuthorizationAzureInput is an input type that accepts CloudProviderAccessAuthorizationAzureArgs and CloudProviderAccessAuthorizationAzureOutput values.
+// You can construct a concrete instance of `CloudProviderAccessAuthorizationAzureInput` via:
+//
+//	CloudProviderAccessAuthorizationAzureArgs{...}
+type CloudProviderAccessAuthorizationAzureInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessAuthorizationAzureOutput() CloudProviderAccessAuthorizationAzureOutput
+	ToCloudProviderAccessAuthorizationAzureOutputWithContext(context.Context) CloudProviderAccessAuthorizationAzureOutput
+}
+
+type CloudProviderAccessAuthorizationAzureArgs struct {
+	AtlasAzureAppId    pulumi.StringInput `pulumi:"atlasAzureAppId"`
+	ServicePrincipalId pulumi.StringInput `pulumi:"servicePrincipalId"`
+	TenantId           pulumi.StringInput `pulumi:"tenantId"`
+}
+
+func (CloudProviderAccessAuthorizationAzureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessAuthorizationAzure)(nil)).Elem()
+}
+
+func (i CloudProviderAccessAuthorizationAzureArgs) ToCloudProviderAccessAuthorizationAzureOutput() CloudProviderAccessAuthorizationAzureOutput {
+	return i.ToCloudProviderAccessAuthorizationAzureOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessAuthorizationAzureArgs) ToCloudProviderAccessAuthorizationAzureOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAzureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationAzureOutput)
+}
+
+func (i CloudProviderAccessAuthorizationAzureArgs) ToCloudProviderAccessAuthorizationAzurePtrOutput() CloudProviderAccessAuthorizationAzurePtrOutput {
+	return i.ToCloudProviderAccessAuthorizationAzurePtrOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessAuthorizationAzureArgs) ToCloudProviderAccessAuthorizationAzurePtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAzurePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationAzureOutput).ToCloudProviderAccessAuthorizationAzurePtrOutputWithContext(ctx)
+}
+
+// CloudProviderAccessAuthorizationAzurePtrInput is an input type that accepts CloudProviderAccessAuthorizationAzureArgs, CloudProviderAccessAuthorizationAzurePtr and CloudProviderAccessAuthorizationAzurePtrOutput values.
+// You can construct a concrete instance of `CloudProviderAccessAuthorizationAzurePtrInput` via:
+//
+//	        CloudProviderAccessAuthorizationAzureArgs{...}
+//
+//	or:
+//
+//	        nil
+type CloudProviderAccessAuthorizationAzurePtrInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessAuthorizationAzurePtrOutput() CloudProviderAccessAuthorizationAzurePtrOutput
+	ToCloudProviderAccessAuthorizationAzurePtrOutputWithContext(context.Context) CloudProviderAccessAuthorizationAzurePtrOutput
+}
+
+type cloudProviderAccessAuthorizationAzurePtrType CloudProviderAccessAuthorizationAzureArgs
+
+func CloudProviderAccessAuthorizationAzurePtr(v *CloudProviderAccessAuthorizationAzureArgs) CloudProviderAccessAuthorizationAzurePtrInput {
+	return (*cloudProviderAccessAuthorizationAzurePtrType)(v)
+}
+
+func (*cloudProviderAccessAuthorizationAzurePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderAccessAuthorizationAzure)(nil)).Elem()
+}
+
+func (i *cloudProviderAccessAuthorizationAzurePtrType) ToCloudProviderAccessAuthorizationAzurePtrOutput() CloudProviderAccessAuthorizationAzurePtrOutput {
+	return i.ToCloudProviderAccessAuthorizationAzurePtrOutputWithContext(context.Background())
+}
+
+func (i *cloudProviderAccessAuthorizationAzurePtrType) ToCloudProviderAccessAuthorizationAzurePtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAzurePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationAzurePtrOutput)
+}
+
+type CloudProviderAccessAuthorizationAzureOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessAuthorizationAzureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessAuthorizationAzure)(nil)).Elem()
+}
+
+func (o CloudProviderAccessAuthorizationAzureOutput) ToCloudProviderAccessAuthorizationAzureOutput() CloudProviderAccessAuthorizationAzureOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationAzureOutput) ToCloudProviderAccessAuthorizationAzureOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAzureOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationAzureOutput) ToCloudProviderAccessAuthorizationAzurePtrOutput() CloudProviderAccessAuthorizationAzurePtrOutput {
+	return o.ToCloudProviderAccessAuthorizationAzurePtrOutputWithContext(context.Background())
+}
+
+func (o CloudProviderAccessAuthorizationAzureOutput) ToCloudProviderAccessAuthorizationAzurePtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAzurePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CloudProviderAccessAuthorizationAzure) *CloudProviderAccessAuthorizationAzure {
+		return &v
+	}).(CloudProviderAccessAuthorizationAzurePtrOutput)
+}
+
+func (o CloudProviderAccessAuthorizationAzureOutput) AtlasAzureAppId() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudProviderAccessAuthorizationAzure) string { return v.AtlasAzureAppId }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessAuthorizationAzureOutput) ServicePrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudProviderAccessAuthorizationAzure) string { return v.ServicePrincipalId }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessAuthorizationAzureOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudProviderAccessAuthorizationAzure) string { return v.TenantId }).(pulumi.StringOutput)
+}
+
+type CloudProviderAccessAuthorizationAzurePtrOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessAuthorizationAzurePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderAccessAuthorizationAzure)(nil)).Elem()
+}
+
+func (o CloudProviderAccessAuthorizationAzurePtrOutput) ToCloudProviderAccessAuthorizationAzurePtrOutput() CloudProviderAccessAuthorizationAzurePtrOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationAzurePtrOutput) ToCloudProviderAccessAuthorizationAzurePtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAzurePtrOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationAzurePtrOutput) Elem() CloudProviderAccessAuthorizationAzureOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorizationAzure) CloudProviderAccessAuthorizationAzure {
+		if v != nil {
+			return *v
+		}
+		var ret CloudProviderAccessAuthorizationAzure
+		return ret
+	}).(CloudProviderAccessAuthorizationAzureOutput)
+}
+
+func (o CloudProviderAccessAuthorizationAzurePtrOutput) AtlasAzureAppId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorizationAzure) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AtlasAzureAppId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CloudProviderAccessAuthorizationAzurePtrOutput) ServicePrincipalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorizationAzure) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ServicePrincipalId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CloudProviderAccessAuthorizationAzurePtrOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorizationAzure) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TenantId
+	}).(pulumi.StringPtrOutput)
+}
+
 type CloudProviderAccessAuthorizationFeatureUsage struct {
 	FeatureId   map[string]interface{} `pulumi:"featureId"`
 	FeatureType *string                `pulumi:"featureType"`
@@ -6344,6 +6507,112 @@ func (o CloudProviderAccessSetupAwsConfigArrayOutput) Index(i pulumi.IntInput) C
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccessSetupAwsConfig {
 		return vs[0].([]CloudProviderAccessSetupAwsConfig)[vs[1].(int)]
 	}).(CloudProviderAccessSetupAwsConfigOutput)
+}
+
+type CloudProviderAccessSetupAzureConfig struct {
+	AtlasAzureAppId    string `pulumi:"atlasAzureAppId"`
+	ServicePrincipalId string `pulumi:"servicePrincipalId"`
+	TenantId           string `pulumi:"tenantId"`
+}
+
+// CloudProviderAccessSetupAzureConfigInput is an input type that accepts CloudProviderAccessSetupAzureConfigArgs and CloudProviderAccessSetupAzureConfigOutput values.
+// You can construct a concrete instance of `CloudProviderAccessSetupAzureConfigInput` via:
+//
+//	CloudProviderAccessSetupAzureConfigArgs{...}
+type CloudProviderAccessSetupAzureConfigInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessSetupAzureConfigOutput() CloudProviderAccessSetupAzureConfigOutput
+	ToCloudProviderAccessSetupAzureConfigOutputWithContext(context.Context) CloudProviderAccessSetupAzureConfigOutput
+}
+
+type CloudProviderAccessSetupAzureConfigArgs struct {
+	AtlasAzureAppId    pulumi.StringInput `pulumi:"atlasAzureAppId"`
+	ServicePrincipalId pulumi.StringInput `pulumi:"servicePrincipalId"`
+	TenantId           pulumi.StringInput `pulumi:"tenantId"`
+}
+
+func (CloudProviderAccessSetupAzureConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessSetupAzureConfig)(nil)).Elem()
+}
+
+func (i CloudProviderAccessSetupAzureConfigArgs) ToCloudProviderAccessSetupAzureConfigOutput() CloudProviderAccessSetupAzureConfigOutput {
+	return i.ToCloudProviderAccessSetupAzureConfigOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessSetupAzureConfigArgs) ToCloudProviderAccessSetupAzureConfigOutputWithContext(ctx context.Context) CloudProviderAccessSetupAzureConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupAzureConfigOutput)
+}
+
+// CloudProviderAccessSetupAzureConfigArrayInput is an input type that accepts CloudProviderAccessSetupAzureConfigArray and CloudProviderAccessSetupAzureConfigArrayOutput values.
+// You can construct a concrete instance of `CloudProviderAccessSetupAzureConfigArrayInput` via:
+//
+//	CloudProviderAccessSetupAzureConfigArray{ CloudProviderAccessSetupAzureConfigArgs{...} }
+type CloudProviderAccessSetupAzureConfigArrayInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessSetupAzureConfigArrayOutput() CloudProviderAccessSetupAzureConfigArrayOutput
+	ToCloudProviderAccessSetupAzureConfigArrayOutputWithContext(context.Context) CloudProviderAccessSetupAzureConfigArrayOutput
+}
+
+type CloudProviderAccessSetupAzureConfigArray []CloudProviderAccessSetupAzureConfigInput
+
+func (CloudProviderAccessSetupAzureConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessSetupAzureConfig)(nil)).Elem()
+}
+
+func (i CloudProviderAccessSetupAzureConfigArray) ToCloudProviderAccessSetupAzureConfigArrayOutput() CloudProviderAccessSetupAzureConfigArrayOutput {
+	return i.ToCloudProviderAccessSetupAzureConfigArrayOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessSetupAzureConfigArray) ToCloudProviderAccessSetupAzureConfigArrayOutputWithContext(ctx context.Context) CloudProviderAccessSetupAzureConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupAzureConfigArrayOutput)
+}
+
+type CloudProviderAccessSetupAzureConfigOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessSetupAzureConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessSetupAzureConfig)(nil)).Elem()
+}
+
+func (o CloudProviderAccessSetupAzureConfigOutput) ToCloudProviderAccessSetupAzureConfigOutput() CloudProviderAccessSetupAzureConfigOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupAzureConfigOutput) ToCloudProviderAccessSetupAzureConfigOutputWithContext(ctx context.Context) CloudProviderAccessSetupAzureConfigOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupAzureConfigOutput) AtlasAzureAppId() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudProviderAccessSetupAzureConfig) string { return v.AtlasAzureAppId }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessSetupAzureConfigOutput) ServicePrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudProviderAccessSetupAzureConfig) string { return v.ServicePrincipalId }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessSetupAzureConfigOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudProviderAccessSetupAzureConfig) string { return v.TenantId }).(pulumi.StringOutput)
+}
+
+type CloudProviderAccessSetupAzureConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessSetupAzureConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessSetupAzureConfig)(nil)).Elem()
+}
+
+func (o CloudProviderAccessSetupAzureConfigArrayOutput) ToCloudProviderAccessSetupAzureConfigArrayOutput() CloudProviderAccessSetupAzureConfigArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupAzureConfigArrayOutput) ToCloudProviderAccessSetupAzureConfigArrayOutputWithContext(ctx context.Context) CloudProviderAccessSetupAzureConfigArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessSetupAzureConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccessSetupAzureConfig {
+		return vs[0].([]CloudProviderAccessSetupAzureConfig)[vs[1].(int)]
+	}).(CloudProviderAccessSetupAzureConfigOutput)
 }
 
 type ClusterAdvancedConfiguration struct {
@@ -14645,8 +14914,7 @@ func (o ProjectApiKeyTypeArrayOutput) Index(i pulumi.IntInput) ProjectApiKeyType
 type ProjectApiKeyProjectAssignment struct {
 	// Project ID to assign to Access Key
 	ProjectId string `pulumi:"projectId"`
-	// Name of the role. This resource returns all the roles the user has in Atlas.
-	// The following are valid roles:
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
 	RoleNames []string `pulumi:"roleNames"`
 }
 
@@ -14664,8 +14932,7 @@ type ProjectApiKeyProjectAssignmentInput interface {
 type ProjectApiKeyProjectAssignmentArgs struct {
 	// Project ID to assign to Access Key
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Name of the role. This resource returns all the roles the user has in Atlas.
-	// The following are valid roles:
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
 }
 
@@ -14725,8 +14992,7 @@ func (o ProjectApiKeyProjectAssignmentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v ProjectApiKeyProjectAssignment) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Name of the role. This resource returns all the roles the user has in Atlas.
-// The following are valid roles:
+// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
 func (o ProjectApiKeyProjectAssignmentOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProjectApiKeyProjectAssignment) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
@@ -14749,6 +15015,130 @@ func (o ProjectApiKeyProjectAssignmentArrayOutput) Index(i pulumi.IntInput) Proj
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectApiKeyProjectAssignment {
 		return vs[0].([]ProjectApiKeyProjectAssignment)[vs[1].(int)]
 	}).(ProjectApiKeyProjectAssignmentOutput)
+}
+
+type ProjectLimit struct {
+	CurrentUsage *int `pulumi:"currentUsage"`
+	DefaultLimit *int `pulumi:"defaultLimit"`
+	MaximumLimit *int `pulumi:"maximumLimit"`
+	// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+	Name string `pulumi:"name"`
+	// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+	Value int `pulumi:"value"`
+}
+
+// ProjectLimitInput is an input type that accepts ProjectLimitArgs and ProjectLimitOutput values.
+// You can construct a concrete instance of `ProjectLimitInput` via:
+//
+//	ProjectLimitArgs{...}
+type ProjectLimitInput interface {
+	pulumi.Input
+
+	ToProjectLimitOutput() ProjectLimitOutput
+	ToProjectLimitOutputWithContext(context.Context) ProjectLimitOutput
+}
+
+type ProjectLimitArgs struct {
+	CurrentUsage pulumi.IntPtrInput `pulumi:"currentUsage"`
+	DefaultLimit pulumi.IntPtrInput `pulumi:"defaultLimit"`
+	MaximumLimit pulumi.IntPtrInput `pulumi:"maximumLimit"`
+	// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+	Value pulumi.IntInput `pulumi:"value"`
+}
+
+func (ProjectLimitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectLimit)(nil)).Elem()
+}
+
+func (i ProjectLimitArgs) ToProjectLimitOutput() ProjectLimitOutput {
+	return i.ToProjectLimitOutputWithContext(context.Background())
+}
+
+func (i ProjectLimitArgs) ToProjectLimitOutputWithContext(ctx context.Context) ProjectLimitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectLimitOutput)
+}
+
+// ProjectLimitArrayInput is an input type that accepts ProjectLimitArray and ProjectLimitArrayOutput values.
+// You can construct a concrete instance of `ProjectLimitArrayInput` via:
+//
+//	ProjectLimitArray{ ProjectLimitArgs{...} }
+type ProjectLimitArrayInput interface {
+	pulumi.Input
+
+	ToProjectLimitArrayOutput() ProjectLimitArrayOutput
+	ToProjectLimitArrayOutputWithContext(context.Context) ProjectLimitArrayOutput
+}
+
+type ProjectLimitArray []ProjectLimitInput
+
+func (ProjectLimitArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectLimit)(nil)).Elem()
+}
+
+func (i ProjectLimitArray) ToProjectLimitArrayOutput() ProjectLimitArrayOutput {
+	return i.ToProjectLimitArrayOutputWithContext(context.Background())
+}
+
+func (i ProjectLimitArray) ToProjectLimitArrayOutputWithContext(ctx context.Context) ProjectLimitArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectLimitArrayOutput)
+}
+
+type ProjectLimitOutput struct{ *pulumi.OutputState }
+
+func (ProjectLimitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectLimit)(nil)).Elem()
+}
+
+func (o ProjectLimitOutput) ToProjectLimitOutput() ProjectLimitOutput {
+	return o
+}
+
+func (o ProjectLimitOutput) ToProjectLimitOutputWithContext(ctx context.Context) ProjectLimitOutput {
+	return o
+}
+
+func (o ProjectLimitOutput) CurrentUsage() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ProjectLimit) *int { return v.CurrentUsage }).(pulumi.IntPtrOutput)
+}
+
+func (o ProjectLimitOutput) DefaultLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ProjectLimit) *int { return v.DefaultLimit }).(pulumi.IntPtrOutput)
+}
+
+func (o ProjectLimitOutput) MaximumLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ProjectLimit) *int { return v.MaximumLimit }).(pulumi.IntPtrOutput)
+}
+
+// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+func (o ProjectLimitOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ProjectLimit) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+func (o ProjectLimitOutput) Value() pulumi.IntOutput {
+	return o.ApplyT(func(v ProjectLimit) int { return v.Value }).(pulumi.IntOutput)
+}
+
+type ProjectLimitArrayOutput struct{ *pulumi.OutputState }
+
+func (ProjectLimitArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectLimit)(nil)).Elem()
+}
+
+func (o ProjectLimitArrayOutput) ToProjectLimitArrayOutput() ProjectLimitArrayOutput {
+	return o
+}
+
+func (o ProjectLimitArrayOutput) ToProjectLimitArrayOutputWithContext(ctx context.Context) ProjectLimitArrayOutput {
+	return o
+}
+
+func (o ProjectLimitArrayOutput) Index(i pulumi.IntInput) ProjectLimitOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectLimit {
+		return vs[0].([]ProjectLimit)[vs[1].(int)]
+	}).(ProjectLimitOutput)
 }
 
 type ProjectTeam struct {
@@ -25266,6 +25656,121 @@ func (o GetCloudProviderAccessSetupAwsConfigArrayOutput) Index(i pulumi.IntInput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudProviderAccessSetupAwsConfig {
 		return vs[0].([]GetCloudProviderAccessSetupAwsConfig)[vs[1].(int)]
 	}).(GetCloudProviderAccessSetupAwsConfigOutput)
+}
+
+type GetCloudProviderAccessSetupAzureConfig struct {
+	// Azure Active Directory Application ID of Atlas.
+	AtlasAzureAppId string `pulumi:"atlasAzureAppId"`
+	// UUID string that identifies the Azure Service Principal.
+	ServicePrincipalId string `pulumi:"servicePrincipalId"`
+	// UUID String that identifies the Azure Active Directory Tenant ID.
+	TenantId string `pulumi:"tenantId"`
+}
+
+// GetCloudProviderAccessSetupAzureConfigInput is an input type that accepts GetCloudProviderAccessSetupAzureConfigArgs and GetCloudProviderAccessSetupAzureConfigOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessSetupAzureConfigInput` via:
+//
+//	GetCloudProviderAccessSetupAzureConfigArgs{...}
+type GetCloudProviderAccessSetupAzureConfigInput interface {
+	pulumi.Input
+
+	ToGetCloudProviderAccessSetupAzureConfigOutput() GetCloudProviderAccessSetupAzureConfigOutput
+	ToGetCloudProviderAccessSetupAzureConfigOutputWithContext(context.Context) GetCloudProviderAccessSetupAzureConfigOutput
+}
+
+type GetCloudProviderAccessSetupAzureConfigArgs struct {
+	// Azure Active Directory Application ID of Atlas.
+	AtlasAzureAppId pulumi.StringInput `pulumi:"atlasAzureAppId"`
+	// UUID string that identifies the Azure Service Principal.
+	ServicePrincipalId pulumi.StringInput `pulumi:"servicePrincipalId"`
+	// UUID String that identifies the Azure Active Directory Tenant ID.
+	TenantId pulumi.StringInput `pulumi:"tenantId"`
+}
+
+func (GetCloudProviderAccessSetupAzureConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessSetupAzureConfig)(nil)).Elem()
+}
+
+func (i GetCloudProviderAccessSetupAzureConfigArgs) ToGetCloudProviderAccessSetupAzureConfigOutput() GetCloudProviderAccessSetupAzureConfigOutput {
+	return i.ToGetCloudProviderAccessSetupAzureConfigOutputWithContext(context.Background())
+}
+
+func (i GetCloudProviderAccessSetupAzureConfigArgs) ToGetCloudProviderAccessSetupAzureConfigOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAzureConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessSetupAzureConfigOutput)
+}
+
+// GetCloudProviderAccessSetupAzureConfigArrayInput is an input type that accepts GetCloudProviderAccessSetupAzureConfigArray and GetCloudProviderAccessSetupAzureConfigArrayOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessSetupAzureConfigArrayInput` via:
+//
+//	GetCloudProviderAccessSetupAzureConfigArray{ GetCloudProviderAccessSetupAzureConfigArgs{...} }
+type GetCloudProviderAccessSetupAzureConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudProviderAccessSetupAzureConfigArrayOutput() GetCloudProviderAccessSetupAzureConfigArrayOutput
+	ToGetCloudProviderAccessSetupAzureConfigArrayOutputWithContext(context.Context) GetCloudProviderAccessSetupAzureConfigArrayOutput
+}
+
+type GetCloudProviderAccessSetupAzureConfigArray []GetCloudProviderAccessSetupAzureConfigInput
+
+func (GetCloudProviderAccessSetupAzureConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudProviderAccessSetupAzureConfig)(nil)).Elem()
+}
+
+func (i GetCloudProviderAccessSetupAzureConfigArray) ToGetCloudProviderAccessSetupAzureConfigArrayOutput() GetCloudProviderAccessSetupAzureConfigArrayOutput {
+	return i.ToGetCloudProviderAccessSetupAzureConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudProviderAccessSetupAzureConfigArray) ToGetCloudProviderAccessSetupAzureConfigArrayOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAzureConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessSetupAzureConfigArrayOutput)
+}
+
+type GetCloudProviderAccessSetupAzureConfigOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessSetupAzureConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessSetupAzureConfig)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessSetupAzureConfigOutput) ToGetCloudProviderAccessSetupAzureConfigOutput() GetCloudProviderAccessSetupAzureConfigOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessSetupAzureConfigOutput) ToGetCloudProviderAccessSetupAzureConfigOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAzureConfigOutput {
+	return o
+}
+
+// Azure Active Directory Application ID of Atlas.
+func (o GetCloudProviderAccessSetupAzureConfigOutput) AtlasAzureAppId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessSetupAzureConfig) string { return v.AtlasAzureAppId }).(pulumi.StringOutput)
+}
+
+// UUID string that identifies the Azure Service Principal.
+func (o GetCloudProviderAccessSetupAzureConfigOutput) ServicePrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessSetupAzureConfig) string { return v.ServicePrincipalId }).(pulumi.StringOutput)
+}
+
+// UUID String that identifies the Azure Active Directory Tenant ID.
+func (o GetCloudProviderAccessSetupAzureConfigOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessSetupAzureConfig) string { return v.TenantId }).(pulumi.StringOutput)
+}
+
+type GetCloudProviderAccessSetupAzureConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessSetupAzureConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudProviderAccessSetupAzureConfig)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessSetupAzureConfigArrayOutput) ToGetCloudProviderAccessSetupAzureConfigArrayOutput() GetCloudProviderAccessSetupAzureConfigArrayOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessSetupAzureConfigArrayOutput) ToGetCloudProviderAccessSetupAzureConfigArrayOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAzureConfigArrayOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInput) GetCloudProviderAccessSetupAzureConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudProviderAccessSetupAzureConfig {
+		return vs[0].([]GetCloudProviderAccessSetupAzureConfig)[vs[1].(int)]
+	}).(GetCloudProviderAccessSetupAzureConfigOutput)
 }
 
 type GetClusterAdvancedConfiguration struct {
@@ -43139,15 +43644,125 @@ func (o GetProjectApiKeyTypeArrayOutput) Index(i pulumi.IntInput) GetProjectApiK
 	}).(GetProjectApiKeyTypeOutput)
 }
 
+type GetProjectApiKeyProjectAssignment struct {
+	// The unique ID for the project.
+	ProjectId string `pulumi:"projectId"`
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+	RoleNames []string `pulumi:"roleNames"`
+}
+
+// GetProjectApiKeyProjectAssignmentInput is an input type that accepts GetProjectApiKeyProjectAssignmentArgs and GetProjectApiKeyProjectAssignmentOutput values.
+// You can construct a concrete instance of `GetProjectApiKeyProjectAssignmentInput` via:
+//
+//	GetProjectApiKeyProjectAssignmentArgs{...}
+type GetProjectApiKeyProjectAssignmentInput interface {
+	pulumi.Input
+
+	ToGetProjectApiKeyProjectAssignmentOutput() GetProjectApiKeyProjectAssignmentOutput
+	ToGetProjectApiKeyProjectAssignmentOutputWithContext(context.Context) GetProjectApiKeyProjectAssignmentOutput
+}
+
+type GetProjectApiKeyProjectAssignmentArgs struct {
+	// The unique ID for the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
+}
+
+func (GetProjectApiKeyProjectAssignmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectApiKeyProjectAssignment)(nil)).Elem()
+}
+
+func (i GetProjectApiKeyProjectAssignmentArgs) ToGetProjectApiKeyProjectAssignmentOutput() GetProjectApiKeyProjectAssignmentOutput {
+	return i.ToGetProjectApiKeyProjectAssignmentOutputWithContext(context.Background())
+}
+
+func (i GetProjectApiKeyProjectAssignmentArgs) ToGetProjectApiKeyProjectAssignmentOutputWithContext(ctx context.Context) GetProjectApiKeyProjectAssignmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectApiKeyProjectAssignmentOutput)
+}
+
+// GetProjectApiKeyProjectAssignmentArrayInput is an input type that accepts GetProjectApiKeyProjectAssignmentArray and GetProjectApiKeyProjectAssignmentArrayOutput values.
+// You can construct a concrete instance of `GetProjectApiKeyProjectAssignmentArrayInput` via:
+//
+//	GetProjectApiKeyProjectAssignmentArray{ GetProjectApiKeyProjectAssignmentArgs{...} }
+type GetProjectApiKeyProjectAssignmentArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectApiKeyProjectAssignmentArrayOutput() GetProjectApiKeyProjectAssignmentArrayOutput
+	ToGetProjectApiKeyProjectAssignmentArrayOutputWithContext(context.Context) GetProjectApiKeyProjectAssignmentArrayOutput
+}
+
+type GetProjectApiKeyProjectAssignmentArray []GetProjectApiKeyProjectAssignmentInput
+
+func (GetProjectApiKeyProjectAssignmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectApiKeyProjectAssignment)(nil)).Elem()
+}
+
+func (i GetProjectApiKeyProjectAssignmentArray) ToGetProjectApiKeyProjectAssignmentArrayOutput() GetProjectApiKeyProjectAssignmentArrayOutput {
+	return i.ToGetProjectApiKeyProjectAssignmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectApiKeyProjectAssignmentArray) ToGetProjectApiKeyProjectAssignmentArrayOutputWithContext(ctx context.Context) GetProjectApiKeyProjectAssignmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectApiKeyProjectAssignmentArrayOutput)
+}
+
+type GetProjectApiKeyProjectAssignmentOutput struct{ *pulumi.OutputState }
+
+func (GetProjectApiKeyProjectAssignmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectApiKeyProjectAssignment)(nil)).Elem()
+}
+
+func (o GetProjectApiKeyProjectAssignmentOutput) ToGetProjectApiKeyProjectAssignmentOutput() GetProjectApiKeyProjectAssignmentOutput {
+	return o
+}
+
+func (o GetProjectApiKeyProjectAssignmentOutput) ToGetProjectApiKeyProjectAssignmentOutputWithContext(ctx context.Context) GetProjectApiKeyProjectAssignmentOutput {
+	return o
+}
+
+// The unique ID for the project.
+func (o GetProjectApiKeyProjectAssignmentOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectApiKeyProjectAssignment) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+func (o GetProjectApiKeyProjectAssignmentOutput) RoleNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProjectApiKeyProjectAssignment) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
+}
+
+type GetProjectApiKeyProjectAssignmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectApiKeyProjectAssignmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectApiKeyProjectAssignment)(nil)).Elem()
+}
+
+func (o GetProjectApiKeyProjectAssignmentArrayOutput) ToGetProjectApiKeyProjectAssignmentArrayOutput() GetProjectApiKeyProjectAssignmentArrayOutput {
+	return o
+}
+
+func (o GetProjectApiKeyProjectAssignmentArrayOutput) ToGetProjectApiKeyProjectAssignmentArrayOutputWithContext(ctx context.Context) GetProjectApiKeyProjectAssignmentArrayOutput {
+	return o
+}
+
+func (o GetProjectApiKeyProjectAssignmentArrayOutput) Index(i pulumi.IntInput) GetProjectApiKeyProjectAssignmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectApiKeyProjectAssignment {
+		return vs[0].([]GetProjectApiKeyProjectAssignment)[vs[1].(int)]
+	}).(GetProjectApiKeyProjectAssignmentOutput)
+}
+
 type GetProjectApiKeysResult struct {
 	// Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// Description of this Project API key.
-	Description string `pulumi:"description"`
-	PrivateKey  string `pulumi:"privateKey"`
-	PublicKey   string `pulumi:"publicKey"`
-	// Name of the role. This resource returns all the roles the user has in Atlas.
-	// The following are valid roles:
+	Description        string                                     `pulumi:"description"`
+	PrivateKey         string                                     `pulumi:"privateKey"`
+	ProjectAssignments []GetProjectApiKeysResultProjectAssignment `pulumi:"projectAssignments"`
+	PublicKey          string                                     `pulumi:"publicKey"`
+	// Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
+	//
+	// See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+	//
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
 	RoleNames []string `pulumi:"roleNames"`
 }
 
@@ -43166,11 +43781,15 @@ type GetProjectApiKeysResultArgs struct {
 	// Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
 	// Description of this Project API key.
-	Description pulumi.StringInput `pulumi:"description"`
-	PrivateKey  pulumi.StringInput `pulumi:"privateKey"`
-	PublicKey   pulumi.StringInput `pulumi:"publicKey"`
-	// Name of the role. This resource returns all the roles the user has in Atlas.
-	// The following are valid roles:
+	Description        pulumi.StringInput                                 `pulumi:"description"`
+	PrivateKey         pulumi.StringInput                                 `pulumi:"privateKey"`
+	ProjectAssignments GetProjectApiKeysResultProjectAssignmentArrayInput `pulumi:"projectAssignments"`
+	PublicKey          pulumi.StringInput                                 `pulumi:"publicKey"`
+	// Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
+	//
+	// See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+	//
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
 }
 
@@ -43239,12 +43858,21 @@ func (o GetProjectApiKeysResultOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectApiKeysResult) string { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
+func (o GetProjectApiKeysResultOutput) ProjectAssignments() GetProjectApiKeysResultProjectAssignmentArrayOutput {
+	return o.ApplyT(func(v GetProjectApiKeysResult) []GetProjectApiKeysResultProjectAssignment {
+		return v.ProjectAssignments
+	}).(GetProjectApiKeysResultProjectAssignmentArrayOutput)
+}
+
 func (o GetProjectApiKeysResultOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectApiKeysResult) string { return v.PublicKey }).(pulumi.StringOutput)
 }
 
-// Name of the role. This resource returns all the roles the user has in Atlas.
-// The following are valid roles:
+// Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
+//
+// See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+//
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
 func (o GetProjectApiKeysResultOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetProjectApiKeysResult) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
@@ -43267,6 +43895,245 @@ func (o GetProjectApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetProjectA
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectApiKeysResult {
 		return vs[0].([]GetProjectApiKeysResult)[vs[1].(int)]
 	}).(GetProjectApiKeysResultOutput)
+}
+
+type GetProjectApiKeysResultProjectAssignment struct {
+	// Project ID to assign to Access Key
+	ProjectId string `pulumi:"projectId"`
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+	//
+	// See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+	RoleNames []string `pulumi:"roleNames"`
+}
+
+// GetProjectApiKeysResultProjectAssignmentInput is an input type that accepts GetProjectApiKeysResultProjectAssignmentArgs and GetProjectApiKeysResultProjectAssignmentOutput values.
+// You can construct a concrete instance of `GetProjectApiKeysResultProjectAssignmentInput` via:
+//
+//	GetProjectApiKeysResultProjectAssignmentArgs{...}
+type GetProjectApiKeysResultProjectAssignmentInput interface {
+	pulumi.Input
+
+	ToGetProjectApiKeysResultProjectAssignmentOutput() GetProjectApiKeysResultProjectAssignmentOutput
+	ToGetProjectApiKeysResultProjectAssignmentOutputWithContext(context.Context) GetProjectApiKeysResultProjectAssignmentOutput
+}
+
+type GetProjectApiKeysResultProjectAssignmentArgs struct {
+	// Project ID to assign to Access Key
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+	//
+	// See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
+}
+
+func (GetProjectApiKeysResultProjectAssignmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectApiKeysResultProjectAssignment)(nil)).Elem()
+}
+
+func (i GetProjectApiKeysResultProjectAssignmentArgs) ToGetProjectApiKeysResultProjectAssignmentOutput() GetProjectApiKeysResultProjectAssignmentOutput {
+	return i.ToGetProjectApiKeysResultProjectAssignmentOutputWithContext(context.Background())
+}
+
+func (i GetProjectApiKeysResultProjectAssignmentArgs) ToGetProjectApiKeysResultProjectAssignmentOutputWithContext(ctx context.Context) GetProjectApiKeysResultProjectAssignmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectApiKeysResultProjectAssignmentOutput)
+}
+
+// GetProjectApiKeysResultProjectAssignmentArrayInput is an input type that accepts GetProjectApiKeysResultProjectAssignmentArray and GetProjectApiKeysResultProjectAssignmentArrayOutput values.
+// You can construct a concrete instance of `GetProjectApiKeysResultProjectAssignmentArrayInput` via:
+//
+//	GetProjectApiKeysResultProjectAssignmentArray{ GetProjectApiKeysResultProjectAssignmentArgs{...} }
+type GetProjectApiKeysResultProjectAssignmentArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectApiKeysResultProjectAssignmentArrayOutput() GetProjectApiKeysResultProjectAssignmentArrayOutput
+	ToGetProjectApiKeysResultProjectAssignmentArrayOutputWithContext(context.Context) GetProjectApiKeysResultProjectAssignmentArrayOutput
+}
+
+type GetProjectApiKeysResultProjectAssignmentArray []GetProjectApiKeysResultProjectAssignmentInput
+
+func (GetProjectApiKeysResultProjectAssignmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectApiKeysResultProjectAssignment)(nil)).Elem()
+}
+
+func (i GetProjectApiKeysResultProjectAssignmentArray) ToGetProjectApiKeysResultProjectAssignmentArrayOutput() GetProjectApiKeysResultProjectAssignmentArrayOutput {
+	return i.ToGetProjectApiKeysResultProjectAssignmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectApiKeysResultProjectAssignmentArray) ToGetProjectApiKeysResultProjectAssignmentArrayOutputWithContext(ctx context.Context) GetProjectApiKeysResultProjectAssignmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectApiKeysResultProjectAssignmentArrayOutput)
+}
+
+type GetProjectApiKeysResultProjectAssignmentOutput struct{ *pulumi.OutputState }
+
+func (GetProjectApiKeysResultProjectAssignmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectApiKeysResultProjectAssignment)(nil)).Elem()
+}
+
+func (o GetProjectApiKeysResultProjectAssignmentOutput) ToGetProjectApiKeysResultProjectAssignmentOutput() GetProjectApiKeysResultProjectAssignmentOutput {
+	return o
+}
+
+func (o GetProjectApiKeysResultProjectAssignmentOutput) ToGetProjectApiKeysResultProjectAssignmentOutputWithContext(ctx context.Context) GetProjectApiKeysResultProjectAssignmentOutput {
+	return o
+}
+
+// Project ID to assign to Access Key
+func (o GetProjectApiKeysResultProjectAssignmentOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectApiKeysResultProjectAssignment) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+//
+// See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+func (o GetProjectApiKeysResultProjectAssignmentOutput) RoleNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProjectApiKeysResultProjectAssignment) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
+}
+
+type GetProjectApiKeysResultProjectAssignmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectApiKeysResultProjectAssignmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectApiKeysResultProjectAssignment)(nil)).Elem()
+}
+
+func (o GetProjectApiKeysResultProjectAssignmentArrayOutput) ToGetProjectApiKeysResultProjectAssignmentArrayOutput() GetProjectApiKeysResultProjectAssignmentArrayOutput {
+	return o
+}
+
+func (o GetProjectApiKeysResultProjectAssignmentArrayOutput) ToGetProjectApiKeysResultProjectAssignmentArrayOutputWithContext(ctx context.Context) GetProjectApiKeysResultProjectAssignmentArrayOutput {
+	return o
+}
+
+func (o GetProjectApiKeysResultProjectAssignmentArrayOutput) Index(i pulumi.IntInput) GetProjectApiKeysResultProjectAssignmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectApiKeysResultProjectAssignment {
+		return vs[0].([]GetProjectApiKeysResultProjectAssignment)[vs[1].(int)]
+	}).(GetProjectApiKeysResultProjectAssignmentOutput)
+}
+
+type GetProjectLimit struct {
+	CurrentUsage int `pulumi:"currentUsage"`
+	DefaultLimit int `pulumi:"defaultLimit"`
+	MaximumLimit int `pulumi:"maximumLimit"`
+	// The unique ID for the project.
+	//
+	// > **IMPORTANT:** Either `projectId` or `name` must be configurated.
+	Name  string `pulumi:"name"`
+	Value int    `pulumi:"value"`
+}
+
+// GetProjectLimitInput is an input type that accepts GetProjectLimitArgs and GetProjectLimitOutput values.
+// You can construct a concrete instance of `GetProjectLimitInput` via:
+//
+//	GetProjectLimitArgs{...}
+type GetProjectLimitInput interface {
+	pulumi.Input
+
+	ToGetProjectLimitOutput() GetProjectLimitOutput
+	ToGetProjectLimitOutputWithContext(context.Context) GetProjectLimitOutput
+}
+
+type GetProjectLimitArgs struct {
+	CurrentUsage pulumi.IntInput `pulumi:"currentUsage"`
+	DefaultLimit pulumi.IntInput `pulumi:"defaultLimit"`
+	MaximumLimit pulumi.IntInput `pulumi:"maximumLimit"`
+	// The unique ID for the project.
+	//
+	// > **IMPORTANT:** Either `projectId` or `name` must be configurated.
+	Name  pulumi.StringInput `pulumi:"name"`
+	Value pulumi.IntInput    `pulumi:"value"`
+}
+
+func (GetProjectLimitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectLimit)(nil)).Elem()
+}
+
+func (i GetProjectLimitArgs) ToGetProjectLimitOutput() GetProjectLimitOutput {
+	return i.ToGetProjectLimitOutputWithContext(context.Background())
+}
+
+func (i GetProjectLimitArgs) ToGetProjectLimitOutputWithContext(ctx context.Context) GetProjectLimitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectLimitOutput)
+}
+
+// GetProjectLimitArrayInput is an input type that accepts GetProjectLimitArray and GetProjectLimitArrayOutput values.
+// You can construct a concrete instance of `GetProjectLimitArrayInput` via:
+//
+//	GetProjectLimitArray{ GetProjectLimitArgs{...} }
+type GetProjectLimitArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectLimitArrayOutput() GetProjectLimitArrayOutput
+	ToGetProjectLimitArrayOutputWithContext(context.Context) GetProjectLimitArrayOutput
+}
+
+type GetProjectLimitArray []GetProjectLimitInput
+
+func (GetProjectLimitArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectLimit)(nil)).Elem()
+}
+
+func (i GetProjectLimitArray) ToGetProjectLimitArrayOutput() GetProjectLimitArrayOutput {
+	return i.ToGetProjectLimitArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectLimitArray) ToGetProjectLimitArrayOutputWithContext(ctx context.Context) GetProjectLimitArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectLimitArrayOutput)
+}
+
+type GetProjectLimitOutput struct{ *pulumi.OutputState }
+
+func (GetProjectLimitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectLimit)(nil)).Elem()
+}
+
+func (o GetProjectLimitOutput) ToGetProjectLimitOutput() GetProjectLimitOutput {
+	return o
+}
+
+func (o GetProjectLimitOutput) ToGetProjectLimitOutputWithContext(ctx context.Context) GetProjectLimitOutput {
+	return o
+}
+
+func (o GetProjectLimitOutput) CurrentUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectLimit) int { return v.CurrentUsage }).(pulumi.IntOutput)
+}
+
+func (o GetProjectLimitOutput) DefaultLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectLimit) int { return v.DefaultLimit }).(pulumi.IntOutput)
+}
+
+func (o GetProjectLimitOutput) MaximumLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectLimit) int { return v.MaximumLimit }).(pulumi.IntOutput)
+}
+
+// The unique ID for the project.
+//
+// > **IMPORTANT:** Either `projectId` or `name` must be configurated.
+func (o GetProjectLimitOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectLimit) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetProjectLimitOutput) Value() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectLimit) int { return v.Value }).(pulumi.IntOutput)
+}
+
+type GetProjectLimitArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectLimitArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectLimit)(nil)).Elem()
+}
+
+func (o GetProjectLimitArrayOutput) ToGetProjectLimitArrayOutput() GetProjectLimitArrayOutput {
+	return o
+}
+
+func (o GetProjectLimitArrayOutput) ToGetProjectLimitArrayOutputWithContext(ctx context.Context) GetProjectLimitArrayOutput {
+	return o
+}
+
+func (o GetProjectLimitArrayOutput) Index(i pulumi.IntInput) GetProjectLimitOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectLimit {
+		return vs[0].([]GetProjectLimit)[vs[1].(int)]
+	}).(GetProjectLimitOutput)
 }
 
 type GetProjectTeam struct {
@@ -43378,6 +44245,11 @@ type GetProjectsResult struct {
 	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 	// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
 	// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+	// * `limits.#.name` - Human-readable label that identifies this project limit.
+	// * `limits.#.value` - Amount the limit is set to.
+	// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+	// * `limits.#.default_limit` - Default value of the limit.
+	// * `limits.#.maximum_limit` - Maximum value of the limit.
 	Created string `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id string `pulumi:"id"`
@@ -43392,7 +44264,8 @@ type GetProjectsResult struct {
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 	IsRealtimePerformancePanelEnabled bool `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
+	IsSchemaAdvisorEnabled bool                     `pulumi:"isSchemaAdvisorEnabled"`
+	Limits                 []GetProjectsResultLimit `pulumi:"limits"`
 	// The name of the project you want to create.
 	Name string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -43424,6 +44297,11 @@ type GetProjectsResultArgs struct {
 	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 	// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
 	// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+	// * `limits.#.name` - Human-readable label that identifies this project limit.
+	// * `limits.#.value` - Amount the limit is set to.
+	// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+	// * `limits.#.default_limit` - Default value of the limit.
+	// * `limits.#.maximum_limit` - Maximum value of the limit.
 	Created pulumi.StringInput `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -43438,7 +44316,8 @@ type GetProjectsResultArgs struct {
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 	IsRealtimePerformancePanelEnabled pulumi.BoolInput `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-	IsSchemaAdvisorEnabled pulumi.BoolInput `pulumi:"isSchemaAdvisorEnabled"`
+	IsSchemaAdvisorEnabled pulumi.BoolInput                 `pulumi:"isSchemaAdvisorEnabled"`
+	Limits                 GetProjectsResultLimitArrayInput `pulumi:"limits"`
 	// The name of the project you want to create.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -43515,6 +44394,11 @@ func (o GetProjectsResultOutput) ClusterCount() pulumi.IntOutput {
 // * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 // * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
 // * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+// * `limits.#.name` - Human-readable label that identifies this project limit.
+// * `limits.#.value` - Amount the limit is set to.
+// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+// * `limits.#.default_limit` - Default value of the limit.
+// * `limits.#.maximum_limit` - Maximum value of the limit.
 func (o GetProjectsResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Created }).(pulumi.StringOutput)
 }
@@ -43552,6 +44436,10 @@ func (o GetProjectsResultOutput) IsRealtimePerformancePanelEnabled() pulumi.Bool
 // Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 func (o GetProjectsResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
+}
+
+func (o GetProjectsResultOutput) Limits() GetProjectsResultLimitArrayOutput {
+	return o.ApplyT(func(v GetProjectsResult) []GetProjectsResultLimit { return v.Limits }).(GetProjectsResultLimitArrayOutput)
 }
 
 // The name of the project you want to create.
@@ -43693,6 +44581,127 @@ func (o GetProjectsResultApiKeyArrayOutput) Index(i pulumi.IntInput) GetProjects
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectsResultApiKey {
 		return vs[0].([]GetProjectsResultApiKey)[vs[1].(int)]
 	}).(GetProjectsResultApiKeyOutput)
+}
+
+type GetProjectsResultLimit struct {
+	CurrentUsage int `pulumi:"currentUsage"`
+	DefaultLimit int `pulumi:"defaultLimit"`
+	MaximumLimit int `pulumi:"maximumLimit"`
+	// The name of the project you want to create.
+	Name  string `pulumi:"name"`
+	Value int    `pulumi:"value"`
+}
+
+// GetProjectsResultLimitInput is an input type that accepts GetProjectsResultLimitArgs and GetProjectsResultLimitOutput values.
+// You can construct a concrete instance of `GetProjectsResultLimitInput` via:
+//
+//	GetProjectsResultLimitArgs{...}
+type GetProjectsResultLimitInput interface {
+	pulumi.Input
+
+	ToGetProjectsResultLimitOutput() GetProjectsResultLimitOutput
+	ToGetProjectsResultLimitOutputWithContext(context.Context) GetProjectsResultLimitOutput
+}
+
+type GetProjectsResultLimitArgs struct {
+	CurrentUsage pulumi.IntInput `pulumi:"currentUsage"`
+	DefaultLimit pulumi.IntInput `pulumi:"defaultLimit"`
+	MaximumLimit pulumi.IntInput `pulumi:"maximumLimit"`
+	// The name of the project you want to create.
+	Name  pulumi.StringInput `pulumi:"name"`
+	Value pulumi.IntInput    `pulumi:"value"`
+}
+
+func (GetProjectsResultLimitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsResultLimit)(nil)).Elem()
+}
+
+func (i GetProjectsResultLimitArgs) ToGetProjectsResultLimitOutput() GetProjectsResultLimitOutput {
+	return i.ToGetProjectsResultLimitOutputWithContext(context.Background())
+}
+
+func (i GetProjectsResultLimitArgs) ToGetProjectsResultLimitOutputWithContext(ctx context.Context) GetProjectsResultLimitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsResultLimitOutput)
+}
+
+// GetProjectsResultLimitArrayInput is an input type that accepts GetProjectsResultLimitArray and GetProjectsResultLimitArrayOutput values.
+// You can construct a concrete instance of `GetProjectsResultLimitArrayInput` via:
+//
+//	GetProjectsResultLimitArray{ GetProjectsResultLimitArgs{...} }
+type GetProjectsResultLimitArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectsResultLimitArrayOutput() GetProjectsResultLimitArrayOutput
+	ToGetProjectsResultLimitArrayOutputWithContext(context.Context) GetProjectsResultLimitArrayOutput
+}
+
+type GetProjectsResultLimitArray []GetProjectsResultLimitInput
+
+func (GetProjectsResultLimitArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectsResultLimit)(nil)).Elem()
+}
+
+func (i GetProjectsResultLimitArray) ToGetProjectsResultLimitArrayOutput() GetProjectsResultLimitArrayOutput {
+	return i.ToGetProjectsResultLimitArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectsResultLimitArray) ToGetProjectsResultLimitArrayOutputWithContext(ctx context.Context) GetProjectsResultLimitArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsResultLimitArrayOutput)
+}
+
+type GetProjectsResultLimitOutput struct{ *pulumi.OutputState }
+
+func (GetProjectsResultLimitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsResultLimit)(nil)).Elem()
+}
+
+func (o GetProjectsResultLimitOutput) ToGetProjectsResultLimitOutput() GetProjectsResultLimitOutput {
+	return o
+}
+
+func (o GetProjectsResultLimitOutput) ToGetProjectsResultLimitOutputWithContext(ctx context.Context) GetProjectsResultLimitOutput {
+	return o
+}
+
+func (o GetProjectsResultLimitOutput) CurrentUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectsResultLimit) int { return v.CurrentUsage }).(pulumi.IntOutput)
+}
+
+func (o GetProjectsResultLimitOutput) DefaultLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectsResultLimit) int { return v.DefaultLimit }).(pulumi.IntOutput)
+}
+
+func (o GetProjectsResultLimitOutput) MaximumLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectsResultLimit) int { return v.MaximumLimit }).(pulumi.IntOutput)
+}
+
+// The name of the project you want to create.
+func (o GetProjectsResultLimitOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsResultLimit) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetProjectsResultLimitOutput) Value() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectsResultLimit) int { return v.Value }).(pulumi.IntOutput)
+}
+
+type GetProjectsResultLimitArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectsResultLimitArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectsResultLimit)(nil)).Elem()
+}
+
+func (o GetProjectsResultLimitArrayOutput) ToGetProjectsResultLimitArrayOutput() GetProjectsResultLimitArrayOutput {
+	return o
+}
+
+func (o GetProjectsResultLimitArrayOutput) ToGetProjectsResultLimitArrayOutputWithContext(ctx context.Context) GetProjectsResultLimitArrayOutput {
+	return o
+}
+
+func (o GetProjectsResultLimitArrayOutput) Index(i pulumi.IntInput) GetProjectsResultLimitOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectsResultLimit {
+		return vs[0].([]GetProjectsResultLimit)[vs[1].(int)]
+	}).(GetProjectsResultLimitOutput)
 }
 
 type GetProjectsResultTeam struct {
@@ -44638,6 +45647,290 @@ func (o GetServerlessInstancesResultLinkArrayOutput) Index(i pulumi.IntInput) Ge
 	}).(GetServerlessInstancesResultLinkOutput)
 }
 
+type GetSharedTierRestoreJobsResult struct {
+	DeliveryType             string `pulumi:"deliveryType"`
+	ExpirationDate           string `pulumi:"expirationDate"`
+	JobId                    string `pulumi:"jobId"`
+	RestoreFinishedDate      string `pulumi:"restoreFinishedDate"`
+	RestoreScheduledDate     string `pulumi:"restoreScheduledDate"`
+	SnapshotFinishedDate     string `pulumi:"snapshotFinishedDate"`
+	SnapshotId               string `pulumi:"snapshotId"`
+	SnapshotUrl              string `pulumi:"snapshotUrl"`
+	Status                   string `pulumi:"status"`
+	TargetDeploymentItemName string `pulumi:"targetDeploymentItemName"`
+	TargetProjectId          string `pulumi:"targetProjectId"`
+}
+
+// GetSharedTierRestoreJobsResultInput is an input type that accepts GetSharedTierRestoreJobsResultArgs and GetSharedTierRestoreJobsResultOutput values.
+// You can construct a concrete instance of `GetSharedTierRestoreJobsResultInput` via:
+//
+//	GetSharedTierRestoreJobsResultArgs{...}
+type GetSharedTierRestoreJobsResultInput interface {
+	pulumi.Input
+
+	ToGetSharedTierRestoreJobsResultOutput() GetSharedTierRestoreJobsResultOutput
+	ToGetSharedTierRestoreJobsResultOutputWithContext(context.Context) GetSharedTierRestoreJobsResultOutput
+}
+
+type GetSharedTierRestoreJobsResultArgs struct {
+	DeliveryType             pulumi.StringInput `pulumi:"deliveryType"`
+	ExpirationDate           pulumi.StringInput `pulumi:"expirationDate"`
+	JobId                    pulumi.StringInput `pulumi:"jobId"`
+	RestoreFinishedDate      pulumi.StringInput `pulumi:"restoreFinishedDate"`
+	RestoreScheduledDate     pulumi.StringInput `pulumi:"restoreScheduledDate"`
+	SnapshotFinishedDate     pulumi.StringInput `pulumi:"snapshotFinishedDate"`
+	SnapshotId               pulumi.StringInput `pulumi:"snapshotId"`
+	SnapshotUrl              pulumi.StringInput `pulumi:"snapshotUrl"`
+	Status                   pulumi.StringInput `pulumi:"status"`
+	TargetDeploymentItemName pulumi.StringInput `pulumi:"targetDeploymentItemName"`
+	TargetProjectId          pulumi.StringInput `pulumi:"targetProjectId"`
+}
+
+func (GetSharedTierRestoreJobsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedTierRestoreJobsResult)(nil)).Elem()
+}
+
+func (i GetSharedTierRestoreJobsResultArgs) ToGetSharedTierRestoreJobsResultOutput() GetSharedTierRestoreJobsResultOutput {
+	return i.ToGetSharedTierRestoreJobsResultOutputWithContext(context.Background())
+}
+
+func (i GetSharedTierRestoreJobsResultArgs) ToGetSharedTierRestoreJobsResultOutputWithContext(ctx context.Context) GetSharedTierRestoreJobsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedTierRestoreJobsResultOutput)
+}
+
+// GetSharedTierRestoreJobsResultArrayInput is an input type that accepts GetSharedTierRestoreJobsResultArray and GetSharedTierRestoreJobsResultArrayOutput values.
+// You can construct a concrete instance of `GetSharedTierRestoreJobsResultArrayInput` via:
+//
+//	GetSharedTierRestoreJobsResultArray{ GetSharedTierRestoreJobsResultArgs{...} }
+type GetSharedTierRestoreJobsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedTierRestoreJobsResultArrayOutput() GetSharedTierRestoreJobsResultArrayOutput
+	ToGetSharedTierRestoreJobsResultArrayOutputWithContext(context.Context) GetSharedTierRestoreJobsResultArrayOutput
+}
+
+type GetSharedTierRestoreJobsResultArray []GetSharedTierRestoreJobsResultInput
+
+func (GetSharedTierRestoreJobsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedTierRestoreJobsResult)(nil)).Elem()
+}
+
+func (i GetSharedTierRestoreJobsResultArray) ToGetSharedTierRestoreJobsResultArrayOutput() GetSharedTierRestoreJobsResultArrayOutput {
+	return i.ToGetSharedTierRestoreJobsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedTierRestoreJobsResultArray) ToGetSharedTierRestoreJobsResultArrayOutputWithContext(ctx context.Context) GetSharedTierRestoreJobsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedTierRestoreJobsResultArrayOutput)
+}
+
+type GetSharedTierRestoreJobsResultOutput struct{ *pulumi.OutputState }
+
+func (GetSharedTierRestoreJobsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedTierRestoreJobsResult)(nil)).Elem()
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) ToGetSharedTierRestoreJobsResultOutput() GetSharedTierRestoreJobsResultOutput {
+	return o
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) ToGetSharedTierRestoreJobsResultOutputWithContext(ctx context.Context) GetSharedTierRestoreJobsResultOutput {
+	return o
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) DeliveryType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.DeliveryType }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) ExpirationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.ExpirationDate }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) JobId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.JobId }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) RestoreFinishedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.RestoreFinishedDate }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) RestoreScheduledDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.RestoreScheduledDate }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) SnapshotFinishedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.SnapshotFinishedDate }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) SnapshotUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.SnapshotUrl }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) TargetDeploymentItemName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.TargetDeploymentItemName }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierRestoreJobsResultOutput) TargetProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierRestoreJobsResult) string { return v.TargetProjectId }).(pulumi.StringOutput)
+}
+
+type GetSharedTierRestoreJobsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedTierRestoreJobsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedTierRestoreJobsResult)(nil)).Elem()
+}
+
+func (o GetSharedTierRestoreJobsResultArrayOutput) ToGetSharedTierRestoreJobsResultArrayOutput() GetSharedTierRestoreJobsResultArrayOutput {
+	return o
+}
+
+func (o GetSharedTierRestoreJobsResultArrayOutput) ToGetSharedTierRestoreJobsResultArrayOutputWithContext(ctx context.Context) GetSharedTierRestoreJobsResultArrayOutput {
+	return o
+}
+
+func (o GetSharedTierRestoreJobsResultArrayOutput) Index(i pulumi.IntInput) GetSharedTierRestoreJobsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedTierRestoreJobsResult {
+		return vs[0].([]GetSharedTierRestoreJobsResult)[vs[1].(int)]
+	}).(GetSharedTierRestoreJobsResultOutput)
+}
+
+type GetSharedTierSnapshotsResult struct {
+	Expiration     string `pulumi:"expiration"`
+	FinishTime     string `pulumi:"finishTime"`
+	MongoDbVersion string `pulumi:"mongoDbVersion"`
+	ScheduledTime  string `pulumi:"scheduledTime"`
+	SnapshotId     string `pulumi:"snapshotId"`
+	StartTime      string `pulumi:"startTime"`
+	Status         string `pulumi:"status"`
+}
+
+// GetSharedTierSnapshotsResultInput is an input type that accepts GetSharedTierSnapshotsResultArgs and GetSharedTierSnapshotsResultOutput values.
+// You can construct a concrete instance of `GetSharedTierSnapshotsResultInput` via:
+//
+//	GetSharedTierSnapshotsResultArgs{...}
+type GetSharedTierSnapshotsResultInput interface {
+	pulumi.Input
+
+	ToGetSharedTierSnapshotsResultOutput() GetSharedTierSnapshotsResultOutput
+	ToGetSharedTierSnapshotsResultOutputWithContext(context.Context) GetSharedTierSnapshotsResultOutput
+}
+
+type GetSharedTierSnapshotsResultArgs struct {
+	Expiration     pulumi.StringInput `pulumi:"expiration"`
+	FinishTime     pulumi.StringInput `pulumi:"finishTime"`
+	MongoDbVersion pulumi.StringInput `pulumi:"mongoDbVersion"`
+	ScheduledTime  pulumi.StringInput `pulumi:"scheduledTime"`
+	SnapshotId     pulumi.StringInput `pulumi:"snapshotId"`
+	StartTime      pulumi.StringInput `pulumi:"startTime"`
+	Status         pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetSharedTierSnapshotsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedTierSnapshotsResult)(nil)).Elem()
+}
+
+func (i GetSharedTierSnapshotsResultArgs) ToGetSharedTierSnapshotsResultOutput() GetSharedTierSnapshotsResultOutput {
+	return i.ToGetSharedTierSnapshotsResultOutputWithContext(context.Background())
+}
+
+func (i GetSharedTierSnapshotsResultArgs) ToGetSharedTierSnapshotsResultOutputWithContext(ctx context.Context) GetSharedTierSnapshotsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedTierSnapshotsResultOutput)
+}
+
+// GetSharedTierSnapshotsResultArrayInput is an input type that accepts GetSharedTierSnapshotsResultArray and GetSharedTierSnapshotsResultArrayOutput values.
+// You can construct a concrete instance of `GetSharedTierSnapshotsResultArrayInput` via:
+//
+//	GetSharedTierSnapshotsResultArray{ GetSharedTierSnapshotsResultArgs{...} }
+type GetSharedTierSnapshotsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetSharedTierSnapshotsResultArrayOutput() GetSharedTierSnapshotsResultArrayOutput
+	ToGetSharedTierSnapshotsResultArrayOutputWithContext(context.Context) GetSharedTierSnapshotsResultArrayOutput
+}
+
+type GetSharedTierSnapshotsResultArray []GetSharedTierSnapshotsResultInput
+
+func (GetSharedTierSnapshotsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedTierSnapshotsResult)(nil)).Elem()
+}
+
+func (i GetSharedTierSnapshotsResultArray) ToGetSharedTierSnapshotsResultArrayOutput() GetSharedTierSnapshotsResultArrayOutput {
+	return i.ToGetSharedTierSnapshotsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetSharedTierSnapshotsResultArray) ToGetSharedTierSnapshotsResultArrayOutputWithContext(ctx context.Context) GetSharedTierSnapshotsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSharedTierSnapshotsResultArrayOutput)
+}
+
+type GetSharedTierSnapshotsResultOutput struct{ *pulumi.OutputState }
+
+func (GetSharedTierSnapshotsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSharedTierSnapshotsResult)(nil)).Elem()
+}
+
+func (o GetSharedTierSnapshotsResultOutput) ToGetSharedTierSnapshotsResultOutput() GetSharedTierSnapshotsResultOutput {
+	return o
+}
+
+func (o GetSharedTierSnapshotsResultOutput) ToGetSharedTierSnapshotsResultOutputWithContext(ctx context.Context) GetSharedTierSnapshotsResultOutput {
+	return o
+}
+
+func (o GetSharedTierSnapshotsResultOutput) Expiration() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierSnapshotsResult) string { return v.Expiration }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierSnapshotsResultOutput) FinishTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierSnapshotsResult) string { return v.FinishTime }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierSnapshotsResultOutput) MongoDbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierSnapshotsResult) string { return v.MongoDbVersion }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierSnapshotsResultOutput) ScheduledTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierSnapshotsResult) string { return v.ScheduledTime }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierSnapshotsResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierSnapshotsResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierSnapshotsResultOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierSnapshotsResult) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+func (o GetSharedTierSnapshotsResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSharedTierSnapshotsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetSharedTierSnapshotsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSharedTierSnapshotsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSharedTierSnapshotsResult)(nil)).Elem()
+}
+
+func (o GetSharedTierSnapshotsResultArrayOutput) ToGetSharedTierSnapshotsResultArrayOutput() GetSharedTierSnapshotsResultArrayOutput {
+	return o
+}
+
+func (o GetSharedTierSnapshotsResultArrayOutput) ToGetSharedTierSnapshotsResultArrayOutputWithContext(ctx context.Context) GetSharedTierSnapshotsResultArrayOutput {
+	return o
+}
+
+func (o GetSharedTierSnapshotsResultArrayOutput) Index(i pulumi.IntInput) GetSharedTierSnapshotsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSharedTierSnapshotsResult {
+		return vs[0].([]GetSharedTierSnapshotsResult)[vs[1].(int)]
+	}).(GetSharedTierSnapshotsResultOutput)
+}
+
 type GetThirdPartyIntegrationsResult struct {
 	// Unique identifier of your New Relic account.
 	AccountId string `pulumi:"accountId"`
@@ -44951,12 +46244,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput)(nil)).Elem(), CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationAwsInput)(nil)).Elem(), CloudProviderAccessAuthorizationAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationAwsPtrInput)(nil)).Elem(), CloudProviderAccessAuthorizationAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationAzureInput)(nil)).Elem(), CloudProviderAccessAuthorizationAzureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationAzurePtrInput)(nil)).Elem(), CloudProviderAccessAuthorizationAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationFeatureUsageInput)(nil)).Elem(), CloudProviderAccessAuthorizationFeatureUsageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationFeatureUsageArrayInput)(nil)).Elem(), CloudProviderAccessAuthorizationFeatureUsageArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessFeatureUsageInput)(nil)).Elem(), CloudProviderAccessFeatureUsageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessFeatureUsageArrayInput)(nil)).Elem(), CloudProviderAccessFeatureUsageArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessSetupAwsConfigInput)(nil)).Elem(), CloudProviderAccessSetupAwsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessSetupAwsConfigArrayInput)(nil)).Elem(), CloudProviderAccessSetupAwsConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessSetupAzureConfigInput)(nil)).Elem(), CloudProviderAccessSetupAzureConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessSetupAzureConfigArrayInput)(nil)).Elem(), CloudProviderAccessSetupAzureConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAdvancedConfigurationInput)(nil)).Elem(), ClusterAdvancedConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAdvancedConfigurationPtrInput)(nil)).Elem(), ClusterAdvancedConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterBiConnectorConfigInput)(nil)).Elem(), ClusterBiConnectorConfigArgs{})
@@ -45073,6 +46370,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectApiKeyTypeArrayInput)(nil)).Elem(), ProjectApiKeyTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectApiKeyProjectAssignmentInput)(nil)).Elem(), ProjectApiKeyProjectAssignmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectApiKeyProjectAssignmentArrayInput)(nil)).Elem(), ProjectApiKeyProjectAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectLimitInput)(nil)).Elem(), ProjectLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectLimitArrayInput)(nil)).Elem(), ProjectLimitArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamInput)(nil)).Elem(), ProjectTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamArrayInput)(nil)).Elem(), ProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRoleInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
@@ -45215,6 +46514,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessAwsIamRoleFeatureUsageArrayInput)(nil)).Elem(), GetCloudProviderAccessAwsIamRoleFeatureUsageArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessSetupAwsConfigInput)(nil)).Elem(), GetCloudProviderAccessSetupAwsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessSetupAwsConfigArrayInput)(nil)).Elem(), GetCloudProviderAccessSetupAwsConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessSetupAzureConfigInput)(nil)).Elem(), GetCloudProviderAccessSetupAzureConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessSetupAzureConfigArrayInput)(nil)).Elem(), GetCloudProviderAccessSetupAzureConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterAdvancedConfigurationInput)(nil)).Elem(), GetClusterAdvancedConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterAdvancedConfigurationArrayInput)(nil)).Elem(), GetClusterAdvancedConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterBiConnectorConfigInput)(nil)).Elem(), GetClusterBiConnectorConfigArgs{})
@@ -45491,14 +46792,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsServiceServerlessResultArrayInput)(nil)).Elem(), GetPrivatelinkEndpointsServiceServerlessResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyTypeInput)(nil)).Elem(), GetProjectApiKeyTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyTypeArrayInput)(nil)).Elem(), GetProjectApiKeyTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyProjectAssignmentInput)(nil)).Elem(), GetProjectApiKeyProjectAssignmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyProjectAssignmentArrayInput)(nil)).Elem(), GetProjectApiKeyProjectAssignmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeysResultInput)(nil)).Elem(), GetProjectApiKeysResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeysResultArrayInput)(nil)).Elem(), GetProjectApiKeysResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeysResultProjectAssignmentInput)(nil)).Elem(), GetProjectApiKeysResultProjectAssignmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeysResultProjectAssignmentArrayInput)(nil)).Elem(), GetProjectApiKeysResultProjectAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectLimitInput)(nil)).Elem(), GetProjectLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectLimitArrayInput)(nil)).Elem(), GetProjectLimitArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectTeamInput)(nil)).Elem(), GetProjectTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectTeamArrayInput)(nil)).Elem(), GetProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultInput)(nil)).Elem(), GetProjectsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultArrayInput)(nil)).Elem(), GetProjectsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultApiKeyInput)(nil)).Elem(), GetProjectsResultApiKeyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultApiKeyArrayInput)(nil)).Elem(), GetProjectsResultApiKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultLimitInput)(nil)).Elem(), GetProjectsResultLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultLimitArrayInput)(nil)).Elem(), GetProjectsResultLimitArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamInput)(nil)).Elem(), GetProjectsResultTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamArrayInput)(nil)).Elem(), GetProjectsResultTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexSynonymInput)(nil)).Elem(), GetSearchIndexSynonymArgs{})
@@ -45513,6 +46822,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstancesResultArrayInput)(nil)).Elem(), GetServerlessInstancesResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstancesResultLinkInput)(nil)).Elem(), GetServerlessInstancesResultLinkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstancesResultLinkArrayInput)(nil)).Elem(), GetServerlessInstancesResultLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierRestoreJobsResultInput)(nil)).Elem(), GetSharedTierRestoreJobsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierRestoreJobsResultArrayInput)(nil)).Elem(), GetSharedTierRestoreJobsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultInput)(nil)).Elem(), GetSharedTierSnapshotsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultArrayInput)(nil)).Elem(), GetSharedTierSnapshotsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationOutput{})
@@ -45583,12 +46896,16 @@ func init() {
 	pulumi.RegisterOutputType(CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAwsOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAwsPtrOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAzureOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAzurePtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationFeatureUsageOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationFeatureUsageArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessFeatureUsageOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessFeatureUsageArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessSetupAwsConfigOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessSetupAwsConfigArrayOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessSetupAzureConfigOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessSetupAzureConfigArrayOutput{})
 	pulumi.RegisterOutputType(ClusterAdvancedConfigurationOutput{})
 	pulumi.RegisterOutputType(ClusterAdvancedConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(ClusterBiConnectorConfigOutput{})
@@ -45705,6 +47022,8 @@ func init() {
 	pulumi.RegisterOutputType(ProjectApiKeyTypeArrayOutput{})
 	pulumi.RegisterOutputType(ProjectApiKeyProjectAssignmentOutput{})
 	pulumi.RegisterOutputType(ProjectApiKeyProjectAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(ProjectLimitOutput{})
+	pulumi.RegisterOutputType(ProjectLimitArrayOutput{})
 	pulumi.RegisterOutputType(ProjectTeamOutput{})
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(ProviderAssumeRoleOutput{})
@@ -45847,6 +47166,8 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAwsConfigOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAwsConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAzureConfigOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAzureConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterAdvancedConfigurationOutput{})
 	pulumi.RegisterOutputType(GetClusterAdvancedConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterBiConnectorConfigOutput{})
@@ -46123,14 +47444,22 @@ func init() {
 	pulumi.RegisterOutputType(GetPrivatelinkEndpointsServiceServerlessResultArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeyTypeOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeyTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectApiKeyProjectAssignmentOutput{})
+	pulumi.RegisterOutputType(GetProjectApiKeyProjectAssignmentArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeysResultOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeysResultArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectApiKeysResultProjectAssignmentOutput{})
+	pulumi.RegisterOutputType(GetProjectApiKeysResultProjectAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectLimitOutput{})
+	pulumi.RegisterOutputType(GetProjectLimitArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultApiKeyOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultApiKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectsResultLimitOutput{})
+	pulumi.RegisterOutputType(GetProjectsResultLimitArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamArrayOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexSynonymOutput{})
@@ -46145,6 +47474,10 @@ func init() {
 	pulumi.RegisterOutputType(GetServerlessInstancesResultArrayOutput{})
 	pulumi.RegisterOutputType(GetServerlessInstancesResultLinkOutput{})
 	pulumi.RegisterOutputType(GetServerlessInstancesResultLinkArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedTierRestoreJobsResultOutput{})
+	pulumi.RegisterOutputType(GetSharedTierRestoreJobsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultOutput{})
+	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultArrayOutput{})
 }

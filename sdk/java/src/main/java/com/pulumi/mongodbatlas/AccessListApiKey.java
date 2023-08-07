@@ -97,7 +97,7 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
      * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` but not both.
      * 
      */
-    @Export(name="apiKeyId", type=String.class, parameters={})
+    @Export(name="apiKeyId", refs={String.class}, tree="[0]")
     private Output<String> apiKeyId;
 
     /**
@@ -113,7 +113,7 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
      * Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
      * 
      */
-    @Export(name="cidrBlock", type=String.class, parameters={})
+    @Export(name="cidrBlock", refs={String.class}, tree="[0]")
     private Output<String> cidrBlock;
 
     /**
@@ -127,7 +127,7 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
      * Single IP address to be added to the access list.
      * 
      */
-    @Export(name="ipAddress", type=String.class, parameters={})
+    @Export(name="ipAddress", refs={String.class}, tree="[0]")
     private Output<String> ipAddress;
 
     /**
@@ -141,7 +141,7 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      * 
      */
-    @Export(name="orgId", type=String.class, parameters={})
+    @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output<String> orgId;
 
     /**

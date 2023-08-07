@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
     public partial class ApiKey : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        /// Unique identifier for this Organization API key.
         /// </summary>
         [Output("apiKeyId")]
         public Output<string> ApiKeyId { get; private set; } = null!;
@@ -138,7 +138,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class ApiKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        /// Unique identifier for this Organization API key.
         /// </summary>
         [Input("apiKeyId")]
         public Input<string>? ApiKeyId { get; set; }

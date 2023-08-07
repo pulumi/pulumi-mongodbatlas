@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var user = new Mongodbatlas.DatabaseUser("user", new()
     ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProjectId = "64b926dd56206839b1c8bae9",
     ///         Username = "myUsername",
     ///         X509Type = "MANAGED",
     ///         DatabaseName = "$external",
@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+    /// ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -96,6 +96,31 @@ namespace Pulumi.Mongodbatlas
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///     });
     /// 
+    ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+    ///     {
+    ///         DatabaseName = "$external",
+    ///         Labels = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+    ///             {
+    ///                 Key = "My Key",
+    ///                 Value = "My Value",
+    ///             },
+    ///         },
+    ///         ProjectId = "64b926dd56206839b1c8bae9",
+    ///         Roles = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///             {
+    ///                 DatabaseName = "admin",
+    ///                 RoleName = "atlasAdmin",
+    ///             },
+    ///         },
+    ///         Username = "myUsername",
+    ///         X509Type = "CUSTOMER",
+    ///     });
+    /// 
+    ///     // Make sure to set x509_type = "CUSTOMER"
     /// });
     /// ```
     /// 

@@ -5,13 +5,24 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class CloudProviderAccessSetupArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final CloudProviderAccessSetupArgs Empty = new CloudProviderAccessSetupArgs();
+
+    @Import(name="azureConfigs")
+    private @Nullable Output<List<CloudProviderAccessSetupAzureConfigArgs>> azureConfigs;
+
+    public Optional<Output<List<CloudProviderAccessSetupAzureConfigArgs>>> azureConfigs() {
+        return Optional.ofNullable(this.azureConfigs);
+    }
 
     @Import(name="projectId", required=true)
     private Output<String> projectId;
@@ -30,6 +41,7 @@ public final class CloudProviderAccessSetupArgs extends com.pulumi.resources.Res
     private CloudProviderAccessSetupArgs() {}
 
     private CloudProviderAccessSetupArgs(CloudProviderAccessSetupArgs $) {
+        this.azureConfigs = $.azureConfigs;
         this.projectId = $.projectId;
         this.providerName = $.providerName;
     }
@@ -50,6 +62,19 @@ public final class CloudProviderAccessSetupArgs extends com.pulumi.resources.Res
 
         public Builder(CloudProviderAccessSetupArgs defaults) {
             $ = new CloudProviderAccessSetupArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder azureConfigs(@Nullable Output<List<CloudProviderAccessSetupAzureConfigArgs>> azureConfigs) {
+            $.azureConfigs = azureConfigs;
+            return this;
+        }
+
+        public Builder azureConfigs(List<CloudProviderAccessSetupAzureConfigArgs> azureConfigs) {
+            return azureConfigs(Output.of(azureConfigs));
+        }
+
+        public Builder azureConfigs(CloudProviderAccessSetupAzureConfigArgs... azureConfigs) {
+            return azureConfigs(List.of(azureConfigs));
         }
 
         public Builder projectId(Output<String> projectId) {

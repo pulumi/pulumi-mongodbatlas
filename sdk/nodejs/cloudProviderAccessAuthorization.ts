@@ -36,6 +36,7 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
 
     public /*out*/ readonly authorizedDate!: pulumi.Output<string>;
     public readonly aws!: pulumi.Output<outputs.CloudProviderAccessAuthorizationAws | undefined>;
+    public readonly azure!: pulumi.Output<outputs.CloudProviderAccessAuthorizationAzure | undefined>;
     public /*out*/ readonly featureUsages!: pulumi.Output<outputs.CloudProviderAccessAuthorizationFeatureUsage[]>;
     public readonly projectId!: pulumi.Output<string>;
     public readonly roleId!: pulumi.Output<string>;
@@ -55,6 +56,7 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
             const state = argsOrState as CloudProviderAccessAuthorizationState | undefined;
             resourceInputs["authorizedDate"] = state ? state.authorizedDate : undefined;
             resourceInputs["aws"] = state ? state.aws : undefined;
+            resourceInputs["azure"] = state ? state.azure : undefined;
             resourceInputs["featureUsages"] = state ? state.featureUsages : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["roleId"] = state ? state.roleId : undefined;
@@ -67,6 +69,7 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
                 throw new Error("Missing required property 'roleId'");
             }
             resourceInputs["aws"] = args ? args.aws : undefined;
+            resourceInputs["azure"] = args ? args.azure : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["roleId"] = args ? args.roleId : undefined;
             resourceInputs["authorizedDate"] = undefined /*out*/;
@@ -83,6 +86,7 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
 export interface CloudProviderAccessAuthorizationState {
     authorizedDate?: pulumi.Input<string>;
     aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
+    azure?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAzure>;
     featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationFeatureUsage>[]>;
     projectId?: pulumi.Input<string>;
     roleId?: pulumi.Input<string>;
@@ -93,6 +97,7 @@ export interface CloudProviderAccessAuthorizationState {
  */
 export interface CloudProviderAccessAuthorizationArgs {
     aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
+    azure?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAzure>;
     projectId: pulumi.Input<string>;
     roleId: pulumi.Input<string>;
 }

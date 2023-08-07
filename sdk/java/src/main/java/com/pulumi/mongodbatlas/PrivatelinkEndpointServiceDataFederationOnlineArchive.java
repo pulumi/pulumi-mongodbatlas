@@ -15,6 +15,49 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Project;
+ * import com.pulumi.mongodbatlas.ProjectArgs;
+ * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+ * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
+ *             .orgId(var_.atlas_org_id())
+ *             .build());
+ * 
+ *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+ *             .projectId(atlas_project.id())
+ *             .endpointId(&#34;&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .comment(&#34;Test&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * Private Endpoint Service resource for Data Federation and Online Archive can be imported using project ID, endpoint ID, in the format `project_id`--`endpoint_id`, e.g.
@@ -32,7 +75,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * Human-readable string to associate with this private endpoint.
      * 
      */
-    @Export(name="comment", type=String.class, parameters={})
+    @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
     /**
@@ -46,7 +89,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
      * 
      */
-    @Export(name="endpointId", type=String.class, parameters={})
+    @Export(name="endpointId", refs={String.class}, tree="[0]")
     private Output<String> endpointId;
 
     /**
@@ -60,7 +103,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -74,7 +117,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * Human-readable label that identifies the cloud service provider.
      * 
      */
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
@@ -88,7 +131,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * Human-readable label that identifies the resource type associated with this private endpoint.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

@@ -95,7 +95,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      * Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -109,7 +109,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      * Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
      * 
      */
-    @Export(name="expiresAt", type=String.class, parameters={})
+    @Export(name="expiresAt", refs={String.class}, tree="[0]")
     private Output<String> expiresAt;
 
     /**
@@ -123,7 +123,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      * Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
      * 
      */
-    @Export(name="invitationId", type=String.class, parameters={})
+    @Export(name="invitationId", refs={String.class}, tree="[0]")
     private Output<String> invitationId;
 
     /**
@@ -137,7 +137,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      * Atlas user who invited `username` to the project.
      * 
      */
-    @Export(name="inviterUsername", type=String.class, parameters={})
+    @Export(name="inviterUsername", refs={String.class}, tree="[0]")
     private Output<String> inviterUsername;
 
     /**
@@ -151,7 +151,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -165,7 +165,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      * 
      */
-    @Export(name="roles", type=List.class, parameters={String.class})
+    @Export(name="roles", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roles;
 
     /**
@@ -179,7 +179,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      * Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**

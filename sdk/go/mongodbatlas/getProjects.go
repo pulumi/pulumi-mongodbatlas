@@ -58,6 +58,12 @@ import (
 //						},
 //					},
 //				},
+//				Limits: mongodbatlas.ProjectLimitArray{
+//					&mongodbatlas.ProjectLimitArgs{
+//						Name:  pulumi.String("atlas.project.deployment.clusters"),
+//						Value: pulumi.Int(26),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err

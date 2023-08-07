@@ -215,6 +215,9 @@
                     "aws": {
                         "maxItemsOne": true
                     },
+                    "azure": {
+                        "maxItemsOne": true
+                    },
                     "feature_usages": {
                         "maxItemsOne": false
                     }
@@ -225,6 +228,9 @@
                 "majorVersion": 3,
                 "fields": {
                     "aws_config": {
+                        "maxItemsOne": false
+                    },
+                    "azure_config": {
                         "maxItemsOne": false
                     }
                 }
@@ -711,6 +717,9 @@
                                 }
                             }
                         }
+                    },
+                    "limits": {
+                        "maxItemsOne": false
                     },
                     "teams": {
                         "maxItemsOne": false,
@@ -1223,6 +1232,9 @@
                 "majorVersion": 3,
                 "fields": {
                     "aws_config": {
+                        "maxItemsOne": false
+                    },
+                    "azure_config": {
                         "maxItemsOne": false
                     }
                 }
@@ -2285,6 +2297,9 @@
                             }
                         }
                     },
+                    "limits": {
+                        "maxItemsOne": false
+                    },
                     "teams": {
                         "maxItemsOne": false,
                         "elem": {
@@ -2301,6 +2316,16 @@
                 "current": "mongodbatlas:index/getProjectApiKey:getProjectApiKey",
                 "majorVersion": 3,
                 "fields": {
+                    "project_assignment": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "role_names": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "role_names": {
                         "maxItemsOne": false
                     }
@@ -2314,6 +2339,16 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "project_assignment": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "role_names": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
                                 "role_names": {
                                     "maxItemsOne": false
                                 }
@@ -2352,6 +2387,9 @@
                                             }
                                         }
                                     }
+                                },
+                                "limits": {
+                                    "maxItemsOne": false
                                 },
                                 "teams": {
                                     "maxItemsOne": false,
@@ -2425,6 +2463,32 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "mongodbatlas_shared_tier_restore_job": {
+                "current": "mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob",
+                "majorVersion": 3
+            },
+            "mongodbatlas_shared_tier_restore_jobs": {
+                "current": "mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_shared_tier_snapshot": {
+                "current": "mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot",
+                "majorVersion": 3
+            },
+            "mongodbatlas_shared_tier_snapshots": {
+                "current": "mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2610,6 +2674,10 @@
             "mongodbatlas:index/getSearchIndexes:getSearchIndexes": "mongodbatlas_search_indexes",
             "mongodbatlas:index/getServerlessInstance:getServerlessInstance": "mongodbatlas_serverless_instance",
             "mongodbatlas:index/getServerlessInstances:getServerlessInstances": "mongodbatlas_serverless_instances",
+            "mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob": "mongodbatlas_shared_tier_restore_job",
+            "mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs": "mongodbatlas_shared_tier_restore_jobs",
+            "mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot": "mongodbatlas_shared_tier_snapshot",
+            "mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots": "mongodbatlas_shared_tier_snapshots",
             "mongodbatlas:index/getTeam:getTeam": "mongodbatlas_team",
             "mongodbatlas:index/getTeams:getTeams": "mongodbatlas_teams",
             "mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration": "mongodbatlas_third_party_integration",
@@ -2820,6 +2888,11 @@
             "mongodbatlas:index/CloudProviderAccessAuthorizationAws:CloudProviderAccessAuthorizationAws": {
                 "iamAssumedRoleArn": "iam_assumed_role_arn"
             },
+            "mongodbatlas:index/CloudProviderAccessAuthorizationAzure:CloudProviderAccessAuthorizationAzure": {
+                "atlasAzureAppId": "atlas_azure_app_id",
+                "servicePrincipalId": "service_principal_id",
+                "tenantId": "tenant_id"
+            },
             "mongodbatlas:index/CloudProviderAccessAuthorizationFeatureUsage:CloudProviderAccessAuthorizationFeatureUsage": {
                 "featureId": "feature_id",
                 "featureType": "feature_type"
@@ -2831,6 +2904,11 @@
             "mongodbatlas:index/CloudProviderAccessSetupAwsConfig:CloudProviderAccessSetupAwsConfig": {
                 "atlasAssumedRoleExternalId": "atlas_assumed_role_external_id",
                 "atlasAwsAccountArn": "atlas_aws_account_arn"
+            },
+            "mongodbatlas:index/CloudProviderAccessSetupAzureConfig:CloudProviderAccessSetupAzureConfig": {
+                "atlasAzureAppId": "atlas_azure_app_id",
+                "servicePrincipalId": "service_principal_id",
+                "tenantId": "tenant_id"
             },
             "mongodbatlas:index/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration": {
                 "defaultReadConcern": "default_read_concern",
@@ -3071,6 +3149,11 @@
                 "projectId": "project_id",
                 "roleNames": "role_names"
             },
+            "mongodbatlas:index/ProjectLimit:ProjectLimit": {
+                "currentUsage": "current_usage",
+                "defaultLimit": "default_limit",
+                "maximumLimit": "maximum_limit"
+            },
             "mongodbatlas:index/ProjectTeam:ProjectTeam": {
                 "roleNames": "role_names",
                 "teamId": "team_id"
@@ -3242,7 +3325,9 @@
             },
             "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup": {
                 "awsConfigs": "aws_config",
+                "azureConfigs": "azure_config",
                 "createdDate": "created_date",
+                "lastUpdatedDate": "last_updated_date",
                 "projectId": "project_id",
                 "providerName": "provider_name",
                 "roleId": "role_id"
@@ -3991,7 +4076,9 @@
             },
             "mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup": {
                 "awsConfigs": "aws_config",
+                "azureConfigs": "azure_config",
                 "createdDate": "created_date",
+                "lastUpdatedDate": "last_updated_date",
                 "projectId": "project_id",
                 "providerName": "provider_name",
                 "roleId": "role_id"
@@ -3999,6 +4086,11 @@
             "mongodbatlas:index/getCloudProviderAccessSetupAwsConfig:getCloudProviderAccessSetupAwsConfig": {
                 "atlasAssumedRoleExternalId": "atlas_assumed_role_external_id",
                 "atlasAwsAccountArn": "atlas_aws_account_arn"
+            },
+            "mongodbatlas:index/getCloudProviderAccessSetupAzureConfig:getCloudProviderAccessSetupAzureConfig": {
+                "atlasAzureAppId": "atlas_azure_app_id",
+                "servicePrincipalId": "service_principal_id",
+                "tenantId": "tenant_id"
             },
             "mongodbatlas:index/getCluster:getCluster": {
                 "advancedConfigurations": "advanced_configuration",
@@ -5077,8 +5169,13 @@
             "mongodbatlas:index/getProjectApiKey:getProjectApiKey": {
                 "apiKeyId": "api_key_id",
                 "privateKey": "private_key",
+                "projectAssignments": "project_assignment",
                 "projectId": "project_id",
                 "publicKey": "public_key",
+                "roleNames": "role_names"
+            },
+            "mongodbatlas:index/getProjectApiKeyProjectAssignment:getProjectApiKeyProjectAssignment": {
+                "projectId": "project_id",
                 "roleNames": "role_names"
             },
             "mongodbatlas:index/getProjectApiKeys:getProjectApiKeys": {
@@ -5089,7 +5186,12 @@
             "mongodbatlas:index/getProjectApiKeysResult:getProjectApiKeysResult": {
                 "apiKeyId": "api_key_id",
                 "privateKey": "private_key",
+                "projectAssignments": "project_assignment",
                 "publicKey": "public_key",
+                "roleNames": "role_names"
+            },
+            "mongodbatlas:index/getProjectApiKeysResultProjectAssignment:getProjectApiKeysResultProjectAssignment": {
+                "projectId": "project_id",
                 "roleNames": "role_names"
             },
             "mongodbatlas:index/getProjectInvitation:getProjectInvitation": {
@@ -5104,6 +5206,11 @@
                 "cidrBlock": "cidr_block",
                 "ipAddress": "ip_address",
                 "projectId": "project_id"
+            },
+            "mongodbatlas:index/getProjectLimit:getProjectLimit": {
+                "currentUsage": "current_usage",
+                "defaultLimit": "default_limit",
+                "maximumLimit": "maximum_limit"
             },
             "mongodbatlas:index/getProjectTeam:getProjectTeam": {
                 "roleNames": "role_names",
@@ -5129,6 +5236,11 @@
             "mongodbatlas:index/getProjectsResultApiKey:getProjectsResultApiKey": {
                 "apiKeyId": "api_key_id",
                 "roleNames": "role_names"
+            },
+            "mongodbatlas:index/getProjectsResultLimit:getProjectsResultLimit": {
+                "currentUsage": "current_usage",
+                "defaultLimit": "default_limit",
+                "maximumLimit": "maximum_limit"
             },
             "mongodbatlas:index/getProjectsResultTeam:getProjectsResultTeam": {
                 "roleNames": "role_names",
@@ -5198,6 +5310,58 @@
                 "providerSettingsRegionName": "provider_settings_region_name",
                 "stateName": "state_name",
                 "terminationProtectionEnabled": "termination_protection_enabled"
+            },
+            "mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob": {
+                "clusterName": "cluster_name",
+                "deliveryType": "delivery_type",
+                "expirationDate": "expiration_date",
+                "jobId": "job_id",
+                "projectId": "project_id",
+                "restoreFinishedDate": "restore_finished_date",
+                "restoreScheduledDate": "restore_scheduled_date",
+                "snapshotFinishedDate": "snapshot_finished_date",
+                "snapshotId": "snapshot_id",
+                "snapshotUrl": "snapshot_url",
+                "targetDeploymentItemName": "target_deployment_item_name",
+                "targetProjectId": "target_project_id"
+            },
+            "mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs": {
+                "clusterName": "cluster_name",
+                "projectId": "project_id",
+                "totalCount": "total_count"
+            },
+            "mongodbatlas:index/getSharedTierRestoreJobsResult:getSharedTierRestoreJobsResult": {
+                "deliveryType": "delivery_type",
+                "expirationDate": "expiration_date",
+                "jobId": "job_id",
+                "restoreFinishedDate": "restore_finished_date",
+                "restoreScheduledDate": "restore_scheduled_date",
+                "snapshotFinishedDate": "snapshot_finished_date",
+                "snapshotId": "snapshot_id",
+                "snapshotUrl": "snapshot_url",
+                "targetDeploymentItemName": "target_deployment_item_name",
+                "targetProjectId": "target_project_id"
+            },
+            "mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot": {
+                "clusterName": "cluster_name",
+                "finishTime": "finish_time",
+                "mongoDbVersion": "mongo_db_version",
+                "projectId": "project_id",
+                "scheduledTime": "scheduled_time",
+                "snapshotId": "snapshot_id",
+                "startTime": "start_time"
+            },
+            "mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots": {
+                "clusterName": "cluster_name",
+                "projectId": "project_id",
+                "totalCount": "total_count"
+            },
+            "mongodbatlas:index/getSharedTierSnapshotsResult:getSharedTierSnapshotsResult": {
+                "finishTime": "finish_time",
+                "mongoDbVersion": "mongo_db_version",
+                "scheduledTime": "scheduled_time",
+                "snapshotId": "snapshot_id",
+                "startTime": "start_time"
             },
             "mongodbatlas:index/getTeam:getTeam": {
                 "orgId": "org_id",

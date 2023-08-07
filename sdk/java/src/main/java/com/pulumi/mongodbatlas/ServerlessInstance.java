@@ -34,7 +34,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * List of Serverless Private Endpoint Connections
      * 
      */
-    @Export(name="connectionStringsPrivateEndpointSrvs", type=List.class, parameters={String.class})
+    @Export(name="connectionStringsPrivateEndpointSrvs", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> connectionStringsPrivateEndpointSrvs;
 
     /**
@@ -48,7 +48,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      * 
      */
-    @Export(name="connectionStringsStandardSrv", type=String.class, parameters={})
+    @Export(name="connectionStringsStandardSrv", refs={String.class}, tree="[0]")
     private Output<String> connectionStringsStandardSrv;
 
     /**
@@ -62,7 +62,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
      * 
      */
-    @Export(name="continuousBackupEnabled", type=Boolean.class, parameters={})
+    @Export(name="continuousBackupEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> continuousBackupEnabled;
 
     /**
@@ -76,7 +76,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
      * 
      */
-    @Export(name="createDate", type=String.class, parameters={})
+    @Export(name="createDate", refs={String.class}, tree="[0]")
     private Output<String> createDate;
 
     /**
@@ -86,7 +86,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
     public Output<String> createDate() {
         return this.createDate;
     }
-    @Export(name="links", type=List.class, parameters={ServerlessInstanceLink.class})
+    @Export(name="links", refs={List.class,ServerlessInstanceLink.class}, tree="[0,1]")
     private Output<List<ServerlessInstanceLink>> links;
 
     public Output<List<ServerlessInstanceLink>> links() {
@@ -96,7 +96,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * Version of MongoDB that the serverless instance runs, in `&lt;major version&gt;`.`&lt;minor version&gt;` format.
      * 
      */
-    @Export(name="mongoDbVersion", type=String.class, parameters={})
+    @Export(name="mongoDbVersion", refs={String.class}, tree="[0]")
     private Output<String> mongoDbVersion;
 
     /**
@@ -110,7 +110,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * Human-readable label that identifies the serverless instance.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -124,7 +124,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * The ID of the organization or project you want to create the serverless instance within.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -138,7 +138,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
      * 
      */
-    @Export(name="providerSettingsBackingProviderName", type=String.class, parameters={})
+    @Export(name="providerSettingsBackingProviderName", refs={String.class}, tree="[0]")
     private Output<String> providerSettingsBackingProviderName;
 
     /**
@@ -152,7 +152,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * Cloud service provider that applies to the provisioned the serverless instance.
      * 
      */
-    @Export(name="providerSettingsProviderName", type=String.class, parameters={})
+    @Export(name="providerSettingsProviderName", refs={String.class}, tree="[0]")
     private Output<String> providerSettingsProviderName;
 
     /**
@@ -166,7 +166,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
      * 
      */
-    @Export(name="providerSettingsRegionName", type=String.class, parameters={})
+    @Export(name="providerSettingsRegionName", refs={String.class}, tree="[0]")
     private Output<String> providerSettingsRegionName;
 
     /**
@@ -180,7 +180,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * Stage of deployment of this serverless instance when the resource made its request.
      * 
      */
-    @Export(name="stateName", type=String.class, parameters={})
+    @Export(name="stateName", refs={String.class}, tree="[0]")
     private Output<String> stateName;
 
     /**
@@ -194,7 +194,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
-    @Export(name="terminationProtectionEnabled", type=Boolean.class, parameters={})
+    @Export(name="terminationProtectionEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> terminationProtectionEnabled;
 
     /**

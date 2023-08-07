@@ -79,7 +79,7 @@ public class PrivatelinkEndpointServerless extends com.pulumi.resources.CustomRe
      * Unique 24-hexadecimal digit string that identifies the private endpoint.
      * 
      */
-    @Export(name="endpointId", type=String.class, parameters={})
+    @Export(name="endpointId", refs={String.class}, tree="[0]")
     private Output<String> endpointId;
 
     /**
@@ -93,7 +93,7 @@ public class PrivatelinkEndpointServerless extends com.pulumi.resources.CustomRe
      * Unique string that identifies the PrivateLink endpoint service.
      * 
      */
-    @Export(name="endpointServiceName", type=String.class, parameters={})
+    @Export(name="endpointServiceName", refs={String.class}, tree="[0]")
     private Output<String> endpointServiceName;
 
     /**
@@ -107,7 +107,7 @@ public class PrivatelinkEndpointServerless extends com.pulumi.resources.CustomRe
      * Human-readable label that identifies the serverless instance.
      * 
      */
-    @Export(name="instanceName", type=String.class, parameters={})
+    @Export(name="instanceName", refs={String.class}, tree="[0]")
     private Output<String> instanceName;
 
     /**
@@ -121,7 +121,7 @@ public class PrivatelinkEndpointServerless extends com.pulumi.resources.CustomRe
      * Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
      * 
      */
-    @Export(name="privateLinkServiceResourceId", type=String.class, parameters={})
+    @Export(name="privateLinkServiceResourceId", refs={String.class}, tree="[0]")
     private Output<String> privateLinkServiceResourceId;
 
     /**
@@ -135,7 +135,7 @@ public class PrivatelinkEndpointServerless extends com.pulumi.resources.CustomRe
      * Unique 24-digit hexadecimal string that identifies the project.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -149,7 +149,7 @@ public class PrivatelinkEndpointServerless extends com.pulumi.resources.CustomRe
      * Cloud provider name; AWS is currently supported
      * 
      */
-    @Export(name="providerName", type=String.class, parameters={})
+    @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
@@ -163,7 +163,7 @@ public class PrivatelinkEndpointServerless extends com.pulumi.resources.CustomRe
      * Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

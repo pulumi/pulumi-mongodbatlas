@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetProjectApiKeyResult',
@@ -21,7 +22,7 @@ class GetProjectApiKeyResult:
     """
     A collection of values returned by getProjectApiKey.
     """
-    def __init__(__self__, api_key_id=None, description=None, id=None, private_key=None, project_id=None, public_key=None, role_names=None):
+    def __init__(__self__, api_key_id=None, description=None, id=None, private_key=None, project_assignments=None, project_id=None, public_key=None, role_names=None):
         if api_key_id and not isinstance(api_key_id, str):
             raise TypeError("Expected argument 'api_key_id' to be a str")
         pulumi.set(__self__, "api_key_id", api_key_id)
@@ -34,6 +35,9 @@ class GetProjectApiKeyResult:
         if private_key and not isinstance(private_key, str):
             raise TypeError("Expected argument 'private_key' to be a str")
         pulumi.set(__self__, "private_key", private_key)
+        if project_assignments and not isinstance(project_assignments, list):
+            raise TypeError("Expected argument 'project_assignments' to be a list")
+        pulumi.set(__self__, "project_assignments", project_assignments)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -74,10 +78,15 @@ class GetProjectApiKeyResult:
         return pulumi.get(self, "private_key")
 
     @property
+    @pulumi.getter(name="projectAssignments")
+    def project_assignments(self) -> Sequence['outputs.GetProjectApiKeyProjectAssignmentResult']:
+        return pulumi.get(self, "project_assignments")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Project ID to assign to Access Key
         """
         return pulumi.get(self, "project_id")
 
@@ -93,9 +102,11 @@ class GetProjectApiKeyResult:
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
         """
-        Name of the role. This resource returns all the roles the user has in Atlas.
-        The following are valid roles:
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
+        pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
+
         return pulumi.get(self, "role_names")
 
 
@@ -109,6 +120,7 @@ class AwaitableGetProjectApiKeyResult(GetProjectApiKeyResult):
             description=self.description,
             id=self.id,
             private_key=self.private_key,
+            project_assignments=self.project_assignments,
             project_id=self.project_id,
             public_key=self.public_key,
             role_names=self.role_names)
@@ -134,6 +146,7 @@ def get_project_api_key(api_key_id: Optional[str] = None,
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         private_key=pulumi.get(__ret__, 'private_key'),
+        project_assignments=pulumi.get(__ret__, 'project_assignments'),
         project_id=pulumi.get(__ret__, 'project_id'),
         public_key=pulumi.get(__ret__, 'public_key'),
         role_names=pulumi.get(__ret__, 'role_names'))

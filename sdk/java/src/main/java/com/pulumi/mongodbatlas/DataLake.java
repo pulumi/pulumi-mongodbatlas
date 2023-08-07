@@ -94,7 +94,7 @@ public class DataLake extends com.pulumi.resources.CustomResource {
      * * `aws.0.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `aws.0.role_id`.
      * 
      */
-    @Export(name="aws", type=DataLakeAws.class, parameters={})
+    @Export(name="aws", refs={DataLakeAws.class}, tree="[0]")
     private Output<DataLakeAws> aws;
 
     /**
@@ -112,7 +112,7 @@ public class DataLake extends com.pulumi.resources.CustomResource {
      * * `data_process_region.0.region` - (Required). Name of the region to which Data Lake routes client connections for data processing. Atlas Data Lake only supports the following regions:
      * 
      */
-    @Export(name="dataProcessRegion", type=DataLakeDataProcessRegion.class, parameters={})
+    @Export(name="dataProcessRegion", refs={DataLakeDataProcessRegion.class}, tree="[0]")
     private Output<DataLakeDataProcessRegion> dataProcessRegion;
 
     /**
@@ -128,7 +128,7 @@ public class DataLake extends com.pulumi.resources.CustomResource {
      * The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
      * 
      */
-    @Export(name="hostnames", type=List.class, parameters={String.class})
+    @Export(name="hostnames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> hostnames;
 
     /**
@@ -142,7 +142,7 @@ public class DataLake extends com.pulumi.resources.CustomResource {
      * Name of the Atlas Data Lake.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -156,7 +156,7 @@ public class DataLake extends com.pulumi.resources.CustomResource {
      * The unique ID for the project to create a data lake.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -170,7 +170,7 @@ public class DataLake extends com.pulumi.resources.CustomResource {
      * Current state of the Atlas Data Lake:
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
@@ -195,7 +195,7 @@ public class DataLake extends com.pulumi.resources.CustomResource {
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
      * 
      */
-    @Export(name="storageDatabases", type=List.class, parameters={DataLakeStorageDatabase.class})
+    @Export(name="storageDatabases", refs={List.class,DataLakeStorageDatabase.class}, tree="[0,1]")
     private Output<List<DataLakeStorageDatabase>> storageDatabases;
 
     /**
@@ -227,7 +227,7 @@ public class DataLake extends com.pulumi.resources.CustomResource {
      * * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
      * 
      */
-    @Export(name="storageStores", type=List.class, parameters={DataLakeStorageStore.class})
+    @Export(name="storageStores", refs={List.class,DataLakeStorageStore.class}, tree="[0,1]")
     private Output<List<DataLakeStorageStore>> storageStores;
 
     /**

@@ -171,13 +171,13 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance")
 public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResource {
-    @Export(name="cloudProviderConfig", type=FederatedDatabaseInstanceCloudProviderConfig.class, parameters={})
+    @Export(name="cloudProviderConfig", refs={FederatedDatabaseInstanceCloudProviderConfig.class}, tree="[0]")
     private Output</* @Nullable */ FederatedDatabaseInstanceCloudProviderConfig> cloudProviderConfig;
 
     public Output<Optional<FederatedDatabaseInstanceCloudProviderConfig>> cloudProviderConfig() {
         return Codegen.optional(this.cloudProviderConfig);
     }
-    @Export(name="dataProcessRegion", type=FederatedDatabaseInstanceDataProcessRegion.class, parameters={})
+    @Export(name="dataProcessRegion", refs={FederatedDatabaseInstanceDataProcessRegion.class}, tree="[0]")
     private Output</* @Nullable */ FederatedDatabaseInstanceDataProcessRegion> dataProcessRegion;
 
     public Output<Optional<FederatedDatabaseInstanceDataProcessRegion>> dataProcessRegion() {
@@ -187,7 +187,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
      * 
      */
-    @Export(name="hostnames", type=List.class, parameters={String.class})
+    @Export(name="hostnames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> hostnames;
 
     /**
@@ -203,7 +203,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -219,7 +219,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * The unique ID for the project to create a Federated Database Instance.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -233,7 +233,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * Current state of the Federated Database Instance:
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
@@ -266,7 +266,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
      * 
      */
-    @Export(name="storageDatabases", type=List.class, parameters={FederatedDatabaseInstanceStorageDatabase.class})
+    @Export(name="storageDatabases", refs={List.class,FederatedDatabaseInstanceStorageDatabase.class}, tree="[0,1]")
     private Output</* @Nullable */ List<FederatedDatabaseInstanceStorageDatabase>> storageDatabases;
 
     /**
@@ -318,7 +318,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
      * 
      */
-    @Export(name="storageStores", type=List.class, parameters={FederatedDatabaseInstanceStorageStore.class})
+    @Export(name="storageStores", refs={List.class,FederatedDatabaseInstanceStorageStore.class}, tree="[0,1]")
     private Output<List<FederatedDatabaseInstanceStorageStore>> storageStores;
 
     /**

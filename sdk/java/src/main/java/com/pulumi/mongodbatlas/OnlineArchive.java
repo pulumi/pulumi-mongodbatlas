@@ -138,7 +138,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * ID of the online archive.
      * 
      */
-    @Export(name="archiveId", type=String.class, parameters={})
+    @Export(name="archiveId", refs={String.class}, tree="[0]")
     private Output<String> archiveId;
 
     /**
@@ -152,7 +152,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * Name of the cluster that contains the collection.
      * 
      */
-    @Export(name="clusterName", type=String.class, parameters={})
+    @Export(name="clusterName", refs={String.class}, tree="[0]")
     private Output<String> clusterName;
 
     /**
@@ -166,7 +166,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * Name of the collection.
      * 
      */
-    @Export(name="collName", type=String.class, parameters={})
+    @Export(name="collName", refs={String.class}, tree="[0]")
     private Output<String> collName;
 
     /**
@@ -180,7 +180,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * 
      */
-    @Export(name="collectionType", type=String.class, parameters={})
+    @Export(name="collectionType", refs={String.class}, tree="[0]")
     private Output<String> collectionType;
 
     /**
@@ -194,7 +194,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * Criteria to use for archiving data.
      * 
      */
-    @Export(name="criteria", type=OnlineArchiveCriteria.class, parameters={})
+    @Export(name="criteria", refs={OnlineArchiveCriteria.class}, tree="[0]")
     private Output<OnlineArchiveCriteria> criteria;
 
     /**
@@ -208,7 +208,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * Name of the database that contains the collection.
      * 
      */
-    @Export(name="dbName", type=String.class, parameters={})
+    @Export(name="dbName", refs={String.class}, tree="[0]")
     private Output<String> dbName;
 
     /**
@@ -222,7 +222,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
      * 
      */
-    @Export(name="partitionFields", type=List.class, parameters={OnlineArchivePartitionField.class})
+    @Export(name="partitionFields", refs={List.class,OnlineArchivePartitionField.class}, tree="[0,1]")
     private Output<List<OnlineArchivePartitionField>> partitionFields;
 
     /**
@@ -236,7 +236,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
      * 
      */
-    @Export(name="paused", type=Boolean.class, parameters={})
+    @Export(name="paused", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> paused;
 
     /**
@@ -250,7 +250,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * The unique ID for the project
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -260,7 +260,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
     public Output<String> projectId() {
         return this.projectId;
     }
-    @Export(name="schedule", type=OnlineArchiveSchedule.class, parameters={})
+    @Export(name="schedule", refs={OnlineArchiveSchedule.class}, tree="[0]")
     private Output</* @Nullable */ OnlineArchiveSchedule> schedule;
 
     public Output<Optional<OnlineArchiveSchedule>> schedule() {
@@ -270,7 +270,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
@@ -280,7 +280,7 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
     public Output<String> state() {
         return this.state;
     }
-    @Export(name="syncCreation", type=Boolean.class, parameters={})
+    @Export(name="syncCreation", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> syncCreation;
 
     public Output<Optional<Boolean>> syncCreation() {

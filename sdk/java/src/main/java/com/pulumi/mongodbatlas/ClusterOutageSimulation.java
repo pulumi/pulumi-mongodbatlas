@@ -82,7 +82,7 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
      * Name of the Atlas Cluster that is/will undergoing outage simulation.
      * 
      */
-    @Export(name="clusterName", type=String.class, parameters={})
+    @Export(name="clusterName", refs={String.class}, tree="[0]")
     private Output<String> clusterName;
 
     /**
@@ -96,7 +96,7 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
      * List of settings that specify the type of cluster outage simulation.
      * 
      */
-    @Export(name="outageFilters", type=List.class, parameters={ClusterOutageSimulationOutageFilter.class})
+    @Export(name="outageFilters", refs={List.class,ClusterOutageSimulationOutageFilter.class}, tree="[0,1]")
     private Output<List<ClusterOutageSimulationOutageFilter>> outageFilters;
 
     /**
@@ -110,7 +110,7 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
      * The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -124,7 +124,7 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
      * Unique 24-hexadecimal character string that identifies the outage simulation.
      * 
      */
-    @Export(name="simulationId", type=String.class, parameters={})
+    @Export(name="simulationId", refs={String.class}, tree="[0]")
     private Output<String> simulationId;
 
     /**
@@ -138,7 +138,7 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
      * Date and time when MongoDB Cloud started the regional outage simulation.
      * 
      */
-    @Export(name="startRequestDate", type=String.class, parameters={})
+    @Export(name="startRequestDate", refs={String.class}, tree="[0]")
     private Output<String> startRequestDate;
 
     /**
@@ -152,7 +152,7 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
      * Current phase of the outage simulation:
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
