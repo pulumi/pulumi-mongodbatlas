@@ -263,6 +263,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"mongodbatlas_serverless_instance":  {Tok: makeDataSource(mainMod, "getServerlessInstance")},
 			"mongodbatlas_serverless_instances": {Tok: makeDataSource(mainMod, "getServerlessInstances")},
+
+			"mongodbatlas_shared_tier_restore_job":  {Docs: noUpstreamDocs},
+			"mongodbatlas_shared_tier_restore_jobs": {Docs: noUpstreamDocs},
+			"mongodbatlas_shared_tier_snapshot":     {Docs: noUpstreamDocs},
+			"mongodbatlas_shared_tier_snapshots":    {Docs: noUpstreamDocs},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
