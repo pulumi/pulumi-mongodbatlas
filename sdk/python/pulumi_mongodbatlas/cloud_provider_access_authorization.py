@@ -18,7 +18,8 @@ class CloudProviderAccessAuthorizationArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[str],
                  role_id: pulumi.Input[str],
-                 aws: Optional[pulumi.Input['CloudProviderAccessAuthorizationAwsArgs']] = None):
+                 aws: Optional[pulumi.Input['CloudProviderAccessAuthorizationAwsArgs']] = None,
+                 azure: Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']] = None):
         """
         The set of arguments for constructing a CloudProviderAccessAuthorization resource.
         """
@@ -26,6 +27,8 @@ class CloudProviderAccessAuthorizationArgs:
         pulumi.set(__self__, "role_id", role_id)
         if aws is not None:
             pulumi.set(__self__, "aws", aws)
+        if azure is not None:
+            pulumi.set(__self__, "azure", azure)
 
     @property
     @pulumi.getter(name="projectId")
@@ -54,12 +57,22 @@ class CloudProviderAccessAuthorizationArgs:
     def aws(self, value: Optional[pulumi.Input['CloudProviderAccessAuthorizationAwsArgs']]):
         pulumi.set(self, "aws", value)
 
+    @property
+    @pulumi.getter
+    def azure(self) -> Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']]:
+        return pulumi.get(self, "azure")
+
+    @azure.setter
+    def azure(self, value: Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']]):
+        pulumi.set(self, "azure", value)
+
 
 @pulumi.input_type
 class _CloudProviderAccessAuthorizationState:
     def __init__(__self__, *,
                  authorized_date: Optional[pulumi.Input[str]] = None,
                  aws: Optional[pulumi.Input['CloudProviderAccessAuthorizationAwsArgs']] = None,
+                 azure: Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']] = None,
                  feature_usages: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationFeatureUsageArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None):
@@ -70,6 +83,8 @@ class _CloudProviderAccessAuthorizationState:
             pulumi.set(__self__, "authorized_date", authorized_date)
         if aws is not None:
             pulumi.set(__self__, "aws", aws)
+        if azure is not None:
+            pulumi.set(__self__, "azure", azure)
         if feature_usages is not None:
             pulumi.set(__self__, "feature_usages", feature_usages)
         if project_id is not None:
@@ -94,6 +109,15 @@ class _CloudProviderAccessAuthorizationState:
     @aws.setter
     def aws(self, value: Optional[pulumi.Input['CloudProviderAccessAuthorizationAwsArgs']]):
         pulumi.set(self, "aws", value)
+
+    @property
+    @pulumi.getter
+    def azure(self) -> Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']]:
+        return pulumi.get(self, "azure")
+
+    @azure.setter
+    def azure(self, value: Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']]):
+        pulumi.set(self, "azure", value)
 
     @property
     @pulumi.getter(name="featureUsages")
@@ -129,6 +153,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  aws: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAwsArgs']]] = None,
+                 azure: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAzureArgs']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -161,6 +186,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  aws: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAwsArgs']]] = None,
+                 azure: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAzureArgs']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -173,6 +199,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
             __props__ = CloudProviderAccessAuthorizationArgs.__new__(CloudProviderAccessAuthorizationArgs)
 
             __props__.__dict__["aws"] = aws
+            __props__.__dict__["azure"] = azure
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -193,6 +220,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             authorized_date: Optional[pulumi.Input[str]] = None,
             aws: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAwsArgs']]] = None,
+            azure: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAzureArgs']]] = None,
             feature_usages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationFeatureUsageArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             role_id: Optional[pulumi.Input[str]] = None) -> 'CloudProviderAccessAuthorization':
@@ -210,6 +238,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
 
         __props__.__dict__["authorized_date"] = authorized_date
         __props__.__dict__["aws"] = aws
+        __props__.__dict__["azure"] = azure
         __props__.__dict__["feature_usages"] = feature_usages
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["role_id"] = role_id
@@ -224,6 +253,11 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
     @pulumi.getter
     def aws(self) -> pulumi.Output[Optional['outputs.CloudProviderAccessAuthorizationAws']]:
         return pulumi.get(self, "aws")
+
+    @property
+    @pulumi.getter
+    def azure(self) -> pulumi.Output[Optional['outputs.CloudProviderAccessAuthorizationAzure']]:
+        return pulumi.get(self, "azure")
 
     @property
     @pulumi.getter(name="featureUsages")

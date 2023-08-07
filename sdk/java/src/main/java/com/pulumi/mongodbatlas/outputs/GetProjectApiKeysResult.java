@@ -4,9 +4,11 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.mongodbatlas.outputs.GetProjectApiKeysResultProjectAssignment;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetProjectApiKeysResult {
@@ -21,12 +23,18 @@ public final class GetProjectApiKeysResult {
      */
     private String description;
     private String privateKey;
+    private @Nullable List<GetProjectApiKeysResultProjectAssignment> projectAssignments;
     private String publicKey;
     /**
-     * @return Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * @return Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+     * 
+     * See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
     private List<String> roleNames;
 
     private GetProjectApiKeysResult() {}
@@ -47,14 +55,22 @@ public final class GetProjectApiKeysResult {
     public String privateKey() {
         return this.privateKey;
     }
+    public List<GetProjectApiKeysResultProjectAssignment> projectAssignments() {
+        return this.projectAssignments == null ? List.of() : this.projectAssignments;
+    }
     public String publicKey() {
         return this.publicKey;
     }
     /**
-     * @return Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * @return Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+     * 
+     * See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
     public List<String> roleNames() {
         return this.roleNames;
     }
@@ -71,6 +87,7 @@ public final class GetProjectApiKeysResult {
         private String apiKeyId;
         private String description;
         private String privateKey;
+        private @Nullable List<GetProjectApiKeysResultProjectAssignment> projectAssignments;
         private String publicKey;
         private List<String> roleNames;
         public Builder() {}
@@ -79,6 +96,7 @@ public final class GetProjectApiKeysResult {
     	      this.apiKeyId = defaults.apiKeyId;
     	      this.description = defaults.description;
     	      this.privateKey = defaults.privateKey;
+    	      this.projectAssignments = defaults.projectAssignments;
     	      this.publicKey = defaults.publicKey;
     	      this.roleNames = defaults.roleNames;
         }
@@ -99,6 +117,14 @@ public final class GetProjectApiKeysResult {
             return this;
         }
         @CustomType.Setter
+        public Builder projectAssignments(@Nullable List<GetProjectApiKeysResultProjectAssignment> projectAssignments) {
+            this.projectAssignments = projectAssignments;
+            return this;
+        }
+        public Builder projectAssignments(GetProjectApiKeysResultProjectAssignment... projectAssignments) {
+            return projectAssignments(List.of(projectAssignments));
+        }
+        @CustomType.Setter
         public Builder publicKey(String publicKey) {
             this.publicKey = Objects.requireNonNull(publicKey);
             return this;
@@ -116,6 +142,7 @@ public final class GetProjectApiKeysResult {
             o.apiKeyId = apiKeyId;
             o.description = description;
             o.privateKey = privateKey;
+            o.projectAssignments = projectAssignments;
             o.publicKey = publicKey;
             o.roleNames = roleNames;
             return o;

@@ -22,15 +22,19 @@ class ProjectApiKeyInitArgs:
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a ProjectApiKey resource.
-        :param pulumi.Input[str] description: Description of this Organization API key.
-        :param pulumi.Input[str] project_id: Project ID to assign to Access Key
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
-               The following are valid roles:
+        :param pulumi.Input[str] description: Description of this Project API key.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+               
+               > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "project_id", project_id)
         if project_assignments is not None:
             pulumi.set(__self__, "project_assignments", project_assignments)
+        if role_names is not None:
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
+            pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
         if role_names is not None:
             pulumi.set(__self__, "role_names", role_names)
 
@@ -38,7 +42,7 @@ class ProjectApiKeyInitArgs:
     @pulumi.getter
     def description(self) -> pulumi.Input[str]:
         """
-        Description of this Organization API key.
+        Description of this Project API key.
         """
         return pulumi.get(self, "description")
 
@@ -50,7 +54,7 @@ class ProjectApiKeyInitArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        Project ID to assign to Access Key
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 
@@ -71,9 +75,13 @@ class ProjectApiKeyInitArgs:
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Name of the role. This resource returns all the roles the user has in Atlas.
-        The following are valid roles:
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
+        pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
+
         return pulumi.get(self, "role_names")
 
     @role_names.setter
@@ -93,11 +101,12 @@ class _ProjectApiKeyState:
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering ProjectApiKey resources.
-        :param pulumi.Input[str] api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
-        :param pulumi.Input[str] description: Description of this Organization API key.
-        :param pulumi.Input[str] project_id: Project ID to assign to Access Key
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
-               The following are valid roles:
+        :param pulumi.Input[str] api_key_id: Unique identifier for this Project API key.
+        :param pulumi.Input[str] description: Description of this Project API key.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+               
+               > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         if api_key_id is not None:
             pulumi.set(__self__, "api_key_id", api_key_id)
@@ -112,13 +121,16 @@ class _ProjectApiKeyState:
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if role_names is not None:
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
+            pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
+        if role_names is not None:
             pulumi.set(__self__, "role_names", role_names)
 
     @property
     @pulumi.getter(name="apiKeyId")
     def api_key_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        Unique identifier for this Project API key.
         """
         return pulumi.get(self, "api_key_id")
 
@@ -130,7 +142,7 @@ class _ProjectApiKeyState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Description of this Organization API key.
+        Description of this Project API key.
         """
         return pulumi.get(self, "description")
 
@@ -160,7 +172,7 @@ class _ProjectApiKeyState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Project ID to assign to Access Key
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 
@@ -181,9 +193,13 @@ class _ProjectApiKeyState:
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Name of the role. This resource returns all the roles the user has in Atlas.
-        The following are valid roles:
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
+        pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
+
         return pulumi.get(self, "role_names")
 
     @role_names.setter
@@ -210,9 +226,32 @@ class ProjectApiKey(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.ProjectApiKey("test",
-            description="key-name",
-            project_id="<PROJECT_ID>",
+            description="Description of your API key",
+            project_id="64259ee860c43338194b0f8e",
             role_names=["GROUP_OWNER"])
+        ```
+        ### Create And Assign PAK To Multiple Projects
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectApiKey("test",
+            description="Description of your API key",
+            project_assignments=[
+                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+                    project_id="64259ee860c43338194b0f8e",
+                    role_names=[
+                        "GROUP_READ_ONLY",
+                        "GROUP_OWNER",
+                    ],
+                ),
+                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+                    project_id="74259ee860c43338194b0f8e",
+                    role_names=["GROUP_READ_ONLY"],
+                ),
+            ],
+            project_id="64259ee860c43338194b0f8e")
         ```
 
         ## Import
@@ -227,10 +266,11 @@ class ProjectApiKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description of this Organization API key.
-        :param pulumi.Input[str] project_id: Project ID to assign to Access Key
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
-               The following are valid roles:
+        :param pulumi.Input[str] description: Description of this Project API key.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+               
+               > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         ...
     @overload
@@ -247,9 +287,32 @@ class ProjectApiKey(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.ProjectApiKey("test",
-            description="key-name",
-            project_id="<PROJECT_ID>",
+            description="Description of your API key",
+            project_id="64259ee860c43338194b0f8e",
             role_names=["GROUP_OWNER"])
+        ```
+        ### Create And Assign PAK To Multiple Projects
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectApiKey("test",
+            description="Description of your API key",
+            project_assignments=[
+                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+                    project_id="64259ee860c43338194b0f8e",
+                    role_names=[
+                        "GROUP_READ_ONLY",
+                        "GROUP_OWNER",
+                    ],
+                ),
+                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+                    project_id="74259ee860c43338194b0f8e",
+                    role_names=["GROUP_READ_ONLY"],
+                ),
+            ],
+            project_id="64259ee860c43338194b0f8e")
         ```
 
         ## Import
@@ -297,6 +360,9 @@ class ProjectApiKey(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            if role_names is not None and not opts.urn:
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
+                pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
             __props__.__dict__["role_names"] = role_names
             __props__.__dict__["api_key_id"] = None
             __props__.__dict__["private_key"] = None
@@ -327,11 +393,12 @@ class ProjectApiKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
-        :param pulumi.Input[str] description: Description of this Organization API key.
-        :param pulumi.Input[str] project_id: Project ID to assign to Access Key
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
-               The following are valid roles:
+        :param pulumi.Input[str] api_key_id: Unique identifier for this Project API key.
+        :param pulumi.Input[str] description: Description of this Project API key.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+               
+               > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -350,7 +417,7 @@ class ProjectApiKey(pulumi.CustomResource):
     @pulumi.getter(name="apiKeyId")
     def api_key_id(self) -> pulumi.Output[str]:
         """
-        The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        Unique identifier for this Project API key.
         """
         return pulumi.get(self, "api_key_id")
 
@@ -358,7 +425,7 @@ class ProjectApiKey(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
         """
-        Description of this Organization API key.
+        Description of this Project API key.
         """
         return pulumi.get(self, "description")
 
@@ -376,7 +443,7 @@ class ProjectApiKey(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        Project ID to assign to Access Key
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 
@@ -389,8 +456,12 @@ class ProjectApiKey(pulumi.CustomResource):
     @pulumi.getter(name="roleNames")
     def role_names(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Name of the role. This resource returns all the roles the user has in Atlas.
-        The following are valid roles:
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
+        pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
+
         return pulumi.get(self, "role_names")
 

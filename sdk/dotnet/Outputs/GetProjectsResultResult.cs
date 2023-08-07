@@ -24,6 +24,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         /// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
         /// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+        /// * `limits.#.name` - Human-readable label that identifies this project limit.
+        /// * `limits.#.value` - Amount the limit is set to.
+        /// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+        /// * `limits.#.default_limit` - Default value of the limit.
+        /// * `limits.#.maximum_limit` - Maximum value of the limit.
         /// </summary>
         public readonly string Created;
         /// <summary>
@@ -54,6 +59,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         /// </summary>
         public readonly bool IsSchemaAdvisorEnabled;
+        public readonly ImmutableArray<Outputs.GetProjectsResultLimitResult> Limits;
         /// <summary>
         /// The name of the project you want to create.
         /// </summary>
@@ -92,6 +98,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool isSchemaAdvisorEnabled,
 
+            ImmutableArray<Outputs.GetProjectsResultLimitResult> limits,
+
             string name,
 
             string orgId,
@@ -110,6 +118,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             IsPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             IsRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
             IsSchemaAdvisorEnabled = isSchemaAdvisorEnabled;
+            Limits = limits;
             Name = name;
             OrgId = orgId;
             RegionUsageRestrictions = regionUsageRestrictions;

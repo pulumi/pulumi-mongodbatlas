@@ -39,7 +39,9 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
      */
     public /*out*/ readonly aws!: pulumi.Output<{[key: string]: string}>;
     public /*out*/ readonly awsConfigs!: pulumi.Output<outputs.CloudProviderAccessSetupAwsConfig[]>;
+    public readonly azureConfigs!: pulumi.Output<outputs.CloudProviderAccessSetupAzureConfig[] | undefined>;
     public /*out*/ readonly createdDate!: pulumi.Output<string>;
+    public /*out*/ readonly lastUpdatedDate!: pulumi.Output<string>;
     public readonly projectId!: pulumi.Output<string>;
     public readonly providerName!: pulumi.Output<string>;
     public /*out*/ readonly roleId!: pulumi.Output<string>;
@@ -59,7 +61,9 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
             const state = argsOrState as CloudProviderAccessSetupState | undefined;
             resourceInputs["aws"] = state ? state.aws : undefined;
             resourceInputs["awsConfigs"] = state ? state.awsConfigs : undefined;
+            resourceInputs["azureConfigs"] = state ? state.azureConfigs : undefined;
             resourceInputs["createdDate"] = state ? state.createdDate : undefined;
+            resourceInputs["lastUpdatedDate"] = state ? state.lastUpdatedDate : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["providerName"] = state ? state.providerName : undefined;
             resourceInputs["roleId"] = state ? state.roleId : undefined;
@@ -71,11 +75,13 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
             if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
+            resourceInputs["azureConfigs"] = args ? args.azureConfigs : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["providerName"] = args ? args.providerName : undefined;
             resourceInputs["aws"] = undefined /*out*/;
             resourceInputs["awsConfigs"] = undefined /*out*/;
             resourceInputs["createdDate"] = undefined /*out*/;
+            resourceInputs["lastUpdatedDate"] = undefined /*out*/;
             resourceInputs["roleId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -92,7 +98,9 @@ export interface CloudProviderAccessSetupState {
      */
     aws?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     awsConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAwsConfig>[]>;
+    azureConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAzureConfig>[]>;
     createdDate?: pulumi.Input<string>;
+    lastUpdatedDate?: pulumi.Input<string>;
     projectId?: pulumi.Input<string>;
     providerName?: pulumi.Input<string>;
     roleId?: pulumi.Input<string>;
@@ -102,6 +110,7 @@ export interface CloudProviderAccessSetupState {
  * The set of arguments for constructing a CloudProviderAccessSetup resource.
  */
 export interface CloudProviderAccessSetupArgs {
+    azureConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAzureConfig>[]>;
     projectId: pulumi.Input<string>;
     providerName: pulumi.Input<string>;
 }

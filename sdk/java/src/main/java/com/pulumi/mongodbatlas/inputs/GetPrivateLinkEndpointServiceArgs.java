@@ -14,14 +14,14 @@ public final class GetPrivateLinkEndpointServiceArgs extends com.pulumi.resource
     public static final GetPrivateLinkEndpointServiceArgs Empty = new GetPrivateLinkEndpointServiceArgs();
 
     /**
-     * Unique identifier of the `AWS` or `AZURE` resource.
+     * Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
      * 
      */
     @Import(name="endpointServiceId", required=true)
     private Output<String> endpointServiceId;
 
     /**
-     * @return Unique identifier of the `AWS` or `AZURE` resource.
+     * @return Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
      * 
      */
     public Output<String> endpointServiceId() {
@@ -59,14 +59,14 @@ public final class GetPrivateLinkEndpointServiceArgs extends com.pulumi.resource
     }
 
     /**
-     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
      * 
      */
     @Import(name="providerName", required=true)
     private Output<String> providerName;
 
     /**
-     * @return Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+     * @return Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
      * 
      */
     public Output<String> providerName() {
@@ -101,7 +101,7 @@ public final class GetPrivateLinkEndpointServiceArgs extends com.pulumi.resource
         }
 
         /**
-         * @param endpointServiceId Unique identifier of the `AWS` or `AZURE` resource.
+         * @param endpointServiceId Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
          * 
          * @return builder
          * 
@@ -112,7 +112,7 @@ public final class GetPrivateLinkEndpointServiceArgs extends com.pulumi.resource
         }
 
         /**
-         * @param endpointServiceId Unique identifier of the `AWS` or `AZURE` resource.
+         * @param endpointServiceId Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
          * 
          * @return builder
          * 
@@ -164,7 +164,7 @@ public final class GetPrivateLinkEndpointServiceArgs extends com.pulumi.resource
         }
 
         /**
-         * @param providerName Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+         * @param providerName Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
          * 
          * @return builder
          * 
@@ -175,7 +175,7 @@ public final class GetPrivateLinkEndpointServiceArgs extends com.pulumi.resource
         }
 
         /**
-         * @param providerName Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+         * @param providerName Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
          * 
          * @return builder
          * 

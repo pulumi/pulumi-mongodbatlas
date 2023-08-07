@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
 import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -128,6 +129,13 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.isSchemaAdvisorEnabled);
     }
 
+    @Import(name="limits")
+    private @Nullable Output<List<ProjectLimitArgs>> limits;
+
+    public Optional<Output<List<ProjectLimitArgs>>> limits() {
+        return Optional.ofNullable(this.limits);
+    }
+
     /**
      * The name of the project you want to create.
      * 
@@ -220,6 +228,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         this.isPerformanceAdvisorEnabled = $.isPerformanceAdvisorEnabled;
         this.isRealtimePerformancePanelEnabled = $.isRealtimePerformancePanelEnabled;
         this.isSchemaAdvisorEnabled = $.isSchemaAdvisorEnabled;
+        this.limits = $.limits;
         this.name = $.name;
         this.orgId = $.orgId;
         this.projectOwnerId = $.projectOwnerId;
@@ -407,6 +416,19 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder isSchemaAdvisorEnabled(Boolean isSchemaAdvisorEnabled) {
             return isSchemaAdvisorEnabled(Output.of(isSchemaAdvisorEnabled));
+        }
+
+        public Builder limits(@Nullable Output<List<ProjectLimitArgs>> limits) {
+            $.limits = limits;
+            return this;
+        }
+
+        public Builder limits(List<ProjectLimitArgs> limits) {
+            return limits(Output.of(limits));
+        }
+
+        public Builder limits(ProjectLimitArgs... limits) {
+            return limits(List.of(limits));
         }
 
         /**

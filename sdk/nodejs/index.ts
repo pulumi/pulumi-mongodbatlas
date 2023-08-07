@@ -554,6 +554,26 @@ export const getServerlessInstances: typeof import("./getServerlessInstances").g
 export const getServerlessInstancesOutput: typeof import("./getServerlessInstances").getServerlessInstancesOutput = null as any;
 utilities.lazyLoad(exports, ["getServerlessInstances","getServerlessInstancesOutput"], () => require("./getServerlessInstances"));
 
+export { GetSharedTierRestoreJobArgs, GetSharedTierRestoreJobResult, GetSharedTierRestoreJobOutputArgs } from "./getSharedTierRestoreJob";
+export const getSharedTierRestoreJob: typeof import("./getSharedTierRestoreJob").getSharedTierRestoreJob = null as any;
+export const getSharedTierRestoreJobOutput: typeof import("./getSharedTierRestoreJob").getSharedTierRestoreJobOutput = null as any;
+utilities.lazyLoad(exports, ["getSharedTierRestoreJob","getSharedTierRestoreJobOutput"], () => require("./getSharedTierRestoreJob"));
+
+export { GetSharedTierRestoreJobsArgs, GetSharedTierRestoreJobsResult, GetSharedTierRestoreJobsOutputArgs } from "./getSharedTierRestoreJobs";
+export const getSharedTierRestoreJobs: typeof import("./getSharedTierRestoreJobs").getSharedTierRestoreJobs = null as any;
+export const getSharedTierRestoreJobsOutput: typeof import("./getSharedTierRestoreJobs").getSharedTierRestoreJobsOutput = null as any;
+utilities.lazyLoad(exports, ["getSharedTierRestoreJobs","getSharedTierRestoreJobsOutput"], () => require("./getSharedTierRestoreJobs"));
+
+export { GetSharedTierSnapshotArgs, GetSharedTierSnapshotResult, GetSharedTierSnapshotOutputArgs } from "./getSharedTierSnapshot";
+export const getSharedTierSnapshot: typeof import("./getSharedTierSnapshot").getSharedTierSnapshot = null as any;
+export const getSharedTierSnapshotOutput: typeof import("./getSharedTierSnapshot").getSharedTierSnapshotOutput = null as any;
+utilities.lazyLoad(exports, ["getSharedTierSnapshot","getSharedTierSnapshotOutput"], () => require("./getSharedTierSnapshot"));
+
+export { GetSharedTierSnapshotsArgs, GetSharedTierSnapshotsResult, GetSharedTierSnapshotsOutputArgs } from "./getSharedTierSnapshots";
+export const getSharedTierSnapshots: typeof import("./getSharedTierSnapshots").getSharedTierSnapshots = null as any;
+export const getSharedTierSnapshotsOutput: typeof import("./getSharedTierSnapshots").getSharedTierSnapshotsOutput = null as any;
+utilities.lazyLoad(exports, ["getSharedTierSnapshots","getSharedTierSnapshotsOutput"], () => require("./getSharedTierSnapshots"));
+
 export { GetTeamArgs, GetTeamResult, GetTeamOutputArgs } from "./getTeam";
 export const getTeam: typeof import("./getTeam").getTeam = null as any;
 export const getTeamOutput: typeof import("./getTeam").getTeamOutput = null as any;

@@ -40,14 +40,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .build());
  * 
  *     }
  * }
  * ```
- * ### Additional Examples
+ * ### With AWS
  * ```java
  * package generated_program;
  * 
@@ -70,14 +70,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .build());
  * 
  *     }
  * }
  * ```
- * ### Additional Examples
+ * ### With Azure
  * ```java
  * package generated_program;
  * 
@@ -86,9 +86,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
  * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
- * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
- * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
- * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -102,17 +100,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var setupOnly = new CloudProviderAccessSetup(&#34;setupOnly&#34;, CloudProviderAccessSetupArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .build());
- * 
- *         var authRole = new CloudProviderAccessAuthorization(&#34;authRole&#34;, CloudProviderAccessAuthorizationArgs.builder()        
- *             .projectId(setupOnly.projectId())
- *             .roleId(setupOnly.roleId())
- *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
- *                 .iamAssumedRoleArn(&#34;arn:aws:iam::772401394250:role/test-user-role&#34;)
+ *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
+ *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
+ *                 .atlasAzureAppId(&#34;9f2deb0d-be22-4524-a403-df531868bac0&#34;)
+ *                 .servicePrincipalId(&#34;22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1&#34;)
+ *                 .tenantId(&#34;91402384-d71e-22f5-22dd-759e272cdc1c&#34;)
  *                 .build())
+ *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
+ *             .providerName(&#34;AZURE&#34;)
  *             .build());
  * 
  *     }
@@ -152,19 +147,6 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
- * ## mongodbatlas.CloudProviderAccess (optional)
- * 
- * This is the first resource in the two-resource path as described above.
- * 
- * `mongodbatlas.CloudProviderAccessSetup` Allows you to only register AWS IAM roles in Atlas.
- * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
- * ## mongodbatlas_cloud_provider_authorization (optional)
- * 
- * This is the second resource in the two-resource path as described above.
- * `mongodbatlas.CloudProviderAccessAuthorization`  Allows you to authorize an AWS IAM roles in Atlas.
- * 
  * ## Import
  * 
  * The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
@@ -172,6 +154,8 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
  * ```
+ * 
+ *  See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
  * 
  */
 @ResourceType(type="mongodbatlas:index/cloudProviderAccess:CloudProviderAccess")

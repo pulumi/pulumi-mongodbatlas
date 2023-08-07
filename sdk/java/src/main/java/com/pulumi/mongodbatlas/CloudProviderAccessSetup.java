@@ -11,9 +11,11 @@ import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupState;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupAwsConfig;
+import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupAzureConfig;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 @ResourceType(type="mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup")
@@ -36,11 +38,23 @@ public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResourc
     public Output<List<CloudProviderAccessSetupAwsConfig>> awsConfigs() {
         return this.awsConfigs;
     }
+    @Export(name="azureConfigs", type=List.class, parameters={CloudProviderAccessSetupAzureConfig.class})
+    private Output</* @Nullable */ List<CloudProviderAccessSetupAzureConfig>> azureConfigs;
+
+    public Output<Optional<List<CloudProviderAccessSetupAzureConfig>>> azureConfigs() {
+        return Codegen.optional(this.azureConfigs);
+    }
     @Export(name="createdDate", type=String.class, parameters={})
     private Output<String> createdDate;
 
     public Output<String> createdDate() {
         return this.createdDate;
+    }
+    @Export(name="lastUpdatedDate", type=String.class, parameters={})
+    private Output<String> lastUpdatedDate;
+
+    public Output<String> lastUpdatedDate() {
+        return this.lastUpdatedDate;
     }
     @Export(name="projectId", type=String.class, parameters={})
     private Output<String> projectId;

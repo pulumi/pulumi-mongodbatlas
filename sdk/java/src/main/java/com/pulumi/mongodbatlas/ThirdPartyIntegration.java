@@ -158,14 +158,14 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="region", type=String.class, parameters={})
-    private Output</* @Nullable */ String> region;
+    private Output<String> region;
 
     /**
      * @return Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
      * 
      */
-    public Output<Optional<String>> region() {
-        return Codegen.optional(this.region);
+    public Output<String> region() {
+        return this.region;
     }
     /**
      * An optional field for your Routing Key.

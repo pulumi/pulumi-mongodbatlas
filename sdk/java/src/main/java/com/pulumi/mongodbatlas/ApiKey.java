@@ -29,14 +29,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/apiKey:ApiKey")
 public class ApiKey extends com.pulumi.resources.CustomResource {
     /**
-     * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     * Unique identifier for this Organization API key.
      * 
      */
     @Export(name="apiKeyId", type=String.class, parameters={})
     private Output<String> apiKeyId;
 
     /**
-     * @return The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     * @return Unique identifier for this Organization API key.
      * 
      */
     public Output<String> apiKeyId() {

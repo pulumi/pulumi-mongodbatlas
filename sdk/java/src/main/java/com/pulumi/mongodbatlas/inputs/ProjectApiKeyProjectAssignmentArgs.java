@@ -30,16 +30,14 @@ public final class ProjectApiKeyProjectAssignmentArgs extends com.pulumi.resourc
     }
 
     /**
-     * Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
      * 
      */
     @Import(name="roleNames", required=true)
     private Output<List<String>> roleNames;
 
     /**
-     * @return Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
      * 
      */
     public Output<List<String>> roleNames() {
@@ -93,8 +91,7 @@ public final class ProjectApiKeyProjectAssignmentArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
-         * The following are valid roles:
+         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
          * 
          * @return builder
          * 
@@ -105,8 +102,7 @@ public final class ProjectApiKeyProjectAssignmentArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
-         * The following are valid roles:
+         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
          * 
          * @return builder
          * 
@@ -116,8 +112,7 @@ public final class ProjectApiKeyProjectAssignmentArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param roleNames Name of the role. This resource returns all the roles the user has in Atlas.
-         * The following are valid roles:
+         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
          * 
          * @return builder
          * 

@@ -38,7 +38,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			user, err := mongodbatlas.NewDatabaseUser(ctx, "user", &mongodbatlas.DatabaseUserArgs{
-//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				ProjectId:    pulumi.String("64b926dd56206839b1c8bae9"),
 //				Username:     pulumi.String("myUsername"),
 //				X509Type:     pulumi.String("MANAGED"),
 //				DatabaseName: pulumi.String("$external"),
@@ -71,7 +71,7 @@ import (
 //	}
 //
 // ```
-// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+// ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
 // ```go
 // package main
 //
@@ -105,6 +105,27 @@ import (
 // `),
 //
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewDatabaseUser(ctx, "user", &mongodbatlas.DatabaseUserArgs{
+//				DatabaseName: pulumi.String("$external"),
+//				Labels: mongodbatlas.DatabaseUserLabelArray{
+//					&mongodbatlas.DatabaseUserLabelArgs{
+//						Key:   pulumi.String("My Key"),
+//						Value: pulumi.String("My Value"),
+//					},
+//				},
+//				ProjectId: pulumi.String("64b926dd56206839b1c8bae9"),
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						DatabaseName: pulumi.String("admin"),
+//						RoleName:     pulumi.String("atlasAdmin"),
+//					},
+//				},
+//				Username: pulumi.String("myUsername"),
+//				X509Type: pulumi.String("CUSTOMER"),
 //			})
 //			if err != nil {
 //				return err

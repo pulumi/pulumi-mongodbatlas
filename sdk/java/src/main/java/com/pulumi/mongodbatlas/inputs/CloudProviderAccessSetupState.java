@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAwsConfigArgs;
+import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -44,11 +45,25 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
         return Optional.ofNullable(this.awsConfigs);
     }
 
+    @Import(name="azureConfigs")
+    private @Nullable Output<List<CloudProviderAccessSetupAzureConfigArgs>> azureConfigs;
+
+    public Optional<Output<List<CloudProviderAccessSetupAzureConfigArgs>>> azureConfigs() {
+        return Optional.ofNullable(this.azureConfigs);
+    }
+
     @Import(name="createdDate")
     private @Nullable Output<String> createdDate;
 
     public Optional<Output<String>> createdDate() {
         return Optional.ofNullable(this.createdDate);
+    }
+
+    @Import(name="lastUpdatedDate")
+    private @Nullable Output<String> lastUpdatedDate;
+
+    public Optional<Output<String>> lastUpdatedDate() {
+        return Optional.ofNullable(this.lastUpdatedDate);
     }
 
     @Import(name="projectId")
@@ -77,7 +92,9 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
     private CloudProviderAccessSetupState(CloudProviderAccessSetupState $) {
         this.aws = $.aws;
         this.awsConfigs = $.awsConfigs;
+        this.azureConfigs = $.azureConfigs;
         this.createdDate = $.createdDate;
+        this.lastUpdatedDate = $.lastUpdatedDate;
         this.projectId = $.projectId;
         this.providerName = $.providerName;
         this.roleId = $.roleId;
@@ -139,6 +156,19 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
             return awsConfigs(List.of(awsConfigs));
         }
 
+        public Builder azureConfigs(@Nullable Output<List<CloudProviderAccessSetupAzureConfigArgs>> azureConfigs) {
+            $.azureConfigs = azureConfigs;
+            return this;
+        }
+
+        public Builder azureConfigs(List<CloudProviderAccessSetupAzureConfigArgs> azureConfigs) {
+            return azureConfigs(Output.of(azureConfigs));
+        }
+
+        public Builder azureConfigs(CloudProviderAccessSetupAzureConfigArgs... azureConfigs) {
+            return azureConfigs(List.of(azureConfigs));
+        }
+
         public Builder createdDate(@Nullable Output<String> createdDate) {
             $.createdDate = createdDate;
             return this;
@@ -146,6 +176,15 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
 
         public Builder createdDate(String createdDate) {
             return createdDate(Output.of(createdDate));
+        }
+
+        public Builder lastUpdatedDate(@Nullable Output<String> lastUpdatedDate) {
+            $.lastUpdatedDate = lastUpdatedDate;
+            return this;
+        }
+
+        public Builder lastUpdatedDate(String lastUpdatedDate) {
+            return lastUpdatedDate(Output.of(lastUpdatedDate));
         }
 
         public Builder projectId(@Nullable Output<String> projectId) {

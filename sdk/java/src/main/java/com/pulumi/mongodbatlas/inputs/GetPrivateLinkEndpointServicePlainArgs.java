@@ -13,14 +13,14 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
     public static final GetPrivateLinkEndpointServicePlainArgs Empty = new GetPrivateLinkEndpointServicePlainArgs();
 
     /**
-     * Unique identifier of the `AWS` or `AZURE` resource.
+     * Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
      * 
      */
     @Import(name="endpointServiceId", required=true)
     private String endpointServiceId;
 
     /**
-     * @return Unique identifier of the `AWS` or `AZURE` resource.
+     * @return Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
      * 
      */
     public String endpointServiceId() {
@@ -58,14 +58,14 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
     }
 
     /**
-     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
      * 
      */
     @Import(name="providerName", required=true)
     private String providerName;
 
     /**
-     * @return Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+     * @return Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
      * 
      */
     public String providerName() {
@@ -100,7 +100,7 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
         }
 
         /**
-         * @param endpointServiceId Unique identifier of the `AWS` or `AZURE` resource.
+         * @param endpointServiceId Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
          * 
          * @return builder
          * 
@@ -133,7 +133,7 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
         }
 
         /**
-         * @param providerName Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+         * @param providerName Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
          * 
          * @return builder
          * 

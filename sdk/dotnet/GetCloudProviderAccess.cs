@@ -12,7 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudProviderAccess
     {
         /// <summary>
-        /// `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+        /// **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
+        /// 
+        /// `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -30,7 +32,7 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
         ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ProviderName = "AWS",
         ///     });
         /// 
@@ -48,7 +50,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderAccessResult>("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", args ?? new GetCloudProviderAccessArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+        /// **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
+        /// 
+        /// `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -66,7 +70,7 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
         ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ProviderName = "AWS",
         ///     });
         /// 

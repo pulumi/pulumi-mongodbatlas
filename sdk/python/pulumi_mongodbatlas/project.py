@@ -24,6 +24,7 @@ class ProjectArgs:
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 limits: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
                  region_usage_restrictions: Optional[pulumi.Input[str]] = None,
@@ -61,6 +62,8 @@ class ProjectArgs:
             pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         if is_schema_advisor_enabled is not None:
             pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        if limits is not None:
+            pulumi.set(__self__, "limits", limits)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_owner_id is not None:
@@ -170,6 +173,15 @@ class ProjectArgs:
 
     @property
     @pulumi.getter
+    def limits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]]:
+        return pulumi.get(self, "limits")
+
+    @limits.setter
+    def limits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]]):
+        pulumi.set(self, "limits", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The name of the project you want to create.
@@ -238,6 +250,7 @@ class _ProjectState:
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 limits: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -281,6 +294,8 @@ class _ProjectState:
             pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         if is_schema_advisor_enabled is not None:
             pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        if limits is not None:
+            pulumi.set(__self__, "limits", limits)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if org_id is not None:
@@ -404,6 +419,15 @@ class _ProjectState:
 
     @property
     @pulumi.getter
+    def limits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]]:
+        return pulumi.get(self, "limits")
+
+    @limits.setter
+    def limits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]]):
+        pulumi.set(self, "limits", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The name of the project you want to create.
@@ -484,6 +508,7 @@ class Project(pulumi.CustomResource):
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectLimitArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -523,6 +548,16 @@ class Project(pulumi.CustomResource):
                 api_key_id="61003b299dda8d54a9d7d10c",
                 role_names=["GROUP_READ_ONLY"],
             )],
+            limits=[
+                mongodbatlas.ProjectLimitArgs(
+                    name="atlas.project.deployment.clusters",
+                    value=26,
+                ),
+                mongodbatlas.ProjectLimitArgs(
+                    name="atlas.project.deployment.nodesPerPrivateLinkRegion",
+                    value=51,
+                ),
+            ],
             is_collect_database_specifics_statistics_enabled=True,
             is_data_explorer_enabled=True,
             is_extended_storage_sizes_enabled=True,
@@ -593,6 +628,16 @@ class Project(pulumi.CustomResource):
                 api_key_id="61003b299dda8d54a9d7d10c",
                 role_names=["GROUP_READ_ONLY"],
             )],
+            limits=[
+                mongodbatlas.ProjectLimitArgs(
+                    name="atlas.project.deployment.clusters",
+                    value=26,
+                ),
+                mongodbatlas.ProjectLimitArgs(
+                    name="atlas.project.deployment.nodesPerPrivateLinkRegion",
+                    value=51,
+                ),
+            ],
             is_collect_database_specifics_statistics_enabled=True,
             is_data_explorer_enabled=True,
             is_extended_storage_sizes_enabled=True,
@@ -633,6 +678,7 @@ class Project(pulumi.CustomResource):
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectLimitArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -658,6 +704,7 @@ class Project(pulumi.CustomResource):
             __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
             __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
             __props__.__dict__["is_schema_advisor_enabled"] = is_schema_advisor_enabled
+            __props__.__dict__["limits"] = limits
             __props__.__dict__["name"] = name
             if org_id is None and not opts.urn:
                 raise TypeError("Missing required property 'org_id'")
@@ -687,6 +734,7 @@ class Project(pulumi.CustomResource):
             is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
             is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
             is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+            limits: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectLimitArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
             project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -727,6 +775,7 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
         __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
         __props__.__dict__["is_schema_advisor_enabled"] = is_schema_advisor_enabled
+        __props__.__dict__["limits"] = limits
         __props__.__dict__["name"] = name
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["project_owner_id"] = project_owner_id
@@ -806,6 +855,11 @@ class Project(pulumi.CustomResource):
         Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         """
         return pulumi.get(self, "is_schema_advisor_enabled")
+
+    @property
+    @pulumi.getter
+    def limits(self) -> pulumi.Output[Optional[Sequence['outputs.ProjectLimit']]]:
+        return pulumi.get(self, "limits")
 
     @property
     @pulumi.getter

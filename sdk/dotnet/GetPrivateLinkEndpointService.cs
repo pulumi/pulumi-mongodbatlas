@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivateLinkEndpointServiceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier of the `AWS` or `AZURE` resource.
+        /// Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
         /// </summary>
         [Input("endpointServiceId", required: true)]
         public string EndpointServiceId { get; set; } = null!;
@@ -40,7 +40,7 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
         /// </summary>
         [Input("providerName", required: true)]
         public string ProviderName { get; set; } = null!;
@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivateLinkEndpointServiceInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier of the `AWS` or `AZURE` resource.
+        /// Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
         /// </summary>
         [Input("endpointServiceId", required: true)]
         public Input<string> EndpointServiceId { get; set; } = null!;
@@ -72,7 +72,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;

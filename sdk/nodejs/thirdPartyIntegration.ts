@@ -79,7 +79,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     /**
      * Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    public readonly region!: pulumi.Output<string>;
     /**
      * An optional field for your Routing Key.
      */

@@ -217,7 +217,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         user = mongodbatlas.DatabaseUser("user",
-            project_id="<PROJECT-ID>",
+            project_id="64b926dd56206839b1c8bae9",
             username="myUsername",
             x509_type="MANAGED",
             database_name="$external",
@@ -234,7 +234,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
             username=user.username,
             months_until_expiration=2)
         ```
-        ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+        ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -259,6 +259,20 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
         \"\"\",
             project_id="<PROJECT-ID>")
+        user = mongodbatlas.DatabaseUser("user",
+            database_name="$external",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="My Key",
+                value="My Value",
+            )],
+            project_id="64b926dd56206839b1c8bae9",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="atlasAdmin",
+            )],
+            username="myUsername",
+            x509_type="CUSTOMER")
+        # Make sure to set x509_type = "CUSTOMER"
         ```
 
         ## Import
@@ -309,7 +323,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         user = mongodbatlas.DatabaseUser("user",
-            project_id="<PROJECT-ID>",
+            project_id="64b926dd56206839b1c8bae9",
             username="myUsername",
             x509_type="MANAGED",
             database_name="$external",
@@ -326,7 +340,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
             username=user.username,
             months_until_expiration=2)
         ```
-        ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+        ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -351,6 +365,20 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
         \"\"\",
             project_id="<PROJECT-ID>")
+        user = mongodbatlas.DatabaseUser("user",
+            database_name="$external",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="My Key",
+                value="My Value",
+            )],
+            project_id="64b926dd56206839b1c8bae9",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="atlasAdmin",
+            )],
+            username="myUsername",
+            x509_type="CUSTOMER")
+        # Make sure to set x509_type = "CUSTOMER"
         ```
 
         ## Import

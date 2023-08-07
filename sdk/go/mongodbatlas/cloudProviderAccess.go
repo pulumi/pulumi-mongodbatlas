@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewCloudProviderAccess(ctx, "testRole", &mongodbatlas.CloudProviderAccessArgs{
-//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
 //				ProviderName: pulumi.String("AWS"),
 //			})
 //			if err != nil {
@@ -38,7 +38,7 @@ import (
 //	}
 //
 // ```
-// ### Additional Examples
+// ### With AWS
 //
 // ```go
 // package main
@@ -53,7 +53,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "testRole", &mongodbatlas.CloudProviderAccessSetupArgs{
-//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
 //				ProviderName: pulumi.String("AWS"),
 //			})
 //			if err != nil {
@@ -64,7 +64,8 @@ import (
 //	}
 //
 // ```
-// ### Additional Examples
+// ### With Azure
+//
 // ```go
 // package main
 //
@@ -77,19 +78,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setupOnly", &mongodbatlas.CloudProviderAccessSetupArgs{
-//				ProjectId:    pulumi.String("<PROJECT-ID>"),
-//				ProviderName: pulumi.String("AWS"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "authRole", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
-//				ProjectId: setupOnly.ProjectId,
-//				RoleId:    setupOnly.RoleId,
-//				Aws: &mongodbatlas.CloudProviderAccessAuthorizationAwsArgs{
-//					IamAssumedRoleArn: pulumi.String("arn:aws:iam::772401394250:role/test-user-role"),
+//			_, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "testRole", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				AzureConfigs: mongodbatlas.CloudProviderAccessSetupAzureConfigArray{
+//					&mongodbatlas.CloudProviderAccessSetupAzureConfigArgs{
+//						AtlasAzureAppId:    pulumi.String("9f2deb0d-be22-4524-a403-df531868bac0"),
+//						ServicePrincipalId: pulumi.String("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1"),
+//						TenantId:           pulumi.String("91402384-d71e-22f5-22dd-759e272cdc1c"),
+//					},
 //				},
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("AZURE"),
 //			})
 //			if err != nil {
 //				return err
@@ -101,7 +99,7 @@ import (
 // ```
 // ## Authorize role
 //
-// Once the resource is created add the field `iamAssumedRoleArn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
+// Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
 //
 // ```go
 // package main
@@ -129,19 +127,6 @@ import (
 //
 // ```
 //
-// ## CloudProviderAccess (optional)
-//
-// This is the first resource in the two-resource path as described above.
-//
-// `CloudProviderAccessSetup` Allows you to only register AWS IAM roles in Atlas.
-//
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
-// ## mongodbatlasCloudProviderAuthorization (optional)
-//
-// This is the second resource in the two-resource path as described above.
-// `CloudProviderAccessAuthorization`  Allows you to authorize an AWS IAM roles in Atlas.
-//
 // ## Import
 //
 // The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
@@ -151,6 +136,8 @@ import (
 //	$ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
 //
 // ```
+//
+//	See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
 type CloudProviderAccess struct {
 	pulumi.CustomResourceState
 

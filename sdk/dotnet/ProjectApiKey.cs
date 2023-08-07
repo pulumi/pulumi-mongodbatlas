@@ -23,12 +23,50 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.ProjectApiKey("test", new()
     ///     {
-    ///         Description = "key-name",
-    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         Description = "Description of your API key",
+    ///         ProjectId = "64259ee860c43338194b0f8e",
     ///         RoleNames = new[]
     ///         {
     ///             "GROUP_OWNER",
     ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Create And Assign PAK To Multiple Projects
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.ProjectApiKey("test", new()
+    ///     {
+    ///         Description = "Description of your API key",
+    ///         ProjectAssignments = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ProjectApiKeyProjectAssignmentArgs
+    ///             {
+    ///                 ProjectId = "64259ee860c43338194b0f8e",
+    ///                 RoleNames = new[]
+    ///                 {
+    ///                     "GROUP_READ_ONLY",
+    ///                     "GROUP_OWNER",
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.ProjectApiKeyProjectAssignmentArgs
+    ///             {
+    ///                 ProjectId = "74259ee860c43338194b0f8e",
+    ///                 RoleNames = new[]
+    ///                 {
+    ///                     "GROUP_READ_ONLY",
+    ///                 },
+    ///             },
+    ///         },
+    ///         ProjectId = "64259ee860c43338194b0f8e",
     ///     });
     /// 
     /// });
@@ -48,13 +86,13 @@ namespace Pulumi.Mongodbatlas
     public partial class ProjectApiKey : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        /// Unique identifier for this Project API key.
         /// </summary>
         [Output("apiKeyId")]
         public Output<string> ApiKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// Description of this Organization API key.
+        /// Description of this Project API key.
         /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
@@ -66,7 +104,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.ProjectApiKeyProjectAssignment>> ProjectAssignments { get; private set; } = null!;
 
         /// <summary>
-        /// Project ID to assign to Access Key
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -75,8 +113,9 @@ namespace Pulumi.Mongodbatlas
         public Output<string> PublicKey { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the role. This resource returns all the roles the user has in Atlas.
-        /// The following are valid roles:
+        /// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+        /// 
+        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
         [Output("roleNames")]
         public Output<ImmutableArray<string>> RoleNames { get; private set; } = null!;
@@ -132,7 +171,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class ProjectApiKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of this Organization API key.
+        /// Description of this Project API key.
         /// </summary>
         [Input("description", required: true)]
         public Input<string> Description { get; set; } = null!;
@@ -146,7 +185,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Project ID to assign to Access Key
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -155,9 +194,11 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roleNames;
 
         /// <summary>
-        /// Name of the role. This resource returns all the roles the user has in Atlas.
-        /// The following are valid roles:
+        /// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+        /// 
+        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment")]
         public InputList<string> RoleNames
         {
             get => _roleNames ?? (_roleNames = new InputList<string>());
@@ -173,13 +214,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class ProjectApiKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        /// Unique identifier for this Project API key.
         /// </summary>
         [Input("apiKeyId")]
         public Input<string>? ApiKeyId { get; set; }
 
         /// <summary>
-        /// Description of this Organization API key.
+        /// Description of this Project API key.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -205,7 +246,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Project ID to assign to Access Key
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -217,9 +258,11 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roleNames;
 
         /// <summary>
-        /// Name of the role. This resource returns all the roles the user has in Atlas.
-        /// The following are valid roles:
+        /// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+        /// 
+        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment")]
         public InputList<string> RoleNames
         {
             get => _roleNames ?? (_roleNames = new InputList<string>());

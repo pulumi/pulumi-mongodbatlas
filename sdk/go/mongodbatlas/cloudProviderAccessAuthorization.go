@@ -17,6 +17,7 @@ type CloudProviderAccessAuthorization struct {
 
 	AuthorizedDate pulumi.StringOutput                                     `pulumi:"authorizedDate"`
 	Aws            CloudProviderAccessAuthorizationAwsPtrOutput            `pulumi:"aws"`
+	Azure          CloudProviderAccessAuthorizationAzurePtrOutput          `pulumi:"azure"`
 	FeatureUsages  CloudProviderAccessAuthorizationFeatureUsageArrayOutput `pulumi:"featureUsages"`
 	ProjectId      pulumi.StringOutput                                     `pulumi:"projectId"`
 	RoleId         pulumi.StringOutput                                     `pulumi:"roleId"`
@@ -60,6 +61,7 @@ func GetCloudProviderAccessAuthorization(ctx *pulumi.Context,
 type cloudProviderAccessAuthorizationState struct {
 	AuthorizedDate *string                                        `pulumi:"authorizedDate"`
 	Aws            *CloudProviderAccessAuthorizationAws           `pulumi:"aws"`
+	Azure          *CloudProviderAccessAuthorizationAzure         `pulumi:"azure"`
 	FeatureUsages  []CloudProviderAccessAuthorizationFeatureUsage `pulumi:"featureUsages"`
 	ProjectId      *string                                        `pulumi:"projectId"`
 	RoleId         *string                                        `pulumi:"roleId"`
@@ -68,6 +70,7 @@ type cloudProviderAccessAuthorizationState struct {
 type CloudProviderAccessAuthorizationState struct {
 	AuthorizedDate pulumi.StringPtrInput
 	Aws            CloudProviderAccessAuthorizationAwsPtrInput
+	Azure          CloudProviderAccessAuthorizationAzurePtrInput
 	FeatureUsages  CloudProviderAccessAuthorizationFeatureUsageArrayInput
 	ProjectId      pulumi.StringPtrInput
 	RoleId         pulumi.StringPtrInput
@@ -78,14 +81,16 @@ func (CloudProviderAccessAuthorizationState) ElementType() reflect.Type {
 }
 
 type cloudProviderAccessAuthorizationArgs struct {
-	Aws       *CloudProviderAccessAuthorizationAws `pulumi:"aws"`
-	ProjectId string                               `pulumi:"projectId"`
-	RoleId    string                               `pulumi:"roleId"`
+	Aws       *CloudProviderAccessAuthorizationAws   `pulumi:"aws"`
+	Azure     *CloudProviderAccessAuthorizationAzure `pulumi:"azure"`
+	ProjectId string                                 `pulumi:"projectId"`
+	RoleId    string                                 `pulumi:"roleId"`
 }
 
 // The set of arguments for constructing a CloudProviderAccessAuthorization resource.
 type CloudProviderAccessAuthorizationArgs struct {
 	Aws       CloudProviderAccessAuthorizationAwsPtrInput
+	Azure     CloudProviderAccessAuthorizationAzurePtrInput
 	ProjectId pulumi.StringInput
 	RoleId    pulumi.StringInput
 }
@@ -183,6 +188,12 @@ func (o CloudProviderAccessAuthorizationOutput) AuthorizedDate() pulumi.StringOu
 
 func (o CloudProviderAccessAuthorizationOutput) Aws() CloudProviderAccessAuthorizationAwsPtrOutput {
 	return o.ApplyT(func(v *CloudProviderAccessAuthorization) CloudProviderAccessAuthorizationAwsPtrOutput { return v.Aws }).(CloudProviderAccessAuthorizationAwsPtrOutput)
+}
+
+func (o CloudProviderAccessAuthorizationOutput) Azure() CloudProviderAccessAuthorizationAzurePtrOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorization) CloudProviderAccessAuthorizationAzurePtrOutput {
+		return v.Azure
+	}).(CloudProviderAccessAuthorizationAzurePtrOutput)
 }
 
 func (o CloudProviderAccessAuthorizationOutput) FeatureUsages() CloudProviderAccessAuthorizationFeatureUsageArrayOutput {

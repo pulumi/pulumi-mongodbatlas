@@ -38,6 +38,16 @@ import * as utilities from "./utilities";
  *         apiKeyId: "61003b299dda8d54a9d7d10c",
  *         roleNames: ["GROUP_READ_ONLY"],
  *     }],
+ *     limits: [
+ *         {
+ *             name: "atlas.project.deployment.clusters",
+ *             value: 26,
+ *         },
+ *         {
+ *             name: "atlas.project.deployment.nodesPerPrivateLinkRegion",
+ *             value: 51,
+ *         },
+ *     ],
  *     isCollectDatabaseSpecificsStatisticsEnabled: true,
  *     isDataExplorerEnabled: true,
  *     isExtendedStorageSizesEnabled: true,
@@ -121,6 +131,7 @@ export class Project extends pulumi.CustomResource {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      */
     public readonly isSchemaAdvisorEnabled!: pulumi.Output<boolean>;
+    public readonly limits!: pulumi.Output<outputs.ProjectLimit[] | undefined>;
     /**
      * The name of the project you want to create.
      */
@@ -165,6 +176,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["isPerformanceAdvisorEnabled"] = state ? state.isPerformanceAdvisorEnabled : undefined;
             resourceInputs["isRealtimePerformancePanelEnabled"] = state ? state.isRealtimePerformancePanelEnabled : undefined;
             resourceInputs["isSchemaAdvisorEnabled"] = state ? state.isSchemaAdvisorEnabled : undefined;
+            resourceInputs["limits"] = state ? state.limits : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["projectOwnerId"] = state ? state.projectOwnerId : undefined;
@@ -183,6 +195,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["isPerformanceAdvisorEnabled"] = args ? args.isPerformanceAdvisorEnabled : undefined;
             resourceInputs["isRealtimePerformancePanelEnabled"] = args ? args.isRealtimePerformancePanelEnabled : undefined;
             resourceInputs["isSchemaAdvisorEnabled"] = args ? args.isSchemaAdvisorEnabled : undefined;
+            resourceInputs["limits"] = args ? args.limits : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["projectOwnerId"] = args ? args.projectOwnerId : undefined;
@@ -237,6 +250,7 @@ export interface ProjectState {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      */
     isSchemaAdvisorEnabled?: pulumi.Input<boolean>;
+    limits?: pulumi.Input<pulumi.Input<inputs.ProjectLimit>[]>;
     /**
      * The name of the project you want to create.
      */
@@ -292,6 +306,7 @@ export interface ProjectArgs {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      */
     isSchemaAdvisorEnabled?: pulumi.Input<boolean>;
+    limits?: pulumi.Input<pulumi.Input<inputs.ProjectLimit>[]>;
     /**
      * The name of the project you want to create.
      */

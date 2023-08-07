@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationState;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessAuthorizationAws;
+import com.pulumi.mongodbatlas.outputs.CloudProviderAccessAuthorizationAzure;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessAuthorizationFeatureUsage;
 import java.lang.String;
 import java.util.List;
@@ -30,6 +31,12 @@ public class CloudProviderAccessAuthorization extends com.pulumi.resources.Custo
 
     public Output<Optional<CloudProviderAccessAuthorizationAws>> aws() {
         return Codegen.optional(this.aws);
+    }
+    @Export(name="azure", type=CloudProviderAccessAuthorizationAzure.class, parameters={})
+    private Output</* @Nullable */ CloudProviderAccessAuthorizationAzure> azure;
+
+    public Output<Optional<CloudProviderAccessAuthorizationAzure>> azure() {
+        return Codegen.optional(this.azure);
     }
     @Export(name="featureUsages", type=List.class, parameters={CloudProviderAccessAuthorizationFeatureUsage.class})
     private Output<List<CloudProviderAccessAuthorizationFeatureUsage>> featureUsages;

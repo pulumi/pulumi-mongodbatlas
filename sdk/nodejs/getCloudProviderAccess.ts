@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+ * **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
+ *
+ * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
@@ -18,7 +20,7 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const testRole = new mongodbatlas.CloudProviderAccess("testRole", {
- *     projectId: "<PROJECT-ID>",
+ *     projectId: "64259ee860c43338194b0f8e",
  *     providerName: "AWS",
  * });
  * const all = mongodbatlas.getCloudProviderAccessOutput({
@@ -59,7 +61,9 @@ export interface GetCloudProviderAccessResult {
     readonly projectId: string;
 }
 /**
- * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+ * **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
+ *
+ * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
@@ -70,7 +74,7 @@ export interface GetCloudProviderAccessResult {
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const testRole = new mongodbatlas.CloudProviderAccess("testRole", {
- *     projectId: "<PROJECT-ID>",
+ *     projectId: "64259ee860c43338194b0f8e",
  *     providerName: "AWS",
  * });
  * const all = mongodbatlas.getCloudProviderAccessOutput({

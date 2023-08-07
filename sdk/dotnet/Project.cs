@@ -61,6 +61,19 @@ namespace Pulumi.Mongodbatlas
     ///                 },
     ///             },
     ///         },
+    ///         Limits = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+    ///             {
+    ///                 Name = "atlas.project.deployment.clusters",
+    ///                 Value = 26,
+    ///             },
+    ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+    ///             {
+    ///                 Name = "atlas.project.deployment.nodesPerPrivateLinkRegion",
+    ///                 Value = 51,
+    ///             },
+    ///         },
     ///         IsCollectDatabaseSpecificsStatisticsEnabled = true,
     ///         IsDataExplorerEnabled = true,
     ///         IsExtendedStorageSizesEnabled = true,
@@ -135,6 +148,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("isSchemaAdvisorEnabled")]
         public Output<bool> IsSchemaAdvisorEnabled { get; private set; } = null!;
+
+        [Output("limits")]
+        public Output<ImmutableArray<Outputs.ProjectLimit>> Limits { get; private set; } = null!;
 
         /// <summary>
         /// The name of the project you want to create.
@@ -260,6 +276,14 @@ namespace Pulumi.Mongodbatlas
         [Input("isSchemaAdvisorEnabled")]
         public Input<bool>? IsSchemaAdvisorEnabled { get; set; }
 
+        [Input("limits")]
+        private InputList<Inputs.ProjectLimitArgs>? _limits;
+        public InputList<Inputs.ProjectLimitArgs> Limits
+        {
+            get => _limits ?? (_limits = new InputList<Inputs.ProjectLimitArgs>());
+            set => _limits = value;
+        }
+
         /// <summary>
         /// The name of the project you want to create.
         /// </summary>
@@ -362,6 +386,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("isSchemaAdvisorEnabled")]
         public Input<bool>? IsSchemaAdvisorEnabled { get; set; }
+
+        [Input("limits")]
+        private InputList<Inputs.ProjectLimitGetArgs>? _limits;
+        public InputList<Inputs.ProjectLimitGetArgs> Limits
+        {
+            get => _limits ?? (_limits = new InputList<Inputs.ProjectLimitGetArgs>());
+            set => _limits = value;
+        }
 
         /// <summary>
         /// The name of the project you want to create.

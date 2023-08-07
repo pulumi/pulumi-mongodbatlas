@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.ProjectArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.ProjectState;
 import com.pulumi.mongodbatlas.outputs.ProjectApiKey;
+import com.pulumi.mongodbatlas.outputs.ProjectLimit;
 import com.pulumi.mongodbatlas.outputs.ProjectTeam;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -36,6 +37,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.ProjectArgs;
  * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
  * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+ * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -69,6 +71,15 @@ import javax.annotation.Nullable;
  *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
  *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
  *                 .build())
+ *             .limits(            
+ *                 ProjectLimitArgs.builder()
+ *                     .name(&#34;atlas.project.deployment.clusters&#34;)
+ *                     .value(26)
+ *                     .build(),
+ *                 ProjectLimitArgs.builder()
+ *                     .name(&#34;atlas.project.deployment.nodesPerPrivateLinkRegion&#34;)
+ *                     .value(51)
+ *                     .build())
  *             .isCollectDatabaseSpecificsStatisticsEnabled(true)
  *             .isDataExplorerEnabled(true)
  *             .isExtendedStorageSizesEnabled(true)
@@ -217,6 +228,12 @@ public class Project extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> isSchemaAdvisorEnabled() {
         return this.isSchemaAdvisorEnabled;
+    }
+    @Export(name="limits", type=List.class, parameters={ProjectLimit.class})
+    private Output</* @Nullable */ List<ProjectLimit>> limits;
+
+    public Output<Optional<List<ProjectLimit>>> limits() {
+        return Codegen.optional(this.limits);
     }
     /**
      * The name of the project you want to create.

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -44,8 +46,9 @@ export interface GetProjectApiKeyResult {
      * Private key for this Organization API key.
      */
     readonly privateKey: string;
+    readonly projectAssignments: outputs.GetProjectApiKeyProjectAssignment[];
     /**
-     * Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Project ID to assign to Access Key
      */
     readonly projectId: string;
     /**
@@ -53,8 +56,9 @@ export interface GetProjectApiKeyResult {
      */
     readonly publicKey: string;
     /**
-     * Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+     *
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      */
     readonly roleNames: string[];
 }

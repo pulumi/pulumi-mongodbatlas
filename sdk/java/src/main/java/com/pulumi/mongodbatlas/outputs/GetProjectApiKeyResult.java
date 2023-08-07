@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.mongodbatlas.outputs.GetProjectApiKeyProjectAssignment;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -26,8 +27,9 @@ public final class GetProjectApiKeyResult {
      * 
      */
     private String privateKey;
+    private List<GetProjectApiKeyProjectAssignment> projectAssignments;
     /**
-     * @return Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Project ID to assign to Access Key
      * 
      */
     private String projectId;
@@ -37,10 +39,13 @@ public final class GetProjectApiKeyResult {
      */
     private String publicKey;
     /**
-     * @return Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
     private List<String> roleNames;
 
     private GetProjectApiKeyResult() {}
@@ -68,8 +73,11 @@ public final class GetProjectApiKeyResult {
     public String privateKey() {
         return this.privateKey;
     }
+    public List<GetProjectApiKeyProjectAssignment> projectAssignments() {
+        return this.projectAssignments;
+    }
     /**
-     * @return Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Project ID to assign to Access Key
      * 
      */
     public String projectId() {
@@ -83,10 +91,13 @@ public final class GetProjectApiKeyResult {
         return this.publicKey;
     }
     /**
-     * @return Name of the role. This resource returns all the roles the user has in Atlas.
-     * The following are valid roles:
+     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
     public List<String> roleNames() {
         return this.roleNames;
     }
@@ -104,6 +115,7 @@ public final class GetProjectApiKeyResult {
         private String description;
         private String id;
         private String privateKey;
+        private List<GetProjectApiKeyProjectAssignment> projectAssignments;
         private String projectId;
         private String publicKey;
         private List<String> roleNames;
@@ -114,6 +126,7 @@ public final class GetProjectApiKeyResult {
     	      this.description = defaults.description;
     	      this.id = defaults.id;
     	      this.privateKey = defaults.privateKey;
+    	      this.projectAssignments = defaults.projectAssignments;
     	      this.projectId = defaults.projectId;
     	      this.publicKey = defaults.publicKey;
     	      this.roleNames = defaults.roleNames;
@@ -140,6 +153,14 @@ public final class GetProjectApiKeyResult {
             return this;
         }
         @CustomType.Setter
+        public Builder projectAssignments(List<GetProjectApiKeyProjectAssignment> projectAssignments) {
+            this.projectAssignments = Objects.requireNonNull(projectAssignments);
+            return this;
+        }
+        public Builder projectAssignments(GetProjectApiKeyProjectAssignment... projectAssignments) {
+            return projectAssignments(List.of(projectAssignments));
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             this.projectId = Objects.requireNonNull(projectId);
             return this;
@@ -163,6 +184,7 @@ public final class GetProjectApiKeyResult {
             o.description = description;
             o.id = id;
             o.privateKey = privateKey;
+            o.projectAssignments = projectAssignments;
             o.projectId = projectId;
             o.publicKey = publicKey;
             o.roleNames = roleNames;

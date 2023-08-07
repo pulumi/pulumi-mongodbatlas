@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const user = new mongodbatlas.DatabaseUser("user", {
- *     projectId: "<PROJECT-ID>",
+ *     projectId: "64b926dd56206839b1c8bae9",
  *     username: "myUsername",
  *     x509Type: "MANAGED",
  *     databaseName: "$external",
@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  *     monthsUntilExpiration: 2,
  * });
  * ```
- * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+ * ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -70,6 +70,21 @@ import * as utilities from "./utilities";
  * `,
  *     projectId: "<PROJECT-ID>",
  * });
+ * const user = new mongodbatlas.DatabaseUser("user", {
+ *     databaseName: "$external",
+ *     labels: [{
+ *         key: "My Key",
+ *         value: "My Value",
+ *     }],
+ *     projectId: "64b926dd56206839b1c8bae9",
+ *     roles: [{
+ *         databaseName: "admin",
+ *         roleName: "atlasAdmin",
+ *     }],
+ *     username: "myUsername",
+ *     x509Type: "CUSTOMER",
+ * });
+ * // Make sure to set x509_type = "CUSTOMER"
  * ```
  *
  * ## Import

@@ -170,6 +170,14 @@ import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
 import com.pulumi.mongodbatlas.inputs.GetServerlessInstancePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetServerlessInstancesArgs;
 import com.pulumi.mongodbatlas.inputs.GetServerlessInstancesPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetSharedTierRestoreJobArgs;
+import com.pulumi.mongodbatlas.inputs.GetSharedTierRestoreJobPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetSharedTierRestoreJobsArgs;
+import com.pulumi.mongodbatlas.inputs.GetSharedTierRestoreJobsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotArgs;
+import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotsArgs;
+import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
 import com.pulumi.mongodbatlas.inputs.GetTeamPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetTeamsArgs;
@@ -260,6 +268,10 @@ import com.pulumi.mongodbatlas.outputs.GetSearchIndexResult;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetServerlessInstanceResult;
 import com.pulumi.mongodbatlas.outputs.GetServerlessInstancesInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetSharedTierRestoreJobResult;
+import com.pulumi.mongodbatlas.outputs.GetSharedTierRestoreJobsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetSharedTierSnapshotResult;
+import com.pulumi.mongodbatlas.outputs.GetSharedTierSnapshotsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetTeamResult;
 import com.pulumi.mongodbatlas.outputs.GetTeamsResult;
 import com.pulumi.mongodbatlas.outputs.GetThirdPartyIntegrationResult;
@@ -2153,7 +2165,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", TypeShape.of(GetCloudBackupSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+     * **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
+     * 
+     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -2182,7 +2196,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
      *             .providerName(&#34;AWS&#34;)
      *             .build());
      * 
@@ -2199,7 +2213,9 @@ public final class MongodbatlasFunctions {
         return getCloudProviderAccess(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+     * **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
+     * 
+     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -2228,7 +2244,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
      *             .providerName(&#34;AWS&#34;)
      *             .build());
      * 
@@ -2245,7 +2261,9 @@ public final class MongodbatlasFunctions {
         return getCloudProviderAccessPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+     * **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
+     * 
+     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -2274,7 +2292,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
      *             .providerName(&#34;AWS&#34;)
      *             .build());
      * 
@@ -2291,7 +2309,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", TypeShape.of(GetCloudProviderAccessResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+     * **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
+     * 
+     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -2320,7 +2340,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
      *             .providerName(&#34;AWS&#34;)
      *             .build());
      * 
@@ -2337,11 +2357,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", TypeShape.of(GetCloudProviderAccessResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS is supported.
+     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * ### With AWS
      * ```java
      * package generated_program;
      * 
@@ -2366,8 +2387,52 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
      *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### With AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
+     *             .providerName(&#34;AZURE&#34;)
+     *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
+     *                 .atlasAzureAppId(&#34;9f2deb0d-be22-4524-a403-df531868bac0&#34;)
+     *                 .servicePrincipalId(&#34;22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1&#34;)
+     *                 .tenantId(&#34;91402384-d71e-22f5-22dd-759e272cdc1c&#34;)
+     *                 .build())
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -2385,11 +2450,12 @@ public final class MongodbatlasFunctions {
         return getCloudProviderAccessSetup(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS is supported.
+     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * ### With AWS
      * ```java
      * package generated_program;
      * 
@@ -2414,8 +2480,52 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
      *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### With AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
+     *             .providerName(&#34;AZURE&#34;)
+     *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
+     *                 .atlasAzureAppId(&#34;9f2deb0d-be22-4524-a403-df531868bac0&#34;)
+     *                 .servicePrincipalId(&#34;22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1&#34;)
+     *                 .tenantId(&#34;91402384-d71e-22f5-22dd-759e272cdc1c&#34;)
+     *                 .build())
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -2433,11 +2543,12 @@ public final class MongodbatlasFunctions {
         return getCloudProviderAccessSetupPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS is supported.
+     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * ### With AWS
      * ```java
      * package generated_program;
      * 
@@ -2462,8 +2573,52 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
      *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### With AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
+     *             .providerName(&#34;AZURE&#34;)
+     *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
+     *                 .atlasAzureAppId(&#34;9f2deb0d-be22-4524-a403-df531868bac0&#34;)
+     *                 .servicePrincipalId(&#34;22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1&#34;)
+     *                 .tenantId(&#34;91402384-d71e-22f5-22dd-759e272cdc1c&#34;)
+     *                 .build())
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -2481,11 +2636,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", TypeShape.of(GetCloudProviderAccessSetupResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS is supported.
+     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * ### With AWS
      * ```java
      * package generated_program;
      * 
@@ -2510,8 +2666,52 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
      *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
+     *             .projectId(testRole.projectId())
+     *             .providerName(testRole.providerName())
+     *             .roleId(testRole.roleId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### With AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testRole = new CloudProviderAccessSetup(&#34;testRole&#34;, CloudProviderAccessSetupArgs.builder()        
+     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
+     *             .providerName(&#34;AZURE&#34;)
+     *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
+     *                 .atlasAzureAppId(&#34;9f2deb0d-be22-4524-a403-df531868bac0&#34;)
+     *                 .servicePrincipalId(&#34;22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1&#34;)
+     *                 .tenantId(&#34;91402384-d71e-22f5-22dd-759e272cdc1c&#34;)
+     *                 .build())
      *             .build());
      * 
      *         final var singleSetup = MongodbatlasFunctions.getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs.builder()
@@ -9923,6 +10123,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -9955,6 +10156,10 @@ public final class MongodbatlasFunctions {
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .limits(ProjectLimitArgs.builder()
+     *                 .name(&#34;atlas.project.deployment.clusters&#34;)
+     *                 .value(26)
      *                 .build())
      *             .build());
      * 
@@ -9988,6 +10193,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -10020,6 +10226,10 @@ public final class MongodbatlasFunctions {
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .limits(ProjectLimitArgs.builder()
+     *                 .name(&#34;atlas.project.deployment.clusters&#34;)
+     *                 .value(26)
      *                 .build())
      *             .build());
      * 
@@ -10053,6 +10263,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -10085,6 +10296,10 @@ public final class MongodbatlasFunctions {
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .limits(ProjectLimitArgs.builder()
+     *                 .name(&#34;atlas.project.deployment.clusters&#34;)
+     *                 .value(26)
      *                 .build())
      *             .build());
      * 
@@ -10118,6 +10333,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -10150,6 +10366,10 @@ public final class MongodbatlasFunctions {
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .limits(ProjectLimitArgs.builder()
+     *                 .name(&#34;atlas.project.deployment.clusters&#34;)
+     *                 .value(26)
      *                 .build())
      *             .build());
      * 
@@ -10183,6 +10403,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -10216,6 +10437,10 @@ public final class MongodbatlasFunctions {
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
      *                 .build())
+     *             .limits(ProjectLimitArgs.builder()
+     *                 .name(&#34;atlas.project.deployment.clusters&#34;)
+     *                 .value(26)
+     *                 .build())
      *             .build());
      * 
      *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
@@ -10248,6 +10473,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -10280,6 +10506,10 @@ public final class MongodbatlasFunctions {
      *             .apiKeys(ProjectApiKeyArgs.builder()
      *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
      *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .limits(ProjectLimitArgs.builder()
+     *                 .name(&#34;atlas.project.deployment.clusters&#34;)
+     *                 .value(26)
      *                 .build())
      *             .build());
      * 
@@ -11035,6 +11265,54 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetServerlessInstancesInvokeResult> getServerlessInstancesPlain(GetServerlessInstancesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServerlessInstances:getServerlessInstances", TypeShape.of(GetServerlessInstancesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetSharedTierRestoreJobResult> getSharedTierRestoreJob(GetSharedTierRestoreJobArgs args) {
+        return getSharedTierRestoreJob(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetSharedTierRestoreJobResult> getSharedTierRestoreJobPlain(GetSharedTierRestoreJobPlainArgs args) {
+        return getSharedTierRestoreJobPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetSharedTierRestoreJobResult> getSharedTierRestoreJob(GetSharedTierRestoreJobArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", TypeShape.of(GetSharedTierRestoreJobResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetSharedTierRestoreJobResult> getSharedTierRestoreJobPlain(GetSharedTierRestoreJobPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", TypeShape.of(GetSharedTierRestoreJobResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetSharedTierRestoreJobsInvokeResult> getSharedTierRestoreJobs(GetSharedTierRestoreJobsArgs args) {
+        return getSharedTierRestoreJobs(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetSharedTierRestoreJobsInvokeResult> getSharedTierRestoreJobsPlain(GetSharedTierRestoreJobsPlainArgs args) {
+        return getSharedTierRestoreJobsPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetSharedTierRestoreJobsInvokeResult> getSharedTierRestoreJobs(GetSharedTierRestoreJobsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs", TypeShape.of(GetSharedTierRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetSharedTierRestoreJobsInvokeResult> getSharedTierRestoreJobsPlain(GetSharedTierRestoreJobsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs", TypeShape.of(GetSharedTierRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetSharedTierSnapshotResult> getSharedTierSnapshot(GetSharedTierSnapshotArgs args) {
+        return getSharedTierSnapshot(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetSharedTierSnapshotResult> getSharedTierSnapshotPlain(GetSharedTierSnapshotPlainArgs args) {
+        return getSharedTierSnapshotPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetSharedTierSnapshotResult> getSharedTierSnapshot(GetSharedTierSnapshotArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot", TypeShape.of(GetSharedTierSnapshotResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetSharedTierSnapshotResult> getSharedTierSnapshotPlain(GetSharedTierSnapshotPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot", TypeShape.of(GetSharedTierSnapshotResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetSharedTierSnapshotsInvokeResult> getSharedTierSnapshots(GetSharedTierSnapshotsArgs args) {
+        return getSharedTierSnapshots(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetSharedTierSnapshotsInvokeResult> getSharedTierSnapshotsPlain(GetSharedTierSnapshotsPlainArgs args) {
+        return getSharedTierSnapshotsPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetSharedTierSnapshotsInvokeResult> getSharedTierSnapshots(GetSharedTierSnapshotsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", TypeShape.of(GetSharedTierSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetSharedTierSnapshotsInvokeResult> getSharedTierSnapshotsPlain(GetSharedTierSnapshotsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", TypeShape.of(GetSharedTierSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
     }
     public static Output<GetTeamResult> getTeam(GetTeamArgs args) {
         return getTeam(args, InvokeOptions.Empty);

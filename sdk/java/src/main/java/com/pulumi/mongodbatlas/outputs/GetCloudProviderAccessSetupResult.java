@@ -5,10 +5,12 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessSetupAwsConfig;
+import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessSetupAzureConfig;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetCloudProviderAccessSetupResult {
@@ -17,7 +19,16 @@ public final class GetCloudProviderAccessSetupResult {
      * 
      */
     private Map<String,String> aws;
+    /**
+     * @return aws related role information
+     * 
+     */
     private List<GetCloudProviderAccessSetupAwsConfig> awsConfigs;
+    /**
+     * @return azure related configurations
+     * 
+     */
+    private @Nullable List<GetCloudProviderAccessSetupAzureConfig> azureConfigs;
     /**
      * @return Date on which this role was created.
      * 
@@ -28,6 +39,11 @@ public final class GetCloudProviderAccessSetupResult {
      * 
      */
     private String id;
+    /**
+     * @return Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
+    private String lastUpdatedDate;
     private String projectId;
     private String providerName;
     private String roleId;
@@ -40,8 +56,19 @@ public final class GetCloudProviderAccessSetupResult {
     public Map<String,String> aws() {
         return this.aws;
     }
+    /**
+     * @return aws related role information
+     * 
+     */
     public List<GetCloudProviderAccessSetupAwsConfig> awsConfigs() {
         return this.awsConfigs;
+    }
+    /**
+     * @return azure related configurations
+     * 
+     */
+    public List<GetCloudProviderAccessSetupAzureConfig> azureConfigs() {
+        return this.azureConfigs == null ? List.of() : this.azureConfigs;
     }
     /**
      * @return Date on which this role was created.
@@ -56,6 +83,13 @@ public final class GetCloudProviderAccessSetupResult {
      */
     public String id() {
         return this.id;
+    }
+    /**
+     * @return Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
+    public String lastUpdatedDate() {
+        return this.lastUpdatedDate;
     }
     public String projectId() {
         return this.projectId;
@@ -78,8 +112,10 @@ public final class GetCloudProviderAccessSetupResult {
     public static final class Builder {
         private Map<String,String> aws;
         private List<GetCloudProviderAccessSetupAwsConfig> awsConfigs;
+        private @Nullable List<GetCloudProviderAccessSetupAzureConfig> azureConfigs;
         private String createdDate;
         private String id;
+        private String lastUpdatedDate;
         private String projectId;
         private String providerName;
         private String roleId;
@@ -88,8 +124,10 @@ public final class GetCloudProviderAccessSetupResult {
     	      Objects.requireNonNull(defaults);
     	      this.aws = defaults.aws;
     	      this.awsConfigs = defaults.awsConfigs;
+    	      this.azureConfigs = defaults.azureConfigs;
     	      this.createdDate = defaults.createdDate;
     	      this.id = defaults.id;
+    	      this.lastUpdatedDate = defaults.lastUpdatedDate;
     	      this.projectId = defaults.projectId;
     	      this.providerName = defaults.providerName;
     	      this.roleId = defaults.roleId;
@@ -109,6 +147,14 @@ public final class GetCloudProviderAccessSetupResult {
             return awsConfigs(List.of(awsConfigs));
         }
         @CustomType.Setter
+        public Builder azureConfigs(@Nullable List<GetCloudProviderAccessSetupAzureConfig> azureConfigs) {
+            this.azureConfigs = azureConfigs;
+            return this;
+        }
+        public Builder azureConfigs(GetCloudProviderAccessSetupAzureConfig... azureConfigs) {
+            return azureConfigs(List.of(azureConfigs));
+        }
+        @CustomType.Setter
         public Builder createdDate(String createdDate) {
             this.createdDate = Objects.requireNonNull(createdDate);
             return this;
@@ -116,6 +162,11 @@ public final class GetCloudProviderAccessSetupResult {
         @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder lastUpdatedDate(String lastUpdatedDate) {
+            this.lastUpdatedDate = Objects.requireNonNull(lastUpdatedDate);
             return this;
         }
         @CustomType.Setter
@@ -137,8 +188,10 @@ public final class GetCloudProviderAccessSetupResult {
             final var o = new GetCloudProviderAccessSetupResult();
             o.aws = aws;
             o.awsConfigs = awsConfigs;
+            o.azureConfigs = azureConfigs;
             o.createdDate = createdDate;
             o.id = id;
+            o.lastUpdatedDate = lastUpdatedDate;
             o.projectId = projectId;
             o.providerName = providerName;
             o.roleId = roleId;

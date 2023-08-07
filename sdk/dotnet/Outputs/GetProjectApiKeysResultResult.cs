@@ -22,10 +22,13 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Description;
         public readonly string PrivateKey;
+        public readonly ImmutableArray<Outputs.GetProjectApiKeysResultProjectAssignmentResult> ProjectAssignments;
         public readonly string PublicKey;
         /// <summary>
-        /// Name of the role. This resource returns all the roles the user has in Atlas.
-        /// The following are valid roles:
+        /// Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
+        /// 
+        /// 
+        /// See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
         /// </summary>
         public readonly ImmutableArray<string> RoleNames;
 
@@ -37,6 +40,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string privateKey,
 
+            ImmutableArray<Outputs.GetProjectApiKeysResultProjectAssignmentResult> projectAssignments,
+
             string publicKey,
 
             ImmutableArray<string> roleNames)
@@ -44,6 +49,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ApiKeyId = apiKeyId;
             Description = description;
             PrivateKey = privateKey;
+            ProjectAssignments = projectAssignments;
             PublicKey = publicKey;
             RoleNames = roleNames;
         }

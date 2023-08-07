@@ -5,13 +5,32 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupAzureConfigArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetCloudProviderAccessSetupArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetCloudProviderAccessSetupArgs Empty = new GetCloudProviderAccessSetupArgs();
+
+    /**
+     * azure related configurations
+     * 
+     */
+    @Import(name="azureConfigs")
+    private @Nullable Output<List<GetCloudProviderAccessSetupAzureConfigArgs>> azureConfigs;
+
+    /**
+     * @return azure related configurations
+     * 
+     */
+    public Optional<Output<List<GetCloudProviderAccessSetupAzureConfigArgs>>> azureConfigs() {
+        return Optional.ofNullable(this.azureConfigs);
+    }
 
     /**
      * The unique ID for the project to get all Cloud Provider Access
@@ -61,6 +80,7 @@ public final class GetCloudProviderAccessSetupArgs extends com.pulumi.resources.
     private GetCloudProviderAccessSetupArgs() {}
 
     private GetCloudProviderAccessSetupArgs(GetCloudProviderAccessSetupArgs $) {
+        this.azureConfigs = $.azureConfigs;
         this.projectId = $.projectId;
         this.providerName = $.providerName;
         this.roleId = $.roleId;
@@ -82,6 +102,37 @@ public final class GetCloudProviderAccessSetupArgs extends com.pulumi.resources.
 
         public Builder(GetCloudProviderAccessSetupArgs defaults) {
             $ = new GetCloudProviderAccessSetupArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param azureConfigs azure related configurations
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureConfigs(@Nullable Output<List<GetCloudProviderAccessSetupAzureConfigArgs>> azureConfigs) {
+            $.azureConfigs = azureConfigs;
+            return this;
+        }
+
+        /**
+         * @param azureConfigs azure related configurations
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureConfigs(List<GetCloudProviderAccessSetupAzureConfigArgs> azureConfigs) {
+            return azureConfigs(Output.of(azureConfigs));
+        }
+
+        /**
+         * @param azureConfigs azure related configurations
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureConfigs(GetCloudProviderAccessSetupAzureConfigArgs... azureConfigs) {
+            return azureConfigs(List.of(azureConfigs));
         }
 
         /**

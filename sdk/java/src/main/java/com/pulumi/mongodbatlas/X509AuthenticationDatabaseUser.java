@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .projectId(&#34;64b926dd56206839b1c8bae9&#34;)
  *             .username(&#34;myUsername&#34;)
  *             .x509Type(&#34;MANAGED&#34;)
  *             .databaseName(&#34;$external&#34;)
@@ -80,7 +80,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
- * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+ * ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
  * ```java
  * package generated_program;
  * 
@@ -89,6 +89,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
  * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
+ * import com.pulumi.mongodbatlas.DatabaseUser;
+ * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -123,6 +127,21 @@ import javax.annotation.Nullable;
  * 
  *             &#34;&#34;&#34;)
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .build());
+ * 
+ *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
+ *             .databaseName(&#34;$external&#34;)
+ *             .labels(DatabaseUserLabelArgs.builder()
+ *                 .key(&#34;My Key&#34;)
+ *                 .value(&#34;My Value&#34;)
+ *                 .build())
+ *             .projectId(&#34;64b926dd56206839b1c8bae9&#34;)
+ *             .roles(DatabaseUserRoleArgs.builder()
+ *                 .databaseName(&#34;admin&#34;)
+ *                 .roleName(&#34;atlasAdmin&#34;)
+ *                 .build())
+ *             .username(&#34;myUsername&#34;)
+ *             .x509Type(&#34;CUSTOMER&#34;)
  *             .build());
  * 
  *     }
