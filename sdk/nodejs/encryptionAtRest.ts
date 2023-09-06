@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
  * ```
- *
  *  For more information see[MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
  */
 export class EncryptionAtRest extends pulumi.CustomResource {
@@ -48,21 +47,21 @@ export class EncryptionAtRest extends pulumi.CustomResource {
     /**
      * Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
-     * @deprecated use aws_kms_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
      */
     public readonly awsKms!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly awsKmsConfig!: pulumi.Output<outputs.EncryptionAtRestAwsKmsConfig | undefined>;
     /**
      * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
-     * @deprecated use azure_key_vault_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
      */
     public readonly azureKeyVault!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly azureKeyVaultConfig!: pulumi.Output<outputs.EncryptionAtRestAzureKeyVaultConfig | undefined>;
     /**
      * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
-     * @deprecated use google_cloud_kms_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
      */
     public readonly googleCloudKms!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly googleCloudKmsConfig!: pulumi.Output<outputs.EncryptionAtRestGoogleCloudKmsConfig | undefined>;
@@ -118,21 +117,21 @@ export interface EncryptionAtRestState {
     /**
      * Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
-     * @deprecated use aws_kms_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
      */
     awsKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
     /**
      * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
-     * @deprecated use azure_key_vault_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
      */
     azureKeyVault?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
     /**
      * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
-     * @deprecated use google_cloud_kms_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
      */
     googleCloudKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
@@ -149,21 +148,21 @@ export interface EncryptionAtRestArgs {
     /**
      * Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
-     * @deprecated use aws_kms_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
      */
     awsKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
     /**
      * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
-     * @deprecated use azure_key_vault_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
      */
     azureKeyVault?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
     /**
      * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
-     * @deprecated use google_cloud_kms_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
      */
     googleCloudKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;

@@ -34,10 +34,10 @@ public final class GetDatabaseUserArgs extends com.pulumi.resources.InvokeArgs {
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      * @deprecated
-     * use auth_database_name instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      * 
      */
-    @Deprecated /* use auth_database_name instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
     @Import(name="databaseName")
     private @Nullable Output<String> databaseName;
 
@@ -45,10 +45,10 @@ public final class GetDatabaseUserArgs extends com.pulumi.resources.InvokeArgs {
      * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      * @deprecated
-     * use auth_database_name instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      * 
      */
-    @Deprecated /* use auth_database_name instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
     public Optional<Output<String>> databaseName() {
         return Optional.ofNullable(this.databaseName);
     }
@@ -137,10 +137,10 @@ public final class GetDatabaseUserArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          * @deprecated
-         * use auth_database_name instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
          * 
          */
-        @Deprecated /* use auth_database_name instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
         public Builder databaseName(@Nullable Output<String> databaseName) {
             $.databaseName = databaseName;
             return this;
@@ -152,10 +152,10 @@ public final class GetDatabaseUserArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          * @deprecated
-         * use auth_database_name instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
          * 
          */
-        @Deprecated /* use auth_database_name instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
         public Builder databaseName(String databaseName) {
             return databaseName(Output.of(databaseName));
         }

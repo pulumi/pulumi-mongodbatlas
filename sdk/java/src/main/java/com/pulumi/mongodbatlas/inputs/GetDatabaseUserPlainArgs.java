@@ -33,10 +33,10 @@ public final class GetDatabaseUserPlainArgs extends com.pulumi.resources.InvokeA
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      * @deprecated
-     * use auth_database_name instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      * 
      */
-    @Deprecated /* use auth_database_name instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
     @Import(name="databaseName")
     private @Nullable String databaseName;
 
@@ -44,10 +44,10 @@ public final class GetDatabaseUserPlainArgs extends com.pulumi.resources.InvokeA
      * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      * @deprecated
-     * use auth_database_name instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      * 
      */
-    @Deprecated /* use auth_database_name instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
     public Optional<String> databaseName() {
         return Optional.ofNullable(this.databaseName);
     }
@@ -126,10 +126,10 @@ public final class GetDatabaseUserPlainArgs extends com.pulumi.resources.InvokeA
          * @return builder
          * 
          * @deprecated
-         * use auth_database_name instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
          * 
          */
-        @Deprecated /* use auth_database_name instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
         public Builder databaseName(@Nullable String databaseName) {
             $.databaseName = databaseName;
             return this;

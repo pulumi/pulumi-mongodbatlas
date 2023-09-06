@@ -35,7 +35,9 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * ~> **IMPORTANT:** A project invitation can **not** be imported once it has been accepted. Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen
+ * ~> __IMPORTANT:__ A project invitation can __not__ be imported once it has been accepted.
+ *
+ * Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen:
  *
  * ```sh
  *  $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com

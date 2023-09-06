@@ -28,6 +28,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string LdapAuthType;
         /// <summary>
+        /// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        /// </summary>
+        public readonly string OidcAuthType;
+        /// <summary>
         /// The unique ID for the project to get all database users.
         /// </summary>
         public readonly string ProjectId;
@@ -58,6 +62,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string ldapAuthType,
 
+            string oidcAuthType,
+
             string projectId,
 
             ImmutableArray<Outputs.GetDatabaseUsersResultRoleResult> roles,
@@ -72,6 +78,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             AwsIamType = awsIamType;
             Labels = labels;
             LdapAuthType = ldapAuthType;
+            OidcAuthType = oidcAuthType;
             ProjectId = projectId;
             Roles = roles;
             Scopes = scopes;

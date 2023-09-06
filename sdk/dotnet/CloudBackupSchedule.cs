@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest
     /// ```
-    /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule")]

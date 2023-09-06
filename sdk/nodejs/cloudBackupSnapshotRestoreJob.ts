@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
  * ```
- *
  *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
  */
 export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
@@ -58,7 +57,7 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * @deprecated use delivery_type_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
      */
     public readonly deliveryType!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -179,7 +178,7 @@ export interface CloudBackupSnapshotRestoreJobState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * @deprecated use delivery_type_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
      */
     deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -237,7 +236,7 @@ export interface CloudBackupSnapshotRestoreJobArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * @deprecated use delivery_type_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
      */
     deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

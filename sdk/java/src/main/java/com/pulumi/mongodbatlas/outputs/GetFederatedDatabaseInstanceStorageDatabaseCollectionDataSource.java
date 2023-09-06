@@ -16,6 +16,7 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSour
     private String collectionRegex;
     private String database;
     private String databaseRegex;
+    private String datasetName;
     private String defaultFormat;
     private String path;
     private String provenanceFieldName;
@@ -37,6 +38,9 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSour
     }
     public String databaseRegex() {
         return this.databaseRegex;
+    }
+    public String datasetName() {
+        return this.datasetName;
     }
     public String defaultFormat() {
         return this.defaultFormat;
@@ -68,6 +72,7 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSour
         private String collectionRegex;
         private String database;
         private String databaseRegex;
+        private String datasetName;
         private String defaultFormat;
         private String path;
         private String provenanceFieldName;
@@ -81,6 +86,7 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSour
     	      this.collectionRegex = defaults.collectionRegex;
     	      this.database = defaults.database;
     	      this.databaseRegex = defaults.databaseRegex;
+    	      this.datasetName = defaults.datasetName;
     	      this.defaultFormat = defaults.defaultFormat;
     	      this.path = defaults.path;
     	      this.provenanceFieldName = defaults.provenanceFieldName;
@@ -111,6 +117,11 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSour
         @CustomType.Setter
         public Builder databaseRegex(String databaseRegex) {
             this.databaseRegex = Objects.requireNonNull(databaseRegex);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder datasetName(String datasetName) {
+            this.datasetName = Objects.requireNonNull(datasetName);
             return this;
         }
         @CustomType.Setter
@@ -148,6 +159,7 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSour
             o.collectionRegex = collectionRegex;
             o.database = database;
             o.databaseRegex = databaseRegex;
+            o.datasetName = datasetName;
             o.defaultFormat = defaultFormat;
             o.path = path;
             o.provenanceFieldName = provenanceFieldName;

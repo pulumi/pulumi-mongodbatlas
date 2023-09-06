@@ -12,8 +12,7 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/apiKey:ApiKey test 5d09d6a59ccf6445652a444a-6576974933969669
  * ```
- *
- *  See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createOneOrganizationApiKey) - Documentation for more information.
+ *  See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKey) Documentation for more information.
  */
 export class ApiKey extends pulumi.CustomResource {
     /**

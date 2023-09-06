@@ -49,6 +49,27 @@ import * as utilities from "./utilities";
  *     projectId: testDatabaseUser.projectId,
  * });
  * ```
+ * **Example of usage with a OIDC federated authentication user**
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
+ *     authDatabaseName: "admin",
+ *     oidcAuthType: "IDP_GROUP",
+ *     projectId: "6414908c207f4d22f4d8f232",
+ *     roles: [{
+ *         databaseName: "admin",
+ *         roleName: "readWriteAnyDatabase",
+ *     }],
+ *     username: "64d613677e1ad50839cce4db/testUserOrGroup",
+ * });
+ * const testDatabaseUsers = mongodbatlas.getDatabaseUsers({
+ *     projectId: "6414908c207f4d22f4d8f232",
+ * });
+ * ```
+ * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  */
 export function getDatabaseUsers(args: GetDatabaseUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseUsersResult> {
 
@@ -128,6 +149,27 @@ export interface GetDatabaseUsersResult {
  *     projectId: testDatabaseUser.projectId,
  * });
  * ```
+ * **Example of usage with a OIDC federated authentication user**
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
+ *     authDatabaseName: "admin",
+ *     oidcAuthType: "IDP_GROUP",
+ *     projectId: "6414908c207f4d22f4d8f232",
+ *     roles: [{
+ *         databaseName: "admin",
+ *         roleName: "readWriteAnyDatabase",
+ *     }],
+ *     username: "64d613677e1ad50839cce4db/testUserOrGroup",
+ * });
+ * const testDatabaseUsers = mongodbatlas.getDatabaseUsers({
+ *     projectId: "6414908c207f4d22f4d8f232",
+ * });
+ * ```
+ * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  */
 export function getDatabaseUsersOutput(args: GetDatabaseUsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseUsersResult> {
     return pulumi.output(args).apply((a: any) => getDatabaseUsers(a, opts))

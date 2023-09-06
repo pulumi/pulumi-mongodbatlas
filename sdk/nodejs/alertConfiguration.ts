@@ -133,7 +133,6 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
  * ```
- *
  *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
  */
 export class AlertConfiguration extends pulumi.CustomResource {
@@ -186,7 +185,7 @@ export class AlertConfiguration extends pulumi.CustomResource {
     public readonly eventType!: pulumi.Output<string>;
     public readonly matchers!: pulumi.Output<outputs.AlertConfigurationMatcher[] | undefined>;
     /**
-     * @deprecated use metric_threshold_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
      */
     public readonly metricThreshold!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly metricThresholdConfig!: pulumi.Output<outputs.AlertConfigurationMetricThresholdConfig | undefined>;
@@ -198,7 +197,7 @@ export class AlertConfiguration extends pulumi.CustomResource {
     /**
      * Threshold value outside of which an alert will be triggered.
      *
-     * @deprecated use threshold_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
      */
     public readonly threshold!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly thresholdConfig!: pulumi.Output<outputs.AlertConfigurationThresholdConfig | undefined>;
@@ -287,7 +286,7 @@ export interface AlertConfigurationState {
     eventType?: pulumi.Input<string>;
     matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
     /**
-     * @deprecated use metric_threshold_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
      */
     metricThreshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
@@ -299,7 +298,7 @@ export interface AlertConfigurationState {
     /**
      * Threshold value outside of which an alert will be triggered.
      *
-     * @deprecated use threshold_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
      */
     threshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
@@ -327,7 +326,7 @@ export interface AlertConfigurationArgs {
     eventType: pulumi.Input<string>;
     matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
     /**
-     * @deprecated use metric_threshold_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
      */
     metricThreshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
@@ -339,7 +338,7 @@ export interface AlertConfigurationArgs {
     /**
      * Threshold value outside of which an alert will be triggered.
      *
-     * @deprecated use threshold_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
      */
     threshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;

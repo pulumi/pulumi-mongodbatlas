@@ -18,6 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string CollectionRegex;
         public readonly string Database;
         public readonly string DatabaseRegex;
+        public readonly string DatasetName;
         public readonly string DefaultFormat;
         public readonly string Path;
         public readonly string ProvenanceFieldName;
@@ -36,6 +37,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string databaseRegex,
 
+            string datasetName,
+
             string defaultFormat,
 
             string path,
@@ -51,6 +54,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             CollectionRegex = collectionRegex;
             Database = database;
             DatabaseRegex = databaseRegex;
+            DatasetName = datasetName;
             DefaultFormat = defaultFormat;
             Path = path;
             ProvenanceFieldName = provenanceFieldName;

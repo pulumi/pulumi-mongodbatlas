@@ -23,10 +23,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
      * Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      * 
      * @deprecated
-     * use aws_kms_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
      * 
      */
-    @Deprecated /* use aws_kms_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config */
     @Import(name="awsKms")
     private @Nullable Output<Map<String,String>> awsKms;
 
@@ -34,10 +34,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
      * @return Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      * 
      * @deprecated
-     * use aws_kms_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
      * 
      */
-    @Deprecated /* use aws_kms_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config */
     public Optional<Output<Map<String,String>>> awsKms() {
         return Optional.ofNullable(this.awsKms);
     }
@@ -53,10 +53,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
      * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
      * 
      * @deprecated
-     * use azure_key_vault_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
      * 
      */
-    @Deprecated /* use azure_key_vault_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config */
     @Import(name="azureKeyVault")
     private @Nullable Output<Map<String,String>> azureKeyVault;
 
@@ -64,10 +64,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
      * @return Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
      * 
      * @deprecated
-     * use azure_key_vault_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
      * 
      */
-    @Deprecated /* use azure_key_vault_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config */
     public Optional<Output<Map<String,String>>> azureKeyVault() {
         return Optional.ofNullable(this.azureKeyVault);
     }
@@ -83,10 +83,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
      * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      * 
      * @deprecated
-     * use google_cloud_kms_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
      * 
      */
-    @Deprecated /* use google_cloud_kms_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config */
     @Import(name="googleCloudKms")
     private @Nullable Output<Map<String,String>> googleCloudKms;
 
@@ -94,10 +94,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
      * @return Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      * 
      * @deprecated
-     * use google_cloud_kms_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
      * 
      */
-    @Deprecated /* use google_cloud_kms_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config */
     public Optional<Output<Map<String,String>>> googleCloudKms() {
         return Optional.ofNullable(this.googleCloudKms);
     }
@@ -160,10 +160,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          * @deprecated
-         * use aws_kms_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
          * 
          */
-        @Deprecated /* use aws_kms_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config */
         public Builder awsKms(@Nullable Output<Map<String,String>> awsKms) {
             $.awsKms = awsKms;
             return this;
@@ -175,10 +175,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          * @deprecated
-         * use aws_kms_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
          * 
          */
-        @Deprecated /* use aws_kms_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config */
         public Builder awsKms(Map<String,String> awsKms) {
             return awsKms(Output.of(awsKms));
         }
@@ -198,10 +198,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          * @deprecated
-         * use azure_key_vault_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
          * 
          */
-        @Deprecated /* use azure_key_vault_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config */
         public Builder azureKeyVault(@Nullable Output<Map<String,String>> azureKeyVault) {
             $.azureKeyVault = azureKeyVault;
             return this;
@@ -213,10 +213,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          * @deprecated
-         * use azure_key_vault_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
          * 
          */
-        @Deprecated /* use azure_key_vault_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config */
         public Builder azureKeyVault(Map<String,String> azureKeyVault) {
             return azureKeyVault(Output.of(azureKeyVault));
         }
@@ -236,10 +236,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          * @deprecated
-         * use google_cloud_kms_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
          * 
          */
-        @Deprecated /* use google_cloud_kms_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config */
         public Builder googleCloudKms(@Nullable Output<Map<String,String>> googleCloudKms) {
             $.googleCloudKms = googleCloudKms;
             return this;
@@ -251,10 +251,10 @@ public final class EncryptionAtRestState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          * @deprecated
-         * use google_cloud_kms_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
          * 
          */
-        @Deprecated /* use google_cloud_kms_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config */
         public Builder googleCloudKms(Map<String,String> googleCloudKms) {
             return googleCloudKms(Output.of(googleCloudKms));
         }

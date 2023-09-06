@@ -8,19 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 
 @CustomType
-public final class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag {
-    /**
-     * @return Name of the Atlas Federated Database Instance.
-     * 
-     */
+public final class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag {
     private String name;
     private String value;
 
-    private GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag() {}
-    /**
-     * @return Name of the Atlas Federated Database Instance.
-     * 
-     */
+    private GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag() {}
     public String name() {
         return this.name;
     }
@@ -32,7 +24,7 @@ public final class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag {
         return new Builder();
     }
 
-    public static Builder builder(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag defaults) {
+    public static Builder builder(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
@@ -40,7 +32,7 @@ public final class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag {
         private String name;
         private String value;
         public Builder() {}
-        public Builder(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag defaults) {
+        public Builder(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.name = defaults.name;
     	      this.value = defaults.value;
@@ -56,8 +48,8 @@ public final class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag {
             this.value = Objects.requireNonNull(value);
             return this;
         }
-        public GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag build() {
-            final var o = new GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag();
+        public GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag build() {
+            final var o = new GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag();
             o.name = name;
             o.value = value;
             return o;

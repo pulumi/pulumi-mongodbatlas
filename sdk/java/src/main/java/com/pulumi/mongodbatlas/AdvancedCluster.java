@@ -31,7 +31,6 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
  * ```
- * 
  *  See detailed information for arguments and attributes[MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
  * 
  */
@@ -75,10 +74,10 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     }
     /**
      * @deprecated
-     * use bi_connector_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      * 
      */
-    @Deprecated /* use bi_connector_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
     @Export(name="biConnector", refs={AdvancedClusterBiConnector.class}, tree="[0]")
     private Output<AdvancedClusterBiConnector> biConnector;
 

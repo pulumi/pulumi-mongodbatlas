@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class FederatedDatabaseInstanceStorageStoreReadPreferenceTagGetArgs : global::Pulumi.ResourceArgs
+    public sealed class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the Atlas Federated Database Instance.
@@ -23,9 +23,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("value")]
         public Input<string>? Value { get; set; }
 
-        public FederatedDatabaseInstanceStorageStoreReadPreferenceTagGetArgs()
+        public FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs()
         {
         }
-        public static new FederatedDatabaseInstanceStorageStoreReadPreferenceTagGetArgs Empty => new FederatedDatabaseInstanceStorageStoreReadPreferenceTagGetArgs();
+        public static new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs Empty => new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs();
     }
 }

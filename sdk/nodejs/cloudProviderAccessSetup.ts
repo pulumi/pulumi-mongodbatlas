@@ -35,7 +35,7 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
     }
 
     /**
-     * @deprecated use aws_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
      */
     public /*out*/ readonly aws!: pulumi.Output<{[key: string]: string}>;
     public /*out*/ readonly awsConfigs!: pulumi.Output<outputs.CloudProviderAccessSetupAwsConfig[]>;
@@ -94,7 +94,7 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
  */
 export interface CloudProviderAccessSetupState {
     /**
-     * @deprecated use aws_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
      */
     aws?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     awsConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAwsConfig>[]>;

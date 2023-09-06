@@ -323,7 +323,6 @@ class DataLakePipeline(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/dataLakePipeline:DataLakePipeline example 1112222b3bf99403840e8934--test-data-lake-pipeline-test
         ```
-
          See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines) Documentation for more information.
 
         :param str resource_name: The name of the resource.
@@ -354,7 +353,6 @@ class DataLakePipeline(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/dataLakePipeline:DataLakePipeline example 1112222b3bf99403840e8934--test-data-lake-pipeline-test
         ```
-
          See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines) Documentation for more information.
 
         :param str resource_name: The name of the resource.

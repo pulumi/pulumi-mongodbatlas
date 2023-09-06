@@ -17,10 +17,10 @@ public final class AssumeRole {
     private @Nullable String duration;
     /**
      * @deprecated
-     * Use assume_role.duration instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
      * 
      */
-    @Deprecated /* Use assume_role.duration instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration */
     private @Nullable Integer durationSeconds;
     private @Nullable String externalId;
     private @Nullable String policy;
@@ -37,10 +37,10 @@ public final class AssumeRole {
     }
     /**
      * @deprecated
-     * Use assume_role.duration instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
      * 
      */
-    @Deprecated /* Use assume_role.duration instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration */
     public Optional<Integer> durationSeconds() {
         return Optional.ofNullable(this.durationSeconds);
     }

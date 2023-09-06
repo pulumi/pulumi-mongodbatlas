@@ -39,14 +39,11 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
-    /// The Federated Database Instance Query Limit can be imported using project ID, name of the instance and limit name, in the format:
-    /// 
-    /// `project_id`--`tenant_name`--`limit_name`, e.g.
+    /// The Federated Database Instance Query Limit can be imported using project ID, name of the instance and limit name, in the format`project_id`--`tenant_name`--`limit_name`, e.g.
     /// 
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit example 1112222b3bf99403840e8934--FederatedDatabaseInstance0--bytesProcessed.daily
     /// ```
-    /// 
     ///  See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit")]

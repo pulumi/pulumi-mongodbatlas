@@ -432,6 +432,7 @@ class GetClusterResult:
     def provider_volume_type(self) -> str:
         """
         Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+        > **NOTE:** `STANDARD` is not available for NVME clusters.
         """
         return pulumi.get(self, "provider_volume_type")
 

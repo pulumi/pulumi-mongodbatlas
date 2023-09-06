@@ -4697,6 +4697,50 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * **Example of usage with a OIDC federated authentication user**
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser(&#34;testDatabaseUser&#34;, DatabaseUserArgs.builder()        
+     *             .authDatabaseName(&#34;admin&#34;)
+     *             .oidcAuthType(&#34;IDP_GROUP&#34;)
+     *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .databaseName(&#34;admin&#34;)
+     *                 .roleName(&#34;readWriteAnyDatabase&#34;)
+     *                 .build())
+     *             .username(&#34;64d613677e1ad50839cce4db/testUserOrGroup&#34;)
+     *             .build());
+     * 
+     *         final var testDatabaseUsers = MongodbatlasFunctions.getDatabaseUsers(GetDatabaseUsersArgs.builder()
+     *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUsersInvokeResult> getDatabaseUsers(GetDatabaseUsersArgs args) {
@@ -4767,6 +4811,50 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * **Example of usage with a OIDC federated authentication user**
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser(&#34;testDatabaseUser&#34;, DatabaseUserArgs.builder()        
+     *             .authDatabaseName(&#34;admin&#34;)
+     *             .oidcAuthType(&#34;IDP_GROUP&#34;)
+     *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .databaseName(&#34;admin&#34;)
+     *                 .roleName(&#34;readWriteAnyDatabase&#34;)
+     *                 .build())
+     *             .username(&#34;64d613677e1ad50839cce4db/testUserOrGroup&#34;)
+     *             .build());
+     * 
+     *         final var testDatabaseUsers = MongodbatlasFunctions.getDatabaseUsers(GetDatabaseUsersArgs.builder()
+     *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static CompletableFuture<GetDatabaseUsersInvokeResult> getDatabaseUsersPlain(GetDatabaseUsersPlainArgs args) {
@@ -4837,6 +4925,50 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * **Example of usage with a OIDC federated authentication user**
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser(&#34;testDatabaseUser&#34;, DatabaseUserArgs.builder()        
+     *             .authDatabaseName(&#34;admin&#34;)
+     *             .oidcAuthType(&#34;IDP_GROUP&#34;)
+     *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .databaseName(&#34;admin&#34;)
+     *                 .roleName(&#34;readWriteAnyDatabase&#34;)
+     *                 .build())
+     *             .username(&#34;64d613677e1ad50839cce4db/testUserOrGroup&#34;)
+     *             .build());
+     * 
+     *         final var testDatabaseUsers = MongodbatlasFunctions.getDatabaseUsers(GetDatabaseUsersArgs.builder()
+     *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUsersInvokeResult> getDatabaseUsers(GetDatabaseUsersArgs args, InvokeOptions options) {
@@ -4907,6 +5039,50 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * **Example of usage with a OIDC federated authentication user**
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.DatabaseUser;
+     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testDatabaseUser = new DatabaseUser(&#34;testDatabaseUser&#34;, DatabaseUserArgs.builder()        
+     *             .authDatabaseName(&#34;admin&#34;)
+     *             .oidcAuthType(&#34;IDP_GROUP&#34;)
+     *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
+     *             .roles(DatabaseUserRoleArgs.builder()
+     *                 .databaseName(&#34;admin&#34;)
+     *                 .roleName(&#34;readWriteAnyDatabase&#34;)
+     *                 .build())
+     *             .username(&#34;64d613677e1ad50839cce4db/testUserOrGroup&#34;)
+     *             .build());
+     * 
+     *         final var testDatabaseUsers = MongodbatlasFunctions.getDatabaseUsers(GetDatabaseUsersArgs.builder()
+     *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static CompletableFuture<GetDatabaseUsersInvokeResult> getDatabaseUsersPlain(GetDatabaseUsersPlainArgs args, InvokeOptions options) {

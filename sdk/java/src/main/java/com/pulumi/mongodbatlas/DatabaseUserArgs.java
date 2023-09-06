@@ -37,14 +37,14 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * 
      */
     @Import(name="awsIamType")
     private @Nullable Output<String> awsIamType;
 
     /**
-     * @return If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * @return If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * 
      */
     public Optional<Output<String>> awsIamType() {
@@ -55,10 +55,10 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      * @deprecated
-     * use auth_database_name instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      * 
      */
-    @Deprecated /* use auth_database_name instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
     @Import(name="databaseName")
     private @Nullable Output<String> databaseName;
 
@@ -66,10 +66,10 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
      * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      * @deprecated
-     * use auth_database_name instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      * 
      */
-    @Deprecated /* use auth_database_name instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
     public Optional<Output<String>> databaseName() {
         return Optional.ofNullable(this.databaseName);
     }
@@ -94,6 +94,21 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> ldapAuthType() {
         return Optional.ofNullable(this.ldapAuthType);
+    }
+
+    /**
+     * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * 
+     */
+    @Import(name="oidcAuthType")
+    private @Nullable Output<String> oidcAuthType;
+
+    /**
+     * @return Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * 
+     */
+    public Optional<Output<String>> oidcAuthType() {
+        return Optional.ofNullable(this.oidcAuthType);
     }
 
     @Import(name="password")
@@ -178,6 +193,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         this.databaseName = $.databaseName;
         this.labels = $.labels;
         this.ldapAuthType = $.ldapAuthType;
+        this.oidcAuthType = $.oidcAuthType;
         this.password = $.password;
         this.projectId = $.projectId;
         this.roles = $.roles;
@@ -228,7 +244,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param awsIamType If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+         * @param awsIamType If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
          * 
          * @return builder
          * 
@@ -239,7 +255,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param awsIamType If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+         * @param awsIamType If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
          * 
          * @return builder
          * 
@@ -254,10 +270,10 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * use auth_database_name instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
          * 
          */
-        @Deprecated /* use auth_database_name instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
         public Builder databaseName(@Nullable Output<String> databaseName) {
             $.databaseName = databaseName;
             return this;
@@ -269,10 +285,10 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * use auth_database_name instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
          * 
          */
-        @Deprecated /* use auth_database_name instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
         public Builder databaseName(String databaseName) {
             return databaseName(Output.of(databaseName));
         }
@@ -309,6 +325,27 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder ldapAuthType(String ldapAuthType) {
             return ldapAuthType(Output.of(ldapAuthType));
+        }
+
+        /**
+         * @param oidcAuthType Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcAuthType(@Nullable Output<String> oidcAuthType) {
+            $.oidcAuthType = oidcAuthType;
+            return this;
+        }
+
+        /**
+         * @param oidcAuthType Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcAuthType(String oidcAuthType) {
+            return oidcAuthType(Output.of(oidcAuthType));
         }
 
         public Builder password(@Nullable Output<String> password) {

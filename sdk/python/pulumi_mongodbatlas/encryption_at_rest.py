@@ -32,22 +32,22 @@ class EncryptionAtRestArgs:
         """
         pulumi.set(__self__, "project_id", project_id)
         if aws_kms is not None:
-            warnings.warn("""use aws_kms_config instead""", DeprecationWarning)
-            pulumi.log.warn("""aws_kms is deprecated: use aws_kms_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""", DeprecationWarning)
+            pulumi.log.warn("""aws_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""")
         if aws_kms is not None:
             pulumi.set(__self__, "aws_kms", aws_kms)
         if aws_kms_config is not None:
             pulumi.set(__self__, "aws_kms_config", aws_kms_config)
         if azure_key_vault is not None:
-            warnings.warn("""use azure_key_vault_config instead""", DeprecationWarning)
-            pulumi.log.warn("""azure_key_vault is deprecated: use azure_key_vault_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""", DeprecationWarning)
+            pulumi.log.warn("""azure_key_vault is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""")
         if azure_key_vault is not None:
             pulumi.set(__self__, "azure_key_vault", azure_key_vault)
         if azure_key_vault_config is not None:
             pulumi.set(__self__, "azure_key_vault_config", azure_key_vault_config)
         if google_cloud_kms is not None:
-            warnings.warn("""use google_cloud_kms_config instead""", DeprecationWarning)
-            pulumi.log.warn("""google_cloud_kms is deprecated: use google_cloud_kms_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""", DeprecationWarning)
+            pulumi.log.warn("""google_cloud_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""")
         if google_cloud_kms is not None:
             pulumi.set(__self__, "google_cloud_kms", google_cloud_kms)
         if google_cloud_kms_config is not None:
@@ -71,8 +71,8 @@ class EncryptionAtRestArgs:
         """
         Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
-        warnings.warn("""use aws_kms_config instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_kms is deprecated: use aws_kms_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""", DeprecationWarning)
+        pulumi.log.warn("""aws_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""")
 
         return pulumi.get(self, "aws_kms")
 
@@ -95,8 +95,8 @@ class EncryptionAtRestArgs:
         """
         Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
-        warnings.warn("""use azure_key_vault_config instead""", DeprecationWarning)
-        pulumi.log.warn("""azure_key_vault is deprecated: use azure_key_vault_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""", DeprecationWarning)
+        pulumi.log.warn("""azure_key_vault is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""")
 
         return pulumi.get(self, "azure_key_vault")
 
@@ -119,8 +119,8 @@ class EncryptionAtRestArgs:
         """
         Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
-        warnings.warn("""use google_cloud_kms_config instead""", DeprecationWarning)
-        pulumi.log.warn("""google_cloud_kms is deprecated: use google_cloud_kms_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""", DeprecationWarning)
+        pulumi.log.warn("""google_cloud_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""")
 
         return pulumi.get(self, "google_cloud_kms")
 
@@ -156,22 +156,22 @@ class _EncryptionAtRestState:
         :param pulumi.Input[str] project_id: The unique identifier for the project.
         """
         if aws_kms is not None:
-            warnings.warn("""use aws_kms_config instead""", DeprecationWarning)
-            pulumi.log.warn("""aws_kms is deprecated: use aws_kms_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""", DeprecationWarning)
+            pulumi.log.warn("""aws_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""")
         if aws_kms is not None:
             pulumi.set(__self__, "aws_kms", aws_kms)
         if aws_kms_config is not None:
             pulumi.set(__self__, "aws_kms_config", aws_kms_config)
         if azure_key_vault is not None:
-            warnings.warn("""use azure_key_vault_config instead""", DeprecationWarning)
-            pulumi.log.warn("""azure_key_vault is deprecated: use azure_key_vault_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""", DeprecationWarning)
+            pulumi.log.warn("""azure_key_vault is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""")
         if azure_key_vault is not None:
             pulumi.set(__self__, "azure_key_vault", azure_key_vault)
         if azure_key_vault_config is not None:
             pulumi.set(__self__, "azure_key_vault_config", azure_key_vault_config)
         if google_cloud_kms is not None:
-            warnings.warn("""use google_cloud_kms_config instead""", DeprecationWarning)
-            pulumi.log.warn("""google_cloud_kms is deprecated: use google_cloud_kms_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""", DeprecationWarning)
+            pulumi.log.warn("""google_cloud_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""")
         if google_cloud_kms is not None:
             pulumi.set(__self__, "google_cloud_kms", google_cloud_kms)
         if google_cloud_kms_config is not None:
@@ -185,8 +185,8 @@ class _EncryptionAtRestState:
         """
         Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
-        warnings.warn("""use aws_kms_config instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_kms is deprecated: use aws_kms_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""", DeprecationWarning)
+        pulumi.log.warn("""aws_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""")
 
         return pulumi.get(self, "aws_kms")
 
@@ -209,8 +209,8 @@ class _EncryptionAtRestState:
         """
         Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
-        warnings.warn("""use azure_key_vault_config instead""", DeprecationWarning)
-        pulumi.log.warn("""azure_key_vault is deprecated: use azure_key_vault_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""", DeprecationWarning)
+        pulumi.log.warn("""azure_key_vault is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""")
 
         return pulumi.get(self, "azure_key_vault")
 
@@ -233,8 +233,8 @@ class _EncryptionAtRestState:
         """
         Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
-        warnings.warn("""use google_cloud_kms_config instead""", DeprecationWarning)
-        pulumi.log.warn("""google_cloud_kms is deprecated: use google_cloud_kms_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""", DeprecationWarning)
+        pulumi.log.warn("""google_cloud_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""")
 
         return pulumi.get(self, "google_cloud_kms")
 
@@ -285,7 +285,6 @@ class EncryptionAtRest(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
         ```
-
          For more information see[MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
 
         :param str resource_name: The name of the resource.
@@ -309,7 +308,6 @@ class EncryptionAtRest(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
         ```
-
          For more information see[MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
 
         :param str resource_name: The name of the resource.
@@ -344,18 +342,18 @@ class EncryptionAtRest(pulumi.CustomResource):
             __props__ = EncryptionAtRestArgs.__new__(EncryptionAtRestArgs)
 
             if aws_kms is not None and not opts.urn:
-                warnings.warn("""use aws_kms_config instead""", DeprecationWarning)
-                pulumi.log.warn("""aws_kms is deprecated: use aws_kms_config instead""")
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""", DeprecationWarning)
+                pulumi.log.warn("""aws_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""")
             __props__.__dict__["aws_kms"] = None if aws_kms is None else pulumi.Output.secret(aws_kms)
             __props__.__dict__["aws_kms_config"] = None if aws_kms_config is None else pulumi.Output.secret(aws_kms_config)
             if azure_key_vault is not None and not opts.urn:
-                warnings.warn("""use azure_key_vault_config instead""", DeprecationWarning)
-                pulumi.log.warn("""azure_key_vault is deprecated: use azure_key_vault_config instead""")
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""", DeprecationWarning)
+                pulumi.log.warn("""azure_key_vault is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""")
             __props__.__dict__["azure_key_vault"] = None if azure_key_vault is None else pulumi.Output.secret(azure_key_vault)
             __props__.__dict__["azure_key_vault_config"] = None if azure_key_vault_config is None else pulumi.Output.secret(azure_key_vault_config)
             if google_cloud_kms is not None and not opts.urn:
-                warnings.warn("""use google_cloud_kms_config instead""", DeprecationWarning)
-                pulumi.log.warn("""google_cloud_kms is deprecated: use google_cloud_kms_config instead""")
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""", DeprecationWarning)
+                pulumi.log.warn("""google_cloud_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""")
             __props__.__dict__["google_cloud_kms"] = None if google_cloud_kms is None else pulumi.Output.secret(google_cloud_kms)
             __props__.__dict__["google_cloud_kms_config"] = None if google_cloud_kms_config is None else pulumi.Output.secret(google_cloud_kms_config)
             if project_id is None and not opts.urn:
@@ -411,8 +409,8 @@ class EncryptionAtRest(pulumi.CustomResource):
         """
         Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
-        warnings.warn("""use aws_kms_config instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_kms is deprecated: use aws_kms_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""", DeprecationWarning)
+        pulumi.log.warn("""aws_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""")
 
         return pulumi.get(self, "aws_kms")
 
@@ -427,8 +425,8 @@ class EncryptionAtRest(pulumi.CustomResource):
         """
         Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
-        warnings.warn("""use azure_key_vault_config instead""", DeprecationWarning)
-        pulumi.log.warn("""azure_key_vault is deprecated: use azure_key_vault_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""", DeprecationWarning)
+        pulumi.log.warn("""azure_key_vault is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""")
 
         return pulumi.get(self, "azure_key_vault")
 
@@ -443,8 +441,8 @@ class EncryptionAtRest(pulumi.CustomResource):
         """
         Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
-        warnings.warn("""use google_cloud_kms_config instead""", DeprecationWarning)
-        pulumi.log.warn("""google_cloud_kms is deprecated: use google_cloud_kms_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""", DeprecationWarning)
+        pulumi.log.warn("""google_cloud_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""")
 
         return pulumi.get(self, "google_cloud_kms")
 

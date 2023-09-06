@@ -17,17 +17,17 @@ import javax.annotation.Nullable;
 public final class ClusterConnectionString {
     /**
      * @deprecated
-     * This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
      * 
      */
-    @Deprecated /* This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string */
     private @Nullable Map<String,Object> awsPrivateLink;
     /**
      * @deprecated
-     * This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
      * 
      */
-    @Deprecated /* This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string */
     private @Nullable Map<String,Object> awsPrivateLinkSrv;
     private @Nullable String private_;
     private @Nullable List<ClusterConnectionStringPrivateEndpoint> privateEndpoints;
@@ -38,19 +38,19 @@ public final class ClusterConnectionString {
     private ClusterConnectionString() {}
     /**
      * @deprecated
-     * This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
      * 
      */
-    @Deprecated /* This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string */
     public Map<String,Object> awsPrivateLink() {
         return this.awsPrivateLink == null ? Map.of() : this.awsPrivateLink;
     }
     /**
      * @deprecated
-     * This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
      * 
      */
-    @Deprecated /* This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string */
     public Map<String,Object> awsPrivateLinkSrv() {
         return this.awsPrivateLinkSrv == null ? Map.of() : this.awsPrivateLinkSrv;
     }

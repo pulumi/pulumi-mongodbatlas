@@ -11,19 +11,14 @@ namespace Pulumi.Mongodbatlas.Outputs
 {
 
     [OutputType]
-    public sealed class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagResult
+    public sealed class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult
     {
-        public readonly string Name;
-        public readonly string Value;
+        public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult> Tags;
 
         [OutputConstructor]
-        private GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagResult(
-            string name,
-
-            string value)
+        private GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult(ImmutableArray<Outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult> tags)
         {
-            Name = name;
-            Value = value;
+            Tags = tags;
         }
     }
 }

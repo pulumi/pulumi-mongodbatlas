@@ -213,7 +213,7 @@ type AlertConfiguration struct {
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType pulumi.StringOutput                  `pulumi:"eventType"`
 	Matchers  AlertConfigurationMatcherArrayOutput `pulumi:"matchers"`
-	// Deprecated: use metric_threshold_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
 	MetricThreshold       pulumi.StringMapOutput                           `pulumi:"metricThreshold"`
 	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrOutput `pulumi:"metricThresholdConfig"`
 	Notifications         AlertConfigurationNotificationArrayOutput        `pulumi:"notifications"`
@@ -221,7 +221,7 @@ type AlertConfiguration struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Threshold value outside of which an alert will be triggered.
 	//
-	// Deprecated: use threshold_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
 	Threshold       pulumi.StringMapOutput                     `pulumi:"threshold"`
 	ThresholdConfig AlertConfigurationThresholdConfigPtrOutput `pulumi:"thresholdConfig"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -280,7 +280,7 @@ type alertConfigurationState struct {
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType *string                     `pulumi:"eventType"`
 	Matchers  []AlertConfigurationMatcher `pulumi:"matchers"`
-	// Deprecated: use metric_threshold_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
 	MetricThreshold       map[string]string                        `pulumi:"metricThreshold"`
 	MetricThresholdConfig *AlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfig"`
 	Notifications         []AlertConfigurationNotification         `pulumi:"notifications"`
@@ -288,7 +288,7 @@ type alertConfigurationState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Threshold value outside of which an alert will be triggered.
 	//
-	// Deprecated: use threshold_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
 	Threshold       map[string]string                  `pulumi:"threshold"`
 	ThresholdConfig *AlertConfigurationThresholdConfig `pulumi:"thresholdConfig"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -309,7 +309,7 @@ type AlertConfigurationState struct {
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType pulumi.StringPtrInput
 	Matchers  AlertConfigurationMatcherArrayInput
-	// Deprecated: use metric_threshold_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
 	MetricThreshold       pulumi.StringMapInput
 	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrInput
 	Notifications         AlertConfigurationNotificationArrayInput
@@ -317,7 +317,7 @@ type AlertConfigurationState struct {
 	ProjectId pulumi.StringPtrInput
 	// Threshold value outside of which an alert will be triggered.
 	//
-	// Deprecated: use threshold_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
 	Threshold       pulumi.StringMapInput
 	ThresholdConfig AlertConfigurationThresholdConfigPtrInput
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -338,7 +338,7 @@ type alertConfigurationArgs struct {
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType string                      `pulumi:"eventType"`
 	Matchers  []AlertConfigurationMatcher `pulumi:"matchers"`
-	// Deprecated: use metric_threshold_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
 	MetricThreshold       map[string]string                        `pulumi:"metricThreshold"`
 	MetricThresholdConfig *AlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfig"`
 	Notifications         []AlertConfigurationNotification         `pulumi:"notifications"`
@@ -346,7 +346,7 @@ type alertConfigurationArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// Threshold value outside of which an alert will be triggered.
 	//
-	// Deprecated: use threshold_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
 	Threshold       map[string]string                  `pulumi:"threshold"`
 	ThresholdConfig *AlertConfigurationThresholdConfig `pulumi:"thresholdConfig"`
 }
@@ -362,7 +362,7 @@ type AlertConfigurationArgs struct {
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType pulumi.StringInput
 	Matchers  AlertConfigurationMatcherArrayInput
-	// Deprecated: use metric_threshold_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
 	MetricThreshold       pulumi.StringMapInput
 	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrInput
 	Notifications         AlertConfigurationNotificationArrayInput
@@ -370,7 +370,7 @@ type AlertConfigurationArgs struct {
 	ProjectId pulumi.StringInput
 	// Threshold value outside of which an alert will be triggered.
 	//
-	// Deprecated: use threshold_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
 	Threshold       pulumi.StringMapInput
 	ThresholdConfig AlertConfigurationThresholdConfigPtrInput
 }
@@ -490,7 +490,7 @@ func (o AlertConfigurationOutput) Matchers() AlertConfigurationMatcherArrayOutpu
 	return o.ApplyT(func(v *AlertConfiguration) AlertConfigurationMatcherArrayOutput { return v.Matchers }).(AlertConfigurationMatcherArrayOutput)
 }
 
-// Deprecated: use metric_threshold_config instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
 func (o AlertConfigurationOutput) MetricThreshold() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AlertConfiguration) pulumi.StringMapOutput { return v.MetricThreshold }).(pulumi.StringMapOutput)
 }
@@ -512,7 +512,7 @@ func (o AlertConfigurationOutput) ProjectId() pulumi.StringOutput {
 
 // Threshold value outside of which an alert will be triggered.
 //
-// Deprecated: use threshold_config instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
 func (o AlertConfigurationOutput) Threshold() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AlertConfiguration) pulumi.StringMapOutput { return v.Threshold }).(pulumi.StringMapOutput)
 }

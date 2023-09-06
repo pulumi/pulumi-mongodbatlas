@@ -69,19 +69,19 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
 
     /**
      * @deprecated
-     * use metric_threshold_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
      * 
      */
-    @Deprecated /* use metric_threshold_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config */
     @Import(name="metricThreshold")
     private @Nullable Output<Map<String,String>> metricThreshold;
 
     /**
      * @deprecated
-     * use metric_threshold_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
      * 
      */
-    @Deprecated /* use metric_threshold_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config */
     public Optional<Output<Map<String,String>>> metricThreshold() {
         return Optional.ofNullable(this.metricThreshold);
     }
@@ -119,10 +119,10 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
      * Threshold value outside of which an alert will be triggered.
      * 
      * @deprecated
-     * use threshold_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
      * 
      */
-    @Deprecated /* use threshold_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config */
     @Import(name="threshold")
     private @Nullable Output<Map<String,String>> threshold;
 
@@ -130,10 +130,10 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
      * @return Threshold value outside of which an alert will be triggered.
      * 
      * @deprecated
-     * use threshold_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
      * 
      */
-    @Deprecated /* use threshold_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config */
     public Optional<Output<Map<String,String>>> threshold() {
         return Optional.ofNullable(this.threshold);
     }
@@ -244,10 +244,10 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          * @deprecated
-         * use metric_threshold_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
          * 
          */
-        @Deprecated /* use metric_threshold_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config */
         public Builder metricThreshold(@Nullable Output<Map<String,String>> metricThreshold) {
             $.metricThreshold = metricThreshold;
             return this;
@@ -257,10 +257,10 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          * @deprecated
-         * use metric_threshold_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
          * 
          */
-        @Deprecated /* use metric_threshold_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config */
         public Builder metricThreshold(Map<String,String> metricThreshold) {
             return metricThreshold(Output.of(metricThreshold));
         }
@@ -314,10 +314,10 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          * @deprecated
-         * use threshold_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
          * 
          */
-        @Deprecated /* use threshold_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config */
         public Builder threshold(@Nullable Output<Map<String,String>> threshold) {
             $.threshold = threshold;
             return this;
@@ -329,10 +329,10 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          * @deprecated
-         * use threshold_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
          * 
          */
-        @Deprecated /* use threshold_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config */
         public Builder threshold(Map<String,String> threshold) {
             return threshold(Output.of(threshold));
         }

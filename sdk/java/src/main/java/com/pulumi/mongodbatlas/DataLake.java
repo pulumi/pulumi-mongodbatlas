@@ -82,7 +82,6 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/dataLake:DataLake example 1112222b3bf99403840e8934--test-data-lake--s3-test
  * ```
- * 
  *  See [MongoDB Atlas API](https://docs.mongodb.com/datalake/reference/api/dataLakes-create-one-tenant) Documentation for more information.
  * 
  */

@@ -106,7 +106,7 @@ namespace Pulumi.Mongodbatlas
     {
         [Input("aws")]
         private InputMap<string>? _aws;
-        [Obsolete(@"use aws_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config")]
         public InputMap<string> Aws
         {
             get => _aws ?? (_aws = new InputMap<string>());

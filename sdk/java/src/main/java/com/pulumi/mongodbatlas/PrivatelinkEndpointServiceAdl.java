@@ -59,7 +59,6 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl test 1112222b3bf99403840e8934--vpce-jjg5e24qp93513h03
  * ```
- * 
  *  For more information see[MongoDB Atlas API - DataLake](https://docs.mongodb.com/datalake/reference/api/datalakes-api/)
  * 
  * and [MongoDB Atlas API - Online Archive](https://docs.atlas.mongodb.com/reference/api/online-archive/) Documentation.

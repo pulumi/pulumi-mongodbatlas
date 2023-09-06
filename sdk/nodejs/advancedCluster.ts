@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
  * ```
- *
  *  See detailed information for arguments and attributes[MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
  */
 export class AdvancedCluster extends pulumi.CustomResource {
@@ -59,7 +58,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public readonly backupEnabled!: pulumi.Output<boolean>;
     /**
-     * @deprecated use bi_connector_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      */
     public readonly biConnector!: pulumi.Output<outputs.AdvancedClusterBiConnector>;
     /**
@@ -238,7 +237,7 @@ export interface AdvancedClusterState {
      */
     backupEnabled?: pulumi.Input<boolean>;
     /**
-     * @deprecated use bi_connector_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      */
     biConnector?: pulumi.Input<inputs.AdvancedClusterBiConnector>;
     /**
@@ -342,7 +341,7 @@ export interface AdvancedClusterArgs {
      */
     backupEnabled?: pulumi.Input<boolean>;
     /**
-     * @deprecated use bi_connector_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      */
     biConnector?: pulumi.Input<inputs.AdvancedClusterBiConnector>;
     /**

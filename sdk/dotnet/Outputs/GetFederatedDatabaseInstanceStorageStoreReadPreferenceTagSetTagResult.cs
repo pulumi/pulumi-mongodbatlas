@@ -11,7 +11,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 {
 
     [OutputType]
-    public sealed class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagResult
+    public sealed class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult
     {
         /// <summary>
         /// Name of the Atlas Federated Database Instance.
@@ -20,7 +20,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string Value;
 
         [OutputConstructor]
-        private GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagResult(
+        private GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult(
             string name,
 
             string value)

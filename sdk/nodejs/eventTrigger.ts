@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.EventTrigger` provides a Event Trigger resource.
  *
+ * Note: If the `appId` changes in the mongodbatlas.EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app if it still exists then create itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/app-services/triggers/) to learn more.
+ *
  * ## Example Usage
  *
  * ### S
@@ -117,7 +119,6 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
  * ```
- *
  *  For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
  */
 export class EventTrigger extends pulumi.CustomResource {

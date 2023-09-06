@@ -95,7 +95,8 @@ __all__ = [
     'FederatedDatabaseInstanceStorageDatabaseView',
     'FederatedDatabaseInstanceStorageStore',
     'FederatedDatabaseInstanceStorageStoreReadPreference',
-    'FederatedDatabaseInstanceStorageStoreReadPreferenceTag',
+    'FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet',
+    'FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag',
     'FederatedSettingsOrgRoleMappingRoleAssignment',
     'GlobalClusterConfigCustomZoneMapping',
     'GlobalClusterConfigManagedNamespace',
@@ -261,7 +262,8 @@ __all__ = [
     'GetFederatedDatabaseInstanceStorageDatabaseViewResult',
     'GetFederatedDatabaseInstanceStorageStoreResult',
     'GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult',
-    'GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagResult',
+    'GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult',
+    'GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult',
     'GetFederatedDatabaseInstancesResultResult',
     'GetFederatedDatabaseInstancesResultCloudProviderConfigResult',
     'GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult',
@@ -272,7 +274,8 @@ __all__ = [
     'GetFederatedDatabaseInstancesResultStorageDatabaseViewResult',
     'GetFederatedDatabaseInstancesResultStorageStoreResult',
     'GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult',
-    'GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagResult',
+    'GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult',
+    'GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResult',
     'GetFederatedQueryLimitsResultResult',
     'GetFederatedSettingsIdentityProviderAssociatedOrgResult',
     'GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult',
@@ -710,16 +713,16 @@ class AdvancedClusterConnectionString(dict):
     @property
     @pulumi.getter(name="awsPrivateLink")
     def aws_private_link(self) -> Optional[Mapping[str, Any]]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
 
         return pulumi.get(self, "aws_private_link")
 
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
     def aws_private_link_srv(self) -> Optional[Mapping[str, Any]]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
 
         return pulumi.get(self, "aws_private_link_srv")
 
@@ -879,6 +882,9 @@ class AdvancedClusterLabel(dict):
         """
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
+               
+               > **NOTE:** MongoDB Atlas doesn't display your labels.
+               > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -898,6 +904,9 @@ class AdvancedClusterLabel(dict):
     def value(self) -> Optional[str]:
         """
         The value that you want to write.
+
+        > **NOTE:** MongoDB Atlas doesn't display your labels.
+        > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         return pulumi.get(self, "value")
 
@@ -2606,7 +2615,7 @@ class CloudBackupScheduleCopySetting(dict):
         :param str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param Sequence[str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
         :param str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+        :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
         :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         """
         if cloud_provider is not None:
@@ -2648,7 +2657,7 @@ class CloudBackupScheduleCopySetting(dict):
     @pulumi.getter(name="replicationSpecId")
     def replication_spec_id(self) -> Optional[str]:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
         """
         return pulumi.get(self, "replication_spec_id")
 
@@ -3854,16 +3863,16 @@ class ClusterConnectionString(dict):
     @property
     @pulumi.getter(name="awsPrivateLink")
     def aws_private_link(self) -> Optional[Mapping[str, Any]]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
 
         return pulumi.get(self, "aws_private_link")
 
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
     def aws_private_link_srv(self) -> Optional[Mapping[str, Any]]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
 
         return pulumi.get(self, "aws_private_link_srv")
 
@@ -4025,6 +4034,9 @@ class ClusterLabel(dict):
         """
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
+               
+               > **NOTE:** MongoDB Atlas doesn't display your labels.
+               > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -4044,6 +4056,9 @@ class ClusterLabel(dict):
     def value(self) -> Optional[str]:
         """
         The value that you want to write.
+
+        > **NOTE:** MongoDB Atlas doesn't display your labels.
+        > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         return pulumi.get(self, "value")
 
@@ -6311,6 +6326,8 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource(dict):
             suggest = "collection_regex"
         elif key == "databaseRegex":
             suggest = "database_regex"
+        elif key == "datasetName":
+            suggest = "dataset_name"
         elif key == "defaultFormat":
             suggest = "default_format"
         elif key == "provenanceFieldName":
@@ -6335,6 +6352,7 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource(dict):
                  collection_regex: Optional[str] = None,
                  database: Optional[str] = None,
                  database_regex: Optional[str] = None,
+                 dataset_name: Optional[str] = None,
                  default_format: Optional[str] = None,
                  path: Optional[str] = None,
                  provenance_field_name: Optional[str] = None,
@@ -6350,6 +6368,8 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource(dict):
             pulumi.set(__self__, "database", database)
         if database_regex is not None:
             pulumi.set(__self__, "database_regex", database_regex)
+        if dataset_name is not None:
+            pulumi.set(__self__, "dataset_name", dataset_name)
         if default_format is not None:
             pulumi.set(__self__, "default_format", default_format)
         if path is not None:
@@ -6385,6 +6405,11 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource(dict):
     @pulumi.getter(name="databaseRegex")
     def database_regex(self) -> Optional[str]:
         return pulumi.get(self, "database_regex")
+
+    @property
+    @pulumi.getter(name="datasetName")
+    def dataset_name(self) -> Optional[str]:
+        return pulumi.get(self, "dataset_name")
 
     @property
     @pulumi.getter(name="defaultFormat")
@@ -6559,6 +6584,9 @@ class FederatedDatabaseInstanceStorageStore(dict):
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[str]:
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024""", DeprecationWarning)
+        pulumi.log.warn("""cluster_id is deprecated: this parameter is deprecated and will be removed by September 2024""")
+
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -6640,6 +6668,8 @@ class FederatedDatabaseInstanceStorageStoreReadPreference(dict):
         suggest = None
         if key == "maxStalenessSeconds":
             suggest = "max_staleness_seconds"
+        elif key == "tagSets":
+            suggest = "tag_sets"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in FederatedDatabaseInstanceStorageStoreReadPreference. Access the value via the '{suggest}' property getter instead.")
@@ -6655,13 +6685,13 @@ class FederatedDatabaseInstanceStorageStoreReadPreference(dict):
     def __init__(__self__, *,
                  max_staleness_seconds: Optional[int] = None,
                  mode: Optional[str] = None,
-                 tags: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTag']] = None):
+                 tag_sets: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet']] = None):
         if max_staleness_seconds is not None:
             pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
-        if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+        if tag_sets is not None:
+            pulumi.set(__self__, "tag_sets", tag_sets)
 
     @property
     @pulumi.getter(name="maxStalenessSeconds")
@@ -6674,13 +6704,25 @@ class FederatedDatabaseInstanceStorageStoreReadPreference(dict):
         return pulumi.get(self, "mode")
 
     @property
+    @pulumi.getter(name="tagSets")
+    def tag_sets(self) -> Optional[Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet']]:
+        return pulumi.get(self, "tag_sets")
+
+
+@pulumi.output_type
+class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet(dict):
+    def __init__(__self__, *,
+                 tags: Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag']):
+        pulumi.set(__self__, "tags", tags)
+
+    @property
     @pulumi.getter
-    def tags(self) -> Optional[Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTag']]:
+    def tags(self) -> Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag']:
         return pulumi.get(self, "tags")
 
 
 @pulumi.output_type
-class FederatedDatabaseInstanceStorageStoreReadPreferenceTag(dict):
+class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None,
                  value: Optional[str] = None):
@@ -7038,6 +7080,8 @@ class OnlineArchiveCriteria(dict):
         :param str date_format: Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
         :param int expire_after_days: Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
                
+               **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
+               
                The only field required for criteria type `CUSTOM`
         :param str query: JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
         """
@@ -7082,6 +7126,8 @@ class OnlineArchiveCriteria(dict):
     def expire_after_days(self) -> Optional[int]:
         """
         Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+
+        **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
 
         The only field required for criteria type `CUSTOM`
         """
@@ -8026,16 +8072,16 @@ class GetAdvancedClusterConnectionStringResult(dict):
     @property
     @pulumi.getter(name="awsPrivateLink")
     def aws_private_link(self) -> Mapping[str, Any]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
 
         return pulumi.get(self, "aws_private_link")
 
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
     def aws_private_link_srv(self) -> Mapping[str, Any]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
 
         return pulumi.get(self, "aws_private_link_srv")
 
@@ -9001,16 +9047,16 @@ class GetAdvancedClustersResultConnectionStringResult(dict):
     @property
     @pulumi.getter(name="awsPrivateLink")
     def aws_private_link(self) -> Mapping[str, Any]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
 
         return pulumi.get(self, "aws_private_link")
 
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
     def aws_private_link_srv(self) -> Mapping[str, Any]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
 
         return pulumi.get(self, "aws_private_link_srv")
 
@@ -10875,7 +10921,7 @@ class GetCloudBackupScheduleCopySettingResult(dict):
         :param str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param Sequence[str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
         :param str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+        :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
         :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         """
         pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -10912,7 +10958,7 @@ class GetCloudBackupScheduleCopySettingResult(dict):
     @pulumi.getter(name="replicationSpecId")
     def replication_spec_id(self) -> str:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
         """
         return pulumi.get(self, "replication_spec_id")
 
@@ -12371,8 +12417,8 @@ class GetClusterLabelResult(dict):
                  key: str,
                  value: str):
         """
-        :param str key: The key that was set.
-        :param str value: The value that represents the key.
+        :param str key: The key that you want to write.
+        :param str value: The value that you want to write.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
@@ -12381,7 +12427,7 @@ class GetClusterLabelResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The key that was set.
+        The key that you want to write.
         """
         return pulumi.get(self, "key")
 
@@ -12389,7 +12435,7 @@ class GetClusterLabelResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The value that represents the key.
+        The value that you want to write.
         """
         return pulumi.get(self, "value")
 
@@ -12769,6 +12815,7 @@ class GetClustersResultResult(dict):
         :param str provider_name: Indicates the cloud service provider on which the servers are provisioned.
         :param str provider_region_name: Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param str provider_volume_type: Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+               > **NOTE:** `STANDARD` is not available for NVME clusters.
         :param int replication_factor: (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param Sequence['GetClustersResultReplicationSpecArgs'] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param Sequence['GetClustersResultSnapshotBackupPolicyArgs'] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
@@ -13099,6 +13146,7 @@ class GetClustersResultResult(dict):
     def provider_volume_type(self) -> str:
         """
         Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+        > **NOTE:** `STANDARD` is not available for NVME clusters.
         """
         return pulumi.get(self, "provider_volume_type")
 
@@ -13450,8 +13498,8 @@ class GetClustersResultLabelResult(dict):
                  key: str,
                  value: str):
         """
-        :param str key: The key that was set.
-        :param str value: The value that represents the key.
+        :param str key: The key that you want to write.
+        :param str value: The value that you want to write.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
@@ -13460,7 +13508,7 @@ class GetClustersResultLabelResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The key that was set.
+        The key that you want to write.
         """
         return pulumi.get(self, "key")
 
@@ -13468,7 +13516,7 @@ class GetClustersResultLabelResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The value that represents the key.
+        The value that you want to write.
         """
         return pulumi.get(self, "value")
 
@@ -15381,6 +15429,7 @@ class GetDatabaseUsersResultResult(dict):
                  aws_iam_type: str,
                  labels: Sequence['outputs.GetDatabaseUsersResultLabelResult'],
                  ldap_auth_type: str,
+                 oidc_auth_type: str,
                  project_id: str,
                  roles: Sequence['outputs.GetDatabaseUsersResultRoleResult'],
                  scopes: Sequence['outputs.GetDatabaseUsersResultScopeResult'],
@@ -15391,6 +15440,7 @@ class GetDatabaseUsersResultResult(dict):
                Possible values include:
         :param str aws_iam_type: The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
         :param str ldap_auth_type: Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
+        :param str oidc_auth_type: (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         :param str project_id: The unique ID for the project to get all database users.
         :param Sequence['GetDatabaseUsersResultRoleArgs'] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param Sequence['GetDatabaseUsersResultScopeArgs'] scopes: Array of clusters and Atlas Data Lakes that this user has access to.
@@ -15401,6 +15451,7 @@ class GetDatabaseUsersResultResult(dict):
         pulumi.set(__self__, "aws_iam_type", aws_iam_type)
         pulumi.set(__self__, "labels", labels)
         pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
+        pulumi.set(__self__, "oidc_auth_type", oidc_auth_type)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "roles", roles)
         pulumi.set(__self__, "scopes", scopes)
@@ -15436,6 +15487,14 @@ class GetDatabaseUsersResultResult(dict):
         Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
         """
         return pulumi.get(self, "ldap_auth_type")
+
+    @property
+    @pulumi.getter(name="oidcAuthType")
+    def oidc_auth_type(self) -> str:
+        """
+        (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        """
+        return pulumi.get(self, "oidc_auth_type")
 
     @property
     @pulumi.getter(name="projectId")
@@ -16030,6 +16089,7 @@ class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceResult(dict
                  collection_regex: str,
                  database: str,
                  database_regex: str,
+                 dataset_name: str,
                  default_format: str,
                  path: str,
                  provenance_field_name: str,
@@ -16040,6 +16100,7 @@ class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceResult(dict
         pulumi.set(__self__, "collection_regex", collection_regex)
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "database_regex", database_regex)
+        pulumi.set(__self__, "dataset_name", dataset_name)
         pulumi.set(__self__, "default_format", default_format)
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "provenance_field_name", provenance_field_name)
@@ -16070,6 +16131,11 @@ class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceResult(dict
     @pulumi.getter(name="databaseRegex")
     def database_regex(self) -> str:
         return pulumi.get(self, "database_regex")
+
+    @property
+    @pulumi.getter(name="datasetName")
+    def dataset_name(self) -> str:
+        return pulumi.get(self, "dataset_name")
 
     @property
     @pulumi.getter(name="defaultFormat")
@@ -16188,6 +16254,9 @@ class GetFederatedDatabaseInstanceStorageStoreResult(dict):
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024""", DeprecationWarning)
+        pulumi.log.warn("""cluster_id is deprecated: this parameter is deprecated and will be removed by September 2024""")
+
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -16265,10 +16334,10 @@ class GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult(dict):
     def __init__(__self__, *,
                  max_staleness_seconds: int,
                  mode: str,
-                 tags: Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagResult']):
+                 tag_sets: Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult']):
         pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
         pulumi.set(__self__, "mode", mode)
-        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "tag_sets", tag_sets)
 
     @property
     @pulumi.getter(name="maxStalenessSeconds")
@@ -16281,13 +16350,25 @@ class GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult(dict):
         return pulumi.get(self, "mode")
 
     @property
+    @pulumi.getter(name="tagSets")
+    def tag_sets(self) -> Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult']:
+        return pulumi.get(self, "tag_sets")
+
+
+@pulumi.output_type
+class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult(dict):
+    def __init__(__self__, *,
+                 tags: Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult']):
+        pulumi.set(__self__, "tags", tags)
+
+    @property
     @pulumi.getter
-    def tags(self) -> Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagResult']:
+    def tags(self) -> Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult']:
         return pulumi.get(self, "tags")
 
 
 @pulumi.output_type
-class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagResult(dict):
+class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult(dict):
     def __init__(__self__, *,
                  name: str,
                  value: str):
@@ -16332,6 +16413,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
                * `storage_databases.#.collections.#.name` - Name of the collection.
                * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
                * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
+               * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
                * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
                * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
                * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -16363,9 +16445,10 @@ class GetFederatedDatabaseInstancesResultResult(dict):
                * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
                * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
                * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-               * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-               * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-               * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+               * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+               * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+               * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+               * `storage_stores.#.read_preference.tags.value` - Value of the tag.
         """
         pulumi.set(__self__, "cloud_provider_config", cloud_provider_config)
         pulumi.set(__self__, "data_process_regions", data_process_regions)
@@ -16425,6 +16508,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
         * `storage_databases.#.collections.#.name` - Name of the collection.
         * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
         * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
+        * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
         * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
         * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
         * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -16463,9 +16547,10 @@ class GetFederatedDatabaseInstancesResultResult(dict):
         * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
         * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
         * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-        * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-        * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-        * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+        * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+        * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+        * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+        * `storage_stores.#.read_preference.tags.value` - Value of the tag.
         """
         return pulumi.get(self, "storage_stores")
 
@@ -16637,6 +16722,7 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResu
                  collection_regex: str,
                  database: str,
                  database_regex: str,
+                 dataset_name: str,
                  default_format: str,
                  path: str,
                  provenance_field_name: str,
@@ -16647,6 +16733,7 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResu
         pulumi.set(__self__, "collection_regex", collection_regex)
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "database_regex", database_regex)
+        pulumi.set(__self__, "dataset_name", dataset_name)
         pulumi.set(__self__, "default_format", default_format)
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "provenance_field_name", provenance_field_name)
@@ -16677,6 +16764,11 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResu
     @pulumi.getter(name="databaseRegex")
     def database_regex(self) -> str:
         return pulumi.get(self, "database_regex")
+
+    @property
+    @pulumi.getter(name="datasetName")
+    def dataset_name(self) -> str:
+        return pulumi.get(self, "dataset_name")
 
     @property
     @pulumi.getter(name="defaultFormat")
@@ -16788,6 +16880,9 @@ class GetFederatedDatabaseInstancesResultStorageStoreResult(dict):
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024""", DeprecationWarning)
+        pulumi.log.warn("""cluster_id is deprecated: this parameter is deprecated and will be removed by September 2024""")
+
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -16862,10 +16957,10 @@ class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult(dict):
     def __init__(__self__, *,
                  max_staleness_seconds: int,
                  mode: str,
-                 tags: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagResult']):
+                 tag_sets: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult']):
         pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
         pulumi.set(__self__, "mode", mode)
-        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "tag_sets", tag_sets)
 
     @property
     @pulumi.getter(name="maxStalenessSeconds")
@@ -16878,13 +16973,25 @@ class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult(dict):
         return pulumi.get(self, "mode")
 
     @property
+    @pulumi.getter(name="tagSets")
+    def tag_sets(self) -> Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult']:
+        return pulumi.get(self, "tag_sets")
+
+
+@pulumi.output_type
+class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult(dict):
+    def __init__(__self__, *,
+                 tags: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResult']):
+        pulumi.set(__self__, "tags", tags)
+
+    @property
     @pulumi.getter
-    def tags(self) -> Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagResult']:
+    def tags(self) -> Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResult']:
         return pulumi.get(self, "tags")
 
 
 @pulumi.output_type
-class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagResult(dict):
+class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResult(dict):
     def __init__(__self__, *,
                  name: str,
                  value: str):

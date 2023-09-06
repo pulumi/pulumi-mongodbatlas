@@ -94,7 +94,8 @@ __all__ = [
     'FederatedDatabaseInstanceStorageDatabaseViewArgs',
     'FederatedDatabaseInstanceStorageStoreArgs',
     'FederatedDatabaseInstanceStorageStoreReadPreferenceArgs',
-    'FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs',
+    'FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs',
+    'FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs',
     'FederatedSettingsOrgRoleMappingRoleAssignmentArgs',
     'GlobalClusterConfigCustomZoneMappingArgs',
     'GlobalClusterConfigManagedNamespaceArgs',
@@ -446,13 +447,13 @@ class AdvancedClusterConnectionStringArgs:
                  standard: Optional[pulumi.Input[str]] = None,
                  standard_srv: Optional[pulumi.Input[str]] = None):
         if aws_private_link is not None:
-            warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
-            pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
+            pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
         if aws_private_link is not None:
             pulumi.set(__self__, "aws_private_link", aws_private_link)
         if aws_private_link_srv is not None:
-            warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
-            pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
+            pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
         if aws_private_link_srv is not None:
             pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
         if private is not None:
@@ -469,8 +470,8 @@ class AdvancedClusterConnectionStringArgs:
     @property
     @pulumi.getter(name="awsPrivateLink")
     def aws_private_link(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
 
         return pulumi.get(self, "aws_private_link")
 
@@ -481,8 +482,8 @@ class AdvancedClusterConnectionStringArgs:
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
     def aws_private_link_srv(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
 
         return pulumi.get(self, "aws_private_link_srv")
 
@@ -658,6 +659,9 @@ class AdvancedClusterLabelArgs:
         """
         :param pulumi.Input[str] key: The key that you want to write.
         :param pulumi.Input[str] value: The value that you want to write.
+               
+               > **NOTE:** MongoDB Atlas doesn't display your labels.
+               > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -681,6 +685,9 @@ class AdvancedClusterLabelArgs:
     def value(self) -> Optional[pulumi.Input[str]]:
         """
         The value that you want to write.
+
+        > **NOTE:** MongoDB Atlas doesn't display your labels.
+        > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         return pulumi.get(self, "value")
 
@@ -2371,7 +2378,7 @@ class CloudBackupScheduleCopySettingArgs:
         :param pulumi.Input[str] cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
         :param pulumi.Input[str] region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param pulumi.Input[str] replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+        :param pulumi.Input[str] replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
         :param pulumi.Input[bool] should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         """
         if cloud_provider is not None:
@@ -2425,7 +2432,7 @@ class CloudBackupScheduleCopySettingArgs:
     @pulumi.getter(name="replicationSpecId")
     def replication_spec_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
         """
         return pulumi.get(self, "replication_spec_id")
 
@@ -3503,13 +3510,13 @@ class ClusterConnectionStringArgs:
                  standard: Optional[pulumi.Input[str]] = None,
                  standard_srv: Optional[pulumi.Input[str]] = None):
         if aws_private_link is not None:
-            warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
-            pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
+            pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
         if aws_private_link is not None:
             pulumi.set(__self__, "aws_private_link", aws_private_link)
         if aws_private_link_srv is not None:
-            warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
-            pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
+            pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
         if aws_private_link_srv is not None:
             pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
         if private is not None:
@@ -3526,8 +3533,8 @@ class ClusterConnectionStringArgs:
     @property
     @pulumi.getter(name="awsPrivateLink")
     def aws_private_link(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
 
         return pulumi.get(self, "aws_private_link")
 
@@ -3538,8 +3545,8 @@ class ClusterConnectionStringArgs:
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
     def aws_private_link_srv(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
+        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
 
         return pulumi.get(self, "aws_private_link_srv")
 
@@ -3717,6 +3724,9 @@ class ClusterLabelArgs:
         """
         :param pulumi.Input[str] key: The key that you want to write.
         :param pulumi.Input[str] value: The value that you want to write.
+               
+               > **NOTE:** MongoDB Atlas doesn't display your labels.
+               > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -3740,6 +3750,9 @@ class ClusterLabelArgs:
     def value(self) -> Optional[pulumi.Input[str]]:
         """
         The value that you want to write.
+
+        > **NOTE:** MongoDB Atlas doesn't display your labels.
+        > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         return pulumi.get(self, "value")
 
@@ -5951,6 +5964,7 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs:
                  collection_regex: Optional[pulumi.Input[str]] = None,
                  database: Optional[pulumi.Input[str]] = None,
                  database_regex: Optional[pulumi.Input[str]] = None,
+                 dataset_name: Optional[pulumi.Input[str]] = None,
                  default_format: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  provenance_field_name: Optional[pulumi.Input[str]] = None,
@@ -5966,6 +5980,8 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs:
             pulumi.set(__self__, "database", database)
         if database_regex is not None:
             pulumi.set(__self__, "database_regex", database_regex)
+        if dataset_name is not None:
+            pulumi.set(__self__, "dataset_name", dataset_name)
         if default_format is not None:
             pulumi.set(__self__, "default_format", default_format)
         if path is not None:
@@ -6021,6 +6037,15 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs:
     @database_regex.setter
     def database_regex(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "database_regex", value)
+
+    @property
+    @pulumi.getter(name="datasetName")
+    def dataset_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dataset_name")
+
+    @dataset_name.setter
+    def dataset_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dataset_name", value)
 
     @property
     @pulumi.getter(name="defaultFormat")
@@ -6152,6 +6177,9 @@ class FederatedDatabaseInstanceStorageStoreArgs:
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
         if cluster_id is not None:
+            warnings.warn("""this parameter is deprecated and will be removed by September 2024""", DeprecationWarning)
+            pulumi.log.warn("""cluster_id is deprecated: this parameter is deprecated and will be removed by September 2024""")
+        if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
@@ -6208,6 +6236,9 @@ class FederatedDatabaseInstanceStorageStoreArgs:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024""", DeprecationWarning)
+        pulumi.log.warn("""cluster_id is deprecated: this parameter is deprecated and will be removed by September 2024""")
+
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -6339,13 +6370,13 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceArgs:
     def __init__(__self__, *,
                  max_staleness_seconds: Optional[pulumi.Input[int]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs']]]] = None):
+                 tag_sets: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]] = None):
         if max_staleness_seconds is not None:
             pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
-        if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+        if tag_sets is not None:
+            pulumi.set(__self__, "tag_sets", tag_sets)
 
     @property
     @pulumi.getter(name="maxStalenessSeconds")
@@ -6366,17 +6397,33 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceArgs:
         pulumi.set(self, "mode", value)
 
     @property
+    @pulumi.getter(name="tagSets")
+    def tag_sets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]]:
+        return pulumi.get(self, "tag_sets")
+
+    @tag_sets.setter
+    def tag_sets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]]):
+        pulumi.set(self, "tag_sets", value)
+
+
+@pulumi.input_type
+class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs:
+    def __init__(__self__, *,
+                 tags: pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs']]]):
+        pulumi.set(__self__, "tags", tags)
+
+    @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs']]]]:
+    def tags(self) -> pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs']]]:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs']]]]):
+    def tags(self, value: pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs']]]):
         pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
-class FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs:
+class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
@@ -6715,6 +6762,8 @@ class OnlineArchiveCriteriaArgs:
         :param pulumi.Input[str] date_format: Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
         :param pulumi.Input[int] expire_after_days: Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
                
+               **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
+               
                The only field required for criteria type `CUSTOM`
         :param pulumi.Input[str] query: JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
         """
@@ -6771,6 +6820,8 @@ class OnlineArchiveCriteriaArgs:
     def expire_after_days(self) -> Optional[pulumi.Input[int]]:
         """
         Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+
+        **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `date_field` value_**
 
         The only field required for criteria type `CUSTOM`
         """
@@ -7247,8 +7298,8 @@ class ProviderAssumeRoleArgs:
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if duration_seconds is not None:
-            warnings.warn("""Use assume_role.duration instead""", DeprecationWarning)
-            pulumi.log.warn("""duration_seconds is deprecated: Use assume_role.duration instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""", DeprecationWarning)
+            pulumi.log.warn("""duration_seconds is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""")
         if duration_seconds is not None:
             pulumi.set(__self__, "duration_seconds", duration_seconds)
         if external_id is not None:
@@ -7280,8 +7331,8 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="durationSeconds")
     def duration_seconds(self) -> Optional[pulumi.Input[int]]:
-        warnings.warn("""Use assume_role.duration instead""", DeprecationWarning)
-        pulumi.log.warn("""duration_seconds is deprecated: Use assume_role.duration instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""", DeprecationWarning)
+        pulumi.log.warn("""duration_seconds is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""")
 
         return pulumi.get(self, "duration_seconds")
 

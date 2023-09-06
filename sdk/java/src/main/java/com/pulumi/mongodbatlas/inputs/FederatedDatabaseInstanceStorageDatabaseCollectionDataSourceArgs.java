@@ -52,6 +52,13 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceA
         return Optional.ofNullable(this.databaseRegex);
     }
 
+    @Import(name="datasetName")
+    private @Nullable Output<String> datasetName;
+
+    public Optional<Output<String>> datasetName() {
+        return Optional.ofNullable(this.datasetName);
+    }
+
     @Import(name="defaultFormat")
     private @Nullable Output<String> defaultFormat;
 
@@ -95,6 +102,7 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceA
         this.collectionRegex = $.collectionRegex;
         this.database = $.database;
         this.databaseRegex = $.databaseRegex;
+        this.datasetName = $.datasetName;
         this.defaultFormat = $.defaultFormat;
         this.path = $.path;
         this.provenanceFieldName = $.provenanceFieldName;
@@ -163,6 +171,15 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceA
 
         public Builder databaseRegex(String databaseRegex) {
             return databaseRegex(Output.of(databaseRegex));
+        }
+
+        public Builder datasetName(@Nullable Output<String> datasetName) {
+            $.datasetName = datasetName;
+            return this;
+        }
+
+        public Builder datasetName(String datasetName) {
+            return datasetName(Output.of(datasetName));
         }
 
         public Builder defaultFormat(@Nullable Output<String> defaultFormat) {

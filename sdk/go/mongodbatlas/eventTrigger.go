@@ -14,6 +14,8 @@ import (
 
 // `EventTrigger` provides a Event Trigger resource.
 //
+// Note: If the `appId` changes in the EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app if it still exists then create itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/app-services/triggers/) to learn more.
+//
 // ## Example Usage
 //
 // ### S

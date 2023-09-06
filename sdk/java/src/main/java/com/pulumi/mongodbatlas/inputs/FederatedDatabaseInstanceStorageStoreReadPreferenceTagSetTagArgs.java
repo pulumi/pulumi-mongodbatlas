@@ -11,9 +11,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs extends com.pulumi.resources.ResourceArgs {
+public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs Empty = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs();
+    public static final FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs Empty = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs();
 
     /**
      * Name of the Atlas Federated Database Instance.
@@ -41,9 +41,9 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs ex
         return Optional.ofNullable(this.value);
     }
 
-    private FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs() {}
+    private FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs() {}
 
-    private FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs(FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs $) {
+    private FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs $) {
         this.name = $.name;
         this.value = $.value;
     }
@@ -51,19 +51,19 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs ex
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs defaults) {
+    public static Builder builder(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs $;
+        private FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs $;
 
         public Builder() {
-            $ = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs();
+            $ = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs();
         }
 
-        public Builder(FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs defaults) {
-            $ = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs(Objects.requireNonNull(defaults));
+        public Builder(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs defaults) {
+            $ = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -100,7 +100,7 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs ex
             return value(Output.of(value));
         }
 
-        public FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs build() {
+        public FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs build() {
             return $;
         }
     }

@@ -35,7 +35,7 @@ export interface GetDatabaseUserArgs {
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      *
-     * @deprecated use auth_database_name instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      */
     databaseName?: string;
     /**
@@ -60,7 +60,7 @@ export interface GetDatabaseUserResult {
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      *
-     * @deprecated use auth_database_name instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      */
     readonly databaseName?: string;
     /**
@@ -72,6 +72,10 @@ export interface GetDatabaseUserResult {
      * Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
      */
     readonly ldapAuthType: string;
+    /**
+     * (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     */
+    readonly oidcAuthType: string;
     readonly projectId: string;
     /**
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -109,7 +113,7 @@ export interface GetDatabaseUserOutputArgs {
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      *
-     * @deprecated use auth_database_name instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      */
     databaseName?: pulumi.Input<string>;
     /**

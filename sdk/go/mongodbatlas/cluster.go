@@ -63,7 +63,7 @@ type Cluster struct {
 	BackupEnabled pulumi.BoolPtrOutput `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
-	// Deprecated: use bi_connector_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
 	BiConnector pulumi.StringMapOutput `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigOutput `pulumi:"biConnectorConfig"`
@@ -115,7 +115,7 @@ type Cluster struct {
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringOutput `pulumi:"providerAutoScalingComputeMinInstanceSize"`
 	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
 	//
-	// Deprecated: This field is deprecated,please use cloud_backup instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
 	ProviderBackupEnabled pulumi.BoolPtrOutput `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -137,6 +137,7 @@ type Cluster struct {
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
 	ProviderRegionName pulumi.StringOutput `pulumi:"providerRegionName"`
 	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringOutput `pulumi:"providerVolumeType"`
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntOutput `pulumi:"replicationFactor"`
@@ -238,7 +239,7 @@ type clusterState struct {
 	BackupEnabled *bool `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
-	// Deprecated: use bi_connector_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
 	BiConnector map[string]string `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig *ClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
@@ -290,7 +291,7 @@ type clusterState struct {
 	ProviderAutoScalingComputeMinInstanceSize *string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
 	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
 	//
-	// Deprecated: This field is deprecated,please use cloud_backup instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
 	ProviderBackupEnabled *bool `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -312,6 +313,7 @@ type clusterState struct {
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
 	ProviderRegionName *string `pulumi:"providerRegionName"`
 	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType *string `pulumi:"providerVolumeType"`
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor *int `pulumi:"replicationFactor"`
@@ -375,7 +377,7 @@ type ClusterState struct {
 	BackupEnabled pulumi.BoolPtrInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
-	// Deprecated: use bi_connector_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
 	BiConnector pulumi.StringMapInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigPtrInput
@@ -427,7 +429,7 @@ type ClusterState struct {
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringPtrInput
 	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
 	//
-	// Deprecated: This field is deprecated,please use cloud_backup instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
 	ProviderBackupEnabled pulumi.BoolPtrInput
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -449,6 +451,7 @@ type ClusterState struct {
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
 	ProviderRegionName pulumi.StringPtrInput
 	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringPtrInput
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntPtrInput
@@ -516,7 +519,7 @@ type clusterArgs struct {
 	BackupEnabled *bool `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
-	// Deprecated: use bi_connector_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
 	BiConnector map[string]string `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig *ClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
@@ -554,7 +557,7 @@ type clusterArgs struct {
 	ProviderAutoScalingComputeMinInstanceSize *string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
 	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
 	//
-	// Deprecated: This field is deprecated,please use cloud_backup instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
 	ProviderBackupEnabled *bool `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -575,6 +578,7 @@ type clusterArgs struct {
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
 	ProviderRegionName *string `pulumi:"providerRegionName"`
 	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType *string `pulumi:"providerVolumeType"`
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor *int `pulumi:"replicationFactor"`
@@ -627,7 +631,7 @@ type ClusterArgs struct {
 	BackupEnabled pulumi.BoolPtrInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
-	// Deprecated: use bi_connector_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
 	BiConnector pulumi.StringMapInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigPtrInput
@@ -665,7 +669,7 @@ type ClusterArgs struct {
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringPtrInput
 	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
 	//
-	// Deprecated: This field is deprecated,please use cloud_backup instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
 	ProviderBackupEnabled pulumi.BoolPtrInput
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -686,6 +690,7 @@ type ClusterArgs struct {
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
 	ProviderRegionName pulumi.StringPtrInput
 	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringPtrInput
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntPtrInput
@@ -844,7 +849,7 @@ func (o ClusterOutput) BackupEnabled() pulumi.BoolPtrOutput {
 
 // Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 //
-// Deprecated: use bi_connector_config instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
 func (o ClusterOutput) BiConnector() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringMapOutput { return v.BiConnector }).(pulumi.StringMapOutput)
 }
@@ -962,7 +967,7 @@ func (o ClusterOutput) ProviderAutoScalingComputeMinInstanceSize() pulumi.String
 
 // Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
 //
-// Deprecated: This field is deprecated,please use cloud_backup instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
 func (o ClusterOutput) ProviderBackupEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.ProviderBackupEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -1008,6 +1013,7 @@ func (o ClusterOutput) ProviderRegionName() pulumi.StringOutput {
 }
 
 // The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+// > **NOTE:** `STANDARD` is not available for NVME clusters.
 func (o ClusterOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ProviderVolumeType }).(pulumi.StringOutput)
 }

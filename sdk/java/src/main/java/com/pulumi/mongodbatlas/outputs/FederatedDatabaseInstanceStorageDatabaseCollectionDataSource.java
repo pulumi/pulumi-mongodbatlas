@@ -18,6 +18,7 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource 
     private @Nullable String collectionRegex;
     private @Nullable String database;
     private @Nullable String databaseRegex;
+    private @Nullable String datasetName;
     private @Nullable String defaultFormat;
     private @Nullable String path;
     private @Nullable String provenanceFieldName;
@@ -39,6 +40,9 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource 
     }
     public Optional<String> databaseRegex() {
         return Optional.ofNullable(this.databaseRegex);
+    }
+    public Optional<String> datasetName() {
+        return Optional.ofNullable(this.datasetName);
     }
     public Optional<String> defaultFormat() {
         return Optional.ofNullable(this.defaultFormat);
@@ -70,6 +74,7 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource 
         private @Nullable String collectionRegex;
         private @Nullable String database;
         private @Nullable String databaseRegex;
+        private @Nullable String datasetName;
         private @Nullable String defaultFormat;
         private @Nullable String path;
         private @Nullable String provenanceFieldName;
@@ -83,6 +88,7 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource 
     	      this.collectionRegex = defaults.collectionRegex;
     	      this.database = defaults.database;
     	      this.databaseRegex = defaults.databaseRegex;
+    	      this.datasetName = defaults.datasetName;
     	      this.defaultFormat = defaults.defaultFormat;
     	      this.path = defaults.path;
     	      this.provenanceFieldName = defaults.provenanceFieldName;
@@ -113,6 +119,11 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource 
         @CustomType.Setter
         public Builder databaseRegex(@Nullable String databaseRegex) {
             this.databaseRegex = databaseRegex;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder datasetName(@Nullable String datasetName) {
+            this.datasetName = datasetName;
             return this;
         }
         @CustomType.Setter
@@ -150,6 +161,7 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource 
             o.collectionRegex = collectionRegex;
             o.database = database;
             o.databaseRegex = databaseRegex;
+            o.datasetName = datasetName;
             o.defaultFormat = defaultFormat;
             o.path = path;
             o.provenanceFieldName = provenanceFieldName;

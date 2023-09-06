@@ -18,12 +18,12 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
-        [Input("tags")]
-        private InputList<Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs>? _tags;
-        public InputList<Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs> Tags
+        [Input("tagSets")]
+        private InputList<Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs>? _tagSets;
+        public InputList<Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs> TagSets
         {
-            get => _tags ?? (_tags = new InputList<Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs>());
-            set => _tags = value;
+            get => _tagSets ?? (_tagSets = new InputList<Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs>());
+            set => _tagSets = value;
         }
 
         public FederatedDatabaseInstanceStorageStoreReadPreferenceArgs()

@@ -31,6 +31,11 @@ public final class GetDatabaseUsersResult {
      */
     private String ldapAuthType;
     /**
+     * @return (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * 
+     */
+    private String oidcAuthType;
+    /**
      * @return The unique ID for the project to get all database users.
      * 
      */
@@ -83,6 +88,13 @@ public final class GetDatabaseUsersResult {
         return this.ldapAuthType;
     }
     /**
+     * @return (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * 
+     */
+    public String oidcAuthType() {
+        return this.oidcAuthType;
+    }
+    /**
      * @return The unique ID for the project to get all database users.
      * 
      */
@@ -131,6 +143,7 @@ public final class GetDatabaseUsersResult {
         private String awsIamType;
         private List<GetDatabaseUsersResultLabel> labels;
         private String ldapAuthType;
+        private String oidcAuthType;
         private String projectId;
         private List<GetDatabaseUsersResultRole> roles;
         private List<GetDatabaseUsersResultScope> scopes;
@@ -143,6 +156,7 @@ public final class GetDatabaseUsersResult {
     	      this.awsIamType = defaults.awsIamType;
     	      this.labels = defaults.labels;
     	      this.ldapAuthType = defaults.ldapAuthType;
+    	      this.oidcAuthType = defaults.oidcAuthType;
     	      this.projectId = defaults.projectId;
     	      this.roles = defaults.roles;
     	      this.scopes = defaults.scopes;
@@ -171,6 +185,11 @@ public final class GetDatabaseUsersResult {
         @CustomType.Setter
         public Builder ldapAuthType(String ldapAuthType) {
             this.ldapAuthType = Objects.requireNonNull(ldapAuthType);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder oidcAuthType(String oidcAuthType) {
+            this.oidcAuthType = Objects.requireNonNull(oidcAuthType);
             return this;
         }
         @CustomType.Setter
@@ -210,6 +229,7 @@ public final class GetDatabaseUsersResult {
             o.awsIamType = awsIamType;
             o.labels = labels;
             o.ldapAuthType = ldapAuthType;
+            o.oidcAuthType = oidcAuthType;
             o.projectId = projectId;
             o.roles = roles;
             o.scopes = scopes;

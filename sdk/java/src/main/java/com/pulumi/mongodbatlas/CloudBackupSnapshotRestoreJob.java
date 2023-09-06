@@ -26,7 +26,6 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
  * ```
- * 
  *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
  * 
  */
@@ -76,10 +75,10 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
     }
     /**
      * @deprecated
-     * use delivery_type_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
      * 
      */
-    @Deprecated /* use delivery_type_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config */
     @Export(name="deliveryType", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> deliveryType;
 

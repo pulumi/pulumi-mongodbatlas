@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
     /// ```
-    /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob")]
@@ -160,7 +159,7 @@ namespace Pulumi.Mongodbatlas
 
         [Input("deliveryType")]
         private InputMap<string>? _deliveryType;
-        [Obsolete(@"use delivery_type_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config")]
         public InputMap<string> DeliveryType
         {
             get => _deliveryType ?? (_deliveryType = new InputMap<string>());
@@ -221,7 +220,7 @@ namespace Pulumi.Mongodbatlas
 
         [Input("deliveryType")]
         private InputMap<string>? _deliveryType;
-        [Obsolete(@"use delivery_type_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config")]
         public InputMap<string> DeliveryType
         {
             get => _deliveryType ?? (_deliveryType = new InputMap<string>());

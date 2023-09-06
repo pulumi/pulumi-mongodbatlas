@@ -5,7 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs;
+import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -32,11 +32,11 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceArgs exten
         return Optional.ofNullable(this.mode);
     }
 
-    @Import(name="tags")
-    private @Nullable Output<List<FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs>> tags;
+    @Import(name="tagSets")
+    private @Nullable Output<List<FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs>> tagSets;
 
-    public Optional<Output<List<FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs>>> tags() {
-        return Optional.ofNullable(this.tags);
+    public Optional<Output<List<FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs>>> tagSets() {
+        return Optional.ofNullable(this.tagSets);
     }
 
     private FederatedDatabaseInstanceStorageStoreReadPreferenceArgs() {}
@@ -44,7 +44,7 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceArgs exten
     private FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(FederatedDatabaseInstanceStorageStoreReadPreferenceArgs $) {
         this.maxStalenessSeconds = $.maxStalenessSeconds;
         this.mode = $.mode;
-        this.tags = $.tags;
+        this.tagSets = $.tagSets;
     }
 
     public static Builder builder() {
@@ -83,17 +83,17 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceArgs exten
             return mode(Output.of(mode));
         }
 
-        public Builder tags(@Nullable Output<List<FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs>> tags) {
-            $.tags = tags;
+        public Builder tagSets(@Nullable Output<List<FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs>> tagSets) {
+            $.tagSets = tagSets;
             return this;
         }
 
-        public Builder tags(List<FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs> tags) {
-            return tags(Output.of(tags));
+        public Builder tagSets(List<FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs> tagSets) {
+            return tagSets(Output.of(tagSets));
         }
 
-        public Builder tags(FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs... tags) {
-            return tags(List.of(tags));
+        public Builder tagSets(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs... tagSets) {
+            return tagSets(List.of(tagSets));
         }
 
         public FederatedDatabaseInstanceStorageStoreReadPreferenceArgs build() {

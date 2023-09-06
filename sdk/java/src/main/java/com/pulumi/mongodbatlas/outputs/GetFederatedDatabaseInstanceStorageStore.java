@@ -15,6 +15,12 @@ public final class GetFederatedDatabaseInstanceStorageStore {
     private List<String> additionalStorageClasses;
     private Boolean allowInsecure;
     private String bucket;
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024 */
     private String clusterId;
     private String clusterName;
     private String defaultFormat;
@@ -51,6 +57,12 @@ public final class GetFederatedDatabaseInstanceStorageStore {
     public String bucket() {
         return this.bucket;
     }
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024 */
     public String clusterId() {
         return this.clusterId;
     }

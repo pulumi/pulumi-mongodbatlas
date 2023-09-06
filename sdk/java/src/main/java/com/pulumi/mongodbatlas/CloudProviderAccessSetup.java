@@ -22,10 +22,10 @@ import javax.annotation.Nullable;
 public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResource {
     /**
      * @deprecated
-     * use aws_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
      * 
      */
-    @Deprecated /* use aws_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config */
     @Export(name="aws", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> aws;
 

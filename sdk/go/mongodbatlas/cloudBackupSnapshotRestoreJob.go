@@ -32,7 +32,7 @@ type CloudBackupSnapshotRestoreJob struct {
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Deprecated: use delivery_type_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
 	DeliveryType pulumi.StringMapOutput `pulumi:"deliveryType"`
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -107,7 +107,7 @@ type cloudBackupSnapshotRestoreJobState struct {
 	ClusterName *string `pulumi:"clusterName"`
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
 	CreatedAt *string `pulumi:"createdAt"`
-	// Deprecated: use delivery_type_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
 	DeliveryType map[string]string `pulumi:"deliveryType"`
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -144,7 +144,7 @@ type CloudBackupSnapshotRestoreJobState struct {
 	ClusterName pulumi.StringPtrInput
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
 	CreatedAt pulumi.StringPtrInput
-	// Deprecated: use delivery_type_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
 	DeliveryType pulumi.StringMapInput
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -181,7 +181,7 @@ func (CloudBackupSnapshotRestoreJobState) ElementType() reflect.Type {
 type cloudBackupSnapshotRestoreJobArgs struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName string `pulumi:"clusterName"`
-	// Deprecated: use delivery_type_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
 	DeliveryType map[string]string `pulumi:"deliveryType"`
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -203,7 +203,7 @@ type cloudBackupSnapshotRestoreJobArgs struct {
 type CloudBackupSnapshotRestoreJobArgs struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName pulumi.StringInput
-	// Deprecated: use delivery_type_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
 	DeliveryType pulumi.StringMapInput
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -323,7 +323,7 @@ func (o CloudBackupSnapshotRestoreJobOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Deprecated: use delivery_type_config instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
 func (o CloudBackupSnapshotRestoreJobOutput) DeliveryType() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringMapOutput { return v.DeliveryType }).(pulumi.StringMapOutput)
 }

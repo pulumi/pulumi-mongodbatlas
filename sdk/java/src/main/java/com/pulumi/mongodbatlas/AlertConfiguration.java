@@ -210,7 +210,6 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
  * ```
- * 
  *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
  * 
  */
@@ -288,10 +287,10 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
     }
     /**
      * @deprecated
-     * use metric_threshold_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
      * 
      */
-    @Deprecated /* use metric_threshold_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config */
     @Export(name="metricThreshold", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> metricThreshold;
 
@@ -328,10 +327,10 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * Threshold value outside of which an alert will be triggered.
      * 
      * @deprecated
-     * use threshold_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
      * 
      */
-    @Deprecated /* use threshold_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config */
     @Export(name="threshold", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> threshold;
 

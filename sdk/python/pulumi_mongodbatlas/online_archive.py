@@ -386,6 +386,66 @@ class OnlineArchive(pulumi.CustomResource):
         > **IMPORTANT:** There are fields that are immutable after creation, i.e if `date_field` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
 
         ## Example Usage
+        ### S
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.OnlineArchive("test",
+            project_id=var["project_id"],
+            cluster_name=var["cluster_name"],
+            coll_name=var["collection_name"],
+            db_name=var["database_name"],
+            partition_fields=[
+                mongodbatlas.OnlineArchivePartitionFieldArgs(
+                    field_name="firstName",
+                    order=0,
+                ),
+                mongodbatlas.OnlineArchivePartitionFieldArgs(
+                    field_name="lastName",
+                    order=1,
+                ),
+            ],
+            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
+                type="DATE",
+                date_field="created",
+                expire_after_days=5,
+            ),
+            schedule=mongodbatlas.OnlineArchiveScheduleArgs(
+                type="DAILY",
+                end_hour=1,
+                end_minute=1,
+                start_hour=1,
+                start_minute=1,
+            ))
+        ```
+
+        For custom criteria example
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.OnlineArchive("test",
+            project_id=var["project_id"],
+            cluster_name=var["cluster_name"],
+            coll_name=var["collection_name"],
+            db_name=var["database_name"],
+            partition_fields=[
+                mongodbatlas.OnlineArchivePartitionFieldArgs(
+                    field_name="firstName",
+                    order=0,
+                ),
+                mongodbatlas.OnlineArchivePartitionFieldArgs(
+                    field_name="secondName",
+                    order=1,
+                ),
+            ],
+            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
+                type="CUSTOM",
+                query="{ \\"department\\": \\"engineering\\" }",
+            ))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -414,6 +474,66 @@ class OnlineArchive(pulumi.CustomResource):
         > **IMPORTANT:** There are fields that are immutable after creation, i.e if `date_field` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
 
         ## Example Usage
+        ### S
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.OnlineArchive("test",
+            project_id=var["project_id"],
+            cluster_name=var["cluster_name"],
+            coll_name=var["collection_name"],
+            db_name=var["database_name"],
+            partition_fields=[
+                mongodbatlas.OnlineArchivePartitionFieldArgs(
+                    field_name="firstName",
+                    order=0,
+                ),
+                mongodbatlas.OnlineArchivePartitionFieldArgs(
+                    field_name="lastName",
+                    order=1,
+                ),
+            ],
+            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
+                type="DATE",
+                date_field="created",
+                expire_after_days=5,
+            ),
+            schedule=mongodbatlas.OnlineArchiveScheduleArgs(
+                type="DAILY",
+                end_hour=1,
+                end_minute=1,
+                start_hour=1,
+                start_minute=1,
+            ))
+        ```
+
+        For custom criteria example
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.OnlineArchive("test",
+            project_id=var["project_id"],
+            cluster_name=var["cluster_name"],
+            coll_name=var["collection_name"],
+            db_name=var["database_name"],
+            partition_fields=[
+                mongodbatlas.OnlineArchivePartitionFieldArgs(
+                    field_name="firstName",
+                    order=0,
+                ),
+                mongodbatlas.OnlineArchivePartitionFieldArgs(
+                    field_name="secondName",
+                    order=1,
+                ),
+            ],
+            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
+                type="CUSTOM",
+                query="{ \\"department\\": \\"engineering\\" }",
+            ))
+        ```
 
         :param str resource_name: The name of the resource.
         :param OnlineArchiveArgs args: The arguments to use to populate this resource's properties.

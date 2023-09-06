@@ -99,11 +99,11 @@ export interface AdvancedClusterBiConnectorConfig {
 
 export interface AdvancedClusterConnectionString {
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
      */
     awsPrivateLink: {[key: string]: any};
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
      */
     awsPrivateLinkSrv: {[key: string]: any};
     private: string;
@@ -138,6 +138,9 @@ export interface AdvancedClusterLabel {
     key: string;
     /**
      * The value that you want to write.
+     *
+     * > **NOTE:** MongoDB Atlas doesn't display your labels.
+     * > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      */
     value: string;
 }
@@ -609,7 +612,7 @@ export interface CloudBackupScheduleCopySetting {
      */
     regionName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
      */
     replicationSpecId: string;
     /**
@@ -880,11 +883,11 @@ export interface ClusterBiConnectorConfig {
 
 export interface ClusterConnectionString {
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
      */
     awsPrivateLink: {[key: string]: any};
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
      */
     awsPrivateLinkSrv: {[key: string]: any};
     private: string;
@@ -920,6 +923,9 @@ export interface ClusterLabel {
     key: string;
     /**
      * The value that you want to write.
+     *
+     * > **NOTE:** MongoDB Atlas doesn't display your labels.
+     * > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      */
     value: string;
 }
@@ -1417,6 +1423,7 @@ export interface FederatedDatabaseInstanceStorageDatabaseCollectionDataSource {
     collectionRegex?: string;
     database?: string;
     databaseRegex?: string;
+    datasetName?: string;
     defaultFormat?: string;
     path?: string;
     provenanceFieldName?: string;
@@ -1439,6 +1446,9 @@ export interface FederatedDatabaseInstanceStorageStore {
     additionalStorageClasses?: string[];
     allowInsecure?: boolean;
     bucket?: string;
+    /**
+     * @deprecated this parameter is deprecated and will be removed by September 2024
+     */
     clusterId?: string;
     clusterName?: string;
     defaultFormat?: string;
@@ -1468,10 +1478,14 @@ export interface FederatedDatabaseInstanceStorageStore {
 export interface FederatedDatabaseInstanceStorageStoreReadPreference {
     maxStalenessSeconds?: number;
     mode?: string;
-    tags: outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTag[];
+    tagSets?: outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet[];
 }
 
-export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
+export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
+    tags: outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag[];
+}
+
+export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     /**
      * Name of the Atlas Federated Database Instance.
      * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
@@ -1580,11 +1594,11 @@ export interface GetAdvancedClusterBiConnectorConfig {
 
 export interface GetAdvancedClusterConnectionString {
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
      */
     awsPrivateLink: {[key: string]: any};
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
      */
     awsPrivateLinkSrv: {[key: string]: any};
     private: string;
@@ -1913,11 +1927,11 @@ export interface GetAdvancedClustersResultBiConnectorConfig {
 
 export interface GetAdvancedClustersResultConnectionString {
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
      */
     awsPrivateLink: {[key: string]: any};
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
      */
     awsPrivateLinkSrv: {[key: string]: any};
     private: string;
@@ -2531,7 +2545,7 @@ export interface GetCloudBackupScheduleCopySetting {
      */
     regionName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
      */
     replicationSpecId: string;
     /**
@@ -3045,11 +3059,11 @@ export interface GetClusterConnectionStringPrivateEndpointEndpoint {
 
 export interface GetClusterLabel {
     /**
-     * The key that was set.
+     * The key that you want to write.
      */
     key: string;
     /**
-     * The value that represents the key.
+     * The value that you want to write.
      */
     value: string;
 }
@@ -3285,6 +3299,7 @@ export interface GetClustersResult {
     providerRegionName: string;
     /**
      * Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+     * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
     providerVolumeType: string;
     /**
@@ -3407,11 +3422,11 @@ export interface GetClustersResultConnectionStringPrivateEndpointEndpoint {
 
 export interface GetClustersResultLabel {
     /**
-     * The key that was set.
+     * The key that you want to write.
      */
     key: string;
     /**
-     * The value that represents the key.
+     * The value that you want to write.
      */
     value: string;
 }
@@ -4013,6 +4028,10 @@ export interface GetDatabaseUsersResult {
      */
     ldapAuthType: string;
     /**
+     * (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     */
+    oidcAuthType: string;
+    /**
      * The unique ID for the project to get all database users.
      */
     projectId: string;
@@ -4224,6 +4243,7 @@ export interface GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource
     collectionRegex: string;
     database: string;
     databaseRegex: string;
+    datasetName: string;
     defaultFormat: string;
     path: string;
     provenanceFieldName: string;
@@ -4244,6 +4264,9 @@ export interface GetFederatedDatabaseInstanceStorageStore {
     additionalStorageClasses: string[];
     allowInsecure: boolean;
     bucket: string;
+    /**
+     * @deprecated this parameter is deprecated and will be removed by September 2024
+     */
     clusterId: string;
     clusterName: string;
     defaultFormat: string;
@@ -4271,10 +4294,14 @@ export interface GetFederatedDatabaseInstanceStorageStore {
 export interface GetFederatedDatabaseInstanceStorageStoreReadPreference {
     maxStalenessSeconds: number;
     mode: string;
-    tags: outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag[];
+    tagSets: outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet[];
 }
 
-export interface GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag {
+export interface GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
+    tags: outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag[];
+}
+
+export interface GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     /**
      * Name of the Atlas Federated Database Instance.
      */
@@ -4305,6 +4332,7 @@ export interface GetFederatedDatabaseInstancesResult {
      * * `storage_databases.#.collections.#.name` - Name of the collection.
      * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
      * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
+     * * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
      * * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
      * * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
      * * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -4339,9 +4367,10 @@ export interface GetFederatedDatabaseInstancesResult {
      * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
      * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
      * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-     * * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-     * * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-     * * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+     * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+     * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+     * * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+     * * `storage_stores.#.read_preference.tags.value` - Value of the tag.
      */
     storageStores: outputs.GetFederatedDatabaseInstancesResultStorageStore[];
 }
@@ -4403,6 +4432,7 @@ export interface GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDat
     collectionRegex: string;
     database: string;
     databaseRegex: string;
+    datasetName: string;
     defaultFormat: string;
     path: string;
     provenanceFieldName: string;
@@ -4420,6 +4450,9 @@ export interface GetFederatedDatabaseInstancesResultStorageStore {
     additionalStorageClasses: string[];
     allowInsecure: boolean;
     bucket: string;
+    /**
+     * @deprecated this parameter is deprecated and will be removed by September 2024
+     */
     clusterId: string;
     clusterName: string;
     defaultFormat: string;
@@ -4444,10 +4477,14 @@ export interface GetFederatedDatabaseInstancesResultStorageStore {
 export interface GetFederatedDatabaseInstancesResultStorageStoreReadPreference {
     maxStalenessSeconds: number;
     mode: string;
-    tags: outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag[];
+    tagSets: outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet[];
 }
 
-export interface GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag {
+export interface GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet {
+    tags: outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag[];
+}
+
+export interface GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag {
     name: string;
     value: string;
 }
@@ -5717,6 +5754,8 @@ export interface OnlineArchiveCriteria {
     /**
      * Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
      *
+     * **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
+     *
      * The only field required for criteria type `CUSTOM`
      */
     expireAfterDays?: number;
@@ -5896,7 +5935,7 @@ export namespace config {
     export interface AssumeRole {
         duration?: string;
         /**
-         * @deprecated Use assume_role.duration instead
+         * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
          */
         durationSeconds?: number;
         externalId?: string;

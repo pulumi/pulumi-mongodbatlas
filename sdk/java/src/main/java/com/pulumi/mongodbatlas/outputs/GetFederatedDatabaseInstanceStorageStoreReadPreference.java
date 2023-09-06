@@ -4,7 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag;
+import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.Objects;
 public final class GetFederatedDatabaseInstanceStorageStoreReadPreference {
     private Integer maxStalenessSeconds;
     private String mode;
-    private List<GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag> tags;
+    private List<GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet> tagSets;
 
     private GetFederatedDatabaseInstanceStorageStoreReadPreference() {}
     public Integer maxStalenessSeconds() {
@@ -23,8 +23,8 @@ public final class GetFederatedDatabaseInstanceStorageStoreReadPreference {
     public String mode() {
         return this.mode;
     }
-    public List<GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag> tags() {
-        return this.tags;
+    public List<GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet> tagSets() {
+        return this.tagSets;
     }
 
     public static Builder builder() {
@@ -38,13 +38,13 @@ public final class GetFederatedDatabaseInstanceStorageStoreReadPreference {
     public static final class Builder {
         private Integer maxStalenessSeconds;
         private String mode;
-        private List<GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag> tags;
+        private List<GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet> tagSets;
         public Builder() {}
         public Builder(GetFederatedDatabaseInstanceStorageStoreReadPreference defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.maxStalenessSeconds = defaults.maxStalenessSeconds;
     	      this.mode = defaults.mode;
-    	      this.tags = defaults.tags;
+    	      this.tagSets = defaults.tagSets;
         }
 
         @CustomType.Setter
@@ -58,18 +58,18 @@ public final class GetFederatedDatabaseInstanceStorageStoreReadPreference {
             return this;
         }
         @CustomType.Setter
-        public Builder tags(List<GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag> tags) {
-            this.tags = Objects.requireNonNull(tags);
+        public Builder tagSets(List<GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet> tagSets) {
+            this.tagSets = Objects.requireNonNull(tagSets);
             return this;
         }
-        public Builder tags(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag... tags) {
-            return tags(List.of(tags));
+        public Builder tagSets(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet... tagSets) {
+            return tagSets(List.of(tagSets));
         }
         public GetFederatedDatabaseInstanceStorageStoreReadPreference build() {
             final var o = new GetFederatedDatabaseInstanceStorageStoreReadPreference();
             o.maxStalenessSeconds = maxStalenessSeconds;
             o.mode = mode;
-            o.tags = tags;
+            o.tagSets = tagSets;
             return o;
         }
     }

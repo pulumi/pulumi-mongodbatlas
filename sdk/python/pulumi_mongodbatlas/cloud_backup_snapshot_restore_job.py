@@ -40,8 +40,8 @@ class CloudBackupSnapshotRestoreJobArgs:
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "snapshot_id", snapshot_id)
         if delivery_type is not None:
-            warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
-            pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""", DeprecationWarning)
+            pulumi.log.warn("""delivery_type is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""")
         if delivery_type is not None:
             pulumi.set(__self__, "delivery_type", delivery_type)
         if delivery_type_config is not None:
@@ -86,8 +86,8 @@ class CloudBackupSnapshotRestoreJobArgs:
     @property
     @pulumi.getter(name="deliveryType")
     def delivery_type(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
-        pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""", DeprecationWarning)
+        pulumi.log.warn("""delivery_type is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""")
 
         return pulumi.get(self, "delivery_type")
 
@@ -162,8 +162,8 @@ class _CloudBackupSnapshotRestoreJobState:
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if delivery_type is not None:
-            warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
-            pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""", DeprecationWarning)
+            pulumi.log.warn("""delivery_type is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""")
         if delivery_type is not None:
             pulumi.set(__self__, "delivery_type", delivery_type)
         if delivery_type_config is not None:
@@ -224,8 +224,8 @@ class _CloudBackupSnapshotRestoreJobState:
     @property
     @pulumi.getter(name="deliveryType")
     def delivery_type(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
-        pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""", DeprecationWarning)
+        pulumi.log.warn("""delivery_type is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""")
 
         return pulumi.get(self, "delivery_type")
 
@@ -369,7 +369,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
         ```
-
          For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
 
         :param str resource_name: The name of the resource.
@@ -401,7 +400,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
         ```
-
          For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
 
         :param str resource_name: The name of the resource.
@@ -437,8 +435,8 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 raise TypeError("Missing required property 'cluster_name'")
             __props__.__dict__["cluster_name"] = cluster_name
             if delivery_type is not None and not opts.urn:
-                warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
-                pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""", DeprecationWarning)
+                pulumi.log.warn("""delivery_type is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""")
             __props__.__dict__["delivery_type"] = delivery_type
             __props__.__dict__["delivery_type_config"] = delivery_type_config
             if project_id is None and not opts.urn:
@@ -552,8 +550,8 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
     @property
     @pulumi.getter(name="deliveryType")
     def delivery_type(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
-        warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
-        pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""", DeprecationWarning)
+        pulumi.log.warn("""delivery_type is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""")
 
         return pulumi.get(self, "delivery_type")
 

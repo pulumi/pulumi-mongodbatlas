@@ -615,7 +615,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration my_user 1112222b3bf99403840e8934-OPS_GENIE
         ```
-
          See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) Documentation for more information.
 
         :param str resource_name: The name of the resource.
@@ -674,7 +673,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration my_user 1112222b3bf99403840e8934-OPS_GENIE
         ```
-
          See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) Documentation for more information.
 
         :param str resource_name: The name of the resource.

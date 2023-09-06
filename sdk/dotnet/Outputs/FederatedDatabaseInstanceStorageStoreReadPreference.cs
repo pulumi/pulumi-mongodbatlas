@@ -15,7 +15,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         public readonly int? MaxStalenessSeconds;
         public readonly string? Mode;
-        public readonly ImmutableArray<Outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTag> Tags;
+        public readonly ImmutableArray<Outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet> TagSets;
 
         [OutputConstructor]
         private FederatedDatabaseInstanceStorageStoreReadPreference(
@@ -23,11 +23,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? mode,
 
-            ImmutableArray<Outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTag> tags)
+            ImmutableArray<Outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet> tagSets)
         {
             MaxStalenessSeconds = maxStalenessSeconds;
             Mode = mode;
-            Tags = tags;
+            TagSets = tagSets;
         }
     }
 }

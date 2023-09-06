@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
     /// ```
-    /// 
     ///  For more information see[MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/encryptionAtRest:EncryptionAtRest")]
@@ -117,7 +116,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Obsolete(@"use aws_kms_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config")]
         public InputMap<string> AwsKms
         {
             get => _awsKms ?? (_awsKms = new InputMap<string>());
@@ -146,7 +145,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Obsolete(@"use azure_key_vault_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config")]
         public InputMap<string> AzureKeyVault
         {
             get => _azureKeyVault ?? (_azureKeyVault = new InputMap<string>());
@@ -175,7 +174,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Obsolete(@"use google_cloud_kms_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config")]
         public InputMap<string> GoogleCloudKms
         {
             get => _googleCloudKms ?? (_googleCloudKms = new InputMap<string>());
@@ -218,7 +217,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Obsolete(@"use aws_kms_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config")]
         public InputMap<string> AwsKms
         {
             get => _awsKms ?? (_awsKms = new InputMap<string>());
@@ -247,7 +246,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Obsolete(@"use azure_key_vault_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config")]
         public InputMap<string> AzureKeyVault
         {
             get => _azureKeyVault ?? (_azureKeyVault = new InputMap<string>());
@@ -276,7 +275,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Obsolete(@"use google_cloud_kms_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config")]
         public InputMap<string> GoogleCloudKms
         {
             get => _googleCloudKms ?? (_googleCloudKms = new InputMap<string>());

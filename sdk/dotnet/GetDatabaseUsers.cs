@@ -71,6 +71,40 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
+        /// **Example of usage with a OIDC federated authentication user**
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
+        ///     {
+        ///         AuthDatabaseName = "admin",
+        ///         OidcAuthType = "IDP_GROUP",
+        ///         ProjectId = "6414908c207f4d22f4d8f232",
+        ///         Roles = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 DatabaseName = "admin",
+        ///                 RoleName = "readWriteAnyDatabase",
+        ///             },
+        ///         },
+        ///         Username = "64d613677e1ad50839cce4db/testUserOrGroup",
+        ///     });
+        /// 
+        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     {
+        ///         ProjectId = "6414908c207f4d22f4d8f232",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
@@ -137,6 +171,40 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
+        /// **Example of usage with a OIDC federated authentication user**
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
+        ///     {
+        ///         AuthDatabaseName = "admin",
+        ///         OidcAuthType = "IDP_GROUP",
+        ///         ProjectId = "6414908c207f4d22f4d8f232",
+        ///         Roles = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 DatabaseName = "admin",
+        ///                 RoleName = "readWriteAnyDatabase",
+        ///             },
+        ///         },
+        ///         Username = "64d613677e1ad50839cce4db/testUserOrGroup",
+        ///     });
+        /// 
+        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     {
+        ///         ProjectId = "6414908c207f4d22f4d8f232",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

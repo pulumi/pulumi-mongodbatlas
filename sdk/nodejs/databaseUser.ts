@@ -101,6 +101,24 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
+ * ## Example of how to create a OIDC federated authentication user
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.DatabaseUser("test", {
+ *     authDatabaseName: "admin",
+ *     oidcAuthType: "IDP_GROUP",
+ *     projectId: "6414908c207f4d22f4d8f232",
+ *     roles: [{
+ *         databaseName: "admin",
+ *         roleName: "readWriteAnyDatabase",
+ *     }],
+ *     username: "64d613677e1ad50839cce4db/testUserOr",
+ * });
+ * ```
+ * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  *
  * ## Import
  *
@@ -109,6 +127,7 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
  * ```
+ *  ~> __NOTE:__ Terraform will want to change the password after importing the user if a `password` argument is specified.
  */
 export class DatabaseUser extends pulumi.CustomResource {
     /**
@@ -144,13 +163,13 @@ export class DatabaseUser extends pulumi.CustomResource {
      */
     public readonly authDatabaseName!: pulumi.Output<string | undefined>;
     /**
-     * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      */
     public readonly awsIamType!: pulumi.Output<string | undefined>;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      *
-     * @deprecated use auth_database_name instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      */
     public readonly databaseName!: pulumi.Output<string | undefined>;
     public readonly labels!: pulumi.Output<outputs.DatabaseUserLabel[]>;
@@ -158,6 +177,10 @@ export class DatabaseUser extends pulumi.CustomResource {
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
      */
     public readonly ldapAuthType!: pulumi.Output<string | undefined>;
+    /**
+     * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     */
+    public readonly oidcAuthType!: pulumi.Output<string | undefined>;
     public readonly password!: pulumi.Output<string | undefined>;
     /**
      * The unique ID for the project to create the database user.
@@ -195,6 +218,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             resourceInputs["databaseName"] = state ? state.databaseName : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["ldapAuthType"] = state ? state.ldapAuthType : undefined;
+            resourceInputs["oidcAuthType"] = state ? state.oidcAuthType : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["roles"] = state ? state.roles : undefined;
@@ -217,6 +241,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             resourceInputs["databaseName"] = args ? args.databaseName : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["ldapAuthType"] = args ? args.ldapAuthType : undefined;
+            resourceInputs["oidcAuthType"] = args ? args.oidcAuthType : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["roles"] = args ? args.roles : undefined;
@@ -241,13 +266,13 @@ export interface DatabaseUserState {
      */
     authDatabaseName?: pulumi.Input<string>;
     /**
-     * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      */
     awsIamType?: pulumi.Input<string>;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      *
-     * @deprecated use auth_database_name instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      */
     databaseName?: pulumi.Input<string>;
     labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
@@ -255,6 +280,10 @@ export interface DatabaseUserState {
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
      */
     ldapAuthType?: pulumi.Input<string>;
+    /**
+     * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     */
+    oidcAuthType?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the database user.
@@ -285,13 +314,13 @@ export interface DatabaseUserArgs {
      */
     authDatabaseName?: pulumi.Input<string>;
     /**
-     * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      */
     awsIamType?: pulumi.Input<string>;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      *
-     * @deprecated use auth_database_name instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      */
     databaseName?: pulumi.Input<string>;
     labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
@@ -299,6 +328,10 @@ export interface DatabaseUserArgs {
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
      */
     ldapAuthType?: pulumi.Input<string>;
+    /**
+     * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     */
+    oidcAuthType?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the database user.

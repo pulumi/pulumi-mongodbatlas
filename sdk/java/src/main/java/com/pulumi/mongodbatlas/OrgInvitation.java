@@ -116,7 +116,9 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * ~&gt; **IMPORTANT:** An organization invitation can **not** be imported once it has been accepted. Import a user&#39;s invitation to an organization by separating the `org_id` and the `username` with a hyphen
+ * ~&gt; __IMPORTANT:__ An organization invitation can __not__ be imported once it has been accepted.
+ * 
+ * Import a user&#39;s invitation to an organization by separating the `org_id` and the `username` with a hyphen:
  * 
  * ```sh
  *  $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com

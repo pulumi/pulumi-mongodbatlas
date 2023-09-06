@@ -55,8 +55,8 @@ class AssumeRole(dict):
     @property
     @pulumi.getter(name="durationSeconds")
     def duration_seconds(self) -> Optional[int]:
-        warnings.warn("""Use assume_role.duration instead""", DeprecationWarning)
-        pulumi.log.warn("""duration_seconds is deprecated: Use assume_role.duration instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""", DeprecationWarning)
+        pulumi.log.warn("""duration_seconds is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""")
 
         return pulumi.get(self, "duration_seconds")
 

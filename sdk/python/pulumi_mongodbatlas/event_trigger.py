@@ -710,6 +710,8 @@ class EventTrigger(pulumi.CustomResource):
         """
         `EventTrigger` provides a Event Trigger resource.
 
+        Note: If the `app_id` changes in the EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app if it still exists then create itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/app-services/triggers/) to learn more.
+
         ## Example Usage
 
         ### S
@@ -814,7 +816,6 @@ class EventTrigger(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
         ```
-
          For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
 
         :param str resource_name: The name of the resource.
@@ -850,6 +851,8 @@ class EventTrigger(pulumi.CustomResource):
         """
         `EventTrigger` provides a Event Trigger resource.
 
+        Note: If the `app_id` changes in the EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app if it still exists then create itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/app-services/triggers/) to learn more.
+
         ## Example Usage
 
         ### S
@@ -954,7 +957,6 @@ class EventTrigger(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
         ```
-
          For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
 
         :param str resource_name: The name of the resource.
