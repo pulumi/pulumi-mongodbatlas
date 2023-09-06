@@ -516,8 +516,15 @@
                                     "maxItemsOne": true,
                                     "elem": {
                                         "fields": {
-                                            "tags": {
-                                                "maxItemsOne": false
+                                            "tag_sets": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "tags": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -1770,8 +1777,15 @@
                                     "maxItemsOne": false,
                                     "elem": {
                                         "fields": {
-                                            "tags": {
-                                                "maxItemsOne": false
+                                            "tag_sets": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "tags": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -1846,8 +1860,15 @@
                                                 "maxItemsOne": false,
                                                 "elem": {
                                                     "fields": {
-                                                        "tags": {
-                                                            "maxItemsOne": false
+                                                        "tag_sets": {
+                                                            "maxItemsOne": false,
+                                                            "elem": {
+                                                                "fields": {
+                                                                    "tags": {
+                                                                        "maxItemsOne": false
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -3087,6 +3108,7 @@
                 "allowInsecure": "allow_insecure",
                 "collectionRegex": "collection_regex",
                 "databaseRegex": "database_regex",
+                "datasetName": "dataset_name",
                 "defaultFormat": "default_format",
                 "provenanceFieldName": "provenance_field_name",
                 "storeName": "store_name"
@@ -3102,7 +3124,8 @@
                 "readPreference": "read_preference"
             },
             "mongodbatlas:index/FederatedDatabaseInstanceStorageStoreReadPreference:FederatedDatabaseInstanceStorageStoreReadPreference": {
-                "maxStalenessSeconds": "max_staleness_seconds"
+                "maxStalenessSeconds": "max_staleness_seconds",
+                "tagSets": "tag_sets"
             },
             "mongodbatlas:index/FederatedSettingsOrgRoleMappingRoleAssignment:FederatedSettingsOrgRoleMappingRoleAssignment": {
                 "groupId": "group_id",
@@ -3408,6 +3431,7 @@
                 "awsIamType": "aws_iam_type",
                 "databaseName": "database_name",
                 "ldapAuthType": "ldap_auth_type",
+                "oidcAuthType": "oidc_auth_type",
                 "projectId": "project_id",
                 "x509Type": "x509_type"
             },
@@ -4495,6 +4519,7 @@
                 "awsIamType": "aws_iam_type",
                 "databaseName": "database_name",
                 "ldapAuthType": "ldap_auth_type",
+                "oidcAuthType": "oidc_auth_type",
                 "projectId": "project_id",
                 "x509Type": "x509_type"
             },
@@ -4510,6 +4535,7 @@
                 "authDatabaseName": "auth_database_name",
                 "awsIamType": "aws_iam_type",
                 "ldapAuthType": "ldap_auth_type",
+                "oidcAuthType": "oidc_auth_type",
                 "projectId": "project_id",
                 "x509Type": "x509_type"
             },
@@ -4601,6 +4627,7 @@
                 "allowInsecure": "allow_insecure",
                 "collectionRegex": "collection_regex",
                 "databaseRegex": "database_regex",
+                "datasetName": "dataset_name",
                 "defaultFormat": "default_format",
                 "provenanceFieldName": "provenance_field_name",
                 "storeName": "store_name"
@@ -4616,7 +4643,8 @@
                 "readPreferences": "read_preference"
             },
             "mongodbatlas:index/getFederatedDatabaseInstanceStorageStoreReadPreference:getFederatedDatabaseInstanceStorageStoreReadPreference": {
-                "maxStalenessSeconds": "max_staleness_seconds"
+                "maxStalenessSeconds": "max_staleness_seconds",
+                "tagSets": "tag_sets"
             },
             "mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances": {
                 "projectId": "project_id"
@@ -4648,6 +4676,7 @@
                 "allowInsecure": "allow_insecure",
                 "collectionRegex": "collection_regex",
                 "databaseRegex": "database_regex",
+                "datasetName": "dataset_name",
                 "defaultFormat": "default_format",
                 "provenanceFieldName": "provenance_field_name",
                 "storeName": "store_name"
@@ -4663,7 +4692,8 @@
                 "readPreferences": "read_preference"
             },
             "mongodbatlas:index/getFederatedDatabaseInstancesResultStorageStoreReadPreference:getFederatedDatabaseInstancesResultStorageStoreReadPreference": {
-                "maxStalenessSeconds": "max_staleness_seconds"
+                "maxStalenessSeconds": "max_staleness_seconds",
+                "tagSets": "tag_sets"
             },
             "mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit": {
                 "currentUsage": "current_usage",
