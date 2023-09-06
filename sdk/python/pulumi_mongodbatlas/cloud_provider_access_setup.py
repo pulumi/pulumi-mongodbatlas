@@ -70,8 +70,8 @@ class _CloudProviderAccessSetupState:
         Input properties used for looking up and filtering CloudProviderAccessSetup resources.
         """
         if aws is not None:
-            warnings.warn("""use aws_config instead""", DeprecationWarning)
-            pulumi.log.warn("""aws is deprecated: use aws_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""", DeprecationWarning)
+            pulumi.log.warn("""aws is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""")
         if aws is not None:
             pulumi.set(__self__, "aws", aws)
         if aws_configs is not None:
@@ -92,8 +92,8 @@ class _CloudProviderAccessSetupState:
     @property
     @pulumi.getter
     def aws(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        warnings.warn("""use aws_config instead""", DeprecationWarning)
-        pulumi.log.warn("""aws is deprecated: use aws_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""", DeprecationWarning)
+        pulumi.log.warn("""aws is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""")
 
         return pulumi.get(self, "aws")
 
@@ -269,8 +269,8 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     @property
     @pulumi.getter
     def aws(self) -> pulumi.Output[Mapping[str, str]]:
-        warnings.warn("""use aws_config instead""", DeprecationWarning)
-        pulumi.log.warn("""aws is deprecated: use aws_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""", DeprecationWarning)
+        pulumi.log.warn("""aws is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""")
 
         return pulumi.get(self, "aws")
 

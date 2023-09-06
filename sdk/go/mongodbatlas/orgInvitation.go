@@ -106,7 +106,9 @@ import (
 //
 // ## Import
 //
-// ~> **IMPORTANT:** An organization invitation can **not** be imported once it has been accepted. Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen
+// ~> __IMPORTANT:__ An organization invitation can __not__ be imported once it has been accepted.
+//
+// Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen:
 //
 // ```sh
 //

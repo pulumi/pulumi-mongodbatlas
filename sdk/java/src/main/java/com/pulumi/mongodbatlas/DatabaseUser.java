@@ -177,6 +177,44 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * ## Example of how to create a OIDC federated authentication user
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.DatabaseUser;
+ * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
+ *             .authDatabaseName(&#34;admin&#34;)
+ *             .oidcAuthType(&#34;IDP_GROUP&#34;)
+ *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
+ *             .roles(DatabaseUserRoleArgs.builder()
+ *                 .databaseName(&#34;admin&#34;)
+ *                 .roleName(&#34;readWriteAnyDatabase&#34;)
+ *                 .build())
+ *             .username(&#34;64d613677e1ad50839cce4db/testUserOr&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  * 
  * ## Import
  * 
@@ -185,6 +223,7 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
  * ```
+ *  ~&gt; __NOTE:__ Terraform will want to change the password after importing the user if a `password` argument is specified.
  * 
  */
 @ResourceType(type="mongodbatlas:index/databaseUser:DatabaseUser")
@@ -206,14 +245,14 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.authDatabaseName);
     }
     /**
-     * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * 
      */
     @Export(name="awsIamType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsIamType;
 
     /**
-     * @return If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * @return If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * 
      */
     public Output<Optional<String>> awsIamType() {
@@ -223,10 +262,10 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      * @deprecated
-     * use auth_database_name instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      * 
      */
-    @Deprecated /* use auth_database_name instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
     @Export(name="databaseName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> databaseName;
 
@@ -256,6 +295,20 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> ldapAuthType() {
         return Codegen.optional(this.ldapAuthType);
+    }
+    /**
+     * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * 
+     */
+    @Export(name="oidcAuthType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> oidcAuthType;
+
+    /**
+     * @return Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * 
+     */
+    public Output<Optional<String>> oidcAuthType() {
+        return Codegen.optional(this.oidcAuthType);
     }
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;

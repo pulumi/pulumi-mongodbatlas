@@ -73,7 +73,6 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList test 5d0f1f74cf09a29120e123cd-10.242.88.0/21
  * ```
- *
  *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
  */
 export class ProjectIpAccessList extends pulumi.CustomResource {

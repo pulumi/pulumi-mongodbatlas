@@ -34,19 +34,19 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
 
     /**
      * @deprecated
-     * use delivery_type_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
      * 
      */
-    @Deprecated /* use delivery_type_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config */
     @Import(name="deliveryType")
     private @Nullable Output<Map<String,String>> deliveryType;
 
     /**
      * @deprecated
-     * use delivery_type_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
      * 
      */
-    @Deprecated /* use delivery_type_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config */
     public Optional<Output<Map<String,String>>> deliveryType() {
         return Optional.ofNullable(this.deliveryType);
     }
@@ -165,10 +165,10 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
          * @return builder
          * 
          * @deprecated
-         * use delivery_type_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
          * 
          */
-        @Deprecated /* use delivery_type_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config */
         public Builder deliveryType(@Nullable Output<Map<String,String>> deliveryType) {
             $.deliveryType = deliveryType;
             return this;
@@ -178,10 +178,10 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
          * @return builder
          * 
          * @deprecated
-         * use delivery_type_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
          * 
          */
-        @Deprecated /* use delivery_type_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config */
         public Builder deliveryType(Map<String,String> deliveryType) {
             return deliveryType(Output.of(deliveryType));
         }

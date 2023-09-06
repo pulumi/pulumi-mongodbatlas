@@ -105,6 +105,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
      * * `storage_databases.#.collections.#.name` - Name of the collection.
      * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
      * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
+     * * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
      * * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
      * * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
      * * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -131,6 +132,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
      * * `storage_databases.#.collections.#.name` - Name of the collection.
      * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
      * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
+     * * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
      * * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
      * * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
      * * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -169,9 +171,10 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
      * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
      * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
      * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-     * * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-     * * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-     * * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+     * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+     * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+     * * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+     * * `storage_stores.#.read_preference.tags.value` - Value of the tag.
      * 
      */
     @Import(name="storageStores")
@@ -195,9 +198,10 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
      * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
      * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
      * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-     * * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-     * * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-     * * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+     * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+     * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+     * * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+     * * `storage_stores.#.read_preference.tags.value` - Value of the tag.
      * 
      */
     public Optional<Output<List<FederatedDatabaseInstanceStorageStoreArgs>>> storageStores() {
@@ -358,6 +362,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_databases.#.collections.#.name` - Name of the collection.
          * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
          * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
+         * * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
          * * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
          * * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
          * * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -388,6 +393,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_databases.#.collections.#.name` - Name of the collection.
          * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
          * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
+         * * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
          * * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
          * * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
          * * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -417,6 +423,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_databases.#.collections.#.name` - Name of the collection.
          * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
          * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
+         * * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
          * * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
          * * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
          * * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -457,9 +464,10 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
          * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
          * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-         * * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-         * * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-         * * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+         * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+         * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+         * * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+         * * `storage_stores.#.read_preference.tags.value` - Value of the tag.
          * 
          * @return builder
          * 
@@ -487,9 +495,10 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
          * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
          * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-         * * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-         * * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-         * * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+         * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+         * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+         * * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+         * * `storage_stores.#.read_preference.tags.value` - Value of the tag.
          * 
          * @return builder
          * 
@@ -516,9 +525,10 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
          * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
          * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-         * * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-         * * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-         * * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+         * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+         * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+         * * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+         * * `storage_stores.#.read_preference.tags.value` - Value of the tag.
          * 
          * @return builder
          * 

@@ -417,7 +417,6 @@ class LdapConfiguration(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/ldapConfiguration:LdapConfiguration test 5d09d6a59ccf6445652a444a
         ```
-
          For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save)
 
         :param str resource_name: The name of the resource.
@@ -487,7 +486,6 @@ class LdapConfiguration(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/ldapConfiguration:LdapConfiguration test 5d09d6a59ccf6445652a444a
         ```
-
          For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save)
 
         :param str resource_name: The name of the resource.

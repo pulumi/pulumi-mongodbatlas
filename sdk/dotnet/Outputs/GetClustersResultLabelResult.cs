@@ -14,11 +14,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetClustersResultLabelResult
     {
         /// <summary>
-        /// The key that was set.
+        /// The key that you want to write.
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// The value that represents the key.
+        /// The value that you want to write.
         /// </summary>
         public readonly string Value;
 

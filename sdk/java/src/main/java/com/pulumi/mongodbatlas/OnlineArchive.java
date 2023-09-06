@@ -87,7 +87,6 @@ import javax.annotation.Nullable;
  * ```
  * 
  * For custom criteria example
- * 
  * ```java
  * package generated_program;
  * 
@@ -116,11 +115,15 @@ import javax.annotation.Nullable;
  *             .clusterName(var_.cluster_name())
  *             .collName(var_.collection_name())
  *             .dbName(var_.database_name())
- *             .partitionFields(OnlineArchivePartitionFieldArgs.builder()
- *                 .fieldName(&#34;firstName&#34;)
- *                 .order(0)
- *                 .build())
- *             .partitionsFields(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .partitionFields(            
+ *                 OnlineArchivePartitionFieldArgs.builder()
+ *                     .fieldName(&#34;firstName&#34;)
+ *                     .order(0)
+ *                     .build(),
+ *                 OnlineArchivePartitionFieldArgs.builder()
+ *                     .fieldName(&#34;secondName&#34;)
+ *                     .order(1)
+ *                     .build())
  *             .criteria(OnlineArchiveCriteriaArgs.builder()
  *                 .type(&#34;CUSTOM&#34;)
  *                 .query(&#34;{ \&#34;department\&#34;: \&#34;engineering\&#34; }&#34;)

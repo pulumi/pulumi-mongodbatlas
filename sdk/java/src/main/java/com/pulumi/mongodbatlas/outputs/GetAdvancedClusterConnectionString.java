@@ -15,17 +15,17 @@ import java.util.Objects;
 public final class GetAdvancedClusterConnectionString {
     /**
      * @deprecated
-     * This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
      * 
      */
-    @Deprecated /* This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string */
     private Map<String,Object> awsPrivateLink;
     /**
      * @deprecated
-     * This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
      * 
      */
-    @Deprecated /* This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string */
     private Map<String,Object> awsPrivateLinkSrv;
     private String private_;
     private List<GetAdvancedClusterConnectionStringPrivateEndpoint> privateEndpoints;
@@ -36,19 +36,19 @@ public final class GetAdvancedClusterConnectionString {
     private GetAdvancedClusterConnectionString() {}
     /**
      * @deprecated
-     * This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
      * 
      */
-    @Deprecated /* This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string */
     public Map<String,Object> awsPrivateLink() {
         return this.awsPrivateLink;
     }
     /**
      * @deprecated
-     * This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
      * 
      */
-    @Deprecated /* This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string */
     public Map<String,Object> awsPrivateLinkSrv() {
         return this.awsPrivateLinkSrv;
     }

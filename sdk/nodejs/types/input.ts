@@ -99,11 +99,11 @@ export interface AdvancedClusterBiConnectorConfig {
 
 export interface AdvancedClusterConnectionString {
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
      */
     awsPrivateLink?: pulumi.Input<{[key: string]: any}>;
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
      */
     awsPrivateLinkSrv?: pulumi.Input<{[key: string]: any}>;
     private?: pulumi.Input<string>;
@@ -138,6 +138,9 @@ export interface AdvancedClusterLabel {
     key?: pulumi.Input<string>;
     /**
      * The value that you want to write.
+     *
+     * > **NOTE:** MongoDB Atlas doesn't display your labels.
+     * > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      */
     value?: pulumi.Input<string>;
 }
@@ -609,7 +612,7 @@ export interface CloudBackupScheduleCopySetting {
      */
     regionName?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
      */
     replicationSpecId?: pulumi.Input<string>;
     /**
@@ -880,11 +883,11 @@ export interface ClusterBiConnectorConfig {
 
 export interface ClusterConnectionString {
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
      */
     awsPrivateLink?: pulumi.Input<{[key: string]: any}>;
     /**
-     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
      */
     awsPrivateLinkSrv?: pulumi.Input<{[key: string]: any}>;
     private?: pulumi.Input<string>;
@@ -920,6 +923,9 @@ export interface ClusterLabel {
     key?: pulumi.Input<string>;
     /**
      * The value that you want to write.
+     *
+     * > **NOTE:** MongoDB Atlas doesn't display your labels.
+     * > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      */
     value?: pulumi.Input<string>;
 }
@@ -1417,6 +1423,7 @@ export interface FederatedDatabaseInstanceStorageDatabaseCollectionDataSource {
     collectionRegex?: pulumi.Input<string>;
     database?: pulumi.Input<string>;
     databaseRegex?: pulumi.Input<string>;
+    datasetName?: pulumi.Input<string>;
     defaultFormat?: pulumi.Input<string>;
     path?: pulumi.Input<string>;
     provenanceFieldName?: pulumi.Input<string>;
@@ -1439,6 +1446,9 @@ export interface FederatedDatabaseInstanceStorageStore {
     additionalStorageClasses?: pulumi.Input<pulumi.Input<string>[]>;
     allowInsecure?: pulumi.Input<boolean>;
     bucket?: pulumi.Input<string>;
+    /**
+     * @deprecated this parameter is deprecated and will be removed by September 2024
+     */
     clusterId?: pulumi.Input<string>;
     clusterName?: pulumi.Input<string>;
     defaultFormat?: pulumi.Input<string>;
@@ -1468,10 +1478,14 @@ export interface FederatedDatabaseInstanceStorageStore {
 export interface FederatedDatabaseInstanceStorageStoreReadPreference {
     maxStalenessSeconds?: pulumi.Input<number>;
     mode?: pulumi.Input<string>;
-    tags?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTag>[]>;
+    tagSets?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet>[]>;
 }
 
-export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
+export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
+    tags: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag>[]>;
+}
+
+export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     /**
      * Name of the Atlas Federated Database Instance.
      * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
@@ -1984,6 +1998,8 @@ export interface OnlineArchiveCriteria {
     /**
      * Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
      *
+     * **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
+     *
      * The only field required for criteria type `CUSTOM`
      */
     expireAfterDays?: pulumi.Input<number>;
@@ -2120,7 +2136,7 @@ export interface ProjectTeam {
 export interface ProviderAssumeRole {
     duration?: pulumi.Input<string>;
     /**
-     * @deprecated Use assume_role.duration instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
      */
     durationSeconds?: pulumi.Input<number>;
     externalId?: pulumi.Input<string>;

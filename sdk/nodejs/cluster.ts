@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
  * ```
- *
  *  See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
  */
 export class Cluster extends pulumi.CustomResource {
@@ -79,7 +78,7 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
      *
-     * @deprecated use bi_connector_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      */
     public readonly biConnector!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -169,7 +168,7 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
      *
-     * @deprecated This field is deprecated,please use cloud_backup instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
      */
     public readonly providerBackupEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -205,6 +204,7 @@ export class Cluster extends pulumi.CustomResource {
     public readonly providerRegionName!: pulumi.Output<string>;
     /**
      * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+     * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
     public readonly providerVolumeType!: pulumi.Output<string>;
     /**
@@ -404,7 +404,7 @@ export interface ClusterState {
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
      *
-     * @deprecated use bi_connector_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      */
     biConnector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -494,7 +494,7 @@ export interface ClusterState {
     /**
      * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
      *
-     * @deprecated This field is deprecated,please use cloud_backup instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
      */
     providerBackupEnabled?: pulumi.Input<boolean>;
     /**
@@ -530,6 +530,7 @@ export interface ClusterState {
     providerRegionName?: pulumi.Input<string>;
     /**
      * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+     * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
     providerVolumeType?: pulumi.Input<string>;
     /**
@@ -610,7 +611,7 @@ export interface ClusterArgs {
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
      *
-     * @deprecated use bi_connector_config instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      */
     biConnector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -672,7 +673,7 @@ export interface ClusterArgs {
     /**
      * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
      *
-     * @deprecated This field is deprecated,please use cloud_backup instead
+     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
      */
     providerBackupEnabled?: pulumi.Input<boolean>;
     /**
@@ -707,6 +708,7 @@ export interface ClusterArgs {
     providerRegionName?: pulumi.Input<string>;
     /**
      * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+     * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
     providerVolumeType?: pulumi.Input<string>;
     /**

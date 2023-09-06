@@ -27,19 +27,19 @@ public final class ProviderAssumeRoleArgs extends com.pulumi.resources.ResourceA
 
     /**
      * @deprecated
-     * Use assume_role.duration instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
      * 
      */
-    @Deprecated /* Use assume_role.duration instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration */
     @Import(name="durationSeconds")
     private @Nullable Output<Integer> durationSeconds;
 
     /**
      * @deprecated
-     * Use assume_role.duration instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
      * 
      */
-    @Deprecated /* Use assume_role.duration instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration */
     public Optional<Output<Integer>> durationSeconds() {
         return Optional.ofNullable(this.durationSeconds);
     }
@@ -146,10 +146,10 @@ public final class ProviderAssumeRoleArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          * @deprecated
-         * Use assume_role.duration instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
          * 
          */
-        @Deprecated /* Use assume_role.duration instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration */
         public Builder durationSeconds(@Nullable Output<Integer> durationSeconds) {
             $.durationSeconds = durationSeconds;
             return this;
@@ -159,10 +159,10 @@ public final class ProviderAssumeRoleArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          * @deprecated
-         * Use assume_role.duration instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
          * 
          */
-        @Deprecated /* Use assume_role.duration instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration */
         public Builder durationSeconds(Integer durationSeconds) {
             return durationSeconds(Output.of(durationSeconds));
         }

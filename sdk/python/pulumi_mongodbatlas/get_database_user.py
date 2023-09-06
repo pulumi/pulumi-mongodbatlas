@@ -22,7 +22,7 @@ class GetDatabaseUserResult:
     """
     A collection of values returned by getDatabaseUser.
     """
-    def __init__(__self__, auth_database_name=None, aws_iam_type=None, database_name=None, id=None, labels=None, ldap_auth_type=None, project_id=None, roles=None, scopes=None, username=None, x509_type=None):
+    def __init__(__self__, auth_database_name=None, aws_iam_type=None, database_name=None, id=None, labels=None, ldap_auth_type=None, oidc_auth_type=None, project_id=None, roles=None, scopes=None, username=None, x509_type=None):
         if auth_database_name and not isinstance(auth_database_name, str):
             raise TypeError("Expected argument 'auth_database_name' to be a str")
         pulumi.set(__self__, "auth_database_name", auth_database_name)
@@ -41,6 +41,9 @@ class GetDatabaseUserResult:
         if ldap_auth_type and not isinstance(ldap_auth_type, str):
             raise TypeError("Expected argument 'ldap_auth_type' to be a str")
         pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
+        if oidc_auth_type and not isinstance(oidc_auth_type, str):
+            raise TypeError("Expected argument 'oidc_auth_type' to be a str")
+        pulumi.set(__self__, "oidc_auth_type", oidc_auth_type)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -76,8 +79,8 @@ class GetDatabaseUserResult:
         """
         Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         """
-        warnings.warn("""use auth_database_name instead""", DeprecationWarning)
-        pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name""", DeprecationWarning)
+        pulumi.log.warn("""database_name is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name""")
 
         return pulumi.get(self, "database_name")
 
@@ -101,6 +104,14 @@ class GetDatabaseUserResult:
         Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
         """
         return pulumi.get(self, "ldap_auth_type")
+
+    @property
+    @pulumi.getter(name="oidcAuthType")
+    def oidc_auth_type(self) -> str:
+        """
+        (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        """
+        return pulumi.get(self, "oidc_auth_type")
 
     @property
     @pulumi.getter(name="projectId")
@@ -149,6 +160,7 @@ class AwaitableGetDatabaseUserResult(GetDatabaseUserResult):
             id=self.id,
             labels=self.labels,
             ldap_auth_type=self.ldap_auth_type,
+            oidc_auth_type=self.oidc_auth_type,
             project_id=self.project_id,
             roles=self.roles,
             scopes=self.scopes,
@@ -189,6 +201,7 @@ def get_database_user(auth_database_name: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         labels=pulumi.get(__ret__, 'labels'),
         ldap_auth_type=pulumi.get(__ret__, 'ldap_auth_type'),
+        oidc_auth_type=pulumi.get(__ret__, 'oidc_auth_type'),
         project_id=pulumi.get(__ret__, 'project_id'),
         roles=pulumi.get(__ret__, 'roles'),
         scopes=pulumi.get(__ret__, 'scopes'),

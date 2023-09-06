@@ -33,12 +33,18 @@ public final class AdvancedClusterLabelArgs extends com.pulumi.resources.Resourc
     /**
      * The value that you want to write.
      * 
+     * &gt; **NOTE:** MongoDB Atlas doesn&#39;t display your labels.
+     * **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
+     * 
      */
     @Import(name="value")
     private @Nullable Output<String> value;
 
     /**
      * @return The value that you want to write.
+     * 
+     * &gt; **NOTE:** MongoDB Atlas doesn&#39;t display your labels.
+     * **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      * 
      */
     public Optional<Output<String>> value() {
@@ -94,6 +100,9 @@ public final class AdvancedClusterLabelArgs extends com.pulumi.resources.Resourc
         /**
          * @param value The value that you want to write.
          * 
+         * &gt; **NOTE:** MongoDB Atlas doesn&#39;t display your labels.
+         * **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
+         * 
          * @return builder
          * 
          */
@@ -104,6 +113,9 @@ public final class AdvancedClusterLabelArgs extends com.pulumi.resources.Resourc
 
         /**
          * @param value The value that you want to write.
+         * 
+         * &gt; **NOTE:** MongoDB Atlas doesn&#39;t display your labels.
+         * **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
          * 
          * @return builder
          * 

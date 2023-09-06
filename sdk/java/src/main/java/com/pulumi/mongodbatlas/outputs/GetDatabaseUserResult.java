@@ -25,10 +25,10 @@ public final class GetDatabaseUserResult {
      * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      * @deprecated
-     * use auth_database_name instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      * 
      */
-    @Deprecated /* use auth_database_name instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
     private @Nullable String databaseName;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -41,6 +41,11 @@ public final class GetDatabaseUserResult {
      * 
      */
     private String ldapAuthType;
+    /**
+     * @return (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * 
+     */
+    private String oidcAuthType;
     private String projectId;
     /**
      * @return List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -74,10 +79,10 @@ public final class GetDatabaseUserResult {
      * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      * @deprecated
-     * use auth_database_name instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
      * 
      */
-    @Deprecated /* use auth_database_name instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
     public Optional<String> databaseName() {
         return Optional.ofNullable(this.databaseName);
     }
@@ -97,6 +102,13 @@ public final class GetDatabaseUserResult {
      */
     public String ldapAuthType() {
         return this.ldapAuthType;
+    }
+    /**
+     * @return (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * 
+     */
+    public String oidcAuthType() {
+        return this.oidcAuthType;
     }
     public String projectId() {
         return this.projectId;
@@ -141,6 +153,7 @@ public final class GetDatabaseUserResult {
         private String id;
         private List<GetDatabaseUserLabel> labels;
         private String ldapAuthType;
+        private String oidcAuthType;
         private String projectId;
         private List<GetDatabaseUserRole> roles;
         private List<GetDatabaseUserScope> scopes;
@@ -155,6 +168,7 @@ public final class GetDatabaseUserResult {
     	      this.id = defaults.id;
     	      this.labels = defaults.labels;
     	      this.ldapAuthType = defaults.ldapAuthType;
+    	      this.oidcAuthType = defaults.oidcAuthType;
     	      this.projectId = defaults.projectId;
     	      this.roles = defaults.roles;
     	      this.scopes = defaults.scopes;
@@ -196,6 +210,11 @@ public final class GetDatabaseUserResult {
             return this;
         }
         @CustomType.Setter
+        public Builder oidcAuthType(String oidcAuthType) {
+            this.oidcAuthType = Objects.requireNonNull(oidcAuthType);
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             this.projectId = Objects.requireNonNull(projectId);
             return this;
@@ -234,6 +253,7 @@ public final class GetDatabaseUserResult {
             o.id = id;
             o.labels = labels;
             o.ldapAuthType = ldapAuthType;
+            o.oidcAuthType = oidcAuthType;
             o.projectId = projectId;
             o.roles = roles;
             o.scopes = scopes;

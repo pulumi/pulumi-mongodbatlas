@@ -370,12 +370,11 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
 
         ## Import
 
-        Identity Provider **must** be imported before using federation_settings_id-idp_id, e.g.
+        Identity Provider __must__ be imported before using federation_settings_id-idp_id, e.g.
 
         ```sh
          $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
         ```
-
          For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 
         :param str resource_name: The name of the resource.
@@ -421,12 +420,11 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
 
         ## Import
 
-        Identity Provider **must** be imported before using federation_settings_id-idp_id, e.g.
+        Identity Provider __must__ be imported before using federation_settings_id-idp_id, e.g.
 
         ```sh
          $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
         ```
-
          For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 
         :param str resource_name: The name of the resource.

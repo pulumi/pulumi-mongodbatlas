@@ -63,19 +63,19 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * @deprecated
-     * use bi_connector_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      * 
      */
-    @Deprecated /* use bi_connector_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
     @Import(name="biConnector")
     private @Nullable Output<AdvancedClusterBiConnectorArgs> biConnector;
 
     /**
      * @deprecated
-     * use bi_connector_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      * 
      */
-    @Deprecated /* use bi_connector_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
     public Optional<Output<AdvancedClusterBiConnectorArgs>> biConnector() {
         return Optional.ofNullable(this.biConnector);
     }
@@ -390,10 +390,10 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          * @deprecated
-         * use bi_connector_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
          * 
          */
-        @Deprecated /* use bi_connector_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
         public Builder biConnector(@Nullable Output<AdvancedClusterBiConnectorArgs> biConnector) {
             $.biConnector = biConnector;
             return this;
@@ -403,10 +403,10 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          * @deprecated
-         * use bi_connector_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
          * 
          */
-        @Deprecated /* use bi_connector_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
         public Builder biConnector(AdvancedClusterBiConnectorArgs biConnector) {
             return biConnector(Output.of(biConnector));
         }

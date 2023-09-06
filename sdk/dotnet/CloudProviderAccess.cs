@@ -102,7 +102,6 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
     /// ```
-    /// 
     ///  See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccess:CloudProviderAccess")]

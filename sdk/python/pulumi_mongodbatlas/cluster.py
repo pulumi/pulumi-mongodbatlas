@@ -104,6 +104,7 @@ class ClusterArgs:
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+               > **NOTE:** `STANDARD` is not available for NVME clusters.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
@@ -126,8 +127,8 @@ class ClusterArgs:
         if backup_enabled is not None:
             pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector is not None:
-            warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-            pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+            pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
         if bi_connector is not None:
             pulumi.set(__self__, "bi_connector", bi_connector)
         if bi_connector_config is not None:
@@ -157,8 +158,8 @@ class ClusterArgs:
         if provider_auto_scaling_compute_min_instance_size is not None:
             pulumi.set(__self__, "provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
         if provider_backup_enabled is not None:
-            warnings.warn("""This field is deprecated,please use cloud_backup instead""", DeprecationWarning)
-            pulumi.log.warn("""provider_backup_enabled is deprecated: This field is deprecated,please use cloud_backup instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""", DeprecationWarning)
+            pulumi.log.warn("""provider_backup_enabled is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""")
         if provider_backup_enabled is not None:
             pulumi.set(__self__, "provider_backup_enabled", provider_backup_enabled)
         if provider_disk_iops is not None:
@@ -308,8 +309,8 @@ class ClusterArgs:
         """
         Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
-        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
 
         return pulumi.get(self, "bi_connector")
 
@@ -479,8 +480,8 @@ class ClusterArgs:
         """
         Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
         """
-        warnings.warn("""This field is deprecated,please use cloud_backup instead""", DeprecationWarning)
-        pulumi.log.warn("""provider_backup_enabled is deprecated: This field is deprecated,please use cloud_backup instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""", DeprecationWarning)
+        pulumi.log.warn("""provider_backup_enabled is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""")
 
         return pulumi.get(self, "provider_backup_enabled")
 
@@ -546,6 +547,7 @@ class ClusterArgs:
     def provider_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
         The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        > **NOTE:** `STANDARD` is not available for NVME clusters.
         """
         return pulumi.get(self, "provider_volume_type")
 
@@ -723,6 +725,7 @@ class _ClusterState:
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+               > **NOTE:** `STANDARD` is not available for NVME clusters.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
@@ -751,8 +754,8 @@ class _ClusterState:
         if backup_enabled is not None:
             pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector is not None:
-            warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-            pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+            pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
         if bi_connector is not None:
             pulumi.set(__self__, "bi_connector", bi_connector)
         if bi_connector_config is not None:
@@ -798,8 +801,8 @@ class _ClusterState:
         if provider_auto_scaling_compute_min_instance_size is not None:
             pulumi.set(__self__, "provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
         if provider_backup_enabled is not None:
-            warnings.warn("""This field is deprecated,please use cloud_backup instead""", DeprecationWarning)
-            pulumi.log.warn("""provider_backup_enabled is deprecated: This field is deprecated,please use cloud_backup instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""", DeprecationWarning)
+            pulumi.log.warn("""provider_backup_enabled is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""")
         if provider_backup_enabled is not None:
             pulumi.set(__self__, "provider_backup_enabled", provider_backup_enabled)
         if provider_disk_iops is not None:
@@ -923,8 +926,8 @@ class _ClusterState:
         """
         Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
-        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
 
         return pulumi.get(self, "bi_connector")
 
@@ -1190,8 +1193,8 @@ class _ClusterState:
         """
         Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
         """
-        warnings.warn("""This field is deprecated,please use cloud_backup instead""", DeprecationWarning)
-        pulumi.log.warn("""provider_backup_enabled is deprecated: This field is deprecated,please use cloud_backup instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""", DeprecationWarning)
+        pulumi.log.warn("""provider_backup_enabled is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""")
 
         return pulumi.get(self, "provider_backup_enabled")
 
@@ -1292,6 +1295,7 @@ class _ClusterState:
     def provider_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
         The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        > **NOTE:** `STANDARD` is not available for NVME clusters.
         """
         return pulumi.get(self, "provider_volume_type")
 
@@ -1450,7 +1454,6 @@ class Cluster(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
         ```
-
          See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 
         :param str resource_name: The name of the resource.
@@ -1507,6 +1510,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+               > **NOTE:** `STANDARD` is not available for NVME clusters.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
@@ -1527,7 +1531,6 @@ class Cluster(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
         ```
-
          See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 
         :param str resource_name: The name of the resource.
@@ -1595,8 +1598,8 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["backing_provider_name"] = backing_provider_name
             __props__.__dict__["backup_enabled"] = backup_enabled
             if bi_connector is not None and not opts.urn:
-                warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-                pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+                pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
             __props__.__dict__["bi_connector"] = bi_connector
             __props__.__dict__["bi_connector_config"] = bi_connector_config
             __props__.__dict__["cloud_backup"] = cloud_backup
@@ -1615,8 +1618,8 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["provider_auto_scaling_compute_max_instance_size"] = provider_auto_scaling_compute_max_instance_size
             __props__.__dict__["provider_auto_scaling_compute_min_instance_size"] = provider_auto_scaling_compute_min_instance_size
             if provider_backup_enabled is not None and not opts.urn:
-                warnings.warn("""This field is deprecated,please use cloud_backup instead""", DeprecationWarning)
-                pulumi.log.warn("""provider_backup_enabled is deprecated: This field is deprecated,please use cloud_backup instead""")
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""", DeprecationWarning)
+                pulumi.log.warn("""provider_backup_enabled is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""")
             __props__.__dict__["provider_backup_enabled"] = provider_backup_enabled
             __props__.__dict__["provider_disk_iops"] = provider_disk_iops
             __props__.__dict__["provider_disk_type_name"] = provider_disk_type_name
@@ -1769,6 +1772,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+               > **NOTE:** `STANDARD` is not available for NVME clusters.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
@@ -1896,8 +1900,8 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
-        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
 
         return pulumi.get(self, "bi_connector")
 
@@ -2075,8 +2079,8 @@ class Cluster(pulumi.CustomResource):
         """
         Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
         """
-        warnings.warn("""This field is deprecated,please use cloud_backup instead""", DeprecationWarning)
-        pulumi.log.warn("""provider_backup_enabled is deprecated: This field is deprecated,please use cloud_backup instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""", DeprecationWarning)
+        pulumi.log.warn("""provider_backup_enabled is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""")
 
         return pulumi.get(self, "provider_backup_enabled")
 
@@ -2145,6 +2149,7 @@ class Cluster(pulumi.CustomResource):
     def provider_volume_type(self) -> pulumi.Output[str]:
         """
         The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        > **NOTE:** `STANDARD` is not available for NVME clusters.
         """
         return pulumi.get(self, "provider_volume_type")
 

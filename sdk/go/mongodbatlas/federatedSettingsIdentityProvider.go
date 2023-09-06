@@ -52,7 +52,7 @@ import (
 //
 // ## Import
 //
-// Identity Provider **must** be imported before using federation_settings_id-idp_id, e.g.
+// Identity Provider __must__ be imported before using federation_settings_id-idp_id, e.g.
 //
 // ```sh
 //

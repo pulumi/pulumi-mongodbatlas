@@ -17,8 +17,7 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode test 1112222b3bf99403840e8934
     /// ```
-    /// 
-    ///  See detailed information for arguments and attributes**Private Endpoints** [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
+    ///  See detailed information for arguments and attributes__Private Endpoints__ [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode")]
     public partial class PrivateEndpointRegionalMode : global::Pulumi.CustomResource

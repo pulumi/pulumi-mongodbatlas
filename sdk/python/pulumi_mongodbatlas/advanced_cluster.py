@@ -69,8 +69,8 @@ class AdvancedClusterArgs:
         if backup_enabled is not None:
             pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector is not None:
-            warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-            pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+            pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
         if bi_connector is not None:
             pulumi.set(__self__, "bi_connector", bi_connector)
         if bi_connector_config is not None:
@@ -167,8 +167,8 @@ class AdvancedClusterArgs:
     @property
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]:
-        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
 
         return pulumi.get(self, "bi_connector")
 
@@ -386,8 +386,8 @@ class _AdvancedClusterState:
         if backup_enabled is not None:
             pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector is not None:
-            warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-            pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+            pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
         if bi_connector is not None:
             pulumi.set(__self__, "bi_connector", bi_connector)
         if bi_connector_config is not None:
@@ -463,8 +463,8 @@ class _AdvancedClusterState:
     @property
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]:
-        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
 
         return pulumi.get(self, "bi_connector")
 
@@ -746,7 +746,6 @@ class AdvancedCluster(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
         ```
-
          See detailed information for arguments and attributes[MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
 
         :param str resource_name: The name of the resource.
@@ -790,7 +789,6 @@ class AdvancedCluster(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
         ```
-
          See detailed information for arguments and attributes[MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
 
         :param str resource_name: The name of the resource.
@@ -838,8 +836,8 @@ class AdvancedCluster(pulumi.CustomResource):
             __props__.__dict__["advanced_configuration"] = advanced_configuration
             __props__.__dict__["backup_enabled"] = backup_enabled
             if bi_connector is not None and not opts.urn:
-                warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-                pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+                pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
             __props__.__dict__["bi_connector"] = bi_connector
             __props__.__dict__["bi_connector_config"] = bi_connector_config
             if cluster_type is None and not opts.urn:
@@ -995,8 +993,8 @@ class AdvancedCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> pulumi.Output['outputs.AdvancedClusterBiConnector']:
-        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
+        pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
 
         return pulumi.get(self, "bi_connector")
 

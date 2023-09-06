@@ -186,7 +186,6 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
     /// ```
-    /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/alertConfiguration:AlertConfiguration")]
@@ -325,7 +324,7 @@ namespace Pulumi.Mongodbatlas
 
         [Input("metricThreshold")]
         private InputMap<string>? _metricThreshold;
-        [Obsolete(@"use metric_threshold_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config")]
         public InputMap<string> MetricThreshold
         {
             get => _metricThreshold ?? (_metricThreshold = new InputMap<string>());
@@ -355,7 +354,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Threshold value outside of which an alert will be triggered.
         /// </summary>
-        [Obsolete(@"use threshold_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config")]
         public InputMap<string> Threshold
         {
             get => _threshold ?? (_threshold = new InputMap<string>());
@@ -411,7 +410,7 @@ namespace Pulumi.Mongodbatlas
 
         [Input("metricThreshold")]
         private InputMap<string>? _metricThreshold;
-        [Obsolete(@"use metric_threshold_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config")]
         public InputMap<string> MetricThreshold
         {
             get => _metricThreshold ?? (_metricThreshold = new InputMap<string>());
@@ -441,7 +440,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Threshold value outside of which an alert will be triggered.
         /// </summary>
-        [Obsolete(@"use threshold_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config")]
         public InputMap<string> Threshold
         {
             get => _threshold ?? (_threshold = new InputMap<string>());

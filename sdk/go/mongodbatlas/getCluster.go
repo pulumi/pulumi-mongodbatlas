@@ -108,6 +108,7 @@ type LookupClusterResult struct {
 	// Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	ProviderRegionName string `pulumi:"providerRegionName"`
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType string `pulumi:"providerVolumeType"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor int `pulumi:"replicationFactor"`
@@ -346,6 +347,7 @@ func (o LookupClusterResultOutput) ProviderRegionName() pulumi.StringOutput {
 }
 
 // Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+// > **NOTE:** `STANDARD` is not available for NVME clusters.
 func (o LookupClusterResultOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ProviderVolumeType }).(pulumi.StringOutput)
 }

@@ -17,6 +17,12 @@ public final class FederatedDatabaseInstanceStorageStore {
     private @Nullable List<String> additionalStorageClasses;
     private @Nullable Boolean allowInsecure;
     private @Nullable String bucket;
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024 */
     private @Nullable String clusterId;
     private @Nullable String clusterName;
     private @Nullable String defaultFormat;
@@ -55,6 +61,12 @@ public final class FederatedDatabaseInstanceStorageStore {
     public Optional<String> bucket() {
         return Optional.ofNullable(this.bucket);
     }
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024 */
     public Optional<String> clusterId() {
         return Optional.ofNullable(this.clusterId);
     }

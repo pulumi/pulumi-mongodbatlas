@@ -33,7 +33,6 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
  * ```
- * 
  *  See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
  * 
  */
@@ -173,10 +172,10 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
      * 
      * @deprecated
-     * use bi_connector_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      * 
      */
-    @Deprecated /* use bi_connector_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
     @Export(name="biConnector", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> biConnector;
 
@@ -479,10 +478,10 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
      * 
      * @deprecated
-     * This field is deprecated,please use cloud_backup instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
      * 
      */
-    @Deprecated /* This field is deprecated,please use cloud_backup instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup */
     @Export(name="providerBackupEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> providerBackupEnabled;
 
@@ -597,6 +596,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     }
     /**
      * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+     * &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
      * 
      */
     @Export(name="providerVolumeType", refs={String.class}, tree="[0]")
@@ -604,6 +604,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+     * &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
      * 
      */
     public Output<String> providerVolumeType() {

@@ -39,9 +39,21 @@ public final class FederatedDatabaseInstanceStorageStoreArgs extends com.pulumi.
         return Optional.ofNullable(this.bucket);
     }
 
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024 */
     @Import(name="clusterId")
     private @Nullable Output<String> clusterId;
 
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024 */
     public Optional<Output<String>> clusterId() {
         return Optional.ofNullable(this.clusterId);
     }
@@ -228,11 +240,27 @@ public final class FederatedDatabaseInstanceStorageStoreArgs extends com.pulumi.
             return bucket(Output.of(bucket));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * this parameter is deprecated and will be removed by September 2024
+         * 
+         */
+        @Deprecated /* this parameter is deprecated and will be removed by September 2024 */
         public Builder clusterId(@Nullable Output<String> clusterId) {
             $.clusterId = clusterId;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * this parameter is deprecated and will be removed by September 2024
+         * 
+         */
+        @Deprecated /* this parameter is deprecated and will be removed by September 2024 */
         public Builder clusterId(String clusterId) {
             return clusterId(Output.of(clusterId));
         }

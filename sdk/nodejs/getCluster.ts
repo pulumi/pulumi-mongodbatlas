@@ -177,6 +177,7 @@ export interface GetClusterResult {
     readonly providerRegionName: string;
     /**
      * Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+     * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
     readonly providerVolumeType: string;
     /**

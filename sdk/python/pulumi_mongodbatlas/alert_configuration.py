@@ -44,15 +44,15 @@ class AlertConfigurationArgs:
         if matchers is not None:
             pulumi.set(__self__, "matchers", matchers)
         if metric_threshold is not None:
-            warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
-            pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""", DeprecationWarning)
+            pulumi.log.warn("""metric_threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""")
         if metric_threshold is not None:
             pulumi.set(__self__, "metric_threshold", metric_threshold)
         if metric_threshold_config is not None:
             pulumi.set(__self__, "metric_threshold_config", metric_threshold_config)
         if threshold is not None:
-            warnings.warn("""use threshold_config instead""", DeprecationWarning)
-            pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""", DeprecationWarning)
+            pulumi.log.warn("""threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""")
         if threshold is not None:
             pulumi.set(__self__, "threshold", threshold)
         if threshold_config is not None:
@@ -119,8 +119,8 @@ class AlertConfigurationArgs:
     @property
     @pulumi.getter(name="metricThreshold")
     def metric_threshold(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
-        pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""", DeprecationWarning)
+        pulumi.log.warn("""metric_threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""")
 
         return pulumi.get(self, "metric_threshold")
 
@@ -143,8 +143,8 @@ class AlertConfigurationArgs:
         """
         Threshold value outside of which an alert will be triggered.
         """
-        warnings.warn("""use threshold_config instead""", DeprecationWarning)
-        pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""", DeprecationWarning)
+        pulumi.log.warn("""threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""")
 
         return pulumi.get(self, "threshold")
 
@@ -202,8 +202,8 @@ class _AlertConfigurationState:
         if matchers is not None:
             pulumi.set(__self__, "matchers", matchers)
         if metric_threshold is not None:
-            warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
-            pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""", DeprecationWarning)
+            pulumi.log.warn("""metric_threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""")
         if metric_threshold is not None:
             pulumi.set(__self__, "metric_threshold", metric_threshold)
         if metric_threshold_config is not None:
@@ -213,8 +213,8 @@ class _AlertConfigurationState:
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if threshold is not None:
-            warnings.warn("""use threshold_config instead""", DeprecationWarning)
-            pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
+            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""", DeprecationWarning)
+            pulumi.log.warn("""threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""")
         if threshold is not None:
             pulumi.set(__self__, "threshold", threshold)
         if threshold_config is not None:
@@ -286,8 +286,8 @@ class _AlertConfigurationState:
     @property
     @pulumi.getter(name="metricThreshold")
     def metric_threshold(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
-        pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""", DeprecationWarning)
+        pulumi.log.warn("""metric_threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""")
 
         return pulumi.get(self, "metric_threshold")
 
@@ -331,8 +331,8 @@ class _AlertConfigurationState:
         """
         Threshold value outside of which an alert will be triggered.
         """
-        warnings.warn("""use threshold_config instead""", DeprecationWarning)
-        pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""", DeprecationWarning)
+        pulumi.log.warn("""threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""")
 
         return pulumi.get(self, "threshold")
 
@@ -501,7 +501,6 @@ class AlertConfiguration(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
         ```
-
          For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
 
         :param str resource_name: The name of the resource.
@@ -645,7 +644,6 @@ class AlertConfiguration(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
         ```
-
          For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
 
         :param str resource_name: The name of the resource.
@@ -687,8 +685,8 @@ class AlertConfiguration(pulumi.CustomResource):
             __props__.__dict__["event_type"] = event_type
             __props__.__dict__["matchers"] = matchers
             if metric_threshold is not None and not opts.urn:
-                warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
-                pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""", DeprecationWarning)
+                pulumi.log.warn("""metric_threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""")
             __props__.__dict__["metric_threshold"] = metric_threshold
             __props__.__dict__["metric_threshold_config"] = metric_threshold_config
             if notifications is None and not opts.urn:
@@ -698,8 +696,8 @@ class AlertConfiguration(pulumi.CustomResource):
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             if threshold is not None and not opts.urn:
-                warnings.warn("""use threshold_config instead""", DeprecationWarning)
-                pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
+                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""", DeprecationWarning)
+                pulumi.log.warn("""threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""")
             __props__.__dict__["threshold"] = threshold
             __props__.__dict__["threshold_config"] = threshold_config
             __props__.__dict__["alert_configuration_id"] = None
@@ -808,8 +806,8 @@ class AlertConfiguration(pulumi.CustomResource):
     @property
     @pulumi.getter(name="metricThreshold")
     def metric_threshold(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
-        warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
-        pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""", DeprecationWarning)
+        pulumi.log.warn("""metric_threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config""")
 
         return pulumi.get(self, "metric_threshold")
 
@@ -837,8 +835,8 @@ class AlertConfiguration(pulumi.CustomResource):
         """
         Threshold value outside of which an alert will be triggered.
         """
-        warnings.warn("""use threshold_config instead""", DeprecationWarning)
-        pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
+        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""", DeprecationWarning)
+        pulumi.log.warn("""threshold is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config""")
 
         return pulumi.get(self, "threshold")
 

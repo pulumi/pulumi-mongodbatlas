@@ -111,6 +111,24 @@ def get_database_users(project_id: Optional[str] = None,
         ])
     test_database_users = mongodbatlas.get_database_users_output(project_id=test_database_user.project_id)
     ```
+    **Example of usage with a OIDC federated authentication user**
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_database_user = mongodbatlas.DatabaseUser("testDatabaseUser",
+        auth_database_name="admin",
+        oidc_auth_type="IDP_GROUP",
+        project_id="6414908c207f4d22f4d8f232",
+        roles=[mongodbatlas.DatabaseUserRoleArgs(
+            database_name="admin",
+            role_name="readWriteAnyDatabase",
+        )],
+        username="64d613677e1ad50839cce4db/testUserOrGroup")
+    test_database_users = mongodbatlas.get_database_users(project_id="6414908c207f4d22f4d8f232")
+    ```
+    Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
 
     :param str project_id: The unique ID for the project to get all database users.
@@ -169,6 +187,24 @@ def get_database_users_output(project_id: Optional[pulumi.Input[str]] = None,
         ])
     test_database_users = mongodbatlas.get_database_users_output(project_id=test_database_user.project_id)
     ```
+    **Example of usage with a OIDC federated authentication user**
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_database_user = mongodbatlas.DatabaseUser("testDatabaseUser",
+        auth_database_name="admin",
+        oidc_auth_type="IDP_GROUP",
+        project_id="6414908c207f4d22f4d8f232",
+        roles=[mongodbatlas.DatabaseUserRoleArgs(
+            database_name="admin",
+            role_name="readWriteAnyDatabase",
+        )],
+        username="64d613677e1ad50839cce4db/testUserOrGroup")
+    test_database_users = mongodbatlas.get_database_users(project_id="6414908c207f4d22f4d8f232")
+    ```
+    Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
 
     :param str project_id: The unique ID for the project to get all database users.

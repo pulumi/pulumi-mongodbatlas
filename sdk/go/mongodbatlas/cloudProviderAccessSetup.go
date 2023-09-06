@@ -15,7 +15,7 @@ import (
 type CloudProviderAccessSetup struct {
 	pulumi.CustomResourceState
 
-	// Deprecated: use aws_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
 	Aws             pulumi.StringMapOutput                         `pulumi:"aws"`
 	AwsConfigs      CloudProviderAccessSetupAwsConfigArrayOutput   `pulumi:"awsConfigs"`
 	AzureConfigs    CloudProviderAccessSetupAzureConfigArrayOutput `pulumi:"azureConfigs"`
@@ -62,7 +62,7 @@ func GetCloudProviderAccessSetup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CloudProviderAccessSetup resources.
 type cloudProviderAccessSetupState struct {
-	// Deprecated: use aws_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
 	Aws             map[string]string                     `pulumi:"aws"`
 	AwsConfigs      []CloudProviderAccessSetupAwsConfig   `pulumi:"awsConfigs"`
 	AzureConfigs    []CloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
@@ -74,7 +74,7 @@ type cloudProviderAccessSetupState struct {
 }
 
 type CloudProviderAccessSetupState struct {
-	// Deprecated: use aws_config instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
 	Aws             pulumi.StringMapInput
 	AwsConfigs      CloudProviderAccessSetupAwsConfigArrayInput
 	AzureConfigs    CloudProviderAccessSetupAzureConfigArrayInput
@@ -189,7 +189,7 @@ func (o CloudProviderAccessSetupOutput) ToCloudProviderAccessSetupOutputWithCont
 	return o
 }
 
-// Deprecated: use aws_config instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
 func (o CloudProviderAccessSetupOutput) Aws() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringMapOutput { return v.Aws }).(pulumi.StringMapOutput)
 }

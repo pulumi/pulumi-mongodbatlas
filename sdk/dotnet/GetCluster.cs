@@ -214,6 +214,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string ProviderRegionName;
         /// <summary>
         /// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+        /// &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
         /// </summary>
         public readonly string ProviderVolumeType;
         /// <summary>

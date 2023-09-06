@@ -10,26 +10,26 @@ import java.util.Objects;
 @CustomType
 public final class GetClusterLabel {
     /**
-     * @return The key that was set.
+     * @return The key that you want to write.
      * 
      */
     private String key;
     /**
-     * @return The value that represents the key.
+     * @return The value that you want to write.
      * 
      */
     private String value;
 
     private GetClusterLabel() {}
     /**
-     * @return The key that was set.
+     * @return The key that you want to write.
      * 
      */
     public String key() {
         return this.key;
     }
     /**
-     * @return The value that represents the key.
+     * @return The value that you want to write.
      * 
      */
     public String value() {

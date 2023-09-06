@@ -10,7 +10,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
-public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
+public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     /**
      * @return Name of the Atlas Federated Database Instance.
      * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
@@ -20,7 +20,7 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
     private @Nullable String name;
     private @Nullable String value;
 
-    private FederatedDatabaseInstanceStorageStoreReadPreferenceTag() {}
+    private FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag() {}
     /**
      * @return Name of the Atlas Federated Database Instance.
      * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
@@ -38,7 +38,7 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
         return new Builder();
     }
 
-    public static Builder builder(FederatedDatabaseInstanceStorageStoreReadPreferenceTag defaults) {
+    public static Builder builder(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
@@ -46,7 +46,7 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
         private @Nullable String name;
         private @Nullable String value;
         public Builder() {}
-        public Builder(FederatedDatabaseInstanceStorageStoreReadPreferenceTag defaults) {
+        public Builder(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.name = defaults.name;
     	      this.value = defaults.value;
@@ -62,8 +62,8 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
             this.value = value;
             return this;
         }
-        public FederatedDatabaseInstanceStorageStoreReadPreferenceTag build() {
-            final var o = new FederatedDatabaseInstanceStorageStoreReadPreferenceTag();
+        public FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag build() {
+            final var o = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag();
             o.name = name;
             o.value = value;
             return o;

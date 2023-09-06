@@ -196,6 +196,7 @@ public final class GetClustersResult {
     private String providerRegionName;
     /**
      * @return Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+     * &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
      * 
      */
     private String providerVolumeType;
@@ -482,6 +483,7 @@ public final class GetClustersResult {
     }
     /**
      * @return Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+     * &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
      * 
      */
     public String providerVolumeType() {

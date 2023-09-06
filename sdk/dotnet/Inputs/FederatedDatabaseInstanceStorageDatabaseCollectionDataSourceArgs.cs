@@ -27,6 +27,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("databaseRegex")]
         public Input<string>? DatabaseRegex { get; set; }
 
+        [Input("datasetName")]
+        public Input<string>? DatasetName { get; set; }
+
         [Input("defaultFormat")]
         public Input<string>? DefaultFormat { get; set; }
 

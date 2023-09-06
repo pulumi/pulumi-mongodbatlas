@@ -32,7 +32,7 @@ type LookupDatabaseUserArgs struct {
 	AuthDatabaseName *string `pulumi:"authDatabaseName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	//
-	// Deprecated: use auth_database_name instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
 	DatabaseName *string `pulumi:"databaseName"`
 	// The unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
@@ -47,13 +47,15 @@ type LookupDatabaseUserResult struct {
 	AwsIamType string `pulumi:"awsIamType"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	//
-	// Deprecated: use auth_database_name instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
 	DatabaseName *string `pulumi:"databaseName"`
 	// The provider-assigned unique ID for this managed resource.
 	Id     string                 `pulumi:"id"`
 	Labels []GetDatabaseUserLabel `pulumi:"labels"`
 	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 	LdapAuthType string `pulumi:"ldapAuthType"`
+	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+	OidcAuthType string `pulumi:"oidcAuthType"`
 	ProjectId    string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles []GetDatabaseUserRole `pulumi:"roles"`
@@ -83,7 +85,7 @@ type LookupDatabaseUserOutputArgs struct {
 	AuthDatabaseName pulumi.StringPtrInput `pulumi:"authDatabaseName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	//
-	// Deprecated: use auth_database_name instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
 	DatabaseName pulumi.StringPtrInput `pulumi:"databaseName"`
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -121,7 +123,7 @@ func (o LookupDatabaseUserResultOutput) AwsIamType() pulumi.StringOutput {
 
 // Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 //
-// Deprecated: use auth_database_name instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
 func (o LookupDatabaseUserResultOutput) DatabaseName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDatabaseUserResult) *string { return v.DatabaseName }).(pulumi.StringPtrOutput)
 }
@@ -138,6 +140,11 @@ func (o LookupDatabaseUserResultOutput) Labels() GetDatabaseUserLabelArrayOutput
 // Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 func (o LookupDatabaseUserResultOutput) LdapAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.LdapAuthType }).(pulumi.StringOutput)
+}
+
+// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+func (o LookupDatabaseUserResultOutput) OidcAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.OidcAuthType }).(pulumi.StringOutput)
 }
 
 func (o LookupDatabaseUserResultOutput) ProjectId() pulumi.StringOutput {

@@ -119,6 +119,10 @@ namespace Pulumi.Mongodbatlas
         /// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
         /// </summary>
         public readonly string LdapAuthType;
+        /// <summary>
+        /// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        /// </summary>
+        public readonly string OidcAuthType;
         public readonly string ProjectId;
         /// <summary>
         /// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -148,6 +152,8 @@ namespace Pulumi.Mongodbatlas
 
             string ldapAuthType,
 
+            string oidcAuthType,
+
             string projectId,
 
             ImmutableArray<Outputs.GetDatabaseUserRoleResult> roles,
@@ -164,6 +170,7 @@ namespace Pulumi.Mongodbatlas
             Id = id;
             Labels = labels;
             LdapAuthType = ldapAuthType;
+            OidcAuthType = oidcAuthType;
             ProjectId = projectId;
             Roles = roles;
             Scopes = scopes;

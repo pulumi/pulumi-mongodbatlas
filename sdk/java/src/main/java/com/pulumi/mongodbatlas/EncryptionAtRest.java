@@ -27,7 +27,6 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
  * ```
- * 
  *  For more information see[MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
  * 
  */
@@ -37,10 +36,10 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
      * Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      * 
      * @deprecated
-     * use aws_kms_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
      * 
      */
-    @Deprecated /* use aws_kms_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config */
     @Export(name="awsKms", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> awsKms;
 
@@ -61,10 +60,10 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
      * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
      * 
      * @deprecated
-     * use azure_key_vault_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
      * 
      */
-    @Deprecated /* use azure_key_vault_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config */
     @Export(name="azureKeyVault", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> azureKeyVault;
 
@@ -85,10 +84,10 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
      * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      * 
      * @deprecated
-     * use google_cloud_kms_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
      * 
      */
-    @Deprecated /* use google_cloud_kms_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config */
     @Export(name="googleCloudKms", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> googleCloudKms;
 

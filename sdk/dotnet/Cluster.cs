@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
     /// ```
-    /// 
     ///  See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cluster:Cluster")]
@@ -255,6 +254,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        /// &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
         /// </summary>
         [Output("providerVolumeType")]
         public Output<string> ProviderVolumeType { get; private set; } = null!;
@@ -414,7 +414,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         /// </summary>
-        [Obsolete(@"use bi_connector_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config")]
         public InputMap<string> BiConnector
         {
             get => _biConnector ?? (_biConnector = new InputMap<string>());
@@ -558,6 +558,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        /// &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
         /// </summary>
         [Input("providerVolumeType")]
         public Input<string>? ProviderVolumeType { get; set; }
@@ -661,7 +662,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         /// </summary>
-        [Obsolete(@"use bi_connector_config instead")]
+        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config")]
         public InputMap<string> BiConnector
         {
             get => _biConnector ?? (_biConnector = new InputMap<string>());
@@ -856,6 +857,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        /// &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
         /// </summary>
         [Input("providerVolumeType")]
         public Input<string>? ProviderVolumeType { get; set; }

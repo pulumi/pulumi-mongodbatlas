@@ -57,7 +57,7 @@ import (
 //
 // ```
 //
-//	See detailed information for arguments and attributes[MongoDB API Custom DNS Configuration for Atlas Clusters on AWS](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Custom-DNS-for-Atlas-Clusters-Deployed-to-AWS)
+//	See detailed information for arguments and attributes[MongoDB API Custom DNS Configuration for Atlas Clusters on AWS](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/AWS-Clusters-DNS/operation/getAWSCustomDNS).
 type CustomDnsConfigurationClusterAws struct {
 	pulumi.CustomResourceState
 

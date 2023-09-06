@@ -7,28 +7,25 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Mongodbatlas.Outputs
+namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    [OutputType]
-    public sealed class FederatedDatabaseInstanceStorageStoreReadPreferenceTag
+    public sealed class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the Atlas Federated Database Instance.
         /// ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
         /// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         /// </summary>
-        public readonly string? Name;
-        public readonly string? Value;
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
-        [OutputConstructor]
-        private FederatedDatabaseInstanceStorageStoreReadPreferenceTag(
-            string? name,
+        [Input("value")]
+        public Input<string>? Value { get; set; }
 
-            string? value)
+        public FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagGetArgs()
         {
-            Name = name;
-            Value = value;
         }
+        public static new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagGetArgs Empty => new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagGetArgs();
     }
 }

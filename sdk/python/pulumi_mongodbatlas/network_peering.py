@@ -958,8 +958,9 @@ class NetworkPeering(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/networkPeering:NetworkPeering my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS
         ```
-
          See detailed information for arguments and attributes[MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
+
+        -> __NOTE:__ If you need to get an existing container ID see the How-To Guide.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1258,8 +1259,9 @@ class NetworkPeering(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/networkPeering:NetworkPeering my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS
         ```
-
          See detailed information for arguments and attributes[MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
+
+        -> __NOTE:__ If you need to get an existing container ID see the How-To Guide.
 
         :param str resource_name: The name of the resource.
         :param NetworkPeeringArgs args: The arguments to use to populate this resource's properties.

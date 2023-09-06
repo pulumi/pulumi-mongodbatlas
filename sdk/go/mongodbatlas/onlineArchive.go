@@ -21,6 +21,98 @@ import (
 // > **IMPORTANT:** There are fields that are immutable after creation, i.e if `dateField` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
 //
 // ## Example Usage
+// ### S
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewOnlineArchive(ctx, "test", &mongodbatlas.OnlineArchiveArgs{
+//				ProjectId:   pulumi.Any(_var.Project_id),
+//				ClusterName: pulumi.Any(_var.Cluster_name),
+//				CollName:    pulumi.Any(_var.Collection_name),
+//				DbName:      pulumi.Any(_var.Database_name),
+//				PartitionFields: mongodbatlas.OnlineArchivePartitionFieldArray{
+//					&mongodbatlas.OnlineArchivePartitionFieldArgs{
+//						FieldName: pulumi.String("firstName"),
+//						Order:     pulumi.Int(0),
+//					},
+//					&mongodbatlas.OnlineArchivePartitionFieldArgs{
+//						FieldName: pulumi.String("lastName"),
+//						Order:     pulumi.Int(1),
+//					},
+//				},
+//				Criteria: &mongodbatlas.OnlineArchiveCriteriaArgs{
+//					Type:            pulumi.String("DATE"),
+//					DateField:       pulumi.String("created"),
+//					ExpireAfterDays: pulumi.Int(5),
+//				},
+//				Schedule: &mongodbatlas.OnlineArchiveScheduleArgs{
+//					Type:        pulumi.String("DAILY"),
+//					EndHour:     pulumi.Int(1),
+//					EndMinute:   pulumi.Int(1),
+//					StartHour:   pulumi.Int(1),
+//					StartMinute: pulumi.Int(1),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// # For custom criteria example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewOnlineArchive(ctx, "test", &mongodbatlas.OnlineArchiveArgs{
+//				ProjectId:   pulumi.Any(_var.Project_id),
+//				ClusterName: pulumi.Any(_var.Cluster_name),
+//				CollName:    pulumi.Any(_var.Collection_name),
+//				DbName:      pulumi.Any(_var.Database_name),
+//				PartitionFields: mongodbatlas.OnlineArchivePartitionFieldArray{
+//					&mongodbatlas.OnlineArchivePartitionFieldArgs{
+//						FieldName: pulumi.String("firstName"),
+//						Order:     pulumi.Int(0),
+//					},
+//					&mongodbatlas.OnlineArchivePartitionFieldArgs{
+//						FieldName: pulumi.String("secondName"),
+//						Order:     pulumi.Int(1),
+//					},
+//				},
+//				Criteria: &mongodbatlas.OnlineArchiveCriteriaArgs{
+//					Type:  pulumi.String("CUSTOM"),
+//					Query: pulumi.String("{ \"department\": \"engineering\" }"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type OnlineArchive struct {
 	pulumi.CustomResourceState
 

@@ -745,9 +745,9 @@ func (o AdvancedClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.Strin
 }
 
 type AdvancedClusterConnectionString struct {
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 	AwsPrivateLink map[string]interface{} `pulumi:"awsPrivateLink"`
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 	AwsPrivateLinkSrv map[string]interface{}                           `pulumi:"awsPrivateLinkSrv"`
 	Private           *string                                          `pulumi:"private"`
 	PrivateEndpoints  []AdvancedClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
@@ -768,9 +768,9 @@ type AdvancedClusterConnectionStringInput interface {
 }
 
 type AdvancedClusterConnectionStringArgs struct {
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 	AwsPrivateLink pulumi.MapInput `pulumi:"awsPrivateLink"`
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 	AwsPrivateLinkSrv pulumi.MapInput                                          `pulumi:"awsPrivateLinkSrv"`
 	Private           pulumi.StringPtrInput                                    `pulumi:"private"`
 	PrivateEndpoints  AdvancedClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
@@ -830,12 +830,12 @@ func (o AdvancedClusterConnectionStringOutput) ToAdvancedClusterConnectionString
 	return o
 }
 
-// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 func (o AdvancedClusterConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
 }
 
-// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 func (o AdvancedClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
@@ -1120,6 +1120,9 @@ type AdvancedClusterLabel struct {
 	// The key that you want to write.
 	Key *string `pulumi:"key"`
 	// The value that you want to write.
+	//
+	// > **NOTE:** MongoDB Atlas doesn't display your labels.
+	// **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
 	Value *string `pulumi:"value"`
 }
 
@@ -1138,6 +1141,9 @@ type AdvancedClusterLabelArgs struct {
 	// The key that you want to write.
 	Key pulumi.StringPtrInput `pulumi:"key"`
 	// The value that you want to write.
+	//
+	// > **NOTE:** MongoDB Atlas doesn't display your labels.
+	// **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -1198,6 +1204,9 @@ func (o AdvancedClusterLabelOutput) Key() pulumi.StringPtrOutput {
 }
 
 // The value that you want to write.
+//
+// > **NOTE:** MongoDB Atlas doesn't display your labels.
+// **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
 func (o AdvancedClusterLabelOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterLabel) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -4366,7 +4375,7 @@ type CloudBackupScheduleCopySetting struct {
 	Frequencies []string `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName *string `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
 	ReplicationSpecId *string `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs *bool `pulumi:"shouldCopyOplogs"`
@@ -4390,7 +4399,7 @@ type CloudBackupScheduleCopySettingArgs struct {
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
 	ReplicationSpecId pulumi.StringPtrInput `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs pulumi.BoolPtrInput `pulumi:"shouldCopyOplogs"`
@@ -4462,7 +4471,7 @@ func (o CloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.RegionName }).(pulumi.StringPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
 func (o CloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.ReplicationSpecId }).(pulumi.StringPtrOutput)
 }
@@ -7155,9 +7164,9 @@ func (o ClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.StringPtrOutp
 }
 
 type ClusterConnectionString struct {
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 	AwsPrivateLink map[string]interface{} `pulumi:"awsPrivateLink"`
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 	AwsPrivateLinkSrv map[string]interface{}                   `pulumi:"awsPrivateLinkSrv"`
 	Private           *string                                  `pulumi:"private"`
 	PrivateEndpoints  []ClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
@@ -7178,9 +7187,9 @@ type ClusterConnectionStringInput interface {
 }
 
 type ClusterConnectionStringArgs struct {
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 	AwsPrivateLink pulumi.MapInput `pulumi:"awsPrivateLink"`
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 	AwsPrivateLinkSrv pulumi.MapInput                                  `pulumi:"awsPrivateLinkSrv"`
 	Private           pulumi.StringPtrInput                            `pulumi:"private"`
 	PrivateEndpoints  ClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
@@ -7240,12 +7249,12 @@ func (o ClusterConnectionStringOutput) ToClusterConnectionStringOutputWithContex
 	return o
 }
 
-// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 func (o ClusterConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
 	return o.ApplyT(func(v ClusterConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
 }
 
-// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 func (o ClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
 	return o.ApplyT(func(v ClusterConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
@@ -7529,6 +7538,9 @@ type ClusterLabel struct {
 	// The key that you want to write.
 	Key *string `pulumi:"key"`
 	// The value that you want to write.
+	//
+	// > **NOTE:** MongoDB Atlas doesn't display your labels.
+	// **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
 	Value *string `pulumi:"value"`
 }
 
@@ -7547,6 +7559,9 @@ type ClusterLabelArgs struct {
 	// The key that you want to write.
 	Key pulumi.StringPtrInput `pulumi:"key"`
 	// The value that you want to write.
+	//
+	// > **NOTE:** MongoDB Atlas doesn't display your labels.
+	// **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -7607,6 +7622,9 @@ func (o ClusterLabelOutput) Key() pulumi.StringPtrOutput {
 }
 
 // The value that you want to write.
+//
+// > **NOTE:** MongoDB Atlas doesn't display your labels.
+// **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
 func (o ClusterLabelOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterLabel) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -12674,6 +12692,7 @@ type FederatedDatabaseInstanceStorageDatabaseCollectionDataSource struct {
 	CollectionRegex     *string  `pulumi:"collectionRegex"`
 	Database            *string  `pulumi:"database"`
 	DatabaseRegex       *string  `pulumi:"databaseRegex"`
+	DatasetName         *string  `pulumi:"datasetName"`
 	DefaultFormat       *string  `pulumi:"defaultFormat"`
 	Path                *string  `pulumi:"path"`
 	ProvenanceFieldName *string  `pulumi:"provenanceFieldName"`
@@ -12698,6 +12717,7 @@ type FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs struct {
 	CollectionRegex     pulumi.StringPtrInput   `pulumi:"collectionRegex"`
 	Database            pulumi.StringPtrInput   `pulumi:"database"`
 	DatabaseRegex       pulumi.StringPtrInput   `pulumi:"databaseRegex"`
+	DatasetName         pulumi.StringPtrInput   `pulumi:"datasetName"`
 	DefaultFormat       pulumi.StringPtrInput   `pulumi:"defaultFormat"`
 	Path                pulumi.StringPtrInput   `pulumi:"path"`
 	ProvenanceFieldName pulumi.StringPtrInput   `pulumi:"provenanceFieldName"`
@@ -12774,6 +12794,10 @@ func (o FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceOutput) Data
 
 func (o FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceOutput) DatabaseRegex() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabaseCollectionDataSource) *string { return v.DatabaseRegex }).(pulumi.StringPtrOutput)
+}
+
+func (o FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceOutput) DatasetName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabaseCollectionDataSource) *string { return v.DatasetName }).(pulumi.StringPtrOutput)
 }
 
 func (o FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceOutput) DefaultFormat() pulumi.StringPtrOutput {
@@ -12937,11 +12961,12 @@ type FederatedDatabaseInstanceStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            *bool    `pulumi:"allowInsecure"`
 	Bucket                   *string  `pulumi:"bucket"`
-	ClusterId                *string  `pulumi:"clusterId"`
-	ClusterName              *string  `pulumi:"clusterName"`
-	DefaultFormat            *string  `pulumi:"defaultFormat"`
-	Delimiter                *string  `pulumi:"delimiter"`
-	IncludeTags              *bool    `pulumi:"includeTags"`
+	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	ClusterId     *string `pulumi:"clusterId"`
+	ClusterName   *string `pulumi:"clusterName"`
+	DefaultFormat *string `pulumi:"defaultFormat"`
+	Delimiter     *string `pulumi:"delimiter"`
+	IncludeTags   *bool   `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
 	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
 	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
@@ -12972,11 +12997,12 @@ type FederatedDatabaseInstanceStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolPtrInput     `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringPtrInput   `pulumi:"bucket"`
-	ClusterId                pulumi.StringPtrInput   `pulumi:"clusterId"`
-	ClusterName              pulumi.StringPtrInput   `pulumi:"clusterName"`
-	DefaultFormat            pulumi.StringPtrInput   `pulumi:"defaultFormat"`
-	Delimiter                pulumi.StringPtrInput   `pulumi:"delimiter"`
-	IncludeTags              pulumi.BoolPtrInput     `pulumi:"includeTags"`
+	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	ClusterId     pulumi.StringPtrInput `pulumi:"clusterId"`
+	ClusterName   pulumi.StringPtrInput `pulumi:"clusterName"`
+	DefaultFormat pulumi.StringPtrInput `pulumi:"defaultFormat"`
+	Delimiter     pulumi.StringPtrInput `pulumi:"delimiter"`
+	IncludeTags   pulumi.BoolPtrInput   `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
 	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
 	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
@@ -13055,6 +13081,7 @@ func (o FederatedDatabaseInstanceStorageStoreOutput) Bucket() pulumi.StringPtrOu
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.Bucket }).(pulumi.StringPtrOutput)
 }
 
+// Deprecated: this parameter is deprecated and will be removed by September 2024
 func (o FederatedDatabaseInstanceStorageStoreOutput) ClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.ClusterId }).(pulumi.StringPtrOutput)
 }
@@ -13135,9 +13162,9 @@ func (o FederatedDatabaseInstanceStorageStoreArrayOutput) Index(i pulumi.IntInpu
 }
 
 type FederatedDatabaseInstanceStorageStoreReadPreference struct {
-	MaxStalenessSeconds *int                                                     `pulumi:"maxStalenessSeconds"`
-	Mode                *string                                                  `pulumi:"mode"`
-	Tags                []FederatedDatabaseInstanceStorageStoreReadPreferenceTag `pulumi:"tags"`
+	MaxStalenessSeconds *int                                                        `pulumi:"maxStalenessSeconds"`
+	Mode                *string                                                     `pulumi:"mode"`
+	TagSets             []FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet `pulumi:"tagSets"`
 }
 
 // FederatedDatabaseInstanceStorageStoreReadPreferenceInput is an input type that accepts FederatedDatabaseInstanceStorageStoreReadPreferenceArgs and FederatedDatabaseInstanceStorageStoreReadPreferenceOutput values.
@@ -13152,9 +13179,9 @@ type FederatedDatabaseInstanceStorageStoreReadPreferenceInput interface {
 }
 
 type FederatedDatabaseInstanceStorageStoreReadPreferenceArgs struct {
-	MaxStalenessSeconds pulumi.IntPtrInput                                               `pulumi:"maxStalenessSeconds"`
-	Mode                pulumi.StringPtrInput                                            `pulumi:"mode"`
-	Tags                FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayInput `pulumi:"tags"`
+	MaxStalenessSeconds pulumi.IntPtrInput                                                  `pulumi:"maxStalenessSeconds"`
+	Mode                pulumi.StringPtrInput                                               `pulumi:"mode"`
+	TagSets             FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput `pulumi:"tagSets"`
 }
 
 func (FederatedDatabaseInstanceStorageStoreReadPreferenceArgs) ElementType() reflect.Type {
@@ -13242,10 +13269,10 @@ func (o FederatedDatabaseInstanceStorageStoreReadPreferenceOutput) Mode() pulumi
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreference) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
-func (o FederatedDatabaseInstanceStorageStoreReadPreferenceOutput) Tags() FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
-	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreference) []FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
-		return v.Tags
-	}).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput)
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceOutput) TagSets() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreference) []FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
+		return v.TagSets
+	}).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput)
 }
 
 type FederatedDatabaseInstanceStorageStoreReadPreferencePtrOutput struct{ *pulumi.OutputState }
@@ -13290,16 +13317,112 @@ func (o FederatedDatabaseInstanceStorageStoreReadPreferencePtrOutput) Mode() pul
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o FederatedDatabaseInstanceStorageStoreReadPreferencePtrOutput) Tags() FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
-	return o.ApplyT(func(v *FederatedDatabaseInstanceStorageStoreReadPreference) []FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
+func (o FederatedDatabaseInstanceStorageStoreReadPreferencePtrOutput) TagSets() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceStorageStoreReadPreference) []FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
 		if v == nil {
 			return nil
 		}
-		return v.Tags
-	}).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput)
+		return v.TagSets
+	}).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput)
 }
 
-type FederatedDatabaseInstanceStorageStoreReadPreferenceTag struct {
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet struct {
+	Tags []FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag `pulumi:"tags"`
+}
+
+// FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetInput is an input type that accepts FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs and FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput values.
+// You can construct a concrete instance of `FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetInput` via:
+//
+//	FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs{...}
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetInput interface {
+	pulumi.Input
+
+	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput
+	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutputWithContext(context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput
+}
+
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs struct {
+	Tags FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput `pulumi:"tags"`
+}
+
+func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput {
+	return i.ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutputWithContext(context.Background())
+}
+
+func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput)
+}
+
+// FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput is an input type that accepts FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray and FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput values.
+// You can construct a concrete instance of `FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput` via:
+//
+//	FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray{ FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs{...} }
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput interface {
+	pulumi.Input
+
+	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput
+	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutputWithContext(context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput
+}
+
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray []FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetInput
+
+func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return i.ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutputWithContext(context.Background())
+}
+
+func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput)
+}
+
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput struct{ *pulumi.OutputState }
+
+func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput) Tags() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet) []FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
+		return v.Tags
+	}).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput)
+}
+
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput struct{ *pulumi.OutputState }
+
+func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) Index(i pulumi.IntInput) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
+		return vs[0].([]FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet)[vs[1].(int)]
+	}).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput)
+}
+
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag struct {
 	// Name of the Atlas Federated Database Instance.
 	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
 	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
@@ -13307,18 +13430,18 @@ type FederatedDatabaseInstanceStorageStoreReadPreferenceTag struct {
 	Value *string `pulumi:"value"`
 }
 
-// FederatedDatabaseInstanceStorageStoreReadPreferenceTagInput is an input type that accepts FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs and FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput values.
-// You can construct a concrete instance of `FederatedDatabaseInstanceStorageStoreReadPreferenceTagInput` via:
+// FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput is an input type that accepts FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs and FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput values.
+// You can construct a concrete instance of `FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput` via:
 //
-//	FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs{...}
-type FederatedDatabaseInstanceStorageStoreReadPreferenceTagInput interface {
+//	FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs{...}
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput interface {
 	pulumi.Input
 
-	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput
-	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutputWithContext(context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput
+	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput
+	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutputWithContext(context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput
 }
 
-type FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs struct {
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs struct {
 	// Name of the Atlas Federated Database Instance.
 	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
 	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
@@ -13326,86 +13449,86 @@ type FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs struct {
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
-func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTag)(nil)).Elem()
+func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput {
-	return i.ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutputWithContext(context.Background())
+func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput {
+	return i.ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutputWithContext(context.Background())
 }
 
-func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput)
+func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput)
 }
 
-// FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayInput is an input type that accepts FederatedDatabaseInstanceStorageStoreReadPreferenceTagArray and FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput values.
-// You can construct a concrete instance of `FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayInput` via:
+// FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput is an input type that accepts FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray and FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput values.
+// You can construct a concrete instance of `FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput` via:
 //
-//	FederatedDatabaseInstanceStorageStoreReadPreferenceTagArray{ FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs{...} }
-type FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayInput interface {
+//	FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray{ FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs{...} }
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput interface {
 	pulumi.Input
 
-	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput
-	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutputWithContext(context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput
+	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput
+	ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput
 }
 
-type FederatedDatabaseInstanceStorageStoreReadPreferenceTagArray []FederatedDatabaseInstanceStorageStoreReadPreferenceTagInput
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray []FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput
 
-func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FederatedDatabaseInstanceStorageStoreReadPreferenceTag)(nil)).Elem()
+func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagArray) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
-	return i.ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutputWithContext(context.Background())
+func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput {
+	return i.ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(context.Background())
 }
 
-func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagArray) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput)
+func (i FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput)
 }
 
-type FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput struct{ *pulumi.OutputState }
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput struct{ *pulumi.OutputState }
 
-func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTag)(nil)).Elem()
+func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput {
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput {
 	return o
 }
 
-func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput {
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput {
 	return o
 }
 
 // Name of the Atlas Federated Database Instance.
 // ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
 // #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
-func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreferenceTag) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput) Value() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreferenceTag) *string { return v.Value }).(pulumi.StringPtrOutput)
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
 
-type FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput struct{ *pulumi.OutputState }
+type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput struct{ *pulumi.OutputState }
 
-func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FederatedDatabaseInstanceStorageStoreReadPreferenceTag)(nil)).Elem()
+func (FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput() FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput {
 	return o
 }
 
-func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput) ToFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(ctx context.Context) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput {
 	return o
 }
 
-func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput) Index(i pulumi.IntInput) FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FederatedDatabaseInstanceStorageStoreReadPreferenceTag {
-		return vs[0].([]FederatedDatabaseInstanceStorageStoreReadPreferenceTag)[vs[1].(int)]
-	}).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput)
+func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput) Index(i pulumi.IntInput) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
+		return vs[0].([]FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag)[vs[1].(int)]
+	}).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput)
 }
 
 type FederatedSettingsOrgRoleMappingRoleAssignment struct {
@@ -14081,6 +14204,8 @@ type OnlineArchiveCriteria struct {
 	DateFormat *string `pulumi:"dateFormat"`
 	// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 	//
+	// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
+	//
 	// The only field required for criteria type `CUSTOM`
 	ExpireAfterDays *int `pulumi:"expireAfterDays"`
 	// JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
@@ -14108,6 +14233,8 @@ type OnlineArchiveCriteriaArgs struct {
 	// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
 	DateFormat pulumi.StringPtrInput `pulumi:"dateFormat"`
 	// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+	//
+	// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
 	//
 	// The only field required for criteria type `CUSTOM`
 	ExpireAfterDays pulumi.IntPtrInput `pulumi:"expireAfterDays"`
@@ -14208,6 +14335,8 @@ func (o OnlineArchiveCriteriaOutput) DateFormat() pulumi.StringPtrOutput {
 
 // Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 //
+// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
+//
 // The only field required for criteria type `CUSTOM`
 func (o OnlineArchiveCriteriaOutput) ExpireAfterDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveCriteria) *int { return v.ExpireAfterDays }).(pulumi.IntPtrOutput)
@@ -14270,6 +14399,8 @@ func (o OnlineArchiveCriteriaPtrOutput) DateFormat() pulumi.StringPtrOutput {
 }
 
 // Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
+//
+// **_NOTE: if `DATE` is selected, the `partition_fields.field_name` must be completed with the `dateField` value_**
 //
 // The only field required for criteria type `CUSTOM`
 func (o OnlineArchiveCriteriaPtrOutput) ExpireAfterDays() pulumi.IntPtrOutput {
@@ -15255,7 +15386,7 @@ func (o ProjectTeamArrayOutput) Index(i pulumi.IntInput) ProjectTeamOutput {
 
 type ProviderAssumeRole struct {
 	Duration *string `pulumi:"duration"`
-	// Deprecated: Use assume_role.duration instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
 	DurationSeconds   *int              `pulumi:"durationSeconds"`
 	ExternalId        *string           `pulumi:"externalId"`
 	Policy            *string           `pulumi:"policy"`
@@ -15280,7 +15411,7 @@ type ProviderAssumeRoleInput interface {
 
 type ProviderAssumeRoleArgs struct {
 	Duration pulumi.StringPtrInput `pulumi:"duration"`
-	// Deprecated: Use assume_role.duration instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
 	DurationSeconds   pulumi.IntPtrInput      `pulumi:"durationSeconds"`
 	ExternalId        pulumi.StringPtrInput   `pulumi:"externalId"`
 	Policy            pulumi.StringPtrInput   `pulumi:"policy"`
@@ -15373,7 +15504,7 @@ func (o ProviderAssumeRoleOutput) Duration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.Duration }).(pulumi.StringPtrOutput)
 }
 
-// Deprecated: Use assume_role.duration instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
 func (o ProviderAssumeRoleOutput) DurationSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) *int { return v.DurationSeconds }).(pulumi.IntPtrOutput)
 }
@@ -15443,7 +15574,7 @@ func (o ProviderAssumeRolePtrOutput) Duration() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Deprecated: Use assume_role.duration instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
 func (o ProviderAssumeRolePtrOutput) DurationSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *int {
 		if v == nil {
@@ -16469,9 +16600,9 @@ func (o GetAdvancedClusterBiConnectorConfigArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GetAdvancedClusterConnectionString struct {
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 	AwsPrivateLink map[string]interface{} `pulumi:"awsPrivateLink"`
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 	AwsPrivateLinkSrv map[string]interface{}                              `pulumi:"awsPrivateLinkSrv"`
 	Private           string                                              `pulumi:"private"`
 	PrivateEndpoints  []GetAdvancedClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
@@ -16492,9 +16623,9 @@ type GetAdvancedClusterConnectionStringInput interface {
 }
 
 type GetAdvancedClusterConnectionStringArgs struct {
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 	AwsPrivateLink pulumi.MapInput `pulumi:"awsPrivateLink"`
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 	AwsPrivateLinkSrv pulumi.MapInput                                             `pulumi:"awsPrivateLinkSrv"`
 	Private           pulumi.StringInput                                          `pulumi:"private"`
 	PrivateEndpoints  GetAdvancedClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
@@ -16554,12 +16685,12 @@ func (o GetAdvancedClusterConnectionStringOutput) ToGetAdvancedClusterConnection
 	return o
 }
 
-// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 func (o GetAdvancedClusterConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
 }
 
-// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 func (o GetAdvancedClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
@@ -18671,9 +18802,9 @@ func (o GetAdvancedClustersResultBiConnectorConfigArrayOutput) Index(i pulumi.In
 }
 
 type GetAdvancedClustersResultConnectionString struct {
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 	AwsPrivateLink map[string]interface{} `pulumi:"awsPrivateLink"`
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 	AwsPrivateLinkSrv map[string]interface{}                                     `pulumi:"awsPrivateLinkSrv"`
 	Private           string                                                     `pulumi:"private"`
 	PrivateEndpoints  []GetAdvancedClustersResultConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
@@ -18694,9 +18825,9 @@ type GetAdvancedClustersResultConnectionStringInput interface {
 }
 
 type GetAdvancedClustersResultConnectionStringArgs struct {
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 	AwsPrivateLink pulumi.MapInput `pulumi:"awsPrivateLink"`
-	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 	AwsPrivateLinkSrv pulumi.MapInput                                                    `pulumi:"awsPrivateLinkSrv"`
 	Private           pulumi.StringInput                                                 `pulumi:"private"`
 	PrivateEndpoints  GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
@@ -18756,12 +18887,12 @@ func (o GetAdvancedClustersResultConnectionStringOutput) ToGetAdvancedClustersRe
 	return o
 }
 
-// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
 func (o GetAdvancedClustersResultConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
 }
 
-// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
 func (o GetAdvancedClustersResultConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
@@ -23126,7 +23257,7 @@ type GetCloudBackupScheduleCopySetting struct {
 	Frequencies []string `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName string `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
 	ReplicationSpecId string `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs bool `pulumi:"shouldCopyOplogs"`
@@ -23150,7 +23281,7 @@ type GetCloudBackupScheduleCopySettingArgs struct {
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringInput `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
 	ReplicationSpecId pulumi.StringInput `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs pulumi.BoolInput `pulumi:"shouldCopyOplogs"`
@@ -23222,7 +23353,7 @@ func (o GetCloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringOutpu
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, do a GET request to Return One Cluster in One Project and consult the replicationSpecs array https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#operation/returnOneCluster
+// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
 func (o GetCloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.ReplicationSpecId }).(pulumi.StringOutput)
 }
@@ -26428,9 +26559,9 @@ func (o GetClusterConnectionStringPrivateEndpointEndpointArrayOutput) Index(i pu
 }
 
 type GetClusterLabel struct {
-	// The key that was set.
+	// The key that you want to write.
 	Key string `pulumi:"key"`
-	// The value that represents the key.
+	// The value that you want to write.
 	Value string `pulumi:"value"`
 }
 
@@ -26446,9 +26577,9 @@ type GetClusterLabelInput interface {
 }
 
 type GetClusterLabelArgs struct {
-	// The key that was set.
+	// The key that you want to write.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The value that represents the key.
+	// The value that you want to write.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -26503,12 +26634,12 @@ func (o GetClusterLabelOutput) ToGetClusterLabelOutputWithContext(ctx context.Co
 	return o
 }
 
-// The key that was set.
+// The key that you want to write.
 func (o GetClusterLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The value that represents the key.
+// The value that you want to write.
 func (o GetClusterLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -27348,6 +27479,7 @@ type GetClustersResult struct {
 	// Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	ProviderRegionName string `pulumi:"providerRegionName"`
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType string `pulumi:"providerVolumeType"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor int `pulumi:"replicationFactor"`
@@ -27463,6 +27595,7 @@ type GetClustersResultArgs struct {
 	// Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	ProviderRegionName pulumi.StringInput `pulumi:"providerRegionName"`
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+	// > **NOTE:** `STANDARD` is not available for NVME clusters.
 	ProviderVolumeType pulumi.StringInput `pulumi:"providerVolumeType"`
 	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntInput `pulumi:"replicationFactor"`
@@ -27713,6 +27846,7 @@ func (o GetClustersResultOutput) ProviderRegionName() pulumi.StringOutput {
 }
 
 // Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
+// > **NOTE:** `STANDARD` is not available for NVME clusters.
 func (o GetClustersResultOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ProviderVolumeType }).(pulumi.StringOutput)
 }
@@ -28432,9 +28566,9 @@ func (o GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput) Ind
 }
 
 type GetClustersResultLabel struct {
-	// The key that was set.
+	// The key that you want to write.
 	Key string `pulumi:"key"`
-	// The value that represents the key.
+	// The value that you want to write.
 	Value string `pulumi:"value"`
 }
 
@@ -28450,9 +28584,9 @@ type GetClustersResultLabelInput interface {
 }
 
 type GetClustersResultLabelArgs struct {
-	// The key that was set.
+	// The key that you want to write.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The value that represents the key.
+	// The value that you want to write.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -28507,12 +28641,12 @@ func (o GetClustersResultLabelOutput) ToGetClustersResultLabelOutputWithContext(
 	return o
 }
 
-// The key that was set.
+// The key that you want to write.
 func (o GetClustersResultLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The value that represents the key.
+// The value that you want to write.
 func (o GetClustersResultLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -33820,6 +33954,8 @@ type GetDatabaseUsersResult struct {
 	Labels     []GetDatabaseUsersResultLabel `pulumi:"labels"`
 	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 	LdapAuthType string `pulumi:"ldapAuthType"`
+	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+	OidcAuthType string `pulumi:"oidcAuthType"`
 	// The unique ID for the project to get all database users.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -33852,6 +33988,8 @@ type GetDatabaseUsersResultArgs struct {
 	Labels     GetDatabaseUsersResultLabelArrayInput `pulumi:"labels"`
 	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 	LdapAuthType pulumi.StringInput `pulumi:"ldapAuthType"`
+	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+	OidcAuthType pulumi.StringInput `pulumi:"oidcAuthType"`
 	// The unique ID for the project to get all database users.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -33933,6 +34071,11 @@ func (o GetDatabaseUsersResultOutput) Labels() GetDatabaseUsersResultLabelArrayO
 // Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 func (o GetDatabaseUsersResultOutput) LdapAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.LdapAuthType }).(pulumi.StringOutput)
+}
+
+// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+func (o GetDatabaseUsersResultOutput) OidcAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.OidcAuthType }).(pulumi.StringOutput)
 }
 
 // The unique ID for the project to get all database users.
@@ -35653,6 +35796,7 @@ type GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource struct {
 	CollectionRegex     string   `pulumi:"collectionRegex"`
 	Database            string   `pulumi:"database"`
 	DatabaseRegex       string   `pulumi:"databaseRegex"`
+	DatasetName         string   `pulumi:"datasetName"`
 	DefaultFormat       string   `pulumi:"defaultFormat"`
 	Path                string   `pulumi:"path"`
 	ProvenanceFieldName string   `pulumi:"provenanceFieldName"`
@@ -35677,6 +35821,7 @@ type GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs struct 
 	CollectionRegex     pulumi.StringInput      `pulumi:"collectionRegex"`
 	Database            pulumi.StringInput      `pulumi:"database"`
 	DatabaseRegex       pulumi.StringInput      `pulumi:"databaseRegex"`
+	DatasetName         pulumi.StringInput      `pulumi:"datasetName"`
 	DefaultFormat       pulumi.StringInput      `pulumi:"defaultFormat"`
 	Path                pulumi.StringInput      `pulumi:"path"`
 	ProvenanceFieldName pulumi.StringInput      `pulumi:"provenanceFieldName"`
@@ -35755,6 +35900,10 @@ func (o GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceOutput) D
 
 func (o GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceOutput) DatabaseRegex() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource) string { return v.DatabaseRegex }).(pulumi.StringOutput)
+}
+
+func (o GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceOutput) DatasetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource) string { return v.DatasetName }).(pulumi.StringOutput)
 }
 
 func (o GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceOutput) DefaultFormat() pulumi.StringOutput {
@@ -35912,11 +36061,12 @@ type GetFederatedDatabaseInstanceStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            bool     `pulumi:"allowInsecure"`
 	Bucket                   string   `pulumi:"bucket"`
-	ClusterId                string   `pulumi:"clusterId"`
-	ClusterName              string   `pulumi:"clusterName"`
-	DefaultFormat            string   `pulumi:"defaultFormat"`
-	Delimiter                string   `pulumi:"delimiter"`
-	IncludeTags              bool     `pulumi:"includeTags"`
+	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	ClusterId     string `pulumi:"clusterId"`
+	ClusterName   string `pulumi:"clusterName"`
+	DefaultFormat string `pulumi:"defaultFormat"`
+	Delimiter     string `pulumi:"delimiter"`
+	IncludeTags   bool   `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
 	Name   string `pulumi:"name"`
 	Prefix string `pulumi:"prefix"`
@@ -35945,11 +36095,12 @@ type GetFederatedDatabaseInstanceStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolInput        `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringInput      `pulumi:"bucket"`
-	ClusterId                pulumi.StringInput      `pulumi:"clusterId"`
-	ClusterName              pulumi.StringInput      `pulumi:"clusterName"`
-	DefaultFormat            pulumi.StringInput      `pulumi:"defaultFormat"`
-	Delimiter                pulumi.StringInput      `pulumi:"delimiter"`
-	IncludeTags              pulumi.BoolInput        `pulumi:"includeTags"`
+	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	ClusterId     pulumi.StringInput `pulumi:"clusterId"`
+	ClusterName   pulumi.StringInput `pulumi:"clusterName"`
+	DefaultFormat pulumi.StringInput `pulumi:"defaultFormat"`
+	Delimiter     pulumi.StringInput `pulumi:"delimiter"`
+	IncludeTags   pulumi.BoolInput   `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
 	Name   pulumi.StringInput `pulumi:"name"`
 	Prefix pulumi.StringInput `pulumi:"prefix"`
@@ -36026,6 +36177,7 @@ func (o GetFederatedDatabaseInstanceStorageStoreOutput) Bucket() pulumi.StringOu
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
+// Deprecated: this parameter is deprecated and will be removed by September 2024
 func (o GetFederatedDatabaseInstanceStorageStoreOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.ClusterId }).(pulumi.StringOutput)
 }
@@ -36104,9 +36256,9 @@ func (o GetFederatedDatabaseInstanceStorageStoreArrayOutput) Index(i pulumi.IntI
 }
 
 type GetFederatedDatabaseInstanceStorageStoreReadPreference struct {
-	MaxStalenessSeconds int                                                         `pulumi:"maxStalenessSeconds"`
-	Mode                string                                                      `pulumi:"mode"`
-	Tags                []GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag `pulumi:"tags"`
+	MaxStalenessSeconds int                                                            `pulumi:"maxStalenessSeconds"`
+	Mode                string                                                         `pulumi:"mode"`
+	TagSets             []GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet `pulumi:"tagSets"`
 }
 
 // GetFederatedDatabaseInstanceStorageStoreReadPreferenceInput is an input type that accepts GetFederatedDatabaseInstanceStorageStoreReadPreferenceArgs and GetFederatedDatabaseInstanceStorageStoreReadPreferenceOutput values.
@@ -36121,9 +36273,9 @@ type GetFederatedDatabaseInstanceStorageStoreReadPreferenceInput interface {
 }
 
 type GetFederatedDatabaseInstanceStorageStoreReadPreferenceArgs struct {
-	MaxStalenessSeconds pulumi.IntInput                                                     `pulumi:"maxStalenessSeconds"`
-	Mode                pulumi.StringInput                                                  `pulumi:"mode"`
-	Tags                GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayInput `pulumi:"tags"`
+	MaxStalenessSeconds pulumi.IntInput                                                        `pulumi:"maxStalenessSeconds"`
+	Mode                pulumi.StringInput                                                     `pulumi:"mode"`
+	TagSets             GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput `pulumi:"tagSets"`
 }
 
 func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceArgs) ElementType() reflect.Type {
@@ -36185,10 +36337,10 @@ func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceOutput) Mode() pul
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStoreReadPreference) string { return v.Mode }).(pulumi.StringOutput)
 }
 
-func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceOutput) Tags() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
-	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStoreReadPreference) []GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag {
-		return v.Tags
-	}).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput)
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceOutput) TagSets() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStoreReadPreference) []GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
+		return v.TagSets
+	}).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput)
 }
 
 type GetFederatedDatabaseInstanceStorageStoreReadPreferenceArrayOutput struct{ *pulumi.OutputState }
@@ -36211,107 +36363,203 @@ func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceArrayOutput) Index
 	}).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceOutput)
 }
 
-type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag struct {
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet struct {
+	Tags []GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag `pulumi:"tags"`
+}
+
+// GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetInput is an input type that accepts GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs and GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetInput` via:
+//
+//	GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs{...}
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput
+	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutputWithContext(context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput
+}
+
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs struct {
+	Tags GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput `pulumi:"tags"`
+}
+
+func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput {
+	return i.ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput)
+}
+
+// GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput is an input type that accepts GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray and GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput` via:
+//
+//	GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray{ GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs{...} }
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput
+	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutputWithContext(context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput
+}
+
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray []GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetInput
+
+func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return i.ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput)
+}
+
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput) Tags() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet) []GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
+		return v.Tags
+	}).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput)
+}
+
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
+		return vs[0].([]GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet)[vs[1].(int)]
+	}).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput)
+}
+
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag struct {
 	// Name of the Atlas Federated Database Instance.
 	Name  string `pulumi:"name"`
 	Value string `pulumi:"value"`
 }
 
-// GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagInput is an input type that accepts GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs and GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput values.
-// You can construct a concrete instance of `GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagInput` via:
+// GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput is an input type that accepts GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs and GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput` via:
 //
-//	GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs{...}
-type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagInput interface {
+//	GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs{...}
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput interface {
 	pulumi.Input
 
-	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput
-	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutputWithContext(context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput
+	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput
+	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutputWithContext(context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput
 }
 
-type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs struct {
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs struct {
 	// Name of the Atlas Federated Database Instance.
 	Name  pulumi.StringInput `pulumi:"name"`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag)(nil)).Elem()
+func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput {
-	return i.ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutputWithContext(context.Background())
+func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput {
+	return i.ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutputWithContext(context.Background())
 }
 
-func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput)
+func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput)
 }
 
-// GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayInput is an input type that accepts GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArray and GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput values.
-// You can construct a concrete instance of `GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayInput` via:
+// GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput is an input type that accepts GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray and GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput` via:
 //
-//	GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArray{ GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs{...} }
-type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayInput interface {
+//	GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray{ GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs{...} }
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput interface {
 	pulumi.Input
 
-	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput
-	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutputWithContext(context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput
+	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput
+	ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput
 }
 
-type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArray []GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagInput
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray []GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput
 
-func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag)(nil)).Elem()
+func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArray) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
-	return i.ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutputWithContext(context.Background())
+func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput {
+	return i.ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(context.Background())
 }
 
-func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArray) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput)
+func (i GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput)
 }
 
-type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput struct{ *pulumi.OutputState }
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput struct{ *pulumi.OutputState }
 
-func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag)(nil)).Elem()
+func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput {
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput {
 	return o
 }
 
-func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput {
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput {
 	return o
 }
 
 // Name of the Atlas Federated Database Instance.
-func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag) string { return v.Name }).(pulumi.StringOutput)
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag) string { return v.Value }).(pulumi.StringOutput)
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput struct{ *pulumi.OutputState }
+type GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput struct{ *pulumi.OutputState }
 
-func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag)(nil)).Elem()
+func (GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput() GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput {
 	return o
 }
 
-func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput {
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput) ToGetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput {
 	return o
 }
 
-func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag {
-		return vs[0].([]GetFederatedDatabaseInstanceStorageStoreReadPreferenceTag)[vs[1].(int)]
-	}).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput)
+func (o GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
+		return vs[0].([]GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag)[vs[1].(int)]
+	}).(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput)
 }
 
 type GetFederatedDatabaseInstancesResult struct {
@@ -36330,6 +36578,7 @@ type GetFederatedDatabaseInstancesResult struct {
 	// * `storage_databases.#.collections.#.name` - Name of the collection.
 	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
+	// * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
 	// * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
 	// * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
 	// * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -36362,9 +36611,10 @@ type GetFederatedDatabaseInstancesResult struct {
 	// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
 	// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
 	// * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-	// * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-	// * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-	// * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+	// * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+	// * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+	// * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+	// * `storage_stores.#.read_preference.tags.value` - Value of the tag.
 	StorageStores []GetFederatedDatabaseInstancesResultStorageStore `pulumi:"storageStores"`
 }
 
@@ -36395,6 +36645,7 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// * `storage_databases.#.collections.#.name` - Name of the collection.
 	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
+	// * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
 	// * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
 	// * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
 	// * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -36427,9 +36678,10 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
 	// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
 	// * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-	// * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-	// * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-	// * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+	// * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+	// * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+	// * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+	// * `storage_stores.#.read_preference.tags.value` - Value of the tag.
 	StorageStores GetFederatedDatabaseInstancesResultStorageStoreArrayInput `pulumi:"storageStores"`
 }
 
@@ -36521,6 +36773,7 @@ func (o GetFederatedDatabaseInstancesResultOutput) State() pulumi.StringOutput {
 // * `storage_databases.#.collections.#.name` - Name of the collection.
 // * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 // * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
+// * `storage_databases.#.collections.#.data_sources.#.dataset_name` -     Human-readable label that identifies the dataset that Atlas generates for an ingestion pipeline run or Online Archive.
 // * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Federated Database assumes if it encounters a file without an extension while searching the storeName.
 // * `storage_databases.#.collections.#.data_sources.#.path` - File path that controls how MongoDB Cloud searches for and parses files in the storeName before mapping them to a collection. Specify / to capture all files and folders from the prefix path.
 // * `storage_databases.#.collections.#.data_sources.#.database` - Human-readable label that identifies the database, which contains the collection in the cluster.
@@ -36558,9 +36811,10 @@ func (o GetFederatedDatabaseInstancesResultOutput) StorageDatabases() GetFederat
 // * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
 // * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
 // * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
-// * `storage_stores.#.read_preference.tagSets` - List that contains tag sets or tag specification documents.
-// * `storage_stores.#.read_preference.tagSets.name` - Human-readable label of the tag.
-// * `storage_stores.#.read_preference.tagSets.value` - Value of the tag.
+// * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
+// * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
+// * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
+// * `storage_stores.#.read_preference.tags.value` - Value of the tag.
 func (o GetFederatedDatabaseInstancesResultOutput) StorageStores() GetFederatedDatabaseInstancesResultStorageStoreArrayOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResult) []GetFederatedDatabaseInstancesResultStorageStore {
 		return v.StorageStores
@@ -37065,6 +37319,7 @@ type GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSource stru
 	CollectionRegex     string   `pulumi:"collectionRegex"`
 	Database            string   `pulumi:"database"`
 	DatabaseRegex       string   `pulumi:"databaseRegex"`
+	DatasetName         string   `pulumi:"datasetName"`
 	DefaultFormat       string   `pulumi:"defaultFormat"`
 	Path                string   `pulumi:"path"`
 	ProvenanceFieldName string   `pulumi:"provenanceFieldName"`
@@ -37089,6 +37344,7 @@ type GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceArgs 
 	CollectionRegex     pulumi.StringInput      `pulumi:"collectionRegex"`
 	Database            pulumi.StringInput      `pulumi:"database"`
 	DatabaseRegex       pulumi.StringInput      `pulumi:"databaseRegex"`
+	DatasetName         pulumi.StringInput      `pulumi:"datasetName"`
 	DefaultFormat       pulumi.StringInput      `pulumi:"defaultFormat"`
 	Path                pulumi.StringInput      `pulumi:"path"`
 	ProvenanceFieldName pulumi.StringInput      `pulumi:"provenanceFieldName"`
@@ -37174,6 +37430,12 @@ func (o GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceOu
 func (o GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceOutput) DatabaseRegex() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSource) string {
 		return v.DatabaseRegex
+	}).(pulumi.StringOutput)
+}
+
+func (o GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceOutput) DatasetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSource) string {
+		return v.DatasetName
 	}).(pulumi.StringOutput)
 }
 
@@ -37333,13 +37595,14 @@ type GetFederatedDatabaseInstancesResultStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            bool     `pulumi:"allowInsecure"`
 	Bucket                   string   `pulumi:"bucket"`
-	ClusterId                string   `pulumi:"clusterId"`
-	ClusterName              string   `pulumi:"clusterName"`
-	DefaultFormat            string   `pulumi:"defaultFormat"`
-	Delimiter                string   `pulumi:"delimiter"`
-	IncludeTags              bool     `pulumi:"includeTags"`
-	Name                     string   `pulumi:"name"`
-	Prefix                   string   `pulumi:"prefix"`
+	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	ClusterId     string `pulumi:"clusterId"`
+	ClusterName   string `pulumi:"clusterName"`
+	DefaultFormat string `pulumi:"defaultFormat"`
+	Delimiter     string `pulumi:"delimiter"`
+	IncludeTags   bool   `pulumi:"includeTags"`
+	Name          string `pulumi:"name"`
+	Prefix        string `pulumi:"prefix"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId       string                                                          `pulumi:"projectId"`
 	Provider        string                                                          `pulumi:"provider"`
@@ -37365,13 +37628,14 @@ type GetFederatedDatabaseInstancesResultStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolInput        `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringInput      `pulumi:"bucket"`
-	ClusterId                pulumi.StringInput      `pulumi:"clusterId"`
-	ClusterName              pulumi.StringInput      `pulumi:"clusterName"`
-	DefaultFormat            pulumi.StringInput      `pulumi:"defaultFormat"`
-	Delimiter                pulumi.StringInput      `pulumi:"delimiter"`
-	IncludeTags              pulumi.BoolInput        `pulumi:"includeTags"`
-	Name                     pulumi.StringInput      `pulumi:"name"`
-	Prefix                   pulumi.StringInput      `pulumi:"prefix"`
+	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	ClusterId     pulumi.StringInput `pulumi:"clusterId"`
+	ClusterName   pulumi.StringInput `pulumi:"clusterName"`
+	DefaultFormat pulumi.StringInput `pulumi:"defaultFormat"`
+	Delimiter     pulumi.StringInput `pulumi:"delimiter"`
+	IncludeTags   pulumi.BoolInput   `pulumi:"includeTags"`
+	Name          pulumi.StringInput `pulumi:"name"`
+	Prefix        pulumi.StringInput `pulumi:"prefix"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId       pulumi.StringInput                                                      `pulumi:"projectId"`
 	Provider        pulumi.StringInput                                                      `pulumi:"provider"`
@@ -37445,6 +37709,7 @@ func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) Bucket() pulumi.S
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
+// Deprecated: this parameter is deprecated and will be removed by September 2024
 func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.ClusterId }).(pulumi.StringOutput)
 }
@@ -37522,9 +37787,9 @@ func (o GetFederatedDatabaseInstancesResultStorageStoreArrayOutput) Index(i pulu
 }
 
 type GetFederatedDatabaseInstancesResultStorageStoreReadPreference struct {
-	MaxStalenessSeconds int                                                                `pulumi:"maxStalenessSeconds"`
-	Mode                string                                                             `pulumi:"mode"`
-	Tags                []GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag `pulumi:"tags"`
+	MaxStalenessSeconds int                                                                   `pulumi:"maxStalenessSeconds"`
+	Mode                string                                                                `pulumi:"mode"`
+	TagSets             []GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet `pulumi:"tagSets"`
 }
 
 // GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceInput is an input type that accepts GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArgs and GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceOutput values.
@@ -37539,9 +37804,9 @@ type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceInput interfac
 }
 
 type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArgs struct {
-	MaxStalenessSeconds pulumi.IntInput                                                            `pulumi:"maxStalenessSeconds"`
-	Mode                pulumi.StringInput                                                         `pulumi:"mode"`
-	Tags                GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayInput `pulumi:"tags"`
+	MaxStalenessSeconds pulumi.IntInput                                                               `pulumi:"maxStalenessSeconds"`
+	Mode                pulumi.StringInput                                                            `pulumi:"mode"`
+	TagSets             GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayInput `pulumi:"tagSets"`
 }
 
 func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArgs) ElementType() reflect.Type {
@@ -37605,10 +37870,10 @@ func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceOutput) Mod
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStoreReadPreference) string { return v.Mode }).(pulumi.StringOutput)
 }
 
-func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceOutput) Tags() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput {
-	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStoreReadPreference) []GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag {
-		return v.Tags
-	}).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput)
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceOutput) TagSets() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStoreReadPreference) []GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet {
+		return v.TagSets
+	}).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput)
 }
 
 type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArrayOutput struct{ *pulumi.OutputState }
@@ -37631,104 +37896,200 @@ func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArrayOutput
 	}).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceOutput)
 }
 
-type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag struct {
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet struct {
+	Tags []GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag `pulumi:"tags"`
+}
+
+// GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetInput is an input type that accepts GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArgs and GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetInput` via:
+//
+//	GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArgs{...}
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput
+	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput
+}
+
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArgs struct {
+	Tags GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayInput `pulumi:"tags"`
+}
+
+func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArgs) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput {
+	return i.ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArgs) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput)
+}
+
+// GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayInput is an input type that accepts GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArray and GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayInput` via:
+//
+//	GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArray{ GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArgs{...} }
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput
+	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput
+}
+
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArray []GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetInput
+
+func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArray) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput {
+	return i.ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArray) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput)
+}
+
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput) Tags() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet) []GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag {
+		return v.Tags
+	}).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput)
+}
+
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet {
+		return vs[0].([]GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet)[vs[1].(int)]
+	}).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput)
+}
+
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag struct {
 	Name  string `pulumi:"name"`
 	Value string `pulumi:"value"`
 }
 
-// GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagInput is an input type that accepts GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArgs and GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput values.
-// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagInput` via:
+// GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagInput is an input type that accepts GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArgs and GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagInput` via:
 //
-//	GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArgs{...}
-type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagInput interface {
+//	GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArgs{...}
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagInput interface {
 	pulumi.Input
 
-	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput
-	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput
+	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput
+	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput
 }
 
-type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArgs struct {
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArgs struct {
 	Name  pulumi.StringInput `pulumi:"name"`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag)(nil)).Elem()
+func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArgs) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput {
-	return i.ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutputWithContext(context.Background())
+func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArgs) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput {
+	return i.ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutputWithContext(context.Background())
 }
 
-func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArgs) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput)
+func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArgs) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput)
 }
 
-// GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayInput is an input type that accepts GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArray and GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput values.
-// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayInput` via:
+// GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayInput is an input type that accepts GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArray and GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayInput` via:
 //
-//	GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArray{ GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArgs{...} }
-type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayInput interface {
+//	GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArray{ GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArgs{...} }
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayInput interface {
 	pulumi.Input
 
-	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput
-	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput
+	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput
+	ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput
 }
 
-type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArray []GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagInput
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArray []GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagInput
 
-func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag)(nil)).Elem()
+func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArray) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput {
-	return i.ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutputWithContext(context.Background())
+func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArray) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput {
+	return i.ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(context.Background())
 }
 
-func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArray) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput)
+func (i GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArray) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput)
 }
 
-type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput struct{ *pulumi.OutputState }
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput struct{ *pulumi.OutputState }
 
-func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag)(nil)).Elem()
+func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput {
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput {
 	return o
 }
 
-func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput {
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput {
 	return o
 }
 
-func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag) string { return v.Name }).(pulumi.StringOutput)
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag) string { return v.Value }).(pulumi.StringOutput)
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput struct{ *pulumi.OutputState }
+type GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput struct{ *pulumi.OutputState }
 
-func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag)(nil)).Elem()
+func (GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag)(nil)).Elem()
 }
 
-func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput {
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput() GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput {
 	return o
 }
 
-func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput {
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput) ToGetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput {
 	return o
 }
 
-func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag {
-		return vs[0].([]GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTag)[vs[1].(int)]
-	}).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput)
+func (o GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag {
+		return vs[0].([]GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag)[vs[1].(int)]
+	}).(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput)
 }
 
 type GetFederatedQueryLimitsResult struct {
@@ -46344,8 +46705,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreArrayInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferencePtrInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignmentInput)(nil)).Elem(), FederatedSettingsOrgRoleMappingRoleAssignmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput)(nil)).Elem(), FederatedSettingsOrgRoleMappingRoleAssignmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigCustomZoneMappingInput)(nil)).Elem(), GlobalClusterConfigCustomZoneMappingArgs{})
@@ -46678,8 +47041,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageStoreArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageStoreReadPreferenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageStoreReadPreferenceArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigArgs{})
@@ -46698,8 +47063,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageStoreArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedQueryLimitsResultInput)(nil)).Elem(), GetFederatedQueryLimitsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedQueryLimitsResultArrayInput)(nil)).Elem(), GetFederatedQueryLimitsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderAssociatedOrgArgs{})
@@ -46996,8 +47363,10 @@ func init() {
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreArrayOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferenceOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferencePtrOutput{})
-	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput{})
-	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput{})
+	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput{})
+	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput{})
+	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput{})
+	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput{})
 	pulumi.RegisterOutputType(FederatedSettingsOrgRoleMappingRoleAssignmentOutput{})
 	pulumi.RegisterOutputType(FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingOutput{})
@@ -47330,8 +47699,10 @@ func init() {
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageStoreArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageStoreReadPreferenceOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageStoreReadPreferenceArrayOutput{})
-	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagOutput{})
-	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigOutput{})
@@ -47350,8 +47721,10 @@ func init() {
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageStoreArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceArrayOutput{})
-	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagOutput{})
-	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedQueryLimitsResultOutput{})
 	pulumi.RegisterOutputType(GetFederatedQueryLimitsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderAssociatedOrgOutput{})

@@ -21,19 +21,19 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
 
     /**
      * @deprecated
-     * use aws_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
      * 
      */
-    @Deprecated /* use aws_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config */
     @Import(name="aws")
     private @Nullable Output<Map<String,String>> aws;
 
     /**
      * @deprecated
-     * use aws_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
      * 
      */
-    @Deprecated /* use aws_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config */
     public Optional<Output<Map<String,String>>> aws() {
         return Optional.ofNullable(this.aws);
     }
@@ -122,10 +122,10 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
          * @return builder
          * 
          * @deprecated
-         * use aws_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
          * 
          */
-        @Deprecated /* use aws_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config */
         public Builder aws(@Nullable Output<Map<String,String>> aws) {
             $.aws = aws;
             return this;
@@ -135,10 +135,10 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
          * @return builder
          * 
          * @deprecated
-         * use aws_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
          * 
          */
-        @Deprecated /* use aws_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config */
         public Builder aws(Map<String,String> aws) {
             return aws(Output.of(aws));
         }

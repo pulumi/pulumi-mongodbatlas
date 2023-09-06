@@ -164,10 +164,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
      * 
      * @deprecated
-     * use bi_connector_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      * 
      */
-    @Deprecated /* use bi_connector_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
     @Import(name="biConnector")
     private @Nullable Output<Map<String,String>> biConnector;
 
@@ -175,10 +175,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      * @return Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
      * 
      * @deprecated
-     * use bi_connector_config instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
      * 
      */
-    @Deprecated /* use bi_connector_config instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
     public Optional<Output<Map<String,String>>> biConnector() {
         return Optional.ofNullable(this.biConnector);
     }
@@ -391,10 +391,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
      * 
      * @deprecated
-     * This field is deprecated,please use cloud_backup instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
      * 
      */
-    @Deprecated /* This field is deprecated,please use cloud_backup instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup */
     @Import(name="providerBackupEnabled")
     private @Nullable Output<Boolean> providerBackupEnabled;
 
@@ -402,10 +402,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      * @return Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
      * 
      * @deprecated
-     * This field is deprecated,please use cloud_backup instead
+     * this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
      * 
      */
-    @Deprecated /* This field is deprecated,please use cloud_backup instead */
+    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup */
     public Optional<Output<Boolean>> providerBackupEnabled() {
         return Optional.ofNullable(this.providerBackupEnabled);
     }
@@ -518,6 +518,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+     * &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
      * 
      */
     @Import(name="providerVolumeType")
@@ -525,6 +526,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+     * &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
      * 
      */
     public Optional<Output<String>> providerVolumeType() {
@@ -829,10 +831,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * use bi_connector_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
          * 
          */
-        @Deprecated /* use bi_connector_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
         public Builder biConnector(@Nullable Output<Map<String,String>> biConnector) {
             $.biConnector = biConnector;
             return this;
@@ -844,10 +846,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * use bi_connector_config instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
          * 
          */
-        @Deprecated /* use bi_connector_config instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
         public Builder biConnector(Map<String,String> biConnector) {
             return biConnector(Output.of(biConnector));
         }
@@ -1138,10 +1140,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * This field is deprecated,please use cloud_backup instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
          * 
          */
-        @Deprecated /* This field is deprecated,please use cloud_backup instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup */
         public Builder providerBackupEnabled(@Nullable Output<Boolean> providerBackupEnabled) {
             $.providerBackupEnabled = providerBackupEnabled;
             return this;
@@ -1153,10 +1155,10 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * This field is deprecated,please use cloud_backup instead
+         * this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
          * 
          */
-        @Deprecated /* This field is deprecated,please use cloud_backup instead */
+        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup */
         public Builder providerBackupEnabled(Boolean providerBackupEnabled) {
             return providerBackupEnabled(Output.of(providerBackupEnabled));
         }
@@ -1305,6 +1307,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param providerVolumeType The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+         * &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
          * 
          * @return builder
          * 
@@ -1316,6 +1319,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param providerVolumeType The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+         * &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
          * 
          * @return builder
          * 

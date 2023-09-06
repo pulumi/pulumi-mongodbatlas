@@ -159,6 +159,35 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// ## Example of how to create a OIDC federated authentication user
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.DatabaseUser("test", new()
+    ///     {
+    ///         AuthDatabaseName = "admin",
+    ///         OidcAuthType = "IDP_GROUP",
+    ///         ProjectId = "6414908c207f4d22f4d8f232",
+    ///         Roles = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///             {
+    ///                 DatabaseName = "admin",
+    ///                 RoleName = "readWriteAnyDatabase",
+    ///             },
+    ///         },
+    ///         Username = "64d613677e1ad50839cce4db/testUserOr",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
     /// 
     /// ## Import
     /// 
@@ -167,6 +196,7 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
     /// ```
+    ///  ~&gt; __NOTE:__ Terraform will want to change the password after importing the user if a `password` argument is specified.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/databaseUser:DatabaseUser")]
     public partial class DatabaseUser : global::Pulumi.CustomResource
@@ -179,7 +209,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> AuthDatabaseName { get; private set; } = null!;
 
         /// <summary>
-        /// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        /// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         /// </summary>
         [Output("awsIamType")]
         public Output<string?> AwsIamType { get; private set; } = null!;
@@ -198,6 +228,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("ldapAuthType")]
         public Output<string?> LdapAuthType { get; private set; } = null!;
+
+        /// <summary>
+        /// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        /// </summary>
+        [Output("oidcAuthType")]
+        public Output<string?> OidcAuthType { get; private set; } = null!;
 
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
@@ -287,7 +323,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AuthDatabaseName { get; set; }
 
         /// <summary>
-        /// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        /// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         /// </summary>
         [Input("awsIamType")]
         public Input<string>? AwsIamType { get; set; }
@@ -311,6 +347,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("ldapAuthType")]
         public Input<string>? LdapAuthType { get; set; }
+
+        /// <summary>
+        /// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        /// </summary>
+        [Input("oidcAuthType")]
+        public Input<string>? OidcAuthType { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
@@ -378,7 +420,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AuthDatabaseName { get; set; }
 
         /// <summary>
-        /// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        /// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         /// </summary>
         [Input("awsIamType")]
         public Input<string>? AwsIamType { get; set; }
@@ -402,6 +444,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("ldapAuthType")]
         public Input<string>? LdapAuthType { get; set; }
+
+        /// <summary>
+        /// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        /// </summary>
+        [Input("oidcAuthType")]
+        public Input<string>? OidcAuthType { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
