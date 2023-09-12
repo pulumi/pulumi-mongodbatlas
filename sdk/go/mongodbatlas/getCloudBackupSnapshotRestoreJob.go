@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
@@ -108,6 +109,12 @@ func (o LookupCloudBackupSnapshotRestoreJobResultOutput) ToLookupCloudBackupSnap
 
 func (o LookupCloudBackupSnapshotRestoreJobResultOutput) ToLookupCloudBackupSnapshotRestoreJobResultOutputWithContext(ctx context.Context) LookupCloudBackupSnapshotRestoreJobResultOutput {
 	return o
+}
+
+func (o LookupCloudBackupSnapshotRestoreJobResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCloudBackupSnapshotRestoreJobResult] {
+	return pulumix.Output[LookupCloudBackupSnapshotRestoreJobResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates whether the restore job was canceled.

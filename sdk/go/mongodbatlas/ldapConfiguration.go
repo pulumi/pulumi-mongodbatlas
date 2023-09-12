@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -315,6 +316,12 @@ func (i *LdapConfiguration) ToLdapConfigurationOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(LdapConfigurationOutput)
 }
 
+func (i *LdapConfiguration) ToOutput(ctx context.Context) pulumix.Output[*LdapConfiguration] {
+	return pulumix.Output[*LdapConfiguration]{
+		OutputState: i.ToLdapConfigurationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LdapConfigurationArrayInput is an input type that accepts LdapConfigurationArray and LdapConfigurationArrayOutput values.
 // You can construct a concrete instance of `LdapConfigurationArrayInput` via:
 //
@@ -338,6 +345,12 @@ func (i LdapConfigurationArray) ToLdapConfigurationArrayOutput() LdapConfigurati
 
 func (i LdapConfigurationArray) ToLdapConfigurationArrayOutputWithContext(ctx context.Context) LdapConfigurationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LdapConfigurationArrayOutput)
+}
+
+func (i LdapConfigurationArray) ToOutput(ctx context.Context) pulumix.Output[[]*LdapConfiguration] {
+	return pulumix.Output[[]*LdapConfiguration]{
+		OutputState: i.ToLdapConfigurationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LdapConfigurationMapInput is an input type that accepts LdapConfigurationMap and LdapConfigurationMapOutput values.
@@ -365,6 +378,12 @@ func (i LdapConfigurationMap) ToLdapConfigurationMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(LdapConfigurationMapOutput)
 }
 
+func (i LdapConfigurationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LdapConfiguration] {
+	return pulumix.Output[map[string]*LdapConfiguration]{
+		OutputState: i.ToLdapConfigurationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LdapConfigurationOutput struct{ *pulumi.OutputState }
 
 func (LdapConfigurationOutput) ElementType() reflect.Type {
@@ -377,6 +396,12 @@ func (o LdapConfigurationOutput) ToLdapConfigurationOutput() LdapConfigurationOu
 
 func (o LdapConfigurationOutput) ToLdapConfigurationOutputWithContext(ctx context.Context) LdapConfigurationOutput {
 	return o
+}
+
+func (o LdapConfigurationOutput) ToOutput(ctx context.Context) pulumix.Output[*LdapConfiguration] {
+	return pulumix.Output[*LdapConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Specifies whether user authentication with LDAP is enabled.
@@ -446,6 +471,12 @@ func (o LdapConfigurationArrayOutput) ToLdapConfigurationArrayOutputWithContext(
 	return o
 }
 
+func (o LdapConfigurationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LdapConfiguration] {
+	return pulumix.Output[[]*LdapConfiguration]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LdapConfigurationArrayOutput) Index(i pulumi.IntInput) LdapConfigurationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LdapConfiguration {
 		return vs[0].([]*LdapConfiguration)[vs[1].(int)]
@@ -464,6 +495,12 @@ func (o LdapConfigurationMapOutput) ToLdapConfigurationMapOutput() LdapConfigura
 
 func (o LdapConfigurationMapOutput) ToLdapConfigurationMapOutputWithContext(ctx context.Context) LdapConfigurationMapOutput {
 	return o
+}
+
+func (o LdapConfigurationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LdapConfiguration] {
+	return pulumix.Output[map[string]*LdapConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LdapConfigurationMapOutput) MapIndex(k pulumi.StringInput) LdapConfigurationOutput {

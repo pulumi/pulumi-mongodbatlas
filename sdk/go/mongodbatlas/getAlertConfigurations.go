@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupAlertConfigurations(ctx *pulumi.Context, args *LookupAlertConfigurationsArgs, opts ...pulumi.InvokeOption) (*LookupAlertConfigurationsResult, error) {
@@ -91,6 +92,12 @@ func (o LookupAlertConfigurationsResultOutput) ToLookupAlertConfigurationsResult
 
 func (o LookupAlertConfigurationsResultOutput) ToLookupAlertConfigurationsResultOutputWithContext(ctx context.Context) LookupAlertConfigurationsResultOutput {
 	return o
+}
+
+func (o LookupAlertConfigurationsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAlertConfigurationsResult] {
+	return pulumix.Output[LookupAlertConfigurationsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

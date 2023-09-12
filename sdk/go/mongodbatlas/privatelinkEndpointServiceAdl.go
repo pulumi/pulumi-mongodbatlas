@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `privatelinkEndpointServiceAdl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.   The same configuration will provide a PrivateLink connection for either Atlas Data Lake or Online Archive.
@@ -193,6 +194,12 @@ func (i *PrivatelinkEndpointServiceAdl) ToPrivatelinkEndpointServiceAdlOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServiceAdlOutput)
 }
 
+func (i *PrivatelinkEndpointServiceAdl) ToOutput(ctx context.Context) pulumix.Output[*PrivatelinkEndpointServiceAdl] {
+	return pulumix.Output[*PrivatelinkEndpointServiceAdl]{
+		OutputState: i.ToPrivatelinkEndpointServiceAdlOutputWithContext(ctx).OutputState,
+	}
+}
+
 // PrivatelinkEndpointServiceAdlArrayInput is an input type that accepts PrivatelinkEndpointServiceAdlArray and PrivatelinkEndpointServiceAdlArrayOutput values.
 // You can construct a concrete instance of `PrivatelinkEndpointServiceAdlArrayInput` via:
 //
@@ -216,6 +223,12 @@ func (i PrivatelinkEndpointServiceAdlArray) ToPrivatelinkEndpointServiceAdlArray
 
 func (i PrivatelinkEndpointServiceAdlArray) ToPrivatelinkEndpointServiceAdlArrayOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceAdlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServiceAdlArrayOutput)
+}
+
+func (i PrivatelinkEndpointServiceAdlArray) ToOutput(ctx context.Context) pulumix.Output[[]*PrivatelinkEndpointServiceAdl] {
+	return pulumix.Output[[]*PrivatelinkEndpointServiceAdl]{
+		OutputState: i.ToPrivatelinkEndpointServiceAdlArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // PrivatelinkEndpointServiceAdlMapInput is an input type that accepts PrivatelinkEndpointServiceAdlMap and PrivatelinkEndpointServiceAdlMapOutput values.
@@ -243,6 +256,12 @@ func (i PrivatelinkEndpointServiceAdlMap) ToPrivatelinkEndpointServiceAdlMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServiceAdlMapOutput)
 }
 
+func (i PrivatelinkEndpointServiceAdlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivatelinkEndpointServiceAdl] {
+	return pulumix.Output[map[string]*PrivatelinkEndpointServiceAdl]{
+		OutputState: i.ToPrivatelinkEndpointServiceAdlMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type PrivatelinkEndpointServiceAdlOutput struct{ *pulumi.OutputState }
 
 func (PrivatelinkEndpointServiceAdlOutput) ElementType() reflect.Type {
@@ -255,6 +274,12 @@ func (o PrivatelinkEndpointServiceAdlOutput) ToPrivatelinkEndpointServiceAdlOutp
 
 func (o PrivatelinkEndpointServiceAdlOutput) ToPrivatelinkEndpointServiceAdlOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceAdlOutput {
 	return o
+}
+
+func (o PrivatelinkEndpointServiceAdlOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivatelinkEndpointServiceAdl] {
+	return pulumix.Output[*PrivatelinkEndpointServiceAdl]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Human-readable string to associate with this private endpoint.
@@ -296,6 +321,12 @@ func (o PrivatelinkEndpointServiceAdlArrayOutput) ToPrivatelinkEndpointServiceAd
 	return o
 }
 
+func (o PrivatelinkEndpointServiceAdlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*PrivatelinkEndpointServiceAdl] {
+	return pulumix.Output[[]*PrivatelinkEndpointServiceAdl]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PrivatelinkEndpointServiceAdlArrayOutput) Index(i pulumi.IntInput) PrivatelinkEndpointServiceAdlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *PrivatelinkEndpointServiceAdl {
 		return vs[0].([]*PrivatelinkEndpointServiceAdl)[vs[1].(int)]
@@ -314,6 +345,12 @@ func (o PrivatelinkEndpointServiceAdlMapOutput) ToPrivatelinkEndpointServiceAdlM
 
 func (o PrivatelinkEndpointServiceAdlMapOutput) ToPrivatelinkEndpointServiceAdlMapOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceAdlMapOutput {
 	return o
+}
+
+func (o PrivatelinkEndpointServiceAdlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivatelinkEndpointServiceAdl] {
+	return pulumix.Output[map[string]*PrivatelinkEndpointServiceAdl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PrivatelinkEndpointServiceAdlMapOutput) MapIndex(k pulumi.StringInput) PrivatelinkEndpointServiceAdlOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx *pulumi.Context, args *LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult, error) {
@@ -81,6 +82,12 @@ func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput)
 
 func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput) ToLookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutputWithContext(ctx context.Context) LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput {
 	return o
+}
+
+func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult] {
+	return pulumix.Output[LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Human-readable string to associate with this private endpoint.

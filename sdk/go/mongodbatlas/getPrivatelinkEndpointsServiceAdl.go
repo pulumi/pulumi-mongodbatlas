@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `privatelinkEndpointsServiceAdl` Describes the list of all Atlas Data Lake (ADL) and Online Archive PrivateLink endpoints resource.
@@ -117,6 +118,12 @@ func (o LookupPrivatelinkEndpointsServiceAdlResultOutput) ToLookupPrivatelinkEnd
 
 func (o LookupPrivatelinkEndpointsServiceAdlResultOutput) ToLookupPrivatelinkEndpointsServiceAdlResultOutputWithContext(ctx context.Context) LookupPrivatelinkEndpointsServiceAdlResultOutput {
 	return o
+}
+
+func (o LookupPrivatelinkEndpointsServiceAdlResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupPrivatelinkEndpointsServiceAdlResult] {
+	return pulumix.Output[LookupPrivatelinkEndpointsServiceAdlResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

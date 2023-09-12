@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getOrganizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
@@ -113,6 +114,12 @@ func (o LookupOrganizationsResultOutput) ToLookupOrganizationsResultOutput() Loo
 
 func (o LookupOrganizationsResultOutput) ToLookupOrganizationsResultOutputWithContext(ctx context.Context) LookupOrganizationsResultOutput {
 	return o
+}
+
+func (o LookupOrganizationsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupOrganizationsResult] {
+	return pulumix.Output[LookupOrganizationsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

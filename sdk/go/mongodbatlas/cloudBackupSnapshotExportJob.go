@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -254,6 +255,12 @@ func (i *CloudBackupSnapshotExportJob) ToCloudBackupSnapshotExportJobOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotExportJobOutput)
 }
 
+func (i *CloudBackupSnapshotExportJob) ToOutput(ctx context.Context) pulumix.Output[*CloudBackupSnapshotExportJob] {
+	return pulumix.Output[*CloudBackupSnapshotExportJob]{
+		OutputState: i.ToCloudBackupSnapshotExportJobOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CloudBackupSnapshotExportJobArrayInput is an input type that accepts CloudBackupSnapshotExportJobArray and CloudBackupSnapshotExportJobArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotExportJobArrayInput` via:
 //
@@ -277,6 +284,12 @@ func (i CloudBackupSnapshotExportJobArray) ToCloudBackupSnapshotExportJobArrayOu
 
 func (i CloudBackupSnapshotExportJobArray) ToCloudBackupSnapshotExportJobArrayOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotExportJobArrayOutput)
+}
+
+func (i CloudBackupSnapshotExportJobArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudBackupSnapshotExportJob] {
+	return pulumix.Output[[]*CloudBackupSnapshotExportJob]{
+		OutputState: i.ToCloudBackupSnapshotExportJobArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CloudBackupSnapshotExportJobMapInput is an input type that accepts CloudBackupSnapshotExportJobMap and CloudBackupSnapshotExportJobMapOutput values.
@@ -304,6 +317,12 @@ func (i CloudBackupSnapshotExportJobMap) ToCloudBackupSnapshotExportJobMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotExportJobMapOutput)
 }
 
+func (i CloudBackupSnapshotExportJobMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudBackupSnapshotExportJob] {
+	return pulumix.Output[map[string]*CloudBackupSnapshotExportJob]{
+		OutputState: i.ToCloudBackupSnapshotExportJobMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CloudBackupSnapshotExportJobOutput struct{ *pulumi.OutputState }
 
 func (CloudBackupSnapshotExportJobOutput) ElementType() reflect.Type {
@@ -316,6 +335,12 @@ func (o CloudBackupSnapshotExportJobOutput) ToCloudBackupSnapshotExportJobOutput
 
 func (o CloudBackupSnapshotExportJobOutput) ToCloudBackupSnapshotExportJobOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobOutput {
 	return o
+}
+
+func (o CloudBackupSnapshotExportJobOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudBackupSnapshotExportJob] {
+	return pulumix.Output[*CloudBackupSnapshotExportJob]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Name of the Atlas cluster whose snapshot you want to export.
@@ -404,6 +429,12 @@ func (o CloudBackupSnapshotExportJobArrayOutput) ToCloudBackupSnapshotExportJobA
 	return o
 }
 
+func (o CloudBackupSnapshotExportJobArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudBackupSnapshotExportJob] {
+	return pulumix.Output[[]*CloudBackupSnapshotExportJob]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CloudBackupSnapshotExportJobArrayOutput) Index(i pulumi.IntInput) CloudBackupSnapshotExportJobOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudBackupSnapshotExportJob {
 		return vs[0].([]*CloudBackupSnapshotExportJob)[vs[1].(int)]
@@ -422,6 +453,12 @@ func (o CloudBackupSnapshotExportJobMapOutput) ToCloudBackupSnapshotExportJobMap
 
 func (o CloudBackupSnapshotExportJobMapOutput) ToCloudBackupSnapshotExportJobMapOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobMapOutput {
 	return o
+}
+
+func (o CloudBackupSnapshotExportJobMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudBackupSnapshotExportJob] {
+	return pulumix.Output[map[string]*CloudBackupSnapshotExportJob]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CloudBackupSnapshotExportJobMapOutput) MapIndex(k pulumi.StringInput) CloudBackupSnapshotExportJobOutput {

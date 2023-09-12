@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -227,6 +228,12 @@ func (i *CloudBackupSnapshot) ToCloudBackupSnapshotOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotOutput)
 }
 
+func (i *CloudBackupSnapshot) ToOutput(ctx context.Context) pulumix.Output[*CloudBackupSnapshot] {
+	return pulumix.Output[*CloudBackupSnapshot]{
+		OutputState: i.ToCloudBackupSnapshotOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CloudBackupSnapshotArrayInput is an input type that accepts CloudBackupSnapshotArray and CloudBackupSnapshotArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotArrayInput` via:
 //
@@ -250,6 +257,12 @@ func (i CloudBackupSnapshotArray) ToCloudBackupSnapshotArrayOutput() CloudBackup
 
 func (i CloudBackupSnapshotArray) ToCloudBackupSnapshotArrayOutputWithContext(ctx context.Context) CloudBackupSnapshotArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotArrayOutput)
+}
+
+func (i CloudBackupSnapshotArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudBackupSnapshot] {
+	return pulumix.Output[[]*CloudBackupSnapshot]{
+		OutputState: i.ToCloudBackupSnapshotArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CloudBackupSnapshotMapInput is an input type that accepts CloudBackupSnapshotMap and CloudBackupSnapshotMapOutput values.
@@ -277,6 +290,12 @@ func (i CloudBackupSnapshotMap) ToCloudBackupSnapshotMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotMapOutput)
 }
 
+func (i CloudBackupSnapshotMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudBackupSnapshot] {
+	return pulumix.Output[map[string]*CloudBackupSnapshot]{
+		OutputState: i.ToCloudBackupSnapshotMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CloudBackupSnapshotOutput struct{ *pulumi.OutputState }
 
 func (CloudBackupSnapshotOutput) ElementType() reflect.Type {
@@ -289,6 +308,12 @@ func (o CloudBackupSnapshotOutput) ToCloudBackupSnapshotOutput() CloudBackupSnap
 
 func (o CloudBackupSnapshotOutput) ToCloudBackupSnapshotOutputWithContext(ctx context.Context) CloudBackupSnapshotOutput {
 	return o
+}
+
+func (o CloudBackupSnapshotOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudBackupSnapshot] {
+	return pulumix.Output[*CloudBackupSnapshot]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Cloud provider that stores this snapshot.
@@ -390,6 +415,12 @@ func (o CloudBackupSnapshotArrayOutput) ToCloudBackupSnapshotArrayOutputWithCont
 	return o
 }
 
+func (o CloudBackupSnapshotArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudBackupSnapshot] {
+	return pulumix.Output[[]*CloudBackupSnapshot]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CloudBackupSnapshotArrayOutput) Index(i pulumi.IntInput) CloudBackupSnapshotOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudBackupSnapshot {
 		return vs[0].([]*CloudBackupSnapshot)[vs[1].(int)]
@@ -408,6 +439,12 @@ func (o CloudBackupSnapshotMapOutput) ToCloudBackupSnapshotMapOutput() CloudBack
 
 func (o CloudBackupSnapshotMapOutput) ToCloudBackupSnapshotMapOutputWithContext(ctx context.Context) CloudBackupSnapshotMapOutput {
 	return o
+}
+
+func (o CloudBackupSnapshotMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudBackupSnapshot] {
+	return pulumix.Output[map[string]*CloudBackupSnapshot]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CloudBackupSnapshotMapOutput) MapIndex(k pulumi.StringInput) CloudBackupSnapshotOutput {

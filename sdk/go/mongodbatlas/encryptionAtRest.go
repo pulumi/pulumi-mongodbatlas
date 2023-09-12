@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -212,6 +213,12 @@ func (i *EncryptionAtRest) ToEncryptionAtRestOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestOutput)
 }
 
+func (i *EncryptionAtRest) ToOutput(ctx context.Context) pulumix.Output[*EncryptionAtRest] {
+	return pulumix.Output[*EncryptionAtRest]{
+		OutputState: i.ToEncryptionAtRestOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EncryptionAtRestArrayInput is an input type that accepts EncryptionAtRestArray and EncryptionAtRestArrayOutput values.
 // You can construct a concrete instance of `EncryptionAtRestArrayInput` via:
 //
@@ -235,6 +242,12 @@ func (i EncryptionAtRestArray) ToEncryptionAtRestArrayOutput() EncryptionAtRestA
 
 func (i EncryptionAtRestArray) ToEncryptionAtRestArrayOutputWithContext(ctx context.Context) EncryptionAtRestArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestArrayOutput)
+}
+
+func (i EncryptionAtRestArray) ToOutput(ctx context.Context) pulumix.Output[[]*EncryptionAtRest] {
+	return pulumix.Output[[]*EncryptionAtRest]{
+		OutputState: i.ToEncryptionAtRestArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EncryptionAtRestMapInput is an input type that accepts EncryptionAtRestMap and EncryptionAtRestMapOutput values.
@@ -262,6 +275,12 @@ func (i EncryptionAtRestMap) ToEncryptionAtRestMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestMapOutput)
 }
 
+func (i EncryptionAtRestMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EncryptionAtRest] {
+	return pulumix.Output[map[string]*EncryptionAtRest]{
+		OutputState: i.ToEncryptionAtRestMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EncryptionAtRestOutput struct{ *pulumi.OutputState }
 
 func (EncryptionAtRestOutput) ElementType() reflect.Type {
@@ -274,6 +293,12 @@ func (o EncryptionAtRestOutput) ToEncryptionAtRestOutput() EncryptionAtRestOutpu
 
 func (o EncryptionAtRestOutput) ToEncryptionAtRestOutputWithContext(ctx context.Context) EncryptionAtRestOutput {
 	return o
+}
+
+func (o EncryptionAtRestOutput) ToOutput(ctx context.Context) pulumix.Output[*EncryptionAtRest] {
+	return pulumix.Output[*EncryptionAtRest]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
@@ -328,6 +353,12 @@ func (o EncryptionAtRestArrayOutput) ToEncryptionAtRestArrayOutputWithContext(ct
 	return o
 }
 
+func (o EncryptionAtRestArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EncryptionAtRest] {
+	return pulumix.Output[[]*EncryptionAtRest]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EncryptionAtRestArrayOutput) Index(i pulumi.IntInput) EncryptionAtRestOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EncryptionAtRest {
 		return vs[0].([]*EncryptionAtRest)[vs[1].(int)]
@@ -346,6 +377,12 @@ func (o EncryptionAtRestMapOutput) ToEncryptionAtRestMapOutput() EncryptionAtRes
 
 func (o EncryptionAtRestMapOutput) ToEncryptionAtRestMapOutputWithContext(ctx context.Context) EncryptionAtRestMapOutput {
 	return o
+}
+
+func (o EncryptionAtRestMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EncryptionAtRest] {
+	return pulumix.Output[map[string]*EncryptionAtRest]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EncryptionAtRestMapOutput) MapIndex(k pulumi.StringInput) EncryptionAtRestOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupBackupCompliancePolicy(ctx *pulumi.Context, args *LookupBackupCompliancePolicyArgs, opts ...pulumi.InvokeOption) (*LookupBackupCompliancePolicyResult, error) {
@@ -101,6 +102,12 @@ func (o LookupBackupCompliancePolicyResultOutput) ToLookupBackupCompliancePolicy
 
 func (o LookupBackupCompliancePolicyResultOutput) ToLookupBackupCompliancePolicyResultOutputWithContext(ctx context.Context) LookupBackupCompliancePolicyResultOutput {
 	return o
+}
+
+func (o LookupBackupCompliancePolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupBackupCompliancePolicyResult] {
+	return pulumix.Output[LookupBackupCompliancePolicyResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Email address of the user who is authorized to update the Backup Compliance Policy settings.

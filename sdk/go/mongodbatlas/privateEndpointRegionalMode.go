@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -135,6 +136,12 @@ func (i *PrivateEndpointRegionalMode) ToPrivateEndpointRegionalModeOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateEndpointRegionalModeOutput)
 }
 
+func (i *PrivateEndpointRegionalMode) ToOutput(ctx context.Context) pulumix.Output[*PrivateEndpointRegionalMode] {
+	return pulumix.Output[*PrivateEndpointRegionalMode]{
+		OutputState: i.ToPrivateEndpointRegionalModeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // PrivateEndpointRegionalModeArrayInput is an input type that accepts PrivateEndpointRegionalModeArray and PrivateEndpointRegionalModeArrayOutput values.
 // You can construct a concrete instance of `PrivateEndpointRegionalModeArrayInput` via:
 //
@@ -158,6 +165,12 @@ func (i PrivateEndpointRegionalModeArray) ToPrivateEndpointRegionalModeArrayOutp
 
 func (i PrivateEndpointRegionalModeArray) ToPrivateEndpointRegionalModeArrayOutputWithContext(ctx context.Context) PrivateEndpointRegionalModeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateEndpointRegionalModeArrayOutput)
+}
+
+func (i PrivateEndpointRegionalModeArray) ToOutput(ctx context.Context) pulumix.Output[[]*PrivateEndpointRegionalMode] {
+	return pulumix.Output[[]*PrivateEndpointRegionalMode]{
+		OutputState: i.ToPrivateEndpointRegionalModeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // PrivateEndpointRegionalModeMapInput is an input type that accepts PrivateEndpointRegionalModeMap and PrivateEndpointRegionalModeMapOutput values.
@@ -185,6 +198,12 @@ func (i PrivateEndpointRegionalModeMap) ToPrivateEndpointRegionalModeMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateEndpointRegionalModeMapOutput)
 }
 
+func (i PrivateEndpointRegionalModeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivateEndpointRegionalMode] {
+	return pulumix.Output[map[string]*PrivateEndpointRegionalMode]{
+		OutputState: i.ToPrivateEndpointRegionalModeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type PrivateEndpointRegionalModeOutput struct{ *pulumi.OutputState }
 
 func (PrivateEndpointRegionalModeOutput) ElementType() reflect.Type {
@@ -197,6 +216,12 @@ func (o PrivateEndpointRegionalModeOutput) ToPrivateEndpointRegionalModeOutput()
 
 func (o PrivateEndpointRegionalModeOutput) ToPrivateEndpointRegionalModeOutputWithContext(ctx context.Context) PrivateEndpointRegionalModeOutput {
 	return o
+}
+
+func (o PrivateEndpointRegionalModeOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateEndpointRegionalMode] {
+	return pulumix.Output[*PrivateEndpointRegionalMode]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
@@ -226,6 +251,12 @@ func (o PrivateEndpointRegionalModeArrayOutput) ToPrivateEndpointRegionalModeArr
 	return o
 }
 
+func (o PrivateEndpointRegionalModeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*PrivateEndpointRegionalMode] {
+	return pulumix.Output[[]*PrivateEndpointRegionalMode]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PrivateEndpointRegionalModeArrayOutput) Index(i pulumi.IntInput) PrivateEndpointRegionalModeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *PrivateEndpointRegionalMode {
 		return vs[0].([]*PrivateEndpointRegionalMode)[vs[1].(int)]
@@ -244,6 +275,12 @@ func (o PrivateEndpointRegionalModeMapOutput) ToPrivateEndpointRegionalModeMapOu
 
 func (o PrivateEndpointRegionalModeMapOutput) ToPrivateEndpointRegionalModeMapOutputWithContext(ctx context.Context) PrivateEndpointRegionalModeMapOutput {
 	return o
+}
+
+func (o PrivateEndpointRegionalModeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivateEndpointRegionalMode] {
+	return pulumix.Output[map[string]*PrivateEndpointRegionalMode]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PrivateEndpointRegionalModeMapOutput) MapIndex(k pulumi.StringInput) PrivateEndpointRegionalModeOutput {

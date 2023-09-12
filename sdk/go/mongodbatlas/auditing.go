@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `Auditing` provides an Auditing resource. This allows auditing to be created.
@@ -196,6 +197,12 @@ func (i *Auditing) ToAuditingOutputWithContext(ctx context.Context) AuditingOutp
 	return pulumi.ToOutputWithContext(ctx, i).(AuditingOutput)
 }
 
+func (i *Auditing) ToOutput(ctx context.Context) pulumix.Output[*Auditing] {
+	return pulumix.Output[*Auditing]{
+		OutputState: i.ToAuditingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuditingArrayInput is an input type that accepts AuditingArray and AuditingArrayOutput values.
 // You can construct a concrete instance of `AuditingArrayInput` via:
 //
@@ -219,6 +226,12 @@ func (i AuditingArray) ToAuditingArrayOutput() AuditingArrayOutput {
 
 func (i AuditingArray) ToAuditingArrayOutputWithContext(ctx context.Context) AuditingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuditingArrayOutput)
+}
+
+func (i AuditingArray) ToOutput(ctx context.Context) pulumix.Output[[]*Auditing] {
+	return pulumix.Output[[]*Auditing]{
+		OutputState: i.ToAuditingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuditingMapInput is an input type that accepts AuditingMap and AuditingMapOutput values.
@@ -246,6 +259,12 @@ func (i AuditingMap) ToAuditingMapOutputWithContext(ctx context.Context) Auditin
 	return pulumi.ToOutputWithContext(ctx, i).(AuditingMapOutput)
 }
 
+func (i AuditingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Auditing] {
+	return pulumix.Output[map[string]*Auditing]{
+		OutputState: i.ToAuditingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuditingOutput struct{ *pulumi.OutputState }
 
 func (AuditingOutput) ElementType() reflect.Type {
@@ -258,6 +277,12 @@ func (o AuditingOutput) ToAuditingOutput() AuditingOutput {
 
 func (o AuditingOutput) ToAuditingOutputWithContext(ctx context.Context) AuditingOutput {
 	return o
+}
+
+func (o AuditingOutput) ToOutput(ctx context.Context) pulumix.Output[*Auditing] {
+	return pulumix.Output[*Auditing]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
@@ -304,6 +329,12 @@ func (o AuditingArrayOutput) ToAuditingArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o AuditingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Auditing] {
+	return pulumix.Output[[]*Auditing]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuditingArrayOutput) Index(i pulumi.IntInput) AuditingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Auditing {
 		return vs[0].([]*Auditing)[vs[1].(int)]
@@ -322,6 +353,12 @@ func (o AuditingMapOutput) ToAuditingMapOutput() AuditingMapOutput {
 
 func (o AuditingMapOutput) ToAuditingMapOutputWithContext(ctx context.Context) AuditingMapOutput {
 	return o
+}
+
+func (o AuditingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Auditing] {
+	return pulumix.Output[map[string]*Auditing]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuditingMapOutput) MapIndex(k pulumi.StringInput) AuditingOutput {

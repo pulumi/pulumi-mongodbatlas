@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSharedTierRestoreJobs(ctx *pulumi.Context, args *LookupSharedTierRestoreJobsArgs, opts ...pulumi.InvokeOption) (*LookupSharedTierRestoreJobsResult, error) {
@@ -73,6 +74,12 @@ func (o LookupSharedTierRestoreJobsResultOutput) ToLookupSharedTierRestoreJobsRe
 
 func (o LookupSharedTierRestoreJobsResultOutput) ToLookupSharedTierRestoreJobsResultOutputWithContext(ctx context.Context) LookupSharedTierRestoreJobsResultOutput {
 	return o
+}
+
+func (o LookupSharedTierRestoreJobsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSharedTierRestoreJobsResult] {
+	return pulumix.Output[LookupSharedTierRestoreJobsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSharedTierRestoreJobsResultOutput) ClusterName() pulumi.StringOutput {

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type Teams struct {
@@ -110,6 +111,12 @@ func (i *Teams) ToTeamsOutputWithContext(ctx context.Context) TeamsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TeamsOutput)
 }
 
+func (i *Teams) ToOutput(ctx context.Context) pulumix.Output[*Teams] {
+	return pulumix.Output[*Teams]{
+		OutputState: i.ToTeamsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // TeamsArrayInput is an input type that accepts TeamsArray and TeamsArrayOutput values.
 // You can construct a concrete instance of `TeamsArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i TeamsArray) ToTeamsArrayOutput() TeamsArrayOutput {
 
 func (i TeamsArray) ToTeamsArrayOutputWithContext(ctx context.Context) TeamsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TeamsArrayOutput)
+}
+
+func (i TeamsArray) ToOutput(ctx context.Context) pulumix.Output[[]*Teams] {
+	return pulumix.Output[[]*Teams]{
+		OutputState: i.ToTeamsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // TeamsMapInput is an input type that accepts TeamsMap and TeamsMapOutput values.
@@ -160,6 +173,12 @@ func (i TeamsMap) ToTeamsMapOutputWithContext(ctx context.Context) TeamsMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(TeamsMapOutput)
 }
 
+func (i TeamsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Teams] {
+	return pulumix.Output[map[string]*Teams]{
+		OutputState: i.ToTeamsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type TeamsOutput struct{ *pulumi.OutputState }
 
 func (TeamsOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o TeamsOutput) ToTeamsOutput() TeamsOutput {
 
 func (o TeamsOutput) ToTeamsOutputWithContext(ctx context.Context) TeamsOutput {
 	return o
+}
+
+func (o TeamsOutput) ToOutput(ctx context.Context) pulumix.Output[*Teams] {
+	return pulumix.Output[*Teams]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TeamsOutput) Name() pulumi.StringOutput {
@@ -204,6 +229,12 @@ func (o TeamsArrayOutput) ToTeamsArrayOutputWithContext(ctx context.Context) Tea
 	return o
 }
 
+func (o TeamsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Teams] {
+	return pulumix.Output[[]*Teams]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o TeamsArrayOutput) Index(i pulumi.IntInput) TeamsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Teams {
 		return vs[0].([]*Teams)[vs[1].(int)]
@@ -222,6 +253,12 @@ func (o TeamsMapOutput) ToTeamsMapOutput() TeamsMapOutput {
 
 func (o TeamsMapOutput) ToTeamsMapOutputWithContext(ctx context.Context) TeamsMapOutput {
 	return o
+}
+
+func (o TeamsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Teams] {
+	return pulumix.Output[map[string]*Teams]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TeamsMapOutput) MapIndex(k pulumi.StringInput) TeamsOutput {

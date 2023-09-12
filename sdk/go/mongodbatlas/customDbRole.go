@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
@@ -321,6 +322,12 @@ func (i *CustomDbRole) ToCustomDbRoleOutputWithContext(ctx context.Context) Cust
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDbRoleOutput)
 }
 
+func (i *CustomDbRole) ToOutput(ctx context.Context) pulumix.Output[*CustomDbRole] {
+	return pulumix.Output[*CustomDbRole]{
+		OutputState: i.ToCustomDbRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CustomDbRoleArrayInput is an input type that accepts CustomDbRoleArray and CustomDbRoleArrayOutput values.
 // You can construct a concrete instance of `CustomDbRoleArrayInput` via:
 //
@@ -344,6 +351,12 @@ func (i CustomDbRoleArray) ToCustomDbRoleArrayOutput() CustomDbRoleArrayOutput {
 
 func (i CustomDbRoleArray) ToCustomDbRoleArrayOutputWithContext(ctx context.Context) CustomDbRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDbRoleArrayOutput)
+}
+
+func (i CustomDbRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*CustomDbRole] {
+	return pulumix.Output[[]*CustomDbRole]{
+		OutputState: i.ToCustomDbRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CustomDbRoleMapInput is an input type that accepts CustomDbRoleMap and CustomDbRoleMapOutput values.
@@ -371,6 +384,12 @@ func (i CustomDbRoleMap) ToCustomDbRoleMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDbRoleMapOutput)
 }
 
+func (i CustomDbRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CustomDbRole] {
+	return pulumix.Output[map[string]*CustomDbRole]{
+		OutputState: i.ToCustomDbRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CustomDbRoleOutput struct{ *pulumi.OutputState }
 
 func (CustomDbRoleOutput) ElementType() reflect.Type {
@@ -383,6 +402,12 @@ func (o CustomDbRoleOutput) ToCustomDbRoleOutput() CustomDbRoleOutput {
 
 func (o CustomDbRoleOutput) ToCustomDbRoleOutputWithContext(ctx context.Context) CustomDbRoleOutput {
 	return o
+}
+
+func (o CustomDbRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomDbRole] {
+	return pulumix.Output[*CustomDbRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CustomDbRoleOutput) Actions() CustomDbRoleActionArrayOutput {
@@ -424,6 +449,12 @@ func (o CustomDbRoleArrayOutput) ToCustomDbRoleArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o CustomDbRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CustomDbRole] {
+	return pulumix.Output[[]*CustomDbRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CustomDbRoleArrayOutput) Index(i pulumi.IntInput) CustomDbRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CustomDbRole {
 		return vs[0].([]*CustomDbRole)[vs[1].(int)]
@@ -442,6 +473,12 @@ func (o CustomDbRoleMapOutput) ToCustomDbRoleMapOutput() CustomDbRoleMapOutput {
 
 func (o CustomDbRoleMapOutput) ToCustomDbRoleMapOutputWithContext(ctx context.Context) CustomDbRoleMapOutput {
 	return o
+}
+
+func (o CustomDbRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CustomDbRole] {
+	return pulumix.Output[map[string]*CustomDbRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CustomDbRoleMapOutput) MapIndex(k pulumi.StringInput) CustomDbRoleOutput {

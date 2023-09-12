@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `DataLake` describe a Data Lake.
@@ -115,6 +116,12 @@ func (o LookupDataLakeResultOutput) ToLookupDataLakeResultOutput() LookupDataLak
 
 func (o LookupDataLakeResultOutput) ToLookupDataLakeResultOutputWithContext(ctx context.Context) LookupDataLakeResultOutput {
 	return o
+}
+
+func (o LookupDataLakeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDataLakeResult] {
+	return pulumix.Output[LookupDataLakeResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // AWS provider of the cloud service where Data Lake can access the S3 Bucket.

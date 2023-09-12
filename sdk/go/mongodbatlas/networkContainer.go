@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully.
@@ -341,6 +342,12 @@ func (i *NetworkContainer) ToNetworkContainerOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkContainerOutput)
 }
 
+func (i *NetworkContainer) ToOutput(ctx context.Context) pulumix.Output[*NetworkContainer] {
+	return pulumix.Output[*NetworkContainer]{
+		OutputState: i.ToNetworkContainerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NetworkContainerArrayInput is an input type that accepts NetworkContainerArray and NetworkContainerArrayOutput values.
 // You can construct a concrete instance of `NetworkContainerArrayInput` via:
 //
@@ -364,6 +371,12 @@ func (i NetworkContainerArray) ToNetworkContainerArrayOutput() NetworkContainerA
 
 func (i NetworkContainerArray) ToNetworkContainerArrayOutputWithContext(ctx context.Context) NetworkContainerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkContainerArrayOutput)
+}
+
+func (i NetworkContainerArray) ToOutput(ctx context.Context) pulumix.Output[[]*NetworkContainer] {
+	return pulumix.Output[[]*NetworkContainer]{
+		OutputState: i.ToNetworkContainerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // NetworkContainerMapInput is an input type that accepts NetworkContainerMap and NetworkContainerMapOutput values.
@@ -391,6 +404,12 @@ func (i NetworkContainerMap) ToNetworkContainerMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkContainerMapOutput)
 }
 
+func (i NetworkContainerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NetworkContainer] {
+	return pulumix.Output[map[string]*NetworkContainer]{
+		OutputState: i.ToNetworkContainerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkContainerOutput struct{ *pulumi.OutputState }
 
 func (NetworkContainerOutput) ElementType() reflect.Type {
@@ -403,6 +422,12 @@ func (o NetworkContainerOutput) ToNetworkContainerOutput() NetworkContainerOutpu
 
 func (o NetworkContainerOutput) ToNetworkContainerOutputWithContext(ctx context.Context) NetworkContainerOutput {
 	return o
+}
+
+func (o NetworkContainerOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkContainer] {
+	return pulumix.Output[*NetworkContainer]{
+		OutputState: o.OutputState,
+	}
 }
 
 // CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
@@ -491,6 +516,12 @@ func (o NetworkContainerArrayOutput) ToNetworkContainerArrayOutputWithContext(ct
 	return o
 }
 
+func (o NetworkContainerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NetworkContainer] {
+	return pulumix.Output[[]*NetworkContainer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o NetworkContainerArrayOutput) Index(i pulumi.IntInput) NetworkContainerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NetworkContainer {
 		return vs[0].([]*NetworkContainer)[vs[1].(int)]
@@ -509,6 +540,12 @@ func (o NetworkContainerMapOutput) ToNetworkContainerMapOutput() NetworkContaine
 
 func (o NetworkContainerMapOutput) ToNetworkContainerMapOutputWithContext(ctx context.Context) NetworkContainerMapOutput {
 	return o
+}
+
+func (o NetworkContainerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NetworkContainer] {
+	return pulumix.Output[map[string]*NetworkContainer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkContainerMapOutput) MapIndex(k pulumi.StringInput) NetworkContainerOutput {

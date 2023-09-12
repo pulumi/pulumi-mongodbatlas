@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
@@ -186,6 +187,12 @@ func (o Get509AuthenticationDatabaseUserResultOutput) ToGet509AuthenticationData
 
 func (o Get509AuthenticationDatabaseUserResultOutput) ToGet509AuthenticationDatabaseUserResultOutputWithContext(ctx context.Context) Get509AuthenticationDatabaseUserResultOutput {
 	return o
+}
+
+func (o Get509AuthenticationDatabaseUserResultOutput) ToOutput(ctx context.Context) pulumix.Output[Get509AuthenticationDatabaseUserResult] {
+	return pulumix.Output[Get509AuthenticationDatabaseUserResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Array of objects where each details one unexpired database user certificate.

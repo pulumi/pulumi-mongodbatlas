@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupPrivatelinkEndpointServiceServerless(ctx *pulumi.Context, args *LookupPrivatelinkEndpointServiceServerlessArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointServiceServerlessResult, error) {
@@ -91,6 +92,12 @@ func (o LookupPrivatelinkEndpointServiceServerlessResultOutput) ToLookupPrivatel
 
 func (o LookupPrivatelinkEndpointServiceServerlessResultOutput) ToLookupPrivatelinkEndpointServiceServerlessResultOutputWithContext(ctx context.Context) LookupPrivatelinkEndpointServiceServerlessResultOutput {
 	return o
+}
+
+func (o LookupPrivatelinkEndpointServiceServerlessResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupPrivatelinkEndpointServiceServerlessResult] {
+	return pulumix.Output[LookupPrivatelinkEndpointServiceServerlessResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupPrivatelinkEndpointServiceServerlessResultOutput) CloudProviderEndpointId() pulumi.StringOutput {

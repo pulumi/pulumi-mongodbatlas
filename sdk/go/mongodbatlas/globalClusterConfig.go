@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `GlobalClusterConfig` provides a Global Cluster Configuration resource.
@@ -298,6 +299,12 @@ func (i *GlobalClusterConfig) ToGlobalClusterConfigOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigOutput)
 }
 
+func (i *GlobalClusterConfig) ToOutput(ctx context.Context) pulumix.Output[*GlobalClusterConfig] {
+	return pulumix.Output[*GlobalClusterConfig]{
+		OutputState: i.ToGlobalClusterConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GlobalClusterConfigArrayInput is an input type that accepts GlobalClusterConfigArray and GlobalClusterConfigArrayOutput values.
 // You can construct a concrete instance of `GlobalClusterConfigArrayInput` via:
 //
@@ -321,6 +328,12 @@ func (i GlobalClusterConfigArray) ToGlobalClusterConfigArrayOutput() GlobalClust
 
 func (i GlobalClusterConfigArray) ToGlobalClusterConfigArrayOutputWithContext(ctx context.Context) GlobalClusterConfigArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigArrayOutput)
+}
+
+func (i GlobalClusterConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]*GlobalClusterConfig] {
+	return pulumix.Output[[]*GlobalClusterConfig]{
+		OutputState: i.ToGlobalClusterConfigArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // GlobalClusterConfigMapInput is an input type that accepts GlobalClusterConfigMap and GlobalClusterConfigMapOutput values.
@@ -348,6 +361,12 @@ func (i GlobalClusterConfigMap) ToGlobalClusterConfigMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigMapOutput)
 }
 
+func (i GlobalClusterConfigMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GlobalClusterConfig] {
+	return pulumix.Output[map[string]*GlobalClusterConfig]{
+		OutputState: i.ToGlobalClusterConfigMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GlobalClusterConfigOutput struct{ *pulumi.OutputState }
 
 func (GlobalClusterConfigOutput) ElementType() reflect.Type {
@@ -360,6 +379,12 @@ func (o GlobalClusterConfigOutput) ToGlobalClusterConfigOutput() GlobalClusterCo
 
 func (o GlobalClusterConfigOutput) ToGlobalClusterConfigOutputWithContext(ctx context.Context) GlobalClusterConfigOutput {
 	return o
+}
+
+func (o GlobalClusterConfigOutput) ToOutput(ctx context.Context) pulumix.Output[*GlobalClusterConfig] {
+	return pulumix.Output[*GlobalClusterConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the Global Cluster.
@@ -405,6 +430,12 @@ func (o GlobalClusterConfigArrayOutput) ToGlobalClusterConfigArrayOutputWithCont
 	return o
 }
 
+func (o GlobalClusterConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GlobalClusterConfig] {
+	return pulumix.Output[[]*GlobalClusterConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GlobalClusterConfigArrayOutput) Index(i pulumi.IntInput) GlobalClusterConfigOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GlobalClusterConfig {
 		return vs[0].([]*GlobalClusterConfig)[vs[1].(int)]
@@ -423,6 +454,12 @@ func (o GlobalClusterConfigMapOutput) ToGlobalClusterConfigMapOutput() GlobalClu
 
 func (o GlobalClusterConfigMapOutput) ToGlobalClusterConfigMapOutputWithContext(ctx context.Context) GlobalClusterConfigMapOutput {
 	return o
+}
+
+func (o GlobalClusterConfigMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GlobalClusterConfig] {
+	return pulumix.Output[map[string]*GlobalClusterConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GlobalClusterConfigMapOutput) MapIndex(k pulumi.StringInput) GlobalClusterConfigOutput {

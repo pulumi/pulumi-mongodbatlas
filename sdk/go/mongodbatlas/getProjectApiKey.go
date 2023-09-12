@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -86,6 +87,12 @@ func (o LookupProjectApiKeyResultOutput) ToLookupProjectApiKeyResultOutput() Loo
 
 func (o LookupProjectApiKeyResultOutput) ToLookupProjectApiKeyResultOutputWithContext(ctx context.Context) LookupProjectApiKeyResultOutput {
 	return o
+}
+
+func (o LookupProjectApiKeyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupProjectApiKeyResult] {
+	return pulumix.Output[LookupProjectApiKeyResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupProjectApiKeyResultOutput) ApiKeyId() pulumi.StringOutput {

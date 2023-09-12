@@ -532,7 +532,8 @@ utilities.lazyLoad(exports, ["getProjects","getProjectsOutput"], () => require("
 
 export { GetRolesOrgIdResult } from "./getRolesOrgId";
 export const getRolesOrgId: typeof import("./getRolesOrgId").getRolesOrgId = null as any;
-utilities.lazyLoad(exports, ["getRolesOrgId"], () => require("./getRolesOrgId"));
+export const getRolesOrgIdOutput: typeof import("./getRolesOrgId").getRolesOrgIdOutput = null as any;
+utilities.lazyLoad(exports, ["getRolesOrgId","getRolesOrgIdOutput"], () => require("./getRolesOrgId"));
 
 export { GetSearchIndexArgs, GetSearchIndexResult, GetSearchIndexOutputArgs } from "./getSearchIndex";
 export const getSearchIndex: typeof import("./getSearchIndex").getSearchIndex = null as any;

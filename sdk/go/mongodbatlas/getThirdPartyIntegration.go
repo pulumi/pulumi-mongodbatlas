@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
@@ -153,6 +154,12 @@ func (o LookupThirdPartyIntegrationResultOutput) ToLookupThirdPartyIntegrationRe
 
 func (o LookupThirdPartyIntegrationResultOutput) ToLookupThirdPartyIntegrationResultOutputWithContext(ctx context.Context) LookupThirdPartyIntegrationResultOutput {
 	return o
+}
+
+func (o LookupThirdPartyIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupThirdPartyIntegrationResult] {
+	return pulumix.Output[LookupThirdPartyIntegrationResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Unique identifier of your New Relic account.

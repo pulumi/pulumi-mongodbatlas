@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
@@ -99,6 +100,12 @@ func (o LookupProjectIpAccessListResultOutput) ToLookupProjectIpAccessListResult
 
 func (o LookupProjectIpAccessListResultOutput) ToLookupProjectIpAccessListResultOutputWithContext(ctx context.Context) LookupProjectIpAccessListResultOutput {
 	return o
+}
+
+func (o LookupProjectIpAccessListResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupProjectIpAccessListResult] {
+	return pulumix.Output[LookupProjectIpAccessListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupProjectIpAccessListResultOutput) AwsSecurityGroup() pulumi.StringOutput {

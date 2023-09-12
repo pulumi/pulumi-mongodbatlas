@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
@@ -398,6 +399,12 @@ func (i *AlertConfiguration) ToAlertConfigurationOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationOutput)
 }
 
+func (i *AlertConfiguration) ToOutput(ctx context.Context) pulumix.Output[*AlertConfiguration] {
+	return pulumix.Output[*AlertConfiguration]{
+		OutputState: i.ToAlertConfigurationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AlertConfigurationArrayInput is an input type that accepts AlertConfigurationArray and AlertConfigurationArrayOutput values.
 // You can construct a concrete instance of `AlertConfigurationArrayInput` via:
 //
@@ -421,6 +428,12 @@ func (i AlertConfigurationArray) ToAlertConfigurationArrayOutput() AlertConfigur
 
 func (i AlertConfigurationArray) ToAlertConfigurationArrayOutputWithContext(ctx context.Context) AlertConfigurationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationArrayOutput)
+}
+
+func (i AlertConfigurationArray) ToOutput(ctx context.Context) pulumix.Output[[]*AlertConfiguration] {
+	return pulumix.Output[[]*AlertConfiguration]{
+		OutputState: i.ToAlertConfigurationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AlertConfigurationMapInput is an input type that accepts AlertConfigurationMap and AlertConfigurationMapOutput values.
@@ -448,6 +461,12 @@ func (i AlertConfigurationMap) ToAlertConfigurationMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationMapOutput)
 }
 
+func (i AlertConfigurationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AlertConfiguration] {
+	return pulumix.Output[map[string]*AlertConfiguration]{
+		OutputState: i.ToAlertConfigurationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AlertConfigurationOutput struct{ *pulumi.OutputState }
 
 func (AlertConfigurationOutput) ElementType() reflect.Type {
@@ -460,6 +479,12 @@ func (o AlertConfigurationOutput) ToAlertConfigurationOutput() AlertConfiguratio
 
 func (o AlertConfigurationOutput) ToAlertConfigurationOutputWithContext(ctx context.Context) AlertConfigurationOutput {
 	return o
+}
+
+func (o AlertConfigurationOutput) ToOutput(ctx context.Context) pulumix.Output[*AlertConfiguration] {
+	return pulumix.Output[*AlertConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Unique identifier for the alert configuration.
@@ -540,6 +565,12 @@ func (o AlertConfigurationArrayOutput) ToAlertConfigurationArrayOutputWithContex
 	return o
 }
 
+func (o AlertConfigurationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AlertConfiguration] {
+	return pulumix.Output[[]*AlertConfiguration]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AlertConfigurationArrayOutput) Index(i pulumi.IntInput) AlertConfigurationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AlertConfiguration {
 		return vs[0].([]*AlertConfiguration)[vs[1].(int)]
@@ -558,6 +589,12 @@ func (o AlertConfigurationMapOutput) ToAlertConfigurationMapOutput() AlertConfig
 
 func (o AlertConfigurationMapOutput) ToAlertConfigurationMapOutputWithContext(ctx context.Context) AlertConfigurationMapOutput {
 	return o
+}
+
+func (o AlertConfigurationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AlertConfiguration] {
+	return pulumix.Output[map[string]*AlertConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AlertConfigurationMapOutput) MapIndex(k pulumi.StringInput) AlertConfigurationOutput {

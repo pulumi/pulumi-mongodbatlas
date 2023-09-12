@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `DatabaseUser` describe a Database User. This represents a database user which will be applied to all clusters within the project.
@@ -110,6 +111,12 @@ func (o LookupDatabaseUserResultOutput) ToLookupDatabaseUserResultOutput() Looku
 
 func (o LookupDatabaseUserResultOutput) ToLookupDatabaseUserResultOutputWithContext(ctx context.Context) LookupDatabaseUserResultOutput {
 	return o
+}
+
+func (o LookupDatabaseUserResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDatabaseUserResult] {
+	return pulumix.Output[LookupDatabaseUserResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupDatabaseUserResultOutput) AuthDatabaseName() pulumi.StringPtrOutput {

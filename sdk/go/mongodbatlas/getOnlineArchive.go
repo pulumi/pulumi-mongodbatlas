@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `OnlineArchive` describes an Online Archive
@@ -149,6 +150,12 @@ func (o LookupOnlineArchiveResultOutput) ToLookupOnlineArchiveResultOutput() Loo
 
 func (o LookupOnlineArchiveResultOutput) ToLookupOnlineArchiveResultOutputWithContext(ctx context.Context) LookupOnlineArchiveResultOutput {
 	return o
+}
+
+func (o LookupOnlineArchiveResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupOnlineArchiveResult] {
+	return pulumix.Output[LookupOnlineArchiveResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupOnlineArchiveResultOutput) ArchiveId() pulumi.StringOutput {

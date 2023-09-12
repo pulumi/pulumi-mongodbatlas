@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getEventTriggers` describe all Event Triggers.
@@ -80,6 +81,12 @@ func (o LookupEventTriggersResultOutput) ToLookupEventTriggersResultOutput() Loo
 
 func (o LookupEventTriggersResultOutput) ToLookupEventTriggersResultOutputWithContext(ctx context.Context) LookupEventTriggersResultOutput {
 	return o
+}
+
+func (o LookupEventTriggersResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupEventTriggersResult] {
+	return pulumix.Output[LookupEventTriggersResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupEventTriggersResultOutput) AppId() pulumi.StringOutput {

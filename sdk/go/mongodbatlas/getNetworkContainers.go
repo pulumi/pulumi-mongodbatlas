@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
@@ -119,6 +120,12 @@ func (o LookupNetworkContainersResultOutput) ToLookupNetworkContainersResultOutp
 
 func (o LookupNetworkContainersResultOutput) ToLookupNetworkContainersResultOutputWithContext(ctx context.Context) LookupNetworkContainersResultOutput {
 	return o
+}
+
+func (o LookupNetworkContainersResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupNetworkContainersResult] {
+	return pulumix.Output[LookupNetworkContainersResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.
