@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
@@ -191,6 +192,12 @@ func (i *PrivatelinkEndpointServiceDataFederationOnlineArchive) ToPrivatelinkEnd
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput)
 }
 
+func (i *PrivatelinkEndpointServiceDataFederationOnlineArchive) ToOutput(ctx context.Context) pulumix.Output[*PrivatelinkEndpointServiceDataFederationOnlineArchive] {
+	return pulumix.Output[*PrivatelinkEndpointServiceDataFederationOnlineArchive]{
+		OutputState: i.ToPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputWithContext(ctx).OutputState,
+	}
+}
+
 // PrivatelinkEndpointServiceDataFederationOnlineArchiveArrayInput is an input type that accepts PrivatelinkEndpointServiceDataFederationOnlineArchiveArray and PrivatelinkEndpointServiceDataFederationOnlineArchiveArrayOutput values.
 // You can construct a concrete instance of `PrivatelinkEndpointServiceDataFederationOnlineArchiveArrayInput` via:
 //
@@ -214,6 +221,12 @@ func (i PrivatelinkEndpointServiceDataFederationOnlineArchiveArray) ToPrivatelin
 
 func (i PrivatelinkEndpointServiceDataFederationOnlineArchiveArray) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveArrayOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServiceDataFederationOnlineArchiveArrayOutput)
+}
+
+func (i PrivatelinkEndpointServiceDataFederationOnlineArchiveArray) ToOutput(ctx context.Context) pulumix.Output[[]*PrivatelinkEndpointServiceDataFederationOnlineArchive] {
+	return pulumix.Output[[]*PrivatelinkEndpointServiceDataFederationOnlineArchive]{
+		OutputState: i.ToPrivatelinkEndpointServiceDataFederationOnlineArchiveArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // PrivatelinkEndpointServiceDataFederationOnlineArchiveMapInput is an input type that accepts PrivatelinkEndpointServiceDataFederationOnlineArchiveMap and PrivatelinkEndpointServiceDataFederationOnlineArchiveMapOutput values.
@@ -241,6 +254,12 @@ func (i PrivatelinkEndpointServiceDataFederationOnlineArchiveMap) ToPrivatelinkE
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServiceDataFederationOnlineArchiveMapOutput)
 }
 
+func (i PrivatelinkEndpointServiceDataFederationOnlineArchiveMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivatelinkEndpointServiceDataFederationOnlineArchive] {
+	return pulumix.Output[map[string]*PrivatelinkEndpointServiceDataFederationOnlineArchive]{
+		OutputState: i.ToPrivatelinkEndpointServiceDataFederationOnlineArchiveMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput struct{ *pulumi.OutputState }
 
 func (PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) ElementType() reflect.Type {
@@ -253,6 +272,12 @@ func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) ToPrivateli
 
 func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput {
 	return o
+}
+
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivatelinkEndpointServiceDataFederationOnlineArchive] {
+	return pulumix.Output[*PrivatelinkEndpointServiceDataFederationOnlineArchive]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Human-readable string to associate with this private endpoint.
@@ -300,6 +325,12 @@ func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveArrayOutput) ToPriv
 	return o
 }
 
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*PrivatelinkEndpointServiceDataFederationOnlineArchive] {
+	return pulumix.Output[[]*PrivatelinkEndpointServiceDataFederationOnlineArchive]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveArrayOutput) Index(i pulumi.IntInput) PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *PrivatelinkEndpointServiceDataFederationOnlineArchive {
 		return vs[0].([]*PrivatelinkEndpointServiceDataFederationOnlineArchive)[vs[1].(int)]
@@ -318,6 +349,12 @@ func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveMapOutput) ToPrivat
 
 func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveMapOutput) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveMapOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveMapOutput {
 	return o
+}
+
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivatelinkEndpointServiceDataFederationOnlineArchive] {
+	return pulumix.Output[map[string]*PrivatelinkEndpointServiceDataFederationOnlineArchive]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveMapOutput) MapIndex(k pulumi.StringInput) PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput {

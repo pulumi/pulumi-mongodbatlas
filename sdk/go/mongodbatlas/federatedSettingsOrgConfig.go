@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FederatedSettingsOrgConfig struct {
@@ -128,6 +129,12 @@ func (i *FederatedSettingsOrgConfig) ToFederatedSettingsOrgConfigOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsOrgConfigOutput)
 }
 
+func (i *FederatedSettingsOrgConfig) ToOutput(ctx context.Context) pulumix.Output[*FederatedSettingsOrgConfig] {
+	return pulumix.Output[*FederatedSettingsOrgConfig]{
+		OutputState: i.ToFederatedSettingsOrgConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FederatedSettingsOrgConfigArrayInput is an input type that accepts FederatedSettingsOrgConfigArray and FederatedSettingsOrgConfigArrayOutput values.
 // You can construct a concrete instance of `FederatedSettingsOrgConfigArrayInput` via:
 //
@@ -151,6 +158,12 @@ func (i FederatedSettingsOrgConfigArray) ToFederatedSettingsOrgConfigArrayOutput
 
 func (i FederatedSettingsOrgConfigArray) ToFederatedSettingsOrgConfigArrayOutputWithContext(ctx context.Context) FederatedSettingsOrgConfigArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsOrgConfigArrayOutput)
+}
+
+func (i FederatedSettingsOrgConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]*FederatedSettingsOrgConfig] {
+	return pulumix.Output[[]*FederatedSettingsOrgConfig]{
+		OutputState: i.ToFederatedSettingsOrgConfigArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FederatedSettingsOrgConfigMapInput is an input type that accepts FederatedSettingsOrgConfigMap and FederatedSettingsOrgConfigMapOutput values.
@@ -178,6 +191,12 @@ func (i FederatedSettingsOrgConfigMap) ToFederatedSettingsOrgConfigMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsOrgConfigMapOutput)
 }
 
+func (i FederatedSettingsOrgConfigMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederatedSettingsOrgConfig] {
+	return pulumix.Output[map[string]*FederatedSettingsOrgConfig]{
+		OutputState: i.ToFederatedSettingsOrgConfigMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FederatedSettingsOrgConfigOutput struct{ *pulumi.OutputState }
 
 func (FederatedSettingsOrgConfigOutput) ElementType() reflect.Type {
@@ -190,6 +209,12 @@ func (o FederatedSettingsOrgConfigOutput) ToFederatedSettingsOrgConfigOutput() F
 
 func (o FederatedSettingsOrgConfigOutput) ToFederatedSettingsOrgConfigOutputWithContext(ctx context.Context) FederatedSettingsOrgConfigOutput {
 	return o
+}
+
+func (o FederatedSettingsOrgConfigOutput) ToOutput(ctx context.Context) pulumix.Output[*FederatedSettingsOrgConfig] {
+	return pulumix.Output[*FederatedSettingsOrgConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FederatedSettingsOrgConfigOutput) DomainAllowLists() pulumi.StringArrayOutput {
@@ -230,6 +255,12 @@ func (o FederatedSettingsOrgConfigArrayOutput) ToFederatedSettingsOrgConfigArray
 	return o
 }
 
+func (o FederatedSettingsOrgConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FederatedSettingsOrgConfig] {
+	return pulumix.Output[[]*FederatedSettingsOrgConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FederatedSettingsOrgConfigArrayOutput) Index(i pulumi.IntInput) FederatedSettingsOrgConfigOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FederatedSettingsOrgConfig {
 		return vs[0].([]*FederatedSettingsOrgConfig)[vs[1].(int)]
@@ -248,6 +279,12 @@ func (o FederatedSettingsOrgConfigMapOutput) ToFederatedSettingsOrgConfigMapOutp
 
 func (o FederatedSettingsOrgConfigMapOutput) ToFederatedSettingsOrgConfigMapOutputWithContext(ctx context.Context) FederatedSettingsOrgConfigMapOutput {
 	return o
+}
+
+func (o FederatedSettingsOrgConfigMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederatedSettingsOrgConfig] {
+	return pulumix.Output[map[string]*FederatedSettingsOrgConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FederatedSettingsOrgConfigMapOutput) MapIndex(k pulumi.StringInput) FederatedSettingsOrgConfigOutput {

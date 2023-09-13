@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `Auditing` describes a Auditing.
@@ -81,6 +82,12 @@ func (o LookupAuditingResultOutput) ToLookupAuditingResultOutput() LookupAuditin
 
 func (o LookupAuditingResultOutput) ToLookupAuditingResultOutputWithContext(ctx context.Context) LookupAuditingResultOutput {
 	return o
+}
+
+func (o LookupAuditingResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAuditingResult] {
+	return pulumix.Output[LookupAuditingResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // JSON-formatted audit filter used by the project

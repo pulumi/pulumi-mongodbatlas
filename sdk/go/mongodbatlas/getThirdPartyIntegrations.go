@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
@@ -77,6 +78,12 @@ func (o LookupThirdPartyIntegrationsResultOutput) ToLookupThirdPartyIntegrations
 
 func (o LookupThirdPartyIntegrationsResultOutput) ToLookupThirdPartyIntegrationsResultOutputWithContext(ctx context.Context) LookupThirdPartyIntegrationsResultOutput {
 	return o
+}
+
+func (o LookupThirdPartyIntegrationsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupThirdPartyIntegrationsResult] {
+	return pulumix.Output[LookupThirdPartyIntegrationsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

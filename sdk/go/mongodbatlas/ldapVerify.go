@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
@@ -256,6 +257,12 @@ func (i *LdapVerify) ToLdapVerifyOutputWithContext(ctx context.Context) LdapVeri
 	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyOutput)
 }
 
+func (i *LdapVerify) ToOutput(ctx context.Context) pulumix.Output[*LdapVerify] {
+	return pulumix.Output[*LdapVerify]{
+		OutputState: i.ToLdapVerifyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LdapVerifyArrayInput is an input type that accepts LdapVerifyArray and LdapVerifyArrayOutput values.
 // You can construct a concrete instance of `LdapVerifyArrayInput` via:
 //
@@ -279,6 +286,12 @@ func (i LdapVerifyArray) ToLdapVerifyArrayOutput() LdapVerifyArrayOutput {
 
 func (i LdapVerifyArray) ToLdapVerifyArrayOutputWithContext(ctx context.Context) LdapVerifyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyArrayOutput)
+}
+
+func (i LdapVerifyArray) ToOutput(ctx context.Context) pulumix.Output[[]*LdapVerify] {
+	return pulumix.Output[[]*LdapVerify]{
+		OutputState: i.ToLdapVerifyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LdapVerifyMapInput is an input type that accepts LdapVerifyMap and LdapVerifyMapOutput values.
@@ -306,6 +319,12 @@ func (i LdapVerifyMap) ToLdapVerifyMapOutputWithContext(ctx context.Context) Lda
 	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyMapOutput)
 }
 
+func (i LdapVerifyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LdapVerify] {
+	return pulumix.Output[map[string]*LdapVerify]{
+		OutputState: i.ToLdapVerifyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LdapVerifyOutput struct{ *pulumi.OutputState }
 
 func (LdapVerifyOutput) ElementType() reflect.Type {
@@ -318,6 +337,12 @@ func (o LdapVerifyOutput) ToLdapVerifyOutput() LdapVerifyOutput {
 
 func (o LdapVerifyOutput) ToLdapVerifyOutputWithContext(ctx context.Context) LdapVerifyOutput {
 	return o
+}
+
+func (o LdapVerifyOutput) ToOutput(ctx context.Context) pulumix.Output[*LdapVerify] {
+	return pulumix.Output[*LdapVerify]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
@@ -389,6 +414,12 @@ func (o LdapVerifyArrayOutput) ToLdapVerifyArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o LdapVerifyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LdapVerify] {
+	return pulumix.Output[[]*LdapVerify]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LdapVerifyArrayOutput) Index(i pulumi.IntInput) LdapVerifyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LdapVerify {
 		return vs[0].([]*LdapVerify)[vs[1].(int)]
@@ -407,6 +438,12 @@ func (o LdapVerifyMapOutput) ToLdapVerifyMapOutput() LdapVerifyMapOutput {
 
 func (o LdapVerifyMapOutput) ToLdapVerifyMapOutputWithContext(ctx context.Context) LdapVerifyMapOutput {
 	return o
+}
+
+func (o LdapVerifyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LdapVerify] {
+	return pulumix.Output[map[string]*LdapVerify]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LdapVerifyMapOutput) MapIndex(k pulumi.StringInput) LdapVerifyOutput {

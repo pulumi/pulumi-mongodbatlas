@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `LdapConfiguration` describes a LDAP Configuration.
@@ -94,6 +95,12 @@ func (o LookupLdapConfigurationResultOutput) ToLookupLdapConfigurationResultOutp
 
 func (o LookupLdapConfigurationResultOutput) ToLookupLdapConfigurationResultOutputWithContext(ctx context.Context) LookupLdapConfigurationResultOutput {
 	return o
+}
+
+func (o LookupLdapConfigurationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLdapConfigurationResult] {
+	return pulumix.Output[LookupLdapConfigurationResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Specifies whether user authentication with LDAP is enabled.

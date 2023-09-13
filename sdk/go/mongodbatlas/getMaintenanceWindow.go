@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
@@ -84,6 +85,12 @@ func (o LookupMaintenanceWindowResultOutput) ToLookupMaintenanceWindowResultOutp
 
 func (o LookupMaintenanceWindowResultOutput) ToLookupMaintenanceWindowResultOutputWithContext(ctx context.Context) LookupMaintenanceWindowResultOutput {
 	return o
+}
+
+func (o LookupMaintenanceWindowResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupMaintenanceWindowResult] {
+	return pulumix.Output[LookupMaintenanceWindowResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -262,6 +263,12 @@ func (i *OrgInvitation) ToOrgInvitationOutputWithContext(ctx context.Context) Or
 	return pulumi.ToOutputWithContext(ctx, i).(OrgInvitationOutput)
 }
 
+func (i *OrgInvitation) ToOutput(ctx context.Context) pulumix.Output[*OrgInvitation] {
+	return pulumix.Output[*OrgInvitation]{
+		OutputState: i.ToOrgInvitationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // OrgInvitationArrayInput is an input type that accepts OrgInvitationArray and OrgInvitationArrayOutput values.
 // You can construct a concrete instance of `OrgInvitationArrayInput` via:
 //
@@ -285,6 +292,12 @@ func (i OrgInvitationArray) ToOrgInvitationArrayOutput() OrgInvitationArrayOutpu
 
 func (i OrgInvitationArray) ToOrgInvitationArrayOutputWithContext(ctx context.Context) OrgInvitationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrgInvitationArrayOutput)
+}
+
+func (i OrgInvitationArray) ToOutput(ctx context.Context) pulumix.Output[[]*OrgInvitation] {
+	return pulumix.Output[[]*OrgInvitation]{
+		OutputState: i.ToOrgInvitationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // OrgInvitationMapInput is an input type that accepts OrgInvitationMap and OrgInvitationMapOutput values.
@@ -312,6 +325,12 @@ func (i OrgInvitationMap) ToOrgInvitationMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(OrgInvitationMapOutput)
 }
 
+func (i OrgInvitationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OrgInvitation] {
+	return pulumix.Output[map[string]*OrgInvitation]{
+		OutputState: i.ToOrgInvitationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type OrgInvitationOutput struct{ *pulumi.OutputState }
 
 func (OrgInvitationOutput) ElementType() reflect.Type {
@@ -324,6 +343,12 @@ func (o OrgInvitationOutput) ToOrgInvitationOutput() OrgInvitationOutput {
 
 func (o OrgInvitationOutput) ToOrgInvitationOutputWithContext(ctx context.Context) OrgInvitationOutput {
 	return o
+}
+
+func (o OrgInvitationOutput) ToOutput(ctx context.Context) pulumix.Output[*OrgInvitation] {
+	return pulumix.Output[*OrgInvitation]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
@@ -380,6 +405,12 @@ func (o OrgInvitationArrayOutput) ToOrgInvitationArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o OrgInvitationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OrgInvitation] {
+	return pulumix.Output[[]*OrgInvitation]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o OrgInvitationArrayOutput) Index(i pulumi.IntInput) OrgInvitationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OrgInvitation {
 		return vs[0].([]*OrgInvitation)[vs[1].(int)]
@@ -398,6 +429,12 @@ func (o OrgInvitationMapOutput) ToOrgInvitationMapOutput() OrgInvitationMapOutpu
 
 func (o OrgInvitationMapOutput) ToOrgInvitationMapOutputWithContext(ctx context.Context) OrgInvitationMapOutput {
 	return o
+}
+
+func (o OrgInvitationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OrgInvitation] {
+	return pulumix.Output[map[string]*OrgInvitation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OrgInvitationMapOutput) MapIndex(k pulumi.StringInput) OrgInvitationOutput {

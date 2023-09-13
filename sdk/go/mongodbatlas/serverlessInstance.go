@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -218,6 +219,12 @@ func (i *ServerlessInstance) ToServerlessInstanceOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(ServerlessInstanceOutput)
 }
 
+func (i *ServerlessInstance) ToOutput(ctx context.Context) pulumix.Output[*ServerlessInstance] {
+	return pulumix.Output[*ServerlessInstance]{
+		OutputState: i.ToServerlessInstanceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ServerlessInstanceArrayInput is an input type that accepts ServerlessInstanceArray and ServerlessInstanceArrayOutput values.
 // You can construct a concrete instance of `ServerlessInstanceArrayInput` via:
 //
@@ -241,6 +248,12 @@ func (i ServerlessInstanceArray) ToServerlessInstanceArrayOutput() ServerlessIns
 
 func (i ServerlessInstanceArray) ToServerlessInstanceArrayOutputWithContext(ctx context.Context) ServerlessInstanceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServerlessInstanceArrayOutput)
+}
+
+func (i ServerlessInstanceArray) ToOutput(ctx context.Context) pulumix.Output[[]*ServerlessInstance] {
+	return pulumix.Output[[]*ServerlessInstance]{
+		OutputState: i.ToServerlessInstanceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ServerlessInstanceMapInput is an input type that accepts ServerlessInstanceMap and ServerlessInstanceMapOutput values.
@@ -268,6 +281,12 @@ func (i ServerlessInstanceMap) ToServerlessInstanceMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ServerlessInstanceMapOutput)
 }
 
+func (i ServerlessInstanceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServerlessInstance] {
+	return pulumix.Output[map[string]*ServerlessInstance]{
+		OutputState: i.ToServerlessInstanceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ServerlessInstanceOutput struct{ *pulumi.OutputState }
 
 func (ServerlessInstanceOutput) ElementType() reflect.Type {
@@ -280,6 +299,12 @@ func (o ServerlessInstanceOutput) ToServerlessInstanceOutput() ServerlessInstanc
 
 func (o ServerlessInstanceOutput) ToServerlessInstanceOutputWithContext(ctx context.Context) ServerlessInstanceOutput {
 	return o
+}
+
+func (o ServerlessInstanceOutput) ToOutput(ctx context.Context) pulumix.Output[*ServerlessInstance] {
+	return pulumix.Output[*ServerlessInstance]{
+		OutputState: o.OutputState,
+	}
 }
 
 // List of Serverless Private Endpoint Connections
@@ -360,6 +385,12 @@ func (o ServerlessInstanceArrayOutput) ToServerlessInstanceArrayOutputWithContex
 	return o
 }
 
+func (o ServerlessInstanceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ServerlessInstance] {
+	return pulumix.Output[[]*ServerlessInstance]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServerlessInstanceArrayOutput) Index(i pulumi.IntInput) ServerlessInstanceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ServerlessInstance {
 		return vs[0].([]*ServerlessInstance)[vs[1].(int)]
@@ -378,6 +409,12 @@ func (o ServerlessInstanceMapOutput) ToServerlessInstanceMapOutput() ServerlessI
 
 func (o ServerlessInstanceMapOutput) ToServerlessInstanceMapOutputWithContext(ctx context.Context) ServerlessInstanceMapOutput {
 	return o
+}
+
+func (o ServerlessInstanceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ServerlessInstance] {
+	return pulumix.Output[map[string]*ServerlessInstance]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServerlessInstanceMapOutput) MapIndex(k pulumi.StringInput) ServerlessInstanceOutput {

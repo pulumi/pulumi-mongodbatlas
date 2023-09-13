@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
@@ -758,6 +759,12 @@ func (i *NetworkPeering) ToNetworkPeeringOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringOutput)
 }
 
+func (i *NetworkPeering) ToOutput(ctx context.Context) pulumix.Output[*NetworkPeering] {
+	return pulumix.Output[*NetworkPeering]{
+		OutputState: i.ToNetworkPeeringOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NetworkPeeringArrayInput is an input type that accepts NetworkPeeringArray and NetworkPeeringArrayOutput values.
 // You can construct a concrete instance of `NetworkPeeringArrayInput` via:
 //
@@ -781,6 +788,12 @@ func (i NetworkPeeringArray) ToNetworkPeeringArrayOutput() NetworkPeeringArrayOu
 
 func (i NetworkPeeringArray) ToNetworkPeeringArrayOutputWithContext(ctx context.Context) NetworkPeeringArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringArrayOutput)
+}
+
+func (i NetworkPeeringArray) ToOutput(ctx context.Context) pulumix.Output[[]*NetworkPeering] {
+	return pulumix.Output[[]*NetworkPeering]{
+		OutputState: i.ToNetworkPeeringArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // NetworkPeeringMapInput is an input type that accepts NetworkPeeringMap and NetworkPeeringMapOutput values.
@@ -808,6 +821,12 @@ func (i NetworkPeeringMap) ToNetworkPeeringMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringMapOutput)
 }
 
+func (i NetworkPeeringMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NetworkPeering] {
+	return pulumix.Output[map[string]*NetworkPeering]{
+		OutputState: i.ToNetworkPeeringMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkPeeringOutput struct{ *pulumi.OutputState }
 
 func (NetworkPeeringOutput) ElementType() reflect.Type {
@@ -820,6 +839,12 @@ func (o NetworkPeeringOutput) ToNetworkPeeringOutput() NetworkPeeringOutput {
 
 func (o NetworkPeeringOutput) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
 	return o
+}
+
+func (o NetworkPeeringOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkPeering] {
+	return pulumix.Output[*NetworkPeering]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
@@ -959,6 +984,12 @@ func (o NetworkPeeringArrayOutput) ToNetworkPeeringArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o NetworkPeeringArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NetworkPeering] {
+	return pulumix.Output[[]*NetworkPeering]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o NetworkPeeringArrayOutput) Index(i pulumi.IntInput) NetworkPeeringOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NetworkPeering {
 		return vs[0].([]*NetworkPeering)[vs[1].(int)]
@@ -977,6 +1008,12 @@ func (o NetworkPeeringMapOutput) ToNetworkPeeringMapOutput() NetworkPeeringMapOu
 
 func (o NetworkPeeringMapOutput) ToNetworkPeeringMapOutputWithContext(ctx context.Context) NetworkPeeringMapOutput {
 	return o
+}
+
+func (o NetworkPeeringMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NetworkPeering] {
+	return pulumix.Output[map[string]*NetworkPeering]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkPeeringMapOutput) MapIndex(k pulumi.StringInput) NetworkPeeringOutput {

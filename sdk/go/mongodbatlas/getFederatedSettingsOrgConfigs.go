@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
@@ -121,6 +122,12 @@ func (o LookupFederatedSettingsOrgConfigsResultOutput) ToLookupFederatedSettings
 
 func (o LookupFederatedSettingsOrgConfigsResultOutput) ToLookupFederatedSettingsOrgConfigsResultOutputWithContext(ctx context.Context) LookupFederatedSettingsOrgConfigsResultOutput {
 	return o
+}
+
+func (o LookupFederatedSettingsOrgConfigsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFederatedSettingsOrgConfigsResult] {
+	return pulumix.Output[LookupFederatedSettingsOrgConfigsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Unique 24-hexadecimal digit string that identifies the federated authentication configuration.

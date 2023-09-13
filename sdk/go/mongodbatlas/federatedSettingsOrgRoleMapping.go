@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
@@ -208,6 +209,12 @@ func (i *FederatedSettingsOrgRoleMapping) ToFederatedSettingsOrgRoleMappingOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsOrgRoleMappingOutput)
 }
 
+func (i *FederatedSettingsOrgRoleMapping) ToOutput(ctx context.Context) pulumix.Output[*FederatedSettingsOrgRoleMapping] {
+	return pulumix.Output[*FederatedSettingsOrgRoleMapping]{
+		OutputState: i.ToFederatedSettingsOrgRoleMappingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FederatedSettingsOrgRoleMappingArrayInput is an input type that accepts FederatedSettingsOrgRoleMappingArray and FederatedSettingsOrgRoleMappingArrayOutput values.
 // You can construct a concrete instance of `FederatedSettingsOrgRoleMappingArrayInput` via:
 //
@@ -231,6 +238,12 @@ func (i FederatedSettingsOrgRoleMappingArray) ToFederatedSettingsOrgRoleMappingA
 
 func (i FederatedSettingsOrgRoleMappingArray) ToFederatedSettingsOrgRoleMappingArrayOutputWithContext(ctx context.Context) FederatedSettingsOrgRoleMappingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsOrgRoleMappingArrayOutput)
+}
+
+func (i FederatedSettingsOrgRoleMappingArray) ToOutput(ctx context.Context) pulumix.Output[[]*FederatedSettingsOrgRoleMapping] {
+	return pulumix.Output[[]*FederatedSettingsOrgRoleMapping]{
+		OutputState: i.ToFederatedSettingsOrgRoleMappingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FederatedSettingsOrgRoleMappingMapInput is an input type that accepts FederatedSettingsOrgRoleMappingMap and FederatedSettingsOrgRoleMappingMapOutput values.
@@ -258,6 +271,12 @@ func (i FederatedSettingsOrgRoleMappingMap) ToFederatedSettingsOrgRoleMappingMap
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsOrgRoleMappingMapOutput)
 }
 
+func (i FederatedSettingsOrgRoleMappingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederatedSettingsOrgRoleMapping] {
+	return pulumix.Output[map[string]*FederatedSettingsOrgRoleMapping]{
+		OutputState: i.ToFederatedSettingsOrgRoleMappingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FederatedSettingsOrgRoleMappingOutput struct{ *pulumi.OutputState }
 
 func (FederatedSettingsOrgRoleMappingOutput) ElementType() reflect.Type {
@@ -270,6 +289,12 @@ func (o FederatedSettingsOrgRoleMappingOutput) ToFederatedSettingsOrgRoleMapping
 
 func (o FederatedSettingsOrgRoleMappingOutput) ToFederatedSettingsOrgRoleMappingOutputWithContext(ctx context.Context) FederatedSettingsOrgRoleMappingOutput {
 	return o
+}
+
+func (o FederatedSettingsOrgRoleMappingOutput) ToOutput(ctx context.Context) pulumix.Output[*FederatedSettingsOrgRoleMapping] {
+	return pulumix.Output[*FederatedSettingsOrgRoleMapping]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Unique human-readable label that identifies the identity provider group to which this role mapping applies.
@@ -308,6 +333,12 @@ func (o FederatedSettingsOrgRoleMappingArrayOutput) ToFederatedSettingsOrgRoleMa
 	return o
 }
 
+func (o FederatedSettingsOrgRoleMappingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FederatedSettingsOrgRoleMapping] {
+	return pulumix.Output[[]*FederatedSettingsOrgRoleMapping]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FederatedSettingsOrgRoleMappingArrayOutput) Index(i pulumi.IntInput) FederatedSettingsOrgRoleMappingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FederatedSettingsOrgRoleMapping {
 		return vs[0].([]*FederatedSettingsOrgRoleMapping)[vs[1].(int)]
@@ -326,6 +357,12 @@ func (o FederatedSettingsOrgRoleMappingMapOutput) ToFederatedSettingsOrgRoleMapp
 
 func (o FederatedSettingsOrgRoleMappingMapOutput) ToFederatedSettingsOrgRoleMappingMapOutputWithContext(ctx context.Context) FederatedSettingsOrgRoleMappingMapOutput {
 	return o
+}
+
+func (o FederatedSettingsOrgRoleMappingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederatedSettingsOrgRoleMapping] {
+	return pulumix.Output[map[string]*FederatedSettingsOrgRoleMapping]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FederatedSettingsOrgRoleMappingMapOutput) MapIndex(k pulumi.StringInput) FederatedSettingsOrgRoleMappingOutput {

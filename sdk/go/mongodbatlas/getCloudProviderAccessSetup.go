@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
@@ -166,6 +167,12 @@ func (o LookupCloudProviderAccessSetupResultOutput) ToLookupCloudProviderAccessS
 
 func (o LookupCloudProviderAccessSetupResultOutput) ToLookupCloudProviderAccessSetupResultOutputWithContext(ctx context.Context) LookupCloudProviderAccessSetupResultOutput {
 	return o
+}
+
+func (o LookupCloudProviderAccessSetupResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCloudProviderAccessSetupResult] {
+	return pulumix.Output[LookupCloudProviderAccessSetupResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // aws related role information

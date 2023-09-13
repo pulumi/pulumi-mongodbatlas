@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
@@ -105,6 +106,12 @@ func (o GetFederatedSettingsResultOutput) ToGetFederatedSettingsResultOutput() G
 
 func (o GetFederatedSettingsResultOutput) ToGetFederatedSettingsResultOutputWithContext(ctx context.Context) GetFederatedSettingsResultOutput {
 	return o
+}
+
+func (o GetFederatedSettingsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFederatedSettingsResult] {
+	return pulumix.Output[GetFederatedSettingsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // List that contains the domains associated with the organization's identity provider.

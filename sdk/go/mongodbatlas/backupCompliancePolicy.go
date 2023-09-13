@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -220,6 +221,12 @@ func (i *BackupCompliancePolicy) ToBackupCompliancePolicyOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyOutput)
 }
 
+func (i *BackupCompliancePolicy) ToOutput(ctx context.Context) pulumix.Output[*BackupCompliancePolicy] {
+	return pulumix.Output[*BackupCompliancePolicy]{
+		OutputState: i.ToBackupCompliancePolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // BackupCompliancePolicyArrayInput is an input type that accepts BackupCompliancePolicyArray and BackupCompliancePolicyArrayOutput values.
 // You can construct a concrete instance of `BackupCompliancePolicyArrayInput` via:
 //
@@ -243,6 +250,12 @@ func (i BackupCompliancePolicyArray) ToBackupCompliancePolicyArrayOutput() Backu
 
 func (i BackupCompliancePolicyArray) ToBackupCompliancePolicyArrayOutputWithContext(ctx context.Context) BackupCompliancePolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyArrayOutput)
+}
+
+func (i BackupCompliancePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*BackupCompliancePolicy] {
+	return pulumix.Output[[]*BackupCompliancePolicy]{
+		OutputState: i.ToBackupCompliancePolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // BackupCompliancePolicyMapInput is an input type that accepts BackupCompliancePolicyMap and BackupCompliancePolicyMapOutput values.
@@ -270,6 +283,12 @@ func (i BackupCompliancePolicyMap) ToBackupCompliancePolicyMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyMapOutput)
 }
 
+func (i BackupCompliancePolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*BackupCompliancePolicy] {
+	return pulumix.Output[map[string]*BackupCompliancePolicy]{
+		OutputState: i.ToBackupCompliancePolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type BackupCompliancePolicyOutput struct{ *pulumi.OutputState }
 
 func (BackupCompliancePolicyOutput) ElementType() reflect.Type {
@@ -282,6 +301,12 @@ func (o BackupCompliancePolicyOutput) ToBackupCompliancePolicyOutput() BackupCom
 
 func (o BackupCompliancePolicyOutput) ToBackupCompliancePolicyOutputWithContext(ctx context.Context) BackupCompliancePolicyOutput {
 	return o
+}
+
+func (o BackupCompliancePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*BackupCompliancePolicy] {
+	return pulumix.Output[*BackupCompliancePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
@@ -373,6 +398,12 @@ func (o BackupCompliancePolicyArrayOutput) ToBackupCompliancePolicyArrayOutputWi
 	return o
 }
 
+func (o BackupCompliancePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*BackupCompliancePolicy] {
+	return pulumix.Output[[]*BackupCompliancePolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o BackupCompliancePolicyArrayOutput) Index(i pulumi.IntInput) BackupCompliancePolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *BackupCompliancePolicy {
 		return vs[0].([]*BackupCompliancePolicy)[vs[1].(int)]
@@ -391,6 +422,12 @@ func (o BackupCompliancePolicyMapOutput) ToBackupCompliancePolicyMapOutput() Bac
 
 func (o BackupCompliancePolicyMapOutput) ToBackupCompliancePolicyMapOutputWithContext(ctx context.Context) BackupCompliancePolicyMapOutput {
 	return o
+}
+
+func (o BackupCompliancePolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*BackupCompliancePolicy] {
+	return pulumix.Output[map[string]*BackupCompliancePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o BackupCompliancePolicyMapOutput) MapIndex(k pulumi.StringInput) BackupCompliancePolicyOutput {

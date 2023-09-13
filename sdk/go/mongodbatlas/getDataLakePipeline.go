@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `DataLakePipeline` describes a Data Lake Pipeline.
@@ -116,6 +117,12 @@ func (o LookupDataLakePipelineResultOutput) ToLookupDataLakePipelineResultOutput
 
 func (o LookupDataLakePipelineResultOutput) ToLookupDataLakePipelineResultOutputWithContext(ctx context.Context) LookupDataLakePipelineResultOutput {
 	return o
+}
+
+func (o LookupDataLakePipelineResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDataLakePipelineResult] {
+	return pulumix.Output[LookupDataLakePipelineResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Timestamp that indicates when the Data Lake Pipeline was created.

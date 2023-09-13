@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `NetworkPeering` describes a Network Peering Connection.
@@ -119,6 +120,12 @@ func (o LookupNetworkPeeringResultOutput) ToLookupNetworkPeeringResultOutput() L
 
 func (o LookupNetworkPeeringResultOutput) ToLookupNetworkPeeringResultOutputWithContext(ctx context.Context) LookupNetworkPeeringResultOutput {
 	return o
+}
+
+func (o LookupNetworkPeeringResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupNetworkPeeringResult] {
+	return pulumix.Output[LookupNetworkPeeringResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).

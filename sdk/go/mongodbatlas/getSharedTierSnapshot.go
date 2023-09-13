@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSharedTierSnapshot(ctx *pulumi.Context, args *GetSharedTierSnapshotArgs, opts ...pulumi.InvokeOption) (*GetSharedTierSnapshotResult, error) {
@@ -80,6 +81,12 @@ func (o GetSharedTierSnapshotResultOutput) ToGetSharedTierSnapshotResultOutput()
 
 func (o GetSharedTierSnapshotResultOutput) ToGetSharedTierSnapshotResultOutputWithContext(ctx context.Context) GetSharedTierSnapshotResultOutput {
 	return o
+}
+
+func (o GetSharedTierSnapshotResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSharedTierSnapshotResult] {
+	return pulumix.Output[GetSharedTierSnapshotResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSharedTierSnapshotResultOutput) ClusterName() pulumi.StringOutput {

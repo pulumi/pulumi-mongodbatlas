@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `ProjectIpAccessList` provides an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
@@ -272,6 +273,12 @@ func (i *ProjectIpAccessList) ToProjectIpAccessListOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpAccessListOutput)
 }
 
+func (i *ProjectIpAccessList) ToOutput(ctx context.Context) pulumix.Output[*ProjectIpAccessList] {
+	return pulumix.Output[*ProjectIpAccessList]{
+		OutputState: i.ToProjectIpAccessListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ProjectIpAccessListArrayInput is an input type that accepts ProjectIpAccessListArray and ProjectIpAccessListArrayOutput values.
 // You can construct a concrete instance of `ProjectIpAccessListArrayInput` via:
 //
@@ -295,6 +302,12 @@ func (i ProjectIpAccessListArray) ToProjectIpAccessListArrayOutput() ProjectIpAc
 
 func (i ProjectIpAccessListArray) ToProjectIpAccessListArrayOutputWithContext(ctx context.Context) ProjectIpAccessListArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpAccessListArrayOutput)
+}
+
+func (i ProjectIpAccessListArray) ToOutput(ctx context.Context) pulumix.Output[[]*ProjectIpAccessList] {
+	return pulumix.Output[[]*ProjectIpAccessList]{
+		OutputState: i.ToProjectIpAccessListArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ProjectIpAccessListMapInput is an input type that accepts ProjectIpAccessListMap and ProjectIpAccessListMapOutput values.
@@ -322,6 +335,12 @@ func (i ProjectIpAccessListMap) ToProjectIpAccessListMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpAccessListMapOutput)
 }
 
+func (i ProjectIpAccessListMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ProjectIpAccessList] {
+	return pulumix.Output[map[string]*ProjectIpAccessList]{
+		OutputState: i.ToProjectIpAccessListMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProjectIpAccessListOutput struct{ *pulumi.OutputState }
 
 func (ProjectIpAccessListOutput) ElementType() reflect.Type {
@@ -334,6 +353,12 @@ func (o ProjectIpAccessListOutput) ToProjectIpAccessListOutput() ProjectIpAccess
 
 func (o ProjectIpAccessListOutput) ToProjectIpAccessListOutputWithContext(ctx context.Context) ProjectIpAccessListOutput {
 	return o
+}
+
+func (o ProjectIpAccessListOutput) ToOutput(ctx context.Context) pulumix.Output[*ProjectIpAccessList] {
+	return pulumix.Output[*ProjectIpAccessList]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
@@ -377,6 +402,12 @@ func (o ProjectIpAccessListArrayOutput) ToProjectIpAccessListArrayOutputWithCont
 	return o
 }
 
+func (o ProjectIpAccessListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ProjectIpAccessList] {
+	return pulumix.Output[[]*ProjectIpAccessList]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProjectIpAccessListArrayOutput) Index(i pulumi.IntInput) ProjectIpAccessListOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ProjectIpAccessList {
 		return vs[0].([]*ProjectIpAccessList)[vs[1].(int)]
@@ -395,6 +426,12 @@ func (o ProjectIpAccessListMapOutput) ToProjectIpAccessListMapOutput() ProjectIp
 
 func (o ProjectIpAccessListMapOutput) ToProjectIpAccessListMapOutputWithContext(ctx context.Context) ProjectIpAccessListMapOutput {
 	return o
+}
+
+func (o ProjectIpAccessListMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ProjectIpAccessList] {
+	return pulumix.Output[map[string]*ProjectIpAccessList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProjectIpAccessListMapOutput) MapIndex(k pulumi.StringInput) ProjectIpAccessListOutput {

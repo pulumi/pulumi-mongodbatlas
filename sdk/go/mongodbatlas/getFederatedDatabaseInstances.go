@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `mongodbatlasFederatedDatabaseInstancess` provides a Federated Database Instance data source.
@@ -79,6 +80,12 @@ func (o LookupFederatedDatabaseInstancesResultOutput) ToLookupFederatedDatabaseI
 
 func (o LookupFederatedDatabaseInstancesResultOutput) ToLookupFederatedDatabaseInstancesResultOutputWithContext(ctx context.Context) LookupFederatedDatabaseInstancesResultOutput {
 	return o
+}
+
+func (o LookupFederatedDatabaseInstancesResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFederatedDatabaseInstancesResult] {
+	return pulumix.Output[LookupFederatedDatabaseInstancesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

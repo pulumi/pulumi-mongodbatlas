@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getDatabaseUsers` describe all Database Users. This represents a database user which will be applied to all clusters within the project.
@@ -171,6 +172,12 @@ func (o LookupDatabaseUsersResultOutput) ToLookupDatabaseUsersResultOutput() Loo
 
 func (o LookupDatabaseUsersResultOutput) ToLookupDatabaseUsersResultOutputWithContext(ctx context.Context) LookupDatabaseUsersResultOutput {
 	return o
+}
+
+func (o LookupDatabaseUsersResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDatabaseUsersResult] {
+	return pulumix.Output[LookupDatabaseUsersResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

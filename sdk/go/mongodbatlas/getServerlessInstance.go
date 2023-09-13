@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupServerlessInstance(ctx *pulumi.Context, args *LookupServerlessInstanceArgs, opts ...pulumi.InvokeOption) (*LookupServerlessInstanceResult, error) {
@@ -105,6 +106,12 @@ func (o LookupServerlessInstanceResultOutput) ToLookupServerlessInstanceResultOu
 
 func (o LookupServerlessInstanceResultOutput) ToLookupServerlessInstanceResultOutputWithContext(ctx context.Context) LookupServerlessInstanceResultOutput {
 	return o
+}
+
+func (o LookupServerlessInstanceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupServerlessInstanceResult] {
+	return pulumix.Output[LookupServerlessInstanceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // List of Serverless Private Endpoint Connections

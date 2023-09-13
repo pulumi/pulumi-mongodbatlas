@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getNetworkPeerings` describes all Network Peering Connections.
@@ -111,6 +112,12 @@ func (o LookupNetworkPeeringsResultOutput) ToLookupNetworkPeeringsResultOutput()
 
 func (o LookupNetworkPeeringsResultOutput) ToLookupNetworkPeeringsResultOutputWithContext(ctx context.Context) LookupNetworkPeeringsResultOutput {
 	return o
+}
+
+func (o LookupNetworkPeeringsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupNetworkPeeringsResult] {
+	return pulumix.Output[LookupNetworkPeeringsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

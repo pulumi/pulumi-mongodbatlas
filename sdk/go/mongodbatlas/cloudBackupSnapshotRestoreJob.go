@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -244,6 +245,12 @@ func (i *CloudBackupSnapshotRestoreJob) ToCloudBackupSnapshotRestoreJobOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotRestoreJobOutput)
 }
 
+func (i *CloudBackupSnapshotRestoreJob) ToOutput(ctx context.Context) pulumix.Output[*CloudBackupSnapshotRestoreJob] {
+	return pulumix.Output[*CloudBackupSnapshotRestoreJob]{
+		OutputState: i.ToCloudBackupSnapshotRestoreJobOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CloudBackupSnapshotRestoreJobArrayInput is an input type that accepts CloudBackupSnapshotRestoreJobArray and CloudBackupSnapshotRestoreJobArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotRestoreJobArrayInput` via:
 //
@@ -267,6 +274,12 @@ func (i CloudBackupSnapshotRestoreJobArray) ToCloudBackupSnapshotRestoreJobArray
 
 func (i CloudBackupSnapshotRestoreJobArray) ToCloudBackupSnapshotRestoreJobArrayOutputWithContext(ctx context.Context) CloudBackupSnapshotRestoreJobArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotRestoreJobArrayOutput)
+}
+
+func (i CloudBackupSnapshotRestoreJobArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudBackupSnapshotRestoreJob] {
+	return pulumix.Output[[]*CloudBackupSnapshotRestoreJob]{
+		OutputState: i.ToCloudBackupSnapshotRestoreJobArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CloudBackupSnapshotRestoreJobMapInput is an input type that accepts CloudBackupSnapshotRestoreJobMap and CloudBackupSnapshotRestoreJobMapOutput values.
@@ -294,6 +307,12 @@ func (i CloudBackupSnapshotRestoreJobMap) ToCloudBackupSnapshotRestoreJobMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotRestoreJobMapOutput)
 }
 
+func (i CloudBackupSnapshotRestoreJobMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudBackupSnapshotRestoreJob] {
+	return pulumix.Output[map[string]*CloudBackupSnapshotRestoreJob]{
+		OutputState: i.ToCloudBackupSnapshotRestoreJobMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CloudBackupSnapshotRestoreJobOutput struct{ *pulumi.OutputState }
 
 func (CloudBackupSnapshotRestoreJobOutput) ElementType() reflect.Type {
@@ -306,6 +325,12 @@ func (o CloudBackupSnapshotRestoreJobOutput) ToCloudBackupSnapshotRestoreJobOutp
 
 func (o CloudBackupSnapshotRestoreJobOutput) ToCloudBackupSnapshotRestoreJobOutputWithContext(ctx context.Context) CloudBackupSnapshotRestoreJobOutput {
 	return o
+}
+
+func (o CloudBackupSnapshotRestoreJobOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudBackupSnapshotRestoreJob] {
+	return pulumix.Output[*CloudBackupSnapshotRestoreJob]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates whether the restore job was canceled.
@@ -397,6 +422,12 @@ func (o CloudBackupSnapshotRestoreJobArrayOutput) ToCloudBackupSnapshotRestoreJo
 	return o
 }
 
+func (o CloudBackupSnapshotRestoreJobArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudBackupSnapshotRestoreJob] {
+	return pulumix.Output[[]*CloudBackupSnapshotRestoreJob]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CloudBackupSnapshotRestoreJobArrayOutput) Index(i pulumi.IntInput) CloudBackupSnapshotRestoreJobOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudBackupSnapshotRestoreJob {
 		return vs[0].([]*CloudBackupSnapshotRestoreJob)[vs[1].(int)]
@@ -415,6 +446,12 @@ func (o CloudBackupSnapshotRestoreJobMapOutput) ToCloudBackupSnapshotRestoreJobM
 
 func (o CloudBackupSnapshotRestoreJobMapOutput) ToCloudBackupSnapshotRestoreJobMapOutputWithContext(ctx context.Context) CloudBackupSnapshotRestoreJobMapOutput {
 	return o
+}
+
+func (o CloudBackupSnapshotRestoreJobMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudBackupSnapshotRestoreJob] {
+	return pulumix.Output[map[string]*CloudBackupSnapshotRestoreJob]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CloudBackupSnapshotRestoreJobMapOutput) MapIndex(k pulumi.StringInput) CloudBackupSnapshotRestoreJobOutput {

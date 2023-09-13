@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -64,6 +65,12 @@ func (i AssumeRoleArgs) ToAssumeRoleOutputWithContext(ctx context.Context) Assum
 	return pulumi.ToOutputWithContext(ctx, i).(AssumeRoleOutput)
 }
 
+func (i AssumeRoleArgs) ToOutput(ctx context.Context) pulumix.Output[AssumeRole] {
+	return pulumix.Output[AssumeRole]{
+		OutputState: i.ToAssumeRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AssumeRoleOutput struct{ *pulumi.OutputState }
 
 func (AssumeRoleOutput) ElementType() reflect.Type {
@@ -76,6 +83,12 @@ func (o AssumeRoleOutput) ToAssumeRoleOutput() AssumeRoleOutput {
 
 func (o AssumeRoleOutput) ToAssumeRoleOutputWithContext(ctx context.Context) AssumeRoleOutput {
 	return o
+}
+
+func (o AssumeRoleOutput) ToOutput(ctx context.Context) pulumix.Output[AssumeRole] {
+	return pulumix.Output[AssumeRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AssumeRoleOutput) Duration() pulumi.StringPtrOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
@@ -108,6 +109,12 @@ func (o LookupFederatedQueryLimitsResultOutput) ToLookupFederatedQueryLimitsResu
 
 func (o LookupFederatedQueryLimitsResultOutput) ToLookupFederatedQueryLimitsResultOutputWithContext(ctx context.Context) LookupFederatedQueryLimitsResultOutput {
 	return o
+}
+
+func (o LookupFederatedQueryLimitsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFederatedQueryLimitsResult] {
+	return pulumix.Output[LookupFederatedQueryLimitsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

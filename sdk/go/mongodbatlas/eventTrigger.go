@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `EventTrigger` provides a Event Trigger resource.
@@ -492,6 +493,12 @@ func (i *EventTrigger) ToEventTriggerOutputWithContext(ctx context.Context) Even
 	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerOutput)
 }
 
+func (i *EventTrigger) ToOutput(ctx context.Context) pulumix.Output[*EventTrigger] {
+	return pulumix.Output[*EventTrigger]{
+		OutputState: i.ToEventTriggerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EventTriggerArrayInput is an input type that accepts EventTriggerArray and EventTriggerArrayOutput values.
 // You can construct a concrete instance of `EventTriggerArrayInput` via:
 //
@@ -515,6 +522,12 @@ func (i EventTriggerArray) ToEventTriggerArrayOutput() EventTriggerArrayOutput {
 
 func (i EventTriggerArray) ToEventTriggerArrayOutputWithContext(ctx context.Context) EventTriggerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerArrayOutput)
+}
+
+func (i EventTriggerArray) ToOutput(ctx context.Context) pulumix.Output[[]*EventTrigger] {
+	return pulumix.Output[[]*EventTrigger]{
+		OutputState: i.ToEventTriggerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EventTriggerMapInput is an input type that accepts EventTriggerMap and EventTriggerMapOutput values.
@@ -542,6 +555,12 @@ func (i EventTriggerMap) ToEventTriggerMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerMapOutput)
 }
 
+func (i EventTriggerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EventTrigger] {
+	return pulumix.Output[map[string]*EventTrigger]{
+		OutputState: i.ToEventTriggerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EventTriggerOutput struct{ *pulumi.OutputState }
 
 func (EventTriggerOutput) ElementType() reflect.Type {
@@ -554,6 +573,12 @@ func (o EventTriggerOutput) ToEventTriggerOutput() EventTriggerOutput {
 
 func (o EventTriggerOutput) ToEventTriggerOutputWithContext(ctx context.Context) EventTriggerOutput {
 	return o
+}
+
+func (o EventTriggerOutput) ToOutput(ctx context.Context) pulumix.Output[*EventTrigger] {
+	return pulumix.Output[*EventTrigger]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ObjectID of your application.
@@ -681,6 +706,12 @@ func (o EventTriggerArrayOutput) ToEventTriggerArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o EventTriggerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EventTrigger] {
+	return pulumix.Output[[]*EventTrigger]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EventTriggerArrayOutput) Index(i pulumi.IntInput) EventTriggerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EventTrigger {
 		return vs[0].([]*EventTrigger)[vs[1].(int)]
@@ -699,6 +730,12 @@ func (o EventTriggerMapOutput) ToEventTriggerMapOutput() EventTriggerMapOutput {
 
 func (o EventTriggerMapOutput) ToEventTriggerMapOutputWithContext(ctx context.Context) EventTriggerMapOutput {
 	return o
+}
+
+func (o EventTriggerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EventTrigger] {
+	return pulumix.Output[map[string]*EventTrigger]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EventTriggerMapOutput) MapIndex(k pulumi.StringInput) EventTriggerOutput {

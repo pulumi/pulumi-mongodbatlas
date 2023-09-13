@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
@@ -304,6 +305,12 @@ func (i *OnlineArchive) ToOnlineArchiveOutputWithContext(ctx context.Context) On
 	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveOutput)
 }
 
+func (i *OnlineArchive) ToOutput(ctx context.Context) pulumix.Output[*OnlineArchive] {
+	return pulumix.Output[*OnlineArchive]{
+		OutputState: i.ToOnlineArchiveOutputWithContext(ctx).OutputState,
+	}
+}
+
 // OnlineArchiveArrayInput is an input type that accepts OnlineArchiveArray and OnlineArchiveArrayOutput values.
 // You can construct a concrete instance of `OnlineArchiveArrayInput` via:
 //
@@ -327,6 +334,12 @@ func (i OnlineArchiveArray) ToOnlineArchiveArrayOutput() OnlineArchiveArrayOutpu
 
 func (i OnlineArchiveArray) ToOnlineArchiveArrayOutputWithContext(ctx context.Context) OnlineArchiveArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveArrayOutput)
+}
+
+func (i OnlineArchiveArray) ToOutput(ctx context.Context) pulumix.Output[[]*OnlineArchive] {
+	return pulumix.Output[[]*OnlineArchive]{
+		OutputState: i.ToOnlineArchiveArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // OnlineArchiveMapInput is an input type that accepts OnlineArchiveMap and OnlineArchiveMapOutput values.
@@ -354,6 +367,12 @@ func (i OnlineArchiveMap) ToOnlineArchiveMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveMapOutput)
 }
 
+func (i OnlineArchiveMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OnlineArchive] {
+	return pulumix.Output[map[string]*OnlineArchive]{
+		OutputState: i.ToOnlineArchiveMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type OnlineArchiveOutput struct{ *pulumi.OutputState }
 
 func (OnlineArchiveOutput) ElementType() reflect.Type {
@@ -366,6 +385,12 @@ func (o OnlineArchiveOutput) ToOnlineArchiveOutput() OnlineArchiveOutput {
 
 func (o OnlineArchiveOutput) ToOnlineArchiveOutputWithContext(ctx context.Context) OnlineArchiveOutput {
 	return o
+}
+
+func (o OnlineArchiveOutput) ToOutput(ctx context.Context) pulumix.Output[*OnlineArchive] {
+	return pulumix.Output[*OnlineArchive]{
+		OutputState: o.OutputState,
+	}
 }
 
 // ID of the online archive.
@@ -440,6 +465,12 @@ func (o OnlineArchiveArrayOutput) ToOnlineArchiveArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o OnlineArchiveArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OnlineArchive] {
+	return pulumix.Output[[]*OnlineArchive]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o OnlineArchiveArrayOutput) Index(i pulumi.IntInput) OnlineArchiveOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OnlineArchive {
 		return vs[0].([]*OnlineArchive)[vs[1].(int)]
@@ -458,6 +489,12 @@ func (o OnlineArchiveMapOutput) ToOnlineArchiveMapOutput() OnlineArchiveMapOutpu
 
 func (o OnlineArchiveMapOutput) ToOnlineArchiveMapOutputWithContext(ctx context.Context) OnlineArchiveMapOutput {
 	return o
+}
+
+func (o OnlineArchiveMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OnlineArchive] {
+	return pulumix.Output[map[string]*OnlineArchive]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OnlineArchiveMapOutput) MapIndex(k pulumi.StringInput) OnlineArchiveOutput {

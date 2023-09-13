@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `DataLake` provides a Data Lake resource.
@@ -292,6 +293,12 @@ func (i *DataLake) ToDataLakeOutputWithContext(ctx context.Context) DataLakeOutp
 	return pulumi.ToOutputWithContext(ctx, i).(DataLakeOutput)
 }
 
+func (i *DataLake) ToOutput(ctx context.Context) pulumix.Output[*DataLake] {
+	return pulumix.Output[*DataLake]{
+		OutputState: i.ToDataLakeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DataLakeArrayInput is an input type that accepts DataLakeArray and DataLakeArrayOutput values.
 // You can construct a concrete instance of `DataLakeArrayInput` via:
 //
@@ -315,6 +322,12 @@ func (i DataLakeArray) ToDataLakeArrayOutput() DataLakeArrayOutput {
 
 func (i DataLakeArray) ToDataLakeArrayOutputWithContext(ctx context.Context) DataLakeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DataLakeArrayOutput)
+}
+
+func (i DataLakeArray) ToOutput(ctx context.Context) pulumix.Output[[]*DataLake] {
+	return pulumix.Output[[]*DataLake]{
+		OutputState: i.ToDataLakeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DataLakeMapInput is an input type that accepts DataLakeMap and DataLakeMapOutput values.
@@ -342,6 +355,12 @@ func (i DataLakeMap) ToDataLakeMapOutputWithContext(ctx context.Context) DataLak
 	return pulumi.ToOutputWithContext(ctx, i).(DataLakeMapOutput)
 }
 
+func (i DataLakeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DataLake] {
+	return pulumix.Output[map[string]*DataLake]{
+		OutputState: i.ToDataLakeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DataLakeOutput struct{ *pulumi.OutputState }
 
 func (DataLakeOutput) ElementType() reflect.Type {
@@ -354,6 +373,12 @@ func (o DataLakeOutput) ToDataLakeOutput() DataLakeOutput {
 
 func (o DataLakeOutput) ToDataLakeOutputWithContext(ctx context.Context) DataLakeOutput {
 	return o
+}
+
+func (o DataLakeOutput) ToOutput(ctx context.Context) pulumix.Output[*DataLake] {
+	return pulumix.Output[*DataLake]{
+		OutputState: o.OutputState,
+	}
 }
 
 // AWS provider of the cloud service where Data Lake can access the S3 Bucket.
@@ -432,6 +457,12 @@ func (o DataLakeArrayOutput) ToDataLakeArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o DataLakeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DataLake] {
+	return pulumix.Output[[]*DataLake]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DataLakeArrayOutput) Index(i pulumi.IntInput) DataLakeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DataLake {
 		return vs[0].([]*DataLake)[vs[1].(int)]
@@ -450,6 +481,12 @@ func (o DataLakeMapOutput) ToDataLakeMapOutput() DataLakeMapOutput {
 
 func (o DataLakeMapOutput) ToDataLakeMapOutputWithContext(ctx context.Context) DataLakeMapOutput {
 	return o
+}
+
+func (o DataLakeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DataLake] {
+	return pulumix.Output[map[string]*DataLake]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DataLakeMapOutput) MapIndex(k pulumi.StringInput) DataLakeOutput {

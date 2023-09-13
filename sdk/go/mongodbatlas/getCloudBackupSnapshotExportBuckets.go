@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
@@ -122,6 +123,12 @@ func (o LookupCloudBackupSnapshotExportBucketsResultOutput) ToLookupCloudBackupS
 
 func (o LookupCloudBackupSnapshotExportBucketsResultOutput) ToLookupCloudBackupSnapshotExportBucketsResultOutputWithContext(ctx context.Context) LookupCloudBackupSnapshotExportBucketsResultOutput {
 	return o
+}
+
+func (o LookupCloudBackupSnapshotExportBucketsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCloudBackupSnapshotExportBucketsResult] {
+	return pulumix.Output[LookupCloudBackupSnapshotExportBucketsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.
