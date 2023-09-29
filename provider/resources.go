@@ -15,6 +15,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"fmt"
 	"path/filepath"
 	"unicode"
@@ -23,7 +24,9 @@ import (
 	_ "embed"
 
 	"github.com/mongodb/terraform-provider-mongodbatlas/mongodbatlas"
+	upstreamVersion "github.com/mongodb/terraform-provider-mongodbatlas/version"
 	"github.com/pulumi/pulumi-mongodbatlas/provider/v3/pkg/version"
+	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
@@ -62,21 +65,25 @@ var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
+	ctx := context.Background()
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(mongodbatlas.Provider())
+	p := pfbridge.MuxShimWithPF(ctx,
+		shimv2.NewProvider(mongodbatlas.NewSdkV2Provider()),
+		mongodbatlas.NewFrameworkProvider())
 
 	trueValue := true
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "mongodbatlas",
-		Description: "A Pulumi package for creating and managing mongodbatlas cloud resources.",
-		Keywords:    []string{"pulumi", "mongodbatlas"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-mongodbatlas",
-		GitHubOrg:   "mongodb",
-		Version:     version.Version,
+		P:                 p,
+		Name:              "mongodbatlas",
+		Description:       "A Pulumi package for creating and managing mongodbatlas cloud resources.",
+		Keywords:          []string{"pulumi", "mongodbatlas"},
+		License:           "Apache-2.0",
+		Homepage:          "https://pulumi.io",
+		Repository:        "https://github.com/pulumi/pulumi-mongodbatlas",
+		GitHubOrg:         "mongodb",
+		Version:           version.Version,
+		TFProviderVersion: upstreamVersion.ProviderVersion,
 		Config: map[string]*tfbridge.SchemaInfo{
 			"private_key": {MarkAsOptional: &trueValue},
 			"public_key":  {MarkAsOptional: &trueValue},
