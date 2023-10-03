@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['FederatedQueryLimitArgs', 'FederatedQueryLimit']
@@ -34,15 +34,36 @@ class FederatedQueryLimitArgs:
         :param pulumi.Input[int] value: Amount to set the limit to.
         :param pulumi.Input[int] default_limit: Default value of the limit.
         """
-        pulumi.set(__self__, "limit_name", limit_name)
-        pulumi.set(__self__, "overrun_policy", overrun_policy)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "tenant_name", tenant_name)
-        pulumi.set(__self__, "value", value)
+        FederatedQueryLimitArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            limit_name=limit_name,
+            overrun_policy=overrun_policy,
+            project_id=project_id,
+            tenant_name=tenant_name,
+            value=value,
+            default_limit=default_limit,
+            maximum_limit=maximum_limit,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             limit_name: pulumi.Input[str],
+             overrun_policy: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             tenant_name: pulumi.Input[str],
+             value: pulumi.Input[int],
+             default_limit: Optional[pulumi.Input[int]] = None,
+             maximum_limit: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("limit_name", limit_name)
+        _setter("overrun_policy", overrun_policy)
+        _setter("project_id", project_id)
+        _setter("tenant_name", tenant_name)
+        _setter("value", value)
         if default_limit is not None:
-            pulumi.set(__self__, "default_limit", default_limit)
+            _setter("default_limit", default_limit)
         if maximum_limit is not None:
-            pulumi.set(__self__, "maximum_limit", maximum_limit)
+            _setter("maximum_limit", maximum_limit)
 
     @property
     @pulumi.getter(name="limitName")
@@ -156,24 +177,49 @@ class _FederatedQueryLimitState:
         :param pulumi.Input[str] tenant_name: Name of the Atlas Federated Database Instance.
         :param pulumi.Input[int] value: Amount to set the limit to.
         """
+        _FederatedQueryLimitState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            current_usage=current_usage,
+            default_limit=default_limit,
+            last_modified_date=last_modified_date,
+            limit_name=limit_name,
+            maximum_limit=maximum_limit,
+            overrun_policy=overrun_policy,
+            project_id=project_id,
+            tenant_name=tenant_name,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             current_usage: Optional[pulumi.Input[int]] = None,
+             default_limit: Optional[pulumi.Input[int]] = None,
+             last_modified_date: Optional[pulumi.Input[str]] = None,
+             limit_name: Optional[pulumi.Input[str]] = None,
+             maximum_limit: Optional[pulumi.Input[int]] = None,
+             overrun_policy: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             tenant_name: Optional[pulumi.Input[str]] = None,
+             value: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if current_usage is not None:
-            pulumi.set(__self__, "current_usage", current_usage)
+            _setter("current_usage", current_usage)
         if default_limit is not None:
-            pulumi.set(__self__, "default_limit", default_limit)
+            _setter("default_limit", default_limit)
         if last_modified_date is not None:
-            pulumi.set(__self__, "last_modified_date", last_modified_date)
+            _setter("last_modified_date", last_modified_date)
         if limit_name is not None:
-            pulumi.set(__self__, "limit_name", limit_name)
+            _setter("limit_name", limit_name)
         if maximum_limit is not None:
-            pulumi.set(__self__, "maximum_limit", maximum_limit)
+            _setter("maximum_limit", maximum_limit)
         if overrun_policy is not None:
-            pulumi.set(__self__, "overrun_policy", overrun_policy)
+            _setter("overrun_policy", overrun_policy)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if tenant_name is not None:
-            pulumi.set(__self__, "tenant_name", tenant_name)
+            _setter("tenant_name", tenant_name)
         if value is not None:
-            pulumi.set(__self__, "value", value)
+            _setter("value", value)
 
     @property
     @pulumi.getter(name="currentUsage")
@@ -382,6 +428,10 @@ class FederatedQueryLimit(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FederatedQueryLimitArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

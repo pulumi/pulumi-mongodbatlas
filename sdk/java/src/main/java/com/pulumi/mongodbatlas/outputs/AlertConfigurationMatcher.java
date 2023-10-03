@@ -27,15 +27,13 @@ public final class AlertConfigurationMatcher {
      */
     private @Nullable String fieldName;
     /**
-     * @return If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * @return The operator to test the field’s value.
      * Accepted values are:
      * 
      */
     private @Nullable String operator;
     /**
-     * @return If omitted, the configuration is disabled.
+     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
      * 
      */
     private @Nullable String value;
@@ -59,9 +57,7 @@ public final class AlertConfigurationMatcher {
         return Optional.ofNullable(this.fieldName);
     }
     /**
-     * @return If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * @return The operator to test the field’s value.
      * Accepted values are:
      * 
      */
@@ -69,7 +65,7 @@ public final class AlertConfigurationMatcher {
         return Optional.ofNullable(this.operator);
     }
     /**
-     * @return If omitted, the configuration is disabled.
+     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
      * 
      */
     public Optional<String> value() {

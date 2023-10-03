@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['OrgInvitationArgs', 'OrgInvitation']
@@ -25,11 +25,26 @@ class OrgInvitationArgs:
         :param pulumi.Input[str] username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] teams_ids: An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
         """
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "roles", roles)
-        pulumi.set(__self__, "username", username)
+        OrgInvitationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            org_id=org_id,
+            roles=roles,
+            username=username,
+            teams_ids=teams_ids,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             org_id: pulumi.Input[str],
+             roles: pulumi.Input[Sequence[pulumi.Input[str]]],
+             username: pulumi.Input[str],
+             teams_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("org_id", org_id)
+        _setter("roles", roles)
+        _setter("username", username)
         if teams_ids is not None:
-            pulumi.set(__self__, "teams_ids", teams_ids)
+            _setter("teams_ids", teams_ids)
 
     @property
     @pulumi.getter(name="orgId")
@@ -102,22 +117,45 @@ class _OrgInvitationState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] teams_ids: An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
         :param pulumi.Input[str] username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
         """
+        _OrgInvitationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            created_at=created_at,
+            expires_at=expires_at,
+            invitation_id=invitation_id,
+            inviter_username=inviter_username,
+            org_id=org_id,
+            roles=roles,
+            teams_ids=teams_ids,
+            username=username,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             created_at: Optional[pulumi.Input[str]] = None,
+             expires_at: Optional[pulumi.Input[str]] = None,
+             invitation_id: Optional[pulumi.Input[str]] = None,
+             inviter_username: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
+             roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             teams_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             username: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if expires_at is not None:
-            pulumi.set(__self__, "expires_at", expires_at)
+            _setter("expires_at", expires_at)
         if invitation_id is not None:
-            pulumi.set(__self__, "invitation_id", invitation_id)
+            _setter("invitation_id", invitation_id)
         if inviter_username is not None:
-            pulumi.set(__self__, "inviter_username", inviter_username)
+            _setter("inviter_username", inviter_username)
         if org_id is not None:
-            pulumi.set(__self__, "org_id", org_id)
+            _setter("org_id", org_id)
         if roles is not None:
-            pulumi.set(__self__, "roles", roles)
+            _setter("roles", roles)
         if teams_ids is not None:
-            pulumi.set(__self__, "teams_ids", teams_ids)
+            _setter("teams_ids", teams_ids)
         if username is not None:
-            pulumi.set(__self__, "username", username)
+            _setter("username", username)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -351,6 +389,10 @@ class OrgInvitation(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            OrgInvitationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

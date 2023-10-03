@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -25,10 +25,23 @@ class CloudProviderAccessArgs:
         :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
         :param pulumi.Input[str] iam_assumed_role_arn: ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
         """
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "provider_name", provider_name)
+        CloudProviderAccessArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            provider_name=provider_name,
+            iam_assumed_role_arn=iam_assumed_role_arn,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             provider_name: pulumi.Input[str],
+             iam_assumed_role_arn: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
+        _setter("provider_name", provider_name)
         if iam_assumed_role_arn is not None:
-            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+            _setter("iam_assumed_role_arn", iam_assumed_role_arn)
 
     @property
     @pulumi.getter(name="projectId")
@@ -93,24 +106,49 @@ class _CloudProviderAccessState:
                
                Conditional
         """
+        _CloudProviderAccessState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            atlas_assumed_role_external_id=atlas_assumed_role_external_id,
+            atlas_aws_account_arn=atlas_aws_account_arn,
+            authorized_date=authorized_date,
+            created_date=created_date,
+            feature_usages=feature_usages,
+            iam_assumed_role_arn=iam_assumed_role_arn,
+            project_id=project_id,
+            provider_name=provider_name,
+            role_id=role_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             atlas_assumed_role_external_id: Optional[pulumi.Input[str]] = None,
+             atlas_aws_account_arn: Optional[pulumi.Input[str]] = None,
+             authorized_date: Optional[pulumi.Input[str]] = None,
+             created_date: Optional[pulumi.Input[str]] = None,
+             feature_usages: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessFeatureUsageArgs']]]] = None,
+             iam_assumed_role_arn: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             role_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if atlas_assumed_role_external_id is not None:
-            pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+            _setter("atlas_assumed_role_external_id", atlas_assumed_role_external_id)
         if atlas_aws_account_arn is not None:
-            pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
+            _setter("atlas_aws_account_arn", atlas_aws_account_arn)
         if authorized_date is not None:
-            pulumi.set(__self__, "authorized_date", authorized_date)
+            _setter("authorized_date", authorized_date)
         if created_date is not None:
-            pulumi.set(__self__, "created_date", created_date)
+            _setter("created_date", created_date)
         if feature_usages is not None:
-            pulumi.set(__self__, "feature_usages", feature_usages)
+            _setter("feature_usages", feature_usages)
         if iam_assumed_role_arn is not None:
-            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+            _setter("iam_assumed_role_arn", iam_assumed_role_arn)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if role_id is not None:
-            pulumi.set(__self__, "role_id", role_id)
+            _setter("role_id", role_id)
 
     @property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
@@ -372,6 +410,10 @@ class CloudProviderAccess(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CloudProviderAccessArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

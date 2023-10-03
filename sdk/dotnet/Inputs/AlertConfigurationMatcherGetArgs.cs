@@ -31,16 +31,14 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? FieldName { get; set; }
 
         /// <summary>
-        /// If omitted, the configuration is disabled.
-        /// Accepted values are:
-        /// Accepted values are:
+        /// The operator to test the field’s value.
         /// Accepted values are:
         /// </summary>
         [Input("operator")]
         public Input<string>? Operator { get; set; }
 
         /// <summary>
-        /// If omitted, the configuration is disabled.
+        /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }

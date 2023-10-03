@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -25,9 +25,22 @@ class ClusterOutageSimulationArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ClusterOutageSimulationOutageFilterArgs']]] outage_filters: List of settings that specify the type of cluster outage simulation.
         :param pulumi.Input[str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
         """
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "outage_filters", outage_filters)
-        pulumi.set(__self__, "project_id", project_id)
+        ClusterOutageSimulationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_name=cluster_name,
+            outage_filters=outage_filters,
+            project_id=project_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_name: pulumi.Input[str],
+             outage_filters: pulumi.Input[Sequence[pulumi.Input['ClusterOutageSimulationOutageFilterArgs']]],
+             project_id: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster_name", cluster_name)
+        _setter("outage_filters", outage_filters)
+        _setter("project_id", project_id)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -84,18 +97,37 @@ class _ClusterOutageSimulationState:
         :param pulumi.Input[str] start_request_date: Date and time when MongoDB Cloud started the regional outage simulation.
         :param pulumi.Input[str] state: Current phase of the outage simulation:
         """
+        _ClusterOutageSimulationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_name=cluster_name,
+            outage_filters=outage_filters,
+            project_id=project_id,
+            simulation_id=simulation_id,
+            start_request_date=start_request_date,
+            state=state,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             outage_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterOutageSimulationOutageFilterArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             simulation_id: Optional[pulumi.Input[str]] = None,
+             start_request_date: Optional[pulumi.Input[str]] = None,
+             state: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cluster_name is not None:
-            pulumi.set(__self__, "cluster_name", cluster_name)
+            _setter("cluster_name", cluster_name)
         if outage_filters is not None:
-            pulumi.set(__self__, "outage_filters", outage_filters)
+            _setter("outage_filters", outage_filters)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if simulation_id is not None:
-            pulumi.set(__self__, "simulation_id", simulation_id)
+            _setter("simulation_id", simulation_id)
         if start_request_date is not None:
-            pulumi.set(__self__, "start_request_date", start_request_date)
+            _setter("start_request_date", start_request_date)
         if state is not None:
-            pulumi.set(__self__, "state", state)
+            _setter("state", state)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -281,6 +313,10 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClusterOutageSimulationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

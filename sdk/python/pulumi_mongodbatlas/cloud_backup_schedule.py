@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -47,32 +47,67 @@ class CloudBackupScheduleArgs:
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
         :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "project_id", project_id)
+        CloudBackupScheduleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_name=cluster_name,
+            project_id=project_id,
+            auto_export_enabled=auto_export_enabled,
+            copy_settings=copy_settings,
+            export=export,
+            policy_item_daily=policy_item_daily,
+            policy_item_hourly=policy_item_hourly,
+            policy_item_monthlies=policy_item_monthlies,
+            policy_item_weeklies=policy_item_weeklies,
+            reference_hour_of_day=reference_hour_of_day,
+            reference_minute_of_hour=reference_minute_of_hour,
+            restore_window_days=restore_window_days,
+            update_snapshots=update_snapshots,
+            use_org_and_group_names_in_export_prefix=use_org_and_group_names_in_export_prefix,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_name: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             auto_export_enabled: Optional[pulumi.Input[bool]] = None,
+             copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]]] = None,
+             export: Optional[pulumi.Input['CloudBackupScheduleExportArgs']] = None,
+             policy_item_daily: Optional[pulumi.Input['CloudBackupSchedulePolicyItemDailyArgs']] = None,
+             policy_item_hourly: Optional[pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs']] = None,
+             policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]]] = None,
+             policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemWeeklyArgs']]]] = None,
+             reference_hour_of_day: Optional[pulumi.Input[int]] = None,
+             reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
+             restore_window_days: Optional[pulumi.Input[int]] = None,
+             update_snapshots: Optional[pulumi.Input[bool]] = None,
+             use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster_name", cluster_name)
+        _setter("project_id", project_id)
         if auto_export_enabled is not None:
-            pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
+            _setter("auto_export_enabled", auto_export_enabled)
         if copy_settings is not None:
-            pulumi.set(__self__, "copy_settings", copy_settings)
+            _setter("copy_settings", copy_settings)
         if export is not None:
-            pulumi.set(__self__, "export", export)
+            _setter("export", export)
         if policy_item_daily is not None:
-            pulumi.set(__self__, "policy_item_daily", policy_item_daily)
+            _setter("policy_item_daily", policy_item_daily)
         if policy_item_hourly is not None:
-            pulumi.set(__self__, "policy_item_hourly", policy_item_hourly)
+            _setter("policy_item_hourly", policy_item_hourly)
         if policy_item_monthlies is not None:
-            pulumi.set(__self__, "policy_item_monthlies", policy_item_monthlies)
+            _setter("policy_item_monthlies", policy_item_monthlies)
         if policy_item_weeklies is not None:
-            pulumi.set(__self__, "policy_item_weeklies", policy_item_weeklies)
+            _setter("policy_item_weeklies", policy_item_weeklies)
         if reference_hour_of_day is not None:
-            pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
+            _setter("reference_hour_of_day", reference_hour_of_day)
         if reference_minute_of_hour is not None:
-            pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
+            _setter("reference_minute_of_hour", reference_minute_of_hour)
         if restore_window_days is not None:
-            pulumi.set(__self__, "restore_window_days", restore_window_days)
+            _setter("restore_window_days", restore_window_days)
         if update_snapshots is not None:
-            pulumi.set(__self__, "update_snapshots", update_snapshots)
+            _setter("update_snapshots", update_snapshots)
         if use_org_and_group_names_in_export_prefix is not None:
-            pulumi.set(__self__, "use_org_and_group_names_in_export_prefix", use_org_and_group_names_in_export_prefix)
+            _setter("use_org_and_group_names_in_export_prefix", use_org_and_group_names_in_export_prefix)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -277,40 +312,81 @@ class _CloudBackupScheduleState:
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
         :param pulumi.Input[bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
+        _CloudBackupScheduleState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            auto_export_enabled=auto_export_enabled,
+            cluster_id=cluster_id,
+            cluster_name=cluster_name,
+            copy_settings=copy_settings,
+            export=export,
+            id_policy=id_policy,
+            next_snapshot=next_snapshot,
+            policy_item_daily=policy_item_daily,
+            policy_item_hourly=policy_item_hourly,
+            policy_item_monthlies=policy_item_monthlies,
+            policy_item_weeklies=policy_item_weeklies,
+            project_id=project_id,
+            reference_hour_of_day=reference_hour_of_day,
+            reference_minute_of_hour=reference_minute_of_hour,
+            restore_window_days=restore_window_days,
+            update_snapshots=update_snapshots,
+            use_org_and_group_names_in_export_prefix=use_org_and_group_names_in_export_prefix,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             auto_export_enabled: Optional[pulumi.Input[bool]] = None,
+             cluster_id: Optional[pulumi.Input[str]] = None,
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]]] = None,
+             export: Optional[pulumi.Input['CloudBackupScheduleExportArgs']] = None,
+             id_policy: Optional[pulumi.Input[str]] = None,
+             next_snapshot: Optional[pulumi.Input[str]] = None,
+             policy_item_daily: Optional[pulumi.Input['CloudBackupSchedulePolicyItemDailyArgs']] = None,
+             policy_item_hourly: Optional[pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs']] = None,
+             policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]]] = None,
+             policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemWeeklyArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             reference_hour_of_day: Optional[pulumi.Input[int]] = None,
+             reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
+             restore_window_days: Optional[pulumi.Input[int]] = None,
+             update_snapshots: Optional[pulumi.Input[bool]] = None,
+             use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if auto_export_enabled is not None:
-            pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
+            _setter("auto_export_enabled", auto_export_enabled)
         if cluster_id is not None:
-            pulumi.set(__self__, "cluster_id", cluster_id)
+            _setter("cluster_id", cluster_id)
         if cluster_name is not None:
-            pulumi.set(__self__, "cluster_name", cluster_name)
+            _setter("cluster_name", cluster_name)
         if copy_settings is not None:
-            pulumi.set(__self__, "copy_settings", copy_settings)
+            _setter("copy_settings", copy_settings)
         if export is not None:
-            pulumi.set(__self__, "export", export)
+            _setter("export", export)
         if id_policy is not None:
-            pulumi.set(__self__, "id_policy", id_policy)
+            _setter("id_policy", id_policy)
         if next_snapshot is not None:
-            pulumi.set(__self__, "next_snapshot", next_snapshot)
+            _setter("next_snapshot", next_snapshot)
         if policy_item_daily is not None:
-            pulumi.set(__self__, "policy_item_daily", policy_item_daily)
+            _setter("policy_item_daily", policy_item_daily)
         if policy_item_hourly is not None:
-            pulumi.set(__self__, "policy_item_hourly", policy_item_hourly)
+            _setter("policy_item_hourly", policy_item_hourly)
         if policy_item_monthlies is not None:
-            pulumi.set(__self__, "policy_item_monthlies", policy_item_monthlies)
+            _setter("policy_item_monthlies", policy_item_monthlies)
         if policy_item_weeklies is not None:
-            pulumi.set(__self__, "policy_item_weeklies", policy_item_weeklies)
+            _setter("policy_item_weeklies", policy_item_weeklies)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if reference_hour_of_day is not None:
-            pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
+            _setter("reference_hour_of_day", reference_hour_of_day)
         if reference_minute_of_hour is not None:
-            pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
+            _setter("reference_minute_of_hour", reference_minute_of_hour)
         if restore_window_days is not None:
-            pulumi.set(__self__, "restore_window_days", restore_window_days)
+            _setter("restore_window_days", restore_window_days)
         if update_snapshots is not None:
-            pulumi.set(__self__, "update_snapshots", update_snapshots)
+            _setter("update_snapshots", update_snapshots)
         if use_org_and_group_names_in_export_prefix is not None:
-            pulumi.set(__self__, "use_org_and_group_names_in_export_prefix", use_org_and_group_names_in_export_prefix)
+            _setter("use_org_and_group_names_in_export_prefix", use_org_and_group_names_in_export_prefix)
 
     @property
     @pulumi.getter(name="autoExportEnabled")
@@ -584,6 +660,10 @@ class CloudBackupSchedule(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CloudBackupScheduleArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -617,8 +697,23 @@ class CloudBackupSchedule(pulumi.CustomResource):
                 raise TypeError("Missing required property 'cluster_name'")
             __props__.__dict__["cluster_name"] = cluster_name
             __props__.__dict__["copy_settings"] = copy_settings
+            if export is not None and not isinstance(export, CloudBackupScheduleExportArgs):
+                export = export or {}
+                def _setter(key, value):
+                    export[key] = value
+                CloudBackupScheduleExportArgs._configure(_setter, **export)
             __props__.__dict__["export"] = export
+            if policy_item_daily is not None and not isinstance(policy_item_daily, CloudBackupSchedulePolicyItemDailyArgs):
+                policy_item_daily = policy_item_daily or {}
+                def _setter(key, value):
+                    policy_item_daily[key] = value
+                CloudBackupSchedulePolicyItemDailyArgs._configure(_setter, **policy_item_daily)
             __props__.__dict__["policy_item_daily"] = policy_item_daily
+            if policy_item_hourly is not None and not isinstance(policy_item_hourly, CloudBackupSchedulePolicyItemHourlyArgs):
+                policy_item_hourly = policy_item_hourly or {}
+                def _setter(key, value):
+                    policy_item_hourly[key] = value
+                CloudBackupSchedulePolicyItemHourlyArgs._configure(_setter, **policy_item_hourly)
             __props__.__dict__["policy_item_hourly"] = policy_item_hourly
             __props__.__dict__["policy_item_monthlies"] = policy_item_monthlies
             __props__.__dict__["policy_item_weeklies"] = policy_item_weeklies

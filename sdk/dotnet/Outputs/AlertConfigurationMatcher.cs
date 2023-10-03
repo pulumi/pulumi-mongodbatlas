@@ -30,14 +30,12 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? FieldName;
         /// <summary>
-        /// If omitted, the configuration is disabled.
-        /// Accepted values are:
-        /// Accepted values are:
+        /// The operator to test the field’s value.
         /// Accepted values are:
         /// </summary>
         public readonly string? Operator;
         /// <summary>
-        /// If omitted, the configuration is disabled.
+        /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         /// </summary>
         public readonly string? Value;
 

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -30,28 +30,49 @@ class EncryptionAtRestArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] azure_key_vault: Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] google_cloud_kms: Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
-        pulumi.set(__self__, "project_id", project_id)
+        EncryptionAtRestArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            aws_kms=aws_kms,
+            aws_kms_config=aws_kms_config,
+            azure_key_vault=azure_key_vault,
+            azure_key_vault_config=azure_key_vault_config,
+            google_cloud_kms=google_cloud_kms,
+            google_cloud_kms_config=google_cloud_kms_config,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             aws_kms: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             aws_kms_config: Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']] = None,
+             azure_key_vault: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             azure_key_vault_config: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']] = None,
+             google_cloud_kms: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             google_cloud_kms_config: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
         if aws_kms is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""", DeprecationWarning)
             pulumi.log.warn("""aws_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""")
         if aws_kms is not None:
-            pulumi.set(__self__, "aws_kms", aws_kms)
+            _setter("aws_kms", aws_kms)
         if aws_kms_config is not None:
-            pulumi.set(__self__, "aws_kms_config", aws_kms_config)
+            _setter("aws_kms_config", aws_kms_config)
         if azure_key_vault is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""", DeprecationWarning)
             pulumi.log.warn("""azure_key_vault is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""")
         if azure_key_vault is not None:
-            pulumi.set(__self__, "azure_key_vault", azure_key_vault)
+            _setter("azure_key_vault", azure_key_vault)
         if azure_key_vault_config is not None:
-            pulumi.set(__self__, "azure_key_vault_config", azure_key_vault_config)
+            _setter("azure_key_vault_config", azure_key_vault_config)
         if google_cloud_kms is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""", DeprecationWarning)
             pulumi.log.warn("""google_cloud_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""")
         if google_cloud_kms is not None:
-            pulumi.set(__self__, "google_cloud_kms", google_cloud_kms)
+            _setter("google_cloud_kms", google_cloud_kms)
         if google_cloud_kms_config is not None:
-            pulumi.set(__self__, "google_cloud_kms_config", google_cloud_kms_config)
+            _setter("google_cloud_kms_config", google_cloud_kms_config)
 
     @property
     @pulumi.getter(name="projectId")
@@ -155,29 +176,50 @@ class _EncryptionAtRestState:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] google_cloud_kms: Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         :param pulumi.Input[str] project_id: The unique identifier for the project.
         """
+        _EncryptionAtRestState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_kms=aws_kms,
+            aws_kms_config=aws_kms_config,
+            azure_key_vault=azure_key_vault,
+            azure_key_vault_config=azure_key_vault_config,
+            google_cloud_kms=google_cloud_kms,
+            google_cloud_kms_config=google_cloud_kms_config,
+            project_id=project_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_kms: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             aws_kms_config: Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']] = None,
+             azure_key_vault: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             azure_key_vault_config: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']] = None,
+             google_cloud_kms: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             google_cloud_kms_config: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if aws_kms is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""", DeprecationWarning)
             pulumi.log.warn("""aws_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""")
         if aws_kms is not None:
-            pulumi.set(__self__, "aws_kms", aws_kms)
+            _setter("aws_kms", aws_kms)
         if aws_kms_config is not None:
-            pulumi.set(__self__, "aws_kms_config", aws_kms_config)
+            _setter("aws_kms_config", aws_kms_config)
         if azure_key_vault is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""", DeprecationWarning)
             pulumi.log.warn("""azure_key_vault is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""")
         if azure_key_vault is not None:
-            pulumi.set(__self__, "azure_key_vault", azure_key_vault)
+            _setter("azure_key_vault", azure_key_vault)
         if azure_key_vault_config is not None:
-            pulumi.set(__self__, "azure_key_vault_config", azure_key_vault_config)
+            _setter("azure_key_vault_config", azure_key_vault_config)
         if google_cloud_kms is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""", DeprecationWarning)
             pulumi.log.warn("""google_cloud_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""")
         if google_cloud_kms is not None:
-            pulumi.set(__self__, "google_cloud_kms", google_cloud_kms)
+            _setter("google_cloud_kms", google_cloud_kms)
         if google_cloud_kms_config is not None:
-            pulumi.set(__self__, "google_cloud_kms_config", google_cloud_kms_config)
+            _setter("google_cloud_kms_config", google_cloud_kms_config)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
 
     @property
     @pulumi.getter(name="awsKms")
@@ -320,6 +362,10 @@ class EncryptionAtRest(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            EncryptionAtRestArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -341,20 +387,26 @@ class EncryptionAtRest(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = EncryptionAtRestArgs.__new__(EncryptionAtRestArgs)
 
-            if aws_kms is not None and not opts.urn:
-                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""", DeprecationWarning)
-                pulumi.log.warn("""aws_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config""")
             __props__.__dict__["aws_kms"] = None if aws_kms is None else pulumi.Output.secret(aws_kms)
+            if aws_kms_config is not None and not isinstance(aws_kms_config, EncryptionAtRestAwsKmsConfigArgs):
+                aws_kms_config = aws_kms_config or {}
+                def _setter(key, value):
+                    aws_kms_config[key] = value
+                EncryptionAtRestAwsKmsConfigArgs._configure(_setter, **aws_kms_config)
             __props__.__dict__["aws_kms_config"] = None if aws_kms_config is None else pulumi.Output.secret(aws_kms_config)
-            if azure_key_vault is not None and not opts.urn:
-                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""", DeprecationWarning)
-                pulumi.log.warn("""azure_key_vault is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config""")
             __props__.__dict__["azure_key_vault"] = None if azure_key_vault is None else pulumi.Output.secret(azure_key_vault)
+            if azure_key_vault_config is not None and not isinstance(azure_key_vault_config, EncryptionAtRestAzureKeyVaultConfigArgs):
+                azure_key_vault_config = azure_key_vault_config or {}
+                def _setter(key, value):
+                    azure_key_vault_config[key] = value
+                EncryptionAtRestAzureKeyVaultConfigArgs._configure(_setter, **azure_key_vault_config)
             __props__.__dict__["azure_key_vault_config"] = None if azure_key_vault_config is None else pulumi.Output.secret(azure_key_vault_config)
-            if google_cloud_kms is not None and not opts.urn:
-                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""", DeprecationWarning)
-                pulumi.log.warn("""google_cloud_kms is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config""")
             __props__.__dict__["google_cloud_kms"] = None if google_cloud_kms is None else pulumi.Output.secret(google_cloud_kms)
+            if google_cloud_kms_config is not None and not isinstance(google_cloud_kms_config, EncryptionAtRestGoogleCloudKmsConfigArgs):
+                google_cloud_kms_config = google_cloud_kms_config or {}
+                def _setter(key, value):
+                    google_cloud_kms_config[key] = value
+                EncryptionAtRestGoogleCloudKmsConfigArgs._configure(_setter, **google_cloud_kms_config)
             __props__.__dict__["google_cloud_kms_config"] = None if google_cloud_kms_config is None else pulumi.Output.secret(google_cloud_kms_config)
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")

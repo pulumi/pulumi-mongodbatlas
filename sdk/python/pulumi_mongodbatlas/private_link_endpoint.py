@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['PrivateLinkEndpointArgs', 'PrivateLinkEndpoint']
@@ -24,9 +24,22 @@ class PrivateLinkEndpointArgs:
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         """
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "region", region)
+        PrivateLinkEndpointArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            provider_name=provider_name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             provider_name: pulumi.Input[str],
+             region: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
+        _setter("provider_name", provider_name)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="projectId")
@@ -104,34 +117,69 @@ class _PrivateLinkEndpointState:
         :param pulumi.Input[str] status: Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
                AWS:
         """
+        _PrivateLinkEndpointState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_group_names=endpoint_group_names,
+            endpoint_service_name=endpoint_service_name,
+            error_message=error_message,
+            interface_endpoints=interface_endpoints,
+            private_endpoints=private_endpoints,
+            private_link_id=private_link_id,
+            private_link_service_name=private_link_service_name,
+            private_link_service_resource_id=private_link_service_resource_id,
+            project_id=project_id,
+            provider_name=provider_name,
+            region=region,
+            region_name=region_name,
+            service_attachment_names=service_attachment_names,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_group_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             endpoint_service_name: Optional[pulumi.Input[str]] = None,
+             error_message: Optional[pulumi.Input[str]] = None,
+             interface_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             private_link_id: Optional[pulumi.Input[str]] = None,
+             private_link_service_name: Optional[pulumi.Input[str]] = None,
+             private_link_service_resource_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             region_name: Optional[pulumi.Input[str]] = None,
+             service_attachment_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if endpoint_group_names is not None:
-            pulumi.set(__self__, "endpoint_group_names", endpoint_group_names)
+            _setter("endpoint_group_names", endpoint_group_names)
         if endpoint_service_name is not None:
-            pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
+            _setter("endpoint_service_name", endpoint_service_name)
         if error_message is not None:
-            pulumi.set(__self__, "error_message", error_message)
+            _setter("error_message", error_message)
         if interface_endpoints is not None:
-            pulumi.set(__self__, "interface_endpoints", interface_endpoints)
+            _setter("interface_endpoints", interface_endpoints)
         if private_endpoints is not None:
-            pulumi.set(__self__, "private_endpoints", private_endpoints)
+            _setter("private_endpoints", private_endpoints)
         if private_link_id is not None:
-            pulumi.set(__self__, "private_link_id", private_link_id)
+            _setter("private_link_id", private_link_id)
         if private_link_service_name is not None:
-            pulumi.set(__self__, "private_link_service_name", private_link_service_name)
+            _setter("private_link_service_name", private_link_service_name)
         if private_link_service_resource_id is not None:
-            pulumi.set(__self__, "private_link_service_resource_id", private_link_service_resource_id)
+            _setter("private_link_service_resource_id", private_link_service_resource_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if region_name is not None:
-            pulumi.set(__self__, "region_name", region_name)
+            _setter("region_name", region_name)
         if service_attachment_names is not None:
-            pulumi.set(__self__, "service_attachment_names", service_attachment_names)
+            _setter("service_attachment_names", service_attachment_names)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
 
     @property
     @pulumi.getter(name="endpointGroupNames")
@@ -356,6 +404,10 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            PrivateLinkEndpointArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

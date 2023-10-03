@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -59,41 +59,86 @@ class EventTriggerArgs:
         :param pulumi.Input[str] name: The name of the trigger.
         :param pulumi.Input[bool] unordered: Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
         """
-        pulumi.set(__self__, "app_id", app_id)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "type", type)
+        EventTriggerArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            app_id=app_id,
+            project_id=project_id,
+            type=type,
+            config_collection=config_collection,
+            config_database=config_database,
+            config_full_document=config_full_document,
+            config_full_document_before=config_full_document_before,
+            config_match=config_match,
+            config_operation_type=config_operation_type,
+            config_operation_types=config_operation_types,
+            config_project=config_project,
+            config_providers=config_providers,
+            config_schedule=config_schedule,
+            config_service_id=config_service_id,
+            disabled=disabled,
+            event_processors=event_processors,
+            function_id=function_id,
+            name=name,
+            unordered=unordered,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             app_id: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             type: pulumi.Input[str],
+             config_collection: Optional[pulumi.Input[str]] = None,
+             config_database: Optional[pulumi.Input[str]] = None,
+             config_full_document: Optional[pulumi.Input[bool]] = None,
+             config_full_document_before: Optional[pulumi.Input[bool]] = None,
+             config_match: Optional[pulumi.Input[str]] = None,
+             config_operation_type: Optional[pulumi.Input[str]] = None,
+             config_operation_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             config_project: Optional[pulumi.Input[str]] = None,
+             config_providers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             config_schedule: Optional[pulumi.Input[str]] = None,
+             config_service_id: Optional[pulumi.Input[str]] = None,
+             disabled: Optional[pulumi.Input[bool]] = None,
+             event_processors: Optional[pulumi.Input['EventTriggerEventProcessorsArgs']] = None,
+             function_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             unordered: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("app_id", app_id)
+        _setter("project_id", project_id)
+        _setter("type", type)
         if config_collection is not None:
-            pulumi.set(__self__, "config_collection", config_collection)
+            _setter("config_collection", config_collection)
         if config_database is not None:
-            pulumi.set(__self__, "config_database", config_database)
+            _setter("config_database", config_database)
         if config_full_document is not None:
-            pulumi.set(__self__, "config_full_document", config_full_document)
+            _setter("config_full_document", config_full_document)
         if config_full_document_before is not None:
-            pulumi.set(__self__, "config_full_document_before", config_full_document_before)
+            _setter("config_full_document_before", config_full_document_before)
         if config_match is not None:
-            pulumi.set(__self__, "config_match", config_match)
+            _setter("config_match", config_match)
         if config_operation_type is not None:
-            pulumi.set(__self__, "config_operation_type", config_operation_type)
+            _setter("config_operation_type", config_operation_type)
         if config_operation_types is not None:
-            pulumi.set(__self__, "config_operation_types", config_operation_types)
+            _setter("config_operation_types", config_operation_types)
         if config_project is not None:
-            pulumi.set(__self__, "config_project", config_project)
+            _setter("config_project", config_project)
         if config_providers is not None:
-            pulumi.set(__self__, "config_providers", config_providers)
+            _setter("config_providers", config_providers)
         if config_schedule is not None:
-            pulumi.set(__self__, "config_schedule", config_schedule)
+            _setter("config_schedule", config_schedule)
         if config_service_id is not None:
-            pulumi.set(__self__, "config_service_id", config_service_id)
+            _setter("config_service_id", config_service_id)
         if disabled is not None:
-            pulumi.set(__self__, "disabled", disabled)
+            _setter("disabled", disabled)
         if event_processors is not None:
-            pulumi.set(__self__, "event_processors", event_processors)
+            _setter("event_processors", event_processors)
         if function_id is not None:
-            pulumi.set(__self__, "function_id", function_id)
+            _setter("function_id", function_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if unordered is not None:
-            pulumi.set(__self__, "unordered", unordered)
+            _setter("unordered", unordered)
 
     @property
     @pulumi.getter(name="appId")
@@ -375,50 +420,101 @@ class _EventTriggerState:
         :param pulumi.Input[str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
         :param pulumi.Input[bool] unordered: Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
         """
+        _EventTriggerState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            app_id=app_id,
+            config_collection=config_collection,
+            config_database=config_database,
+            config_full_document=config_full_document,
+            config_full_document_before=config_full_document_before,
+            config_match=config_match,
+            config_operation_type=config_operation_type,
+            config_operation_types=config_operation_types,
+            config_project=config_project,
+            config_providers=config_providers,
+            config_schedule=config_schedule,
+            config_schedule_type=config_schedule_type,
+            config_service_id=config_service_id,
+            disabled=disabled,
+            event_processors=event_processors,
+            function_id=function_id,
+            function_name=function_name,
+            name=name,
+            project_id=project_id,
+            trigger_id=trigger_id,
+            type=type,
+            unordered=unordered,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             app_id: Optional[pulumi.Input[str]] = None,
+             config_collection: Optional[pulumi.Input[str]] = None,
+             config_database: Optional[pulumi.Input[str]] = None,
+             config_full_document: Optional[pulumi.Input[bool]] = None,
+             config_full_document_before: Optional[pulumi.Input[bool]] = None,
+             config_match: Optional[pulumi.Input[str]] = None,
+             config_operation_type: Optional[pulumi.Input[str]] = None,
+             config_operation_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             config_project: Optional[pulumi.Input[str]] = None,
+             config_providers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             config_schedule: Optional[pulumi.Input[str]] = None,
+             config_schedule_type: Optional[pulumi.Input[str]] = None,
+             config_service_id: Optional[pulumi.Input[str]] = None,
+             disabled: Optional[pulumi.Input[bool]] = None,
+             event_processors: Optional[pulumi.Input['EventTriggerEventProcessorsArgs']] = None,
+             function_id: Optional[pulumi.Input[str]] = None,
+             function_name: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             trigger_id: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             unordered: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if app_id is not None:
-            pulumi.set(__self__, "app_id", app_id)
+            _setter("app_id", app_id)
         if config_collection is not None:
-            pulumi.set(__self__, "config_collection", config_collection)
+            _setter("config_collection", config_collection)
         if config_database is not None:
-            pulumi.set(__self__, "config_database", config_database)
+            _setter("config_database", config_database)
         if config_full_document is not None:
-            pulumi.set(__self__, "config_full_document", config_full_document)
+            _setter("config_full_document", config_full_document)
         if config_full_document_before is not None:
-            pulumi.set(__self__, "config_full_document_before", config_full_document_before)
+            _setter("config_full_document_before", config_full_document_before)
         if config_match is not None:
-            pulumi.set(__self__, "config_match", config_match)
+            _setter("config_match", config_match)
         if config_operation_type is not None:
-            pulumi.set(__self__, "config_operation_type", config_operation_type)
+            _setter("config_operation_type", config_operation_type)
         if config_operation_types is not None:
-            pulumi.set(__self__, "config_operation_types", config_operation_types)
+            _setter("config_operation_types", config_operation_types)
         if config_project is not None:
-            pulumi.set(__self__, "config_project", config_project)
+            _setter("config_project", config_project)
         if config_providers is not None:
-            pulumi.set(__self__, "config_providers", config_providers)
+            _setter("config_providers", config_providers)
         if config_schedule is not None:
-            pulumi.set(__self__, "config_schedule", config_schedule)
+            _setter("config_schedule", config_schedule)
         if config_schedule_type is not None:
-            pulumi.set(__self__, "config_schedule_type", config_schedule_type)
+            _setter("config_schedule_type", config_schedule_type)
         if config_service_id is not None:
-            pulumi.set(__self__, "config_service_id", config_service_id)
+            _setter("config_service_id", config_service_id)
         if disabled is not None:
-            pulumi.set(__self__, "disabled", disabled)
+            _setter("disabled", disabled)
         if event_processors is not None:
-            pulumi.set(__self__, "event_processors", event_processors)
+            _setter("event_processors", event_processors)
         if function_id is not None:
-            pulumi.set(__self__, "function_id", function_id)
+            _setter("function_id", function_id)
         if function_name is not None:
-            pulumi.set(__self__, "function_name", function_name)
+            _setter("function_name", function_name)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if trigger_id is not None:
-            pulumi.set(__self__, "trigger_id", trigger_id)
+            _setter("trigger_id", trigger_id)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
         if unordered is not None:
-            pulumi.set(__self__, "unordered", unordered)
+            _setter("unordered", unordered)
 
     @property
     @pulumi.getter(name="appId")
@@ -969,6 +1065,10 @@ class EventTrigger(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            EventTriggerArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1017,6 +1117,11 @@ class EventTrigger(pulumi.CustomResource):
             __props__.__dict__["config_schedule"] = config_schedule
             __props__.__dict__["config_service_id"] = config_service_id
             __props__.__dict__["disabled"] = disabled
+            if event_processors is not None and not isinstance(event_processors, EventTriggerEventProcessorsArgs):
+                event_processors = event_processors or {}
+                def _setter(key, value):
+                    event_processors[key] = value
+                EventTriggerEventProcessorsArgs._configure(_setter, **event_processors)
             __props__.__dict__["event_processors"] = event_processors
             __props__.__dict__["function_id"] = function_id
             __props__.__dict__["name"] = name

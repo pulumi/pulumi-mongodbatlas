@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
@@ -26,26 +26,53 @@ class AssumeRole(dict):
                  source_identity: Optional[str] = None,
                  tags: Optional[Mapping[str, str]] = None,
                  transitive_tag_keys: Optional[Sequence[str]] = None):
+        AssumeRole._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            duration=duration,
+            duration_seconds=duration_seconds,
+            external_id=external_id,
+            policy=policy,
+            policy_arns=policy_arns,
+            role_arn=role_arn,
+            session_name=session_name,
+            source_identity=source_identity,
+            tags=tags,
+            transitive_tag_keys=transitive_tag_keys,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             duration: Optional[str] = None,
+             duration_seconds: Optional[int] = None,
+             external_id: Optional[str] = None,
+             policy: Optional[str] = None,
+             policy_arns: Optional[Sequence[str]] = None,
+             role_arn: Optional[str] = None,
+             session_name: Optional[str] = None,
+             source_identity: Optional[str] = None,
+             tags: Optional[Mapping[str, str]] = None,
+             transitive_tag_keys: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if duration is not None:
-            pulumi.set(__self__, "duration", duration)
+            _setter("duration", duration)
         if duration_seconds is not None:
-            pulumi.set(__self__, "duration_seconds", duration_seconds)
+            _setter("duration_seconds", duration_seconds)
         if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
+            _setter("external_id", external_id)
         if policy is not None:
-            pulumi.set(__self__, "policy", policy)
+            _setter("policy", policy)
         if policy_arns is not None:
-            pulumi.set(__self__, "policy_arns", policy_arns)
+            _setter("policy_arns", policy_arns)
         if role_arn is not None:
-            pulumi.set(__self__, "role_arn", role_arn)
+            _setter("role_arn", role_arn)
         if session_name is not None:
-            pulumi.set(__self__, "session_name", session_name)
+            _setter("session_name", session_name)
         if source_identity is not None:
-            pulumi.set(__self__, "source_identity", source_identity)
+            _setter("source_identity", source_identity)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if transitive_tag_keys is not None:
-            pulumi.set(__self__, "transitive_tag_keys", transitive_tag_keys)
+            _setter("transitive_tag_keys", transitive_tag_keys)
 
     @property
     @pulumi.getter

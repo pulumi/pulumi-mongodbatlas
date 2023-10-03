@@ -51,9 +51,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * The operator to test the field’s value.
      * Accepted values are:
      * 
      */
@@ -61,9 +59,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
     private @Nullable Output<String> operator;
 
     /**
-     * @return If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * @return The operator to test the field’s value.
      * Accepted values are:
      * 
      */
@@ -72,14 +68,14 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * If omitted, the configuration is disabled.
+     * Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
      * 
      */
     @Import(name="value")
     private @Nullable Output<String> value;
 
     /**
-     * @return If omitted, the configuration is disabled.
+     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
      * 
      */
     public Optional<Output<String>> value() {
@@ -154,9 +150,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param operator If omitted, the configuration is disabled.
-         * Accepted values are:
-         * Accepted values are:
+         * @param operator The operator to test the field’s value.
          * Accepted values are:
          * 
          * @return builder
@@ -168,9 +162,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param operator If omitted, the configuration is disabled.
-         * Accepted values are:
-         * Accepted values are:
+         * @param operator The operator to test the field’s value.
          * Accepted values are:
          * 
          * @return builder
@@ -181,7 +173,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param value If omitted, the configuration is disabled.
+         * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
          * 
          * @return builder
          * 
@@ -192,7 +184,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param value If omitted, the configuration is disabled.
+         * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
          * 
          * @return builder
          * 

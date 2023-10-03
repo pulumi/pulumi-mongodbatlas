@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['MaintenanceWindowArgs', 'MaintenanceWindow']
@@ -30,19 +30,40 @@ class MaintenanceWindowArgs:
         :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
         :param pulumi.Input[int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
         """
-        pulumi.set(__self__, "project_id", project_id)
+        MaintenanceWindowArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            auto_defer=auto_defer,
+            auto_defer_once_enabled=auto_defer_once_enabled,
+            day_of_week=day_of_week,
+            defer=defer,
+            hour_of_day=hour_of_day,
+            number_of_deferrals=number_of_deferrals,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             auto_defer: Optional[pulumi.Input[bool]] = None,
+             auto_defer_once_enabled: Optional[pulumi.Input[bool]] = None,
+             day_of_week: Optional[pulumi.Input[int]] = None,
+             defer: Optional[pulumi.Input[bool]] = None,
+             hour_of_day: Optional[pulumi.Input[int]] = None,
+             number_of_deferrals: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
         if auto_defer is not None:
-            pulumi.set(__self__, "auto_defer", auto_defer)
+            _setter("auto_defer", auto_defer)
         if auto_defer_once_enabled is not None:
-            pulumi.set(__self__, "auto_defer_once_enabled", auto_defer_once_enabled)
+            _setter("auto_defer_once_enabled", auto_defer_once_enabled)
         if day_of_week is not None:
-            pulumi.set(__self__, "day_of_week", day_of_week)
+            _setter("day_of_week", day_of_week)
         if defer is not None:
-            pulumi.set(__self__, "defer", defer)
+            _setter("defer", defer)
         if hour_of_day is not None:
-            pulumi.set(__self__, "hour_of_day", hour_of_day)
+            _setter("hour_of_day", hour_of_day)
         if number_of_deferrals is not None:
-            pulumi.set(__self__, "number_of_deferrals", number_of_deferrals)
+            _setter("number_of_deferrals", number_of_deferrals)
 
     @property
     @pulumi.getter(name="projectId")
@@ -147,22 +168,45 @@ class _MaintenanceWindowState:
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
         :param pulumi.Input[bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         """
+        _MaintenanceWindowState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            auto_defer=auto_defer,
+            auto_defer_once_enabled=auto_defer_once_enabled,
+            day_of_week=day_of_week,
+            defer=defer,
+            hour_of_day=hour_of_day,
+            number_of_deferrals=number_of_deferrals,
+            project_id=project_id,
+            start_asap=start_asap,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             auto_defer: Optional[pulumi.Input[bool]] = None,
+             auto_defer_once_enabled: Optional[pulumi.Input[bool]] = None,
+             day_of_week: Optional[pulumi.Input[int]] = None,
+             defer: Optional[pulumi.Input[bool]] = None,
+             hour_of_day: Optional[pulumi.Input[int]] = None,
+             number_of_deferrals: Optional[pulumi.Input[int]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             start_asap: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if auto_defer is not None:
-            pulumi.set(__self__, "auto_defer", auto_defer)
+            _setter("auto_defer", auto_defer)
         if auto_defer_once_enabled is not None:
-            pulumi.set(__self__, "auto_defer_once_enabled", auto_defer_once_enabled)
+            _setter("auto_defer_once_enabled", auto_defer_once_enabled)
         if day_of_week is not None:
-            pulumi.set(__self__, "day_of_week", day_of_week)
+            _setter("day_of_week", day_of_week)
         if defer is not None:
-            pulumi.set(__self__, "defer", defer)
+            _setter("defer", defer)
         if hour_of_day is not None:
-            pulumi.set(__self__, "hour_of_day", hour_of_day)
+            _setter("hour_of_day", hour_of_day)
         if number_of_deferrals is not None:
-            pulumi.set(__self__, "number_of_deferrals", number_of_deferrals)
+            _setter("number_of_deferrals", number_of_deferrals)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if start_asap is not None:
-            pulumi.set(__self__, "start_asap", start_asap)
+            _setter("start_asap", start_asap)
 
     @property
     @pulumi.getter(name="autoDefer")
@@ -382,6 +426,10 @@ class MaintenanceWindow(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            MaintenanceWindowArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

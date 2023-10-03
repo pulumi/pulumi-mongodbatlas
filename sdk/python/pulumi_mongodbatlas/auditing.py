@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AuditingArgs', 'Auditing']
@@ -27,13 +27,28 @@ class AuditingArgs:
                
                > **NOTE:** Auditing created by API Keys must belong to an existing organization.
         """
-        pulumi.set(__self__, "project_id", project_id)
+        AuditingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            audit_authorization_success=audit_authorization_success,
+            audit_filter=audit_filter,
+            enabled=enabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             audit_authorization_success: Optional[pulumi.Input[bool]] = None,
+             audit_filter: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
         if audit_authorization_success is not None:
-            pulumi.set(__self__, "audit_authorization_success", audit_authorization_success)
+            _setter("audit_authorization_success", audit_authorization_success)
         if audit_filter is not None:
-            pulumi.set(__self__, "audit_filter", audit_filter)
+            _setter("audit_filter", audit_filter)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
 
     @property
     @pulumi.getter(name="projectId")
@@ -107,16 +122,33 @@ class _AuditingState:
                > **NOTE:** Auditing created by API Keys must belong to an existing organization.
         :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         """
+        _AuditingState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            audit_authorization_success=audit_authorization_success,
+            audit_filter=audit_filter,
+            configuration_type=configuration_type,
+            enabled=enabled,
+            project_id=project_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             audit_authorization_success: Optional[pulumi.Input[bool]] = None,
+             audit_filter: Optional[pulumi.Input[str]] = None,
+             configuration_type: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if audit_authorization_success is not None:
-            pulumi.set(__self__, "audit_authorization_success", audit_authorization_success)
+            _setter("audit_authorization_success", audit_authorization_success)
         if audit_filter is not None:
-            pulumi.set(__self__, "audit_filter", audit_filter)
+            _setter("audit_filter", audit_filter)
         if configuration_type is not None:
-            pulumi.set(__self__, "configuration_type", configuration_type)
+            _setter("configuration_type", configuration_type)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
 
     @property
     @pulumi.getter(name="auditAuthorizationSuccess")
@@ -269,6 +301,10 @@ class Auditing(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AuditingArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

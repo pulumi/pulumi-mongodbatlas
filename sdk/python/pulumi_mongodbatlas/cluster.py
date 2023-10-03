@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -111,80 +111,155 @@ class ClusterArgs:
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
-        pulumi.set(__self__, "provider_name", provider_name)
+        ClusterArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            provider_instance_size_name=provider_instance_size_name,
+            provider_name=provider_name,
+            advanced_configuration=advanced_configuration,
+            auto_scaling_compute_enabled=auto_scaling_compute_enabled,
+            auto_scaling_compute_scale_down_enabled=auto_scaling_compute_scale_down_enabled,
+            auto_scaling_disk_gb_enabled=auto_scaling_disk_gb_enabled,
+            backing_provider_name=backing_provider_name,
+            backup_enabled=backup_enabled,
+            bi_connector=bi_connector,
+            bi_connector_config=bi_connector_config,
+            cloud_backup=cloud_backup,
+            cluster_type=cluster_type,
+            disk_size_gb=disk_size_gb,
+            encryption_at_rest_provider=encryption_at_rest_provider,
+            labels=labels,
+            mongo_db_major_version=mongo_db_major_version,
+            name=name,
+            num_shards=num_shards,
+            paused=paused,
+            pit_enabled=pit_enabled,
+            provider_auto_scaling_compute_max_instance_size=provider_auto_scaling_compute_max_instance_size,
+            provider_auto_scaling_compute_min_instance_size=provider_auto_scaling_compute_min_instance_size,
+            provider_backup_enabled=provider_backup_enabled,
+            provider_disk_iops=provider_disk_iops,
+            provider_disk_type_name=provider_disk_type_name,
+            provider_encrypt_ebs_volume=provider_encrypt_ebs_volume,
+            provider_region_name=provider_region_name,
+            provider_volume_type=provider_volume_type,
+            replication_factor=replication_factor,
+            replication_specs=replication_specs,
+            retain_backups_enabled=retain_backups_enabled,
+            termination_protection_enabled=termination_protection_enabled,
+            version_release_system=version_release_system,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             provider_instance_size_name: pulumi.Input[str],
+             provider_name: pulumi.Input[str],
+             advanced_configuration: Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']] = None,
+             auto_scaling_compute_enabled: Optional[pulumi.Input[bool]] = None,
+             auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[bool]] = None,
+             auto_scaling_disk_gb_enabled: Optional[pulumi.Input[bool]] = None,
+             backing_provider_name: Optional[pulumi.Input[str]] = None,
+             backup_enabled: Optional[pulumi.Input[bool]] = None,
+             bi_connector: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             bi_connector_config: Optional[pulumi.Input['ClusterBiConnectorConfigArgs']] = None,
+             cloud_backup: Optional[pulumi.Input[bool]] = None,
+             cluster_type: Optional[pulumi.Input[str]] = None,
+             disk_size_gb: Optional[pulumi.Input[float]] = None,
+             encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]] = None,
+             mongo_db_major_version: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             num_shards: Optional[pulumi.Input[int]] = None,
+             paused: Optional[pulumi.Input[bool]] = None,
+             pit_enabled: Optional[pulumi.Input[bool]] = None,
+             provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[str]] = None,
+             provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[str]] = None,
+             provider_backup_enabled: Optional[pulumi.Input[bool]] = None,
+             provider_disk_iops: Optional[pulumi.Input[int]] = None,
+             provider_disk_type_name: Optional[pulumi.Input[str]] = None,
+             provider_encrypt_ebs_volume: Optional[pulumi.Input[bool]] = None,
+             provider_region_name: Optional[pulumi.Input[str]] = None,
+             provider_volume_type: Optional[pulumi.Input[str]] = None,
+             replication_factor: Optional[pulumi.Input[int]] = None,
+             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
+             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
+             termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
+             version_release_system: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
+        _setter("provider_instance_size_name", provider_instance_size_name)
+        _setter("provider_name", provider_name)
         if advanced_configuration is not None:
-            pulumi.set(__self__, "advanced_configuration", advanced_configuration)
+            _setter("advanced_configuration", advanced_configuration)
         if auto_scaling_compute_enabled is not None:
-            pulumi.set(__self__, "auto_scaling_compute_enabled", auto_scaling_compute_enabled)
+            _setter("auto_scaling_compute_enabled", auto_scaling_compute_enabled)
         if auto_scaling_compute_scale_down_enabled is not None:
-            pulumi.set(__self__, "auto_scaling_compute_scale_down_enabled", auto_scaling_compute_scale_down_enabled)
+            _setter("auto_scaling_compute_scale_down_enabled", auto_scaling_compute_scale_down_enabled)
         if auto_scaling_disk_gb_enabled is not None:
-            pulumi.set(__self__, "auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
+            _setter("auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
         if backing_provider_name is not None:
-            pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+            _setter("backing_provider_name", backing_provider_name)
         if backup_enabled is not None:
-            pulumi.set(__self__, "backup_enabled", backup_enabled)
+            _setter("backup_enabled", backup_enabled)
         if bi_connector is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
             pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
         if bi_connector is not None:
-            pulumi.set(__self__, "bi_connector", bi_connector)
+            _setter("bi_connector", bi_connector)
         if bi_connector_config is not None:
-            pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+            _setter("bi_connector_config", bi_connector_config)
         if cloud_backup is not None:
-            pulumi.set(__self__, "cloud_backup", cloud_backup)
+            _setter("cloud_backup", cloud_backup)
         if cluster_type is not None:
-            pulumi.set(__self__, "cluster_type", cluster_type)
+            _setter("cluster_type", cluster_type)
         if disk_size_gb is not None:
-            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+            _setter("disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
-            pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+            _setter("encryption_at_rest_provider", encryption_at_rest_provider)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if mongo_db_major_version is not None:
-            pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
+            _setter("mongo_db_major_version", mongo_db_major_version)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if num_shards is not None:
-            pulumi.set(__self__, "num_shards", num_shards)
+            _setter("num_shards", num_shards)
         if paused is not None:
-            pulumi.set(__self__, "paused", paused)
+            _setter("paused", paused)
         if pit_enabled is not None:
-            pulumi.set(__self__, "pit_enabled", pit_enabled)
+            _setter("pit_enabled", pit_enabled)
         if provider_auto_scaling_compute_max_instance_size is not None:
-            pulumi.set(__self__, "provider_auto_scaling_compute_max_instance_size", provider_auto_scaling_compute_max_instance_size)
+            _setter("provider_auto_scaling_compute_max_instance_size", provider_auto_scaling_compute_max_instance_size)
         if provider_auto_scaling_compute_min_instance_size is not None:
-            pulumi.set(__self__, "provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
+            _setter("provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
         if provider_backup_enabled is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""", DeprecationWarning)
             pulumi.log.warn("""provider_backup_enabled is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""")
         if provider_backup_enabled is not None:
-            pulumi.set(__self__, "provider_backup_enabled", provider_backup_enabled)
+            _setter("provider_backup_enabled", provider_backup_enabled)
         if provider_disk_iops is not None:
-            pulumi.set(__self__, "provider_disk_iops", provider_disk_iops)
+            _setter("provider_disk_iops", provider_disk_iops)
         if provider_disk_type_name is not None:
-            pulumi.set(__self__, "provider_disk_type_name", provider_disk_type_name)
+            _setter("provider_disk_type_name", provider_disk_type_name)
         if provider_encrypt_ebs_volume is not None:
             warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
             pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
         if provider_encrypt_ebs_volume is not None:
-            pulumi.set(__self__, "provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
+            _setter("provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
         if provider_region_name is not None:
-            pulumi.set(__self__, "provider_region_name", provider_region_name)
+            _setter("provider_region_name", provider_region_name)
         if provider_volume_type is not None:
-            pulumi.set(__self__, "provider_volume_type", provider_volume_type)
+            _setter("provider_volume_type", provider_volume_type)
         if replication_factor is not None:
-            pulumi.set(__self__, "replication_factor", replication_factor)
+            _setter("replication_factor", replication_factor)
         if replication_specs is not None:
-            pulumi.set(__self__, "replication_specs", replication_specs)
+            _setter("replication_specs", replication_specs)
         if retain_backups_enabled is not None:
-            pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
+            _setter("retain_backups_enabled", retain_backups_enabled)
         if termination_protection_enabled is not None:
-            pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+            _setter("termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
-            pulumi.set(__self__, "version_release_system", version_release_system)
+            _setter("version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="projectId")
@@ -741,105 +816,202 @@ class _ClusterState:
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
+        _ClusterState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            advanced_configuration=advanced_configuration,
+            auto_scaling_compute_enabled=auto_scaling_compute_enabled,
+            auto_scaling_compute_scale_down_enabled=auto_scaling_compute_scale_down_enabled,
+            auto_scaling_disk_gb_enabled=auto_scaling_disk_gb_enabled,
+            backing_provider_name=backing_provider_name,
+            backup_enabled=backup_enabled,
+            bi_connector=bi_connector,
+            bi_connector_config=bi_connector_config,
+            cloud_backup=cloud_backup,
+            cluster_id=cluster_id,
+            cluster_type=cluster_type,
+            connection_strings=connection_strings,
+            container_id=container_id,
+            disk_size_gb=disk_size_gb,
+            encryption_at_rest_provider=encryption_at_rest_provider,
+            labels=labels,
+            mongo_db_major_version=mongo_db_major_version,
+            mongo_db_version=mongo_db_version,
+            mongo_uri=mongo_uri,
+            mongo_uri_updated=mongo_uri_updated,
+            mongo_uri_with_options=mongo_uri_with_options,
+            name=name,
+            num_shards=num_shards,
+            paused=paused,
+            pit_enabled=pit_enabled,
+            project_id=project_id,
+            provider_auto_scaling_compute_max_instance_size=provider_auto_scaling_compute_max_instance_size,
+            provider_auto_scaling_compute_min_instance_size=provider_auto_scaling_compute_min_instance_size,
+            provider_backup_enabled=provider_backup_enabled,
+            provider_disk_iops=provider_disk_iops,
+            provider_disk_type_name=provider_disk_type_name,
+            provider_encrypt_ebs_volume=provider_encrypt_ebs_volume,
+            provider_encrypt_ebs_volume_flag=provider_encrypt_ebs_volume_flag,
+            provider_instance_size_name=provider_instance_size_name,
+            provider_name=provider_name,
+            provider_region_name=provider_region_name,
+            provider_volume_type=provider_volume_type,
+            replication_factor=replication_factor,
+            replication_specs=replication_specs,
+            retain_backups_enabled=retain_backups_enabled,
+            snapshot_backup_policies=snapshot_backup_policies,
+            srv_address=srv_address,
+            state_name=state_name,
+            termination_protection_enabled=termination_protection_enabled,
+            version_release_system=version_release_system,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             advanced_configuration: Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']] = None,
+             auto_scaling_compute_enabled: Optional[pulumi.Input[bool]] = None,
+             auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[bool]] = None,
+             auto_scaling_disk_gb_enabled: Optional[pulumi.Input[bool]] = None,
+             backing_provider_name: Optional[pulumi.Input[str]] = None,
+             backup_enabled: Optional[pulumi.Input[bool]] = None,
+             bi_connector: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             bi_connector_config: Optional[pulumi.Input['ClusterBiConnectorConfigArgs']] = None,
+             cloud_backup: Optional[pulumi.Input[bool]] = None,
+             cluster_id: Optional[pulumi.Input[str]] = None,
+             cluster_type: Optional[pulumi.Input[str]] = None,
+             connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringArgs']]]] = None,
+             container_id: Optional[pulumi.Input[str]] = None,
+             disk_size_gb: Optional[pulumi.Input[float]] = None,
+             encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]] = None,
+             mongo_db_major_version: Optional[pulumi.Input[str]] = None,
+             mongo_db_version: Optional[pulumi.Input[str]] = None,
+             mongo_uri: Optional[pulumi.Input[str]] = None,
+             mongo_uri_updated: Optional[pulumi.Input[str]] = None,
+             mongo_uri_with_options: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             num_shards: Optional[pulumi.Input[int]] = None,
+             paused: Optional[pulumi.Input[bool]] = None,
+             pit_enabled: Optional[pulumi.Input[bool]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[str]] = None,
+             provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[str]] = None,
+             provider_backup_enabled: Optional[pulumi.Input[bool]] = None,
+             provider_disk_iops: Optional[pulumi.Input[int]] = None,
+             provider_disk_type_name: Optional[pulumi.Input[str]] = None,
+             provider_encrypt_ebs_volume: Optional[pulumi.Input[bool]] = None,
+             provider_encrypt_ebs_volume_flag: Optional[pulumi.Input[bool]] = None,
+             provider_instance_size_name: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             provider_region_name: Optional[pulumi.Input[str]] = None,
+             provider_volume_type: Optional[pulumi.Input[str]] = None,
+             replication_factor: Optional[pulumi.Input[int]] = None,
+             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
+             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
+             snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]] = None,
+             srv_address: Optional[pulumi.Input[str]] = None,
+             state_name: Optional[pulumi.Input[str]] = None,
+             termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
+             version_release_system: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if advanced_configuration is not None:
-            pulumi.set(__self__, "advanced_configuration", advanced_configuration)
+            _setter("advanced_configuration", advanced_configuration)
         if auto_scaling_compute_enabled is not None:
-            pulumi.set(__self__, "auto_scaling_compute_enabled", auto_scaling_compute_enabled)
+            _setter("auto_scaling_compute_enabled", auto_scaling_compute_enabled)
         if auto_scaling_compute_scale_down_enabled is not None:
-            pulumi.set(__self__, "auto_scaling_compute_scale_down_enabled", auto_scaling_compute_scale_down_enabled)
+            _setter("auto_scaling_compute_scale_down_enabled", auto_scaling_compute_scale_down_enabled)
         if auto_scaling_disk_gb_enabled is not None:
-            pulumi.set(__self__, "auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
+            _setter("auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
         if backing_provider_name is not None:
-            pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+            _setter("backing_provider_name", backing_provider_name)
         if backup_enabled is not None:
-            pulumi.set(__self__, "backup_enabled", backup_enabled)
+            _setter("backup_enabled", backup_enabled)
         if bi_connector is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
             pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
         if bi_connector is not None:
-            pulumi.set(__self__, "bi_connector", bi_connector)
+            _setter("bi_connector", bi_connector)
         if bi_connector_config is not None:
-            pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+            _setter("bi_connector_config", bi_connector_config)
         if cloud_backup is not None:
-            pulumi.set(__self__, "cloud_backup", cloud_backup)
+            _setter("cloud_backup", cloud_backup)
         if cluster_id is not None:
-            pulumi.set(__self__, "cluster_id", cluster_id)
+            _setter("cluster_id", cluster_id)
         if cluster_type is not None:
-            pulumi.set(__self__, "cluster_type", cluster_type)
+            _setter("cluster_type", cluster_type)
         if connection_strings is not None:
-            pulumi.set(__self__, "connection_strings", connection_strings)
+            _setter("connection_strings", connection_strings)
         if container_id is not None:
-            pulumi.set(__self__, "container_id", container_id)
+            _setter("container_id", container_id)
         if disk_size_gb is not None:
-            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+            _setter("disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
-            pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+            _setter("encryption_at_rest_provider", encryption_at_rest_provider)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if mongo_db_major_version is not None:
-            pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
+            _setter("mongo_db_major_version", mongo_db_major_version)
         if mongo_db_version is not None:
-            pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+            _setter("mongo_db_version", mongo_db_version)
         if mongo_uri is not None:
-            pulumi.set(__self__, "mongo_uri", mongo_uri)
+            _setter("mongo_uri", mongo_uri)
         if mongo_uri_updated is not None:
-            pulumi.set(__self__, "mongo_uri_updated", mongo_uri_updated)
+            _setter("mongo_uri_updated", mongo_uri_updated)
         if mongo_uri_with_options is not None:
-            pulumi.set(__self__, "mongo_uri_with_options", mongo_uri_with_options)
+            _setter("mongo_uri_with_options", mongo_uri_with_options)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if num_shards is not None:
-            pulumi.set(__self__, "num_shards", num_shards)
+            _setter("num_shards", num_shards)
         if paused is not None:
-            pulumi.set(__self__, "paused", paused)
+            _setter("paused", paused)
         if pit_enabled is not None:
-            pulumi.set(__self__, "pit_enabled", pit_enabled)
+            _setter("pit_enabled", pit_enabled)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if provider_auto_scaling_compute_max_instance_size is not None:
-            pulumi.set(__self__, "provider_auto_scaling_compute_max_instance_size", provider_auto_scaling_compute_max_instance_size)
+            _setter("provider_auto_scaling_compute_max_instance_size", provider_auto_scaling_compute_max_instance_size)
         if provider_auto_scaling_compute_min_instance_size is not None:
-            pulumi.set(__self__, "provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
+            _setter("provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
         if provider_backup_enabled is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""", DeprecationWarning)
             pulumi.log.warn("""provider_backup_enabled is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""")
         if provider_backup_enabled is not None:
-            pulumi.set(__self__, "provider_backup_enabled", provider_backup_enabled)
+            _setter("provider_backup_enabled", provider_backup_enabled)
         if provider_disk_iops is not None:
-            pulumi.set(__self__, "provider_disk_iops", provider_disk_iops)
+            _setter("provider_disk_iops", provider_disk_iops)
         if provider_disk_type_name is not None:
-            pulumi.set(__self__, "provider_disk_type_name", provider_disk_type_name)
+            _setter("provider_disk_type_name", provider_disk_type_name)
         if provider_encrypt_ebs_volume is not None:
             warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
             pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
         if provider_encrypt_ebs_volume is not None:
-            pulumi.set(__self__, "provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
+            _setter("provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
         if provider_encrypt_ebs_volume_flag is not None:
-            pulumi.set(__self__, "provider_encrypt_ebs_volume_flag", provider_encrypt_ebs_volume_flag)
+            _setter("provider_encrypt_ebs_volume_flag", provider_encrypt_ebs_volume_flag)
         if provider_instance_size_name is not None:
-            pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
+            _setter("provider_instance_size_name", provider_instance_size_name)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if provider_region_name is not None:
-            pulumi.set(__self__, "provider_region_name", provider_region_name)
+            _setter("provider_region_name", provider_region_name)
         if provider_volume_type is not None:
-            pulumi.set(__self__, "provider_volume_type", provider_volume_type)
+            _setter("provider_volume_type", provider_volume_type)
         if replication_factor is not None:
-            pulumi.set(__self__, "replication_factor", replication_factor)
+            _setter("replication_factor", replication_factor)
         if replication_specs is not None:
-            pulumi.set(__self__, "replication_specs", replication_specs)
+            _setter("replication_specs", replication_specs)
         if retain_backups_enabled is not None:
-            pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
+            _setter("retain_backups_enabled", retain_backups_enabled)
         if snapshot_backup_policies is not None:
-            pulumi.set(__self__, "snapshot_backup_policies", snapshot_backup_policies)
+            _setter("snapshot_backup_policies", snapshot_backup_policies)
         if srv_address is not None:
-            pulumi.set(__self__, "srv_address", srv_address)
+            _setter("srv_address", srv_address)
         if state_name is not None:
-            pulumi.set(__self__, "state_name", state_name)
+            _setter("state_name", state_name)
         if termination_protection_enabled is not None:
-            pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+            _setter("termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
-            pulumi.set(__self__, "version_release_system", version_release_system)
+            _setter("version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="advancedConfiguration")
@@ -1543,6 +1715,10 @@ class Cluster(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ClusterArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1591,16 +1767,23 @@ class Cluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ClusterArgs.__new__(ClusterArgs)
 
+            if advanced_configuration is not None and not isinstance(advanced_configuration, ClusterAdvancedConfigurationArgs):
+                advanced_configuration = advanced_configuration or {}
+                def _setter(key, value):
+                    advanced_configuration[key] = value
+                ClusterAdvancedConfigurationArgs._configure(_setter, **advanced_configuration)
             __props__.__dict__["advanced_configuration"] = advanced_configuration
             __props__.__dict__["auto_scaling_compute_enabled"] = auto_scaling_compute_enabled
             __props__.__dict__["auto_scaling_compute_scale_down_enabled"] = auto_scaling_compute_scale_down_enabled
             __props__.__dict__["auto_scaling_disk_gb_enabled"] = auto_scaling_disk_gb_enabled
             __props__.__dict__["backing_provider_name"] = backing_provider_name
             __props__.__dict__["backup_enabled"] = backup_enabled
-            if bi_connector is not None and not opts.urn:
-                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
-                pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
             __props__.__dict__["bi_connector"] = bi_connector
+            if bi_connector_config is not None and not isinstance(bi_connector_config, ClusterBiConnectorConfigArgs):
+                bi_connector_config = bi_connector_config or {}
+                def _setter(key, value):
+                    bi_connector_config[key] = value
+                ClusterBiConnectorConfigArgs._configure(_setter, **bi_connector_config)
             __props__.__dict__["bi_connector_config"] = bi_connector_config
             __props__.__dict__["cloud_backup"] = cloud_backup
             __props__.__dict__["cluster_type"] = cluster_type
@@ -1617,15 +1800,9 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["provider_auto_scaling_compute_max_instance_size"] = provider_auto_scaling_compute_max_instance_size
             __props__.__dict__["provider_auto_scaling_compute_min_instance_size"] = provider_auto_scaling_compute_min_instance_size
-            if provider_backup_enabled is not None and not opts.urn:
-                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""", DeprecationWarning)
-                pulumi.log.warn("""provider_backup_enabled is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup""")
             __props__.__dict__["provider_backup_enabled"] = provider_backup_enabled
             __props__.__dict__["provider_disk_iops"] = provider_disk_iops
             __props__.__dict__["provider_disk_type_name"] = provider_disk_type_name
-            if provider_encrypt_ebs_volume is not None and not opts.urn:
-                warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
-                pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
             __props__.__dict__["provider_encrypt_ebs_volume"] = provider_encrypt_ebs_volume
             if provider_instance_size_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_instance_size_name'")

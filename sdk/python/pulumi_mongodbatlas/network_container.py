@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['NetworkContainerArgs', 'NetworkContainer']
@@ -36,16 +36,35 @@ class NetworkContainerArgs:
         :param pulumi.Input[str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
         """
-        pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
-        pulumi.set(__self__, "project_id", project_id)
+        NetworkContainerArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            atlas_cidr_block=atlas_cidr_block,
+            project_id=project_id,
+            provider_name=provider_name,
+            region=region,
+            region_name=region_name,
+            regions=regions,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             atlas_cidr_block: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             provider_name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             region_name: Optional[pulumi.Input[str]] = None,
+             regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("atlas_cidr_block", atlas_cidr_block)
+        _setter("project_id", project_id)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if region_name is not None:
-            pulumi.set(__self__, "region_name", region_name)
+            _setter("region_name", region_name)
         if regions is not None:
-            pulumi.set(__self__, "regions", regions)
+            _setter("regions", regions)
 
     @property
     @pulumi.getter(name="atlasCidrBlock")
@@ -166,32 +185,65 @@ class _NetworkContainerState:
         :param pulumi.Input[str] vnet_name: The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[str] vpc_id: Unique identifier of Atlas' AWS VPC.
         """
+        _NetworkContainerState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            atlas_cidr_block=atlas_cidr_block,
+            azure_subscription_id=azure_subscription_id,
+            container_id=container_id,
+            gcp_project_id=gcp_project_id,
+            network_name=network_name,
+            project_id=project_id,
+            provider_name=provider_name,
+            provisioned=provisioned,
+            region=region,
+            region_name=region_name,
+            regions=regions,
+            vnet_name=vnet_name,
+            vpc_id=vpc_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             atlas_cidr_block: Optional[pulumi.Input[str]] = None,
+             azure_subscription_id: Optional[pulumi.Input[str]] = None,
+             container_id: Optional[pulumi.Input[str]] = None,
+             gcp_project_id: Optional[pulumi.Input[str]] = None,
+             network_name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             provisioned: Optional[pulumi.Input[bool]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             region_name: Optional[pulumi.Input[str]] = None,
+             regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             vnet_name: Optional[pulumi.Input[str]] = None,
+             vpc_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if atlas_cidr_block is not None:
-            pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
+            _setter("atlas_cidr_block", atlas_cidr_block)
         if azure_subscription_id is not None:
-            pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
+            _setter("azure_subscription_id", azure_subscription_id)
         if container_id is not None:
-            pulumi.set(__self__, "container_id", container_id)
+            _setter("container_id", container_id)
         if gcp_project_id is not None:
-            pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+            _setter("gcp_project_id", gcp_project_id)
         if network_name is not None:
-            pulumi.set(__self__, "network_name", network_name)
+            _setter("network_name", network_name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if provisioned is not None:
-            pulumi.set(__self__, "provisioned", provisioned)
+            _setter("provisioned", provisioned)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if region_name is not None:
-            pulumi.set(__self__, "region_name", region_name)
+            _setter("region_name", region_name)
         if regions is not None:
-            pulumi.set(__self__, "regions", regions)
+            _setter("regions", regions)
         if vnet_name is not None:
-            pulumi.set(__self__, "vnet_name", vnet_name)
+            _setter("vnet_name", vnet_name)
         if vpc_id is not None:
-            pulumi.set(__self__, "vpc_id", vpc_id)
+            _setter("vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="atlasCidrBlock")
@@ -527,6 +579,10 @@ class NetworkContainer(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            NetworkContainerArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
