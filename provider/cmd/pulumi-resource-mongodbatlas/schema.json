@@ -624,11 +624,11 @@
                 },
                 "operator": {
                     "type": "string",
-                    "description": "If omitted, the configuration is disabled.\nAccepted values are:\nAccepted values are:\nAccepted values are:\n"
+                    "description": "The operator to test the field’s value.\nAccepted values are:\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "If omitted, the configuration is disabled.\n"
+                    "description": "Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:\n"
                 }
             },
             "type": "object"
@@ -645,7 +645,7 @@
                 },
                 "operator": {
                     "type": "string",
-                    "description": "If omitted, the configuration is disabled.\nAccepted values are:\nAccepted values are:\nAccepted values are:\n"
+                    "description": "The operator to test the field’s value.\nAccepted values are:\n"
                 },
                 "threshold": {
                     "type": "number",
@@ -653,7 +653,7 @@
                 },
                 "units": {
                     "type": "string",
-                    "description": "The units for the threshold value. Depends on the type of metric.\nRefer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.\nRefer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.\n"
+                    "description": "The units for the threshold value. Depends on the type of metric.\nRefer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.\n"
                 }
             },
             "type": "object"
@@ -778,7 +778,7 @@
             "properties": {
                 "operator": {
                     "type": "string",
-                    "description": "If omitted, the configuration is disabled.\nAccepted values are:\nAccepted values are:\nAccepted values are:\n"
+                    "description": "The operator to test the field’s value.\nAccepted values are:\n"
                 },
                 "threshold": {
                     "type": "number",
@@ -786,7 +786,7 @@
                 },
                 "units": {
                     "type": "string",
-                    "description": "The units for the threshold value. Depends on the type of metric.\nRefer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.\nRefer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.\n"
+                    "description": "The units for the threshold value. Depends on the type of metric.\nRefer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.\n"
                 }
             },
             "type": "object"
@@ -3056,7 +3056,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.\n\n\u003e **NOTE:** Project created by API Keys must belong to an existing organization.\n"
+                    "description": "List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.\n"
                 }
             },
             "type": "object",
@@ -11121,7 +11121,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.\n\n\nSee [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.\n",
+                    "description": "Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.\n",
                     "deprecationMessage": "this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment"
                 }
             },
