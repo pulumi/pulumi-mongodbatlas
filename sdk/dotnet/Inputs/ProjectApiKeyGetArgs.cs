@@ -24,9 +24,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         private InputList<string>? _roleNames;
 
         /// <summary>
-        /// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        /// 
-        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+        /// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         /// </summary>
         public InputList<string> RoleNames
         {

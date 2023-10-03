@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -41,30 +41,61 @@ class DatabaseUserArgs:
         :param pulumi.Input[str] oidc_auth_type: Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         """
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "roles", roles)
-        pulumi.set(__self__, "username", username)
+        DatabaseUserArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            roles=roles,
+            username=username,
+            auth_database_name=auth_database_name,
+            aws_iam_type=aws_iam_type,
+            database_name=database_name,
+            labels=labels,
+            ldap_auth_type=ldap_auth_type,
+            oidc_auth_type=oidc_auth_type,
+            password=password,
+            scopes=scopes,
+            x509_type=x509_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             roles: pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]],
+             username: pulumi.Input[str],
+             auth_database_name: Optional[pulumi.Input[str]] = None,
+             aws_iam_type: Optional[pulumi.Input[str]] = None,
+             database_name: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
+             ldap_auth_type: Optional[pulumi.Input[str]] = None,
+             oidc_auth_type: Optional[pulumi.Input[str]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             scopes: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
+             x509_type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
+        _setter("roles", roles)
+        _setter("username", username)
         if auth_database_name is not None:
-            pulumi.set(__self__, "auth_database_name", auth_database_name)
+            _setter("auth_database_name", auth_database_name)
         if aws_iam_type is not None:
-            pulumi.set(__self__, "aws_iam_type", aws_iam_type)
+            _setter("aws_iam_type", aws_iam_type)
         if database_name is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name""", DeprecationWarning)
             pulumi.log.warn("""database_name is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name""")
         if database_name is not None:
-            pulumi.set(__self__, "database_name", database_name)
+            _setter("database_name", database_name)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if ldap_auth_type is not None:
-            pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
+            _setter("ldap_auth_type", ldap_auth_type)
         if oidc_auth_type is not None:
-            pulumi.set(__self__, "oidc_auth_type", oidc_auth_type)
+            _setter("oidc_auth_type", oidc_auth_type)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
+            _setter("scopes", scopes)
         if x509_type is not None:
-            pulumi.set(__self__, "x509_type", x509_type)
+            _setter("x509_type", x509_type)
 
     @property
     @pulumi.getter(name="projectId")
@@ -234,33 +265,64 @@ class _DatabaseUserState:
         :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         """
+        _DatabaseUserState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            auth_database_name=auth_database_name,
+            aws_iam_type=aws_iam_type,
+            database_name=database_name,
+            labels=labels,
+            ldap_auth_type=ldap_auth_type,
+            oidc_auth_type=oidc_auth_type,
+            password=password,
+            project_id=project_id,
+            roles=roles,
+            scopes=scopes,
+            username=username,
+            x509_type=x509_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             auth_database_name: Optional[pulumi.Input[str]] = None,
+             aws_iam_type: Optional[pulumi.Input[str]] = None,
+             database_name: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
+             ldap_auth_type: Optional[pulumi.Input[str]] = None,
+             oidc_auth_type: Optional[pulumi.Input[str]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             roles: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]] = None,
+             scopes: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
+             username: Optional[pulumi.Input[str]] = None,
+             x509_type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if auth_database_name is not None:
-            pulumi.set(__self__, "auth_database_name", auth_database_name)
+            _setter("auth_database_name", auth_database_name)
         if aws_iam_type is not None:
-            pulumi.set(__self__, "aws_iam_type", aws_iam_type)
+            _setter("aws_iam_type", aws_iam_type)
         if database_name is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name""", DeprecationWarning)
             pulumi.log.warn("""database_name is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name""")
         if database_name is not None:
-            pulumi.set(__self__, "database_name", database_name)
+            _setter("database_name", database_name)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if ldap_auth_type is not None:
-            pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
+            _setter("ldap_auth_type", ldap_auth_type)
         if oidc_auth_type is not None:
-            pulumi.set(__self__, "oidc_auth_type", oidc_auth_type)
+            _setter("oidc_auth_type", oidc_auth_type)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if roles is not None:
-            pulumi.set(__self__, "roles", roles)
+            _setter("roles", roles)
         if scopes is not None:
-            pulumi.set(__self__, "scopes", scopes)
+            _setter("scopes", scopes)
         if username is not None:
-            pulumi.set(__self__, "username", username)
+            _setter("username", username)
         if x509_type is not None:
-            pulumi.set(__self__, "x509_type", x509_type)
+            _setter("x509_type", x509_type)
 
     @property
     @pulumi.getter(name="authDatabaseName")
@@ -687,6 +749,10 @@ class DatabaseUser(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DatabaseUserArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -715,9 +781,6 @@ class DatabaseUser(pulumi.CustomResource):
 
             __props__.__dict__["auth_database_name"] = auth_database_name
             __props__.__dict__["aws_iam_type"] = aws_iam_type
-            if database_name is not None and not opts.urn:
-                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name""", DeprecationWarning)
-                pulumi.log.warn("""database_name is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name""")
             __props__.__dict__["database_name"] = database_name
             __props__.__dict__["labels"] = labels
             __props__.__dict__["ldap_auth_type"] = ldap_auth_type

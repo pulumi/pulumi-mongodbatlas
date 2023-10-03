@@ -316,14 +316,12 @@ export interface AlertConfigurationMatcher {
      */
     fieldName?: pulumi.Input<string>;
     /**
-     * If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * The operator to test the field’s value.
      * Accepted values are:
      */
     operator?: pulumi.Input<string>;
     /**
-     * If omitted, the configuration is disabled.
+     * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      */
     value?: pulumi.Input<string>;
 }
@@ -338,9 +336,7 @@ export interface AlertConfigurationMetricThresholdConfig {
      */
     mode?: pulumi.Input<string>;
     /**
-     * If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * The operator to test the field’s value.
      * Accepted values are:
      */
     operator?: pulumi.Input<string>;
@@ -350,7 +346,6 @@ export interface AlertConfigurationMetricThresholdConfig {
     threshold?: pulumi.Input<number>;
     /**
      * The units for the threshold value. Depends on the type of metric.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      */
     units?: pulumi.Input<string>;
@@ -465,9 +460,7 @@ export interface AlertConfigurationNotification {
 
 export interface AlertConfigurationThresholdConfig {
     /**
-     * If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * The operator to test the field’s value.
      * Accepted values are:
      */
     operator?: pulumi.Input<string>;
@@ -477,7 +470,6 @@ export interface AlertConfigurationThresholdConfig {
     threshold?: pulumi.Input<number>;
     /**
      * The units for the threshold value. Depends on the type of metric.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      */
     units?: pulumi.Input<string>;
@@ -2088,9 +2080,7 @@ export interface ProjectApiKey {
      */
     apiKeyId: pulumi.Input<string>;
     /**
-     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     *
-     * > **NOTE:** Project created by API Keys must belong to an existing organization.
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
 }

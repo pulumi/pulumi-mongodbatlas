@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ProjectIpAccessListArgs', 'ProjectIpAccessList']
@@ -29,15 +29,32 @@ class ProjectIpAccessListArgs:
                > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         """
-        pulumi.set(__self__, "project_id", project_id)
+        ProjectIpAccessListArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            aws_security_group=aws_security_group,
+            cidr_block=cidr_block,
+            comment=comment,
+            ip_address=ip_address,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             aws_security_group: Optional[pulumi.Input[str]] = None,
+             cidr_block: Optional[pulumi.Input[str]] = None,
+             comment: Optional[pulumi.Input[str]] = None,
+             ip_address: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
         if aws_security_group is not None:
-            pulumi.set(__self__, "aws_security_group", aws_security_group)
+            _setter("aws_security_group", aws_security_group)
         if cidr_block is not None:
-            pulumi.set(__self__, "cidr_block", cidr_block)
+            _setter("cidr_block", cidr_block)
         if comment is not None:
-            pulumi.set(__self__, "comment", comment)
+            _setter("comment", comment)
         if ip_address is not None:
-            pulumi.set(__self__, "ip_address", ip_address)
+            _setter("ip_address", ip_address)
 
     @property
     @pulumi.getter(name="projectId")
@@ -120,16 +137,33 @@ class _ProjectIpAccessListState:
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
         """
+        _ProjectIpAccessListState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_security_group=aws_security_group,
+            cidr_block=cidr_block,
+            comment=comment,
+            ip_address=ip_address,
+            project_id=project_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_security_group: Optional[pulumi.Input[str]] = None,
+             cidr_block: Optional[pulumi.Input[str]] = None,
+             comment: Optional[pulumi.Input[str]] = None,
+             ip_address: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if aws_security_group is not None:
-            pulumi.set(__self__, "aws_security_group", aws_security_group)
+            _setter("aws_security_group", aws_security_group)
         if cidr_block is not None:
-            pulumi.set(__self__, "cidr_block", cidr_block)
+            _setter("cidr_block", cidr_block)
         if comment is not None:
-            pulumi.set(__self__, "comment", comment)
+            _setter("comment", comment)
         if ip_address is not None:
-            pulumi.set(__self__, "ip_address", ip_address)
+            _setter("ip_address", ip_address)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
 
     @property
     @pulumi.getter(name="awsSecurityGroup")
@@ -361,6 +395,10 @@ class ProjectIpAccessList(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ProjectIpAccessListArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -61,42 +61,85 @@ class AdvancedClusterArgs:
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
-        pulumi.set(__self__, "cluster_type", cluster_type)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "replication_specs", replication_specs)
+        AdvancedClusterArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_type=cluster_type,
+            project_id=project_id,
+            replication_specs=replication_specs,
+            advanced_configuration=advanced_configuration,
+            backup_enabled=backup_enabled,
+            bi_connector=bi_connector,
+            bi_connector_config=bi_connector_config,
+            disk_size_gb=disk_size_gb,
+            encryption_at_rest_provider=encryption_at_rest_provider,
+            labels=labels,
+            mongo_db_major_version=mongo_db_major_version,
+            name=name,
+            paused=paused,
+            pit_enabled=pit_enabled,
+            retain_backups_enabled=retain_backups_enabled,
+            root_cert_type=root_cert_type,
+            termination_protection_enabled=termination_protection_enabled,
+            version_release_system=version_release_system,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_type: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             replication_specs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]],
+             advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
+             backup_enabled: Optional[pulumi.Input[bool]] = None,
+             bi_connector: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']] = None,
+             bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
+             disk_size_gb: Optional[pulumi.Input[float]] = None,
+             encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]] = None,
+             mongo_db_major_version: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             paused: Optional[pulumi.Input[bool]] = None,
+             pit_enabled: Optional[pulumi.Input[bool]] = None,
+             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
+             root_cert_type: Optional[pulumi.Input[str]] = None,
+             termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
+             version_release_system: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster_type", cluster_type)
+        _setter("project_id", project_id)
+        _setter("replication_specs", replication_specs)
         if advanced_configuration is not None:
-            pulumi.set(__self__, "advanced_configuration", advanced_configuration)
+            _setter("advanced_configuration", advanced_configuration)
         if backup_enabled is not None:
-            pulumi.set(__self__, "backup_enabled", backup_enabled)
+            _setter("backup_enabled", backup_enabled)
         if bi_connector is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
             pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
         if bi_connector is not None:
-            pulumi.set(__self__, "bi_connector", bi_connector)
+            _setter("bi_connector", bi_connector)
         if bi_connector_config is not None:
-            pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+            _setter("bi_connector_config", bi_connector_config)
         if disk_size_gb is not None:
-            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+            _setter("disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
-            pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+            _setter("encryption_at_rest_provider", encryption_at_rest_provider)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if mongo_db_major_version is not None:
-            pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
+            _setter("mongo_db_major_version", mongo_db_major_version)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if paused is not None:
-            pulumi.set(__self__, "paused", paused)
+            _setter("paused", paused)
         if pit_enabled is not None:
-            pulumi.set(__self__, "pit_enabled", pit_enabled)
+            _setter("pit_enabled", pit_enabled)
         if retain_backups_enabled is not None:
-            pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
+            _setter("retain_backups_enabled", retain_backups_enabled)
         if root_cert_type is not None:
-            pulumi.set(__self__, "root_cert_type", root_cert_type)
+            _setter("root_cert_type", root_cert_type)
         if termination_protection_enabled is not None:
-            pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+            _setter("termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
-            pulumi.set(__self__, "version_release_system", version_release_system)
+            _setter("version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="clusterType")
@@ -381,55 +424,108 @@ class _AdvancedClusterState:
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
+        _AdvancedClusterState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            advanced_configuration=advanced_configuration,
+            backup_enabled=backup_enabled,
+            bi_connector=bi_connector,
+            bi_connector_config=bi_connector_config,
+            cluster_id=cluster_id,
+            cluster_type=cluster_type,
+            connection_strings=connection_strings,
+            create_date=create_date,
+            disk_size_gb=disk_size_gb,
+            encryption_at_rest_provider=encryption_at_rest_provider,
+            labels=labels,
+            mongo_db_major_version=mongo_db_major_version,
+            mongo_db_version=mongo_db_version,
+            name=name,
+            paused=paused,
+            pit_enabled=pit_enabled,
+            project_id=project_id,
+            replication_specs=replication_specs,
+            retain_backups_enabled=retain_backups_enabled,
+            root_cert_type=root_cert_type,
+            state_name=state_name,
+            termination_protection_enabled=termination_protection_enabled,
+            version_release_system=version_release_system,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
+             backup_enabled: Optional[pulumi.Input[bool]] = None,
+             bi_connector: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']] = None,
+             bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
+             cluster_id: Optional[pulumi.Input[str]] = None,
+             cluster_type: Optional[pulumi.Input[str]] = None,
+             connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]]] = None,
+             create_date: Optional[pulumi.Input[str]] = None,
+             disk_size_gb: Optional[pulumi.Input[float]] = None,
+             encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]] = None,
+             mongo_db_major_version: Optional[pulumi.Input[str]] = None,
+             mongo_db_version: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             paused: Optional[pulumi.Input[bool]] = None,
+             pit_enabled: Optional[pulumi.Input[bool]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]] = None,
+             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
+             root_cert_type: Optional[pulumi.Input[str]] = None,
+             state_name: Optional[pulumi.Input[str]] = None,
+             termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
+             version_release_system: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if advanced_configuration is not None:
-            pulumi.set(__self__, "advanced_configuration", advanced_configuration)
+            _setter("advanced_configuration", advanced_configuration)
         if backup_enabled is not None:
-            pulumi.set(__self__, "backup_enabled", backup_enabled)
+            _setter("backup_enabled", backup_enabled)
         if bi_connector is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
             pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
         if bi_connector is not None:
-            pulumi.set(__self__, "bi_connector", bi_connector)
+            _setter("bi_connector", bi_connector)
         if bi_connector_config is not None:
-            pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+            _setter("bi_connector_config", bi_connector_config)
         if cluster_id is not None:
-            pulumi.set(__self__, "cluster_id", cluster_id)
+            _setter("cluster_id", cluster_id)
         if cluster_type is not None:
-            pulumi.set(__self__, "cluster_type", cluster_type)
+            _setter("cluster_type", cluster_type)
         if connection_strings is not None:
-            pulumi.set(__self__, "connection_strings", connection_strings)
+            _setter("connection_strings", connection_strings)
         if create_date is not None:
-            pulumi.set(__self__, "create_date", create_date)
+            _setter("create_date", create_date)
         if disk_size_gb is not None:
-            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+            _setter("disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
-            pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+            _setter("encryption_at_rest_provider", encryption_at_rest_provider)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if mongo_db_major_version is not None:
-            pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
+            _setter("mongo_db_major_version", mongo_db_major_version)
         if mongo_db_version is not None:
-            pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+            _setter("mongo_db_version", mongo_db_version)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if paused is not None:
-            pulumi.set(__self__, "paused", paused)
+            _setter("paused", paused)
         if pit_enabled is not None:
-            pulumi.set(__self__, "pit_enabled", pit_enabled)
+            _setter("pit_enabled", pit_enabled)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if replication_specs is not None:
-            pulumi.set(__self__, "replication_specs", replication_specs)
+            _setter("replication_specs", replication_specs)
         if retain_backups_enabled is not None:
-            pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
+            _setter("retain_backups_enabled", retain_backups_enabled)
         if root_cert_type is not None:
-            pulumi.set(__self__, "root_cert_type", root_cert_type)
+            _setter("root_cert_type", root_cert_type)
         if state_name is not None:
-            pulumi.set(__self__, "state_name", state_name)
+            _setter("state_name", state_name)
         if termination_protection_enabled is not None:
-            pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+            _setter("termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
-            pulumi.set(__self__, "version_release_system", version_release_system)
+            _setter("version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="advancedConfiguration")
@@ -801,6 +897,10 @@ class AdvancedCluster(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AdvancedClusterArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -833,12 +933,24 @@ class AdvancedCluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AdvancedClusterArgs.__new__(AdvancedClusterArgs)
 
+            if advanced_configuration is not None and not isinstance(advanced_configuration, AdvancedClusterAdvancedConfigurationArgs):
+                advanced_configuration = advanced_configuration or {}
+                def _setter(key, value):
+                    advanced_configuration[key] = value
+                AdvancedClusterAdvancedConfigurationArgs._configure(_setter, **advanced_configuration)
             __props__.__dict__["advanced_configuration"] = advanced_configuration
             __props__.__dict__["backup_enabled"] = backup_enabled
-            if bi_connector is not None and not opts.urn:
-                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
-                pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
+            if bi_connector is not None and not isinstance(bi_connector, AdvancedClusterBiConnectorArgs):
+                bi_connector = bi_connector or {}
+                def _setter(key, value):
+                    bi_connector[key] = value
+                AdvancedClusterBiConnectorArgs._configure(_setter, **bi_connector)
             __props__.__dict__["bi_connector"] = bi_connector
+            if bi_connector_config is not None and not isinstance(bi_connector_config, AdvancedClusterBiConnectorConfigArgs):
+                bi_connector_config = bi_connector_config or {}
+                def _setter(key, value):
+                    bi_connector_config[key] = value
+                AdvancedClusterBiConnectorConfigArgs._configure(_setter, **bi_connector_config)
             __props__.__dict__["bi_connector_config"] = bi_connector_config
             if cluster_type is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_type'")

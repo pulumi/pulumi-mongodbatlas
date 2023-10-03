@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -32,12 +32,27 @@ class CustomDbRoleArgs:
                * Is `atlasAdmin`
                * Starts with `xgen-`
         """
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "role_name", role_name)
+        CustomDbRoleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            role_name=role_name,
+            actions=actions,
+            inherited_roles=inherited_roles,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             role_name: pulumi.Input[str],
+             actions: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]] = None,
+             inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
+        _setter("role_name", role_name)
         if actions is not None:
-            pulumi.set(__self__, "actions", actions)
+            _setter("actions", actions)
         if inherited_roles is not None:
-            pulumi.set(__self__, "inherited_roles", inherited_roles)
+            _setter("inherited_roles", inherited_roles)
 
     @property
     @pulumi.getter(name="projectId")
@@ -108,14 +123,29 @@ class _CustomDbRoleState:
                * Is `atlasAdmin`
                * Starts with `xgen-`
         """
+        _CustomDbRoleState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            actions=actions,
+            inherited_roles=inherited_roles,
+            project_id=project_id,
+            role_name=role_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             actions: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]] = None,
+             inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             role_name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if actions is not None:
-            pulumi.set(__self__, "actions", actions)
+            _setter("actions", actions)
         if inherited_roles is not None:
-            pulumi.set(__self__, "inherited_roles", inherited_roles)
+            _setter("inherited_roles", inherited_roles)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if role_name is not None:
-            pulumi.set(__self__, "role_name", role_name)
+            _setter("role_name", role_name)
 
     @property
     @pulumi.getter
@@ -415,6 +445,10 @@ class CustomDbRole(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CustomDbRoleArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

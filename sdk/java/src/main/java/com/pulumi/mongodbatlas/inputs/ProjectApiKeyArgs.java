@@ -34,18 +34,14 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * 
      */
     @Import(name="roleNames", required=true)
     private Output<List<String>> roleNames;
 
     /**
-     * @return Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * 
      */
     public Output<List<String>> roleNames() {
@@ -103,9 +99,7 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-         * 
-         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
          * 
          * @return builder
          * 
@@ -116,9 +110,7 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-         * 
-         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
          * 
          * @return builder
          * 
@@ -128,9 +120,7 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-         * 
-         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
          * 
          * @return builder
          * 

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['PrivatelinkEndpointServiceServerlessArgs', 'PrivatelinkEndpointServiceServerless']
@@ -31,16 +31,37 @@ class PrivatelinkEndpointServiceServerlessArgs:
         :param pulumi.Input[str] comment: Human-readable string to associate with this private endpoint.
         :param pulumi.Input[str] private_endpoint_ip_address: IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
         """
-        pulumi.set(__self__, "endpoint_id", endpoint_id)
-        pulumi.set(__self__, "instance_name", instance_name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "provider_name", provider_name)
+        PrivatelinkEndpointServiceServerlessArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_id=endpoint_id,
+            instance_name=instance_name,
+            project_id=project_id,
+            provider_name=provider_name,
+            cloud_provider_endpoint_id=cloud_provider_endpoint_id,
+            comment=comment,
+            private_endpoint_ip_address=private_endpoint_ip_address,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_id: pulumi.Input[str],
+             instance_name: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             provider_name: pulumi.Input[str],
+             cloud_provider_endpoint_id: Optional[pulumi.Input[str]] = None,
+             comment: Optional[pulumi.Input[str]] = None,
+             private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("endpoint_id", endpoint_id)
+        _setter("instance_name", instance_name)
+        _setter("project_id", project_id)
+        _setter("provider_name", provider_name)
         if cloud_provider_endpoint_id is not None:
-            pulumi.set(__self__, "cloud_provider_endpoint_id", cloud_provider_endpoint_id)
+            _setter("cloud_provider_endpoint_id", cloud_provider_endpoint_id)
         if comment is not None:
-            pulumi.set(__self__, "comment", comment)
+            _setter("comment", comment)
         if private_endpoint_ip_address is not None:
-            pulumi.set(__self__, "private_endpoint_ip_address", private_endpoint_ip_address)
+            _setter("private_endpoint_ip_address", private_endpoint_ip_address)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -151,24 +172,49 @@ class _PrivatelinkEndpointServiceServerlessState:
         :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE`.
         :param pulumi.Input[str] status: Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
         """
+        _PrivatelinkEndpointServiceServerlessState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider_endpoint_id=cloud_provider_endpoint_id,
+            comment=comment,
+            endpoint_id=endpoint_id,
+            instance_name=instance_name,
+            private_endpoint_ip_address=private_endpoint_ip_address,
+            private_link_service_resource_id=private_link_service_resource_id,
+            project_id=project_id,
+            provider_name=provider_name,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider_endpoint_id: Optional[pulumi.Input[str]] = None,
+             comment: Optional[pulumi.Input[str]] = None,
+             endpoint_id: Optional[pulumi.Input[str]] = None,
+             instance_name: Optional[pulumi.Input[str]] = None,
+             private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
+             private_link_service_resource_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cloud_provider_endpoint_id is not None:
-            pulumi.set(__self__, "cloud_provider_endpoint_id", cloud_provider_endpoint_id)
+            _setter("cloud_provider_endpoint_id", cloud_provider_endpoint_id)
         if comment is not None:
-            pulumi.set(__self__, "comment", comment)
+            _setter("comment", comment)
         if endpoint_id is not None:
-            pulumi.set(__self__, "endpoint_id", endpoint_id)
+            _setter("endpoint_id", endpoint_id)
         if instance_name is not None:
-            pulumi.set(__self__, "instance_name", instance_name)
+            _setter("instance_name", instance_name)
         if private_endpoint_ip_address is not None:
-            pulumi.set(__self__, "private_endpoint_ip_address", private_endpoint_ip_address)
+            _setter("private_endpoint_ip_address", private_endpoint_ip_address)
         if private_link_service_resource_id is not None:
-            pulumi.set(__self__, "private_link_service_resource_id", private_link_service_resource_id)
+            _setter("private_link_service_resource_id", private_link_service_resource_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
 
     @property
     @pulumi.getter(name="cloudProviderEndpointId")
@@ -338,6 +384,10 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            PrivatelinkEndpointServiceServerlessArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

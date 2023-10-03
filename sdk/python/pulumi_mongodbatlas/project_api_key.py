@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -28,15 +28,30 @@ class ProjectApiKeyInitArgs:
                
                > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "project_id", project_id)
+        ProjectApiKeyInitArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            project_id=project_id,
+            project_assignments=project_assignments,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None,
+             role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("description", description)
+        _setter("project_id", project_id)
         if project_assignments is not None:
-            pulumi.set(__self__, "project_assignments", project_assignments)
+            _setter("project_assignments", project_assignments)
         if role_names is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
             pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
         if role_names is not None:
-            pulumi.set(__self__, "role_names", role_names)
+            _setter("role_names", role_names)
 
     @property
     @pulumi.getter
@@ -108,23 +123,44 @@ class _ProjectApiKeyState:
                
                > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
+        _ProjectApiKeyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_key_id=api_key_id,
+            description=description,
+            private_key=private_key,
+            project_assignments=project_assignments,
+            project_id=project_id,
+            public_key=public_key,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_key_id: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             private_key: Optional[pulumi.Input[str]] = None,
+             project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if api_key_id is not None:
-            pulumi.set(__self__, "api_key_id", api_key_id)
+            _setter("api_key_id", api_key_id)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if private_key is not None:
-            pulumi.set(__self__, "private_key", private_key)
+            _setter("private_key", private_key)
         if project_assignments is not None:
-            pulumi.set(__self__, "project_assignments", project_assignments)
+            _setter("project_assignments", project_assignments)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if role_names is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
             pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
         if role_names is not None:
-            pulumi.set(__self__, "role_names", role_names)
+            _setter("role_names", role_names)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -333,6 +369,10 @@ class ProjectApiKey(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ProjectApiKeyInitArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -358,9 +398,6 @@ class ProjectApiKey(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
-            if role_names is not None and not opts.urn:
-                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
-                pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
             __props__.__dict__["role_names"] = role_names
             __props__.__dict__["api_key_id"] = None
             __props__.__dict__["private_key"] = None

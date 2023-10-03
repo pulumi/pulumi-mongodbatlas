@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['PrivatelinkEndpointServerlessArgs', 'PrivatelinkEndpointServerless']
@@ -23,9 +23,22 @@ class PrivatelinkEndpointServerlessArgs:
         :param pulumi.Input[str] project_id: Unique 24-digit hexadecimal string that identifies the project.
         :param pulumi.Input[str] provider_name: Cloud provider name; AWS is currently supported
         """
-        pulumi.set(__self__, "instance_name", instance_name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "provider_name", provider_name)
+        PrivatelinkEndpointServerlessArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_name=instance_name,
+            project_id=project_id,
+            provider_name=provider_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_name: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             provider_name: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_name", instance_name)
+        _setter("project_id", project_id)
+        _setter("provider_name", provider_name)
 
     @property
     @pulumi.getter(name="instanceName")
@@ -84,20 +97,41 @@ class _PrivatelinkEndpointServerlessState:
         :param pulumi.Input[str] provider_name: Cloud provider name; AWS is currently supported
         :param pulumi.Input[str] status: Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
         """
+        _PrivatelinkEndpointServerlessState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_id=endpoint_id,
+            endpoint_service_name=endpoint_service_name,
+            instance_name=instance_name,
+            private_link_service_resource_id=private_link_service_resource_id,
+            project_id=project_id,
+            provider_name=provider_name,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_id: Optional[pulumi.Input[str]] = None,
+             endpoint_service_name: Optional[pulumi.Input[str]] = None,
+             instance_name: Optional[pulumi.Input[str]] = None,
+             private_link_service_resource_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if endpoint_id is not None:
-            pulumi.set(__self__, "endpoint_id", endpoint_id)
+            _setter("endpoint_id", endpoint_id)
         if endpoint_service_name is not None:
-            pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
+            _setter("endpoint_service_name", endpoint_service_name)
         if instance_name is not None:
-            pulumi.set(__self__, "instance_name", instance_name)
+            _setter("instance_name", instance_name)
         if private_link_service_resource_id is not None:
-            pulumi.set(__self__, "private_link_service_resource_id", private_link_service_resource_id)
+            _setter("private_link_service_resource_id", private_link_service_resource_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -281,6 +315,10 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            PrivatelinkEndpointServerlessArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

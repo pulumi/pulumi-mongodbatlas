@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -71,17 +71,36 @@ class FederatedDatabaseInstanceArgs:
                * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
                * `storage_stores.#.read_preference.tags.value` - Value of the tag.
         """
-        pulumi.set(__self__, "project_id", project_id)
+        FederatedDatabaseInstanceArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            cloud_provider_config=cloud_provider_config,
+            data_process_region=data_process_region,
+            name=name,
+            storage_databases=storage_databases,
+            storage_stores=storage_stores,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             cloud_provider_config: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs']] = None,
+             data_process_region: Optional[pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]] = None,
+             storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
         if cloud_provider_config is not None:
-            pulumi.set(__self__, "cloud_provider_config", cloud_provider_config)
+            _setter("cloud_provider_config", cloud_provider_config)
         if data_process_region is not None:
-            pulumi.set(__self__, "data_process_region", data_process_region)
+            _setter("data_process_region", data_process_region)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if storage_databases is not None:
-            pulumi.set(__self__, "storage_databases", storage_databases)
+            _setter("storage_databases", storage_databases)
         if storage_stores is not None:
-            pulumi.set(__self__, "storage_stores", storage_stores)
+            _setter("storage_stores", storage_stores)
 
     @property
     @pulumi.getter(name="projectId")
@@ -254,22 +273,45 @@ class _FederatedDatabaseInstanceState:
                * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
                * `storage_stores.#.read_preference.tags.value` - Value of the tag.
         """
+        _FederatedDatabaseInstanceState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider_config=cloud_provider_config,
+            data_process_region=data_process_region,
+            hostnames=hostnames,
+            name=name,
+            project_id=project_id,
+            state=state,
+            storage_databases=storage_databases,
+            storage_stores=storage_stores,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider_config: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs']] = None,
+             data_process_region: Optional[pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs']] = None,
+             hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             state: Optional[pulumi.Input[str]] = None,
+             storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]] = None,
+             storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cloud_provider_config is not None:
-            pulumi.set(__self__, "cloud_provider_config", cloud_provider_config)
+            _setter("cloud_provider_config", cloud_provider_config)
         if data_process_region is not None:
-            pulumi.set(__self__, "data_process_region", data_process_region)
+            _setter("data_process_region", data_process_region)
         if hostnames is not None:
-            pulumi.set(__self__, "hostnames", hostnames)
+            _setter("hostnames", hostnames)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if state is not None:
-            pulumi.set(__self__, "state", state)
+            _setter("state", state)
         if storage_databases is not None:
-            pulumi.set(__self__, "storage_databases", storage_databases)
+            _setter("storage_databases", storage_databases)
         if storage_stores is not None:
-            pulumi.set(__self__, "storage_stores", storage_stores)
+            _setter("storage_stores", storage_stores)
 
     @property
     @pulumi.getter(name="cloudProviderConfig")
@@ -687,6 +729,10 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FederatedDatabaseInstanceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -707,7 +753,17 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FederatedDatabaseInstanceArgs.__new__(FederatedDatabaseInstanceArgs)
 
+            if cloud_provider_config is not None and not isinstance(cloud_provider_config, FederatedDatabaseInstanceCloudProviderConfigArgs):
+                cloud_provider_config = cloud_provider_config or {}
+                def _setter(key, value):
+                    cloud_provider_config[key] = value
+                FederatedDatabaseInstanceCloudProviderConfigArgs._configure(_setter, **cloud_provider_config)
             __props__.__dict__["cloud_provider_config"] = cloud_provider_config
+            if data_process_region is not None and not isinstance(data_process_region, FederatedDatabaseInstanceDataProcessRegionArgs):
+                data_process_region = data_process_region or {}
+                def _setter(key, value):
+                    data_process_region[key] = value
+                FederatedDatabaseInstanceDataProcessRegionArgs._configure(_setter, **data_process_region)
             __props__.__dict__["data_process_region"] = data_process_region
             __props__.__dict__["name"] = name
             if project_id is None and not opts.urn:

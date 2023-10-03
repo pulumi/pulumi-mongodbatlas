@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -44,36 +44,71 @@ class ProjectArgs:
         :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
-        pulumi.set(__self__, "org_id", org_id)
+        ProjectArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            org_id=org_id,
+            api_keys=api_keys,
+            is_collect_database_specifics_statistics_enabled=is_collect_database_specifics_statistics_enabled,
+            is_data_explorer_enabled=is_data_explorer_enabled,
+            is_extended_storage_sizes_enabled=is_extended_storage_sizes_enabled,
+            is_performance_advisor_enabled=is_performance_advisor_enabled,
+            is_realtime_performance_panel_enabled=is_realtime_performance_panel_enabled,
+            is_schema_advisor_enabled=is_schema_advisor_enabled,
+            limits=limits,
+            name=name,
+            project_owner_id=project_owner_id,
+            region_usage_restrictions=region_usage_restrictions,
+            teams=teams,
+            with_default_alerts_settings=with_default_alerts_settings,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             org_id: pulumi.Input[str],
+             api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
+             is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
+             is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+             is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
+             is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+             is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
+             is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+             limits: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_owner_id: Optional[pulumi.Input[str]] = None,
+             region_usage_restrictions: Optional[pulumi.Input[str]] = None,
+             teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
+             with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("org_id", org_id)
         if api_keys is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
             pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
         if api_keys is not None:
-            pulumi.set(__self__, "api_keys", api_keys)
+            _setter("api_keys", api_keys)
         if is_collect_database_specifics_statistics_enabled is not None:
-            pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
+            _setter("is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         if is_data_explorer_enabled is not None:
-            pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+            _setter("is_data_explorer_enabled", is_data_explorer_enabled)
         if is_extended_storage_sizes_enabled is not None:
-            pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
+            _setter("is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
         if is_performance_advisor_enabled is not None:
-            pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
+            _setter("is_performance_advisor_enabled", is_performance_advisor_enabled)
         if is_realtime_performance_panel_enabled is not None:
-            pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
+            _setter("is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         if is_schema_advisor_enabled is not None:
-            pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+            _setter("is_schema_advisor_enabled", is_schema_advisor_enabled)
         if limits is not None:
-            pulumi.set(__self__, "limits", limits)
+            _setter("limits", limits)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_owner_id is not None:
-            pulumi.set(__self__, "project_owner_id", project_owner_id)
+            _setter("project_owner_id", project_owner_id)
         if region_usage_restrictions is not None:
-            pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
+            _setter("region_usage_restrictions", region_usage_restrictions)
         if teams is not None:
-            pulumi.set(__self__, "teams", teams)
+            _setter("teams", teams)
         if with_default_alerts_settings is not None:
-            pulumi.set(__self__, "with_default_alerts_settings", with_default_alerts_settings)
+            _setter("with_default_alerts_settings", with_default_alerts_settings)
 
     @property
     @pulumi.getter(name="orgId")
@@ -273,41 +308,80 @@ class _ProjectState:
         :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
+        _ProjectState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_keys=api_keys,
+            cluster_count=cluster_count,
+            created=created,
+            is_collect_database_specifics_statistics_enabled=is_collect_database_specifics_statistics_enabled,
+            is_data_explorer_enabled=is_data_explorer_enabled,
+            is_extended_storage_sizes_enabled=is_extended_storage_sizes_enabled,
+            is_performance_advisor_enabled=is_performance_advisor_enabled,
+            is_realtime_performance_panel_enabled=is_realtime_performance_panel_enabled,
+            is_schema_advisor_enabled=is_schema_advisor_enabled,
+            limits=limits,
+            name=name,
+            org_id=org_id,
+            project_owner_id=project_owner_id,
+            region_usage_restrictions=region_usage_restrictions,
+            teams=teams,
+            with_default_alerts_settings=with_default_alerts_settings,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
+             cluster_count: Optional[pulumi.Input[int]] = None,
+             created: Optional[pulumi.Input[str]] = None,
+             is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
+             is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+             is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
+             is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+             is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
+             is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+             limits: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
+             project_owner_id: Optional[pulumi.Input[str]] = None,
+             region_usage_restrictions: Optional[pulumi.Input[str]] = None,
+             teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
+             with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if api_keys is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
             pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
         if api_keys is not None:
-            pulumi.set(__self__, "api_keys", api_keys)
+            _setter("api_keys", api_keys)
         if cluster_count is not None:
-            pulumi.set(__self__, "cluster_count", cluster_count)
+            _setter("cluster_count", cluster_count)
         if created is not None:
-            pulumi.set(__self__, "created", created)
+            _setter("created", created)
         if is_collect_database_specifics_statistics_enabled is not None:
-            pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
+            _setter("is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         if is_data_explorer_enabled is not None:
-            pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+            _setter("is_data_explorer_enabled", is_data_explorer_enabled)
         if is_extended_storage_sizes_enabled is not None:
-            pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
+            _setter("is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
         if is_performance_advisor_enabled is not None:
-            pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
+            _setter("is_performance_advisor_enabled", is_performance_advisor_enabled)
         if is_realtime_performance_panel_enabled is not None:
-            pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
+            _setter("is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         if is_schema_advisor_enabled is not None:
-            pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+            _setter("is_schema_advisor_enabled", is_schema_advisor_enabled)
         if limits is not None:
-            pulumi.set(__self__, "limits", limits)
+            _setter("limits", limits)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if org_id is not None:
-            pulumi.set(__self__, "org_id", org_id)
+            _setter("org_id", org_id)
         if project_owner_id is not None:
-            pulumi.set(__self__, "project_owner_id", project_owner_id)
+            _setter("project_owner_id", project_owner_id)
         if region_usage_restrictions is not None:
-            pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
+            _setter("region_usage_restrictions", region_usage_restrictions)
         if teams is not None:
-            pulumi.set(__self__, "teams", teams)
+            _setter("teams", teams)
         if with_default_alerts_settings is not None:
-            pulumi.set(__self__, "with_default_alerts_settings", with_default_alerts_settings)
+            _setter("with_default_alerts_settings", with_default_alerts_settings)
 
     @property
     @pulumi.getter(name="apiKeys")
@@ -664,6 +738,10 @@ class Project(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ProjectArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -692,9 +770,6 @@ class Project(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
-            if api_keys is not None and not opts.urn:
-                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
-                pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
             __props__.__dict__["api_keys"] = api_keys
             __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
             __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled

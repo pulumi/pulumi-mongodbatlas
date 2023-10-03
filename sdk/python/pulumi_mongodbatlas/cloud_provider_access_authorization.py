@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -23,12 +23,27 @@ class CloudProviderAccessAuthorizationArgs:
         """
         The set of arguments for constructing a CloudProviderAccessAuthorization resource.
         """
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "role_id", role_id)
+        CloudProviderAccessAuthorizationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            role_id=role_id,
+            aws=aws,
+            azure=azure,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             role_id: pulumi.Input[str],
+             aws: Optional[pulumi.Input['CloudProviderAccessAuthorizationAwsArgs']] = None,
+             azure: Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
+        _setter("role_id", role_id)
         if aws is not None:
-            pulumi.set(__self__, "aws", aws)
+            _setter("aws", aws)
         if azure is not None:
-            pulumi.set(__self__, "azure", azure)
+            _setter("azure", azure)
 
     @property
     @pulumi.getter(name="projectId")
@@ -79,18 +94,37 @@ class _CloudProviderAccessAuthorizationState:
         """
         Input properties used for looking up and filtering CloudProviderAccessAuthorization resources.
         """
+        _CloudProviderAccessAuthorizationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            authorized_date=authorized_date,
+            aws=aws,
+            azure=azure,
+            feature_usages=feature_usages,
+            project_id=project_id,
+            role_id=role_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             authorized_date: Optional[pulumi.Input[str]] = None,
+             aws: Optional[pulumi.Input['CloudProviderAccessAuthorizationAwsArgs']] = None,
+             azure: Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']] = None,
+             feature_usages: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationFeatureUsageArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             role_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if authorized_date is not None:
-            pulumi.set(__self__, "authorized_date", authorized_date)
+            _setter("authorized_date", authorized_date)
         if aws is not None:
-            pulumi.set(__self__, "aws", aws)
+            _setter("aws", aws)
         if azure is not None:
-            pulumi.set(__self__, "azure", azure)
+            _setter("azure", azure)
         if feature_usages is not None:
-            pulumi.set(__self__, "feature_usages", feature_usages)
+            _setter("feature_usages", feature_usages)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if role_id is not None:
-            pulumi.set(__self__, "role_id", role_id)
+            _setter("role_id", role_id)
 
     @property
     @pulumi.getter(name="authorizedDate")
@@ -180,6 +214,10 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CloudProviderAccessAuthorizationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -198,7 +236,17 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CloudProviderAccessAuthorizationArgs.__new__(CloudProviderAccessAuthorizationArgs)
 
+            if aws is not None and not isinstance(aws, CloudProviderAccessAuthorizationAwsArgs):
+                aws = aws or {}
+                def _setter(key, value):
+                    aws[key] = value
+                CloudProviderAccessAuthorizationAwsArgs._configure(_setter, **aws)
             __props__.__dict__["aws"] = aws
+            if azure is not None and not isinstance(azure, CloudProviderAccessAuthorizationAzureArgs):
+                azure = azure or {}
+                def _setter(key, value):
+                    azure[key] = value
+                CloudProviderAccessAuthorizationAzureArgs._configure(_setter, **azure)
             __props__.__dict__["azure"] = azure
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")

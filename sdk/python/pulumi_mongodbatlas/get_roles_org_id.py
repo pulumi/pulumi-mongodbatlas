@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetRolesOrgIdResult',
     'AwaitableGetRolesOrgIdResult',
     'get_roles_org_id',
+    'get_roles_org_id_output',
 ]
 
 @pulumi.output_type
@@ -76,3 +77,21 @@ def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     return AwaitableGetRolesOrgIdResult(
         id=pulumi.get(__ret__, 'id'),
         org_id=pulumi.get(__ret__, 'org_id'))
+
+
+@_utilities.lift_output_func(get_roles_org_id)
+def get_roles_org_id_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRolesOrgIdResult]:
+    """
+    `Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+
+    ## Example Usage
+    ### Using project_id attribute to query
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_roles_org_id()
+    pulumi.export("orgId", test.org_id)
+    ```
+    """
+    ...

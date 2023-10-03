@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['TeamArgs', 'Team']
@@ -20,10 +20,23 @@ class TeamArgs:
         """
         The set of arguments for constructing a Team resource.
         """
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "usernames", usernames)
+        TeamArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            org_id=org_id,
+            usernames=usernames,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             org_id: pulumi.Input[str],
+             usernames: pulumi.Input[Sequence[pulumi.Input[str]]],
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("org_id", org_id)
+        _setter("usernames", usernames)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="orgId")
@@ -63,14 +76,29 @@ class _TeamState:
         """
         Input properties used for looking up and filtering Team resources.
         """
+        _TeamState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            org_id=org_id,
+            team_id=team_id,
+            usernames=usernames,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
+             team_id: Optional[pulumi.Input[str]] = None,
+             usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if org_id is not None:
-            pulumi.set(__self__, "org_id", org_id)
+            _setter("org_id", org_id)
         if team_id is not None:
-            pulumi.set(__self__, "team_id", team_id)
+            _setter("team_id", team_id)
         if usernames is not None:
-            pulumi.set(__self__, "usernames", usernames)
+            _setter("usernames", usernames)
 
     @property
     @pulumi.getter
@@ -141,6 +169,10 @@ class Team(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            TeamArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

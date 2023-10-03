@@ -28,8 +28,6 @@ public final class GetProjectApiKeysResult {
     /**
      * @return Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
      * 
-     * See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
-     * 
      * @deprecated
      * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
      * 
@@ -63,8 +61,6 @@ public final class GetProjectApiKeysResult {
     }
     /**
      * @return Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-     * 
-     * See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
      * 
      * @deprecated
      * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment

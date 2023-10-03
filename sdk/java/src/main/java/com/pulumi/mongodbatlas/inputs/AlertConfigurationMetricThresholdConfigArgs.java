@@ -47,9 +47,7 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
     }
 
     /**
-     * If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * The operator to test the field’s value.
      * Accepted values are:
      * 
      */
@@ -57,9 +55,7 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
     private @Nullable Output<String> operator;
 
     /**
-     * @return If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * @return The operator to test the field’s value.
      * Accepted values are:
      * 
      */
@@ -85,7 +81,6 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
     /**
      * The units for the threshold value. Depends on the type of metric.
      * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * 
      */
     @Import(name="units")
@@ -93,7 +88,6 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
 
     /**
      * @return The units for the threshold value. Depends on the type of metric.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * 
      */
@@ -172,9 +166,7 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
         }
 
         /**
-         * @param operator If omitted, the configuration is disabled.
-         * Accepted values are:
-         * Accepted values are:
+         * @param operator The operator to test the field’s value.
          * Accepted values are:
          * 
          * @return builder
@@ -186,9 +178,7 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
         }
 
         /**
-         * @param operator If omitted, the configuration is disabled.
-         * Accepted values are:
-         * Accepted values are:
+         * @param operator The operator to test the field’s value.
          * Accepted values are:
          * 
          * @return builder
@@ -222,7 +212,6 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
         /**
          * @param units The units for the threshold value. Depends on the type of metric.
          * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
          * 
          * @return builder
          * 
@@ -234,7 +223,6 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
 
         /**
          * @param units The units for the threshold value. Depends on the type of metric.
-         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
          * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
          * 
          * @return builder

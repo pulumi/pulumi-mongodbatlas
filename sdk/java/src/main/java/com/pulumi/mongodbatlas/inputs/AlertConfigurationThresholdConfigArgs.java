@@ -17,9 +17,7 @@ public final class AlertConfigurationThresholdConfigArgs extends com.pulumi.reso
     public static final AlertConfigurationThresholdConfigArgs Empty = new AlertConfigurationThresholdConfigArgs();
 
     /**
-     * If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * The operator to test the field’s value.
      * Accepted values are:
      * 
      */
@@ -27,9 +25,7 @@ public final class AlertConfigurationThresholdConfigArgs extends com.pulumi.reso
     private @Nullable Output<String> operator;
 
     /**
-     * @return If omitted, the configuration is disabled.
-     * Accepted values are:
-     * Accepted values are:
+     * @return The operator to test the field’s value.
      * Accepted values are:
      * 
      */
@@ -55,7 +51,6 @@ public final class AlertConfigurationThresholdConfigArgs extends com.pulumi.reso
     /**
      * The units for the threshold value. Depends on the type of metric.
      * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * 
      */
     @Import(name="units")
@@ -63,7 +58,6 @@ public final class AlertConfigurationThresholdConfigArgs extends com.pulumi.reso
 
     /**
      * @return The units for the threshold value. Depends on the type of metric.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * 
      */
@@ -98,9 +92,7 @@ public final class AlertConfigurationThresholdConfigArgs extends com.pulumi.reso
         }
 
         /**
-         * @param operator If omitted, the configuration is disabled.
-         * Accepted values are:
-         * Accepted values are:
+         * @param operator The operator to test the field’s value.
          * Accepted values are:
          * 
          * @return builder
@@ -112,9 +104,7 @@ public final class AlertConfigurationThresholdConfigArgs extends com.pulumi.reso
         }
 
         /**
-         * @param operator If omitted, the configuration is disabled.
-         * Accepted values are:
-         * Accepted values are:
+         * @param operator The operator to test the field’s value.
          * Accepted values are:
          * 
          * @return builder
@@ -148,7 +138,6 @@ public final class AlertConfigurationThresholdConfigArgs extends com.pulumi.reso
         /**
          * @param units The units for the threshold value. Depends on the type of metric.
          * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
          * 
          * @return builder
          * 
@@ -160,7 +149,6 @@ public final class AlertConfigurationThresholdConfigArgs extends com.pulumi.reso
 
         /**
          * @param units The units for the threshold value. Depends on the type of metric.
-         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
          * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
          * 
          * @return builder

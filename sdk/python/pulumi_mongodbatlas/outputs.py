@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -411,28 +411,57 @@ class AdvancedClusterAdvancedConfiguration(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
+        AdvancedClusterAdvancedConfiguration._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_read_concern=default_read_concern,
+            default_write_concern=default_write_concern,
+            fail_index_key_too_long=fail_index_key_too_long,
+            javascript_enabled=javascript_enabled,
+            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
+            no_table_scan=no_table_scan,
+            oplog_min_retention_hours=oplog_min_retention_hours,
+            oplog_size_mb=oplog_size_mb,
+            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
+            sample_size_bi_connector=sample_size_bi_connector,
+            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_read_concern: Optional[str] = None,
+             default_write_concern: Optional[str] = None,
+             fail_index_key_too_long: Optional[bool] = None,
+             javascript_enabled: Optional[bool] = None,
+             minimum_enabled_tls_protocol: Optional[str] = None,
+             no_table_scan: Optional[bool] = None,
+             oplog_min_retention_hours: Optional[int] = None,
+             oplog_size_mb: Optional[int] = None,
+             sample_refresh_interval_bi_connector: Optional[int] = None,
+             sample_size_bi_connector: Optional[int] = None,
+             transaction_lifetime_limit_seconds: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if default_read_concern is not None:
-            pulumi.set(__self__, "default_read_concern", default_read_concern)
+            _setter("default_read_concern", default_read_concern)
         if default_write_concern is not None:
-            pulumi.set(__self__, "default_write_concern", default_write_concern)
+            _setter("default_write_concern", default_write_concern)
         if fail_index_key_too_long is not None:
-            pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+            _setter("fail_index_key_too_long", fail_index_key_too_long)
         if javascript_enabled is not None:
-            pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+            _setter("javascript_enabled", javascript_enabled)
         if minimum_enabled_tls_protocol is not None:
-            pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+            _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         if no_table_scan is not None:
-            pulumi.set(__self__, "no_table_scan", no_table_scan)
+            _setter("no_table_scan", no_table_scan)
         if oplog_min_retention_hours is not None:
-            pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
+            _setter("oplog_min_retention_hours", oplog_min_retention_hours)
         if oplog_size_mb is not None:
-            pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+            _setter("oplog_size_mb", oplog_size_mb)
         if sample_refresh_interval_bi_connector is not None:
-            pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+            _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
-            pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+            _setter("sample_size_bi_connector", sample_size_bi_connector)
         if transaction_lifetime_limit_seconds is not None:
-            pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+            _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -563,10 +592,21 @@ class AdvancedClusterBiConnector(dict):
                
                - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
         """
+        AdvancedClusterBiConnector._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            read_preference=read_preference,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: Optional[bool] = None,
+             read_preference: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if read_preference is not None:
-            pulumi.set(__self__, "read_preference", read_preference)
+            _setter("read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -629,10 +669,21 @@ class AdvancedClusterBiConnectorConfig(dict):
                
                - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
         """
+        AdvancedClusterBiConnectorConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            read_preference=read_preference,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: Optional[bool] = None,
+             read_preference: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if read_preference is not None:
-            pulumi.set(__self__, "read_preference", read_preference)
+            _setter("read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -695,20 +746,41 @@ class AdvancedClusterConnectionString(dict):
                  private_srv: Optional[str] = None,
                  standard: Optional[str] = None,
                  standard_srv: Optional[str] = None):
+        AdvancedClusterConnectionString._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_private_link=aws_private_link,
+            aws_private_link_srv=aws_private_link_srv,
+            private=private,
+            private_endpoints=private_endpoints,
+            private_srv=private_srv,
+            standard=standard,
+            standard_srv=standard_srv,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_private_link: Optional[Mapping[str, Any]] = None,
+             aws_private_link_srv: Optional[Mapping[str, Any]] = None,
+             private: Optional[str] = None,
+             private_endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpoint']] = None,
+             private_srv: Optional[str] = None,
+             standard: Optional[str] = None,
+             standard_srv: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if aws_private_link is not None:
-            pulumi.set(__self__, "aws_private_link", aws_private_link)
+            _setter("aws_private_link", aws_private_link)
         if aws_private_link_srv is not None:
-            pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
+            _setter("aws_private_link_srv", aws_private_link_srv)
         if private is not None:
-            pulumi.set(__self__, "private", private)
+            _setter("private", private)
         if private_endpoints is not None:
-            pulumi.set(__self__, "private_endpoints", private_endpoints)
+            _setter("private_endpoints", private_endpoints)
         if private_srv is not None:
-            pulumi.set(__self__, "private_srv", private_srv)
+            _setter("private_srv", private_srv)
         if standard is not None:
-            pulumi.set(__self__, "standard", standard)
+            _setter("standard", standard)
         if standard_srv is not None:
-            pulumi.set(__self__, "standard_srv", standard_srv)
+            _setter("standard_srv", standard_srv)
 
     @property
     @pulumi.getter(name="awsPrivateLink")
@@ -781,16 +853,33 @@ class AdvancedClusterConnectionStringPrivateEndpoint(dict):
                  srv_connection_string: Optional[str] = None,
                  srv_shard_optimized_connection_string: Optional[str] = None,
                  type: Optional[str] = None):
+        AdvancedClusterConnectionStringPrivateEndpoint._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            connection_string=connection_string,
+            endpoints=endpoints,
+            srv_connection_string=srv_connection_string,
+            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             connection_string: Optional[str] = None,
+             endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpointEndpoint']] = None,
+             srv_connection_string: Optional[str] = None,
+             srv_shard_optimized_connection_string: Optional[str] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if connection_string is not None:
-            pulumi.set(__self__, "connection_string", connection_string)
+            _setter("connection_string", connection_string)
         if endpoints is not None:
-            pulumi.set(__self__, "endpoints", endpoints)
+            _setter("endpoints", endpoints)
         if srv_connection_string is not None:
-            pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+            _setter("srv_connection_string", srv_connection_string)
         if srv_shard_optimized_connection_string is not None:
-            pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+            _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -847,12 +936,25 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
         :param str provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
         """
+        AdvancedClusterConnectionStringPrivateEndpointEndpoint._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_id=endpoint_id,
+            provider_name=provider_name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_id: Optional[str] = None,
+             provider_name: Optional[str] = None,
+             region: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if endpoint_id is not None:
-            pulumi.set(__self__, "endpoint_id", endpoint_id)
+            _setter("endpoint_id", endpoint_id)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -886,10 +988,21 @@ class AdvancedClusterLabel(dict):
                > **NOTE:** MongoDB Atlas doesn't display your labels.
                > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
+        AdvancedClusterLabel._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             value: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if key is not None:
-            pulumi.set(__self__, "key", key)
+            _setter("key", key)
         if value is not None:
-            pulumi.set(__self__, "value", value)
+            _setter("value", value)
 
     @property
     @pulumi.getter
@@ -947,15 +1060,32 @@ class AdvancedClusterReplicationSpec(dict):
         :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
         :param str zone_name: Name for the zone in a Global Cluster.
         """
-        pulumi.set(__self__, "region_configs", region_configs)
+        AdvancedClusterReplicationSpec._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            region_configs=region_configs,
+            container_id=container_id,
+            id=id,
+            num_shards=num_shards,
+            zone_name=zone_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             region_configs: Sequence['outputs.AdvancedClusterReplicationSpecRegionConfig'],
+             container_id: Optional[Mapping[str, str]] = None,
+             id: Optional[str] = None,
+             num_shards: Optional[int] = None,
+             zone_name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("region_configs", region_configs)
         if container_id is not None:
-            pulumi.set(__self__, "container_id", container_id)
+            _setter("container_id", container_id)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if num_shards is not None:
-            pulumi.set(__self__, "num_shards", num_shards)
+            _setter("num_shards", num_shards)
         if zone_name is not None:
-            pulumi.set(__self__, "zone_name", zone_name)
+            _setter("zone_name", zone_name)
 
     @property
     @pulumi.getter(name="regionConfigs")
@@ -1049,21 +1179,46 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         :param 'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
         """
-        pulumi.set(__self__, "priority", priority)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "region_name", region_name)
+        AdvancedClusterReplicationSpecRegionConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            priority=priority,
+            provider_name=provider_name,
+            region_name=region_name,
+            analytics_auto_scaling=analytics_auto_scaling,
+            analytics_specs=analytics_specs,
+            auto_scaling=auto_scaling,
+            backing_provider_name=backing_provider_name,
+            electable_specs=electable_specs,
+            read_only_specs=read_only_specs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             priority: int,
+             provider_name: str,
+             region_name: str,
+             analytics_auto_scaling: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling'] = None,
+             analytics_specs: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs'] = None,
+             auto_scaling: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling'] = None,
+             backing_provider_name: Optional[str] = None,
+             electable_specs: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs'] = None,
+             read_only_specs: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs'] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("priority", priority)
+        _setter("provider_name", provider_name)
+        _setter("region_name", region_name)
         if analytics_auto_scaling is not None:
-            pulumi.set(__self__, "analytics_auto_scaling", analytics_auto_scaling)
+            _setter("analytics_auto_scaling", analytics_auto_scaling)
         if analytics_specs is not None:
-            pulumi.set(__self__, "analytics_specs", analytics_specs)
+            _setter("analytics_specs", analytics_specs)
         if auto_scaling is not None:
-            pulumi.set(__self__, "auto_scaling", auto_scaling)
+            _setter("auto_scaling", auto_scaling)
         if backing_provider_name is not None:
-            pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+            _setter("backing_provider_name", backing_provider_name)
         if electable_specs is not None:
-            pulumi.set(__self__, "electable_specs", electable_specs)
+            _setter("electable_specs", electable_specs)
         if read_only_specs is not None:
-            pulumi.set(__self__, "read_only_specs", read_only_specs)
+            _setter("read_only_specs", read_only_specs)
 
     @property
     @pulumi.getter
@@ -1180,16 +1335,33 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
         """
+        AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            compute_enabled=compute_enabled,
+            compute_max_instance_size=compute_max_instance_size,
+            compute_min_instance_size=compute_min_instance_size,
+            compute_scale_down_enabled=compute_scale_down_enabled,
+            disk_gb_enabled=disk_gb_enabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             compute_enabled: Optional[bool] = None,
+             compute_max_instance_size: Optional[str] = None,
+             compute_min_instance_size: Optional[str] = None,
+             compute_scale_down_enabled: Optional[bool] = None,
+             disk_gb_enabled: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if compute_enabled is not None:
-            pulumi.set(__self__, "compute_enabled", compute_enabled)
+            _setter("compute_enabled", compute_enabled)
         if compute_max_instance_size is not None:
-            pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+            _setter("compute_max_instance_size", compute_max_instance_size)
         if compute_min_instance_size is not None:
-            pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+            _setter("compute_min_instance_size", compute_min_instance_size)
         if compute_scale_down_enabled is not None:
-            pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+            _setter("compute_scale_down_enabled", compute_scale_down_enabled)
         if disk_gb_enabled is not None:
-            pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+            _setter("disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -1265,13 +1437,28 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
+        AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_size=instance_size,
+            disk_iops=disk_iops,
+            ebs_volume_type=ebs_volume_type,
+            node_count=node_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_size: str,
+             disk_iops: Optional[int] = None,
+             ebs_volume_type: Optional[str] = None,
+             node_count: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_size", instance_size)
         if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
+            _setter("disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+            _setter("ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -1344,16 +1531,33 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
         :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
         """
+        AdvancedClusterReplicationSpecRegionConfigAutoScaling._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            compute_enabled=compute_enabled,
+            compute_max_instance_size=compute_max_instance_size,
+            compute_min_instance_size=compute_min_instance_size,
+            compute_scale_down_enabled=compute_scale_down_enabled,
+            disk_gb_enabled=disk_gb_enabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             compute_enabled: Optional[bool] = None,
+             compute_max_instance_size: Optional[str] = None,
+             compute_min_instance_size: Optional[str] = None,
+             compute_scale_down_enabled: Optional[bool] = None,
+             disk_gb_enabled: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if compute_enabled is not None:
-            pulumi.set(__self__, "compute_enabled", compute_enabled)
+            _setter("compute_enabled", compute_enabled)
         if compute_max_instance_size is not None:
-            pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+            _setter("compute_max_instance_size", compute_max_instance_size)
         if compute_min_instance_size is not None:
-            pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+            _setter("compute_min_instance_size", compute_min_instance_size)
         if compute_scale_down_enabled is not None:
-            pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+            _setter("compute_scale_down_enabled", compute_scale_down_enabled)
         if disk_gb_enabled is not None:
-            pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+            _setter("disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -1426,13 +1630,28 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
+        AdvancedClusterReplicationSpecRegionConfigElectableSpecs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_size=instance_size,
+            disk_iops=disk_iops,
+            ebs_volume_type=ebs_volume_type,
+            node_count=node_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_size: str,
+             disk_iops: Optional[int] = None,
+             ebs_volume_type: Optional[str] = None,
+             node_count: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_size", instance_size)
         if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
+            _setter("disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+            _setter("ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -1503,13 +1722,28 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
+        AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_size=instance_size,
+            disk_iops=disk_iops,
+            ebs_volume_type=ebs_volume_type,
+            node_count=node_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_size: str,
+             disk_iops: Optional[int] = None,
+             ebs_volume_type: Optional[str] = None,
+             node_count: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_size", instance_size)
         if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
+            _setter("disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+            _setter("ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -1581,18 +1815,29 @@ class AlertConfigurationMatcher(dict):
                
                
                All other types of alerts do not support matchers.
-        :param str operator: If omitted, the configuration is disabled.
+        :param str operator: The operator to test the field’s value.
                Accepted values are:
-               Accepted values are:
-               Accepted values are:
-        :param str value: If omitted, the configuration is disabled.
+        :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
+        AlertConfigurationMatcher._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field_name=field_name,
+            operator=operator,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field_name: Optional[str] = None,
+             operator: Optional[str] = None,
+             value: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if field_name is not None:
-            pulumi.set(__self__, "field_name", field_name)
+            _setter("field_name", field_name)
         if operator is not None:
-            pulumi.set(__self__, "operator", operator)
+            _setter("operator", operator)
         if value is not None:
-            pulumi.set(__self__, "value", value)
+            _setter("value", value)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -1618,9 +1863,7 @@ class AlertConfigurationMatcher(dict):
     @pulumi.getter
     def operator(self) -> Optional[str]:
         """
-        If omitted, the configuration is disabled.
-        Accepted values are:
-        Accepted values are:
+        The operator to test the field’s value.
         Accepted values are:
         """
         return pulumi.get(self, "operator")
@@ -1629,7 +1872,7 @@ class AlertConfigurationMatcher(dict):
     @pulumi.getter
     def value(self) -> Optional[str]:
         """
-        If omitted, the configuration is disabled.
+        Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
         return pulumi.get(self, "value")
 
@@ -1662,25 +1905,39 @@ class AlertConfigurationMetricThresholdConfig(dict):
         """
         :param str metric_name: Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
         :param str mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
-        :param str operator: If omitted, the configuration is disabled.
-               Accepted values are:
-               Accepted values are:
+        :param str operator: The operator to test the field’s value.
                Accepted values are:
         :param float threshold: Threshold value outside of which an alert will be triggered.
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-               Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
+        AlertConfigurationMetricThresholdConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            metric_name=metric_name,
+            mode=mode,
+            operator=operator,
+            threshold=threshold,
+            units=units,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             metric_name: Optional[str] = None,
+             mode: Optional[str] = None,
+             operator: Optional[str] = None,
+             threshold: Optional[float] = None,
+             units: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if metric_name is not None:
-            pulumi.set(__self__, "metric_name", metric_name)
+            _setter("metric_name", metric_name)
         if mode is not None:
-            pulumi.set(__self__, "mode", mode)
+            _setter("mode", mode)
         if operator is not None:
-            pulumi.set(__self__, "operator", operator)
+            _setter("operator", operator)
         if threshold is not None:
-            pulumi.set(__self__, "threshold", threshold)
+            _setter("threshold", threshold)
         if units is not None:
-            pulumi.set(__self__, "units", units)
+            _setter("units", units)
 
     @property
     @pulumi.getter(name="metricName")
@@ -1702,9 +1959,7 @@ class AlertConfigurationMetricThresholdConfig(dict):
     @pulumi.getter
     def operator(self) -> Optional[str]:
         """
-        If omitted, the configuration is disabled.
-        Accepted values are:
-        Accepted values are:
+        The operator to test the field’s value.
         Accepted values are:
         """
         return pulumi.get(self, "operator")
@@ -1722,7 +1977,6 @@ class AlertConfigurationMetricThresholdConfig(dict):
     def units(self) -> Optional[str]:
         """
         The units for the threshold value. Depends on the type of metric.
-        Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
         return pulumi.get(self, "units")
@@ -1848,52 +2102,105 @@ class AlertConfigurationNotification(dict):
         :param str webhook_secret: Optional authentication secret for the `WEBHOOK` notifications type.
         :param str webhook_url: Target URL  for the `WEBHOOK` notifications type.
         """
+        AlertConfigurationNotification._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_token=api_token,
+            channel_name=channel_name,
+            datadog_api_key=datadog_api_key,
+            datadog_region=datadog_region,
+            delay_min=delay_min,
+            email_address=email_address,
+            email_enabled=email_enabled,
+            interval_min=interval_min,
+            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
+            mobile_number=mobile_number,
+            ops_genie_api_key=ops_genie_api_key,
+            ops_genie_region=ops_genie_region,
+            roles=roles,
+            service_key=service_key,
+            sms_enabled=sms_enabled,
+            team_id=team_id,
+            team_name=team_name,
+            type_name=type_name,
+            username=username,
+            victor_ops_api_key=victor_ops_api_key,
+            victor_ops_routing_key=victor_ops_routing_key,
+            webhook_secret=webhook_secret,
+            webhook_url=webhook_url,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_token: Optional[str] = None,
+             channel_name: Optional[str] = None,
+             datadog_api_key: Optional[str] = None,
+             datadog_region: Optional[str] = None,
+             delay_min: Optional[int] = None,
+             email_address: Optional[str] = None,
+             email_enabled: Optional[bool] = None,
+             interval_min: Optional[int] = None,
+             microsoft_teams_webhook_url: Optional[str] = None,
+             mobile_number: Optional[str] = None,
+             ops_genie_api_key: Optional[str] = None,
+             ops_genie_region: Optional[str] = None,
+             roles: Optional[Sequence[str]] = None,
+             service_key: Optional[str] = None,
+             sms_enabled: Optional[bool] = None,
+             team_id: Optional[str] = None,
+             team_name: Optional[str] = None,
+             type_name: Optional[str] = None,
+             username: Optional[str] = None,
+             victor_ops_api_key: Optional[str] = None,
+             victor_ops_routing_key: Optional[str] = None,
+             webhook_secret: Optional[str] = None,
+             webhook_url: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if api_token is not None:
-            pulumi.set(__self__, "api_token", api_token)
+            _setter("api_token", api_token)
         if channel_name is not None:
-            pulumi.set(__self__, "channel_name", channel_name)
+            _setter("channel_name", channel_name)
         if datadog_api_key is not None:
-            pulumi.set(__self__, "datadog_api_key", datadog_api_key)
+            _setter("datadog_api_key", datadog_api_key)
         if datadog_region is not None:
-            pulumi.set(__self__, "datadog_region", datadog_region)
+            _setter("datadog_region", datadog_region)
         if delay_min is not None:
-            pulumi.set(__self__, "delay_min", delay_min)
+            _setter("delay_min", delay_min)
         if email_address is not None:
-            pulumi.set(__self__, "email_address", email_address)
+            _setter("email_address", email_address)
         if email_enabled is not None:
-            pulumi.set(__self__, "email_enabled", email_enabled)
+            _setter("email_enabled", email_enabled)
         if interval_min is not None:
-            pulumi.set(__self__, "interval_min", interval_min)
+            _setter("interval_min", interval_min)
         if microsoft_teams_webhook_url is not None:
-            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+            _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if mobile_number is not None:
-            pulumi.set(__self__, "mobile_number", mobile_number)
+            _setter("mobile_number", mobile_number)
         if ops_genie_api_key is not None:
-            pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
+            _setter("ops_genie_api_key", ops_genie_api_key)
         if ops_genie_region is not None:
-            pulumi.set(__self__, "ops_genie_region", ops_genie_region)
+            _setter("ops_genie_region", ops_genie_region)
         if roles is not None:
-            pulumi.set(__self__, "roles", roles)
+            _setter("roles", roles)
         if service_key is not None:
-            pulumi.set(__self__, "service_key", service_key)
+            _setter("service_key", service_key)
         if sms_enabled is not None:
-            pulumi.set(__self__, "sms_enabled", sms_enabled)
+            _setter("sms_enabled", sms_enabled)
         if team_id is not None:
-            pulumi.set(__self__, "team_id", team_id)
+            _setter("team_id", team_id)
         if team_name is not None:
-            pulumi.set(__self__, "team_name", team_name)
+            _setter("team_name", team_name)
         if type_name is not None:
-            pulumi.set(__self__, "type_name", type_name)
+            _setter("type_name", type_name)
         if username is not None:
-            pulumi.set(__self__, "username", username)
+            _setter("username", username)
         if victor_ops_api_key is not None:
-            pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
+            _setter("victor_ops_api_key", victor_ops_api_key)
         if victor_ops_routing_key is not None:
-            pulumi.set(__self__, "victor_ops_routing_key", victor_ops_routing_key)
+            _setter("victor_ops_routing_key", victor_ops_routing_key)
         if webhook_secret is not None:
-            pulumi.set(__self__, "webhook_secret", webhook_secret)
+            _setter("webhook_secret", webhook_secret)
         if webhook_url is not None:
-            pulumi.set(__self__, "webhook_url", webhook_url)
+            _setter("webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -2099,29 +2406,37 @@ class AlertConfigurationThresholdConfig(dict):
                  threshold: Optional[float] = None,
                  units: Optional[str] = None):
         """
-        :param str operator: If omitted, the configuration is disabled.
-               Accepted values are:
-               Accepted values are:
+        :param str operator: The operator to test the field’s value.
                Accepted values are:
         :param float threshold: Threshold value outside of which an alert will be triggered.
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-               Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
+        AlertConfigurationThresholdConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            operator=operator,
+            threshold=threshold,
+            units=units,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             operator: Optional[str] = None,
+             threshold: Optional[float] = None,
+             units: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if operator is not None:
-            pulumi.set(__self__, "operator", operator)
+            _setter("operator", operator)
         if threshold is not None:
-            pulumi.set(__self__, "threshold", threshold)
+            _setter("threshold", threshold)
         if units is not None:
-            pulumi.set(__self__, "units", units)
+            _setter("units", units)
 
     @property
     @pulumi.getter
     def operator(self) -> Optional[str]:
         """
-        If omitted, the configuration is disabled.
-        Accepted values are:
-        Accepted values are:
+        The operator to test the field’s value.
         Accepted values are:
         """
         return pulumi.get(self, "operator")
@@ -2139,7 +2454,6 @@ class AlertConfigurationThresholdConfig(dict):
     def units(self) -> Optional[str]:
         """
         The units for the threshold value. Depends on the type of metric.
-        Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
         return pulumi.get(self, "units")
@@ -2183,13 +2497,30 @@ class BackupCompliancePolicyOnDemandPolicyItem(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        BackupCompliancePolicyOnDemandPolicyItem._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+            frequency_type=frequency_type,
+            id=id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             retention_unit: str,
+             retention_value: int,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2270,13 +2601,30 @@ class BackupCompliancePolicyPolicyItemDaily(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        BackupCompliancePolicyPolicyItemDaily._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+            frequency_type=frequency_type,
+            id=id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             retention_unit: str,
+             retention_value: int,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2357,13 +2705,30 @@ class BackupCompliancePolicyPolicyItemHourly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        BackupCompliancePolicyPolicyItemHourly._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+            frequency_type=frequency_type,
+            id=id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             retention_unit: str,
+             retention_value: int,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2444,13 +2809,30 @@ class BackupCompliancePolicyPolicyItemMonthly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        BackupCompliancePolicyPolicyItemMonthly._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+            frequency_type=frequency_type,
+            id=id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             retention_unit: str,
+             retention_value: int,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2531,13 +2913,30 @@ class BackupCompliancePolicyPolicyItemWeekly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        BackupCompliancePolicyPolicyItemWeekly._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+            frequency_type=frequency_type,
+            id=id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             retention_unit: str,
+             retention_value: int,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2618,16 +3017,33 @@ class CloudBackupScheduleCopySetting(dict):
         :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
         :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         """
+        CloudBackupScheduleCopySetting._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            frequencies=frequencies,
+            region_name=region_name,
+            replication_spec_id=replication_spec_id,
+            should_copy_oplogs=should_copy_oplogs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: Optional[str] = None,
+             frequencies: Optional[Sequence[str]] = None,
+             region_name: Optional[str] = None,
+             replication_spec_id: Optional[str] = None,
+             should_copy_oplogs: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cloud_provider is not None:
-            pulumi.set(__self__, "cloud_provider", cloud_provider)
+            _setter("cloud_provider", cloud_provider)
         if frequencies is not None:
-            pulumi.set(__self__, "frequencies", frequencies)
+            _setter("frequencies", frequencies)
         if region_name is not None:
-            pulumi.set(__self__, "region_name", region_name)
+            _setter("region_name", region_name)
         if replication_spec_id is not None:
-            pulumi.set(__self__, "replication_spec_id", replication_spec_id)
+            _setter("replication_spec_id", replication_spec_id)
         if should_copy_oplogs is not None:
-            pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
+            _setter("should_copy_oplogs", should_copy_oplogs)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -2698,10 +3114,21 @@ class CloudBackupScheduleExport(dict):
         :param str export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
         :param str frequency_type: Frequency associated with the export snapshot item.
         """
+        CloudBackupScheduleExport._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            export_bucket_id=export_bucket_id,
+            frequency_type=frequency_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             export_bucket_id: Optional[str] = None,
+             frequency_type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if export_bucket_id is not None:
-            pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+            _setter("export_bucket_id", export_bucket_id)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
 
     @property
     @pulumi.getter(name="exportBucketId")
@@ -2758,13 +3185,30 @@ class CloudBackupSchedulePolicyItemDaily(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        CloudBackupSchedulePolicyItemDaily._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+            frequency_type=frequency_type,
+            id=id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             retention_unit: str,
+             retention_value: int,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2845,13 +3289,30 @@ class CloudBackupSchedulePolicyItemHourly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        CloudBackupSchedulePolicyItemHourly._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+            frequency_type=frequency_type,
+            id=id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             retention_unit: str,
+             retention_value: int,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2932,13 +3393,30 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        CloudBackupSchedulePolicyItemMonthly._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+            frequency_type=frequency_type,
+            id=id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             retention_unit: str,
+             retention_value: int,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -3019,13 +3497,30 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        CloudBackupSchedulePolicyItemWeekly._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+            frequency_type=frequency_type,
+            id=id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             retention_unit: str,
+             retention_value: int,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -3096,10 +3591,21 @@ class CloudBackupSnapshotExportJobComponent(dict):
         :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
         """
+        CloudBackupSnapshotExportJobComponent._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            export_id=export_id,
+            replica_set_name=replica_set_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             export_id: Optional[str] = None,
+             replica_set_name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if export_id is not None:
-            pulumi.set(__self__, "export_id", export_id)
+            _setter("export_id", export_id)
         if replica_set_name is not None:
-            pulumi.set(__self__, "replica_set_name", replica_set_name)
+            _setter("replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="exportId")
@@ -3127,8 +3633,19 @@ class CloudBackupSnapshotExportJobCustomData(dict):
         :param str key: Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
         :param str value: Required if you specify `key`.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        CloudBackupSnapshotExportJobCustomData._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -3177,12 +3694,25 @@ class CloudBackupSnapshotMember(dict):
         :param str id: Unique identifier for the sharded cluster snapshot.
         :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         """
+        CloudBackupSnapshotMember._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            id=id,
+            replica_set_name=replica_set_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: Optional[str] = None,
+             id: Optional[str] = None,
+             replica_set_name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cloud_provider is not None:
-            pulumi.set(__self__, "cloud_provider", cloud_provider)
+            _setter("cloud_provider", cloud_provider)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if replica_set_name is not None:
-            pulumi.set(__self__, "replica_set_name", replica_set_name)
+            _setter("replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -3251,22 +3781,45 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfig(dict):
         :param str target_cluster_name: Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
         :param str target_project_id: Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
         """
+        CloudBackupSnapshotRestoreJobDeliveryTypeConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            automated=automated,
+            download=download,
+            oplog_inc=oplog_inc,
+            oplog_ts=oplog_ts,
+            point_in_time=point_in_time,
+            point_in_time_utc_seconds=point_in_time_utc_seconds,
+            target_cluster_name=target_cluster_name,
+            target_project_id=target_project_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             automated: Optional[bool] = None,
+             download: Optional[bool] = None,
+             oplog_inc: Optional[int] = None,
+             oplog_ts: Optional[int] = None,
+             point_in_time: Optional[bool] = None,
+             point_in_time_utc_seconds: Optional[int] = None,
+             target_cluster_name: Optional[str] = None,
+             target_project_id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if automated is not None:
-            pulumi.set(__self__, "automated", automated)
+            _setter("automated", automated)
         if download is not None:
-            pulumi.set(__self__, "download", download)
+            _setter("download", download)
         if oplog_inc is not None:
-            pulumi.set(__self__, "oplog_inc", oplog_inc)
+            _setter("oplog_inc", oplog_inc)
         if oplog_ts is not None:
-            pulumi.set(__self__, "oplog_ts", oplog_ts)
+            _setter("oplog_ts", oplog_ts)
         if point_in_time is not None:
-            pulumi.set(__self__, "point_in_time", point_in_time)
+            _setter("point_in_time", point_in_time)
         if point_in_time_utc_seconds is not None:
-            pulumi.set(__self__, "point_in_time_utc_seconds", point_in_time_utc_seconds)
+            _setter("point_in_time_utc_seconds", point_in_time_utc_seconds)
         if target_cluster_name is not None:
-            pulumi.set(__self__, "target_cluster_name", target_cluster_name)
+            _setter("target_cluster_name", target_cluster_name)
         if target_project_id is not None:
-            pulumi.set(__self__, "target_project_id", target_project_id)
+            _setter("target_project_id", target_project_id)
 
     @property
     @pulumi.getter
@@ -3336,7 +3889,16 @@ class CloudProviderAccessAuthorizationAws(dict):
 
     def __init__(__self__, *,
                  iam_assumed_role_arn: str):
-        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        CloudProviderAccessAuthorizationAws._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            iam_assumed_role_arn=iam_assumed_role_arn,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             iam_assumed_role_arn: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
 
     @property
     @pulumi.getter(name="iamAssumedRoleArn")
@@ -3371,9 +3933,22 @@ class CloudProviderAccessAuthorizationAzure(dict):
                  atlas_azure_app_id: str,
                  service_principal_id: str,
                  tenant_id: str):
-        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
-        pulumi.set(__self__, "service_principal_id", service_principal_id)
-        pulumi.set(__self__, "tenant_id", tenant_id)
+        CloudProviderAccessAuthorizationAzure._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            atlas_azure_app_id=atlas_azure_app_id,
+            service_principal_id=service_principal_id,
+            tenant_id=tenant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             atlas_azure_app_id: str,
+             service_principal_id: str,
+             tenant_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("atlas_azure_app_id", atlas_azure_app_id)
+        _setter("service_principal_id", service_principal_id)
+        _setter("tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="atlasAzureAppId")
@@ -3415,10 +3990,21 @@ class CloudProviderAccessAuthorizationFeatureUsage(dict):
     def __init__(__self__, *,
                  feature_id: Optional[Mapping[str, Any]] = None,
                  feature_type: Optional[str] = None):
+        CloudProviderAccessAuthorizationFeatureUsage._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            feature_id=feature_id,
+            feature_type=feature_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             feature_id: Optional[Mapping[str, Any]] = None,
+             feature_type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if feature_id is not None:
-            pulumi.set(__self__, "feature_id", feature_id)
+            _setter("feature_id", feature_id)
         if feature_type is not None:
-            pulumi.set(__self__, "feature_type", feature_type)
+            _setter("feature_type", feature_type)
 
     @property
     @pulumi.getter(name="featureId")
@@ -3455,10 +4041,21 @@ class CloudProviderAccessFeatureUsage(dict):
     def __init__(__self__, *,
                  feature_id: Optional[Mapping[str, Any]] = None,
                  feature_type: Optional[str] = None):
+        CloudProviderAccessFeatureUsage._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            feature_id=feature_id,
+            feature_type=feature_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             feature_id: Optional[Mapping[str, Any]] = None,
+             feature_type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if feature_id is not None:
-            pulumi.set(__self__, "feature_id", feature_id)
+            _setter("feature_id", feature_id)
         if feature_type is not None:
-            pulumi.set(__self__, "feature_type", feature_type)
+            _setter("feature_type", feature_type)
 
     @property
     @pulumi.getter(name="featureId")
@@ -3495,10 +4092,21 @@ class CloudProviderAccessSetupAwsConfig(dict):
     def __init__(__self__, *,
                  atlas_assumed_role_external_id: Optional[str] = None,
                  atlas_aws_account_arn: Optional[str] = None):
+        CloudProviderAccessSetupAwsConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            atlas_assumed_role_external_id=atlas_assumed_role_external_id,
+            atlas_aws_account_arn=atlas_aws_account_arn,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             atlas_assumed_role_external_id: Optional[str] = None,
+             atlas_aws_account_arn: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if atlas_assumed_role_external_id is not None:
-            pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+            _setter("atlas_assumed_role_external_id", atlas_assumed_role_external_id)
         if atlas_aws_account_arn is not None:
-            pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
+            _setter("atlas_aws_account_arn", atlas_aws_account_arn)
 
     @property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
@@ -3538,9 +4146,22 @@ class CloudProviderAccessSetupAzureConfig(dict):
                  atlas_azure_app_id: str,
                  service_principal_id: str,
                  tenant_id: str):
-        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
-        pulumi.set(__self__, "service_principal_id", service_principal_id)
-        pulumi.set(__self__, "tenant_id", tenant_id)
+        CloudProviderAccessSetupAzureConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            atlas_azure_app_id=atlas_azure_app_id,
+            service_principal_id=service_principal_id,
+            tenant_id=tenant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             atlas_azure_app_id: str,
+             service_principal_id: str,
+             tenant_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("atlas_azure_app_id", atlas_azure_app_id)
+        _setter("service_principal_id", service_principal_id)
+        _setter("tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="atlasAzureAppId")
@@ -3627,28 +4248,57 @@ class ClusterAdvancedConfiguration(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
+        ClusterAdvancedConfiguration._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_read_concern=default_read_concern,
+            default_write_concern=default_write_concern,
+            fail_index_key_too_long=fail_index_key_too_long,
+            javascript_enabled=javascript_enabled,
+            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
+            no_table_scan=no_table_scan,
+            oplog_min_retention_hours=oplog_min_retention_hours,
+            oplog_size_mb=oplog_size_mb,
+            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
+            sample_size_bi_connector=sample_size_bi_connector,
+            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_read_concern: Optional[str] = None,
+             default_write_concern: Optional[str] = None,
+             fail_index_key_too_long: Optional[bool] = None,
+             javascript_enabled: Optional[bool] = None,
+             minimum_enabled_tls_protocol: Optional[str] = None,
+             no_table_scan: Optional[bool] = None,
+             oplog_min_retention_hours: Optional[int] = None,
+             oplog_size_mb: Optional[int] = None,
+             sample_refresh_interval_bi_connector: Optional[int] = None,
+             sample_size_bi_connector: Optional[int] = None,
+             transaction_lifetime_limit_seconds: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if default_read_concern is not None:
-            pulumi.set(__self__, "default_read_concern", default_read_concern)
+            _setter("default_read_concern", default_read_concern)
         if default_write_concern is not None:
-            pulumi.set(__self__, "default_write_concern", default_write_concern)
+            _setter("default_write_concern", default_write_concern)
         if fail_index_key_too_long is not None:
-            pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+            _setter("fail_index_key_too_long", fail_index_key_too_long)
         if javascript_enabled is not None:
-            pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+            _setter("javascript_enabled", javascript_enabled)
         if minimum_enabled_tls_protocol is not None:
-            pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+            _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         if no_table_scan is not None:
-            pulumi.set(__self__, "no_table_scan", no_table_scan)
+            _setter("no_table_scan", no_table_scan)
         if oplog_min_retention_hours is not None:
-            pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
+            _setter("oplog_min_retention_hours", oplog_min_retention_hours)
         if oplog_size_mb is not None:
-            pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+            _setter("oplog_size_mb", oplog_size_mb)
         if sample_refresh_interval_bi_connector is not None:
-            pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+            _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
-            pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+            _setter("sample_size_bi_connector", sample_size_bi_connector)
         if transaction_lifetime_limit_seconds is not None:
-            pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+            _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -3779,10 +4429,21 @@ class ClusterBiConnectorConfig(dict):
                
                - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
         """
+        ClusterBiConnectorConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            read_preference=read_preference,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: Optional[bool] = None,
+             read_preference: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if read_preference is not None:
-            pulumi.set(__self__, "read_preference", read_preference)
+            _setter("read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -3845,20 +4506,41 @@ class ClusterConnectionString(dict):
                  private_srv: Optional[str] = None,
                  standard: Optional[str] = None,
                  standard_srv: Optional[str] = None):
+        ClusterConnectionString._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_private_link=aws_private_link,
+            aws_private_link_srv=aws_private_link_srv,
+            private=private,
+            private_endpoints=private_endpoints,
+            private_srv=private_srv,
+            standard=standard,
+            standard_srv=standard_srv,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_private_link: Optional[Mapping[str, Any]] = None,
+             aws_private_link_srv: Optional[Mapping[str, Any]] = None,
+             private: Optional[str] = None,
+             private_endpoints: Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpoint']] = None,
+             private_srv: Optional[str] = None,
+             standard: Optional[str] = None,
+             standard_srv: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if aws_private_link is not None:
-            pulumi.set(__self__, "aws_private_link", aws_private_link)
+            _setter("aws_private_link", aws_private_link)
         if aws_private_link_srv is not None:
-            pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
+            _setter("aws_private_link_srv", aws_private_link_srv)
         if private is not None:
-            pulumi.set(__self__, "private", private)
+            _setter("private", private)
         if private_endpoints is not None:
-            pulumi.set(__self__, "private_endpoints", private_endpoints)
+            _setter("private_endpoints", private_endpoints)
         if private_srv is not None:
-            pulumi.set(__self__, "private_srv", private_srv)
+            _setter("private_srv", private_srv)
         if standard is not None:
-            pulumi.set(__self__, "standard", standard)
+            _setter("standard", standard)
         if standard_srv is not None:
-            pulumi.set(__self__, "standard_srv", standard_srv)
+            _setter("standard_srv", standard_srv)
 
     @property
     @pulumi.getter(name="awsPrivateLink")
@@ -3931,16 +4613,33 @@ class ClusterConnectionStringPrivateEndpoint(dict):
                  srv_connection_string: Optional[str] = None,
                  srv_shard_optimized_connection_string: Optional[str] = None,
                  type: Optional[str] = None):
+        ClusterConnectionStringPrivateEndpoint._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            connection_string=connection_string,
+            endpoints=endpoints,
+            srv_connection_string=srv_connection_string,
+            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             connection_string: Optional[str] = None,
+             endpoints: Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpointEndpoint']] = None,
+             srv_connection_string: Optional[str] = None,
+             srv_shard_optimized_connection_string: Optional[str] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if connection_string is not None:
-            pulumi.set(__self__, "connection_string", connection_string)
+            _setter("connection_string", connection_string)
         if endpoints is not None:
-            pulumi.set(__self__, "endpoints", endpoints)
+            _setter("endpoints", endpoints)
         if srv_connection_string is not None:
-            pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+            _setter("srv_connection_string", srv_connection_string)
         if srv_shard_optimized_connection_string is not None:
-            pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+            _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -3998,12 +4697,25 @@ class ClusterConnectionStringPrivateEndpointEndpoint(dict):
                
                The possible values are:
         """
+        ClusterConnectionStringPrivateEndpointEndpoint._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_id=endpoint_id,
+            provider_name=provider_name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_id: Optional[str] = None,
+             provider_name: Optional[str] = None,
+             region: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if endpoint_id is not None:
-            pulumi.set(__self__, "endpoint_id", endpoint_id)
+            _setter("endpoint_id", endpoint_id)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -4038,10 +4750,21 @@ class ClusterLabel(dict):
                > **NOTE:** MongoDB Atlas doesn't display your labels.
                > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
+        ClusterLabel._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             value: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if key is not None:
-            pulumi.set(__self__, "key", key)
+            _setter("key", key)
         if value is not None:
-            pulumi.set(__self__, "value", value)
+            _setter("value", value)
 
     @property
     @pulumi.getter
@@ -4093,10 +4816,23 @@ class ClusterOutageSimulationOutageFilter(dict):
         :param str region_name: The Atlas name of the region to undergo an outage simulation.
         :param str type: The type of cluster outage simulation. Following values are supported:
         """
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region_name", region_name)
+        ClusterOutageSimulationOutageFilter._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            region_name=region_name,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             region_name: str,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("region_name", region_name)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -4160,13 +4896,28 @@ class ClusterReplicationSpec(dict):
                
                **Region Config**
         """
-        pulumi.set(__self__, "num_shards", num_shards)
+        ClusterReplicationSpec._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            num_shards=num_shards,
+            id=id,
+            regions_configs=regions_configs,
+            zone_name=zone_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             num_shards: int,
+             id: Optional[str] = None,
+             regions_configs: Optional[Sequence['outputs.ClusterReplicationSpecRegionsConfig']] = None,
+             zone_name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("num_shards", num_shards)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if regions_configs is not None:
-            pulumi.set(__self__, "regions_configs", regions_configs)
+            _setter("regions_configs", regions_configs)
         if zone_name is not None:
-            pulumi.set(__self__, "zone_name", zone_name)
+            _setter("zone_name", zone_name)
 
     @property
     @pulumi.getter(name="numShards")
@@ -4248,15 +4999,32 @@ class ClusterReplicationSpecRegionsConfig(dict):
                * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
         :param int read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         """
-        pulumi.set(__self__, "region_name", region_name)
+        ClusterReplicationSpecRegionsConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            region_name=region_name,
+            analytics_nodes=analytics_nodes,
+            electable_nodes=electable_nodes,
+            priority=priority,
+            read_only_nodes=read_only_nodes,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             region_name: str,
+             analytics_nodes: Optional[int] = None,
+             electable_nodes: Optional[int] = None,
+             priority: Optional[int] = None,
+             read_only_nodes: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("region_name", region_name)
         if analytics_nodes is not None:
-            pulumi.set(__self__, "analytics_nodes", analytics_nodes)
+            _setter("analytics_nodes", analytics_nodes)
         if electable_nodes is not None:
-            pulumi.set(__self__, "electable_nodes", electable_nodes)
+            _setter("electable_nodes", electable_nodes)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if read_only_nodes is not None:
-            pulumi.set(__self__, "read_only_nodes", read_only_nodes)
+            _setter("read_only_nodes", read_only_nodes)
 
     @property
     @pulumi.getter(name="regionName")
@@ -4348,22 +5116,45 @@ class ClusterSnapshotBackupPolicy(dict):
         """
         :param str cluster_id: The cluster ID.
         """
+        ClusterSnapshotBackupPolicy._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_id=cluster_id,
+            cluster_name=cluster_name,
+            next_snapshot=next_snapshot,
+            policies=policies,
+            reference_hour_of_day=reference_hour_of_day,
+            reference_minute_of_hour=reference_minute_of_hour,
+            restore_window_days=restore_window_days,
+            update_snapshots=update_snapshots,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_id: Optional[str] = None,
+             cluster_name: Optional[str] = None,
+             next_snapshot: Optional[str] = None,
+             policies: Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicy']] = None,
+             reference_hour_of_day: Optional[int] = None,
+             reference_minute_of_hour: Optional[int] = None,
+             restore_window_days: Optional[int] = None,
+             update_snapshots: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cluster_id is not None:
-            pulumi.set(__self__, "cluster_id", cluster_id)
+            _setter("cluster_id", cluster_id)
         if cluster_name is not None:
-            pulumi.set(__self__, "cluster_name", cluster_name)
+            _setter("cluster_name", cluster_name)
         if next_snapshot is not None:
-            pulumi.set(__self__, "next_snapshot", next_snapshot)
+            _setter("next_snapshot", next_snapshot)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
         if reference_hour_of_day is not None:
-            pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
+            _setter("reference_hour_of_day", reference_hour_of_day)
         if reference_minute_of_hour is not None:
-            pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
+            _setter("reference_minute_of_hour", reference_minute_of_hour)
         if restore_window_days is not None:
-            pulumi.set(__self__, "restore_window_days", restore_window_days)
+            _setter("restore_window_days", restore_window_days)
         if update_snapshots is not None:
-            pulumi.set(__self__, "update_snapshots", update_snapshots)
+            _setter("update_snapshots", update_snapshots)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -4434,10 +5225,21 @@ class ClusterSnapshotBackupPolicyPolicy(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
+        ClusterSnapshotBackupPolicyPolicy._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            policy_items=policy_items,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             policy_items: Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if policy_items is not None:
-            pulumi.set(__self__, "policy_items", policy_items)
+            _setter("policy_items", policy_items)
 
     @property
     @pulumi.getter
@@ -4487,16 +5289,33 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
+        ClusterSnapshotBackupPolicyPolicyPolicyItem._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: Optional[int] = None,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             retention_unit: Optional[str] = None,
+             retention_value: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if frequency_interval is not None:
-            pulumi.set(__self__, "frequency_interval", frequency_interval)
+            _setter("frequency_interval", frequency_interval)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if retention_unit is not None:
-            pulumi.set(__self__, "retention_unit", retention_unit)
+            _setter("retention_unit", retention_unit)
         if retention_value is not None:
-            pulumi.set(__self__, "retention_value", retention_value)
+            _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -4549,8 +5368,19 @@ class CustomDbRoleAction(dict):
                
                > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "resources", resources)
+        CustomDbRoleAction._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            resources=resources,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: str,
+             resources: Sequence['outputs.CustomDbRoleActionResource'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("action", action)
+        _setter("resources", resources)
 
     @property
     @pulumi.getter
@@ -4612,12 +5442,25 @@ class CustomDbRoleActionResource(dict):
                
                > **NOTE** This value should be admin for all roles except read and readWrite.
         """
+        CustomDbRoleActionResource._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster=cluster,
+            collection_name=collection_name,
+            database_name=database_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster: Optional[bool] = None,
+             collection_name: Optional[str] = None,
+             database_name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cluster is not None:
-            pulumi.set(__self__, "cluster", cluster)
+            _setter("cluster", cluster)
         if collection_name is not None:
-            pulumi.set(__self__, "collection_name", collection_name)
+            _setter("collection_name", collection_name)
         if database_name is not None:
-            pulumi.set(__self__, "database_name", database_name)
+            _setter("database_name", database_name)
 
     @property
     @pulumi.getter
@@ -4670,8 +5513,19 @@ class CustomDbRoleInheritedRole(dict):
                > **NOTE** This value should be admin for all roles except read and readWrite.
         :param str role_name: Name of the inherited role. This can either be another custom role or a built-in role.
         """
-        pulumi.set(__self__, "database_name", database_name)
-        pulumi.set(__self__, "role_name", role_name)
+        CustomDbRoleInheritedRole._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            database_name=database_name,
+            role_name=role_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             database_name: str,
+             role_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("database_name", database_name)
+        _setter("role_name", role_name)
 
     @property
     @pulumi.getter(name="databaseName")
@@ -4725,14 +5579,31 @@ class DataLakeAws(dict):
                  external_id: Optional[str] = None,
                  iam_assumed_role_arn: Optional[str] = None,
                  iam_user_arn: Optional[str] = None):
-        pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+        DataLakeAws._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            role_id=role_id,
+            test_s3_bucket=test_s3_bucket,
+            external_id=external_id,
+            iam_assumed_role_arn=iam_assumed_role_arn,
+            iam_user_arn=iam_user_arn,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             role_id: str,
+             test_s3_bucket: str,
+             external_id: Optional[str] = None,
+             iam_assumed_role_arn: Optional[str] = None,
+             iam_user_arn: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("role_id", role_id)
+        _setter("test_s3_bucket", test_s3_bucket)
         if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
+            _setter("external_id", external_id)
         if iam_assumed_role_arn is not None:
-            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+            _setter("iam_assumed_role_arn", iam_assumed_role_arn)
         if iam_user_arn is not None:
-            pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+            _setter("iam_user_arn", iam_user_arn)
 
     @property
     @pulumi.getter(name="roleId")
@@ -4782,8 +5653,19 @@ class DataLakeDataProcessRegion(dict):
     def __init__(__self__, *,
                  cloud_provider: str,
                  region: str):
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region", region)
+        DataLakeDataProcessRegion._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -4830,16 +5712,33 @@ class DataLakePipelineIngestionSchedule(dict):
         """
         :param str id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
         """
+        DataLakePipelineIngestionSchedule._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: Optional[int] = None,
+             frequency_type: Optional[str] = None,
+             id: Optional[str] = None,
+             retention_unit: Optional[str] = None,
+             retention_value: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if frequency_interval is not None:
-            pulumi.set(__self__, "frequency_interval", frequency_interval)
+            _setter("frequency_interval", frequency_interval)
         if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
+            _setter("frequency_type", frequency_type)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if retention_unit is not None:
-            pulumi.set(__self__, "retention_unit", retention_unit)
+            _setter("retention_unit", retention_unit)
         if retention_value is not None:
-            pulumi.set(__self__, "retention_value", retention_value)
+            _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -4902,14 +5801,29 @@ class DataLakePipelineSink(dict):
         :param str region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
+        DataLakePipelineSink._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            partition_fields=partition_fields,
+            provider=provider,
+            region=region,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             partition_fields: Optional[Sequence['outputs.DataLakePipelineSinkPartitionField']] = None,
+             provider: Optional[str] = None,
+             region: Optional[str] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if partition_fields is not None:
-            pulumi.set(__self__, "partition_fields", partition_fields)
+            _setter("partition_fields", partition_fields)
         if provider is not None:
-            pulumi.set(__self__, "provider", provider)
+            _setter("provider", provider)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter(name="partitionFields")
@@ -4968,8 +5882,19 @@ class DataLakePipelineSinkPartitionField(dict):
     def __init__(__self__, *,
                  field_name: str,
                  order: int):
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "order", order)
+        DataLakePipelineSinkPartitionField._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field_name=field_name,
+            order=order,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field_name: str,
+             order: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("field_name", field_name)
+        _setter("order", order)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -5035,34 +5960,69 @@ class DataLakePipelineSnapshot(dict):
         :param str provider: Target cloud provider for this Data Lake Pipeline.
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
+        DataLakePipelineSnapshot._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            copy_region=copy_region,
+            created_at=created_at,
+            expires_at=expires_at,
+            frequency_yype=frequency_yype,
+            id=id,
+            master_key=master_key,
+            mongod_version=mongod_version,
+            policies=policies,
+            provider=provider,
+            replica_set_name=replica_set_name,
+            size=size,
+            snapshot_type=snapshot_type,
+            status=status,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             copy_region: Optional[str] = None,
+             created_at: Optional[str] = None,
+             expires_at: Optional[str] = None,
+             frequency_yype: Optional[str] = None,
+             id: Optional[str] = None,
+             master_key: Optional[str] = None,
+             mongod_version: Optional[str] = None,
+             policies: Optional[Sequence[str]] = None,
+             provider: Optional[str] = None,
+             replica_set_name: Optional[str] = None,
+             size: Optional[int] = None,
+             snapshot_type: Optional[str] = None,
+             status: Optional[str] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if copy_region is not None:
-            pulumi.set(__self__, "copy_region", copy_region)
+            _setter("copy_region", copy_region)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if expires_at is not None:
-            pulumi.set(__self__, "expires_at", expires_at)
+            _setter("expires_at", expires_at)
         if frequency_yype is not None:
-            pulumi.set(__self__, "frequency_yype", frequency_yype)
+            _setter("frequency_yype", frequency_yype)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if master_key is not None:
-            pulumi.set(__self__, "master_key", master_key)
+            _setter("master_key", master_key)
         if mongod_version is not None:
-            pulumi.set(__self__, "mongod_version", mongod_version)
+            _setter("mongod_version", mongod_version)
         if policies is not None:
-            pulumi.set(__self__, "policies", policies)
+            _setter("policies", policies)
         if provider is not None:
-            pulumi.set(__self__, "provider", provider)
+            _setter("provider", provider)
         if replica_set_name is not None:
-            pulumi.set(__self__, "replica_set_name", replica_set_name)
+            _setter("replica_set_name", replica_set_name)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if snapshot_type is not None:
-            pulumi.set(__self__, "snapshot_type", snapshot_type)
+            _setter("snapshot_type", snapshot_type)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter(name="copyRegion")
@@ -5185,18 +6145,37 @@ class DataLakePipelineSource(dict):
         :param str project_id: The unique ID for the project to create a data lake pipeline.
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
+        DataLakePipelineSource._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_name=cluster_name,
+            collection_name=collection_name,
+            database_name=database_name,
+            policy_item_id=policy_item_id,
+            project_id=project_id,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_name: Optional[str] = None,
+             collection_name: Optional[str] = None,
+             database_name: Optional[str] = None,
+             policy_item_id: Optional[str] = None,
+             project_id: Optional[str] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cluster_name is not None:
-            pulumi.set(__self__, "cluster_name", cluster_name)
+            _setter("cluster_name", cluster_name)
         if collection_name is not None:
-            pulumi.set(__self__, "collection_name", collection_name)
+            _setter("collection_name", collection_name)
         if database_name is not None:
-            pulumi.set(__self__, "database_name", database_name)
+            _setter("database_name", database_name)
         if policy_item_id is not None:
-            pulumi.set(__self__, "policy_item_id", policy_item_id)
+            _setter("policy_item_id", policy_item_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -5252,10 +6231,21 @@ class DataLakePipelineTransformation(dict):
         """
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
+        DataLakePipelineTransformation._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field=field,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field: Optional[str] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if field is not None:
-            pulumi.set(__self__, "field", field)
+            _setter("field", field)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter
@@ -5298,14 +6288,29 @@ class DataLakeStorageDatabase(dict):
         """
         :param str name: Name of the Atlas Data Lake.
         """
+        DataLakeStorageDatabase._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collections=collections,
+            max_wildcard_collections=max_wildcard_collections,
+            name=name,
+            views=views,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collections: Optional[Sequence['outputs.DataLakeStorageDatabaseCollection']] = None,
+             max_wildcard_collections: Optional[int] = None,
+             name: Optional[str] = None,
+             views: Optional[Sequence['outputs.DataLakeStorageDatabaseView']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if collections is not None:
-            pulumi.set(__self__, "collections", collections)
+            _setter("collections", collections)
         if max_wildcard_collections is not None:
-            pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+            _setter("max_wildcard_collections", max_wildcard_collections)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if views is not None:
-            pulumi.set(__self__, "views", views)
+            _setter("views", views)
 
     @property
     @pulumi.getter
@@ -5356,10 +6361,21 @@ class DataLakeStorageDatabaseCollection(dict):
         """
         :param str name: Name of the Atlas Data Lake.
         """
+        DataLakeStorageDatabaseCollection._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            data_sources=data_sources,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             data_sources: Optional[Sequence['outputs.DataLakeStorageDatabaseCollectionDataSource']] = None,
+             name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if data_sources is not None:
-            pulumi.set(__self__, "data_sources", data_sources)
+            _setter("data_sources", data_sources)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -5400,12 +6416,25 @@ class DataLakeStorageDatabaseCollectionDataSource(dict):
                  default_format: Optional[str] = None,
                  path: Optional[str] = None,
                  store_name: Optional[str] = None):
+        DataLakeStorageDatabaseCollectionDataSource._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_format=default_format,
+            path=path,
+            store_name=store_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_format: Optional[str] = None,
+             path: Optional[str] = None,
+             store_name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if default_format is not None:
-            pulumi.set(__self__, "default_format", default_format)
+            _setter("default_format", default_format)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if store_name is not None:
-            pulumi.set(__self__, "store_name", store_name)
+            _setter("store_name", store_name)
 
     @property
     @pulumi.getter(name="defaultFormat")
@@ -5432,12 +6461,25 @@ class DataLakeStorageDatabaseView(dict):
         """
         :param str name: Name of the Atlas Data Lake.
         """
+        DataLakeStorageDatabaseView._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            pipeline=pipeline,
+            source=source,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[str] = None,
+             pipeline: Optional[str] = None,
+             source: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if pipeline is not None:
-            pulumi.set(__self__, "pipeline", pipeline)
+            _setter("pipeline", pipeline)
         if source is not None:
-            pulumi.set(__self__, "source", source)
+            _setter("source", source)
 
     @property
     @pulumi.getter
@@ -5491,22 +6533,45 @@ class DataLakeStorageStore(dict):
         """
         :param str name: Name of the Atlas Data Lake.
         """
+        DataLakeStorageStore._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_storage_classes=additional_storage_classes,
+            bucket=bucket,
+            delimiter=delimiter,
+            include_tags=include_tags,
+            name=name,
+            prefix=prefix,
+            provider=provider,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_storage_classes: Optional[Sequence[str]] = None,
+             bucket: Optional[str] = None,
+             delimiter: Optional[str] = None,
+             include_tags: Optional[bool] = None,
+             name: Optional[str] = None,
+             prefix: Optional[str] = None,
+             provider: Optional[str] = None,
+             region: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if additional_storage_classes is not None:
-            pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+            _setter("additional_storage_classes", additional_storage_classes)
         if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
+            _setter("bucket", bucket)
         if delimiter is not None:
-            pulumi.set(__self__, "delimiter", delimiter)
+            _setter("delimiter", delimiter)
         if include_tags is not None:
-            pulumi.set(__self__, "include_tags", include_tags)
+            _setter("include_tags", include_tags)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if prefix is not None:
-            pulumi.set(__self__, "prefix", prefix)
+            _setter("prefix", prefix)
         if provider is not None:
-            pulumi.set(__self__, "provider", provider)
+            _setter("provider", provider)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -5561,10 +6626,21 @@ class DatabaseUserLabel(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
+        DatabaseUserLabel._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             value: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if key is not None:
-            pulumi.set(__self__, "key", key)
+            _setter("key", key)
         if value is not None:
-            pulumi.set(__self__, "value", value)
+            _setter("value", value)
 
     @property
     @pulumi.getter
@@ -5615,12 +6691,25 @@ class DatabaseUserRole(dict):
         :param str database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         :param str role_name: Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
         """
+        DatabaseUserRole._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collection_name=collection_name,
+            database_name=database_name,
+            role_name=role_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collection_name: Optional[str] = None,
+             database_name: Optional[str] = None,
+             role_name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if collection_name is not None:
-            pulumi.set(__self__, "collection_name", collection_name)
+            _setter("collection_name", collection_name)
         if database_name is not None:
-            pulumi.set(__self__, "database_name", database_name)
+            _setter("database_name", database_name)
         if role_name is not None:
-            pulumi.set(__self__, "role_name", role_name)
+            _setter("role_name", role_name)
 
     @property
     @pulumi.getter(name="collectionName")
@@ -5656,10 +6745,21 @@ class DatabaseUserScope(dict):
         :param str name: Name of the cluster or Atlas Data Lake that the user has access to.
         :param str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
         """
+        DatabaseUserScope._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[str] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter
@@ -5716,18 +6816,37 @@ class EncryptionAtRestAwsKmsConfig(dict):
         :param str region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
         :param str role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
         """
+        EncryptionAtRestAwsKmsConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_key_id=access_key_id,
+            customer_master_key_id=customer_master_key_id,
+            enabled=enabled,
+            region=region,
+            role_id=role_id,
+            secret_access_key=secret_access_key,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_key_id: Optional[str] = None,
+             customer_master_key_id: Optional[str] = None,
+             enabled: Optional[bool] = None,
+             region: Optional[str] = None,
+             role_id: Optional[str] = None,
+             secret_access_key: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if access_key_id is not None:
-            pulumi.set(__self__, "access_key_id", access_key_id)
+            _setter("access_key_id", access_key_id)
         if customer_master_key_id is not None:
-            pulumi.set(__self__, "customer_master_key_id", customer_master_key_id)
+            _setter("customer_master_key_id", customer_master_key_id)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if role_id is not None:
-            pulumi.set(__self__, "role_id", role_id)
+            _setter("role_id", role_id)
         if secret_access_key is not None:
-            pulumi.set(__self__, "secret_access_key", secret_access_key)
+            _setter("secret_access_key", secret_access_key)
 
     @property
     @pulumi.getter(name="accessKeyId")
@@ -5824,23 +6943,48 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
         :param str subscription_id: The unique identifier associated with an Azure subscription.
         :param str tenant_id: The unique identifier for an Azure AD tenant within an Azure subscription.
         """
-        pulumi.set(__self__, "enabled", enabled)
+        EncryptionAtRestAzureKeyVaultConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            azure_environment=azure_environment,
+            client_id=client_id,
+            key_identifier=key_identifier,
+            key_vault_name=key_vault_name,
+            resource_group_name=resource_group_name,
+            secret=secret,
+            subscription_id=subscription_id,
+            tenant_id=tenant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: bool,
+             azure_environment: Optional[str] = None,
+             client_id: Optional[str] = None,
+             key_identifier: Optional[str] = None,
+             key_vault_name: Optional[str] = None,
+             resource_group_name: Optional[str] = None,
+             secret: Optional[str] = None,
+             subscription_id: Optional[str] = None,
+             tenant_id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("enabled", enabled)
         if azure_environment is not None:
-            pulumi.set(__self__, "azure_environment", azure_environment)
+            _setter("azure_environment", azure_environment)
         if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
+            _setter("client_id", client_id)
         if key_identifier is not None:
-            pulumi.set(__self__, "key_identifier", key_identifier)
+            _setter("key_identifier", key_identifier)
         if key_vault_name is not None:
-            pulumi.set(__self__, "key_vault_name", key_vault_name)
+            _setter("key_vault_name", key_vault_name)
         if resource_group_name is not None:
-            pulumi.set(__self__, "resource_group_name", resource_group_name)
+            _setter("resource_group_name", resource_group_name)
         if secret is not None:
-            pulumi.set(__self__, "secret", secret)
+            _setter("secret", secret)
         if subscription_id is not None:
-            pulumi.set(__self__, "subscription_id", subscription_id)
+            _setter("subscription_id", subscription_id)
         if tenant_id is not None:
-            pulumi.set(__self__, "tenant_id", tenant_id)
+            _setter("tenant_id", tenant_id)
 
     @property
     @pulumi.getter
@@ -5945,12 +7089,25 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
         :param str key_version_resource_id: The Key Version Resource ID from your GCP account.
         :param str service_account_key: String-formatted JSON object containing GCP KMS credentials from your GCP account.
         """
+        EncryptionAtRestGoogleCloudKmsConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            key_version_resource_id=key_version_resource_id,
+            service_account_key=service_account_key,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: Optional[bool] = None,
+             key_version_resource_id: Optional[str] = None,
+             service_account_key: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if key_version_resource_id is not None:
-            pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
+            _setter("key_version_resource_id", key_version_resource_id)
         if service_account_key is not None:
-            pulumi.set(__self__, "service_account_key", service_account_key)
+            _setter("service_account_key", service_account_key)
 
     @property
     @pulumi.getter
@@ -5998,8 +7155,17 @@ class EventTriggerEventProcessors(dict):
 
     def __init__(__self__, *,
                  aws_eventbridge: Optional['outputs.EventTriggerEventProcessorsAwsEventbridge'] = None):
+        EventTriggerEventProcessors._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_eventbridge=aws_eventbridge,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_eventbridge: Optional['outputs.EventTriggerEventProcessorsAwsEventbridge'] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if aws_eventbridge is not None:
-            pulumi.set(__self__, "aws_eventbridge", aws_eventbridge)
+            _setter("aws_eventbridge", aws_eventbridge)
 
     @property
     @pulumi.getter(name="awsEventbridge")
@@ -6031,10 +7197,21 @@ class EventTriggerEventProcessorsAwsEventbridge(dict):
     def __init__(__self__, *,
                  config_account_id: Optional[str] = None,
                  config_region: Optional[str] = None):
+        EventTriggerEventProcessorsAwsEventbridge._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config_account_id=config_account_id,
+            config_region=config_region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config_account_id: Optional[str] = None,
+             config_region: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if config_account_id is not None:
-            pulumi.set(__self__, "config_account_id", config_account_id)
+            _setter("config_account_id", config_account_id)
         if config_region is not None:
-            pulumi.set(__self__, "config_region", config_region)
+            _setter("config_region", config_region)
 
     @property
     @pulumi.getter(name="configAccountId")
@@ -6051,7 +7228,16 @@ class EventTriggerEventProcessorsAwsEventbridge(dict):
 class FederatedDatabaseInstanceCloudProviderConfig(dict):
     def __init__(__self__, *,
                  aws: 'outputs.FederatedDatabaseInstanceCloudProviderConfigAws'):
-        pulumi.set(__self__, "aws", aws)
+        FederatedDatabaseInstanceCloudProviderConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws=aws,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws: 'outputs.FederatedDatabaseInstanceCloudProviderConfigAws',
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("aws", aws)
 
     @property
     @pulumi.getter
@@ -6103,14 +7289,31 @@ class FederatedDatabaseInstanceCloudProviderConfigAws(dict):
                * `s3:GetObjectVersion`
         :param str iam_user_arn: Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
         """
-        pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+        FederatedDatabaseInstanceCloudProviderConfigAws._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            role_id=role_id,
+            test_s3_bucket=test_s3_bucket,
+            external_id=external_id,
+            iam_assumed_role_arn=iam_assumed_role_arn,
+            iam_user_arn=iam_user_arn,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             role_id: str,
+             test_s3_bucket: str,
+             external_id: Optional[str] = None,
+             iam_assumed_role_arn: Optional[str] = None,
+             iam_user_arn: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("role_id", role_id)
+        _setter("test_s3_bucket", test_s3_bucket)
         if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
+            _setter("external_id", external_id)
         if iam_assumed_role_arn is not None:
-            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+            _setter("iam_assumed_role_arn", iam_assumed_role_arn)
         if iam_user_arn is not None:
-            pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+            _setter("iam_user_arn", iam_user_arn)
 
     @property
     @pulumi.getter(name="roleId")
@@ -6183,8 +7386,19 @@ class FederatedDatabaseInstanceDataProcessRegion(dict):
         :param str cloud_provider: Name of the cloud service provider. Atlas Federated Database only supports AWS.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         """
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region", region)
+        FederatedDatabaseInstanceDataProcessRegion._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -6232,14 +7446,29 @@ class FederatedDatabaseInstanceStorageDatabase(dict):
                ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
                #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
+        FederatedDatabaseInstanceStorageDatabase._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collections=collections,
+            max_wildcard_collections=max_wildcard_collections,
+            name=name,
+            views=views,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collections: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageDatabaseCollection']] = None,
+             max_wildcard_collections: Optional[int] = None,
+             name: Optional[str] = None,
+             views: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageDatabaseView']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if collections is not None:
-            pulumi.set(__self__, "collections", collections)
+            _setter("collections", collections)
         if max_wildcard_collections is not None:
-            pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+            _setter("max_wildcard_collections", max_wildcard_collections)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if views is not None:
-            pulumi.set(__self__, "views", views)
+            _setter("views", views)
 
     @property
     @pulumi.getter
@@ -6294,10 +7523,21 @@ class FederatedDatabaseInstanceStorageDatabaseCollection(dict):
                ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
                #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
+        FederatedDatabaseInstanceStorageDatabaseCollection._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            data_sources=data_sources,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             data_sources: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSource']] = None,
+             name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if data_sources is not None:
-            pulumi.set(__self__, "data_sources", data_sources)
+            _setter("data_sources", data_sources)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -6358,28 +7598,57 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource(dict):
                  provenance_field_name: Optional[str] = None,
                  store_name: Optional[str] = None,
                  urls: Optional[Sequence[str]] = None):
+        FederatedDatabaseInstanceStorageDatabaseCollectionDataSource._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allow_insecure=allow_insecure,
+            collection=collection,
+            collection_regex=collection_regex,
+            database=database,
+            database_regex=database_regex,
+            dataset_name=dataset_name,
+            default_format=default_format,
+            path=path,
+            provenance_field_name=provenance_field_name,
+            store_name=store_name,
+            urls=urls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allow_insecure: Optional[bool] = None,
+             collection: Optional[str] = None,
+             collection_regex: Optional[str] = None,
+             database: Optional[str] = None,
+             database_regex: Optional[str] = None,
+             dataset_name: Optional[str] = None,
+             default_format: Optional[str] = None,
+             path: Optional[str] = None,
+             provenance_field_name: Optional[str] = None,
+             store_name: Optional[str] = None,
+             urls: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if allow_insecure is not None:
-            pulumi.set(__self__, "allow_insecure", allow_insecure)
+            _setter("allow_insecure", allow_insecure)
         if collection is not None:
-            pulumi.set(__self__, "collection", collection)
+            _setter("collection", collection)
         if collection_regex is not None:
-            pulumi.set(__self__, "collection_regex", collection_regex)
+            _setter("collection_regex", collection_regex)
         if database is not None:
-            pulumi.set(__self__, "database", database)
+            _setter("database", database)
         if database_regex is not None:
-            pulumi.set(__self__, "database_regex", database_regex)
+            _setter("database_regex", database_regex)
         if dataset_name is not None:
-            pulumi.set(__self__, "dataset_name", dataset_name)
+            _setter("dataset_name", dataset_name)
         if default_format is not None:
-            pulumi.set(__self__, "default_format", default_format)
+            _setter("default_format", default_format)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
         if provenance_field_name is not None:
-            pulumi.set(__self__, "provenance_field_name", provenance_field_name)
+            _setter("provenance_field_name", provenance_field_name)
         if store_name is not None:
-            pulumi.set(__self__, "store_name", store_name)
+            _setter("store_name", store_name)
         if urls is not None:
-            pulumi.set(__self__, "urls", urls)
+            _setter("urls", urls)
 
     @property
     @pulumi.getter(name="allowInsecure")
@@ -6448,12 +7717,25 @@ class FederatedDatabaseInstanceStorageDatabaseView(dict):
                ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
                #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
+        FederatedDatabaseInstanceStorageDatabaseView._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            pipeline=pipeline,
+            source=source,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[str] = None,
+             pipeline: Optional[str] = None,
+             source: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if pipeline is not None:
-            pulumi.set(__self__, "pipeline", pipeline)
+            _setter("pipeline", pipeline)
         if source is not None:
-            pulumi.set(__self__, "source", source)
+            _setter("source", source)
 
     @property
     @pulumi.getter
@@ -6533,38 +7815,77 @@ class FederatedDatabaseInstanceStorageStore(dict):
         :param str project_id: The unique ID for the project to create a Federated Database Instance.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         """
+        FederatedDatabaseInstanceStorageStore._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_storage_classes=additional_storage_classes,
+            allow_insecure=allow_insecure,
+            bucket=bucket,
+            cluster_id=cluster_id,
+            cluster_name=cluster_name,
+            default_format=default_format,
+            delimiter=delimiter,
+            include_tags=include_tags,
+            name=name,
+            prefix=prefix,
+            project_id=project_id,
+            provider=provider,
+            public=public,
+            read_preference=read_preference,
+            region=region,
+            urls=urls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_storage_classes: Optional[Sequence[str]] = None,
+             allow_insecure: Optional[bool] = None,
+             bucket: Optional[str] = None,
+             cluster_id: Optional[str] = None,
+             cluster_name: Optional[str] = None,
+             default_format: Optional[str] = None,
+             delimiter: Optional[str] = None,
+             include_tags: Optional[bool] = None,
+             name: Optional[str] = None,
+             prefix: Optional[str] = None,
+             project_id: Optional[str] = None,
+             provider: Optional[str] = None,
+             public: Optional[str] = None,
+             read_preference: Optional['outputs.FederatedDatabaseInstanceStorageStoreReadPreference'] = None,
+             region: Optional[str] = None,
+             urls: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if additional_storage_classes is not None:
-            pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+            _setter("additional_storage_classes", additional_storage_classes)
         if allow_insecure is not None:
-            pulumi.set(__self__, "allow_insecure", allow_insecure)
+            _setter("allow_insecure", allow_insecure)
         if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
+            _setter("bucket", bucket)
         if cluster_id is not None:
-            pulumi.set(__self__, "cluster_id", cluster_id)
+            _setter("cluster_id", cluster_id)
         if cluster_name is not None:
-            pulumi.set(__self__, "cluster_name", cluster_name)
+            _setter("cluster_name", cluster_name)
         if default_format is not None:
-            pulumi.set(__self__, "default_format", default_format)
+            _setter("default_format", default_format)
         if delimiter is not None:
-            pulumi.set(__self__, "delimiter", delimiter)
+            _setter("delimiter", delimiter)
         if include_tags is not None:
-            pulumi.set(__self__, "include_tags", include_tags)
+            _setter("include_tags", include_tags)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if prefix is not None:
-            pulumi.set(__self__, "prefix", prefix)
+            _setter("prefix", prefix)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if provider is not None:
-            pulumi.set(__self__, "provider", provider)
+            _setter("provider", provider)
         if public is not None:
-            pulumi.set(__self__, "public", public)
+            _setter("public", public)
         if read_preference is not None:
-            pulumi.set(__self__, "read_preference", read_preference)
+            _setter("read_preference", read_preference)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if urls is not None:
-            pulumi.set(__self__, "urls", urls)
+            _setter("urls", urls)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -6686,12 +8007,25 @@ class FederatedDatabaseInstanceStorageStoreReadPreference(dict):
                  max_staleness_seconds: Optional[int] = None,
                  mode: Optional[str] = None,
                  tag_sets: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet']] = None):
+        FederatedDatabaseInstanceStorageStoreReadPreference._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max_staleness_seconds=max_staleness_seconds,
+            mode=mode,
+            tag_sets=tag_sets,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max_staleness_seconds: Optional[int] = None,
+             mode: Optional[str] = None,
+             tag_sets: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if max_staleness_seconds is not None:
-            pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
+            _setter("max_staleness_seconds", max_staleness_seconds)
         if mode is not None:
-            pulumi.set(__self__, "mode", mode)
+            _setter("mode", mode)
         if tag_sets is not None:
-            pulumi.set(__self__, "tag_sets", tag_sets)
+            _setter("tag_sets", tag_sets)
 
     @property
     @pulumi.getter(name="maxStalenessSeconds")
@@ -6713,7 +8047,16 @@ class FederatedDatabaseInstanceStorageStoreReadPreference(dict):
 class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet(dict):
     def __init__(__self__, *,
                  tags: Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag']):
-        pulumi.set(__self__, "tags", tags)
+        FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             tags: Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("tags", tags)
 
     @property
     @pulumi.getter
@@ -6731,10 +8074,21 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag(dict):
                ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
                #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
+        FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[str] = None,
+             value: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if value is not None:
-            pulumi.set(__self__, "value", value)
+            _setter("value", value)
 
     @property
     @pulumi.getter
@@ -6783,12 +8137,25 @@ class FederatedSettingsOrgRoleMappingRoleAssignment(dict):
         :param Sequence[str] roles: Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
                Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
         """
+        FederatedSettingsOrgRoleMappingRoleAssignment._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            org_id=org_id,
+            roles=roles,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: Optional[str] = None,
+             org_id: Optional[str] = None,
+             roles: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if group_id is not None:
-            pulumi.set(__self__, "group_id", group_id)
+            _setter("group_id", group_id)
         if org_id is not None:
-            pulumi.set(__self__, "org_id", org_id)
+            _setter("org_id", org_id)
         if roles is not None:
-            pulumi.set(__self__, "roles", roles)
+            _setter("roles", roles)
 
     @property
     @pulumi.getter(name="groupId")
@@ -6825,10 +8192,21 @@ class GlobalClusterConfigCustomZoneMapping(dict):
         :param str location: The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
         :param str zone: The name of the zone in your Global Cluster that you want to map to location.
         """
+        GlobalClusterConfigCustomZoneMapping._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            location=location,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             location: Optional[str] = None,
+             zone: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if location is not None:
-            pulumi.set(__self__, "location", location)
+            _setter("location", location)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter
@@ -6883,13 +8261,30 @@ class GlobalClusterConfigManagedNamespace(dict):
         :param bool is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
         :param bool is_shard_key_unique: Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
         """
-        pulumi.set(__self__, "collection", collection)
-        pulumi.set(__self__, "custom_shard_key", custom_shard_key)
-        pulumi.set(__self__, "db", db)
+        GlobalClusterConfigManagedNamespace._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collection=collection,
+            custom_shard_key=custom_shard_key,
+            db=db,
+            is_custom_shard_key_hashed=is_custom_shard_key_hashed,
+            is_shard_key_unique=is_shard_key_unique,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collection: str,
+             custom_shard_key: str,
+             db: str,
+             is_custom_shard_key_hashed: Optional[bool] = None,
+             is_shard_key_unique: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("collection", collection)
+        _setter("custom_shard_key", custom_shard_key)
+        _setter("db", db)
         if is_custom_shard_key_hashed is not None:
-            pulumi.set(__self__, "is_custom_shard_key_hashed", is_custom_shard_key_hashed)
+            _setter("is_custom_shard_key_hashed", is_custom_shard_key_hashed)
         if is_shard_key_unique is not None:
-            pulumi.set(__self__, "is_shard_key_unique", is_shard_key_unique)
+            _setter("is_shard_key_unique", is_shard_key_unique)
 
     @property
     @pulumi.getter
@@ -6955,12 +8350,25 @@ class LdapConfigurationUserToDnMapping(dict):
                  ldap_query: Optional[str] = None,
                  match: Optional[str] = None,
                  substitution: Optional[str] = None):
+        LdapConfigurationUserToDnMapping._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_query=ldap_query,
+            match=match,
+            substitution=substitution,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_query: Optional[str] = None,
+             match: Optional[str] = None,
+             substitution: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if ldap_query is not None:
-            pulumi.set(__self__, "ldap_query", ldap_query)
+            _setter("ldap_query", ldap_query)
         if match is not None:
-            pulumi.set(__self__, "match", match)
+            _setter("match", match)
         if substitution is not None:
-            pulumi.set(__self__, "substitution", substitution)
+            _setter("substitution", substitution)
 
     @property
     @pulumi.getter(name="ldapQuery")
@@ -6983,10 +8391,21 @@ class LdapVerifyLink(dict):
     def __init__(__self__, *,
                  href: Optional[str] = None,
                  rel: Optional[str] = None):
+        LdapVerifyLink._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            href=href,
+            rel=rel,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             href: Optional[str] = None,
+             rel: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if href is not None:
-            pulumi.set(__self__, "href", href)
+            _setter("href", href)
         if rel is not None:
-            pulumi.set(__self__, "rel", rel)
+            _setter("rel", rel)
 
     @property
     @pulumi.getter
@@ -7024,10 +8443,21 @@ class LdapVerifyValidation(dict):
         """
         :param str status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
         """
+        LdapVerifyValidation._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            status=status,
+            validation_type=validation_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             status: Optional[str] = None,
+             validation_type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if validation_type is not None:
-            pulumi.set(__self__, "validation_type", validation_type)
+            _setter("validation_type", validation_type)
 
     @property
     @pulumi.getter
@@ -7085,15 +8515,32 @@ class OnlineArchiveCriteria(dict):
                The only field required for criteria type `CUSTOM`
         :param str query: JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
         """
-        pulumi.set(__self__, "type", type)
+        OnlineArchiveCriteria._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            type=type,
+            date_field=date_field,
+            date_format=date_format,
+            expire_after_days=expire_after_days,
+            query=query,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             type: str,
+             date_field: Optional[str] = None,
+             date_format: Optional[str] = None,
+             expire_after_days: Optional[int] = None,
+             query: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("type", type)
         if date_field is not None:
-            pulumi.set(__self__, "date_field", date_field)
+            _setter("date_field", date_field)
         if date_format is not None:
-            pulumi.set(__self__, "date_format", date_format)
+            _setter("date_format", date_format)
         if expire_after_days is not None:
-            pulumi.set(__self__, "expire_after_days", expire_after_days)
+            _setter("expire_after_days", expire_after_days)
         if query is not None:
-            pulumi.set(__self__, "query", query)
+            _setter("query", query)
 
     @property
     @pulumi.getter
@@ -7172,10 +8619,23 @@ class OnlineArchivePartitionField(dict):
         :param int order: Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
         :param str field_type: Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
         """
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "order", order)
+        OnlineArchivePartitionField._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field_name=field_name,
+            order=order,
+            field_type=field_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field_name: str,
+             order: int,
+             field_type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("field_name", field_name)
+        _setter("order", order)
         if field_type is not None:
-            pulumi.set(__self__, "field_type", field_type)
+            _setter("field_type", field_type)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -7248,19 +8708,40 @@ class OnlineArchiveSchedule(dict):
         :param int start_hour: Hour of the day when the when the scheduled window to run one online archive starts.
         :param int start_minute: Minute of the hour when the scheduled window to run one online archive starts.
         """
-        pulumi.set(__self__, "type", type)
+        OnlineArchiveSchedule._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            type=type,
+            day_of_month=day_of_month,
+            day_of_week=day_of_week,
+            end_hour=end_hour,
+            end_minute=end_minute,
+            start_hour=start_hour,
+            start_minute=start_minute,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             type: str,
+             day_of_month: Optional[int] = None,
+             day_of_week: Optional[int] = None,
+             end_hour: Optional[int] = None,
+             end_minute: Optional[int] = None,
+             start_hour: Optional[int] = None,
+             start_minute: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("type", type)
         if day_of_month is not None:
-            pulumi.set(__self__, "day_of_month", day_of_month)
+            _setter("day_of_month", day_of_month)
         if day_of_week is not None:
-            pulumi.set(__self__, "day_of_week", day_of_week)
+            _setter("day_of_week", day_of_week)
         if end_hour is not None:
-            pulumi.set(__self__, "end_hour", end_hour)
+            _setter("end_hour", end_hour)
         if end_minute is not None:
-            pulumi.set(__self__, "end_minute", end_minute)
+            _setter("end_minute", end_minute)
         if start_hour is not None:
-            pulumi.set(__self__, "start_hour", start_hour)
+            _setter("start_hour", start_hour)
         if start_minute is not None:
-            pulumi.set(__self__, "start_minute", start_minute)
+            _setter("start_minute", start_minute)
 
     @property
     @pulumi.getter
@@ -7353,14 +8834,29 @@ class PrivateLinkEndpointServiceEndpoint(dict):
         :param str service_attachment_name: Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         :param str status: Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
+        PrivateLinkEndpointServiceEndpoint._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_name=endpoint_name,
+            ip_address=ip_address,
+            service_attachment_name=service_attachment_name,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_name: Optional[str] = None,
+             ip_address: Optional[str] = None,
+             service_attachment_name: Optional[str] = None,
+             status: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if endpoint_name is not None:
-            pulumi.set(__self__, "endpoint_name", endpoint_name)
+            _setter("endpoint_name", endpoint_name)
         if ip_address is not None:
-            pulumi.set(__self__, "ip_address", ip_address)
+            _setter("ip_address", ip_address)
         if service_attachment_name is not None:
-            pulumi.set(__self__, "service_attachment_name", service_attachment_name)
+            _setter("service_attachment_name", service_attachment_name)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
 
     @property
     @pulumi.getter(name="endpointName")
@@ -7423,12 +8919,21 @@ class ProjectApiKey(dict):
         :param str api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
                
                **WARNING:** The `api_keys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `ProjectApiKey`  resource instead.
-        :param Sequence[str] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-               
-               > **NOTE:** Project created by API Keys must belong to an existing organization.
+        :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         """
-        pulumi.set(__self__, "api_key_id", api_key_id)
-        pulumi.set(__self__, "role_names", role_names)
+        ProjectApiKey._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_key_id=api_key_id,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_key_id: str,
+             role_names: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("api_key_id", api_key_id)
+        _setter("role_names", role_names)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -7444,9 +8949,7 @@ class ProjectApiKey(dict):
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
         """
-        Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-
-        > **NOTE:** Project created by API Keys must belong to an existing organization.
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         """
         return pulumi.get(self, "role_names")
 
@@ -7479,8 +8982,19 @@ class ProjectApiKeyProjectAssignment(dict):
         :param str project_id: Project ID to assign to Access Key
         :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "role_names", role_names)
+        ProjectApiKeyProjectAssignment._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: str,
+             role_names: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
+        _setter("role_names", role_names)
 
     @property
     @pulumi.getter(name="projectId")
@@ -7532,14 +9046,31 @@ class ProjectLimit(dict):
         :param str name: Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
         :param int value: Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
+        ProjectLimit._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            value=value,
+            current_usage=current_usage,
+            default_limit=default_limit,
+            maximum_limit=maximum_limit,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             value: int,
+             current_usage: Optional[int] = None,
+             default_limit: Optional[int] = None,
+             maximum_limit: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("value", value)
         if current_usage is not None:
-            pulumi.set(__self__, "current_usage", current_usage)
+            _setter("current_usage", current_usage)
         if default_limit is not None:
-            pulumi.set(__self__, "default_limit", default_limit)
+            _setter("default_limit", default_limit)
         if maximum_limit is not None:
-            pulumi.set(__self__, "maximum_limit", maximum_limit)
+            _setter("maximum_limit", maximum_limit)
 
     @property
     @pulumi.getter
@@ -7603,8 +9134,19 @@ class ProjectTeam(dict):
                > **NOTE:** Project created by API Keys must belong to an existing organization.
         :param str team_id: The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         """
-        pulumi.set(__self__, "role_names", role_names)
-        pulumi.set(__self__, "team_id", team_id)
+        ProjectTeam._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            role_names=role_names,
+            team_id=team_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             role_names: Sequence[str],
+             team_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("role_names", role_names)
+        _setter("team_id", team_id)
 
     @property
     @pulumi.getter(name="roleNames")
@@ -7667,9 +9209,22 @@ class SearchIndexSynonym(dict):
         :param str name: Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
         :param str source_collection: Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
         """
-        pulumi.set(__self__, "analyzer", analyzer)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "source_collection", source_collection)
+        SearchIndexSynonym._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            analyzer=analyzer,
+            name=name,
+            source_collection=source_collection,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             analyzer: str,
+             name: str,
+             source_collection: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("analyzer", analyzer)
+        _setter("name", name)
+        _setter("source_collection", source_collection)
 
     @property
     @pulumi.getter
@@ -7715,10 +9270,21 @@ class ServerlessInstanceLink(dict):
     def __init__(__self__, *,
                  href: Optional[str] = None,
                  rel: Optional[str] = None):
+        ServerlessInstanceLink._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            href=href,
+            rel=rel,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             href: Optional[str] = None,
+             rel: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if href is not None:
-            pulumi.set(__self__, "href", href)
+            _setter("href", href)
         if rel is not None:
-            pulumi.set(__self__, "rel", rel)
+            _setter("rel", rel)
 
     @property
     @pulumi.getter
@@ -7760,16 +9326,33 @@ class X509AuthenticationDatabaseUserCertificate(dict):
                  id: Optional[int] = None,
                  not_after: Optional[str] = None,
                  subject: Optional[str] = None):
+        X509AuthenticationDatabaseUserCertificate._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            created_at=created_at,
+            group_id=group_id,
+            id=id,
+            not_after=not_after,
+            subject=subject,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             created_at: Optional[str] = None,
+             group_id: Optional[str] = None,
+             id: Optional[int] = None,
+             not_after: Optional[str] = None,
+             subject: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if group_id is not None:
-            pulumi.set(__self__, "group_id", group_id)
+            _setter("group_id", group_id)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if not_after is not None:
-            pulumi.set(__self__, "not_after", not_after)
+            _setter("not_after", not_after)
         if subject is not None:
-            pulumi.set(__self__, "subject", subject)
+            _setter("subject", subject)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -7805,11 +9388,28 @@ class Get509AuthenticationDatabaseUserCertificateResult(dict):
                  id: int,
                  not_after: str,
                  subject: str):
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "not_after", not_after)
-        pulumi.set(__self__, "subject", subject)
+        Get509AuthenticationDatabaseUserCertificateResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            created_at=created_at,
+            group_id=group_id,
+            id=id,
+            not_after=not_after,
+            subject=subject,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             created_at: str,
+             group_id: str,
+             id: int,
+             not_after: str,
+             subject: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("created_at", created_at)
+        _setter("group_id", group_id)
+        _setter("id", id)
+        _setter("not_after", not_after)
+        _setter("subject", subject)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -7850,12 +9450,31 @@ class GetAccessListApiKeysResultResult(dict):
         :param str cidr_block: Range of IP addresses in CIDR notation to be added to the access list.
         :param str ip_address: Single IP address to be added to the access list.
         """
-        pulumi.set(__self__, "access_count", access_count)
-        pulumi.set(__self__, "cidr_block", cidr_block)
-        pulumi.set(__self__, "created", created)
-        pulumi.set(__self__, "ip_address", ip_address)
-        pulumi.set(__self__, "last_used", last_used)
-        pulumi.set(__self__, "last_used_address", last_used_address)
+        GetAccessListApiKeysResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_count=access_count,
+            cidr_block=cidr_block,
+            created=created,
+            ip_address=ip_address,
+            last_used=last_used,
+            last_used_address=last_used_address,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_count: int,
+             cidr_block: str,
+             created: str,
+             ip_address: str,
+             last_used: str,
+             last_used_address: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_count", access_count)
+        _setter("cidr_block", cidr_block)
+        _setter("created", created)
+        _setter("ip_address", ip_address)
+        _setter("last_used", last_used)
+        _setter("last_used_address", last_used_address)
 
     @property
     @pulumi.getter(name="accessCount")
@@ -7921,17 +9540,46 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
-        pulumi.set(__self__, "default_read_concern", default_read_concern)
-        pulumi.set(__self__, "default_write_concern", default_write_concern)
-        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
-        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
-        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
-        pulumi.set(__self__, "no_table_scan", no_table_scan)
-        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
-        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
-        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
-        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
-        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+        GetAdvancedClusterAdvancedConfigurationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_read_concern=default_read_concern,
+            default_write_concern=default_write_concern,
+            fail_index_key_too_long=fail_index_key_too_long,
+            javascript_enabled=javascript_enabled,
+            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
+            no_table_scan=no_table_scan,
+            oplog_min_retention_hours=oplog_min_retention_hours,
+            oplog_size_mb=oplog_size_mb,
+            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
+            sample_size_bi_connector=sample_size_bi_connector,
+            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_read_concern: str,
+             default_write_concern: str,
+             fail_index_key_too_long: bool,
+             javascript_enabled: bool,
+             minimum_enabled_tls_protocol: str,
+             no_table_scan: bool,
+             oplog_min_retention_hours: int,
+             oplog_size_mb: int,
+             sample_refresh_interval_bi_connector: int,
+             sample_size_bi_connector: int,
+             transaction_lifetime_limit_seconds: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("default_read_concern", default_read_concern)
+        _setter("default_write_concern", default_write_concern)
+        _setter("fail_index_key_too_long", fail_index_key_too_long)
+        _setter("javascript_enabled", javascript_enabled)
+        _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        _setter("no_table_scan", no_table_scan)
+        _setter("oplog_min_retention_hours", oplog_min_retention_hours)
+        _setter("oplog_size_mb", oplog_size_mb)
+        _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        _setter("sample_size_bi_connector", sample_size_bi_connector)
+        _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -8031,8 +9679,19 @@ class GetAdvancedClusterBiConnectorConfigResult(dict):
         :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
         :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "read_preference", read_preference)
+        GetAdvancedClusterBiConnectorConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            read_preference=read_preference,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: bool,
+             read_preference: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("enabled", enabled)
+        _setter("read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -8061,13 +9720,34 @@ class GetAdvancedClusterConnectionStringResult(dict):
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
-        pulumi.set(__self__, "aws_private_link", aws_private_link)
-        pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
-        pulumi.set(__self__, "private", private)
-        pulumi.set(__self__, "private_endpoints", private_endpoints)
-        pulumi.set(__self__, "private_srv", private_srv)
-        pulumi.set(__self__, "standard", standard)
-        pulumi.set(__self__, "standard_srv", standard_srv)
+        GetAdvancedClusterConnectionStringResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_private_link=aws_private_link,
+            aws_private_link_srv=aws_private_link_srv,
+            private=private,
+            private_endpoints=private_endpoints,
+            private_srv=private_srv,
+            standard=standard,
+            standard_srv=standard_srv,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_private_link: Mapping[str, Any],
+             aws_private_link_srv: Mapping[str, Any],
+             private: str,
+             private_endpoints: Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointResult'],
+             private_srv: str,
+             standard: str,
+             standard_srv: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("aws_private_link", aws_private_link)
+        _setter("aws_private_link_srv", aws_private_link_srv)
+        _setter("private", private)
+        _setter("private_endpoints", private_endpoints)
+        _setter("private_srv", private_srv)
+        _setter("standard", standard)
+        _setter("standard_srv", standard_srv)
 
     @property
     @pulumi.getter(name="awsPrivateLink")
@@ -8119,11 +9799,28 @@ class GetAdvancedClusterConnectionStringPrivateEndpointResult(dict):
                  srv_connection_string: str,
                  srv_shard_optimized_connection_string: str,
                  type: str):
-        pulumi.set(__self__, "connection_string", connection_string)
-        pulumi.set(__self__, "endpoints", endpoints)
-        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
-        pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
-        pulumi.set(__self__, "type", type)
+        GetAdvancedClusterConnectionStringPrivateEndpointResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            connection_string=connection_string,
+            endpoints=endpoints,
+            srv_connection_string=srv_connection_string,
+            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             connection_string: str,
+             endpoints: Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult'],
+             srv_connection_string: str,
+             srv_shard_optimized_connection_string: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("connection_string", connection_string)
+        _setter("endpoints", endpoints)
+        _setter("srv_connection_string", srv_connection_string)
+        _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -8160,9 +9857,22 @@ class GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult(dict):
         """
         :param str provider_name: Cloud service provider on which the servers are provisioned.
         """
-        pulumi.set(__self__, "endpoint_id", endpoint_id)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "region", region)
+        GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_id=endpoint_id,
+            provider_name=provider_name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_id: str,
+             provider_name: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("endpoint_id", endpoint_id)
+        _setter("provider_name", provider_name)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -8192,8 +9902,19 @@ class GetAdvancedClusterLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        GetAdvancedClusterLabelResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -8226,11 +9947,28 @@ class GetAdvancedClusterReplicationSpecResult(dict):
         :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
         :param str zone_name: Name for the zone in a Global Cluster.
         """
-        pulumi.set(__self__, "container_id", container_id)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "num_shards", num_shards)
-        pulumi.set(__self__, "region_configs", region_configs)
-        pulumi.set(__self__, "zone_name", zone_name)
+        GetAdvancedClusterReplicationSpecResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            container_id=container_id,
+            id=id,
+            num_shards=num_shards,
+            region_configs=region_configs,
+            zone_name=zone_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             container_id: Mapping[str, str],
+             id: str,
+             num_shards: int,
+             region_configs: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigResult'],
+             zone_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("container_id", container_id)
+        _setter("id", id)
+        _setter("num_shards", num_shards)
+        _setter("region_configs", region_configs)
+        _setter("zone_name", zone_name)
 
     @property
     @pulumi.getter(name="containerId")
@@ -8293,18 +10031,43 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
         :param 'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param 'GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below
         """
-        pulumi.set(__self__, "analytics_auto_scalings", analytics_auto_scalings)
-        pulumi.set(__self__, "auto_scalings", auto_scalings)
-        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
-        pulumi.set(__self__, "priority", priority)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "region_name", region_name)
+        GetAdvancedClusterReplicationSpecRegionConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            analytics_auto_scalings=analytics_auto_scalings,
+            auto_scalings=auto_scalings,
+            backing_provider_name=backing_provider_name,
+            priority=priority,
+            provider_name=provider_name,
+            region_name=region_name,
+            analytics_specs=analytics_specs,
+            electable_specs=electable_specs,
+            read_only_specs=read_only_specs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             analytics_auto_scalings: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult'],
+             auto_scalings: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult'],
+             backing_provider_name: str,
+             priority: int,
+             provider_name: str,
+             region_name: str,
+             analytics_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult'] = None,
+             electable_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult'] = None,
+             read_only_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult'] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("analytics_auto_scalings", analytics_auto_scalings)
+        _setter("auto_scalings", auto_scalings)
+        _setter("backing_provider_name", backing_provider_name)
+        _setter("priority", priority)
+        _setter("provider_name", provider_name)
+        _setter("region_name", region_name)
         if analytics_specs is not None:
-            pulumi.set(__self__, "analytics_specs", analytics_specs)
+            _setter("analytics_specs", analytics_specs)
         if electable_specs is not None:
-            pulumi.set(__self__, "electable_specs", electable_specs)
+            _setter("electable_specs", electable_specs)
         if read_only_specs is not None:
-            pulumi.set(__self__, "read_only_specs", read_only_specs)
+            _setter("read_only_specs", read_only_specs)
 
     @property
     @pulumi.getter(name="analyticsAutoScalings")
@@ -8395,11 +10158,28 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult(di
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
         """
-        pulumi.set(__self__, "compute_enabled", compute_enabled)
-        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
-        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
-        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
-        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+        GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            compute_enabled=compute_enabled,
+            compute_max_instance_size=compute_max_instance_size,
+            compute_min_instance_size=compute_min_instance_size,
+            compute_scale_down_enabled=compute_scale_down_enabled,
+            disk_gb_enabled=disk_gb_enabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             compute_enabled: bool,
+             compute_max_instance_size: str,
+             compute_min_instance_size: str,
+             compute_scale_down_enabled: bool,
+             disk_gb_enabled: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("compute_enabled", compute_enabled)
+        _setter("compute_max_instance_size", compute_max_instance_size)
+        _setter("compute_min_instance_size", compute_min_instance_size)
+        _setter("compute_scale_down_enabled", compute_scale_down_enabled)
+        _setter("disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -8456,13 +10236,28 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
+        GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_size=instance_size,
+            disk_iops=disk_iops,
+            ebs_volume_type=ebs_volume_type,
+            node_count=node_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_size: str,
+             disk_iops: Optional[int] = None,
+             ebs_volume_type: Optional[str] = None,
+             node_count: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_size", instance_size)
         if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
+            _setter("disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+            _setter("ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -8513,11 +10308,28 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
         """
-        pulumi.set(__self__, "compute_enabled", compute_enabled)
-        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
-        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
-        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
-        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+        GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            compute_enabled=compute_enabled,
+            compute_max_instance_size=compute_max_instance_size,
+            compute_min_instance_size=compute_min_instance_size,
+            compute_scale_down_enabled=compute_scale_down_enabled,
+            disk_gb_enabled=disk_gb_enabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             compute_enabled: bool,
+             compute_max_instance_size: str,
+             compute_min_instance_size: str,
+             compute_scale_down_enabled: bool,
+             disk_gb_enabled: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("compute_enabled", compute_enabled)
+        _setter("compute_max_instance_size", compute_max_instance_size)
+        _setter("compute_min_instance_size", compute_min_instance_size)
+        _setter("compute_scale_down_enabled", compute_scale_down_enabled)
+        _setter("disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -8574,13 +10386,28 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
+        GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_size=instance_size,
+            disk_iops=disk_iops,
+            ebs_volume_type=ebs_volume_type,
+            node_count=node_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_size: str,
+             disk_iops: Optional[int] = None,
+             ebs_volume_type: Optional[str] = None,
+             node_count: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_size", instance_size)
         if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
+            _setter("disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+            _setter("ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -8628,13 +10455,28 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
+        GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_size=instance_size,
+            disk_iops=disk_iops,
+            ebs_volume_type=ebs_volume_type,
+            node_count=node_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_size: str,
+             disk_iops: Optional[int] = None,
+             ebs_volume_type: Optional[str] = None,
+             node_count: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_size", instance_size)
         if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
+            _setter("disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+            _setter("ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -8709,25 +10551,70 @@ class GetAdvancedClustersResultResult(dict):
         :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param str version_release_system: Release cadence that Atlas uses for this cluster.
         """
-        pulumi.set(__self__, "advanced_configurations", advanced_configurations)
-        pulumi.set(__self__, "backup_enabled", backup_enabled)
-        pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
-        pulumi.set(__self__, "cluster_type", cluster_type)
-        pulumi.set(__self__, "connection_strings", connection_strings)
-        pulumi.set(__self__, "create_date", create_date)
-        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
-        pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
-        pulumi.set(__self__, "labels", labels)
-        pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
-        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "paused", paused)
-        pulumi.set(__self__, "pit_enabled", pit_enabled)
-        pulumi.set(__self__, "replication_specs", replication_specs)
-        pulumi.set(__self__, "root_cert_type", root_cert_type)
-        pulumi.set(__self__, "state_name", state_name)
-        pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
-        pulumi.set(__self__, "version_release_system", version_release_system)
+        GetAdvancedClustersResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            advanced_configurations=advanced_configurations,
+            backup_enabled=backup_enabled,
+            bi_connector_configs=bi_connector_configs,
+            cluster_type=cluster_type,
+            connection_strings=connection_strings,
+            create_date=create_date,
+            disk_size_gb=disk_size_gb,
+            encryption_at_rest_provider=encryption_at_rest_provider,
+            labels=labels,
+            mongo_db_major_version=mongo_db_major_version,
+            mongo_db_version=mongo_db_version,
+            name=name,
+            paused=paused,
+            pit_enabled=pit_enabled,
+            replication_specs=replication_specs,
+            root_cert_type=root_cert_type,
+            state_name=state_name,
+            termination_protection_enabled=termination_protection_enabled,
+            version_release_system=version_release_system,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             advanced_configurations: Sequence['outputs.GetAdvancedClustersResultAdvancedConfigurationResult'],
+             backup_enabled: bool,
+             bi_connector_configs: Sequence['outputs.GetAdvancedClustersResultBiConnectorConfigResult'],
+             cluster_type: str,
+             connection_strings: Sequence['outputs.GetAdvancedClustersResultConnectionStringResult'],
+             create_date: str,
+             disk_size_gb: float,
+             encryption_at_rest_provider: str,
+             labels: Sequence['outputs.GetAdvancedClustersResultLabelResult'],
+             mongo_db_major_version: str,
+             mongo_db_version: str,
+             name: str,
+             paused: bool,
+             pit_enabled: bool,
+             replication_specs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult'],
+             root_cert_type: str,
+             state_name: str,
+             termination_protection_enabled: bool,
+             version_release_system: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("advanced_configurations", advanced_configurations)
+        _setter("backup_enabled", backup_enabled)
+        _setter("bi_connector_configs", bi_connector_configs)
+        _setter("cluster_type", cluster_type)
+        _setter("connection_strings", connection_strings)
+        _setter("create_date", create_date)
+        _setter("disk_size_gb", disk_size_gb)
+        _setter("encryption_at_rest_provider", encryption_at_rest_provider)
+        _setter("labels", labels)
+        _setter("mongo_db_major_version", mongo_db_major_version)
+        _setter("mongo_db_version", mongo_db_version)
+        _setter("name", name)
+        _setter("paused", paused)
+        _setter("pit_enabled", pit_enabled)
+        _setter("replication_specs", replication_specs)
+        _setter("root_cert_type", root_cert_type)
+        _setter("state_name", state_name)
+        _setter("termination_protection_enabled", termination_protection_enabled)
+        _setter("version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="advancedConfigurations")
@@ -8899,17 +10786,46 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
-        pulumi.set(__self__, "default_read_concern", default_read_concern)
-        pulumi.set(__self__, "default_write_concern", default_write_concern)
-        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
-        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
-        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
-        pulumi.set(__self__, "no_table_scan", no_table_scan)
-        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
-        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
-        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
-        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
-        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+        GetAdvancedClustersResultAdvancedConfigurationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_read_concern=default_read_concern,
+            default_write_concern=default_write_concern,
+            fail_index_key_too_long=fail_index_key_too_long,
+            javascript_enabled=javascript_enabled,
+            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
+            no_table_scan=no_table_scan,
+            oplog_min_retention_hours=oplog_min_retention_hours,
+            oplog_size_mb=oplog_size_mb,
+            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
+            sample_size_bi_connector=sample_size_bi_connector,
+            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_read_concern: str,
+             default_write_concern: str,
+             fail_index_key_too_long: bool,
+             javascript_enabled: bool,
+             minimum_enabled_tls_protocol: str,
+             no_table_scan: bool,
+             oplog_min_retention_hours: int,
+             oplog_size_mb: int,
+             sample_refresh_interval_bi_connector: int,
+             sample_size_bi_connector: int,
+             transaction_lifetime_limit_seconds: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("default_read_concern", default_read_concern)
+        _setter("default_write_concern", default_write_concern)
+        _setter("fail_index_key_too_long", fail_index_key_too_long)
+        _setter("javascript_enabled", javascript_enabled)
+        _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        _setter("no_table_scan", no_table_scan)
+        _setter("oplog_min_retention_hours", oplog_min_retention_hours)
+        _setter("oplog_size_mb", oplog_size_mb)
+        _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        _setter("sample_size_bi_connector", sample_size_bi_connector)
+        _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -9006,8 +10922,19 @@ class GetAdvancedClustersResultBiConnectorConfigResult(dict):
         :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
         :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "read_preference", read_preference)
+        GetAdvancedClustersResultBiConnectorConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            read_preference=read_preference,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: bool,
+             read_preference: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("enabled", enabled)
+        _setter("read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -9036,13 +10963,34 @@ class GetAdvancedClustersResultConnectionStringResult(dict):
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
-        pulumi.set(__self__, "aws_private_link", aws_private_link)
-        pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
-        pulumi.set(__self__, "private", private)
-        pulumi.set(__self__, "private_endpoints", private_endpoints)
-        pulumi.set(__self__, "private_srv", private_srv)
-        pulumi.set(__self__, "standard", standard)
-        pulumi.set(__self__, "standard_srv", standard_srv)
+        GetAdvancedClustersResultConnectionStringResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_private_link=aws_private_link,
+            aws_private_link_srv=aws_private_link_srv,
+            private=private,
+            private_endpoints=private_endpoints,
+            private_srv=private_srv,
+            standard=standard,
+            standard_srv=standard_srv,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_private_link: Mapping[str, Any],
+             aws_private_link_srv: Mapping[str, Any],
+             private: str,
+             private_endpoints: Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointResult'],
+             private_srv: str,
+             standard: str,
+             standard_srv: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("aws_private_link", aws_private_link)
+        _setter("aws_private_link_srv", aws_private_link_srv)
+        _setter("private", private)
+        _setter("private_endpoints", private_endpoints)
+        _setter("private_srv", private_srv)
+        _setter("standard", standard)
+        _setter("standard_srv", standard_srv)
 
     @property
     @pulumi.getter(name="awsPrivateLink")
@@ -9094,11 +11042,28 @@ class GetAdvancedClustersResultConnectionStringPrivateEndpointResult(dict):
                  srv_connection_string: str,
                  srv_shard_optimized_connection_string: str,
                  type: str):
-        pulumi.set(__self__, "connection_string", connection_string)
-        pulumi.set(__self__, "endpoints", endpoints)
-        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
-        pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
-        pulumi.set(__self__, "type", type)
+        GetAdvancedClustersResultConnectionStringPrivateEndpointResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            connection_string=connection_string,
+            endpoints=endpoints,
+            srv_connection_string=srv_connection_string,
+            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             connection_string: str,
+             endpoints: Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult'],
+             srv_connection_string: str,
+             srv_shard_optimized_connection_string: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("connection_string", connection_string)
+        _setter("endpoints", endpoints)
+        _setter("srv_connection_string", srv_connection_string)
+        _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -9135,9 +11100,22 @@ class GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult(dic
         """
         :param str provider_name: Cloud service provider on which the servers are provisioned.
         """
-        pulumi.set(__self__, "endpoint_id", endpoint_id)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "region", region)
+        GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_id=endpoint_id,
+            provider_name=provider_name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_id: str,
+             provider_name: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("endpoint_id", endpoint_id)
+        _setter("provider_name", provider_name)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -9167,8 +11145,19 @@ class GetAdvancedClustersResultLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        GetAdvancedClustersResultLabelResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -9201,11 +11190,28 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
         :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
         :param str zone_name: Name for the zone in a Global Cluster.
         """
-        pulumi.set(__self__, "container_id", container_id)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "num_shards", num_shards)
-        pulumi.set(__self__, "region_configs", region_configs)
-        pulumi.set(__self__, "zone_name", zone_name)
+        GetAdvancedClustersResultReplicationSpecResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            container_id=container_id,
+            id=id,
+            num_shards=num_shards,
+            region_configs=region_configs,
+            zone_name=zone_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             container_id: Mapping[str, str],
+             id: str,
+             num_shards: int,
+             region_configs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigResult'],
+             zone_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("container_id", container_id)
+        _setter("id", id)
+        _setter("num_shards", num_shards)
+        _setter("region_configs", region_configs)
+        _setter("zone_name", zone_name)
 
     @property
     @pulumi.getter(name="containerId")
@@ -9268,18 +11274,43 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
         :param 'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param 'GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below
         """
-        pulumi.set(__self__, "analytics_auto_scalings", analytics_auto_scalings)
-        pulumi.set(__self__, "auto_scalings", auto_scalings)
-        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
-        pulumi.set(__self__, "priority", priority)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "region_name", region_name)
+        GetAdvancedClustersResultReplicationSpecRegionConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            analytics_auto_scalings=analytics_auto_scalings,
+            auto_scalings=auto_scalings,
+            backing_provider_name=backing_provider_name,
+            priority=priority,
+            provider_name=provider_name,
+            region_name=region_name,
+            analytics_specs=analytics_specs,
+            electable_specs=electable_specs,
+            read_only_specs=read_only_specs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             analytics_auto_scalings: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult'],
+             auto_scalings: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult'],
+             backing_provider_name: str,
+             priority: int,
+             provider_name: str,
+             region_name: str,
+             analytics_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult'] = None,
+             electable_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult'] = None,
+             read_only_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult'] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("analytics_auto_scalings", analytics_auto_scalings)
+        _setter("auto_scalings", auto_scalings)
+        _setter("backing_provider_name", backing_provider_name)
+        _setter("priority", priority)
+        _setter("provider_name", provider_name)
+        _setter("region_name", region_name)
         if analytics_specs is not None:
-            pulumi.set(__self__, "analytics_specs", analytics_specs)
+            _setter("analytics_specs", analytics_specs)
         if electable_specs is not None:
-            pulumi.set(__self__, "electable_specs", electable_specs)
+            _setter("electable_specs", electable_specs)
         if read_only_specs is not None:
-            pulumi.set(__self__, "read_only_specs", read_only_specs)
+            _setter("read_only_specs", read_only_specs)
 
     @property
     @pulumi.getter(name="analyticsAutoScalings")
@@ -9369,11 +11400,28 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingRe
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
         """
-        pulumi.set(__self__, "compute_enabled", compute_enabled)
-        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
-        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
-        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
-        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+        GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            compute_enabled=compute_enabled,
+            compute_max_instance_size=compute_max_instance_size,
+            compute_min_instance_size=compute_min_instance_size,
+            compute_scale_down_enabled=compute_scale_down_enabled,
+            disk_gb_enabled=disk_gb_enabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             compute_enabled: bool,
+             compute_max_instance_size: str,
+             compute_min_instance_size: str,
+             compute_scale_down_enabled: bool,
+             disk_gb_enabled: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("compute_enabled", compute_enabled)
+        _setter("compute_max_instance_size", compute_max_instance_size)
+        _setter("compute_min_instance_size", compute_min_instance_size)
+        _setter("compute_scale_down_enabled", compute_scale_down_enabled)
+        _setter("disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -9429,13 +11477,28 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
+        GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_size=instance_size,
+            disk_iops=disk_iops,
+            ebs_volume_type=ebs_volume_type,
+            node_count=node_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_size: str,
+             disk_iops: Optional[int] = None,
+             ebs_volume_type: Optional[str] = None,
+             node_count: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_size", instance_size)
         if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
+            _setter("disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+            _setter("ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -9485,11 +11548,28 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult(dict
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
         """
-        pulumi.set(__self__, "compute_enabled", compute_enabled)
-        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
-        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
-        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
-        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+        GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            compute_enabled=compute_enabled,
+            compute_max_instance_size=compute_max_instance_size,
+            compute_min_instance_size=compute_min_instance_size,
+            compute_scale_down_enabled=compute_scale_down_enabled,
+            disk_gb_enabled=disk_gb_enabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             compute_enabled: bool,
+             compute_max_instance_size: str,
+             compute_min_instance_size: str,
+             compute_scale_down_enabled: bool,
+             disk_gb_enabled: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("compute_enabled", compute_enabled)
+        _setter("compute_max_instance_size", compute_max_instance_size)
+        _setter("compute_min_instance_size", compute_min_instance_size)
+        _setter("compute_scale_down_enabled", compute_scale_down_enabled)
+        _setter("disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -9545,13 +11625,28 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
+        GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_size=instance_size,
+            disk_iops=disk_iops,
+            ebs_volume_type=ebs_volume_type,
+            node_count=node_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_size: str,
+             disk_iops: Optional[int] = None,
+             ebs_volume_type: Optional[str] = None,
+             node_count: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_size", instance_size)
         if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
+            _setter("disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+            _setter("ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -9599,13 +11694,28 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
+        GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_size=instance_size,
+            disk_iops=disk_iops,
+            ebs_volume_type=ebs_volume_type,
+            node_count=node_count,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_size: str,
+             disk_iops: Optional[int] = None,
+             ebs_volume_type: Optional[str] = None,
+             node_count: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_size", instance_size)
         if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
+            _setter("disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+            _setter("ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -9652,9 +11762,22 @@ class GetAlertConfigurationMatcherResult(dict):
                Accepted values are:
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "operator", operator)
-        pulumi.set(__self__, "value", value)
+        GetAlertConfigurationMatcherResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field_name=field_name,
+            operator=operator,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field_name: str,
+             operator: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("field_name", field_name)
+        _setter("operator", operator)
+        _setter("value", value)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -9699,11 +11822,28 @@ class GetAlertConfigurationMetricThresholdConfigResult(dict):
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
-        pulumi.set(__self__, "metric_name", metric_name)
-        pulumi.set(__self__, "mode", mode)
-        pulumi.set(__self__, "operator", operator)
-        pulumi.set(__self__, "threshold", threshold)
-        pulumi.set(__self__, "units", units)
+        GetAlertConfigurationMetricThresholdConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            metric_name=metric_name,
+            mode=mode,
+            operator=operator,
+            threshold=threshold,
+            units=units,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             metric_name: str,
+             mode: str,
+             operator: str,
+             threshold: float,
+             units: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("metric_name", metric_name)
+        _setter("mode", mode)
+        _setter("operator", operator)
+        _setter("threshold", threshold)
+        _setter("units", units)
 
     @property
     @pulumi.getter(name="metricName")
@@ -9800,33 +11940,86 @@ class GetAlertConfigurationNotificationResult(dict):
         :param str webhook_secret: Authentication secret for the `WEBHOOK` notifications type.
         :param str webhook_url: Target URL  for the `WEBHOOK` notifications type.
         """
-        pulumi.set(__self__, "api_token", api_token)
-        pulumi.set(__self__, "channel_name", channel_name)
-        pulumi.set(__self__, "datadog_api_key", datadog_api_key)
-        pulumi.set(__self__, "datadog_region", datadog_region)
-        pulumi.set(__self__, "delay_min", delay_min)
-        pulumi.set(__self__, "email_address", email_address)
-        pulumi.set(__self__, "email_enabled", email_enabled)
-        pulumi.set(__self__, "interval_min", interval_min)
-        pulumi.set(__self__, "mobile_number", mobile_number)
-        pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
-        pulumi.set(__self__, "ops_genie_region", ops_genie_region)
-        pulumi.set(__self__, "service_key", service_key)
-        pulumi.set(__self__, "sms_enabled", sms_enabled)
-        pulumi.set(__self__, "team_id", team_id)
-        pulumi.set(__self__, "team_name", team_name)
-        pulumi.set(__self__, "type_name", type_name)
-        pulumi.set(__self__, "username", username)
-        pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
-        pulumi.set(__self__, "victor_ops_routing_key", victor_ops_routing_key)
+        GetAlertConfigurationNotificationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_token=api_token,
+            channel_name=channel_name,
+            datadog_api_key=datadog_api_key,
+            datadog_region=datadog_region,
+            delay_min=delay_min,
+            email_address=email_address,
+            email_enabled=email_enabled,
+            interval_min=interval_min,
+            mobile_number=mobile_number,
+            ops_genie_api_key=ops_genie_api_key,
+            ops_genie_region=ops_genie_region,
+            service_key=service_key,
+            sms_enabled=sms_enabled,
+            team_id=team_id,
+            team_name=team_name,
+            type_name=type_name,
+            username=username,
+            victor_ops_api_key=victor_ops_api_key,
+            victor_ops_routing_key=victor_ops_routing_key,
+            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
+            roles=roles,
+            webhook_secret=webhook_secret,
+            webhook_url=webhook_url,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_token: str,
+             channel_name: str,
+             datadog_api_key: str,
+             datadog_region: str,
+             delay_min: int,
+             email_address: str,
+             email_enabled: bool,
+             interval_min: int,
+             mobile_number: str,
+             ops_genie_api_key: str,
+             ops_genie_region: str,
+             service_key: str,
+             sms_enabled: bool,
+             team_id: str,
+             team_name: str,
+             type_name: str,
+             username: str,
+             victor_ops_api_key: str,
+             victor_ops_routing_key: str,
+             microsoft_teams_webhook_url: Optional[str] = None,
+             roles: Optional[Sequence[str]] = None,
+             webhook_secret: Optional[str] = None,
+             webhook_url: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("api_token", api_token)
+        _setter("channel_name", channel_name)
+        _setter("datadog_api_key", datadog_api_key)
+        _setter("datadog_region", datadog_region)
+        _setter("delay_min", delay_min)
+        _setter("email_address", email_address)
+        _setter("email_enabled", email_enabled)
+        _setter("interval_min", interval_min)
+        _setter("mobile_number", mobile_number)
+        _setter("ops_genie_api_key", ops_genie_api_key)
+        _setter("ops_genie_region", ops_genie_region)
+        _setter("service_key", service_key)
+        _setter("sms_enabled", sms_enabled)
+        _setter("team_id", team_id)
+        _setter("team_name", team_name)
+        _setter("type_name", type_name)
+        _setter("username", username)
+        _setter("victor_ops_api_key", victor_ops_api_key)
+        _setter("victor_ops_routing_key", victor_ops_routing_key)
         if microsoft_teams_webhook_url is not None:
-            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+            _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if roles is not None:
-            pulumi.set(__self__, "roles", roles)
+            _setter("roles", roles)
         if webhook_secret is not None:
-            pulumi.set(__self__, "webhook_secret", webhook_secret)
+            _setter("webhook_secret", webhook_secret)
         if webhook_url is not None:
-            pulumi.set(__self__, "webhook_url", webhook_url)
+            _setter("webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -10023,10 +12216,23 @@ class GetAlertConfigurationOutputResult(dict):
         """
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "value", value)
+        GetAlertConfigurationOutputResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            type=type,
+            value=value,
+            label=label,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             type: str,
+             value: str,
+             label: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("type", type)
+        _setter("value", value)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
 
     @property
     @pulumi.getter
@@ -10060,9 +12266,22 @@ class GetAlertConfigurationThresholdConfigResult(dict):
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
-        pulumi.set(__self__, "operator", operator)
-        pulumi.set(__self__, "threshold", threshold)
-        pulumi.set(__self__, "units", units)
+        GetAlertConfigurationThresholdConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            operator=operator,
+            threshold=threshold,
+            units=units,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             operator: str,
+             threshold: float,
+             units: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("operator", operator)
+        _setter("threshold", threshold)
+        _setter("units", units)
 
     @property
     @pulumi.getter
@@ -10097,12 +12316,25 @@ class GetAlertConfigurationsListOptionResult(dict):
                  include_count: Optional[bool] = None,
                  items_per_page: Optional[int] = None,
                  page_num: Optional[int] = None):
+        GetAlertConfigurationsListOptionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            include_count=include_count,
+            items_per_page=items_per_page,
+            page_num=page_num,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             include_count: Optional[bool] = None,
+             items_per_page: Optional[int] = None,
+             page_num: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if include_count is not None:
-            pulumi.set(__self__, "include_count", include_count)
+            _setter("include_count", include_count)
         if items_per_page is not None:
-            pulumi.set(__self__, "items_per_page", items_per_page)
+            _setter("items_per_page", items_per_page)
         if page_num is not None:
-            pulumi.set(__self__, "page_num", page_num)
+            _setter("page_num", page_num)
 
     @property
     @pulumi.getter(name="includeCount")
@@ -10148,20 +12380,53 @@ class GetAlertConfigurationsResultResult(dict):
         :param str updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         :param Sequence['GetAlertConfigurationsResultOutputArgs'] outputs: Requested output string format for the alert configuration
         """
-        pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
-        pulumi.set(__self__, "created", created)
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "event_type", event_type)
-        pulumi.set(__self__, "matchers", matchers)
-        pulumi.set(__self__, "metric_threshold", metric_threshold)
-        pulumi.set(__self__, "metric_threshold_configs", metric_threshold_configs)
-        pulumi.set(__self__, "notifications", notifications)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "threshold", threshold)
-        pulumi.set(__self__, "threshold_configs", threshold_configs)
-        pulumi.set(__self__, "updated", updated)
+        GetAlertConfigurationsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alert_configuration_id=alert_configuration_id,
+            created=created,
+            enabled=enabled,
+            event_type=event_type,
+            matchers=matchers,
+            metric_threshold=metric_threshold,
+            metric_threshold_configs=metric_threshold_configs,
+            notifications=notifications,
+            project_id=project_id,
+            threshold=threshold,
+            threshold_configs=threshold_configs,
+            updated=updated,
+            outputs=outputs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alert_configuration_id: str,
+             created: str,
+             enabled: bool,
+             event_type: str,
+             matchers: Sequence['outputs.GetAlertConfigurationsResultMatcherResult'],
+             metric_threshold: Mapping[str, str],
+             metric_threshold_configs: Sequence['outputs.GetAlertConfigurationsResultMetricThresholdConfigResult'],
+             notifications: Sequence['outputs.GetAlertConfigurationsResultNotificationResult'],
+             project_id: str,
+             threshold: Mapping[str, str],
+             threshold_configs: Sequence['outputs.GetAlertConfigurationsResultThresholdConfigResult'],
+             updated: str,
+             outputs: Optional[Sequence['outputs.GetAlertConfigurationsResultOutputResult']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("alert_configuration_id", alert_configuration_id)
+        _setter("created", created)
+        _setter("enabled", enabled)
+        _setter("event_type", event_type)
+        _setter("matchers", matchers)
+        _setter("metric_threshold", metric_threshold)
+        _setter("metric_threshold_configs", metric_threshold_configs)
+        _setter("notifications", notifications)
+        _setter("project_id", project_id)
+        _setter("threshold", threshold)
+        _setter("threshold_configs", threshold_configs)
+        _setter("updated", updated)
         if outputs is not None:
-            pulumi.set(__self__, "outputs", outputs)
+            _setter("outputs", outputs)
 
     @property
     @pulumi.getter(name="alertConfigurationId")
@@ -10265,9 +12530,22 @@ class GetAlertConfigurationsResultMatcherResult(dict):
                  field_name: str,
                  operator: str,
                  value: str):
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "operator", operator)
-        pulumi.set(__self__, "value", value)
+        GetAlertConfigurationsResultMatcherResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field_name=field_name,
+            operator=operator,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field_name: str,
+             operator: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("field_name", field_name)
+        _setter("operator", operator)
+        _setter("value", value)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -10293,11 +12571,28 @@ class GetAlertConfigurationsResultMetricThresholdConfigResult(dict):
                  operator: str,
                  threshold: float,
                  units: str):
-        pulumi.set(__self__, "metric_name", metric_name)
-        pulumi.set(__self__, "mode", mode)
-        pulumi.set(__self__, "operator", operator)
-        pulumi.set(__self__, "threshold", threshold)
-        pulumi.set(__self__, "units", units)
+        GetAlertConfigurationsResultMetricThresholdConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            metric_name=metric_name,
+            mode=mode,
+            operator=operator,
+            threshold=threshold,
+            units=units,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             metric_name: str,
+             mode: str,
+             operator: str,
+             threshold: float,
+             units: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("metric_name", metric_name)
+        _setter("mode", mode)
+        _setter("operator", operator)
+        _setter("threshold", threshold)
+        _setter("units", units)
 
     @property
     @pulumi.getter(name="metricName")
@@ -10351,33 +12646,86 @@ class GetAlertConfigurationsResultNotificationResult(dict):
                  roles: Optional[Sequence[str]] = None,
                  webhook_secret: Optional[str] = None,
                  webhook_url: Optional[str] = None):
-        pulumi.set(__self__, "api_token", api_token)
-        pulumi.set(__self__, "channel_name", channel_name)
-        pulumi.set(__self__, "datadog_api_key", datadog_api_key)
-        pulumi.set(__self__, "datadog_region", datadog_region)
-        pulumi.set(__self__, "delay_min", delay_min)
-        pulumi.set(__self__, "email_address", email_address)
-        pulumi.set(__self__, "email_enabled", email_enabled)
-        pulumi.set(__self__, "interval_min", interval_min)
-        pulumi.set(__self__, "mobile_number", mobile_number)
-        pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
-        pulumi.set(__self__, "ops_genie_region", ops_genie_region)
-        pulumi.set(__self__, "service_key", service_key)
-        pulumi.set(__self__, "sms_enabled", sms_enabled)
-        pulumi.set(__self__, "team_id", team_id)
-        pulumi.set(__self__, "team_name", team_name)
-        pulumi.set(__self__, "type_name", type_name)
-        pulumi.set(__self__, "username", username)
-        pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
-        pulumi.set(__self__, "victor_ops_routing_key", victor_ops_routing_key)
+        GetAlertConfigurationsResultNotificationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_token=api_token,
+            channel_name=channel_name,
+            datadog_api_key=datadog_api_key,
+            datadog_region=datadog_region,
+            delay_min=delay_min,
+            email_address=email_address,
+            email_enabled=email_enabled,
+            interval_min=interval_min,
+            mobile_number=mobile_number,
+            ops_genie_api_key=ops_genie_api_key,
+            ops_genie_region=ops_genie_region,
+            service_key=service_key,
+            sms_enabled=sms_enabled,
+            team_id=team_id,
+            team_name=team_name,
+            type_name=type_name,
+            username=username,
+            victor_ops_api_key=victor_ops_api_key,
+            victor_ops_routing_key=victor_ops_routing_key,
+            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
+            roles=roles,
+            webhook_secret=webhook_secret,
+            webhook_url=webhook_url,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_token: str,
+             channel_name: str,
+             datadog_api_key: str,
+             datadog_region: str,
+             delay_min: int,
+             email_address: str,
+             email_enabled: bool,
+             interval_min: int,
+             mobile_number: str,
+             ops_genie_api_key: str,
+             ops_genie_region: str,
+             service_key: str,
+             sms_enabled: bool,
+             team_id: str,
+             team_name: str,
+             type_name: str,
+             username: str,
+             victor_ops_api_key: str,
+             victor_ops_routing_key: str,
+             microsoft_teams_webhook_url: Optional[str] = None,
+             roles: Optional[Sequence[str]] = None,
+             webhook_secret: Optional[str] = None,
+             webhook_url: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("api_token", api_token)
+        _setter("channel_name", channel_name)
+        _setter("datadog_api_key", datadog_api_key)
+        _setter("datadog_region", datadog_region)
+        _setter("delay_min", delay_min)
+        _setter("email_address", email_address)
+        _setter("email_enabled", email_enabled)
+        _setter("interval_min", interval_min)
+        _setter("mobile_number", mobile_number)
+        _setter("ops_genie_api_key", ops_genie_api_key)
+        _setter("ops_genie_region", ops_genie_region)
+        _setter("service_key", service_key)
+        _setter("sms_enabled", sms_enabled)
+        _setter("team_id", team_id)
+        _setter("team_name", team_name)
+        _setter("type_name", type_name)
+        _setter("username", username)
+        _setter("victor_ops_api_key", victor_ops_api_key)
+        _setter("victor_ops_routing_key", victor_ops_routing_key)
         if microsoft_teams_webhook_url is not None:
-            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+            _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if roles is not None:
-            pulumi.set(__self__, "roles", roles)
+            _setter("roles", roles)
         if webhook_secret is not None:
-            pulumi.set(__self__, "webhook_secret", webhook_secret)
+            _setter("webhook_secret", webhook_secret)
         if webhook_url is not None:
-            pulumi.set(__self__, "webhook_url", webhook_url)
+            _setter("webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -10501,10 +12849,23 @@ class GetAlertConfigurationsResultOutputResult(dict):
                  type: str,
                  value: str,
                  label: Optional[str] = None):
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "value", value)
+        GetAlertConfigurationsResultOutputResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            type=type,
+            value=value,
+            label=label,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             type: str,
+             value: str,
+             label: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("type", type)
+        _setter("value", value)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
 
     @property
     @pulumi.getter
@@ -10528,9 +12889,22 @@ class GetAlertConfigurationsResultThresholdConfigResult(dict):
                  operator: str,
                  threshold: float,
                  units: str):
-        pulumi.set(__self__, "operator", operator)
-        pulumi.set(__self__, "threshold", threshold)
-        pulumi.set(__self__, "units", units)
+        GetAlertConfigurationsResultThresholdConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            operator=operator,
+            threshold=threshold,
+            units=units,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             operator: str,
+             threshold: float,
+             units: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("operator", operator)
+        _setter("threshold", threshold)
+        _setter("units", units)
 
     @property
     @pulumi.getter
@@ -10562,10 +12936,25 @@ class GetApiKeysResultResult(dict):
                
                The following are valid roles:
         """
-        pulumi.set(__self__, "api_key_id", api_key_id)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "public_key", public_key)
-        pulumi.set(__self__, "role_names", role_names)
+        GetApiKeysResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_key_id=api_key_id,
+            description=description,
+            public_key=public_key,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_key_id: str,
+             description: str,
+             public_key: str,
+             role_names: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("api_key_id", api_key_id)
+        _setter("description", description)
+        _setter("public_key", public_key)
+        _setter("role_names", role_names)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -10614,11 +13003,28 @@ class GetBackupCompliancePolicyOnDemandPolicyItemResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetBackupCompliancePolicyOnDemandPolicyItemResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -10676,11 +13082,28 @@ class GetBackupCompliancePolicyPolicyItemDailyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetBackupCompliancePolicyPolicyItemDailyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -10738,11 +13161,28 @@ class GetBackupCompliancePolicyPolicyItemHourlyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetBackupCompliancePolicyPolicyItemHourlyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -10800,11 +13240,28 @@ class GetBackupCompliancePolicyPolicyItemMonthlyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetBackupCompliancePolicyPolicyItemMonthlyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -10862,11 +13319,28 @@ class GetBackupCompliancePolicyPolicyItemWeeklyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetBackupCompliancePolicyPolicyItemWeeklyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -10924,11 +13398,28 @@ class GetCloudBackupScheduleCopySettingResult(dict):
         :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
         :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         """
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "frequencies", frequencies)
-        pulumi.set(__self__, "region_name", region_name)
-        pulumi.set(__self__, "replication_spec_id", replication_spec_id)
-        pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
+        GetCloudBackupScheduleCopySettingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            frequencies=frequencies,
+            region_name=region_name,
+            replication_spec_id=replication_spec_id,
+            should_copy_oplogs=should_copy_oplogs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             frequencies: Sequence[str],
+             region_name: str,
+             replication_spec_id: str,
+             should_copy_oplogs: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("frequencies", frequencies)
+        _setter("region_name", region_name)
+        _setter("replication_spec_id", replication_spec_id)
+        _setter("should_copy_oplogs", should_copy_oplogs)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -10980,8 +13471,19 @@ class GetCloudBackupScheduleExportResult(dict):
         :param str export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
-        pulumi.set(__self__, "export_bucket_id", export_bucket_id)
-        pulumi.set(__self__, "frequency_type", frequency_type)
+        GetCloudBackupScheduleExportResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            export_bucket_id=export_bucket_id,
+            frequency_type=frequency_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             export_bucket_id: str,
+             frequency_type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("export_bucket_id", export_bucket_id)
+        _setter("frequency_type", frequency_type)
 
     @property
     @pulumi.getter(name="exportBucketId")
@@ -11015,11 +13517,28 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetCloudBackupSchedulePolicyItemDailyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -11077,11 +13596,28 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetCloudBackupSchedulePolicyItemHourlyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -11139,11 +13675,28 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetCloudBackupSchedulePolicyItemMonthlyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -11201,11 +13754,28 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetCloudBackupSchedulePolicyItemWeeklyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -11261,10 +13831,25 @@ class GetCloudBackupSnapshotExportBucketsResultResult(dict):
         :param str export_bucket_id: Unique identifier of the snapshot bucket id.
         :param str iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
         """
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "export_bucket_id", export_bucket_id)
-        pulumi.set(__self__, "iam_role_id", iam_role_id)
+        GetCloudBackupSnapshotExportBucketsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket_name=bucket_name,
+            cloud_provider=cloud_provider,
+            export_bucket_id=export_bucket_id,
+            iam_role_id=iam_role_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket_name: str,
+             cloud_provider: str,
+             export_bucket_id: str,
+             iam_role_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("bucket_name", bucket_name)
+        _setter("cloud_provider", cloud_provider)
+        _setter("export_bucket_id", export_bucket_id)
+        _setter("iam_role_id", iam_role_id)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -11308,8 +13893,19 @@ class GetCloudBackupSnapshotExportJobComponentResult(dict):
         :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
         """
-        pulumi.set(__self__, "export_id", export_id)
-        pulumi.set(__self__, "replica_set_name", replica_set_name)
+        GetCloudBackupSnapshotExportJobComponentResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            export_id=export_id,
+            replica_set_name=replica_set_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             export_id: str,
+             replica_set_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("export_id", export_id)
+        _setter("replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="exportId")
@@ -11337,8 +13933,19 @@ class GetCloudBackupSnapshotExportJobCustomDataResult(dict):
         :param str key: Custom data specified as key in the key and value pair.
         :param str value: Value for the key specified using `key`.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        GetCloudBackupSnapshotExportJobCustomDataResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -11384,18 +13991,49 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
         :param str snapshot_id: Unique identifier of the Cloud Backup snapshot to export.
         :param str state: Status of the export job. Value can be one of the following:
         """
-        pulumi.set(__self__, "components", components)
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "custom_datas", custom_datas)
-        pulumi.set(__self__, "err_msg", err_msg)
-        pulumi.set(__self__, "export_bucket_id", export_bucket_id)
-        pulumi.set(__self__, "export_job_id", export_job_id)
-        pulumi.set(__self__, "export_status_exported_collections", export_status_exported_collections)
-        pulumi.set(__self__, "export_status_total_collections", export_status_total_collections)
-        pulumi.set(__self__, "finished_at", finished_at)
-        pulumi.set(__self__, "prefix", prefix)
-        pulumi.set(__self__, "snapshot_id", snapshot_id)
-        pulumi.set(__self__, "state", state)
+        GetCloudBackupSnapshotExportJobsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            components=components,
+            created_at=created_at,
+            custom_datas=custom_datas,
+            err_msg=err_msg,
+            export_bucket_id=export_bucket_id,
+            export_job_id=export_job_id,
+            export_status_exported_collections=export_status_exported_collections,
+            export_status_total_collections=export_status_total_collections,
+            finished_at=finished_at,
+            prefix=prefix,
+            snapshot_id=snapshot_id,
+            state=state,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             components: Sequence['outputs.GetCloudBackupSnapshotExportJobsResultComponentResult'],
+             created_at: str,
+             custom_datas: Sequence['outputs.GetCloudBackupSnapshotExportJobsResultCustomDataResult'],
+             err_msg: str,
+             export_bucket_id: str,
+             export_job_id: str,
+             export_status_exported_collections: int,
+             export_status_total_collections: int,
+             finished_at: str,
+             prefix: str,
+             snapshot_id: str,
+             state: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("components", components)
+        _setter("created_at", created_at)
+        _setter("custom_datas", custom_datas)
+        _setter("err_msg", err_msg)
+        _setter("export_bucket_id", export_bucket_id)
+        _setter("export_job_id", export_job_id)
+        _setter("export_status_exported_collections", export_status_exported_collections)
+        _setter("export_status_total_collections", export_status_total_collections)
+        _setter("finished_at", finished_at)
+        _setter("prefix", prefix)
+        _setter("snapshot_id", snapshot_id)
+        _setter("state", state)
 
     @property
     @pulumi.getter
@@ -11495,8 +14133,19 @@ class GetCloudBackupSnapshotExportJobsResultComponentResult(dict):
         :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
         """
-        pulumi.set(__self__, "export_id", export_id)
-        pulumi.set(__self__, "replica_set_name", replica_set_name)
+        GetCloudBackupSnapshotExportJobsResultComponentResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            export_id=export_id,
+            replica_set_name=replica_set_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             export_id: str,
+             replica_set_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("export_id", export_id)
+        _setter("replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="exportId")
@@ -11524,8 +14173,19 @@ class GetCloudBackupSnapshotExportJobsResultCustomDataResult(dict):
         :param str key: Custom data specified as key in the key and value pair.
         :param str value: Value for the key specified using `key`.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        GetCloudBackupSnapshotExportJobsResultCustomDataResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -11555,9 +14215,22 @@ class GetCloudBackupSnapshotMemberResult(dict):
         :param str id: Unique identifier for the sharded cluster snapshot.
         :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         """
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "replica_set_name", replica_set_name)
+        GetCloudBackupSnapshotMemberResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            id=id,
+            replica_set_name=replica_set_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             id: str,
+             replica_set_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("id", id)
+        _setter("replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -11616,21 +14289,58 @@ class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
         :param str target_project_id: Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
         :param str timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
         """
-        pulumi.set(__self__, "cancelled", cancelled)
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "delivery_type", delivery_type)
-        pulumi.set(__self__, "delivery_urls", delivery_urls)
-        pulumi.set(__self__, "expired", expired)
-        pulumi.set(__self__, "expires_at", expires_at)
-        pulumi.set(__self__, "finished_at", finished_at)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "oplog_inc", oplog_inc)
-        pulumi.set(__self__, "oplog_ts", oplog_ts)
-        pulumi.set(__self__, "point_in_time_utc_seconds", point_in_time_utc_seconds)
-        pulumi.set(__self__, "snapshot_id", snapshot_id)
-        pulumi.set(__self__, "target_cluster_name", target_cluster_name)
-        pulumi.set(__self__, "target_project_id", target_project_id)
-        pulumi.set(__self__, "timestamp", timestamp)
+        GetCloudBackupSnapshotRestoreJobsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cancelled=cancelled,
+            created_at=created_at,
+            delivery_type=delivery_type,
+            delivery_urls=delivery_urls,
+            expired=expired,
+            expires_at=expires_at,
+            finished_at=finished_at,
+            id=id,
+            oplog_inc=oplog_inc,
+            oplog_ts=oplog_ts,
+            point_in_time_utc_seconds=point_in_time_utc_seconds,
+            snapshot_id=snapshot_id,
+            target_cluster_name=target_cluster_name,
+            target_project_id=target_project_id,
+            timestamp=timestamp,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cancelled: bool,
+             created_at: str,
+             delivery_type: str,
+             delivery_urls: Sequence[str],
+             expired: bool,
+             expires_at: str,
+             finished_at: str,
+             id: str,
+             oplog_inc: int,
+             oplog_ts: int,
+             point_in_time_utc_seconds: int,
+             snapshot_id: str,
+             target_cluster_name: str,
+             target_project_id: str,
+             timestamp: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cancelled", cancelled)
+        _setter("created_at", created_at)
+        _setter("delivery_type", delivery_type)
+        _setter("delivery_urls", delivery_urls)
+        _setter("expired", expired)
+        _setter("expires_at", expires_at)
+        _setter("finished_at", finished_at)
+        _setter("id", id)
+        _setter("oplog_inc", oplog_inc)
+        _setter("oplog_ts", oplog_ts)
+        _setter("point_in_time_utc_seconds", point_in_time_utc_seconds)
+        _setter("snapshot_id", snapshot_id)
+        _setter("target_cluster_name", target_cluster_name)
+        _setter("target_project_id", target_project_id)
+        _setter("timestamp", timestamp)
 
     @property
     @pulumi.getter
@@ -11777,20 +14487,55 @@ class GetCloudBackupSnapshotsResultResult(dict):
         :param int storage_size_bytes: Specifies the size of the snapshot in bytes.
         :param str type: Specifies the type of cluster: replicaSet or shardedCluster.
         """
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "expires_at", expires_at)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "master_key_uuid", master_key_uuid)
-        pulumi.set(__self__, "members", members)
-        pulumi.set(__self__, "mongod_version", mongod_version)
-        pulumi.set(__self__, "replica_set_name", replica_set_name)
-        pulumi.set(__self__, "snapshot_ids", snapshot_ids)
-        pulumi.set(__self__, "snapshot_type", snapshot_type)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "storage_size_bytes", storage_size_bytes)
-        pulumi.set(__self__, "type", type)
+        GetCloudBackupSnapshotsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            created_at=created_at,
+            description=description,
+            expires_at=expires_at,
+            id=id,
+            master_key_uuid=master_key_uuid,
+            members=members,
+            mongod_version=mongod_version,
+            replica_set_name=replica_set_name,
+            snapshot_ids=snapshot_ids,
+            snapshot_type=snapshot_type,
+            status=status,
+            storage_size_bytes=storage_size_bytes,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             created_at: str,
+             description: str,
+             expires_at: str,
+             id: str,
+             master_key_uuid: str,
+             members: Sequence['outputs.GetCloudBackupSnapshotsResultMemberResult'],
+             mongod_version: str,
+             replica_set_name: str,
+             snapshot_ids: Sequence[str],
+             snapshot_type: str,
+             status: str,
+             storage_size_bytes: int,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("created_at", created_at)
+        _setter("description", description)
+        _setter("expires_at", expires_at)
+        _setter("id", id)
+        _setter("master_key_uuid", master_key_uuid)
+        _setter("members", members)
+        _setter("mongod_version", mongod_version)
+        _setter("replica_set_name", replica_set_name)
+        _setter("snapshot_ids", snapshot_ids)
+        _setter("snapshot_type", snapshot_type)
+        _setter("status", status)
+        _setter("storage_size_bytes", storage_size_bytes)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -11916,9 +14661,22 @@ class GetCloudBackupSnapshotsResultMemberResult(dict):
         :param str id: Unique identifier for the sharded cluster snapshot.
         :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         """
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "replica_set_name", replica_set_name)
+        GetCloudBackupSnapshotsResultMemberResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            id=id,
+            replica_set_name=replica_set_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             id: str,
+             replica_set_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("id", id)
+        _setter("replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -11966,14 +14724,37 @@ class GetCloudProviderAccessAwsIamRoleResult(dict):
         :param str provider_name: Name of the cloud provider. Currently limited to AWS.
         :param str role_id: Unique ID of this role.
         """
-        pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
-        pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
-        pulumi.set(__self__, "authorized_date", authorized_date)
-        pulumi.set(__self__, "created_date", created_date)
-        pulumi.set(__self__, "feature_usages", feature_usages)
-        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "role_id", role_id)
+        GetCloudProviderAccessAwsIamRoleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            atlas_assumed_role_external_id=atlas_assumed_role_external_id,
+            atlas_aws_account_arn=atlas_aws_account_arn,
+            authorized_date=authorized_date,
+            created_date=created_date,
+            feature_usages=feature_usages,
+            iam_assumed_role_arn=iam_assumed_role_arn,
+            provider_name=provider_name,
+            role_id=role_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             atlas_assumed_role_external_id: str,
+             atlas_aws_account_arn: str,
+             authorized_date: str,
+             created_date: str,
+             feature_usages: Sequence['outputs.GetCloudProviderAccessAwsIamRoleFeatureUsageResult'],
+             iam_assumed_role_arn: str,
+             provider_name: str,
+             role_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+        _setter("atlas_aws_account_arn", atlas_aws_account_arn)
+        _setter("authorized_date", authorized_date)
+        _setter("created_date", created_date)
+        _setter("feature_usages", feature_usages)
+        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
+        _setter("provider_name", provider_name)
+        _setter("role_id", role_id)
 
     @property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
@@ -12045,8 +14826,19 @@ class GetCloudProviderAccessAwsIamRoleFeatureUsageResult(dict):
     def __init__(__self__, *,
                  feature_id: Mapping[str, Any],
                  feature_type: str):
-        pulumi.set(__self__, "feature_id", feature_id)
-        pulumi.set(__self__, "feature_type", feature_type)
+        GetCloudProviderAccessAwsIamRoleFeatureUsageResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            feature_id=feature_id,
+            feature_type=feature_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             feature_id: Mapping[str, Any],
+             feature_type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("feature_id", feature_id)
+        _setter("feature_type", feature_type)
 
     @property
     @pulumi.getter(name="featureId")
@@ -12068,8 +14860,19 @@ class GetCloudProviderAccessSetupAwsConfigResult(dict):
         :param str atlas_assumed_role_external_id: Unique external ID Atlas uses when assuming the IAM role in your AWS account.
         :param str atlas_aws_account_arn: ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
         """
-        pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
-        pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
+        GetCloudProviderAccessSetupAwsConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            atlas_assumed_role_external_id=atlas_assumed_role_external_id,
+            atlas_aws_account_arn=atlas_aws_account_arn,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             atlas_assumed_role_external_id: str,
+             atlas_aws_account_arn: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+        _setter("atlas_aws_account_arn", atlas_aws_account_arn)
 
     @property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
@@ -12099,9 +14902,22 @@ class GetCloudProviderAccessSetupAzureConfigResult(dict):
         :param str service_principal_id: UUID string that identifies the Azure Service Principal.
         :param str tenant_id: UUID String that identifies the Azure Active Directory Tenant ID.
         """
-        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
-        pulumi.set(__self__, "service_principal_id", service_principal_id)
-        pulumi.set(__self__, "tenant_id", tenant_id)
+        GetCloudProviderAccessSetupAzureConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            atlas_azure_app_id=atlas_azure_app_id,
+            service_principal_id=service_principal_id,
+            tenant_id=tenant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             atlas_azure_app_id: str,
+             service_principal_id: str,
+             tenant_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("atlas_azure_app_id", atlas_azure_app_id)
+        _setter("service_principal_id", service_principal_id)
+        _setter("tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="atlasAzureAppId")
@@ -12155,17 +14971,46 @@ class GetClusterAdvancedConfigurationResult(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
-        pulumi.set(__self__, "default_read_concern", default_read_concern)
-        pulumi.set(__self__, "default_write_concern", default_write_concern)
-        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
-        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
-        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
-        pulumi.set(__self__, "no_table_scan", no_table_scan)
-        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
-        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
-        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
-        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
-        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+        GetClusterAdvancedConfigurationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_read_concern=default_read_concern,
+            default_write_concern=default_write_concern,
+            fail_index_key_too_long=fail_index_key_too_long,
+            javascript_enabled=javascript_enabled,
+            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
+            no_table_scan=no_table_scan,
+            oplog_min_retention_hours=oplog_min_retention_hours,
+            oplog_size_mb=oplog_size_mb,
+            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
+            sample_size_bi_connector=sample_size_bi_connector,
+            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_read_concern: str,
+             default_write_concern: str,
+             fail_index_key_too_long: bool,
+             javascript_enabled: bool,
+             minimum_enabled_tls_protocol: str,
+             no_table_scan: bool,
+             oplog_min_retention_hours: int,
+             oplog_size_mb: int,
+             sample_refresh_interval_bi_connector: int,
+             sample_size_bi_connector: int,
+             transaction_lifetime_limit_seconds: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("default_read_concern", default_read_concern)
+        _setter("default_write_concern", default_write_concern)
+        _setter("fail_index_key_too_long", fail_index_key_too_long)
+        _setter("javascript_enabled", javascript_enabled)
+        _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        _setter("no_table_scan", no_table_scan)
+        _setter("oplog_min_retention_hours", oplog_min_retention_hours)
+        _setter("oplog_size_mb", oplog_size_mb)
+        _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        _setter("sample_size_bi_connector", sample_size_bi_connector)
+        _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -12265,8 +15110,19 @@ class GetClusterBiConnectorConfigResult(dict):
         :param bool enabled: Indicates whether or not BI Connector for Atlas is enabled on the cluster.
         :param str read_preference: Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "read_preference", read_preference)
+        GetClusterBiConnectorConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            read_preference=read_preference,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: bool,
+             read_preference: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("enabled", enabled)
+        _setter("read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -12295,13 +15151,34 @@ class GetClusterConnectionStringResult(dict):
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
-        pulumi.set(__self__, "aws_private_link", aws_private_link)
-        pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
-        pulumi.set(__self__, "private", private)
-        pulumi.set(__self__, "private_endpoints", private_endpoints)
-        pulumi.set(__self__, "private_srv", private_srv)
-        pulumi.set(__self__, "standard", standard)
-        pulumi.set(__self__, "standard_srv", standard_srv)
+        GetClusterConnectionStringResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_private_link=aws_private_link,
+            aws_private_link_srv=aws_private_link_srv,
+            private=private,
+            private_endpoints=private_endpoints,
+            private_srv=private_srv,
+            standard=standard,
+            standard_srv=standard_srv,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_private_link: Mapping[str, Any],
+             aws_private_link_srv: Mapping[str, Any],
+             private: str,
+             private_endpoints: Sequence['outputs.GetClusterConnectionStringPrivateEndpointResult'],
+             private_srv: str,
+             standard: str,
+             standard_srv: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("aws_private_link", aws_private_link)
+        _setter("aws_private_link_srv", aws_private_link_srv)
+        _setter("private", private)
+        _setter("private_endpoints", private_endpoints)
+        _setter("private_srv", private_srv)
+        _setter("standard", standard)
+        _setter("standard_srv", standard_srv)
 
     @property
     @pulumi.getter(name="awsPrivateLink")
@@ -12347,11 +15224,28 @@ class GetClusterConnectionStringPrivateEndpointResult(dict):
                  srv_connection_string: str,
                  srv_shard_optimized_connection_string: str,
                  type: str):
-        pulumi.set(__self__, "connection_string", connection_string)
-        pulumi.set(__self__, "endpoints", endpoints)
-        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
-        pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
-        pulumi.set(__self__, "type", type)
+        GetClusterConnectionStringPrivateEndpointResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            connection_string=connection_string,
+            endpoints=endpoints,
+            srv_connection_string=srv_connection_string,
+            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             connection_string: str,
+             endpoints: Sequence['outputs.GetClusterConnectionStringPrivateEndpointEndpointResult'],
+             srv_connection_string: str,
+             srv_shard_optimized_connection_string: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("connection_string", connection_string)
+        _setter("endpoints", endpoints)
+        _setter("srv_connection_string", srv_connection_string)
+        _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -12388,9 +15282,22 @@ class GetClusterConnectionStringPrivateEndpointEndpointResult(dict):
         """
         :param str provider_name: Indicates the cloud service provider on which the servers are provisioned.
         """
-        pulumi.set(__self__, "endpoint_id", endpoint_id)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "region", region)
+        GetClusterConnectionStringPrivateEndpointEndpointResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_id=endpoint_id,
+            provider_name=provider_name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_id: str,
+             provider_name: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("endpoint_id", endpoint_id)
+        _setter("provider_name", provider_name)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -12420,8 +15327,19 @@ class GetClusterLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        GetClusterLabelResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -12451,9 +15369,22 @@ class GetClusterOutageSimulationOutageFilterResult(dict):
         :param str region_name: The Atlas name of the region undergoing an outage simulation.
         :param str type: The type of cluster outage simulation. Following values are supported:
         """
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region_name", region_name)
-        pulumi.set(__self__, "type", type)
+        GetClusterOutageSimulationOutageFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            region_name=region_name,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             region_name: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("region_name", region_name)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -12493,10 +15424,25 @@ class GetClusterReplicationSpecResult(dict):
         :param Sequence['GetClusterReplicationSpecRegionsConfigArgs'] regions_configs: Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Indicates the n ame for the zone in a Global Cluster.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "num_shards", num_shards)
-        pulumi.set(__self__, "regions_configs", regions_configs)
-        pulumi.set(__self__, "zone_name", zone_name)
+        GetClusterReplicationSpecResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            num_shards=num_shards,
+            regions_configs=regions_configs,
+            zone_name=zone_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: str,
+             num_shards: int,
+             regions_configs: Sequence['outputs.GetClusterReplicationSpecRegionsConfigResult'],
+             zone_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("num_shards", num_shards)
+        _setter("regions_configs", regions_configs)
+        _setter("zone_name", zone_name)
 
     @property
     @pulumi.getter
@@ -12546,11 +15492,28 @@ class GetClusterReplicationSpecRegionsConfigResult(dict):
         :param int read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         :param str region_name: Name for the region specified.
         """
-        pulumi.set(__self__, "analytics_nodes", analytics_nodes)
-        pulumi.set(__self__, "electable_nodes", electable_nodes)
-        pulumi.set(__self__, "priority", priority)
-        pulumi.set(__self__, "read_only_nodes", read_only_nodes)
-        pulumi.set(__self__, "region_name", region_name)
+        GetClusterReplicationSpecRegionsConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            analytics_nodes=analytics_nodes,
+            electable_nodes=electable_nodes,
+            priority=priority,
+            read_only_nodes=read_only_nodes,
+            region_name=region_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             analytics_nodes: int,
+             electable_nodes: int,
+             priority: int,
+             read_only_nodes: int,
+             region_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("analytics_nodes", analytics_nodes)
+        _setter("electable_nodes", electable_nodes)
+        _setter("priority", priority)
+        _setter("read_only_nodes", read_only_nodes)
+        _setter("region_name", region_name)
 
     @property
     @pulumi.getter(name="analyticsNodes")
@@ -12604,14 +15567,37 @@ class GetClusterSnapshotBackupPolicyResult(dict):
                  reference_minute_of_hour: int,
                  restore_window_days: int,
                  update_snapshots: bool):
-        pulumi.set(__self__, "cluster_id", cluster_id)
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "next_snapshot", next_snapshot)
-        pulumi.set(__self__, "policies", policies)
-        pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
-        pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
-        pulumi.set(__self__, "restore_window_days", restore_window_days)
-        pulumi.set(__self__, "update_snapshots", update_snapshots)
+        GetClusterSnapshotBackupPolicyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_id=cluster_id,
+            cluster_name=cluster_name,
+            next_snapshot=next_snapshot,
+            policies=policies,
+            reference_hour_of_day=reference_hour_of_day,
+            reference_minute_of_hour=reference_minute_of_hour,
+            restore_window_days=restore_window_days,
+            update_snapshots=update_snapshots,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_id: str,
+             cluster_name: str,
+             next_snapshot: str,
+             policies: Sequence['outputs.GetClusterSnapshotBackupPolicyPolicyResult'],
+             reference_hour_of_day: int,
+             reference_minute_of_hour: int,
+             restore_window_days: int,
+             update_snapshots: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster_id", cluster_id)
+        _setter("cluster_name", cluster_name)
+        _setter("next_snapshot", next_snapshot)
+        _setter("policies", policies)
+        _setter("reference_hour_of_day", reference_hour_of_day)
+        _setter("reference_minute_of_hour", reference_minute_of_hour)
+        _setter("restore_window_days", restore_window_days)
+        _setter("update_snapshots", update_snapshots)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -12662,8 +15648,19 @@ class GetClusterSnapshotBackupPolicyPolicyResult(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "policy_items", policy_items)
+        GetClusterSnapshotBackupPolicyPolicyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            policy_items=policy_items,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: str,
+             policy_items: Sequence['outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItemResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("policy_items", policy_items)
 
     @property
     @pulumi.getter
@@ -12690,11 +15687,28 @@ class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetClusterSnapshotBackupPolicyPolicyPolicyItemResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -12830,46 +15844,133 @@ class GetClustersResultResult(dict):
         :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param str version_release_system: Release cadence that Atlas uses for this cluster.
         """
-        pulumi.set(__self__, "advanced_configurations", advanced_configurations)
-        pulumi.set(__self__, "auto_scaling_compute_enabled", auto_scaling_compute_enabled)
-        pulumi.set(__self__, "auto_scaling_compute_scale_down_enabled", auto_scaling_compute_scale_down_enabled)
-        pulumi.set(__self__, "auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
-        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
-        pulumi.set(__self__, "backup_enabled", backup_enabled)
-        pulumi.set(__self__, "bi_connector", bi_connector)
-        pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
-        pulumi.set(__self__, "cluster_type", cluster_type)
-        pulumi.set(__self__, "connection_strings", connection_strings)
-        pulumi.set(__self__, "container_id", container_id)
-        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
-        pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
-        pulumi.set(__self__, "labels", labels)
-        pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
-        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
-        pulumi.set(__self__, "mongo_uri", mongo_uri)
-        pulumi.set(__self__, "mongo_uri_updated", mongo_uri_updated)
-        pulumi.set(__self__, "mongo_uri_with_options", mongo_uri_with_options)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "num_shards", num_shards)
-        pulumi.set(__self__, "paused", paused)
-        pulumi.set(__self__, "pit_enabled", pit_enabled)
-        pulumi.set(__self__, "provider_auto_scaling_compute_max_instance_size", provider_auto_scaling_compute_max_instance_size)
-        pulumi.set(__self__, "provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
-        pulumi.set(__self__, "provider_backup_enabled", provider_backup_enabled)
-        pulumi.set(__self__, "provider_disk_iops", provider_disk_iops)
-        pulumi.set(__self__, "provider_disk_type_name", provider_disk_type_name)
-        pulumi.set(__self__, "provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
-        pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "provider_region_name", provider_region_name)
-        pulumi.set(__self__, "provider_volume_type", provider_volume_type)
-        pulumi.set(__self__, "replication_factor", replication_factor)
-        pulumi.set(__self__, "replication_specs", replication_specs)
-        pulumi.set(__self__, "snapshot_backup_policies", snapshot_backup_policies)
-        pulumi.set(__self__, "srv_address", srv_address)
-        pulumi.set(__self__, "state_name", state_name)
-        pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
-        pulumi.set(__self__, "version_release_system", version_release_system)
+        GetClustersResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            advanced_configurations=advanced_configurations,
+            auto_scaling_compute_enabled=auto_scaling_compute_enabled,
+            auto_scaling_compute_scale_down_enabled=auto_scaling_compute_scale_down_enabled,
+            auto_scaling_disk_gb_enabled=auto_scaling_disk_gb_enabled,
+            backing_provider_name=backing_provider_name,
+            backup_enabled=backup_enabled,
+            bi_connector=bi_connector,
+            bi_connector_configs=bi_connector_configs,
+            cluster_type=cluster_type,
+            connection_strings=connection_strings,
+            container_id=container_id,
+            disk_size_gb=disk_size_gb,
+            encryption_at_rest_provider=encryption_at_rest_provider,
+            labels=labels,
+            mongo_db_major_version=mongo_db_major_version,
+            mongo_db_version=mongo_db_version,
+            mongo_uri=mongo_uri,
+            mongo_uri_updated=mongo_uri_updated,
+            mongo_uri_with_options=mongo_uri_with_options,
+            name=name,
+            num_shards=num_shards,
+            paused=paused,
+            pit_enabled=pit_enabled,
+            provider_auto_scaling_compute_max_instance_size=provider_auto_scaling_compute_max_instance_size,
+            provider_auto_scaling_compute_min_instance_size=provider_auto_scaling_compute_min_instance_size,
+            provider_backup_enabled=provider_backup_enabled,
+            provider_disk_iops=provider_disk_iops,
+            provider_disk_type_name=provider_disk_type_name,
+            provider_encrypt_ebs_volume=provider_encrypt_ebs_volume,
+            provider_instance_size_name=provider_instance_size_name,
+            provider_name=provider_name,
+            provider_region_name=provider_region_name,
+            provider_volume_type=provider_volume_type,
+            replication_factor=replication_factor,
+            replication_specs=replication_specs,
+            snapshot_backup_policies=snapshot_backup_policies,
+            srv_address=srv_address,
+            state_name=state_name,
+            termination_protection_enabled=termination_protection_enabled,
+            version_release_system=version_release_system,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             advanced_configurations: Sequence['outputs.GetClustersResultAdvancedConfigurationResult'],
+             auto_scaling_compute_enabled: bool,
+             auto_scaling_compute_scale_down_enabled: bool,
+             auto_scaling_disk_gb_enabled: bool,
+             backing_provider_name: str,
+             backup_enabled: bool,
+             bi_connector: Mapping[str, str],
+             bi_connector_configs: Sequence['outputs.GetClustersResultBiConnectorConfigResult'],
+             cluster_type: str,
+             connection_strings: Sequence['outputs.GetClustersResultConnectionStringResult'],
+             container_id: str,
+             disk_size_gb: float,
+             encryption_at_rest_provider: str,
+             labels: Sequence['outputs.GetClustersResultLabelResult'],
+             mongo_db_major_version: str,
+             mongo_db_version: str,
+             mongo_uri: str,
+             mongo_uri_updated: str,
+             mongo_uri_with_options: str,
+             name: str,
+             num_shards: int,
+             paused: bool,
+             pit_enabled: bool,
+             provider_auto_scaling_compute_max_instance_size: str,
+             provider_auto_scaling_compute_min_instance_size: str,
+             provider_backup_enabled: bool,
+             provider_disk_iops: int,
+             provider_disk_type_name: str,
+             provider_encrypt_ebs_volume: bool,
+             provider_instance_size_name: str,
+             provider_name: str,
+             provider_region_name: str,
+             provider_volume_type: str,
+             replication_factor: int,
+             replication_specs: Sequence['outputs.GetClustersResultReplicationSpecResult'],
+             snapshot_backup_policies: Sequence['outputs.GetClustersResultSnapshotBackupPolicyResult'],
+             srv_address: str,
+             state_name: str,
+             termination_protection_enabled: bool,
+             version_release_system: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("advanced_configurations", advanced_configurations)
+        _setter("auto_scaling_compute_enabled", auto_scaling_compute_enabled)
+        _setter("auto_scaling_compute_scale_down_enabled", auto_scaling_compute_scale_down_enabled)
+        _setter("auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
+        _setter("backing_provider_name", backing_provider_name)
+        _setter("backup_enabled", backup_enabled)
+        _setter("bi_connector", bi_connector)
+        _setter("bi_connector_configs", bi_connector_configs)
+        _setter("cluster_type", cluster_type)
+        _setter("connection_strings", connection_strings)
+        _setter("container_id", container_id)
+        _setter("disk_size_gb", disk_size_gb)
+        _setter("encryption_at_rest_provider", encryption_at_rest_provider)
+        _setter("labels", labels)
+        _setter("mongo_db_major_version", mongo_db_major_version)
+        _setter("mongo_db_version", mongo_db_version)
+        _setter("mongo_uri", mongo_uri)
+        _setter("mongo_uri_updated", mongo_uri_updated)
+        _setter("mongo_uri_with_options", mongo_uri_with_options)
+        _setter("name", name)
+        _setter("num_shards", num_shards)
+        _setter("paused", paused)
+        _setter("pit_enabled", pit_enabled)
+        _setter("provider_auto_scaling_compute_max_instance_size", provider_auto_scaling_compute_max_instance_size)
+        _setter("provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
+        _setter("provider_backup_enabled", provider_backup_enabled)
+        _setter("provider_disk_iops", provider_disk_iops)
+        _setter("provider_disk_type_name", provider_disk_type_name)
+        _setter("provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
+        _setter("provider_instance_size_name", provider_instance_size_name)
+        _setter("provider_name", provider_name)
+        _setter("provider_region_name", provider_region_name)
+        _setter("provider_volume_type", provider_volume_type)
+        _setter("replication_factor", replication_factor)
+        _setter("replication_specs", replication_specs)
+        _setter("snapshot_backup_policies", snapshot_backup_policies)
+        _setter("srv_address", srv_address)
+        _setter("state_name", state_name)
+        _setter("termination_protection_enabled", termination_protection_enabled)
+        _setter("version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="advancedConfigurations")
@@ -13239,17 +16340,46 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
-        pulumi.set(__self__, "default_read_concern", default_read_concern)
-        pulumi.set(__self__, "default_write_concern", default_write_concern)
-        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
-        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
-        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
-        pulumi.set(__self__, "no_table_scan", no_table_scan)
-        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
-        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
-        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
-        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
-        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+        GetClustersResultAdvancedConfigurationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_read_concern=default_read_concern,
+            default_write_concern=default_write_concern,
+            fail_index_key_too_long=fail_index_key_too_long,
+            javascript_enabled=javascript_enabled,
+            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
+            no_table_scan=no_table_scan,
+            oplog_min_retention_hours=oplog_min_retention_hours,
+            oplog_size_mb=oplog_size_mb,
+            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
+            sample_size_bi_connector=sample_size_bi_connector,
+            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_read_concern: str,
+             default_write_concern: str,
+             fail_index_key_too_long: bool,
+             javascript_enabled: bool,
+             minimum_enabled_tls_protocol: str,
+             no_table_scan: bool,
+             oplog_min_retention_hours: int,
+             oplog_size_mb: int,
+             sample_refresh_interval_bi_connector: int,
+             sample_size_bi_connector: int,
+             transaction_lifetime_limit_seconds: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("default_read_concern", default_read_concern)
+        _setter("default_write_concern", default_write_concern)
+        _setter("fail_index_key_too_long", fail_index_key_too_long)
+        _setter("javascript_enabled", javascript_enabled)
+        _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        _setter("no_table_scan", no_table_scan)
+        _setter("oplog_min_retention_hours", oplog_min_retention_hours)
+        _setter("oplog_size_mb", oplog_size_mb)
+        _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        _setter("sample_size_bi_connector", sample_size_bi_connector)
+        _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -13346,8 +16476,19 @@ class GetClustersResultBiConnectorConfigResult(dict):
         :param bool enabled: Indicates whether or not BI Connector for Atlas is enabled on the cluster.
         :param str read_preference: Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "read_preference", read_preference)
+        GetClustersResultBiConnectorConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            read_preference=read_preference,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: bool,
+             read_preference: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("enabled", enabled)
+        _setter("read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -13376,13 +16517,34 @@ class GetClustersResultConnectionStringResult(dict):
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
-        pulumi.set(__self__, "aws_private_link", aws_private_link)
-        pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
-        pulumi.set(__self__, "private", private)
-        pulumi.set(__self__, "private_endpoints", private_endpoints)
-        pulumi.set(__self__, "private_srv", private_srv)
-        pulumi.set(__self__, "standard", standard)
-        pulumi.set(__self__, "standard_srv", standard_srv)
+        GetClustersResultConnectionStringResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_private_link=aws_private_link,
+            aws_private_link_srv=aws_private_link_srv,
+            private=private,
+            private_endpoints=private_endpoints,
+            private_srv=private_srv,
+            standard=standard,
+            standard_srv=standard_srv,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_private_link: Mapping[str, Any],
+             aws_private_link_srv: Mapping[str, Any],
+             private: str,
+             private_endpoints: Sequence['outputs.GetClustersResultConnectionStringPrivateEndpointResult'],
+             private_srv: str,
+             standard: str,
+             standard_srv: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("aws_private_link", aws_private_link)
+        _setter("aws_private_link_srv", aws_private_link_srv)
+        _setter("private", private)
+        _setter("private_endpoints", private_endpoints)
+        _setter("private_srv", private_srv)
+        _setter("standard", standard)
+        _setter("standard_srv", standard_srv)
 
     @property
     @pulumi.getter(name="awsPrivateLink")
@@ -13428,11 +16590,28 @@ class GetClustersResultConnectionStringPrivateEndpointResult(dict):
                  srv_connection_string: str,
                  srv_shard_optimized_connection_string: str,
                  type: str):
-        pulumi.set(__self__, "connection_string", connection_string)
-        pulumi.set(__self__, "endpoints", endpoints)
-        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
-        pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
-        pulumi.set(__self__, "type", type)
+        GetClustersResultConnectionStringPrivateEndpointResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            connection_string=connection_string,
+            endpoints=endpoints,
+            srv_connection_string=srv_connection_string,
+            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             connection_string: str,
+             endpoints: Sequence['outputs.GetClustersResultConnectionStringPrivateEndpointEndpointResult'],
+             srv_connection_string: str,
+             srv_shard_optimized_connection_string: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("connection_string", connection_string)
+        _setter("endpoints", endpoints)
+        _setter("srv_connection_string", srv_connection_string)
+        _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -13469,9 +16648,22 @@ class GetClustersResultConnectionStringPrivateEndpointEndpointResult(dict):
         """
         :param str provider_name: Indicates the cloud service provider on which the servers are provisioned.
         """
-        pulumi.set(__self__, "endpoint_id", endpoint_id)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "region", region)
+        GetClustersResultConnectionStringPrivateEndpointEndpointResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_id=endpoint_id,
+            provider_name=provider_name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_id: str,
+             provider_name: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("endpoint_id", endpoint_id)
+        _setter("provider_name", provider_name)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -13501,8 +16693,19 @@ class GetClustersResultLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        GetClustersResultLabelResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -13534,10 +16737,25 @@ class GetClustersResultReplicationSpecResult(dict):
         :param Sequence['GetClustersResultReplicationSpecRegionsConfigArgs'] regions_configs: Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Indicates the n ame for the zone in a Global Cluster.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "num_shards", num_shards)
-        pulumi.set(__self__, "regions_configs", regions_configs)
-        pulumi.set(__self__, "zone_name", zone_name)
+        GetClustersResultReplicationSpecResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            num_shards=num_shards,
+            regions_configs=regions_configs,
+            zone_name=zone_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: str,
+             num_shards: int,
+             regions_configs: Sequence['outputs.GetClustersResultReplicationSpecRegionsConfigResult'],
+             zone_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("num_shards", num_shards)
+        _setter("regions_configs", regions_configs)
+        _setter("zone_name", zone_name)
 
     @property
     @pulumi.getter
@@ -13587,11 +16805,28 @@ class GetClustersResultReplicationSpecRegionsConfigResult(dict):
         :param int read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         :param str region_name: Name for the region specified.
         """
-        pulumi.set(__self__, "analytics_nodes", analytics_nodes)
-        pulumi.set(__self__, "electable_nodes", electable_nodes)
-        pulumi.set(__self__, "priority", priority)
-        pulumi.set(__self__, "read_only_nodes", read_only_nodes)
-        pulumi.set(__self__, "region_name", region_name)
+        GetClustersResultReplicationSpecRegionsConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            analytics_nodes=analytics_nodes,
+            electable_nodes=electable_nodes,
+            priority=priority,
+            read_only_nodes=read_only_nodes,
+            region_name=region_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             analytics_nodes: int,
+             electable_nodes: int,
+             priority: int,
+             read_only_nodes: int,
+             region_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("analytics_nodes", analytics_nodes)
+        _setter("electable_nodes", electable_nodes)
+        _setter("priority", priority)
+        _setter("read_only_nodes", read_only_nodes)
+        _setter("region_name", region_name)
 
     @property
     @pulumi.getter(name="analyticsNodes")
@@ -13645,14 +16880,37 @@ class GetClustersResultSnapshotBackupPolicyResult(dict):
                  reference_minute_of_hour: int,
                  restore_window_days: int,
                  update_snapshots: bool):
-        pulumi.set(__self__, "cluster_id", cluster_id)
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "next_snapshot", next_snapshot)
-        pulumi.set(__self__, "policies", policies)
-        pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
-        pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
-        pulumi.set(__self__, "restore_window_days", restore_window_days)
-        pulumi.set(__self__, "update_snapshots", update_snapshots)
+        GetClustersResultSnapshotBackupPolicyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_id=cluster_id,
+            cluster_name=cluster_name,
+            next_snapshot=next_snapshot,
+            policies=policies,
+            reference_hour_of_day=reference_hour_of_day,
+            reference_minute_of_hour=reference_minute_of_hour,
+            restore_window_days=restore_window_days,
+            update_snapshots=update_snapshots,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_id: str,
+             cluster_name: str,
+             next_snapshot: str,
+             policies: Sequence['outputs.GetClustersResultSnapshotBackupPolicyPolicyResult'],
+             reference_hour_of_day: int,
+             reference_minute_of_hour: int,
+             restore_window_days: int,
+             update_snapshots: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster_id", cluster_id)
+        _setter("cluster_name", cluster_name)
+        _setter("next_snapshot", next_snapshot)
+        _setter("policies", policies)
+        _setter("reference_hour_of_day", reference_hour_of_day)
+        _setter("reference_minute_of_hour", reference_minute_of_hour)
+        _setter("restore_window_days", restore_window_days)
+        _setter("update_snapshots", update_snapshots)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -13703,8 +16961,19 @@ class GetClustersResultSnapshotBackupPolicyPolicyResult(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "policy_items", policy_items)
+        GetClustersResultSnapshotBackupPolicyPolicyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            policy_items=policy_items,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: str,
+             policy_items: Sequence['outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("policy_items", policy_items)
 
     @property
     @pulumi.getter
@@ -13731,11 +17000,28 @@ class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -13775,8 +17061,19 @@ class GetCustomDbRoleActionResult(dict):
         :param str action: (Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see Custom Role Actions.
         :param Sequence['GetCustomDbRoleActionResourceArgs'] resources: (Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "resources", resources)
+        GetCustomDbRoleActionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            resources=resources,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: str,
+             resources: Sequence['outputs.GetCustomDbRoleActionResourceResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("action", action)
+        _setter("resources", resources)
 
     @property
     @pulumi.getter
@@ -13804,9 +17101,22 @@ class GetCustomDbRoleActionResourceResult(dict):
         """
         :param str database_name: (Required) Database on which the inherited role is granted.
         """
-        pulumi.set(__self__, "cluster", cluster)
-        pulumi.set(__self__, "collection_name", collection_name)
-        pulumi.set(__self__, "database_name", database_name)
+        GetCustomDbRoleActionResourceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster=cluster,
+            collection_name=collection_name,
+            database_name=database_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster: bool,
+             collection_name: str,
+             database_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster", cluster)
+        _setter("collection_name", collection_name)
+        _setter("database_name", database_name)
 
     @property
     @pulumi.getter
@@ -13836,8 +17146,19 @@ class GetCustomDbRoleInheritedRoleResult(dict):
         :param str database_name: (Required) Database on which the inherited role is granted.
         :param str role_name: Name of the custom role.
         """
-        pulumi.set(__self__, "database_name", database_name)
-        pulumi.set(__self__, "role_name", role_name)
+        GetCustomDbRoleInheritedRoleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            database_name=database_name,
+            role_name=role_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             database_name: str,
+             role_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("database_name", database_name)
+        _setter("role_name", role_name)
 
     @property
     @pulumi.getter(name="databaseName")
@@ -13865,9 +17186,22 @@ class GetCustomDbRolesResultResult(dict):
         """
         :param str role_name: (Required) Name of the inherited role. This can either be another custom role or a built-in role.
         """
-        pulumi.set(__self__, "actions", actions)
-        pulumi.set(__self__, "inherited_roles", inherited_roles)
-        pulumi.set(__self__, "role_name", role_name)
+        GetCustomDbRolesResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            actions=actions,
+            inherited_roles=inherited_roles,
+            role_name=role_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             actions: Sequence['outputs.GetCustomDbRolesResultActionResult'],
+             inherited_roles: Sequence['outputs.GetCustomDbRolesResultInheritedRoleResult'],
+             role_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("actions", actions)
+        _setter("inherited_roles", inherited_roles)
+        _setter("role_name", role_name)
 
     @property
     @pulumi.getter
@@ -13897,8 +17231,19 @@ class GetCustomDbRolesResultActionResult(dict):
         :param str action: (Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see Custom Role Actions.
         :param Sequence['GetCustomDbRolesResultActionResourceArgs'] resources: (Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "resources", resources)
+        GetCustomDbRolesResultActionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            resources=resources,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: str,
+             resources: Sequence['outputs.GetCustomDbRolesResultActionResourceResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("action", action)
+        _setter("resources", resources)
 
     @property
     @pulumi.getter
@@ -13926,9 +17271,22 @@ class GetCustomDbRolesResultActionResourceResult(dict):
         """
         :param str database_name: (Required) Database on which the inherited role is granted.
         """
-        pulumi.set(__self__, "cluster", cluster)
-        pulumi.set(__self__, "collection_name", collection_name)
-        pulumi.set(__self__, "database_name", database_name)
+        GetCustomDbRolesResultActionResourceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster=cluster,
+            collection_name=collection_name,
+            database_name=database_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster: bool,
+             collection_name: str,
+             database_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster", cluster)
+        _setter("collection_name", collection_name)
+        _setter("database_name", database_name)
 
     @property
     @pulumi.getter
@@ -13958,8 +17316,19 @@ class GetCustomDbRolesResultInheritedRoleResult(dict):
         :param str database_name: (Required) Database on which the inherited role is granted.
         :param str role_name: (Required) Name of the inherited role. This can either be another custom role or a built-in role.
         """
-        pulumi.set(__self__, "database_name", database_name)
-        pulumi.set(__self__, "role_name", role_name)
+        GetCustomDbRolesResultInheritedRoleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            database_name=database_name,
+            role_name=role_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             database_name: str,
+             role_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("database_name", database_name)
+        _setter("role_name", role_name)
 
     @property
     @pulumi.getter(name="databaseName")
@@ -13986,11 +17355,28 @@ class GetDataLakeAwResult(dict):
                  iam_user_arn: str,
                  role_id: str,
                  test_s3_bucket: str):
-        pulumi.set(__self__, "external_id", external_id)
-        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
-        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
-        pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+        GetDataLakeAwResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_id=external_id,
+            iam_assumed_role_arn=iam_assumed_role_arn,
+            iam_user_arn=iam_user_arn,
+            role_id=role_id,
+            test_s3_bucket=test_s3_bucket,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_id: str,
+             iam_assumed_role_arn: str,
+             iam_user_arn: str,
+             role_id: str,
+             test_s3_bucket: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("external_id", external_id)
+        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
+        _setter("iam_user_arn", iam_user_arn)
+        _setter("role_id", role_id)
+        _setter("test_s3_bucket", test_s3_bucket)
 
     @property
     @pulumi.getter(name="externalId")
@@ -14023,8 +17409,19 @@ class GetDataLakeDataProcessRegionResult(dict):
     def __init__(__self__, *,
                  cloud_provider: str,
                  region: str):
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region", region)
+        GetDataLakeDataProcessRegionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -14048,11 +17445,28 @@ class GetDataLakePipelineIngestionScheduleResult(dict):
         """
         :param str id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
         """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
+        GetDataLakePipelineIngestionScheduleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            frequency_interval=frequency_interval,
+            frequency_type=frequency_type,
+            id=id,
+            retention_unit=retention_unit,
+            retention_value=retention_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             frequency_interval: int,
+             frequency_type: str,
+             id: str,
+             retention_unit: str,
+             retention_value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("frequency_interval", frequency_interval)
+        _setter("frequency_type", frequency_type)
+        _setter("id", id)
+        _setter("retention_unit", retention_unit)
+        _setter("retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -14092,8 +17506,19 @@ class GetDataLakePipelineRunStatResult(dict):
         :param int bytes_exported: Total data size in bytes exported for this pipeline run.
         :param int num_docs: Number of docs ingested for a this pipeline run.
         """
-        pulumi.set(__self__, "bytes_exported", bytes_exported)
-        pulumi.set(__self__, "num_docs", num_docs)
+        GetDataLakePipelineRunStatResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bytes_exported=bytes_exported,
+            num_docs=num_docs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bytes_exported: int,
+             num_docs: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("bytes_exported", bytes_exported)
+        _setter("num_docs", num_docs)
 
     @property
     @pulumi.getter(name="bytesExported")
@@ -14137,16 +17562,43 @@ class GetDataLakePipelineRunsResultResult(dict):
         :param str state: State of the pipeline run.
         :param Sequence['GetDataLakePipelineRunsResultStatArgs'] stats: Runtime statistics for this Data Lake Pipeline run.
         """
-        pulumi.set(__self__, "backup_frequency_type", backup_frequency_type)
-        pulumi.set(__self__, "created_date", created_date)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "last_updated_date", last_updated_date)
-        pulumi.set(__self__, "phase", phase)
-        pulumi.set(__self__, "pipeline_id", pipeline_id)
-        pulumi.set(__self__, "pipeline_run_id", pipeline_run_id)
-        pulumi.set(__self__, "snapshot_id", snapshot_id)
-        pulumi.set(__self__, "state", state)
-        pulumi.set(__self__, "stats", stats)
+        GetDataLakePipelineRunsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            backup_frequency_type=backup_frequency_type,
+            created_date=created_date,
+            id=id,
+            last_updated_date=last_updated_date,
+            phase=phase,
+            pipeline_id=pipeline_id,
+            pipeline_run_id=pipeline_run_id,
+            snapshot_id=snapshot_id,
+            state=state,
+            stats=stats,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             backup_frequency_type: str,
+             created_date: str,
+             id: str,
+             last_updated_date: str,
+             phase: str,
+             pipeline_id: str,
+             pipeline_run_id: str,
+             snapshot_id: str,
+             state: str,
+             stats: Sequence['outputs.GetDataLakePipelineRunsResultStatResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("backup_frequency_type", backup_frequency_type)
+        _setter("created_date", created_date)
+        _setter("id", id)
+        _setter("last_updated_date", last_updated_date)
+        _setter("phase", phase)
+        _setter("pipeline_id", pipeline_id)
+        _setter("pipeline_run_id", pipeline_run_id)
+        _setter("snapshot_id", snapshot_id)
+        _setter("state", state)
+        _setter("stats", stats)
 
     @property
     @pulumi.getter(name="backupFrequencyType")
@@ -14238,8 +17690,19 @@ class GetDataLakePipelineRunsResultStatResult(dict):
         :param int bytes_exported: Total data size in bytes exported for this pipeline run.
         :param int num_docs: Number of docs ingested for a this pipeline run.
         """
-        pulumi.set(__self__, "bytes_exported", bytes_exported)
-        pulumi.set(__self__, "num_docs", num_docs)
+        GetDataLakePipelineRunsResultStatResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bytes_exported=bytes_exported,
+            num_docs=num_docs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bytes_exported: int,
+             num_docs: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("bytes_exported", bytes_exported)
+        _setter("num_docs", num_docs)
 
     @property
     @pulumi.getter(name="bytesExported")
@@ -14273,10 +17736,25 @@ class GetDataLakePipelineSinkResult(dict):
         :param str region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        pulumi.set(__self__, "partition_fields", partition_fields)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "type", type)
+        GetDataLakePipelineSinkResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            partition_fields=partition_fields,
+            provider=provider,
+            region=region,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             partition_fields: Sequence['outputs.GetDataLakePipelineSinkPartitionFieldResult'],
+             provider: str,
+             region: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("partition_fields", partition_fields)
+        _setter("provider", provider)
+        _setter("region", region)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="partitionFields")
@@ -14318,8 +17796,19 @@ class GetDataLakePipelineSinkPartitionFieldResult(dict):
     def __init__(__self__, *,
                  field_name: str,
                  order: int):
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "order", order)
+        GetDataLakePipelineSinkPartitionFieldResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field_name=field_name,
+            order=order,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field_name: str,
+             order: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("field_name", field_name)
+        _setter("order", order)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -14353,19 +17842,52 @@ class GetDataLakePipelineSnapshotResult(dict):
         :param str provider: Target cloud provider for this Data Lake Pipeline.
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        pulumi.set(__self__, "copy_region", copy_region)
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "expires_at", expires_at)
-        pulumi.set(__self__, "frequency_yype", frequency_yype)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "master_key", master_key)
-        pulumi.set(__self__, "mongod_version", mongod_version)
-        pulumi.set(__self__, "policies", policies)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "replica_set_name", replica_set_name)
-        pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "type", type)
+        GetDataLakePipelineSnapshotResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            copy_region=copy_region,
+            created_at=created_at,
+            expires_at=expires_at,
+            frequency_yype=frequency_yype,
+            id=id,
+            master_key=master_key,
+            mongod_version=mongod_version,
+            policies=policies,
+            provider=provider,
+            replica_set_name=replica_set_name,
+            size=size,
+            status=status,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             copy_region: str,
+             created_at: str,
+             expires_at: str,
+             frequency_yype: str,
+             id: str,
+             master_key: str,
+             mongod_version: str,
+             policies: Sequence[str],
+             provider: str,
+             replica_set_name: str,
+             size: int,
+             status: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("copy_region", copy_region)
+        _setter("created_at", created_at)
+        _setter("expires_at", expires_at)
+        _setter("frequency_yype", frequency_yype)
+        _setter("id", id)
+        _setter("master_key", master_key)
+        _setter("mongod_version", mongod_version)
+        _setter("policies", policies)
+        _setter("provider", provider)
+        _setter("replica_set_name", replica_set_name)
+        _setter("size", size)
+        _setter("status", status)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="copyRegion")
@@ -14457,11 +17979,28 @@ class GetDataLakePipelineSourceResult(dict):
         :param str project_id: The unique ID for the project to create a Data Lake Pipeline.
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "collection_name", collection_name)
-        pulumi.set(__self__, "database_name", database_name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "type", type)
+        GetDataLakePipelineSourceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_name=cluster_name,
+            collection_name=collection_name,
+            database_name=database_name,
+            project_id=project_id,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_name: str,
+             collection_name: str,
+             database_name: str,
+             project_id: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster_name", cluster_name)
+        _setter("collection_name", collection_name)
+        _setter("database_name", database_name)
+        _setter("project_id", project_id)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -14512,8 +18051,19 @@ class GetDataLakePipelineTransformationResult(dict):
         """
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        pulumi.set(__self__, "field", field)
-        pulumi.set(__self__, "type", type)
+        GetDataLakePipelineTransformationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field=field,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("field", field)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -14551,15 +18101,40 @@ class GetDataLakePipelinesResultResult(dict):
                * `transformations.#.field` - Key in the document.
                * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
         """
-        pulumi.set(__self__, "created_date", created_date)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "last_updated_date", last_updated_date)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "sinks", sinks)
-        pulumi.set(__self__, "sources", sources)
-        pulumi.set(__self__, "state", state)
-        pulumi.set(__self__, "transformations", transformations)
+        GetDataLakePipelinesResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            created_date=created_date,
+            id=id,
+            last_updated_date=last_updated_date,
+            name=name,
+            project_id=project_id,
+            sinks=sinks,
+            sources=sources,
+            state=state,
+            transformations=transformations,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             created_date: str,
+             id: str,
+             last_updated_date: str,
+             name: str,
+             project_id: str,
+             sinks: Sequence['outputs.GetDataLakePipelinesResultSinkResult'],
+             sources: Sequence['outputs.GetDataLakePipelinesResultSourceResult'],
+             state: str,
+             transformations: Sequence['outputs.GetDataLakePipelinesResultTransformationResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("created_date", created_date)
+        _setter("id", id)
+        _setter("last_updated_date", last_updated_date)
+        _setter("name", name)
+        _setter("project_id", project_id)
+        _setter("sinks", sinks)
+        _setter("sources", sources)
+        _setter("state", state)
+        _setter("transformations", transformations)
 
     @property
     @pulumi.getter(name="createdDate")
@@ -14642,10 +18217,25 @@ class GetDataLakePipelinesResultSinkResult(dict):
         :param str region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        pulumi.set(__self__, "partition_fields", partition_fields)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "type", type)
+        GetDataLakePipelinesResultSinkResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            partition_fields=partition_fields,
+            provider=provider,
+            region=region,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             partition_fields: Sequence['outputs.GetDataLakePipelinesResultSinkPartitionFieldResult'],
+             provider: str,
+             region: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("partition_fields", partition_fields)
+        _setter("provider", provider)
+        _setter("region", region)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="partitionFields")
@@ -14687,8 +18277,19 @@ class GetDataLakePipelinesResultSinkPartitionFieldResult(dict):
     def __init__(__self__, *,
                  field_name: str,
                  order: int):
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "order", order)
+        GetDataLakePipelinesResultSinkPartitionFieldResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field_name=field_name,
+            order=order,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field_name: str,
+             order: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("field_name", field_name)
+        _setter("order", order)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -14716,11 +18317,28 @@ class GetDataLakePipelinesResultSourceResult(dict):
         :param str project_id: The unique ID for the project to create a data lake pipeline.
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "collection_name", collection_name)
-        pulumi.set(__self__, "database_name", database_name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "type", type)
+        GetDataLakePipelinesResultSourceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_name=cluster_name,
+            collection_name=collection_name,
+            database_name=database_name,
+            project_id=project_id,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_name: str,
+             collection_name: str,
+             database_name: str,
+             project_id: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster_name", cluster_name)
+        _setter("collection_name", collection_name)
+        _setter("database_name", database_name)
+        _setter("project_id", project_id)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -14771,8 +18389,19 @@ class GetDataLakePipelinesResultTransformationResult(dict):
         """
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        pulumi.set(__self__, "field", field)
-        pulumi.set(__self__, "type", type)
+        GetDataLakePipelinesResultTransformationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field=field,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("field", field)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -14798,10 +18427,25 @@ class GetDataLakeStorageDatabaseResult(dict):
         """
         :param str name: Name of the data lake.
         """
-        pulumi.set(__self__, "collections", collections)
-        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "views", views)
+        GetDataLakeStorageDatabaseResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collections=collections,
+            max_wildcard_collections=max_wildcard_collections,
+            name=name,
+            views=views,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collections: Sequence['outputs.GetDataLakeStorageDatabaseCollectionResult'],
+             max_wildcard_collections: int,
+             name: str,
+             views: Sequence['outputs.GetDataLakeStorageDatabaseViewResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("collections", collections)
+        _setter("max_wildcard_collections", max_wildcard_collections)
+        _setter("name", name)
+        _setter("views", views)
 
     @property
     @pulumi.getter
@@ -14835,8 +18479,19 @@ class GetDataLakeStorageDatabaseCollectionResult(dict):
         """
         :param str name: Name of the data lake.
         """
-        pulumi.set(__self__, "data_sources", data_sources)
-        pulumi.set(__self__, "name", name)
+        GetDataLakeStorageDatabaseCollectionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            data_sources=data_sources,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             data_sources: Sequence['outputs.GetDataLakeStorageDatabaseCollectionDataSourceResult'],
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("data_sources", data_sources)
+        _setter("name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -14858,9 +18513,22 @@ class GetDataLakeStorageDatabaseCollectionDataSourceResult(dict):
                  default_format: str,
                  path: str,
                  store_name: str):
-        pulumi.set(__self__, "default_format", default_format)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "store_name", store_name)
+        GetDataLakeStorageDatabaseCollectionDataSourceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_format=default_format,
+            path=path,
+            store_name=store_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_format: str,
+             path: str,
+             store_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("default_format", default_format)
+        _setter("path", path)
+        _setter("store_name", store_name)
 
     @property
     @pulumi.getter(name="defaultFormat")
@@ -14887,9 +18555,22 @@ class GetDataLakeStorageDatabaseViewResult(dict):
         """
         :param str name: Name of the data lake.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "pipeline", pipeline)
-        pulumi.set(__self__, "source", source)
+        GetDataLakeStorageDatabaseViewResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            pipeline=pipeline,
+            source=source,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             pipeline: str,
+             source: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("pipeline", pipeline)
+        _setter("source", source)
 
     @property
     @pulumi.getter
@@ -14924,14 +18605,37 @@ class GetDataLakeStorageStoreResult(dict):
         """
         :param str name: Name of the data lake.
         """
-        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "delimiter", delimiter)
-        pulumi.set(__self__, "include_tags", include_tags)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "prefix", prefix)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "region", region)
+        GetDataLakeStorageStoreResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_storage_classes=additional_storage_classes,
+            bucket=bucket,
+            delimiter=delimiter,
+            include_tags=include_tags,
+            name=name,
+            prefix=prefix,
+            provider=provider,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_storage_classes: Sequence[str],
+             bucket: str,
+             delimiter: str,
+             include_tags: bool,
+             name: str,
+             prefix: str,
+             provider: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("additional_storage_classes", additional_storage_classes)
+        _setter("bucket", bucket)
+        _setter("delimiter", delimiter)
+        _setter("include_tags", include_tags)
+        _setter("name", name)
+        _setter("prefix", prefix)
+        _setter("provider", provider)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -15016,14 +18720,37 @@ class GetDataLakesResultResult(dict):
                * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
                * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
         """
-        pulumi.set(__self__, "aws", aws)
-        pulumi.set(__self__, "data_process_regions", data_process_regions)
-        pulumi.set(__self__, "hostnames", hostnames)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "state", state)
-        pulumi.set(__self__, "storage_databases", storage_databases)
-        pulumi.set(__self__, "storage_stores", storage_stores)
+        GetDataLakesResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws=aws,
+            data_process_regions=data_process_regions,
+            hostnames=hostnames,
+            name=name,
+            project_id=project_id,
+            state=state,
+            storage_databases=storage_databases,
+            storage_stores=storage_stores,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws: Sequence['outputs.GetDataLakesResultAwResult'],
+             data_process_regions: Sequence['outputs.GetDataLakesResultDataProcessRegionResult'],
+             hostnames: Sequence[str],
+             name: str,
+             project_id: str,
+             state: str,
+             storage_databases: Sequence['outputs.GetDataLakesResultStorageDatabaseResult'],
+             storage_stores: Sequence['outputs.GetDataLakesResultStorageStoreResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("aws", aws)
+        _setter("data_process_regions", data_process_regions)
+        _setter("hostnames", hostnames)
+        _setter("name", name)
+        _setter("project_id", project_id)
+        _setter("state", state)
+        _setter("storage_databases", storage_databases)
+        _setter("storage_stores", storage_stores)
 
     @property
     @pulumi.getter
@@ -15112,11 +18839,28 @@ class GetDataLakesResultAwResult(dict):
                  iam_user_arn: str,
                  role_id: str,
                  test_s3_bucket: str):
-        pulumi.set(__self__, "external_id", external_id)
-        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
-        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
-        pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+        GetDataLakesResultAwResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_id=external_id,
+            iam_assumed_role_arn=iam_assumed_role_arn,
+            iam_user_arn=iam_user_arn,
+            role_id=role_id,
+            test_s3_bucket=test_s3_bucket,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_id: str,
+             iam_assumed_role_arn: str,
+             iam_user_arn: str,
+             role_id: str,
+             test_s3_bucket: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("external_id", external_id)
+        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
+        _setter("iam_user_arn", iam_user_arn)
+        _setter("role_id", role_id)
+        _setter("test_s3_bucket", test_s3_bucket)
 
     @property
     @pulumi.getter(name="externalId")
@@ -15149,8 +18893,19 @@ class GetDataLakesResultDataProcessRegionResult(dict):
     def __init__(__self__, *,
                  cloud_provider: str,
                  region: str):
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region", region)
+        GetDataLakesResultDataProcessRegionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -15170,10 +18925,25 @@ class GetDataLakesResultStorageDatabaseResult(dict):
                  max_wildcard_collections: int,
                  name: str,
                  views: Sequence['outputs.GetDataLakesResultStorageDatabaseViewResult']):
-        pulumi.set(__self__, "collections", collections)
-        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "views", views)
+        GetDataLakesResultStorageDatabaseResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collections=collections,
+            max_wildcard_collections=max_wildcard_collections,
+            name=name,
+            views=views,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collections: Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionResult'],
+             max_wildcard_collections: int,
+             name: str,
+             views: Sequence['outputs.GetDataLakesResultStorageDatabaseViewResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("collections", collections)
+        _setter("max_wildcard_collections", max_wildcard_collections)
+        _setter("name", name)
+        _setter("views", views)
 
     @property
     @pulumi.getter
@@ -15201,8 +18971,19 @@ class GetDataLakesResultStorageDatabaseCollectionResult(dict):
     def __init__(__self__, *,
                  data_sources: Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionDataSourceResult'],
                  name: str):
-        pulumi.set(__self__, "data_sources", data_sources)
-        pulumi.set(__self__, "name", name)
+        GetDataLakesResultStorageDatabaseCollectionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            data_sources=data_sources,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             data_sources: Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionDataSourceResult'],
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("data_sources", data_sources)
+        _setter("name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -15221,9 +19002,22 @@ class GetDataLakesResultStorageDatabaseCollectionDataSourceResult(dict):
                  default_format: str,
                  path: str,
                  store_name: str):
-        pulumi.set(__self__, "default_format", default_format)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "store_name", store_name)
+        GetDataLakesResultStorageDatabaseCollectionDataSourceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default_format=default_format,
+            path=path,
+            store_name=store_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default_format: str,
+             path: str,
+             store_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("default_format", default_format)
+        _setter("path", path)
+        _setter("store_name", store_name)
 
     @property
     @pulumi.getter(name="defaultFormat")
@@ -15247,9 +19041,22 @@ class GetDataLakesResultStorageDatabaseViewResult(dict):
                  name: str,
                  pipeline: str,
                  source: str):
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "pipeline", pipeline)
-        pulumi.set(__self__, "source", source)
+        GetDataLakesResultStorageDatabaseViewResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            pipeline=pipeline,
+            source=source,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             pipeline: str,
+             source: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("pipeline", pipeline)
+        _setter("source", source)
 
     @property
     @pulumi.getter
@@ -15278,14 +19085,37 @@ class GetDataLakesResultStorageStoreResult(dict):
                  prefix: str,
                  provider: str,
                  region: str):
-        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "delimiter", delimiter)
-        pulumi.set(__self__, "include_tags", include_tags)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "prefix", prefix)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "region", region)
+        GetDataLakesResultStorageStoreResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_storage_classes=additional_storage_classes,
+            bucket=bucket,
+            delimiter=delimiter,
+            include_tags=include_tags,
+            name=name,
+            prefix=prefix,
+            provider=provider,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_storage_classes: Sequence[str],
+             bucket: str,
+             delimiter: str,
+             include_tags: bool,
+             name: str,
+             prefix: str,
+             provider: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("additional_storage_classes", additional_storage_classes)
+        _setter("bucket", bucket)
+        _setter("delimiter", delimiter)
+        _setter("include_tags", include_tags)
+        _setter("name", name)
+        _setter("prefix", prefix)
+        _setter("provider", provider)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -15337,8 +19167,19 @@ class GetDatabaseUserLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        GetDatabaseUserLabelResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -15367,9 +19208,22 @@ class GetDatabaseUserRoleResult(dict):
         :param str collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         :param str database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         """
-        pulumi.set(__self__, "collection_name", collection_name)
-        pulumi.set(__self__, "database_name", database_name)
-        pulumi.set(__self__, "role_name", role_name)
+        GetDatabaseUserRoleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collection_name=collection_name,
+            database_name=database_name,
+            role_name=role_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collection_name: str,
+             database_name: str,
+             role_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("collection_name", collection_name)
+        _setter("database_name", database_name)
+        _setter("role_name", role_name)
 
     @property
     @pulumi.getter(name="collectionName")
@@ -15402,8 +19256,19 @@ class GetDatabaseUserScopeResult(dict):
         :param str name: Name of the role to grant.
         :param str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
+        GetDatabaseUserScopeResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -15447,16 +19312,43 @@ class GetDatabaseUsersResultResult(dict):
         :param str username: Username for authenticating to MongoDB.
         :param str x509_type: X.509 method by which the provided username is authenticated.
         """
-        pulumi.set(__self__, "auth_database_name", auth_database_name)
-        pulumi.set(__self__, "aws_iam_type", aws_iam_type)
-        pulumi.set(__self__, "labels", labels)
-        pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
-        pulumi.set(__self__, "oidc_auth_type", oidc_auth_type)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "roles", roles)
-        pulumi.set(__self__, "scopes", scopes)
-        pulumi.set(__self__, "username", username)
-        pulumi.set(__self__, "x509_type", x509_type)
+        GetDatabaseUsersResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            auth_database_name=auth_database_name,
+            aws_iam_type=aws_iam_type,
+            labels=labels,
+            ldap_auth_type=ldap_auth_type,
+            oidc_auth_type=oidc_auth_type,
+            project_id=project_id,
+            roles=roles,
+            scopes=scopes,
+            username=username,
+            x509_type=x509_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             auth_database_name: str,
+             aws_iam_type: str,
+             labels: Sequence['outputs.GetDatabaseUsersResultLabelResult'],
+             ldap_auth_type: str,
+             oidc_auth_type: str,
+             project_id: str,
+             roles: Sequence['outputs.GetDatabaseUsersResultRoleResult'],
+             scopes: Sequence['outputs.GetDatabaseUsersResultScopeResult'],
+             username: str,
+             x509_type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("auth_database_name", auth_database_name)
+        _setter("aws_iam_type", aws_iam_type)
+        _setter("labels", labels)
+        _setter("ldap_auth_type", ldap_auth_type)
+        _setter("oidc_auth_type", oidc_auth_type)
+        _setter("project_id", project_id)
+        _setter("roles", roles)
+        _setter("scopes", scopes)
+        _setter("username", username)
+        _setter("x509_type", x509_type)
 
     @property
     @pulumi.getter(name="authDatabaseName")
@@ -15546,8 +19438,19 @@ class GetDatabaseUsersResultLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        GetDatabaseUsersResultLabelResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -15576,9 +19479,22 @@ class GetDatabaseUsersResultRoleResult(dict):
         :param str collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         :param str database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         """
-        pulumi.set(__self__, "collection_name", collection_name)
-        pulumi.set(__self__, "database_name", database_name)
-        pulumi.set(__self__, "role_name", role_name)
+        GetDatabaseUsersResultRoleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collection_name=collection_name,
+            database_name=database_name,
+            role_name=role_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collection_name: str,
+             database_name: str,
+             role_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("collection_name", collection_name)
+        _setter("database_name", database_name)
+        _setter("role_name", role_name)
 
     @property
     @pulumi.getter(name="collectionName")
@@ -15611,8 +19527,19 @@ class GetDatabaseUsersResultScopeResult(dict):
         :param str name: Name of the role to grant.
         :param str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
+        GetDatabaseUsersResultScopeResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -15635,7 +19562,16 @@ class GetDatabaseUsersResultScopeResult(dict):
 class GetEventTriggerEventProcessorResult(dict):
     def __init__(__self__, *,
                  aws_eventbridges: Sequence['outputs.GetEventTriggerEventProcessorAwsEventbridgeResult']):
-        pulumi.set(__self__, "aws_eventbridges", aws_eventbridges)
+        GetEventTriggerEventProcessorResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_eventbridges=aws_eventbridges,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_eventbridges: Sequence['outputs.GetEventTriggerEventProcessorAwsEventbridgeResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("aws_eventbridges", aws_eventbridges)
 
     @property
     @pulumi.getter(name="awsEventbridges")
@@ -15648,8 +19584,19 @@ class GetEventTriggerEventProcessorAwsEventbridgeResult(dict):
     def __init__(__self__, *,
                  config_account_id: str,
                  config_region: str):
-        pulumi.set(__self__, "config_account_id", config_account_id)
-        pulumi.set(__self__, "config_region", config_region)
+        GetEventTriggerEventProcessorAwsEventbridgeResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config_account_id=config_account_id,
+            config_region=config_region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config_account_id: str,
+             config_region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("config_account_id", config_account_id)
+        _setter("config_region", config_region)
 
     @property
     @pulumi.getter(name="configAccountId")
@@ -15706,26 +19653,73 @@ class GetEventTriggersResultResult(dict):
         :param str type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
         :param bool unordered: Sort order for `DATABASE` type.
         """
-        pulumi.set(__self__, "config_collection", config_collection)
-        pulumi.set(__self__, "config_database", config_database)
-        pulumi.set(__self__, "config_full_document", config_full_document)
-        pulumi.set(__self__, "config_full_document_before", config_full_document_before)
-        pulumi.set(__self__, "config_match", config_match)
-        pulumi.set(__self__, "config_operation_type", config_operation_type)
-        pulumi.set(__self__, "config_operation_types", config_operation_types)
-        pulumi.set(__self__, "config_project", config_project)
-        pulumi.set(__self__, "config_providers", config_providers)
-        pulumi.set(__self__, "config_schedule", config_schedule)
-        pulumi.set(__self__, "config_schedule_type", config_schedule_type)
-        pulumi.set(__self__, "config_service_id", config_service_id)
-        pulumi.set(__self__, "disabled", disabled)
-        pulumi.set(__self__, "event_processors", event_processors)
-        pulumi.set(__self__, "function_id", function_id)
-        pulumi.set(__self__, "function_name", function_name)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "trigger_id", trigger_id)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "unordered", unordered)
+        GetEventTriggersResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config_collection=config_collection,
+            config_database=config_database,
+            config_full_document=config_full_document,
+            config_full_document_before=config_full_document_before,
+            config_match=config_match,
+            config_operation_type=config_operation_type,
+            config_operation_types=config_operation_types,
+            config_project=config_project,
+            config_providers=config_providers,
+            config_schedule=config_schedule,
+            config_schedule_type=config_schedule_type,
+            config_service_id=config_service_id,
+            disabled=disabled,
+            event_processors=event_processors,
+            function_id=function_id,
+            function_name=function_name,
+            name=name,
+            trigger_id=trigger_id,
+            type=type,
+            unordered=unordered,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config_collection: str,
+             config_database: str,
+             config_full_document: bool,
+             config_full_document_before: bool,
+             config_match: str,
+             config_operation_type: str,
+             config_operation_types: Sequence[str],
+             config_project: str,
+             config_providers: Sequence[str],
+             config_schedule: str,
+             config_schedule_type: str,
+             config_service_id: str,
+             disabled: bool,
+             event_processors: Sequence['outputs.GetEventTriggersResultEventProcessorResult'],
+             function_id: str,
+             function_name: str,
+             name: str,
+             trigger_id: str,
+             type: str,
+             unordered: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("config_collection", config_collection)
+        _setter("config_database", config_database)
+        _setter("config_full_document", config_full_document)
+        _setter("config_full_document_before", config_full_document_before)
+        _setter("config_match", config_match)
+        _setter("config_operation_type", config_operation_type)
+        _setter("config_operation_types", config_operation_types)
+        _setter("config_project", config_project)
+        _setter("config_providers", config_providers)
+        _setter("config_schedule", config_schedule)
+        _setter("config_schedule_type", config_schedule_type)
+        _setter("config_service_id", config_service_id)
+        _setter("disabled", disabled)
+        _setter("event_processors", event_processors)
+        _setter("function_id", function_id)
+        _setter("function_name", function_name)
+        _setter("name", name)
+        _setter("trigger_id", trigger_id)
+        _setter("type", type)
+        _setter("unordered", unordered)
 
     @property
     @pulumi.getter(name="configCollection")
@@ -15885,7 +19879,16 @@ class GetEventTriggersResultResult(dict):
 class GetEventTriggersResultEventProcessorResult(dict):
     def __init__(__self__, *,
                  aws_eventbridges: Sequence['outputs.GetEventTriggersResultEventProcessorAwsEventbridgeResult']):
-        pulumi.set(__self__, "aws_eventbridges", aws_eventbridges)
+        GetEventTriggersResultEventProcessorResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_eventbridges=aws_eventbridges,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_eventbridges: Sequence['outputs.GetEventTriggersResultEventProcessorAwsEventbridgeResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("aws_eventbridges", aws_eventbridges)
 
     @property
     @pulumi.getter(name="awsEventbridges")
@@ -15898,8 +19901,19 @@ class GetEventTriggersResultEventProcessorAwsEventbridgeResult(dict):
     def __init__(__self__, *,
                  config_account_id: str,
                  config_region: str):
-        pulumi.set(__self__, "config_account_id", config_account_id)
-        pulumi.set(__self__, "config_region", config_region)
+        GetEventTriggersResultEventProcessorAwsEventbridgeResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config_account_id=config_account_id,
+            config_region=config_region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config_account_id: str,
+             config_region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("config_account_id", config_account_id)
+        _setter("config_region", config_region)
 
     @property
     @pulumi.getter(name="configAccountId")
@@ -15916,7 +19930,16 @@ class GetEventTriggersResultEventProcessorAwsEventbridgeResult(dict):
 class GetFederatedDatabaseInstanceCloudProviderConfigResult(dict):
     def __init__(__self__, *,
                  aws: 'outputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsResult'):
-        pulumi.set(__self__, "aws", aws)
+        GetFederatedDatabaseInstanceCloudProviderConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws=aws,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws: 'outputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsResult',
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("aws", aws)
 
     @property
     @pulumi.getter
@@ -15941,11 +19964,28 @@ class GetFederatedDatabaseInstanceCloudProviderConfigAwsResult(dict):
         :param str iam_user_arn: Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
         :param str role_id: Unique identifier of the role that the data lake can use to access the data stores.
         """
-        pulumi.set(__self__, "external_id", external_id)
-        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
-        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
-        pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+        GetFederatedDatabaseInstanceCloudProviderConfigAwsResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_id=external_id,
+            iam_assumed_role_arn=iam_assumed_role_arn,
+            iam_user_arn=iam_user_arn,
+            role_id=role_id,
+            test_s3_bucket=test_s3_bucket,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_id: str,
+             iam_assumed_role_arn: str,
+             iam_user_arn: str,
+             role_id: str,
+             test_s3_bucket: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("external_id", external_id)
+        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
+        _setter("iam_user_arn", iam_user_arn)
+        _setter("role_id", role_id)
+        _setter("test_s3_bucket", test_s3_bucket)
 
     @property
     @pulumi.getter(name="externalId")
@@ -15997,8 +20037,19 @@ class GetFederatedDatabaseInstanceDataProcessRegionResult(dict):
         :param str cloud_provider: Name of the cloud service provider. Atlas Federated Database only supports AWS.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing.
         """
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region", region)
+        GetFederatedDatabaseInstanceDataProcessRegionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -16027,10 +20078,25 @@ class GetFederatedDatabaseInstanceStorageDatabaseResult(dict):
         """
         :param str name: Name of the Atlas Federated Database Instance.
         """
-        pulumi.set(__self__, "collections", collections)
-        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "views", views)
+        GetFederatedDatabaseInstanceStorageDatabaseResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collections=collections,
+            max_wildcard_collections=max_wildcard_collections,
+            name=name,
+            views=views,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collections: Sequence['outputs.GetFederatedDatabaseInstanceStorageDatabaseCollectionResult'],
+             max_wildcard_collections: int,
+             name: str,
+             views: Sequence['outputs.GetFederatedDatabaseInstanceStorageDatabaseViewResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("collections", collections)
+        _setter("max_wildcard_collections", max_wildcard_collections)
+        _setter("name", name)
+        _setter("views", views)
 
     @property
     @pulumi.getter
@@ -16064,8 +20130,19 @@ class GetFederatedDatabaseInstanceStorageDatabaseCollectionResult(dict):
         """
         :param str name: Name of the Atlas Federated Database Instance.
         """
-        pulumi.set(__self__, "data_sources", data_sources)
-        pulumi.set(__self__, "name", name)
+        GetFederatedDatabaseInstanceStorageDatabaseCollectionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            data_sources=data_sources,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             data_sources: Sequence['outputs.GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceResult'],
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("data_sources", data_sources)
+        _setter("name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -16095,17 +20172,46 @@ class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceResult(dict
                  provenance_field_name: str,
                  store_name: str,
                  urls: Sequence[str]):
-        pulumi.set(__self__, "allow_insecure", allow_insecure)
-        pulumi.set(__self__, "collection", collection)
-        pulumi.set(__self__, "collection_regex", collection_regex)
-        pulumi.set(__self__, "database", database)
-        pulumi.set(__self__, "database_regex", database_regex)
-        pulumi.set(__self__, "dataset_name", dataset_name)
-        pulumi.set(__self__, "default_format", default_format)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "provenance_field_name", provenance_field_name)
-        pulumi.set(__self__, "store_name", store_name)
-        pulumi.set(__self__, "urls", urls)
+        GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allow_insecure=allow_insecure,
+            collection=collection,
+            collection_regex=collection_regex,
+            database=database,
+            database_regex=database_regex,
+            dataset_name=dataset_name,
+            default_format=default_format,
+            path=path,
+            provenance_field_name=provenance_field_name,
+            store_name=store_name,
+            urls=urls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allow_insecure: bool,
+             collection: str,
+             collection_regex: str,
+             database: str,
+             database_regex: str,
+             dataset_name: str,
+             default_format: str,
+             path: str,
+             provenance_field_name: str,
+             store_name: str,
+             urls: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("allow_insecure", allow_insecure)
+        _setter("collection", collection)
+        _setter("collection_regex", collection_regex)
+        _setter("database", database)
+        _setter("database_regex", database_regex)
+        _setter("dataset_name", dataset_name)
+        _setter("default_format", default_format)
+        _setter("path", path)
+        _setter("provenance_field_name", provenance_field_name)
+        _setter("store_name", store_name)
+        _setter("urls", urls)
 
     @property
     @pulumi.getter(name="allowInsecure")
@@ -16172,9 +20278,22 @@ class GetFederatedDatabaseInstanceStorageDatabaseViewResult(dict):
         """
         :param str name: Name of the Atlas Federated Database Instance.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "pipeline", pipeline)
-        pulumi.set(__self__, "source", source)
+        GetFederatedDatabaseInstanceStorageDatabaseViewResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            pipeline=pipeline,
+            source=source,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             pipeline: str,
+             source: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("pipeline", pipeline)
+        _setter("source", source)
 
     @property
     @pulumi.getter
@@ -16219,22 +20338,61 @@ class GetFederatedDatabaseInstanceStorageStoreResult(dict):
         :param str project_id: The unique ID for the project to create a Federated Database Instance.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing.
         """
-        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
-        pulumi.set(__self__, "allow_insecure", allow_insecure)
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "cluster_id", cluster_id)
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "default_format", default_format)
-        pulumi.set(__self__, "delimiter", delimiter)
-        pulumi.set(__self__, "include_tags", include_tags)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "prefix", prefix)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "public", public)
-        pulumi.set(__self__, "read_preferences", read_preferences)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "urls", urls)
+        GetFederatedDatabaseInstanceStorageStoreResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_storage_classes=additional_storage_classes,
+            allow_insecure=allow_insecure,
+            bucket=bucket,
+            cluster_id=cluster_id,
+            cluster_name=cluster_name,
+            default_format=default_format,
+            delimiter=delimiter,
+            include_tags=include_tags,
+            name=name,
+            prefix=prefix,
+            project_id=project_id,
+            provider=provider,
+            public=public,
+            read_preferences=read_preferences,
+            region=region,
+            urls=urls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_storage_classes: Sequence[str],
+             allow_insecure: bool,
+             bucket: str,
+             cluster_id: str,
+             cluster_name: str,
+             default_format: str,
+             delimiter: str,
+             include_tags: bool,
+             name: str,
+             prefix: str,
+             project_id: str,
+             provider: str,
+             public: str,
+             read_preferences: Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult'],
+             region: str,
+             urls: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("additional_storage_classes", additional_storage_classes)
+        _setter("allow_insecure", allow_insecure)
+        _setter("bucket", bucket)
+        _setter("cluster_id", cluster_id)
+        _setter("cluster_name", cluster_name)
+        _setter("default_format", default_format)
+        _setter("delimiter", delimiter)
+        _setter("include_tags", include_tags)
+        _setter("name", name)
+        _setter("prefix", prefix)
+        _setter("project_id", project_id)
+        _setter("provider", provider)
+        _setter("public", public)
+        _setter("read_preferences", read_preferences)
+        _setter("region", region)
+        _setter("urls", urls)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -16335,9 +20493,22 @@ class GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult(dict):
                  max_staleness_seconds: int,
                  mode: str,
                  tag_sets: Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult']):
-        pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
-        pulumi.set(__self__, "mode", mode)
-        pulumi.set(__self__, "tag_sets", tag_sets)
+        GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max_staleness_seconds=max_staleness_seconds,
+            mode=mode,
+            tag_sets=tag_sets,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max_staleness_seconds: int,
+             mode: str,
+             tag_sets: Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("max_staleness_seconds", max_staleness_seconds)
+        _setter("mode", mode)
+        _setter("tag_sets", tag_sets)
 
     @property
     @pulumi.getter(name="maxStalenessSeconds")
@@ -16359,7 +20530,16 @@ class GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult(dict):
 class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult(dict):
     def __init__(__self__, *,
                  tags: Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult']):
-        pulumi.set(__self__, "tags", tags)
+        GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             tags: Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("tags", tags)
 
     @property
     @pulumi.getter
@@ -16375,8 +20555,19 @@ class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult(dict
         """
         :param str name: Name of the Atlas Federated Database Instance.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
+        GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -16450,14 +20641,37 @@ class GetFederatedDatabaseInstancesResultResult(dict):
                * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
                * `storage_stores.#.read_preference.tags.value` - Value of the tag.
         """
-        pulumi.set(__self__, "cloud_provider_config", cloud_provider_config)
-        pulumi.set(__self__, "data_process_regions", data_process_regions)
-        pulumi.set(__self__, "hostnames", hostnames)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "state", state)
-        pulumi.set(__self__, "storage_databases", storage_databases)
-        pulumi.set(__self__, "storage_stores", storage_stores)
+        GetFederatedDatabaseInstancesResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider_config=cloud_provider_config,
+            data_process_regions=data_process_regions,
+            hostnames=hostnames,
+            name=name,
+            project_id=project_id,
+            state=state,
+            storage_databases=storage_databases,
+            storage_stores=storage_stores,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider_config: 'outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigResult',
+             data_process_regions: Sequence['outputs.GetFederatedDatabaseInstancesResultDataProcessRegionResult'],
+             hostnames: Sequence[str],
+             name: str,
+             project_id: str,
+             state: str,
+             storage_databases: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseResult'],
+             storage_stores: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider_config", cloud_provider_config)
+        _setter("data_process_regions", data_process_regions)
+        _setter("hostnames", hostnames)
+        _setter("name", name)
+        _setter("project_id", project_id)
+        _setter("state", state)
+        _setter("storage_databases", storage_databases)
+        _setter("storage_stores", storage_stores)
 
     @property
     @pulumi.getter(name="cloudProviderConfig")
@@ -16559,7 +20773,16 @@ class GetFederatedDatabaseInstancesResultResult(dict):
 class GetFederatedDatabaseInstancesResultCloudProviderConfigResult(dict):
     def __init__(__self__, *,
                  aws: 'outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult'):
-        pulumi.set(__self__, "aws", aws)
+        GetFederatedDatabaseInstancesResultCloudProviderConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws=aws,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws: 'outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult',
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("aws", aws)
 
     @property
     @pulumi.getter
@@ -16585,11 +20808,28 @@ class GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult(dict):
         :param str role_id: Unique identifier of the role that the data lake can use to access the data stores.
                #### `data_process_region` - The cloud provider region to which the Federated Instance routes client connections for data processing.
         """
-        pulumi.set(__self__, "external_id", external_id)
-        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
-        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
-        pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+        GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_id=external_id,
+            iam_assumed_role_arn=iam_assumed_role_arn,
+            iam_user_arn=iam_user_arn,
+            role_id=role_id,
+            test_s3_bucket=test_s3_bucket,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_id: str,
+             iam_assumed_role_arn: str,
+             iam_user_arn: str,
+             role_id: str,
+             test_s3_bucket: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("external_id", external_id)
+        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
+        _setter("iam_user_arn", iam_user_arn)
+        _setter("role_id", role_id)
+        _setter("test_s3_bucket", test_s3_bucket)
 
     @property
     @pulumi.getter(name="externalId")
@@ -16642,8 +20882,19 @@ class GetFederatedDatabaseInstancesResultDataProcessRegionResult(dict):
         :param str cloud_provider: Name of the cloud service provider. Atlas Federated Database only supports AWS.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing.
         """
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region", region)
+        GetFederatedDatabaseInstancesResultDataProcessRegionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: str,
+             region: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider", cloud_provider)
+        _setter("region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -16669,10 +20920,25 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseResult(dict):
                  max_wildcard_collections: int,
                  name: str,
                  views: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseViewResult']):
-        pulumi.set(__self__, "collections", collections)
-        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "views", views)
+        GetFederatedDatabaseInstancesResultStorageDatabaseResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collections=collections,
+            max_wildcard_collections=max_wildcard_collections,
+            name=name,
+            views=views,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collections: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseCollectionResult'],
+             max_wildcard_collections: int,
+             name: str,
+             views: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseViewResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("collections", collections)
+        _setter("max_wildcard_collections", max_wildcard_collections)
+        _setter("name", name)
+        _setter("views", views)
 
     @property
     @pulumi.getter
@@ -16700,8 +20966,19 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseCollectionResult(dict):
     def __init__(__self__, *,
                  data_sources: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResult'],
                  name: str):
-        pulumi.set(__self__, "data_sources", data_sources)
-        pulumi.set(__self__, "name", name)
+        GetFederatedDatabaseInstancesResultStorageDatabaseCollectionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            data_sources=data_sources,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             data_sources: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResult'],
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("data_sources", data_sources)
+        _setter("name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -16728,17 +21005,46 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResu
                  provenance_field_name: str,
                  store_name: str,
                  urls: Sequence[str]):
-        pulumi.set(__self__, "allow_insecure", allow_insecure)
-        pulumi.set(__self__, "collection", collection)
-        pulumi.set(__self__, "collection_regex", collection_regex)
-        pulumi.set(__self__, "database", database)
-        pulumi.set(__self__, "database_regex", database_regex)
-        pulumi.set(__self__, "dataset_name", dataset_name)
-        pulumi.set(__self__, "default_format", default_format)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "provenance_field_name", provenance_field_name)
-        pulumi.set(__self__, "store_name", store_name)
-        pulumi.set(__self__, "urls", urls)
+        GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allow_insecure=allow_insecure,
+            collection=collection,
+            collection_regex=collection_regex,
+            database=database,
+            database_regex=database_regex,
+            dataset_name=dataset_name,
+            default_format=default_format,
+            path=path,
+            provenance_field_name=provenance_field_name,
+            store_name=store_name,
+            urls=urls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allow_insecure: bool,
+             collection: str,
+             collection_regex: str,
+             database: str,
+             database_regex: str,
+             dataset_name: str,
+             default_format: str,
+             path: str,
+             provenance_field_name: str,
+             store_name: str,
+             urls: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("allow_insecure", allow_insecure)
+        _setter("collection", collection)
+        _setter("collection_regex", collection_regex)
+        _setter("database", database)
+        _setter("database_regex", database_regex)
+        _setter("dataset_name", dataset_name)
+        _setter("default_format", default_format)
+        _setter("path", path)
+        _setter("provenance_field_name", provenance_field_name)
+        _setter("store_name", store_name)
+        _setter("urls", urls)
 
     @property
     @pulumi.getter(name="allowInsecure")
@@ -16802,9 +21108,22 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseViewResult(dict):
                  name: str,
                  pipeline: str,
                  source: str):
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "pipeline", pipeline)
-        pulumi.set(__self__, "source", source)
+        GetFederatedDatabaseInstancesResultStorageDatabaseViewResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            pipeline=pipeline,
+            source=source,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             pipeline: str,
+             source: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("pipeline", pipeline)
+        _setter("source", source)
 
     @property
     @pulumi.getter
@@ -16845,22 +21164,61 @@ class GetFederatedDatabaseInstancesResultStorageStoreResult(dict):
         :param str project_id: The unique ID for the project to create a Federated Database Instance.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing.
         """
-        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
-        pulumi.set(__self__, "allow_insecure", allow_insecure)
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "cluster_id", cluster_id)
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "default_format", default_format)
-        pulumi.set(__self__, "delimiter", delimiter)
-        pulumi.set(__self__, "include_tags", include_tags)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "prefix", prefix)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "public", public)
-        pulumi.set(__self__, "read_preferences", read_preferences)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "urls", urls)
+        GetFederatedDatabaseInstancesResultStorageStoreResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_storage_classes=additional_storage_classes,
+            allow_insecure=allow_insecure,
+            bucket=bucket,
+            cluster_id=cluster_id,
+            cluster_name=cluster_name,
+            default_format=default_format,
+            delimiter=delimiter,
+            include_tags=include_tags,
+            name=name,
+            prefix=prefix,
+            project_id=project_id,
+            provider=provider,
+            public=public,
+            read_preferences=read_preferences,
+            region=region,
+            urls=urls,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_storage_classes: Sequence[str],
+             allow_insecure: bool,
+             bucket: str,
+             cluster_id: str,
+             cluster_name: str,
+             default_format: str,
+             delimiter: str,
+             include_tags: bool,
+             name: str,
+             prefix: str,
+             project_id: str,
+             provider: str,
+             public: str,
+             read_preferences: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult'],
+             region: str,
+             urls: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("additional_storage_classes", additional_storage_classes)
+        _setter("allow_insecure", allow_insecure)
+        _setter("bucket", bucket)
+        _setter("cluster_id", cluster_id)
+        _setter("cluster_name", cluster_name)
+        _setter("default_format", default_format)
+        _setter("delimiter", delimiter)
+        _setter("include_tags", include_tags)
+        _setter("name", name)
+        _setter("prefix", prefix)
+        _setter("project_id", project_id)
+        _setter("provider", provider)
+        _setter("public", public)
+        _setter("read_preferences", read_preferences)
+        _setter("region", region)
+        _setter("urls", urls)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -16958,9 +21316,22 @@ class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult(dict):
                  max_staleness_seconds: int,
                  mode: str,
                  tag_sets: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult']):
-        pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
-        pulumi.set(__self__, "mode", mode)
-        pulumi.set(__self__, "tag_sets", tag_sets)
+        GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            max_staleness_seconds=max_staleness_seconds,
+            mode=mode,
+            tag_sets=tag_sets,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             max_staleness_seconds: int,
+             mode: str,
+             tag_sets: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("max_staleness_seconds", max_staleness_seconds)
+        _setter("mode", mode)
+        _setter("tag_sets", tag_sets)
 
     @property
     @pulumi.getter(name="maxStalenessSeconds")
@@ -16982,7 +21353,16 @@ class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult(dict):
 class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult(dict):
     def __init__(__self__, *,
                  tags: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResult']):
-        pulumi.set(__self__, "tags", tags)
+        GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             tags: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("tags", tags)
 
     @property
     @pulumi.getter
@@ -16995,8 +21375,19 @@ class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResu
     def __init__(__self__, *,
                  name: str,
                  value: str):
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
+        GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -17027,15 +21418,40 @@ class GetFederatedQueryLimitsResultResult(dict):
         :param str project_id: The unique ID for the project to create a Federated Database Instance.
         :param str tenant_name: Name of the Atlas Federated Database Instance.
         """
-        pulumi.set(__self__, "current_usage", current_usage)
-        pulumi.set(__self__, "default_limit", default_limit)
-        pulumi.set(__self__, "last_modified_date", last_modified_date)
-        pulumi.set(__self__, "limit_name", limit_name)
-        pulumi.set(__self__, "maximum_limit", maximum_limit)
-        pulumi.set(__self__, "overrun_policy", overrun_policy)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "tenant_name", tenant_name)
-        pulumi.set(__self__, "value", value)
+        GetFederatedQueryLimitsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            current_usage=current_usage,
+            default_limit=default_limit,
+            last_modified_date=last_modified_date,
+            limit_name=limit_name,
+            maximum_limit=maximum_limit,
+            overrun_policy=overrun_policy,
+            project_id=project_id,
+            tenant_name=tenant_name,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             current_usage: int,
+             default_limit: int,
+             last_modified_date: str,
+             limit_name: str,
+             maximum_limit: int,
+             overrun_policy: str,
+             project_id: str,
+             tenant_name: str,
+             value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("current_usage", current_usage)
+        _setter("default_limit", default_limit)
+        _setter("last_modified_date", last_modified_date)
+        _setter("limit_name", limit_name)
+        _setter("maximum_limit", maximum_limit)
+        _setter("overrun_policy", overrun_policy)
+        _setter("project_id", project_id)
+        _setter("tenant_name", tenant_name)
+        _setter("value", value)
 
     @property
     @pulumi.getter(name="currentUsage")
@@ -17112,13 +21528,34 @@ class GetFederatedSettingsIdentityProviderAssociatedOrgResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
         """
-        pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
-        pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
-        pulumi.set(__self__, "identity_provider_id", identity_provider_id)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "post_auth_role_grants", post_auth_role_grants)
-        pulumi.set(__self__, "role_mappings", role_mappings)
-        pulumi.set(__self__, "user_conflicts", user_conflicts)
+        GetFederatedSettingsIdentityProviderAssociatedOrgResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            domain_allow_lists=domain_allow_lists,
+            domain_restriction_enabled=domain_restriction_enabled,
+            identity_provider_id=identity_provider_id,
+            org_id=org_id,
+            post_auth_role_grants=post_auth_role_grants,
+            role_mappings=role_mappings,
+            user_conflicts=user_conflicts,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             domain_allow_lists: Sequence[str],
+             domain_restriction_enabled: bool,
+             identity_provider_id: str,
+             org_id: str,
+             post_auth_role_grants: Sequence[str],
+             role_mappings: Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult'],
+             user_conflicts: Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("domain_allow_lists", domain_allow_lists)
+        _setter("domain_restriction_enabled", domain_restriction_enabled)
+        _setter("identity_provider_id", identity_provider_id)
+        _setter("org_id", org_id)
+        _setter("post_auth_role_grants", post_auth_role_grants)
+        _setter("role_mappings", role_mappings)
+        _setter("user_conflicts", user_conflicts)
 
     @property
     @pulumi.getter(name="domainAllowLists")
@@ -17182,9 +21619,22 @@ class GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult(dict):
         :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        pulumi.set(__self__, "external_group_name", external_group_name)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "role_assignments", role_assignments)
+        GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_group_name=external_group_name,
+            id=id,
+            role_assignments=role_assignments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_group_name: str,
+             id: str,
+             role_assignments: Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("external_group_name", external_group_name)
+        _setter("id", id)
+        _setter("role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -17222,9 +21672,22 @@ class GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "role", role)
+        GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            org_id=org_id,
+            role=role,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: str,
+             org_id: str,
+             role: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("group_id", group_id)
+        _setter("org_id", org_id)
+        _setter("role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -17266,11 +21729,28 @@ class GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictResult(dict):
         :param str last_name: Last name of the the user that conflicts with selected domains.
         :param str user_id: Name of the Atlas user that conflicts with selected domains.
         """
-        pulumi.set(__self__, "email_address", email_address)
-        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
-        pulumi.set(__self__, "first_name", first_name)
-        pulumi.set(__self__, "last_name", last_name)
-        pulumi.set(__self__, "user_id", user_id)
+        GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            email_address=email_address,
+            federation_settings_id=federation_settings_id,
+            first_name=first_name,
+            last_name=last_name,
+            user_id=user_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             email_address: str,
+             federation_settings_id: str,
+             first_name: str,
+             last_name: str,
+             user_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("email_address", email_address)
+        _setter("federation_settings_id", federation_settings_id)
+        _setter("first_name", first_name)
+        _setter("last_name", last_name)
+        _setter("user_id", user_id)
 
     @property
     @pulumi.getter(name="emailAddress")
@@ -17321,8 +21801,19 @@ class GetFederatedSettingsIdentityProviderPemFileInfoResult(dict):
         """
         :param str file_name: Filename of certificate
         """
-        pulumi.set(__self__, "certificates", certificates)
-        pulumi.set(__self__, "file_name", file_name)
+        GetFederatedSettingsIdentityProviderPemFileInfoResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            certificates=certificates,
+            file_name=file_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             certificates: Sequence['outputs.GetFederatedSettingsIdentityProviderPemFileInfoCertificateResult'],
+             file_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("certificates", certificates)
+        _setter("file_name", file_name)
 
     @property
     @pulumi.getter
@@ -17347,8 +21838,19 @@ class GetFederatedSettingsIdentityProviderPemFileInfoCertificateResult(dict):
         :param str not_after: Expiration  Date.
         :param str not_before: Start Date.
         """
-        pulumi.set(__self__, "not_after", not_after)
-        pulumi.set(__self__, "not_before", not_before)
+        GetFederatedSettingsIdentityProviderPemFileInfoCertificateResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            not_after=not_after,
+            not_before=not_before,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             not_after: str,
+             not_before: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("not_after", not_after)
+        _setter("not_before", not_before)
 
     @property
     @pulumi.getter(name="notAfter")
@@ -17400,19 +21902,52 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         :param str sso_url: URL of the receiver of the SAML AuthNRequest.
         :param str status: Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
         """
-        pulumi.set(__self__, "acs_url", acs_url)
-        pulumi.set(__self__, "associated_domains", associated_domains)
-        pulumi.set(__self__, "associated_orgs", associated_orgs)
-        pulumi.set(__self__, "audience_uri", audience_uri)
-        pulumi.set(__self__, "display_name", display_name)
-        pulumi.set(__self__, "issuer_uri", issuer_uri)
-        pulumi.set(__self__, "okta_idp_id", okta_idp_id)
-        pulumi.set(__self__, "pem_file_infos", pem_file_infos)
-        pulumi.set(__self__, "request_binding", request_binding)
-        pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
-        pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
-        pulumi.set(__self__, "sso_url", sso_url)
-        pulumi.set(__self__, "status", status)
+        GetFederatedSettingsIdentityProvidersResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acs_url=acs_url,
+            associated_domains=associated_domains,
+            associated_orgs=associated_orgs,
+            audience_uri=audience_uri,
+            display_name=display_name,
+            issuer_uri=issuer_uri,
+            okta_idp_id=okta_idp_id,
+            pem_file_infos=pem_file_infos,
+            request_binding=request_binding,
+            response_signature_algorithm=response_signature_algorithm,
+            sso_debug_enabled=sso_debug_enabled,
+            sso_url=sso_url,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acs_url: str,
+             associated_domains: Sequence[str],
+             associated_orgs: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult'],
+             audience_uri: str,
+             display_name: str,
+             issuer_uri: str,
+             okta_idp_id: str,
+             pem_file_infos: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoResult'],
+             request_binding: str,
+             response_signature_algorithm: str,
+             sso_debug_enabled: bool,
+             sso_url: str,
+             status: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("acs_url", acs_url)
+        _setter("associated_domains", associated_domains)
+        _setter("associated_orgs", associated_orgs)
+        _setter("audience_uri", audience_uri)
+        _setter("display_name", display_name)
+        _setter("issuer_uri", issuer_uri)
+        _setter("okta_idp_id", okta_idp_id)
+        _setter("pem_file_infos", pem_file_infos)
+        _setter("request_binding", request_binding)
+        _setter("response_signature_algorithm", response_signature_algorithm)
+        _setter("sso_debug_enabled", sso_debug_enabled)
+        _setter("sso_url", sso_url)
+        _setter("status", status)
 
     @property
     @pulumi.getter(name="acsUrl")
@@ -17534,13 +22069,34 @@ class GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
         """
-        pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
-        pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
-        pulumi.set(__self__, "identity_provider_id", identity_provider_id)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "post_auth_role_grants", post_auth_role_grants)
-        pulumi.set(__self__, "role_mappings", role_mappings)
-        pulumi.set(__self__, "user_conflicts", user_conflicts)
+        GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            domain_allow_lists=domain_allow_lists,
+            domain_restriction_enabled=domain_restriction_enabled,
+            identity_provider_id=identity_provider_id,
+            org_id=org_id,
+            post_auth_role_grants=post_auth_role_grants,
+            role_mappings=role_mappings,
+            user_conflicts=user_conflicts,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             domain_allow_lists: Sequence[str],
+             domain_restriction_enabled: bool,
+             identity_provider_id: str,
+             org_id: str,
+             post_auth_role_grants: Sequence[str],
+             role_mappings: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingResult'],
+             user_conflicts: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("domain_allow_lists", domain_allow_lists)
+        _setter("domain_restriction_enabled", domain_restriction_enabled)
+        _setter("identity_provider_id", identity_provider_id)
+        _setter("org_id", org_id)
+        _setter("post_auth_role_grants", post_auth_role_grants)
+        _setter("role_mappings", role_mappings)
+        _setter("user_conflicts", user_conflicts)
 
     @property
     @pulumi.getter(name="domainAllowLists")
@@ -17604,9 +22160,22 @@ class GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingResult(
         :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        pulumi.set(__self__, "external_group_name", external_group_name)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "role_assignments", role_assignments)
+        GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_group_name=external_group_name,
+            id=id,
+            role_assignments=role_assignments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_group_name: str,
+             id: str,
+             role_assignments: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("external_group_name", external_group_name)
+        _setter("id", id)
+        _setter("role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -17644,9 +22213,22 @@ class GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAss
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "role", role)
+        GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            org_id=org_id,
+            role=role,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: str,
+             org_id: str,
+             role: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("group_id", group_id)
+        _setter("org_id", org_id)
+        _setter("role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -17688,11 +22270,28 @@ class GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictResult
         :param str last_name: Last name of the the user that conflicts with selected domains.
         :param str user_id: Name of the Atlas user that conflicts with selected domains.
         """
-        pulumi.set(__self__, "email_address", email_address)
-        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
-        pulumi.set(__self__, "first_name", first_name)
-        pulumi.set(__self__, "last_name", last_name)
-        pulumi.set(__self__, "user_id", user_id)
+        GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            email_address=email_address,
+            federation_settings_id=federation_settings_id,
+            first_name=first_name,
+            last_name=last_name,
+            user_id=user_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             email_address: str,
+             federation_settings_id: str,
+             first_name: str,
+             last_name: str,
+             user_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("email_address", email_address)
+        _setter("federation_settings_id", federation_settings_id)
+        _setter("first_name", first_name)
+        _setter("last_name", last_name)
+        _setter("user_id", user_id)
 
     @property
     @pulumi.getter(name="emailAddress")
@@ -17743,8 +22342,19 @@ class GetFederatedSettingsIdentityProvidersResultPemFileInfoResult(dict):
         """
         :param str file_name: Filename of certificate
         """
-        pulumi.set(__self__, "certificates", certificates)
-        pulumi.set(__self__, "file_name", file_name)
+        GetFederatedSettingsIdentityProvidersResultPemFileInfoResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            certificates=certificates,
+            file_name=file_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             certificates: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateResult'],
+             file_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("certificates", certificates)
+        _setter("file_name", file_name)
 
     @property
     @pulumi.getter
@@ -17769,8 +22379,19 @@ class GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateResult(di
         :param str not_after: Expiration  Date.
         :param str not_before: Start Date.
         """
-        pulumi.set(__self__, "not_after", not_after)
-        pulumi.set(__self__, "not_before", not_before)
+        GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            not_after=not_after,
+            not_before=not_before,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             not_after: str,
+             not_before: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("not_after", not_after)
+        _setter("not_before", not_before)
 
     @property
     @pulumi.getter(name="notAfter")
@@ -17800,9 +22421,22 @@ class GetFederatedSettingsOrgConfigRoleMappingResult(dict):
         :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        pulumi.set(__self__, "external_group_name", external_group_name)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "role_assignments", role_assignments)
+        GetFederatedSettingsOrgConfigRoleMappingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_group_name=external_group_name,
+            id=id,
+            role_assignments=role_assignments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_group_name: str,
+             id: str,
+             role_assignments: Sequence['outputs.GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("external_group_name", external_group_name)
+        _setter("id", id)
+        _setter("role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -17840,9 +22474,22 @@ class GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "role", role)
+        GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            org_id=org_id,
+            role=role,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: str,
+             org_id: str,
+             role: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("group_id", group_id)
+        _setter("org_id", org_id)
+        _setter("role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -17884,11 +22531,28 @@ class GetFederatedSettingsOrgConfigUserConflictResult(dict):
         :param str last_name: Last name of the the user that conflicts with selected domains.
         :param str user_id: Name of the Atlas user that conflicts with selected domains.
         """
-        pulumi.set(__self__, "email_address", email_address)
-        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
-        pulumi.set(__self__, "first_name", first_name)
-        pulumi.set(__self__, "last_name", last_name)
-        pulumi.set(__self__, "user_id", user_id)
+        GetFederatedSettingsOrgConfigUserConflictResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            email_address=email_address,
+            federation_settings_id=federation_settings_id,
+            first_name=first_name,
+            last_name=last_name,
+            user_id=user_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             email_address: str,
+             federation_settings_id: str,
+             first_name: str,
+             last_name: str,
+             user_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("email_address", email_address)
+        _setter("federation_settings_id", federation_settings_id)
+        _setter("first_name", first_name)
+        _setter("last_name", last_name)
+        _setter("user_id", user_id)
 
     @property
     @pulumi.getter(name="emailAddress")
@@ -17948,13 +22612,34 @@ class GetFederatedSettingsOrgConfigsResultResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
         """
-        pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
-        pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
-        pulumi.set(__self__, "identity_provider_id", identity_provider_id)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "post_auth_role_grants", post_auth_role_grants)
-        pulumi.set(__self__, "role_mappings", role_mappings)
-        pulumi.set(__self__, "user_conflicts", user_conflicts)
+        GetFederatedSettingsOrgConfigsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            domain_allow_lists=domain_allow_lists,
+            domain_restriction_enabled=domain_restriction_enabled,
+            identity_provider_id=identity_provider_id,
+            org_id=org_id,
+            post_auth_role_grants=post_auth_role_grants,
+            role_mappings=role_mappings,
+            user_conflicts=user_conflicts,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             domain_allow_lists: Sequence[str],
+             domain_restriction_enabled: bool,
+             identity_provider_id: str,
+             org_id: str,
+             post_auth_role_grants: Sequence[str],
+             role_mappings: Sequence['outputs.GetFederatedSettingsOrgConfigsResultRoleMappingResult'],
+             user_conflicts: Sequence['outputs.GetFederatedSettingsOrgConfigsResultUserConflictResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("domain_allow_lists", domain_allow_lists)
+        _setter("domain_restriction_enabled", domain_restriction_enabled)
+        _setter("identity_provider_id", identity_provider_id)
+        _setter("org_id", org_id)
+        _setter("post_auth_role_grants", post_auth_role_grants)
+        _setter("role_mappings", role_mappings)
+        _setter("user_conflicts", user_conflicts)
 
     @property
     @pulumi.getter(name="domainAllowLists")
@@ -18018,9 +22703,22 @@ class GetFederatedSettingsOrgConfigsResultRoleMappingResult(dict):
         :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        pulumi.set(__self__, "external_group_name", external_group_name)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "role_assignments", role_assignments)
+        GetFederatedSettingsOrgConfigsResultRoleMappingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_group_name=external_group_name,
+            id=id,
+            role_assignments=role_assignments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_group_name: str,
+             id: str,
+             role_assignments: Sequence['outputs.GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("external_group_name", external_group_name)
+        _setter("id", id)
+        _setter("role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -18058,9 +22756,22 @@ class GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "role", role)
+        GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            org_id=org_id,
+            role=role,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: str,
+             org_id: str,
+             role: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("group_id", group_id)
+        _setter("org_id", org_id)
+        _setter("role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -18102,11 +22813,28 @@ class GetFederatedSettingsOrgConfigsResultUserConflictResult(dict):
         :param str last_name: Last name of the the user that conflicts with selected domains.
         :param str user_id: Name of the Atlas user that conflicts with selected domains.
         """
-        pulumi.set(__self__, "email_address", email_address)
-        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
-        pulumi.set(__self__, "first_name", first_name)
-        pulumi.set(__self__, "last_name", last_name)
-        pulumi.set(__self__, "user_id", user_id)
+        GetFederatedSettingsOrgConfigsResultUserConflictResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            email_address=email_address,
+            federation_settings_id=federation_settings_id,
+            first_name=first_name,
+            last_name=last_name,
+            user_id=user_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             email_address: str,
+             federation_settings_id: str,
+             first_name: str,
+             last_name: str,
+             user_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("email_address", email_address)
+        _setter("federation_settings_id", federation_settings_id)
+        _setter("first_name", first_name)
+        _setter("last_name", last_name)
+        _setter("user_id", user_id)
 
     @property
     @pulumi.getter(name="emailAddress")
@@ -18160,9 +22888,22 @@ class GetFederatedSettingsOrgRoleMappingRoleAssignmentResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "role", role)
+        GetFederatedSettingsOrgRoleMappingRoleAssignmentResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            org_id=org_id,
+            role=role,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: str,
+             org_id: str,
+             role: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("group_id", group_id)
+        _setter("org_id", org_id)
+        _setter("role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -18200,9 +22941,22 @@ class GetFederatedSettingsOrgRoleMappingsResultResult(dict):
         :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        pulumi.set(__self__, "external_group_name", external_group_name)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "role_assignments", role_assignments)
+        GetFederatedSettingsOrgRoleMappingsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_group_name=external_group_name,
+            id=id,
+            role_assignments=role_assignments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_group_name: str,
+             id: str,
+             role_assignments: Sequence['outputs.GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("external_group_name", external_group_name)
+        _setter("id", id)
+        _setter("role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -18240,9 +22994,22 @@ class GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "role", role)
+        GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            org_id=org_id,
+            role=role,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: str,
+             org_id: str,
+             role: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("group_id", group_id)
+        _setter("org_id", org_id)
+        _setter("role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -18284,11 +23051,28 @@ class GetGlobalClusterConfigManagedNamespaceResult(dict):
         :param bool is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
         :param bool is_shard_key_unique: Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
         """
-        pulumi.set(__self__, "collection", collection)
-        pulumi.set(__self__, "custom_shard_key", custom_shard_key)
-        pulumi.set(__self__, "db", db)
-        pulumi.set(__self__, "is_custom_shard_key_hashed", is_custom_shard_key_hashed)
-        pulumi.set(__self__, "is_shard_key_unique", is_shard_key_unique)
+        GetGlobalClusterConfigManagedNamespaceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            collection=collection,
+            custom_shard_key=custom_shard_key,
+            db=db,
+            is_custom_shard_key_hashed=is_custom_shard_key_hashed,
+            is_shard_key_unique=is_shard_key_unique,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             collection: str,
+             custom_shard_key: str,
+             db: str,
+             is_custom_shard_key_hashed: bool,
+             is_shard_key_unique: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("collection", collection)
+        _setter("custom_shard_key", custom_shard_key)
+        _setter("db", db)
+        _setter("is_custom_shard_key_hashed", is_custom_shard_key_hashed)
+        _setter("is_shard_key_unique", is_shard_key_unique)
 
     @property
     @pulumi.getter
@@ -18337,9 +23121,22 @@ class GetLdapConfigurationUserToDnMappingResult(dict):
                  ldap_query: str,
                  match: str,
                  substitution: str):
-        pulumi.set(__self__, "ldap_query", ldap_query)
-        pulumi.set(__self__, "match", match)
-        pulumi.set(__self__, "substitution", substitution)
+        GetLdapConfigurationUserToDnMappingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ldap_query=ldap_query,
+            match=match,
+            substitution=substitution,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ldap_query: str,
+             match: str,
+             substitution: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("ldap_query", ldap_query)
+        _setter("match", match)
+        _setter("substitution", substitution)
 
     @property
     @pulumi.getter(name="ldapQuery")
@@ -18362,8 +23159,19 @@ class GetLdapVerifyLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        pulumi.set(__self__, "href", href)
-        pulumi.set(__self__, "rel", rel)
+        GetLdapVerifyLinkResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            href=href,
+            rel=rel,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             href: str,
+             rel: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("href", href)
+        _setter("rel", rel)
 
     @property
     @pulumi.getter
@@ -18384,8 +23192,19 @@ class GetLdapVerifyValidationResult(dict):
         """
         :param str status: The current status of the LDAP over TLS/SSL configuration.
         """
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "validation_type", validation_type)
+        GetLdapVerifyValidationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            status=status,
+            validation_type=validation_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             status: str,
+             validation_type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("status", status)
+        _setter("validation_type", validation_type)
 
     @property
     @pulumi.getter
@@ -18430,18 +23249,49 @@ class GetNetworkContainersResultResult(dict):
         :param str vnet_name: The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
         :param str vpc_id: Unique identifier of the project’s VPC.
         """
-        pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
-        pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
-        pulumi.set(__self__, "gcp_project_id", gcp_project_id)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "network_name", network_name)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "provisioned", provisioned)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "region_name", region_name)
-        pulumi.set(__self__, "regions", regions)
-        pulumi.set(__self__, "vnet_name", vnet_name)
-        pulumi.set(__self__, "vpc_id", vpc_id)
+        GetNetworkContainersResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            atlas_cidr_block=atlas_cidr_block,
+            azure_subscription_id=azure_subscription_id,
+            gcp_project_id=gcp_project_id,
+            id=id,
+            network_name=network_name,
+            provider_name=provider_name,
+            provisioned=provisioned,
+            region=region,
+            region_name=region_name,
+            regions=regions,
+            vnet_name=vnet_name,
+            vpc_id=vpc_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             atlas_cidr_block: str,
+             azure_subscription_id: str,
+             gcp_project_id: str,
+             id: str,
+             network_name: str,
+             provider_name: str,
+             provisioned: bool,
+             region: str,
+             region_name: str,
+             regions: Sequence[str],
+             vnet_name: str,
+             vpc_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("atlas_cidr_block", atlas_cidr_block)
+        _setter("azure_subscription_id", azure_subscription_id)
+        _setter("gcp_project_id", gcp_project_id)
+        _setter("id", id)
+        _setter("network_name", network_name)
+        _setter("provider_name", provider_name)
+        _setter("provisioned", provisioned)
+        _setter("region", region)
+        _setter("region_name", region_name)
+        _setter("regions", regions)
+        _setter("vnet_name", vnet_name)
+        _setter("vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="atlasCidrBlock")
@@ -18583,26 +23433,73 @@ class GetNetworkPeeringsResultResult(dict):
         :param str vnet_name: Name of your Azure VNet.
         :param str vpc_id: Unique identifier of the peer VPC.
         """
-        pulumi.set(__self__, "accepter_region_name", accepter_region_name)
-        pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
-        pulumi.set(__self__, "aws_account_id", aws_account_id)
-        pulumi.set(__self__, "azure_directory_id", azure_directory_id)
-        pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
-        pulumi.set(__self__, "connection_id", connection_id)
-        pulumi.set(__self__, "container_id", container_id)
-        pulumi.set(__self__, "error_message", error_message)
-        pulumi.set(__self__, "error_state", error_state)
-        pulumi.set(__self__, "error_state_name", error_state_name)
-        pulumi.set(__self__, "gcp_project_id", gcp_project_id)
-        pulumi.set(__self__, "network_name", network_name)
-        pulumi.set(__self__, "peering_id", peering_id)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "resource_group_name", resource_group_name)
-        pulumi.set(__self__, "route_table_cidr_block", route_table_cidr_block)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "status_name", status_name)
-        pulumi.set(__self__, "vnet_name", vnet_name)
-        pulumi.set(__self__, "vpc_id", vpc_id)
+        GetNetworkPeeringsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            accepter_region_name=accepter_region_name,
+            atlas_cidr_block=atlas_cidr_block,
+            aws_account_id=aws_account_id,
+            azure_directory_id=azure_directory_id,
+            azure_subscription_id=azure_subscription_id,
+            connection_id=connection_id,
+            container_id=container_id,
+            error_message=error_message,
+            error_state=error_state,
+            error_state_name=error_state_name,
+            gcp_project_id=gcp_project_id,
+            network_name=network_name,
+            peering_id=peering_id,
+            provider_name=provider_name,
+            resource_group_name=resource_group_name,
+            route_table_cidr_block=route_table_cidr_block,
+            status=status,
+            status_name=status_name,
+            vnet_name=vnet_name,
+            vpc_id=vpc_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             accepter_region_name: str,
+             atlas_cidr_block: str,
+             aws_account_id: str,
+             azure_directory_id: str,
+             azure_subscription_id: str,
+             connection_id: str,
+             container_id: str,
+             error_message: str,
+             error_state: str,
+             error_state_name: str,
+             gcp_project_id: str,
+             network_name: str,
+             peering_id: str,
+             provider_name: str,
+             resource_group_name: str,
+             route_table_cidr_block: str,
+             status: str,
+             status_name: str,
+             vnet_name: str,
+             vpc_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("accepter_region_name", accepter_region_name)
+        _setter("atlas_cidr_block", atlas_cidr_block)
+        _setter("aws_account_id", aws_account_id)
+        _setter("azure_directory_id", azure_directory_id)
+        _setter("azure_subscription_id", azure_subscription_id)
+        _setter("connection_id", connection_id)
+        _setter("container_id", container_id)
+        _setter("error_message", error_message)
+        _setter("error_state", error_state)
+        _setter("error_state_name", error_state_name)
+        _setter("gcp_project_id", gcp_project_id)
+        _setter("network_name", network_name)
+        _setter("peering_id", peering_id)
+        _setter("provider_name", provider_name)
+        _setter("resource_group_name", resource_group_name)
+        _setter("route_table_cidr_block", route_table_cidr_block)
+        _setter("status", status)
+        _setter("status_name", status_name)
+        _setter("vnet_name", vnet_name)
+        _setter("vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="accepterRegionName")
@@ -18767,11 +23664,28 @@ class GetOnlineArchiveCriteriaResult(dict):
                  expire_after_days: int,
                  query: str,
                  type: str):
-        pulumi.set(__self__, "date_field", date_field)
-        pulumi.set(__self__, "date_format", date_format)
-        pulumi.set(__self__, "expire_after_days", expire_after_days)
-        pulumi.set(__self__, "query", query)
-        pulumi.set(__self__, "type", type)
+        GetOnlineArchiveCriteriaResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            date_field=date_field,
+            date_format=date_format,
+            expire_after_days=expire_after_days,
+            query=query,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             date_field: str,
+             date_format: str,
+             expire_after_days: int,
+             query: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("date_field", date_field)
+        _setter("date_format", date_format)
+        _setter("expire_after_days", expire_after_days)
+        _setter("query", query)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="dateField")
@@ -18805,9 +23719,22 @@ class GetOnlineArchivePartitionFieldResult(dict):
                  field_name: str,
                  field_type: str,
                  order: int):
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "field_type", field_type)
-        pulumi.set(__self__, "order", order)
+        GetOnlineArchivePartitionFieldResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field_name=field_name,
+            field_type=field_type,
+            order=order,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field_name: str,
+             field_type: str,
+             order: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("field_name", field_name)
+        _setter("field_type", field_type)
+        _setter("order", order)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -18835,15 +23762,36 @@ class GetOnlineArchiveScheduleResult(dict):
                  type: str,
                  day_of_month: Optional[int] = None,
                  day_of_week: Optional[int] = None):
-        pulumi.set(__self__, "end_hour", end_hour)
-        pulumi.set(__self__, "end_minute", end_minute)
-        pulumi.set(__self__, "start_hour", start_hour)
-        pulumi.set(__self__, "start_minute", start_minute)
-        pulumi.set(__self__, "type", type)
+        GetOnlineArchiveScheduleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            end_hour=end_hour,
+            end_minute=end_minute,
+            start_hour=start_hour,
+            start_minute=start_minute,
+            type=type,
+            day_of_month=day_of_month,
+            day_of_week=day_of_week,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             end_hour: int,
+             end_minute: int,
+             start_hour: int,
+             start_minute: int,
+             type: str,
+             day_of_month: Optional[int] = None,
+             day_of_week: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("end_hour", end_hour)
+        _setter("end_minute", end_minute)
+        _setter("start_hour", start_hour)
+        _setter("start_minute", start_minute)
+        _setter("type", type)
         if day_of_month is not None:
-            pulumi.set(__self__, "day_of_month", day_of_month)
+            _setter("day_of_month", day_of_month)
         if day_of_week is not None:
-            pulumi.set(__self__, "day_of_week", day_of_week)
+            _setter("day_of_week", day_of_week)
 
     @property
     @pulumi.getter(name="endHour")
@@ -18903,17 +23851,46 @@ class GetOnlineArchivesResultResult(dict):
                In addition to all arguments above, the following attributes are exported:
         :param str project_id: The unique ID for the project.
         """
-        pulumi.set(__self__, "archive_id", archive_id)
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "coll_name", coll_name)
-        pulumi.set(__self__, "collection_type", collection_type)
-        pulumi.set(__self__, "criterias", criterias)
-        pulumi.set(__self__, "db_name", db_name)
-        pulumi.set(__self__, "partition_fields", partition_fields)
-        pulumi.set(__self__, "paused", paused)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "schedules", schedules)
-        pulumi.set(__self__, "state", state)
+        GetOnlineArchivesResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            archive_id=archive_id,
+            cluster_name=cluster_name,
+            coll_name=coll_name,
+            collection_type=collection_type,
+            criterias=criterias,
+            db_name=db_name,
+            partition_fields=partition_fields,
+            paused=paused,
+            project_id=project_id,
+            schedules=schedules,
+            state=state,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             archive_id: str,
+             cluster_name: str,
+             coll_name: str,
+             collection_type: str,
+             criterias: Sequence['outputs.GetOnlineArchivesResultCriteriaResult'],
+             db_name: str,
+             partition_fields: Sequence['outputs.GetOnlineArchivesResultPartitionFieldResult'],
+             paused: bool,
+             project_id: str,
+             schedules: Sequence['outputs.GetOnlineArchivesResultScheduleResult'],
+             state: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("archive_id", archive_id)
+        _setter("cluster_name", cluster_name)
+        _setter("coll_name", coll_name)
+        _setter("collection_type", collection_type)
+        _setter("criterias", criterias)
+        _setter("db_name", db_name)
+        _setter("partition_fields", partition_fields)
+        _setter("paused", paused)
+        _setter("project_id", project_id)
+        _setter("schedules", schedules)
+        _setter("state", state)
 
     @property
     @pulumi.getter(name="archiveId")
@@ -18989,11 +23966,28 @@ class GetOnlineArchivesResultCriteriaResult(dict):
                  expire_after_days: int,
                  query: str,
                  type: str):
-        pulumi.set(__self__, "date_field", date_field)
-        pulumi.set(__self__, "date_format", date_format)
-        pulumi.set(__self__, "expire_after_days", expire_after_days)
-        pulumi.set(__self__, "query", query)
-        pulumi.set(__self__, "type", type)
+        GetOnlineArchivesResultCriteriaResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            date_field=date_field,
+            date_format=date_format,
+            expire_after_days=expire_after_days,
+            query=query,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             date_field: str,
+             date_format: str,
+             expire_after_days: int,
+             query: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("date_field", date_field)
+        _setter("date_format", date_format)
+        _setter("expire_after_days", expire_after_days)
+        _setter("query", query)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="dateField")
@@ -19027,9 +24021,22 @@ class GetOnlineArchivesResultPartitionFieldResult(dict):
                  field_name: str,
                  field_type: str,
                  order: int):
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "field_type", field_type)
-        pulumi.set(__self__, "order", order)
+        GetOnlineArchivesResultPartitionFieldResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            field_name=field_name,
+            field_type=field_type,
+            order=order,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             field_name: str,
+             field_type: str,
+             order: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("field_name", field_name)
+        _setter("field_type", field_type)
+        _setter("order", order)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -19057,15 +24064,36 @@ class GetOnlineArchivesResultScheduleResult(dict):
                  type: str,
                  day_of_month: Optional[int] = None,
                  day_of_week: Optional[int] = None):
-        pulumi.set(__self__, "end_hour", end_hour)
-        pulumi.set(__self__, "end_minute", end_minute)
-        pulumi.set(__self__, "start_hour", start_hour)
-        pulumi.set(__self__, "start_minute", start_minute)
-        pulumi.set(__self__, "type", type)
+        GetOnlineArchivesResultScheduleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            end_hour=end_hour,
+            end_minute=end_minute,
+            start_hour=start_hour,
+            start_minute=start_minute,
+            type=type,
+            day_of_month=day_of_month,
+            day_of_week=day_of_week,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             end_hour: int,
+             end_minute: int,
+             start_hour: int,
+             start_minute: int,
+             type: str,
+             day_of_month: Optional[int] = None,
+             day_of_week: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("end_hour", end_hour)
+        _setter("end_minute", end_minute)
+        _setter("start_hour", start_hour)
+        _setter("start_minute", start_minute)
+        _setter("type", type)
         if day_of_month is not None:
-            pulumi.set(__self__, "day_of_month", day_of_month)
+            _setter("day_of_month", day_of_month)
         if day_of_week is not None:
-            pulumi.set(__self__, "day_of_week", day_of_week)
+            _setter("day_of_week", day_of_week)
 
     @property
     @pulumi.getter(name="endHour")
@@ -19108,8 +24136,19 @@ class GetOrganizationLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        pulumi.set(__self__, "href", href)
-        pulumi.set(__self__, "rel", rel)
+        GetOrganizationLinkResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            href=href,
+            rel=rel,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             href: str,
+             rel: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("href", href)
+        _setter("rel", rel)
 
     @property
     @pulumi.getter
@@ -19136,10 +24175,25 @@ class GetOrganizationsResultResult(dict):
                See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         :param str name: Human-readable label that identifies the organization.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "is_deleted", is_deleted)
-        pulumi.set(__self__, "links", links)
-        pulumi.set(__self__, "name", name)
+        GetOrganizationsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_deleted=is_deleted,
+            links=links,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: str,
+             is_deleted: bool,
+             links: Sequence['outputs.GetOrganizationsResultLinkResult'],
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("is_deleted", is_deleted)
+        _setter("links", links)
+        _setter("name", name)
 
     @property
     @pulumi.getter
@@ -19178,8 +24232,19 @@ class GetOrganizationsResultLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        pulumi.set(__self__, "href", href)
-        pulumi.set(__self__, "rel", rel)
+        GetOrganizationsResultLinkResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            href=href,
+            rel=rel,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             href: str,
+             rel: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("href", href)
+        _setter("rel", rel)
 
     @property
     @pulumi.getter
@@ -19205,10 +24270,25 @@ class GetPrivateLinkEndpointServiceEndpointResult(dict):
         :param str service_attachment_name: Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         :param str status: Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
-        pulumi.set(__self__, "endpoint_name", endpoint_name)
-        pulumi.set(__self__, "ip_address", ip_address)
-        pulumi.set(__self__, "service_attachment_name", service_attachment_name)
-        pulumi.set(__self__, "status", status)
+        GetPrivateLinkEndpointServiceEndpointResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint_name=endpoint_name,
+            ip_address=ip_address,
+            service_attachment_name=service_attachment_name,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint_name: str,
+             ip_address: str,
+             service_attachment_name: str,
+             status: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("endpoint_name", endpoint_name)
+        _setter("ip_address", ip_address)
+        _setter("service_attachment_name", service_attachment_name)
+        _setter("status", status)
 
     @property
     @pulumi.getter(name="endpointName")
@@ -19256,10 +24336,25 @@ class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult(dict
         :param str provider_name: Human-readable label that identifies the cloud service provider.
         :param str type: Human-readable label that identifies the resource type associated with this private endpoint.
         """
-        pulumi.set(__self__, "comment", comment)
-        pulumi.set(__self__, "endpoint_id", endpoint_id)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "type", type)
+        GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            comment=comment,
+            endpoint_id=endpoint_id,
+            provider_name=provider_name,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             comment: str,
+             endpoint_id: str,
+             provider_name: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("comment", comment)
+        _setter("endpoint_id", endpoint_id)
+        _setter("provider_name", provider_name)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -19299,8 +24394,19 @@ class GetPrivatelinkEndpointsServiceAdlLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        pulumi.set(__self__, "href", href)
-        pulumi.set(__self__, "rel", rel)
+        GetPrivatelinkEndpointsServiceAdlLinkResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            href=href,
+            rel=rel,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             href: str,
+             rel: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("href", href)
+        _setter("rel", rel)
 
     @property
     @pulumi.getter
@@ -19328,10 +24434,25 @@ class GetPrivatelinkEndpointsServiceAdlResultResult(dict):
         :param str provider_name: Human-readable label that identifies the cloud provider for this endpoint.
         :param str type: Human-readable label that identifies the type of resource to associate with this private endpoint.
         """
-        pulumi.set(__self__, "comment", comment)
-        pulumi.set(__self__, "endpoint_id", endpoint_id)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "type", type)
+        GetPrivatelinkEndpointsServiceAdlResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            comment=comment,
+            endpoint_id=endpoint_id,
+            provider_name=provider_name,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             comment: str,
+             endpoint_id: str,
+             provider_name: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("comment", comment)
+        _setter("endpoint_id", endpoint_id)
+        _setter("provider_name", provider_name)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -19388,14 +24509,37 @@ class GetPrivatelinkEndpointsServiceServerlessResultResult(dict):
         :param str private_link_service_resource_id: Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
         :param str status: Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
         """
-        pulumi.set(__self__, "cloud_provider_endpoint_id", cloud_provider_endpoint_id)
-        pulumi.set(__self__, "comment", comment)
-        pulumi.set(__self__, "endpoint_id", endpoint_id)
-        pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
-        pulumi.set(__self__, "error_message", error_message)
-        pulumi.set(__self__, "private_endpoint_ip_address", private_endpoint_ip_address)
-        pulumi.set(__self__, "private_link_service_resource_id", private_link_service_resource_id)
-        pulumi.set(__self__, "status", status)
+        GetPrivatelinkEndpointsServiceServerlessResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider_endpoint_id=cloud_provider_endpoint_id,
+            comment=comment,
+            endpoint_id=endpoint_id,
+            endpoint_service_name=endpoint_service_name,
+            error_message=error_message,
+            private_endpoint_ip_address=private_endpoint_ip_address,
+            private_link_service_resource_id=private_link_service_resource_id,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider_endpoint_id: str,
+             comment: str,
+             endpoint_id: str,
+             endpoint_service_name: str,
+             error_message: str,
+             private_endpoint_ip_address: str,
+             private_link_service_resource_id: str,
+             status: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cloud_provider_endpoint_id", cloud_provider_endpoint_id)
+        _setter("comment", comment)
+        _setter("endpoint_id", endpoint_id)
+        _setter("endpoint_service_name", endpoint_service_name)
+        _setter("error_message", error_message)
+        _setter("private_endpoint_ip_address", private_endpoint_ip_address)
+        _setter("private_link_service_resource_id", private_link_service_resource_id)
+        _setter("status", status)
 
     @property
     @pulumi.getter(name="cloudProviderEndpointId")
@@ -19464,8 +24608,19 @@ class GetProjectApiKeyResult(dict):
     def __init__(__self__, *,
                  api_key_id: str,
                  role_names: Sequence[str]):
-        pulumi.set(__self__, "api_key_id", api_key_id)
-        pulumi.set(__self__, "role_names", role_names)
+        GetProjectApiKeyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_key_id=api_key_id,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_key_id: str,
+             role_names: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("api_key_id", api_key_id)
+        _setter("role_names", role_names)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -19487,8 +24642,19 @@ class GetProjectApiKeyProjectAssignmentResult(dict):
         :param str project_id: The unique ID for the project.
         :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "role_names", role_names)
+        GetProjectApiKeyProjectAssignmentResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: str,
+             role_names: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
+        _setter("role_names", role_names)
 
     @property
     @pulumi.getter(name="projectId")
@@ -19520,17 +24686,33 @@ class GetProjectApiKeysResultResult(dict):
         :param str api_key_id: Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
         :param str description: Description of this Project API key.
         :param Sequence[str] role_names: Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-               
-               
-               See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
         """
-        pulumi.set(__self__, "api_key_id", api_key_id)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "private_key", private_key)
-        pulumi.set(__self__, "public_key", public_key)
-        pulumi.set(__self__, "role_names", role_names)
+        GetProjectApiKeysResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_key_id=api_key_id,
+            description=description,
+            private_key=private_key,
+            public_key=public_key,
+            role_names=role_names,
+            project_assignments=project_assignments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_key_id: str,
+             description: str,
+             private_key: str,
+             public_key: str,
+             role_names: Sequence[str],
+             project_assignments: Optional[Sequence['outputs.GetProjectApiKeysResultProjectAssignmentResult']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("api_key_id", api_key_id)
+        _setter("description", description)
+        _setter("private_key", private_key)
+        _setter("public_key", public_key)
+        _setter("role_names", role_names)
         if project_assignments is not None:
-            pulumi.set(__self__, "project_assignments", project_assignments)
+            _setter("project_assignments", project_assignments)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -19563,9 +24745,6 @@ class GetProjectApiKeysResultResult(dict):
     def role_names(self) -> Sequence[str]:
         """
         Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-
-
-        See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
         """
         warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
         pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
@@ -19590,8 +24769,19 @@ class GetProjectApiKeysResultProjectAssignmentResult(dict):
                
                See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
         """
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "role_names", role_names)
+        GetProjectApiKeysResultProjectAssignmentResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: str,
+             role_names: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
+        _setter("role_names", role_names)
 
     @property
     @pulumi.getter(name="projectId")
@@ -19626,11 +24816,28 @@ class GetProjectLimitResult(dict):
                
                > **IMPORTANT:** Either `project_id` or `name` must be configurated.
         """
-        pulumi.set(__self__, "current_usage", current_usage)
-        pulumi.set(__self__, "default_limit", default_limit)
-        pulumi.set(__self__, "maximum_limit", maximum_limit)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
+        GetProjectLimitResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            current_usage=current_usage,
+            default_limit=default_limit,
+            maximum_limit=maximum_limit,
+            name=name,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             current_usage: int,
+             default_limit: int,
+             maximum_limit: int,
+             name: str,
+             value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("current_usage", current_usage)
+        _setter("default_limit", default_limit)
+        _setter("maximum_limit", maximum_limit)
+        _setter("name", name)
+        _setter("value", value)
 
     @property
     @pulumi.getter(name="currentUsage")
@@ -19668,8 +24875,19 @@ class GetProjectTeamResult(dict):
     def __init__(__self__, *,
                  role_names: Sequence[str],
                  team_id: str):
-        pulumi.set(__self__, "role_names", role_names)
-        pulumi.set(__self__, "team_id", team_id)
+        GetProjectTeamResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            role_names=role_names,
+            team_id=team_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             role_names: Sequence[str],
+             team_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("role_names", role_names)
+        _setter("team_id", team_id)
 
     @property
     @pulumi.getter(name="roleNames")
@@ -19725,22 +24943,59 @@ class GetProjectsResultResult(dict):
                See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
         :param bool is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project.
         """
-        pulumi.set(__self__, "api_keys", api_keys)
-        pulumi.set(__self__, "cluster_count", cluster_count)
-        pulumi.set(__self__, "created", created)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
-        pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
-        pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
-        pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
-        pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
-        pulumi.set(__self__, "limits", limits)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
-        pulumi.set(__self__, "teams", teams)
+        GetProjectsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_keys=api_keys,
+            cluster_count=cluster_count,
+            created=created,
+            id=id,
+            is_collect_database_specifics_statistics_enabled=is_collect_database_specifics_statistics_enabled,
+            is_data_explorer_enabled=is_data_explorer_enabled,
+            is_performance_advisor_enabled=is_performance_advisor_enabled,
+            is_realtime_performance_panel_enabled=is_realtime_performance_panel_enabled,
+            is_schema_advisor_enabled=is_schema_advisor_enabled,
+            limits=limits,
+            name=name,
+            org_id=org_id,
+            region_usage_restrictions=region_usage_restrictions,
+            teams=teams,
+            is_extended_storage_sizes_enabled=is_extended_storage_sizes_enabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_keys: Sequence['outputs.GetProjectsResultApiKeyResult'],
+             cluster_count: int,
+             created: str,
+             id: str,
+             is_collect_database_specifics_statistics_enabled: bool,
+             is_data_explorer_enabled: bool,
+             is_performance_advisor_enabled: bool,
+             is_realtime_performance_panel_enabled: bool,
+             is_schema_advisor_enabled: bool,
+             limits: Sequence['outputs.GetProjectsResultLimitResult'],
+             name: str,
+             org_id: str,
+             region_usage_restrictions: str,
+             teams: Sequence['outputs.GetProjectsResultTeamResult'],
+             is_extended_storage_sizes_enabled: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("api_keys", api_keys)
+        _setter("cluster_count", cluster_count)
+        _setter("created", created)
+        _setter("id", id)
+        _setter("is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
+        _setter("is_data_explorer_enabled", is_data_explorer_enabled)
+        _setter("is_performance_advisor_enabled", is_performance_advisor_enabled)
+        _setter("is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
+        _setter("is_schema_advisor_enabled", is_schema_advisor_enabled)
+        _setter("limits", limits)
+        _setter("name", name)
+        _setter("org_id", org_id)
+        _setter("region_usage_restrictions", region_usage_restrictions)
+        _setter("teams", teams)
         if is_extended_storage_sizes_enabled is not None:
-            pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
+            _setter("is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
 
     @property
     @pulumi.getter(name="apiKeys")
@@ -19870,8 +25125,19 @@ class GetProjectsResultApiKeyResult(dict):
     def __init__(__self__, *,
                  api_key_id: str,
                  role_names: Sequence[str]):
-        pulumi.set(__self__, "api_key_id", api_key_id)
-        pulumi.set(__self__, "role_names", role_names)
+        GetProjectsResultApiKeyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_key_id=api_key_id,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_key_id: str,
+             role_names: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("api_key_id", api_key_id)
+        _setter("role_names", role_names)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -19895,11 +25161,28 @@ class GetProjectsResultLimitResult(dict):
         """
         :param str name: The name of the project you want to create.
         """
-        pulumi.set(__self__, "current_usage", current_usage)
-        pulumi.set(__self__, "default_limit", default_limit)
-        pulumi.set(__self__, "maximum_limit", maximum_limit)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
+        GetProjectsResultLimitResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            current_usage=current_usage,
+            default_limit=default_limit,
+            maximum_limit=maximum_limit,
+            name=name,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             current_usage: int,
+             default_limit: int,
+             maximum_limit: int,
+             name: str,
+             value: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("current_usage", current_usage)
+        _setter("default_limit", default_limit)
+        _setter("maximum_limit", maximum_limit)
+        _setter("name", name)
+        _setter("value", value)
 
     @property
     @pulumi.getter(name="currentUsage")
@@ -19935,8 +25218,19 @@ class GetProjectsResultTeamResult(dict):
     def __init__(__self__, *,
                  role_names: Sequence[str],
                  team_id: str):
-        pulumi.set(__self__, "role_names", role_names)
-        pulumi.set(__self__, "team_id", team_id)
+        GetProjectsResultTeamResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            role_names=role_names,
+            team_id=team_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             role_names: Sequence[str],
+             team_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("role_names", role_names)
+        _setter("team_id", team_id)
 
     @property
     @pulumi.getter(name="roleNames")
@@ -19959,9 +25253,22 @@ class GetSearchIndexSynonymResult(dict):
         :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         :param str name: Name of the index.
         """
-        pulumi.set(__self__, "analyzer", analyzer)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "source_collection", source_collection)
+        GetSearchIndexSynonymResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            analyzer=analyzer,
+            name=name,
+            source_collection=source_collection,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             analyzer: str,
+             name: str,
+             source_collection: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("analyzer", analyzer)
+        _setter("name", name)
+        _setter("source_collection", source_collection)
 
     @property
     @pulumi.getter
@@ -20018,27 +25325,62 @@ class GetSearchIndexesResultResult(dict):
                * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
                * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
         """
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "collection_name", collection_name)
-        pulumi.set(__self__, "database", database)
-        pulumi.set(__self__, "index_id", index_id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "status", status)
+        GetSearchIndexesResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_name=cluster_name,
+            collection_name=collection_name,
+            database=database,
+            index_id=index_id,
+            name=name,
+            project_id=project_id,
+            status=status,
+            analyzer=analyzer,
+            analyzers=analyzers,
+            mappings_dynamic=mappings_dynamic,
+            mappings_fields=mappings_fields,
+            search_analyzer=search_analyzer,
+            synonyms=synonyms,
+            wait_for_index_build_completion=wait_for_index_build_completion,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_name: str,
+             collection_name: str,
+             database: str,
+             index_id: str,
+             name: str,
+             project_id: str,
+             status: str,
+             analyzer: Optional[str] = None,
+             analyzers: Optional[str] = None,
+             mappings_dynamic: Optional[bool] = None,
+             mappings_fields: Optional[str] = None,
+             search_analyzer: Optional[str] = None,
+             synonyms: Optional[Sequence['outputs.GetSearchIndexesResultSynonymResult']] = None,
+             wait_for_index_build_completion: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster_name", cluster_name)
+        _setter("collection_name", collection_name)
+        _setter("database", database)
+        _setter("index_id", index_id)
+        _setter("name", name)
+        _setter("project_id", project_id)
+        _setter("status", status)
         if analyzer is not None:
-            pulumi.set(__self__, "analyzer", analyzer)
+            _setter("analyzer", analyzer)
         if analyzers is not None:
-            pulumi.set(__self__, "analyzers", analyzers)
+            _setter("analyzers", analyzers)
         if mappings_dynamic is not None:
-            pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
+            _setter("mappings_dynamic", mappings_dynamic)
         if mappings_fields is not None:
-            pulumi.set(__self__, "mappings_fields", mappings_fields)
+            _setter("mappings_fields", mappings_fields)
         if search_analyzer is not None:
-            pulumi.set(__self__, "search_analyzer", search_analyzer)
+            _setter("search_analyzer", search_analyzer)
         if synonyms is not None:
-            pulumi.set(__self__, "synonyms", synonyms)
+            _setter("synonyms", synonyms)
         if wait_for_index_build_completion is not None:
-            pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
+            _setter("wait_for_index_build_completion", wait_for_index_build_completion)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -20157,9 +25499,22 @@ class GetSearchIndexesResultSynonymResult(dict):
         :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         :param str name: Name of the index.
         """
-        pulumi.set(__self__, "analyzer", analyzer)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "source_collection", source_collection)
+        GetSearchIndexesResultSynonymResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            analyzer=analyzer,
+            name=name,
+            source_collection=source_collection,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             analyzer: str,
+             name: str,
+             source_collection: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("analyzer", analyzer)
+        _setter("name", name)
+        _setter("source_collection", source_collection)
 
     @property
     @pulumi.getter
@@ -20188,8 +25543,19 @@ class GetServerlessInstanceLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        pulumi.set(__self__, "href", href)
-        pulumi.set(__self__, "rel", rel)
+        GetServerlessInstanceLinkResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            href=href,
+            rel=rel,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             href: str,
+             rel: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("href", href)
+        _setter("rel", rel)
 
     @property
     @pulumi.getter
@@ -20232,20 +25598,55 @@ class GetServerlessInstancesResultResult(dict):
         :param str state_name: Stage of deployment of this serverless instance when the resource made its request.
         :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
-        pulumi.set(__self__, "connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
-        pulumi.set(__self__, "connection_strings_standard_srv", connection_strings_standard_srv)
-        pulumi.set(__self__, "continuous_backup_enabled", continuous_backup_enabled)
-        pulumi.set(__self__, "create_date", create_date)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "links", links)
-        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "provider_settings_backing_provider_name", provider_settings_backing_provider_name)
-        pulumi.set(__self__, "provider_settings_provider_name", provider_settings_provider_name)
-        pulumi.set(__self__, "provider_settings_region_name", provider_settings_region_name)
-        pulumi.set(__self__, "state_name", state_name)
-        pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+        GetServerlessInstancesResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            connection_strings_private_endpoint_srvs=connection_strings_private_endpoint_srvs,
+            connection_strings_standard_srv=connection_strings_standard_srv,
+            continuous_backup_enabled=continuous_backup_enabled,
+            create_date=create_date,
+            id=id,
+            links=links,
+            mongo_db_version=mongo_db_version,
+            name=name,
+            project_id=project_id,
+            provider_settings_backing_provider_name=provider_settings_backing_provider_name,
+            provider_settings_provider_name=provider_settings_provider_name,
+            provider_settings_region_name=provider_settings_region_name,
+            state_name=state_name,
+            termination_protection_enabled=termination_protection_enabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             connection_strings_private_endpoint_srvs: Sequence[str],
+             connection_strings_standard_srv: str,
+             continuous_backup_enabled: bool,
+             create_date: str,
+             id: str,
+             links: Sequence['outputs.GetServerlessInstancesResultLinkResult'],
+             mongo_db_version: str,
+             name: str,
+             project_id: str,
+             provider_settings_backing_provider_name: str,
+             provider_settings_provider_name: str,
+             provider_settings_region_name: str,
+             state_name: str,
+             termination_protection_enabled: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
+        _setter("connection_strings_standard_srv", connection_strings_standard_srv)
+        _setter("continuous_backup_enabled", continuous_backup_enabled)
+        _setter("create_date", create_date)
+        _setter("id", id)
+        _setter("links", links)
+        _setter("mongo_db_version", mongo_db_version)
+        _setter("name", name)
+        _setter("project_id", project_id)
+        _setter("provider_settings_backing_provider_name", provider_settings_backing_provider_name)
+        _setter("provider_settings_provider_name", provider_settings_provider_name)
+        _setter("provider_settings_region_name", provider_settings_region_name)
+        _setter("state_name", state_name)
+        _setter("termination_protection_enabled", termination_protection_enabled)
 
     @property
     @pulumi.getter(name="connectionStringsPrivateEndpointSrvs")
@@ -20356,8 +25757,19 @@ class GetServerlessInstancesResultLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        pulumi.set(__self__, "href", href)
-        pulumi.set(__self__, "rel", rel)
+        GetServerlessInstancesResultLinkResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            href=href,
+            rel=rel,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             href: str,
+             rel: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("href", href)
+        _setter("rel", rel)
 
     @property
     @pulumi.getter
@@ -20384,17 +25796,46 @@ class GetSharedTierRestoreJobsResultResult(dict):
                  status: str,
                  target_deployment_item_name: str,
                  target_project_id: str):
-        pulumi.set(__self__, "delivery_type", delivery_type)
-        pulumi.set(__self__, "expiration_date", expiration_date)
-        pulumi.set(__self__, "job_id", job_id)
-        pulumi.set(__self__, "restore_finished_date", restore_finished_date)
-        pulumi.set(__self__, "restore_scheduled_date", restore_scheduled_date)
-        pulumi.set(__self__, "snapshot_finished_date", snapshot_finished_date)
-        pulumi.set(__self__, "snapshot_id", snapshot_id)
-        pulumi.set(__self__, "snapshot_url", snapshot_url)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "target_deployment_item_name", target_deployment_item_name)
-        pulumi.set(__self__, "target_project_id", target_project_id)
+        GetSharedTierRestoreJobsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            delivery_type=delivery_type,
+            expiration_date=expiration_date,
+            job_id=job_id,
+            restore_finished_date=restore_finished_date,
+            restore_scheduled_date=restore_scheduled_date,
+            snapshot_finished_date=snapshot_finished_date,
+            snapshot_id=snapshot_id,
+            snapshot_url=snapshot_url,
+            status=status,
+            target_deployment_item_name=target_deployment_item_name,
+            target_project_id=target_project_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             delivery_type: str,
+             expiration_date: str,
+             job_id: str,
+             restore_finished_date: str,
+             restore_scheduled_date: str,
+             snapshot_finished_date: str,
+             snapshot_id: str,
+             snapshot_url: str,
+             status: str,
+             target_deployment_item_name: str,
+             target_project_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("delivery_type", delivery_type)
+        _setter("expiration_date", expiration_date)
+        _setter("job_id", job_id)
+        _setter("restore_finished_date", restore_finished_date)
+        _setter("restore_scheduled_date", restore_scheduled_date)
+        _setter("snapshot_finished_date", snapshot_finished_date)
+        _setter("snapshot_id", snapshot_id)
+        _setter("snapshot_url", snapshot_url)
+        _setter("status", status)
+        _setter("target_deployment_item_name", target_deployment_item_name)
+        _setter("target_project_id", target_project_id)
 
     @property
     @pulumi.getter(name="deliveryType")
@@ -20462,13 +25903,34 @@ class GetSharedTierSnapshotsResultResult(dict):
                  snapshot_id: str,
                  start_time: str,
                  status: str):
-        pulumi.set(__self__, "expiration", expiration)
-        pulumi.set(__self__, "finish_time", finish_time)
-        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
-        pulumi.set(__self__, "scheduled_time", scheduled_time)
-        pulumi.set(__self__, "snapshot_id", snapshot_id)
-        pulumi.set(__self__, "start_time", start_time)
-        pulumi.set(__self__, "status", status)
+        GetSharedTierSnapshotsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            expiration=expiration,
+            finish_time=finish_time,
+            mongo_db_version=mongo_db_version,
+            scheduled_time=scheduled_time,
+            snapshot_id=snapshot_id,
+            start_time=start_time,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             expiration: str,
+             finish_time: str,
+             mongo_db_version: str,
+             scheduled_time: str,
+             snapshot_id: str,
+             start_time: str,
+             status: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("expiration", expiration)
+        _setter("finish_time", finish_time)
+        _setter("mongo_db_version", mongo_db_version)
+        _setter("scheduled_time", scheduled_time)
+        _setter("snapshot_id", snapshot_id)
+        _setter("start_time", start_time)
+        _setter("status", status)
 
     @property
     @pulumi.getter
@@ -20545,29 +26007,72 @@ class GetThirdPartyIntegrationsResultResult(dict):
         :param str service_discovery: Indicates which service discovery method is used, either file or http.
         :param str user_name: Your Prometheus username.
         """
-        pulumi.set(__self__, "account_id", account_id)
-        pulumi.set(__self__, "api_key", api_key)
-        pulumi.set(__self__, "api_token", api_token)
-        pulumi.set(__self__, "channel_name", channel_name)
-        pulumi.set(__self__, "license_key", license_key)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "routing_key", routing_key)
-        pulumi.set(__self__, "secret", secret)
-        pulumi.set(__self__, "service_key", service_key)
-        pulumi.set(__self__, "team_name", team_name)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "url", url)
+        GetThirdPartyIntegrationsResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            account_id=account_id,
+            api_key=api_key,
+            api_token=api_token,
+            channel_name=channel_name,
+            license_key=license_key,
+            project_id=project_id,
+            region=region,
+            routing_key=routing_key,
+            secret=secret,
+            service_key=service_key,
+            team_name=team_name,
+            type=type,
+            url=url,
+            enabled=enabled,
+            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
+            scheme=scheme,
+            service_discovery=service_discovery,
+            user_name=user_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             account_id: str,
+             api_key: str,
+             api_token: str,
+             channel_name: str,
+             license_key: str,
+             project_id: str,
+             region: str,
+             routing_key: str,
+             secret: str,
+             service_key: str,
+             team_name: str,
+             type: str,
+             url: str,
+             enabled: Optional[bool] = None,
+             microsoft_teams_webhook_url: Optional[str] = None,
+             scheme: Optional[str] = None,
+             service_discovery: Optional[str] = None,
+             user_name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("account_id", account_id)
+        _setter("api_key", api_key)
+        _setter("api_token", api_token)
+        _setter("channel_name", channel_name)
+        _setter("license_key", license_key)
+        _setter("project_id", project_id)
+        _setter("region", region)
+        _setter("routing_key", routing_key)
+        _setter("secret", secret)
+        _setter("service_key", service_key)
+        _setter("team_name", team_name)
+        _setter("type", type)
+        _setter("url", url)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if microsoft_teams_webhook_url is not None:
-            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+            _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if scheme is not None:
-            pulumi.set(__self__, "scheme", scheme)
+            _setter("scheme", scheme)
         if service_discovery is not None:
-            pulumi.set(__self__, "service_discovery", service_discovery)
+            _setter("service_discovery", service_discovery)
         if user_name is not None:
-            pulumi.set(__self__, "user_name", user_name)
+            _setter("user_name", user_name)
 
     @property
     @pulumi.getter(name="accountId")

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -22,10 +22,23 @@ class CloudProviderAccessSetupArgs:
         """
         The set of arguments for constructing a CloudProviderAccessSetup resource.
         """
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "provider_name", provider_name)
+        CloudProviderAccessSetupArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            provider_name=provider_name,
+            azure_configs=azure_configs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: pulumi.Input[str],
+             provider_name: pulumi.Input[str],
+             azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("project_id", project_id)
+        _setter("provider_name", provider_name)
         if azure_configs is not None:
-            pulumi.set(__self__, "azure_configs", azure_configs)
+            _setter("azure_configs", azure_configs)
 
     @property
     @pulumi.getter(name="projectId")
@@ -69,25 +82,48 @@ class _CloudProviderAccessSetupState:
         """
         Input properties used for looking up and filtering CloudProviderAccessSetup resources.
         """
+        _CloudProviderAccessSetupState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws=aws,
+            aws_configs=aws_configs,
+            azure_configs=azure_configs,
+            created_date=created_date,
+            last_updated_date=last_updated_date,
+            project_id=project_id,
+            provider_name=provider_name,
+            role_id=role_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]]] = None,
+             azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None,
+             created_date: Optional[pulumi.Input[str]] = None,
+             last_updated_date: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             role_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if aws is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""", DeprecationWarning)
             pulumi.log.warn("""aws is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""")
         if aws is not None:
-            pulumi.set(__self__, "aws", aws)
+            _setter("aws", aws)
         if aws_configs is not None:
-            pulumi.set(__self__, "aws_configs", aws_configs)
+            _setter("aws_configs", aws_configs)
         if azure_configs is not None:
-            pulumi.set(__self__, "azure_configs", azure_configs)
+            _setter("azure_configs", azure_configs)
         if created_date is not None:
-            pulumi.set(__self__, "created_date", created_date)
+            _setter("created_date", created_date)
         if last_updated_date is not None:
-            pulumi.set(__self__, "last_updated_date", last_updated_date)
+            _setter("last_updated_date", last_updated_date)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if role_id is not None:
-            pulumi.set(__self__, "role_id", role_id)
+            _setter("role_id", role_id)
 
     @property
     @pulumi.getter
@@ -197,6 +233,10 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CloudProviderAccessSetupArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

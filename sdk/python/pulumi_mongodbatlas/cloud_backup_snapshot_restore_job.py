@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -36,16 +36,33 @@ class CloudBackupSnapshotRestoreJobArgs:
                * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
                * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
         """
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        CloudBackupSnapshotRestoreJobArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_name=cluster_name,
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            delivery_type=delivery_type,
+            delivery_type_config=delivery_type_config,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_name: pulumi.Input[str],
+             project_id: pulumi.Input[str],
+             snapshot_id: pulumi.Input[str],
+             delivery_type: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             delivery_type_config: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster_name", cluster_name)
+        _setter("project_id", project_id)
+        _setter("snapshot_id", snapshot_id)
         if delivery_type is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""", DeprecationWarning)
             pulumi.log.warn("""delivery_type is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""")
         if delivery_type is not None:
-            pulumi.set(__self__, "delivery_type", delivery_type)
+            _setter("delivery_type", delivery_type)
         if delivery_type_config is not None:
-            pulumi.set(__self__, "delivery_type_config", delivery_type_config)
+            _setter("delivery_type_config", delivery_type_config)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -155,35 +172,68 @@ class _CloudBackupSnapshotRestoreJobState:
         :param pulumi.Input[str] snapshot_restore_job_id: The unique identifier of the restore job.
         :param pulumi.Input[str] timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
         """
+        _CloudBackupSnapshotRestoreJobState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cancelled=cancelled,
+            cluster_name=cluster_name,
+            created_at=created_at,
+            delivery_type=delivery_type,
+            delivery_type_config=delivery_type_config,
+            delivery_urls=delivery_urls,
+            expired=expired,
+            expires_at=expires_at,
+            finished_at=finished_at,
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            snapshot_restore_job_id=snapshot_restore_job_id,
+            timestamp=timestamp,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cancelled: Optional[pulumi.Input[bool]] = None,
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             delivery_type: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             delivery_type_config: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] = None,
+             delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             expired: Optional[pulumi.Input[bool]] = None,
+             expires_at: Optional[pulumi.Input[str]] = None,
+             finished_at: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             snapshot_id: Optional[pulumi.Input[str]] = None,
+             snapshot_restore_job_id: Optional[pulumi.Input[str]] = None,
+             timestamp: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cancelled is not None:
-            pulumi.set(__self__, "cancelled", cancelled)
+            _setter("cancelled", cancelled)
         if cluster_name is not None:
-            pulumi.set(__self__, "cluster_name", cluster_name)
+            _setter("cluster_name", cluster_name)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if delivery_type is not None:
             warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""", DeprecationWarning)
             pulumi.log.warn("""delivery_type is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""")
         if delivery_type is not None:
-            pulumi.set(__self__, "delivery_type", delivery_type)
+            _setter("delivery_type", delivery_type)
         if delivery_type_config is not None:
-            pulumi.set(__self__, "delivery_type_config", delivery_type_config)
+            _setter("delivery_type_config", delivery_type_config)
         if delivery_urls is not None:
-            pulumi.set(__self__, "delivery_urls", delivery_urls)
+            _setter("delivery_urls", delivery_urls)
         if expired is not None:
-            pulumi.set(__self__, "expired", expired)
+            _setter("expired", expired)
         if expires_at is not None:
-            pulumi.set(__self__, "expires_at", expires_at)
+            _setter("expires_at", expires_at)
         if finished_at is not None:
-            pulumi.set(__self__, "finished_at", finished_at)
+            _setter("finished_at", finished_at)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if snapshot_id is not None:
-            pulumi.set(__self__, "snapshot_id", snapshot_id)
+            _setter("snapshot_id", snapshot_id)
         if snapshot_restore_job_id is not None:
-            pulumi.set(__self__, "snapshot_restore_job_id", snapshot_restore_job_id)
+            _setter("snapshot_restore_job_id", snapshot_restore_job_id)
         if timestamp is not None:
-            pulumi.set(__self__, "timestamp", timestamp)
+            _setter("timestamp", timestamp)
 
     @property
     @pulumi.getter
@@ -412,6 +462,10 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CloudBackupSnapshotRestoreJobArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -434,10 +488,12 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
             __props__.__dict__["cluster_name"] = cluster_name
-            if delivery_type is not None and not opts.urn:
-                warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""", DeprecationWarning)
-                pulumi.log.warn("""delivery_type is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config""")
             __props__.__dict__["delivery_type"] = delivery_type
+            if delivery_type_config is not None and not isinstance(delivery_type_config, CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs):
+                delivery_type_config = delivery_type_config or {}
+                def _setter(key, value):
+                    delivery_type_config[key] = value
+                CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs._configure(_setter, **delivery_type_config)
             __props__.__dict__["delivery_type_config"] = delivery_type_config
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
