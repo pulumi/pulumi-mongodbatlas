@@ -60,7 +60,7 @@ func makeResource(mod string, res string) tokens.Type {
 	return tokens.Type(makeToken(mod, res))
 }
 
-//go:emebed cmd/pulumi-resource-mongodbatlas/bridge-metadata.json
+//go:embed cmd/pulumi-resource-mongodbatlas/bridge-metadata.json
 var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
