@@ -18,12 +18,21 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("pulumi:providers:mongodbatlas")]
     public partial class Provider : global::Pulumi.ProviderResource
     {
+        /// <summary>
+        /// AWS API Access Key.
+        /// </summary>
         [Output("awsAccessKeyId")]
         public Output<string?> AwsAccessKeyId { get; private set; } = null!;
 
+        /// <summary>
+        /// AWS API Access Secret Key.
+        /// </summary>
         [Output("awsSecretAccessKey")]
         public Output<string?> AwsSecretAccessKey { get; private set; } = null!;
 
+        /// <summary>
+        /// AWS Security Token Service provided session token.
+        /// </summary>
         [Output("awsSessionToken")]
         public Output<string?> AwsSessionToken { get; private set; } = null!;
 
@@ -51,12 +60,21 @@ namespace Pulumi.Mongodbatlas
         [Output("realmBaseUrl")]
         public Output<string?> RealmBaseUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Region where secret is stored as part of AWS Secret Manager.
+        /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of secret stored in AWS Secret Manager.
+        /// </summary>
         [Output("secretName")]
         public Output<string?> SecretName { get; private set; } = null!;
 
+        /// <summary>
+        /// AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+        /// </summary>
         [Output("stsEndpoint")]
         public Output<string?> StsEndpoint { get; private set; } = null!;
 
@@ -95,12 +113,21 @@ namespace Pulumi.Mongodbatlas
         [Input("assumeRole", json: true)]
         public Input<Inputs.ProviderAssumeRoleArgs>? AssumeRole { get; set; }
 
+        /// <summary>
+        /// AWS API Access Key.
+        /// </summary>
         [Input("awsAccessKeyId")]
         public Input<string>? AwsAccessKeyId { get; set; }
 
+        /// <summary>
+        /// AWS API Access Secret Key.
+        /// </summary>
         [Input("awsSecretAccessKey")]
         public Input<string>? AwsSecretAccessKey { get; set; }
 
+        /// <summary>
+        /// AWS Security Token Service provided session token.
+        /// </summary>
         [Input("awsSessionToken")]
         public Input<string>? AwsSessionToken { get; set; }
 
@@ -144,12 +171,21 @@ namespace Pulumi.Mongodbatlas
         [Input("realmBaseUrl")]
         public Input<string>? RealmBaseUrl { get; set; }
 
+        /// <summary>
+        /// Region where secret is stored as part of AWS Secret Manager.
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        /// <summary>
+        /// Name of secret stored in AWS Secret Manager.
+        /// </summary>
         [Input("secretName")]
         public Input<string>? SecretName { get; set; }
 
+        /// <summary>
+        /// AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+        /// </summary>
         [Input("stsEndpoint")]
         public Input<string>? StsEndpoint { get; set; }
 

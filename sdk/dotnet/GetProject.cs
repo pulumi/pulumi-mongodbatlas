@@ -85,7 +85,6 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetProjectResult
     {
-        public readonly ImmutableArray<Outputs.GetProjectApiKeyResult> ApiKeys;
         /// <summary>
         /// The number of Atlas clusters deployed in the project.
         /// </summary>
@@ -94,8 +93,6 @@ namespace Pulumi.Mongodbatlas
         /// The ISO-8601-formatted timestamp of when Atlas created the project.
         /// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         /// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        /// * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-        /// * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         /// * `limits.#.name` - Human-readable label that identifies this project limit.
         /// * `limits.#.value` - Amount the limit is set to.
         /// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
@@ -103,9 +100,6 @@ namespace Pulumi.Mongodbatlas
         /// * `limits.#.maximum_limit` - Maximum value of the limit.
         /// </summary>
         public readonly string Created;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         /// <summary>
         /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -149,8 +143,6 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetProjectResult(
-            ImmutableArray<Outputs.GetProjectApiKeyResult> apiKeys,
-
             int clusterCount,
 
             string created,
@@ -181,7 +173,6 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetProjectTeamResult> teams)
         {
-            ApiKeys = apiKeys;
             ClusterCount = clusterCount;
             Created = created;
             Id = id;

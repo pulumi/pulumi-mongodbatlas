@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -125,6 +127,7 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
      * Unique identifier for the project to which you want to add one or more access list entries.
      */
     public readonly projectId!: pulumi.Output<string>;
+    public readonly timeouts!: pulumi.Output<outputs.ProjectIpAccessListTimeouts | undefined>;
 
     /**
      * Create a ProjectIpAccessList resource with the given unique name, arguments, and options.
@@ -144,6 +147,7 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["timeouts"] = state ? state.timeouts : undefined;
         } else {
             const args = argsOrState as ProjectIpAccessListArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -154,6 +158,7 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["ipAddress"] = args ? args.ipAddress : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["timeouts"] = args ? args.timeouts : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ProjectIpAccessList.__pulumiType, name, resourceInputs, opts);
@@ -186,6 +191,7 @@ export interface ProjectIpAccessListState {
      * Unique identifier for the project to which you want to add one or more access list entries.
      */
     projectId?: pulumi.Input<string>;
+    timeouts?: pulumi.Input<inputs.ProjectIpAccessListTimeouts>;
 }
 
 /**
@@ -214,4 +220,5 @@ export interface ProjectIpAccessListArgs {
      * Unique identifier for the project to which you want to add one or more access list entries.
      */
     projectId: pulumi.Input<string>;
+    timeouts?: pulumi.Input<inputs.ProjectIpAccessListTimeouts>;
 }

@@ -23,7 +23,7 @@ class GetAlertConfigurationResult:
     """
     A collection of values returned by getAlertConfiguration.
     """
-    def __init__(__self__, alert_configuration_id=None, created=None, enabled=None, event_type=None, id=None, matchers=None, metric_threshold=None, metric_threshold_configs=None, notifications=None, outputs=None, project_id=None, threshold=None, threshold_configs=None, updated=None):
+    def __init__(__self__, alert_configuration_id=None, created=None, enabled=None, event_type=None, id=None, matchers=None, metric_threshold_configs=None, notifications=None, outputs=None, project_id=None, threshold_configs=None, updated=None):
         if alert_configuration_id and not isinstance(alert_configuration_id, str):
             raise TypeError("Expected argument 'alert_configuration_id' to be a str")
         pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
@@ -42,9 +42,6 @@ class GetAlertConfigurationResult:
         if matchers and not isinstance(matchers, list):
             raise TypeError("Expected argument 'matchers' to be a list")
         pulumi.set(__self__, "matchers", matchers)
-        if metric_threshold and not isinstance(metric_threshold, dict):
-            raise TypeError("Expected argument 'metric_threshold' to be a dict")
-        pulumi.set(__self__, "metric_threshold", metric_threshold)
         if metric_threshold_configs and not isinstance(metric_threshold_configs, list):
             raise TypeError("Expected argument 'metric_threshold_configs' to be a list")
         pulumi.set(__self__, "metric_threshold_configs", metric_threshold_configs)
@@ -57,9 +54,6 @@ class GetAlertConfigurationResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
-        if threshold and not isinstance(threshold, dict):
-            raise TypeError("Expected argument 'threshold' to be a dict")
-        pulumi.set(__self__, "threshold", threshold)
         if threshold_configs and not isinstance(threshold_configs, list):
             raise TypeError("Expected argument 'threshold_configs' to be a list")
         pulumi.set(__self__, "threshold_configs", threshold_configs)
@@ -99,20 +93,12 @@ class GetAlertConfigurationResult:
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def matchers(self) -> Sequence['outputs.GetAlertConfigurationMatcherResult']:
         return pulumi.get(self, "matchers")
-
-    @property
-    @pulumi.getter(name="metricThreshold")
-    def metric_threshold(self) -> Mapping[str, str]:
-        return pulumi.get(self, "metric_threshold")
 
     @property
     @pulumi.getter(name="metricThresholdConfigs")
@@ -133,14 +119,6 @@ class GetAlertConfigurationResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
-
-    @property
-    @pulumi.getter
-    def threshold(self) -> Mapping[str, str]:
-        """
-        Threshold value outside of which an alert will be triggered.
-        """
-        return pulumi.get(self, "threshold")
 
     @property
     @pulumi.getter(name="thresholdConfigs")
@@ -168,12 +146,10 @@ class AwaitableGetAlertConfigurationResult(GetAlertConfigurationResult):
             event_type=self.event_type,
             id=self.id,
             matchers=self.matchers,
-            metric_threshold=self.metric_threshold,
             metric_threshold_configs=self.metric_threshold_configs,
             notifications=self.notifications,
             outputs=self.outputs,
             project_id=self.project_id,
-            threshold=self.threshold,
             threshold_configs=self.threshold_configs,
             updated=self.updated)
 
@@ -207,12 +183,10 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
         event_type=pulumi.get(__ret__, 'event_type'),
         id=pulumi.get(__ret__, 'id'),
         matchers=pulumi.get(__ret__, 'matchers'),
-        metric_threshold=pulumi.get(__ret__, 'metric_threshold'),
         metric_threshold_configs=pulumi.get(__ret__, 'metric_threshold_configs'),
         notifications=pulumi.get(__ret__, 'notifications'),
         outputs=pulumi.get(__ret__, 'outputs'),
         project_id=pulumi.get(__ret__, 'project_id'),
-        threshold=pulumi.get(__ret__, 'threshold'),
         threshold_configs=pulumi.get(__ret__, 'threshold_configs'),
         updated=pulumi.get(__ret__, 'updated'))
 

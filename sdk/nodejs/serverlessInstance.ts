@@ -91,6 +91,10 @@ export class ServerlessInstance extends pulumi.CustomResource {
      */
     public readonly stateName!: pulumi.Output<string>;
     /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    public readonly tags!: pulumi.Output<outputs.ServerlessInstanceTag[] | undefined>;
+    /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
     public readonly terminationProtectionEnabled!: pulumi.Output<boolean>;
@@ -120,6 +124,7 @@ export class ServerlessInstance extends pulumi.CustomResource {
             resourceInputs["providerSettingsProviderName"] = state ? state.providerSettingsProviderName : undefined;
             resourceInputs["providerSettingsRegionName"] = state ? state.providerSettingsRegionName : undefined;
             resourceInputs["stateName"] = state ? state.stateName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["terminationProtectionEnabled"] = state ? state.terminationProtectionEnabled : undefined;
         } else {
             const args = argsOrState as ServerlessInstanceArgs | undefined;
@@ -143,6 +148,7 @@ export class ServerlessInstance extends pulumi.CustomResource {
             resourceInputs["providerSettingsProviderName"] = args ? args.providerSettingsProviderName : undefined;
             resourceInputs["providerSettingsRegionName"] = args ? args.providerSettingsRegionName : undefined;
             resourceInputs["stateName"] = args ? args.stateName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["terminationProtectionEnabled"] = args ? args.terminationProtectionEnabled : undefined;
             resourceInputs["connectionStringsPrivateEndpointSrvs"] = undefined /*out*/;
             resourceInputs["connectionStringsStandardSrv"] = undefined /*out*/;
@@ -204,6 +210,10 @@ export interface ServerlessInstanceState {
      */
     stateName?: pulumi.Input<string>;
     /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceTag>[]>;
+    /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
     terminationProtectionEnabled?: pulumi.Input<boolean>;
@@ -242,6 +252,10 @@ export interface ServerlessInstanceArgs {
      * Stage of deployment of this serverless instance when the resource made its request.
      */
     stateName?: pulumi.Input<string>;
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceTag>[]>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */

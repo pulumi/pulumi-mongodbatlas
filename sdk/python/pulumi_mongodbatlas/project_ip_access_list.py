@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ProjectIpAccessListArgs', 'ProjectIpAccessList']
 
@@ -18,7 +20,8 @@ class ProjectIpAccessListArgs:
                  aws_security_group: Optional[pulumi.Input[str]] = None,
                  cidr_block: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
-                 ip_address: Optional[pulumi.Input[str]] = None):
+                 ip_address: Optional[pulumi.Input[str]] = None,
+                 timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a ProjectIpAccessList resource.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
@@ -36,6 +39,7 @@ class ProjectIpAccessListArgs:
             cidr_block=cidr_block,
             comment=comment,
             ip_address=ip_address,
+            timeouts=timeouts,
         )
     @staticmethod
     def _configure(
@@ -45,6 +49,7 @@ class ProjectIpAccessListArgs:
              cidr_block: Optional[pulumi.Input[str]] = None,
              comment: Optional[pulumi.Input[str]] = None,
              ip_address: Optional[pulumi.Input[str]] = None,
+             timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
         _setter("project_id", project_id)
         if aws_security_group is not None:
@@ -55,6 +60,8 @@ class ProjectIpAccessListArgs:
             _setter("comment", comment)
         if ip_address is not None:
             _setter("ip_address", ip_address)
+        if timeouts is not None:
+            _setter("timeouts", timeouts)
 
     @property
     @pulumi.getter(name="projectId")
@@ -118,6 +125,15 @@ class ProjectIpAccessListArgs:
     def ip_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip_address", value)
 
+    @property
+    @pulumi.getter
+    def timeouts(self) -> Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']]:
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
 
 @pulumi.input_type
 class _ProjectIpAccessListState:
@@ -126,7 +142,8 @@ class _ProjectIpAccessListState:
                  cidr_block: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
-                 project_id: Optional[pulumi.Input[str]] = None):
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering ProjectIpAccessList resources.
         :param pulumi.Input[str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
@@ -144,6 +161,7 @@ class _ProjectIpAccessListState:
             comment=comment,
             ip_address=ip_address,
             project_id=project_id,
+            timeouts=timeouts,
         )
     @staticmethod
     def _configure(
@@ -153,6 +171,7 @@ class _ProjectIpAccessListState:
              comment: Optional[pulumi.Input[str]] = None,
              ip_address: Optional[pulumi.Input[str]] = None,
              project_id: Optional[pulumi.Input[str]] = None,
+             timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
         if aws_security_group is not None:
             _setter("aws_security_group", aws_security_group)
@@ -164,6 +183,8 @@ class _ProjectIpAccessListState:
             _setter("ip_address", ip_address)
         if project_id is not None:
             _setter("project_id", project_id)
+        if timeouts is not None:
+            _setter("timeouts", timeouts)
 
     @property
     @pulumi.getter(name="awsSecurityGroup")
@@ -227,6 +248,15 @@ class _ProjectIpAccessListState:
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
 
+    @property
+    @pulumi.getter
+    def timeouts(self) -> Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']]:
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
 
 class ProjectIpAccessList(pulumi.CustomResource):
     @overload
@@ -238,6 +268,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 timeouts: Optional[pulumi.Input[pulumi.InputType['ProjectIpAccessListTimeoutsArgs']]] = None,
                  __props__=None):
         """
         `ProjectIpAccessList` provides an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
@@ -409,6 +440,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 timeouts: Optional[pulumi.Input[pulumi.InputType['ProjectIpAccessListTimeoutsArgs']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -425,6 +457,12 @@ class ProjectIpAccessList(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            if timeouts is not None and not isinstance(timeouts, ProjectIpAccessListTimeoutsArgs):
+                timeouts = timeouts or {}
+                def _setter(key, value):
+                    timeouts[key] = value
+                ProjectIpAccessListTimeoutsArgs._configure(_setter, **timeouts)
+            __props__.__dict__["timeouts"] = timeouts
         super(ProjectIpAccessList, __self__).__init__(
             'mongodbatlas:index/projectIpAccessList:ProjectIpAccessList',
             resource_name,
@@ -439,7 +477,8 @@ class ProjectIpAccessList(pulumi.CustomResource):
             cidr_block: Optional[pulumi.Input[str]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             ip_address: Optional[pulumi.Input[str]] = None,
-            project_id: Optional[pulumi.Input[str]] = None) -> 'ProjectIpAccessList':
+            project_id: Optional[pulumi.Input[str]] = None,
+            timeouts: Optional[pulumi.Input[pulumi.InputType['ProjectIpAccessListTimeoutsArgs']]] = None) -> 'ProjectIpAccessList':
         """
         Get an existing ProjectIpAccessList resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -464,6 +503,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["ip_address"] = ip_address
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["timeouts"] = timeouts
         return ProjectIpAccessList(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -507,4 +547,9 @@ class ProjectIpAccessList(pulumi.CustomResource):
         Unique identifier for the project to which you want to add one or more access list entries.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def timeouts(self) -> pulumi.Output[Optional['outputs.ProjectIpAccessListTimeouts']]:
+        return pulumi.get(self, "timeouts")
 

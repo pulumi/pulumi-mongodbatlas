@@ -89,10 +89,6 @@ namespace Pulumi.Mongodbatlas
         /// Public key for this Organization API key.
         /// </summary>
         public readonly string PublicKey;
-        /// <summary>
-        /// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-        /// </summary>
-        public readonly ImmutableArray<string> RoleNames;
 
         [OutputConstructor]
         private GetProjectApiKeyResult(
@@ -108,9 +104,7 @@ namespace Pulumi.Mongodbatlas
 
             string projectId,
 
-            string publicKey,
-
-            ImmutableArray<string> roleNames)
+            string publicKey)
         {
             ApiKeyId = apiKeyId;
             Description = description;
@@ -119,7 +113,6 @@ namespace Pulumi.Mongodbatlas
             ProjectAssignments = projectAssignments;
             ProjectId = projectId;
             PublicKey = publicKey;
-            RoleNames = roleNames;
         }
     }
 }

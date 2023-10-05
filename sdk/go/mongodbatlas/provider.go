@@ -19,9 +19,12 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	AwsAccessKeyId     pulumi.StringPtrOutput `pulumi:"awsAccessKeyId"`
+	// AWS API Access Key.
+	AwsAccessKeyId pulumi.StringPtrOutput `pulumi:"awsAccessKeyId"`
+	// AWS API Access Secret Key.
 	AwsSecretAccessKey pulumi.StringPtrOutput `pulumi:"awsSecretAccessKey"`
-	AwsSessionToken    pulumi.StringPtrOutput `pulumi:"awsSessionToken"`
+	// AWS Security Token Service provided session token.
+	AwsSessionToken pulumi.StringPtrOutput `pulumi:"awsSessionToken"`
 	// MongoDB Atlas Base URL
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
 	// MongoDB Atlas Programmatic Private Key
@@ -30,9 +33,12 @@ type Provider struct {
 	PublicKey pulumi.StringPtrOutput `pulumi:"publicKey"`
 	// MongoDB Realm Base URL
 	RealmBaseUrl pulumi.StringPtrOutput `pulumi:"realmBaseUrl"`
-	Region       pulumi.StringPtrOutput `pulumi:"region"`
-	SecretName   pulumi.StringPtrOutput `pulumi:"secretName"`
-	StsEndpoint  pulumi.StringPtrOutput `pulumi:"stsEndpoint"`
+	// Region where secret is stored as part of AWS Secret Manager.
+	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// Name of secret stored in AWS Secret Manager.
+	SecretName pulumi.StringPtrOutput `pulumi:"secretName"`
+	// AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+	StsEndpoint pulumi.StringPtrOutput `pulumi:"stsEndpoint"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -59,10 +65,13 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	AssumeRole         *ProviderAssumeRole `pulumi:"assumeRole"`
-	AwsAccessKeyId     *string             `pulumi:"awsAccessKeyId"`
-	AwsSecretAccessKey *string             `pulumi:"awsSecretAccessKey"`
-	AwsSessionToken    *string             `pulumi:"awsSessionToken"`
+	AssumeRole *ProviderAssumeRole `pulumi:"assumeRole"`
+	// AWS API Access Key.
+	AwsAccessKeyId *string `pulumi:"awsAccessKeyId"`
+	// AWS API Access Secret Key.
+	AwsSecretAccessKey *string `pulumi:"awsSecretAccessKey"`
+	// AWS Security Token Service provided session token.
+	AwsSessionToken *string `pulumi:"awsSessionToken"`
 	// MongoDB Atlas Base URL
 	BaseUrl *string `pulumi:"baseUrl"`
 	// MongoDB Atlas Base URL default to gov
@@ -73,17 +82,23 @@ type providerArgs struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// MongoDB Realm Base URL
 	RealmBaseUrl *string `pulumi:"realmBaseUrl"`
-	Region       *string `pulumi:"region"`
-	SecretName   *string `pulumi:"secretName"`
-	StsEndpoint  *string `pulumi:"stsEndpoint"`
+	// Region where secret is stored as part of AWS Secret Manager.
+	Region *string `pulumi:"region"`
+	// Name of secret stored in AWS Secret Manager.
+	SecretName *string `pulumi:"secretName"`
+	// AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+	StsEndpoint *string `pulumi:"stsEndpoint"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	AssumeRole         ProviderAssumeRolePtrInput
-	AwsAccessKeyId     pulumi.StringPtrInput
+	AssumeRole ProviderAssumeRolePtrInput
+	// AWS API Access Key.
+	AwsAccessKeyId pulumi.StringPtrInput
+	// AWS API Access Secret Key.
 	AwsSecretAccessKey pulumi.StringPtrInput
-	AwsSessionToken    pulumi.StringPtrInput
+	// AWS Security Token Service provided session token.
+	AwsSessionToken pulumi.StringPtrInput
 	// MongoDB Atlas Base URL
 	BaseUrl pulumi.StringPtrInput
 	// MongoDB Atlas Base URL default to gov
@@ -94,9 +109,12 @@ type ProviderArgs struct {
 	PublicKey pulumi.StringPtrInput
 	// MongoDB Realm Base URL
 	RealmBaseUrl pulumi.StringPtrInput
-	Region       pulumi.StringPtrInput
-	SecretName   pulumi.StringPtrInput
-	StsEndpoint  pulumi.StringPtrInput
+	// Region where secret is stored as part of AWS Secret Manager.
+	Region pulumi.StringPtrInput
+	// Name of secret stored in AWS Secret Manager.
+	SecretName pulumi.StringPtrInput
+	// AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+	StsEndpoint pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -148,14 +166,17 @@ func (o ProviderOutput) ToOutput(ctx context.Context) pulumix.Output[*Provider] 
 	}
 }
 
+// AWS API Access Key.
 func (o ProviderOutput) AwsAccessKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.AwsAccessKeyId }).(pulumi.StringPtrOutput)
 }
 
+// AWS API Access Secret Key.
 func (o ProviderOutput) AwsSecretAccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.AwsSecretAccessKey }).(pulumi.StringPtrOutput)
 }
 
+// AWS Security Token Service provided session token.
 func (o ProviderOutput) AwsSessionToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.AwsSessionToken }).(pulumi.StringPtrOutput)
 }
@@ -180,14 +201,17 @@ func (o ProviderOutput) RealmBaseUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.RealmBaseUrl }).(pulumi.StringPtrOutput)
 }
 
+// Region where secret is stored as part of AWS Secret Manager.
 func (o ProviderOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+// Name of secret stored in AWS Secret Manager.
 func (o ProviderOutput) SecretName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.SecretName }).(pulumi.StringPtrOutput)
 }
 
+// AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
 func (o ProviderOutput) StsEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.StsEndpoint }).(pulumi.StringPtrOutput)
 }

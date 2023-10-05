@@ -14,7 +14,6 @@ import com.pulumi.mongodbatlas.outputs.CloudBackupSnapshotRestoreJobDeliveryType
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -72,18 +71,6 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      */
     public Output<String> createdAt() {
         return this.createdAt;
-    }
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config */
-    @Export(name="deliveryType", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> deliveryType;
-
-    public Output<Optional<Map<String,String>>> deliveryType() {
-        return Codegen.optional(this.deliveryType);
     }
     /**
      * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.

@@ -9,8 +9,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAlertConfigurationNotification {
@@ -58,7 +56,7 @@ public final class GetAlertConfigurationNotification {
      * @return Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
      * 
      */
-    private @Nullable String microsoftTeamsWebhookUrl;
+    private String microsoftTeamsWebhookUrl;
     /**
      * @return Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      * 
@@ -78,7 +76,7 @@ public final class GetAlertConfigurationNotification {
      * @return Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
      * 
      */
-    private @Nullable List<String> roles;
+    private List<String> roles;
     /**
      * @return PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      * 
@@ -124,12 +122,12 @@ public final class GetAlertConfigurationNotification {
      * @return Authentication secret for the `WEBHOOK` notifications type.
      * 
      */
-    private @Nullable String webhookSecret;
+    private String webhookSecret;
     /**
      * @return Target URL  for the `WEBHOOK` notifications type.
      * 
      */
-    private @Nullable String webhookUrl;
+    private String webhookUrl;
 
     private GetAlertConfigurationNotification() {}
     /**
@@ -192,8 +190,8 @@ public final class GetAlertConfigurationNotification {
      * @return Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
      * 
      */
-    public Optional<String> microsoftTeamsWebhookUrl() {
-        return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
+    public String microsoftTeamsWebhookUrl() {
+        return this.microsoftTeamsWebhookUrl;
     }
     /**
      * @return Mobile number to which alert notifications are sent. Required for the SMS notifications type.
@@ -221,7 +219,7 @@ public final class GetAlertConfigurationNotification {
      * 
      */
     public List<String> roles() {
-        return this.roles == null ? List.of() : this.roles;
+        return this.roles;
     }
     /**
      * @return PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
@@ -284,15 +282,15 @@ public final class GetAlertConfigurationNotification {
      * @return Authentication secret for the `WEBHOOK` notifications type.
      * 
      */
-    public Optional<String> webhookSecret() {
-        return Optional.ofNullable(this.webhookSecret);
+    public String webhookSecret() {
+        return this.webhookSecret;
     }
     /**
      * @return Target URL  for the `WEBHOOK` notifications type.
      * 
      */
-    public Optional<String> webhookUrl() {
-        return Optional.ofNullable(this.webhookUrl);
+    public String webhookUrl() {
+        return this.webhookUrl;
     }
 
     public static Builder builder() {
@@ -312,11 +310,11 @@ public final class GetAlertConfigurationNotification {
         private String emailAddress;
         private Boolean emailEnabled;
         private Integer intervalMin;
-        private @Nullable String microsoftTeamsWebhookUrl;
+        private String microsoftTeamsWebhookUrl;
         private String mobileNumber;
         private String opsGenieApiKey;
         private String opsGenieRegion;
-        private @Nullable List<String> roles;
+        private List<String> roles;
         private String serviceKey;
         private Boolean smsEnabled;
         private String teamId;
@@ -325,8 +323,8 @@ public final class GetAlertConfigurationNotification {
         private String username;
         private String victorOpsApiKey;
         private String victorOpsRoutingKey;
-        private @Nullable String webhookSecret;
-        private @Nullable String webhookUrl;
+        private String webhookSecret;
+        private String webhookUrl;
         public Builder() {}
         public Builder(GetAlertConfigurationNotification defaults) {
     	      Objects.requireNonNull(defaults);
@@ -396,8 +394,8 @@ public final class GetAlertConfigurationNotification {
             return this;
         }
         @CustomType.Setter
-        public Builder microsoftTeamsWebhookUrl(@Nullable String microsoftTeamsWebhookUrl) {
-            this.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
+        public Builder microsoftTeamsWebhookUrl(String microsoftTeamsWebhookUrl) {
+            this.microsoftTeamsWebhookUrl = Objects.requireNonNull(microsoftTeamsWebhookUrl);
             return this;
         }
         @CustomType.Setter
@@ -416,8 +414,8 @@ public final class GetAlertConfigurationNotification {
             return this;
         }
         @CustomType.Setter
-        public Builder roles(@Nullable List<String> roles) {
-            this.roles = roles;
+        public Builder roles(List<String> roles) {
+            this.roles = Objects.requireNonNull(roles);
             return this;
         }
         public Builder roles(String... roles) {
@@ -464,13 +462,13 @@ public final class GetAlertConfigurationNotification {
             return this;
         }
         @CustomType.Setter
-        public Builder webhookSecret(@Nullable String webhookSecret) {
-            this.webhookSecret = webhookSecret;
+        public Builder webhookSecret(String webhookSecret) {
+            this.webhookSecret = Objects.requireNonNull(webhookSecret);
             return this;
         }
         @CustomType.Setter
-        public Builder webhookUrl(@Nullable String webhookUrl) {
-            this.webhookUrl = webhookUrl;
+        public Builder webhookUrl(String webhookUrl) {
+            this.webhookUrl = Objects.requireNonNull(webhookUrl);
             return this;
         }
         public GetAlertConfigurationNotification build() {

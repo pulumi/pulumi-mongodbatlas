@@ -245,69 +245,6 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         ## Example Usage
 
         ### S
-        ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        user = mongodbatlas.DatabaseUser("user",
-            project_id="64b926dd56206839b1c8bae9",
-            username="myUsername",
-            x509_type="MANAGED",
-            database_name="$external",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                role_name="atlasAdmin",
-                database_name="admin",
-            )],
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="My Key",
-                value="My Value",
-            )])
-        test = mongodbatlas.X509AuthenticationDatabaseUser("test",
-            project_id=user.project_id,
-            username=user.username,
-            months_until_expiration=2)
-        ```
-        ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.X509AuthenticationDatabaseUser("test",
-            customer_x509_cas=\"\"\"  -----BEGIN CERTIFICATE-----
-          MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
-          VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
-          c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
-          SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
-          MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
-          VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
-          BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
-          c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
-          iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
-          cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
-          Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
-          SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
-          7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
-          iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-          -----END CERTIFICATE-----"
-
-        \"\"\",
-            project_id="<PROJECT-ID>")
-        user = mongodbatlas.DatabaseUser("user",
-            database_name="$external",
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="My Key",
-                value="My Value",
-            )],
-            project_id="64b926dd56206839b1c8bae9",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
-                role_name="atlasAdmin",
-            )],
-            username="myUsername",
-            x509_type="CUSTOMER")
-        # Make sure to set x509_type = "CUSTOMER"
-        ```
 
         ## Import
 
@@ -351,69 +288,6 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         ## Example Usage
 
         ### S
-        ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        user = mongodbatlas.DatabaseUser("user",
-            project_id="64b926dd56206839b1c8bae9",
-            username="myUsername",
-            x509_type="MANAGED",
-            database_name="$external",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                role_name="atlasAdmin",
-                database_name="admin",
-            )],
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="My Key",
-                value="My Value",
-            )])
-        test = mongodbatlas.X509AuthenticationDatabaseUser("test",
-            project_id=user.project_id,
-            username=user.username,
-            months_until_expiration=2)
-        ```
-        ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.X509AuthenticationDatabaseUser("test",
-            customer_x509_cas=\"\"\"  -----BEGIN CERTIFICATE-----
-          MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
-          VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
-          c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
-          SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
-          MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
-          VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
-          BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
-          c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
-          iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
-          cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
-          Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
-          SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
-          7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
-          iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-          -----END CERTIFICATE-----"
-
-        \"\"\",
-            project_id="<PROJECT-ID>")
-        user = mongodbatlas.DatabaseUser("user",
-            database_name="$external",
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="My Key",
-                value="My Value",
-            )],
-            project_id="64b926dd56206839b1c8bae9",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
-                role_name="atlasAdmin",
-            )],
-            username="myUsername",
-            x509_type="CUSTOMER")
-        # Make sure to set x509_type = "CUSTOMER"
-        ```
 
         ## Import
 

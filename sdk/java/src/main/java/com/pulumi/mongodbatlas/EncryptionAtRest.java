@@ -14,8 +14,6 @@ import com.pulumi.mongodbatlas.outputs.EncryptionAtRestAwsKmsConfig;
 import com.pulumi.mongodbatlas.outputs.EncryptionAtRestAzureKeyVaultConfig;
 import com.pulumi.mongodbatlas.outputs.EncryptionAtRestGoogleCloudKmsConfig;
 import java.lang.String;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -32,71 +30,17 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/encryptionAtRest:EncryptionAtRest")
 public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
-    /**
-     * Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config */
-    @Export(name="awsKms", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> awsKms;
-
-    /**
-     * @return Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     * 
-     */
-    public Output<Optional<Map<String,String>>> awsKms() {
-        return Codegen.optional(this.awsKms);
-    }
     @Export(name="awsKmsConfig", refs={EncryptionAtRestAwsKmsConfig.class}, tree="[0]")
     private Output</* @Nullable */ EncryptionAtRestAwsKmsConfig> awsKmsConfig;
 
     public Output<Optional<EncryptionAtRestAwsKmsConfig>> awsKmsConfig() {
         return Codegen.optional(this.awsKmsConfig);
     }
-    /**
-     * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config */
-    @Export(name="azureKeyVault", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> azureKeyVault;
-
-    /**
-     * @return Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     * 
-     */
-    public Output<Optional<Map<String,String>>> azureKeyVault() {
-        return Codegen.optional(this.azureKeyVault);
-    }
     @Export(name="azureKeyVaultConfig", refs={EncryptionAtRestAzureKeyVaultConfig.class}, tree="[0]")
     private Output</* @Nullable */ EncryptionAtRestAzureKeyVaultConfig> azureKeyVaultConfig;
 
     public Output<Optional<EncryptionAtRestAzureKeyVaultConfig>> azureKeyVaultConfig() {
         return Codegen.optional(this.azureKeyVaultConfig);
-    }
-    /**
-     * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config */
-    @Export(name="googleCloudKms", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> googleCloudKms;
-
-    /**
-     * @return Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     * 
-     */
-    public Output<Optional<Map<String,String>>> googleCloudKms() {
-        return Codegen.optional(this.googleCloudKms);
     }
     @Export(name="googleCloudKmsConfig", refs={EncryptionAtRestGoogleCloudKmsConfig.class}, tree="[0]")
     private Output</* @Nullable */ EncryptionAtRestGoogleCloudKmsConfig> googleCloudKmsConfig;
@@ -151,14 +95,6 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .additionalSecretOutputs(List.of(
-                "awsKms",
-                "awsKmsConfig",
-                "azureKeyVault",
-                "azureKeyVaultConfig",
-                "googleCloudKms",
-                "googleCloudKmsConfig"
-            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

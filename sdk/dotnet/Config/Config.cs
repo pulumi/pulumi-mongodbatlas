@@ -40,6 +40,9 @@ namespace Pulumi.Mongodbatlas
         }
 
         private static readonly __Value<string?> _awsAccessKeyId = new __Value<string?>(() => __config.Get("awsAccessKeyId"));
+        /// <summary>
+        /// AWS API Access Key.
+        /// </summary>
         public static string? AwsAccessKeyId
         {
             get => _awsAccessKeyId.Get();
@@ -47,6 +50,9 @@ namespace Pulumi.Mongodbatlas
         }
 
         private static readonly __Value<string?> _awsSecretAccessKey = new __Value<string?>(() => __config.Get("awsSecretAccessKey"));
+        /// <summary>
+        /// AWS API Access Secret Key.
+        /// </summary>
         public static string? AwsSecretAccessKey
         {
             get => _awsSecretAccessKey.Get();
@@ -54,6 +60,9 @@ namespace Pulumi.Mongodbatlas
         }
 
         private static readonly __Value<string?> _awsSessionToken = new __Value<string?>(() => __config.Get("awsSessionToken"));
+        /// <summary>
+        /// AWS Security Token Service provided session token.
+        /// </summary>
         public static string? AwsSessionToken
         {
             get => _awsSessionToken.Get();
@@ -111,6 +120,9 @@ namespace Pulumi.Mongodbatlas
         }
 
         private static readonly __Value<string?> _region = new __Value<string?>(() => __config.Get("region"));
+        /// <summary>
+        /// Region where secret is stored as part of AWS Secret Manager.
+        /// </summary>
         public static string? Region
         {
             get => _region.Get();
@@ -118,6 +130,9 @@ namespace Pulumi.Mongodbatlas
         }
 
         private static readonly __Value<string?> _secretName = new __Value<string?>(() => __config.Get("secretName"));
+        /// <summary>
+        /// Name of secret stored in AWS Secret Manager.
+        /// </summary>
         public static string? SecretName
         {
             get => _secretName.Get();
@@ -125,6 +140,9 @@ namespace Pulumi.Mongodbatlas
         }
 
         private static readonly __Value<string?> _stsEndpoint = new __Value<string?>(() => __config.Get("stsEndpoint"));
+        /// <summary>
+        /// AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+        /// </summary>
         public static string? StsEndpoint
         {
             get => _stsEndpoint.Get();
@@ -137,7 +155,6 @@ namespace Pulumi.Mongodbatlas
              public class AssumeRole
              {
                 public string? Duration { get; set; } = null!;
-                public int? DurationSeconds { get; set; }
                 public string? ExternalId { get; set; } = null!;
                 public string? Policy { get; set; } = null!;
                 public ImmutableArray<string> PolicyArns { get; set; }

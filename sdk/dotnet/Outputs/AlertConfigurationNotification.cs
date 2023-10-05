@@ -96,7 +96,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Type of alert notification.
         /// Accepted values are:
         /// </summary>
-        public readonly string? TypeName;
+        public readonly string TypeName;
         /// <summary>
         /// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
         /// </summary>
@@ -154,7 +154,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? teamName,
 
-            string? typeName,
+            string typeName,
 
             string? username,
 

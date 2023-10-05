@@ -44,10 +44,6 @@ type LookupProjectApiKeyResult struct {
 	ProjectId string `pulumi:"projectId"`
 	// Public key for this Organization API key.
 	PublicKey string `pulumi:"publicKey"`
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-	RoleNames []string `pulumi:"roleNames"`
 }
 
 func LookupProjectApiKeyOutput(ctx *pulumi.Context, args LookupProjectApiKeyOutputArgs, opts ...pulumi.InvokeOption) LookupProjectApiKeyResultOutput {
@@ -126,13 +122,6 @@ func (o LookupProjectApiKeyResultOutput) ProjectId() pulumi.StringOutput {
 // Public key for this Organization API key.
 func (o LookupProjectApiKeyResultOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectApiKeyResult) string { return v.PublicKey }).(pulumi.StringOutput)
-}
-
-// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-//
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-func (o LookupProjectApiKeyResultOutput) RoleNames() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupProjectApiKeyResult) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
 
 func init() {

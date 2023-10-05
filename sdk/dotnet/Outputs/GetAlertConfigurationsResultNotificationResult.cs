@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string EmailAddress;
         public readonly bool EmailEnabled;
         public readonly int IntervalMin;
-        public readonly string? MicrosoftTeamsWebhookUrl;
+        public readonly string MicrosoftTeamsWebhookUrl;
         public readonly string MobileNumber;
         public readonly string OpsGenieApiKey;
         public readonly string OpsGenieRegion;
@@ -34,8 +34,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string Username;
         public readonly string VictorOpsApiKey;
         public readonly string VictorOpsRoutingKey;
-        public readonly string? WebhookSecret;
-        public readonly string? WebhookUrl;
+        public readonly string WebhookSecret;
+        public readonly string WebhookUrl;
 
         [OutputConstructor]
         private GetAlertConfigurationsResultNotificationResult(
@@ -55,7 +55,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             int intervalMin,
 
-            string? microsoftTeamsWebhookUrl,
+            string microsoftTeamsWebhookUrl,
 
             string mobileNumber,
 
@@ -81,9 +81,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string victorOpsRoutingKey,
 
-            string? webhookSecret,
+            string webhookSecret,
 
-            string? webhookUrl)
+            string webhookUrl)
         {
             ApiToken = apiToken;
             ChannelName = channelName;

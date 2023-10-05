@@ -382,6 +382,10 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        `CloudBackupSnapshotExportJob` resource allows you to create a cloud backup snapshot export job for the specified project.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
         ## Example Usage
 
         ```python
@@ -428,6 +432,10 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                  args: CloudBackupSnapshotExportJobArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `CloudBackupSnapshotExportJob` resource allows you to create a cloud backup snapshot export job for the specified project.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
         ## Example Usage
 
         ```python

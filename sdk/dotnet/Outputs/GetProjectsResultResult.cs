@@ -13,7 +13,6 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetProjectsResultResult
     {
-        public readonly ImmutableArray<Outputs.GetProjectsResultApiKeyResult> ApiKeys;
         /// <summary>
         /// The number of Atlas clusters deployed in the project.
         /// </summary>
@@ -22,8 +21,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The ISO-8601-formatted timestamp of when Atlas created the project.
         /// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         /// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        /// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-        /// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         /// * `limits.#.name` - Human-readable label that identifies this project limit.
         /// * `limits.#.value` - Amount the limit is set to.
         /// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
@@ -46,7 +43,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Flag that indicates whether to enable extended storage sizes for the specified project.
         /// </summary>
-        public readonly bool? IsExtendedStorageSizesEnabled;
+        public readonly bool IsExtendedStorageSizesEnabled;
         /// <summary>
         /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         /// </summary>
@@ -68,6 +65,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The ID of the organization you want to create the project within.
         /// </summary>
         public readonly string OrgId;
+        public readonly string ProjectId;
         /// <summary>
         /// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         /// 
@@ -78,8 +76,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetProjectsResultResult(
-            ImmutableArray<Outputs.GetProjectsResultApiKeyResult> apiKeys,
-
             int clusterCount,
 
             string created,
@@ -90,7 +86,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool isDataExplorerEnabled,
 
-            bool? isExtendedStorageSizesEnabled,
+            bool isExtendedStorageSizesEnabled,
 
             bool isPerformanceAdvisorEnabled,
 
@@ -104,11 +100,12 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string orgId,
 
+            string projectId,
+
             string regionUsageRestrictions,
 
             ImmutableArray<Outputs.GetProjectsResultTeamResult> teams)
         {
-            ApiKeys = apiKeys;
             ClusterCount = clusterCount;
             Created = created;
             Id = id;
@@ -121,6 +118,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Limits = limits;
             Name = name;
             OrgId = orgId;
+            ProjectId = projectId;
             RegionUsageRestrictions = regionUsageRestrictions;
             Teams = teams;
         }

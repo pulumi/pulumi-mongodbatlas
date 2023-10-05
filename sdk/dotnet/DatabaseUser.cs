@@ -187,6 +187,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
+    /// 
     /// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
     /// 
     /// ## Import
@@ -206,19 +208,13 @@ namespace Pulumi.Mongodbatlas
         /// Accepted values include:
         /// </summary>
         [Output("authDatabaseName")]
-        public Output<string?> AuthDatabaseName { get; private set; } = null!;
+        public Output<string> AuthDatabaseName { get; private set; } = null!;
 
         /// <summary>
         /// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         /// </summary>
         [Output("awsIamType")]
-        public Output<string?> AwsIamType { get; private set; } = null!;
-
-        /// <summary>
-        /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-        /// </summary>
-        [Output("databaseName")]
-        public Output<string?> DatabaseName { get; private set; } = null!;
+        public Output<string> AwsIamType { get; private set; } = null!;
 
         [Output("labels")]
         public Output<ImmutableArray<Outputs.DatabaseUserLabel>> Labels { get; private set; } = null!;
@@ -227,13 +223,13 @@ namespace Pulumi.Mongodbatlas
         /// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
         /// </summary>
         [Output("ldapAuthType")]
-        public Output<string?> LdapAuthType { get; private set; } = null!;
+        public Output<string> LdapAuthType { get; private set; } = null!;
 
         /// <summary>
         /// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         /// </summary>
         [Output("oidcAuthType")]
-        public Output<string?> OidcAuthType { get; private set; } = null!;
+        public Output<string> OidcAuthType { get; private set; } = null!;
 
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
@@ -263,7 +259,7 @@ namespace Pulumi.Mongodbatlas
         /// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         /// </summary>
         [Output("x509Type")]
-        public Output<string?> X509Type { get; private set; } = null!;
+        public Output<string> X509Type { get; private set; } = null!;
 
 
         /// <summary>
@@ -319,20 +315,14 @@ namespace Pulumi.Mongodbatlas
         /// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
         /// Accepted values include:
         /// </summary>
-        [Input("authDatabaseName")]
-        public Input<string>? AuthDatabaseName { get; set; }
+        [Input("authDatabaseName", required: true)]
+        public Input<string> AuthDatabaseName { get; set; } = null!;
 
         /// <summary>
         /// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         /// </summary>
         [Input("awsIamType")]
         public Input<string>? AwsIamType { get; set; }
-
-        /// <summary>
-        /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-        /// </summary>
-        [Input("databaseName")]
-        public Input<string>? DatabaseName { get; set; }
 
         [Input("labels")]
         private InputList<Inputs.DatabaseUserLabelArgs>? _labels;
@@ -372,7 +362,7 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
-        [Input("roles", required: true)]
+        [Input("roles")]
         private InputList<Inputs.DatabaseUserRoleArgs>? _roles;
 
         /// <summary>
@@ -424,12 +414,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("awsIamType")]
         public Input<string>? AwsIamType { get; set; }
-
-        /// <summary>
-        /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-        /// </summary>
-        [Input("databaseName")]
-        public Input<string>? DatabaseName { get; set; }
 
         [Input("labels")]
         private InputList<Inputs.DatabaseUserLabelGetArgs>? _labels;

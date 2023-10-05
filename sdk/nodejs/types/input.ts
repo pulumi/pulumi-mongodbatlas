@@ -57,26 +57,6 @@ export interface AdvancedClusterAdvancedConfiguration {
     transactionLifetimeLimitSeconds?: pulumi.Input<number>;
 }
 
-export interface AdvancedClusterBiConnector {
-    /**
-     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
-     * - Set to `true` to enable BI Connector for Atlas.
-     * - Set to `false` to disable BI Connector for Atlas.
-     */
-    enabled?: pulumi.Input<boolean>;
-    /**
-     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-     *
-     * - Set to "primary" to have BI Connector for Atlas read from the primary.
-     *
-     * - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-     *
-     * - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
-     */
-    readPreference?: pulumi.Input<string>;
-}
-
 export interface AdvancedClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
@@ -98,14 +78,6 @@ export interface AdvancedClusterBiConnectorConfig {
 }
 
 export interface AdvancedClusterConnectionString {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-     */
-    awsPrivateLink?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-     */
-    awsPrivateLinkSrv?: pulumi.Input<{[key: string]: any}>;
     private?: pulumi.Input<string>;
     privateEndpoints?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterConnectionStringPrivateEndpoint>[]>;
     privateSrv?: pulumi.Input<string>;
@@ -140,7 +112,6 @@ export interface AdvancedClusterLabel {
      * The value that you want to write.
      *
      * > **NOTE:** MongoDB Atlas doesn't display your labels.
-     * > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      */
     value?: pulumi.Input<string>;
 }
@@ -298,6 +269,19 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     nodeCount?: pulumi.Input<number>;
 }
 
+export interface AdvancedClusterTag {
+    /**
+     * Constant that defines the set of the tag.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * Variable that belongs to the set of the tag.
+     *
+     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     */
+    value: pulumi.Input<string>;
+}
+
 export interface AlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
@@ -314,23 +298,23 @@ export interface AlertConfigurationMatcher {
      *
      * All other types of alerts do not support matchers.
      */
-    fieldName?: pulumi.Input<string>;
+    fieldName: pulumi.Input<string>;
     /**
      * The operator to test the field’s value.
      * Accepted values are:
      */
-    operator?: pulumi.Input<string>;
+    operator: pulumi.Input<string>;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      */
-    value?: pulumi.Input<string>;
+    value: pulumi.Input<string>;
 }
 
 export interface AlertConfigurationMetricThresholdConfig {
     /**
      * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      */
-    metricName?: pulumi.Input<string>;
+    metricName: pulumi.Input<string>;
     /**
      * This must be set to AVERAGE. Atlas computes the current metric value as an average.
      */
@@ -435,7 +419,7 @@ export interface AlertConfigurationNotification {
      * Type of alert notification.
      * Accepted values are:
      */
-    typeName?: pulumi.Input<string>;
+    typeName: pulumi.Input<string>;
     /**
      * Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
      */
@@ -874,14 +858,6 @@ export interface ClusterBiConnectorConfig {
 }
 
 export interface ClusterConnectionString {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-     */
-    awsPrivateLink?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-     */
-    awsPrivateLinkSrv?: pulumi.Input<{[key: string]: any}>;
     private?: pulumi.Input<string>;
     privateEndpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringPrivateEndpoint>[]>;
     privateSrv?: pulumi.Input<string>;
@@ -917,7 +893,6 @@ export interface ClusterLabel {
      * The value that you want to write.
      *
      * > **NOTE:** MongoDB Atlas doesn't display your labels.
-     * > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      */
     value?: pulumi.Input<string>;
 }
@@ -1019,6 +994,19 @@ export interface ClusterSnapshotBackupPolicyPolicyPolicyItem {
     id?: pulumi.Input<string>;
     retentionUnit?: pulumi.Input<string>;
     retentionValue?: pulumi.Input<number>;
+}
+
+export interface ClusterTag {
+    /**
+     * Constant that defines the set of the tag.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * Variable that belongs to the set of the tag.
+     *
+     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     */
+    value: pulumi.Input<string>;
 }
 
 export interface CustomDbRoleAction {
@@ -1243,11 +1231,11 @@ export interface DatabaseUserRole {
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      */
-    databaseName?: pulumi.Input<string>;
+    databaseName: pulumi.Input<string>;
     /**
      * Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
      */
-    roleName?: pulumi.Input<string>;
+    roleName: pulumi.Input<string>;
 }
 
 export interface DatabaseUserScope {
@@ -1294,7 +1282,7 @@ export interface EncryptionAtRestAzureKeyVaultConfig {
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
-    enabled: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * The unique identifier of a key in an Azure Key Vault.
      */
@@ -2072,19 +2060,6 @@ export interface PrivateLinkEndpointServiceEndpoint {
     status?: pulumi.Input<string>;
 }
 
-export interface ProjectApiKey {
-    /**
-     * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
-     *
-     * **WARNING:** The `apiKeys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `mongodbatlas.ProjectApiKey`  resource instead.
-     */
-    apiKeyId: pulumi.Input<string>;
-    /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     */
-    roleNames: pulumi.Input<pulumi.Input<string>[]>;
-}
-
 export interface ProjectApiKeyProjectAssignment {
     /**
      * Project ID to assign to Access Key
@@ -2094,6 +2069,11 @@ export interface ProjectApiKeyProjectAssignment {
      * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface ProjectIpAccessListTimeouts {
+    delete?: pulumi.Input<string>;
+    read?: pulumi.Input<string>;
 }
 
 export interface ProjectLimit {
@@ -2125,10 +2105,6 @@ export interface ProjectTeam {
 
 export interface ProviderAssumeRole {
     duration?: pulumi.Input<string>;
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
-     */
-    durationSeconds?: pulumi.Input<number>;
     externalId?: pulumi.Input<string>;
     policy?: pulumi.Input<string>;
     policyArns?: pulumi.Input<pulumi.Input<string>[]>;
@@ -2171,6 +2147,19 @@ export interface SearchIndexSynonym {
 export interface ServerlessInstanceLink {
     href?: pulumi.Input<string>;
     rel?: pulumi.Input<string>;
+}
+
+export interface ServerlessInstanceTag {
+    /**
+     * Constant that defines the set of the tag.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * Variable that belongs to the set of the tag.
+     *
+     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     */
+    value: pulumi.Input<string>;
 }
 
 export interface X509AuthenticationDatabaseUserCertificate {

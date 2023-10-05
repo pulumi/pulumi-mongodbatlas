@@ -48,7 +48,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
         /// </summary>
-        public readonly string? MicrosoftTeamsWebhookUrl;
+        public readonly string MicrosoftTeamsWebhookUrl;
         /// <summary>
         /// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         /// </summary>
@@ -101,11 +101,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Authentication secret for the `WEBHOOK` notifications type.
         /// </summary>
-        public readonly string? WebhookSecret;
+        public readonly string WebhookSecret;
         /// <summary>
         /// Target URL  for the `WEBHOOK` notifications type.
         /// </summary>
-        public readonly string? WebhookUrl;
+        public readonly string WebhookUrl;
 
         [OutputConstructor]
         private GetAlertConfigurationNotificationResult(
@@ -125,7 +125,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             int intervalMin,
 
-            string? microsoftTeamsWebhookUrl,
+            string microsoftTeamsWebhookUrl,
 
             string mobileNumber,
 
@@ -151,9 +151,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string victorOpsRoutingKey,
 
-            string? webhookSecret,
+            string webhookSecret,
 
-            string? webhookUrl)
+            string webhookUrl)
         {
             ApiToken = apiToken;
             ChannelName = channelName;

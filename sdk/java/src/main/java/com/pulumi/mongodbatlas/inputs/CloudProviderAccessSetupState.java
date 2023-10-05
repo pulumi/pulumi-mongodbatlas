@@ -9,7 +9,6 @@ import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAwsConfigArgs;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -18,25 +17,6 @@ import javax.annotation.Nullable;
 public final class CloudProviderAccessSetupState extends com.pulumi.resources.ResourceArgs {
 
     public static final CloudProviderAccessSetupState Empty = new CloudProviderAccessSetupState();
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config */
-    @Import(name="aws")
-    private @Nullable Output<Map<String,String>> aws;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config */
-    public Optional<Output<Map<String,String>>> aws() {
-        return Optional.ofNullable(this.aws);
-    }
 
     @Import(name="awsConfigs")
     private @Nullable Output<List<CloudProviderAccessSetupAwsConfigArgs>> awsConfigs;
@@ -90,7 +70,6 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
     private CloudProviderAccessSetupState() {}
 
     private CloudProviderAccessSetupState(CloudProviderAccessSetupState $) {
-        this.aws = $.aws;
         this.awsConfigs = $.awsConfigs;
         this.azureConfigs = $.azureConfigs;
         this.createdDate = $.createdDate;
@@ -116,31 +95,6 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
 
         public Builder(CloudProviderAccessSetupState defaults) {
             $ = new CloudProviderAccessSetupState(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config */
-        public Builder aws(@Nullable Output<Map<String,String>> aws) {
-            $.aws = aws;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config */
-        public Builder aws(Map<String,String> aws) {
-            return aws(Output.of(aws));
         }
 
         public Builder awsConfigs(@Nullable Output<List<CloudProviderAccessSetupAwsConfigArgs>> awsConfigs) {

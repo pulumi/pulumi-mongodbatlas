@@ -19,61 +19,6 @@ import (
 // ## Example Usage
 //
 // ### S
-// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			user, err := mongodbatlas.NewDatabaseUser(ctx, "user", &mongodbatlas.DatabaseUserArgs{
-//				ProjectId:    pulumi.String("<PROJECT-ID>"),
-//				Username:     pulumi.String("myUsername"),
-//				X509Type:     pulumi.String("MANAGED"),
-//				DatabaseName: pulumi.String("$external"),
-//				Roles: mongodbatlas.DatabaseUserRoleArray{
-//					&mongodbatlas.DatabaseUserRoleArgs{
-//						RoleName:     pulumi.String("atlasAdmin"),
-//						DatabaseName: pulumi.String("admin"),
-//					},
-//				},
-//				Labels: mongodbatlas.DatabaseUserLabelArray{
-//					&mongodbatlas.DatabaseUserLabelArgs{
-//						Key:   pulumi.String("My Key"),
-//						Value: pulumi.String("My Value"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			testX509AuthenticationDatabaseUser, err := mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "testX509AuthenticationDatabaseUser", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
-//				ProjectId:             user.ProjectId,
-//				Username:              user.Username,
-//				MonthsUntilExpiration: pulumi.Int(2),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = pulumi.All(testX509AuthenticationDatabaseUser.ProjectId, testX509AuthenticationDatabaseUser.Username).ApplyT(func(_args []interface{}) (mongodbatlas.Get509AuthenticationDatabaseUserResult, error) {
-//				projectId := _args[0].(string)
-//				username := _args[1].(*string)
-//				return mongodbatlas.Get509AuthenticationDatabaseUserOutput(ctx, mongodbatlas.Get509AuthenticationDatabaseUserOutputArgs{
-//					ProjectId: projectId,
-//					Username:  username,
-//				}, nil), nil
-//			}).(mongodbatlas.Get509AuthenticationDatabaseUserResultOutput)
-//			return nil
-//		})
-//	}
-//
-// ```
 // ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
 // ```go
 // package main

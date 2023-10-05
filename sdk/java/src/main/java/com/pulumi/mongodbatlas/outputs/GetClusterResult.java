@@ -10,12 +10,12 @@ import com.pulumi.mongodbatlas.outputs.GetClusterConnectionString;
 import com.pulumi.mongodbatlas.outputs.GetClusterLabel;
 import com.pulumi.mongodbatlas.outputs.GetClusterReplicationSpec;
 import com.pulumi.mongodbatlas.outputs.GetClusterSnapshotBackupPolicy;
+import com.pulumi.mongodbatlas.outputs.GetClusterTag;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 @CustomType
@@ -51,15 +51,6 @@ public final class GetClusterResult {
      */
     private Boolean backupEnabled;
     /**
-     * @return Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-     * 
-     * @deprecated
-     * use bi_connector_config instead
-     * 
-     */
-    @Deprecated /* use bi_connector_config instead */
-    private Map<String,String> biConnector;
-    /**
      * @return Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      * 
      */
@@ -94,6 +85,14 @@ public final class GetClusterResult {
      * 
      */
     private String id;
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     private List<GetClusterLabel> labels;
     /**
      * @return Indicates the version of the cluster to deploy.
@@ -151,10 +150,6 @@ public final class GetClusterResult {
      * 
      */
     private String providerAutoScalingComputeMinInstanceSize;
-    /**
-     * @return **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
-     * 
-     */
     private Boolean providerBackupEnabled;
     /**
      * @return Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
@@ -225,6 +220,11 @@ public final class GetClusterResult {
      */
     private String stateName;
     /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    private List<GetClusterTag> tags;
+    /**
      * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
@@ -279,17 +279,6 @@ public final class GetClusterResult {
         return this.backupEnabled;
     }
     /**
-     * @return Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-     * 
-     * @deprecated
-     * use bi_connector_config instead
-     * 
-     */
-    @Deprecated /* use bi_connector_config instead */
-    public Map<String,String> biConnector() {
-        return this.biConnector;
-    }
-    /**
      * @return Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      * 
      */
@@ -338,6 +327,14 @@ public final class GetClusterResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     public List<GetClusterLabel> labels() {
         return this.labels;
     }
@@ -421,10 +418,6 @@ public final class GetClusterResult {
     public String providerAutoScalingComputeMinInstanceSize() {
         return this.providerAutoScalingComputeMinInstanceSize;
     }
-    /**
-     * @return **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
-     * 
-     */
     public Boolean providerBackupEnabled() {
         return this.providerBackupEnabled;
     }
@@ -523,6 +516,13 @@ public final class GetClusterResult {
         return this.stateName;
     }
     /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    public List<GetClusterTag> tags() {
+        return this.tags;
+    }
+    /**
      * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
@@ -552,7 +552,6 @@ public final class GetClusterResult {
         private Boolean autoScalingDiskGbEnabled;
         private String backingProviderName;
         private Boolean backupEnabled;
-        private Map<String,String> biConnector;
         private List<GetClusterBiConnectorConfig> biConnectorConfigs;
         private String clusterType;
         private List<GetClusterConnectionString> connectionStrings;
@@ -587,6 +586,7 @@ public final class GetClusterResult {
         private List<GetClusterSnapshotBackupPolicy> snapshotBackupPolicies;
         private String srvAddress;
         private String stateName;
+        private List<GetClusterTag> tags;
         private Boolean terminationProtectionEnabled;
         private String versionReleaseSystem;
         public Builder() {}
@@ -598,7 +598,6 @@ public final class GetClusterResult {
     	      this.autoScalingDiskGbEnabled = defaults.autoScalingDiskGbEnabled;
     	      this.backingProviderName = defaults.backingProviderName;
     	      this.backupEnabled = defaults.backupEnabled;
-    	      this.biConnector = defaults.biConnector;
     	      this.biConnectorConfigs = defaults.biConnectorConfigs;
     	      this.clusterType = defaults.clusterType;
     	      this.connectionStrings = defaults.connectionStrings;
@@ -633,6 +632,7 @@ public final class GetClusterResult {
     	      this.snapshotBackupPolicies = defaults.snapshotBackupPolicies;
     	      this.srvAddress = defaults.srvAddress;
     	      this.stateName = defaults.stateName;
+    	      this.tags = defaults.tags;
     	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
     	      this.versionReleaseSystem = defaults.versionReleaseSystem;
         }
@@ -668,11 +668,6 @@ public final class GetClusterResult {
         @CustomType.Setter
         public Builder backupEnabled(Boolean backupEnabled) {
             this.backupEnabled = Objects.requireNonNull(backupEnabled);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder biConnector(Map<String,String> biConnector) {
-            this.biConnector = Objects.requireNonNull(biConnector);
             return this;
         }
         @CustomType.Setter
@@ -861,6 +856,14 @@ public final class GetClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tags(List<GetClusterTag> tags) {
+            this.tags = Objects.requireNonNull(tags);
+            return this;
+        }
+        public Builder tags(GetClusterTag... tags) {
+            return tags(List.of(tags));
+        }
+        @CustomType.Setter
         public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
             this.terminationProtectionEnabled = Objects.requireNonNull(terminationProtectionEnabled);
             return this;
@@ -878,7 +881,6 @@ public final class GetClusterResult {
             o.autoScalingDiskGbEnabled = autoScalingDiskGbEnabled;
             o.backingProviderName = backingProviderName;
             o.backupEnabled = backupEnabled;
-            o.biConnector = biConnector;
             o.biConnectorConfigs = biConnectorConfigs;
             o.clusterType = clusterType;
             o.connectionStrings = connectionStrings;
@@ -913,6 +915,7 @@ public final class GetClusterResult {
             o.snapshotBackupPolicies = snapshotBackupPolicies;
             o.srvAddress = srvAddress;
             o.stateName = stateName;
+            o.tags = tags;
             o.terminationProtectionEnabled = terminationProtectionEnabled;
             o.versionReleaseSystem = versionReleaseSystem;
             return o;

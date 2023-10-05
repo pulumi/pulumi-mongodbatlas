@@ -105,9 +105,6 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetAlertConfigurationsResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsListOptionResult> ListOptions;
         public readonly ImmutableArray<string> OutputTypes;

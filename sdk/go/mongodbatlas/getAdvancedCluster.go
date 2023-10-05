@@ -57,7 +57,9 @@ type LookupAdvancedClusterResult struct {
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+	//
+	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
 	Labels []GetAdvancedClusterLabel `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -69,12 +71,14 @@ type LookupAdvancedClusterResult struct {
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
-	// Configuration for cluster regions and the hardware provisioned in them. See below
+	// Configuration for cluster regions and the hardware provisioned in them. See below.
 	ReplicationSpecs []GetAdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
 	// Certificate Authority that MongoDB Atlas clusters use.
 	RootCertType string `pulumi:"rootCertType"`
 	// Current state of the cluster. The possible states are:
 	StateName string `pulumi:"stateName"`
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+	Tags []GetAdvancedClusterTag `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster.
@@ -174,7 +178,9 @@ func (o LookupAdvancedClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+//
+// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
 func (o LookupAdvancedClusterResultOutput) Labels() GetAdvancedClusterLabelArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterLabel { return v.Labels }).(GetAdvancedClusterLabelArrayOutput)
 }
@@ -207,7 +213,7 @@ func (o LookupAdvancedClusterResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Configuration for cluster regions and the hardware provisioned in them. See below
+// Configuration for cluster regions and the hardware provisioned in them. See below.
 func (o LookupAdvancedClusterResultOutput) ReplicationSpecs() GetAdvancedClusterReplicationSpecArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterReplicationSpec { return v.ReplicationSpecs }).(GetAdvancedClusterReplicationSpecArrayOutput)
 }
@@ -220,6 +226,11 @@ func (o LookupAdvancedClusterResultOutput) RootCertType() pulumi.StringOutput {
 // Current state of the cluster. The possible states are:
 func (o LookupAdvancedClusterResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+func (o LookupAdvancedClusterResultOutput) Tags() GetAdvancedClusterTagArrayOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterTag { return v.Tags }).(GetAdvancedClusterTagArrayOutput)
 }
 
 // Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.

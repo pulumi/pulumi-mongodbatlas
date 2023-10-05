@@ -6,11 +6,11 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterAdvancedConfigurationArgs;
-import com.pulumi.mongodbatlas.inputs.AdvancedClusterBiConnectorArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterBiConnectorConfigArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterConnectionStringArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterLabelArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+import com.pulumi.mongodbatlas.inputs.AdvancedClusterTagArgs;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
@@ -60,25 +60,6 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<Boolean>> backupEnabled() {
         return Optional.ofNullable(this.backupEnabled);
-    }
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
-    @Import(name="biConnector")
-    private @Nullable Output<AdvancedClusterBiConnectorArgs> biConnector;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
-    public Optional<Output<AdvancedClusterBiConnectorArgs>> biConnector() {
-        return Optional.ofNullable(this.biConnector);
     }
 
     /**
@@ -181,16 +162,24 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     @Import(name="labels")
     private @Nullable Output<List<AdvancedClusterLabelArgs>> labels;
 
     /**
-     * @return Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     public Optional<Output<List<AdvancedClusterLabelArgs>>> labels() {
         return Optional.ofNullable(this.labels);
     }
@@ -350,6 +339,21 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    @Import(name="tags")
+    private @Nullable Output<List<AdvancedClusterTagArgs>> tags;
+
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    public Optional<Output<List<AdvancedClusterTagArgs>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
+    /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
@@ -384,7 +388,6 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
     private AdvancedClusterState(AdvancedClusterState $) {
         this.advancedConfiguration = $.advancedConfiguration;
         this.backupEnabled = $.backupEnabled;
-        this.biConnector = $.biConnector;
         this.biConnectorConfig = $.biConnectorConfig;
         this.clusterId = $.clusterId;
         this.clusterType = $.clusterType;
@@ -403,6 +406,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         this.retainBackupsEnabled = $.retainBackupsEnabled;
         this.rootCertType = $.rootCertType;
         this.stateName = $.stateName;
+        this.tags = $.tags;
         this.terminationProtectionEnabled = $.terminationProtectionEnabled;
         this.versionReleaseSystem = $.versionReleaseSystem;
     }
@@ -469,31 +473,6 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          */
         public Builder backupEnabled(Boolean backupEnabled) {
             return backupEnabled(Output.of(backupEnabled));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
-        public Builder biConnector(@Nullable Output<AdvancedClusterBiConnectorArgs> biConnector) {
-            $.biConnector = biConnector;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
-        public Builder biConnector(AdvancedClusterBiConnectorArgs biConnector) {
-            return biConnector(Output.of(biConnector));
         }
 
         /**
@@ -644,32 +623,44 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param labels Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+         * @param labels Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
          * 
          * @return builder
          * 
+         * @deprecated
+         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * 
          */
+        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
         public Builder labels(@Nullable Output<List<AdvancedClusterLabelArgs>> labels) {
             $.labels = labels;
             return this;
         }
 
         /**
-         * @param labels Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+         * @param labels Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
          * 
          * @return builder
          * 
+         * @deprecated
+         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * 
          */
+        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
         public Builder labels(List<AdvancedClusterLabelArgs> labels) {
             return labels(Output.of(labels));
         }
 
         /**
-         * @param labels Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+         * @param labels Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
          * 
          * @return builder
          * 
+         * @deprecated
+         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * 
          */
+        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
         public Builder labels(AdvancedClusterLabelArgs... labels) {
             return labels(List.of(labels));
         }
@@ -892,6 +883,37 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          */
         public Builder stateName(String stateName) {
             return stateName(Output.of(stateName));
+        }
+
+        /**
+         * @param tags Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(@Nullable Output<List<AdvancedClusterTagArgs>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        /**
+         * @param tags Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(List<AdvancedClusterTagArgs> tags) {
+            return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tags Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(AdvancedClusterTagArgs... tags) {
+            return tags(List.of(tags));
         }
 
         /**

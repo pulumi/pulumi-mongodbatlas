@@ -185,8 +185,8 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// Type of alert notification.
         /// Accepted values are:
         /// </summary>
-        [Input("typeName")]
-        public Input<string>? TypeName { get; set; }
+        [Input("typeName", required: true)]
+        public Input<string> TypeName { get; set; } = null!;
 
         /// <summary>
         /// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.

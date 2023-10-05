@@ -24,6 +24,7 @@ class ServerlessInstanceArgs:
                  links: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a ServerlessInstance resource.
@@ -34,6 +35,7 @@ class ServerlessInstanceArgs:
         :param pulumi.Input[bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         :param pulumi.Input[str] name: Human-readable label that identifies the serverless instance.
         :param pulumi.Input[str] state_name: Stage of deployment of this serverless instance when the resource made its request.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         ServerlessInstanceArgs._configure(
@@ -46,6 +48,7 @@ class ServerlessInstanceArgs:
             links=links,
             name=name,
             state_name=state_name,
+            tags=tags,
             termination_protection_enabled=termination_protection_enabled,
         )
     @staticmethod
@@ -59,6 +62,7 @@ class ServerlessInstanceArgs:
              links: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
              name: Optional[pulumi.Input[str]] = None,
              state_name: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]] = None,
              termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
         _setter("project_id", project_id)
@@ -73,6 +77,8 @@ class ServerlessInstanceArgs:
             _setter("name", name)
         if state_name is not None:
             _setter("state_name", state_name)
+        if tags is not None:
+            _setter("tags", tags)
         if termination_protection_enabled is not None:
             _setter("termination_protection_enabled", termination_protection_enabled)
 
@@ -170,6 +176,18 @@ class ServerlessInstanceArgs:
         pulumi.set(self, "state_name", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="terminationProtectionEnabled")
     def termination_protection_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -197,6 +215,7 @@ class _ServerlessInstanceState:
                  provider_settings_provider_name: Optional[pulumi.Input[str]] = None,
                  provider_settings_region_name: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering ServerlessInstance resources.
@@ -211,6 +230,7 @@ class _ServerlessInstanceState:
         :param pulumi.Input[str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         :param pulumi.Input[str] state_name: Stage of deployment of this serverless instance when the resource made its request.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         _ServerlessInstanceState._configure(
@@ -227,6 +247,7 @@ class _ServerlessInstanceState:
             provider_settings_provider_name=provider_settings_provider_name,
             provider_settings_region_name=provider_settings_region_name,
             state_name=state_name,
+            tags=tags,
             termination_protection_enabled=termination_protection_enabled,
         )
     @staticmethod
@@ -244,6 +265,7 @@ class _ServerlessInstanceState:
              provider_settings_provider_name: Optional[pulumi.Input[str]] = None,
              provider_settings_region_name: Optional[pulumi.Input[str]] = None,
              state_name: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]] = None,
              termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
         if connection_strings_private_endpoint_srvs is not None:
@@ -270,6 +292,8 @@ class _ServerlessInstanceState:
             _setter("provider_settings_region_name", provider_settings_region_name)
         if state_name is not None:
             _setter("state_name", state_name)
+        if tags is not None:
+            _setter("tags", tags)
         if termination_protection_enabled is not None:
             _setter("termination_protection_enabled", termination_protection_enabled)
 
@@ -415,6 +439,18 @@ class _ServerlessInstanceState:
         pulumi.set(self, "state_name", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="terminationProtectionEnabled")
     def termination_protection_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -440,6 +476,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  provider_settings_provider_name: Optional[pulumi.Input[str]] = None,
                  provider_settings_region_name: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerlessInstanceTagArgs']]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -462,6 +499,7 @@ class ServerlessInstance(pulumi.CustomResource):
         :param pulumi.Input[str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         :param pulumi.Input[str] state_name: Stage of deployment of this serverless instance when the resource made its request.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerlessInstanceTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         ...
@@ -508,6 +546,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  provider_settings_provider_name: Optional[pulumi.Input[str]] = None,
                  provider_settings_region_name: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerlessInstanceTagArgs']]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -534,6 +573,7 @@ class ServerlessInstance(pulumi.CustomResource):
                 raise TypeError("Missing required property 'provider_settings_region_name'")
             __props__.__dict__["provider_settings_region_name"] = provider_settings_region_name
             __props__.__dict__["state_name"] = state_name
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
             __props__.__dict__["connection_strings_private_endpoint_srvs"] = None
             __props__.__dict__["connection_strings_standard_srv"] = None
@@ -561,6 +601,7 @@ class ServerlessInstance(pulumi.CustomResource):
             provider_settings_provider_name: Optional[pulumi.Input[str]] = None,
             provider_settings_region_name: Optional[pulumi.Input[str]] = None,
             state_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerlessInstanceTagArgs']]]]] = None,
             termination_protection_enabled: Optional[pulumi.Input[bool]] = None) -> 'ServerlessInstance':
         """
         Get an existing ServerlessInstance resource's state with the given name, id, and optional extra
@@ -580,6 +621,7 @@ class ServerlessInstance(pulumi.CustomResource):
         :param pulumi.Input[str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         :param pulumi.Input[str] state_name: Stage of deployment of this serverless instance when the resource made its request.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerlessInstanceTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -598,6 +640,7 @@ class ServerlessInstance(pulumi.CustomResource):
         __props__.__dict__["provider_settings_provider_name"] = provider_settings_provider_name
         __props__.__dict__["provider_settings_region_name"] = provider_settings_region_name
         __props__.__dict__["state_name"] = state_name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
         return ServerlessInstance(resource_name, opts=opts, __props__=__props__)
 
@@ -693,6 +736,14 @@ class ServerlessInstance(pulumi.CustomResource):
         Stage of deployment of this serverless instance when the resource made its request.
         """
         return pulumi.get(self, "state_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ServerlessInstanceTag']]]:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="terminationProtectionEnabled")

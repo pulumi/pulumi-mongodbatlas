@@ -300,16 +300,16 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
      * Accepted values are:
      * 
      */
-    @Import(name="typeName")
-    private @Nullable Output<String> typeName;
+    @Import(name="typeName", required=true)
+    private Output<String> typeName;
 
     /**
      * @return Type of alert notification.
      * Accepted values are:
      * 
      */
-    public Optional<Output<String>> typeName() {
-        return Optional.ofNullable(this.typeName);
+    public Output<String> typeName() {
+        return this.typeName;
     }
 
     /**
@@ -840,7 +840,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
          * @return builder
          * 
          */
-        public Builder typeName(@Nullable Output<String> typeName) {
+        public Builder typeName(Output<String> typeName) {
             $.typeName = typeName;
             return this;
         }
@@ -962,6 +962,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         public AlertConfigurationNotificationArgs build() {
+            $.typeName = Objects.requireNonNull($.typeName, "expected parameter 'typeName' to be non-null");
             return $;
         }
     }

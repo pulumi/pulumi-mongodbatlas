@@ -20,15 +20,15 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
      * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      * 
      */
-    @Import(name="metricName")
-    private @Nullable Output<String> metricName;
+    @Import(name="metricName", required=true)
+    private Output<String> metricName;
 
     /**
      * @return Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      * 
      */
-    public Optional<Output<String>> metricName() {
-        return Optional.ofNullable(this.metricName);
+    public Output<String> metricName() {
+        return this.metricName;
     }
 
     /**
@@ -129,7 +129,7 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
          * @return builder
          * 
          */
-        public Builder metricName(@Nullable Output<String> metricName) {
+        public Builder metricName(Output<String> metricName) {
             $.metricName = metricName;
             return this;
         }
@@ -233,6 +233,7 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
         }
 
         public AlertConfigurationMetricThresholdConfigArgs build() {
+            $.metricName = Objects.requireNonNull($.metricName, "expected parameter 'metricName' to be non-null");
             return $;
         }
     }

@@ -37,7 +37,6 @@ type LookupAlertConfigurationsArgs struct {
 
 // A collection of values returned by getAlertConfigurations.
 type LookupAlertConfigurationsResult struct {
-	// The provider-assigned unique ID for this managed resource.
 	Id          string                             `pulumi:"id"`
 	ListOptions []GetAlertConfigurationsListOption `pulumi:"listOptions"`
 	OutputTypes []string                           `pulumi:"outputTypes"`
@@ -100,7 +99,6 @@ func (o LookupAlertConfigurationsResultOutput) ToOutput(ctx context.Context) pul
 	}
 }
 
-// The provider-assigned unique ID for this managed resource.
 func (o LookupAlertConfigurationsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAlertConfigurationsResult) string { return v.Id }).(pulumi.StringOutput)
 }

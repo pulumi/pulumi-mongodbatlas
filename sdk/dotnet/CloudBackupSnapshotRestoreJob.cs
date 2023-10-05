@@ -40,9 +40,6 @@ namespace Pulumi.Mongodbatlas
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
-        [Output("deliveryType")]
-        public Output<ImmutableDictionary<string, string>?> DeliveryType { get; private set; } = null!;
-
         /// <summary>
         /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         /// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -157,15 +154,6 @@ namespace Pulumi.Mongodbatlas
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
 
-        [Input("deliveryType")]
-        private InputMap<string>? _deliveryType;
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config")]
-        public InputMap<string> DeliveryType
-        {
-            get => _deliveryType ?? (_deliveryType = new InputMap<string>());
-            set => _deliveryType = value;
-        }
-
         /// <summary>
         /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         /// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -217,15 +205,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
-
-        [Input("deliveryType")]
-        private InputMap<string>? _deliveryType;
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config")]
-        public InputMap<string> DeliveryType
-        {
-            get => _deliveryType ?? (_deliveryType = new InputMap<string>());
-            set => _deliveryType = value;
-        }
 
         /// <summary>
         /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.

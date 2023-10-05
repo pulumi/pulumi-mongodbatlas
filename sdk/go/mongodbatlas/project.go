@@ -53,14 +53,6 @@ import (
 //						},
 //					},
 //				},
-//				ApiKeys: mongodbatlas.ProjectApiKeyTypeArray{
-//					&mongodbatlas.ProjectApiKeyTypeArgs{
-//						ApiKeyId: pulumi.String("61003b299dda8d54a9d7d10c"),
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_READ_ONLY"),
-//						},
-//					},
-//				},
 //				Limits: mongodbatlas.ProjectLimitArray{
 //					&mongodbatlas.ProjectLimitArgs{
 //						Name:  pulumi.String("atlas.project.deployment.clusters"),
@@ -101,8 +93,6 @@ import (
 type Project struct {
 	pulumi.CustomResourceState
 
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-	ApiKeys ProjectApiKeyTypeArrayOutput `pulumi:"apiKeys"`
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount pulumi.IntOutput `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
@@ -127,10 +117,10 @@ type Project struct {
 	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId pulumi.StringPtrOutput `pulumi:"projectOwnerId"`
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
-	RegionUsageRestrictions pulumi.StringOutput    `pulumi:"regionUsageRestrictions"`
+	RegionUsageRestrictions pulumi.StringPtrOutput `pulumi:"regionUsageRestrictions"`
 	Teams                   ProjectTeamArrayOutput `pulumi:"teams"`
 	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
-	WithDefaultAlertsSettings pulumi.BoolPtrOutput `pulumi:"withDefaultAlertsSettings"`
+	WithDefaultAlertsSettings pulumi.BoolOutput `pulumi:"withDefaultAlertsSettings"`
 }
 
 // NewProject registers a new resource with the given unique name, arguments, and options.
@@ -166,8 +156,6 @@ func GetProject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Project resources.
 type projectState struct {
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-	ApiKeys []ProjectApiKeyType `pulumi:"apiKeys"`
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount *int `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
@@ -199,8 +187,6 @@ type projectState struct {
 }
 
 type ProjectState struct {
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-	ApiKeys ProjectApiKeyTypeArrayInput
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount pulumi.IntPtrInput
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
@@ -236,8 +222,6 @@ func (ProjectState) ElementType() reflect.Type {
 }
 
 type projectArgs struct {
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-	ApiKeys []ProjectApiKeyType `pulumi:"apiKeys"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled *bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
@@ -266,8 +250,6 @@ type projectArgs struct {
 
 // The set of arguments for constructing a Project resource.
 type ProjectArgs struct {
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-	ApiKeys ProjectApiKeyTypeArrayInput
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
@@ -405,11 +387,6 @@ func (o ProjectOutput) ToOutput(ctx context.Context) pulumix.Output[*Project] {
 	}
 }
 
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-func (o ProjectOutput) ApiKeys() ProjectApiKeyTypeArrayOutput {
-	return o.ApplyT(func(v *Project) ProjectApiKeyTypeArrayOutput { return v.ApiKeys }).(ProjectApiKeyTypeArrayOutput)
-}
-
 // The number of Atlas clusters deployed in the project..
 func (o ProjectOutput) ClusterCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Project) pulumi.IntOutput { return v.ClusterCount }).(pulumi.IntOutput)
@@ -470,8 +447,8 @@ func (o ProjectOutput) ProjectOwnerId() pulumi.StringPtrOutput {
 }
 
 // Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
-func (o ProjectOutput) RegionUsageRestrictions() pulumi.StringOutput {
-	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.RegionUsageRestrictions }).(pulumi.StringOutput)
+func (o ProjectOutput) RegionUsageRestrictions() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringPtrOutput { return v.RegionUsageRestrictions }).(pulumi.StringPtrOutput)
 }
 
 func (o ProjectOutput) Teams() ProjectTeamArrayOutput {
@@ -479,8 +456,8 @@ func (o ProjectOutput) Teams() ProjectTeamArrayOutput {
 }
 
 // It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
-func (o ProjectOutput) WithDefaultAlertsSettings() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Project) pulumi.BoolPtrOutput { return v.WithDefaultAlertsSettings }).(pulumi.BoolPtrOutput)
+func (o ProjectOutput) WithDefaultAlertsSettings() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.WithDefaultAlertsSettings }).(pulumi.BoolOutput)
 }
 
 type ProjectArrayOutput struct{ *pulumi.OutputState }

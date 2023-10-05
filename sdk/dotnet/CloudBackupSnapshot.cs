@@ -10,6 +10,55 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
+    /// On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
+    /// 
+    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    /// 
+    /// &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it's taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myCluster = new Mongodbatlas.Cluster("myCluster", new()
+    ///     {
+    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         ProviderName = "AWS",
+    ///         ProviderRegionName = "EU_WEST_2",
+    ///         ProviderInstanceSizeName = "M10",
+    ///         CloudBackup = true,
+    ///     });
+    /// 
+    ///     // enable cloud backup snapshots
+    ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         Description = "myDescription",
+    ///         RetentionInDays = 1,
+    ///     });
+    /// 
+    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", new()
+    ///     {
+    ///         ProjectId = testCloudBackupSnapshot.ProjectId,
+    ///         ClusterName = testCloudBackupSnapshot.ClusterName,
+    ///         SnapshotId = testCloudBackupSnapshot.SnapshotId,
+    ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
+    ///         {
+    ///             Download = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.

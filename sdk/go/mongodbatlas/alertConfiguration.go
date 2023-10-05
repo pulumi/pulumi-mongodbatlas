@@ -212,18 +212,12 @@ type AlertConfiguration struct {
 	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
 	//
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
-	EventType pulumi.StringOutput                  `pulumi:"eventType"`
-	Matchers  AlertConfigurationMatcherArrayOutput `pulumi:"matchers"`
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-	MetricThreshold       pulumi.StringMapOutput                           `pulumi:"metricThreshold"`
+	EventType             pulumi.StringOutput                              `pulumi:"eventType"`
+	Matchers              AlertConfigurationMatcherArrayOutput             `pulumi:"matchers"`
 	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrOutput `pulumi:"metricThresholdConfig"`
 	Notifications         AlertConfigurationNotificationArrayOutput        `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
-	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Threshold value outside of which an alert will be triggered.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-	Threshold       pulumi.StringMapOutput                     `pulumi:"threshold"`
+	ProjectId       pulumi.StringOutput                        `pulumi:"projectId"`
 	ThresholdConfig AlertConfigurationThresholdConfigPtrOutput `pulumi:"thresholdConfig"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated pulumi.StringOutput `pulumi:"updated"`
@@ -238,9 +232,6 @@ func NewAlertConfiguration(ctx *pulumi.Context,
 
 	if args.EventType == nil {
 		return nil, errors.New("invalid value for required argument 'EventType'")
-	}
-	if args.Notifications == nil {
-		return nil, errors.New("invalid value for required argument 'Notifications'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -279,18 +270,12 @@ type alertConfigurationState struct {
 	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
 	//
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
-	EventType *string                     `pulumi:"eventType"`
-	Matchers  []AlertConfigurationMatcher `pulumi:"matchers"`
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-	MetricThreshold       map[string]string                        `pulumi:"metricThreshold"`
+	EventType             *string                                  `pulumi:"eventType"`
+	Matchers              []AlertConfigurationMatcher              `pulumi:"matchers"`
 	MetricThresholdConfig *AlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfig"`
 	Notifications         []AlertConfigurationNotification         `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
-	ProjectId *string `pulumi:"projectId"`
-	// Threshold value outside of which an alert will be triggered.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-	Threshold       map[string]string                  `pulumi:"threshold"`
+	ProjectId       *string                            `pulumi:"projectId"`
 	ThresholdConfig *AlertConfigurationThresholdConfig `pulumi:"thresholdConfig"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated *string `pulumi:"updated"`
@@ -308,18 +293,12 @@ type AlertConfigurationState struct {
 	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
 	//
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
-	EventType pulumi.StringPtrInput
-	Matchers  AlertConfigurationMatcherArrayInput
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-	MetricThreshold       pulumi.StringMapInput
+	EventType             pulumi.StringPtrInput
+	Matchers              AlertConfigurationMatcherArrayInput
 	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrInput
 	Notifications         AlertConfigurationNotificationArrayInput
 	// The ID of the project where the alert configuration will create.
-	ProjectId pulumi.StringPtrInput
-	// Threshold value outside of which an alert will be triggered.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-	Threshold       pulumi.StringMapInput
+	ProjectId       pulumi.StringPtrInput
 	ThresholdConfig AlertConfigurationThresholdConfigPtrInput
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated pulumi.StringPtrInput
@@ -337,18 +316,12 @@ type alertConfigurationArgs struct {
 	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
 	//
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
-	EventType string                      `pulumi:"eventType"`
-	Matchers  []AlertConfigurationMatcher `pulumi:"matchers"`
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-	MetricThreshold       map[string]string                        `pulumi:"metricThreshold"`
+	EventType             string                                   `pulumi:"eventType"`
+	Matchers              []AlertConfigurationMatcher              `pulumi:"matchers"`
 	MetricThresholdConfig *AlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfig"`
 	Notifications         []AlertConfigurationNotification         `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
-	ProjectId string `pulumi:"projectId"`
-	// Threshold value outside of which an alert will be triggered.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-	Threshold       map[string]string                  `pulumi:"threshold"`
+	ProjectId       string                             `pulumi:"projectId"`
 	ThresholdConfig *AlertConfigurationThresholdConfig `pulumi:"thresholdConfig"`
 }
 
@@ -361,18 +334,12 @@ type AlertConfigurationArgs struct {
 	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
 	//
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
-	EventType pulumi.StringInput
-	Matchers  AlertConfigurationMatcherArrayInput
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-	MetricThreshold       pulumi.StringMapInput
+	EventType             pulumi.StringInput
+	Matchers              AlertConfigurationMatcherArrayInput
 	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrInput
 	Notifications         AlertConfigurationNotificationArrayInput
 	// The ID of the project where the alert configuration will create.
-	ProjectId pulumi.StringInput
-	// Threshold value outside of which an alert will be triggered.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-	Threshold       pulumi.StringMapInput
+	ProjectId       pulumi.StringInput
 	ThresholdConfig AlertConfigurationThresholdConfigPtrInput
 }
 
@@ -515,11 +482,6 @@ func (o AlertConfigurationOutput) Matchers() AlertConfigurationMatcherArrayOutpu
 	return o.ApplyT(func(v *AlertConfiguration) AlertConfigurationMatcherArrayOutput { return v.Matchers }).(AlertConfigurationMatcherArrayOutput)
 }
 
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-func (o AlertConfigurationOutput) MetricThreshold() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *AlertConfiguration) pulumi.StringMapOutput { return v.MetricThreshold }).(pulumi.StringMapOutput)
-}
-
 func (o AlertConfigurationOutput) MetricThresholdConfig() AlertConfigurationMetricThresholdConfigPtrOutput {
 	return o.ApplyT(func(v *AlertConfiguration) AlertConfigurationMetricThresholdConfigPtrOutput {
 		return v.MetricThresholdConfig
@@ -533,13 +495,6 @@ func (o AlertConfigurationOutput) Notifications() AlertConfigurationNotification
 // The ID of the project where the alert configuration will create.
 func (o AlertConfigurationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlertConfiguration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// Threshold value outside of which an alert will be triggered.
-//
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-func (o AlertConfigurationOutput) Threshold() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *AlertConfiguration) pulumi.StringMapOutput { return v.Threshold }).(pulumi.StringMapOutput)
 }
 
 func (o AlertConfigurationOutput) ThresholdConfig() AlertConfigurationThresholdConfigPtrOutput {

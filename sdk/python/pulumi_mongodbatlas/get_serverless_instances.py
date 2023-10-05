@@ -50,7 +50,7 @@ class GetServerlessInstancesResult:
     @pulumi.getter
     def results(self) -> Sequence['outputs.GetServerlessInstancesResultResult']:
         """
-        A list where each represents a search index.
+        A list where each result represents a Serverless Instance. To learn more, see Serverless Instance.
         """
         return pulumi.get(self, "results")
 

@@ -13,10 +13,19 @@ from . import outputs
 assumeRole: Optional[str]
 
 awsAccessKeyId: Optional[str]
+"""
+AWS API Access Key.
+"""
 
 awsSecretAccessKey: Optional[str]
+"""
+AWS API Access Secret Key.
+"""
 
 awsSessionToken: Optional[str]
+"""
+AWS Security Token Service provided session token.
+"""
 
 baseUrl: Optional[str]
 """
@@ -44,8 +53,17 @@ MongoDB Realm Base URL
 """
 
 region: Optional[str]
+"""
+Region where secret is stored as part of AWS Secret Manager.
+"""
 
 secretName: Optional[str]
+"""
+Name of secret stored in AWS Secret Manager.
+"""
 
 stsEndpoint: Optional[str]
+"""
+AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+"""
 

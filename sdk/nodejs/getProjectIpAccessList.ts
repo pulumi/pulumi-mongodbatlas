@@ -59,9 +59,6 @@ export interface GetProjectIpAccessListResult {
      * Comment to add to the access list entry.
      */
     readonly comment: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
     readonly id: string;
     readonly ipAddress: string;
     readonly projectId: string;

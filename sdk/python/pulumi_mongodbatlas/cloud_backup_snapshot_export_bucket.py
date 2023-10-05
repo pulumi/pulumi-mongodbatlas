@@ -210,6 +210,10 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        `CloudBackupSnapshotExportBucket` resource allows you to create an export snapshot bucket for the specified project.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
         ## Example Usage
 
         ```python
@@ -246,6 +250,10 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
                  args: CloudBackupSnapshotExportBucketArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `CloudBackupSnapshotExportBucket` resource allows you to create an export snapshot bucket for the specified project.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
         ## Example Usage
 
         ```python

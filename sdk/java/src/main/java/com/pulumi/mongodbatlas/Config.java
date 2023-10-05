@@ -15,12 +15,24 @@ public final class Config {
     public Optional<AssumeRole> assumeRole() {
         return Codegen.objectProp("assumeRole", AssumeRole.class).config(config).get();
     }
+/**
+ * AWS API Access Key.
+ * 
+ */
     public Optional<String> awsAccessKeyId() {
         return Codegen.stringProp("awsAccessKeyId").config(config).get();
     }
+/**
+ * AWS API Access Secret Key.
+ * 
+ */
     public Optional<String> awsSecretAccessKey() {
         return Codegen.stringProp("awsSecretAccessKey").config(config).get();
     }
+/**
+ * AWS Security Token Service provided session token.
+ * 
+ */
     public Optional<String> awsSessionToken() {
         return Codegen.stringProp("awsSessionToken").config(config).get();
     }
@@ -59,12 +71,24 @@ public final class Config {
     public Optional<String> realmBaseUrl() {
         return Codegen.stringProp("realmBaseUrl").config(config).get();
     }
+/**
+ * Region where secret is stored as part of AWS Secret Manager.
+ * 
+ */
     public Optional<String> region() {
         return Codegen.stringProp("region").config(config).get();
     }
+/**
+ * Name of secret stored in AWS Secret Manager.
+ * 
+ */
     public Optional<String> secretName() {
         return Codegen.stringProp("secretName").config(config).get();
     }
+/**
+ * AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+ * 
+ */
     public Optional<String> stsEndpoint() {
         return Codegen.stringProp("stsEndpoint").config(config).get();
     }

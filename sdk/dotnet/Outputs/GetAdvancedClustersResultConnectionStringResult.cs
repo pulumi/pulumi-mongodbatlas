@@ -13,8 +13,6 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetAdvancedClustersResultConnectionStringResult
     {
-        public readonly ImmutableDictionary<string, object> AwsPrivateLink;
-        public readonly ImmutableDictionary<string, object> AwsPrivateLinkSrv;
         public readonly string Private;
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointResult> PrivateEndpoints;
         public readonly string PrivateSrv;
@@ -23,10 +21,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetAdvancedClustersResultConnectionStringResult(
-            ImmutableDictionary<string, object> awsPrivateLink,
-
-            ImmutableDictionary<string, object> awsPrivateLinkSrv,
-
             string @private,
 
             ImmutableArray<Outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointResult> privateEndpoints,
@@ -37,8 +31,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string standardSrv)
         {
-            AwsPrivateLink = awsPrivateLink;
-            AwsPrivateLinkSrv = awsPrivateLinkSrv;
             Private = @private;
             PrivateEndpoints = privateEndpoints;
             PrivateSrv = privateSrv;

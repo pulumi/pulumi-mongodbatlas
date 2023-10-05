@@ -53,17 +53,6 @@ namespace Pulumi.Mongodbatlas
         ///                 },
         ///             },
         ///         },
-        ///         ApiKeys = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.ProjectApiKeyArgs
-        ///             {
-        ///                 ApiKeyId = "61003b299dda8d54a9d7d10c",
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_READ_ONLY",
-        ///                 },
-        ///             },
-        ///         },
         ///         Limits = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.ProjectLimitArgs
@@ -127,17 +116,6 @@ namespace Pulumi.Mongodbatlas
         ///                 {
         ///                     "GROUP_READ_ONLY",
         ///                     "GROUP_DATA_ACCESS_READ_WRITE",
-        ///                 },
-        ///             },
-        ///         },
-        ///         ApiKeys = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.ProjectApiKeyArgs
-        ///             {
-        ///                 ApiKeyId = "61003b299dda8d54a9d7d10c",
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_READ_ONLY",
         ///                 },
         ///             },
         ///         },
@@ -211,9 +189,6 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetProjectsResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly int? ItemsPerPage;
         public readonly int? PageNum;

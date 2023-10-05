@@ -78,7 +78,9 @@ export interface GetAdvancedClusterResult {
      */
     readonly id: string;
     /**
-     * Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     *
+     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
      */
     readonly labels: outputs.GetAdvancedClusterLabel[];
     /**
@@ -100,7 +102,7 @@ export interface GetAdvancedClusterResult {
     readonly pitEnabled: boolean;
     readonly projectId: string;
     /**
-     * Configuration for cluster regions and the hardware provisioned in them. See below
+     * Configuration for cluster regions and the hardware provisioned in them. See below.
      */
     readonly replicationSpecs: outputs.GetAdvancedClusterReplicationSpec[];
     /**
@@ -111,6 +113,10 @@ export interface GetAdvancedClusterResult {
      * Current state of the cluster. The possible states are:
      */
     readonly stateName: string;
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    readonly tags: outputs.GetAdvancedClusterTag[];
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */

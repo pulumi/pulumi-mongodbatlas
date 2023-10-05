@@ -20,12 +20,16 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Description of this Project API key.
      * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * 
      */
     @Import(name="description", required=true)
     private Output<String> description;
 
     /**
      * @return Description of this Project API key.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
      * 
      */
     public Output<String> description() {
@@ -54,40 +58,12 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         return this.projectId;
     }
 
-    /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
-    @Import(name="roleNames")
-    private @Nullable Output<List<String>> roleNames;
-
-    /**
-     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
-    public Optional<Output<List<String>>> roleNames() {
-        return Optional.ofNullable(this.roleNames);
-    }
-
     private ProjectApiKeyArgs() {}
 
     private ProjectApiKeyArgs(ProjectApiKeyArgs $) {
         this.description = $.description;
         this.projectAssignments = $.projectAssignments;
         this.projectId = $.projectId;
-        this.roleNames = $.roleNames;
     }
 
     public static Builder builder() {
@@ -111,6 +87,8 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param description Description of this Project API key.
          * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+         * 
          * @return builder
          * 
          */
@@ -121,6 +99,8 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param description Description of this Project API key.
+         * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 
@@ -161,55 +141,6 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
-        }
-
-        /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-         * 
-         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
-        public Builder roleNames(@Nullable Output<List<String>> roleNames) {
-            $.roleNames = roleNames;
-            return this;
-        }
-
-        /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-         * 
-         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
-        public Builder roleNames(List<String> roleNames) {
-            return roleNames(Output.of(roleNames));
-        }
-
-        /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-         * 
-         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
-        public Builder roleNames(String... roleNames) {
-            return roleNames(List.of(roleNames));
         }
 
         public ProjectApiKeyArgs build() {

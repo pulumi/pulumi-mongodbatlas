@@ -11,19 +11,19 @@ namespace Pulumi.Mongodbatlas.Outputs
 {
 
     [OutputType]
-    public sealed class GetProjectApiKeyResult
+    public sealed class GetAtlasUserLinkResult
     {
-        public readonly string ApiKeyId;
-        public readonly ImmutableArray<string> RoleNames;
+        public readonly string Href;
+        public readonly string Rel;
 
         [OutputConstructor]
-        private GetProjectApiKeyResult(
-            string apiKeyId,
+        private GetAtlasUserLinkResult(
+            string href,
 
-            ImmutableArray<string> roleNames)
+            string rel)
         {
-            ApiKeyId = apiKeyId;
-            RoleNames = roleNames;
+            Href = href;
+            Rel = rel;
         }
     }
 }

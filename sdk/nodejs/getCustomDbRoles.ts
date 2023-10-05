@@ -10,33 +10,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getCustomDbRoles` describe all Custom DB Roles. This represents a custom db roles.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
- *     username: "test-acc-username",
- *     password: "test-acc-password",
- *     projectId: "<PROJECT-ID>",
- *     databaseName: "admin",
- *     roles: [
- *         {
- *             roleName: "readWrite",
- *             databaseName: "admin",
- *         },
- *         {
- *             roleName: "atlasAdmin",
- *             databaseName: "admin",
- *         },
- *     ],
- * });
- * const testCustomDbRoles = mongodbatlas.getCustomDbRoles({
- *     projectId: mongodbatlas_custom_db_role.test.project_id,
- * });
- * ```
  */
 export function getCustomDbRoles(args: GetCustomDbRolesArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDbRolesResult> {
 
@@ -74,33 +47,6 @@ export interface GetCustomDbRolesResult {
  * `mongodbatlas.getCustomDbRoles` describe all Custom DB Roles. This represents a custom db roles.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
- *     username: "test-acc-username",
- *     password: "test-acc-password",
- *     projectId: "<PROJECT-ID>",
- *     databaseName: "admin",
- *     roles: [
- *         {
- *             roleName: "readWrite",
- *             databaseName: "admin",
- *         },
- *         {
- *             roleName: "atlasAdmin",
- *             databaseName: "admin",
- *         },
- *     ],
- * });
- * const testCustomDbRoles = mongodbatlas.getCustomDbRoles({
- *     projectId: mongodbatlas_custom_db_role.test.project_id,
- * });
- * ```
  */
 export function getCustomDbRolesOutput(args: GetCustomDbRolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDbRolesResult> {
     return pulumi.output(args).apply((a: any) => getCustomDbRoles(a, opts))

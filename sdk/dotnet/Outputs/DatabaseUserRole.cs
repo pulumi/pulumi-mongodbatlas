@@ -20,19 +20,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         /// </summary>
-        public readonly string? DatabaseName;
+        public readonly string DatabaseName;
         /// <summary>
         /// Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
         /// </summary>
-        public readonly string? RoleName;
+        public readonly string RoleName;
 
         [OutputConstructor]
         private DatabaseUserRole(
             string? collectionName,
 
-            string? databaseName,
+            string databaseName,
 
-            string? roleName)
+            string roleName)
         {
             CollectionName = collectionName;
             DatabaseName = databaseName;

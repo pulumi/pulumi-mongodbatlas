@@ -17,8 +17,14 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * ## Example Usage
+ * `mongodbatlas.CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
+ * On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
  * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ * 
+ * &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it&#39;s taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+ * 
+ * ## Example Usage
  * ```java
  * package generated_program;
  * 
@@ -31,6 +37,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -63,7 +70,9 @@ import javax.annotation.Nullable;
  *             .projectId(testCloudBackupSnapshot.projectId())
  *             .clusterName(testCloudBackupSnapshot.clusterName())
  *             .snapshotId(testCloudBackupSnapshot.snapshotId())
- *             .deliveryType(Map.of(&#34;download&#34;, true))
+ *             .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
+ *                 .download(true)
+ *                 .build())
  *             .build());
  * 
  *     }

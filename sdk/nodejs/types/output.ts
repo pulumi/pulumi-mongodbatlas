@@ -57,26 +57,6 @@ export interface AdvancedClusterAdvancedConfiguration {
     transactionLifetimeLimitSeconds: number;
 }
 
-export interface AdvancedClusterBiConnector {
-    /**
-     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
-     * - Set to `true` to enable BI Connector for Atlas.
-     * - Set to `false` to disable BI Connector for Atlas.
-     */
-    enabled: boolean;
-    /**
-     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-     *
-     * - Set to "primary" to have BI Connector for Atlas read from the primary.
-     *
-     * - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-     *
-     * - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
-     */
-    readPreference: string;
-}
-
 export interface AdvancedClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
@@ -98,14 +78,6 @@ export interface AdvancedClusterBiConnectorConfig {
 }
 
 export interface AdvancedClusterConnectionString {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-     */
-    awsPrivateLink: {[key: string]: any};
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-     */
-    awsPrivateLinkSrv: {[key: string]: any};
     private: string;
     privateEndpoints: outputs.AdvancedClusterConnectionStringPrivateEndpoint[];
     privateSrv: string;
@@ -140,7 +112,6 @@ export interface AdvancedClusterLabel {
      * The value that you want to write.
      *
      * > **NOTE:** MongoDB Atlas doesn't display your labels.
-     * > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      */
     value: string;
 }
@@ -298,6 +269,19 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     nodeCount?: number;
 }
 
+export interface AdvancedClusterTag {
+    /**
+     * Constant that defines the set of the tag.
+     */
+    key: string;
+    /**
+     * Variable that belongs to the set of the tag.
+     *
+     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     */
+    value: string;
+}
+
 export interface AlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
@@ -314,23 +298,23 @@ export interface AlertConfigurationMatcher {
      *
      * All other types of alerts do not support matchers.
      */
-    fieldName?: string;
+    fieldName: string;
     /**
      * The operator to test the field’s value.
      * Accepted values are:
      */
-    operator?: string;
+    operator: string;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
      */
-    value?: string;
+    value: string;
 }
 
 export interface AlertConfigurationMetricThresholdConfig {
     /**
      * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      */
-    metricName?: string;
+    metricName: string;
     /**
      * This must be set to AVERAGE. Atlas computes the current metric value as an average.
      */
@@ -343,7 +327,7 @@ export interface AlertConfigurationMetricThresholdConfig {
     /**
      * Threshold value outside of which an alert will be triggered.
      */
-    threshold?: number;
+    threshold: number;
     /**
      * The units for the threshold value. Depends on the type of metric.
      * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
@@ -371,7 +355,7 @@ export interface AlertConfigurationNotification {
     /**
      * Number of minutes to wait after an alert condition is detected before sending out the first notification.
      */
-    delayMin?: number;
+    delayMin: number;
     /**
      * Email address to which alert notifications are sent. Required for the EMAIL notifications type.
      */
@@ -379,11 +363,11 @@ export interface AlertConfigurationNotification {
     /**
      * Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      */
-    emailEnabled?: boolean;
+    emailEnabled: boolean;
     /**
      * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
      */
-    intervalMin?: number;
+    intervalMin: number;
     /**
      * Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
      */
@@ -422,7 +406,7 @@ export interface AlertConfigurationNotification {
     /**
      * Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      */
-    smsEnabled?: boolean;
+    smsEnabled: boolean;
     /**
      * Unique identifier of a team.
      */
@@ -435,7 +419,7 @@ export interface AlertConfigurationNotification {
      * Type of alert notification.
      * Accepted values are:
      */
-    typeName?: string;
+    typeName: string;
     /**
      * Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
      */
@@ -467,7 +451,7 @@ export interface AlertConfigurationThresholdConfig {
     /**
      * Threshold value outside of which an alert will be triggered.
      */
-    threshold?: number;
+    threshold: number;
     /**
      * The units for the threshold value. Depends on the type of metric.
      * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
@@ -874,14 +858,6 @@ export interface ClusterBiConnectorConfig {
 }
 
 export interface ClusterConnectionString {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-     */
-    awsPrivateLink: {[key: string]: any};
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-     */
-    awsPrivateLinkSrv: {[key: string]: any};
     private: string;
     privateEndpoints: outputs.ClusterConnectionStringPrivateEndpoint[];
     privateSrv: string;
@@ -917,7 +893,6 @@ export interface ClusterLabel {
      * The value that you want to write.
      *
      * > **NOTE:** MongoDB Atlas doesn't display your labels.
-     * > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      */
     value: string;
 }
@@ -1019,6 +994,19 @@ export interface ClusterSnapshotBackupPolicyPolicyPolicyItem {
     id: string;
     retentionUnit: string;
     retentionValue: number;
+}
+
+export interface ClusterTag {
+    /**
+     * Constant that defines the set of the tag.
+     */
+    key: string;
+    /**
+     * Variable that belongs to the set of the tag.
+     *
+     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     */
+    value: string;
 }
 
 export interface CustomDbRoleAction {
@@ -1239,7 +1227,7 @@ export interface DatabaseUserRole {
     /**
      * Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
      */
-    collectionName: string;
+    collectionName?: string;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      */
@@ -1270,7 +1258,7 @@ export interface EncryptionAtRestAwsKmsConfig {
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
-    enabled?: boolean;
+    enabled: boolean;
     /**
      * The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
      */
@@ -1325,7 +1313,7 @@ export interface EncryptionAtRestGoogleCloudKmsConfig {
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
-    enabled?: boolean;
+    enabled: boolean;
     /**
      * The Key Version Resource ID from your GCP account.
      */
@@ -1585,14 +1573,6 @@ export interface GetAdvancedClusterBiConnectorConfig {
 }
 
 export interface GetAdvancedClusterConnectionString {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-     */
-    awsPrivateLink: {[key: string]: any};
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-     */
-    awsPrivateLinkSrv: {[key: string]: any};
     private: string;
     privateEndpoints: outputs.GetAdvancedClusterConnectionStringPrivateEndpoint[];
     privateSrv: string;
@@ -1792,6 +1772,17 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     nodeCount?: number;
 }
 
+export interface GetAdvancedClusterTag {
+    /**
+     * The key that you want to write.
+     */
+    key: string;
+    /**
+     * The value that you want to write.
+     */
+    value: string;
+}
+
 export interface GetAdvancedClustersResult {
     /**
      * Get the advanced configuration options. See Advanced Configuration below for more details.
@@ -1820,7 +1811,9 @@ export interface GetAdvancedClustersResult {
      */
     encryptionAtRestProvider: string;
     /**
-     * Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     *
+     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
      */
     labels: outputs.GetAdvancedClustersResultLabel[];
     /**
@@ -1852,6 +1845,10 @@ export interface GetAdvancedClustersResult {
      * Current state of the cluster. The possible states are:
      */
     stateName: string;
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    tags: outputs.GetAdvancedClustersResultTag[];
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
@@ -1918,14 +1915,6 @@ export interface GetAdvancedClustersResultBiConnectorConfig {
 }
 
 export interface GetAdvancedClustersResultConnectionString {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-     */
-    awsPrivateLink: {[key: string]: any};
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-     */
-    awsPrivateLinkSrv: {[key: string]: any};
     private: string;
     privateEndpoints: outputs.GetAdvancedClustersResultConnectionStringPrivateEndpoint[];
     privateSrv: string;
@@ -2123,6 +2112,17 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpe
     nodeCount?: number;
 }
 
+export interface GetAdvancedClustersResultTag {
+    /**
+     * The key that you want to write.
+     */
+    key: string;
+    /**
+     * The value that you want to write.
+     */
+    value: string;
+}
+
 export interface GetAlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
@@ -2200,7 +2200,7 @@ export interface GetAlertConfigurationNotification {
     /**
      * Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
      */
-    microsoftTeamsWebhookUrl?: string;
+    microsoftTeamsWebhookUrl: string;
     /**
      * Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      */
@@ -2216,7 +2216,7 @@ export interface GetAlertConfigurationNotification {
     /**
      * Atlas role in current Project or Organization. Atlas returns this value if you set `typeName` to `ORG` or `GROUP`.
      */
-    roles?: string[];
+    roles: string[];
     /**
      * PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
@@ -2253,11 +2253,11 @@ export interface GetAlertConfigurationNotification {
     /**
      * Authentication secret for the `WEBHOOK` notifications type.
      */
-    webhookSecret?: string;
+    webhookSecret: string;
     /**
      * Target URL  for the `WEBHOOK` notifications type.
      */
-    webhookUrl?: string;
+    webhookUrl: string;
 }
 
 export interface GetAlertConfigurationOutput {
@@ -2309,11 +2309,11 @@ export interface GetAlertConfigurationsResult {
      * The type of event that will trigger an alert.
      */
     eventType: string;
+    id: string;
     /**
      * Rules to apply when matching an object against this alert configuration
      */
     matchers: outputs.GetAlertConfigurationsResultMatcher[];
-    metricThreshold: {[key: string]: string};
     /**
      * The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
      */
@@ -2322,12 +2322,11 @@ export interface GetAlertConfigurationsResult {
     /**
      * Requested output string format for the alert configuration
      */
-    outputs?: outputs.GetAlertConfigurationsResultOutput[];
+    outputs: outputs.GetAlertConfigurationsResultOutput[];
     /**
      * The unique ID for the project to get the alert configurations.
      */
     projectId: string;
-    threshold: {[key: string]: string};
     /**
      * Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
      */
@@ -2361,11 +2360,11 @@ export interface GetAlertConfigurationsResultNotification {
     emailAddress: string;
     emailEnabled: boolean;
     intervalMin: number;
-    microsoftTeamsWebhookUrl?: string;
+    microsoftTeamsWebhookUrl: string;
     mobileNumber: string;
     opsGenieApiKey: string;
     opsGenieRegion: string;
-    roles?: string[];
+    roles: string[];
     serviceKey: string;
     smsEnabled: boolean;
     teamId: string;
@@ -2374,12 +2373,12 @@ export interface GetAlertConfigurationsResultNotification {
     username: string;
     victorOpsApiKey: string;
     victorOpsRoutingKey: string;
-    webhookSecret?: string;
-    webhookUrl?: string;
+    webhookSecret: string;
+    webhookUrl: string;
 }
 
 export interface GetAlertConfigurationsResultOutput {
-    label?: string;
+    label: string;
     type: string;
     value: string;
 }
@@ -2406,6 +2405,82 @@ export interface GetApiKeysResult {
      * The following are valid roles:
      */
     roleNames: string[];
+}
+
+export interface GetAtlasUserLink {
+    href: string;
+    rel: string;
+}
+
+export interface GetAtlasUserRole {
+    groupId: string;
+    orgId: string;
+    roleName: string;
+}
+
+export interface GetAtlasUsersResult {
+    /**
+     * Two alphabet characters that identifies MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+     */
+    country: string;
+    /**
+     * Date and time when the current account is created. This value is in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Email address that belongs to the MongoDB Atlas user.
+     */
+    emailAddress: string;
+    /**
+     * First or given name that belongs to the MongoDB Atlas user.
+     */
+    firstName: string;
+    id: string;
+    /**
+     * Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     */
+    lastAuth: string;
+    /**
+     * Last name, family name, or surname that belongs to the MongoDB Atlas user.
+     */
+    lastName: string;
+    links: outputs.GetAtlasUsersResultLink[];
+    /**
+     * Mobile phone number that belongs to the MongoDB Atlas user.
+     */
+    mobileNumber: string;
+    roles: outputs.GetAtlasUsersResultRole[];
+    /**
+     * List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Atlas user belongs.
+     * * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with https://cloud.mongodb.com/api/atlas.
+     * * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with https://cloud.mongodb.com/api/atlas.
+     * * `roles.#.group_id` - Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or orgId but not both in the same request.
+     * * `roles.#.org_id` - Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or groupId but not both in the same request.
+     * * `roles.#.role_name` - Human-readable label that identifies the collection of privileges that MongoDB Atlas grants a specific API key, user, or team. These roles include organization- and project-level roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#service-user-roles) describes the valid roles that can be assigned.
+     */
+    teamIds: string[];
+    /**
+     * Unique 24-hexadecimal digit string that identifies this user.
+     */
+    userId: string;
+    /**
+     * Email address that belongs to the MongoDB Atlas user account. You cannot modify this address after creating the user.
+     */
+    username: string;
+}
+
+export interface GetAtlasUsersResultLink {
+    href: string;
+    rel: string;
+}
+
+export interface GetAtlasUsersResultRole {
+    groupId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `teamId` attributes is defined.
+     */
+    orgId: string;
+    roleName: string;
 }
 
 export interface GetBackupCompliancePolicyOnDemandPolicyItem {
@@ -3147,6 +3222,17 @@ export interface GetClusterSnapshotBackupPolicyPolicyPolicyItem {
     retentionValue: number;
 }
 
+export interface GetClusterTag {
+    /**
+     * The key that you want to write.
+     */
+    key: string;
+    /**
+     * The value that you want to write.
+     */
+    value: string;
+}
+
 export interface GetClustersResult {
     /**
      * Get the advanced configuration options. See Advanced Configuration below for more details.
@@ -3173,12 +3259,6 @@ export interface GetClustersResult {
      */
     backupEnabled: boolean;
     /**
-     * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
-     *
-     * @deprecated use bi_connector_config instead
-     */
-    biConnector: {[key: string]: string};
-    /**
      * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
     biConnectorConfigs: outputs.GetClustersResultBiConnectorConfig[];
@@ -3190,8 +3270,6 @@ export interface GetClustersResult {
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
      * - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-     * - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
-     * - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
      * - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -3216,6 +3294,11 @@ export interface GetClustersResult {
      * Indicates whether Encryption at Rest is enabled or disabled.
      */
     encryptionAtRestProvider: string;
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     *
+     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
+     */
     labels: outputs.GetClustersResultLabel[];
     /**
      * Indicates the version of the cluster to deploy.
@@ -3320,6 +3403,10 @@ export interface GetClustersResult {
      * - REPAIRING
      */
     stateName: string;
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    tags: outputs.GetClustersResultTag[];
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
@@ -3493,6 +3580,17 @@ export interface GetClustersResultSnapshotBackupPolicyPolicyPolicyItem {
     id: string;
     retentionUnit: string;
     retentionValue: number;
+}
+
+export interface GetClustersResultTag {
+    /**
+     * The key that you want to write.
+     */
+    key: string;
+    /**
+     * The value that you want to write.
+     */
+    value: string;
 }
 
 export interface GetCustomDbRoleAction {
@@ -4014,6 +4112,10 @@ export interface GetDatabaseUsersResult {
      * The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
      */
     awsIamType: string;
+    /**
+     * Autogenerated Unique ID for this data source.
+     */
+    id: string;
     labels: outputs.GetDatabaseUsersResultLabel[];
     /**
      * Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
@@ -4023,6 +4125,7 @@ export interface GetDatabaseUsersResult {
      * (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      */
     oidcAuthType: string;
+    password: string;
     /**
      * The unique ID for the project to get all database users.
      */
@@ -5294,11 +5397,6 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
     status: string;
 }
 
-export interface GetProjectApiKey {
-    apiKeyId: string;
-    roleNames: string[];
-}
-
 export interface GetProjectApiKeyProjectAssignment {
     /**
      * The unique ID for the project.
@@ -5322,12 +5420,6 @@ export interface GetProjectApiKeysResult {
     privateKey: string;
     projectAssignments?: outputs.GetProjectApiKeysResultProjectAssignment[];
     publicKey: string;
-    /**
-     * Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-     */
-    roleNames: string[];
 }
 
 export interface GetProjectApiKeysResultProjectAssignment {
@@ -5363,7 +5455,6 @@ export interface GetProjectTeam {
 }
 
 export interface GetProjectsResult {
-    apiKeys: outputs.GetProjectsResultApiKey[];
     /**
      * The number of Atlas clusters deployed in the project.
      */
@@ -5372,8 +5463,6 @@ export interface GetProjectsResult {
      * The ISO-8601-formatted timestamp of when Atlas created the project.
      * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
      * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-     * * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * * `limits.#.name` - Human-readable label that identifies this project limit.
      * * `limits.#.value` - Amount the limit is set to.
      * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
@@ -5396,7 +5485,7 @@ export interface GetProjectsResult {
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project.
      */
-    isExtendedStorageSizesEnabled?: boolean;
+    isExtendedStorageSizesEnabled: boolean;
     /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      */
@@ -5418,6 +5507,7 @@ export interface GetProjectsResult {
      * The ID of the organization you want to create the project within.
      */
     orgId: string;
+    projectId: string;
     /**
      * If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      *
@@ -5425,11 +5515,6 @@ export interface GetProjectsResult {
      */
     regionUsageRestrictions: string;
     teams: outputs.GetProjectsResultTeam[];
-}
-
-export interface GetProjectsResultApiKey {
-    apiKeyId: string;
-    roleNames: string[];
 }
 
 export interface GetProjectsResultLimit {
@@ -5530,6 +5615,17 @@ export interface GetServerlessInstanceLink {
     rel: string;
 }
 
+export interface GetServerlessInstanceTag {
+    /**
+     * Constant that defines the set of the tag.
+     */
+    key: string;
+    /**
+     * Variable that belongs to the set of the tag.
+     */
+    value: string;
+}
+
 export interface GetServerlessInstancesResult {
     connectionStringsPrivateEndpointSrvs: string[];
     /**
@@ -5575,6 +5671,10 @@ export interface GetServerlessInstancesResult {
      */
     stateName: string;
     /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    tags: outputs.GetServerlessInstancesResultTag[];
+    /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
     terminationProtectionEnabled: boolean;
@@ -5583,6 +5683,17 @@ export interface GetServerlessInstancesResult {
 export interface GetServerlessInstancesResultLink {
     href: string;
     rel: string;
+}
+
+export interface GetServerlessInstancesResultTag {
+    /**
+     * Constant that defines the set of the tag.
+     */
+    key: string;
+    /**
+     * Variable that belongs to the set of the tag.
+     */
+    value: string;
 }
 
 export interface GetSharedTierRestoreJobsResult {
@@ -5825,19 +5936,6 @@ export interface PrivateLinkEndpointServiceEndpoint {
     status: string;
 }
 
-export interface ProjectApiKey {
-    /**
-     * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
-     *
-     * **WARNING:** The `apiKeys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `mongodbatlas.ProjectApiKey`  resource instead.
-     */
-    apiKeyId: string;
-    /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     */
-    roleNames: string[];
-}
-
 export interface ProjectApiKeyProjectAssignment {
     /**
      * Project ID to assign to Access Key
@@ -5847,6 +5945,11 @@ export interface ProjectApiKeyProjectAssignment {
      * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
      */
     roleNames: string[];
+}
+
+export interface ProjectIpAccessListTimeouts {
+    delete?: string;
+    read?: string;
 }
 
 export interface ProjectLimit {
@@ -5910,6 +6013,19 @@ export interface ServerlessInstanceLink {
     rel: string;
 }
 
+export interface ServerlessInstanceTag {
+    /**
+     * Constant that defines the set of the tag.
+     */
+    key: string;
+    /**
+     * Variable that belongs to the set of the tag.
+     *
+     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     */
+    value: string;
+}
+
 export interface X509AuthenticationDatabaseUserCertificate {
     createdAt: string;
     groupId: string;
@@ -5921,10 +6037,6 @@ export interface X509AuthenticationDatabaseUserCertificate {
 export namespace config {
     export interface AssumeRole {
         duration?: string;
-        /**
-         * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration
-         */
-        durationSeconds?: number;
         externalId?: string;
         policy?: string;
         policyArns?: string[];

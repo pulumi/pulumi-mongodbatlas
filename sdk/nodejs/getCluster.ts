@@ -67,12 +67,6 @@ export interface GetClusterResult {
      */
     readonly backupEnabled: boolean;
     /**
-     * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
-     *
-     * @deprecated use bi_connector_config instead
-     */
-    readonly biConnector: {[key: string]: string};
-    /**
      * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
     readonly biConnectorConfigs: outputs.GetClusterBiConnectorConfig[];
@@ -100,6 +94,11 @@ export interface GetClusterResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     *
+     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
+     */
     readonly labels: outputs.GetClusterLabel[];
     /**
      * Indicates the version of the cluster to deploy.
@@ -146,9 +145,6 @@ export interface GetClusterResult {
      * Minimum instance size to which your cluster can automatically scale.
      */
     readonly providerAutoScalingComputeMinInstanceSize: string;
-    /**
-     * **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
-     */
     readonly providerBackupEnabled: boolean;
     /**
      * Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
@@ -206,6 +202,10 @@ export interface GetClusterResult {
      * - REPAIRING
      */
     readonly stateName: string;
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    readonly tags: outputs.GetClusterTag[];
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */

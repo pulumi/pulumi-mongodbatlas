@@ -44,18 +44,14 @@ type LookupAlertConfigurationResult struct {
 	// If set to true, the alert configuration is enabled. If enabled is not exported it is set to false.
 	Enabled bool `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
-	EventType string `pulumi:"eventType"`
-	// The provider-assigned unique ID for this managed resource.
+	EventType              string                                       `pulumi:"eventType"`
 	Id                     string                                       `pulumi:"id"`
 	Matchers               []GetAlertConfigurationMatcher               `pulumi:"matchers"`
-	MetricThreshold        map[string]string                            `pulumi:"metricThreshold"`
 	MetricThresholdConfigs []GetAlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfigs"`
 	Notifications          []GetAlertConfigurationNotification          `pulumi:"notifications"`
 	Outputs                []GetAlertConfigurationOutput                `pulumi:"outputs"`
 	ProjectId              string                                       `pulumi:"projectId"`
-	// Threshold value outside of which an alert will be triggered.
-	Threshold        map[string]string                      `pulumi:"threshold"`
-	ThresholdConfigs []GetAlertConfigurationThresholdConfig `pulumi:"thresholdConfigs"`
+	ThresholdConfigs       []GetAlertConfigurationThresholdConfig       `pulumi:"thresholdConfigs"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated string `pulumi:"updated"`
 }
@@ -128,17 +124,12 @@ func (o LookupAlertConfigurationResultOutput) EventType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAlertConfigurationResult) string { return v.EventType }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
 func (o LookupAlertConfigurationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAlertConfigurationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupAlertConfigurationResultOutput) Matchers() GetAlertConfigurationMatcherArrayOutput {
 	return o.ApplyT(func(v LookupAlertConfigurationResult) []GetAlertConfigurationMatcher { return v.Matchers }).(GetAlertConfigurationMatcherArrayOutput)
-}
-
-func (o LookupAlertConfigurationResultOutput) MetricThreshold() pulumi.StringMapOutput {
-	return o.ApplyT(func(v LookupAlertConfigurationResult) map[string]string { return v.MetricThreshold }).(pulumi.StringMapOutput)
 }
 
 func (o LookupAlertConfigurationResultOutput) MetricThresholdConfigs() GetAlertConfigurationMetricThresholdConfigArrayOutput {
@@ -157,11 +148,6 @@ func (o LookupAlertConfigurationResultOutput) Outputs() GetAlertConfigurationOut
 
 func (o LookupAlertConfigurationResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAlertConfigurationResult) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// Threshold value outside of which an alert will be triggered.
-func (o LookupAlertConfigurationResultOutput) Threshold() pulumi.StringMapOutput {
-	return o.ApplyT(func(v LookupAlertConfigurationResult) map[string]string { return v.Threshold }).(pulumi.StringMapOutput)
 }
 
 func (o LookupAlertConfigurationResultOutput) ThresholdConfigs() GetAlertConfigurationThresholdConfigArrayOutput {

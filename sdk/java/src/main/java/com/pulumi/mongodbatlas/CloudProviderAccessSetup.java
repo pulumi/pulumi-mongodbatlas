@@ -14,24 +14,11 @@ import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupAwsConfig;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupAzureConfig;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 @ResourceType(type="mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup")
 public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResource {
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config */
-    @Export(name="aws", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output<Map<String,String>> aws;
-
-    public Output<Map<String,String>> aws() {
-        return this.aws;
-    }
     @Export(name="awsConfigs", refs={List.class,CloudProviderAccessSetupAwsConfig.class}, tree="[0,1]")
     private Output<List<CloudProviderAccessSetupAwsConfig>> awsConfigs;
 

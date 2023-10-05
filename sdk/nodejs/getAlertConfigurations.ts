@@ -41,9 +41,6 @@ export interface GetAlertConfigurationsArgs {
  * A collection of values returned by getAlertConfigurations.
  */
 export interface GetAlertConfigurationsResult {
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
     readonly id: string;
     readonly listOptions?: outputs.GetAlertConfigurationsListOption[];
     readonly outputTypes?: string[];

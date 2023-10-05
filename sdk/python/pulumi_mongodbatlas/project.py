@@ -17,7 +17,6 @@ __all__ = ['ProjectArgs', 'Project']
 class ProjectArgs:
     def __init__(__self__, *,
                  org_id: pulumi.Input[str],
-                 api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
                  is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
                  is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
                  is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
@@ -47,7 +46,6 @@ class ProjectArgs:
         ProjectArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             org_id=org_id,
-            api_keys=api_keys,
             is_collect_database_specifics_statistics_enabled=is_collect_database_specifics_statistics_enabled,
             is_data_explorer_enabled=is_data_explorer_enabled,
             is_extended_storage_sizes_enabled=is_extended_storage_sizes_enabled,
@@ -65,7 +63,6 @@ class ProjectArgs:
     def _configure(
              _setter: Callable[[Any, Any], None],
              org_id: pulumi.Input[str],
-             api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
              is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
              is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
              is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
@@ -80,11 +77,6 @@ class ProjectArgs:
              with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
         _setter("org_id", org_id)
-        if api_keys is not None:
-            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
-            pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
-        if api_keys is not None:
-            _setter("api_keys", api_keys)
         if is_collect_database_specifics_statistics_enabled is not None:
             _setter("is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         if is_data_explorer_enabled is not None:
@@ -121,18 +113,6 @@ class ProjectArgs:
     @org_id.setter
     def org_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "org_id", value)
-
-    @property
-    @pulumi.getter(name="apiKeys")
-    def api_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
-        pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
-
-        return pulumi.get(self, "api_keys")
-
-    @api_keys.setter
-    def api_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]):
-        pulumi.set(self, "api_keys", value)
 
     @property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
@@ -276,7 +256,6 @@ class ProjectArgs:
 @pulumi.input_type
 class _ProjectState:
     def __init__(__self__, *,
-                 api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
                  cluster_count: Optional[pulumi.Input[int]] = None,
                  created: Optional[pulumi.Input[str]] = None,
                  is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
@@ -310,7 +289,6 @@ class _ProjectState:
         """
         _ProjectState._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            api_keys=api_keys,
             cluster_count=cluster_count,
             created=created,
             is_collect_database_specifics_statistics_enabled=is_collect_database_specifics_statistics_enabled,
@@ -330,7 +308,6 @@ class _ProjectState:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
              cluster_count: Optional[pulumi.Input[int]] = None,
              created: Optional[pulumi.Input[str]] = None,
              is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
@@ -347,11 +324,6 @@ class _ProjectState:
              teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
              with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        if api_keys is not None:
-            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
-            pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
-        if api_keys is not None:
-            _setter("api_keys", api_keys)
         if cluster_count is not None:
             _setter("cluster_count", cluster_count)
         if created is not None:
@@ -382,18 +354,6 @@ class _ProjectState:
             _setter("teams", teams)
         if with_default_alerts_settings is not None:
             _setter("with_default_alerts_settings", with_default_alerts_settings)
-
-    @property
-    @pulumi.getter(name="apiKeys")
-    def api_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
-        pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
-
-        return pulumi.get(self, "api_keys")
-
-    @api_keys.setter
-    def api_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]):
-        pulumi.set(self, "api_keys", value)
 
     @property
     @pulumi.getter(name="clusterCount")
@@ -575,7 +535,6 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
                  is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
                  is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
                  is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
@@ -618,10 +577,6 @@ class Project(pulumi.CustomResource):
                     ],
                 ),
             ],
-            api_keys=[mongodbatlas.ProjectApiKeyArgs(
-                api_key_id="61003b299dda8d54a9d7d10c",
-                role_names=["GROUP_READ_ONLY"],
-            )],
             limits=[
                 mongodbatlas.ProjectLimitArgs(
                     name="atlas.project.deployment.clusters",
@@ -697,10 +652,6 @@ class Project(pulumi.CustomResource):
                     ],
                 ),
             ],
-            api_keys=[mongodbatlas.ProjectApiKeyArgs(
-                api_key_id="61003b299dda8d54a9d7d10c",
-                role_names=["GROUP_READ_ONLY"],
-            )],
             limits=[
                 mongodbatlas.ProjectLimitArgs(
                     name="atlas.project.deployment.clusters",
@@ -747,7 +698,6 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
                  is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
                  is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
                  is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
@@ -770,7 +720,6 @@ class Project(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
-            __props__.__dict__["api_keys"] = api_keys
             __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
             __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled
             __props__.__dict__["is_extended_storage_sizes_enabled"] = is_extended_storage_sizes_enabled
@@ -798,7 +747,6 @@ class Project(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
             cluster_count: Optional[pulumi.Input[int]] = None,
             created: Optional[pulumi.Input[str]] = None,
             is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
@@ -839,7 +787,6 @@ class Project(pulumi.CustomResource):
 
         __props__ = _ProjectState.__new__(_ProjectState)
 
-        __props__.__dict__["api_keys"] = api_keys
         __props__.__dict__["cluster_count"] = cluster_count
         __props__.__dict__["created"] = created
         __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
@@ -856,14 +803,6 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["teams"] = teams
         __props__.__dict__["with_default_alerts_settings"] = with_default_alerts_settings
         return Project(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter(name="apiKeys")
-    def api_keys(self) -> pulumi.Output[Sequence['outputs.ProjectApiKey']]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""", DeprecationWarning)
-        pulumi.log.warn("""api_keys is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key""")
-
-        return pulumi.get(self, "api_keys")
 
     @property
     @pulumi.getter(name="clusterCount")
@@ -960,7 +899,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="regionUsageRestrictions")
-    def region_usage_restrictions(self) -> pulumi.Output[str]:
+    def region_usage_restrictions(self) -> pulumi.Output[Optional[str]]:
         """
         Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         """
@@ -973,7 +912,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="withDefaultAlertsSettings")
-    def with_default_alerts_settings(self) -> pulumi.Output[Optional[bool]]:
+    def with_default_alerts_settings(self) -> pulumi.Output[bool]:
         """
         It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """

@@ -214,6 +214,8 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a &#39;/&#39;, followed by the IdP group name
+ * 
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  * 
  * ## Import
@@ -234,81 +236,63 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="authDatabaseName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> authDatabaseName;
+    private Output<String> authDatabaseName;
 
     /**
      * @return Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
      * Accepted values include:
      * 
      */
-    public Output<Optional<String>> authDatabaseName() {
-        return Codegen.optional(this.authDatabaseName);
+    public Output<String> authDatabaseName() {
+        return this.authDatabaseName;
     }
     /**
      * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * 
      */
     @Export(name="awsIamType", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> awsIamType;
+    private Output<String> awsIamType;
 
     /**
      * @return If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * 
      */
-    public Output<Optional<String>> awsIamType() {
-        return Codegen.optional(this.awsIamType);
-    }
-    /**
-     * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-    @Export(name="databaseName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> databaseName;
-
-    /**
-     * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-     * 
-     */
-    public Output<Optional<String>> databaseName() {
-        return Codegen.optional(this.databaseName);
+    public Output<String> awsIamType() {
+        return this.awsIamType;
     }
     @Export(name="labels", refs={List.class,DatabaseUserLabel.class}, tree="[0,1]")
-    private Output<List<DatabaseUserLabel>> labels;
+    private Output</* @Nullable */ List<DatabaseUserLabel>> labels;
 
-    public Output<List<DatabaseUserLabel>> labels() {
-        return this.labels;
+    public Output<Optional<List<DatabaseUserLabel>>> labels() {
+        return Codegen.optional(this.labels);
     }
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
      * 
      */
     @Export(name="ldapAuthType", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> ldapAuthType;
+    private Output<String> ldapAuthType;
 
     /**
      * @return Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
      * 
      */
-    public Output<Optional<String>> ldapAuthType() {
-        return Codegen.optional(this.ldapAuthType);
+    public Output<String> ldapAuthType() {
+        return this.ldapAuthType;
     }
     /**
      * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * 
      */
     @Export(name="oidcAuthType", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> oidcAuthType;
+    private Output<String> oidcAuthType;
 
     /**
      * @return Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * 
      */
-    public Output<Optional<String>> oidcAuthType() {
-        return Codegen.optional(this.oidcAuthType);
+    public Output<String> oidcAuthType() {
+        return this.oidcAuthType;
     }
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
@@ -335,14 +319,14 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="roles", refs={List.class,DatabaseUserRole.class}, tree="[0,1]")
-    private Output<List<DatabaseUserRole>> roles;
+    private Output</* @Nullable */ List<DatabaseUserRole>> roles;
 
     /**
      * @return List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      * 
      */
-    public Output<List<DatabaseUserRole>> roles() {
-        return this.roles;
+    public Output<Optional<List<DatabaseUserRole>>> roles() {
+        return Codegen.optional(this.roles);
     }
     @Export(name="scopes", refs={List.class,DatabaseUserScope.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DatabaseUserScope>> scopes;
@@ -369,14 +353,14 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="x509Type", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> x509Type;
+    private Output<String> x509Type;
 
     /**
      * @return X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
      * 
      */
-    public Output<Optional<String>> x509Type() {
-        return Codegen.optional(this.x509Type);
+    public Output<String> x509Type() {
+        return this.x509Type;
     }
 
     /**

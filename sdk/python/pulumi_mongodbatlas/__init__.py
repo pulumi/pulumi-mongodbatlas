@@ -42,6 +42,8 @@ from .get_alert_configuration import *
 from .get_alert_configurations import *
 from .get_api_key import *
 from .get_api_keys import *
+from .get_atlas_user import *
+from .get_atlas_users import *
 from .get_auditing import *
 from .get_backup_compliance_policy import *
 from .get_cloud_backup_schedule import *

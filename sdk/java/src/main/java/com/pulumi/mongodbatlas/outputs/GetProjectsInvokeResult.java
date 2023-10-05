@@ -15,9 +15,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetProjectsInvokeResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @deprecated
+     * Please use each project&#39;s id attribute instead
      * 
      */
+    @Deprecated /* Please use each project's id attribute instead */
     private String id;
     private @Nullable Integer itemsPerPage;
     private @Nullable Integer pageNum;
@@ -26,9 +28,11 @@ public final class GetProjectsInvokeResult {
 
     private GetProjectsInvokeResult() {}
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @deprecated
+     * Please use each project&#39;s id attribute instead
      * 
      */
+    @Deprecated /* Please use each project's id attribute instead */
     public String id() {
         return this.id;
     }

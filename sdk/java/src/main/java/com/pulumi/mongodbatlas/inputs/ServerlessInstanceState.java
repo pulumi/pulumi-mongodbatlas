@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.ServerlessInstanceLinkArgs;
+import com.pulumi.mongodbatlas.inputs.ServerlessInstanceTagArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -191,6 +192,21 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
     }
 
     /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    @Import(name="tags")
+    private @Nullable Output<List<ServerlessInstanceTagArgs>> tags;
+
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    public Optional<Output<List<ServerlessInstanceTagArgs>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
+    /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
@@ -220,6 +236,7 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
         this.providerSettingsProviderName = $.providerSettingsProviderName;
         this.providerSettingsRegionName = $.providerSettingsRegionName;
         this.stateName = $.stateName;
+        this.tags = $.tags;
         this.terminationProtectionEnabled = $.terminationProtectionEnabled;
     }
 
@@ -493,6 +510,37 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
          */
         public Builder stateName(String stateName) {
             return stateName(Output.of(stateName));
+        }
+
+        /**
+         * @param tags Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(@Nullable Output<List<ServerlessInstanceTagArgs>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        /**
+         * @param tags Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(List<ServerlessInstanceTagArgs> tags) {
+            return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tags Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(ServerlessInstanceTagArgs... tags) {
+            return tags(List.of(tags));
         }
 
         /**

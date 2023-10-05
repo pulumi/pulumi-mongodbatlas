@@ -12,9 +12,7 @@ import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationsResultThresholdConf
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAlertConfigurationsResult {
@@ -38,12 +36,12 @@ public final class GetAlertConfigurationsResult {
      * 
      */
     private String eventType;
+    private String id;
     /**
      * @return Rules to apply when matching an object against this alert configuration
      * 
      */
     private List<GetAlertConfigurationsResultMatcher> matchers;
-    private Map<String,String> metricThreshold;
     /**
      * @return The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
      * 
@@ -54,13 +52,12 @@ public final class GetAlertConfigurationsResult {
      * @return Requested output string format for the alert configuration
      * 
      */
-    private @Nullable List<GetAlertConfigurationsResultOutput> outputs;
+    private List<GetAlertConfigurationsResultOutput> outputs;
     /**
      * @return The unique ID for the project to get the alert configurations.
      * 
      */
     private String projectId;
-    private Map<String,String> threshold;
     /**
      * @return Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
      * 
@@ -101,15 +98,15 @@ public final class GetAlertConfigurationsResult {
     public String eventType() {
         return this.eventType;
     }
+    public String id() {
+        return this.id;
+    }
     /**
      * @return Rules to apply when matching an object against this alert configuration
      * 
      */
     public List<GetAlertConfigurationsResultMatcher> matchers() {
         return this.matchers;
-    }
-    public Map<String,String> metricThreshold() {
-        return this.metricThreshold;
     }
     /**
      * @return The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
@@ -126,7 +123,7 @@ public final class GetAlertConfigurationsResult {
      * 
      */
     public List<GetAlertConfigurationsResultOutput> outputs() {
-        return this.outputs == null ? List.of() : this.outputs;
+        return this.outputs;
     }
     /**
      * @return The unique ID for the project to get the alert configurations.
@@ -134,9 +131,6 @@ public final class GetAlertConfigurationsResult {
      */
     public String projectId() {
         return this.projectId;
-    }
-    public Map<String,String> threshold() {
-        return this.threshold;
     }
     /**
      * @return Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
@@ -166,13 +160,12 @@ public final class GetAlertConfigurationsResult {
         private String created;
         private Boolean enabled;
         private String eventType;
+        private String id;
         private List<GetAlertConfigurationsResultMatcher> matchers;
-        private Map<String,String> metricThreshold;
         private List<GetAlertConfigurationsResultMetricThresholdConfig> metricThresholdConfigs;
         private List<GetAlertConfigurationsResultNotification> notifications;
-        private @Nullable List<GetAlertConfigurationsResultOutput> outputs;
+        private List<GetAlertConfigurationsResultOutput> outputs;
         private String projectId;
-        private Map<String,String> threshold;
         private List<GetAlertConfigurationsResultThresholdConfig> thresholdConfigs;
         private String updated;
         public Builder() {}
@@ -182,13 +175,12 @@ public final class GetAlertConfigurationsResult {
     	      this.created = defaults.created;
     	      this.enabled = defaults.enabled;
     	      this.eventType = defaults.eventType;
+    	      this.id = defaults.id;
     	      this.matchers = defaults.matchers;
-    	      this.metricThreshold = defaults.metricThreshold;
     	      this.metricThresholdConfigs = defaults.metricThresholdConfigs;
     	      this.notifications = defaults.notifications;
     	      this.outputs = defaults.outputs;
     	      this.projectId = defaults.projectId;
-    	      this.threshold = defaults.threshold;
     	      this.thresholdConfigs = defaults.thresholdConfigs;
     	      this.updated = defaults.updated;
         }
@@ -214,17 +206,17 @@ public final class GetAlertConfigurationsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder id(String id) {
+            this.id = Objects.requireNonNull(id);
+            return this;
+        }
+        @CustomType.Setter
         public Builder matchers(List<GetAlertConfigurationsResultMatcher> matchers) {
             this.matchers = Objects.requireNonNull(matchers);
             return this;
         }
         public Builder matchers(GetAlertConfigurationsResultMatcher... matchers) {
             return matchers(List.of(matchers));
-        }
-        @CustomType.Setter
-        public Builder metricThreshold(Map<String,String> metricThreshold) {
-            this.metricThreshold = Objects.requireNonNull(metricThreshold);
-            return this;
         }
         @CustomType.Setter
         public Builder metricThresholdConfigs(List<GetAlertConfigurationsResultMetricThresholdConfig> metricThresholdConfigs) {
@@ -243,8 +235,8 @@ public final class GetAlertConfigurationsResult {
             return notifications(List.of(notifications));
         }
         @CustomType.Setter
-        public Builder outputs(@Nullable List<GetAlertConfigurationsResultOutput> outputs) {
-            this.outputs = outputs;
+        public Builder outputs(List<GetAlertConfigurationsResultOutput> outputs) {
+            this.outputs = Objects.requireNonNull(outputs);
             return this;
         }
         public Builder outputs(GetAlertConfigurationsResultOutput... outputs) {
@@ -253,11 +245,6 @@ public final class GetAlertConfigurationsResult {
         @CustomType.Setter
         public Builder projectId(String projectId) {
             this.projectId = Objects.requireNonNull(projectId);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder threshold(Map<String,String> threshold) {
-            this.threshold = Objects.requireNonNull(threshold);
             return this;
         }
         @CustomType.Setter
@@ -279,13 +266,12 @@ public final class GetAlertConfigurationsResult {
             o.created = created;
             o.enabled = enabled;
             o.eventType = eventType;
+            o.id = id;
             o.matchers = matchers;
-            o.metricThreshold = metricThreshold;
             o.metricThresholdConfigs = metricThresholdConfigs;
             o.notifications = notifications;
             o.outputs = outputs;
             o.projectId = projectId;
-            o.threshold = threshold;
             o.thresholdConfigs = thresholdConfigs;
             o.updated = updated;
             return o;

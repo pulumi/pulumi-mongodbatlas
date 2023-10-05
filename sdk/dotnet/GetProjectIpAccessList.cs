@@ -123,9 +123,6 @@ namespace Pulumi.Mongodbatlas
         /// Comment to add to the access list entry.
         /// </summary>
         public readonly string Comment;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly string IpAddress;
         public readonly string ProjectId;

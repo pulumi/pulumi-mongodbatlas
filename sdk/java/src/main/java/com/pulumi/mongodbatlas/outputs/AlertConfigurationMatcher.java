@@ -6,8 +6,6 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class AlertConfigurationMatcher {
@@ -25,18 +23,18 @@ public final class AlertConfigurationMatcher {
      * All other types of alerts do not support matchers.
      * 
      */
-    private @Nullable String fieldName;
+    private String fieldName;
     /**
      * @return The operator to test the field’s value.
      * Accepted values are:
      * 
      */
-    private @Nullable String operator;
+    private String operator;
     /**
      * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
      * 
      */
-    private @Nullable String value;
+    private String value;
 
     private AlertConfigurationMatcher() {}
     /**
@@ -53,23 +51,23 @@ public final class AlertConfigurationMatcher {
      * All other types of alerts do not support matchers.
      * 
      */
-    public Optional<String> fieldName() {
-        return Optional.ofNullable(this.fieldName);
+    public String fieldName() {
+        return this.fieldName;
     }
     /**
      * @return The operator to test the field’s value.
      * Accepted values are:
      * 
      */
-    public Optional<String> operator() {
-        return Optional.ofNullable(this.operator);
+    public String operator() {
+        return this.operator;
     }
     /**
      * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
      * 
      */
-    public Optional<String> value() {
-        return Optional.ofNullable(this.value);
+    public String value() {
+        return this.value;
     }
 
     public static Builder builder() {
@@ -81,9 +79,9 @@ public final class AlertConfigurationMatcher {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable String fieldName;
-        private @Nullable String operator;
-        private @Nullable String value;
+        private String fieldName;
+        private String operator;
+        private String value;
         public Builder() {}
         public Builder(AlertConfigurationMatcher defaults) {
     	      Objects.requireNonNull(defaults);
@@ -93,18 +91,18 @@ public final class AlertConfigurationMatcher {
         }
 
         @CustomType.Setter
-        public Builder fieldName(@Nullable String fieldName) {
-            this.fieldName = fieldName;
+        public Builder fieldName(String fieldName) {
+            this.fieldName = Objects.requireNonNull(fieldName);
             return this;
         }
         @CustomType.Setter
-        public Builder operator(@Nullable String operator) {
-            this.operator = operator;
+        public Builder operator(String operator) {
+            this.operator = Objects.requireNonNull(operator);
             return this;
         }
         @CustomType.Setter
-        public Builder value(@Nullable String value) {
-            this.value = value;
+        public Builder value(String value) {
+            this.value = Objects.requireNonNull(value);
             return this;
         }
         public AlertConfigurationMatcher build() {

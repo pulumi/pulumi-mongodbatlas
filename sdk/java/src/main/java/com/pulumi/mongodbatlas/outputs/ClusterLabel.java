@@ -20,7 +20,6 @@ public final class ClusterLabel {
      * @return The value that you want to write.
      * 
      * &gt; **NOTE:** MongoDB Atlas doesn&#39;t display your labels.
-     * **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      * 
      */
     private @Nullable String value;
@@ -37,7 +36,6 @@ public final class ClusterLabel {
      * @return The value that you want to write.
      * 
      * &gt; **NOTE:** MongoDB Atlas doesn&#39;t display your labels.
-     * **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
      * 
      */
     public Optional<String> value() {

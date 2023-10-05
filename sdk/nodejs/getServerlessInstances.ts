@@ -53,7 +53,7 @@ export interface GetServerlessInstancesResult {
     readonly id: string;
     readonly projectId: string;
     /**
-     * A list where each represents a search index.
+     * A list where each result represents a Serverless Instance. To learn more, see Serverless Instance.
      */
     readonly results: outputs.GetServerlessInstancesResult[];
 }

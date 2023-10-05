@@ -5,7 +5,6 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
 import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
 import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
 import java.lang.Boolean;
@@ -20,25 +19,6 @@ import javax.annotation.Nullable;
 public final class ProjectState extends com.pulumi.resources.ResourceArgs {
 
     public static final ProjectState Empty = new ProjectState();
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-    @Import(name="apiKeys")
-    private @Nullable Output<List<ProjectApiKeyArgs>> apiKeys;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-    public Optional<Output<List<ProjectApiKeyArgs>>> apiKeys() {
-        return Optional.ofNullable(this.apiKeys);
-    }
 
     /**
      * The number of Atlas clusters deployed in the project..
@@ -252,7 +232,6 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     private ProjectState() {}
 
     private ProjectState(ProjectState $) {
-        this.apiKeys = $.apiKeys;
         this.clusterCount = $.clusterCount;
         this.created = $.created;
         this.isCollectDatabaseSpecificsStatisticsEnabled = $.isCollectDatabaseSpecificsStatisticsEnabled;
@@ -286,43 +265,6 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ProjectState defaults) {
             $ = new ProjectState(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-        public Builder apiKeys(@Nullable Output<List<ProjectApiKeyArgs>> apiKeys) {
-            $.apiKeys = apiKeys;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-        public Builder apiKeys(List<ProjectApiKeyArgs> apiKeys) {
-            return apiKeys(Output.of(apiKeys));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-        public Builder apiKeys(ProjectApiKeyArgs... apiKeys) {
-            return apiKeys(List.of(apiKeys));
         }
 
         /**

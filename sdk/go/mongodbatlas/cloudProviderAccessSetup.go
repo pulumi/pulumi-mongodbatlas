@@ -16,8 +16,6 @@ import (
 type CloudProviderAccessSetup struct {
 	pulumi.CustomResourceState
 
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-	Aws             pulumi.StringMapOutput                         `pulumi:"aws"`
 	AwsConfigs      CloudProviderAccessSetupAwsConfigArrayOutput   `pulumi:"awsConfigs"`
 	AzureConfigs    CloudProviderAccessSetupAzureConfigArrayOutput `pulumi:"azureConfigs"`
 	CreatedDate     pulumi.StringOutput                            `pulumi:"createdDate"`
@@ -63,8 +61,6 @@ func GetCloudProviderAccessSetup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CloudProviderAccessSetup resources.
 type cloudProviderAccessSetupState struct {
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-	Aws             map[string]string                     `pulumi:"aws"`
 	AwsConfigs      []CloudProviderAccessSetupAwsConfig   `pulumi:"awsConfigs"`
 	AzureConfigs    []CloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
 	CreatedDate     *string                               `pulumi:"createdDate"`
@@ -75,8 +71,6 @@ type cloudProviderAccessSetupState struct {
 }
 
 type CloudProviderAccessSetupState struct {
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-	Aws             pulumi.StringMapInput
 	AwsConfigs      CloudProviderAccessSetupAwsConfigArrayInput
 	AzureConfigs    CloudProviderAccessSetupAzureConfigArrayInput
 	CreatedDate     pulumi.StringPtrInput
@@ -212,11 +206,6 @@ func (o CloudProviderAccessSetupOutput) ToOutput(ctx context.Context) pulumix.Ou
 	return pulumix.Output[*CloudProviderAccessSetup]{
 		OutputState: o.OutputState,
 	}
-}
-
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-func (o CloudProviderAccessSetupOutput) Aws() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringMapOutput { return v.Aws }).(pulumi.StringMapOutput)
 }
 
 func (o CloudProviderAccessSetupOutput) AwsConfigs() CloudProviderAccessSetupAwsConfigArrayOutput {

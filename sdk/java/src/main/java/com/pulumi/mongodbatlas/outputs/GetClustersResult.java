@@ -10,12 +10,12 @@ import com.pulumi.mongodbatlas.outputs.GetClustersResultConnectionString;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultLabel;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultReplicationSpec;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultSnapshotBackupPolicy;
+import com.pulumi.mongodbatlas.outputs.GetClustersResultTag;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 @CustomType
@@ -51,15 +51,6 @@ public final class GetClustersResult {
      */
     private Boolean backupEnabled;
     /**
-     * @return Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-     * 
-     * @deprecated
-     * use bi_connector_config instead
-     * 
-     */
-    @Deprecated /* use bi_connector_config instead */
-    private Map<String,String> biConnector;
-    /**
      * @return Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      * 
      */
@@ -73,8 +64,6 @@ public final class GetClustersResult {
      * @return Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
      * - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-     * - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
-     * - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
      * - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -103,6 +92,14 @@ public final class GetClustersResult {
      * 
      */
     private String encryptionAtRestProvider;
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     private List<GetClustersResultLabel> labels;
     /**
      * @return Indicates the version of the cluster to deploy.
@@ -232,6 +229,11 @@ public final class GetClustersResult {
      */
     private String stateName;
     /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    private List<GetClustersResultTag> tags;
+    /**
      * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
@@ -286,17 +288,6 @@ public final class GetClustersResult {
         return this.backupEnabled;
     }
     /**
-     * @return Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-     * 
-     * @deprecated
-     * use bi_connector_config instead
-     * 
-     */
-    @Deprecated /* use bi_connector_config instead */
-    public Map<String,String> biConnector() {
-        return this.biConnector;
-    }
-    /**
      * @return Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      * 
      */
@@ -314,8 +305,6 @@ public final class GetClustersResult {
      * @return Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
      * - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-     * - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
-     * - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
      * - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -352,6 +341,14 @@ public final class GetClustersResult {
     public String encryptionAtRestProvider() {
         return this.encryptionAtRestProvider;
     }
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     public List<GetClustersResultLabel> labels() {
         return this.labels;
     }
@@ -531,6 +528,13 @@ public final class GetClustersResult {
         return this.stateName;
     }
     /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    public List<GetClustersResultTag> tags() {
+        return this.tags;
+    }
+    /**
      * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
@@ -560,7 +564,6 @@ public final class GetClustersResult {
         private Boolean autoScalingDiskGbEnabled;
         private String backingProviderName;
         private Boolean backupEnabled;
-        private Map<String,String> biConnector;
         private List<GetClustersResultBiConnectorConfig> biConnectorConfigs;
         private String clusterType;
         private List<GetClustersResultConnectionString> connectionStrings;
@@ -592,6 +595,7 @@ public final class GetClustersResult {
         private List<GetClustersResultSnapshotBackupPolicy> snapshotBackupPolicies;
         private String srvAddress;
         private String stateName;
+        private List<GetClustersResultTag> tags;
         private Boolean terminationProtectionEnabled;
         private String versionReleaseSystem;
         public Builder() {}
@@ -603,7 +607,6 @@ public final class GetClustersResult {
     	      this.autoScalingDiskGbEnabled = defaults.autoScalingDiskGbEnabled;
     	      this.backingProviderName = defaults.backingProviderName;
     	      this.backupEnabled = defaults.backupEnabled;
-    	      this.biConnector = defaults.biConnector;
     	      this.biConnectorConfigs = defaults.biConnectorConfigs;
     	      this.clusterType = defaults.clusterType;
     	      this.connectionStrings = defaults.connectionStrings;
@@ -635,6 +638,7 @@ public final class GetClustersResult {
     	      this.snapshotBackupPolicies = defaults.snapshotBackupPolicies;
     	      this.srvAddress = defaults.srvAddress;
     	      this.stateName = defaults.stateName;
+    	      this.tags = defaults.tags;
     	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
     	      this.versionReleaseSystem = defaults.versionReleaseSystem;
         }
@@ -670,11 +674,6 @@ public final class GetClustersResult {
         @CustomType.Setter
         public Builder backupEnabled(Boolean backupEnabled) {
             this.backupEnabled = Objects.requireNonNull(backupEnabled);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder biConnector(Map<String,String> biConnector) {
-            this.biConnector = Objects.requireNonNull(biConnector);
             return this;
         }
         @CustomType.Setter
@@ -848,6 +847,14 @@ public final class GetClustersResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tags(List<GetClustersResultTag> tags) {
+            this.tags = Objects.requireNonNull(tags);
+            return this;
+        }
+        public Builder tags(GetClustersResultTag... tags) {
+            return tags(List.of(tags));
+        }
+        @CustomType.Setter
         public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
             this.terminationProtectionEnabled = Objects.requireNonNull(terminationProtectionEnabled);
             return this;
@@ -865,7 +872,6 @@ public final class GetClustersResult {
             o.autoScalingDiskGbEnabled = autoScalingDiskGbEnabled;
             o.backingProviderName = backingProviderName;
             o.backupEnabled = backupEnabled;
-            o.biConnector = biConnector;
             o.biConnectorConfigs = biConnectorConfigs;
             o.clusterType = clusterType;
             o.connectionStrings = connectionStrings;
@@ -897,6 +903,7 @@ public final class GetClustersResult {
             o.snapshotBackupPolicies = snapshotBackupPolicies;
             o.srvAddress = srvAddress;
             o.stateName = stateName;
+            o.tags = tags;
             o.terminationProtectionEnabled = terminationProtectionEnabled;
             o.versionReleaseSystem = versionReleaseSystem;
             return o;

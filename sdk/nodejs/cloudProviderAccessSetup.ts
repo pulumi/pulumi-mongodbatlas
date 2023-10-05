@@ -34,10 +34,6 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
         return obj['__pulumiType'] === CloudProviderAccessSetup.__pulumiType;
     }
 
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-     */
-    public /*out*/ readonly aws!: pulumi.Output<{[key: string]: string}>;
     public /*out*/ readonly awsConfigs!: pulumi.Output<outputs.CloudProviderAccessSetupAwsConfig[]>;
     public readonly azureConfigs!: pulumi.Output<outputs.CloudProviderAccessSetupAzureConfig[] | undefined>;
     public /*out*/ readonly createdDate!: pulumi.Output<string>;
@@ -59,7 +55,6 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudProviderAccessSetupState | undefined;
-            resourceInputs["aws"] = state ? state.aws : undefined;
             resourceInputs["awsConfigs"] = state ? state.awsConfigs : undefined;
             resourceInputs["azureConfigs"] = state ? state.azureConfigs : undefined;
             resourceInputs["createdDate"] = state ? state.createdDate : undefined;
@@ -78,7 +73,6 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
             resourceInputs["azureConfigs"] = args ? args.azureConfigs : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["providerName"] = args ? args.providerName : undefined;
-            resourceInputs["aws"] = undefined /*out*/;
             resourceInputs["awsConfigs"] = undefined /*out*/;
             resourceInputs["createdDate"] = undefined /*out*/;
             resourceInputs["lastUpdatedDate"] = undefined /*out*/;
@@ -93,10 +87,6 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CloudProviderAccessSetup resources.
  */
 export interface CloudProviderAccessSetupState {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config
-     */
-    aws?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     awsConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAwsConfig>[]>;
     azureConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAzureConfig>[]>;
     createdDate?: pulumi.Input<string>;

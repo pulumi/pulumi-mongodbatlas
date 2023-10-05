@@ -10,7 +10,9 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.ProjectIpAccessListState;
+import com.pulumi.mongodbatlas.outputs.ProjectIpAccessListTimeouts;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -227,6 +229,12 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      */
     public Output<String> projectId() {
         return this.projectId;
+    }
+    @Export(name="timeouts", refs={ProjectIpAccessListTimeouts.class}, tree="[0]")
+    private Output</* @Nullable */ ProjectIpAccessListTimeouts> timeouts;
+
+    public Output<Optional<ProjectIpAccessListTimeouts>> timeouts() {
+        return Codegen.optional(this.timeouts);
     }
 
     /**

@@ -13,13 +13,13 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetAlertConfigurationsResultOutputResult
     {
-        public readonly string? Label;
+        public readonly string Label;
         public readonly string Type;
         public readonly string Value;
 
         [OutputConstructor]
         private GetAlertConfigurationsResultOutputResult(
-            string? label,
+            string label,
 
             string type,
 

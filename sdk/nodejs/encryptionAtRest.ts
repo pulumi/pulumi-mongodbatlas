@@ -44,26 +44,8 @@ export class EncryptionAtRest extends pulumi.CustomResource {
         return obj['__pulumiType'] === EncryptionAtRest.__pulumiType;
     }
 
-    /**
-     * Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
-     */
-    public readonly awsKms!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly awsKmsConfig!: pulumi.Output<outputs.EncryptionAtRestAwsKmsConfig | undefined>;
-    /**
-     * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
-     */
-    public readonly azureKeyVault!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly azureKeyVaultConfig!: pulumi.Output<outputs.EncryptionAtRestAzureKeyVaultConfig | undefined>;
-    /**
-     * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
-     */
-    public readonly googleCloudKms!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly googleCloudKmsConfig!: pulumi.Output<outputs.EncryptionAtRestGoogleCloudKmsConfig | undefined>;
     /**
      * The unique identifier for the project.
@@ -83,11 +65,8 @@ export class EncryptionAtRest extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EncryptionAtRestState | undefined;
-            resourceInputs["awsKms"] = state ? state.awsKms : undefined;
             resourceInputs["awsKmsConfig"] = state ? state.awsKmsConfig : undefined;
-            resourceInputs["azureKeyVault"] = state ? state.azureKeyVault : undefined;
             resourceInputs["azureKeyVaultConfig"] = state ? state.azureKeyVaultConfig : undefined;
-            resourceInputs["googleCloudKms"] = state ? state.googleCloudKms : undefined;
             resourceInputs["googleCloudKmsConfig"] = state ? state.googleCloudKmsConfig : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
@@ -95,17 +74,12 @@ export class EncryptionAtRest extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["awsKms"] = args?.awsKms ? pulumi.secret(args.awsKms) : undefined;
-            resourceInputs["awsKmsConfig"] = args?.awsKmsConfig ? pulumi.secret(args.awsKmsConfig) : undefined;
-            resourceInputs["azureKeyVault"] = args?.azureKeyVault ? pulumi.secret(args.azureKeyVault) : undefined;
-            resourceInputs["azureKeyVaultConfig"] = args?.azureKeyVaultConfig ? pulumi.secret(args.azureKeyVaultConfig) : undefined;
-            resourceInputs["googleCloudKms"] = args?.googleCloudKms ? pulumi.secret(args.googleCloudKms) : undefined;
-            resourceInputs["googleCloudKmsConfig"] = args?.googleCloudKmsConfig ? pulumi.secret(args.googleCloudKmsConfig) : undefined;
+            resourceInputs["awsKmsConfig"] = args ? args.awsKmsConfig : undefined;
+            resourceInputs["azureKeyVaultConfig"] = args ? args.azureKeyVaultConfig : undefined;
+            resourceInputs["googleCloudKmsConfig"] = args ? args.googleCloudKmsConfig : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["awsKms", "awsKmsConfig", "azureKeyVault", "azureKeyVaultConfig", "googleCloudKms", "googleCloudKmsConfig"] };
-        opts = pulumi.mergeOptions(opts, secretOpts);
         super(EncryptionAtRest.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -114,26 +88,8 @@ export class EncryptionAtRest extends pulumi.CustomResource {
  * Input properties used for looking up and filtering EncryptionAtRest resources.
  */
 export interface EncryptionAtRestState {
-    /**
-     * Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
-     */
-    awsKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
-    /**
-     * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
-     */
-    azureKeyVault?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
-    /**
-     * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
-     */
-    googleCloudKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
     /**
      * The unique identifier for the project.
@@ -145,26 +101,8 @@ export interface EncryptionAtRestState {
  * The set of arguments for constructing a EncryptionAtRest resource.
  */
 export interface EncryptionAtRestArgs {
-    /**
-     * Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
-     */
-    awsKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
-    /**
-     * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
-     */
-    azureKeyVault?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
-    /**
-     * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
-     */
-    googleCloudKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
     /**
      * The unique identifier for the project.

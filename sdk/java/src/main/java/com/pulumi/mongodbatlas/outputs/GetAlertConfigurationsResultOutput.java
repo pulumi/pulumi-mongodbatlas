@@ -6,18 +6,16 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAlertConfigurationsResultOutput {
-    private @Nullable String label;
+    private String label;
     private String type;
     private String value;
 
     private GetAlertConfigurationsResultOutput() {}
-    public Optional<String> label() {
-        return Optional.ofNullable(this.label);
+    public String label() {
+        return this.label;
     }
     public String type() {
         return this.type;
@@ -35,7 +33,7 @@ public final class GetAlertConfigurationsResultOutput {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable String label;
+        private String label;
         private String type;
         private String value;
         public Builder() {}
@@ -47,8 +45,8 @@ public final class GetAlertConfigurationsResultOutput {
         }
 
         @CustomType.Setter
-        public Builder label(@Nullable String label) {
-            this.label = label;
+        public Builder label(String label) {
+            this.label = Objects.requireNonNull(label);
             return this;
         }
         @CustomType.Setter

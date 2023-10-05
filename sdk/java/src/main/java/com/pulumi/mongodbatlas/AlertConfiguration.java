@@ -17,7 +17,6 @@ import com.pulumi.mongodbatlas.outputs.AlertConfigurationThresholdConfig;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -285,18 +284,6 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<AlertConfigurationMatcher>>> matchers() {
         return Codegen.optional(this.matchers);
     }
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config */
-    @Export(name="metricThreshold", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> metricThreshold;
-
-    public Output<Optional<Map<String,String>>> metricThreshold() {
-        return Codegen.optional(this.metricThreshold);
-    }
     @Export(name="metricThresholdConfig", refs={AlertConfigurationMetricThresholdConfig.class}, tree="[0]")
     private Output</* @Nullable */ AlertConfigurationMetricThresholdConfig> metricThresholdConfig;
 
@@ -304,10 +291,10 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.metricThresholdConfig);
     }
     @Export(name="notifications", refs={List.class,AlertConfigurationNotification.class}, tree="[0,1]")
-    private Output<List<AlertConfigurationNotification>> notifications;
+    private Output</* @Nullable */ List<AlertConfigurationNotification>> notifications;
 
-    public Output<List<AlertConfigurationNotification>> notifications() {
-        return this.notifications;
+    public Output<Optional<List<AlertConfigurationNotification>>> notifications() {
+        return Codegen.optional(this.notifications);
     }
     /**
      * The ID of the project where the alert configuration will create.
@@ -322,24 +309,6 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      */
     public Output<String> projectId() {
         return this.projectId;
-    }
-    /**
-     * Threshold value outside of which an alert will be triggered.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config */
-    @Export(name="threshold", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> threshold;
-
-    /**
-     * @return Threshold value outside of which an alert will be triggered.
-     * 
-     */
-    public Output<Optional<Map<String,String>>> threshold() {
-        return Codegen.optional(this.threshold);
     }
     @Export(name="thresholdConfig", refs={AlertConfigurationThresholdConfig.class}, tree="[0]")
     private Output</* @Nullable */ AlertConfigurationThresholdConfig> thresholdConfig;

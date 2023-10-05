@@ -12,7 +12,6 @@ from . import outputs
 
 __all__ = [
     'AdvancedClusterAdvancedConfiguration',
-    'AdvancedClusterBiConnector',
     'AdvancedClusterBiConnectorConfig',
     'AdvancedClusterConnectionString',
     'AdvancedClusterConnectionStringPrivateEndpoint',
@@ -25,6 +24,7 @@ __all__ = [
     'AdvancedClusterReplicationSpecRegionConfigAutoScaling',
     'AdvancedClusterReplicationSpecRegionConfigElectableSpecs',
     'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs',
+    'AdvancedClusterTag',
     'AlertConfigurationMatcher',
     'AlertConfigurationMetricThresholdConfig',
     'AlertConfigurationNotification',
@@ -62,6 +62,7 @@ __all__ = [
     'ClusterSnapshotBackupPolicy',
     'ClusterSnapshotBackupPolicyPolicy',
     'ClusterSnapshotBackupPolicyPolicyPolicyItem',
+    'ClusterTag',
     'CustomDbRoleAction',
     'CustomDbRoleActionResource',
     'CustomDbRoleInheritedRole',
@@ -107,12 +108,13 @@ __all__ = [
     'OnlineArchivePartitionField',
     'OnlineArchiveSchedule',
     'PrivateLinkEndpointServiceEndpoint',
-    'ProjectApiKey',
     'ProjectApiKeyProjectAssignment',
+    'ProjectIpAccessListTimeouts',
     'ProjectLimit',
     'ProjectTeam',
     'SearchIndexSynonym',
     'ServerlessInstanceLink',
+    'ServerlessInstanceTag',
     'X509AuthenticationDatabaseUserCertificate',
     'Get509AuthenticationDatabaseUserCertificateResult',
     'GetAccessListApiKeysResultResult',
@@ -129,6 +131,7 @@ __all__ = [
     'GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult',
     'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult',
     'GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult',
+    'GetAdvancedClusterTagResult',
     'GetAdvancedClustersResultResult',
     'GetAdvancedClustersResultAdvancedConfigurationResult',
     'GetAdvancedClustersResultBiConnectorConfigResult',
@@ -143,6 +146,7 @@ __all__ = [
     'GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult',
+    'GetAdvancedClustersResultTagResult',
     'GetAlertConfigurationMatcherResult',
     'GetAlertConfigurationMetricThresholdConfigResult',
     'GetAlertConfigurationNotificationResult',
@@ -156,6 +160,11 @@ __all__ = [
     'GetAlertConfigurationsResultOutputResult',
     'GetAlertConfigurationsResultThresholdConfigResult',
     'GetApiKeysResultResult',
+    'GetAtlasUserLinkResult',
+    'GetAtlasUserRoleResult',
+    'GetAtlasUsersResultResult',
+    'GetAtlasUsersResultLinkResult',
+    'GetAtlasUsersResultRoleResult',
     'GetBackupCompliancePolicyOnDemandPolicyItemResult',
     'GetBackupCompliancePolicyPolicyItemDailyResult',
     'GetBackupCompliancePolicyPolicyItemHourlyResult',
@@ -193,6 +202,7 @@ __all__ = [
     'GetClusterSnapshotBackupPolicyResult',
     'GetClusterSnapshotBackupPolicyPolicyResult',
     'GetClusterSnapshotBackupPolicyPolicyPolicyItemResult',
+    'GetClusterTagResult',
     'GetClustersResultResult',
     'GetClustersResultAdvancedConfigurationResult',
     'GetClustersResultBiConnectorConfigResult',
@@ -205,6 +215,7 @@ __all__ = [
     'GetClustersResultSnapshotBackupPolicyResult',
     'GetClustersResultSnapshotBackupPolicyPolicyResult',
     'GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult',
+    'GetClustersResultTagResult',
     'GetCustomDbRoleActionResult',
     'GetCustomDbRoleActionResourceResult',
     'GetCustomDbRoleInheritedRoleResult',
@@ -321,22 +332,22 @@ __all__ = [
     'GetPrivatelinkEndpointsServiceAdlLinkResult',
     'GetPrivatelinkEndpointsServiceAdlResultResult',
     'GetPrivatelinkEndpointsServiceServerlessResultResult',
-    'GetProjectApiKeyResult',
     'GetProjectApiKeyProjectAssignmentResult',
     'GetProjectApiKeysResultResult',
     'GetProjectApiKeysResultProjectAssignmentResult',
     'GetProjectLimitResult',
     'GetProjectTeamResult',
     'GetProjectsResultResult',
-    'GetProjectsResultApiKeyResult',
     'GetProjectsResultLimitResult',
     'GetProjectsResultTeamResult',
     'GetSearchIndexSynonymResult',
     'GetSearchIndexesResultResult',
     'GetSearchIndexesResultSynonymResult',
     'GetServerlessInstanceLinkResult',
+    'GetServerlessInstanceTagResult',
     'GetServerlessInstancesResultResult',
     'GetServerlessInstancesResultLinkResult',
+    'GetServerlessInstancesResultTagResult',
     'GetSharedTierRestoreJobsResultResult',
     'GetSharedTierSnapshotsResultResult',
     'GetThirdPartyIntegrationsResultResult',
@@ -558,83 +569,6 @@ class AdvancedClusterAdvancedConfiguration(dict):
 
 
 @pulumi.output_type
-class AdvancedClusterBiConnector(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "readPreference":
-            suggest = "read_preference"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterBiConnector. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        AdvancedClusterBiConnector.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        AdvancedClusterBiConnector.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 enabled: Optional[bool] = None,
-                 read_preference: Optional[str] = None):
-        """
-        :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
-               - Set to `true` to enable BI Connector for Atlas.
-               - Set to `false` to disable BI Connector for Atlas.
-        :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-               
-               - Set to "primary" to have BI Connector for Atlas read from the primary.
-               
-               - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-               
-               - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
-        """
-        AdvancedClusterBiConnector._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            read_preference=read_preference,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[bool] = None,
-             read_preference: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        if enabled is not None:
-            _setter("enabled", enabled)
-        if read_preference is not None:
-            _setter("read_preference", read_preference)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
-        - Set to `true` to enable BI Connector for Atlas.
-        - Set to `false` to disable BI Connector for Atlas.
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="readPreference")
-    def read_preference(self) -> Optional[str]:
-        """
-        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-
-        - Set to "primary" to have BI Connector for Atlas read from the primary.
-
-        - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-
-        - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
-        """
-        return pulumi.get(self, "read_preference")
-
-
-@pulumi.output_type
 class AdvancedClusterBiConnectorConfig(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -716,11 +650,7 @@ class AdvancedClusterConnectionString(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "awsPrivateLink":
-            suggest = "aws_private_link"
-        elif key == "awsPrivateLinkSrv":
-            suggest = "aws_private_link_srv"
-        elif key == "privateEndpoints":
+        if key == "privateEndpoints":
             suggest = "private_endpoints"
         elif key == "privateSrv":
             suggest = "private_srv"
@@ -739,8 +669,6 @@ class AdvancedClusterConnectionString(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 aws_private_link: Optional[Mapping[str, Any]] = None,
-                 aws_private_link_srv: Optional[Mapping[str, Any]] = None,
                  private: Optional[str] = None,
                  private_endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpoint']] = None,
                  private_srv: Optional[str] = None,
@@ -748,8 +676,6 @@ class AdvancedClusterConnectionString(dict):
                  standard_srv: Optional[str] = None):
         AdvancedClusterConnectionString._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            aws_private_link=aws_private_link,
-            aws_private_link_srv=aws_private_link_srv,
             private=private,
             private_endpoints=private_endpoints,
             private_srv=private_srv,
@@ -759,18 +685,12 @@ class AdvancedClusterConnectionString(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             aws_private_link: Optional[Mapping[str, Any]] = None,
-             aws_private_link_srv: Optional[Mapping[str, Any]] = None,
              private: Optional[str] = None,
              private_endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpoint']] = None,
              private_srv: Optional[str] = None,
              standard: Optional[str] = None,
              standard_srv: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        if aws_private_link is not None:
-            _setter("aws_private_link", aws_private_link)
-        if aws_private_link_srv is not None:
-            _setter("aws_private_link_srv", aws_private_link_srv)
         if private is not None:
             _setter("private", private)
         if private_endpoints is not None:
@@ -781,22 +701,6 @@ class AdvancedClusterConnectionString(dict):
             _setter("standard", standard)
         if standard_srv is not None:
             _setter("standard_srv", standard_srv)
-
-    @property
-    @pulumi.getter(name="awsPrivateLink")
-    def aws_private_link(self) -> Optional[Mapping[str, Any]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
-
-        return pulumi.get(self, "aws_private_link")
-
-    @property
-    @pulumi.getter(name="awsPrivateLinkSrv")
-    def aws_private_link_srv(self) -> Optional[Mapping[str, Any]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
-
-        return pulumi.get(self, "aws_private_link_srv")
 
     @property
     @pulumi.getter
@@ -986,7 +890,6 @@ class AdvancedClusterLabel(dict):
         :param str value: The value that you want to write.
                
                > **NOTE:** MongoDB Atlas doesn't display your labels.
-               > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         AdvancedClusterLabel._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -1019,7 +922,6 @@ class AdvancedClusterLabel(dict):
         The value that you want to write.
 
         > **NOTE:** MongoDB Atlas doesn't display your labels.
-        > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         return pulumi.get(self, "value")
 
@@ -1779,6 +1681,50 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
 
 
 @pulumi.output_type
+class AdvancedClusterTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Constant that defines the set of the tag.
+        :param str value: Variable that belongs to the set of the tag.
+               
+               To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        AdvancedClusterTag._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Constant that defines the set of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Variable that belongs to the set of the tag.
+
+        To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class AlertConfigurationMatcher(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1798,9 +1744,9 @@ class AlertConfigurationMatcher(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 field_name: Optional[str] = None,
-                 operator: Optional[str] = None,
-                 value: Optional[str] = None):
+                 field_name: str,
+                 operator: str,
+                 value: str):
         """
         :param str field_name: Name of the field in the target object to match on.
                
@@ -1828,20 +1774,17 @@ class AlertConfigurationMatcher(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             field_name: Optional[str] = None,
-             operator: Optional[str] = None,
-             value: Optional[str] = None,
+             field_name: str,
+             operator: str,
+             value: str,
              opts: Optional[pulumi.ResourceOptions]=None):
-        if field_name is not None:
-            _setter("field_name", field_name)
-        if operator is not None:
-            _setter("operator", operator)
-        if value is not None:
-            _setter("value", value)
+        _setter("field_name", field_name)
+        _setter("operator", operator)
+        _setter("value", value)
 
     @property
     @pulumi.getter(name="fieldName")
-    def field_name(self) -> Optional[str]:
+    def field_name(self) -> str:
         """
         Name of the field in the target object to match on.
 
@@ -1861,7 +1804,7 @@ class AlertConfigurationMatcher(dict):
 
     @property
     @pulumi.getter
-    def operator(self) -> Optional[str]:
+    def operator(self) -> str:
         """
         The operator to test the field’s value.
         Accepted values are:
@@ -1870,7 +1813,7 @@ class AlertConfigurationMatcher(dict):
 
     @property
     @pulumi.getter
-    def value(self) -> Optional[str]:
+    def value(self) -> str:
         """
         Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
@@ -1897,7 +1840,7 @@ class AlertConfigurationMetricThresholdConfig(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 metric_name: Optional[str] = None,
+                 metric_name: str,
                  mode: Optional[str] = None,
                  operator: Optional[str] = None,
                  threshold: Optional[float] = None,
@@ -1922,14 +1865,13 @@ class AlertConfigurationMetricThresholdConfig(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             metric_name: Optional[str] = None,
+             metric_name: str,
              mode: Optional[str] = None,
              operator: Optional[str] = None,
              threshold: Optional[float] = None,
              units: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        if metric_name is not None:
-            _setter("metric_name", metric_name)
+        _setter("metric_name", metric_name)
         if mode is not None:
             _setter("mode", mode)
         if operator is not None:
@@ -1941,7 +1883,7 @@ class AlertConfigurationMetricThresholdConfig(dict):
 
     @property
     @pulumi.getter(name="metricName")
-    def metric_name(self) -> Optional[str]:
+    def metric_name(self) -> str:
         """
         Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
         """
@@ -1987,7 +1929,9 @@ class AlertConfigurationNotification(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "apiToken":
+        if key == "typeName":
+            suggest = "type_name"
+        elif key == "apiToken":
             suggest = "api_token"
         elif key == "channelName":
             suggest = "channel_name"
@@ -2019,8 +1963,6 @@ class AlertConfigurationNotification(dict):
             suggest = "team_id"
         elif key == "teamName":
             suggest = "team_name"
-        elif key == "typeName":
-            suggest = "type_name"
         elif key == "victorOpsApiKey":
             suggest = "victor_ops_api_key"
         elif key == "victorOpsRoutingKey":
@@ -2042,6 +1984,7 @@ class AlertConfigurationNotification(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 type_name: str,
                  api_token: Optional[str] = None,
                  channel_name: Optional[str] = None,
                  datadog_api_key: Optional[str] = None,
@@ -2059,13 +2002,14 @@ class AlertConfigurationNotification(dict):
                  sms_enabled: Optional[bool] = None,
                  team_id: Optional[str] = None,
                  team_name: Optional[str] = None,
-                 type_name: Optional[str] = None,
                  username: Optional[str] = None,
                  victor_ops_api_key: Optional[str] = None,
                  victor_ops_routing_key: Optional[str] = None,
                  webhook_secret: Optional[str] = None,
                  webhook_url: Optional[str] = None):
         """
+        :param str type_name: Type of alert notification.
+               Accepted values are:
         :param str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str channel_name: Slack channel name. Required for the SLACK notifications type.
         :param str datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
@@ -2094,8 +2038,6 @@ class AlertConfigurationNotification(dict):
         :param bool sms_enabled: Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         :param str team_id: Unique identifier of a team.
         :param str team_name: Label for the team that receives this notification.
-        :param str type_name: Type of alert notification.
-               Accepted values are:
         :param str username: Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
         :param str victor_ops_api_key: VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param str victor_ops_routing_key: VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
@@ -2104,6 +2046,7 @@ class AlertConfigurationNotification(dict):
         """
         AlertConfigurationNotification._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            type_name=type_name,
             api_token=api_token,
             channel_name=channel_name,
             datadog_api_key=datadog_api_key,
@@ -2121,7 +2064,6 @@ class AlertConfigurationNotification(dict):
             sms_enabled=sms_enabled,
             team_id=team_id,
             team_name=team_name,
-            type_name=type_name,
             username=username,
             victor_ops_api_key=victor_ops_api_key,
             victor_ops_routing_key=victor_ops_routing_key,
@@ -2131,6 +2073,7 @@ class AlertConfigurationNotification(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             type_name: str,
              api_token: Optional[str] = None,
              channel_name: Optional[str] = None,
              datadog_api_key: Optional[str] = None,
@@ -2148,13 +2091,13 @@ class AlertConfigurationNotification(dict):
              sms_enabled: Optional[bool] = None,
              team_id: Optional[str] = None,
              team_name: Optional[str] = None,
-             type_name: Optional[str] = None,
              username: Optional[str] = None,
              victor_ops_api_key: Optional[str] = None,
              victor_ops_routing_key: Optional[str] = None,
              webhook_secret: Optional[str] = None,
              webhook_url: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("type_name", type_name)
         if api_token is not None:
             _setter("api_token", api_token)
         if channel_name is not None:
@@ -2189,8 +2132,6 @@ class AlertConfigurationNotification(dict):
             _setter("team_id", team_id)
         if team_name is not None:
             _setter("team_name", team_name)
-        if type_name is not None:
-            _setter("type_name", type_name)
         if username is not None:
             _setter("username", username)
         if victor_ops_api_key is not None:
@@ -2201,6 +2142,15 @@ class AlertConfigurationNotification(dict):
             _setter("webhook_secret", webhook_secret)
         if webhook_url is not None:
             _setter("webhook_url", webhook_url)
+
+    @property
+    @pulumi.getter(name="typeName")
+    def type_name(self) -> str:
+        """
+        Type of alert notification.
+        Accepted values are:
+        """
+        return pulumi.get(self, "type_name")
 
     @property
     @pulumi.getter(name="apiToken")
@@ -2348,15 +2298,6 @@ class AlertConfigurationNotification(dict):
         Label for the team that receives this notification.
         """
         return pulumi.get(self, "team_name")
-
-    @property
-    @pulumi.getter(name="typeName")
-    def type_name(self) -> Optional[str]:
-        """
-        Type of alert notification.
-        Accepted values are:
-        """
-        return pulumi.get(self, "type_name")
 
     @property
     @pulumi.getter
@@ -4476,11 +4417,7 @@ class ClusterConnectionString(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "awsPrivateLink":
-            suggest = "aws_private_link"
-        elif key == "awsPrivateLinkSrv":
-            suggest = "aws_private_link_srv"
-        elif key == "privateEndpoints":
+        if key == "privateEndpoints":
             suggest = "private_endpoints"
         elif key == "privateSrv":
             suggest = "private_srv"
@@ -4499,8 +4436,6 @@ class ClusterConnectionString(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 aws_private_link: Optional[Mapping[str, Any]] = None,
-                 aws_private_link_srv: Optional[Mapping[str, Any]] = None,
                  private: Optional[str] = None,
                  private_endpoints: Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpoint']] = None,
                  private_srv: Optional[str] = None,
@@ -4508,8 +4443,6 @@ class ClusterConnectionString(dict):
                  standard_srv: Optional[str] = None):
         ClusterConnectionString._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            aws_private_link=aws_private_link,
-            aws_private_link_srv=aws_private_link_srv,
             private=private,
             private_endpoints=private_endpoints,
             private_srv=private_srv,
@@ -4519,18 +4452,12 @@ class ClusterConnectionString(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             aws_private_link: Optional[Mapping[str, Any]] = None,
-             aws_private_link_srv: Optional[Mapping[str, Any]] = None,
              private: Optional[str] = None,
              private_endpoints: Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpoint']] = None,
              private_srv: Optional[str] = None,
              standard: Optional[str] = None,
              standard_srv: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        if aws_private_link is not None:
-            _setter("aws_private_link", aws_private_link)
-        if aws_private_link_srv is not None:
-            _setter("aws_private_link_srv", aws_private_link_srv)
         if private is not None:
             _setter("private", private)
         if private_endpoints is not None:
@@ -4541,22 +4468,6 @@ class ClusterConnectionString(dict):
             _setter("standard", standard)
         if standard_srv is not None:
             _setter("standard_srv", standard_srv)
-
-    @property
-    @pulumi.getter(name="awsPrivateLink")
-    def aws_private_link(self) -> Optional[Mapping[str, Any]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
-
-        return pulumi.get(self, "aws_private_link")
-
-    @property
-    @pulumi.getter(name="awsPrivateLinkSrv")
-    def aws_private_link_srv(self) -> Optional[Mapping[str, Any]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
-
-        return pulumi.get(self, "aws_private_link_srv")
 
     @property
     @pulumi.getter
@@ -4748,7 +4659,6 @@ class ClusterLabel(dict):
         :param str value: The value that you want to write.
                
                > **NOTE:** MongoDB Atlas doesn't display your labels.
-               > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         ClusterLabel._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -4781,7 +4691,6 @@ class ClusterLabel(dict):
         The value that you want to write.
 
         > **NOTE:** MongoDB Atlas doesn't display your labels.
-        > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         return pulumi.get(self, "value")
 
@@ -5344,6 +5253,50 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> Optional[int]:
         return pulumi.get(self, "retention_value")
+
+
+@pulumi.output_type
+class ClusterTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Constant that defines the set of the tag.
+        :param str value: Variable that belongs to the set of the tag.
+               
+               To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        ClusterTag._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Constant that defines the set of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Variable that belongs to the set of the tag.
+
+        To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -6664,12 +6617,12 @@ class DatabaseUserRole(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "collectionName":
-            suggest = "collection_name"
-        elif key == "databaseName":
+        if key == "databaseName":
             suggest = "database_name"
         elif key == "roleName":
             suggest = "role_name"
+        elif key == "collectionName":
+            suggest = "collection_name"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in DatabaseUserRole. Access the value via the '{suggest}' property getter instead.")
@@ -6683,33 +6636,47 @@ class DatabaseUserRole(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 collection_name: Optional[str] = None,
-                 database_name: Optional[str] = None,
-                 role_name: Optional[str] = None):
+                 database_name: str,
+                 role_name: str,
+                 collection_name: Optional[str] = None):
         """
-        :param str collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         :param str database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         :param str role_name: Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+        :param str collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         """
         DatabaseUserRole._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            collection_name=collection_name,
             database_name=database_name,
             role_name=role_name,
+            collection_name=collection_name,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             database_name: str,
+             role_name: str,
              collection_name: Optional[str] = None,
-             database_name: Optional[str] = None,
-             role_name: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("database_name", database_name)
+        _setter("role_name", role_name)
         if collection_name is not None:
             _setter("collection_name", collection_name)
-        if database_name is not None:
-            _setter("database_name", database_name)
-        if role_name is not None:
-            _setter("role_name", role_name)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        """
+        Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        """
+        return pulumi.get(self, "database_name")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        """
+        Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+        """
+        return pulumi.get(self, "role_name")
 
     @property
     @pulumi.getter(name="collectionName")
@@ -6718,22 +6685,6 @@ class DatabaseUserRole(dict):
         Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         """
         return pulumi.get(self, "collection_name")
-
-    @property
-    @pulumi.getter(name="databaseName")
-    def database_name(self) -> Optional[str]:
-        """
-        Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-        """
-        return pulumi.get(self, "database_name")
-
-    @property
-    @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[str]:
-        """
-        Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
-        """
-        return pulumi.get(self, "role_name")
 
 
 @pulumi.output_type
@@ -6923,9 +6874,9 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 enabled: bool,
                  azure_environment: Optional[str] = None,
                  client_id: Optional[str] = None,
+                 enabled: Optional[bool] = None,
                  key_identifier: Optional[str] = None,
                  key_vault_name: Optional[str] = None,
                  resource_group_name: Optional[str] = None,
@@ -6933,9 +6884,9 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
                  subscription_id: Optional[str] = None,
                  tenant_id: Optional[str] = None):
         """
-        :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param str azure_environment: The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
         :param str client_id: The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+        :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param str key_identifier: The unique identifier of a key in an Azure Key Vault.
         :param str key_vault_name: The name of an Azure Key Vault containing your key.
         :param str resource_group_name: The name of the Azure Resource group that contains an Azure Key Vault.
@@ -6945,9 +6896,9 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
         """
         EncryptionAtRestAzureKeyVaultConfig._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
             azure_environment=azure_environment,
             client_id=client_id,
+            enabled=enabled,
             key_identifier=key_identifier,
             key_vault_name=key_vault_name,
             resource_group_name=resource_group_name,
@@ -6958,9 +6909,9 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             enabled: bool,
              azure_environment: Optional[str] = None,
              client_id: Optional[str] = None,
+             enabled: Optional[bool] = None,
              key_identifier: Optional[str] = None,
              key_vault_name: Optional[str] = None,
              resource_group_name: Optional[str] = None,
@@ -6968,11 +6919,12 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
              subscription_id: Optional[str] = None,
              tenant_id: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("enabled", enabled)
         if azure_environment is not None:
             _setter("azure_environment", azure_environment)
         if client_id is not None:
             _setter("client_id", client_id)
+        if enabled is not None:
+            _setter("enabled", enabled)
         if key_identifier is not None:
             _setter("key_identifier", key_identifier)
         if key_vault_name is not None:
@@ -6985,14 +6937,6 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
             _setter("subscription_id", subscription_id)
         if tenant_id is not None:
             _setter("tenant_id", tenant_id)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> bool:
-        """
-        Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-        """
-        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="azureEnvironment")
@@ -7009,6 +6953,14 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
         The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
         """
         return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        """
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="keyIdentifier")
@@ -8892,69 +8844,6 @@ class PrivateLinkEndpointServiceEndpoint(dict):
 
 
 @pulumi.output_type
-class ProjectApiKey(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "apiKeyId":
-            suggest = "api_key_id"
-        elif key == "roleNames":
-            suggest = "role_names"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ProjectApiKey. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ProjectApiKey.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ProjectApiKey.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 api_key_id: str,
-                 role_names: Sequence[str]):
-        """
-        :param str api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
-               
-               **WARNING:** The `api_keys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `ProjectApiKey`  resource instead.
-        :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        """
-        ProjectApiKey._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key_id=api_key_id,
-            role_names=role_names,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key_id: str,
-             role_names: Sequence[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("api_key_id", api_key_id)
-        _setter("role_names", role_names)
-
-    @property
-    @pulumi.getter(name="apiKeyId")
-    def api_key_id(self) -> str:
-        """
-        The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
-
-        **WARNING:** The `api_keys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `ProjectApiKey`  resource instead.
-        """
-        return pulumi.get(self, "api_key_id")
-
-    @property
-    @pulumi.getter(name="roleNames")
-    def role_names(self) -> Sequence[str]:
-        """
-        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        """
-        return pulumi.get(self, "role_names")
-
-
-@pulumi.output_type
 class ProjectApiKeyProjectAssignment(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -9011,6 +8900,38 @@ class ProjectApiKeyProjectAssignment(dict):
         List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
         return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
+class ProjectIpAccessListTimeouts(dict):
+    def __init__(__self__, *,
+                 delete: Optional[str] = None,
+                 read: Optional[str] = None):
+        ProjectIpAccessListTimeouts._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            delete=delete,
+            read=read,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             delete: Optional[str] = None,
+             read: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        if delete is not None:
+            _setter("delete", delete)
+        if read is not None:
+            _setter("read", read)
+
+    @property
+    @pulumi.getter
+    def delete(self) -> Optional[str]:
+        return pulumi.get(self, "delete")
+
+    @property
+    @pulumi.getter
+    def read(self) -> Optional[str]:
+        return pulumi.get(self, "read")
 
 
 @pulumi.output_type
@@ -9295,6 +9216,50 @@ class ServerlessInstanceLink(dict):
     @pulumi.getter
     def rel(self) -> Optional[str]:
         return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
+class ServerlessInstanceTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Constant that defines the set of the tag.
+        :param str value: Variable that belongs to the set of the tag.
+               
+               To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        ServerlessInstanceTag._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Constant that defines the set of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Variable that belongs to the set of the tag.
+
+        To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -9713,8 +9678,6 @@ class GetAdvancedClusterBiConnectorConfigResult(dict):
 @pulumi.output_type
 class GetAdvancedClusterConnectionStringResult(dict):
     def __init__(__self__, *,
-                 aws_private_link: Mapping[str, Any],
-                 aws_private_link_srv: Mapping[str, Any],
                  private: str,
                  private_endpoints: Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointResult'],
                  private_srv: str,
@@ -9722,8 +9685,6 @@ class GetAdvancedClusterConnectionStringResult(dict):
                  standard_srv: str):
         GetAdvancedClusterConnectionStringResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            aws_private_link=aws_private_link,
-            aws_private_link_srv=aws_private_link_srv,
             private=private,
             private_endpoints=private_endpoints,
             private_srv=private_srv,
@@ -9733,37 +9694,17 @@ class GetAdvancedClusterConnectionStringResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             aws_private_link: Mapping[str, Any],
-             aws_private_link_srv: Mapping[str, Any],
              private: str,
              private_endpoints: Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointResult'],
              private_srv: str,
              standard: str,
              standard_srv: str,
              opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("aws_private_link", aws_private_link)
-        _setter("aws_private_link_srv", aws_private_link_srv)
         _setter("private", private)
         _setter("private_endpoints", private_endpoints)
         _setter("private_srv", private_srv)
         _setter("standard", standard)
         _setter("standard_srv", standard_srv)
-
-    @property
-    @pulumi.getter(name="awsPrivateLink")
-    def aws_private_link(self) -> Mapping[str, Any]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
-
-        return pulumi.get(self, "aws_private_link")
-
-    @property
-    @pulumi.getter(name="awsPrivateLinkSrv")
-    def aws_private_link_srv(self) -> Mapping[str, Any]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
-
-        return pulumi.get(self, "aws_private_link_srv")
 
     @property
     @pulumi.getter
@@ -10512,6 +10453,46 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
 
 
 @pulumi.output_type
+class GetAdvancedClusterTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key that you want to write.
+        :param str value: The value that you want to write.
+        """
+        GetAdvancedClusterTagResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key that you want to write.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value that you want to write.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetAdvancedClustersResultResult(dict):
     def __init__(__self__, *,
                  advanced_configurations: Sequence['outputs.GetAdvancedClustersResultAdvancedConfigurationResult'],
@@ -10531,6 +10512,7 @@ class GetAdvancedClustersResultResult(dict):
                  replication_specs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult'],
                  root_cert_type: str,
                  state_name: str,
+                 tags: Sequence['outputs.GetAdvancedClustersResultTagResult'],
                  termination_protection_enabled: bool,
                  version_release_system: str):
         """
@@ -10540,7 +10522,7 @@ class GetAdvancedClustersResultResult(dict):
         :param Sequence['GetAdvancedClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param float disk_size_gb: Capacity, in gigabytes, of the host's root volume.
         :param str encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.
-        :param Sequence['GetAdvancedClustersResultLabelArgs'] labels: Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        :param Sequence['GetAdvancedClustersResultLabelArgs'] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param str mongo_db_major_version: Version of the cluster to deploy.
         :param str mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param bool paused: Flag that indicates whether the cluster is paused or not.
@@ -10548,6 +10530,7 @@ class GetAdvancedClustersResultResult(dict):
         :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
         :param str root_cert_type: Certificate Authority that MongoDB Atlas clusters use.
         :param str state_name: Current state of the cluster. The possible states are:
+        :param Sequence['GetAdvancedClustersResultTagArgs'] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param str version_release_system: Release cadence that Atlas uses for this cluster.
         """
@@ -10570,6 +10553,7 @@ class GetAdvancedClustersResultResult(dict):
             replication_specs=replication_specs,
             root_cert_type=root_cert_type,
             state_name=state_name,
+            tags=tags,
             termination_protection_enabled=termination_protection_enabled,
             version_release_system=version_release_system,
         )
@@ -10593,6 +10577,7 @@ class GetAdvancedClustersResultResult(dict):
              replication_specs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult'],
              root_cert_type: str,
              state_name: str,
+             tags: Sequence['outputs.GetAdvancedClustersResultTagResult'],
              termination_protection_enabled: bool,
              version_release_system: str,
              opts: Optional[pulumi.ResourceOptions]=None):
@@ -10613,6 +10598,7 @@ class GetAdvancedClustersResultResult(dict):
         _setter("replication_specs", replication_specs)
         _setter("root_cert_type", root_cert_type)
         _setter("state_name", state_name)
+        _setter("tags", tags)
         _setter("termination_protection_enabled", termination_protection_enabled)
         _setter("version_release_system", version_release_system)
 
@@ -10678,8 +10664,11 @@ class GetAdvancedClustersResultResult(dict):
     @pulumi.getter
     def labels(self) -> Sequence['outputs.GetAdvancedClustersResultLabelResult']:
         """
-        Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+
         return pulumi.get(self, "labels")
 
     @property
@@ -10742,6 +10731,14 @@ class GetAdvancedClustersResultResult(dict):
         Current state of the cluster. The possible states are:
         """
         return pulumi.get(self, "state_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetAdvancedClustersResultTagResult']:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="terminationProtectionEnabled")
@@ -10956,8 +10953,6 @@ class GetAdvancedClustersResultBiConnectorConfigResult(dict):
 @pulumi.output_type
 class GetAdvancedClustersResultConnectionStringResult(dict):
     def __init__(__self__, *,
-                 aws_private_link: Mapping[str, Any],
-                 aws_private_link_srv: Mapping[str, Any],
                  private: str,
                  private_endpoints: Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointResult'],
                  private_srv: str,
@@ -10965,8 +10960,6 @@ class GetAdvancedClustersResultConnectionStringResult(dict):
                  standard_srv: str):
         GetAdvancedClustersResultConnectionStringResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            aws_private_link=aws_private_link,
-            aws_private_link_srv=aws_private_link_srv,
             private=private,
             private_endpoints=private_endpoints,
             private_srv=private_srv,
@@ -10976,37 +10969,17 @@ class GetAdvancedClustersResultConnectionStringResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             aws_private_link: Mapping[str, Any],
-             aws_private_link_srv: Mapping[str, Any],
              private: str,
              private_endpoints: Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointResult'],
              private_srv: str,
              standard: str,
              standard_srv: str,
              opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("aws_private_link", aws_private_link)
-        _setter("aws_private_link_srv", aws_private_link_srv)
         _setter("private", private)
         _setter("private_endpoints", private_endpoints)
         _setter("private_srv", private_srv)
         _setter("standard", standard)
         _setter("standard_srv", standard_srv)
-
-    @property
-    @pulumi.getter(name="awsPrivateLink")
-    def aws_private_link(self) -> Mapping[str, Any]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
-
-        return pulumi.get(self, "aws_private_link")
-
-    @property
-    @pulumi.getter(name="awsPrivateLinkSrv")
-    def aws_private_link_srv(self) -> Mapping[str, Any]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
-
-        return pulumi.get(self, "aws_private_link_srv")
 
     @property
     @pulumi.getter
@@ -11751,6 +11724,46 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
 
 
 @pulumi.output_type
+class GetAdvancedClustersResultTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key that you want to write.
+        :param str value: The value that you want to write.
+        """
+        GetAdvancedClustersResultTagResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key that you want to write.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value that you want to write.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetAlertConfigurationMatcherResult(dict):
     def __init__(__self__, *,
                  field_name: str,
@@ -11899,9 +11912,11 @@ class GetAlertConfigurationNotificationResult(dict):
                  email_address: str,
                  email_enabled: bool,
                  interval_min: int,
+                 microsoft_teams_webhook_url: str,
                  mobile_number: str,
                  ops_genie_api_key: str,
                  ops_genie_region: str,
+                 roles: Sequence[str],
                  service_key: str,
                  sms_enabled: bool,
                  team_id: str,
@@ -11910,10 +11925,8 @@ class GetAlertConfigurationNotificationResult(dict):
                  username: str,
                  victor_ops_api_key: str,
                  victor_ops_routing_key: str,
-                 microsoft_teams_webhook_url: Optional[str] = None,
-                 roles: Optional[Sequence[str]] = None,
-                 webhook_secret: Optional[str] = None,
-                 webhook_url: Optional[str] = None):
+                 webhook_secret: str,
+                 webhook_url: str):
         """
         :param str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str channel_name: Slack channel name. Required for the SLACK notifications type.
@@ -11923,9 +11936,11 @@ class GetAlertConfigurationNotificationResult(dict):
         :param str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param bool email_enabled: Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
         :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+        :param str microsoft_teams_webhook_url: Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
         :param str mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         :param str ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
+        :param Sequence[str] roles: Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
         :param str service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param bool sms_enabled: Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         :param str team_id: Unique identifier of a team.
@@ -11935,8 +11950,6 @@ class GetAlertConfigurationNotificationResult(dict):
         :param str username: Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
         :param str victor_ops_api_key: VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param str victor_ops_routing_key: VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-        :param str microsoft_teams_webhook_url: Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
-        :param Sequence[str] roles: Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
         :param str webhook_secret: Authentication secret for the `WEBHOOK` notifications type.
         :param str webhook_url: Target URL  for the `WEBHOOK` notifications type.
         """
@@ -11950,9 +11963,11 @@ class GetAlertConfigurationNotificationResult(dict):
             email_address=email_address,
             email_enabled=email_enabled,
             interval_min=interval_min,
+            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
             mobile_number=mobile_number,
             ops_genie_api_key=ops_genie_api_key,
             ops_genie_region=ops_genie_region,
+            roles=roles,
             service_key=service_key,
             sms_enabled=sms_enabled,
             team_id=team_id,
@@ -11961,8 +11976,6 @@ class GetAlertConfigurationNotificationResult(dict):
             username=username,
             victor_ops_api_key=victor_ops_api_key,
             victor_ops_routing_key=victor_ops_routing_key,
-            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
-            roles=roles,
             webhook_secret=webhook_secret,
             webhook_url=webhook_url,
         )
@@ -11977,9 +11990,11 @@ class GetAlertConfigurationNotificationResult(dict):
              email_address: str,
              email_enabled: bool,
              interval_min: int,
+             microsoft_teams_webhook_url: str,
              mobile_number: str,
              ops_genie_api_key: str,
              ops_genie_region: str,
+             roles: Sequence[str],
              service_key: str,
              sms_enabled: bool,
              team_id: str,
@@ -11988,10 +12003,8 @@ class GetAlertConfigurationNotificationResult(dict):
              username: str,
              victor_ops_api_key: str,
              victor_ops_routing_key: str,
-             microsoft_teams_webhook_url: Optional[str] = None,
-             roles: Optional[Sequence[str]] = None,
-             webhook_secret: Optional[str] = None,
-             webhook_url: Optional[str] = None,
+             webhook_secret: str,
+             webhook_url: str,
              opts: Optional[pulumi.ResourceOptions]=None):
         _setter("api_token", api_token)
         _setter("channel_name", channel_name)
@@ -12001,9 +12014,11 @@ class GetAlertConfigurationNotificationResult(dict):
         _setter("email_address", email_address)
         _setter("email_enabled", email_enabled)
         _setter("interval_min", interval_min)
+        _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         _setter("mobile_number", mobile_number)
         _setter("ops_genie_api_key", ops_genie_api_key)
         _setter("ops_genie_region", ops_genie_region)
+        _setter("roles", roles)
         _setter("service_key", service_key)
         _setter("sms_enabled", sms_enabled)
         _setter("team_id", team_id)
@@ -12012,14 +12027,8 @@ class GetAlertConfigurationNotificationResult(dict):
         _setter("username", username)
         _setter("victor_ops_api_key", victor_ops_api_key)
         _setter("victor_ops_routing_key", victor_ops_routing_key)
-        if microsoft_teams_webhook_url is not None:
-            _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
-        if roles is not None:
-            _setter("roles", roles)
-        if webhook_secret is not None:
-            _setter("webhook_secret", webhook_secret)
-        if webhook_url is not None:
-            _setter("webhook_url", webhook_url)
+        _setter("webhook_secret", webhook_secret)
+        _setter("webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -12086,6 +12095,14 @@ class GetAlertConfigurationNotificationResult(dict):
         return pulumi.get(self, "interval_min")
 
     @property
+    @pulumi.getter(name="microsoftTeamsWebhookUrl")
+    def microsoft_teams_webhook_url(self) -> str:
+        """
+        Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+        """
+        return pulumi.get(self, "microsoft_teams_webhook_url")
+
+    @property
     @pulumi.getter(name="mobileNumber")
     def mobile_number(self) -> str:
         """
@@ -12108,6 +12125,14 @@ class GetAlertConfigurationNotificationResult(dict):
         Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         """
         return pulumi.get(self, "ops_genie_region")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Sequence[str]:
+        """
+        Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
+        """
+        return pulumi.get(self, "roles")
 
     @property
     @pulumi.getter(name="serviceKey")
@@ -12175,24 +12200,8 @@ class GetAlertConfigurationNotificationResult(dict):
         return pulumi.get(self, "victor_ops_routing_key")
 
     @property
-    @pulumi.getter(name="microsoftTeamsWebhookUrl")
-    def microsoft_teams_webhook_url(self) -> Optional[str]:
-        """
-        Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
-        """
-        return pulumi.get(self, "microsoft_teams_webhook_url")
-
-    @property
-    @pulumi.getter
-    def roles(self) -> Optional[Sequence[str]]:
-        """
-        Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
-        """
-        return pulumi.get(self, "roles")
-
-    @property
     @pulumi.getter(name="webhookSecret")
-    def webhook_secret(self) -> Optional[str]:
+    def webhook_secret(self) -> str:
         """
         Authentication secret for the `WEBHOOK` notifications type.
         """
@@ -12200,7 +12209,7 @@ class GetAlertConfigurationNotificationResult(dict):
 
     @property
     @pulumi.getter(name="webhookUrl")
-    def webhook_url(self) -> Optional[str]:
+    def webhook_url(self) -> str:
         """
         Target URL  for the `WEBHOOK` notifications type.
         """
@@ -12359,15 +12368,14 @@ class GetAlertConfigurationsResultResult(dict):
                  created: str,
                  enabled: bool,
                  event_type: str,
+                 id: str,
                  matchers: Sequence['outputs.GetAlertConfigurationsResultMatcherResult'],
-                 metric_threshold: Mapping[str, str],
                  metric_threshold_configs: Sequence['outputs.GetAlertConfigurationsResultMetricThresholdConfigResult'],
                  notifications: Sequence['outputs.GetAlertConfigurationsResultNotificationResult'],
+                 outputs: Sequence['outputs.GetAlertConfigurationsResultOutputResult'],
                  project_id: str,
-                 threshold: Mapping[str, str],
                  threshold_configs: Sequence['outputs.GetAlertConfigurationsResultThresholdConfigResult'],
-                 updated: str,
-                 outputs: Optional[Sequence['outputs.GetAlertConfigurationsResultOutputResult']] = None):
+                 updated: str):
         """
         :param str alert_configuration_id: The ID of the alert configuration
         :param str created: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
@@ -12375,10 +12383,10 @@ class GetAlertConfigurationsResultResult(dict):
         :param str event_type: The type of event that will trigger an alert.
         :param Sequence['GetAlertConfigurationsResultMatcherArgs'] matchers: Rules to apply when matching an object against this alert configuration
         :param Sequence['GetAlertConfigurationsResultMetricThresholdConfigArgs'] metric_threshold_configs: The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
+        :param Sequence['GetAlertConfigurationsResultOutputArgs'] outputs: Requested output string format for the alert configuration
         :param str project_id: The unique ID for the project to get the alert configurations.
         :param Sequence['GetAlertConfigurationsResultThresholdConfigArgs'] threshold_configs: Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
         :param str updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
-        :param Sequence['GetAlertConfigurationsResultOutputArgs'] outputs: Requested output string format for the alert configuration
         """
         GetAlertConfigurationsResultResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -12386,15 +12394,14 @@ class GetAlertConfigurationsResultResult(dict):
             created=created,
             enabled=enabled,
             event_type=event_type,
+            id=id,
             matchers=matchers,
-            metric_threshold=metric_threshold,
             metric_threshold_configs=metric_threshold_configs,
             notifications=notifications,
+            outputs=outputs,
             project_id=project_id,
-            threshold=threshold,
             threshold_configs=threshold_configs,
             updated=updated,
-            outputs=outputs,
         )
     @staticmethod
     def _configure(
@@ -12403,30 +12410,27 @@ class GetAlertConfigurationsResultResult(dict):
              created: str,
              enabled: bool,
              event_type: str,
+             id: str,
              matchers: Sequence['outputs.GetAlertConfigurationsResultMatcherResult'],
-             metric_threshold: Mapping[str, str],
              metric_threshold_configs: Sequence['outputs.GetAlertConfigurationsResultMetricThresholdConfigResult'],
              notifications: Sequence['outputs.GetAlertConfigurationsResultNotificationResult'],
+             outputs: Sequence['outputs.GetAlertConfigurationsResultOutputResult'],
              project_id: str,
-             threshold: Mapping[str, str],
              threshold_configs: Sequence['outputs.GetAlertConfigurationsResultThresholdConfigResult'],
              updated: str,
-             outputs: Optional[Sequence['outputs.GetAlertConfigurationsResultOutputResult']] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
         _setter("alert_configuration_id", alert_configuration_id)
         _setter("created", created)
         _setter("enabled", enabled)
         _setter("event_type", event_type)
+        _setter("id", id)
         _setter("matchers", matchers)
-        _setter("metric_threshold", metric_threshold)
         _setter("metric_threshold_configs", metric_threshold_configs)
         _setter("notifications", notifications)
+        _setter("outputs", outputs)
         _setter("project_id", project_id)
-        _setter("threshold", threshold)
         _setter("threshold_configs", threshold_configs)
         _setter("updated", updated)
-        if outputs is not None:
-            _setter("outputs", outputs)
 
     @property
     @pulumi.getter(name="alertConfigurationId")
@@ -12462,16 +12466,16 @@ class GetAlertConfigurationsResultResult(dict):
 
     @property
     @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
     def matchers(self) -> Sequence['outputs.GetAlertConfigurationsResultMatcherResult']:
         """
         Rules to apply when matching an object against this alert configuration
         """
         return pulumi.get(self, "matchers")
-
-    @property
-    @pulumi.getter(name="metricThreshold")
-    def metric_threshold(self) -> Mapping[str, str]:
-        return pulumi.get(self, "metric_threshold")
 
     @property
     @pulumi.getter(name="metricThresholdConfigs")
@@ -12487,17 +12491,20 @@ class GetAlertConfigurationsResultResult(dict):
         return pulumi.get(self, "notifications")
 
     @property
+    @pulumi.getter
+    def outputs(self) -> Sequence['outputs.GetAlertConfigurationsResultOutputResult']:
+        """
+        Requested output string format for the alert configuration
+        """
+        return pulumi.get(self, "outputs")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
         The unique ID for the project to get the alert configurations.
         """
         return pulumi.get(self, "project_id")
-
-    @property
-    @pulumi.getter
-    def threshold(self) -> Mapping[str, str]:
-        return pulumi.get(self, "threshold")
 
     @property
     @pulumi.getter(name="thresholdConfigs")
@@ -12514,14 +12521,6 @@ class GetAlertConfigurationsResultResult(dict):
         Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
         return pulumi.get(self, "updated")
-
-    @property
-    @pulumi.getter
-    def outputs(self) -> Optional[Sequence['outputs.GetAlertConfigurationsResultOutputResult']]:
-        """
-        Requested output string format for the alert configuration
-        """
-        return pulumi.get(self, "outputs")
 
 
 @pulumi.output_type
@@ -12631,9 +12630,11 @@ class GetAlertConfigurationsResultNotificationResult(dict):
                  email_address: str,
                  email_enabled: bool,
                  interval_min: int,
+                 microsoft_teams_webhook_url: str,
                  mobile_number: str,
                  ops_genie_api_key: str,
                  ops_genie_region: str,
+                 roles: Sequence[str],
                  service_key: str,
                  sms_enabled: bool,
                  team_id: str,
@@ -12642,10 +12643,8 @@ class GetAlertConfigurationsResultNotificationResult(dict):
                  username: str,
                  victor_ops_api_key: str,
                  victor_ops_routing_key: str,
-                 microsoft_teams_webhook_url: Optional[str] = None,
-                 roles: Optional[Sequence[str]] = None,
-                 webhook_secret: Optional[str] = None,
-                 webhook_url: Optional[str] = None):
+                 webhook_secret: str,
+                 webhook_url: str):
         GetAlertConfigurationsResultNotificationResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             api_token=api_token,
@@ -12656,9 +12655,11 @@ class GetAlertConfigurationsResultNotificationResult(dict):
             email_address=email_address,
             email_enabled=email_enabled,
             interval_min=interval_min,
+            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
             mobile_number=mobile_number,
             ops_genie_api_key=ops_genie_api_key,
             ops_genie_region=ops_genie_region,
+            roles=roles,
             service_key=service_key,
             sms_enabled=sms_enabled,
             team_id=team_id,
@@ -12667,8 +12668,6 @@ class GetAlertConfigurationsResultNotificationResult(dict):
             username=username,
             victor_ops_api_key=victor_ops_api_key,
             victor_ops_routing_key=victor_ops_routing_key,
-            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
-            roles=roles,
             webhook_secret=webhook_secret,
             webhook_url=webhook_url,
         )
@@ -12683,9 +12682,11 @@ class GetAlertConfigurationsResultNotificationResult(dict):
              email_address: str,
              email_enabled: bool,
              interval_min: int,
+             microsoft_teams_webhook_url: str,
              mobile_number: str,
              ops_genie_api_key: str,
              ops_genie_region: str,
+             roles: Sequence[str],
              service_key: str,
              sms_enabled: bool,
              team_id: str,
@@ -12694,10 +12695,8 @@ class GetAlertConfigurationsResultNotificationResult(dict):
              username: str,
              victor_ops_api_key: str,
              victor_ops_routing_key: str,
-             microsoft_teams_webhook_url: Optional[str] = None,
-             roles: Optional[Sequence[str]] = None,
-             webhook_secret: Optional[str] = None,
-             webhook_url: Optional[str] = None,
+             webhook_secret: str,
+             webhook_url: str,
              opts: Optional[pulumi.ResourceOptions]=None):
         _setter("api_token", api_token)
         _setter("channel_name", channel_name)
@@ -12707,9 +12706,11 @@ class GetAlertConfigurationsResultNotificationResult(dict):
         _setter("email_address", email_address)
         _setter("email_enabled", email_enabled)
         _setter("interval_min", interval_min)
+        _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         _setter("mobile_number", mobile_number)
         _setter("ops_genie_api_key", ops_genie_api_key)
         _setter("ops_genie_region", ops_genie_region)
+        _setter("roles", roles)
         _setter("service_key", service_key)
         _setter("sms_enabled", sms_enabled)
         _setter("team_id", team_id)
@@ -12718,14 +12719,8 @@ class GetAlertConfigurationsResultNotificationResult(dict):
         _setter("username", username)
         _setter("victor_ops_api_key", victor_ops_api_key)
         _setter("victor_ops_routing_key", victor_ops_routing_key)
-        if microsoft_teams_webhook_url is not None:
-            _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
-        if roles is not None:
-            _setter("roles", roles)
-        if webhook_secret is not None:
-            _setter("webhook_secret", webhook_secret)
-        if webhook_url is not None:
-            _setter("webhook_url", webhook_url)
+        _setter("webhook_secret", webhook_secret)
+        _setter("webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -12768,6 +12763,11 @@ class GetAlertConfigurationsResultNotificationResult(dict):
         return pulumi.get(self, "interval_min")
 
     @property
+    @pulumi.getter(name="microsoftTeamsWebhookUrl")
+    def microsoft_teams_webhook_url(self) -> str:
+        return pulumi.get(self, "microsoft_teams_webhook_url")
+
+    @property
     @pulumi.getter(name="mobileNumber")
     def mobile_number(self) -> str:
         return pulumi.get(self, "mobile_number")
@@ -12781,6 +12781,11 @@ class GetAlertConfigurationsResultNotificationResult(dict):
     @pulumi.getter(name="opsGenieRegion")
     def ops_genie_region(self) -> str:
         return pulumi.get(self, "ops_genie_region")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Sequence[str]:
+        return pulumi.get(self, "roles")
 
     @property
     @pulumi.getter(name="serviceKey")
@@ -12823,49 +12828,43 @@ class GetAlertConfigurationsResultNotificationResult(dict):
         return pulumi.get(self, "victor_ops_routing_key")
 
     @property
-    @pulumi.getter(name="microsoftTeamsWebhookUrl")
-    def microsoft_teams_webhook_url(self) -> Optional[str]:
-        return pulumi.get(self, "microsoft_teams_webhook_url")
-
-    @property
-    @pulumi.getter
-    def roles(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "roles")
-
-    @property
     @pulumi.getter(name="webhookSecret")
-    def webhook_secret(self) -> Optional[str]:
+    def webhook_secret(self) -> str:
         return pulumi.get(self, "webhook_secret")
 
     @property
     @pulumi.getter(name="webhookUrl")
-    def webhook_url(self) -> Optional[str]:
+    def webhook_url(self) -> str:
         return pulumi.get(self, "webhook_url")
 
 
 @pulumi.output_type
 class GetAlertConfigurationsResultOutputResult(dict):
     def __init__(__self__, *,
+                 label: str,
                  type: str,
-                 value: str,
-                 label: Optional[str] = None):
+                 value: str):
         GetAlertConfigurationsResultOutputResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            label=label,
             type=type,
             value=value,
-            label=label,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             label: str,
              type: str,
              value: str,
-             label: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("label", label)
         _setter("type", type)
         _setter("value", value)
-        if label is not None:
-            _setter("label", label)
+
+    @property
+    @pulumi.getter
+    def label(self) -> str:
+        return pulumi.get(self, "label")
 
     @property
     @pulumi.getter
@@ -12876,11 +12875,6 @@ class GetAlertConfigurationsResultOutputResult(dict):
     @pulumi.getter
     def value(self) -> str:
         return pulumi.get(self, "value")
-
-    @property
-    @pulumi.getter
-    def label(self) -> Optional[str]:
-        return pulumi.get(self, "label")
 
 
 @pulumi.output_type
@@ -12986,6 +12980,331 @@ class GetApiKeysResultResult(dict):
         The following are valid roles:
         """
         return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
+class GetAtlasUserLinkResult(dict):
+    def __init__(__self__, *,
+                 href: str,
+                 rel: str):
+        GetAtlasUserLinkResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            href=href,
+            rel=rel,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             href: str,
+             rel: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("href", href)
+        _setter("rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> str:
+        return pulumi.get(self, "href")
+
+    @property
+    @pulumi.getter
+    def rel(self) -> str:
+        return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
+class GetAtlasUserRoleResult(dict):
+    def __init__(__self__, *,
+                 group_id: str,
+                 org_id: str,
+                 role_name: str):
+        GetAtlasUserRoleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            org_id=org_id,
+            role_name=role_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: str,
+             org_id: str,
+             role_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("group_id", group_id)
+        _setter("org_id", org_id)
+        _setter("role_name", role_name)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        return pulumi.get(self, "role_name")
+
+
+@pulumi.output_type
+class GetAtlasUsersResultResult(dict):
+    def __init__(__self__, *,
+                 country: str,
+                 created_at: str,
+                 email_address: str,
+                 first_name: str,
+                 id: str,
+                 last_auth: str,
+                 last_name: str,
+                 links: Sequence['outputs.GetAtlasUsersResultLinkResult'],
+                 mobile_number: str,
+                 roles: Sequence['outputs.GetAtlasUsersResultRoleResult'],
+                 team_ids: Sequence[str],
+                 user_id: str,
+                 username: str):
+        """
+        :param str country: Two alphabet characters that identifies MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        :param str created_at: Date and time when the current account is created. This value is in the ISO 8601 timestamp format in UTC.
+        :param str email_address: Email address that belongs to the MongoDB Atlas user.
+        :param str first_name: First or given name that belongs to the MongoDB Atlas user.
+        :param str last_auth: Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        :param str last_name: Last name, family name, or surname that belongs to the MongoDB Atlas user.
+        :param str mobile_number: Mobile phone number that belongs to the MongoDB Atlas user.
+        :param Sequence[str] team_ids: List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Atlas user belongs.
+               * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with https://cloud.mongodb.com/api/atlas.
+               * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with https://cloud.mongodb.com/api/atlas.
+               * `roles.#.group_id` - Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or orgId but not both in the same request.
+               * `roles.#.org_id` - Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or groupId but not both in the same request.
+               * `roles.#.role_name` - Human-readable label that identifies the collection of privileges that MongoDB Atlas grants a specific API key, user, or team. These roles include organization- and project-level roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#service-user-roles) describes the valid roles that can be assigned.
+        :param str user_id: Unique 24-hexadecimal digit string that identifies this user.
+        :param str username: Email address that belongs to the MongoDB Atlas user account. You cannot modify this address after creating the user.
+        """
+        GetAtlasUsersResultResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            country=country,
+            created_at=created_at,
+            email_address=email_address,
+            first_name=first_name,
+            id=id,
+            last_auth=last_auth,
+            last_name=last_name,
+            links=links,
+            mobile_number=mobile_number,
+            roles=roles,
+            team_ids=team_ids,
+            user_id=user_id,
+            username=username,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             country: str,
+             created_at: str,
+             email_address: str,
+             first_name: str,
+             id: str,
+             last_auth: str,
+             last_name: str,
+             links: Sequence['outputs.GetAtlasUsersResultLinkResult'],
+             mobile_number: str,
+             roles: Sequence['outputs.GetAtlasUsersResultRoleResult'],
+             team_ids: Sequence[str],
+             user_id: str,
+             username: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("country", country)
+        _setter("created_at", created_at)
+        _setter("email_address", email_address)
+        _setter("first_name", first_name)
+        _setter("id", id)
+        _setter("last_auth", last_auth)
+        _setter("last_name", last_name)
+        _setter("links", links)
+        _setter("mobile_number", mobile_number)
+        _setter("roles", roles)
+        _setter("team_ids", team_ids)
+        _setter("user_id", user_id)
+        _setter("username", username)
+
+    @property
+    @pulumi.getter
+    def country(self) -> str:
+        """
+        Two alphabet characters that identifies MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        """
+        return pulumi.get(self, "country")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        Date and time when the current account is created. This value is in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="emailAddress")
+    def email_address(self) -> str:
+        """
+        Email address that belongs to the MongoDB Atlas user.
+        """
+        return pulumi.get(self, "email_address")
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> str:
+        """
+        First or given name that belongs to the MongoDB Atlas user.
+        """
+        return pulumi.get(self, "first_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lastAuth")
+    def last_auth(self) -> str:
+        """
+        Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_auth")
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> str:
+        """
+        Last name, family name, or surname that belongs to the MongoDB Atlas user.
+        """
+        return pulumi.get(self, "last_name")
+
+    @property
+    @pulumi.getter
+    def links(self) -> Sequence['outputs.GetAtlasUsersResultLinkResult']:
+        return pulumi.get(self, "links")
+
+    @property
+    @pulumi.getter(name="mobileNumber")
+    def mobile_number(self) -> str:
+        """
+        Mobile phone number that belongs to the MongoDB Atlas user.
+        """
+        return pulumi.get(self, "mobile_number")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Sequence['outputs.GetAtlasUsersResultRoleResult']:
+        return pulumi.get(self, "roles")
+
+    @property
+    @pulumi.getter(name="teamIds")
+    def team_ids(self) -> Sequence[str]:
+        """
+        List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Atlas user belongs.
+        * `links.#.href` - Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with https://cloud.mongodb.com/api/atlas.
+        * `links.#.rel` - Uniform Resource Locator (URL) that defines the semantic relationship between this resource and another API resource. This URL often begins with https://cloud.mongodb.com/api/atlas.
+        * `roles.#.group_id` - Unique 24-hexadecimal digit string that identifies the project to which this role belongs. You can set a value for this parameter or orgId but not both in the same request.
+        * `roles.#.org_id` - Unique 24-hexadecimal digit string that identifies the organization to which this role belongs. You can set a value for this parameter or groupId but not both in the same request.
+        * `roles.#.role_name` - Human-readable label that identifies the collection of privileges that MongoDB Atlas grants a specific API key, user, or team. These roles include organization- and project-level roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#service-user-roles) describes the valid roles that can be assigned.
+        """
+        return pulumi.get(self, "team_ids")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies this user.
+        """
+        return pulumi.get(self, "user_id")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        Email address that belongs to the MongoDB Atlas user account. You cannot modify this address after creating the user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetAtlasUsersResultLinkResult(dict):
+    def __init__(__self__, *,
+                 href: str,
+                 rel: str):
+        GetAtlasUsersResultLinkResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            href=href,
+            rel=rel,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             href: str,
+             rel: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("href", href)
+        _setter("rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> str:
+        return pulumi.get(self, "href")
+
+    @property
+    @pulumi.getter
+    def rel(self) -> str:
+        return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
+class GetAtlasUsersResultRoleResult(dict):
+    def __init__(__self__, *,
+                 group_id: str,
+                 org_id: str,
+                 role_name: str):
+        """
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
+        """
+        GetAtlasUsersResultRoleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            group_id=group_id,
+            org_id=org_id,
+            role_name=role_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             group_id: str,
+             org_id: str,
+             role_name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("group_id", group_id)
+        _setter("org_id", org_id)
+        _setter("role_name", role_name)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        return pulumi.get(self, "role_name")
 
 
 @pulumi.output_type
@@ -15740,6 +16059,46 @@ class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
 
 
 @pulumi.output_type
+class GetClusterTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key that you want to write.
+        :param str value: The value that you want to write.
+        """
+        GetClusterTagResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key that you want to write.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value that you want to write.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetClustersResultResult(dict):
     def __init__(__self__, *,
                  advanced_configurations: Sequence['outputs.GetClustersResultAdvancedConfigurationResult'],
@@ -15748,7 +16107,6 @@ class GetClustersResultResult(dict):
                  auto_scaling_disk_gb_enabled: bool,
                  backing_provider_name: str,
                  backup_enabled: bool,
-                 bi_connector: Mapping[str, str],
                  bi_connector_configs: Sequence['outputs.GetClustersResultBiConnectorConfigResult'],
                  cluster_type: str,
                  connection_strings: Sequence['outputs.GetClustersResultConnectionStringResult'],
@@ -15780,6 +16138,7 @@ class GetClustersResultResult(dict):
                  snapshot_backup_policies: Sequence['outputs.GetClustersResultSnapshotBackupPolicyResult'],
                  srv_address: str,
                  state_name: str,
+                 tags: Sequence['outputs.GetClustersResultTagResult'],
                  termination_protection_enabled: bool,
                  version_release_system: str):
         """
@@ -15789,14 +16148,11 @@ class GetClustersResultResult(dict):
         :param bool auto_scaling_disk_gb_enabled: Indicates whether disk auto-scaling is enabled.
         :param str backing_provider_name: Indicates Cloud service provider on which the server for a multi-tenant cluster is provisioned.
         :param bool backup_enabled: Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.
-        :param Mapping[str, str] bi_connector: Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         :param Sequence['GetClustersResultBiConnectorConfigArgs'] bi_connector_configs: Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param str cluster_type: Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         :param Sequence['GetClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
                - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
                - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-               - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
-               - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
                - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
                - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
                - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -15810,6 +16166,7 @@ class GetClustersResultResult(dict):
         :param str container_id: The Network Peering Container ID.
         :param float disk_size_gb: Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
         :param str encryption_at_rest_provider: Indicates whether Encryption at Rest is enabled or disabled.
+        :param Sequence['GetClustersResultLabelArgs'] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param str mongo_db_major_version: Indicates the version of the cluster to deploy.
         :param str mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param str mongo_uri: Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
@@ -15841,6 +16198,7 @@ class GetClustersResultResult(dict):
                - DELETING
                - DELETED
                - REPAIRING
+        :param Sequence['GetClustersResultTagArgs'] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param str version_release_system: Release cadence that Atlas uses for this cluster.
         """
@@ -15852,7 +16210,6 @@ class GetClustersResultResult(dict):
             auto_scaling_disk_gb_enabled=auto_scaling_disk_gb_enabled,
             backing_provider_name=backing_provider_name,
             backup_enabled=backup_enabled,
-            bi_connector=bi_connector,
             bi_connector_configs=bi_connector_configs,
             cluster_type=cluster_type,
             connection_strings=connection_strings,
@@ -15884,6 +16241,7 @@ class GetClustersResultResult(dict):
             snapshot_backup_policies=snapshot_backup_policies,
             srv_address=srv_address,
             state_name=state_name,
+            tags=tags,
             termination_protection_enabled=termination_protection_enabled,
             version_release_system=version_release_system,
         )
@@ -15896,7 +16254,6 @@ class GetClustersResultResult(dict):
              auto_scaling_disk_gb_enabled: bool,
              backing_provider_name: str,
              backup_enabled: bool,
-             bi_connector: Mapping[str, str],
              bi_connector_configs: Sequence['outputs.GetClustersResultBiConnectorConfigResult'],
              cluster_type: str,
              connection_strings: Sequence['outputs.GetClustersResultConnectionStringResult'],
@@ -15928,6 +16285,7 @@ class GetClustersResultResult(dict):
              snapshot_backup_policies: Sequence['outputs.GetClustersResultSnapshotBackupPolicyResult'],
              srv_address: str,
              state_name: str,
+             tags: Sequence['outputs.GetClustersResultTagResult'],
              termination_protection_enabled: bool,
              version_release_system: str,
              opts: Optional[pulumi.ResourceOptions]=None):
@@ -15937,7 +16295,6 @@ class GetClustersResultResult(dict):
         _setter("auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
         _setter("backing_provider_name", backing_provider_name)
         _setter("backup_enabled", backup_enabled)
-        _setter("bi_connector", bi_connector)
         _setter("bi_connector_configs", bi_connector_configs)
         _setter("cluster_type", cluster_type)
         _setter("connection_strings", connection_strings)
@@ -15969,6 +16326,7 @@ class GetClustersResultResult(dict):
         _setter("snapshot_backup_policies", snapshot_backup_policies)
         _setter("srv_address", srv_address)
         _setter("state_name", state_name)
+        _setter("tags", tags)
         _setter("termination_protection_enabled", termination_protection_enabled)
         _setter("version_release_system", version_release_system)
 
@@ -16021,17 +16379,6 @@ class GetClustersResultResult(dict):
         return pulumi.get(self, "backup_enabled")
 
     @property
-    @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> Mapping[str, str]:
-        """
-        Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-        """
-        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
-
-        return pulumi.get(self, "bi_connector")
-
-    @property
     @pulumi.getter(name="biConnectorConfigs")
     def bi_connector_configs(self) -> Sequence['outputs.GetClustersResultBiConnectorConfigResult']:
         """
@@ -16054,8 +16401,6 @@ class GetClustersResultResult(dict):
         Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
         - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-        - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
-        - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
         - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -16096,6 +16441,12 @@ class GetClustersResultResult(dict):
     @property
     @pulumi.getter
     def labels(self) -> Sequence['outputs.GetClustersResultLabelResult']:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        """
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+
         return pulumi.get(self, "labels")
 
     @property
@@ -16296,6 +16647,14 @@ class GetClustersResultResult(dict):
         - REPAIRING
         """
         return pulumi.get(self, "state_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetClustersResultTagResult']:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="terminationProtectionEnabled")
@@ -17050,6 +17409,46 @@ class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> int:
         return pulumi.get(self, "retention_value")
+
+
+@pulumi.output_type
+class GetClustersResultTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key that you want to write.
+        :param str value: The value that you want to write.
+        """
+        GetClustersResultTagResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key that you want to write.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value that you want to write.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -19292,9 +19691,11 @@ class GetDatabaseUsersResultResult(dict):
     def __init__(__self__, *,
                  auth_database_name: str,
                  aws_iam_type: str,
+                 id: str,
                  labels: Sequence['outputs.GetDatabaseUsersResultLabelResult'],
                  ldap_auth_type: str,
                  oidc_auth_type: str,
+                 password: str,
                  project_id: str,
                  roles: Sequence['outputs.GetDatabaseUsersResultRoleResult'],
                  scopes: Sequence['outputs.GetDatabaseUsersResultScopeResult'],
@@ -19304,6 +19705,7 @@ class GetDatabaseUsersResultResult(dict):
         :param str auth_database_name: (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
                Possible values include:
         :param str aws_iam_type: The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+        :param str id: Autogenerated Unique ID for this data source.
         :param str ldap_auth_type: Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
         :param str oidc_auth_type: (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         :param str project_id: The unique ID for the project to get all database users.
@@ -19316,9 +19718,11 @@ class GetDatabaseUsersResultResult(dict):
             lambda key, value: pulumi.set(__self__, key, value),
             auth_database_name=auth_database_name,
             aws_iam_type=aws_iam_type,
+            id=id,
             labels=labels,
             ldap_auth_type=ldap_auth_type,
             oidc_auth_type=oidc_auth_type,
+            password=password,
             project_id=project_id,
             roles=roles,
             scopes=scopes,
@@ -19330,9 +19734,11 @@ class GetDatabaseUsersResultResult(dict):
              _setter: Callable[[Any, Any], None],
              auth_database_name: str,
              aws_iam_type: str,
+             id: str,
              labels: Sequence['outputs.GetDatabaseUsersResultLabelResult'],
              ldap_auth_type: str,
              oidc_auth_type: str,
+             password: str,
              project_id: str,
              roles: Sequence['outputs.GetDatabaseUsersResultRoleResult'],
              scopes: Sequence['outputs.GetDatabaseUsersResultScopeResult'],
@@ -19341,9 +19747,11 @@ class GetDatabaseUsersResultResult(dict):
              opts: Optional[pulumi.ResourceOptions]=None):
         _setter("auth_database_name", auth_database_name)
         _setter("aws_iam_type", aws_iam_type)
+        _setter("id", id)
         _setter("labels", labels)
         _setter("ldap_auth_type", ldap_auth_type)
         _setter("oidc_auth_type", oidc_auth_type)
+        _setter("password", password)
         _setter("project_id", project_id)
         _setter("roles", roles)
         _setter("scopes", scopes)
@@ -19369,6 +19777,14 @@ class GetDatabaseUsersResultResult(dict):
 
     @property
     @pulumi.getter
+    def id(self) -> str:
+        """
+        Autogenerated Unique ID for this data source.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
     def labels(self) -> Sequence['outputs.GetDatabaseUsersResultLabelResult']:
         return pulumi.get(self, "labels")
 
@@ -19387,6 +19803,11 @@ class GetDatabaseUsersResultResult(dict):
         (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         """
         return pulumi.get(self, "oidc_auth_type")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="projectId")
@@ -24604,36 +25025,6 @@ class GetPrivatelinkEndpointsServiceServerlessResultResult(dict):
 
 
 @pulumi.output_type
-class GetProjectApiKeyResult(dict):
-    def __init__(__self__, *,
-                 api_key_id: str,
-                 role_names: Sequence[str]):
-        GetProjectApiKeyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key_id=api_key_id,
-            role_names=role_names,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key_id: str,
-             role_names: Sequence[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("api_key_id", api_key_id)
-        _setter("role_names", role_names)
-
-    @property
-    @pulumi.getter(name="apiKeyId")
-    def api_key_id(self) -> str:
-        return pulumi.get(self, "api_key_id")
-
-    @property
-    @pulumi.getter(name="roleNames")
-    def role_names(self) -> Sequence[str]:
-        return pulumi.get(self, "role_names")
-
-
-@pulumi.output_type
 class GetProjectApiKeyProjectAssignmentResult(dict):
     def __init__(__self__, *,
                  project_id: str,
@@ -24680,12 +25071,10 @@ class GetProjectApiKeysResultResult(dict):
                  description: str,
                  private_key: str,
                  public_key: str,
-                 role_names: Sequence[str],
                  project_assignments: Optional[Sequence['outputs.GetProjectApiKeysResultProjectAssignmentResult']] = None):
         """
         :param str api_key_id: Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
         :param str description: Description of this Project API key.
-        :param Sequence[str] role_names: Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
         """
         GetProjectApiKeysResultResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -24693,7 +25082,6 @@ class GetProjectApiKeysResultResult(dict):
             description=description,
             private_key=private_key,
             public_key=public_key,
-            role_names=role_names,
             project_assignments=project_assignments,
         )
     @staticmethod
@@ -24703,14 +25091,12 @@ class GetProjectApiKeysResultResult(dict):
              description: str,
              private_key: str,
              public_key: str,
-             role_names: Sequence[str],
              project_assignments: Optional[Sequence['outputs.GetProjectApiKeysResultProjectAssignmentResult']] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
         _setter("api_key_id", api_key_id)
         _setter("description", description)
         _setter("private_key", private_key)
         _setter("public_key", public_key)
-        _setter("role_names", role_names)
         if project_assignments is not None:
             _setter("project_assignments", project_assignments)
 
@@ -24739,17 +25125,6 @@ class GetProjectApiKeysResultResult(dict):
     @pulumi.getter(name="publicKey")
     def public_key(self) -> str:
         return pulumi.get(self, "public_key")
-
-    @property
-    @pulumi.getter(name="roleNames")
-    def role_names(self) -> Sequence[str]:
-        """
-        Name of the role. This resource returns all the roles the user has in Atlas. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-        """
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
-        pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
-
-        return pulumi.get(self, "role_names")
 
     @property
     @pulumi.getter(name="projectAssignments")
@@ -24903,28 +25278,26 @@ class GetProjectTeamResult(dict):
 @pulumi.output_type
 class GetProjectsResultResult(dict):
     def __init__(__self__, *,
-                 api_keys: Sequence['outputs.GetProjectsResultApiKeyResult'],
                  cluster_count: int,
                  created: str,
                  id: str,
                  is_collect_database_specifics_statistics_enabled: bool,
                  is_data_explorer_enabled: bool,
+                 is_extended_storage_sizes_enabled: bool,
                  is_performance_advisor_enabled: bool,
                  is_realtime_performance_panel_enabled: bool,
                  is_schema_advisor_enabled: bool,
                  limits: Sequence['outputs.GetProjectsResultLimitResult'],
                  name: str,
                  org_id: str,
+                 project_id: str,
                  region_usage_restrictions: str,
-                 teams: Sequence['outputs.GetProjectsResultTeamResult'],
-                 is_extended_storage_sizes_enabled: Optional[bool] = None):
+                 teams: Sequence['outputs.GetProjectsResultTeamResult']):
         """
         :param int cluster_count: The number of Atlas clusters deployed in the project.
         :param str created: The ISO-8601-formatted timestamp of when Atlas created the project.
                * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
                * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-               * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-               * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
                * `limits.#.name` - Human-readable label that identifies this project limit.
                * `limits.#.value` - Amount the limit is set to.
                * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
@@ -24933,6 +25306,7 @@ class GetProjectsResultResult(dict):
         :param str id: Autogenerated Unique ID for this data source.
         :param bool is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param bool is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+        :param bool is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project.
         :param bool is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param bool is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param bool is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
@@ -24941,66 +25315,59 @@ class GetProjectsResultResult(dict):
         :param str region_usage_restrictions: If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
                
                See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
-        :param bool is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project.
         """
         GetProjectsResultResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            api_keys=api_keys,
             cluster_count=cluster_count,
             created=created,
             id=id,
             is_collect_database_specifics_statistics_enabled=is_collect_database_specifics_statistics_enabled,
             is_data_explorer_enabled=is_data_explorer_enabled,
+            is_extended_storage_sizes_enabled=is_extended_storage_sizes_enabled,
             is_performance_advisor_enabled=is_performance_advisor_enabled,
             is_realtime_performance_panel_enabled=is_realtime_performance_panel_enabled,
             is_schema_advisor_enabled=is_schema_advisor_enabled,
             limits=limits,
             name=name,
             org_id=org_id,
+            project_id=project_id,
             region_usage_restrictions=region_usage_restrictions,
             teams=teams,
-            is_extended_storage_sizes_enabled=is_extended_storage_sizes_enabled,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             api_keys: Sequence['outputs.GetProjectsResultApiKeyResult'],
              cluster_count: int,
              created: str,
              id: str,
              is_collect_database_specifics_statistics_enabled: bool,
              is_data_explorer_enabled: bool,
+             is_extended_storage_sizes_enabled: bool,
              is_performance_advisor_enabled: bool,
              is_realtime_performance_panel_enabled: bool,
              is_schema_advisor_enabled: bool,
              limits: Sequence['outputs.GetProjectsResultLimitResult'],
              name: str,
              org_id: str,
+             project_id: str,
              region_usage_restrictions: str,
              teams: Sequence['outputs.GetProjectsResultTeamResult'],
-             is_extended_storage_sizes_enabled: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("api_keys", api_keys)
         _setter("cluster_count", cluster_count)
         _setter("created", created)
         _setter("id", id)
         _setter("is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         _setter("is_data_explorer_enabled", is_data_explorer_enabled)
+        _setter("is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
         _setter("is_performance_advisor_enabled", is_performance_advisor_enabled)
         _setter("is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         _setter("is_schema_advisor_enabled", is_schema_advisor_enabled)
         _setter("limits", limits)
         _setter("name", name)
         _setter("org_id", org_id)
+        _setter("project_id", project_id)
         _setter("region_usage_restrictions", region_usage_restrictions)
         _setter("teams", teams)
-        if is_extended_storage_sizes_enabled is not None:
-            _setter("is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
-
-    @property
-    @pulumi.getter(name="apiKeys")
-    def api_keys(self) -> Sequence['outputs.GetProjectsResultApiKeyResult']:
-        return pulumi.get(self, "api_keys")
 
     @property
     @pulumi.getter(name="clusterCount")
@@ -25017,8 +25384,6 @@ class GetProjectsResultResult(dict):
         The ISO-8601-formatted timestamp of when Atlas created the project.
         * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-        * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         * `limits.#.name` - Human-readable label that identifies this project limit.
         * `limits.#.value` - Amount the limit is set to.
         * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
@@ -25050,6 +25415,14 @@ class GetProjectsResultResult(dict):
         Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
         """
         return pulumi.get(self, "is_data_explorer_enabled")
+
+    @property
+    @pulumi.getter(name="isExtendedStorageSizesEnabled")
+    def is_extended_storage_sizes_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable extended storage sizes for the specified project.
+        """
+        return pulumi.get(self, "is_extended_storage_sizes_enabled")
 
     @property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")
@@ -25097,6 +25470,11 @@ class GetProjectsResultResult(dict):
         return pulumi.get(self, "org_id")
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+    @property
     @pulumi.getter(name="regionUsageRestrictions")
     def region_usage_restrictions(self) -> str:
         """
@@ -25110,44 +25488,6 @@ class GetProjectsResultResult(dict):
     @pulumi.getter
     def teams(self) -> Sequence['outputs.GetProjectsResultTeamResult']:
         return pulumi.get(self, "teams")
-
-    @property
-    @pulumi.getter(name="isExtendedStorageSizesEnabled")
-    def is_extended_storage_sizes_enabled(self) -> Optional[bool]:
-        """
-        Flag that indicates whether to enable extended storage sizes for the specified project.
-        """
-        return pulumi.get(self, "is_extended_storage_sizes_enabled")
-
-
-@pulumi.output_type
-class GetProjectsResultApiKeyResult(dict):
-    def __init__(__self__, *,
-                 api_key_id: str,
-                 role_names: Sequence[str]):
-        GetProjectsResultApiKeyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key_id=api_key_id,
-            role_names=role_names,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key_id: str,
-             role_names: Sequence[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("api_key_id", api_key_id)
-        _setter("role_names", role_names)
-
-    @property
-    @pulumi.getter(name="apiKeyId")
-    def api_key_id(self) -> str:
-        return pulumi.get(self, "api_key_id")
-
-    @property
-    @pulumi.getter(name="roleNames")
-    def role_names(self) -> Sequence[str]:
-        return pulumi.get(self, "role_names")
 
 
 @pulumi.output_type
@@ -25569,6 +25909,46 @@ class GetServerlessInstanceLinkResult(dict):
 
 
 @pulumi.output_type
+class GetServerlessInstanceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Constant that defines the set of the tag.
+        :param str value: Variable that belongs to the set of the tag.
+        """
+        GetServerlessInstanceTagResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Constant that defines the set of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Variable that belongs to the set of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetServerlessInstancesResultResult(dict):
     def __init__(__self__, *,
                  connection_strings_private_endpoint_srvs: Sequence[str],
@@ -25584,6 +25964,7 @@ class GetServerlessInstancesResultResult(dict):
                  provider_settings_provider_name: str,
                  provider_settings_region_name: str,
                  state_name: str,
+                 tags: Sequence['outputs.GetServerlessInstancesResultTagResult'],
                  termination_protection_enabled: bool):
         """
         :param str connection_strings_standard_srv: Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -25596,6 +25977,7 @@ class GetServerlessInstancesResultResult(dict):
         :param str provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param str provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         :param str state_name: Stage of deployment of this serverless instance when the resource made its request.
+        :param Sequence['GetServerlessInstancesResultTagArgs'] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         GetServerlessInstancesResultResult._configure(
@@ -25613,6 +25995,7 @@ class GetServerlessInstancesResultResult(dict):
             provider_settings_provider_name=provider_settings_provider_name,
             provider_settings_region_name=provider_settings_region_name,
             state_name=state_name,
+            tags=tags,
             termination_protection_enabled=termination_protection_enabled,
         )
     @staticmethod
@@ -25631,6 +26014,7 @@ class GetServerlessInstancesResultResult(dict):
              provider_settings_provider_name: str,
              provider_settings_region_name: str,
              state_name: str,
+             tags: Sequence['outputs.GetServerlessInstancesResultTagResult'],
              termination_protection_enabled: bool,
              opts: Optional[pulumi.ResourceOptions]=None):
         _setter("connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
@@ -25646,6 +26030,7 @@ class GetServerlessInstancesResultResult(dict):
         _setter("provider_settings_provider_name", provider_settings_provider_name)
         _setter("provider_settings_region_name", provider_settings_region_name)
         _setter("state_name", state_name)
+        _setter("tags", tags)
         _setter("termination_protection_enabled", termination_protection_enabled)
 
     @property
@@ -25744,6 +26129,14 @@ class GetServerlessInstancesResultResult(dict):
         return pulumi.get(self, "state_name")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetServerlessInstancesResultTagResult']:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="terminationProtectionEnabled")
     def termination_protection_enabled(self) -> bool:
         """
@@ -25780,6 +26173,46 @@ class GetServerlessInstancesResultLinkResult(dict):
     @pulumi.getter
     def rel(self) -> str:
         return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
+class GetServerlessInstancesResultTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Constant that defines the set of the tag.
+        :param str value: Variable that belongs to the set of the tag.
+        """
+        GetServerlessInstancesResultTagResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Constant that defines the set of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Variable that belongs to the set of the tag.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

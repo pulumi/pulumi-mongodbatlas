@@ -14,6 +14,10 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.CloudBackupSnapshotExportBucket` resource allows you to create an export snapshot bucket for the specified project.
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ * 
  * ## Example Usage
  * ```java
  * package generated_program;

@@ -11,11 +11,11 @@ import com.pulumi.mongodbatlas.AdvancedClusterArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterState;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterAdvancedConfiguration;
-import com.pulumi.mongodbatlas.outputs.AdvancedClusterBiConnector;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterBiConnectorConfig;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterConnectionString;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterLabel;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterReplicationSpec;
+import com.pulumi.mongodbatlas.outputs.AdvancedClusterTag;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
@@ -71,18 +71,6 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> backupEnabled() {
         return this.backupEnabled;
-    }
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
-    @Export(name="biConnector", refs={AdvancedClusterBiConnector.class}, tree="[0]")
-    private Output<AdvancedClusterBiConnector> biConnector;
-
-    public Output<AdvancedClusterBiConnector> biConnector() {
-        return this.biConnector;
     }
     /**
      * Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -177,14 +165,18 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.encryptionAtRestProvider;
     }
     /**
-     * Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     @Export(name="labels", refs={List.class,AdvancedClusterLabel.class}, tree="[0,1]")
     private Output<List<AdvancedClusterLabel>> labels;
 
     /**
-     * @return Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      */
     public Output<List<AdvancedClusterLabel>> labels() {
@@ -333,6 +325,20 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      */
     public Output<String> stateName() {
         return this.stateName;
+    }
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    @Export(name="tags", refs={List.class,AdvancedClusterTag.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<AdvancedClusterTag>> tags;
+
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    public Output<Optional<List<AdvancedClusterTag>>> tags() {
+        return Codegen.optional(this.tags);
     }
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.

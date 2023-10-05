@@ -200,6 +200,8 @@ import (
 //	}
 //
 // ```
+// `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
+//
 // Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 //
 // ## Import
@@ -218,18 +220,14 @@ type DatabaseUser struct {
 
 	// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 	// Accepted values include:
-	AuthDatabaseName pulumi.StringPtrOutput `pulumi:"authDatabaseName"`
+	AuthDatabaseName pulumi.StringOutput `pulumi:"authDatabaseName"`
 	// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
-	AwsIamType pulumi.StringPtrOutput `pulumi:"awsIamType"`
-	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-	DatabaseName pulumi.StringPtrOutput       `pulumi:"databaseName"`
-	Labels       DatabaseUserLabelArrayOutput `pulumi:"labels"`
+	AwsIamType pulumi.StringOutput          `pulumi:"awsIamType"`
+	Labels     DatabaseUserLabelArrayOutput `pulumi:"labels"`
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-	LdapAuthType pulumi.StringPtrOutput `pulumi:"ldapAuthType"`
+	LdapAuthType pulumi.StringOutput `pulumi:"ldapAuthType"`
 	// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
-	OidcAuthType pulumi.StringPtrOutput `pulumi:"oidcAuthType"`
+	OidcAuthType pulumi.StringOutput    `pulumi:"oidcAuthType"`
 	Password     pulumi.StringPtrOutput `pulumi:"password"`
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -239,7 +237,7 @@ type DatabaseUser struct {
 	// Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
 	Username pulumi.StringOutput `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
-	X509Type pulumi.StringPtrOutput `pulumi:"x509Type"`
+	X509Type pulumi.StringOutput `pulumi:"x509Type"`
 }
 
 // NewDatabaseUser registers a new resource with the given unique name, arguments, and options.
@@ -249,11 +247,11 @@ func NewDatabaseUser(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.AuthDatabaseName == nil {
+		return nil, errors.New("invalid value for required argument 'AuthDatabaseName'")
+	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
-	}
-	if args.Roles == nil {
-		return nil, errors.New("invalid value for required argument 'Roles'")
 	}
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
@@ -292,12 +290,8 @@ type databaseUserState struct {
 	// Accepted values include:
 	AuthDatabaseName *string `pulumi:"authDatabaseName"`
 	// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
-	AwsIamType *string `pulumi:"awsIamType"`
-	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-	DatabaseName *string             `pulumi:"databaseName"`
-	Labels       []DatabaseUserLabel `pulumi:"labels"`
+	AwsIamType *string             `pulumi:"awsIamType"`
+	Labels     []DatabaseUserLabel `pulumi:"labels"`
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
 	LdapAuthType *string `pulumi:"ldapAuthType"`
 	// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
@@ -320,11 +314,7 @@ type DatabaseUserState struct {
 	AuthDatabaseName pulumi.StringPtrInput
 	// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	AwsIamType pulumi.StringPtrInput
-	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-	DatabaseName pulumi.StringPtrInput
-	Labels       DatabaseUserLabelArrayInput
+	Labels     DatabaseUserLabelArrayInput
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
 	LdapAuthType pulumi.StringPtrInput
 	// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
@@ -348,14 +338,10 @@ func (DatabaseUserState) ElementType() reflect.Type {
 type databaseUserArgs struct {
 	// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 	// Accepted values include:
-	AuthDatabaseName *string `pulumi:"authDatabaseName"`
+	AuthDatabaseName string `pulumi:"authDatabaseName"`
 	// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
-	AwsIamType *string `pulumi:"awsIamType"`
-	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-	DatabaseName *string             `pulumi:"databaseName"`
-	Labels       []DatabaseUserLabel `pulumi:"labels"`
+	AwsIamType *string             `pulumi:"awsIamType"`
+	Labels     []DatabaseUserLabel `pulumi:"labels"`
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
 	LdapAuthType *string `pulumi:"ldapAuthType"`
 	// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
@@ -376,14 +362,10 @@ type databaseUserArgs struct {
 type DatabaseUserArgs struct {
 	// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 	// Accepted values include:
-	AuthDatabaseName pulumi.StringPtrInput
+	AuthDatabaseName pulumi.StringInput
 	// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	AwsIamType pulumi.StringPtrInput
-	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-	DatabaseName pulumi.StringPtrInput
-	Labels       DatabaseUserLabelArrayInput
+	Labels     DatabaseUserLabelArrayInput
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
 	LdapAuthType pulumi.StringPtrInput
 	// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
@@ -513,20 +495,13 @@ func (o DatabaseUserOutput) ToOutput(ctx context.Context) pulumix.Output[*Databa
 
 // Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 // Accepted values include:
-func (o DatabaseUserOutput) AuthDatabaseName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.AuthDatabaseName }).(pulumi.StringPtrOutput)
+func (o DatabaseUserOutput) AuthDatabaseName() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.AuthDatabaseName }).(pulumi.StringOutput)
 }
 
 // If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
-func (o DatabaseUserOutput) AwsIamType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.AwsIamType }).(pulumi.StringPtrOutput)
-}
-
-// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-//
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-func (o DatabaseUserOutput) DatabaseName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.DatabaseName }).(pulumi.StringPtrOutput)
+func (o DatabaseUserOutput) AwsIamType() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.AwsIamType }).(pulumi.StringOutput)
 }
 
 func (o DatabaseUserOutput) Labels() DatabaseUserLabelArrayOutput {
@@ -534,13 +509,13 @@ func (o DatabaseUserOutput) Labels() DatabaseUserLabelArrayOutput {
 }
 
 // Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-func (o DatabaseUserOutput) LdapAuthType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.LdapAuthType }).(pulumi.StringPtrOutput)
+func (o DatabaseUserOutput) LdapAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.LdapAuthType }).(pulumi.StringOutput)
 }
 
 // Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
-func (o DatabaseUserOutput) OidcAuthType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.OidcAuthType }).(pulumi.StringPtrOutput)
+func (o DatabaseUserOutput) OidcAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.OidcAuthType }).(pulumi.StringOutput)
 }
 
 func (o DatabaseUserOutput) Password() pulumi.StringPtrOutput {
@@ -567,8 +542,8 @@ func (o DatabaseUserOutput) Username() pulumi.StringOutput {
 }
 
 // X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
-func (o DatabaseUserOutput) X509Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.X509Type }).(pulumi.StringPtrOutput)
+func (o DatabaseUserOutput) X509Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.X509Type }).(pulumi.StringOutput)
 }
 
 type DatabaseUserArrayOutput struct{ *pulumi.OutputState }

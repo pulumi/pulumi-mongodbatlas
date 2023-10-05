@@ -11,7 +11,6 @@ from . import _utilities
 
 __all__ = [
     'AdvancedClusterAdvancedConfigurationArgs',
-    'AdvancedClusterBiConnectorArgs',
     'AdvancedClusterBiConnectorConfigArgs',
     'AdvancedClusterConnectionStringArgs',
     'AdvancedClusterConnectionStringPrivateEndpointArgs',
@@ -24,6 +23,7 @@ __all__ = [
     'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs',
     'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs',
     'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs',
+    'AdvancedClusterTagArgs',
     'AlertConfigurationMatcherArgs',
     'AlertConfigurationMetricThresholdConfigArgs',
     'AlertConfigurationNotificationArgs',
@@ -61,6 +61,7 @@ __all__ = [
     'ClusterSnapshotBackupPolicyArgs',
     'ClusterSnapshotBackupPolicyPolicyArgs',
     'ClusterSnapshotBackupPolicyPolicyPolicyItemArgs',
+    'ClusterTagArgs',
     'CustomDbRoleActionArgs',
     'CustomDbRoleActionResourceArgs',
     'CustomDbRoleInheritedRoleArgs',
@@ -106,13 +107,14 @@ __all__ = [
     'OnlineArchivePartitionFieldArgs',
     'OnlineArchiveScheduleArgs',
     'PrivateLinkEndpointServiceEndpointArgs',
-    'ProjectApiKeyArgs',
     'ProjectApiKeyProjectAssignmentArgs',
+    'ProjectIpAccessListTimeoutsArgs',
     'ProjectLimitArgs',
     'ProjectTeamArgs',
     'ProviderAssumeRoleArgs',
     'SearchIndexSynonymArgs',
     'ServerlessInstanceLinkArgs',
+    'ServerlessInstanceTagArgs',
     'X509AuthenticationDatabaseUserCertificateArgs',
     'GetAlertConfigurationOutputArgs',
     'GetAlertConfigurationsListOptionArgs',
@@ -352,74 +354,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
 
 
 @pulumi.input_type
-class AdvancedClusterBiConnectorArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 read_preference: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[bool] enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
-               - Set to `true` to enable BI Connector for Atlas.
-               - Set to `false` to disable BI Connector for Atlas.
-        :param pulumi.Input[str] read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-               
-               - Set to "primary" to have BI Connector for Atlas read from the primary.
-               
-               - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-               
-               - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
-        """
-        AdvancedClusterBiConnectorArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            read_preference=read_preference,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[pulumi.Input[bool]] = None,
-             read_preference: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        if enabled is not None:
-            _setter("enabled", enabled)
-        if read_preference is not None:
-            _setter("read_preference", read_preference)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
-        - Set to `true` to enable BI Connector for Atlas.
-        - Set to `false` to disable BI Connector for Atlas.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter(name="readPreference")
-    def read_preference(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-
-        - Set to "primary" to have BI Connector for Atlas read from the primary.
-
-        - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-
-        - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
-        """
-        return pulumi.get(self, "read_preference")
-
-    @read_preference.setter
-    def read_preference(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "read_preference", value)
-
-
-@pulumi.input_type
 class AdvancedClusterBiConnectorConfigArgs:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[bool]] = None,
@@ -490,8 +424,6 @@ class AdvancedClusterBiConnectorConfigArgs:
 @pulumi.input_type
 class AdvancedClusterConnectionStringArgs:
     def __init__(__self__, *,
-                 aws_private_link: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 aws_private_link_srv: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  private: Optional[pulumi.Input[str]] = None,
                  private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointArgs']]]] = None,
                  private_srv: Optional[pulumi.Input[str]] = None,
@@ -499,8 +431,6 @@ class AdvancedClusterConnectionStringArgs:
                  standard_srv: Optional[pulumi.Input[str]] = None):
         AdvancedClusterConnectionStringArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            aws_private_link=aws_private_link,
-            aws_private_link_srv=aws_private_link_srv,
             private=private,
             private_endpoints=private_endpoints,
             private_srv=private_srv,
@@ -510,24 +440,12 @@ class AdvancedClusterConnectionStringArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             aws_private_link: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             aws_private_link_srv: Optional[pulumi.Input[Mapping[str, Any]]] = None,
              private: Optional[pulumi.Input[str]] = None,
              private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointArgs']]]] = None,
              private_srv: Optional[pulumi.Input[str]] = None,
              standard: Optional[pulumi.Input[str]] = None,
              standard_srv: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        if aws_private_link is not None:
-            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
-            pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
-        if aws_private_link is not None:
-            _setter("aws_private_link", aws_private_link)
-        if aws_private_link_srv is not None:
-            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
-            pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
-        if aws_private_link_srv is not None:
-            _setter("aws_private_link_srv", aws_private_link_srv)
         if private is not None:
             _setter("private", private)
         if private_endpoints is not None:
@@ -538,30 +456,6 @@ class AdvancedClusterConnectionStringArgs:
             _setter("standard", standard)
         if standard_srv is not None:
             _setter("standard_srv", standard_srv)
-
-    @property
-    @pulumi.getter(name="awsPrivateLink")
-    def aws_private_link(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
-
-        return pulumi.get(self, "aws_private_link")
-
-    @aws_private_link.setter
-    def aws_private_link(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
-        pulumi.set(self, "aws_private_link", value)
-
-    @property
-    @pulumi.getter(name="awsPrivateLinkSrv")
-    def aws_private_link_srv(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
-
-        return pulumi.get(self, "aws_private_link_srv")
-
-    @aws_private_link_srv.setter
-    def aws_private_link_srv(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
-        pulumi.set(self, "aws_private_link_srv", value)
 
     @property
     @pulumi.getter
@@ -763,7 +657,6 @@ class AdvancedClusterLabelArgs:
         :param pulumi.Input[str] value: The value that you want to write.
                
                > **NOTE:** MongoDB Atlas doesn't display your labels.
-               > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         AdvancedClusterLabelArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -800,7 +693,6 @@ class AdvancedClusterLabelArgs:
         The value that you want to write.
 
         > **NOTE:** MongoDB Atlas doesn't display your labels.
-        > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         return pulumi.get(self, "value")
 
@@ -1535,11 +1427,63 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
 
 
 @pulumi.input_type
+class AdvancedClusterTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Constant that defines the set of the tag.
+        :param pulumi.Input[str] value: Variable that belongs to the set of the tag.
+               
+               To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        AdvancedClusterTagArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: pulumi.Input[str],
+             value: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        Constant that defines the set of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        Variable that belongs to the set of the tag.
+
+        To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class AlertConfigurationMatcherArgs:
     def __init__(__self__, *,
-                 field_name: Optional[pulumi.Input[str]] = None,
-                 operator: Optional[pulumi.Input[str]] = None,
-                 value: Optional[pulumi.Input[str]] = None):
+                 field_name: pulumi.Input[str],
+                 operator: pulumi.Input[str],
+                 value: pulumi.Input[str]):
         """
         :param pulumi.Input[str] field_name: Name of the field in the target object to match on.
                
@@ -1567,20 +1511,17 @@ class AlertConfigurationMatcherArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             field_name: Optional[pulumi.Input[str]] = None,
-             operator: Optional[pulumi.Input[str]] = None,
-             value: Optional[pulumi.Input[str]] = None,
+             field_name: pulumi.Input[str],
+             operator: pulumi.Input[str],
+             value: pulumi.Input[str],
              opts: Optional[pulumi.ResourceOptions]=None):
-        if field_name is not None:
-            _setter("field_name", field_name)
-        if operator is not None:
-            _setter("operator", operator)
-        if value is not None:
-            _setter("value", value)
+        _setter("field_name", field_name)
+        _setter("operator", operator)
+        _setter("value", value)
 
     @property
     @pulumi.getter(name="fieldName")
-    def field_name(self) -> Optional[pulumi.Input[str]]:
+    def field_name(self) -> pulumi.Input[str]:
         """
         Name of the field in the target object to match on.
 
@@ -1599,12 +1540,12 @@ class AlertConfigurationMatcherArgs:
         return pulumi.get(self, "field_name")
 
     @field_name.setter
-    def field_name(self, value: Optional[pulumi.Input[str]]):
+    def field_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "field_name", value)
 
     @property
     @pulumi.getter
-    def operator(self) -> Optional[pulumi.Input[str]]:
+    def operator(self) -> pulumi.Input[str]:
         """
         The operator to test the field’s value.
         Accepted values are:
@@ -1612,26 +1553,26 @@ class AlertConfigurationMatcherArgs:
         return pulumi.get(self, "operator")
 
     @operator.setter
-    def operator(self, value: Optional[pulumi.Input[str]]):
+    def operator(self, value: pulumi.Input[str]):
         pulumi.set(self, "operator", value)
 
     @property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[str]]:
+    def value(self) -> pulumi.Input[str]:
         """
         Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[str]]):
+    def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
 class AlertConfigurationMetricThresholdConfigArgs:
     def __init__(__self__, *,
-                 metric_name: Optional[pulumi.Input[str]] = None,
+                 metric_name: pulumi.Input[str],
                  mode: Optional[pulumi.Input[str]] = None,
                  operator: Optional[pulumi.Input[str]] = None,
                  threshold: Optional[pulumi.Input[float]] = None,
@@ -1656,14 +1597,13 @@ class AlertConfigurationMetricThresholdConfigArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             metric_name: Optional[pulumi.Input[str]] = None,
+             metric_name: pulumi.Input[str],
              mode: Optional[pulumi.Input[str]] = None,
              operator: Optional[pulumi.Input[str]] = None,
              threshold: Optional[pulumi.Input[float]] = None,
              units: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        if metric_name is not None:
-            _setter("metric_name", metric_name)
+        _setter("metric_name", metric_name)
         if mode is not None:
             _setter("mode", mode)
         if operator is not None:
@@ -1675,14 +1615,14 @@ class AlertConfigurationMetricThresholdConfigArgs:
 
     @property
     @pulumi.getter(name="metricName")
-    def metric_name(self) -> Optional[pulumi.Input[str]]:
+    def metric_name(self) -> pulumi.Input[str]:
         """
         Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
         """
         return pulumi.get(self, "metric_name")
 
     @metric_name.setter
-    def metric_name(self, value: Optional[pulumi.Input[str]]):
+    def metric_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "metric_name", value)
 
     @property
@@ -1739,6 +1679,7 @@ class AlertConfigurationMetricThresholdConfigArgs:
 @pulumi.input_type
 class AlertConfigurationNotificationArgs:
     def __init__(__self__, *,
+                 type_name: pulumi.Input[str],
                  api_token: Optional[pulumi.Input[str]] = None,
                  channel_name: Optional[pulumi.Input[str]] = None,
                  datadog_api_key: Optional[pulumi.Input[str]] = None,
@@ -1756,13 +1697,14 @@ class AlertConfigurationNotificationArgs:
                  sms_enabled: Optional[pulumi.Input[bool]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  team_name: Optional[pulumi.Input[str]] = None,
-                 type_name: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  victor_ops_api_key: Optional[pulumi.Input[str]] = None,
                  victor_ops_routing_key: Optional[pulumi.Input[str]] = None,
                  webhook_secret: Optional[pulumi.Input[str]] = None,
                  webhook_url: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[str] type_name: Type of alert notification.
+               Accepted values are:
         :param pulumi.Input[str] api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[str] channel_name: Slack channel name. Required for the SLACK notifications type.
         :param pulumi.Input[str] datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
@@ -1791,8 +1733,6 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[bool] sms_enabled: Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         :param pulumi.Input[str] team_id: Unique identifier of a team.
         :param pulumi.Input[str] team_name: Label for the team that receives this notification.
-        :param pulumi.Input[str] type_name: Type of alert notification.
-               Accepted values are:
         :param pulumi.Input[str] username: Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
         :param pulumi.Input[str] victor_ops_api_key: VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param pulumi.Input[str] victor_ops_routing_key: VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
@@ -1801,6 +1741,7 @@ class AlertConfigurationNotificationArgs:
         """
         AlertConfigurationNotificationArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            type_name=type_name,
             api_token=api_token,
             channel_name=channel_name,
             datadog_api_key=datadog_api_key,
@@ -1818,7 +1759,6 @@ class AlertConfigurationNotificationArgs:
             sms_enabled=sms_enabled,
             team_id=team_id,
             team_name=team_name,
-            type_name=type_name,
             username=username,
             victor_ops_api_key=victor_ops_api_key,
             victor_ops_routing_key=victor_ops_routing_key,
@@ -1828,6 +1768,7 @@ class AlertConfigurationNotificationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             type_name: pulumi.Input[str],
              api_token: Optional[pulumi.Input[str]] = None,
              channel_name: Optional[pulumi.Input[str]] = None,
              datadog_api_key: Optional[pulumi.Input[str]] = None,
@@ -1845,13 +1786,13 @@ class AlertConfigurationNotificationArgs:
              sms_enabled: Optional[pulumi.Input[bool]] = None,
              team_id: Optional[pulumi.Input[str]] = None,
              team_name: Optional[pulumi.Input[str]] = None,
-             type_name: Optional[pulumi.Input[str]] = None,
              username: Optional[pulumi.Input[str]] = None,
              victor_ops_api_key: Optional[pulumi.Input[str]] = None,
              victor_ops_routing_key: Optional[pulumi.Input[str]] = None,
              webhook_secret: Optional[pulumi.Input[str]] = None,
              webhook_url: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("type_name", type_name)
         if api_token is not None:
             _setter("api_token", api_token)
         if channel_name is not None:
@@ -1886,8 +1827,6 @@ class AlertConfigurationNotificationArgs:
             _setter("team_id", team_id)
         if team_name is not None:
             _setter("team_name", team_name)
-        if type_name is not None:
-            _setter("type_name", type_name)
         if username is not None:
             _setter("username", username)
         if victor_ops_api_key is not None:
@@ -1898,6 +1837,19 @@ class AlertConfigurationNotificationArgs:
             _setter("webhook_secret", webhook_secret)
         if webhook_url is not None:
             _setter("webhook_url", webhook_url)
+
+    @property
+    @pulumi.getter(name="typeName")
+    def type_name(self) -> pulumi.Input[str]:
+        """
+        Type of alert notification.
+        Accepted values are:
+        """
+        return pulumi.get(self, "type_name")
+
+    @type_name.setter
+    def type_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type_name", value)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -2113,19 +2065,6 @@ class AlertConfigurationNotificationArgs:
     @team_name.setter
     def team_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "team_name", value)
-
-    @property
-    @pulumi.getter(name="typeName")
-    def type_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Type of alert notification.
-        Accepted values are:
-        """
-        return pulumi.get(self, "type_name")
-
-    @type_name.setter
-    def type_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "type_name", value)
 
     @property
     @pulumi.getter
@@ -4163,8 +4102,6 @@ class ClusterBiConnectorConfigArgs:
 @pulumi.input_type
 class ClusterConnectionStringArgs:
     def __init__(__self__, *,
-                 aws_private_link: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 aws_private_link_srv: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  private: Optional[pulumi.Input[str]] = None,
                  private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]] = None,
                  private_srv: Optional[pulumi.Input[str]] = None,
@@ -4172,8 +4109,6 @@ class ClusterConnectionStringArgs:
                  standard_srv: Optional[pulumi.Input[str]] = None):
         ClusterConnectionStringArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            aws_private_link=aws_private_link,
-            aws_private_link_srv=aws_private_link_srv,
             private=private,
             private_endpoints=private_endpoints,
             private_srv=private_srv,
@@ -4183,24 +4118,12 @@ class ClusterConnectionStringArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             aws_private_link: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             aws_private_link_srv: Optional[pulumi.Input[Mapping[str, Any]]] = None,
              private: Optional[pulumi.Input[str]] = None,
              private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]] = None,
              private_srv: Optional[pulumi.Input[str]] = None,
              standard: Optional[pulumi.Input[str]] = None,
              standard_srv: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        if aws_private_link is not None:
-            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
-            pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
-        if aws_private_link is not None:
-            _setter("aws_private_link", aws_private_link)
-        if aws_private_link_srv is not None:
-            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
-            pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
-        if aws_private_link_srv is not None:
-            _setter("aws_private_link_srv", aws_private_link_srv)
         if private is not None:
             _setter("private", private)
         if private_endpoints is not None:
@@ -4211,30 +4134,6 @@ class ClusterConnectionStringArgs:
             _setter("standard", standard)
         if standard_srv is not None:
             _setter("standard_srv", standard_srv)
-
-    @property
-    @pulumi.getter(name="awsPrivateLink")
-    def aws_private_link(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string""")
-
-        return pulumi.get(self, "aws_private_link")
-
-    @aws_private_link.setter
-    def aws_private_link(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
-        pulumi.set(self, "aws_private_link", value)
-
-    @property
-    @pulumi.getter(name="awsPrivateLinkSrv")
-    def aws_private_link_srv(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""", DeprecationWarning)
-        pulumi.log.warn("""aws_private_link_srv is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string""")
-
-        return pulumi.get(self, "aws_private_link_srv")
-
-    @aws_private_link_srv.setter
-    def aws_private_link_srv(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
-        pulumi.set(self, "aws_private_link_srv", value)
 
     @property
     @pulumi.getter
@@ -4438,7 +4337,6 @@ class ClusterLabelArgs:
         :param pulumi.Input[str] value: The value that you want to write.
                
                > **NOTE:** MongoDB Atlas doesn't display your labels.
-               > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         ClusterLabelArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -4475,7 +4373,6 @@ class ClusterLabelArgs:
         The value that you want to write.
 
         > **NOTE:** MongoDB Atlas doesn't display your labels.
-        > **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         """
         return pulumi.get(self, "value")
 
@@ -5018,6 +4915,58 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs:
     @retention_value.setter
     def retention_value(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "retention_value", value)
+
+
+@pulumi.input_type
+class ClusterTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Constant that defines the set of the tag.
+        :param pulumi.Input[str] value: Variable that belongs to the set of the tag.
+               
+               To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        ClusterTagArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: pulumi.Input[str],
+             value: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        Constant that defines the set of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        Variable that belongs to the set of the tag.
+
+        To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -6347,33 +6296,55 @@ class DatabaseUserLabelArgs:
 @pulumi.input_type
 class DatabaseUserRoleArgs:
     def __init__(__self__, *,
-                 collection_name: Optional[pulumi.Input[str]] = None,
-                 database_name: Optional[pulumi.Input[str]] = None,
-                 role_name: Optional[pulumi.Input[str]] = None):
+                 database_name: pulumi.Input[str],
+                 role_name: pulumi.Input[str],
+                 collection_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         :param pulumi.Input[str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         :param pulumi.Input[str] role_name: Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+        :param pulumi.Input[str] collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         """
         DatabaseUserRoleArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            collection_name=collection_name,
             database_name=database_name,
             role_name=role_name,
+            collection_name=collection_name,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             database_name: pulumi.Input[str],
+             role_name: pulumi.Input[str],
              collection_name: Optional[pulumi.Input[str]] = None,
-             database_name: Optional[pulumi.Input[str]] = None,
-             role_name: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("database_name", database_name)
+        _setter("role_name", role_name)
         if collection_name is not None:
             _setter("collection_name", collection_name)
-        if database_name is not None:
-            _setter("database_name", database_name)
-        if role_name is not None:
-            _setter("role_name", role_name)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> pulumi.Input[str]:
+        """
+        Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        """
+        return pulumi.get(self, "database_name")
+
+    @database_name.setter
+    def database_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "database_name", value)
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> pulumi.Input[str]:
+        """
+        Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+        """
+        return pulumi.get(self, "role_name")
+
+    @role_name.setter
+    def role_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role_name", value)
 
     @property
     @pulumi.getter(name="collectionName")
@@ -6386,30 +6357,6 @@ class DatabaseUserRoleArgs:
     @collection_name.setter
     def collection_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "collection_name", value)
-
-    @property
-    @pulumi.getter(name="databaseName")
-    def database_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-        """
-        return pulumi.get(self, "database_name")
-
-    @database_name.setter
-    def database_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "database_name", value)
-
-    @property
-    @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
-        """
-        return pulumi.get(self, "role_name")
-
-    @role_name.setter
-    def role_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "role_name", value)
 
 
 @pulumi.input_type
@@ -6579,9 +6526,9 @@ class EncryptionAtRestAwsKmsConfigArgs:
 @pulumi.input_type
 class EncryptionAtRestAzureKeyVaultConfigArgs:
     def __init__(__self__, *,
-                 enabled: pulumi.Input[bool],
                  azure_environment: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
                  key_identifier: Optional[pulumi.Input[str]] = None,
                  key_vault_name: Optional[pulumi.Input[str]] = None,
                  resource_group_name: Optional[pulumi.Input[str]] = None,
@@ -6589,9 +6536,9 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
                  subscription_id: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param pulumi.Input[str] azure_environment: The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
         :param pulumi.Input[str] client_id: The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+        :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param pulumi.Input[str] key_identifier: The unique identifier of a key in an Azure Key Vault.
         :param pulumi.Input[str] key_vault_name: The name of an Azure Key Vault containing your key.
         :param pulumi.Input[str] resource_group_name: The name of the Azure Resource group that contains an Azure Key Vault.
@@ -6601,9 +6548,9 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
         """
         EncryptionAtRestAzureKeyVaultConfigArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
             azure_environment=azure_environment,
             client_id=client_id,
+            enabled=enabled,
             key_identifier=key_identifier,
             key_vault_name=key_vault_name,
             resource_group_name=resource_group_name,
@@ -6614,9 +6561,9 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             enabled: pulumi.Input[bool],
              azure_environment: Optional[pulumi.Input[str]] = None,
              client_id: Optional[pulumi.Input[str]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
              key_identifier: Optional[pulumi.Input[str]] = None,
              key_vault_name: Optional[pulumi.Input[str]] = None,
              resource_group_name: Optional[pulumi.Input[str]] = None,
@@ -6624,11 +6571,12 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
              subscription_id: Optional[pulumi.Input[str]] = None,
              tenant_id: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("enabled", enabled)
         if azure_environment is not None:
             _setter("azure_environment", azure_environment)
         if client_id is not None:
             _setter("client_id", client_id)
+        if enabled is not None:
+            _setter("enabled", enabled)
         if key_identifier is not None:
             _setter("key_identifier", key_identifier)
         if key_vault_name is not None:
@@ -6641,18 +6589,6 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
             _setter("subscription_id", subscription_id)
         if tenant_id is not None:
             _setter("tenant_id", tenant_id)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[bool]:
-        """
-        Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[bool]):
-        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="azureEnvironment")
@@ -6677,6 +6613,18 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
     @client_id.setter
     def client_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="keyIdentifier")
@@ -8583,58 +8531,6 @@ class PrivateLinkEndpointServiceEndpointArgs:
 
 
 @pulumi.input_type
-class ProjectApiKeyArgs:
-    def __init__(__self__, *,
-                 api_key_id: pulumi.Input[str],
-                 role_names: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        """
-        :param pulumi.Input[str] api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
-               
-               **WARNING:** The `api_keys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `ProjectApiKey`  resource instead.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        """
-        ProjectApiKeyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key_id=api_key_id,
-            role_names=role_names,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key_id: pulumi.Input[str],
-             role_names: pulumi.Input[Sequence[pulumi.Input[str]]],
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("api_key_id", api_key_id)
-        _setter("role_names", role_names)
-
-    @property
-    @pulumi.getter(name="apiKeyId")
-    def api_key_id(self) -> pulumi.Input[str]:
-        """
-        The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
-
-        **WARNING:** The `api_keys` parameter is deprecated and will be removed in v1.12.0 release from codebase. Use `ProjectApiKey`  resource instead.
-        """
-        return pulumi.get(self, "api_key_id")
-
-    @api_key_id.setter
-    def api_key_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "api_key_id", value)
-
-    @property
-    @pulumi.getter(name="roleNames")
-    def role_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        """
-        return pulumi.get(self, "role_names")
-
-    @role_names.setter
-    def role_names(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "role_names", value)
-
-
-@pulumi.input_type
 class ProjectApiKeyProjectAssignmentArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[str],
@@ -8680,6 +8576,46 @@ class ProjectApiKeyProjectAssignmentArgs:
     @role_names.setter
     def role_names(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "role_names", value)
+
+
+@pulumi.input_type
+class ProjectIpAccessListTimeoutsArgs:
+    def __init__(__self__, *,
+                 delete: Optional[pulumi.Input[str]] = None,
+                 read: Optional[pulumi.Input[str]] = None):
+        ProjectIpAccessListTimeoutsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            delete=delete,
+            read=read,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             delete: Optional[pulumi.Input[str]] = None,
+             read: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        if delete is not None:
+            _setter("delete", delete)
+        if read is not None:
+            _setter("read", read)
+
+    @property
+    @pulumi.getter
+    def delete(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delete", value)
+
+    @property
+    @pulumi.getter
+    def read(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "read")
+
+    @read.setter
+    def read(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "read", value)
 
 
 @pulumi.input_type
@@ -8828,7 +8764,6 @@ class ProjectTeamArgs:
 class ProviderAssumeRoleArgs:
     def __init__(__self__, *,
                  duration: Optional[pulumi.Input[str]] = None,
-                 duration_seconds: Optional[pulumi.Input[int]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
                  policy: Optional[pulumi.Input[str]] = None,
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -8840,7 +8775,6 @@ class ProviderAssumeRoleArgs:
         ProviderAssumeRoleArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             duration=duration,
-            duration_seconds=duration_seconds,
             external_id=external_id,
             policy=policy,
             policy_arns=policy_arns,
@@ -8854,7 +8788,6 @@ class ProviderAssumeRoleArgs:
     def _configure(
              _setter: Callable[[Any, Any], None],
              duration: Optional[pulumi.Input[str]] = None,
-             duration_seconds: Optional[pulumi.Input[int]] = None,
              external_id: Optional[pulumi.Input[str]] = None,
              policy: Optional[pulumi.Input[str]] = None,
              policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -8866,11 +8799,6 @@ class ProviderAssumeRoleArgs:
              opts: Optional[pulumi.ResourceOptions]=None):
         if duration is not None:
             _setter("duration", duration)
-        if duration_seconds is not None:
-            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""", DeprecationWarning)
-            pulumi.log.warn("""duration_seconds is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""")
-        if duration_seconds is not None:
-            _setter("duration_seconds", duration_seconds)
         if external_id is not None:
             _setter("external_id", external_id)
         if policy is not None:
@@ -8896,18 +8824,6 @@ class ProviderAssumeRoleArgs:
     @duration.setter
     def duration(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "duration", value)
-
-    @property
-    @pulumi.getter(name="durationSeconds")
-    def duration_seconds(self) -> Optional[pulumi.Input[int]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""", DeprecationWarning)
-        pulumi.log.warn("""duration_seconds is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""")
-
-        return pulumi.get(self, "duration_seconds")
-
-    @duration_seconds.setter
-    def duration_seconds(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "duration_seconds", value)
 
     @property
     @pulumi.getter(name="externalId")
@@ -9113,6 +9029,58 @@ class ServerlessInstanceLinkArgs:
     @rel.setter
     def rel(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "rel", value)
+
+
+@pulumi.input_type
+class ServerlessInstanceTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Constant that defines the set of the tag.
+        :param pulumi.Input[str] value: Variable that belongs to the set of the tag.
+               
+               To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        ServerlessInstanceTagArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: pulumi.Input[str],
+             value: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        Constant that defines the set of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        Variable that belongs to the set of the tag.
+
+        To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type

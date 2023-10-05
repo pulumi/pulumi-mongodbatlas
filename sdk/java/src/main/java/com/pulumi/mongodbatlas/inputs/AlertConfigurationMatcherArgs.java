@@ -7,8 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.ResourceArgs {
@@ -29,8 +27,8 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
      * All other types of alerts do not support matchers.
      * 
      */
-    @Import(name="fieldName")
-    private @Nullable Output<String> fieldName;
+    @Import(name="fieldName", required=true)
+    private Output<String> fieldName;
 
     /**
      * @return Name of the field in the target object to match on.
@@ -46,8 +44,8 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
      * All other types of alerts do not support matchers.
      * 
      */
-    public Optional<Output<String>> fieldName() {
-        return Optional.ofNullable(this.fieldName);
+    public Output<String> fieldName() {
+        return this.fieldName;
     }
 
     /**
@@ -55,31 +53,31 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
      * Accepted values are:
      * 
      */
-    @Import(name="operator")
-    private @Nullable Output<String> operator;
+    @Import(name="operator", required=true)
+    private Output<String> operator;
 
     /**
      * @return The operator to test the field’s value.
      * Accepted values are:
      * 
      */
-    public Optional<Output<String>> operator() {
-        return Optional.ofNullable(this.operator);
+    public Output<String> operator() {
+        return this.operator;
     }
 
     /**
      * Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
      * 
      */
-    @Import(name="value")
-    private @Nullable Output<String> value;
+    @Import(name="value", required=true)
+    private Output<String> value;
 
     /**
      * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
      * 
      */
-    public Optional<Output<String>> value() {
-        return Optional.ofNullable(this.value);
+    public Output<String> value() {
+        return this.value;
     }
 
     private AlertConfigurationMatcherArgs() {}
@@ -124,7 +122,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
          * @return builder
          * 
          */
-        public Builder fieldName(@Nullable Output<String> fieldName) {
+        public Builder fieldName(Output<String> fieldName) {
             $.fieldName = fieldName;
             return this;
         }
@@ -156,7 +154,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
          * @return builder
          * 
          */
-        public Builder operator(@Nullable Output<String> operator) {
+        public Builder operator(Output<String> operator) {
             $.operator = operator;
             return this;
         }
@@ -178,7 +176,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
          * @return builder
          * 
          */
-        public Builder value(@Nullable Output<String> value) {
+        public Builder value(Output<String> value) {
             $.value = value;
             return this;
         }
@@ -194,6 +192,9 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         public AlertConfigurationMatcherArgs build() {
+            $.fieldName = Objects.requireNonNull($.fieldName, "expected parameter 'fieldName' to be non-null");
+            $.operator = Objects.requireNonNull($.operator, "expected parameter 'operator' to be non-null");
+            $.value = Objects.requireNonNull($.value, "expected parameter 'value' to be non-null");
             return $;
         }
     }

@@ -26,6 +26,10 @@ import com.pulumi.mongodbatlas.inputs.GetApiKeyArgs;
 import com.pulumi.mongodbatlas.inputs.GetApiKeyPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetApiKeysArgs;
 import com.pulumi.mongodbatlas.inputs.GetApiKeysPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+import com.pulumi.mongodbatlas.inputs.GetAtlasUserPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+import com.pulumi.mongodbatlas.inputs.GetAtlasUsersPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
 import com.pulumi.mongodbatlas.inputs.GetAuditingPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
@@ -195,6 +199,8 @@ import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationResult;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetApiKeyResult;
 import com.pulumi.mongodbatlas.outputs.GetApiKeysInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetAtlasUserResult;
+import com.pulumi.mongodbatlas.outputs.GetAtlasUsersInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAuditingResult;
 import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupScheduleResult;
@@ -1187,6 +1193,1014 @@ public final class MongodbatlasFunctions {
     }
     public static CompletableFuture<GetApiKeysInvokeResult> getApiKeysPlain(GetApiKeysPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+     * 
+     * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
+     * 
+     * ## Example Usage
+     * ### Using user_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .userId(&#34;&lt;USER_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using username attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .username(&#34;&lt;USERNAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAtlasUserResult> getAtlasUser() {
+        return getAtlasUser(GetAtlasUserArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+     * 
+     * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
+     * 
+     * ## Example Usage
+     * ### Using user_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .userId(&#34;&lt;USER_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using username attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .username(&#34;&lt;USERNAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAtlasUserResult> getAtlasUserPlain() {
+        return getAtlasUserPlain(GetAtlasUserPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+     * 
+     * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
+     * 
+     * ## Example Usage
+     * ### Using user_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .userId(&#34;&lt;USER_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using username attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .username(&#34;&lt;USERNAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAtlasUserResult> getAtlasUser(GetAtlasUserArgs args) {
+        return getAtlasUser(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+     * 
+     * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
+     * 
+     * ## Example Usage
+     * ### Using user_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .userId(&#34;&lt;USER_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using username attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .username(&#34;&lt;USERNAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAtlasUserResult> getAtlasUserPlain(GetAtlasUserPlainArgs args) {
+        return getAtlasUserPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+     * 
+     * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
+     * 
+     * ## Example Usage
+     * ### Using user_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .userId(&#34;&lt;USER_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using username attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .username(&#34;&lt;USERNAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAtlasUserResult> getAtlasUser(GetAtlasUserArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAtlasUser:getAtlasUser", TypeShape.of(GetAtlasUserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+     * 
+     * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
+     * 
+     * ## Example Usage
+     * ### Using user_id attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .userId(&#34;&lt;USER_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using username attribute to query
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUser(GetAtlasUserArgs.builder()
+     *             .username(&#34;&lt;USERNAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAtlasUserResult> getAtlasUserPlain(GetAtlasUserPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAtlasUser:getAtlasUser", TypeShape.of(GetAtlasUserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Using org_id attribute to query Organization Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using project_id attribute to query Project Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teamId(&#34;&lt;TEAM_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAtlasUsersInvokeResult> getAtlasUsers() {
+        return getAtlasUsers(GetAtlasUsersArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Using org_id attribute to query Organization Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using project_id attribute to query Project Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teamId(&#34;&lt;TEAM_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAtlasUsersInvokeResult> getAtlasUsersPlain() {
+        return getAtlasUsersPlain(GetAtlasUsersPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Using org_id attribute to query Organization Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using project_id attribute to query Project Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teamId(&#34;&lt;TEAM_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAtlasUsersInvokeResult> getAtlasUsers(GetAtlasUsersArgs args) {
+        return getAtlasUsers(args, InvokeOptions.Empty);
+    }
+    /**
+     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Using org_id attribute to query Organization Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using project_id attribute to query Project Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teamId(&#34;&lt;TEAM_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAtlasUsersInvokeResult> getAtlasUsersPlain(GetAtlasUsersPlainArgs args) {
+        return getAtlasUsersPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Using org_id attribute to query Organization Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using project_id attribute to query Project Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teamId(&#34;&lt;TEAM_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAtlasUsersInvokeResult> getAtlasUsers(GetAtlasUsersArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAtlasUsers:getAtlasUsers", TypeShape.of(GetAtlasUsersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Using org_id attribute to query Organization Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using project_id attribute to query Project Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * ### Using team_id and org_id attribute to query Team Atlas Users
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getAtlasUsers(GetAtlasUsersArgs.builder()
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teamId(&#34;&lt;TEAM_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAtlasUsersInvokeResult> getAtlasUsersPlain(GetAtlasUsersPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAtlasUsers:getAtlasUsers", TypeShape.of(GetAtlasUsersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.Auditing` describes a Auditing.
@@ -3442,6 +4456,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -3500,6 +4515,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -3558,6 +4574,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -3616,6 +4633,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -10170,15 +11188,187 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetProjectApiKeyResult> getProjectApiKeyPlain(GetProjectApiKeyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectApiKey:getProjectApiKey", TypeShape.of(GetProjectApiKeyResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectApiKey;
+     * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProjectApiKey = new ProjectApiKey(&#34;testProjectApiKey&#34;, ProjectApiKeyArgs.builder()        
+     *             .description(&#34;Description of the API key&#34;)
+     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
+     *             .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *             .build());
+     * 
+     *         final var testProjectApiKeys = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
+     *             .itemsPerPage(5)
+     *             .pageNum(1)
+     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<GetProjectApiKeysInvokeResult> getProjectApiKeys(GetProjectApiKeysArgs args) {
         return getProjectApiKeys(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectApiKey;
+     * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProjectApiKey = new ProjectApiKey(&#34;testProjectApiKey&#34;, ProjectApiKeyArgs.builder()        
+     *             .description(&#34;Description of the API key&#34;)
+     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
+     *             .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *             .build());
+     * 
+     *         final var testProjectApiKeys = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
+     *             .itemsPerPage(5)
+     *             .pageNum(1)
+     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<GetProjectApiKeysInvokeResult> getProjectApiKeysPlain(GetProjectApiKeysPlainArgs args) {
         return getProjectApiKeysPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectApiKey;
+     * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProjectApiKey = new ProjectApiKey(&#34;testProjectApiKey&#34;, ProjectApiKeyArgs.builder()        
+     *             .description(&#34;Description of the API key&#34;)
+     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
+     *             .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *             .build());
+     * 
+     *         final var testProjectApiKeys = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
+     *             .itemsPerPage(5)
+     *             .pageNum(1)
+     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<GetProjectApiKeysInvokeResult> getProjectApiKeys(GetProjectApiKeysArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", TypeShape.of(GetProjectApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectApiKey;
+     * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProjectApiKey = new ProjectApiKey(&#34;testProjectApiKey&#34;, ProjectApiKeyArgs.builder()        
+     *             .description(&#34;Description of the API key&#34;)
+     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
+     *             .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *             .build());
+     * 
+     *         final var testProjectApiKeys = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
+     *             .itemsPerPage(5)
+     *             .pageNum(1)
+     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<GetProjectApiKeysInvokeResult> getProjectApiKeysPlain(GetProjectApiKeysPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", TypeShape.of(GetProjectApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -10298,7 +11488,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
@@ -10329,10 +11518,6 @@ public final class MongodbatlasFunctions {
      *                         &#34;GROUP_READ_ONLY&#34;,
      *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
      *                     .build())
-     *             .apiKeys(ProjectApiKeyArgs.builder()
-     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
-     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
-     *                 .build())
      *             .limits(ProjectLimitArgs.builder()
      *                 .name(&#34;atlas.project.deployment.clusters&#34;)
      *                 .value(26)
@@ -10368,7 +11553,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
@@ -10399,10 +11583,6 @@ public final class MongodbatlasFunctions {
      *                         &#34;GROUP_READ_ONLY&#34;,
      *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
      *                     .build())
-     *             .apiKeys(ProjectApiKeyArgs.builder()
-     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
-     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
-     *                 .build())
      *             .limits(ProjectLimitArgs.builder()
      *                 .name(&#34;atlas.project.deployment.clusters&#34;)
      *                 .value(26)
@@ -10438,7 +11618,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
@@ -10469,10 +11648,6 @@ public final class MongodbatlasFunctions {
      *                         &#34;GROUP_READ_ONLY&#34;,
      *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
      *                     .build())
-     *             .apiKeys(ProjectApiKeyArgs.builder()
-     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
-     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
-     *                 .build())
      *             .limits(ProjectLimitArgs.builder()
      *                 .name(&#34;atlas.project.deployment.clusters&#34;)
      *                 .value(26)
@@ -10508,7 +11683,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
@@ -10539,10 +11713,6 @@ public final class MongodbatlasFunctions {
      *                         &#34;GROUP_READ_ONLY&#34;,
      *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
      *                     .build())
-     *             .apiKeys(ProjectApiKeyArgs.builder()
-     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
-     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
-     *                 .build())
      *             .limits(ProjectLimitArgs.builder()
      *                 .name(&#34;atlas.project.deployment.clusters&#34;)
      *                 .value(26)
@@ -10578,7 +11748,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
@@ -10609,10 +11778,6 @@ public final class MongodbatlasFunctions {
      *                         &#34;GROUP_READ_ONLY&#34;,
      *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
      *                     .build())
-     *             .apiKeys(ProjectApiKeyArgs.builder()
-     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
-     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
-     *                 .build())
      *             .limits(ProjectLimitArgs.builder()
      *                 .name(&#34;atlas.project.deployment.clusters&#34;)
      *                 .value(26)
@@ -10648,7 +11813,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Project;
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
-     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
      * import java.util.List;
@@ -10679,10 +11843,6 @@ public final class MongodbatlasFunctions {
      *                         &#34;GROUP_READ_ONLY&#34;,
      *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
      *                     .build())
-     *             .apiKeys(ProjectApiKeyArgs.builder()
-     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
-     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
-     *                 .build())
      *             .limits(ProjectLimitArgs.builder()
      *                 .name(&#34;atlas.project.deployment.clusters&#34;)
      *                 .value(26)

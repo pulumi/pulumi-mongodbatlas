@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
 import java.lang.String;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -30,25 +29,6 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
      */
     public Output<String> clusterName() {
         return this.clusterName;
-    }
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config */
-    @Import(name="deliveryType")
-    private @Nullable Output<Map<String,String>> deliveryType;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config */
-    public Optional<Output<Map<String,String>>> deliveryType() {
-        return Optional.ofNullable(this.deliveryType);
     }
 
     /**
@@ -116,7 +96,6 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
 
     private CloudBackupSnapshotRestoreJobArgs(CloudBackupSnapshotRestoreJobArgs $) {
         this.clusterName = $.clusterName;
-        this.deliveryType = $.deliveryType;
         this.deliveryTypeConfig = $.deliveryTypeConfig;
         this.projectId = $.projectId;
         this.snapshotId = $.snapshotId;
@@ -159,31 +138,6 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
          */
         public Builder clusterName(String clusterName) {
             return clusterName(Output.of(clusterName));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config */
-        public Builder deliveryType(@Nullable Output<Map<String,String>> deliveryType) {
-            $.deliveryType = deliveryType;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config */
-        public Builder deliveryType(Map<String,String> deliveryType) {
-            return deliveryType(Output.of(deliveryType));
         }
 
         /**

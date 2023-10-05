@@ -12,9 +12,6 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup")]
     public partial class CloudProviderAccessSetup : global::Pulumi.CustomResource
     {
-        [Output("aws")]
-        public Output<ImmutableDictionary<string, string>> Aws { get; private set; } = null!;
-
         [Output("awsConfigs")]
         public Output<ImmutableArray<Outputs.CloudProviderAccessSetupAwsConfig>> AwsConfigs { get; private set; } = null!;
 
@@ -104,15 +101,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class CloudProviderAccessSetupState : global::Pulumi.ResourceArgs
     {
-        [Input("aws")]
-        private InputMap<string>? _aws;
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config")]
-        public InputMap<string> Aws
-        {
-            get => _aws ?? (_aws = new InputMap<string>());
-            set => _aws = value;
-        }
-
         [Input("awsConfigs")]
         private InputList<Inputs.CloudProviderAccessSetupAwsConfigGetArgs>? _awsConfigs;
         public InputList<Inputs.CloudProviderAccessSetupAwsConfigGetArgs> AwsConfigs
