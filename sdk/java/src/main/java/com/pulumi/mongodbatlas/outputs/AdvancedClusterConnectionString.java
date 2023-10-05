@@ -5,30 +5,14 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterConnectionStringPrivateEndpoint;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class AdvancedClusterConnectionString {
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string */
-    private @Nullable Map<String,Object> awsPrivateLink;
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string */
-    private @Nullable Map<String,Object> awsPrivateLinkSrv;
     private @Nullable String private_;
     private @Nullable List<AdvancedClusterConnectionStringPrivateEndpoint> privateEndpoints;
     private @Nullable String privateSrv;
@@ -36,24 +20,6 @@ public final class AdvancedClusterConnectionString {
     private @Nullable String standardSrv;
 
     private AdvancedClusterConnectionString() {}
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string */
-    public Map<String,Object> awsPrivateLink() {
-        return this.awsPrivateLink == null ? Map.of() : this.awsPrivateLink;
-    }
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string */
-    public Map<String,Object> awsPrivateLinkSrv() {
-        return this.awsPrivateLinkSrv == null ? Map.of() : this.awsPrivateLinkSrv;
-    }
     public Optional<String> private_() {
         return Optional.ofNullable(this.private_);
     }
@@ -79,8 +45,6 @@ public final class AdvancedClusterConnectionString {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable Map<String,Object> awsPrivateLink;
-        private @Nullable Map<String,Object> awsPrivateLinkSrv;
         private @Nullable String private_;
         private @Nullable List<AdvancedClusterConnectionStringPrivateEndpoint> privateEndpoints;
         private @Nullable String privateSrv;
@@ -89,8 +53,6 @@ public final class AdvancedClusterConnectionString {
         public Builder() {}
         public Builder(AdvancedClusterConnectionString defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.awsPrivateLink = defaults.awsPrivateLink;
-    	      this.awsPrivateLinkSrv = defaults.awsPrivateLinkSrv;
     	      this.private_ = defaults.private_;
     	      this.privateEndpoints = defaults.privateEndpoints;
     	      this.privateSrv = defaults.privateSrv;
@@ -98,16 +60,6 @@ public final class AdvancedClusterConnectionString {
     	      this.standardSrv = defaults.standardSrv;
         }
 
-        @CustomType.Setter
-        public Builder awsPrivateLink(@Nullable Map<String,Object> awsPrivateLink) {
-            this.awsPrivateLink = awsPrivateLink;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder awsPrivateLinkSrv(@Nullable Map<String,Object> awsPrivateLinkSrv) {
-            this.awsPrivateLinkSrv = awsPrivateLinkSrv;
-            return this;
-        }
         @CustomType.Setter("private")
         public Builder private_(@Nullable String private_) {
             this.private_ = private_;
@@ -138,8 +90,6 @@ public final class AdvancedClusterConnectionString {
         }
         public AdvancedClusterConnectionString build() {
             final var o = new AdvancedClusterConnectionString();
-            o.awsPrivateLink = awsPrivateLink;
-            o.awsPrivateLinkSrv = awsPrivateLinkSrv;
             o.private_ = private_;
             o.privateEndpoints = privateEndpoints;
             o.privateSrv = privateSrv;

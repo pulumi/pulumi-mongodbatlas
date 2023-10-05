@@ -34,30 +34,30 @@ public final class DatabaseUserRoleArgs extends com.pulumi.resources.ResourceArg
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      */
-    @Import(name="databaseName")
-    private @Nullable Output<String> databaseName;
+    @Import(name="databaseName", required=true)
+    private Output<String> databaseName;
 
     /**
      * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      */
-    public Optional<Output<String>> databaseName() {
-        return Optional.ofNullable(this.databaseName);
+    public Output<String> databaseName() {
+        return this.databaseName;
     }
 
     /**
      * Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
      * 
      */
-    @Import(name="roleName")
-    private @Nullable Output<String> roleName;
+    @Import(name="roleName", required=true)
+    private Output<String> roleName;
 
     /**
      * @return Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
      * 
      */
-    public Optional<Output<String>> roleName() {
-        return Optional.ofNullable(this.roleName);
+    public Output<String> roleName() {
+        return this.roleName;
     }
 
     private DatabaseUserRoleArgs() {}
@@ -113,7 +113,7 @@ public final class DatabaseUserRoleArgs extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          */
-        public Builder databaseName(@Nullable Output<String> databaseName) {
+        public Builder databaseName(Output<String> databaseName) {
             $.databaseName = databaseName;
             return this;
         }
@@ -134,7 +134,7 @@ public final class DatabaseUserRoleArgs extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          */
-        public Builder roleName(@Nullable Output<String> roleName) {
+        public Builder roleName(Output<String> roleName) {
             $.roleName = roleName;
             return this;
         }
@@ -150,6 +150,8 @@ public final class DatabaseUserRoleArgs extends com.pulumi.resources.ResourceArg
         }
 
         public DatabaseUserRoleArgs build() {
+            $.databaseName = Objects.requireNonNull($.databaseName, "expected parameter 'databaseName' to be non-null");
+            $.roleName = Objects.requireNonNull($.roleName, "expected parameter 'roleName' to be non-null");
             return $;
         }
     }

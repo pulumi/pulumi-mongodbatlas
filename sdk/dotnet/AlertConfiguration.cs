@@ -222,9 +222,6 @@ namespace Pulumi.Mongodbatlas
         [Output("matchers")]
         public Output<ImmutableArray<Outputs.AlertConfigurationMatcher>> Matchers { get; private set; } = null!;
 
-        [Output("metricThreshold")]
-        public Output<ImmutableDictionary<string, string>?> MetricThreshold { get; private set; } = null!;
-
         [Output("metricThresholdConfig")]
         public Output<Outputs.AlertConfigurationMetricThresholdConfig?> MetricThresholdConfig { get; private set; } = null!;
 
@@ -236,12 +233,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
-
-        /// <summary>
-        /// Threshold value outside of which an alert will be triggered.
-        /// </summary>
-        [Output("threshold")]
-        public Output<ImmutableDictionary<string, string>?> Threshold { get; private set; } = null!;
 
         [Output("thresholdConfig")]
         public Output<Outputs.AlertConfigurationThresholdConfig?> ThresholdConfig { get; private set; } = null!;
@@ -322,19 +313,10 @@ namespace Pulumi.Mongodbatlas
             set => _matchers = value;
         }
 
-        [Input("metricThreshold")]
-        private InputMap<string>? _metricThreshold;
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config")]
-        public InputMap<string> MetricThreshold
-        {
-            get => _metricThreshold ?? (_metricThreshold = new InputMap<string>());
-            set => _metricThreshold = value;
-        }
-
         [Input("metricThresholdConfig")]
         public Input<Inputs.AlertConfigurationMetricThresholdConfigArgs>? MetricThresholdConfig { get; set; }
 
-        [Input("notifications", required: true)]
+        [Input("notifications")]
         private InputList<Inputs.AlertConfigurationNotificationArgs>? _notifications;
         public InputList<Inputs.AlertConfigurationNotificationArgs> Notifications
         {
@@ -347,19 +329,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
-
-        [Input("threshold")]
-        private InputMap<string>? _threshold;
-
-        /// <summary>
-        /// Threshold value outside of which an alert will be triggered.
-        /// </summary>
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config")]
-        public InputMap<string> Threshold
-        {
-            get => _threshold ?? (_threshold = new InputMap<string>());
-            set => _threshold = value;
-        }
 
         [Input("thresholdConfig")]
         public Input<Inputs.AlertConfigurationThresholdConfigArgs>? ThresholdConfig { get; set; }
@@ -408,15 +377,6 @@ namespace Pulumi.Mongodbatlas
             set => _matchers = value;
         }
 
-        [Input("metricThreshold")]
-        private InputMap<string>? _metricThreshold;
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config")]
-        public InputMap<string> MetricThreshold
-        {
-            get => _metricThreshold ?? (_metricThreshold = new InputMap<string>());
-            set => _metricThreshold = value;
-        }
-
         [Input("metricThresholdConfig")]
         public Input<Inputs.AlertConfigurationMetricThresholdConfigGetArgs>? MetricThresholdConfig { get; set; }
 
@@ -433,19 +393,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
-
-        [Input("threshold")]
-        private InputMap<string>? _threshold;
-
-        /// <summary>
-        /// Threshold value outside of which an alert will be triggered.
-        /// </summary>
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config")]
-        public InputMap<string> Threshold
-        {
-            get => _threshold ?? (_threshold = new InputMap<string>());
-            set => _threshold = value;
-        }
 
         [Input("thresholdConfig")]
         public Input<Inputs.AlertConfigurationThresholdConfigGetArgs>? ThresholdConfig { get; set; }

@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.ProjectIpAccessListTimeoutsArgs;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -94,6 +95,13 @@ public final class ProjectIpAccessListState extends com.pulumi.resources.Resourc
         return Optional.ofNullable(this.projectId);
     }
 
+    @Import(name="timeouts")
+    private @Nullable Output<ProjectIpAccessListTimeoutsArgs> timeouts;
+
+    public Optional<Output<ProjectIpAccessListTimeoutsArgs>> timeouts() {
+        return Optional.ofNullable(this.timeouts);
+    }
+
     private ProjectIpAccessListState() {}
 
     private ProjectIpAccessListState(ProjectIpAccessListState $) {
@@ -102,6 +110,7 @@ public final class ProjectIpAccessListState extends com.pulumi.resources.Resourc
         this.comment = $.comment;
         this.ipAddress = $.ipAddress;
         this.projectId = $.projectId;
+        this.timeouts = $.timeouts;
     }
 
     public static Builder builder() {
@@ -229,6 +238,15 @@ public final class ProjectIpAccessListState extends com.pulumi.resources.Resourc
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        public Builder timeouts(@Nullable Output<ProjectIpAccessListTimeoutsArgs> timeouts) {
+            $.timeouts = timeouts;
+            return this;
+        }
+
+        public Builder timeouts(ProjectIpAccessListTimeoutsArgs timeouts) {
+            return timeouts(Output.of(timeouts));
         }
 
         public ProjectIpAccessListState build() {

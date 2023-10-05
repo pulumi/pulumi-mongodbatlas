@@ -65,7 +65,7 @@ type LookupServerlessInstancesResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
-	// A list where each represents a search index.
+	// A list where each result represents a Serverless Instance. To learn more, see Serverless Instance.
 	Results []GetServerlessInstancesResult `pulumi:"results"`
 }
 
@@ -122,7 +122,7 @@ func (o LookupServerlessInstancesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerlessInstancesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// A list where each represents a search index.
+// A list where each result represents a Serverless Instance. To learn more, see Serverless Instance.
 func (o LookupServerlessInstancesResultOutput) Results() GetServerlessInstancesResultArrayOutput {
 	return o.ApplyT(func(v LookupServerlessInstancesResult) []GetServerlessInstancesResult { return v.Results }).(GetServerlessInstancesResultArrayOutput)
 }

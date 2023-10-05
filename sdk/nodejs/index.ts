@@ -190,6 +190,16 @@ export const getApiKeys: typeof import("./getApiKeys").getApiKeys = null as any;
 export const getApiKeysOutput: typeof import("./getApiKeys").getApiKeysOutput = null as any;
 utilities.lazyLoad(exports, ["getApiKeys","getApiKeysOutput"], () => require("./getApiKeys"));
 
+export { GetAtlasUserArgs, GetAtlasUserResult, GetAtlasUserOutputArgs } from "./getAtlasUser";
+export const getAtlasUser: typeof import("./getAtlasUser").getAtlasUser = null as any;
+export const getAtlasUserOutput: typeof import("./getAtlasUser").getAtlasUserOutput = null as any;
+utilities.lazyLoad(exports, ["getAtlasUser","getAtlasUserOutput"], () => require("./getAtlasUser"));
+
+export { GetAtlasUsersArgs, GetAtlasUsersResult, GetAtlasUsersOutputArgs } from "./getAtlasUsers";
+export const getAtlasUsers: typeof import("./getAtlasUsers").getAtlasUsers = null as any;
+export const getAtlasUsersOutput: typeof import("./getAtlasUsers").getAtlasUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getAtlasUsers","getAtlasUsersOutput"], () => require("./getAtlasUsers"));
+
 export { GetAuditingArgs, GetAuditingResult, GetAuditingOutputArgs } from "./getAuditing";
 export const getAuditing: typeof import("./getAuditing").getAuditing = null as any;
 export const getAuditingOutput: typeof import("./getAuditing").getAuditingOutput = null as any;

@@ -4,7 +4,6 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.mongodbatlas.outputs.GetProjectsResultApiKey;
 import com.pulumi.mongodbatlas.outputs.GetProjectsResultLimit;
 import com.pulumi.mongodbatlas.outputs.GetProjectsResultTeam;
 import java.lang.Boolean;
@@ -12,12 +11,9 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetProjectsResult {
-    private List<GetProjectsResultApiKey> apiKeys;
     /**
      * @return The number of Atlas clusters deployed in the project.
      * 
@@ -27,8 +23,6 @@ public final class GetProjectsResult {
      * @return The ISO-8601-formatted timestamp of when Atlas created the project.
      * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
      * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-     * * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * * `limits.#.name` - Human-readable label that identifies this project limit.
      * * `limits.#.value` - Amount the limit is set to.
      * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
@@ -56,7 +50,7 @@ public final class GetProjectsResult {
      * @return Flag that indicates whether to enable extended storage sizes for the specified project.
      * 
      */
-    private @Nullable Boolean isExtendedStorageSizesEnabled;
+    private Boolean isExtendedStorageSizesEnabled;
     /**
      * @return Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      * 
@@ -83,6 +77,7 @@ public final class GetProjectsResult {
      * 
      */
     private String orgId;
+    private String projectId;
     /**
      * @return If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      * 
@@ -93,9 +88,6 @@ public final class GetProjectsResult {
     private List<GetProjectsResultTeam> teams;
 
     private GetProjectsResult() {}
-    public List<GetProjectsResultApiKey> apiKeys() {
-        return this.apiKeys;
-    }
     /**
      * @return The number of Atlas clusters deployed in the project.
      * 
@@ -107,8 +99,6 @@ public final class GetProjectsResult {
      * @return The ISO-8601-formatted timestamp of when Atlas created the project.
      * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
      * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-     * * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * * `limits.#.name` - Human-readable label that identifies this project limit.
      * * `limits.#.value` - Amount the limit is set to.
      * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
@@ -144,8 +134,8 @@ public final class GetProjectsResult {
      * @return Flag that indicates whether to enable extended storage sizes for the specified project.
      * 
      */
-    public Optional<Boolean> isExtendedStorageSizesEnabled() {
-        return Optional.ofNullable(this.isExtendedStorageSizesEnabled);
+    public Boolean isExtendedStorageSizesEnabled() {
+        return this.isExtendedStorageSizesEnabled;
     }
     /**
      * @return Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
@@ -185,6 +175,9 @@ public final class GetProjectsResult {
     public String orgId() {
         return this.orgId;
     }
+    public String projectId() {
+        return this.projectId;
+    }
     /**
      * @return If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      * 
@@ -207,25 +200,24 @@ public final class GetProjectsResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<GetProjectsResultApiKey> apiKeys;
         private Integer clusterCount;
         private String created;
         private String id;
         private Boolean isCollectDatabaseSpecificsStatisticsEnabled;
         private Boolean isDataExplorerEnabled;
-        private @Nullable Boolean isExtendedStorageSizesEnabled;
+        private Boolean isExtendedStorageSizesEnabled;
         private Boolean isPerformanceAdvisorEnabled;
         private Boolean isRealtimePerformancePanelEnabled;
         private Boolean isSchemaAdvisorEnabled;
         private List<GetProjectsResultLimit> limits;
         private String name;
         private String orgId;
+        private String projectId;
         private String regionUsageRestrictions;
         private List<GetProjectsResultTeam> teams;
         public Builder() {}
         public Builder(GetProjectsResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.apiKeys = defaults.apiKeys;
     	      this.clusterCount = defaults.clusterCount;
     	      this.created = defaults.created;
     	      this.id = defaults.id;
@@ -238,18 +230,11 @@ public final class GetProjectsResult {
     	      this.limits = defaults.limits;
     	      this.name = defaults.name;
     	      this.orgId = defaults.orgId;
+    	      this.projectId = defaults.projectId;
     	      this.regionUsageRestrictions = defaults.regionUsageRestrictions;
     	      this.teams = defaults.teams;
         }
 
-        @CustomType.Setter
-        public Builder apiKeys(List<GetProjectsResultApiKey> apiKeys) {
-            this.apiKeys = Objects.requireNonNull(apiKeys);
-            return this;
-        }
-        public Builder apiKeys(GetProjectsResultApiKey... apiKeys) {
-            return apiKeys(List.of(apiKeys));
-        }
         @CustomType.Setter
         public Builder clusterCount(Integer clusterCount) {
             this.clusterCount = Objects.requireNonNull(clusterCount);
@@ -276,8 +261,8 @@ public final class GetProjectsResult {
             return this;
         }
         @CustomType.Setter
-        public Builder isExtendedStorageSizesEnabled(@Nullable Boolean isExtendedStorageSizesEnabled) {
-            this.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
+        public Builder isExtendedStorageSizesEnabled(Boolean isExtendedStorageSizesEnabled) {
+            this.isExtendedStorageSizesEnabled = Objects.requireNonNull(isExtendedStorageSizesEnabled);
             return this;
         }
         @CustomType.Setter
@@ -314,6 +299,11 @@ public final class GetProjectsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder projectId(String projectId) {
+            this.projectId = Objects.requireNonNull(projectId);
+            return this;
+        }
+        @CustomType.Setter
         public Builder regionUsageRestrictions(String regionUsageRestrictions) {
             this.regionUsageRestrictions = Objects.requireNonNull(regionUsageRestrictions);
             return this;
@@ -328,7 +318,6 @@ public final class GetProjectsResult {
         }
         public GetProjectsResult build() {
             final var o = new GetProjectsResult();
-            o.apiKeys = apiKeys;
             o.clusterCount = clusterCount;
             o.created = created;
             o.id = id;
@@ -341,6 +330,7 @@ public final class GetProjectsResult {
             o.limits = limits;
             o.name = name;
             o.orgId = orgId;
+            o.projectId = projectId;
             o.regionUsageRestrictions = regionUsageRestrictions;
             o.teams = teams;
             return o;

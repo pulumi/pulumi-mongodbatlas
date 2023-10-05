@@ -38,10 +38,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool BackupEnabled;
         /// <summary>
-        /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-        /// </summary>
-        public readonly ImmutableDictionary<string, string> BiConnector;
-        /// <summary>
         /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetClustersResultBiConnectorConfigResult> BiConnectorConfigs;
@@ -53,8 +49,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         /// - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
         /// - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-        /// - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
-        /// - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
         /// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         /// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         /// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -79,6 +73,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Indicates whether Encryption at Rest is enabled or disabled.
         /// </summary>
         public readonly string EncryptionAtRestProvider;
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetClustersResultLabelResult> Labels;
         /// <summary>
         /// Indicates the version of the cluster to deploy.
@@ -184,6 +181,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string StateName;
         /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetClustersResultTagResult> Tags;
+        /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
         public readonly bool TerminationProtectionEnabled;
@@ -205,8 +206,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             string backingProviderName,
 
             bool backupEnabled,
-
-            ImmutableDictionary<string, string> biConnector,
 
             ImmutableArray<Outputs.GetClustersResultBiConnectorConfigResult> biConnectorConfigs,
 
@@ -270,6 +269,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string stateName,
 
+            ImmutableArray<Outputs.GetClustersResultTagResult> tags,
+
             bool terminationProtectionEnabled,
 
             string versionReleaseSystem)
@@ -280,7 +281,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             AutoScalingDiskGbEnabled = autoScalingDiskGbEnabled;
             BackingProviderName = backingProviderName;
             BackupEnabled = backupEnabled;
-            BiConnector = biConnector;
             BiConnectorConfigs = biConnectorConfigs;
             ClusterType = clusterType;
             ConnectionStrings = connectionStrings;
@@ -312,6 +312,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             SnapshotBackupPolicies = snapshotBackupPolicies;
             SrvAddress = srvAddress;
             StateName = stateName;
+            Tags = tags;
             TerminationProtectionEnabled = terminationProtectionEnabled;
             VersionReleaseSystem = versionReleaseSystem;
         }

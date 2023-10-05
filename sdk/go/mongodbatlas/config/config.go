@@ -14,12 +14,18 @@ var _ = internal.GetEnvOrDefault
 func GetAssumeRole(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:assumeRole")
 }
+
+// AWS API Access Key.
 func GetAwsAccessKeyId(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:awsAccessKeyId")
 }
+
+// AWS API Access Secret Key.
 func GetAwsSecretAccessKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:awsSecretAccessKey")
 }
+
+// AWS Security Token Service provided session token.
 func GetAwsSessionToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:awsSessionToken")
 }
@@ -48,12 +54,18 @@ func GetPublicKey(ctx *pulumi.Context) string {
 func GetRealmBaseUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:realmBaseUrl")
 }
+
+// Region where secret is stored as part of AWS Secret Manager.
 func GetRegion(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:region")
 }
+
+// Name of secret stored in AWS Secret Manager.
 func GetSecretName(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:secretName")
 }
+
+// AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
 func GetStsEndpoint(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:stsEndpoint")
 }

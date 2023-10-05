@@ -71,7 +71,6 @@ class CloudProviderAccessSetupArgs:
 @pulumi.input_type
 class _CloudProviderAccessSetupState:
     def __init__(__self__, *,
-                 aws: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]]] = None,
                  azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None,
                  created_date: Optional[pulumi.Input[str]] = None,
@@ -84,7 +83,6 @@ class _CloudProviderAccessSetupState:
         """
         _CloudProviderAccessSetupState._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            aws=aws,
             aws_configs=aws_configs,
             azure_configs=azure_configs,
             created_date=created_date,
@@ -96,7 +94,6 @@ class _CloudProviderAccessSetupState:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             aws: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]]] = None,
              azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None,
              created_date: Optional[pulumi.Input[str]] = None,
@@ -105,11 +102,6 @@ class _CloudProviderAccessSetupState:
              provider_name: Optional[pulumi.Input[str]] = None,
              role_id: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
-        if aws is not None:
-            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""", DeprecationWarning)
-            pulumi.log.warn("""aws is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""")
-        if aws is not None:
-            _setter("aws", aws)
         if aws_configs is not None:
             _setter("aws_configs", aws_configs)
         if azure_configs is not None:
@@ -124,18 +116,6 @@ class _CloudProviderAccessSetupState:
             _setter("provider_name", provider_name)
         if role_id is not None:
             _setter("role_id", role_id)
-
-    @property
-    @pulumi.getter
-    def aws(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""", DeprecationWarning)
-        pulumi.log.warn("""aws is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""")
-
-        return pulumi.get(self, "aws")
-
-    @aws.setter
-    def aws(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "aws", value)
 
     @property
     @pulumi.getter(name="awsConfigs")
@@ -261,7 +241,6 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
             if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
             __props__.__dict__["provider_name"] = provider_name
-            __props__.__dict__["aws"] = None
             __props__.__dict__["aws_configs"] = None
             __props__.__dict__["created_date"] = None
             __props__.__dict__["last_updated_date"] = None
@@ -276,7 +255,6 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAwsConfigArgs']]]]] = None,
             azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAzureConfigArgs']]]]] = None,
             created_date: Optional[pulumi.Input[str]] = None,
@@ -296,7 +274,6 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
 
         __props__ = _CloudProviderAccessSetupState.__new__(_CloudProviderAccessSetupState)
 
-        __props__.__dict__["aws"] = aws
         __props__.__dict__["aws_configs"] = aws_configs
         __props__.__dict__["azure_configs"] = azure_configs
         __props__.__dict__["created_date"] = created_date
@@ -305,14 +282,6 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         __props__.__dict__["provider_name"] = provider_name
         __props__.__dict__["role_id"] = role_id
         return CloudProviderAccessSetup(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter
-    def aws(self) -> pulumi.Output[Mapping[str, str]]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""", DeprecationWarning)
-        pulumi.log.warn("""aws is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_config""")
-
-        return pulumi.get(self, "aws")
 
     @property
     @pulumi.getter(name="awsConfigs")

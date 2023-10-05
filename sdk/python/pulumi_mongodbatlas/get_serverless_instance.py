@@ -23,7 +23,7 @@ class GetServerlessInstanceResult:
     """
     A collection of values returned by getServerlessInstance.
     """
-    def __init__(__self__, connection_strings_private_endpoint_srvs=None, connection_strings_standard_srv=None, continuous_backup_enabled=None, create_date=None, id=None, links=None, mongo_db_version=None, name=None, project_id=None, provider_settings_backing_provider_name=None, provider_settings_provider_name=None, provider_settings_region_name=None, state_name=None, termination_protection_enabled=None):
+    def __init__(__self__, connection_strings_private_endpoint_srvs=None, connection_strings_standard_srv=None, continuous_backup_enabled=None, create_date=None, id=None, links=None, mongo_db_version=None, name=None, project_id=None, provider_settings_backing_provider_name=None, provider_settings_provider_name=None, provider_settings_region_name=None, state_name=None, tags=None, termination_protection_enabled=None):
         if connection_strings_private_endpoint_srvs and not isinstance(connection_strings_private_endpoint_srvs, list):
             raise TypeError("Expected argument 'connection_strings_private_endpoint_srvs' to be a list")
         pulumi.set(__self__, "connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
@@ -63,6 +63,9 @@ class GetServerlessInstanceResult:
         if state_name and not isinstance(state_name, str):
             raise TypeError("Expected argument 'state_name' to be a str")
         pulumi.set(__self__, "state_name", state_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
             raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
@@ -160,6 +163,14 @@ class GetServerlessInstanceResult:
         return pulumi.get(self, "state_name")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetServerlessInstanceTagResult']:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="terminationProtectionEnabled")
     def termination_protection_enabled(self) -> bool:
         """
@@ -187,6 +198,7 @@ class AwaitableGetServerlessInstanceResult(GetServerlessInstanceResult):
             provider_settings_provider_name=self.provider_settings_provider_name,
             provider_settings_region_name=self.provider_settings_region_name,
             state_name=self.state_name,
+            tags=self.tags,
             termination_protection_enabled=self.termination_protection_enabled)
 
 
@@ -227,6 +239,7 @@ def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
         provider_settings_provider_name=pulumi.get(__ret__, 'provider_settings_provider_name'),
         provider_settings_region_name=pulumi.get(__ret__, 'provider_settings_region_name'),
         state_name=pulumi.get(__ret__, 'state_name'),
+        tags=pulumi.get(__ret__, 'tags'),
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'))
 
 

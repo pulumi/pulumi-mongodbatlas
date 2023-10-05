@@ -115,7 +115,7 @@ public final class AlertConfigurationNotification {
      * Accepted values are:
      * 
      */
-    private @Nullable String typeName;
+    private String typeName;
     /**
      * @return Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
      * 
@@ -278,8 +278,8 @@ public final class AlertConfigurationNotification {
      * Accepted values are:
      * 
      */
-    public Optional<String> typeName() {
-        return Optional.ofNullable(this.typeName);
+    public String typeName() {
+        return this.typeName;
     }
     /**
      * @return Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
@@ -343,7 +343,7 @@ public final class AlertConfigurationNotification {
         private @Nullable Boolean smsEnabled;
         private @Nullable String teamId;
         private @Nullable String teamName;
-        private @Nullable String typeName;
+        private String typeName;
         private @Nullable String username;
         private @Nullable String victorOpsApiKey;
         private @Nullable String victorOpsRoutingKey;
@@ -466,8 +466,8 @@ public final class AlertConfigurationNotification {
             return this;
         }
         @CustomType.Setter
-        public Builder typeName(@Nullable String typeName) {
-            this.typeName = typeName;
+        public Builder typeName(String typeName) {
+            this.typeName = Objects.requireNonNull(typeName);
             return this;
         }
         @CustomType.Setter

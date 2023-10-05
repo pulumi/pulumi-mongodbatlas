@@ -26,7 +26,7 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
      * @return Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      * 
      */
-    private Boolean enabled;
+    private @Nullable Boolean enabled;
     /**
      * @return The unique identifier of a key in an Azure Key Vault.
      * 
@@ -77,8 +77,8 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
      * @return Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      * 
      */
-    public Boolean enabled() {
-        return this.enabled;
+    public Optional<Boolean> enabled() {
+        return Optional.ofNullable(this.enabled);
     }
     /**
      * @return The unique identifier of a key in an Azure Key Vault.
@@ -134,7 +134,7 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
     public static final class Builder {
         private @Nullable String azureEnvironment;
         private @Nullable String clientId;
-        private Boolean enabled;
+        private @Nullable Boolean enabled;
         private @Nullable String keyIdentifier;
         private @Nullable String keyVaultName;
         private @Nullable String resourceGroupName;
@@ -166,8 +166,8 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
             return this;
         }
         @CustomType.Setter
-        public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+        public Builder enabled(@Nullable Boolean enabled) {
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter

@@ -57,20 +57,12 @@ export interface GetAlertConfigurationResult {
      * The type of event that will trigger an alert.
      */
     readonly eventType: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
     readonly id: string;
     readonly matchers: outputs.GetAlertConfigurationMatcher[];
-    readonly metricThreshold: {[key: string]: string};
     readonly metricThresholdConfigs: outputs.GetAlertConfigurationMetricThresholdConfig[];
     readonly notifications: outputs.GetAlertConfigurationNotification[];
     readonly outputs?: outputs.GetAlertConfigurationOutput[];
     readonly projectId: string;
-    /**
-     * Threshold value outside of which an alert will be triggered.
-     */
-    readonly threshold: {[key: string]: string};
     readonly thresholdConfigs: outputs.GetAlertConfigurationThresholdConfig[];
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.

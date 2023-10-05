@@ -16,10 +16,6 @@ public final class GetProjectIpAccessListResult {
      * 
      */
     private String comment;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     private String id;
     private String ipAddress;
     private String projectId;
@@ -38,10 +34,6 @@ public final class GetProjectIpAccessListResult {
     public String comment() {
         return this.comment;
     }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     public String id() {
         return this.id;
     }

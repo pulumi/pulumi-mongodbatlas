@@ -29,11 +29,17 @@ class ProviderArgs:
                  sts_endpoint: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+        :param pulumi.Input[str] aws_access_key_id: AWS API Access Key.
+        :param pulumi.Input[str] aws_secret_access_key: AWS API Access Secret Key.
+        :param pulumi.Input[str] aws_session_token: AWS Security Token Service provided session token.
         :param pulumi.Input[str] base_url: MongoDB Atlas Base URL
         :param pulumi.Input[bool] is_mongodbgov_cloud: MongoDB Atlas Base URL default to gov
         :param pulumi.Input[str] private_key: MongoDB Atlas Programmatic Private Key
         :param pulumi.Input[str] public_key: MongoDB Atlas Programmatic Public Key
         :param pulumi.Input[str] realm_base_url: MongoDB Realm Base URL
+        :param pulumi.Input[str] region: Region where secret is stored as part of AWS Secret Manager.
+        :param pulumi.Input[str] secret_name: Name of secret stored in AWS Secret Manager.
+        :param pulumi.Input[str] sts_endpoint: AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
         """
         ProviderArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -103,6 +109,9 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="awsAccessKeyId")
     def aws_access_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS API Access Key.
+        """
         return pulumi.get(self, "aws_access_key_id")
 
     @aws_access_key_id.setter
@@ -112,6 +121,9 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="awsSecretAccessKey")
     def aws_secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS API Access Secret Key.
+        """
         return pulumi.get(self, "aws_secret_access_key")
 
     @aws_secret_access_key.setter
@@ -121,6 +133,9 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="awsSessionToken")
     def aws_session_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS Security Token Service provided session token.
+        """
         return pulumi.get(self, "aws_session_token")
 
     @aws_session_token.setter
@@ -190,6 +205,9 @@ class ProviderArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Region where secret is stored as part of AWS Secret Manager.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -199,6 +217,9 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="secretName")
     def secret_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of secret stored in AWS Secret Manager.
+        """
         return pulumi.get(self, "secret_name")
 
     @secret_name.setter
@@ -208,6 +229,9 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="stsEndpoint")
     def sts_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+        """
         return pulumi.get(self, "sts_endpoint")
 
     @sts_endpoint.setter
@@ -241,11 +265,17 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] aws_access_key_id: AWS API Access Key.
+        :param pulumi.Input[str] aws_secret_access_key: AWS API Access Secret Key.
+        :param pulumi.Input[str] aws_session_token: AWS Security Token Service provided session token.
         :param pulumi.Input[str] base_url: MongoDB Atlas Base URL
         :param pulumi.Input[bool] is_mongodbgov_cloud: MongoDB Atlas Base URL default to gov
         :param pulumi.Input[str] private_key: MongoDB Atlas Programmatic Private Key
         :param pulumi.Input[str] public_key: MongoDB Atlas Programmatic Public Key
         :param pulumi.Input[str] realm_base_url: MongoDB Realm Base URL
+        :param pulumi.Input[str] region: Region where secret is stored as part of AWS Secret Manager.
+        :param pulumi.Input[str] secret_name: Name of secret stored in AWS Secret Manager.
+        :param pulumi.Input[str] sts_endpoint: AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
         """
         ...
     @overload
@@ -327,16 +357,25 @@ class Provider(pulumi.ProviderResource):
     @property
     @pulumi.getter(name="awsAccessKeyId")
     def aws_access_key_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        AWS API Access Key.
+        """
         return pulumi.get(self, "aws_access_key_id")
 
     @property
     @pulumi.getter(name="awsSecretAccessKey")
     def aws_secret_access_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        AWS API Access Secret Key.
+        """
         return pulumi.get(self, "aws_secret_access_key")
 
     @property
     @pulumi.getter(name="awsSessionToken")
     def aws_session_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        AWS Security Token Service provided session token.
+        """
         return pulumi.get(self, "aws_session_token")
 
     @property
@@ -374,15 +413,24 @@ class Provider(pulumi.ProviderResource):
     @property
     @pulumi.getter
     def region(self) -> pulumi.Output[Optional[str]]:
+        """
+        Region where secret is stored as part of AWS Secret Manager.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="secretName")
     def secret_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name of secret stored in AWS Secret Manager.
+        """
         return pulumi.get(self, "secret_name")
 
     @property
     @pulumi.getter(name="stsEndpoint")
     def sts_endpoint(self) -> pulumi.Output[Optional[str]]:
+        """
+        AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+        """
         return pulumi.get(self, "sts_endpoint")
 

@@ -9,12 +9,12 @@ import com.pulumi.mongodbatlas.inputs.ClusterAdvancedConfigurationArgs;
 import com.pulumi.mongodbatlas.inputs.ClusterBiConnectorConfigArgs;
 import com.pulumi.mongodbatlas.inputs.ClusterLabelArgs;
 import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+import com.pulumi.mongodbatlas.inputs.ClusterTagArgs;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -161,29 +161,6 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
-    @Import(name="biConnector")
-    private @Nullable Output<Map<String,String>> biConnector;
-
-    /**
-     * @return Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
-    public Optional<Output<Map<String,String>>> biConnector() {
-        return Optional.ofNullable(this.biConnector);
-    }
-
-    /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      * 
      */
@@ -268,9 +245,25 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.encryptionAtRestProvider);
     }
 
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     @Import(name="labels")
     private @Nullable Output<List<ClusterLabelArgs>> labels;
 
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     public Optional<Output<List<ClusterLabelArgs>>> labels() {
         return Optional.ofNullable(this.labels);
     }
@@ -385,29 +378,6 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> providerAutoScalingComputeMinInstanceSize() {
         return Optional.ofNullable(this.providerAutoScalingComputeMinInstanceSize);
-    }
-
-    /**
-     * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup */
-    @Import(name="providerBackupEnabled")
-    private @Nullable Output<Boolean> providerBackupEnabled;
-
-    /**
-     * @return Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup */
-    public Optional<Output<Boolean>> providerBackupEnabled() {
-        return Optional.ofNullable(this.providerBackupEnabled);
     }
 
     /**
@@ -579,6 +549,21 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    @Import(name="tags")
+    private @Nullable Output<List<ClusterTagArgs>> tags;
+
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    public Optional<Output<List<ClusterTagArgs>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
+    /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
@@ -617,7 +602,6 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         this.autoScalingDiskGbEnabled = $.autoScalingDiskGbEnabled;
         this.backingProviderName = $.backingProviderName;
         this.backupEnabled = $.backupEnabled;
-        this.biConnector = $.biConnector;
         this.biConnectorConfig = $.biConnectorConfig;
         this.cloudBackup = $.cloudBackup;
         this.clusterType = $.clusterType;
@@ -632,7 +616,6 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         this.projectId = $.projectId;
         this.providerAutoScalingComputeMaxInstanceSize = $.providerAutoScalingComputeMaxInstanceSize;
         this.providerAutoScalingComputeMinInstanceSize = $.providerAutoScalingComputeMinInstanceSize;
-        this.providerBackupEnabled = $.providerBackupEnabled;
         this.providerDiskIops = $.providerDiskIops;
         this.providerDiskTypeName = $.providerDiskTypeName;
         this.providerEncryptEbsVolume = $.providerEncryptEbsVolume;
@@ -643,6 +626,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         this.replicationFactor = $.replicationFactor;
         this.replicationSpecs = $.replicationSpecs;
         this.retainBackupsEnabled = $.retainBackupsEnabled;
+        this.tags = $.tags;
         this.terminationProtectionEnabled = $.terminationProtectionEnabled;
         this.versionReleaseSystem = $.versionReleaseSystem;
     }
@@ -826,35 +810,6 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param biConnector Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
-        public Builder biConnector(@Nullable Output<Map<String,String>> biConnector) {
-            $.biConnector = biConnector;
-            return this;
-        }
-
-        /**
-         * @param biConnector Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
-        public Builder biConnector(Map<String,String> biConnector) {
-            return biConnector(Output.of(biConnector));
-        }
-
-        /**
          * @param biConnectorConfig Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
          * 
          * @return builder
@@ -965,15 +920,45 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
             return encryptionAtRestProvider(Output.of(encryptionAtRestProvider));
         }
 
+        /**
+         * @param labels Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * 
+         */
+        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
         public Builder labels(@Nullable Output<List<ClusterLabelArgs>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * 
+         */
+        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
         public Builder labels(List<ClusterLabelArgs> labels) {
             return labels(Output.of(labels));
         }
 
+        /**
+         * @param labels Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * 
+         */
+        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
         public Builder labels(ClusterLabelArgs... labels) {
             return labels(List.of(labels));
         }
@@ -1132,35 +1117,6 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder providerAutoScalingComputeMinInstanceSize(String providerAutoScalingComputeMinInstanceSize) {
             return providerAutoScalingComputeMinInstanceSize(Output.of(providerAutoScalingComputeMinInstanceSize));
-        }
-
-        /**
-         * @param providerBackupEnabled Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup */
-        public Builder providerBackupEnabled(@Nullable Output<Boolean> providerBackupEnabled) {
-            $.providerBackupEnabled = providerBackupEnabled;
-            return this;
-        }
-
-        /**
-         * @param providerBackupEnabled Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup */
-        public Builder providerBackupEnabled(Boolean providerBackupEnabled) {
-            return providerBackupEnabled(Output.of(providerBackupEnabled));
         }
 
         /**
@@ -1399,6 +1355,37 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder retainBackupsEnabled(Boolean retainBackupsEnabled) {
             return retainBackupsEnabled(Output.of(retainBackupsEnabled));
+        }
+
+        /**
+         * @param tags Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(@Nullable Output<List<ClusterTagArgs>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        /**
+         * @param tags Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(List<ClusterTagArgs> tags) {
+            return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tags Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(ClusterTagArgs... tags) {
+            return tags(List.of(tags));
         }
 
         /**

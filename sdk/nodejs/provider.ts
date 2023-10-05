@@ -27,8 +27,17 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
+    /**
+     * AWS API Access Key.
+     */
     public readonly awsAccessKeyId!: pulumi.Output<string | undefined>;
+    /**
+     * AWS API Access Secret Key.
+     */
     public readonly awsSecretAccessKey!: pulumi.Output<string | undefined>;
+    /**
+     * AWS Security Token Service provided session token.
+     */
     public readonly awsSessionToken!: pulumi.Output<string | undefined>;
     /**
      * MongoDB Atlas Base URL
@@ -46,8 +55,17 @@ export class Provider extends pulumi.ProviderResource {
      * MongoDB Realm Base URL
      */
     public readonly realmBaseUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Region where secret is stored as part of AWS Secret Manager.
+     */
     public readonly region!: pulumi.Output<string | undefined>;
+    /**
+     * Name of secret stored in AWS Secret Manager.
+     */
     public readonly secretName!: pulumi.Output<string | undefined>;
+    /**
+     * AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+     */
     public readonly stsEndpoint!: pulumi.Output<string | undefined>;
 
     /**
@@ -86,8 +104,17 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     assumeRole?: pulumi.Input<inputs.ProviderAssumeRole>;
+    /**
+     * AWS API Access Key.
+     */
     awsAccessKeyId?: pulumi.Input<string>;
+    /**
+     * AWS API Access Secret Key.
+     */
     awsSecretAccessKey?: pulumi.Input<string>;
+    /**
+     * AWS Security Token Service provided session token.
+     */
     awsSessionToken?: pulumi.Input<string>;
     /**
      * MongoDB Atlas Base URL
@@ -109,7 +136,16 @@ export interface ProviderArgs {
      * MongoDB Realm Base URL
      */
     realmBaseUrl?: pulumi.Input<string>;
+    /**
+     * Region where secret is stored as part of AWS Secret Manager.
+     */
     region?: pulumi.Input<string>;
+    /**
+     * Name of secret stored in AWS Secret Manager.
+     */
     secretName?: pulumi.Input<string>;
+    /**
+     * AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+     */
     stsEndpoint?: pulumi.Input<string>;
 }

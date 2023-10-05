@@ -12,7 +12,6 @@ import com.pulumi.mongodbatlas.inputs.AlertConfigurationThresholdConfigArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -67,25 +66,6 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.matchers);
     }
 
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config */
-    @Import(name="metricThreshold")
-    private @Nullable Output<Map<String,String>> metricThreshold;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config */
-    public Optional<Output<Map<String,String>>> metricThreshold() {
-        return Optional.ofNullable(this.metricThreshold);
-    }
-
     @Import(name="metricThresholdConfig")
     private @Nullable Output<AlertConfigurationMetricThresholdConfigArgs> metricThresholdConfig;
 
@@ -93,11 +73,11 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.metricThresholdConfig);
     }
 
-    @Import(name="notifications", required=true)
-    private Output<List<AlertConfigurationNotificationArgs>> notifications;
+    @Import(name="notifications")
+    private @Nullable Output<List<AlertConfigurationNotificationArgs>> notifications;
 
-    public Output<List<AlertConfigurationNotificationArgs>> notifications() {
-        return this.notifications;
+    public Optional<Output<List<AlertConfigurationNotificationArgs>>> notifications() {
+        return Optional.ofNullable(this.notifications);
     }
 
     /**
@@ -115,29 +95,6 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
         return this.projectId;
     }
 
-    /**
-     * Threshold value outside of which an alert will be triggered.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config */
-    @Import(name="threshold")
-    private @Nullable Output<Map<String,String>> threshold;
-
-    /**
-     * @return Threshold value outside of which an alert will be triggered.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config */
-    public Optional<Output<Map<String,String>>> threshold() {
-        return Optional.ofNullable(this.threshold);
-    }
-
     @Import(name="thresholdConfig")
     private @Nullable Output<AlertConfigurationThresholdConfigArgs> thresholdConfig;
 
@@ -151,11 +108,9 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
         this.enabled = $.enabled;
         this.eventType = $.eventType;
         this.matchers = $.matchers;
-        this.metricThreshold = $.metricThreshold;
         this.metricThresholdConfig = $.metricThresholdConfig;
         this.notifications = $.notifications;
         this.projectId = $.projectId;
-        this.threshold = $.threshold;
         this.thresholdConfig = $.thresholdConfig;
     }
 
@@ -240,31 +195,6 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
             return matchers(List.of(matchers));
         }
 
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config */
-        public Builder metricThreshold(@Nullable Output<Map<String,String>> metricThreshold) {
-            $.metricThreshold = metricThreshold;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to metric_threshold_config */
-        public Builder metricThreshold(Map<String,String> metricThreshold) {
-            return metricThreshold(Output.of(metricThreshold));
-        }
-
         public Builder metricThresholdConfig(@Nullable Output<AlertConfigurationMetricThresholdConfigArgs> metricThresholdConfig) {
             $.metricThresholdConfig = metricThresholdConfig;
             return this;
@@ -274,7 +204,7 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
             return metricThresholdConfig(Output.of(metricThresholdConfig));
         }
 
-        public Builder notifications(Output<List<AlertConfigurationNotificationArgs>> notifications) {
+        public Builder notifications(@Nullable Output<List<AlertConfigurationNotificationArgs>> notifications) {
             $.notifications = notifications;
             return this;
         }
@@ -308,35 +238,6 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
             return projectId(Output.of(projectId));
         }
 
-        /**
-         * @param threshold Threshold value outside of which an alert will be triggered.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config */
-        public Builder threshold(@Nullable Output<Map<String,String>> threshold) {
-            $.threshold = threshold;
-            return this;
-        }
-
-        /**
-         * @param threshold Threshold value outside of which an alert will be triggered.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to threshold_config */
-        public Builder threshold(Map<String,String> threshold) {
-            return threshold(Output.of(threshold));
-        }
-
         public Builder thresholdConfig(@Nullable Output<AlertConfigurationThresholdConfigArgs> thresholdConfig) {
             $.thresholdConfig = thresholdConfig;
             return this;
@@ -348,7 +249,6 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
 
         public AlertConfigurationArgs build() {
             $.eventType = Objects.requireNonNull($.eventType, "expected parameter 'eventType' to be non-null");
-            $.notifications = Objects.requireNonNull($.notifications, "expected parameter 'notifications' to be non-null");
             $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
             return $;
         }

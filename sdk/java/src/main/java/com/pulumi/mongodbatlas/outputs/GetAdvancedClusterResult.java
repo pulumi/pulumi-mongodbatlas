@@ -9,6 +9,7 @@ import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterBiConnectorConfig;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterConnectionString;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterLabel;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterReplicationSpec;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterTag;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
@@ -55,9 +56,13 @@ public final class GetAdvancedClusterResult {
      */
     private String id;
     /**
-     * @return Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     private List<GetAdvancedClusterLabel> labels;
     /**
      * @return Version of the cluster to deploy.
@@ -82,7 +87,7 @@ public final class GetAdvancedClusterResult {
     private Boolean pitEnabled;
     private String projectId;
     /**
-     * @return Configuration for cluster regions and the hardware provisioned in them. See below
+     * @return Configuration for cluster regions and the hardware provisioned in them. See below.
      * 
      */
     private List<GetAdvancedClusterReplicationSpec> replicationSpecs;
@@ -96,6 +101,11 @@ public final class GetAdvancedClusterResult {
      * 
      */
     private String stateName;
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    private List<GetAdvancedClusterTag> tags;
     /**
      * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
@@ -164,9 +174,13 @@ public final class GetAdvancedClusterResult {
         return this.id;
     }
     /**
-     * @return Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     public List<GetAdvancedClusterLabel> labels() {
         return this.labels;
     }
@@ -205,7 +219,7 @@ public final class GetAdvancedClusterResult {
         return this.projectId;
     }
     /**
-     * @return Configuration for cluster regions and the hardware provisioned in them. See below
+     * @return Configuration for cluster regions and the hardware provisioned in them. See below.
      * 
      */
     public List<GetAdvancedClusterReplicationSpec> replicationSpecs() {
@@ -224,6 +238,13 @@ public final class GetAdvancedClusterResult {
      */
     public String stateName() {
         return this.stateName;
+    }
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    public List<GetAdvancedClusterTag> tags() {
+        return this.tags;
     }
     /**
      * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
@@ -268,6 +289,7 @@ public final class GetAdvancedClusterResult {
         private List<GetAdvancedClusterReplicationSpec> replicationSpecs;
         private String rootCertType;
         private String stateName;
+        private List<GetAdvancedClusterTag> tags;
         private Boolean terminationProtectionEnabled;
         private String versionReleaseSystem;
         public Builder() {}
@@ -292,6 +314,7 @@ public final class GetAdvancedClusterResult {
     	      this.replicationSpecs = defaults.replicationSpecs;
     	      this.rootCertType = defaults.rootCertType;
     	      this.stateName = defaults.stateName;
+    	      this.tags = defaults.tags;
     	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
     	      this.versionReleaseSystem = defaults.versionReleaseSystem;
         }
@@ -407,6 +430,14 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tags(List<GetAdvancedClusterTag> tags) {
+            this.tags = Objects.requireNonNull(tags);
+            return this;
+        }
+        public Builder tags(GetAdvancedClusterTag... tags) {
+            return tags(List.of(tags));
+        }
+        @CustomType.Setter
         public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
             this.terminationProtectionEnabled = Objects.requireNonNull(terminationProtectionEnabled);
             return this;
@@ -437,6 +468,7 @@ public final class GetAdvancedClusterResult {
             o.replicationSpecs = replicationSpecs;
             o.rootCertType = rootCertType;
             o.stateName = stateName;
+            o.tags = tags;
             o.terminationProtectionEnabled = terminationProtectionEnabled;
             o.versionReleaseSystem = versionReleaseSystem;
             return o;

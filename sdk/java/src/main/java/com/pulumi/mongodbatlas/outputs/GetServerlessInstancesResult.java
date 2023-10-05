@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetServerlessInstancesResultLink;
+import com.pulumi.mongodbatlas.outputs.GetServerlessInstancesResultTag;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -65,6 +66,11 @@ public final class GetServerlessInstancesResult {
      * 
      */
     private String stateName;
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    private List<GetServerlessInstancesResultTag> tags;
     /**
      * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
@@ -152,6 +158,13 @@ public final class GetServerlessInstancesResult {
         return this.stateName;
     }
     /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    public List<GetServerlessInstancesResultTag> tags() {
+        return this.tags;
+    }
+    /**
      * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
@@ -181,6 +194,7 @@ public final class GetServerlessInstancesResult {
         private String providerSettingsProviderName;
         private String providerSettingsRegionName;
         private String stateName;
+        private List<GetServerlessInstancesResultTag> tags;
         private Boolean terminationProtectionEnabled;
         public Builder() {}
         public Builder(GetServerlessInstancesResult defaults) {
@@ -198,6 +212,7 @@ public final class GetServerlessInstancesResult {
     	      this.providerSettingsProviderName = defaults.providerSettingsProviderName;
     	      this.providerSettingsRegionName = defaults.providerSettingsRegionName;
     	      this.stateName = defaults.stateName;
+    	      this.tags = defaults.tags;
     	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
         }
 
@@ -273,6 +288,14 @@ public final class GetServerlessInstancesResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tags(List<GetServerlessInstancesResultTag> tags) {
+            this.tags = Objects.requireNonNull(tags);
+            return this;
+        }
+        public Builder tags(GetServerlessInstancesResultTag... tags) {
+            return tags(List.of(tags));
+        }
+        @CustomType.Setter
         public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
             this.terminationProtectionEnabled = Objects.requireNonNull(terminationProtectionEnabled);
             return this;
@@ -292,6 +315,7 @@ public final class GetServerlessInstancesResult {
             o.providerSettingsProviderName = providerSettingsProviderName;
             o.providerSettingsRegionName = providerSettingsRegionName;
             o.stateName = stateName;
+            o.tags = tags;
             o.terminationProtectionEnabled = terminationProtectionEnabled;
             return o;
         }

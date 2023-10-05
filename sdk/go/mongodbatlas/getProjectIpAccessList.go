@@ -49,8 +49,7 @@ type LookupProjectIpAccessListResult struct {
 	AwsSecurityGroup string `pulumi:"awsSecurityGroup"`
 	CidrBlock        string `pulumi:"cidrBlock"`
 	// Comment to add to the access list entry.
-	Comment string `pulumi:"comment"`
-	// The provider-assigned unique ID for this managed resource.
+	Comment   string `pulumi:"comment"`
 	Id        string `pulumi:"id"`
 	IpAddress string `pulumi:"ipAddress"`
 	ProjectId string `pulumi:"projectId"`
@@ -121,7 +120,6 @@ func (o LookupProjectIpAccessListResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
 func (o LookupProjectIpAccessListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.Id }).(pulumi.StringOutput)
 }

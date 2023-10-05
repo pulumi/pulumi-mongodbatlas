@@ -144,6 +144,9 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        [Output("timeouts")]
+        public Output<Outputs.ProjectIpAccessListTimeouts?> Timeouts { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ProjectIpAccessList resource with the given unique name, arguments, and options.
@@ -222,6 +225,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        [Input("timeouts")]
+        public Input<Inputs.ProjectIpAccessListTimeoutsArgs>? Timeouts { get; set; }
+
         public ProjectIpAccessListArgs()
         {
         }
@@ -261,6 +267,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("timeouts")]
+        public Input<Inputs.ProjectIpAccessListTimeoutsGetArgs>? Timeouts { get; set; }
 
         public ProjectIpAccessListState()
         {

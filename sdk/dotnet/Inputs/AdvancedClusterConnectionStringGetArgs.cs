@@ -12,24 +12,6 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class AdvancedClusterConnectionStringGetArgs : global::Pulumi.ResourceArgs
     {
-        [Input("awsPrivateLink")]
-        private InputMap<object>? _awsPrivateLink;
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string")]
-        public InputMap<object> AwsPrivateLink
-        {
-            get => _awsPrivateLink ?? (_awsPrivateLink = new InputMap<object>());
-            set => _awsPrivateLink = value;
-        }
-
-        [Input("awsPrivateLinkSrv")]
-        private InputMap<object>? _awsPrivateLinkSrv;
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string")]
-        public InputMap<object> AwsPrivateLinkSrv
-        {
-            get => _awsPrivateLinkSrv ?? (_awsPrivateLinkSrv = new InputMap<object>());
-            set => _awsPrivateLinkSrv = value;
-        }
-
         [Input("private")]
         public Input<string>? Private { get; set; }
 

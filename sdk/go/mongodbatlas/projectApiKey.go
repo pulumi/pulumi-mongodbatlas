@@ -30,10 +30,15 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewProjectApiKey(ctx, "test", &mongodbatlas.ProjectApiKeyArgs{
 //				Description: pulumi.String("Description of your API key"),
-//				ProjectId:   pulumi.String("64259ee860c43338194b0f8e"),
-//				RoleNames: pulumi.StringArray{
-//					pulumi.String("GROUP_OWNER"),
+//				ProjectAssignments: mongodbatlas.ProjectApiKeyProjectAssignmentArray{
+//					&mongodbatlas.ProjectApiKeyProjectAssignmentArgs{
+//						ProjectId: pulumi.String("64259ee860c43338194b0f8e"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//						},
+//					},
 //				},
+//				ProjectId: pulumi.String("64259ee860c43338194b0f8e"),
 //			})
 //			if err != nil {
 //				return err
@@ -95,25 +100,21 @@ import (
 //
 // ```
 //
-//	See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createProjectApiKey) - Documentation for more information.
+//	See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createProjectApiKey) - Documentation for more information. See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createProjectApiKey) - Documentation for more information.
 type ProjectApiKey struct {
 	pulumi.CustomResourceState
 
 	// Unique identifier for this Project API key.
 	ApiKeyId pulumi.StringOutput `pulumi:"apiKeyId"`
 	// Description of this Project API key.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	Description        pulumi.StringOutput                       `pulumi:"description"`
 	PrivateKey         pulumi.StringOutput                       `pulumi:"privateKey"`
 	ProjectAssignments ProjectApiKeyProjectAssignmentArrayOutput `pulumi:"projectAssignments"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
-	//
-	// > **NOTE:** Project created by API Keys must belong to an existing organization.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-	RoleNames pulumi.StringArrayOutput `pulumi:"roleNames"`
 }
 
 // NewProjectApiKey registers a new resource with the given unique name, arguments, and options.
@@ -159,36 +160,28 @@ type projectApiKeyState struct {
 	// Unique identifier for this Project API key.
 	ApiKeyId *string `pulumi:"apiKeyId"`
 	// Description of this Project API key.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	Description        *string                          `pulumi:"description"`
 	PrivateKey         *string                          `pulumi:"privateKey"`
 	ProjectAssignments []ProjectApiKeyProjectAssignment `pulumi:"projectAssignments"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string `pulumi:"projectId"`
 	PublicKey *string `pulumi:"publicKey"`
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
-	//
-	// > **NOTE:** Project created by API Keys must belong to an existing organization.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-	RoleNames []string `pulumi:"roleNames"`
 }
 
 type ProjectApiKeyState struct {
 	// Unique identifier for this Project API key.
 	ApiKeyId pulumi.StringPtrInput
 	// Description of this Project API key.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	Description        pulumi.StringPtrInput
 	PrivateKey         pulumi.StringPtrInput
 	ProjectAssignments ProjectApiKeyProjectAssignmentArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
 	PublicKey pulumi.StringPtrInput
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
-	//
-	// > **NOTE:** Project created by API Keys must belong to an existing organization.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-	RoleNames pulumi.StringArrayInput
 }
 
 func (ProjectApiKeyState) ElementType() reflect.Type {
@@ -197,31 +190,23 @@ func (ProjectApiKeyState) ElementType() reflect.Type {
 
 type projectApiKeyArgs struct {
 	// Description of this Project API key.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	Description        string                           `pulumi:"description"`
 	ProjectAssignments []ProjectApiKeyProjectAssignment `pulumi:"projectAssignments"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
-	//
-	// > **NOTE:** Project created by API Keys must belong to an existing organization.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-	RoleNames []string `pulumi:"roleNames"`
 }
 
 // The set of arguments for constructing a ProjectApiKey resource.
 type ProjectApiKeyArgs struct {
 	// Description of this Project API key.
+	//
+	// > **NOTE:** Project created by API Keys must belong to an existing organization.
 	Description        pulumi.StringInput
 	ProjectAssignments ProjectApiKeyProjectAssignmentArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
-	//
-	// > **NOTE:** Project created by API Keys must belong to an existing organization.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-	RoleNames pulumi.StringArrayInput
 }
 
 func (ProjectApiKeyArgs) ElementType() reflect.Type {
@@ -341,6 +326,8 @@ func (o ProjectApiKeyOutput) ApiKeyId() pulumi.StringOutput {
 }
 
 // Description of this Project API key.
+//
+// > **NOTE:** Project created by API Keys must belong to an existing organization.
 func (o ProjectApiKeyOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectApiKey) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
@@ -360,15 +347,6 @@ func (o ProjectApiKeyOutput) ProjectId() pulumi.StringOutput {
 
 func (o ProjectApiKeyOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectApiKey) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
-}
-
-// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `projectAssignment` instead.
-//
-// > **NOTE:** Project created by API Keys must belong to an existing organization.
-//
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-func (o ProjectApiKeyOutput) RoleNames() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *ProjectApiKey) pulumi.StringArrayOutput { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
 
 type ProjectApiKeyArrayOutput struct{ *pulumi.OutputState }

@@ -24,23 +24,47 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.assumeRole);
     }
 
+    /**
+     * AWS API Access Key.
+     * 
+     */
     @Import(name="awsAccessKeyId")
     private @Nullable Output<String> awsAccessKeyId;
 
+    /**
+     * @return AWS API Access Key.
+     * 
+     */
     public Optional<Output<String>> awsAccessKeyId() {
         return Optional.ofNullable(this.awsAccessKeyId);
     }
 
+    /**
+     * AWS API Access Secret Key.
+     * 
+     */
     @Import(name="awsSecretAccessKey")
     private @Nullable Output<String> awsSecretAccessKey;
 
+    /**
+     * @return AWS API Access Secret Key.
+     * 
+     */
     public Optional<Output<String>> awsSecretAccessKey() {
         return Optional.ofNullable(this.awsSecretAccessKey);
     }
 
+    /**
+     * AWS Security Token Service provided session token.
+     * 
+     */
     @Import(name="awsSessionToken")
     private @Nullable Output<String> awsSessionToken;
 
+    /**
+     * @return AWS Security Token Service provided session token.
+     * 
+     */
     public Optional<Output<String>> awsSessionToken() {
         return Optional.ofNullable(this.awsSessionToken);
     }
@@ -120,23 +144,47 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.realmBaseUrl);
     }
 
+    /**
+     * Region where secret is stored as part of AWS Secret Manager.
+     * 
+     */
     @Import(name="region")
     private @Nullable Output<String> region;
 
+    /**
+     * @return Region where secret is stored as part of AWS Secret Manager.
+     * 
+     */
     public Optional<Output<String>> region() {
         return Optional.ofNullable(this.region);
     }
 
+    /**
+     * Name of secret stored in AWS Secret Manager.
+     * 
+     */
     @Import(name="secretName")
     private @Nullable Output<String> secretName;
 
+    /**
+     * @return Name of secret stored in AWS Secret Manager.
+     * 
+     */
     public Optional<Output<String>> secretName() {
         return Optional.ofNullable(this.secretName);
     }
 
+    /**
+     * AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+     * 
+     */
     @Import(name="stsEndpoint")
     private @Nullable Output<String> stsEndpoint;
 
+    /**
+     * @return AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+     * 
+     */
     public Optional<Output<String>> stsEndpoint() {
         return Optional.ofNullable(this.stsEndpoint);
     }
@@ -185,29 +233,65 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             return assumeRole(Output.of(assumeRole));
         }
 
+        /**
+         * @param awsAccessKeyId AWS API Access Key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsAccessKeyId(@Nullable Output<String> awsAccessKeyId) {
             $.awsAccessKeyId = awsAccessKeyId;
             return this;
         }
 
+        /**
+         * @param awsAccessKeyId AWS API Access Key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsAccessKeyId(String awsAccessKeyId) {
             return awsAccessKeyId(Output.of(awsAccessKeyId));
         }
 
+        /**
+         * @param awsSecretAccessKey AWS API Access Secret Key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsSecretAccessKey(@Nullable Output<String> awsSecretAccessKey) {
             $.awsSecretAccessKey = awsSecretAccessKey;
             return this;
         }
 
+        /**
+         * @param awsSecretAccessKey AWS API Access Secret Key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsSecretAccessKey(String awsSecretAccessKey) {
             return awsSecretAccessKey(Output.of(awsSecretAccessKey));
         }
 
+        /**
+         * @param awsSessionToken AWS Security Token Service provided session token.
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsSessionToken(@Nullable Output<String> awsSessionToken) {
             $.awsSessionToken = awsSessionToken;
             return this;
         }
 
+        /**
+         * @param awsSessionToken AWS Security Token Service provided session token.
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsSessionToken(String awsSessionToken) {
             return awsSessionToken(Output.of(awsSessionToken));
         }
@@ -317,29 +401,65 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             return realmBaseUrl(Output.of(realmBaseUrl));
         }
 
+        /**
+         * @param region Region where secret is stored as part of AWS Secret Manager.
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable Output<String> region) {
             $.region = region;
             return this;
         }
 
+        /**
+         * @param region Region where secret is stored as part of AWS Secret Manager.
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(String region) {
             return region(Output.of(region));
         }
 
+        /**
+         * @param secretName Name of secret stored in AWS Secret Manager.
+         * 
+         * @return builder
+         * 
+         */
         public Builder secretName(@Nullable Output<String> secretName) {
             $.secretName = secretName;
             return this;
         }
 
+        /**
+         * @param secretName Name of secret stored in AWS Secret Manager.
+         * 
+         * @return builder
+         * 
+         */
         public Builder secretName(String secretName) {
             return secretName(Output.of(secretName));
         }
 
+        /**
+         * @param stsEndpoint AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+         * 
+         * @return builder
+         * 
+         */
         public Builder stsEndpoint(@Nullable Output<String> stsEndpoint) {
             $.stsEndpoint = stsEndpoint;
             return this;
         }
 
+        /**
+         * @param stsEndpoint AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+         * 
+         * @return builder
+         * 
+         */
         public Builder stsEndpoint(String stsEndpoint) {
             return stsEndpoint(Output.of(stsEndpoint));
         }

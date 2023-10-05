@@ -22,7 +22,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// The value that you want to write.
         /// 
         /// &gt; **NOTE:** MongoDB Atlas doesn't display your labels.
-        /// &gt; **NOTE:** Cluster labels are not the same as [resource TAGs](https://www.mongodb.com/docs/atlas/tags/). We plan to add [resource TAGs](https://www.mongodb.com/docs/atlas/tags/) support in a future release.
         /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }

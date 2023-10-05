@@ -22,10 +22,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, api_keys=None, cluster_count=None, created=None, id=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, teams=None):
-        if api_keys and not isinstance(api_keys, list):
-            raise TypeError("Expected argument 'api_keys' to be a list")
-        pulumi.set(__self__, "api_keys", api_keys)
+    def __init__(__self__, cluster_count=None, created=None, id=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, teams=None):
         if cluster_count and not isinstance(cluster_count, int):
             raise TypeError("Expected argument 'cluster_count' to be a int")
         pulumi.set(__self__, "cluster_count", cluster_count)
@@ -73,11 +70,6 @@ class GetProjectResult:
         pulumi.set(__self__, "teams", teams)
 
     @property
-    @pulumi.getter(name="apiKeys")
-    def api_keys(self) -> Sequence['outputs.GetProjectApiKeyResult']:
-        return pulumi.get(self, "api_keys")
-
-    @property
     @pulumi.getter(name="clusterCount")
     def cluster_count(self) -> int:
         """
@@ -92,8 +84,6 @@ class GetProjectResult:
         The ISO-8601-formatted timestamp of when Atlas created the project.
         * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-        * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         * `limits.#.name` - Human-readable label that identifies this project limit.
         * `limits.#.value` - Amount the limit is set to.
         * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
@@ -105,9 +95,6 @@ class GetProjectResult:
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
         return pulumi.get(self, "id")
 
     @property
@@ -204,7 +191,6 @@ class AwaitableGetProjectResult(GetProjectResult):
         if False:
             yield self
         return GetProjectResult(
-            api_keys=self.api_keys,
             cluster_count=self.cluster_count,
             created=self.created,
             id=self.id,
@@ -245,7 +231,6 @@ def get_project(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProject:getProject', __args__, opts=opts, typ=GetProjectResult).value
 
     return AwaitableGetProjectResult(
-        api_keys=pulumi.get(__ret__, 'api_keys'),
         cluster_count=pulumi.get(__ret__, 'cluster_count'),
         created=pulumi.get(__ret__, 'created'),
         id=pulumi.get(__ret__, 'id'),

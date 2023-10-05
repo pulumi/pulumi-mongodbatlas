@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         /// </summary>
-        public readonly bool Enabled;
+        public readonly bool? Enabled;
         /// <summary>
         /// The unique identifier of a key in an Azure Key Vault.
         /// </summary>
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? clientId,
 
-            bool enabled,
+            bool? enabled,
 
             string? keyIdentifier,
 

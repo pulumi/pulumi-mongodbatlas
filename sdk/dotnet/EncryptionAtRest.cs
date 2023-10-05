@@ -22,29 +22,11 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/encryptionAtRest:EncryptionAtRest")]
     public partial class EncryptionAtRest : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-        /// </summary>
-        [Output("awsKms")]
-        public Output<ImmutableDictionary<string, string>?> AwsKms { get; private set; } = null!;
-
         [Output("awsKmsConfig")]
         public Output<Outputs.EncryptionAtRestAwsKmsConfig?> AwsKmsConfig { get; private set; } = null!;
 
-        /// <summary>
-        /// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-        /// </summary>
-        [Output("azureKeyVault")]
-        public Output<ImmutableDictionary<string, string>?> AzureKeyVault { get; private set; } = null!;
-
         [Output("azureKeyVaultConfig")]
         public Output<Outputs.EncryptionAtRestAzureKeyVaultConfig?> AzureKeyVaultConfig { get; private set; } = null!;
-
-        /// <summary>
-        /// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-        /// </summary>
-        [Output("googleCloudKms")]
-        public Output<ImmutableDictionary<string, string>?> GoogleCloudKms { get; private set; } = null!;
 
         [Output("googleCloudKmsConfig")]
         public Output<Outputs.EncryptionAtRestGoogleCloudKmsConfig?> GoogleCloudKmsConfig { get; private set; } = null!;
@@ -78,15 +60,6 @@ namespace Pulumi.Mongodbatlas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                AdditionalSecretOutputs =
-                {
-                    "awsKms",
-                    "awsKmsConfig",
-                    "azureKeyVault",
-                    "azureKeyVaultConfig",
-                    "googleCloudKms",
-                    "googleCloudKmsConfig",
-                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -110,92 +83,14 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class EncryptionAtRestArgs : global::Pulumi.ResourceArgs
     {
-        [Input("awsKms")]
-        private InputMap<string>? _awsKms;
-
-        /// <summary>
-        /// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-        /// </summary>
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config")]
-        public InputMap<string> AwsKms
-        {
-            get => _awsKms ?? (_awsKms = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _awsKms = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
-        }
-
         [Input("awsKmsConfig")]
-        private Input<Inputs.EncryptionAtRestAwsKmsConfigArgs>? _awsKmsConfig;
-        public Input<Inputs.EncryptionAtRestAwsKmsConfigArgs>? AwsKmsConfig
-        {
-            get => _awsKmsConfig;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _awsKmsConfig = Output.Tuple<Input<Inputs.EncryptionAtRestAwsKmsConfigArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        [Input("azureKeyVault")]
-        private InputMap<string>? _azureKeyVault;
-
-        /// <summary>
-        /// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-        /// </summary>
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config")]
-        public InputMap<string> AzureKeyVault
-        {
-            get => _azureKeyVault ?? (_azureKeyVault = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _azureKeyVault = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
-        }
+        public Input<Inputs.EncryptionAtRestAwsKmsConfigArgs>? AwsKmsConfig { get; set; }
 
         [Input("azureKeyVaultConfig")]
-        private Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>? _azureKeyVaultConfig;
-        public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>? AzureKeyVaultConfig
-        {
-            get => _azureKeyVaultConfig;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _azureKeyVaultConfig = Output.Tuple<Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        [Input("googleCloudKms")]
-        private InputMap<string>? _googleCloudKms;
-
-        /// <summary>
-        /// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-        /// </summary>
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config")]
-        public InputMap<string> GoogleCloudKms
-        {
-            get => _googleCloudKms ?? (_googleCloudKms = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _googleCloudKms = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
-        }
+        public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>? AzureKeyVaultConfig { get; set; }
 
         [Input("googleCloudKmsConfig")]
-        private Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs>? _googleCloudKmsConfig;
-        public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs>? GoogleCloudKmsConfig
-        {
-            get => _googleCloudKmsConfig;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _googleCloudKmsConfig = Output.Tuple<Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs>? GoogleCloudKmsConfig { get; set; }
 
         /// <summary>
         /// The unique identifier for the project.
@@ -211,92 +106,14 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class EncryptionAtRestState : global::Pulumi.ResourceArgs
     {
-        [Input("awsKms")]
-        private InputMap<string>? _awsKms;
-
-        /// <summary>
-        /// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-        /// </summary>
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config")]
-        public InputMap<string> AwsKms
-        {
-            get => _awsKms ?? (_awsKms = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _awsKms = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
-        }
-
         [Input("awsKmsConfig")]
-        private Input<Inputs.EncryptionAtRestAwsKmsConfigGetArgs>? _awsKmsConfig;
-        public Input<Inputs.EncryptionAtRestAwsKmsConfigGetArgs>? AwsKmsConfig
-        {
-            get => _awsKmsConfig;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _awsKmsConfig = Output.Tuple<Input<Inputs.EncryptionAtRestAwsKmsConfigGetArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        [Input("azureKeyVault")]
-        private InputMap<string>? _azureKeyVault;
-
-        /// <summary>
-        /// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-        /// </summary>
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config")]
-        public InputMap<string> AzureKeyVault
-        {
-            get => _azureKeyVault ?? (_azureKeyVault = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _azureKeyVault = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
-        }
+        public Input<Inputs.EncryptionAtRestAwsKmsConfigGetArgs>? AwsKmsConfig { get; set; }
 
         [Input("azureKeyVaultConfig")]
-        private Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>? _azureKeyVaultConfig;
-        public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>? AzureKeyVaultConfig
-        {
-            get => _azureKeyVaultConfig;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _azureKeyVaultConfig = Output.Tuple<Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        [Input("googleCloudKms")]
-        private InputMap<string>? _googleCloudKms;
-
-        /// <summary>
-        /// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-        /// </summary>
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config")]
-        public InputMap<string> GoogleCloudKms
-        {
-            get => _googleCloudKms ?? (_googleCloudKms = new InputMap<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
-                _googleCloudKms = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
-        }
+        public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>? AzureKeyVaultConfig { get; set; }
 
         [Input("googleCloudKmsConfig")]
-        private Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigGetArgs>? _googleCloudKmsConfig;
-        public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigGetArgs>? GoogleCloudKmsConfig
-        {
-            get => _googleCloudKmsConfig;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _googleCloudKmsConfig = Output.Tuple<Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigGetArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
+        public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigGetArgs>? GoogleCloudKmsConfig { get; set; }
 
         /// <summary>
         /// The unique identifier for the project.

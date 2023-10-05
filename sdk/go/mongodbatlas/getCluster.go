@@ -51,10 +51,6 @@ type LookupClusterResult struct {
 	BackingProviderName string `pulumi:"backingProviderName"`
 	// Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.
 	BackupEnabled bool `pulumi:"backupEnabled"`
-	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
-	//
-	// Deprecated: use bi_connector_config instead
-	BiConnector map[string]string `pulumi:"biConnector"`
 	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfigs []GetClusterBiConnectorConfig `pulumi:"biConnectorConfigs"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -68,7 +64,10 @@ type LookupClusterResult struct {
 	// Indicates whether Encryption at Rest is enabled or disabled.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string            `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+	//
+	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
 	Labels []GetClusterLabel `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -93,8 +92,7 @@ type LookupClusterResult struct {
 	ProviderAutoScalingComputeMaxInstanceSize string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMinInstanceSize string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
-	ProviderBackupEnabled bool `pulumi:"providerBackupEnabled"`
+	ProviderBackupEnabled                     bool   `pulumi:"providerBackupEnabled"`
 	// Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
 	ProviderDiskIops int `pulumi:"providerDiskIops"`
 	// Describes Azure disk type of the server’s root volume (Azure Only).
@@ -127,6 +125,8 @@ type LookupClusterResult struct {
 	// - DELETED
 	// - REPAIRING
 	StateName string `pulumi:"stateName"`
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+	Tags []GetClusterTag `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster.
@@ -209,13 +209,6 @@ func (o LookupClusterResultOutput) BackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClusterResult) bool { return v.BackupEnabled }).(pulumi.BoolOutput)
 }
 
-// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
-//
-// Deprecated: use bi_connector_config instead
-func (o LookupClusterResultOutput) BiConnector() pulumi.StringMapOutput {
-	return o.ApplyT(func(v LookupClusterResult) map[string]string { return v.BiConnector }).(pulumi.StringMapOutput)
-}
-
 // Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 func (o LookupClusterResultOutput) BiConnectorConfigs() GetClusterBiConnectorConfigArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []GetClusterBiConnectorConfig { return v.BiConnectorConfigs }).(GetClusterBiConnectorConfigArrayOutput)
@@ -251,6 +244,9 @@ func (o LookupClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+//
+// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
 func (o LookupClusterResultOutput) Labels() GetClusterLabelArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []GetClusterLabel { return v.Labels }).(GetClusterLabelArrayOutput)
 }
@@ -314,7 +310,6 @@ func (o LookupClusterResultOutput) ProviderAutoScalingComputeMinInstanceSize() p
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ProviderAutoScalingComputeMinInstanceSize }).(pulumi.StringOutput)
 }
 
-// **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
 func (o LookupClusterResultOutput) ProviderBackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClusterResult) bool { return v.ProviderBackupEnabled }).(pulumi.BoolOutput)
 }
@@ -388,6 +383,11 @@ func (o LookupClusterResultOutput) SrvAddress() pulumi.StringOutput {
 // - REPAIRING
 func (o LookupClusterResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+func (o LookupClusterResultOutput) Tags() GetClusterTagArrayOutput {
+	return o.ApplyT(func(v LookupClusterResult) []GetClusterTag { return v.Tags }).(GetClusterTagArrayOutput)
 }
 
 // Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.

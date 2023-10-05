@@ -9,8 +9,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAlertConfigurationsResultNotification {
@@ -22,11 +20,11 @@ public final class GetAlertConfigurationsResultNotification {
     private String emailAddress;
     private Boolean emailEnabled;
     private Integer intervalMin;
-    private @Nullable String microsoftTeamsWebhookUrl;
+    private String microsoftTeamsWebhookUrl;
     private String mobileNumber;
     private String opsGenieApiKey;
     private String opsGenieRegion;
-    private @Nullable List<String> roles;
+    private List<String> roles;
     private String serviceKey;
     private Boolean smsEnabled;
     private String teamId;
@@ -35,8 +33,8 @@ public final class GetAlertConfigurationsResultNotification {
     private String username;
     private String victorOpsApiKey;
     private String victorOpsRoutingKey;
-    private @Nullable String webhookSecret;
-    private @Nullable String webhookUrl;
+    private String webhookSecret;
+    private String webhookUrl;
 
     private GetAlertConfigurationsResultNotification() {}
     public String apiToken() {
@@ -63,8 +61,8 @@ public final class GetAlertConfigurationsResultNotification {
     public Integer intervalMin() {
         return this.intervalMin;
     }
-    public Optional<String> microsoftTeamsWebhookUrl() {
-        return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
+    public String microsoftTeamsWebhookUrl() {
+        return this.microsoftTeamsWebhookUrl;
     }
     public String mobileNumber() {
         return this.mobileNumber;
@@ -76,7 +74,7 @@ public final class GetAlertConfigurationsResultNotification {
         return this.opsGenieRegion;
     }
     public List<String> roles() {
-        return this.roles == null ? List.of() : this.roles;
+        return this.roles;
     }
     public String serviceKey() {
         return this.serviceKey;
@@ -102,11 +100,11 @@ public final class GetAlertConfigurationsResultNotification {
     public String victorOpsRoutingKey() {
         return this.victorOpsRoutingKey;
     }
-    public Optional<String> webhookSecret() {
-        return Optional.ofNullable(this.webhookSecret);
+    public String webhookSecret() {
+        return this.webhookSecret;
     }
-    public Optional<String> webhookUrl() {
-        return Optional.ofNullable(this.webhookUrl);
+    public String webhookUrl() {
+        return this.webhookUrl;
     }
 
     public static Builder builder() {
@@ -126,11 +124,11 @@ public final class GetAlertConfigurationsResultNotification {
         private String emailAddress;
         private Boolean emailEnabled;
         private Integer intervalMin;
-        private @Nullable String microsoftTeamsWebhookUrl;
+        private String microsoftTeamsWebhookUrl;
         private String mobileNumber;
         private String opsGenieApiKey;
         private String opsGenieRegion;
-        private @Nullable List<String> roles;
+        private List<String> roles;
         private String serviceKey;
         private Boolean smsEnabled;
         private String teamId;
@@ -139,8 +137,8 @@ public final class GetAlertConfigurationsResultNotification {
         private String username;
         private String victorOpsApiKey;
         private String victorOpsRoutingKey;
-        private @Nullable String webhookSecret;
-        private @Nullable String webhookUrl;
+        private String webhookSecret;
+        private String webhookUrl;
         public Builder() {}
         public Builder(GetAlertConfigurationsResultNotification defaults) {
     	      Objects.requireNonNull(defaults);
@@ -210,8 +208,8 @@ public final class GetAlertConfigurationsResultNotification {
             return this;
         }
         @CustomType.Setter
-        public Builder microsoftTeamsWebhookUrl(@Nullable String microsoftTeamsWebhookUrl) {
-            this.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
+        public Builder microsoftTeamsWebhookUrl(String microsoftTeamsWebhookUrl) {
+            this.microsoftTeamsWebhookUrl = Objects.requireNonNull(microsoftTeamsWebhookUrl);
             return this;
         }
         @CustomType.Setter
@@ -230,8 +228,8 @@ public final class GetAlertConfigurationsResultNotification {
             return this;
         }
         @CustomType.Setter
-        public Builder roles(@Nullable List<String> roles) {
-            this.roles = roles;
+        public Builder roles(List<String> roles) {
+            this.roles = Objects.requireNonNull(roles);
             return this;
         }
         public Builder roles(String... roles) {
@@ -278,13 +276,13 @@ public final class GetAlertConfigurationsResultNotification {
             return this;
         }
         @CustomType.Setter
-        public Builder webhookSecret(@Nullable String webhookSecret) {
-            this.webhookSecret = webhookSecret;
+        public Builder webhookSecret(String webhookSecret) {
+            this.webhookSecret = Objects.requireNonNull(webhookSecret);
             return this;
         }
         @CustomType.Setter
-        public Builder webhookUrl(@Nullable String webhookUrl) {
-            this.webhookUrl = webhookUrl;
+        public Builder webhookUrl(String webhookUrl) {
+            this.webhookUrl = Objects.requireNonNull(webhookUrl);
             return this;
         }
         public GetAlertConfigurationsResultNotification build() {

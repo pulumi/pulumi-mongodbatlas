@@ -58,10 +58,6 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public readonly backupEnabled!: pulumi.Output<boolean>;
     /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-     */
-    public readonly biConnector!: pulumi.Output<outputs.AdvancedClusterBiConnector>;
-    /**
      * Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
      */
     public readonly biConnectorConfig!: pulumi.Output<outputs.AdvancedClusterBiConnectorConfig>;
@@ -88,7 +84,9 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public readonly encryptionAtRestProvider!: pulumi.Output<string>;
     /**
-     * Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     *
+     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
      */
     public readonly labels!: pulumi.Output<outputs.AdvancedClusterLabel[]>;
     /**
@@ -135,6 +133,10 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly stateName!: pulumi.Output<string>;
     /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    public readonly tags!: pulumi.Output<outputs.AdvancedClusterTag[] | undefined>;
+    /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
     public readonly terminationProtectionEnabled!: pulumi.Output<boolean>;
@@ -158,7 +160,6 @@ export class AdvancedCluster extends pulumi.CustomResource {
             const state = argsOrState as AdvancedClusterState | undefined;
             resourceInputs["advancedConfiguration"] = state ? state.advancedConfiguration : undefined;
             resourceInputs["backupEnabled"] = state ? state.backupEnabled : undefined;
-            resourceInputs["biConnector"] = state ? state.biConnector : undefined;
             resourceInputs["biConnectorConfig"] = state ? state.biConnectorConfig : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["clusterType"] = state ? state.clusterType : undefined;
@@ -177,6 +178,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["retainBackupsEnabled"] = state ? state.retainBackupsEnabled : undefined;
             resourceInputs["rootCertType"] = state ? state.rootCertType : undefined;
             resourceInputs["stateName"] = state ? state.stateName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["terminationProtectionEnabled"] = state ? state.terminationProtectionEnabled : undefined;
             resourceInputs["versionReleaseSystem"] = state ? state.versionReleaseSystem : undefined;
         } else {
@@ -192,7 +194,6 @@ export class AdvancedCluster extends pulumi.CustomResource {
             }
             resourceInputs["advancedConfiguration"] = args ? args.advancedConfiguration : undefined;
             resourceInputs["backupEnabled"] = args ? args.backupEnabled : undefined;
-            resourceInputs["biConnector"] = args ? args.biConnector : undefined;
             resourceInputs["biConnectorConfig"] = args ? args.biConnectorConfig : undefined;
             resourceInputs["clusterType"] = args ? args.clusterType : undefined;
             resourceInputs["diskSizeGb"] = args ? args.diskSizeGb : undefined;
@@ -206,6 +207,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
             resourceInputs["retainBackupsEnabled"] = args ? args.retainBackupsEnabled : undefined;
             resourceInputs["rootCertType"] = args ? args.rootCertType : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["terminationProtectionEnabled"] = args ? args.terminationProtectionEnabled : undefined;
             resourceInputs["versionReleaseSystem"] = args ? args.versionReleaseSystem : undefined;
             resourceInputs["clusterId"] = undefined /*out*/;
@@ -237,10 +239,6 @@ export interface AdvancedClusterState {
      */
     backupEnabled?: pulumi.Input<boolean>;
     /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-     */
-    biConnector?: pulumi.Input<inputs.AdvancedClusterBiConnector>;
-    /**
      * Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
      */
     biConnectorConfig?: pulumi.Input<inputs.AdvancedClusterBiConnectorConfig>;
@@ -267,7 +265,9 @@ export interface AdvancedClusterState {
      */
     encryptionAtRestProvider?: pulumi.Input<string>;
     /**
-     * Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     *
+     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
      */
     labels?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterLabel>[]>;
     /**
@@ -314,6 +314,10 @@ export interface AdvancedClusterState {
      */
     stateName?: pulumi.Input<string>;
     /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterTag>[]>;
+    /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
     terminationProtectionEnabled?: pulumi.Input<boolean>;
@@ -341,10 +345,6 @@ export interface AdvancedClusterArgs {
      */
     backupEnabled?: pulumi.Input<boolean>;
     /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-     */
-    biConnector?: pulumi.Input<inputs.AdvancedClusterBiConnector>;
-    /**
      * Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
      */
     biConnectorConfig?: pulumi.Input<inputs.AdvancedClusterBiConnectorConfig>;
@@ -362,7 +362,9 @@ export interface AdvancedClusterArgs {
      */
     encryptionAtRestProvider?: pulumi.Input<string>;
     /**
-     * Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     *
+     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
      */
     labels?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterLabel>[]>;
     /**
@@ -394,6 +396,10 @@ export interface AdvancedClusterArgs {
      * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      */
     rootCertType?: pulumi.Input<string>;
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterTag>[]>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */

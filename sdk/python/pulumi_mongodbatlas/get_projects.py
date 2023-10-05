@@ -42,9 +42,9 @@ class GetProjectsResult:
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
+        warnings.warn("""Please use each project's id attribute instead""", DeprecationWarning)
+        pulumi.log.warn("""id is deprecated: Please use each project's id attribute instead""")
+
         return pulumi.get(self, "id")
 
     @property
@@ -111,10 +111,6 @@ def get_projects(items_per_page: Optional[int] = None,
                 ],
             ),
         ],
-        api_keys=[mongodbatlas.ProjectApiKeyArgs(
-            api_key_id="61003b299dda8d54a9d7d10c",
-            role_names=["GROUP_READ_ONLY"],
-        )],
         limits=[mongodbatlas.ProjectLimitArgs(
             name="atlas.project.deployment.clusters",
             value=26,
@@ -172,10 +168,6 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
                 ],
             ),
         ],
-        api_keys=[mongodbatlas.ProjectApiKeyArgs(
-            api_key_id="61003b299dda8d54a9d7d10c",
-            role_names=["GROUP_READ_ONLY"],
-        )],
         limits=[mongodbatlas.ProjectLimitArgs(
             name="atlas.project.deployment.clusters",
             value=26,

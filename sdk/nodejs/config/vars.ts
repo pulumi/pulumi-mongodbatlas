@@ -17,6 +17,9 @@ Object.defineProperty(exports, "assumeRole", {
     enumerable: true,
 });
 
+/**
+ * AWS API Access Key.
+ */
 export declare const awsAccessKeyId: string | undefined;
 Object.defineProperty(exports, "awsAccessKeyId", {
     get() {
@@ -25,6 +28,9 @@ Object.defineProperty(exports, "awsAccessKeyId", {
     enumerable: true,
 });
 
+/**
+ * AWS API Access Secret Key.
+ */
 export declare const awsSecretAccessKey: string | undefined;
 Object.defineProperty(exports, "awsSecretAccessKey", {
     get() {
@@ -33,6 +39,9 @@ Object.defineProperty(exports, "awsSecretAccessKey", {
     enumerable: true,
 });
 
+/**
+ * AWS Security Token Service provided session token.
+ */
 export declare const awsSessionToken: string | undefined;
 Object.defineProperty(exports, "awsSessionToken", {
     get() {
@@ -96,6 +105,9 @@ Object.defineProperty(exports, "realmBaseUrl", {
     enumerable: true,
 });
 
+/**
+ * Region where secret is stored as part of AWS Secret Manager.
+ */
 export declare const region: string | undefined;
 Object.defineProperty(exports, "region", {
     get() {
@@ -104,6 +116,9 @@ Object.defineProperty(exports, "region", {
     enumerable: true,
 });
 
+/**
+ * Name of secret stored in AWS Secret Manager.
+ */
 export declare const secretName: string | undefined;
 Object.defineProperty(exports, "secretName", {
     get() {
@@ -112,6 +127,9 @@ Object.defineProperty(exports, "secretName", {
     enumerable: true,
 });
 
+/**
+ * AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+ */
 export declare const stsEndpoint: string | undefined;
 Object.defineProperty(exports, "stsEndpoint", {
     get() {

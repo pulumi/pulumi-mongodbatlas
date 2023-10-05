@@ -22,14 +22,23 @@ class _ExportableConfig(types.ModuleType):
 
     @property
     def aws_access_key_id(self) -> Optional[str]:
+        """
+        AWS API Access Key.
+        """
         return __config__.get('awsAccessKeyId')
 
     @property
     def aws_secret_access_key(self) -> Optional[str]:
+        """
+        AWS API Access Secret Key.
+        """
         return __config__.get('awsSecretAccessKey')
 
     @property
     def aws_session_token(self) -> Optional[str]:
+        """
+        AWS Security Token Service provided session token.
+        """
         return __config__.get('awsSessionToken')
 
     @property
@@ -69,13 +78,22 @@ class _ExportableConfig(types.ModuleType):
 
     @property
     def region(self) -> Optional[str]:
+        """
+        Region where secret is stored as part of AWS Secret Manager.
+        """
         return __config__.get('region')
 
     @property
     def secret_name(self) -> Optional[str]:
+        """
+        Name of secret stored in AWS Secret Manager.
+        """
         return __config__.get('secretName')
 
     @property
     def sts_endpoint(self) -> Optional[str]:
+        """
+        AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
+        """
         return __config__.get('stsEndpoint')
 

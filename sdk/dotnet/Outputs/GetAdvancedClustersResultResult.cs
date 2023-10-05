@@ -40,7 +40,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string EncryptionAtRestProvider;
         /// <summary>
-        /// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultLabelResult> Labels;
         /// <summary>
@@ -72,6 +72,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Current state of the cluster. The possible states are:
         /// </summary>
         public readonly string StateName;
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAdvancedClustersResultTagResult> Tags;
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
@@ -117,6 +121,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string stateName,
 
+            ImmutableArray<Outputs.GetAdvancedClustersResultTagResult> tags,
+
             bool terminationProtectionEnabled,
 
             string versionReleaseSystem)
@@ -138,6 +144,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ReplicationSpecs = replicationSpecs;
             RootCertType = rootCertType;
             StateName = stateName;
+            Tags = tags;
             TerminationProtectionEnabled = terminationProtectionEnabled;
             VersionReleaseSystem = versionReleaseSystem;
         }

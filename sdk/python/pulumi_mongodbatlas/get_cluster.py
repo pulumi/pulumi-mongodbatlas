@@ -22,7 +22,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, advanced_configurations=None, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None, termination_protection_enabled=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None, tags=None, termination_protection_enabled=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -41,9 +41,6 @@ class GetClusterResult:
         if backup_enabled and not isinstance(backup_enabled, bool):
             raise TypeError("Expected argument 'backup_enabled' to be a bool")
         pulumi.set(__self__, "backup_enabled", backup_enabled)
-        if bi_connector and not isinstance(bi_connector, dict):
-            raise TypeError("Expected argument 'bi_connector' to be a dict")
-        pulumi.set(__self__, "bi_connector", bi_connector)
         if bi_connector_configs and not isinstance(bi_connector_configs, list):
             raise TypeError("Expected argument 'bi_connector_configs' to be a list")
         pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
@@ -146,6 +143,9 @@ class GetClusterResult:
         if state_name and not isinstance(state_name, str):
             raise TypeError("Expected argument 'state_name' to be a str")
         pulumi.set(__self__, "state_name", state_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
             raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
@@ -200,17 +200,6 @@ class GetClusterResult:
         Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.
         """
         return pulumi.get(self, "backup_enabled")
-
-    @property
-    @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> Mapping[str, str]:
-        """
-        Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-        """
-        warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
-
-        return pulumi.get(self, "bi_connector")
 
     @property
     @pulumi.getter(name="biConnectorConfigs")
@@ -271,6 +260,12 @@ class GetClusterResult:
     @property
     @pulumi.getter
     def labels(self) -> Sequence['outputs.GetClusterLabelResult']:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        """
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+
         return pulumi.get(self, "labels")
 
     @property
@@ -369,9 +364,6 @@ class GetClusterResult:
     @property
     @pulumi.getter(name="providerBackupEnabled")
     def provider_backup_enabled(self) -> bool:
-        """
-        **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
-        """
         return pulumi.get(self, "provider_backup_enabled")
 
     @property
@@ -483,6 +475,14 @@ class GetClusterResult:
         return pulumi.get(self, "state_name")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetClusterTagResult']:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="terminationProtectionEnabled")
     def termination_protection_enabled(self) -> bool:
         """
@@ -511,7 +511,6 @@ class AwaitableGetClusterResult(GetClusterResult):
             auto_scaling_disk_gb_enabled=self.auto_scaling_disk_gb_enabled,
             backing_provider_name=self.backing_provider_name,
             backup_enabled=self.backup_enabled,
-            bi_connector=self.bi_connector,
             bi_connector_configs=self.bi_connector_configs,
             cluster_type=self.cluster_type,
             connection_strings=self.connection_strings,
@@ -546,6 +545,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             snapshot_backup_policies=self.snapshot_backup_policies,
             srv_address=self.srv_address,
             state_name=self.state_name,
+            tags=self.tags,
             termination_protection_enabled=self.termination_protection_enabled,
             version_release_system=self.version_release_system)
 
@@ -579,7 +579,6 @@ def get_cluster(name: Optional[str] = None,
         auto_scaling_disk_gb_enabled=pulumi.get(__ret__, 'auto_scaling_disk_gb_enabled'),
         backing_provider_name=pulumi.get(__ret__, 'backing_provider_name'),
         backup_enabled=pulumi.get(__ret__, 'backup_enabled'),
-        bi_connector=pulumi.get(__ret__, 'bi_connector'),
         bi_connector_configs=pulumi.get(__ret__, 'bi_connector_configs'),
         cluster_type=pulumi.get(__ret__, 'cluster_type'),
         connection_strings=pulumi.get(__ret__, 'connection_strings'),
@@ -614,6 +613,7 @@ def get_cluster(name: Optional[str] = None,
         snapshot_backup_policies=pulumi.get(__ret__, 'snapshot_backup_policies'),
         srv_address=pulumi.get(__ret__, 'srv_address'),
         state_name=pulumi.get(__ret__, 'state_name'),
+        tags=pulumi.get(__ret__, 'tags'),
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'),
         version_release_system=pulumi.get(__ret__, 'version_release_system'))
 

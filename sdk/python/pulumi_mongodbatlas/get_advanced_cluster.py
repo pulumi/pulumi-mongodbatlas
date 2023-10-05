@@ -22,7 +22,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, termination_protection_enabled=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -80,6 +80,9 @@ class GetAdvancedClusterResult:
         if state_name and not isinstance(state_name, str):
             raise TypeError("Expected argument 'state_name' to be a str")
         pulumi.set(__self__, "state_name", state_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
             raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
@@ -157,8 +160,11 @@ class GetAdvancedClusterResult:
     @pulumi.getter
     def labels(self) -> Sequence['outputs.GetAdvancedClusterLabelResult']:
         """
-        Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+
         return pulumi.get(self, "labels")
 
     @property
@@ -207,7 +213,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> Sequence['outputs.GetAdvancedClusterReplicationSpecResult']:
         """
-        Configuration for cluster regions and the hardware provisioned in them. See below
+        Configuration for cluster regions and the hardware provisioned in them. See below.
         """
         return pulumi.get(self, "replication_specs")
 
@@ -226,6 +232,14 @@ class GetAdvancedClusterResult:
         Current state of the cluster. The possible states are:
         """
         return pulumi.get(self, "state_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetAdvancedClusterTagResult']:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="terminationProtectionEnabled")
@@ -269,6 +283,7 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             replication_specs=self.replication_specs,
             root_cert_type=self.root_cert_type,
             state_name=self.state_name,
+            tags=self.tags,
             termination_protection_enabled=self.termination_protection_enabled,
             version_release_system=self.version_release_system)
 
@@ -318,6 +333,7 @@ def get_advanced_cluster(name: Optional[str] = None,
         replication_specs=pulumi.get(__ret__, 'replication_specs'),
         root_cert_type=pulumi.get(__ret__, 'root_cert_type'),
         state_name=pulumi.get(__ret__, 'state_name'),
+        tags=pulumi.get(__ret__, 'tags'),
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'),
         version_release_system=pulumi.get(__ret__, 'version_release_system'))
 

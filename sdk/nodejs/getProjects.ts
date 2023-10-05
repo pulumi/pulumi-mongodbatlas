@@ -33,10 +33,6 @@ import * as utilities from "./utilities";
  *             ],
  *         },
  *     ],
- *     apiKeys: [{
- *         apiKeyId: "61003b299dda8d54a9d7d10c",
- *         roleNames: ["GROUP_READ_ONLY"],
- *     }],
  *     limits: [{
  *         name: "atlas.project.deployment.clusters",
  *         value: 26,
@@ -77,7 +73,7 @@ export interface GetProjectsArgs {
  */
 export interface GetProjectsResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * @deprecated Please use each project's id attribute instead
      */
     readonly id: string;
     readonly itemsPerPage?: number;
@@ -112,10 +108,6 @@ export interface GetProjectsResult {
  *             ],
  *         },
  *     ],
- *     apiKeys: [{
- *         apiKeyId: "61003b299dda8d54a9d7d10c",
- *         roleNames: ["GROUP_READ_ONLY"],
- *     }],
  *     limits: [{
  *         name: "atlas.project.deployment.clusters",
  *         value: 26,

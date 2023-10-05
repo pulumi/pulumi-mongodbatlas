@@ -16,12 +16,12 @@ import com.pulumi.mongodbatlas.outputs.ClusterConnectionString;
 import com.pulumi.mongodbatlas.outputs.ClusterLabel;
 import com.pulumi.mongodbatlas.outputs.ClusterReplicationSpec;
 import com.pulumi.mongodbatlas.outputs.ClusterSnapshotBackupPolicy;
+import com.pulumi.mongodbatlas.outputs.ClusterTag;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -169,24 +169,6 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.backupEnabled);
     }
     /**
-     * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config */
-    @Export(name="biConnector", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> biConnector;
-
-    /**
-     * @return Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-     * 
-     */
-    public Output<Optional<Map<String,String>>> biConnector() {
-        return Codegen.optional(this.biConnector);
-    }
-    /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      * 
      */
@@ -308,9 +290,21 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     public Output<String> encryptionAtRestProvider() {
         return this.encryptionAtRestProvider;
     }
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     @Export(name="labels", refs={List.class,ClusterLabel.class}, tree="[0,1]")
     private Output<List<ClusterLabel>> labels;
 
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * 
+     */
     public Output<List<ClusterLabel>> labels() {
         return this.labels;
     }
@@ -473,24 +467,6 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      */
     public Output<String> providerAutoScalingComputeMinInstanceSize() {
         return this.providerAutoScalingComputeMinInstanceSize;
-    }
-    /**
-     * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup */
-    @Export(name="providerBackupEnabled", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> providerBackupEnabled;
-
-    /**
-     * @return Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
-     * 
-     */
-    public Output<Optional<Boolean>> providerBackupEnabled() {
-        return Codegen.optional(this.providerBackupEnabled);
     }
     /**
      * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier&#39;s Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
@@ -705,6 +681,20 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      */
     public Output<String> stateName() {
         return this.stateName;
+    }
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    @Export(name="tags", refs={List.class,ClusterTag.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ClusterTag>> tags;
+
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    public Output<Optional<List<ClusterTag>>> tags() {
+        return Codegen.optional(this.tags);
     }
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.

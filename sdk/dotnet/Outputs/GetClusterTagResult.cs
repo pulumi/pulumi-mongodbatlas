@@ -11,19 +11,25 @@ namespace Pulumi.Mongodbatlas.Outputs
 {
 
     [OutputType]
-    public sealed class GetProjectsResultApiKeyResult
+    public sealed class GetClusterTagResult
     {
-        public readonly string ApiKeyId;
-        public readonly ImmutableArray<string> RoleNames;
+        /// <summary>
+        /// The key that you want to write.
+        /// </summary>
+        public readonly string Key;
+        /// <summary>
+        /// The value that you want to write.
+        /// </summary>
+        public readonly string Value;
 
         [OutputConstructor]
-        private GetProjectsResultApiKeyResult(
-            string apiKeyId,
+        private GetClusterTagResult(
+            string key,
 
-            ImmutableArray<string> roleNames)
+            string value)
         {
-            ApiKeyId = apiKeyId;
-            RoleNames = roleNames;
+            Key = key;
+            Value = value;
         }
     }
 }

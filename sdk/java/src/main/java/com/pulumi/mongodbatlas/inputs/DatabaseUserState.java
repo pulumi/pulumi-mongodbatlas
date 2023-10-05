@@ -51,29 +51,6 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.awsIamType);
     }
 
-    /**
-     * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-    @Import(name="databaseName")
-    private @Nullable Output<String> databaseName;
-
-    /**
-     * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-    public Optional<Output<String>> databaseName() {
-        return Optional.ofNullable(this.databaseName);
-    }
-
     @Import(name="labels")
     private @Nullable Output<List<DatabaseUserLabelArgs>> labels;
 
@@ -190,7 +167,6 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
     private DatabaseUserState(DatabaseUserState $) {
         this.authDatabaseName = $.authDatabaseName;
         this.awsIamType = $.awsIamType;
-        this.databaseName = $.databaseName;
         this.labels = $.labels;
         this.ldapAuthType = $.ldapAuthType;
         this.oidcAuthType = $.oidcAuthType;
@@ -262,35 +238,6 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder awsIamType(String awsIamType) {
             return awsIamType(Output.of(awsIamType));
-        }
-
-        /**
-         * @param databaseName Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-        public Builder databaseName(@Nullable Output<String> databaseName) {
-            $.databaseName = databaseName;
-            return this;
-        }
-
-        /**
-         * @param databaseName Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-        public Builder databaseName(String databaseName) {
-            return databaseName(Output.of(databaseName));
         }
 
         public Builder labels(@Nullable Output<List<DatabaseUserLabelArgs>> labels) {

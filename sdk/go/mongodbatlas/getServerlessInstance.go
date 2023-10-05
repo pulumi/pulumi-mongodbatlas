@@ -59,6 +59,8 @@ type LookupServerlessInstanceResult struct {
 	ProviderSettingsRegionName string `pulumi:"providerSettingsRegionName"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName string `pulumi:"stateName"`
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+	Tags []GetServerlessInstanceTag `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
 }
@@ -173,6 +175,11 @@ func (o LookupServerlessInstanceResultOutput) ProviderSettingsRegionName() pulum
 // Stage of deployment of this serverless instance when the resource made its request.
 func (o LookupServerlessInstanceResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerlessInstanceResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+func (o LookupServerlessInstanceResultOutput) Tags() GetServerlessInstanceTagArrayOutput {
+	return o.ApplyT(func(v LookupServerlessInstanceResult) []GetServerlessInstanceTag { return v.Tags }).(GetServerlessInstanceTagArrayOutput)
 }
 
 // Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.

@@ -6,10 +6,8 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterConnectionStringPrivateEndpointArgs;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -18,44 +16,6 @@ import javax.annotation.Nullable;
 public final class AdvancedClusterConnectionStringArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final AdvancedClusterConnectionStringArgs Empty = new AdvancedClusterConnectionStringArgs();
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string */
-    @Import(name="awsPrivateLink")
-    private @Nullable Output<Map<String,Object>> awsPrivateLink;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string */
-    public Optional<Output<Map<String,Object>>> awsPrivateLink() {
-        return Optional.ofNullable(this.awsPrivateLink);
-    }
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string */
-    @Import(name="awsPrivateLinkSrv")
-    private @Nullable Output<Map<String,Object>> awsPrivateLinkSrv;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string */
-    public Optional<Output<Map<String,Object>>> awsPrivateLinkSrv() {
-        return Optional.ofNullable(this.awsPrivateLinkSrv);
-    }
 
     @Import(name="private")
     private @Nullable Output<String> private_;
@@ -95,8 +55,6 @@ public final class AdvancedClusterConnectionStringArgs extends com.pulumi.resour
     private AdvancedClusterConnectionStringArgs() {}
 
     private AdvancedClusterConnectionStringArgs(AdvancedClusterConnectionStringArgs $) {
-        this.awsPrivateLink = $.awsPrivateLink;
-        this.awsPrivateLinkSrv = $.awsPrivateLinkSrv;
         this.private_ = $.private_;
         this.privateEndpoints = $.privateEndpoints;
         this.privateSrv = $.privateSrv;
@@ -120,56 +78,6 @@ public final class AdvancedClusterConnectionStringArgs extends com.pulumi.resour
 
         public Builder(AdvancedClusterConnectionStringArgs defaults) {
             $ = new AdvancedClusterConnectionStringArgs(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string */
-        public Builder awsPrivateLink(@Nullable Output<Map<String,Object>> awsPrivateLink) {
-            $.awsPrivateLink = awsPrivateLink;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].connection_string */
-        public Builder awsPrivateLink(Map<String,Object> awsPrivateLink) {
-            return awsPrivateLink(Output.of(awsPrivateLink));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string */
-        public Builder awsPrivateLinkSrv(@Nullable Output<Map<String,Object>> awsPrivateLinkSrv) {
-            $.awsPrivateLinkSrv = awsPrivateLinkSrv;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to connection_strings.private_endpoint[n].srv_connection_string */
-        public Builder awsPrivateLinkSrv(Map<String,Object> awsPrivateLinkSrv) {
-            return awsPrivateLinkSrv(Output.of(awsPrivateLinkSrv));
         }
 
         public Builder private_(@Nullable Output<String> private_) {

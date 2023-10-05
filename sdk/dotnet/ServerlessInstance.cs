@@ -93,6 +93,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string> StateName { get; private set; } = null!;
 
         /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ServerlessInstanceTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
         [Output("terminationProtectionEnabled")]
@@ -194,6 +200,18 @@ namespace Pulumi.Mongodbatlas
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.ServerlessInstanceTagArgs>? _tags;
+
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public InputList<Inputs.ServerlessInstanceTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ServerlessInstanceTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
@@ -287,6 +305,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ServerlessInstanceTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public InputList<Inputs.ServerlessInstanceTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ServerlessInstanceTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.

@@ -16,7 +16,7 @@ public final class AlertConfigurationMetricThresholdConfig {
      * @return Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      * 
      */
-    private @Nullable String metricName;
+    private String metricName;
     /**
      * @return This must be set to AVERAGE. Atlas computes the current metric value as an average.
      * 
@@ -45,8 +45,8 @@ public final class AlertConfigurationMetricThresholdConfig {
      * @return Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      * 
      */
-    public Optional<String> metricName() {
-        return Optional.ofNullable(this.metricName);
+    public String metricName() {
+        return this.metricName;
     }
     /**
      * @return This must be set to AVERAGE. Atlas computes the current metric value as an average.
@@ -88,7 +88,7 @@ public final class AlertConfigurationMetricThresholdConfig {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable String metricName;
+        private String metricName;
         private @Nullable String mode;
         private @Nullable String operator;
         private @Nullable Double threshold;
@@ -104,8 +104,8 @@ public final class AlertConfigurationMetricThresholdConfig {
         }
 
         @CustomType.Setter
-        public Builder metricName(@Nullable String metricName) {
-            this.metricName = metricName;
+        public Builder metricName(String metricName) {
+            this.metricName = Objects.requireNonNull(metricName);
             return this;
         }
         @CustomType.Setter

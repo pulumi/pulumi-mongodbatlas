@@ -21,14 +21,14 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         /// </summary>
-        [Input("databaseName")]
-        public Input<string>? DatabaseName { get; set; }
+        [Input("databaseName", required: true)]
+        public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
         /// Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
         /// </summary>
-        [Input("roleName")]
-        public Input<string>? RoleName { get; set; }
+        [Input("roleName", required: true)]
+        public Input<string> RoleName { get; set; } = null!;
 
         public DatabaseUserRoleArgs()
         {

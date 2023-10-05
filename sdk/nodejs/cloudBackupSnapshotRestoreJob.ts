@@ -57,10 +57,6 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
-     */
-    public readonly deliveryType!: pulumi.Output<{[key: string]: string} | undefined>;
-    /**
      * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
      * * `delivery_type_config.download` - Set to `true` to use the download configuration.
@@ -121,7 +117,6 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
             resourceInputs["cancelled"] = state ? state.cancelled : undefined;
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["deliveryType"] = state ? state.deliveryType : undefined;
             resourceInputs["deliveryTypeConfig"] = state ? state.deliveryTypeConfig : undefined;
             resourceInputs["deliveryUrls"] = state ? state.deliveryUrls : undefined;
             resourceInputs["expired"] = state ? state.expired : undefined;
@@ -143,7 +138,6 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
                 throw new Error("Missing required property 'snapshotId'");
             }
             resourceInputs["clusterName"] = args ? args.clusterName : undefined;
-            resourceInputs["deliveryType"] = args ? args.deliveryType : undefined;
             resourceInputs["deliveryTypeConfig"] = args ? args.deliveryTypeConfig : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
@@ -177,10 +171,6 @@ export interface CloudBackupSnapshotRestoreJobState {
      * UTC ISO 8601 formatted point in time when Atlas created the restore job.
      */
     createdAt?: pulumi.Input<string>;
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
-     */
-    deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -235,10 +225,6 @@ export interface CloudBackupSnapshotRestoreJobArgs {
      * The name of the Atlas cluster whose snapshot you want to restore.
      */
     clusterName: pulumi.Input<string>;
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to delivery_type_config
-     */
-    deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.

@@ -51,14 +51,6 @@ import (
 //						},
 //					},
 //				},
-//				ApiKeys: mongodbatlas.ProjectApiKeyTypeArray{
-//					&mongodbatlas.ProjectApiKeyTypeArgs{
-//						ApiKeyId: pulumi.String("61003b299dda8d54a9d7d10c"),
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_READ_ONLY"),
-//						},
-//					},
-//				},
 //				Limits: mongodbatlas.ProjectLimitArray{
 //					&mongodbatlas.ProjectLimitArgs{
 //						Name:  pulumi.String("atlas.project.deployment.clusters"),
@@ -101,7 +93,7 @@ type LookupProjectsArgs struct {
 
 // A collection of values returned by getProjects.
 type LookupProjectsResult struct {
-	// The provider-assigned unique ID for this managed resource.
+	// Deprecated: Please use each project's id attribute instead
 	Id           string              `pulumi:"id"`
 	ItemsPerPage *int                `pulumi:"itemsPerPage"`
 	PageNum      *int                `pulumi:"pageNum"`
@@ -155,7 +147,7 @@ func (o LookupProjectsResultOutput) ToOutput(ctx context.Context) pulumix.Output
 	}
 }
 
-// The provider-assigned unique ID for this managed resource.
+// Deprecated: Please use each project's id attribute instead
 func (o LookupProjectsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectsResult) string { return v.Id }).(pulumi.StringOutput)
 }

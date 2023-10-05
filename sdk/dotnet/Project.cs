@@ -50,17 +50,6 @@ namespace Pulumi.Mongodbatlas
     ///                 },
     ///             },
     ///         },
-    ///         ApiKeys = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.ProjectApiKeyArgs
-    ///             {
-    ///                 ApiKeyId = "61003b299dda8d54a9d7d10c",
-    ///                 RoleNames = new[]
-    ///                 {
-    ///                     "GROUP_READ_ONLY",
-    ///                 },
-    ///             },
-    ///         },
     ///         Limits = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.ProjectLimitArgs
@@ -97,9 +86,6 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/project:Project")]
     public partial class Project : global::Pulumi.CustomResource
     {
-        [Output("apiKeys")]
-        public Output<ImmutableArray<Outputs.ProjectApiKey>> ApiKeys { get; private set; } = null!;
-
         /// <summary>
         /// The number of Atlas clusters deployed in the project..
         /// </summary>
@@ -173,7 +159,7 @@ namespace Pulumi.Mongodbatlas
         /// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         /// </summary>
         [Output("regionUsageRestrictions")]
-        public Output<string> RegionUsageRestrictions { get; private set; } = null!;
+        public Output<string?> RegionUsageRestrictions { get; private set; } = null!;
 
         [Output("teams")]
         public Output<ImmutableArray<Outputs.ProjectTeam>> Teams { get; private set; } = null!;
@@ -182,7 +168,7 @@ namespace Pulumi.Mongodbatlas
         /// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         /// </summary>
         [Output("withDefaultAlertsSettings")]
-        public Output<bool?> WithDefaultAlertsSettings { get; private set; } = null!;
+        public Output<bool> WithDefaultAlertsSettings { get; private set; } = null!;
 
 
         /// <summary>
@@ -230,15 +216,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ProjectArgs : global::Pulumi.ResourceArgs
     {
-        [Input("apiKeys")]
-        private InputList<Inputs.ProjectApiKeyArgs>? _apiKeys;
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key")]
-        public InputList<Inputs.ProjectApiKeyArgs> ApiKeys
-        {
-            get => _apiKeys ?? (_apiKeys = new InputList<Inputs.ProjectApiKeyArgs>());
-            set => _apiKeys = value;
-        }
-
         /// <summary>
         /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         /// </summary>
@@ -329,15 +306,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ProjectState : global::Pulumi.ResourceArgs
     {
-        [Input("apiKeys")]
-        private InputList<Inputs.ProjectApiKeyGetArgs>? _apiKeys;
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key")]
-        public InputList<Inputs.ProjectApiKeyGetArgs> ApiKeys
-        {
-            get => _apiKeys ?? (_apiKeys = new InputList<Inputs.ProjectApiKeyGetArgs>());
-            set => _apiKeys = value;
-        }
-
         /// <summary>
         /// The number of Atlas clusters deployed in the project..
         /// </summary>

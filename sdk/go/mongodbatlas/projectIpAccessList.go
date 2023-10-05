@@ -150,7 +150,8 @@ type ProjectIpAccessList struct {
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// Unique identifier for the project to which you want to add one or more access list entries.
-	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	ProjectId pulumi.StringOutput                  `pulumi:"projectId"`
+	Timeouts  ProjectIpAccessListTimeoutsPtrOutput `pulumi:"timeouts"`
 }
 
 // NewProjectIpAccessList registers a new resource with the given unique name, arguments, and options.
@@ -197,7 +198,8 @@ type projectIpAccessListState struct {
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress *string `pulumi:"ipAddress"`
 	// Unique identifier for the project to which you want to add one or more access list entries.
-	ProjectId *string `pulumi:"projectId"`
+	ProjectId *string                      `pulumi:"projectId"`
+	Timeouts  *ProjectIpAccessListTimeouts `pulumi:"timeouts"`
 }
 
 type ProjectIpAccessListState struct {
@@ -213,6 +215,7 @@ type ProjectIpAccessListState struct {
 	IpAddress pulumi.StringPtrInput
 	// Unique identifier for the project to which you want to add one or more access list entries.
 	ProjectId pulumi.StringPtrInput
+	Timeouts  ProjectIpAccessListTimeoutsPtrInput
 }
 
 func (ProjectIpAccessListState) ElementType() reflect.Type {
@@ -231,7 +234,8 @@ type projectIpAccessListArgs struct {
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress *string `pulumi:"ipAddress"`
 	// Unique identifier for the project to which you want to add one or more access list entries.
-	ProjectId string `pulumi:"projectId"`
+	ProjectId string                       `pulumi:"projectId"`
+	Timeouts  *ProjectIpAccessListTimeouts `pulumi:"timeouts"`
 }
 
 // The set of arguments for constructing a ProjectIpAccessList resource.
@@ -248,6 +252,7 @@ type ProjectIpAccessListArgs struct {
 	IpAddress pulumi.StringPtrInput
 	// Unique identifier for the project to which you want to add one or more access list entries.
 	ProjectId pulumi.StringInput
+	Timeouts  ProjectIpAccessListTimeoutsPtrInput
 }
 
 func (ProjectIpAccessListArgs) ElementType() reflect.Type {
@@ -386,6 +391,10 @@ func (o ProjectIpAccessListOutput) IpAddress() pulumi.StringOutput {
 // Unique identifier for the project to which you want to add one or more access list entries.
 func (o ProjectIpAccessListOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectIpAccessList) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o ProjectIpAccessListOutput) Timeouts() ProjectIpAccessListTimeoutsPtrOutput {
+	return o.ApplyT(func(v *ProjectIpAccessList) ProjectIpAccessListTimeoutsPtrOutput { return v.Timeouts }).(ProjectIpAccessListTimeoutsPtrOutput)
 }
 
 type ProjectIpAccessListArrayOutput struct{ *pulumi.OutputState }

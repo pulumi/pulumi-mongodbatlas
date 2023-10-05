@@ -124,7 +124,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterLabelResult> Labels;
         /// <summary>
@@ -146,7 +146,7 @@ namespace Pulumi.Mongodbatlas
         public readonly bool PitEnabled;
         public readonly string ProjectId;
         /// <summary>
-        /// Configuration for cluster regions and the hardware provisioned in them. See below
+        /// Configuration for cluster regions and the hardware provisioned in them. See below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecResult> ReplicationSpecs;
         /// <summary>
@@ -157,6 +157,10 @@ namespace Pulumi.Mongodbatlas
         /// Current state of the cluster. The possible states are:
         /// </summary>
         public readonly string StateName;
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAdvancedClusterTagResult> Tags;
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
@@ -206,6 +210,8 @@ namespace Pulumi.Mongodbatlas
 
             string stateName,
 
+            ImmutableArray<Outputs.GetAdvancedClusterTagResult> tags,
+
             bool terminationProtectionEnabled,
 
             string versionReleaseSystem)
@@ -229,6 +235,7 @@ namespace Pulumi.Mongodbatlas
             ReplicationSpecs = replicationSpecs;
             RootCertType = rootCertType;
             StateName = stateName;
+            Tags = tags;
             TerminationProtectionEnabled = terminationProtectionEnabled;
             VersionReleaseSystem = versionReleaseSystem;
         }

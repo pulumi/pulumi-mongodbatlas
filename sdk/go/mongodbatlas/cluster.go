@@ -62,10 +62,6 @@ type Cluster struct {
 	// ```
 	// * The default value is false.  M10 and above only.
 	BackupEnabled pulumi.BoolPtrOutput `pulumi:"backupEnabled"`
-	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-	BiConnector pulumi.StringMapOutput `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigOutput `pulumi:"biConnectorConfig"`
 	CloudBackup       pulumi.BoolPtrOutput           `pulumi:"cloudBackup"`
@@ -89,8 +85,11 @@ type Cluster struct {
 	// * Cannot be used with Azure clusters
 	DiskSizeGb pulumi.Float64Output `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
-	EncryptionAtRestProvider pulumi.StringOutput     `pulumi:"encryptionAtRestProvider"`
-	Labels                   ClusterLabelArrayOutput `pulumi:"labels"`
+	EncryptionAtRestProvider pulumi.StringOutput `pulumi:"encryptionAtRestProvider"`
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+	//
+	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	Labels ClusterLabelArrayOutput `pulumi:"labels"`
 	// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 	MongoDbMajorVersion pulumi.StringOutput `pulumi:"mongoDbMajorVersion"`
 	// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
@@ -114,10 +113,6 @@ type Cluster struct {
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringOutput `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringOutput `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-	ProviderBackupEnabled pulumi.BoolPtrOutput `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
 	ProviderDiskIops pulumi.IntOutput `pulumi:"providerDiskIops"`
@@ -158,6 +153,8 @@ type Cluster struct {
 	// - DELETED
 	// - REPAIRING
 	StateName pulumi.StringOutput `pulumi:"stateName"`
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+	Tags ClusterTagArrayOutput `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolOutput `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
@@ -238,10 +235,6 @@ type clusterState struct {
 	// ```
 	// * The default value is false.  M10 and above only.
 	BackupEnabled *bool `pulumi:"backupEnabled"`
-	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-	BiConnector map[string]string `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig *ClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
 	CloudBackup       *bool                     `pulumi:"cloudBackup"`
@@ -265,8 +258,11 @@ type clusterState struct {
 	// * Cannot be used with Azure clusters
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
-	EncryptionAtRestProvider *string        `pulumi:"encryptionAtRestProvider"`
-	Labels                   []ClusterLabel `pulumi:"labels"`
+	EncryptionAtRestProvider *string `pulumi:"encryptionAtRestProvider"`
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+	//
+	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	Labels []ClusterLabel `pulumi:"labels"`
 	// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 	MongoDbMajorVersion *string `pulumi:"mongoDbMajorVersion"`
 	// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
@@ -290,10 +286,6 @@ type clusterState struct {
 	ProviderAutoScalingComputeMaxInstanceSize *string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 	ProviderAutoScalingComputeMinInstanceSize *string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-	ProviderBackupEnabled *bool `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
 	ProviderDiskIops *int `pulumi:"providerDiskIops"`
@@ -334,6 +326,8 @@ type clusterState struct {
 	// - DELETED
 	// - REPAIRING
 	StateName *string `pulumi:"stateName"`
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+	Tags []ClusterTag `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled *bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
@@ -376,10 +370,6 @@ type ClusterState struct {
 	// ```
 	// * The default value is false.  M10 and above only.
 	BackupEnabled pulumi.BoolPtrInput
-	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-	BiConnector pulumi.StringMapInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigPtrInput
 	CloudBackup       pulumi.BoolPtrInput
@@ -404,7 +394,10 @@ type ClusterState struct {
 	DiskSizeGb pulumi.Float64PtrInput
 	// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
 	EncryptionAtRestProvider pulumi.StringPtrInput
-	Labels                   ClusterLabelArrayInput
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+	//
+	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	Labels ClusterLabelArrayInput
 	// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 	MongoDbMajorVersion pulumi.StringPtrInput
 	// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
@@ -428,10 +421,6 @@ type ClusterState struct {
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringPtrInput
 	// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringPtrInput
-	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-	ProviderBackupEnabled pulumi.BoolPtrInput
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
 	ProviderDiskIops pulumi.IntPtrInput
@@ -472,6 +461,8 @@ type ClusterState struct {
 	// - DELETED
 	// - REPAIRING
 	StateName pulumi.StringPtrInput
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+	Tags ClusterTagArrayInput
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolPtrInput
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
@@ -518,10 +509,6 @@ type clusterArgs struct {
 	// ```
 	// * The default value is false.  M10 and above only.
 	BackupEnabled *bool `pulumi:"backupEnabled"`
-	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-	BiConnector map[string]string `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig *ClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
 	CloudBackup       *bool                     `pulumi:"cloudBackup"`
@@ -539,8 +526,11 @@ type clusterArgs struct {
 	// * Cannot be used with Azure clusters
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
-	EncryptionAtRestProvider *string        `pulumi:"encryptionAtRestProvider"`
-	Labels                   []ClusterLabel `pulumi:"labels"`
+	EncryptionAtRestProvider *string `pulumi:"encryptionAtRestProvider"`
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+	//
+	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	Labels []ClusterLabel `pulumi:"labels"`
 	// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 	MongoDbMajorVersion *string `pulumi:"mongoDbMajorVersion"`
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
@@ -556,10 +546,6 @@ type clusterArgs struct {
 	ProviderAutoScalingComputeMaxInstanceSize *string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 	ProviderAutoScalingComputeMinInstanceSize *string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-	ProviderBackupEnabled *bool `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
 	ProviderDiskIops *int `pulumi:"providerDiskIops"`
@@ -587,6 +573,8 @@ type clusterArgs struct {
 	ReplicationSpecs []ClusterReplicationSpec `pulumi:"replicationSpecs"`
 	// Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
 	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+	Tags []ClusterTag `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled *bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
@@ -630,10 +618,6 @@ type ClusterArgs struct {
 	// ```
 	// * The default value is false.  M10 and above only.
 	BackupEnabled pulumi.BoolPtrInput
-	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-	BiConnector pulumi.StringMapInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigPtrInput
 	CloudBackup       pulumi.BoolPtrInput
@@ -652,7 +636,10 @@ type ClusterArgs struct {
 	DiskSizeGb pulumi.Float64PtrInput
 	// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
 	EncryptionAtRestProvider pulumi.StringPtrInput
-	Labels                   ClusterLabelArrayInput
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+	//
+	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	Labels ClusterLabelArrayInput
 	// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
 	MongoDbMajorVersion pulumi.StringPtrInput
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
@@ -668,10 +655,6 @@ type ClusterArgs struct {
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringPtrInput
 	// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringPtrInput
-	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-	ProviderBackupEnabled pulumi.BoolPtrInput
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
 	ProviderDiskIops pulumi.IntPtrInput
@@ -699,6 +682,8 @@ type ClusterArgs struct {
 	ReplicationSpecs ClusterReplicationSpecArrayInput
 	// Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
 	RetainBackupsEnabled pulumi.BoolPtrInput
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+	Tags ClusterTagArrayInput
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolPtrInput
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
@@ -872,13 +857,6 @@ func (o ClusterOutput) BackupEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.BackupEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
-//
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config
-func (o ClusterOutput) BiConnector() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.StringMapOutput { return v.BiConnector }).(pulumi.StringMapOutput)
-}
-
 // Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 func (o ClusterOutput) BiConnectorConfig() ClusterBiConnectorConfigOutput {
 	return o.ApplyT(func(v *Cluster) ClusterBiConnectorConfigOutput { return v.BiConnectorConfig }).(ClusterBiConnectorConfigOutput)
@@ -927,6 +905,9 @@ func (o ClusterOutput) EncryptionAtRestProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.EncryptionAtRestProvider }).(pulumi.StringOutput)
 }
 
+// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+//
+// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
 func (o ClusterOutput) Labels() ClusterLabelArrayOutput {
 	return o.ApplyT(func(v *Cluster) ClusterLabelArrayOutput { return v.Labels }).(ClusterLabelArrayOutput)
 }
@@ -988,13 +969,6 @@ func (o ClusterOutput) ProviderAutoScalingComputeMaxInstanceSize() pulumi.String
 // Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 func (o ClusterOutput) ProviderAutoScalingComputeMinInstanceSize() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ProviderAutoScalingComputeMinInstanceSize }).(pulumi.StringOutput)
-}
-
-// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
-//
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to cloud_backup
-func (o ClusterOutput) ProviderBackupEnabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.ProviderBackupEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
@@ -1077,6 +1051,11 @@ func (o ClusterOutput) SrvAddress() pulumi.StringOutput {
 // - REPAIRING
 func (o ClusterOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+func (o ClusterOutput) Tags() ClusterTagArrayOutput {
+	return o.ApplyT(func(v *Cluster) ClusterTagArrayOutput { return v.Tags }).(ClusterTagArrayOutput)
 }
 
 // Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.

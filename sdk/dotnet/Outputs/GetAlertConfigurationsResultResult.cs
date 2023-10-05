@@ -29,11 +29,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The type of event that will trigger an alert.
         /// </summary>
         public readonly string EventType;
+        public readonly string Id;
         /// <summary>
         /// Rules to apply when matching an object against this alert configuration
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsResultMatcherResult> Matchers;
-        public readonly ImmutableDictionary<string, string> MetricThreshold;
         /// <summary>
         /// The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
         /// </summary>
@@ -47,7 +47,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The unique ID for the project to get the alert configurations.
         /// </summary>
         public readonly string ProjectId;
-        public readonly ImmutableDictionary<string, string> Threshold;
         /// <summary>
         /// Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
         /// </summary>
@@ -67,9 +66,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string eventType,
 
-            ImmutableArray<Outputs.GetAlertConfigurationsResultMatcherResult> matchers,
+            string id,
 
-            ImmutableDictionary<string, string> metricThreshold,
+            ImmutableArray<Outputs.GetAlertConfigurationsResultMatcherResult> matchers,
 
             ImmutableArray<Outputs.GetAlertConfigurationsResultMetricThresholdConfigResult> metricThresholdConfigs,
 
@@ -79,8 +78,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string projectId,
 
-            ImmutableDictionary<string, string> threshold,
-
             ImmutableArray<Outputs.GetAlertConfigurationsResultThresholdConfigResult> thresholdConfigs,
 
             string updated)
@@ -89,13 +86,12 @@ namespace Pulumi.Mongodbatlas.Outputs
             Created = created;
             Enabled = enabled;
             EventType = eventType;
+            Id = id;
             Matchers = matchers;
-            MetricThreshold = metricThreshold;
             MetricThresholdConfigs = metricThresholdConfigs;
             Notifications = notifications;
             Outputs = outputs;
             ProjectId = projectId;
-            Threshold = threshold;
             ThresholdConfigs = thresholdConfigs;
             Updated = updated;
         }

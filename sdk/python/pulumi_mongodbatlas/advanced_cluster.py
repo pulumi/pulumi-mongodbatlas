@@ -21,7 +21,6 @@ class AdvancedClusterArgs:
                  replication_specs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]],
                  advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
-                 bi_connector: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']] = None,
                  bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
@@ -32,6 +31,7 @@ class AdvancedClusterArgs:
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None):
         """
@@ -52,12 +52,13 @@ class AdvancedClusterArgs:
         :param pulumi.Input['AdvancedClusterBiConnectorConfigArgs'] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
@@ -68,7 +69,6 @@ class AdvancedClusterArgs:
             replication_specs=replication_specs,
             advanced_configuration=advanced_configuration,
             backup_enabled=backup_enabled,
-            bi_connector=bi_connector,
             bi_connector_config=bi_connector_config,
             disk_size_gb=disk_size_gb,
             encryption_at_rest_provider=encryption_at_rest_provider,
@@ -79,6 +79,7 @@ class AdvancedClusterArgs:
             pit_enabled=pit_enabled,
             retain_backups_enabled=retain_backups_enabled,
             root_cert_type=root_cert_type,
+            tags=tags,
             termination_protection_enabled=termination_protection_enabled,
             version_release_system=version_release_system,
         )
@@ -90,7 +91,6 @@ class AdvancedClusterArgs:
              replication_specs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]],
              advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
              backup_enabled: Optional[pulumi.Input[bool]] = None,
-             bi_connector: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']] = None,
              bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
              disk_size_gb: Optional[pulumi.Input[float]] = None,
              encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
@@ -101,6 +101,7 @@ class AdvancedClusterArgs:
              pit_enabled: Optional[pulumi.Input[bool]] = None,
              retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
              root_cert_type: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
              termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
              version_release_system: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
@@ -111,17 +112,15 @@ class AdvancedClusterArgs:
             _setter("advanced_configuration", advanced_configuration)
         if backup_enabled is not None:
             _setter("backup_enabled", backup_enabled)
-        if bi_connector is not None:
-            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
-            pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
-        if bi_connector is not None:
-            _setter("bi_connector", bi_connector)
         if bi_connector_config is not None:
             _setter("bi_connector_config", bi_connector_config)
         if disk_size_gb is not None:
             _setter("disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
             _setter("encryption_at_rest_provider", encryption_at_rest_provider)
+        if labels is not None:
+            warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
+            pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
         if labels is not None:
             _setter("labels", labels)
         if mongo_db_major_version is not None:
@@ -136,6 +135,8 @@ class AdvancedClusterArgs:
             _setter("retain_backups_enabled", retain_backups_enabled)
         if root_cert_type is not None:
             _setter("root_cert_type", root_cert_type)
+        if tags is not None:
+            _setter("tags", tags)
         if termination_protection_enabled is not None:
             _setter("termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
@@ -208,18 +209,6 @@ class AdvancedClusterArgs:
         pulumi.set(self, "backup_enabled", value)
 
     @property
-    @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
-
-        return pulumi.get(self, "bi_connector")
-
-    @bi_connector.setter
-    def bi_connector(self, value: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]):
-        pulumi.set(self, "bi_connector", value)
-
-    @property
     @pulumi.getter(name="biConnectorConfig")
     def bi_connector_config(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']]:
         """
@@ -259,8 +248,11 @@ class AdvancedClusterArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
         """
-        Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -337,6 +329,18 @@ class AdvancedClusterArgs:
         pulumi.set(self, "root_cert_type", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]]:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="terminationProtectionEnabled")
     def termination_protection_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -366,7 +370,6 @@ class _AdvancedClusterState:
     def __init__(__self__, *,
                  advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
-                 bi_connector: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']] = None,
                  bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
@@ -385,6 +388,7 @@ class _AdvancedClusterState:
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None):
         """
@@ -405,7 +409,7 @@ class _AdvancedClusterState:
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
@@ -421,6 +425,7 @@ class _AdvancedClusterState:
                - DELETING
                - DELETED
                - REPAIRING
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
@@ -428,7 +433,6 @@ class _AdvancedClusterState:
             lambda key, value: pulumi.set(__self__, key, value),
             advanced_configuration=advanced_configuration,
             backup_enabled=backup_enabled,
-            bi_connector=bi_connector,
             bi_connector_config=bi_connector_config,
             cluster_id=cluster_id,
             cluster_type=cluster_type,
@@ -447,6 +451,7 @@ class _AdvancedClusterState:
             retain_backups_enabled=retain_backups_enabled,
             root_cert_type=root_cert_type,
             state_name=state_name,
+            tags=tags,
             termination_protection_enabled=termination_protection_enabled,
             version_release_system=version_release_system,
         )
@@ -455,7 +460,6 @@ class _AdvancedClusterState:
              _setter: Callable[[Any, Any], None],
              advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
              backup_enabled: Optional[pulumi.Input[bool]] = None,
-             bi_connector: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']] = None,
              bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
              cluster_id: Optional[pulumi.Input[str]] = None,
              cluster_type: Optional[pulumi.Input[str]] = None,
@@ -474,6 +478,7 @@ class _AdvancedClusterState:
              retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
              root_cert_type: Optional[pulumi.Input[str]] = None,
              state_name: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
              termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
              version_release_system: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None):
@@ -481,11 +486,6 @@ class _AdvancedClusterState:
             _setter("advanced_configuration", advanced_configuration)
         if backup_enabled is not None:
             _setter("backup_enabled", backup_enabled)
-        if bi_connector is not None:
-            warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
-            pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
-        if bi_connector is not None:
-            _setter("bi_connector", bi_connector)
         if bi_connector_config is not None:
             _setter("bi_connector_config", bi_connector_config)
         if cluster_id is not None:
@@ -500,6 +500,9 @@ class _AdvancedClusterState:
             _setter("disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
             _setter("encryption_at_rest_provider", encryption_at_rest_provider)
+        if labels is not None:
+            warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
+            pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
         if labels is not None:
             _setter("labels", labels)
         if mongo_db_major_version is not None:
@@ -522,6 +525,8 @@ class _AdvancedClusterState:
             _setter("root_cert_type", root_cert_type)
         if state_name is not None:
             _setter("state_name", state_name)
+        if tags is not None:
+            _setter("tags", tags)
         if termination_protection_enabled is not None:
             _setter("termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
@@ -555,18 +560,6 @@ class _AdvancedClusterState:
     @backup_enabled.setter
     def backup_enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "backup_enabled", value)
-
-    @property
-    @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
-
-        return pulumi.get(self, "bi_connector")
-
-    @bi_connector.setter
-    def bi_connector(self, value: Optional[pulumi.Input['AdvancedClusterBiConnectorArgs']]):
-        pulumi.set(self, "bi_connector", value)
 
     @property
     @pulumi.getter(name="biConnectorConfig")
@@ -654,8 +647,11 @@ class _AdvancedClusterState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
         """
-        Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -786,6 +782,18 @@ class _AdvancedClusterState:
         pulumi.set(self, "state_name", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]]:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="terminationProtectionEnabled")
     def termination_protection_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -817,7 +825,6 @@ class AdvancedCluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
-                 bi_connector: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorArgs']]] = None,
                  bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
@@ -831,6 +838,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterTagArgs']]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -860,7 +868,7 @@ class AdvancedCluster(pulumi.CustomResource):
                Accepted values include:
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]] labels: Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
@@ -868,6 +876,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
@@ -908,7 +917,6 @@ class AdvancedCluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
-                 bi_connector: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorArgs']]] = None,
                  bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
@@ -922,6 +930,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterTagArgs']]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -940,12 +949,6 @@ class AdvancedCluster(pulumi.CustomResource):
                 AdvancedClusterAdvancedConfigurationArgs._configure(_setter, **advanced_configuration)
             __props__.__dict__["advanced_configuration"] = advanced_configuration
             __props__.__dict__["backup_enabled"] = backup_enabled
-            if bi_connector is not None and not isinstance(bi_connector, AdvancedClusterBiConnectorArgs):
-                bi_connector = bi_connector or {}
-                def _setter(key, value):
-                    bi_connector[key] = value
-                AdvancedClusterBiConnectorArgs._configure(_setter, **bi_connector)
-            __props__.__dict__["bi_connector"] = bi_connector
             if bi_connector_config is not None and not isinstance(bi_connector_config, AdvancedClusterBiConnectorConfigArgs):
                 bi_connector_config = bi_connector_config or {}
                 def _setter(key, value):
@@ -970,6 +973,7 @@ class AdvancedCluster(pulumi.CustomResource):
             __props__.__dict__["replication_specs"] = replication_specs
             __props__.__dict__["retain_backups_enabled"] = retain_backups_enabled
             __props__.__dict__["root_cert_type"] = root_cert_type
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
             __props__.__dict__["version_release_system"] = version_release_system
             __props__.__dict__["cluster_id"] = None
@@ -989,7 +993,6 @@ class AdvancedCluster(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
             backup_enabled: Optional[pulumi.Input[bool]] = None,
-            bi_connector: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorArgs']]] = None,
             bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             cluster_type: Optional[pulumi.Input[str]] = None,
@@ -1008,6 +1011,7 @@ class AdvancedCluster(pulumi.CustomResource):
             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
             root_cert_type: Optional[pulumi.Input[str]] = None,
             state_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterTagArgs']]]]] = None,
             termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
             version_release_system: Optional[pulumi.Input[str]] = None) -> 'AdvancedCluster':
         """
@@ -1033,7 +1037,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterConnectionStringArgs']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]] labels: Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
@@ -1049,6 +1053,7 @@ class AdvancedCluster(pulumi.CustomResource):
                - DELETING
                - DELETED
                - REPAIRING
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
@@ -1058,7 +1063,6 @@ class AdvancedCluster(pulumi.CustomResource):
 
         __props__.__dict__["advanced_configuration"] = advanced_configuration
         __props__.__dict__["backup_enabled"] = backup_enabled
-        __props__.__dict__["bi_connector"] = bi_connector
         __props__.__dict__["bi_connector_config"] = bi_connector_config
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["cluster_type"] = cluster_type
@@ -1077,6 +1081,7 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["retain_backups_enabled"] = retain_backups_enabled
         __props__.__dict__["root_cert_type"] = root_cert_type
         __props__.__dict__["state_name"] = state_name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
         __props__.__dict__["version_release_system"] = version_release_system
         return AdvancedCluster(resource_name, opts=opts, __props__=__props__)
@@ -1101,14 +1106,6 @@ class AdvancedCluster(pulumi.CustomResource):
         This parameter defaults to false.
         """
         return pulumi.get(self, "backup_enabled")
-
-    @property
-    @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> pulumi.Output['outputs.AdvancedClusterBiConnector']:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""", DeprecationWarning)
-        pulumi.log.warn("""bi_connector is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config""")
-
-        return pulumi.get(self, "bi_connector")
 
     @property
     @pulumi.getter(name="biConnectorConfig")
@@ -1168,8 +1165,11 @@ class AdvancedCluster(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Sequence['outputs.AdvancedClusterLabel']]:
         """
-        Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
+        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+
         return pulumi.get(self, "labels")
 
     @property
@@ -1254,6 +1254,14 @@ class AdvancedCluster(pulumi.CustomResource):
         - REPAIRING
         """
         return pulumi.get(self, "state_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.AdvancedClusterTag']]]:
+        """
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="terminationProtectionEnabled")

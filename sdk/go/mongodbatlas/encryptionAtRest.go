@@ -27,20 +27,8 @@ import (
 type EncryptionAtRest struct {
 	pulumi.CustomResourceState
 
-	// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
-	AwsKms       pulumi.StringMapOutput                `pulumi:"awsKms"`
-	AwsKmsConfig EncryptionAtRestAwsKmsConfigPtrOutput `pulumi:"awsKmsConfig"`
-	// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
-	AzureKeyVault       pulumi.StringMapOutput                       `pulumi:"azureKeyVault"`
-	AzureKeyVaultConfig EncryptionAtRestAzureKeyVaultConfigPtrOutput `pulumi:"azureKeyVaultConfig"`
-	// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
-	GoogleCloudKms       pulumi.StringMapOutput                        `pulumi:"googleCloudKms"`
+	AwsKmsConfig         EncryptionAtRestAwsKmsConfigPtrOutput         `pulumi:"awsKmsConfig"`
+	AzureKeyVaultConfig  EncryptionAtRestAzureKeyVaultConfigPtrOutput  `pulumi:"azureKeyVaultConfig"`
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrOutput `pulumi:"googleCloudKmsConfig"`
 	// The unique identifier for the project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -56,33 +44,6 @@ func NewEncryptionAtRest(ctx *pulumi.Context,
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
-	if args.AwsKms != nil {
-		args.AwsKms = pulumi.ToSecret(args.AwsKms).(pulumi.StringMapInput)
-	}
-	if args.AwsKmsConfig != nil {
-		args.AwsKmsConfig = pulumi.ToSecret(args.AwsKmsConfig).(EncryptionAtRestAwsKmsConfigPtrInput)
-	}
-	if args.AzureKeyVault != nil {
-		args.AzureKeyVault = pulumi.ToSecret(args.AzureKeyVault).(pulumi.StringMapInput)
-	}
-	if args.AzureKeyVaultConfig != nil {
-		args.AzureKeyVaultConfig = pulumi.ToSecret(args.AzureKeyVaultConfig).(EncryptionAtRestAzureKeyVaultConfigPtrInput)
-	}
-	if args.GoogleCloudKms != nil {
-		args.GoogleCloudKms = pulumi.ToSecret(args.GoogleCloudKms).(pulumi.StringMapInput)
-	}
-	if args.GoogleCloudKmsConfig != nil {
-		args.GoogleCloudKmsConfig = pulumi.ToSecret(args.GoogleCloudKmsConfig).(EncryptionAtRestGoogleCloudKmsConfigPtrInput)
-	}
-	secrets := pulumi.AdditionalSecretOutputs([]string{
-		"awsKms",
-		"awsKmsConfig",
-		"azureKeyVault",
-		"azureKeyVaultConfig",
-		"googleCloudKms",
-		"googleCloudKmsConfig",
-	})
-	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EncryptionAtRest
 	err := ctx.RegisterResource("mongodbatlas:index/encryptionAtRest:EncryptionAtRest", name, args, &resource, opts...)
@@ -106,40 +67,16 @@ func GetEncryptionAtRest(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EncryptionAtRest resources.
 type encryptionAtRestState struct {
-	// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
-	AwsKms       map[string]string             `pulumi:"awsKms"`
-	AwsKmsConfig *EncryptionAtRestAwsKmsConfig `pulumi:"awsKmsConfig"`
-	// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
-	AzureKeyVault       map[string]string                    `pulumi:"azureKeyVault"`
-	AzureKeyVaultConfig *EncryptionAtRestAzureKeyVaultConfig `pulumi:"azureKeyVaultConfig"`
-	// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
-	GoogleCloudKms       map[string]string                     `pulumi:"googleCloudKms"`
+	AwsKmsConfig         *EncryptionAtRestAwsKmsConfig         `pulumi:"awsKmsConfig"`
+	AzureKeyVaultConfig  *EncryptionAtRestAzureKeyVaultConfig  `pulumi:"azureKeyVaultConfig"`
 	GoogleCloudKmsConfig *EncryptionAtRestGoogleCloudKmsConfig `pulumi:"googleCloudKmsConfig"`
 	// The unique identifier for the project.
 	ProjectId *string `pulumi:"projectId"`
 }
 
 type EncryptionAtRestState struct {
-	// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
-	AwsKms       pulumi.StringMapInput
-	AwsKmsConfig EncryptionAtRestAwsKmsConfigPtrInput
-	// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
-	AzureKeyVault       pulumi.StringMapInput
-	AzureKeyVaultConfig EncryptionAtRestAzureKeyVaultConfigPtrInput
-	// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
-	GoogleCloudKms       pulumi.StringMapInput
+	AwsKmsConfig         EncryptionAtRestAwsKmsConfigPtrInput
+	AzureKeyVaultConfig  EncryptionAtRestAzureKeyVaultConfigPtrInput
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrInput
 	// The unique identifier for the project.
 	ProjectId pulumi.StringPtrInput
@@ -150,20 +87,8 @@ func (EncryptionAtRestState) ElementType() reflect.Type {
 }
 
 type encryptionAtRestArgs struct {
-	// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
-	AwsKms       map[string]string             `pulumi:"awsKms"`
-	AwsKmsConfig *EncryptionAtRestAwsKmsConfig `pulumi:"awsKmsConfig"`
-	// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
-	AzureKeyVault       map[string]string                    `pulumi:"azureKeyVault"`
-	AzureKeyVaultConfig *EncryptionAtRestAzureKeyVaultConfig `pulumi:"azureKeyVaultConfig"`
-	// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
-	GoogleCloudKms       map[string]string                     `pulumi:"googleCloudKms"`
+	AwsKmsConfig         *EncryptionAtRestAwsKmsConfig         `pulumi:"awsKmsConfig"`
+	AzureKeyVaultConfig  *EncryptionAtRestAzureKeyVaultConfig  `pulumi:"azureKeyVaultConfig"`
 	GoogleCloudKmsConfig *EncryptionAtRestGoogleCloudKmsConfig `pulumi:"googleCloudKmsConfig"`
 	// The unique identifier for the project.
 	ProjectId string `pulumi:"projectId"`
@@ -171,20 +96,8 @@ type encryptionAtRestArgs struct {
 
 // The set of arguments for constructing a EncryptionAtRest resource.
 type EncryptionAtRestArgs struct {
-	// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
-	AwsKms       pulumi.StringMapInput
-	AwsKmsConfig EncryptionAtRestAwsKmsConfigPtrInput
-	// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
-	AzureKeyVault       pulumi.StringMapInput
-	AzureKeyVaultConfig EncryptionAtRestAzureKeyVaultConfigPtrInput
-	// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
-	GoogleCloudKms       pulumi.StringMapInput
+	AwsKmsConfig         EncryptionAtRestAwsKmsConfigPtrInput
+	AzureKeyVaultConfig  EncryptionAtRestAzureKeyVaultConfigPtrInput
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrInput
 	// The unique identifier for the project.
 	ProjectId pulumi.StringInput
@@ -301,33 +214,12 @@ func (o EncryptionAtRestOutput) ToOutput(ctx context.Context) pulumix.Output[*En
 	}
 }
 
-// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-//
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to aws_kms_config
-func (o EncryptionAtRestOutput) AwsKms() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *EncryptionAtRest) pulumi.StringMapOutput { return v.AwsKms }).(pulumi.StringMapOutput)
-}
-
 func (o EncryptionAtRestOutput) AwsKmsConfig() EncryptionAtRestAwsKmsConfigPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRest) EncryptionAtRestAwsKmsConfigPtrOutput { return v.AwsKmsConfig }).(EncryptionAtRestAwsKmsConfigPtrOutput)
 }
 
-// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
-//
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to azure_key_vault_config
-func (o EncryptionAtRestOutput) AzureKeyVault() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *EncryptionAtRest) pulumi.StringMapOutput { return v.AzureKeyVault }).(pulumi.StringMapOutput)
-}
-
 func (o EncryptionAtRestOutput) AzureKeyVaultConfig() EncryptionAtRestAzureKeyVaultConfigPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRest) EncryptionAtRestAzureKeyVaultConfigPtrOutput { return v.AzureKeyVaultConfig }).(EncryptionAtRestAzureKeyVaultConfigPtrOutput)
-}
-
-// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
-//
-// Deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to google_cloud_kms_config
-func (o EncryptionAtRestOutput) GoogleCloudKms() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *EncryptionAtRest) pulumi.StringMapOutput { return v.GoogleCloudKms }).(pulumi.StringMapOutput)
 }
 
 func (o EncryptionAtRestOutput) GoogleCloudKmsConfig() EncryptionAtRestGoogleCloudKmsConfigPtrOutput {

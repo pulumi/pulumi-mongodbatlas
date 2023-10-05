@@ -5,7 +5,6 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
 import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
 import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
 import java.lang.Boolean;
@@ -19,25 +18,6 @@ import javax.annotation.Nullable;
 public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ProjectArgs Empty = new ProjectArgs();
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-    @Import(name="apiKeys")
-    private @Nullable Output<List<ProjectApiKeyArgs>> apiKeys;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-    public Optional<Output<List<ProjectApiKeyArgs>>> apiKeys() {
-        return Optional.ofNullable(this.apiKeys);
-    }
 
     /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -221,7 +201,6 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     private ProjectArgs() {}
 
     private ProjectArgs(ProjectArgs $) {
-        this.apiKeys = $.apiKeys;
         this.isCollectDatabaseSpecificsStatisticsEnabled = $.isCollectDatabaseSpecificsStatisticsEnabled;
         this.isDataExplorerEnabled = $.isDataExplorerEnabled;
         this.isExtendedStorageSizesEnabled = $.isExtendedStorageSizesEnabled;
@@ -253,43 +232,6 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ProjectArgs defaults) {
             $ = new ProjectArgs(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-        public Builder apiKeys(@Nullable Output<List<ProjectApiKeyArgs>> apiKeys) {
-            $.apiKeys = apiKeys;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-        public Builder apiKeys(List<ProjectApiKeyArgs> apiKeys) {
-            return apiKeys(Output.of(apiKeys));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-        public Builder apiKeys(ProjectApiKeyArgs... apiKeys) {
-            return apiKeys(List.of(apiKeys));
         }
 
         /**

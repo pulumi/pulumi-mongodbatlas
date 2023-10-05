@@ -24,16 +24,16 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
      * Accepted values include:
      * 
      */
-    @Import(name="authDatabaseName")
-    private @Nullable Output<String> authDatabaseName;
+    @Import(name="authDatabaseName", required=true)
+    private Output<String> authDatabaseName;
 
     /**
      * @return Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
      * Accepted values include:
      * 
      */
-    public Optional<Output<String>> authDatabaseName() {
-        return Optional.ofNullable(this.authDatabaseName);
+    public Output<String> authDatabaseName() {
+        return this.authDatabaseName;
     }
 
     /**
@@ -49,29 +49,6 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> awsIamType() {
         return Optional.ofNullable(this.awsIamType);
-    }
-
-    /**
-     * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-    @Import(name="databaseName")
-    private @Nullable Output<String> databaseName;
-
-    /**
-     * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-    public Optional<Output<String>> databaseName() {
-        return Optional.ofNullable(this.databaseName);
     }
 
     @Import(name="labels")
@@ -137,15 +114,15 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      * 
      */
-    @Import(name="roles", required=true)
-    private Output<List<DatabaseUserRoleArgs>> roles;
+    @Import(name="roles")
+    private @Nullable Output<List<DatabaseUserRoleArgs>> roles;
 
     /**
      * @return List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      * 
      */
-    public Output<List<DatabaseUserRoleArgs>> roles() {
-        return this.roles;
+    public Optional<Output<List<DatabaseUserRoleArgs>>> roles() {
+        return Optional.ofNullable(this.roles);
     }
 
     @Import(name="scopes")
@@ -190,7 +167,6 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
     private DatabaseUserArgs(DatabaseUserArgs $) {
         this.authDatabaseName = $.authDatabaseName;
         this.awsIamType = $.awsIamType;
-        this.databaseName = $.databaseName;
         this.labels = $.labels;
         this.ldapAuthType = $.ldapAuthType;
         this.oidcAuthType = $.oidcAuthType;
@@ -227,7 +203,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder authDatabaseName(@Nullable Output<String> authDatabaseName) {
+        public Builder authDatabaseName(Output<String> authDatabaseName) {
             $.authDatabaseName = authDatabaseName;
             return this;
         }
@@ -262,35 +238,6 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder awsIamType(String awsIamType) {
             return awsIamType(Output.of(awsIamType));
-        }
-
-        /**
-         * @param databaseName Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-        public Builder databaseName(@Nullable Output<String> databaseName) {
-            $.databaseName = databaseName;
-            return this;
-        }
-
-        /**
-         * @param databaseName Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-        public Builder databaseName(String databaseName) {
-            return databaseName(Output.of(databaseName));
         }
 
         public Builder labels(@Nullable Output<List<DatabaseUserLabelArgs>> labels) {
@@ -384,7 +331,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder roles(Output<List<DatabaseUserRoleArgs>> roles) {
+        public Builder roles(@Nullable Output<List<DatabaseUserRoleArgs>> roles) {
             $.roles = roles;
             return this;
         }
@@ -465,8 +412,8 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public DatabaseUserArgs build() {
+            $.authDatabaseName = Objects.requireNonNull($.authDatabaseName, "expected parameter 'authDatabaseName' to be non-null");
             $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.roles = Objects.requireNonNull($.roles, "expected parameter 'roles' to be non-null");
             $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
             return $;
         }

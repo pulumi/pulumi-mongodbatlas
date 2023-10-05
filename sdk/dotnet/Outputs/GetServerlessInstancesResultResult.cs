@@ -57,6 +57,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string StateName;
         /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetServerlessInstancesResultTagResult> Tags;
+        /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
         public readonly bool TerminationProtectionEnabled;
@@ -89,6 +93,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string stateName,
 
+            ImmutableArray<Outputs.GetServerlessInstancesResultTagResult> tags,
+
             bool terminationProtectionEnabled)
         {
             ConnectionStringsPrivateEndpointSrvs = connectionStringsPrivateEndpointSrvs;
@@ -104,6 +110,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ProviderSettingsProviderName = providerSettingsProviderName;
             ProviderSettingsRegionName = providerSettingsRegionName;
             StateName = stateName;
+            Tags = tags;
             TerminationProtectionEnabled = terminationProtectionEnabled;
         }
     }

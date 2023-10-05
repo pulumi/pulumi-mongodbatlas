@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.ProjectArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.ProjectState;
-import com.pulumi.mongodbatlas.outputs.ProjectApiKey;
 import com.pulumi.mongodbatlas.outputs.ProjectLimit;
 import com.pulumi.mongodbatlas.outputs.ProjectTeam;
 import java.lang.Boolean;
@@ -36,7 +35,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.Project;
  * import com.pulumi.mongodbatlas.ProjectArgs;
  * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
- * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
  * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -67,10 +65,6 @@ import javax.annotation.Nullable;
  *                         &#34;GROUP_READ_ONLY&#34;,
  *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
  *                     .build())
- *             .apiKeys(ProjectApiKeyArgs.builder()
- *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
- *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
- *                 .build())
  *             .limits(            
  *                 ProjectLimitArgs.builder()
  *                     .name(&#34;atlas.project.deployment.clusters&#34;)
@@ -104,18 +98,6 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/project:Project")
 public class Project extends com.pulumi.resources.CustomResource {
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key */
-    @Export(name="apiKeys", refs={List.class,ProjectApiKey.class}, tree="[0,1]")
-    private Output<List<ProjectApiKey>> apiKeys;
-
-    public Output<List<ProjectApiKey>> apiKeys() {
-        return this.apiKeys;
-    }
     /**
      * The number of Atlas clusters deployed in the project..
      * 
@@ -281,14 +263,14 @@ public class Project extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="regionUsageRestrictions", refs={String.class}, tree="[0]")
-    private Output<String> regionUsageRestrictions;
+    private Output</* @Nullable */ String> regionUsageRestrictions;
 
     /**
      * @return Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      * 
      */
-    public Output<String> regionUsageRestrictions() {
-        return this.regionUsageRestrictions;
+    public Output<Optional<String>> regionUsageRestrictions() {
+        return Codegen.optional(this.regionUsageRestrictions);
     }
     @Export(name="teams", refs={List.class,ProjectTeam.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProjectTeam>> teams;
@@ -301,14 +283,14 @@ public class Project extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="withDefaultAlertsSettings", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> withDefaultAlertsSettings;
+    private Output<Boolean> withDefaultAlertsSettings;
 
     /**
      * @return It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
      * 
      */
-    public Output<Optional<Boolean>> withDefaultAlertsSettings() {
-        return Codegen.optional(this.withDefaultAlertsSettings);
+    public Output<Boolean> withDefaultAlertsSettings() {
+        return this.withDefaultAlertsSettings;
     }
 
     /**

@@ -119,7 +119,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string Id;
         public readonly string ProjectId;
         /// <summary>
-        /// A list where each represents a search index.
+        /// A list where each result represents a Serverless Instance. To learn more, see Serverless Instance.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServerlessInstancesResultResult> Results;
 

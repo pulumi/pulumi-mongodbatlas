@@ -112,20 +112,12 @@ namespace Pulumi.Mongodbatlas
         /// The type of event that will trigger an alert.
         /// </summary>
         public readonly string EventType;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationMatcherResult> Matchers;
-        public readonly ImmutableDictionary<string, string> MetricThreshold;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationMetricThresholdConfigResult> MetricThresholdConfigs;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationNotificationResult> Notifications;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationOutputResult> Outputs;
         public readonly string ProjectId;
-        /// <summary>
-        /// Threshold value outside of which an alert will be triggered.
-        /// </summary>
-        public readonly ImmutableDictionary<string, string> Threshold;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationThresholdConfigResult> ThresholdConfigs;
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -146,8 +138,6 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetAlertConfigurationMatcherResult> matchers,
 
-            ImmutableDictionary<string, string> metricThreshold,
-
             ImmutableArray<Outputs.GetAlertConfigurationMetricThresholdConfigResult> metricThresholdConfigs,
 
             ImmutableArray<Outputs.GetAlertConfigurationNotificationResult> notifications,
@@ -155,8 +145,6 @@ namespace Pulumi.Mongodbatlas
             ImmutableArray<Outputs.GetAlertConfigurationOutputResult> outputs,
 
             string projectId,
-
-            ImmutableDictionary<string, string> threshold,
 
             ImmutableArray<Outputs.GetAlertConfigurationThresholdConfigResult> thresholdConfigs,
 
@@ -168,12 +156,10 @@ namespace Pulumi.Mongodbatlas
             EventType = eventType;
             Id = id;
             Matchers = matchers;
-            MetricThreshold = metricThreshold;
             MetricThresholdConfigs = metricThresholdConfigs;
             Notifications = notifications;
             Outputs = outputs;
             ProjectId = projectId;
-            Threshold = threshold;
             ThresholdConfigs = thresholdConfigs;
             Updated = updated;
         }

@@ -34,10 +34,6 @@ import * as utilities from "./utilities";
  *             ],
  *         },
  *     ],
- *     apiKeys: [{
- *         apiKeyId: "61003b299dda8d54a9d7d10c",
- *         roleNames: ["GROUP_READ_ONLY"],
- *     }],
  *     limits: [
  *         {
  *             name: "atlas.project.deployment.clusters",
@@ -95,10 +91,6 @@ export class Project extends pulumi.CustomResource {
     }
 
     /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-     */
-    public readonly apiKeys!: pulumi.Output<outputs.ProjectApiKey[]>;
-    /**
      * The number of Atlas clusters deployed in the project..
      */
     public /*out*/ readonly clusterCount!: pulumi.Output<number>;
@@ -146,12 +138,12 @@ export class Project extends pulumi.CustomResource {
     /**
      * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      */
-    public readonly regionUsageRestrictions!: pulumi.Output<string>;
+    public readonly regionUsageRestrictions!: pulumi.Output<string | undefined>;
     public readonly teams!: pulumi.Output<outputs.ProjectTeam[] | undefined>;
     /**
      * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
      */
-    public readonly withDefaultAlertsSettings!: pulumi.Output<boolean | undefined>;
+    public readonly withDefaultAlertsSettings!: pulumi.Output<boolean>;
 
     /**
      * Create a Project resource with the given unique name, arguments, and options.
@@ -166,7 +158,6 @@ export class Project extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectState | undefined;
-            resourceInputs["apiKeys"] = state ? state.apiKeys : undefined;
             resourceInputs["clusterCount"] = state ? state.clusterCount : undefined;
             resourceInputs["created"] = state ? state.created : undefined;
             resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = state ? state.isCollectDatabaseSpecificsStatisticsEnabled : undefined;
@@ -187,7 +178,6 @@ export class Project extends pulumi.CustomResource {
             if ((!args || args.orgId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
-            resourceInputs["apiKeys"] = args ? args.apiKeys : undefined;
             resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = args ? args.isCollectDatabaseSpecificsStatisticsEnabled : undefined;
             resourceInputs["isDataExplorerEnabled"] = args ? args.isDataExplorerEnabled : undefined;
             resourceInputs["isExtendedStorageSizesEnabled"] = args ? args.isExtendedStorageSizesEnabled : undefined;
@@ -213,10 +203,6 @@ export class Project extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Project resources.
  */
 export interface ProjectState {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-     */
-    apiKeys?: pulumi.Input<pulumi.Input<inputs.ProjectApiKey>[]>;
     /**
      * The number of Atlas clusters deployed in the project..
      */
@@ -277,10 +263,6 @@ export interface ProjectState {
  * The set of arguments for constructing a Project resource.
  */
 export interface ProjectArgs {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to mongodbatlas_project_api_key
-     */
-    apiKeys?: pulumi.Input<pulumi.Input<inputs.ProjectApiKey>[]>;
     /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
      */

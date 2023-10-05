@@ -22,7 +22,7 @@ class GetProjectApiKeyResult:
     """
     A collection of values returned by getProjectApiKey.
     """
-    def __init__(__self__, api_key_id=None, description=None, id=None, private_key=None, project_assignments=None, project_id=None, public_key=None, role_names=None):
+    def __init__(__self__, api_key_id=None, description=None, id=None, private_key=None, project_assignments=None, project_id=None, public_key=None):
         if api_key_id and not isinstance(api_key_id, str):
             raise TypeError("Expected argument 'api_key_id' to be a str")
         pulumi.set(__self__, "api_key_id", api_key_id)
@@ -44,9 +44,6 @@ class GetProjectApiKeyResult:
         if public_key and not isinstance(public_key, str):
             raise TypeError("Expected argument 'public_key' to be a str")
         pulumi.set(__self__, "public_key", public_key)
-        if role_names and not isinstance(role_names, list):
-            raise TypeError("Expected argument 'role_names' to be a list")
-        pulumi.set(__self__, "role_names", role_names)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -98,17 +95,6 @@ class GetProjectApiKeyResult:
         """
         return pulumi.get(self, "public_key")
 
-    @property
-    @pulumi.getter(name="roleNames")
-    def role_names(self) -> Sequence[str]:
-        """
-        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-        """
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""", DeprecationWarning)
-        pulumi.log.warn("""role_names is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment""")
-
-        return pulumi.get(self, "role_names")
-
 
 class AwaitableGetProjectApiKeyResult(GetProjectApiKeyResult):
     # pylint: disable=using-constant-test
@@ -122,8 +108,7 @@ class AwaitableGetProjectApiKeyResult(GetProjectApiKeyResult):
             private_key=self.private_key,
             project_assignments=self.project_assignments,
             project_id=self.project_id,
-            public_key=self.public_key,
-            role_names=self.role_names)
+            public_key=self.public_key)
 
 
 def get_project_api_key(api_key_id: Optional[str] = None,
@@ -148,8 +133,7 @@ def get_project_api_key(api_key_id: Optional[str] = None,
         private_key=pulumi.get(__ret__, 'private_key'),
         project_assignments=pulumi.get(__ret__, 'project_assignments'),
         project_id=pulumi.get(__ret__, 'project_id'),
-        public_key=pulumi.get(__ret__, 'public_key'),
-        role_names=pulumi.get(__ret__, 'role_names'))
+        public_key=pulumi.get(__ret__, 'public_key'))
 
 
 @_utilities.lift_output_func(get_project_api_key)

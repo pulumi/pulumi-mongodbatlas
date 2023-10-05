@@ -86,6 +86,10 @@ export interface GetServerlessInstanceResult {
      */
     readonly stateName: string;
     /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     */
+    readonly tags: outputs.GetServerlessInstanceTag[];
+    /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
     readonly terminationProtectionEnabled: boolean;

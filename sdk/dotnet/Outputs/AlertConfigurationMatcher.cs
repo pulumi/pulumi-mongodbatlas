@@ -28,24 +28,24 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// 
         /// All other types of alerts do not support matchers.
         /// </summary>
-        public readonly string? FieldName;
+        public readonly string FieldName;
         /// <summary>
         /// The operator to test the field’s value.
         /// Accepted values are:
         /// </summary>
-        public readonly string? Operator;
+        public readonly string Operator;
         /// <summary>
         /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         /// </summary>
-        public readonly string? Value;
+        public readonly string Value;
 
         [OutputConstructor]
         private AlertConfigurationMatcher(
-            string? fieldName,
+            string fieldName,
 
-            string? @operator,
+            string @operator,
 
-            string? value)
+            string value)
         {
             FieldName = fieldName;
             Operator = @operator;

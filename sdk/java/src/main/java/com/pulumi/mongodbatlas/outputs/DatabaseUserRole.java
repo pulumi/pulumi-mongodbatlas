@@ -20,12 +20,12 @@ public final class DatabaseUserRole {
      * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      */
-    private @Nullable String databaseName;
+    private String databaseName;
     /**
      * @return Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
      * 
      */
-    private @Nullable String roleName;
+    private String roleName;
 
     private DatabaseUserRole() {}
     /**
@@ -39,15 +39,15 @@ public final class DatabaseUserRole {
      * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      * 
      */
-    public Optional<String> databaseName() {
-        return Optional.ofNullable(this.databaseName);
+    public String databaseName() {
+        return this.databaseName;
     }
     /**
      * @return Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
      * 
      */
-    public Optional<String> roleName() {
-        return Optional.ofNullable(this.roleName);
+    public String roleName() {
+        return this.roleName;
     }
 
     public static Builder builder() {
@@ -60,8 +60,8 @@ public final class DatabaseUserRole {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String collectionName;
-        private @Nullable String databaseName;
-        private @Nullable String roleName;
+        private String databaseName;
+        private String roleName;
         public Builder() {}
         public Builder(DatabaseUserRole defaults) {
     	      Objects.requireNonNull(defaults);
@@ -76,13 +76,13 @@ public final class DatabaseUserRole {
             return this;
         }
         @CustomType.Setter
-        public Builder databaseName(@Nullable String databaseName) {
-            this.databaseName = databaseName;
+        public Builder databaseName(String databaseName) {
+            this.databaseName = Objects.requireNonNull(databaseName);
             return this;
         }
         @CustomType.Setter
-        public Builder roleName(@Nullable String roleName) {
-            this.roleName = roleName;
+        public Builder roleName(String roleName) {
+            this.roleName = Objects.requireNonNull(roleName);
             return this;
         }
         public DatabaseUserRole build() {

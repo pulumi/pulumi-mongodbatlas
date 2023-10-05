@@ -27,6 +27,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.ProjectApiKey;
  * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
+ * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -42,8 +43,11 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test = new ProjectApiKey(&#34;test&#34;, ProjectApiKeyArgs.builder()        
  *             .description(&#34;Description of your API key&#34;)
+ *             .projectAssignments(ProjectApiKeyProjectAssignmentArgs.builder()
+ *                 .projectId(&#34;64259ee860c43338194b0f8e&#34;)
+ *                 .roleNames(&#34;GROUP_OWNER&#34;)
+ *                 .build())
  *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
- *             .roleNames(&#34;GROUP_OWNER&#34;)
  *             .build());
  * 
  *     }
@@ -99,7 +103,7 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/projectApiKey:ProjectApiKey test 5d09d6a59ccf6445652a444a-6576974933969669
  * ```
- *  See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createProjectApiKey) - Documentation for more information.
+ *  See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createProjectApiKey) - Documentation for more information. See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createProjectApiKey) - Documentation for more information.
  * 
  */
 @ResourceType(type="mongodbatlas:index/projectApiKey:ProjectApiKey")
@@ -121,12 +125,16 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
     /**
      * Description of this Project API key.
      * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
      * @return Description of this Project API key.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
      * 
      */
     public Output<String> description() {
@@ -163,28 +171,6 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
 
     public Output<String> publicKey() {
         return this.publicKey;
-    }
-    /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
-    @Export(name="roleNames", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> roleNames;
-
-    /**
-     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned. **DEPRECATED** Use `project_assignment` instead.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
-     */
-    public Output<Optional<List<String>>> roleNames() {
-        return Codegen.optional(this.roleNames);
     }
 
     /**

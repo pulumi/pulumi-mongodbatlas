@@ -27,21 +27,21 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// 
         /// All other types of alerts do not support matchers.
         /// </summary>
-        [Input("fieldName")]
-        public Input<string>? FieldName { get; set; }
+        [Input("fieldName", required: true)]
+        public Input<string> FieldName { get; set; } = null!;
 
         /// <summary>
         /// The operator to test the field’s value.
         /// Accepted values are:
         /// </summary>
-        [Input("operator")]
-        public Input<string>? Operator { get; set; }
+        [Input("operator", required: true)]
+        public Input<string> Operator { get; set; } = null!;
 
         /// <summary>
         /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         /// </summary>
-        [Input("value")]
-        public Input<string>? Value { get; set; }
+        [Input("value", required: true)]
+        public Input<string> Value { get; set; } = null!;
 
         public AlertConfigurationMatcherGetArgs()
         {

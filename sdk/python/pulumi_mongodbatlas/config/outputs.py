@@ -17,7 +17,6 @@ __all__ = [
 class AssumeRole(dict):
     def __init__(__self__, *,
                  duration: Optional[str] = None,
-                 duration_seconds: Optional[int] = None,
                  external_id: Optional[str] = None,
                  policy: Optional[str] = None,
                  policy_arns: Optional[Sequence[str]] = None,
@@ -29,7 +28,6 @@ class AssumeRole(dict):
         AssumeRole._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             duration=duration,
-            duration_seconds=duration_seconds,
             external_id=external_id,
             policy=policy,
             policy_arns=policy_arns,
@@ -43,7 +41,6 @@ class AssumeRole(dict):
     def _configure(
              _setter: Callable[[Any, Any], None],
              duration: Optional[str] = None,
-             duration_seconds: Optional[int] = None,
              external_id: Optional[str] = None,
              policy: Optional[str] = None,
              policy_arns: Optional[Sequence[str]] = None,
@@ -55,8 +52,6 @@ class AssumeRole(dict):
              opts: Optional[pulumi.ResourceOptions]=None):
         if duration is not None:
             _setter("duration", duration)
-        if duration_seconds is not None:
-            _setter("duration_seconds", duration_seconds)
         if external_id is not None:
             _setter("external_id", external_id)
         if policy is not None:
@@ -78,14 +73,6 @@ class AssumeRole(dict):
     @pulumi.getter
     def duration(self) -> Optional[str]:
         return pulumi.get(self, "duration")
-
-    @property
-    @pulumi.getter(name="durationSeconds")
-    def duration_seconds(self) -> Optional[int]:
-        warnings.warn("""this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""", DeprecationWarning)
-        pulumi.log.warn("""duration_seconds is deprecated: this parameter is deprecated and will be removed in v1.12.0, please transition to assume_role.duration""")
-
-        return pulumi.get(self, "duration_seconds")
 
     @property
     @pulumi.getter(name="externalId")

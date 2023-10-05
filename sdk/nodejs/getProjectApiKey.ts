@@ -55,12 +55,6 @@ export interface GetProjectApiKeyResult {
      * Public key for this Organization API key.
      */
     readonly publicKey: string;
-    /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-     *
-     * @deprecated this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-     */
-    readonly roleNames: string[];
 }
 /**
  * ## Example Usage

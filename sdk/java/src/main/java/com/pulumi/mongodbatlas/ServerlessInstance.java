@@ -11,9 +11,11 @@ import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.ServerlessInstanceState;
 import com.pulumi.mongodbatlas.outputs.ServerlessInstanceLink;
+import com.pulumi.mongodbatlas.outputs.ServerlessInstanceTag;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -189,6 +191,20 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      */
     public Output<String> stateName() {
         return this.stateName;
+    }
+    /**
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    @Export(name="tags", refs={List.class,ServerlessInstanceTag.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ServerlessInstanceTag>> tags;
+
+    /**
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+     * 
+     */
+    public Output<Optional<List<ServerlessInstanceTag>>> tags() {
+        return Codegen.optional(this.tags);
     }
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.

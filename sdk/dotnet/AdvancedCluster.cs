@@ -39,9 +39,6 @@ namespace Pulumi.Mongodbatlas
         [Output("backupEnabled")]
         public Output<bool> BackupEnabled { get; private set; } = null!;
 
-        [Output("biConnector")]
-        public Output<Outputs.AdvancedClusterBiConnector> BiConnector { get; private set; } = null!;
-
         /// <summary>
         /// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         /// </summary>
@@ -83,7 +80,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> EncryptionAtRestProvider { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableArray<Outputs.AdvancedClusterLabel>> Labels { get; private set; } = null!;
@@ -150,6 +147,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("stateName")]
         public Output<string> StateName { get; private set; } = null!;
+
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.AdvancedClusterTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
@@ -226,9 +229,6 @@ namespace Pulumi.Mongodbatlas
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
 
-        [Input("biConnector")]
-        public Input<Inputs.AdvancedClusterBiConnectorArgs>? BiConnector { get; set; }
-
         /// <summary>
         /// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         /// </summary>
@@ -258,8 +258,9 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterLabelArgs>? _labels;
 
         /// <summary>
-        /// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
+        [Obsolete(@"this parameter is deprecated and will be removed by September 2024, please transition to tags")]
         public InputList<Inputs.AdvancedClusterLabelArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.AdvancedClusterLabelArgs>());
@@ -317,6 +318,18 @@ namespace Pulumi.Mongodbatlas
         [Input("rootCertType")]
         public Input<string>? RootCertType { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.AdvancedClusterTagArgs>? _tags;
+
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public InputList<Inputs.AdvancedClusterTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AdvancedClusterTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
@@ -353,9 +366,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
-
-        [Input("biConnector")]
-        public Input<Inputs.AdvancedClusterBiConnectorGetArgs>? BiConnector { get; set; }
 
         /// <summary>
         /// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
@@ -407,8 +417,9 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterLabelGetArgs>? _labels;
 
         /// <summary>
-        /// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
+        [Obsolete(@"this parameter is deprecated and will be removed by September 2024, please transition to tags")]
         public InputList<Inputs.AdvancedClusterLabelGetArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.AdvancedClusterLabelGetArgs>());
@@ -483,6 +494,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.AdvancedClusterTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public InputList<Inputs.AdvancedClusterTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AdvancedClusterTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.

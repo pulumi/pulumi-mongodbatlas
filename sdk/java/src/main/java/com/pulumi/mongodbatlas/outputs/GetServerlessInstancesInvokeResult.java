@@ -18,7 +18,7 @@ public final class GetServerlessInstancesInvokeResult {
     private String id;
     private String projectId;
     /**
-     * @return A list where each represents a search index.
+     * @return A list where each result represents a Serverless Instance. To learn more, see Serverless Instance.
      * 
      */
     private List<GetServerlessInstancesResult> results;
@@ -35,7 +35,7 @@ public final class GetServerlessInstancesInvokeResult {
         return this.projectId;
     }
     /**
-     * @return A list where each represents a search index.
+     * @return A list where each result represents a Serverless Instance. To learn more, see Serverless Instance.
      * 
      */
     public List<GetServerlessInstancesResult> results() {

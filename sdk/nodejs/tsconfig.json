@@ -52,6 +52,8 @@
         "getAlertConfigurations.ts",
         "getApiKey.ts",
         "getApiKeys.ts",
+        "getAtlasUser.ts",
+        "getAtlasUsers.ts",
         "getAuditing.ts",
         "getBackupCompliancePolicy.ts",
         "getCloudBackupSchedule.ts",

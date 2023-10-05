@@ -4,7 +4,6 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.mongodbatlas.outputs.GetProjectApiKey;
 import com.pulumi.mongodbatlas.outputs.GetProjectLimit;
 import com.pulumi.mongodbatlas.outputs.GetProjectTeam;
 import java.lang.Boolean;
@@ -17,7 +16,6 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetProjectResult {
-    private List<GetProjectApiKey> apiKeys;
     /**
      * @return The number of Atlas clusters deployed in the project.
      * 
@@ -27,8 +25,6 @@ public final class GetProjectResult {
      * @return The ISO-8601-formatted timestamp of when Atlas created the project.
      * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
      * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-     * * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * * `limits.#.name` - Human-readable label that identifies this project limit.
      * * `limits.#.value` - Amount the limit is set to.
      * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
@@ -37,10 +33,6 @@ public final class GetProjectResult {
      * 
      */
     private String created;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     private String id;
     /**
      * @return Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -92,9 +84,6 @@ public final class GetProjectResult {
     private List<GetProjectTeam> teams;
 
     private GetProjectResult() {}
-    public List<GetProjectApiKey> apiKeys() {
-        return this.apiKeys;
-    }
     /**
      * @return The number of Atlas clusters deployed in the project.
      * 
@@ -106,8 +95,6 @@ public final class GetProjectResult {
      * @return The ISO-8601-formatted timestamp of when Atlas created the project.
      * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
      * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-     * * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      * * `limits.#.name` - Human-readable label that identifies this project limit.
      * * `limits.#.value` - Amount the limit is set to.
      * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
@@ -118,10 +105,6 @@ public final class GetProjectResult {
     public String created() {
         return this.created;
     }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     public String id() {
         return this.id;
     }
@@ -207,7 +190,6 @@ public final class GetProjectResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<GetProjectApiKey> apiKeys;
         private Integer clusterCount;
         private String created;
         private String id;
@@ -226,7 +208,6 @@ public final class GetProjectResult {
         public Builder() {}
         public Builder(GetProjectResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.apiKeys = defaults.apiKeys;
     	      this.clusterCount = defaults.clusterCount;
     	      this.created = defaults.created;
     	      this.id = defaults.id;
@@ -244,14 +225,6 @@ public final class GetProjectResult {
     	      this.teams = defaults.teams;
         }
 
-        @CustomType.Setter
-        public Builder apiKeys(List<GetProjectApiKey> apiKeys) {
-            this.apiKeys = Objects.requireNonNull(apiKeys);
-            return this;
-        }
-        public Builder apiKeys(GetProjectApiKey... apiKeys) {
-            return apiKeys(List.of(apiKeys));
-        }
         @CustomType.Setter
         public Builder clusterCount(Integer clusterCount) {
             this.clusterCount = Objects.requireNonNull(clusterCount);
@@ -335,7 +308,6 @@ public final class GetProjectResult {
         }
         public GetProjectResult build() {
             final var o = new GetProjectResult();
-            o.apiKeys = apiKeys;
             o.clusterCount = clusterCount;
             o.created = created;
             o.id = id;

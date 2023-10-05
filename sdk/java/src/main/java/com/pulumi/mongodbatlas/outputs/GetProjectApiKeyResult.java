@@ -38,15 +38,6 @@ public final class GetProjectApiKeyResult {
      * 
      */
     private String publicKey;
-    /**
-     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
-    private List<String> roleNames;
 
     private GetProjectApiKeyResult() {}
     public String apiKeyId() {
@@ -90,17 +81,6 @@ public final class GetProjectApiKeyResult {
     public String publicKey() {
         return this.publicKey;
     }
-    /**
-     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to project_assignment */
-    public List<String> roleNames() {
-        return this.roleNames;
-    }
 
     public static Builder builder() {
         return new Builder();
@@ -118,7 +98,6 @@ public final class GetProjectApiKeyResult {
         private List<GetProjectApiKeyProjectAssignment> projectAssignments;
         private String projectId;
         private String publicKey;
-        private List<String> roleNames;
         public Builder() {}
         public Builder(GetProjectApiKeyResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -129,7 +108,6 @@ public final class GetProjectApiKeyResult {
     	      this.projectAssignments = defaults.projectAssignments;
     	      this.projectId = defaults.projectId;
     	      this.publicKey = defaults.publicKey;
-    	      this.roleNames = defaults.roleNames;
         }
 
         @CustomType.Setter
@@ -170,14 +148,6 @@ public final class GetProjectApiKeyResult {
             this.publicKey = Objects.requireNonNull(publicKey);
             return this;
         }
-        @CustomType.Setter
-        public Builder roleNames(List<String> roleNames) {
-            this.roleNames = Objects.requireNonNull(roleNames);
-            return this;
-        }
-        public Builder roleNames(String... roleNames) {
-            return roleNames(List.of(roleNames));
-        }
         public GetProjectApiKeyResult build() {
             final var o = new GetProjectApiKeyResult();
             o.apiKeyId = apiKeyId;
@@ -187,7 +157,6 @@ public final class GetProjectApiKeyResult {
             o.projectAssignments = projectAssignments;
             o.projectId = projectId;
             o.publicKey = publicKey;
-            o.roleNames = roleNames;
             return o;
         }
     }

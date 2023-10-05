@@ -21,56 +21,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### S
         /// {{% example %}}
-        /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var user = new Mongodbatlas.DatabaseUser("user", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
-        ///         Username = "myUsername",
-        ///         X509Type = "MANAGED",
-        ///         DatabaseName = "$external",
-        ///         Roles = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-        ///             {
-        ///                 RoleName = "atlasAdmin",
-        ///                 DatabaseName = "admin",
-        ///             },
-        ///         },
-        ///         Labels = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
-        ///             {
-        ///                 Key = "My Key",
-        ///                 Value = "My Value",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", new()
-        ///     {
-        ///         ProjectId = user.ProjectId,
-        ///         Username = user.Username,
-        ///         MonthsUntilExpiration = 2,
-        ///     });
-        /// 
-        ///     var test509AuthenticationDatabaseUser = Mongodbatlas.Get509AuthenticationDatabaseUser.Invoke(new()
-        ///     {
-        ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
-        ///         Username = testX509AuthenticationDatabaseUser.Username,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% example %}}
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp
         /// using System.Collections.Generic;
@@ -124,56 +74,6 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
-        /// {{% example %}}
-        /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var user = new Mongodbatlas.DatabaseUser("user", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
-        ///         Username = "myUsername",
-        ///         X509Type = "MANAGED",
-        ///         DatabaseName = "$external",
-        ///         Roles = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-        ///             {
-        ///                 RoleName = "atlasAdmin",
-        ///                 DatabaseName = "admin",
-        ///             },
-        ///         },
-        ///         Labels = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
-        ///             {
-        ///                 Key = "My Key",
-        ///                 Value = "My Value",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", new()
-        ///     {
-        ///         ProjectId = user.ProjectId,
-        ///         Username = user.Username,
-        ///         MonthsUntilExpiration = 2,
-        ///     });
-        /// 
-        ///     var test509AuthenticationDatabaseUser = Mongodbatlas.Get509AuthenticationDatabaseUser.Invoke(new()
-        ///     {
-        ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
-        ///         Username = testX509AuthenticationDatabaseUser.Username,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% example %}}
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp

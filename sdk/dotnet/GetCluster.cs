@@ -106,10 +106,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool BackupEnabled;
         /// <summary>
-        /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-        /// </summary>
-        public readonly ImmutableDictionary<string, string> BiConnector;
-        /// <summary>
         /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetClusterBiConnectorConfigResult> BiConnectorConfigs;
@@ -137,6 +133,9 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetClusterLabelResult> Labels;
         /// <summary>
         /// Indicates the version of the cluster to deploy.
@@ -183,9 +182,6 @@ namespace Pulumi.Mongodbatlas
         /// Minimum instance size to which your cluster can automatically scale.
         /// </summary>
         public readonly string ProviderAutoScalingComputeMinInstanceSize;
-        /// <summary>
-        /// **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
-        /// </summary>
         public readonly bool ProviderBackupEnabled;
         /// <summary>
         /// Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
@@ -244,6 +240,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string StateName;
         /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetClusterTagResult> Tags;
+        /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
         public readonly bool TerminationProtectionEnabled;
@@ -265,8 +265,6 @@ namespace Pulumi.Mongodbatlas
             string backingProviderName,
 
             bool backupEnabled,
-
-            ImmutableDictionary<string, string> biConnector,
 
             ImmutableArray<Outputs.GetClusterBiConnectorConfigResult> biConnectorConfigs,
 
@@ -336,6 +334,8 @@ namespace Pulumi.Mongodbatlas
 
             string stateName,
 
+            ImmutableArray<Outputs.GetClusterTagResult> tags,
+
             bool terminationProtectionEnabled,
 
             string versionReleaseSystem)
@@ -346,7 +346,6 @@ namespace Pulumi.Mongodbatlas
             AutoScalingDiskGbEnabled = autoScalingDiskGbEnabled;
             BackingProviderName = backingProviderName;
             BackupEnabled = backupEnabled;
-            BiConnector = biConnector;
             BiConnectorConfigs = biConnectorConfigs;
             ClusterType = clusterType;
             ConnectionStrings = connectionStrings;
@@ -381,6 +380,7 @@ namespace Pulumi.Mongodbatlas
             SnapshotBackupPolicies = snapshotBackupPolicies;
             SrvAddress = srvAddress;
             StateName = stateName;
+            Tags = tags;
             TerminationProtectionEnabled = terminationProtectionEnabled;
             VersionReleaseSystem = versionReleaseSystem;
         }

@@ -14,10 +14,6 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAlertConfigurationsInvokeResult {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     private String id;
     private @Nullable List<GetAlertConfigurationsListOption> listOptions;
     private @Nullable List<String> outputTypes;
@@ -38,10 +34,6 @@ public final class GetAlertConfigurationsInvokeResult {
     private Integer totalCount;
 
     private GetAlertConfigurationsInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     public String id() {
         return this.id;
     }

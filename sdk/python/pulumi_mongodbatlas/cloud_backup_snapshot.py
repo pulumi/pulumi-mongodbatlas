@@ -428,6 +428,40 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                  retention_in_days: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
+        `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
+        On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it's taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("myCluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        # enable cloud backup snapshots
+        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description="myDescription",
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
+            project_id=test_cloud_backup_snapshot.project_id,
+            cluster_name=test_cloud_backup_snapshot.cluster_name,
+            snapshot_id=test_cloud_backup_snapshot.snapshot_id,
+            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                download=True,
+            ))
+        ```
+
         ## Import
 
         Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
@@ -451,6 +485,40 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                  args: CloudBackupSnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
+        On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it's taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("myCluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        # enable cloud backup snapshots
+        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description="myDescription",
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
+            project_id=test_cloud_backup_snapshot.project_id,
+            cluster_name=test_cloud_backup_snapshot.cluster_name,
+            snapshot_id=test_cloud_backup_snapshot.snapshot_id,
+            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                download=True,
+            ))
+        ```
+
         ## Import
 
         Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.

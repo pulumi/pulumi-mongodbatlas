@@ -72,12 +72,6 @@ namespace Pulumi.Mongodbatlas
         public Output<bool?> BackupEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-        /// </summary>
-        [Output("biConnector")]
-        public Output<ImmutableDictionary<string, string>?> BiConnector { get; private set; } = null!;
-
-        /// <summary>
         /// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         /// </summary>
         [Output("biConnectorConfig")]
@@ -131,6 +125,9 @@ namespace Pulumi.Mongodbatlas
         [Output("encryptionAtRestProvider")]
         public Output<string> EncryptionAtRestProvider { get; private set; } = null!;
 
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableArray<Outputs.ClusterLabel>> Labels { get; private set; } = null!;
 
@@ -202,12 +199,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("providerAutoScalingComputeMinInstanceSize")]
         public Output<string> ProviderAutoScalingComputeMinInstanceSize { get; private set; } = null!;
-
-        /// <summary>
-        /// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
-        /// </summary>
-        [Output("providerBackupEnabled")]
-        public Output<bool?> ProviderBackupEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
@@ -300,6 +291,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("stateName")]
         public Output<string> StateName { get; private set; } = null!;
+
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ClusterTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
@@ -408,19 +405,6 @@ namespace Pulumi.Mongodbatlas
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
 
-        [Input("biConnector")]
-        private InputMap<string>? _biConnector;
-
-        /// <summary>
-        /// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-        /// </summary>
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config")]
-        public InputMap<string> BiConnector
-        {
-            get => _biConnector ?? (_biConnector = new InputMap<string>());
-            set => _biConnector = value;
-        }
-
         /// <summary>
         /// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         /// </summary>
@@ -459,6 +443,11 @@ namespace Pulumi.Mongodbatlas
 
         [Input("labels")]
         private InputList<Inputs.ClusterLabelArgs>? _labels;
+
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// </summary>
+        [Obsolete(@"this parameter is deprecated and will be removed by September 2024, please transition to tags")]
         public InputList<Inputs.ClusterLabelArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.ClusterLabelArgs>());
@@ -509,12 +498,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("providerAutoScalingComputeMinInstanceSize")]
         public Input<string>? ProviderAutoScalingComputeMinInstanceSize { get; set; }
-
-        /// <summary>
-        /// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
-        /// </summary>
-        [Input("providerBackupEnabled")]
-        public Input<bool>? ProviderBackupEnabled { get; set; }
 
         /// <summary>
         /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
@@ -587,6 +570,18 @@ namespace Pulumi.Mongodbatlas
         [Input("retainBackupsEnabled")]
         public Input<bool>? RetainBackupsEnabled { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.ClusterTagArgs>? _tags;
+
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public InputList<Inputs.ClusterTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ClusterTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
@@ -656,19 +651,6 @@ namespace Pulumi.Mongodbatlas
         [Input("backupEnabled")]
         public Input<bool>? BackupEnabled { get; set; }
 
-        [Input("biConnector")]
-        private InputMap<string>? _biConnector;
-
-        /// <summary>
-        /// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-        /// </summary>
-        [Obsolete(@"this parameter is deprecated and will be removed in v1.12.0, please transition to bi_connector_config")]
-        public InputMap<string> BiConnector
-        {
-            get => _biConnector ?? (_biConnector = new InputMap<string>());
-            set => _biConnector = value;
-        }
-
         /// <summary>
         /// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         /// </summary>
@@ -731,6 +713,11 @@ namespace Pulumi.Mongodbatlas
 
         [Input("labels")]
         private InputList<Inputs.ClusterLabelGetArgs>? _labels;
+
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// </summary>
+        [Obsolete(@"this parameter is deprecated and will be removed by September 2024, please transition to tags")]
         public InputList<Inputs.ClusterLabelGetArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.ClusterLabelGetArgs>());
@@ -805,12 +792,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("providerAutoScalingComputeMinInstanceSize")]
         public Input<string>? ProviderAutoScalingComputeMinInstanceSize { get; set; }
-
-        /// <summary>
-        /// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
-        /// </summary>
-        [Input("providerBackupEnabled")]
-        public Input<bool>? ProviderBackupEnabled { get; set; }
 
         /// <summary>
         /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
@@ -915,6 +896,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ClusterTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        /// </summary>
+        public InputList<Inputs.ClusterTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ClusterTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.

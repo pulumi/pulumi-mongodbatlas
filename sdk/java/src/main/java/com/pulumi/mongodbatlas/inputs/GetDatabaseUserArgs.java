@@ -7,8 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class GetDatabaseUserArgs extends com.pulumi.resources.InvokeArgs {
@@ -19,38 +17,15 @@ public final class GetDatabaseUserArgs extends com.pulumi.resources.InvokeArgs {
      * The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
      * 
      */
-    @Import(name="authDatabaseName")
-    private @Nullable Output<String> authDatabaseName;
+    @Import(name="authDatabaseName", required=true)
+    private Output<String> authDatabaseName;
 
     /**
      * @return The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
      * 
      */
-    public Optional<Output<String>> authDatabaseName() {
-        return Optional.ofNullable(this.authDatabaseName);
-    }
-
-    /**
-     * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-    @Import(name="databaseName")
-    private @Nullable Output<String> databaseName;
-
-    /**
-     * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-    public Optional<Output<String>> databaseName() {
-        return Optional.ofNullable(this.databaseName);
+    public Output<String> authDatabaseName() {
+        return this.authDatabaseName;
     }
 
     /**
@@ -87,7 +62,6 @@ public final class GetDatabaseUserArgs extends com.pulumi.resources.InvokeArgs {
 
     private GetDatabaseUserArgs(GetDatabaseUserArgs $) {
         this.authDatabaseName = $.authDatabaseName;
-        this.databaseName = $.databaseName;
         this.projectId = $.projectId;
         this.username = $.username;
     }
@@ -116,7 +90,7 @@ public final class GetDatabaseUserArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder authDatabaseName(@Nullable Output<String> authDatabaseName) {
+        public Builder authDatabaseName(Output<String> authDatabaseName) {
             $.authDatabaseName = authDatabaseName;
             return this;
         }
@@ -129,35 +103,6 @@ public final class GetDatabaseUserArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder authDatabaseName(String authDatabaseName) {
             return authDatabaseName(Output.of(authDatabaseName));
-        }
-
-        /**
-         * @param databaseName Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-        public Builder databaseName(@Nullable Output<String> databaseName) {
-            $.databaseName = databaseName;
-            return this;
-        }
-
-        /**
-         * @param databaseName Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in v1.12.0, please transition to auth_database_name */
-        public Builder databaseName(String databaseName) {
-            return databaseName(Output.of(databaseName));
         }
 
         /**
@@ -203,6 +148,7 @@ public final class GetDatabaseUserArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetDatabaseUserArgs build() {
+            $.authDatabaseName = Objects.requireNonNull($.authDatabaseName, "expected parameter 'authDatabaseName' to be non-null");
             $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
             $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
             return $;
