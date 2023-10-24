@@ -129,7 +129,6 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_third_party_integration":      {Tok: makeResource(mainMod, "ThirdPartyIntegration")},
 			"mongodbatlas_ldap_configuration":           {Tok: makeResource(mainMod, "LdapConfiguration")},
 			"mongodbatlas_ldap_verify":                  {Tok: makeResource(mainMod, "LdapVerify")},
-			"mongodbatlas_data_lake":                    {Tok: makeResource(mainMod, "DataLake")},
 			"mongodbatlas_event_trigger":                {Tok: makeResource(mainMod, "EventTrigger")},
 			"mongodbatlas_online_archive":               {Tok: makeResource(mainMod, "OnlineArchive")},
 			"mongodbatlas_privatelink_endpoint":         {Tok: makeResource(mainMod, "PrivateLinkEndpoint")},
@@ -143,10 +142,7 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_cloud_backup_snapshot_export_job": {
 				Tok: makeResource(mainMod, "CloudBackupSnapshotExportJob"),
 			},
-			"mongodbatlas_org_invitation": {Tok: makeResource(mainMod, "OrgInvitation")},
-			"mongodbatlas_privatelink_endpoint_service_adl": {
-				Tok: makeResource(mainMod, "PrivatelinkEndpointServiceAdl"),
-			},
+			"mongodbatlas_org_invitation":     {Tok: makeResource(mainMod, "OrgInvitation")},
 			"mongodbatlas_project_invitation": {Tok: makeResource(mainMod, "ProjectInvitation")},
 			"mongodbatlas_federated_settings_identity_provider": {
 				Tok: makeResource(mainMod, "FederatedSettingsIdentityProvider"),
@@ -241,12 +237,8 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeDataSource(mainMod, "getCloudBackupSnapshotRestoreJobs")},
 			"mongodbatlas_cloud_backup_snapshots": {Tok: makeDataSource(mainMod, "getCloudBackupSnapshots")},
 			"mongodbatlas_org_invitation":         {Tok: makeDataSource(mainMod, "getOrgInvitation")},
-			"mongodbatlas_privatelink_endpoint_service_adl": {
-				Tok: makeDataSource(mainMod, "getPrivatelinkEndpointServiceAdl")},
-			"mongodbatlas_privatelink_endpoints_service_adl": {
-				Tok: makeDataSource(mainMod, "getPrivatelinkEndpointsServiceAdl")},
-			"mongodbatlas_project_invitation": {Tok: makeDataSource(mainMod, "getProjectInvitation")},
-			"mongodbatlas_federated_settings": {Tok: makeDataSource(mainMod, "getFederatedSettings")},
+			"mongodbatlas_project_invitation":     {Tok: makeDataSource(mainMod, "getProjectInvitation")},
+			"mongodbatlas_federated_settings":     {Tok: makeDataSource(mainMod, "getFederatedSettings")},
 			"mongodbatlas_federated_settings_identity_provider": {
 				Tok: makeDataSource(mainMod, "getFederatedSettingsIdentityProvider"),
 			},
