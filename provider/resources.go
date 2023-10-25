@@ -90,23 +90,21 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Resources: map[string]*tfbridge.ResourceInfo{
+			"mongodbatlas_privatelink_endpoint":         {Tok: makeResource(mainMod, "PrivateLinkEndpoint")},
+			"mongodbatlas_privatelink_endpoint_service": {Tok: makeResource(mainMod, "PrivateLinkEndpointService")},
+
 			"mongodbatlas_cloud_provider_access_authorization": {Docs: noUpstreamDocs},
 			"mongodbatlas_cloud_provider_access_setup":         {Docs: noUpstreamDocs},
 			"mongodbatlas_team":                                {Docs: noUpstreamDocs},
 			"mongodbatlas_teams":                               {Docs: noUpstreamDocs},
-			"mongodbatlas_privatelink_endpoint":                {Tok: makeResource(mainMod, "PrivateLinkEndpoint")},
-			"mongodbatlas_privatelink_endpoint_service":        {Tok: makeResource(mainMod, "PrivateLinkEndpointService")},
 			"mongodbatlas_federated_settings_org_config":       {Docs: noUpstreamDocs},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"mongodbatlas_team":  {Docs: noUpstreamDocs},
-			"mongodbatlas_teams": {Docs: noUpstreamDocs},
-			"mongodbatlas_x509_authentication_database_user": {
-				Tok: makeDataSource(mainMod, "get509AuthenticationDatabaseUser"),
-			},
 			"mongodbatlas_privatelink_endpoint":         {Tok: makeDataSource(mainMod, "getPrivateLinkEndpoint")},
 			"mongodbatlas_privatelink_endpoint_service": {Tok: makeDataSource(mainMod, "getPrivateLinkEndpointService")},
 
+			"mongodbatlas_team":                     {Docs: noUpstreamDocs},
+			"mongodbatlas_teams":                    {Docs: noUpstreamDocs},
 			"mongodbatlas_shared_tier_restore_job":  {Docs: noUpstreamDocs},
 			"mongodbatlas_shared_tier_restore_jobs": {Docs: noUpstreamDocs},
 			"mongodbatlas_shared_tier_snapshot":     {Docs: noUpstreamDocs},

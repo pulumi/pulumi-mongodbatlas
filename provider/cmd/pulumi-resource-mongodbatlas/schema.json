@@ -11485,6 +11485,38 @@
                     "requiredInputs": []
                 }
             }
+        },
+        "mongodbatlas:index/getX509AuthenticationDatabaseUserCertificate:getX509AuthenticationDatabaseUserCertificate": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "groupId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "notAfter": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "groupId",
+                "id",
+                "notAfter",
+                "subject"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         }
     },
     "provider": {
@@ -19362,7 +19394,8 @@
     },
     "functions": {
         "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser": {
-            "description": "`mongodbatlas.X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n{{% examples %}}\n## Example Usage\n\n### S\n{{% example %}}\n### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.DatabaseUser;\nimport com.pulumi.mongodbatlas.DatabaseUserArgs;\nimport com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;\nimport com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;\nimport com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;\nimport com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var user = new DatabaseUser(\"user\", DatabaseUserArgs.builder()        \n            .projectId(\"\u003cPROJECT-ID\u003e\")\n            .username(\"myUsername\")\n            .x509Type(\"MANAGED\")\n            .databaseName(\"$external\")\n            .roles(DatabaseUserRoleArgs.builder()\n                .roleName(\"atlasAdmin\")\n                .databaseName(\"admin\")\n                .build())\n            .labels(DatabaseUserLabelArgs.builder()\n                .key(\"My Key\")\n                .value(\"My Value\")\n                .build())\n            .build());\n\n        var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser(\"testX509AuthenticationDatabaseUser\", X509AuthenticationDatabaseUserArgs.builder()        \n            .projectId(user.projectId())\n            .username(user.username())\n            .monthsUntilExpiration(2)\n            .build());\n\n        final var test509AuthenticationDatabaseUser = MongodbatlasFunctions.get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs.builder()\n            .projectId(testX509AuthenticationDatabaseUser.projectId())\n            .username(testX509AuthenticationDatabaseUser.username())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  user:\n    type: mongodbatlas:DatabaseUser\n    properties:\n      projectId: \u003cPROJECT-ID\u003e\n      username: myUsername\n      x509Type: MANAGED\n      databaseName: $external\n      roles:\n        - roleName: atlasAdmin\n          databaseName: admin\n      labels:\n        - key: My Key\n          value: My Value\n  testX509AuthenticationDatabaseUser:\n    type: mongodbatlas:X509AuthenticationDatabaseUser\n    properties:\n      projectId: ${user.projectId}\n      username: ${user.username}\n      monthsUntilExpiration: 2\nvariables:\n  test509AuthenticationDatabaseUser:\n    fn::invoke:\n      Function: mongodbatlas:get509AuthenticationDatabaseUser\n      Arguments:\n        projectId: ${testX509AuthenticationDatabaseUser.projectId}\n        username: ${testX509AuthenticationDatabaseUser.username}\n```\n{{% /example %}}\n{{% example %}}\n### Example Usage: Save a customer-managed X.509 configuration for an Atlas project\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testX509AuthenticationDatabaseUser = new mongodbatlas.X509AuthenticationDatabaseUser(\"testX509AuthenticationDatabaseUser\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    customerX509Cas: `-----BEGIN CERTIFICATE-----\nMIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC\nVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl\nc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG\nSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy\nMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF\nVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV\nBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp\nc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\niQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr\ncURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O\nFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG\nSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA\n7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A\niul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz\n-----END CERTIFICATE-----\"\n`,\n});\nconst test509AuthenticationDatabaseUser = mongodbatlas.get509AuthenticationDatabaseUserOutput({\n    projectId: testX509AuthenticationDatabaseUser.projectId,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_x509_authentication_database_user = mongodbatlas.X509AuthenticationDatabaseUser(\"testX509AuthenticationDatabaseUser\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    customer_x509_cas=\"\"\"-----BEGIN CERTIFICATE-----\nMIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC\nVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl\nc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG\nSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy\nMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF\nVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV\nBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp\nc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\niQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr\ncURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O\nFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG\nSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA\n7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A\niul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz\n-----END CERTIFICATE-----\"\n\"\"\")\ntest509_authentication_database_user = mongodbatlas.get509_authentication_database_user_output(project_id=test_x509_authentication_database_user.project_id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser(\"testX509AuthenticationDatabaseUser\", new()\n    {\n        ProjectId = \"\u003cPROJECT-ID\u003e\",\n        CustomerX509Cas = @\"-----BEGIN CERTIFICATE-----\nMIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC\nVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl\nc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG\nSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy\nMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF\nVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV\nBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp\nc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\niQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr\ncURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O\nFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG\nSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA\n7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A\niul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz\n-----END CERTIFICATE-----\"\"\n\",\n    });\n\n    var test509AuthenticationDatabaseUser = Mongodbatlas.Get509AuthenticationDatabaseUser.Invoke(new()\n    {\n        ProjectId = testX509AuthenticationDatabaseUser.ProjectId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestX509AuthenticationDatabaseUser, err := mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, \"testX509AuthenticationDatabaseUser\", \u0026mongodbatlas.X509AuthenticationDatabaseUserArgs{\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tCustomerX509Cas: pulumi.String(`-----BEGIN CERTIFICATE-----\nMIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC\nVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl\nc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG\nSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy\nMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF\nVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV\nBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp\nc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\niQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr\ncURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O\nFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG\nSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA\n7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A\niul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz\n-----END CERTIFICATE-----\"\n`),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = mongodbatlas.Get509AuthenticationDatabaseUserOutput(ctx, mongodbatlas.Get509AuthenticationDatabaseUserOutputArgs{\n\t\t\tProjectId: testX509AuthenticationDatabaseUser.ProjectId,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;\nimport com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser(\"testX509AuthenticationDatabaseUser\", X509AuthenticationDatabaseUserArgs.builder()        \n            .projectId(\"\u003cPROJECT-ID\u003e\")\n            .customerX509Cas(\"\"\"\n-----BEGIN CERTIFICATE-----\nMIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC\nVVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl\nc3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG\nSIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy\nMDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF\nVGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV\nBAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp\nc3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\niQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr\ncURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O\nFh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG\nSIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA\n7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A\niul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz\n-----END CERTIFICATE-----\"\n            \"\"\")\n            .build());\n\n        final var test509AuthenticationDatabaseUser = MongodbatlasFunctions.get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs.builder()\n            .projectId(testX509AuthenticationDatabaseUser.projectId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testX509AuthenticationDatabaseUser:\n    type: mongodbatlas:X509AuthenticationDatabaseUser\n    properties:\n      projectId: \u003cPROJECT-ID\u003e\n      customerX509Cas: |\n        -----BEGIN CERTIFICATE-----\n        MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC\n        VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl\n        c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG\n        SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy\n        MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF\n        VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV\n        BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp\n        c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n        iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr\n        cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O\n        Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG\n        SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA\n        7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A\n        iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz\n        -----END CERTIFICATE-----\"\nvariables:\n  test509AuthenticationDatabaseUser:\n    fn::invoke:\n      Function: mongodbatlas:get509AuthenticationDatabaseUser\n      Arguments:\n        projectId: ${testX509AuthenticationDatabaseUser.projectId}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "deprecationMessage": "mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser",
+            "description": "`mongodbatlas.X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n{{% examples %}}\n## Example Usage\n\n### S\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking get509AuthenticationDatabaseUser.\n",
                 "properties": {
@@ -26023,6 +26056,61 @@
                 "required": [
                     "projectId",
                     "results",
+                    "id"
+                ]
+            }
+        },
+        "mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser": {
+            "description": "`mongodbatlas.X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n{{% examples %}}\n## Example Usage\n\n### S\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getX509AuthenticationDatabaseUser.\n",
+                "properties": {
+                    "projectId": {
+                        "type": "string",
+                        "description": "Identifier for the Atlas project associated with the X.509 configuration.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Username of the database user to create a certificate for.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getX509AuthenticationDatabaseUser.\n",
+                "properties": {
+                    "certificates": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/getX509AuthenticationDatabaseUserCertificate:getX509AuthenticationDatabaseUserCertificate"
+                        },
+                        "description": "Array of objects where each details one unexpired database user certificate.\n"
+                    },
+                    "customerX509Cas": {
+                        "type": "string",
+                        "secret": true
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "certificates",
+                    "customerX509Cas",
+                    "projectId",
                     "id"
                 ]
             }

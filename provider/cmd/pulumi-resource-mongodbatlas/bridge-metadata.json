@@ -2592,7 +2592,14 @@
                 }
             },
             "mongodbatlas_x509_authentication_database_user": {
-                "current": "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser",
+                "current": "mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser",
+                "past": [
+                    {
+                        "name": "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser",
+                        "inCodegen": false,
+                        "majorVersion": 3
+                    }
+                ],
                 "majorVersion": 3,
                 "fields": {
                     "certificates": {
@@ -2745,7 +2752,8 @@
             "mongodbatlas:index/getTeam:getTeam": 0,
             "mongodbatlas:index/getTeams:getTeams": 0,
             "mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration": 0,
-            "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations": 0
+            "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations": 0,
+            "mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser": 0
         }
     },
     "renames": {
@@ -2804,7 +2812,7 @@
             "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser": "mongodbatlas_x509_authentication_database_user"
         },
         "functions": {
-            "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser": "mongodbatlas_x509_authentication_database_user",
+            "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser": "mongodbatlas_x509_authentication_database_user_legacy",
             "mongodbatlas:index/getAccessListApiKey:getAccessListApiKey": "mongodbatlas_access_list_api_key",
             "mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys": "mongodbatlas_access_list_api_keys",
             "mongodbatlas:index/getAdvancedCluster:getAdvancedCluster": "mongodbatlas_advanced_cluster",
@@ -2891,7 +2899,8 @@
             "mongodbatlas:index/getTeam:getTeam": "mongodbatlas_team",
             "mongodbatlas:index/getTeams:getTeams": "mongodbatlas_teams",
             "mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration": "mongodbatlas_third_party_integration",
-            "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations": "mongodbatlas_third_party_integrations"
+            "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations": "mongodbatlas_third_party_integrations",
+            "mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser": "mongodbatlas_x509_authentication_database_user"
         },
         "renamedProperties": {
             "mongodbatlas:config/assumeRole:assumeRole": {
@@ -5528,6 +5537,15 @@
                 "serviceKey": "service_key",
                 "teamName": "team_name",
                 "userName": "user_name"
+            },
+            "mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser": {
+                "customerX509Cas": "customer_x509_cas",
+                "projectId": "project_id"
+            },
+            "mongodbatlas:index/getX509AuthenticationDatabaseUserCertificate:getX509AuthenticationDatabaseUserCertificate": {
+                "createdAt": "created_at",
+                "groupId": "group_id",
+                "notAfter": "not_after"
             },
             "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig": {
                 "clusterName": "cluster_name",
