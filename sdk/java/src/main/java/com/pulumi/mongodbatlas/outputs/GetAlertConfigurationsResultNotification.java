@@ -12,97 +12,295 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAlertConfigurationsResultNotification {
+    /**
+     * @return Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+     * 
+     */
     private String apiToken;
+    /**
+     * @return Slack channel name. Required for the SLACK notifications type.
+     * 
+     */
     private String channelName;
+    /**
+     * @return Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
+     * 
+     */
     private String datadogApiKey;
+    /**
+     * @return Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+     * 
+     */
     private String datadogRegion;
+    /**
+     * @return Number of minutes to wait after an alert condition is detected before sending out the first notification.
+     * 
+     */
     private Integer delayMin;
+    /**
+     * @return Email address to which alert notifications are sent. Required for the EMAIL notifications type.
+     * 
+     */
     private String emailAddress;
+    /**
+     * @return Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
+     * 
+     */
     private Boolean emailEnabled;
+    /**
+     * @return Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+     * 
+     */
     private Integer intervalMin;
+    /**
+     * @return Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+     * 
+     */
     private String microsoftTeamsWebhookUrl;
+    /**
+     * @return Mobile number to which alert notifications are sent. Required for the SMS notifications type.
+     * 
+     */
     private String mobileNumber;
+    /**
+     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * 
+     */
+    private String notifierId;
+    /**
+     * @return Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+     * 
+     */
     private String opsGenieApiKey;
+    /**
+     * @return Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
+     * 
+     */
     private String opsGenieRegion;
+    /**
+     * @return Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
+     * 
+     */
     private List<String> roles;
+    /**
+     * @return PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+     * 
+     */
     private String serviceKey;
+    /**
+     * @return Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * 
+     */
     private Boolean smsEnabled;
+    /**
+     * @return Unique identifier of a team.
+     * 
+     */
     private String teamId;
+    /**
+     * @return Label for the team that receives this notification.
+     * 
+     */
     private String teamName;
+    /**
+     * @return Type of alert notification.
+     * Accepted values are:
+     * 
+     */
     private String typeName;
+    /**
+     * @return Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
+     * 
+     */
     private String username;
+    /**
+     * @return VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+     * 
+     */
     private String victorOpsApiKey;
+    /**
+     * @return VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+     * 
+     */
     private String victorOpsRoutingKey;
+    /**
+     * @return Authentication secret for the `WEBHOOK` notifications type.
+     * 
+     */
     private String webhookSecret;
+    /**
+     * @return Target URL  for the `WEBHOOK` notifications type.
+     * 
+     */
     private String webhookUrl;
 
     private GetAlertConfigurationsResultNotification() {}
+    /**
+     * @return Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+     * 
+     */
     public String apiToken() {
         return this.apiToken;
     }
+    /**
+     * @return Slack channel name. Required for the SLACK notifications type.
+     * 
+     */
     public String channelName() {
         return this.channelName;
     }
+    /**
+     * @return Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
+     * 
+     */
     public String datadogApiKey() {
         return this.datadogApiKey;
     }
+    /**
+     * @return Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+     * 
+     */
     public String datadogRegion() {
         return this.datadogRegion;
     }
+    /**
+     * @return Number of minutes to wait after an alert condition is detected before sending out the first notification.
+     * 
+     */
     public Integer delayMin() {
         return this.delayMin;
     }
+    /**
+     * @return Email address to which alert notifications are sent. Required for the EMAIL notifications type.
+     * 
+     */
     public String emailAddress() {
         return this.emailAddress;
     }
+    /**
+     * @return Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
+     * 
+     */
     public Boolean emailEnabled() {
         return this.emailEnabled;
     }
+    /**
+     * @return Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+     * 
+     */
     public Integer intervalMin() {
         return this.intervalMin;
     }
+    /**
+     * @return Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+     * 
+     */
     public String microsoftTeamsWebhookUrl() {
         return this.microsoftTeamsWebhookUrl;
     }
+    /**
+     * @return Mobile number to which alert notifications are sent. Required for the SMS notifications type.
+     * 
+     */
     public String mobileNumber() {
         return this.mobileNumber;
     }
+    /**
+     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * 
+     */
+    public String notifierId() {
+        return this.notifierId;
+    }
+    /**
+     * @return Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+     * 
+     */
     public String opsGenieApiKey() {
         return this.opsGenieApiKey;
     }
+    /**
+     * @return Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
+     * 
+     */
     public String opsGenieRegion() {
         return this.opsGenieRegion;
     }
+    /**
+     * @return Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
+     * 
+     */
     public List<String> roles() {
         return this.roles;
     }
+    /**
+     * @return PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+     * 
+     */
     public String serviceKey() {
         return this.serviceKey;
     }
+    /**
+     * @return Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+     * 
+     */
     public Boolean smsEnabled() {
         return this.smsEnabled;
     }
+    /**
+     * @return Unique identifier of a team.
+     * 
+     */
     public String teamId() {
         return this.teamId;
     }
+    /**
+     * @return Label for the team that receives this notification.
+     * 
+     */
     public String teamName() {
         return this.teamName;
     }
+    /**
+     * @return Type of alert notification.
+     * Accepted values are:
+     * 
+     */
     public String typeName() {
         return this.typeName;
     }
+    /**
+     * @return Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
+     * 
+     */
     public String username() {
         return this.username;
     }
+    /**
+     * @return VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+     * 
+     */
     public String victorOpsApiKey() {
         return this.victorOpsApiKey;
     }
+    /**
+     * @return VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+     * 
+     */
     public String victorOpsRoutingKey() {
         return this.victorOpsRoutingKey;
     }
+    /**
+     * @return Authentication secret for the `WEBHOOK` notifications type.
+     * 
+     */
     public String webhookSecret() {
         return this.webhookSecret;
     }
+    /**
+     * @return Target URL  for the `WEBHOOK` notifications type.
+     * 
+     */
     public String webhookUrl() {
         return this.webhookUrl;
     }
@@ -126,6 +324,7 @@ public final class GetAlertConfigurationsResultNotification {
         private Integer intervalMin;
         private String microsoftTeamsWebhookUrl;
         private String mobileNumber;
+        private String notifierId;
         private String opsGenieApiKey;
         private String opsGenieRegion;
         private List<String> roles;
@@ -152,6 +351,7 @@ public final class GetAlertConfigurationsResultNotification {
     	      this.intervalMin = defaults.intervalMin;
     	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
     	      this.mobileNumber = defaults.mobileNumber;
+    	      this.notifierId = defaults.notifierId;
     	      this.opsGenieApiKey = defaults.opsGenieApiKey;
     	      this.opsGenieRegion = defaults.opsGenieRegion;
     	      this.roles = defaults.roles;
@@ -215,6 +415,11 @@ public final class GetAlertConfigurationsResultNotification {
         @CustomType.Setter
         public Builder mobileNumber(String mobileNumber) {
             this.mobileNumber = Objects.requireNonNull(mobileNumber);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder notifierId(String notifierId) {
+            this.notifierId = Objects.requireNonNull(notifierId);
             return this;
         }
         @CustomType.Setter
@@ -297,6 +502,7 @@ public final class GetAlertConfigurationsResultNotification {
             o.intervalMin = intervalMin;
             o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             o.mobileNumber = mobileNumber;
+            o.notifierId = notifierId;
             o.opsGenieApiKey = opsGenieApiKey;
             o.opsGenieRegion = opsGenieRegion;
             o.roles = roles;

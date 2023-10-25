@@ -23,7 +23,6 @@ from .cluster import *
 from .cluster_outage_simulation import *
 from .custom_db_role import *
 from .custom_dns_configuration_cluster_aws import *
-from .data_lake import *
 from .data_lake_pipeline import *
 from .database_user import *
 from .encryption_at_rest import *
@@ -63,12 +62,10 @@ from .get_clusters import *
 from .get_custom_db_role import *
 from .get_custom_db_roles import *
 from .get_custom_dns_configuration_cluster_aws import *
-from .get_data_lake import *
 from .get_data_lake_pipeline import *
 from .get_data_lake_pipeline_run import *
 from .get_data_lake_pipeline_runs import *
 from .get_data_lake_pipelines import *
-from .get_data_lakes import *
 from .get_database_user import *
 from .get_database_users import *
 from .get_event_trigger import *
@@ -100,11 +97,9 @@ from .get_organizations import *
 from .get_private_endpoint_regional_mode import *
 from .get_private_link_endpoint import *
 from .get_private_link_endpoint_service import *
-from .get_privatelink_endpoint_service_adl import *
 from .get_privatelink_endpoint_service_data_federation_online_archive import *
 from .get_privatelink_endpoint_service_data_federation_online_archives import *
 from .get_privatelink_endpoint_service_serverless import *
-from .get_privatelink_endpoints_service_adl import *
 from .get_privatelink_endpoints_service_serverless import *
 from .get_project import *
 from .get_project_api_key import *
@@ -125,6 +120,7 @@ from .get_team import *
 from .get_teams import *
 from .get_third_party_integration import *
 from .get_third_party_integrations import *
+from .get_x509_authentication_database_user import *
 from .global_cluster_config import *
 from .ldap_configuration import *
 from .ldap_verify import *
@@ -138,7 +134,6 @@ from .private_endpoint_regional_mode import *
 from .private_link_endpoint import *
 from .private_link_endpoint_service import *
 from .privatelink_endpoint_serverless import *
-from .privatelink_endpoint_service_adl import *
 from .privatelink_endpoint_service_data_federation_online_archive import *
 from .privatelink_endpoint_service_serverless import *
 from .project import *
@@ -307,14 +302,6 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws": "CustomDnsConfigurationClusterAws"
-  }
- },
- {
-  "pkg": "mongodbatlas",
-  "mod": "index/dataLake",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/dataLake:DataLake": "DataLake"
   }
  },
  {
@@ -491,14 +478,6 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless": "PrivatelinkEndpointServerless"
-  }
- },
- {
-  "pkg": "mongodbatlas",
-  "mod": "index/privatelinkEndpointServiceAdl",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl": "PrivatelinkEndpointServiceAdl"
   }
  },
  {

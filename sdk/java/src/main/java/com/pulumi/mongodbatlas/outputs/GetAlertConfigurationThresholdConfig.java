@@ -11,7 +11,7 @@ import java.util.Objects;
 @CustomType
 public final class GetAlertConfigurationThresholdConfig {
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      * 
      */
@@ -30,7 +30,7 @@ public final class GetAlertConfigurationThresholdConfig {
 
     private GetAlertConfigurationThresholdConfig() {}
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      * 
      */

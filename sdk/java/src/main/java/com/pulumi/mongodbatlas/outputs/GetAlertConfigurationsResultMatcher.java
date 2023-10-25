@@ -9,17 +9,43 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAlertConfigurationsResultMatcher {
+    /**
+     * @return Name of the field in the target object to match on.
+     * 
+     */
     private String fieldName;
+    /**
+     * @return The operator to apply when checking the current metric value against the threshold value.
+     * Accepted values are:
+     * 
+     */
     private String operator;
+    /**
+     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * 
+     */
     private String value;
 
     private GetAlertConfigurationsResultMatcher() {}
+    /**
+     * @return Name of the field in the target object to match on.
+     * 
+     */
     public String fieldName() {
         return this.fieldName;
     }
+    /**
+     * @return The operator to apply when checking the current metric value against the threshold value.
+     * Accepted values are:
+     * 
+     */
     public String operator() {
         return this.operator;
     }
+    /**
+     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * 
+     */
     public String value() {
         return this.value;
     }

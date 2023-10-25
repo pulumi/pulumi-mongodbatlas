@@ -63,6 +63,11 @@ public final class GetAlertConfigurationNotification {
      */
     private String mobileNumber;
     /**
+     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * 
+     */
+    private String notifierId;
+    /**
      * @return Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
      * 
      */
@@ -201,6 +206,13 @@ public final class GetAlertConfigurationNotification {
         return this.mobileNumber;
     }
     /**
+     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * 
+     */
+    public String notifierId() {
+        return this.notifierId;
+    }
+    /**
      * @return Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
      * 
      */
@@ -312,6 +324,7 @@ public final class GetAlertConfigurationNotification {
         private Integer intervalMin;
         private String microsoftTeamsWebhookUrl;
         private String mobileNumber;
+        private String notifierId;
         private String opsGenieApiKey;
         private String opsGenieRegion;
         private List<String> roles;
@@ -338,6 +351,7 @@ public final class GetAlertConfigurationNotification {
     	      this.intervalMin = defaults.intervalMin;
     	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
     	      this.mobileNumber = defaults.mobileNumber;
+    	      this.notifierId = defaults.notifierId;
     	      this.opsGenieApiKey = defaults.opsGenieApiKey;
     	      this.opsGenieRegion = defaults.opsGenieRegion;
     	      this.roles = defaults.roles;
@@ -401,6 +415,11 @@ public final class GetAlertConfigurationNotification {
         @CustomType.Setter
         public Builder mobileNumber(String mobileNumber) {
             this.mobileNumber = Objects.requireNonNull(mobileNumber);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder notifierId(String notifierId) {
+            this.notifierId = Objects.requireNonNull(notifierId);
             return this;
         }
         @CustomType.Setter
@@ -483,6 +502,7 @@ public final class GetAlertConfigurationNotification {
             o.intervalMin = intervalMin;
             o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             o.mobileNumber = mobileNumber;
+            o.notifierId = notifierId;
             o.opsGenieApiKey = opsGenieApiKey;
             o.opsGenieRegion = opsGenieRegion;
             o.roles = roles;

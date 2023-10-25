@@ -13,10 +13,27 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetAlertConfigurationsResultMetricThresholdConfigResult
     {
+        /// <summary>
+        /// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+        /// </summary>
         public readonly string MetricName;
+        /// <summary>
+        /// This must be set to AVERAGE. Atlas computes the current metric value as an average.
+        /// </summary>
         public readonly string Mode;
+        /// <summary>
+        /// The operator to apply when checking the current metric value against the threshold value.
+        /// Accepted values are:
+        /// </summary>
         public readonly string Operator;
+        /// <summary>
+        /// Threshold value outside of which an alert will be triggered.
+        /// </summary>
         public readonly double Threshold;
+        /// <summary>
+        /// The units for the threshold value. Depends on the type of metric.
+        /// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+        /// </summary>
         public readonly string Units;
 
         [OutputConstructor]

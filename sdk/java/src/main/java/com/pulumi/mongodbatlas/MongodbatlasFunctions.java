@@ -68,7 +68,6 @@ import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
 import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCustomDnsConfigurationClusterAwsArgs;
 import com.pulumi.mongodbatlas.inputs.GetCustomDnsConfigurationClusterAwsPlainArgs;
-import com.pulumi.mongodbatlas.inputs.GetDataLakeArgs;
 import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
 import com.pulumi.mongodbatlas.inputs.GetDataLakePipelinePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunArgs;
@@ -77,9 +76,6 @@ import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunsArgs;
 import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineRunsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetDataLakePipelinesArgs;
 import com.pulumi.mongodbatlas.inputs.GetDataLakePipelinesPlainArgs;
-import com.pulumi.mongodbatlas.inputs.GetDataLakePlainArgs;
-import com.pulumi.mongodbatlas.inputs.GetDataLakesArgs;
-import com.pulumi.mongodbatlas.inputs.GetDataLakesPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
 import com.pulumi.mongodbatlas.inputs.GetDatabaseUserPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
@@ -142,16 +138,12 @@ import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServicePlainArgs;
-import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceAdlArgs;
-import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceAdlPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessPlainArgs;
-import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceAdlArgs;
-import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceAdlPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyArgs;
@@ -190,6 +182,8 @@ import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationArgs;
 import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationsArgs;
 import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
+import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserPlainArgs;
 import com.pulumi.mongodbatlas.outputs.Get509AuthenticationDatabaseUserResult;
 import com.pulumi.mongodbatlas.outputs.GetAccessListApiKeyResult;
 import com.pulumi.mongodbatlas.outputs.GetAccessListApiKeysInvokeResult;
@@ -224,8 +218,6 @@ import com.pulumi.mongodbatlas.outputs.GetDataLakePipelineResult;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelineRunResult;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelineRunsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelinesInvokeResult;
-import com.pulumi.mongodbatlas.outputs.GetDataLakeResult;
-import com.pulumi.mongodbatlas.outputs.GetDataLakesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetDatabaseUserResult;
 import com.pulumi.mongodbatlas.outputs.GetDatabaseUsersInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetEventTriggerResult;
@@ -257,11 +249,9 @@ import com.pulumi.mongodbatlas.outputs.GetOrganizationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivateEndpointRegionalModeResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivateLinkEndpointResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivateLinkEndpointServiceResult;
-import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointServiceAdlResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointServiceServerlessResult;
-import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointsServiceAdlInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointsServiceServerlessInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectApiKeyResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectApiKeysInvokeResult;
@@ -282,6 +272,7 @@ import com.pulumi.mongodbatlas.outputs.GetTeamResult;
 import com.pulumi.mongodbatlas.outputs.GetTeamsResult;
 import com.pulumi.mongodbatlas.outputs.GetThirdPartyIntegrationResult;
 import com.pulumi.mongodbatlas.outputs.GetThirdPartyIntegrationsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetX509AuthenticationDatabaseUserResult;
 import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
@@ -294,118 +285,12 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .username(&#34;myUsername&#34;)
-     *             .x509Type(&#34;MANAGED&#34;)
-     *             .databaseName(&#34;$external&#34;)
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName(&#34;atlasAdmin&#34;)
-     *                 .databaseName(&#34;admin&#34;)
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key(&#34;My Key&#34;)
-     *                 .value(&#34;My Value&#34;)
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser(&#34;testX509AuthenticationDatabaseUser&#34;, X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test509AuthenticationDatabaseUser = MongodbatlasFunctions.get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser(&#34;testX509AuthenticationDatabaseUser&#34;, X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .customerX509Cas(&#34;&#34;&#34;
-     * -----BEGIN CERTIFICATE-----
-     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
-     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
-     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
-     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
-     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
-     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
-     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
-     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
-     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
-     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
-     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
-     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
-     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
-     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-     * -----END CERTIFICATE-----&#34;
-     *             &#34;&#34;&#34;)
-     *             .build());
-     * 
-     *         final var test509AuthenticationDatabaseUser = MongodbatlasFunctions.get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
+     * @deprecated
+     * mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser
      * 
      */
+    @Deprecated /* mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser */
     public static Output<Get509AuthenticationDatabaseUserResult> get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs args) {
         return get509AuthenticationDatabaseUser(args, InvokeOptions.Empty);
     }
@@ -417,118 +302,12 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .username(&#34;myUsername&#34;)
-     *             .x509Type(&#34;MANAGED&#34;)
-     *             .databaseName(&#34;$external&#34;)
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName(&#34;atlasAdmin&#34;)
-     *                 .databaseName(&#34;admin&#34;)
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key(&#34;My Key&#34;)
-     *                 .value(&#34;My Value&#34;)
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser(&#34;testX509AuthenticationDatabaseUser&#34;, X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test509AuthenticationDatabaseUser = MongodbatlasFunctions.get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser(&#34;testX509AuthenticationDatabaseUser&#34;, X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .customerX509Cas(&#34;&#34;&#34;
-     * -----BEGIN CERTIFICATE-----
-     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
-     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
-     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
-     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
-     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
-     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
-     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
-     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
-     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
-     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
-     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
-     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
-     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
-     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-     * -----END CERTIFICATE-----&#34;
-     *             &#34;&#34;&#34;)
-     *             .build());
-     * 
-     *         final var test509AuthenticationDatabaseUser = MongodbatlasFunctions.get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
+     * @deprecated
+     * mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser
      * 
      */
+    @Deprecated /* mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser */
     public static CompletableFuture<Get509AuthenticationDatabaseUserResult> get509AuthenticationDatabaseUserPlain(Get509AuthenticationDatabaseUserPlainArgs args) {
         return get509AuthenticationDatabaseUserPlain(args, InvokeOptions.Empty);
     }
@@ -540,118 +319,12 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .username(&#34;myUsername&#34;)
-     *             .x509Type(&#34;MANAGED&#34;)
-     *             .databaseName(&#34;$external&#34;)
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName(&#34;atlasAdmin&#34;)
-     *                 .databaseName(&#34;admin&#34;)
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key(&#34;My Key&#34;)
-     *                 .value(&#34;My Value&#34;)
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser(&#34;testX509AuthenticationDatabaseUser&#34;, X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test509AuthenticationDatabaseUser = MongodbatlasFunctions.get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser(&#34;testX509AuthenticationDatabaseUser&#34;, X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .customerX509Cas(&#34;&#34;&#34;
-     * -----BEGIN CERTIFICATE-----
-     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
-     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
-     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
-     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
-     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
-     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
-     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
-     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
-     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
-     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
-     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
-     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
-     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
-     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-     * -----END CERTIFICATE-----&#34;
-     *             &#34;&#34;&#34;)
-     *             .build());
-     * 
-     *         final var test509AuthenticationDatabaseUser = MongodbatlasFunctions.get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
+     * @deprecated
+     * mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser
      * 
      */
+    @Deprecated /* mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser */
     public static Output<Get509AuthenticationDatabaseUserResult> get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", TypeShape.of(Get509AuthenticationDatabaseUserResult.class), args, Utilities.withVersion(options));
     }
@@ -663,118 +336,12 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .username(&#34;myUsername&#34;)
-     *             .x509Type(&#34;MANAGED&#34;)
-     *             .databaseName(&#34;$external&#34;)
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName(&#34;atlasAdmin&#34;)
-     *                 .databaseName(&#34;admin&#34;)
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key(&#34;My Key&#34;)
-     *                 .value(&#34;My Value&#34;)
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser(&#34;testX509AuthenticationDatabaseUser&#34;, X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test509AuthenticationDatabaseUser = MongodbatlasFunctions.get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.Get509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser(&#34;testX509AuthenticationDatabaseUser&#34;, X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .customerX509Cas(&#34;&#34;&#34;
-     * -----BEGIN CERTIFICATE-----
-     * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
-     * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
-     * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
-     * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
-     * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
-     * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
-     * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
-     * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
-     * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
-     * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
-     * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
-     * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
-     * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
-     * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-     * -----END CERTIFICATE-----&#34;
-     *             &#34;&#34;&#34;)
-     *             .build());
-     * 
-     *         final var test509AuthenticationDatabaseUser = MongodbatlasFunctions.get509AuthenticationDatabaseUser(Get509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
+     * @deprecated
+     * mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser
      * 
      */
+    @Deprecated /* mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser */
     public static CompletableFuture<Get509AuthenticationDatabaseUserResult> get509AuthenticationDatabaseUserPlain(Get509AuthenticationDatabaseUserPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", TypeShape.of(Get509AuthenticationDatabaseUserResult.class), args, Utilities.withVersion(options));
     }
@@ -4723,42 +4290,6 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", TypeShape.of(GetCustomDnsConfigurationClusterAwsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.DataLake` describe a Data Lake.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     */
-    public static Output<GetDataLakeResult> getDataLake(GetDataLakeArgs args) {
-        return getDataLake(args, InvokeOptions.Empty);
-    }
-    /**
-     * `mongodbatlas.DataLake` describe a Data Lake.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     */
-    public static CompletableFuture<GetDataLakeResult> getDataLakePlain(GetDataLakePlainArgs args) {
-        return getDataLakePlain(args, InvokeOptions.Empty);
-    }
-    /**
-     * `mongodbatlas.DataLake` describe a Data Lake.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     */
-    public static Output<GetDataLakeResult> getDataLake(GetDataLakeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("mongodbatlas:index/getDataLake:getDataLake", TypeShape.of(GetDataLakeResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * `mongodbatlas.DataLake` describe a Data Lake.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     */
-    public static CompletableFuture<GetDataLakeResult> getDataLakePlain(GetDataLakePlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDataLake:getDataLake", TypeShape.of(GetDataLakeResult.class), args, Utilities.withVersion(options));
-    }
-    /**
      * `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
@@ -5449,162 +4980,6 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetDataLakePipelinesInvokeResult> getDataLakePipelinesPlain(GetDataLakePipelinesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDataLakePipelines:getDataLakePipelines", TypeShape.of(GetDataLakePipelinesInvokeResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * `mongodbatlas.getDataLakes` describe all Data Lakes.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetDataLakesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getDataLakes(GetDataLakesArgs.builder()
-     *             .projectId(&#34;PROJECT ID&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetDataLakesInvokeResult> getDataLakes(GetDataLakesArgs args) {
-        return getDataLakes(args, InvokeOptions.Empty);
-    }
-    /**
-     * `mongodbatlas.getDataLakes` describe all Data Lakes.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetDataLakesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getDataLakes(GetDataLakesArgs.builder()
-     *             .projectId(&#34;PROJECT ID&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetDataLakesInvokeResult> getDataLakesPlain(GetDataLakesPlainArgs args) {
-        return getDataLakesPlain(args, InvokeOptions.Empty);
-    }
-    /**
-     * `mongodbatlas.getDataLakes` describe all Data Lakes.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetDataLakesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getDataLakes(GetDataLakesArgs.builder()
-     *             .projectId(&#34;PROJECT ID&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetDataLakesInvokeResult> getDataLakes(GetDataLakesArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("mongodbatlas:index/getDataLakes:getDataLakes", TypeShape.of(GetDataLakesInvokeResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * `mongodbatlas.getDataLakes` describe all Data Lakes.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetDataLakesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getDataLakes(GetDataLakesArgs.builder()
-     *             .projectId(&#34;PROJECT ID&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetDataLakesInvokeResult> getDataLakesPlain(GetDataLakesPlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getDataLakes:getDataLakes", TypeShape.of(GetDataLakesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.DatabaseUser` describe a Database User. This represents a database user which will be applied to all clusters within the project.
@@ -9162,7 +8537,12 @@ public final class MongodbatlasFunctions {
      * 
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `criteria` - Criteria to use for archiving data. See criteria.
+     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
@@ -9171,6 +8551,9 @@ public final class MongodbatlasFunctions {
      * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
      * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
+     * 
+     * ### Data Expiration Rule
+     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Schedule
      * 
@@ -9233,7 +8616,12 @@ public final class MongodbatlasFunctions {
      * 
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `criteria` - Criteria to use for archiving data. See criteria.
+     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
@@ -9242,6 +8630,9 @@ public final class MongodbatlasFunctions {
      * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
      * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
+     * 
+     * ### Data Expiration Rule
+     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Schedule
      * 
@@ -9304,7 +8695,12 @@ public final class MongodbatlasFunctions {
      * 
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `criteria` - Criteria to use for archiving data. See criteria.
+     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
@@ -9313,6 +8709,9 @@ public final class MongodbatlasFunctions {
      * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
      * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
+     * 
+     * ### Data Expiration Rule
+     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Schedule
      * 
@@ -9375,7 +8774,12 @@ public final class MongodbatlasFunctions {
      * 
      * * `db_name`          -  Name of the database that contains the collection.
      * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `criteria` - Criteria to use for archiving data. See criteria.
+     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
@@ -9384,6 +8788,9 @@ public final class MongodbatlasFunctions {
      * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
      * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
+     * 
+     * ### Data Expiration Rule
+     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      * 
      * ### Schedule
      * 
@@ -9443,27 +8850,35 @@ public final class MongodbatlasFunctions {
      * ```
      * ## Attributes reference
      * 
-     * * `db_name`          -  Name of the database that contains the collection.
-     * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
-     * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+     * * `db_name` - Name of the database that contains the collection.
+     * * `coll_name` -  Name of the collection.
+     * * `collection_type` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `criteria` - Criteria to use for archiving data. See criteria.
+     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
+     * * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
-     * * `type`          - Type of criteria (DATE, CUSTOM)
-     * * `date_field`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `type` - Type of criteria (DATE, CUSTOM)
+     * * `date_field` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `date_format` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
      * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
+     * ### Data Expiration Rule
+     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * 
      * ### Schedule
      * 
-     * * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-     * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month`   - Day of the month when the scheduled archive starts.
-     * * `day_of_week`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+     * * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
+     * * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
+     * * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `day_of_month` - Day of the month when the scheduled archive starts.
+     * * `day_of_week` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
      * 
      * ### Partition
      * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
@@ -9511,27 +8926,35 @@ public final class MongodbatlasFunctions {
      * ```
      * ## Attributes reference
      * 
-     * * `db_name`          -  Name of the database that contains the collection.
-     * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
-     * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+     * * `db_name` - Name of the database that contains the collection.
+     * * `coll_name` -  Name of the collection.
+     * * `collection_type` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `criteria` - Criteria to use for archiving data. See criteria.
+     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
+     * * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
-     * * `type`          - Type of criteria (DATE, CUSTOM)
-     * * `date_field`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `type` - Type of criteria (DATE, CUSTOM)
+     * * `date_field` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `date_format` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
      * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
+     * ### Data Expiration Rule
+     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * 
      * ### Schedule
      * 
-     * * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-     * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month`   - Day of the month when the scheduled archive starts.
-     * * `day_of_week`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+     * * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
+     * * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
+     * * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `day_of_month` - Day of the month when the scheduled archive starts.
+     * * `day_of_week` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
      * 
      * ### Partition
      * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
@@ -9579,27 +9002,35 @@ public final class MongodbatlasFunctions {
      * ```
      * ## Attributes reference
      * 
-     * * `db_name`          -  Name of the database that contains the collection.
-     * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
-     * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+     * * `db_name` - Name of the database that contains the collection.
+     * * `coll_name` -  Name of the collection.
+     * * `collection_type` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `criteria` - Criteria to use for archiving data. See criteria.
+     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
+     * * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
-     * * `type`          - Type of criteria (DATE, CUSTOM)
-     * * `date_field`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `type` - Type of criteria (DATE, CUSTOM)
+     * * `date_field` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `date_format` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
      * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
+     * ### Data Expiration Rule
+     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * 
      * ### Schedule
      * 
-     * * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-     * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month`   - Day of the month when the scheduled archive starts.
-     * * `day_of_week`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+     * * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
+     * * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
+     * * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `day_of_month` - Day of the month when the scheduled archive starts.
+     * * `day_of_week` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
      * 
      * ### Partition
      * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
@@ -9647,27 +9078,35 @@ public final class MongodbatlasFunctions {
      * ```
      * ## Attributes reference
      * 
-     * * `db_name`          -  Name of the database that contains the collection.
-     * * `coll_name`        -  Name of the collection.
-     * * `collection_type`  -  Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
-     * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+     * * `db_name` - Name of the database that contains the collection.
+     * * `coll_name` -  Name of the collection.
+     * * `collection_type` - Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * * `criteria` - Criteria to use for archiving data. See criteria.
+     * * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+     * * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+     * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
+     * * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      * 
      * ### Criteria
-     * * `type`          - Type of criteria (DATE, CUSTOM)
-     * * `date_field`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `type` - Type of criteria (DATE, CUSTOM)
+     * * `date_field` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+     * * `date_format` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
      * * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
+     * ### Data Expiration Rule
+     * * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     * 
      * ### Schedule
      * 
-     * * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-     * * `start_hour`    - Hour of the day when the when the scheduled window to run one online archive starts.
-     * * `end_hour`      - Hour of the day when the scheduled window to run one online archive ends.
-     * * `start_minute`   - Minute of the hour when the scheduled window to run one online archive starts.
-     * * `end_minute`     - Minute of the hour when the scheduled window to run one online archive ends.
-     * * `day_of_month`   - Day of the month when the scheduled archive starts.
-     * * `day_of_week`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+     * * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
+     * * `start_hour` - Hour of the day when the when the scheduled window to run one online archive starts.
+     * * `end_hour` - Hour of the day when the scheduled window to run one online archive ends.
+     * * `start_minute` - Minute of the hour when the scheduled window to run one online archive starts.
+     * * `end_minute` - Minute of the hour when the scheduled window to run one online archive ends.
+     * * `day_of_month` - Day of the month when the scheduled archive starts.
+     * * `day_of_week` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
      * 
      * ### Partition
      * * `field_name` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
@@ -10146,210 +9585,6 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", TypeShape.of(GetPrivateLinkEndpointServiceResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * `privatelink_endpoint_service_adl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example Usage
-     * ### Basic
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdl;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdlArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceAdlArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var adlTest = new PrivatelinkEndpointServiceAdl(&#34;adlTest&#34;, PrivatelinkEndpointServiceAdlArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .endpointId(&#34;&lt;ENDPOINT_ID&gt;&#34;)
-     *             .comment(&#34;Comment for PrivateLink endpoint ADL&#34;)
-     *             .type(&#34;DATA_LAKE&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointServiceAdl(GetPrivatelinkEndpointServiceAdlArgs.builder()
-     *             .projectId(adlTest.projectId())
-     *             .privateLinkId(adlTest.endpointId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetPrivatelinkEndpointServiceAdlResult> getPrivatelinkEndpointServiceAdl(GetPrivatelinkEndpointServiceAdlArgs args) {
-        return getPrivatelinkEndpointServiceAdl(args, InvokeOptions.Empty);
-    }
-    /**
-     * `privatelink_endpoint_service_adl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example Usage
-     * ### Basic
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdl;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdlArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceAdlArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var adlTest = new PrivatelinkEndpointServiceAdl(&#34;adlTest&#34;, PrivatelinkEndpointServiceAdlArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .endpointId(&#34;&lt;ENDPOINT_ID&gt;&#34;)
-     *             .comment(&#34;Comment for PrivateLink endpoint ADL&#34;)
-     *             .type(&#34;DATA_LAKE&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointServiceAdl(GetPrivatelinkEndpointServiceAdlArgs.builder()
-     *             .projectId(adlTest.projectId())
-     *             .privateLinkId(adlTest.endpointId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetPrivatelinkEndpointServiceAdlResult> getPrivatelinkEndpointServiceAdlPlain(GetPrivatelinkEndpointServiceAdlPlainArgs args) {
-        return getPrivatelinkEndpointServiceAdlPlain(args, InvokeOptions.Empty);
-    }
-    /**
-     * `privatelink_endpoint_service_adl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example Usage
-     * ### Basic
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdl;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdlArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceAdlArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var adlTest = new PrivatelinkEndpointServiceAdl(&#34;adlTest&#34;, PrivatelinkEndpointServiceAdlArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .endpointId(&#34;&lt;ENDPOINT_ID&gt;&#34;)
-     *             .comment(&#34;Comment for PrivateLink endpoint ADL&#34;)
-     *             .type(&#34;DATA_LAKE&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointServiceAdl(GetPrivatelinkEndpointServiceAdlArgs.builder()
-     *             .projectId(adlTest.projectId())
-     *             .privateLinkId(adlTest.endpointId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetPrivatelinkEndpointServiceAdlResult> getPrivatelinkEndpointServiceAdl(GetPrivatelinkEndpointServiceAdlArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl", TypeShape.of(GetPrivatelinkEndpointServiceAdlResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * `privatelink_endpoint_service_adl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example Usage
-     * ### Basic
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdl;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdlArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceAdlArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var adlTest = new PrivatelinkEndpointServiceAdl(&#34;adlTest&#34;, PrivatelinkEndpointServiceAdlArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .endpointId(&#34;&lt;ENDPOINT_ID&gt;&#34;)
-     *             .comment(&#34;Comment for PrivateLink endpoint ADL&#34;)
-     *             .type(&#34;DATA_LAKE&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointServiceAdl(GetPrivatelinkEndpointServiceAdlArgs.builder()
-     *             .projectId(adlTest.projectId())
-     *             .privateLinkId(adlTest.endpointId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetPrivatelinkEndpointServiceAdlResult> getPrivatelinkEndpointServiceAdlPlain(GetPrivatelinkEndpointServiceAdlPlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl", TypeShape.of(GetPrivatelinkEndpointServiceAdlResult.class), args, Utilities.withVersion(options));
-    }
     public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> getPrivatelinkEndpointServiceDataFederationOnlineArchive(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args) {
         return getPrivatelinkEndpointServiceDataFederationOnlineArchive(args, InvokeOptions.Empty);
     }
@@ -10385,206 +9620,6 @@ public final class MongodbatlasFunctions {
     }
     public static CompletableFuture<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerlessPlain(GetPrivatelinkEndpointServiceServerlessPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", TypeShape.of(GetPrivatelinkEndpointServiceServerlessResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * `privatelink_endpoints_service_adl` Describes the list of all Atlas Data Lake (ADL) and Online Archive PrivateLink endpoints resource.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example Usage
-     * ### Basic
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdl;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdlArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceAdlArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var adlTest = new PrivatelinkEndpointServiceAdl(&#34;adlTest&#34;, PrivatelinkEndpointServiceAdlArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .endpointId(&#34;&lt;ENDPOINT_ID&gt;&#34;)
-     *             .comment(&#34;Comment for PrivateLink endpoint ADL&#34;)
-     *             .type(&#34;DATA_LAKE&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointsServiceAdl(GetPrivatelinkEndpointsServiceAdlArgs.builder()
-     *             .projectId(adlTest.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetPrivatelinkEndpointsServiceAdlInvokeResult> getPrivatelinkEndpointsServiceAdl(GetPrivatelinkEndpointsServiceAdlArgs args) {
-        return getPrivatelinkEndpointsServiceAdl(args, InvokeOptions.Empty);
-    }
-    /**
-     * `privatelink_endpoints_service_adl` Describes the list of all Atlas Data Lake (ADL) and Online Archive PrivateLink endpoints resource.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example Usage
-     * ### Basic
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdl;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdlArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceAdlArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var adlTest = new PrivatelinkEndpointServiceAdl(&#34;adlTest&#34;, PrivatelinkEndpointServiceAdlArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .endpointId(&#34;&lt;ENDPOINT_ID&gt;&#34;)
-     *             .comment(&#34;Comment for PrivateLink endpoint ADL&#34;)
-     *             .type(&#34;DATA_LAKE&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointsServiceAdl(GetPrivatelinkEndpointsServiceAdlArgs.builder()
-     *             .projectId(adlTest.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetPrivatelinkEndpointsServiceAdlInvokeResult> getPrivatelinkEndpointsServiceAdlPlain(GetPrivatelinkEndpointsServiceAdlPlainArgs args) {
-        return getPrivatelinkEndpointsServiceAdlPlain(args, InvokeOptions.Empty);
-    }
-    /**
-     * `privatelink_endpoints_service_adl` Describes the list of all Atlas Data Lake (ADL) and Online Archive PrivateLink endpoints resource.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example Usage
-     * ### Basic
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdl;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdlArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceAdlArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var adlTest = new PrivatelinkEndpointServiceAdl(&#34;adlTest&#34;, PrivatelinkEndpointServiceAdlArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .endpointId(&#34;&lt;ENDPOINT_ID&gt;&#34;)
-     *             .comment(&#34;Comment for PrivateLink endpoint ADL&#34;)
-     *             .type(&#34;DATA_LAKE&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointsServiceAdl(GetPrivatelinkEndpointsServiceAdlArgs.builder()
-     *             .projectId(adlTest.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetPrivatelinkEndpointsServiceAdlInvokeResult> getPrivatelinkEndpointsServiceAdl(GetPrivatelinkEndpointsServiceAdlArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointsServiceAdl:getPrivatelinkEndpointsServiceAdl", TypeShape.of(GetPrivatelinkEndpointsServiceAdlInvokeResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * `privatelink_endpoints_service_adl` Describes the list of all Atlas Data Lake (ADL) and Online Archive PrivateLink endpoints resource.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example Usage
-     * ### Basic
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdl;
-     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceAdlArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceAdlArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var adlTest = new PrivatelinkEndpointServiceAdl(&#34;adlTest&#34;, PrivatelinkEndpointServiceAdlArgs.builder()        
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .endpointId(&#34;&lt;ENDPOINT_ID&gt;&#34;)
-     *             .comment(&#34;Comment for PrivateLink endpoint ADL&#34;)
-     *             .type(&#34;DATA_LAKE&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getPrivatelinkEndpointsServiceAdl(GetPrivatelinkEndpointsServiceAdlArgs.builder()
-     *             .projectId(adlTest.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetPrivatelinkEndpointsServiceAdlInvokeResult> getPrivatelinkEndpointsServiceAdlPlain(GetPrivatelinkEndpointsServiceAdlPlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointsServiceAdl:getPrivatelinkEndpointsServiceAdl", TypeShape.of(GetPrivatelinkEndpointsServiceAdlInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `privatelink_endpoints_service_serverless` Describes the list of all Serverless PrivateLink Endpoint Service resource.
@@ -13101,5 +12136,57 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetThirdPartyIntegrationsInvokeResult> getThirdPartyIntegrationsPlain(GetThirdPartyIntegrationsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", TypeShape.of(GetThirdPartyIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetX509AuthenticationDatabaseUserResult> getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs args) {
+        return getX509AuthenticationDatabaseUser(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static CompletableFuture<GetX509AuthenticationDatabaseUserResult> getX509AuthenticationDatabaseUserPlain(GetX509AuthenticationDatabaseUserPlainArgs args) {
+        return getX509AuthenticationDatabaseUserPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetX509AuthenticationDatabaseUserResult> getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", TypeShape.of(GetX509AuthenticationDatabaseUserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static CompletableFuture<GetX509AuthenticationDatabaseUserResult> getX509AuthenticationDatabaseUserPlain(GetX509AuthenticationDatabaseUserPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", TypeShape.of(GetX509AuthenticationDatabaseUserResult.class), args, Utilities.withVersion(options));
     }
 }

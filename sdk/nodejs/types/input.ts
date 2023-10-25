@@ -377,6 +377,10 @@ export interface AlertConfigurationNotification {
      */
     mobileNumber?: pulumi.Input<string>;
     /**
+     * The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     */
+    notifierId?: pulumi.Input<string>;
+    /**
      * Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
      */
     opsGenieApiKey?: pulumi.Input<string>;
@@ -1057,19 +1061,6 @@ export interface CustomDbRoleInheritedRole {
     roleName: pulumi.Input<string>;
 }
 
-export interface DataLakeAws {
-    externalId?: pulumi.Input<string>;
-    iamAssumedRoleArn?: pulumi.Input<string>;
-    iamUserArn?: pulumi.Input<string>;
-    roleId: pulumi.Input<string>;
-    testS3Bucket: pulumi.Input<string>;
-}
-
-export interface DataLakeDataProcessRegion {
-    cloudProvider: pulumi.Input<string>;
-    region: pulumi.Input<string>;
-}
-
 export interface DataLakePipelineIngestionSchedule {
     frequencyInterval?: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
@@ -1163,53 +1154,6 @@ export interface DataLakePipelineTransformation {
      * Type of ingestion source of this Data Lake Pipeline.
      */
     type?: pulumi.Input<string>;
-}
-
-export interface DataLakeStorageDatabase {
-    collections?: pulumi.Input<pulumi.Input<inputs.DataLakeStorageDatabaseCollection>[]>;
-    maxWildcardCollections?: pulumi.Input<number>;
-    /**
-     * Name of the Atlas Data Lake.
-     */
-    name?: pulumi.Input<string>;
-    views?: pulumi.Input<pulumi.Input<inputs.DataLakeStorageDatabaseView>[]>;
-}
-
-export interface DataLakeStorageDatabaseCollection {
-    dataSources?: pulumi.Input<pulumi.Input<inputs.DataLakeStorageDatabaseCollectionDataSource>[]>;
-    /**
-     * Name of the Atlas Data Lake.
-     */
-    name?: pulumi.Input<string>;
-}
-
-export interface DataLakeStorageDatabaseCollectionDataSource {
-    defaultFormat?: pulumi.Input<string>;
-    path?: pulumi.Input<string>;
-    storeName?: pulumi.Input<string>;
-}
-
-export interface DataLakeStorageDatabaseView {
-    /**
-     * Name of the Atlas Data Lake.
-     */
-    name?: pulumi.Input<string>;
-    pipeline?: pulumi.Input<string>;
-    source?: pulumi.Input<string>;
-}
-
-export interface DataLakeStorageStore {
-    additionalStorageClasses?: pulumi.Input<pulumi.Input<string>[]>;
-    bucket?: pulumi.Input<string>;
-    delimiter?: pulumi.Input<string>;
-    includeTags?: pulumi.Input<boolean>;
-    /**
-     * Name of the Atlas Data Lake.
-     */
-    name?: pulumi.Input<string>;
-    prefix?: pulumi.Input<string>;
-    provider?: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
 }
 
 export interface DatabaseUserLabel {
@@ -1993,6 +1937,13 @@ export interface OnlineArchiveCriteria {
      * The following fields are required for criteria type `DATE`
      */
     type: pulumi.Input<string>;
+}
+
+export interface OnlineArchiveDataExpirationRule {
+    /**
+     * Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     */
+    expireAfterDays: pulumi.Input<number>;
 }
 
 export interface OnlineArchivePartitionField {

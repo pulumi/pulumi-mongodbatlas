@@ -169,6 +169,21 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     }
 
     /**
+     * The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * 
+     */
+    @Import(name="notifierId")
+    private @Nullable Output<String> notifierId;
+
+    /**
+     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * 
+     */
+    public Optional<Output<String>> notifierId() {
+        return Optional.ofNullable(this.notifierId);
+    }
+
+    /**
      * Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
      * 
      */
@@ -400,6 +415,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         this.intervalMin = $.intervalMin;
         this.microsoftTeamsWebhookUrl = $.microsoftTeamsWebhookUrl;
         this.mobileNumber = $.mobileNumber;
+        this.notifierId = $.notifierId;
         this.opsGenieApiKey = $.opsGenieApiKey;
         this.opsGenieRegion = $.opsGenieRegion;
         this.roles = $.roles;
@@ -641,6 +657,27 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
          */
         public Builder mobileNumber(String mobileNumber) {
             return mobileNumber(Output.of(mobileNumber));
+        }
+
+        /**
+         * @param notifierId The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notifierId(@Nullable Output<String> notifierId) {
+            $.notifierId = notifierId;
+            return this;
+        }
+
+        /**
+         * @param notifierId The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notifierId(String notifierId) {
+            return notifierId(Output.of(notifierId));
         }
 
         /**

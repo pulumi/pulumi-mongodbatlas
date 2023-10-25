@@ -38,7 +38,7 @@ export interface AdvancedClusterAdvancedConfiguration {
      * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
      * * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
      */
-    oplogMinRetentionHours: number;
+    oplogMinRetentionHours?: number;
     /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
@@ -376,6 +376,10 @@ export interface AlertConfigurationNotification {
      * Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      */
     mobileNumber?: string;
+    /**
+     * The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     */
+    notifierId: string;
     /**
      * Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
      */
@@ -818,7 +822,7 @@ export interface ClusterAdvancedConfiguration {
      * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
      * * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
      */
-    oplogMinRetentionHours: number;
+    oplogMinRetentionHours?: number;
     /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
@@ -1057,19 +1061,6 @@ export interface CustomDbRoleInheritedRole {
     roleName: string;
 }
 
-export interface DataLakeAws {
-    externalId: string;
-    iamAssumedRoleArn: string;
-    iamUserArn: string;
-    roleId: string;
-    testS3Bucket: string;
-}
-
-export interface DataLakeDataProcessRegion {
-    cloudProvider: string;
-    region: string;
-}
-
 export interface DataLakePipelineIngestionSchedule {
     frequencyInterval: number;
     frequencyType: string;
@@ -1163,53 +1154,6 @@ export interface DataLakePipelineTransformation {
      * Type of ingestion source of this Data Lake Pipeline.
      */
     type?: string;
-}
-
-export interface DataLakeStorageDatabase {
-    collections: outputs.DataLakeStorageDatabaseCollection[];
-    maxWildcardCollections: number;
-    /**
-     * Name of the Atlas Data Lake.
-     */
-    name: string;
-    views: outputs.DataLakeStorageDatabaseView[];
-}
-
-export interface DataLakeStorageDatabaseCollection {
-    dataSources: outputs.DataLakeStorageDatabaseCollectionDataSource[];
-    /**
-     * Name of the Atlas Data Lake.
-     */
-    name: string;
-}
-
-export interface DataLakeStorageDatabaseCollectionDataSource {
-    defaultFormat: string;
-    path: string;
-    storeName: string;
-}
-
-export interface DataLakeStorageDatabaseView {
-    /**
-     * Name of the Atlas Data Lake.
-     */
-    name: string;
-    pipeline: string;
-    source: string;
-}
-
-export interface DataLakeStorageStore {
-    additionalStorageClasses: string[];
-    bucket: string;
-    delimiter: string;
-    includeTags: boolean;
-    /**
-     * Name of the Atlas Data Lake.
-     */
-    name: string;
-    prefix: string;
-    provider: string;
-    region: string;
 }
 
 export interface DatabaseUserLabel {
@@ -2129,7 +2073,7 @@ export interface GetAlertConfigurationMatcher {
      */
     fieldName: string;
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      */
     operator: string;
@@ -2149,7 +2093,7 @@ export interface GetAlertConfigurationMetricThresholdConfig {
      */
     mode: string;
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      */
     operator: string;
@@ -2205,6 +2149,10 @@ export interface GetAlertConfigurationNotification {
      * Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      */
     mobileNumber: string;
+    /**
+     * The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     */
+    notifierId: string;
     /**
      * Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
      */
@@ -2271,7 +2219,7 @@ export interface GetAlertConfigurationOutput {
 
 export interface GetAlertConfigurationThresholdConfig {
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      */
     operator: string;
@@ -2311,11 +2259,11 @@ export interface GetAlertConfigurationsResult {
     eventType: string;
     id: string;
     /**
-     * Rules to apply when matching an object against this alert configuration
+     * Rules to apply when matching an object against this alert configuration. See matchers.
      */
     matchers: outputs.GetAlertConfigurationsResultMatcher[];
     /**
-     * The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
+     * The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
      */
     metricThresholdConfigs: outputs.GetAlertConfigurationsResultMetricThresholdConfig[];
     notifications: outputs.GetAlertConfigurationsResultNotification[];
@@ -2328,7 +2276,7 @@ export interface GetAlertConfigurationsResult {
      */
     projectId: string;
     /**
-     * Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
+     * Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
      */
     thresholdConfigs: outputs.GetAlertConfigurationsResultThresholdConfig[];
     /**
@@ -2338,54 +2286,169 @@ export interface GetAlertConfigurationsResult {
 }
 
 export interface GetAlertConfigurationsResultMatcher {
+    /**
+     * Name of the field in the target object to match on.
+     */
     fieldName: string;
+    /**
+     * The operator to apply when checking the current metric value against the threshold value.
+     * Accepted values are:
+     */
     operator: string;
+    /**
+     * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     */
     value: string;
 }
 
 export interface GetAlertConfigurationsResultMetricThresholdConfig {
+    /**
+     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+     */
     metricName: string;
+    /**
+     * This must be set to AVERAGE. Atlas computes the current metric value as an average.
+     */
     mode: string;
+    /**
+     * The operator to apply when checking the current metric value against the threshold value.
+     * Accepted values are:
+     */
     operator: string;
+    /**
+     * Threshold value outside of which an alert will be triggered.
+     */
     threshold: number;
+    /**
+     * The units for the threshold value. Depends on the type of metric.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     */
     units: string;
 }
 
 export interface GetAlertConfigurationsResultNotification {
+    /**
+     * Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+     */
     apiToken: string;
+    /**
+     * Slack channel name. Required for the SLACK notifications type.
+     */
     channelName: string;
+    /**
+     * Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
+     */
     datadogApiKey: string;
+    /**
+     * Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+     */
     datadogRegion: string;
+    /**
+     * Number of minutes to wait after an alert condition is detected before sending out the first notification.
+     */
     delayMin: number;
+    /**
+     * Email address to which alert notifications are sent. Required for the EMAIL notifications type.
+     */
     emailAddress: string;
+    /**
+     * Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
+     */
     emailEnabled: boolean;
+    /**
+     * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+     */
     intervalMin: number;
+    /**
+     * Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+     */
     microsoftTeamsWebhookUrl: string;
+    /**
+     * Mobile number to which alert notifications are sent. Required for the SMS notifications type.
+     */
     mobileNumber: string;
+    /**
+     * The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     */
+    notifierId: string;
+    /**
+     * Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+     */
     opsGenieApiKey: string;
+    /**
+     * Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
+     */
     opsGenieRegion: string;
+    /**
+     * Atlas role in current Project or Organization. Atlas returns this value if you set `typeName` to `ORG` or `GROUP`.
+     */
     roles: string[];
+    /**
+     * PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+     */
     serviceKey: string;
+    /**
+     * Flag indicating text notifications should be sent. Atlas returns this value if `typeName` is set to `ORG`, `GROUP`, or `USER`.
+     */
     smsEnabled: boolean;
+    /**
+     * Unique identifier of a team.
+     */
     teamId: string;
+    /**
+     * Label for the team that receives this notification.
+     */
     teamName: string;
+    /**
+     * Type of alert notification.
+     * Accepted values are:
+     */
     typeName: string;
+    /**
+     * Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
+     */
     username: string;
+    /**
+     * VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+     */
     victorOpsApiKey: string;
+    /**
+     * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+     */
     victorOpsRoutingKey: string;
+    /**
+     * Authentication secret for the `WEBHOOK` notifications type.
+     */
     webhookSecret: string;
+    /**
+     * Target URL  for the `WEBHOOK` notifications type.
+     */
     webhookUrl: string;
 }
 
 export interface GetAlertConfigurationsResultOutput {
     label: string;
     type: string;
+    /**
+     * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     */
     value: string;
 }
 
 export interface GetAlertConfigurationsResultThresholdConfig {
+    /**
+     * The operator to apply when checking the current metric value against the threshold value.
+     * Accepted values are:
+     */
     operator: string;
+    /**
+     * Threshold value outside of which an alert will be triggered.
+     */
     threshold: number;
+    /**
+     * The units for the threshold value. Depends on the type of metric.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     */
     units: string;
 }
 
@@ -3664,19 +3727,6 @@ export interface GetCustomDbRolesResultInheritedRole {
     roleName: string;
 }
 
-export interface GetDataLakeAw {
-    externalId: string;
-    iamAssumedRoleArn: string;
-    iamUserArn: string;
-    roleId: string;
-    testS3Bucket: string;
-}
-
-export interface GetDataLakeDataProcessRegion {
-    cloudProvider: string;
-    region: string;
-}
-
 export interface GetDataLakePipelineIngestionSchedule {
     frequencyInterval: number;
     frequencyType: string;
@@ -3922,150 +3972,6 @@ export interface GetDataLakePipelinesResultTransformation {
      * Type of ingestion source of this Data Lake Pipeline.
      */
     type: string;
-}
-
-export interface GetDataLakeStorageDatabase {
-    collections: outputs.GetDataLakeStorageDatabaseCollection[];
-    maxWildcardCollections: number;
-    /**
-     * Name of the data lake.
-     */
-    name: string;
-    views: outputs.GetDataLakeStorageDatabaseView[];
-}
-
-export interface GetDataLakeStorageDatabaseCollection {
-    dataSources: outputs.GetDataLakeStorageDatabaseCollectionDataSource[];
-    /**
-     * Name of the data lake.
-     */
-    name: string;
-}
-
-export interface GetDataLakeStorageDatabaseCollectionDataSource {
-    defaultFormat: string;
-    path: string;
-    storeName: string;
-}
-
-export interface GetDataLakeStorageDatabaseView {
-    /**
-     * Name of the data lake.
-     */
-    name: string;
-    pipeline: string;
-    source: string;
-}
-
-export interface GetDataLakeStorageStore {
-    additionalStorageClasses: string[];
-    bucket: string;
-    delimiter: string;
-    includeTags: boolean;
-    /**
-     * Name of the data lake.
-     */
-    name: string;
-    prefix: string;
-    provider: string;
-    region: string;
-}
-
-export interface GetDataLakesResult {
-    aws: outputs.GetDataLakesResultAw[];
-    /**
-     * The cloud provider region to which Atlas Data Lake routes client connections for data processing.
-     * * `data_process_region.0.cloud_provider` - Name of the cloud service provider.
-     * * `data_process_region.0.region` -Name of the region to which Data Lake routes client connections for data processing.
-     */
-    dataProcessRegions: outputs.GetDataLakesResultDataProcessRegion[];
-    /**
-     * The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
-     */
-    hostnames: string[];
-    name: string;
-    /**
-     * The unique ID for the project to get all data lakes.
-     */
-    projectId: string;
-    /**
-     * Current state of the Atlas Data Lake:
-     */
-    state: string;
-    /**
-     * Configuration details for mapping each data store to queryable databases and collections.
-     * * `storage_databases.#.name` - Name of the database to which Data Lake maps the data contained in the data store.
-     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
-     * * `storage_databases.#.collections.#.name` - Name of the collection.
-     * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
-     * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`.
-     * * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
-     * * `storage_databases.#.collections.#.data_sources.#.path` - Controls how Atlas Data Lake searches for and parses files in the storeName before mapping them to the `<collection>`.
-     * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection.
-     * * `storage_databases.#.views.#.name` - Name of the view.
-     * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
-     * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
-     */
-    storageDatabases: outputs.GetDataLakesResultStorageDatabase[];
-    /**
-     * Each object in the array represents a data store. Data Lake uses the storage.databases configuration details to map data in each data store to queryable databases and collections.
-     * * `storage_stores.#.name` - Name of the data store.
-     * * `storage_stores.#.provider` - Defines where the data is stored.
-     * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-     * * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
-     * * `storage_stores.#.prefix` - Prefix Data Lake applies when searching for files in the S3 bucket .
-     * * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
-     * * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
-     */
-    storageStores: outputs.GetDataLakesResultStorageStore[];
-}
-
-export interface GetDataLakesResultAw {
-    externalId: string;
-    iamAssumedRoleArn: string;
-    iamUserArn: string;
-    roleId: string;
-    testS3Bucket: string;
-}
-
-export interface GetDataLakesResultDataProcessRegion {
-    cloudProvider: string;
-    region: string;
-}
-
-export interface GetDataLakesResultStorageDatabase {
-    collections: outputs.GetDataLakesResultStorageDatabaseCollection[];
-    maxWildcardCollections: number;
-    name: string;
-    views: outputs.GetDataLakesResultStorageDatabaseView[];
-}
-
-export interface GetDataLakesResultStorageDatabaseCollection {
-    dataSources: outputs.GetDataLakesResultStorageDatabaseCollectionDataSource[];
-    name: string;
-}
-
-export interface GetDataLakesResultStorageDatabaseCollectionDataSource {
-    defaultFormat: string;
-    path: string;
-    storeName: string;
-}
-
-export interface GetDataLakesResultStorageDatabaseView {
-    name: string;
-    pipeline: string;
-    source: string;
-}
-
-export interface GetDataLakesResultStorageStore {
-    additionalStorageClasses: string[];
-    bucket: string;
-    delimiter: string;
-    includeTags: boolean;
-    name: string;
-    prefix: string;
-    provider: string;
-    region: string;
 }
 
 export interface GetDatabaseUserLabel {
@@ -5209,6 +5115,10 @@ export interface GetOnlineArchiveCriteria {
     type: string;
 }
 
+export interface GetOnlineArchiveDataExpirationRule {
+    expireAfterDays: number;
+}
+
 export interface GetOnlineArchivePartitionField {
     fieldName: string;
     fieldType: string;
@@ -5238,6 +5148,7 @@ export interface GetOnlineArchivesResult {
     collName: string;
     collectionType: string;
     criterias: outputs.GetOnlineArchivesResultCriteria[];
+    dataExpirationRules: outputs.GetOnlineArchivesResultDataExpirationRule[];
     dbName: string;
     partitionFields: outputs.GetOnlineArchivesResultPartitionField[];
     paused: boolean;
@@ -5255,6 +5166,10 @@ export interface GetOnlineArchivesResultCriteria {
     expireAfterDays: number;
     query: string;
     type: string;
+}
+
+export interface GetOnlineArchivesResultDataExpirationRule {
+    expireAfterDays: number;
 }
 
 export interface GetOnlineArchivesResultPartitionField {
@@ -5335,32 +5250,6 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
     providerName: string;
     /**
      * Human-readable label that identifies the resource type associated with this private endpoint.
-     */
-    type: string;
-}
-
-export interface GetPrivatelinkEndpointsServiceAdlLink {
-    href: string;
-    rel: string;
-}
-
-export interface GetPrivatelinkEndpointsServiceAdlResult {
-    /**
-     * Human-readable string to associate with this private endpoint.
-     *
-     * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/) Documentation for more information.
-     */
-    comment: string;
-    /**
-     * Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
-     */
-    endpointId: string;
-    /**
-     * Human-readable label that identifies the cloud provider for this endpoint.
-     */
-    providerName: string;
-    /**
-     * Human-readable label that identifies the type of resource to associate with this private endpoint.
      */
     type: string;
 }
@@ -5789,6 +5678,14 @@ export interface GetThirdPartyIntegrationsResult {
     userName?: string;
 }
 
+export interface GetX509AuthenticationDatabaseUserCertificate {
+    createdAt: string;
+    groupId: string;
+    id: number;
+    notAfter: string;
+    subject: string;
+}
+
 export interface GlobalClusterConfigCustomZoneMapping {
     /**
      * The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
@@ -5869,6 +5766,13 @@ export interface OnlineArchiveCriteria {
      * The following fields are required for criteria type `DATE`
      */
     type: string;
+}
+
+export interface OnlineArchiveDataExpirationRule {
+    /**
+     * Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+     */
+    expireAfterDays: number;
 }
 
 export interface OnlineArchivePartitionField {

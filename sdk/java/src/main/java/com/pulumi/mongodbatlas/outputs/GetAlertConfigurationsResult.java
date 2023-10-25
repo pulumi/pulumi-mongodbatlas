@@ -38,12 +38,12 @@ public final class GetAlertConfigurationsResult {
     private String eventType;
     private String id;
     /**
-     * @return Rules to apply when matching an object against this alert configuration
+     * @return Rules to apply when matching an object against this alert configuration. See matchers.
      * 
      */
     private List<GetAlertConfigurationsResultMatcher> matchers;
     /**
-     * @return The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
+     * @return The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
      * 
      */
     private List<GetAlertConfigurationsResultMetricThresholdConfig> metricThresholdConfigs;
@@ -59,7 +59,7 @@ public final class GetAlertConfigurationsResult {
      */
     private String projectId;
     /**
-     * @return Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
+     * @return Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
      * 
      */
     private List<GetAlertConfigurationsResultThresholdConfig> thresholdConfigs;
@@ -102,14 +102,14 @@ public final class GetAlertConfigurationsResult {
         return this.id;
     }
     /**
-     * @return Rules to apply when matching an object against this alert configuration
+     * @return Rules to apply when matching an object against this alert configuration. See matchers.
      * 
      */
     public List<GetAlertConfigurationsResultMatcher> matchers() {
         return this.matchers;
     }
     /**
-     * @return The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
+     * @return The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
      * 
      */
     public List<GetAlertConfigurationsResultMetricThresholdConfig> metricThresholdConfigs() {
@@ -133,7 +133,7 @@ public final class GetAlertConfigurationsResult {
         return this.projectId;
     }
     /**
-     * @return Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
+     * @return Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
      * 
      */
     public List<GetAlertConfigurationsResultThresholdConfig> thresholdConfigs() {

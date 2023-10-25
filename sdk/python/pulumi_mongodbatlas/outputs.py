@@ -66,19 +66,12 @@ __all__ = [
     'CustomDbRoleAction',
     'CustomDbRoleActionResource',
     'CustomDbRoleInheritedRole',
-    'DataLakeAws',
-    'DataLakeDataProcessRegion',
     'DataLakePipelineIngestionSchedule',
     'DataLakePipelineSink',
     'DataLakePipelineSinkPartitionField',
     'DataLakePipelineSnapshot',
     'DataLakePipelineSource',
     'DataLakePipelineTransformation',
-    'DataLakeStorageDatabase',
-    'DataLakeStorageDatabaseCollection',
-    'DataLakeStorageDatabaseCollectionDataSource',
-    'DataLakeStorageDatabaseView',
-    'DataLakeStorageStore',
     'DatabaseUserLabel',
     'DatabaseUserRole',
     'DatabaseUserScope',
@@ -105,6 +98,7 @@ __all__ = [
     'LdapVerifyLink',
     'LdapVerifyValidation',
     'OnlineArchiveCriteria',
+    'OnlineArchiveDataExpirationRule',
     'OnlineArchivePartitionField',
     'OnlineArchiveSchedule',
     'PrivateLinkEndpointServiceEndpoint',
@@ -223,8 +217,6 @@ __all__ = [
     'GetCustomDbRolesResultActionResult',
     'GetCustomDbRolesResultActionResourceResult',
     'GetCustomDbRolesResultInheritedRoleResult',
-    'GetDataLakeAwResult',
-    'GetDataLakeDataProcessRegionResult',
     'GetDataLakePipelineIngestionScheduleResult',
     'GetDataLakePipelineRunStatResult',
     'GetDataLakePipelineRunsResultResult',
@@ -239,19 +231,6 @@ __all__ = [
     'GetDataLakePipelinesResultSinkPartitionFieldResult',
     'GetDataLakePipelinesResultSourceResult',
     'GetDataLakePipelinesResultTransformationResult',
-    'GetDataLakeStorageDatabaseResult',
-    'GetDataLakeStorageDatabaseCollectionResult',
-    'GetDataLakeStorageDatabaseCollectionDataSourceResult',
-    'GetDataLakeStorageDatabaseViewResult',
-    'GetDataLakeStorageStoreResult',
-    'GetDataLakesResultResult',
-    'GetDataLakesResultAwResult',
-    'GetDataLakesResultDataProcessRegionResult',
-    'GetDataLakesResultStorageDatabaseResult',
-    'GetDataLakesResultStorageDatabaseCollectionResult',
-    'GetDataLakesResultStorageDatabaseCollectionDataSourceResult',
-    'GetDataLakesResultStorageDatabaseViewResult',
-    'GetDataLakesResultStorageStoreResult',
     'GetDatabaseUserLabelResult',
     'GetDatabaseUserRoleResult',
     'GetDatabaseUserScopeResult',
@@ -318,10 +297,12 @@ __all__ = [
     'GetNetworkContainersResultResult',
     'GetNetworkPeeringsResultResult',
     'GetOnlineArchiveCriteriaResult',
+    'GetOnlineArchiveDataExpirationRuleResult',
     'GetOnlineArchivePartitionFieldResult',
     'GetOnlineArchiveScheduleResult',
     'GetOnlineArchivesResultResult',
     'GetOnlineArchivesResultCriteriaResult',
+    'GetOnlineArchivesResultDataExpirationRuleResult',
     'GetOnlineArchivesResultPartitionFieldResult',
     'GetOnlineArchivesResultScheduleResult',
     'GetOrganizationLinkResult',
@@ -329,8 +310,6 @@ __all__ = [
     'GetOrganizationsResultLinkResult',
     'GetPrivateLinkEndpointServiceEndpointResult',
     'GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult',
-    'GetPrivatelinkEndpointsServiceAdlLinkResult',
-    'GetPrivatelinkEndpointsServiceAdlResultResult',
     'GetPrivatelinkEndpointsServiceServerlessResultResult',
     'GetProjectApiKeyProjectAssignmentResult',
     'GetProjectApiKeysResultResult',
@@ -351,6 +330,7 @@ __all__ = [
     'GetSharedTierRestoreJobsResultResult',
     'GetSharedTierSnapshotsResultResult',
     'GetThirdPartyIntegrationsResultResult',
+    'GetX509AuthenticationDatabaseUserCertificateResult',
 ]
 
 @pulumi.output_type
@@ -1691,6 +1671,8 @@ class AlertConfigurationNotification(dict):
             suggest = "microsoft_teams_webhook_url"
         elif key == "mobileNumber":
             suggest = "mobile_number"
+        elif key == "notifierId":
+            suggest = "notifier_id"
         elif key == "opsGenieApiKey":
             suggest = "ops_genie_api_key"
         elif key == "opsGenieRegion":
@@ -1735,6 +1717,7 @@ class AlertConfigurationNotification(dict):
                  interval_min: Optional[int] = None,
                  microsoft_teams_webhook_url: Optional[str] = None,
                  mobile_number: Optional[str] = None,
+                 notifier_id: Optional[str] = None,
                  ops_genie_api_key: Optional[str] = None,
                  ops_genie_region: Optional[str] = None,
                  roles: Optional[Sequence[str]] = None,
@@ -1760,6 +1743,7 @@ class AlertConfigurationNotification(dict):
         :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         :param str microsoft_teams_webhook_url: Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
         :param str mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
+        :param str notifier_id: The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
         :param str ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         :param Sequence[str] roles: Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
@@ -1805,6 +1789,8 @@ class AlertConfigurationNotification(dict):
             pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if mobile_number is not None:
             pulumi.set(__self__, "mobile_number", mobile_number)
+        if notifier_id is not None:
+            pulumi.set(__self__, "notifier_id", notifier_id)
         if ops_genie_api_key is not None:
             pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
         if ops_genie_region is not None:
@@ -1918,6 +1904,14 @@ class AlertConfigurationNotification(dict):
         Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         """
         return pulumi.get(self, "mobile_number")
+
+    @property
+    @pulumi.getter(name="notifierId")
+    def notifier_id(self) -> Optional[str]:
+        """
+        The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+        """
+        return pulumi.get(self, "notifier_id")
 
     @property
     @pulumi.getter(name="opsGenieApiKey")
@@ -4627,110 +4621,6 @@ class CustomDbRoleInheritedRole(dict):
 
 
 @pulumi.output_type
-class DataLakeAws(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "roleId":
-            suggest = "role_id"
-        elif key == "testS3Bucket":
-            suggest = "test_s3_bucket"
-        elif key == "externalId":
-            suggest = "external_id"
-        elif key == "iamAssumedRoleArn":
-            suggest = "iam_assumed_role_arn"
-        elif key == "iamUserArn":
-            suggest = "iam_user_arn"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakeAws. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakeAws.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakeAws.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 role_id: str,
-                 test_s3_bucket: str,
-                 external_id: Optional[str] = None,
-                 iam_assumed_role_arn: Optional[str] = None,
-                 iam_user_arn: Optional[str] = None):
-        pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
-        if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
-        if iam_assumed_role_arn is not None:
-            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
-        if iam_user_arn is not None:
-            pulumi.set(__self__, "iam_user_arn", iam_user_arn)
-
-    @property
-    @pulumi.getter(name="roleId")
-    def role_id(self) -> str:
-        return pulumi.get(self, "role_id")
-
-    @property
-    @pulumi.getter(name="testS3Bucket")
-    def test_s3_bucket(self) -> str:
-        return pulumi.get(self, "test_s3_bucket")
-
-    @property
-    @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[str]:
-        return pulumi.get(self, "external_id")
-
-    @property
-    @pulumi.getter(name="iamAssumedRoleArn")
-    def iam_assumed_role_arn(self) -> Optional[str]:
-        return pulumi.get(self, "iam_assumed_role_arn")
-
-    @property
-    @pulumi.getter(name="iamUserArn")
-    def iam_user_arn(self) -> Optional[str]:
-        return pulumi.get(self, "iam_user_arn")
-
-
-@pulumi.output_type
-class DataLakeDataProcessRegion(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "cloudProvider":
-            suggest = "cloud_provider"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakeDataProcessRegion. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakeDataProcessRegion.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakeDataProcessRegion.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 cloud_provider: str,
-                 region: str):
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> str:
-        return pulumi.get(self, "cloud_provider")
-
-    @property
-    @pulumi.getter
-    def region(self) -> str:
-        return pulumi.get(self, "region")
-
-
-@pulumi.output_type
 class DataLakePipelineIngestionSchedule(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -5203,287 +5093,6 @@ class DataLakePipelineTransformation(dict):
         Type of ingestion source of this Data Lake Pipeline.
         """
         return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class DataLakeStorageDatabase(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "maxWildcardCollections":
-            suggest = "max_wildcard_collections"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakeStorageDatabase. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakeStorageDatabase.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakeStorageDatabase.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 collections: Optional[Sequence['outputs.DataLakeStorageDatabaseCollection']] = None,
-                 max_wildcard_collections: Optional[int] = None,
-                 name: Optional[str] = None,
-                 views: Optional[Sequence['outputs.DataLakeStorageDatabaseView']] = None):
-        """
-        :param str name: Name of the Atlas Data Lake.
-        """
-        if collections is not None:
-            pulumi.set(__self__, "collections", collections)
-        if max_wildcard_collections is not None:
-            pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if views is not None:
-            pulumi.set(__self__, "views", views)
-
-    @property
-    @pulumi.getter
-    def collections(self) -> Optional[Sequence['outputs.DataLakeStorageDatabaseCollection']]:
-        return pulumi.get(self, "collections")
-
-    @property
-    @pulumi.getter(name="maxWildcardCollections")
-    def max_wildcard_collections(self) -> Optional[int]:
-        return pulumi.get(self, "max_wildcard_collections")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        Name of the Atlas Data Lake.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def views(self) -> Optional[Sequence['outputs.DataLakeStorageDatabaseView']]:
-        return pulumi.get(self, "views")
-
-
-@pulumi.output_type
-class DataLakeStorageDatabaseCollection(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "dataSources":
-            suggest = "data_sources"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakeStorageDatabaseCollection. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakeStorageDatabaseCollection.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakeStorageDatabaseCollection.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 data_sources: Optional[Sequence['outputs.DataLakeStorageDatabaseCollectionDataSource']] = None,
-                 name: Optional[str] = None):
-        """
-        :param str name: Name of the Atlas Data Lake.
-        """
-        if data_sources is not None:
-            pulumi.set(__self__, "data_sources", data_sources)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter(name="dataSources")
-    def data_sources(self) -> Optional[Sequence['outputs.DataLakeStorageDatabaseCollectionDataSource']]:
-        return pulumi.get(self, "data_sources")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        Name of the Atlas Data Lake.
-        """
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class DataLakeStorageDatabaseCollectionDataSource(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "defaultFormat":
-            suggest = "default_format"
-        elif key == "storeName":
-            suggest = "store_name"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakeStorageDatabaseCollectionDataSource. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakeStorageDatabaseCollectionDataSource.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakeStorageDatabaseCollectionDataSource.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 default_format: Optional[str] = None,
-                 path: Optional[str] = None,
-                 store_name: Optional[str] = None):
-        if default_format is not None:
-            pulumi.set(__self__, "default_format", default_format)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if store_name is not None:
-            pulumi.set(__self__, "store_name", store_name)
-
-    @property
-    @pulumi.getter(name="defaultFormat")
-    def default_format(self) -> Optional[str]:
-        return pulumi.get(self, "default_format")
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[str]:
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter(name="storeName")
-    def store_name(self) -> Optional[str]:
-        return pulumi.get(self, "store_name")
-
-
-@pulumi.output_type
-class DataLakeStorageDatabaseView(dict):
-    def __init__(__self__, *,
-                 name: Optional[str] = None,
-                 pipeline: Optional[str] = None,
-                 source: Optional[str] = None):
-        """
-        :param str name: Name of the Atlas Data Lake.
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if pipeline is not None:
-            pulumi.set(__self__, "pipeline", pipeline)
-        if source is not None:
-            pulumi.set(__self__, "source", source)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        Name of the Atlas Data Lake.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def pipeline(self) -> Optional[str]:
-        return pulumi.get(self, "pipeline")
-
-    @property
-    @pulumi.getter
-    def source(self) -> Optional[str]:
-        return pulumi.get(self, "source")
-
-
-@pulumi.output_type
-class DataLakeStorageStore(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "additionalStorageClasses":
-            suggest = "additional_storage_classes"
-        elif key == "includeTags":
-            suggest = "include_tags"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakeStorageStore. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakeStorageStore.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakeStorageStore.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 additional_storage_classes: Optional[Sequence[str]] = None,
-                 bucket: Optional[str] = None,
-                 delimiter: Optional[str] = None,
-                 include_tags: Optional[bool] = None,
-                 name: Optional[str] = None,
-                 prefix: Optional[str] = None,
-                 provider: Optional[str] = None,
-                 region: Optional[str] = None):
-        """
-        :param str name: Name of the Atlas Data Lake.
-        """
-        if additional_storage_classes is not None:
-            pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
-        if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
-        if delimiter is not None:
-            pulumi.set(__self__, "delimiter", delimiter)
-        if include_tags is not None:
-            pulumi.set(__self__, "include_tags", include_tags)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if prefix is not None:
-            pulumi.set(__self__, "prefix", prefix)
-        if provider is not None:
-            pulumi.set(__self__, "provider", provider)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter(name="additionalStorageClasses")
-    def additional_storage_classes(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "additional_storage_classes")
-
-    @property
-    @pulumi.getter
-    def bucket(self) -> Optional[str]:
-        return pulumi.get(self, "bucket")
-
-    @property
-    @pulumi.getter
-    def delimiter(self) -> Optional[str]:
-        return pulumi.get(self, "delimiter")
-
-    @property
-    @pulumi.getter(name="includeTags")
-    def include_tags(self) -> Optional[bool]:
-        return pulumi.get(self, "include_tags")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        Name of the Atlas Data Lake.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def prefix(self) -> Optional[str]:
-        return pulumi.get(self, "prefix")
-
-    @property
-    @pulumi.getter
-    def provider(self) -> Optional[str]:
-        return pulumi.get(self, "provider")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional[str]:
-        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -7073,6 +6682,41 @@ class OnlineArchiveCriteria(dict):
         JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
         """
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class OnlineArchiveDataExpirationRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expireAfterDays":
+            suggest = "expire_after_days"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OnlineArchiveDataExpirationRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OnlineArchiveDataExpirationRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OnlineArchiveDataExpirationRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expire_after_days: int):
+        """
+        :param int expire_after_days: Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+        """
+        pulumi.set(__self__, "expire_after_days", expire_after_days)
+
+    @property
+    @pulumi.getter(name="expireAfterDays")
+    def expire_after_days(self) -> int:
+        """
+        Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+        """
+        return pulumi.get(self, "expire_after_days")
 
 
 @pulumi.output_type
@@ -9611,7 +9255,7 @@ class GetAlertConfigurationMatcherResult(dict):
                  value: str):
         """
         :param str field_name: Name of the field in the target object to match on.
-        :param str operator: Operator to apply when checking the current metric value against the threshold value.
+        :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
@@ -9631,7 +9275,7 @@ class GetAlertConfigurationMatcherResult(dict):
     @pulumi.getter
     def operator(self) -> str:
         """
-        Operator to apply when checking the current metric value against the threshold value.
+        The operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
         """
         return pulumi.get(self, "operator")
@@ -9656,7 +9300,7 @@ class GetAlertConfigurationMetricThresholdConfigResult(dict):
         """
         :param str metric_name: Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
         :param str mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
-        :param str operator: Operator to apply when checking the current metric value against the threshold value.
+        :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
         :param float threshold: Threshold value outside of which an alert will be triggered.
         :param str units: The units for the threshold value. Depends on the type of metric.
@@ -9688,7 +9332,7 @@ class GetAlertConfigurationMetricThresholdConfigResult(dict):
     @pulumi.getter
     def operator(self) -> str:
         """
-        Operator to apply when checking the current metric value against the threshold value.
+        The operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
         """
         return pulumi.get(self, "operator")
@@ -9724,6 +9368,7 @@ class GetAlertConfigurationNotificationResult(dict):
                  interval_min: int,
                  microsoft_teams_webhook_url: str,
                  mobile_number: str,
+                 notifier_id: str,
                  ops_genie_api_key: str,
                  ops_genie_region: str,
                  roles: Sequence[str],
@@ -9748,6 +9393,7 @@ class GetAlertConfigurationNotificationResult(dict):
         :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
         :param str microsoft_teams_webhook_url: Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
         :param str mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
+        :param str notifier_id: The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
         :param str ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         :param Sequence[str] roles: Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
@@ -9773,6 +9419,7 @@ class GetAlertConfigurationNotificationResult(dict):
         pulumi.set(__self__, "interval_min", interval_min)
         pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "notifier_id", notifier_id)
         pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
         pulumi.set(__self__, "ops_genie_region", ops_genie_region)
         pulumi.set(__self__, "roles", roles)
@@ -9866,6 +9513,14 @@ class GetAlertConfigurationNotificationResult(dict):
         Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         """
         return pulumi.get(self, "mobile_number")
+
+    @property
+    @pulumi.getter(name="notifierId")
+    def notifier_id(self) -> str:
+        """
+        The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+        """
+        return pulumi.get(self, "notifier_id")
 
     @property
     @pulumi.getter(name="opsGenieApiKey")
@@ -10013,7 +9668,7 @@ class GetAlertConfigurationThresholdConfigResult(dict):
                  threshold: float,
                  units: str):
         """
-        :param str operator: Operator to apply when checking the current metric value against the threshold value.
+        :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
         :param float threshold: Threshold value outside of which an alert will be triggered.
         :param str units: The units for the threshold value. Depends on the type of metric.
@@ -10027,7 +9682,7 @@ class GetAlertConfigurationThresholdConfigResult(dict):
     @pulumi.getter
     def operator(self) -> str:
         """
-        Operator to apply when checking the current metric value against the threshold value.
+        The operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
         """
         return pulumi.get(self, "operator")
@@ -10099,11 +9754,11 @@ class GetAlertConfigurationsResultResult(dict):
         :param str created: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
         :param bool enabled: If set to true, the alert configuration is enabled. If enabled is not exported it is set to false.
         :param str event_type: The type of event that will trigger an alert.
-        :param Sequence['GetAlertConfigurationsResultMatcherArgs'] matchers: Rules to apply when matching an object against this alert configuration
-        :param Sequence['GetAlertConfigurationsResultMetricThresholdConfigArgs'] metric_threshold_configs: The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
+        :param Sequence['GetAlertConfigurationsResultMatcherArgs'] matchers: Rules to apply when matching an object against this alert configuration. See matchers.
+        :param Sequence['GetAlertConfigurationsResultMetricThresholdConfigArgs'] metric_threshold_configs: The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
         :param Sequence['GetAlertConfigurationsResultOutputArgs'] outputs: Requested output string format for the alert configuration
         :param str project_id: The unique ID for the project to get the alert configurations.
-        :param Sequence['GetAlertConfigurationsResultThresholdConfigArgs'] threshold_configs: Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
+        :param Sequence['GetAlertConfigurationsResultThresholdConfigArgs'] threshold_configs: Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
         :param str updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
         pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
@@ -10160,7 +9815,7 @@ class GetAlertConfigurationsResultResult(dict):
     @pulumi.getter
     def matchers(self) -> Sequence['outputs.GetAlertConfigurationsResultMatcherResult']:
         """
-        Rules to apply when matching an object against this alert configuration
+        Rules to apply when matching an object against this alert configuration. See matchers.
         """
         return pulumi.get(self, "matchers")
 
@@ -10168,7 +9823,7 @@ class GetAlertConfigurationsResultResult(dict):
     @pulumi.getter(name="metricThresholdConfigs")
     def metric_threshold_configs(self) -> Sequence['outputs.GetAlertConfigurationsResultMetricThresholdConfigResult']:
         """
-        The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`
+        The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
         """
         return pulumi.get(self, "metric_threshold_configs")
 
@@ -10197,7 +9852,7 @@ class GetAlertConfigurationsResultResult(dict):
     @pulumi.getter(name="thresholdConfigs")
     def threshold_configs(self) -> Sequence['outputs.GetAlertConfigurationsResultThresholdConfigResult']:
         """
-        Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
+        Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
         """
         return pulumi.get(self, "threshold_configs")
 
@@ -10216,6 +9871,12 @@ class GetAlertConfigurationsResultMatcherResult(dict):
                  field_name: str,
                  operator: str,
                  value: str):
+        """
+        :param str field_name: Name of the field in the target object to match on.
+        :param str operator: The operator to apply when checking the current metric value against the threshold value.
+               Accepted values are:
+        :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        """
         pulumi.set(__self__, "field_name", field_name)
         pulumi.set(__self__, "operator", operator)
         pulumi.set(__self__, "value", value)
@@ -10223,16 +9884,26 @@ class GetAlertConfigurationsResultMatcherResult(dict):
     @property
     @pulumi.getter(name="fieldName")
     def field_name(self) -> str:
+        """
+        Name of the field in the target object to match on.
+        """
         return pulumi.get(self, "field_name")
 
     @property
     @pulumi.getter
     def operator(self) -> str:
+        """
+        The operator to apply when checking the current metric value against the threshold value.
+        Accepted values are:
+        """
         return pulumi.get(self, "operator")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        """
         return pulumi.get(self, "value")
 
 
@@ -10244,6 +9915,15 @@ class GetAlertConfigurationsResultMetricThresholdConfigResult(dict):
                  operator: str,
                  threshold: float,
                  units: str):
+        """
+        :param str metric_name: Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+        :param str mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
+        :param str operator: The operator to apply when checking the current metric value against the threshold value.
+               Accepted values are:
+        :param float threshold: Threshold value outside of which an alert will be triggered.
+        :param str units: The units for the threshold value. Depends on the type of metric.
+               Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+        """
         pulumi.set(__self__, "metric_name", metric_name)
         pulumi.set(__self__, "mode", mode)
         pulumi.set(__self__, "operator", operator)
@@ -10253,26 +9933,43 @@ class GetAlertConfigurationsResultMetricThresholdConfigResult(dict):
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> str:
+        """
+        Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+        """
         return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter
     def mode(self) -> str:
+        """
+        This must be set to AVERAGE. Atlas computes the current metric value as an average.
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def operator(self) -> str:
+        """
+        The operator to apply when checking the current metric value against the threshold value.
+        Accepted values are:
+        """
         return pulumi.get(self, "operator")
 
     @property
     @pulumi.getter
     def threshold(self) -> float:
+        """
+        Threshold value outside of which an alert will be triggered.
+        """
         return pulumi.get(self, "threshold")
 
     @property
     @pulumi.getter
     def units(self) -> str:
+        """
+        The units for the threshold value. Depends on the type of metric.
+        Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+        """
         return pulumi.get(self, "units")
 
 
@@ -10289,6 +9986,7 @@ class GetAlertConfigurationsResultNotificationResult(dict):
                  interval_min: int,
                  microsoft_teams_webhook_url: str,
                  mobile_number: str,
+                 notifier_id: str,
                  ops_genie_api_key: str,
                  ops_genie_region: str,
                  roles: Sequence[str],
@@ -10302,6 +10000,33 @@ class GetAlertConfigurationsResultNotificationResult(dict):
                  victor_ops_routing_key: str,
                  webhook_secret: str,
                  webhook_url: str):
+        """
+        :param str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+        :param str channel_name: Slack channel name. Required for the SLACK notifications type.
+        :param str datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
+        :param str datadog_region: Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        :param int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
+        :param str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
+        :param bool email_enabled: Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
+        :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+        :param str microsoft_teams_webhook_url: Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+        :param str mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
+        :param str notifier_id: The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+        :param str ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+        :param str ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
+        :param Sequence[str] roles: Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
+        :param str service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+        :param bool sms_enabled: Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+        :param str team_id: Unique identifier of a team.
+        :param str team_name: Label for the team that receives this notification.
+        :param str type_name: Type of alert notification.
+               Accepted values are:
+        :param str username: Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
+        :param str victor_ops_api_key: VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+        :param str victor_ops_routing_key: VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+        :param str webhook_secret: Authentication secret for the `WEBHOOK` notifications type.
+        :param str webhook_url: Target URL  for the `WEBHOOK` notifications type.
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "channel_name", channel_name)
         pulumi.set(__self__, "datadog_api_key", datadog_api_key)
@@ -10312,6 +10037,7 @@ class GetAlertConfigurationsResultNotificationResult(dict):
         pulumi.set(__self__, "interval_min", interval_min)
         pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "notifier_id", notifier_id)
         pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
         pulumi.set(__self__, "ops_genie_region", ops_genie_region)
         pulumi.set(__self__, "roles", roles)
@@ -10329,116 +10055,194 @@ class GetAlertConfigurationsResultNotificationResult(dict):
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> str:
+        """
+        Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+        """
         return pulumi.get(self, "api_token")
 
     @property
     @pulumi.getter(name="channelName")
     def channel_name(self) -> str:
+        """
+        Slack channel name. Required for the SLACK notifications type.
+        """
         return pulumi.get(self, "channel_name")
 
     @property
     @pulumi.getter(name="datadogApiKey")
     def datadog_api_key(self) -> str:
+        """
+        Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
+        """
         return pulumi.get(self, "datadog_api_key")
 
     @property
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> str:
+        """
+        Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        """
         return pulumi.get(self, "datadog_region")
 
     @property
     @pulumi.getter(name="delayMin")
     def delay_min(self) -> int:
+        """
+        Number of minutes to wait after an alert condition is detected before sending out the first notification.
+        """
         return pulumi.get(self, "delay_min")
 
     @property
     @pulumi.getter(name="emailAddress")
     def email_address(self) -> str:
+        """
+        Email address to which alert notifications are sent. Required for the EMAIL notifications type.
+        """
         return pulumi.get(self, "email_address")
 
     @property
     @pulumi.getter(name="emailEnabled")
     def email_enabled(self) -> bool:
+        """
+        Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
+        """
         return pulumi.get(self, "email_enabled")
 
     @property
     @pulumi.getter(name="intervalMin")
     def interval_min(self) -> int:
+        """
+        Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+        """
         return pulumi.get(self, "interval_min")
 
     @property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
     def microsoft_teams_webhook_url(self) -> str:
+        """
+        Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+        """
         return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @property
     @pulumi.getter(name="mobileNumber")
     def mobile_number(self) -> str:
+        """
+        Mobile number to which alert notifications are sent. Required for the SMS notifications type.
+        """
         return pulumi.get(self, "mobile_number")
+
+    @property
+    @pulumi.getter(name="notifierId")
+    def notifier_id(self) -> str:
+        """
+        The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+        """
+        return pulumi.get(self, "notifier_id")
 
     @property
     @pulumi.getter(name="opsGenieApiKey")
     def ops_genie_api_key(self) -> str:
+        """
+        Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
+        """
         return pulumi.get(self, "ops_genie_api_key")
 
     @property
     @pulumi.getter(name="opsGenieRegion")
     def ops_genie_region(self) -> str:
+        """
+        Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
+        """
         return pulumi.get(self, "ops_genie_region")
 
     @property
     @pulumi.getter
     def roles(self) -> Sequence[str]:
+        """
+        Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
+        """
         return pulumi.get(self, "roles")
 
     @property
     @pulumi.getter(name="serviceKey")
     def service_key(self) -> str:
+        """
+        PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+        """
         return pulumi.get(self, "service_key")
 
     @property
     @pulumi.getter(name="smsEnabled")
     def sms_enabled(self) -> bool:
+        """
+        Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+        """
         return pulumi.get(self, "sms_enabled")
 
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> str:
+        """
+        Unique identifier of a team.
+        """
         return pulumi.get(self, "team_id")
 
     @property
     @pulumi.getter(name="teamName")
     def team_name(self) -> str:
+        """
+        Label for the team that receives this notification.
+        """
         return pulumi.get(self, "team_name")
 
     @property
     @pulumi.getter(name="typeName")
     def type_name(self) -> str:
+        """
+        Type of alert notification.
+        Accepted values are:
+        """
         return pulumi.get(self, "type_name")
 
     @property
     @pulumi.getter
     def username(self) -> str:
+        """
+        Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
+        """
         return pulumi.get(self, "username")
 
     @property
     @pulumi.getter(name="victorOpsApiKey")
     def victor_ops_api_key(self) -> str:
+        """
+        VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+        """
         return pulumi.get(self, "victor_ops_api_key")
 
     @property
     @pulumi.getter(name="victorOpsRoutingKey")
     def victor_ops_routing_key(self) -> str:
+        """
+        VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+        """
         return pulumi.get(self, "victor_ops_routing_key")
 
     @property
     @pulumi.getter(name="webhookSecret")
     def webhook_secret(self) -> str:
+        """
+        Authentication secret for the `WEBHOOK` notifications type.
+        """
         return pulumi.get(self, "webhook_secret")
 
     @property
     @pulumi.getter(name="webhookUrl")
     def webhook_url(self) -> str:
+        """
+        Target URL  for the `WEBHOOK` notifications type.
+        """
         return pulumi.get(self, "webhook_url")
 
 
@@ -10448,6 +10252,9 @@ class GetAlertConfigurationsResultOutputResult(dict):
                  label: str,
                  type: str,
                  value: str):
+        """
+        :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        """
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
@@ -10465,6 +10272,9 @@ class GetAlertConfigurationsResultOutputResult(dict):
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        """
         return pulumi.get(self, "value")
 
 
@@ -10474,6 +10284,13 @@ class GetAlertConfigurationsResultThresholdConfigResult(dict):
                  operator: str,
                  threshold: float,
                  units: str):
+        """
+        :param str operator: The operator to apply when checking the current metric value against the threshold value.
+               Accepted values are:
+        :param float threshold: Threshold value outside of which an alert will be triggered.
+        :param str units: The units for the threshold value. Depends on the type of metric.
+               Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+        """
         pulumi.set(__self__, "operator", operator)
         pulumi.set(__self__, "threshold", threshold)
         pulumi.set(__self__, "units", units)
@@ -10481,16 +10298,27 @@ class GetAlertConfigurationsResultThresholdConfigResult(dict):
     @property
     @pulumi.getter
     def operator(self) -> str:
+        """
+        The operator to apply when checking the current metric value against the threshold value.
+        Accepted values are:
+        """
         return pulumi.get(self, "operator")
 
     @property
     @pulumi.getter
     def threshold(self) -> float:
+        """
+        Threshold value outside of which an alert will be triggered.
+        """
         return pulumi.get(self, "threshold")
 
     @property
     @pulumi.getter
     def units(self) -> str:
+        """
+        The units for the threshold value. Depends on the type of metric.
+        Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+        """
         return pulumi.get(self, "units")
 
 
@@ -14227,65 +14055,6 @@ class GetCustomDbRolesResultInheritedRoleResult(dict):
 
 
 @pulumi.output_type
-class GetDataLakeAwResult(dict):
-    def __init__(__self__, *,
-                 external_id: str,
-                 iam_assumed_role_arn: str,
-                 iam_user_arn: str,
-                 role_id: str,
-                 test_s3_bucket: str):
-        pulumi.set(__self__, "external_id", external_id)
-        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
-        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
-        pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
-
-    @property
-    @pulumi.getter(name="externalId")
-    def external_id(self) -> str:
-        return pulumi.get(self, "external_id")
-
-    @property
-    @pulumi.getter(name="iamAssumedRoleArn")
-    def iam_assumed_role_arn(self) -> str:
-        return pulumi.get(self, "iam_assumed_role_arn")
-
-    @property
-    @pulumi.getter(name="iamUserArn")
-    def iam_user_arn(self) -> str:
-        return pulumi.get(self, "iam_user_arn")
-
-    @property
-    @pulumi.getter(name="roleId")
-    def role_id(self) -> str:
-        return pulumi.get(self, "role_id")
-
-    @property
-    @pulumi.getter(name="testS3Bucket")
-    def test_s3_bucket(self) -> str:
-        return pulumi.get(self, "test_s3_bucket")
-
-
-@pulumi.output_type
-class GetDataLakeDataProcessRegionResult(dict):
-    def __init__(__self__, *,
-                 cloud_provider: str,
-                 region: str):
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> str:
-        return pulumi.get(self, "cloud_provider")
-
-    @property
-    @pulumi.getter
-    def region(self) -> str:
-        return pulumi.get(self, "region")
-
-
-@pulumi.output_type
 class GetDataLakePipelineIngestionScheduleResult(dict):
     def __init__(__self__, *,
                  frequency_interval: int,
@@ -15034,546 +14803,6 @@ class GetDataLakePipelinesResultTransformationResult(dict):
         Type of ingestion source of this Data Lake Pipeline.
         """
         return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetDataLakeStorageDatabaseResult(dict):
-    def __init__(__self__, *,
-                 collections: Sequence['outputs.GetDataLakeStorageDatabaseCollectionResult'],
-                 max_wildcard_collections: int,
-                 name: str,
-                 views: Sequence['outputs.GetDataLakeStorageDatabaseViewResult']):
-        """
-        :param str name: Name of the data lake.
-        """
-        pulumi.set(__self__, "collections", collections)
-        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "views", views)
-
-    @property
-    @pulumi.getter
-    def collections(self) -> Sequence['outputs.GetDataLakeStorageDatabaseCollectionResult']:
-        return pulumi.get(self, "collections")
-
-    @property
-    @pulumi.getter(name="maxWildcardCollections")
-    def max_wildcard_collections(self) -> int:
-        return pulumi.get(self, "max_wildcard_collections")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Name of the data lake.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def views(self) -> Sequence['outputs.GetDataLakeStorageDatabaseViewResult']:
-        return pulumi.get(self, "views")
-
-
-@pulumi.output_type
-class GetDataLakeStorageDatabaseCollectionResult(dict):
-    def __init__(__self__, *,
-                 data_sources: Sequence['outputs.GetDataLakeStorageDatabaseCollectionDataSourceResult'],
-                 name: str):
-        """
-        :param str name: Name of the data lake.
-        """
-        pulumi.set(__self__, "data_sources", data_sources)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter(name="dataSources")
-    def data_sources(self) -> Sequence['outputs.GetDataLakeStorageDatabaseCollectionDataSourceResult']:
-        return pulumi.get(self, "data_sources")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Name of the data lake.
-        """
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class GetDataLakeStorageDatabaseCollectionDataSourceResult(dict):
-    def __init__(__self__, *,
-                 default_format: str,
-                 path: str,
-                 store_name: str):
-        pulumi.set(__self__, "default_format", default_format)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "store_name", store_name)
-
-    @property
-    @pulumi.getter(name="defaultFormat")
-    def default_format(self) -> str:
-        return pulumi.get(self, "default_format")
-
-    @property
-    @pulumi.getter
-    def path(self) -> str:
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter(name="storeName")
-    def store_name(self) -> str:
-        return pulumi.get(self, "store_name")
-
-
-@pulumi.output_type
-class GetDataLakeStorageDatabaseViewResult(dict):
-    def __init__(__self__, *,
-                 name: str,
-                 pipeline: str,
-                 source: str):
-        """
-        :param str name: Name of the data lake.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "pipeline", pipeline)
-        pulumi.set(__self__, "source", source)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Name of the data lake.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def pipeline(self) -> str:
-        return pulumi.get(self, "pipeline")
-
-    @property
-    @pulumi.getter
-    def source(self) -> str:
-        return pulumi.get(self, "source")
-
-
-@pulumi.output_type
-class GetDataLakeStorageStoreResult(dict):
-    def __init__(__self__, *,
-                 additional_storage_classes: Sequence[str],
-                 bucket: str,
-                 delimiter: str,
-                 include_tags: bool,
-                 name: str,
-                 prefix: str,
-                 provider: str,
-                 region: str):
-        """
-        :param str name: Name of the data lake.
-        """
-        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "delimiter", delimiter)
-        pulumi.set(__self__, "include_tags", include_tags)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "prefix", prefix)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter(name="additionalStorageClasses")
-    def additional_storage_classes(self) -> Sequence[str]:
-        return pulumi.get(self, "additional_storage_classes")
-
-    @property
-    @pulumi.getter
-    def bucket(self) -> str:
-        return pulumi.get(self, "bucket")
-
-    @property
-    @pulumi.getter
-    def delimiter(self) -> str:
-        return pulumi.get(self, "delimiter")
-
-    @property
-    @pulumi.getter(name="includeTags")
-    def include_tags(self) -> bool:
-        return pulumi.get(self, "include_tags")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        Name of the data lake.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def prefix(self) -> str:
-        return pulumi.get(self, "prefix")
-
-    @property
-    @pulumi.getter
-    def provider(self) -> str:
-        return pulumi.get(self, "provider")
-
-    @property
-    @pulumi.getter
-    def region(self) -> str:
-        return pulumi.get(self, "region")
-
-
-@pulumi.output_type
-class GetDataLakesResultResult(dict):
-    def __init__(__self__, *,
-                 aws: Sequence['outputs.GetDataLakesResultAwResult'],
-                 data_process_regions: Sequence['outputs.GetDataLakesResultDataProcessRegionResult'],
-                 hostnames: Sequence[str],
-                 name: str,
-                 project_id: str,
-                 state: str,
-                 storage_databases: Sequence['outputs.GetDataLakesResultStorageDatabaseResult'],
-                 storage_stores: Sequence['outputs.GetDataLakesResultStorageStoreResult']):
-        """
-        :param Sequence['GetDataLakesResultDataProcessRegionArgs'] data_process_regions: The cloud provider region to which Atlas Data Lake routes client connections for data processing.
-               * `data_process_region.0.cloud_provider` - Name of the cloud service provider.
-               * `data_process_region.0.region` -Name of the region to which Data Lake routes client connections for data processing.
-        :param Sequence[str] hostnames: The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
-        :param str project_id: The unique ID for the project to get all data lakes.
-        :param str state: Current state of the Atlas Data Lake:
-        :param Sequence['GetDataLakesResultStorageDatabaseArgs'] storage_databases: Configuration details for mapping each data store to queryable databases and collections.
-               * `storage_databases.#.name` - Name of the database to which Data Lake maps the data contained in the data store.
-               * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
-               * `storage_databases.#.collections.#.name` - Name of the collection.
-               * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
-               * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`.
-               * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
-               * `storage_databases.#.collections.#.data_sources.#.path` - Controls how Atlas Data Lake searches for and parses files in the storeName before mapping them to the `<collection>`.
-               * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection.
-               * `storage_databases.#.views.#.name` - Name of the view.
-               * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
-               * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
-        :param Sequence['GetDataLakesResultStorageStoreArgs'] storage_stores: Each object in the array represents a data store. Data Lake uses the storage.databases configuration details to map data in each data store to queryable databases and collections.
-               * `storage_stores.#.name` - Name of the data store.
-               * `storage_stores.#.provider` - Defines where the data is stored.
-               * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-               * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
-               * `storage_stores.#.prefix` - Prefix Data Lake applies when searching for files in the S3 bucket .
-               * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
-               * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
-        """
-        pulumi.set(__self__, "aws", aws)
-        pulumi.set(__self__, "data_process_regions", data_process_regions)
-        pulumi.set(__self__, "hostnames", hostnames)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "state", state)
-        pulumi.set(__self__, "storage_databases", storage_databases)
-        pulumi.set(__self__, "storage_stores", storage_stores)
-
-    @property
-    @pulumi.getter
-    def aws(self) -> Sequence['outputs.GetDataLakesResultAwResult']:
-        return pulumi.get(self, "aws")
-
-    @property
-    @pulumi.getter(name="dataProcessRegions")
-    def data_process_regions(self) -> Sequence['outputs.GetDataLakesResultDataProcessRegionResult']:
-        """
-        The cloud provider region to which Atlas Data Lake routes client connections for data processing.
-        * `data_process_region.0.cloud_provider` - Name of the cloud service provider.
-        * `data_process_region.0.region` -Name of the region to which Data Lake routes client connections for data processing.
-        """
-        return pulumi.get(self, "data_process_regions")
-
-    @property
-    @pulumi.getter
-    def hostnames(self) -> Sequence[str]:
-        """
-        The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
-        """
-        return pulumi.get(self, "hostnames")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
-        """
-        The unique ID for the project to get all data lakes.
-        """
-        return pulumi.get(self, "project_id")
-
-    @property
-    @pulumi.getter
-    def state(self) -> str:
-        """
-        Current state of the Atlas Data Lake:
-        """
-        return pulumi.get(self, "state")
-
-    @property
-    @pulumi.getter(name="storageDatabases")
-    def storage_databases(self) -> Sequence['outputs.GetDataLakesResultStorageDatabaseResult']:
-        """
-        Configuration details for mapping each data store to queryable databases and collections.
-        * `storage_databases.#.name` - Name of the database to which Data Lake maps the data contained in the data store.
-        * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
-        * `storage_databases.#.collections.#.name` - Name of the collection.
-        * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
-        * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`.
-        * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
-        * `storage_databases.#.collections.#.data_sources.#.path` - Controls how Atlas Data Lake searches for and parses files in the storeName before mapping them to the `<collection>`.
-        * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection.
-        * `storage_databases.#.views.#.name` - Name of the view.
-        * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
-        * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
-        """
-        return pulumi.get(self, "storage_databases")
-
-    @property
-    @pulumi.getter(name="storageStores")
-    def storage_stores(self) -> Sequence['outputs.GetDataLakesResultStorageStoreResult']:
-        """
-        Each object in the array represents a data store. Data Lake uses the storage.databases configuration details to map data in each data store to queryable databases and collections.
-        * `storage_stores.#.name` - Name of the data store.
-        * `storage_stores.#.provider` - Defines where the data is stored.
-        * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-        * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
-        * `storage_stores.#.prefix` - Prefix Data Lake applies when searching for files in the S3 bucket .
-        * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
-        * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
-        """
-        return pulumi.get(self, "storage_stores")
-
-
-@pulumi.output_type
-class GetDataLakesResultAwResult(dict):
-    def __init__(__self__, *,
-                 external_id: str,
-                 iam_assumed_role_arn: str,
-                 iam_user_arn: str,
-                 role_id: str,
-                 test_s3_bucket: str):
-        pulumi.set(__self__, "external_id", external_id)
-        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
-        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
-        pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
-
-    @property
-    @pulumi.getter(name="externalId")
-    def external_id(self) -> str:
-        return pulumi.get(self, "external_id")
-
-    @property
-    @pulumi.getter(name="iamAssumedRoleArn")
-    def iam_assumed_role_arn(self) -> str:
-        return pulumi.get(self, "iam_assumed_role_arn")
-
-    @property
-    @pulumi.getter(name="iamUserArn")
-    def iam_user_arn(self) -> str:
-        return pulumi.get(self, "iam_user_arn")
-
-    @property
-    @pulumi.getter(name="roleId")
-    def role_id(self) -> str:
-        return pulumi.get(self, "role_id")
-
-    @property
-    @pulumi.getter(name="testS3Bucket")
-    def test_s3_bucket(self) -> str:
-        return pulumi.get(self, "test_s3_bucket")
-
-
-@pulumi.output_type
-class GetDataLakesResultDataProcessRegionResult(dict):
-    def __init__(__self__, *,
-                 cloud_provider: str,
-                 region: str):
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> str:
-        return pulumi.get(self, "cloud_provider")
-
-    @property
-    @pulumi.getter
-    def region(self) -> str:
-        return pulumi.get(self, "region")
-
-
-@pulumi.output_type
-class GetDataLakesResultStorageDatabaseResult(dict):
-    def __init__(__self__, *,
-                 collections: Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionResult'],
-                 max_wildcard_collections: int,
-                 name: str,
-                 views: Sequence['outputs.GetDataLakesResultStorageDatabaseViewResult']):
-        pulumi.set(__self__, "collections", collections)
-        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "views", views)
-
-    @property
-    @pulumi.getter
-    def collections(self) -> Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionResult']:
-        return pulumi.get(self, "collections")
-
-    @property
-    @pulumi.getter(name="maxWildcardCollections")
-    def max_wildcard_collections(self) -> int:
-        return pulumi.get(self, "max_wildcard_collections")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def views(self) -> Sequence['outputs.GetDataLakesResultStorageDatabaseViewResult']:
-        return pulumi.get(self, "views")
-
-
-@pulumi.output_type
-class GetDataLakesResultStorageDatabaseCollectionResult(dict):
-    def __init__(__self__, *,
-                 data_sources: Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionDataSourceResult'],
-                 name: str):
-        pulumi.set(__self__, "data_sources", data_sources)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter(name="dataSources")
-    def data_sources(self) -> Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionDataSourceResult']:
-        return pulumi.get(self, "data_sources")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class GetDataLakesResultStorageDatabaseCollectionDataSourceResult(dict):
-    def __init__(__self__, *,
-                 default_format: str,
-                 path: str,
-                 store_name: str):
-        pulumi.set(__self__, "default_format", default_format)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "store_name", store_name)
-
-    @property
-    @pulumi.getter(name="defaultFormat")
-    def default_format(self) -> str:
-        return pulumi.get(self, "default_format")
-
-    @property
-    @pulumi.getter
-    def path(self) -> str:
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter(name="storeName")
-    def store_name(self) -> str:
-        return pulumi.get(self, "store_name")
-
-
-@pulumi.output_type
-class GetDataLakesResultStorageDatabaseViewResult(dict):
-    def __init__(__self__, *,
-                 name: str,
-                 pipeline: str,
-                 source: str):
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "pipeline", pipeline)
-        pulumi.set(__self__, "source", source)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def pipeline(self) -> str:
-        return pulumi.get(self, "pipeline")
-
-    @property
-    @pulumi.getter
-    def source(self) -> str:
-        return pulumi.get(self, "source")
-
-
-@pulumi.output_type
-class GetDataLakesResultStorageStoreResult(dict):
-    def __init__(__self__, *,
-                 additional_storage_classes: Sequence[str],
-                 bucket: str,
-                 delimiter: str,
-                 include_tags: bool,
-                 name: str,
-                 prefix: str,
-                 provider: str,
-                 region: str):
-        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "delimiter", delimiter)
-        pulumi.set(__self__, "include_tags", include_tags)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "prefix", prefix)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter(name="additionalStorageClasses")
-    def additional_storage_classes(self) -> Sequence[str]:
-        return pulumi.get(self, "additional_storage_classes")
-
-    @property
-    @pulumi.getter
-    def bucket(self) -> str:
-        return pulumi.get(self, "bucket")
-
-    @property
-    @pulumi.getter
-    def delimiter(self) -> str:
-        return pulumi.get(self, "delimiter")
-
-    @property
-    @pulumi.getter(name="includeTags")
-    def include_tags(self) -> bool:
-        return pulumi.get(self, "include_tags")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def prefix(self) -> str:
-        return pulumi.get(self, "prefix")
-
-    @property
-    @pulumi.getter
-    def provider(self) -> str:
-        return pulumi.get(self, "provider")
-
-    @property
-    @pulumi.getter
-    def region(self) -> str:
-        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -19066,6 +18295,18 @@ class GetOnlineArchiveCriteriaResult(dict):
 
 
 @pulumi.output_type
+class GetOnlineArchiveDataExpirationRuleResult(dict):
+    def __init__(__self__, *,
+                 expire_after_days: int):
+        pulumi.set(__self__, "expire_after_days", expire_after_days)
+
+    @property
+    @pulumi.getter(name="expireAfterDays")
+    def expire_after_days(self) -> int:
+        return pulumi.get(self, "expire_after_days")
+
+
+@pulumi.output_type
 class GetOnlineArchivePartitionFieldResult(dict):
     def __init__(__self__, *,
                  field_name: str,
@@ -19155,6 +18396,7 @@ class GetOnlineArchivesResultResult(dict):
                  coll_name: str,
                  collection_type: str,
                  criterias: Sequence['outputs.GetOnlineArchivesResultCriteriaResult'],
+                 data_expiration_rules: Sequence['outputs.GetOnlineArchivesResultDataExpirationRuleResult'],
                  db_name: str,
                  partition_fields: Sequence['outputs.GetOnlineArchivesResultPartitionFieldResult'],
                  paused: bool,
@@ -19174,6 +18416,7 @@ class GetOnlineArchivesResultResult(dict):
         pulumi.set(__self__, "coll_name", coll_name)
         pulumi.set(__self__, "collection_type", collection_type)
         pulumi.set(__self__, "criterias", criterias)
+        pulumi.set(__self__, "data_expiration_rules", data_expiration_rules)
         pulumi.set(__self__, "db_name", db_name)
         pulumi.set(__self__, "partition_fields", partition_fields)
         pulumi.set(__self__, "paused", paused)
@@ -19212,6 +18455,11 @@ class GetOnlineArchivesResultResult(dict):
     @pulumi.getter
     def criterias(self) -> Sequence['outputs.GetOnlineArchivesResultCriteriaResult']:
         return pulumi.get(self, "criterias")
+
+    @property
+    @pulumi.getter(name="dataExpirationRules")
+    def data_expiration_rules(self) -> Sequence['outputs.GetOnlineArchivesResultDataExpirationRuleResult']:
+        return pulumi.get(self, "data_expiration_rules")
 
     @property
     @pulumi.getter(name="dbName")
@@ -19285,6 +18533,18 @@ class GetOnlineArchivesResultCriteriaResult(dict):
     @pulumi.getter
     def type(self) -> str:
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetOnlineArchivesResultDataExpirationRuleResult(dict):
+    def __init__(__self__, *,
+                 expire_after_days: int):
+        pulumi.set(__self__, "expire_after_days", expire_after_days)
+
+    @property
+    @pulumi.getter(name="expireAfterDays")
+    def expire_after_days(self) -> int:
+        return pulumi.get(self, "expire_after_days")
 
 
 @pulumi.output_type
@@ -19556,80 +18816,6 @@ class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult(dict
     def type(self) -> str:
         """
         Human-readable label that identifies the resource type associated with this private endpoint.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetPrivatelinkEndpointsServiceAdlLinkResult(dict):
-    def __init__(__self__, *,
-                 href: str,
-                 rel: str):
-        pulumi.set(__self__, "href", href)
-        pulumi.set(__self__, "rel", rel)
-
-    @property
-    @pulumi.getter
-    def href(self) -> str:
-        return pulumi.get(self, "href")
-
-    @property
-    @pulumi.getter
-    def rel(self) -> str:
-        return pulumi.get(self, "rel")
-
-
-@pulumi.output_type
-class GetPrivatelinkEndpointsServiceAdlResultResult(dict):
-    def __init__(__self__, *,
-                 comment: str,
-                 endpoint_id: str,
-                 provider_name: str,
-                 type: str):
-        """
-        :param str comment: Human-readable string to associate with this private endpoint.
-               
-               See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/) Documentation for more information.
-        :param str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
-        :param str provider_name: Human-readable label that identifies the cloud provider for this endpoint.
-        :param str type: Human-readable label that identifies the type of resource to associate with this private endpoint.
-        """
-        pulumi.set(__self__, "comment", comment)
-        pulumi.set(__self__, "endpoint_id", endpoint_id)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def comment(self) -> str:
-        """
-        Human-readable string to associate with this private endpoint.
-
-        See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/) Documentation for more information.
-        """
-        return pulumi.get(self, "comment")
-
-    @property
-    @pulumi.getter(name="endpointId")
-    def endpoint_id(self) -> str:
-        """
-        Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
-        """
-        return pulumi.get(self, "endpoint_id")
-
-    @property
-    @pulumi.getter(name="providerName")
-    def provider_name(self) -> str:
-        """
-        Human-readable label that identifies the cloud provider for this endpoint.
-        """
-        return pulumi.get(self, "provider_name")
-
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        Human-readable label that identifies the type of resource to associate with this private endpoint.
         """
         return pulumi.get(self, "type")
 
@@ -20978,5 +20164,45 @@ class GetThirdPartyIntegrationsResultResult(dict):
         Your Prometheus username.
         """
         return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class GetX509AuthenticationDatabaseUserCertificateResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 group_id: str,
+                 id: int,
+                 not_after: str,
+                 subject: str):
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "not_after", not_after)
+        pulumi.set(__self__, "subject", subject)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> str:
+        return pulumi.get(self, "not_after")
+
+    @property
+    @pulumi.getter
+    def subject(self) -> str:
+        return pulumi.get(self, "subject")
 
 

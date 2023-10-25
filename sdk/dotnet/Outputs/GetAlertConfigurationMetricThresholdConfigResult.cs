@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Mode;
         /// <summary>
-        /// Operator to apply when checking the current metric value against the threshold value.
+        /// The operator to apply when checking the current metric value against the threshold value.
         /// Accepted values are:
         /// </summary>
         public readonly string Operator;

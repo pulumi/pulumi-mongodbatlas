@@ -44,7 +44,12 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// * `db_name`          -  Name of the database that contains the collection.
         /// * `coll_name`        -  Name of the collection.
-        /// * `collection_type`  -  Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD". 
+        /// * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        /// * `criteria` - Criteria to use for archiving data. See criteria.
+        /// * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        /// * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+        /// * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         /// * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         /// 
         /// ### Criteria
@@ -53,6 +58,10 @@ namespace Pulumi.Mongodbatlas
         /// * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
         /// * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
         /// * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
+        /// 
+        /// ### Data Expiration Rule
+        /// * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+        /// 
         /// 
         /// ### Schedule
         /// 
@@ -107,7 +116,12 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// * `db_name`          -  Name of the database that contains the collection.
         /// * `coll_name`        -  Name of the collection.
-        /// * `collection_type`  -  Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD". 
+        /// * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        /// * `criteria` - Criteria to use for archiving data. See criteria.
+        /// * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        /// * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+        /// * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         /// * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         /// 
         /// ### Criteria
@@ -116,6 +130,10 @@ namespace Pulumi.Mongodbatlas
         /// * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
         /// * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
         /// * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
+        /// 
+        /// ### Data Expiration Rule
+        /// * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+        /// 
         /// 
         /// ### Schedule
         /// 
@@ -200,6 +218,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string CollName;
         public readonly string CollectionType;
         public readonly ImmutableArray<Outputs.GetOnlineArchiveCriteriaResult> Criterias;
+        public readonly ImmutableArray<Outputs.GetOnlineArchiveDataExpirationRuleResult> DataExpirationRules;
         public readonly string DbName;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -223,6 +242,8 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetOnlineArchiveCriteriaResult> criterias,
 
+            ImmutableArray<Outputs.GetOnlineArchiveDataExpirationRuleResult> dataExpirationRules,
+
             string dbName,
 
             string id,
@@ -242,6 +263,7 @@ namespace Pulumi.Mongodbatlas
             CollName = collName;
             CollectionType = collectionType;
             Criterias = criterias;
+            DataExpirationRules = dataExpirationRules;
             DbName = dbName;
             Id = id;
             PartitionFields = partitionFields;

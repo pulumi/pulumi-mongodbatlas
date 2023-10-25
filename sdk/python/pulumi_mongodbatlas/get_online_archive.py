@@ -22,7 +22,7 @@ class GetOnlineArchiveResult:
     """
     A collection of values returned by getOnlineArchive.
     """
-    def __init__(__self__, archive_id=None, cluster_name=None, coll_name=None, collection_type=None, criterias=None, db_name=None, id=None, partition_fields=None, paused=None, project_id=None, schedules=None, state=None):
+    def __init__(__self__, archive_id=None, cluster_name=None, coll_name=None, collection_type=None, criterias=None, data_expiration_rules=None, db_name=None, id=None, partition_fields=None, paused=None, project_id=None, schedules=None, state=None):
         if archive_id and not isinstance(archive_id, str):
             raise TypeError("Expected argument 'archive_id' to be a str")
         pulumi.set(__self__, "archive_id", archive_id)
@@ -38,6 +38,9 @@ class GetOnlineArchiveResult:
         if criterias and not isinstance(criterias, list):
             raise TypeError("Expected argument 'criterias' to be a list")
         pulumi.set(__self__, "criterias", criterias)
+        if data_expiration_rules and not isinstance(data_expiration_rules, list):
+            raise TypeError("Expected argument 'data_expiration_rules' to be a list")
+        pulumi.set(__self__, "data_expiration_rules", data_expiration_rules)
         if db_name and not isinstance(db_name, str):
             raise TypeError("Expected argument 'db_name' to be a str")
         pulumi.set(__self__, "db_name", db_name)
@@ -84,6 +87,11 @@ class GetOnlineArchiveResult:
     @pulumi.getter
     def criterias(self) -> Sequence['outputs.GetOnlineArchiveCriteriaResult']:
         return pulumi.get(self, "criterias")
+
+    @property
+    @pulumi.getter(name="dataExpirationRules")
+    def data_expiration_rules(self) -> Sequence['outputs.GetOnlineArchiveDataExpirationRuleResult']:
+        return pulumi.get(self, "data_expiration_rules")
 
     @property
     @pulumi.getter(name="dbName")
@@ -135,6 +143,7 @@ class AwaitableGetOnlineArchiveResult(GetOnlineArchiveResult):
             coll_name=self.coll_name,
             collection_type=self.collection_type,
             criterias=self.criterias,
+            data_expiration_rules=self.data_expiration_rules,
             db_name=self.db_name,
             id=self.id,
             partition_fields=self.partition_fields,
@@ -167,7 +176,12 @@ def get_online_archive(archive_id: Optional[str] = None,
 
     * `db_name`          -  Name of the database that contains the collection.
     * `coll_name`        -  Name of the collection.
-    * `collection_type`  -  Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+    * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
+    * `criteria` - Criteria to use for archiving data. See criteria.
+    * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+    * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+    * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+    * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
     * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
 
     ### Criteria
@@ -176,6 +190,9 @@ def get_online_archive(archive_id: Optional[str] = None,
     * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
     * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
     * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
+
+    ### Data Expiration Rule
+    * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
 
     ### Schedule
 
@@ -212,6 +229,7 @@ def get_online_archive(archive_id: Optional[str] = None,
         coll_name=pulumi.get(__ret__, 'coll_name'),
         collection_type=pulumi.get(__ret__, 'collection_type'),
         criterias=pulumi.get(__ret__, 'criterias'),
+        data_expiration_rules=pulumi.get(__ret__, 'data_expiration_rules'),
         db_name=pulumi.get(__ret__, 'db_name'),
         id=pulumi.get(__ret__, 'id'),
         partition_fields=pulumi.get(__ret__, 'partition_fields'),
@@ -245,7 +263,12 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
 
     * `db_name`          -  Name of the database that contains the collection.
     * `coll_name`        -  Name of the collection.
-    * `collection_type`  -  Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+    * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
+    * `criteria` - Criteria to use for archiving data. See criteria.
+    * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+    * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+    * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+    * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
     * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
 
     ### Criteria
@@ -254,6 +277,9 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
     * `date_format`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
     * `expire_after_days` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
     * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
+
+    ### Data Expiration Rule
+    * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
 
     ### Schedule
 

@@ -113,6 +113,92 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * ### With AWS
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var setupOnly = new CloudProviderAccessSetup(&#34;setupOnly&#34;, CloudProviderAccessSetupArgs.builder()        
+ *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .build());
+ * 
+ *         var authRole = new CloudProviderAccessAuthorization(&#34;authRole&#34;, CloudProviderAccessAuthorizationArgs.builder()        
+ *             .projectId(setupOnly.projectId())
+ *             .roleId(setupOnly.roleId())
+ *             .awsConfig(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAzureArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var setupOnly = new CloudProviderAccessSetup(&#34;setupOnly&#34;, CloudProviderAccessSetupArgs.builder()        
+ *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
+ *             .providerName(&#34;AZURE&#34;)
+ *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
+ *                 .atlasAzureAppId(&#34;9f2deb0d-be22-4524-a403-df531868bac0&#34;)
+ *                 .servicePrincipalId(&#34;22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1&#34;)
+ *                 .tenantId(&#34;91402384-d71e-22f5-22dd-759e272cdc1c&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var authRole = new CloudProviderAccessAuthorization(&#34;authRole&#34;, CloudProviderAccessAuthorizationArgs.builder()        
+ *             .projectId(setupOnly.projectId())
+ *             .roleId(setupOnly.roleId())
+ *             .azure(CloudProviderAccessAuthorizationAzureArgs.builder()
+ *                 .atlasAzureAppId(&#34;9f2deb0d-be22-4524-a403-df531868bac0&#34;)
+ *                 .servicePrincipalId(&#34;22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1&#34;)
+ *                 .tenantId(&#34;91402384-d71e-22f5-22dd-759e272cdc1c&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
  * ## Authorize role
  * 
  * Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.

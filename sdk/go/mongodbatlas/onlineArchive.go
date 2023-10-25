@@ -123,19 +123,22 @@ type OnlineArchive struct {
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// Name of the collection.
 	CollName pulumi.StringOutput `pulumi:"collName"`
-	// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+	// Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
 	CollectionType pulumi.StringOutput `pulumi:"collectionType"`
-	// Criteria to use for archiving data.
+	// Criteria to use for archiving data. See criteria.
 	Criteria OnlineArchiveCriteriaOutput `pulumi:"criteria"`
+	// Rule for specifying when data should be deleted from the archive. See data expiration rule.
+	DataExpirationRule OnlineArchiveDataExpirationRulePtrOutput `pulumi:"dataExpirationRule"`
 	// Name of the database that contains the collection.
 	DbName pulumi.StringOutput `pulumi:"dbName"`
-	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
 	PartitionFields OnlineArchivePartitionFieldArrayOutput `pulumi:"partitionFields"`
-	// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+	// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 	Paused pulumi.BoolOutput `pulumi:"paused"`
 	// The unique ID for the project
-	ProjectId pulumi.StringOutput            `pulumi:"projectId"`
-	Schedule  OnlineArchiveSchedulePtrOutput `pulumi:"schedule"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Regular frequency and duration when archiving process occurs. See schedule.
+	Schedule OnlineArchiveSchedulePtrOutput `pulumi:"schedule"`
 	// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
 	State        pulumi.StringOutput  `pulumi:"state"`
 	SyncCreation pulumi.BoolPtrOutput `pulumi:"syncCreation"`
@@ -192,19 +195,22 @@ type onlineArchiveState struct {
 	ClusterName *string `pulumi:"clusterName"`
 	// Name of the collection.
 	CollName *string `pulumi:"collName"`
-	// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+	// Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
 	CollectionType *string `pulumi:"collectionType"`
-	// Criteria to use for archiving data.
+	// Criteria to use for archiving data. See criteria.
 	Criteria *OnlineArchiveCriteria `pulumi:"criteria"`
+	// Rule for specifying when data should be deleted from the archive. See data expiration rule.
+	DataExpirationRule *OnlineArchiveDataExpirationRule `pulumi:"dataExpirationRule"`
 	// Name of the database that contains the collection.
 	DbName *string `pulumi:"dbName"`
-	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
 	PartitionFields []OnlineArchivePartitionField `pulumi:"partitionFields"`
-	// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+	// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 	Paused *bool `pulumi:"paused"`
 	// The unique ID for the project
-	ProjectId *string                `pulumi:"projectId"`
-	Schedule  *OnlineArchiveSchedule `pulumi:"schedule"`
+	ProjectId *string `pulumi:"projectId"`
+	// Regular frequency and duration when archiving process occurs. See schedule.
+	Schedule *OnlineArchiveSchedule `pulumi:"schedule"`
 	// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
 	State        *string `pulumi:"state"`
 	SyncCreation *bool   `pulumi:"syncCreation"`
@@ -217,19 +223,22 @@ type OnlineArchiveState struct {
 	ClusterName pulumi.StringPtrInput
 	// Name of the collection.
 	CollName pulumi.StringPtrInput
-	// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+	// Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
 	CollectionType pulumi.StringPtrInput
-	// Criteria to use for archiving data.
+	// Criteria to use for archiving data. See criteria.
 	Criteria OnlineArchiveCriteriaPtrInput
+	// Rule for specifying when data should be deleted from the archive. See data expiration rule.
+	DataExpirationRule OnlineArchiveDataExpirationRulePtrInput
 	// Name of the database that contains the collection.
 	DbName pulumi.StringPtrInput
-	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
 	PartitionFields OnlineArchivePartitionFieldArrayInput
-	// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+	// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 	Paused pulumi.BoolPtrInput
 	// The unique ID for the project
 	ProjectId pulumi.StringPtrInput
-	Schedule  OnlineArchiveSchedulePtrInput
+	// Regular frequency and duration when archiving process occurs. See schedule.
+	Schedule OnlineArchiveSchedulePtrInput
 	// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
 	State        pulumi.StringPtrInput
 	SyncCreation pulumi.BoolPtrInput
@@ -244,18 +253,21 @@ type onlineArchiveArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// Name of the collection.
 	CollName string `pulumi:"collName"`
-	// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+	// Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
 	CollectionType *string `pulumi:"collectionType"`
-	// Criteria to use for archiving data.
+	// Criteria to use for archiving data. See criteria.
 	Criteria OnlineArchiveCriteria `pulumi:"criteria"`
+	// Rule for specifying when data should be deleted from the archive. See data expiration rule.
+	DataExpirationRule *OnlineArchiveDataExpirationRule `pulumi:"dataExpirationRule"`
 	// Name of the database that contains the collection.
 	DbName string `pulumi:"dbName"`
-	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
 	PartitionFields []OnlineArchivePartitionField `pulumi:"partitionFields"`
-	// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+	// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 	Paused *bool `pulumi:"paused"`
 	// The unique ID for the project
-	ProjectId    string                 `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
+	// Regular frequency and duration when archiving process occurs. See schedule.
 	Schedule     *OnlineArchiveSchedule `pulumi:"schedule"`
 	SyncCreation *bool                  `pulumi:"syncCreation"`
 }
@@ -266,18 +278,21 @@ type OnlineArchiveArgs struct {
 	ClusterName pulumi.StringInput
 	// Name of the collection.
 	CollName pulumi.StringInput
-	// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+	// Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
 	CollectionType pulumi.StringPtrInput
-	// Criteria to use for archiving data.
+	// Criteria to use for archiving data. See criteria.
 	Criteria OnlineArchiveCriteriaInput
+	// Rule for specifying when data should be deleted from the archive. See data expiration rule.
+	DataExpirationRule OnlineArchiveDataExpirationRulePtrInput
 	// Name of the database that contains the collection.
 	DbName pulumi.StringInput
-	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
 	PartitionFields OnlineArchivePartitionFieldArrayInput
-	// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+	// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 	Paused pulumi.BoolPtrInput
 	// The unique ID for the project
-	ProjectId    pulumi.StringInput
+	ProjectId pulumi.StringInput
+	// Regular frequency and duration when archiving process occurs. See schedule.
 	Schedule     OnlineArchiveSchedulePtrInput
 	SyncCreation pulumi.BoolPtrInput
 }
@@ -408,14 +423,19 @@ func (o OnlineArchiveOutput) CollName() pulumi.StringOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.CollName }).(pulumi.StringOutput)
 }
 
-// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+// Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
 func (o OnlineArchiveOutput) CollectionType() pulumi.StringOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.CollectionType }).(pulumi.StringOutput)
 }
 
-// Criteria to use for archiving data.
+// Criteria to use for archiving data. See criteria.
 func (o OnlineArchiveOutput) Criteria() OnlineArchiveCriteriaOutput {
 	return o.ApplyT(func(v *OnlineArchive) OnlineArchiveCriteriaOutput { return v.Criteria }).(OnlineArchiveCriteriaOutput)
+}
+
+// Rule for specifying when data should be deleted from the archive. See data expiration rule.
+func (o OnlineArchiveOutput) DataExpirationRule() OnlineArchiveDataExpirationRulePtrOutput {
+	return o.ApplyT(func(v *OnlineArchive) OnlineArchiveDataExpirationRulePtrOutput { return v.DataExpirationRule }).(OnlineArchiveDataExpirationRulePtrOutput)
 }
 
 // Name of the database that contains the collection.
@@ -423,12 +443,12 @@ func (o OnlineArchiveOutput) DbName() pulumi.StringOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.DbName }).(pulumi.StringOutput)
 }
 
-// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
 func (o OnlineArchiveOutput) PartitionFields() OnlineArchivePartitionFieldArrayOutput {
 	return o.ApplyT(func(v *OnlineArchive) OnlineArchivePartitionFieldArrayOutput { return v.PartitionFields }).(OnlineArchivePartitionFieldArrayOutput)
 }
 
-// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 func (o OnlineArchiveOutput) Paused() pulumi.BoolOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.BoolOutput { return v.Paused }).(pulumi.BoolOutput)
 }
@@ -438,6 +458,7 @@ func (o OnlineArchiveOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Regular frequency and duration when archiving process occurs. See schedule.
 func (o OnlineArchiveOutput) Schedule() OnlineArchiveSchedulePtrOutput {
 	return o.ApplyT(func(v *OnlineArchive) OnlineArchiveSchedulePtrOutput { return v.Schedule }).(OnlineArchiveSchedulePtrOutput)
 }

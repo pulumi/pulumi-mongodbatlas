@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.OnlineArchiveArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.OnlineArchiveState;
 import com.pulumi.mongodbatlas.outputs.OnlineArchiveCriteria;
+import com.pulumi.mongodbatlas.outputs.OnlineArchiveDataExpirationRule;
 import com.pulumi.mongodbatlas.outputs.OnlineArchivePartitionField;
 import com.pulumi.mongodbatlas.outputs.OnlineArchiveSchedule;
 import java.lang.Boolean;
@@ -180,32 +181,46 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
         return this.collName;
     }
     /**
-     * Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * 
      */
     @Export(name="collectionType", refs={String.class}, tree="[0]")
     private Output<String> collectionType;
 
     /**
-     * @return Classification of MongoDB database collection that you want to return, &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
+     * @return Type of MongoDB collection that you want to return. This value can be &#34;TIMESERIES&#34; or &#34;STANDARD&#34;. Default is &#34;STANDARD&#34;.
      * 
      */
     public Output<String> collectionType() {
         return this.collectionType;
     }
     /**
-     * Criteria to use for archiving data.
+     * Criteria to use for archiving data. See criteria.
      * 
      */
     @Export(name="criteria", refs={OnlineArchiveCriteria.class}, tree="[0]")
     private Output<OnlineArchiveCriteria> criteria;
 
     /**
-     * @return Criteria to use for archiving data.
+     * @return Criteria to use for archiving data. See criteria.
      * 
      */
     public Output<OnlineArchiveCriteria> criteria() {
         return this.criteria;
+    }
+    /**
+     * Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * 
+     */
+    @Export(name="dataExpirationRule", refs={OnlineArchiveDataExpirationRule.class}, tree="[0]")
+    private Output</* @Nullable */ OnlineArchiveDataExpirationRule> dataExpirationRule;
+
+    /**
+     * @return Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     * 
+     */
+    public Output<Optional<OnlineArchiveDataExpirationRule>> dataExpirationRule() {
+        return Codegen.optional(this.dataExpirationRule);
     }
     /**
      * Name of the database that contains the collection.
@@ -222,28 +237,28 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
         return this.dbName;
     }
     /**
-     * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+     * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * 
      */
     @Export(name="partitionFields", refs={List.class,OnlineArchivePartitionField.class}, tree="[0,1]")
     private Output<List<OnlineArchivePartitionField>> partitionFields;
 
     /**
-     * @return Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+     * @return Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      * 
      */
     public Output<List<OnlineArchivePartitionField>> partitionFields() {
         return this.partitionFields;
     }
     /**
-     * State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+     * State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * 
      */
     @Export(name="paused", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> paused;
 
     /**
-     * @return State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+     * @return State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      * 
      */
     public Output<Boolean> paused() {
@@ -263,9 +278,17 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
     public Output<String> projectId() {
         return this.projectId;
     }
+    /**
+     * Regular frequency and duration when archiving process occurs. See schedule.
+     * 
+     */
     @Export(name="schedule", refs={OnlineArchiveSchedule.class}, tree="[0]")
     private Output</* @Nullable */ OnlineArchiveSchedule> schedule;
 
+    /**
+     * @return Regular frequency and duration when archiving process occurs. See schedule.
+     * 
+     */
     public Output<Optional<OnlineArchiveSchedule>> schedule() {
         return Codegen.optional(this.schedule);
     }

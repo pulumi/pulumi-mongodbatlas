@@ -65,6 +65,11 @@ public final class AlertConfigurationNotification {
      */
     private @Nullable String mobileNumber;
     /**
+     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * 
+     */
+    private @Nullable String notifierId;
+    /**
      * @return Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
      * 
      */
@@ -214,6 +219,13 @@ public final class AlertConfigurationNotification {
         return Optional.ofNullable(this.mobileNumber);
     }
     /**
+     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * 
+     */
+    public Optional<String> notifierId() {
+        return Optional.ofNullable(this.notifierId);
+    }
+    /**
      * @return Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
      * 
      */
@@ -336,6 +348,7 @@ public final class AlertConfigurationNotification {
         private @Nullable Integer intervalMin;
         private @Nullable String microsoftTeamsWebhookUrl;
         private @Nullable String mobileNumber;
+        private @Nullable String notifierId;
         private @Nullable String opsGenieApiKey;
         private @Nullable String opsGenieRegion;
         private @Nullable List<String> roles;
@@ -362,6 +375,7 @@ public final class AlertConfigurationNotification {
     	      this.intervalMin = defaults.intervalMin;
     	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
     	      this.mobileNumber = defaults.mobileNumber;
+    	      this.notifierId = defaults.notifierId;
     	      this.opsGenieApiKey = defaults.opsGenieApiKey;
     	      this.opsGenieRegion = defaults.opsGenieRegion;
     	      this.roles = defaults.roles;
@@ -425,6 +439,11 @@ public final class AlertConfigurationNotification {
         @CustomType.Setter
         public Builder mobileNumber(@Nullable String mobileNumber) {
             this.mobileNumber = mobileNumber;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder notifierId(@Nullable String notifierId) {
+            this.notifierId = notifierId;
             return this;
         }
         @CustomType.Setter
@@ -507,6 +526,7 @@ public final class AlertConfigurationNotification {
             o.intervalMin = intervalMin;
             o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             o.mobileNumber = mobileNumber;
+            o.notifierId = notifierId;
             o.opsGenieApiKey = opsGenieApiKey;
             o.opsGenieRegion = opsGenieRegion;
             o.roles = roles;

@@ -13,8 +13,18 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetAlertConfigurationsResultMatcherResult
     {
+        /// <summary>
+        /// Name of the field in the target object to match on.
+        /// </summary>
         public readonly string FieldName;
+        /// <summary>
+        /// The operator to apply when checking the current metric value against the threshold value.
+        /// Accepted values are:
+        /// </summary>
         public readonly string Operator;
+        /// <summary>
+        /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

@@ -58,11 +58,20 @@ export interface GetAlertConfigurationResult {
      */
     readonly eventType: string;
     readonly id: string;
+    /**
+     * Rules to apply when matching an object against this alert configuration. See matchers.
+     */
     readonly matchers: outputs.GetAlertConfigurationMatcher[];
+    /**
+     * The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
+     */
     readonly metricThresholdConfigs: outputs.GetAlertConfigurationMetricThresholdConfig[];
     readonly notifications: outputs.GetAlertConfigurationNotification[];
     readonly outputs?: outputs.GetAlertConfigurationOutput[];
     readonly projectId: string;
+    /**
+     * Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
+     */
     readonly thresholdConfigs: outputs.GetAlertConfigurationThresholdConfig[];
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.

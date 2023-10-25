@@ -44,27 +44,35 @@ import (
 // ```
 // ## Attributes reference
 //
-// * `dbName`          -  Name of the database that contains the collection.
-// * `collName`        -  Name of the collection.
-// * `collectionType`  -  Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
-// * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+// * `dbName` - Name of the database that contains the collection.
+// * `collName` -  Name of the collection.
+// * `collectionType` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
+// * `criteria` - Criteria to use for archiving data. See criteria.
+// * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+// * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
+// * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+// * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
+// * `state` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
 //
 // ### Criteria
-// * `type`          - Type of criteria (DATE, CUSTOM)
-// * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-// * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+// * `type` - Type of criteria (DATE, CUSTOM)
+// * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
+// * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
 // * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
 // * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
 //
+// ### Data Expiration Rule
+// * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+//
 // ### Schedule
 //
-// * `type`          - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-// * `startHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
-// * `endHour`      - Hour of the day when the scheduled window to run one online archive ends.
-// * `startMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
-// * `endMinute`     - Minute of the hour when the scheduled window to run one online archive ends.
-// * `dayOfMonth`   - Day of the month when the scheduled archive starts.
-// * `dayOfWeek`     - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
+// * `type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
+// * `startHour` - Hour of the day when the when the scheduled window to run one online archive starts.
+// * `endHour` - Hour of the day when the scheduled window to run one online archive ends.
+// * `startMinute` - Minute of the hour when the scheduled window to run one online archive starts.
+// * `endMinute` - Minute of the hour when the scheduled window to run one online archive ends.
+// * `dayOfMonth` - Day of the month when the scheduled archive starts.
+// * `dayOfWeek` - Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7).
 //
 // ### Partition
 // * `fieldName` - Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
