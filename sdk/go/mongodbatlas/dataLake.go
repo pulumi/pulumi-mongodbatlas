@@ -20,6 +20,49 @@ import (
 // > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 //
 // ## Example Usage
+// ### S
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				OrgId: pulumi.String("ORGANIZATION ID"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testCloudProviderAccess, err := mongodbatlas.NewCloudProviderAccess(ctx, "testCloudProviderAccess", &mongodbatlas.CloudProviderAccessArgs{
+//				ProjectId:         testProject.ID(),
+//				ProviderName:      pulumi.String("AWS"),
+//				IamAssumedRoleArn: pulumi.String("AWS ROLE ID"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewDataLake(ctx, "basicDs", &mongodbatlas.DataLakeArgs{
+//				ProjectId: testProject.ID(),
+//				Aws: &mongodbatlas.DataLakeAwsArgs{
+//					RoleId:       testCloudProviderAccess.RoleId,
+//					TestS3Bucket: pulumi.String("TEST S3 BUCKET NAME"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

@@ -13,12 +13,58 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var settings = Mongodbatlas.GetFederatedSettings.Invoke(new()
+        ///     {
+        ///         OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetFederatedSettingsResult> InvokeAsync(GetFederatedSettingsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsResult>("mongodbatlas:index/getFederatedSettings:getFederatedSettings", args ?? new GetFederatedSettingsArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var settings = Mongodbatlas.GetFederatedSettings.Invoke(new()
+        ///     {
+        ///         OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetFederatedSettingsResult> Invoke(GetFederatedSettingsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsResult>("mongodbatlas:index/getFederatedSettings:getFederatedSettings", args ?? new GetFederatedSettingsInvokeArgs(), options.WithDefaults());

@@ -449,6 +449,24 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  __props__=None):
         """
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
+        ## Example Usage
+
+        > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
+            associated_domains=["yourdomain.com"],
+            federation_settings_id="627a9687f7f7f7f774de306f14",
+            issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
+            request_binding="HTTP-POST",
+            response_signature_algorithm="SHA-256",
+            sso_debug_enabled=True,
+            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
+            status="ACTIVE")
+        ```
 
         ## Import
 
@@ -481,6 +499,24 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
+        ## Example Usage
+
+        > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
+            associated_domains=["yourdomain.com"],
+            federation_settings_id="627a9687f7f7f7f774de306f14",
+            issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
+            request_binding="HTTP-POST",
+            response_signature_algorithm="SHA-256",
+            sso_debug_enabled=True,
+            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
+            status="ACTIVE")
+        ```
 
         ## Import
 

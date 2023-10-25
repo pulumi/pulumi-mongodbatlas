@@ -15,6 +15,27 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
     /// ## Example Usage
+    /// ### S
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.FederatedQueryLimit("test", new()
+    ///     {
+    ///         LimitName = "bytesProcessed.weekly",
+    ///         OverrunPolicy = "BLOCK",
+    ///         ProjectId = "64707f06c519c20c3a2b1b03",
+    ///         TenantName = "FederatedDatabseInstance0",
+    ///         Value = 5147483648,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

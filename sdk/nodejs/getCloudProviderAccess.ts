@@ -12,6 +12,21 @@ import * as utilities from "./utilities";
  * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccess("testRole", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "AWS",
+ * });
+ * const all = mongodbatlas.getCloudProviderAccessOutput({
+ *     projectId: testRole.projectId,
+ * });
+ * ```
  */
 export function getCloudProviderAccess(args: GetCloudProviderAccessArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderAccessResult> {
 
@@ -51,6 +66,21 @@ export interface GetCloudProviderAccessResult {
  * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccess("testRole", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "AWS",
+ * });
+ * const all = mongodbatlas.getCloudProviderAccessOutput({
+ *     projectId: testRole.projectId,
+ * });
+ * ```
  */
 export function getCloudProviderAccessOutput(args: GetCloudProviderAccessOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderAccessResult> {
     return pulumi.output(args).apply((a: any) => getCloudProviderAccess(a, opts))

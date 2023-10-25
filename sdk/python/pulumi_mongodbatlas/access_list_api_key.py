@@ -227,6 +227,26 @@ class AccessListApiKey(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+        ### Using CIDR Block
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AccessListApiKey("test",
+            api_key_id="a29120e123cd",
+            cidr_block="1.2.3.4/32",
+            org_id="<ORG-ID>")
+        ```
+        ### Using IP Address
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AccessListApiKey("test",
+            api_key_id="a29120e123cd",
+            ip_address="2.3.4.5",
+            org_id="<ORG-ID>")
+        ```
 
         ## Import
 
@@ -254,6 +274,26 @@ class AccessListApiKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+        ### Using CIDR Block
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AccessListApiKey("test",
+            api_key_id="a29120e123cd",
+            cidr_block="1.2.3.4/32",
+            org_id="<ORG-ID>")
+        ```
+        ### Using IP Address
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AccessListApiKey("test",
+            api_key_id="a29120e123cd",
+            ip_address="2.3.4.5",
+            org_id="<ORG-ID>")
+        ```
 
         ## Import
 

@@ -17,6 +17,40 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
     /// 
     /// ## Example Usage
+    /// ### S
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testProject = new Mongodbatlas.Project("testProject", new()
+    ///     {
+    ///         OrgId = "ORGANIZATION ID",
+    ///     });
+    /// 
+    ///     var testCloudProviderAccess = new Mongodbatlas.CloudProviderAccess("testCloudProviderAccess", new()
+    ///     {
+    ///         ProjectId = testProject.Id,
+    ///         ProviderName = "AWS",
+    ///         IamAssumedRoleArn = "AWS ROLE ID",
+    ///     });
+    /// 
+    ///     var basicDs = new Mongodbatlas.DataLake("basicDs", new()
+    ///     {
+    ///         ProjectId = testProject.Id,
+    ///         Aws = new Mongodbatlas.Inputs.DataLakeAwsArgs
+    ///         {
+    ///             RoleId = testCloudProviderAccess.RoleId,
+    ///             TestS3Bucket = "TEST S3 BUCKET NAME",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

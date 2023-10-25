@@ -14,6 +14,64 @@ import (
 )
 
 // ## Example Usage
+// ### S
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProjectInvitation(ctx, "test", &mongodbatlas.ProjectInvitationArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//				},
+//				Username: pulumi.String("test-acc-username"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProjectInvitation(ctx, "test", &mongodbatlas.ProjectInvitationArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("GROUP_READ_ONLY"),
+//					pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
+//				},
+//				Username: pulumi.String("test-acc-username"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

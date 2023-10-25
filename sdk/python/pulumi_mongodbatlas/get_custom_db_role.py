@@ -94,6 +94,35 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[pulumi.InputType['GetC
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CustomDbRole("testRole",
+        project_id="<PROJECT-ID>",
+        role_name="myCustomRole",
+        actions=[
+            mongodbatlas.CustomDbRoleActionArgs(
+                action="UPDATE",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    collection_name="",
+                    database_name="anyDatabase",
+                )],
+            ),
+            mongodbatlas.CustomDbRoleActionArgs(
+                action="INSERT",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    collection_name="",
+                    database_name="anyDatabase",
+                )],
+            ),
+        ])
+    test = mongodbatlas.get_custom_db_role_output(project_id=test_role.project_id,
+        role_name=test_role.role_name)
+    ```
+
 
     :param str project_id: The unique ID for the project to create the database user.
     :param str role_name: Name of the custom role.
@@ -122,6 +151,35 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
     `CustomDbRole` describe a Custom DB Role. This represents a custom db role.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CustomDbRole("testRole",
+        project_id="<PROJECT-ID>",
+        role_name="myCustomRole",
+        actions=[
+            mongodbatlas.CustomDbRoleActionArgs(
+                action="UPDATE",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    collection_name="",
+                    database_name="anyDatabase",
+                )],
+            ),
+            mongodbatlas.CustomDbRoleActionArgs(
+                action="INSERT",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    collection_name="",
+                    database_name="anyDatabase",
+                )],
+            ),
+        ])
+    test = mongodbatlas.get_custom_db_role_output(project_id=test_role.project_id,
+        role_name=test_role.role_name)
+    ```
 
 
     :param str project_id: The unique ID for the project to create the database user.

@@ -16,6 +16,32 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.LookupOnlineArchives(ctx, &mongodbatlas.LookupOnlineArchivesArgs{
+//				ProjectId:   _var.Project_id,
+//				ClusterName: _var.Cluster_name,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 // ## Attributes reference
 //
 // * `dbName`          -  Name of the database that contains the collection.

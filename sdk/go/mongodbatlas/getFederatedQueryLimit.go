@@ -17,6 +17,34 @@ import (
 // `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.LookupFederatedQueryLimit(ctx, &mongodbatlas.LookupFederatedQueryLimitArgs{
+//				LimitName:  "LIMIT_NAME",
+//				ProjectId:  "PROJECT_ID",
+//				TenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupFederatedQueryLimit(ctx *pulumi.Context, args *LookupFederatedQueryLimitArgs, opts ...pulumi.InvokeOption) (*LookupFederatedQueryLimitResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedQueryLimitResult

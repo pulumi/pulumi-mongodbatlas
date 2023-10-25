@@ -16,6 +16,34 @@ import (
 // `privatelinkEndpointServiceAdl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.   The same configuration will provide a PrivateLink connection for either Atlas Data Lake or Online Archive.
 //
 // ## Example Usage
+// ### Basic
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewPrivatelinkEndpointServiceAdl(ctx, "adlTest", &mongodbatlas.PrivatelinkEndpointServiceAdlArgs{
+//				Comment:      pulumi.String("comments for private link endpoint adl"),
+//				EndpointId:   pulumi.String("<ENDPOINT_ID>"),
+//				ProjectId:    pulumi.String("<PROJECT_ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//				Type:         pulumi.String("DATA_LAKE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

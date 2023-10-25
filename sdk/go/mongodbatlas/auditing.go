@@ -15,6 +15,35 @@ import (
 
 // `Auditing` provides an Auditing resource. This allows auditing to be created.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAuditing(ctx, "test", &mongodbatlas.AuditingArgs{
+//				AuditAuthorizationSuccess: pulumi.Bool(false),
+//				AuditFilter:               pulumi.String("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}"),
+//				Enabled:                   pulumi.Bool(true),
+//				ProjectId:                 pulumi.String("<project-id>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Auditing must be imported using auditing ID, e.g.

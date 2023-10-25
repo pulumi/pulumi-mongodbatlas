@@ -11,6 +11,18 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getOnlineArchive({
+ *     projectId: _var.project_id,
+ *     clusterName: _var.cluster_name,
+ *     archiveId: "5ebad3c1fe9c0ab8d37d61e1",
+ * });
+ * ```
  * ## Attributes reference
  *
  * * `dbName`          -  Name of the database that contains the collection.
@@ -95,6 +107,18 @@ export interface GetOnlineArchiveResult {
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getOnlineArchive({
+ *     projectId: _var.project_id,
+ *     clusterName: _var.cluster_name,
+ *     archiveId: "5ebad3c1fe9c0ab8d37d61e1",
+ * });
+ * ```
  * ## Attributes reference
  *
  * * `dbName`          -  Name of the database that contains the collection.

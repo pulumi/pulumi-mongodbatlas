@@ -14,6 +14,171 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.AlertConfiguration("test", new()
+    ///     {
+    ///         Enabled = true,
+    ///         EventType = "OUTSIDE_METRIC_THRESHOLD",
+    ///         Matchers = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
+    ///             {
+    ///                 FieldName = "HOSTNAME_AND_PORT",
+    ///                 Operator = "EQUALS",
+    ///                 Value = "SECONDARY",
+    ///             },
+    ///         },
+    ///         MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs
+    ///         {
+    ///             MetricName = "ASSERT_REGULAR",
+    ///             Mode = "AVERAGE",
+    ///             Operator = "LESS_THAN",
+    ///             Threshold = 99,
+    ///             Units = "RAW",
+    ///         },
+    ///         Notifications = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///             {
+    ///                 DelayMin = 0,
+    ///                 EmailEnabled = true,
+    ///                 IntervalMin = 5,
+    ///                 Roles = new[]
+    ///                 {
+    ///                     "GROUP_CHARTS_ADMIN",
+    ///                     "GROUP_CLUSTER_MANAGER",
+    ///                 },
+    ///                 SmsEnabled = false,
+    ///                 TypeName = "GROUP",
+    ///             },
+    ///         },
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.AlertConfiguration("test", new()
+    ///     {
+    ///         Enabled = true,
+    ///         EventType = "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+    ///         Matchers = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
+    ///             {
+    ///                 FieldName = "HOSTNAME_AND_PORT",
+    ///                 Operator = "EQUALS",
+    ///                 Value = "SECONDARY",
+    ///             },
+    ///         },
+    ///         Notifications = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///             {
+    ///                 DelayMin = 0,
+    ///                 EmailEnabled = true,
+    ///                 IntervalMin = 5,
+    ///                 Roles = new[]
+    ///                 {
+    ///                     "GROUP_CHARTS_ADMIN",
+    ///                     "GROUP_CLUSTER_MANAGER",
+    ///                 },
+    ///                 SmsEnabled = false,
+    ///                 TypeName = "GROUP",
+    ///             },
+    ///         },
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationThresholdConfigArgs
+    ///         {
+    ///             Operator = "LESS_THAN",
+    ///             Threshold = 1,
+    ///             Units = "HOURS",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Create an alert with two notifications using Email and SMS
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.AlertConfiguration("test", new()
+    ///     {
+    ///         Enabled = true,
+    ///         EventType = "OUTSIDE_METRIC_THRESHOLD",
+    ///         Matchers = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
+    ///             {
+    ///                 FieldName = "HOSTNAME_AND_PORT",
+    ///                 Operator = "EQUALS",
+    ///                 Value = "SECONDARY",
+    ///             },
+    ///         },
+    ///         MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs
+    ///         {
+    ///             MetricName = "ASSERT_REGULAR",
+    ///             Mode = "AVERAGE",
+    ///             Operator = "LESS_THAN",
+    ///             Threshold = 99,
+    ///             Units = "RAW",
+    ///         },
+    ///         Notifications = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///             {
+    ///                 DelayMin = 0,
+    ///                 EmailEnabled = true,
+    ///                 IntervalMin = 5,
+    ///                 Roles = new[]
+    ///                 {
+    ///                     "GROUP_DATA_ACCESS_READ_ONLY",
+    ///                     "GROUP_CLUSTER_MANAGER",
+    ///                     "GROUP_DATA_ACCESS_ADMIN",
+    ///                 },
+    ///                 SmsEnabled = false,
+    ///                 TypeName = "GROUP",
+    ///             },
+    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///             {
+    ///                 DelayMin = 0,
+    ///                 EmailEnabled = false,
+    ///                 IntervalMin = 5,
+    ///                 SmsEnabled = true,
+    ///                 TypeName = "ORG",
+    ///             },
+    ///         },
+    ///         ProjectId = "PROJECT ID",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.

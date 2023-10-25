@@ -16,6 +16,163 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CustomDbRole("testRole", new()
+    ///     {
+    ///         Actions = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///             {
+    ///                 Action = "UPDATE",
+    ///                 Resources = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                     {
+    ///                         CollectionName = "",
+    ///                         DatabaseName = "anyDatabase",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///             {
+    ///                 Action = "INSERT",
+    ///                 Resources = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                     {
+    ///                         CollectionName = "",
+    ///                         DatabaseName = "anyDatabase",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///             {
+    ///                 Action = "REMOVE",
+    ///                 Resources = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                     {
+    ///                         CollectionName = "",
+    ///                         DatabaseName = "anyDatabase",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         RoleName = "myCustomRole",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### With Inherited Roles
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var inheritedRoleOne = new Mongodbatlas.CustomDbRole("inheritedRoleOne", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         RoleName = "insertRole",
+    ///         Actions = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///             {
+    ///                 Action = "INSERT",
+    ///                 Resources = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                     {
+    ///                         CollectionName = "",
+    ///                         DatabaseName = "anyDatabase",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var inheritedRoleTwo = new Mongodbatlas.CustomDbRole("inheritedRoleTwo", new()
+    ///     {
+    ///         ProjectId = inheritedRoleOne.ProjectId,
+    ///         RoleName = "statusServerRole",
+    ///         Actions = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///             {
+    ///                 Action = "SERVER_STATUS",
+    ///                 Resources = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                     {
+    ///                         Cluster = true,
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var testRole = new Mongodbatlas.CustomDbRole("testRole", new()
+    ///     {
+    ///         ProjectId = inheritedRoleOne.ProjectId,
+    ///         RoleName = "myCustomRole",
+    ///         Actions = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///             {
+    ///                 Action = "UPDATE",
+    ///                 Resources = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                     {
+    ///                         CollectionName = "",
+    ///                         DatabaseName = "anyDatabase",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///             {
+    ///                 Action = "REMOVE",
+    ///                 Resources = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                     {
+    ///                         CollectionName = "",
+    ///                         DatabaseName = "anyDatabase",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///         InheritedRoles = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CustomDbRoleInheritedRoleArgs
+    ///             {
+    ///                 RoleName = inheritedRoleOne.RoleName,
+    ///                 DatabaseName = "admin",
+    ///             },
+    ///             new Mongodbatlas.Inputs.CustomDbRoleInheritedRoleArgs
+    ///             {
+    ///                 RoleName = inheritedRoleTwo.RoleName,
+    ///                 DatabaseName = "admin",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Database users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.

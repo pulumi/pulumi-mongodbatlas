@@ -256,6 +256,18 @@ class PrivatelinkEndpointServiceAdl(pulumi.CustomResource):
         `privatelink_endpoint_service_adl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.   The same configuration will provide a PrivateLink connection for either Atlas Data Lake or Online Archive.
 
         ## Example Usage
+        ### Basic
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        adl_test = mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest",
+            comment="comments for private link endpoint adl",
+            endpoint_id="<ENDPOINT_ID>",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            type="DATA_LAKE")
+        ```
 
         ## Import
 
@@ -286,6 +298,18 @@ class PrivatelinkEndpointServiceAdl(pulumi.CustomResource):
         `privatelink_endpoint_service_adl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.   The same configuration will provide a PrivateLink connection for either Atlas Data Lake or Online Archive.
 
         ## Example Usage
+        ### Basic
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        adl_test = mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest",
+            comment="comments for private link endpoint adl",
+            endpoint_id="<ENDPOINT_ID>",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            type="DATA_LAKE")
+        ```
 
         ## Import
 

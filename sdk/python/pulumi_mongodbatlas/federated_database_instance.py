@@ -490,6 +490,86 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
+        ### S With MongoDB Atlas Cluster As Storage Database
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedDatabaseInstance("test",
+            project_id="PROJECT ID",
+            storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
+                collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
+                    data_sources=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
+                        collection="COLLECTION IN THE CLUSTER",
+                        database="DB IN THE CLUSTER",
+                        store_name="CLUSTER NAME",
+                    )],
+                    name="NAME OF THE COLLECTION",
+                )],
+                name="VirtualDatabase0",
+            )],
+            storage_stores=[mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
+                cluster_name="CLUSTER NAME",
+                name="STORE 1 NAME",
+                project_id="PROJECT ID",
+                provider="atlas",
+                read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
+                    mode="secondary",
+                ),
+            )])
+        ```
+        ### S With Amazon S3 Bucket As Storage Database
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedDatabaseInstance("test",
+            cloud_provider_config=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigArgs(
+                aws=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigAwsArgs(
+                    role_id="AWS ROLE ID",
+                    test_s3_bucket="S3 BUCKET NAME",
+                ),
+            ),
+            project_id="PROJECT ID",
+            storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
+                collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
+                    data_sources=[
+                        mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
+                            collection="COLLECTION IN THE CLUSTER",
+                            database="DB IN THE CLUSTER",
+                            store_name="CLUSTER NAME",
+                        ),
+                        mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
+                            path="S3 BUCKET PATH",
+                            store_name="S3 BUCKET NAME",
+                        ),
+                    ],
+                    name="NAME OF THE COLLECTION",
+                )],
+                name="VirtualDatabase0",
+            )],
+            storage_stores=[
+                mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
+                    cluster_name="CLUSTER NAME",
+                    name="STORE 1 NAME",
+                    project_id="PROJECT ID",
+                    provider="atlas",
+                    read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
+                        mode="secondary",
+                    ),
+                ),
+                mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
+                    bucket="STORE 2 NAME",
+                    delimiter="/",
+                    name="S3 BUCKET NAME",
+                    prefix="S3 BUCKET PREFIX",
+                    provider="s3",
+                    region="AWS REGION",
+                ),
+            ])
+        ```
 
         ## Import
 
@@ -568,6 +648,86 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
+        ### S With MongoDB Atlas Cluster As Storage Database
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedDatabaseInstance("test",
+            project_id="PROJECT ID",
+            storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
+                collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
+                    data_sources=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
+                        collection="COLLECTION IN THE CLUSTER",
+                        database="DB IN THE CLUSTER",
+                        store_name="CLUSTER NAME",
+                    )],
+                    name="NAME OF THE COLLECTION",
+                )],
+                name="VirtualDatabase0",
+            )],
+            storage_stores=[mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
+                cluster_name="CLUSTER NAME",
+                name="STORE 1 NAME",
+                project_id="PROJECT ID",
+                provider="atlas",
+                read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
+                    mode="secondary",
+                ),
+            )])
+        ```
+        ### S With Amazon S3 Bucket As Storage Database
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedDatabaseInstance("test",
+            cloud_provider_config=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigArgs(
+                aws=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigAwsArgs(
+                    role_id="AWS ROLE ID",
+                    test_s3_bucket="S3 BUCKET NAME",
+                ),
+            ),
+            project_id="PROJECT ID",
+            storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
+                collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
+                    data_sources=[
+                        mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
+                            collection="COLLECTION IN THE CLUSTER",
+                            database="DB IN THE CLUSTER",
+                            store_name="CLUSTER NAME",
+                        ),
+                        mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
+                            path="S3 BUCKET PATH",
+                            store_name="S3 BUCKET NAME",
+                        ),
+                    ],
+                    name="NAME OF THE COLLECTION",
+                )],
+                name="VirtualDatabase0",
+            )],
+            storage_stores=[
+                mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
+                    cluster_name="CLUSTER NAME",
+                    name="STORE 1 NAME",
+                    project_id="PROJECT ID",
+                    provider="atlas",
+                    read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
+                        mode="secondary",
+                    ),
+                ),
+                mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
+                    bucket="STORE 2 NAME",
+                    delimiter="/",
+                    name="S3 BUCKET NAME",
+                    prefix="S3 BUCKET PREFIX",
+                    provider="s3",
+                    region="AWS REGION",
+                ),
+            ])
+        ```
 
         ## Import
 

@@ -13,6 +13,17 @@ import * as utilities from "./utilities";
  * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const dataServerless = mongodbatlas.getServerlessInstances({
+ *     projectId: "<PROJECT_ID",
+ * });
+ * ```
  */
 export function getServerlessInstances(args: GetServerlessInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetServerlessInstancesResult> {
 
@@ -53,6 +64,17 @@ export interface GetServerlessInstancesResult {
  * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const dataServerless = mongodbatlas.getServerlessInstances({
+ *     projectId: "<PROJECT_ID",
+ * });
+ * ```
  */
 export function getServerlessInstancesOutput(args: GetServerlessInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerlessInstancesResult> {
     return pulumi.output(args).apply((a: any) => getServerlessInstances(a, opts))

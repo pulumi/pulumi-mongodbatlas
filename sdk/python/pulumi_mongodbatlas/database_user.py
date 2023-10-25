@@ -477,6 +477,107 @@ class DatabaseUser(pulumi.CustomResource):
         > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            auth_database_name="admin",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="My Key",
+                value="My Value",
+            )],
+            password="test-acc-password",
+            project_id="<PROJECT-ID>",
+            roles=[
+                mongodbatlas.DatabaseUserRoleArgs(
+                    database_name="dbforApp",
+                    role_name="readWrite",
+                ),
+                mongodbatlas.DatabaseUserRoleArgs(
+                    database_name="admin",
+                    role_name="readAnyDatabase",
+                ),
+            ],
+            scopes=[
+                mongodbatlas.DatabaseUserScopeArgs(
+                    name="My cluster name",
+                    type="CLUSTER",
+                ),
+                mongodbatlas.DatabaseUserScopeArgs(
+                    name="My second cluster name",
+                    type="CLUSTER",
+                ),
+            ],
+            username="test-acc-username")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            auth_database_name="$external",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="%s",
+                value="%s",
+            )],
+            project_id="<PROJECT-ID>",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="readAnyDatabase",
+            )],
+            scopes=[mongodbatlas.DatabaseUserScopeArgs(
+                name="My cluster name",
+                type="CLUSTER",
+            )],
+            username="test-acc-username",
+            x509_type="MANAGED")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            username=aws_iam_role["test"]["arn"],
+            project_id="<PROJECT-ID>",
+            auth_database_name="$external",
+            aws_iam_type="ROLE",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                role_name="readAnyDatabase",
+                database_name="admin",
+            )],
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="%s",
+                value="%s",
+            )],
+            scopes=[mongodbatlas.DatabaseUserScopeArgs(
+                name="My cluster name",
+                type="CLUSTER",
+            )])
+        ```
+        ## Example of how to create a OIDC federated authentication user
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            auth_database_name="admin",
+            oidc_auth_type="IDP_GROUP",
+            project_id="6414908c207f4d22f4d8f232",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="readWriteAnyDatabase",
+            )],
+            username="64d613677e1ad50839cce4db/testUserOr")
+        ```
+        `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
+
+        Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
         ## Import
 
@@ -515,6 +616,107 @@ class DatabaseUser(pulumi.CustomResource):
         > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            auth_database_name="admin",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="My Key",
+                value="My Value",
+            )],
+            password="test-acc-password",
+            project_id="<PROJECT-ID>",
+            roles=[
+                mongodbatlas.DatabaseUserRoleArgs(
+                    database_name="dbforApp",
+                    role_name="readWrite",
+                ),
+                mongodbatlas.DatabaseUserRoleArgs(
+                    database_name="admin",
+                    role_name="readAnyDatabase",
+                ),
+            ],
+            scopes=[
+                mongodbatlas.DatabaseUserScopeArgs(
+                    name="My cluster name",
+                    type="CLUSTER",
+                ),
+                mongodbatlas.DatabaseUserScopeArgs(
+                    name="My second cluster name",
+                    type="CLUSTER",
+                ),
+            ],
+            username="test-acc-username")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            auth_database_name="$external",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="%s",
+                value="%s",
+            )],
+            project_id="<PROJECT-ID>",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="readAnyDatabase",
+            )],
+            scopes=[mongodbatlas.DatabaseUserScopeArgs(
+                name="My cluster name",
+                type="CLUSTER",
+            )],
+            username="test-acc-username",
+            x509_type="MANAGED")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            username=aws_iam_role["test"]["arn"],
+            project_id="<PROJECT-ID>",
+            auth_database_name="$external",
+            aws_iam_type="ROLE",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                role_name="readAnyDatabase",
+                database_name="admin",
+            )],
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="%s",
+                value="%s",
+            )],
+            scopes=[mongodbatlas.DatabaseUserScopeArgs(
+                name="My cluster name",
+                type="CLUSTER",
+            )])
+        ```
+        ## Example of how to create a OIDC federated authentication user
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            auth_database_name="admin",
+            oidc_auth_type="IDP_GROUP",
+            project_id="6414908c207f4d22f4d8f232",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="readWriteAnyDatabase",
+            )],
+            username="64d613677e1ad50839cce4db/testUserOr")
+        ```
+        `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
+
+        Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
         ## Import
 

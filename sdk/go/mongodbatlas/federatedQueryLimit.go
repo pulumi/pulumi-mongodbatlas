@@ -18,6 +18,35 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // ## Example Usage
+// ### S
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedQueryLimit(ctx, "test", &mongodbatlas.FederatedQueryLimitArgs{
+//				LimitName:     pulumi.String("bytesProcessed.weekly"),
+//				OverrunPolicy: pulumi.String("BLOCK"),
+//				ProjectId:     pulumi.String("64707f06c519c20c3a2b1b03"),
+//				TenantName:    pulumi.String("FederatedDatabseInstance0"),
+//				Value:         pulumi.Int(5147483648),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

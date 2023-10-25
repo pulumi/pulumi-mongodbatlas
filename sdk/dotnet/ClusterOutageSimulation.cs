@@ -24,6 +24,37 @@ namespace Pulumi.Mongodbatlas
     /// **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
     /// 
     /// ## Example Usage
+    /// ### S
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var outageSimulation = new Mongodbatlas.ClusterOutageSimulation("outageSimulation", new()
+    ///     {
+    ///         ClusterName = "Cluster0",
+    ///         OutageFilters = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ClusterOutageSimulationOutageFilterArgs
+    ///             {
+    ///                 CloudProvider = "AWS",
+    ///                 RegionName = "US_EAST_1",
+    ///             },
+    ///             new Mongodbatlas.Inputs.ClusterOutageSimulationOutageFilterArgs
+    ///             {
+    ///                 CloudProvider = "AWS",
+    ///                 RegionName = "US_EAST_2",
+    ///             },
+    ///         },
+    ///         ProjectId = "64707f06c519c20c3a2b1b03",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

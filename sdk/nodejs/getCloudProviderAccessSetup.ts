@@ -12,6 +12,41 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ * ### With AWS
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "AWS",
+ * });
+ * const singleSetup = mongodbatlas.getCloudProviderAccessSetupOutput({
+ *     projectId: testRole.projectId,
+ *     providerName: testRole.providerName,
+ *     roleId: testRole.roleId,
+ * });
+ * ```
+ * ### With AZURE
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "AZURE",
+ *     azureConfigs: [{
+ *         atlasAzureAppId: "9f2deb0d-be22-4524-a403-df531868bac0",
+ *         servicePrincipalId: "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+ *         tenantId: "91402384-d71e-22f5-22dd-759e272cdc1c",
+ *     }],
+ * });
+ * const singleSetup = mongodbatlas.getCloudProviderAccessSetupOutput({
+ *     projectId: testRole.projectId,
+ *     providerName: testRole.providerName,
+ *     roleId: testRole.roleId,
+ * });
+ * ```
  */
 export function getCloudProviderAccessSetup(args: GetCloudProviderAccessSetupArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderAccessSetupResult> {
 
@@ -84,6 +119,41 @@ export interface GetCloudProviderAccessSetupResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ * ### With AWS
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "AWS",
+ * });
+ * const singleSetup = mongodbatlas.getCloudProviderAccessSetupOutput({
+ *     projectId: testRole.projectId,
+ *     providerName: testRole.providerName,
+ *     roleId: testRole.roleId,
+ * });
+ * ```
+ * ### With AZURE
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "AZURE",
+ *     azureConfigs: [{
+ *         atlasAzureAppId: "9f2deb0d-be22-4524-a403-df531868bac0",
+ *         servicePrincipalId: "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+ *         tenantId: "91402384-d71e-22f5-22dd-759e272cdc1c",
+ *     }],
+ * });
+ * const singleSetup = mongodbatlas.getCloudProviderAccessSetupOutput({
+ *     projectId: testRole.projectId,
+ *     providerName: testRole.providerName,
+ *     roleId: testRole.roleId,
+ * });
+ * ```
  */
 export function getCloudProviderAccessSetupOutput(args: GetCloudProviderAccessSetupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderAccessSetupResult> {
     return pulumi.output(args).apply((a: any) => getCloudProviderAccessSetup(a, opts))

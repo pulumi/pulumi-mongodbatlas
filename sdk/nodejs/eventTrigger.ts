@@ -14,6 +14,103 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### S
+ * ### Example Usage: Database Trigger with Function
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.EventTrigger("test", {
+ *     projectId: "PROJECT ID",
+ *     appId: "APPLICATION ID",
+ *     type: "DATABASE",
+ *     functionId: "FUNCTION ID",
+ *     disabled: false,
+ *     configOperationTypes: [
+ *         "INSERT",
+ *         "UPDATE",
+ *     ],
+ *     configDatabase: "DATABASE NAME",
+ *     configCollection: "COLLECTION NAME",
+ *     configServiceId: "SERVICE ID",
+ *     configMatch: `{
+ *   "updateDescription.updatedFields": {
+ *     "status": "blocked"
+ *   }
+ * }
+ * `,
+ *     configProject: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+ *     configFullDocument: false,
+ *     configFullDocumentBefore: false,
+ *     eventProcessors: {
+ *         awsEventbridge: {
+ *             configAccountId: "AWS ACCOUNT ID",
+ *             configRegion: "AWS REGIOn",
+ *         },
+ *     },
+ * });
+ * ```
+ * ### Example Usage: Database Trigger with EventBridge
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.EventTrigger("test", {
+ *     appId: "APPLICATION ID",
+ *     configCollection: "COLLECTION NAME",
+ *     configDatabase: "DATABASE NAME",
+ *     configFullDocument: false,
+ *     configFullDocumentBefore: false,
+ *     configMatch: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+ *     configOperationType: "LOGIN",
+ *     configOperationTypes: [
+ *         "INSERT",
+ *         "UPDATE",
+ *     ],
+ *     configProject: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+ *     configProviders: ["anon-user"],
+ *     configSchedule: "*",
+ *     configServiceId: "1",
+ *     disabled: false,
+ *     eventProcessors: {
+ *         awsEventbridge: {
+ *             configAccountId: "AWS ACCOUNT ID",
+ *             configRegion: "AWS REGIOn",
+ *         },
+ *     },
+ *     projectId: "PROJECT ID",
+ *     type: "DATABASE",
+ *     unordered: false,
+ * });
+ * ```
+ * ### Example Usage: Authentication Trigger
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.EventTrigger("test", {
+ *     appId: "APPLICATION ID",
+ *     configOperationType: "LOGIN",
+ *     configProviders: ["anon-user"],
+ *     disabled: false,
+ *     functionId: "1",
+ *     projectId: "PROJECT ID",
+ *     type: "AUTHENTICATION",
+ * });
+ * ```
+ * ### Example Usage: Scheduled Trigger
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.EventTrigger("test", {
+ *     appId: "APPLICATION ID",
+ *     configSchedule: "*",
+ *     disabled: false,
+ *     functionId: "1",
+ *     projectId: "PROJECT ID",
+ *     type: "SCHEDULED",
+ * });
+ * ```
  *
  * ## Import
  *

@@ -244,6 +244,19 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+            bucket_name="example-bucket",
+            cloud_provider="AWS",
+            iam_role_id="{IAM_ROLE_ID}",
+            project_id="{PROJECT_ID}")
+        ```
+
         ## Import
 
         Cloud Backup Snapshot Export Backup entries can be imported using project project_id, and bucket_id (Unique identifier of the snapshot export bucket), in the format `PROJECTID-BUCKETID`, e.g.
@@ -270,6 +283,19 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         `CloudBackupSnapshotExportBucket` resource allows you to create an export snapshot bucket for the specified project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+            bucket_name="example-bucket",
+            cloud_provider="AWS",
+            iam_role_id="{IAM_ROLE_ID}",
+            project_id="{PROJECT_ID}")
+        ```
 
         ## Import
 

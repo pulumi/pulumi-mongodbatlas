@@ -237,6 +237,20 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        atlas_project = mongodbatlas.Project("atlas-project", org_id=var["atlas_org_id"])
+        test = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
+            project_id=atlas_project.id,
+            endpoint_id="<PRIVATE-ENDPOINT-SERVICE-ID>",
+            provider_name="AWS",
+            comment="Test")
+        ```
+
         ## Import
 
         Private Endpoint Service resource for Data Federation and Online Archive can be imported using project ID, endpoint ID, in the format `project_id`--`endpoint_id`, e.g.
@@ -263,6 +277,20 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         `PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        atlas_project = mongodbatlas.Project("atlas-project", org_id=var["atlas_org_id"])
+        test = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
+            project_id=atlas_project.id,
+            endpoint_id="<PRIVATE-ENDPOINT-SERVICE-ID>",
+            provider_name="AWS",
+            comment="Test")
+        ```
 
         ## Import
 

@@ -414,6 +414,29 @@ class LdapVerify(pulumi.CustomResource):
         """
         `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_cluster = mongodbatlas.Cluster("testCluster",
+            project_id=test_project.id,
+            provider_name="AWS",
+            provider_region_name="US_EAST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        #enable cloud provider snapshots
+        test_ldap_verify = mongodbatlas.LdapVerify("testLdapVerify",
+            project_id=test_project.id,
+            hostname="HOSTNAME",
+            port=636,
+            bind_username="USERNAME",
+            bind_password="PASSWORD",
+            opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
+        ```
+
         ## Import
 
         LDAP Configuration must be imported using project ID and request ID, e.g.
@@ -441,6 +464,29 @@ class LdapVerify(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_cluster = mongodbatlas.Cluster("testCluster",
+            project_id=test_project.id,
+            provider_name="AWS",
+            provider_region_name="US_EAST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        #enable cloud provider snapshots
+        test_ldap_verify = mongodbatlas.LdapVerify("testLdapVerify",
+            project_id=test_project.id,
+            hostname="HOSTNAME",
+            port=636,
+            bind_username="USERNAME",
+            bind_password="PASSWORD",
+            opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
+        ```
 
         ## Import
 

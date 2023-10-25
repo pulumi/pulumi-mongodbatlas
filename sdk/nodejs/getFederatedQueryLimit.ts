@@ -10,6 +10,19 @@ import * as utilities from "./utilities";
  * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getFederatedQueryLimit({
+ *     limitName: "LIMIT_NAME",
+ *     projectId: "PROJECT_ID",
+ *     tenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
+ * });
+ * ```
  */
 export function getFederatedQueryLimit(args: GetFederatedQueryLimitArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedQueryLimitResult> {
 
@@ -73,6 +86,19 @@ export interface GetFederatedQueryLimitResult {
  * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getFederatedQueryLimit({
+ *     limitName: "LIMIT_NAME",
+ *     projectId: "PROJECT_ID",
+ *     tenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
+ * });
+ * ```
  */
 export function getFederatedQueryLimitOutput(args: GetFederatedQueryLimitOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedQueryLimitResult> {
     return pulumi.output(args).apply((a: any) => getFederatedQueryLimit(a, opts))

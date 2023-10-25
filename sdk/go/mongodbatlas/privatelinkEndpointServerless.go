@@ -19,6 +19,42 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // ## Example Usage
+// ### AWS Example
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "testServerlessInstance", &mongodbatlas.ServerlessInstanceArgs{
+//				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
+//				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
+//				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
+//				ContinuousBackupEnabled:             pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "testPrivatelinkEndpointServerless", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
+//				ProjectId:    pulumi.String("<PROJECT_ID>"),
+//				InstanceName: testServerlessInstance.Name,
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

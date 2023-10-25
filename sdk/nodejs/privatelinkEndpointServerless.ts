@@ -11,6 +11,24 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ * ### AWS Example
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
+ *     projectId: "<PROJECT_ID>",
+ *     providerSettingsBackingProviderName: "AWS",
+ *     providerSettingsProviderName: "SERVERLESS",
+ *     providerSettingsRegionName: "US_EAST_1",
+ *     continuousBackupEnabled: true,
+ * });
+ * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", {
+ *     projectId: "<PROJECT_ID>",
+ *     instanceName: testServerlessInstance.name,
+ *     providerName: "AWS",
+ * });
+ * ```
  *
  * ## Import
  *

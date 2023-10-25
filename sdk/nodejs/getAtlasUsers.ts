@@ -12,6 +12,37 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ * ### Using orgId attribute to query Organization Atlas Users
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getAtlasUsers({
+ *     orgId: "<ORG_ID>",
+ * });
+ * ```
+ * ### Using projectId attribute to query Project Atlas Users
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getAtlasUsers({
+ *     projectId: "<PROJECT_ID>",
+ * });
+ * ```
+ * ### Using teamId and orgId attribute to query Team Atlas Users
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getAtlasUsers({
+ *     orgId: "<ORG_ID>",
+ *     teamId: "<TEAM_ID>",
+ * });
+ * ```
  */
 export function getAtlasUsers(args?: GetAtlasUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetAtlasUsersResult> {
     args = args || {};
@@ -82,6 +113,37 @@ export interface GetAtlasUsersResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ * ### Using orgId attribute to query Organization Atlas Users
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getAtlasUsers({
+ *     orgId: "<ORG_ID>",
+ * });
+ * ```
+ * ### Using projectId attribute to query Project Atlas Users
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getAtlasUsers({
+ *     projectId: "<PROJECT_ID>",
+ * });
+ * ```
+ * ### Using teamId and orgId attribute to query Team Atlas Users
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getAtlasUsers({
+ *     orgId: "<ORG_ID>",
+ *     teamId: "<TEAM_ID>",
+ * });
+ * ```
  */
 export function getAtlasUsersOutput(args?: GetAtlasUsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAtlasUsersResult> {
     return pulumi.output(args).apply((a: any) => getAtlasUsers(a, opts))

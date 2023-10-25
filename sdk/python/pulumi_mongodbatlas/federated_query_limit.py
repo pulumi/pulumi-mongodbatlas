@@ -389,6 +389,19 @@ class FederatedQueryLimit(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedQueryLimit("test",
+            limit_name="bytesProcessed.weekly",
+            overrun_policy="BLOCK",
+            project_id="64707f06c519c20c3a2b1b03",
+            tenant_name="FederatedDatabseInstance0",
+            value=5147483648)
+        ```
 
         ## Import
 
@@ -424,6 +437,19 @@ class FederatedQueryLimit(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedQueryLimit("test",
+            limit_name="bytesProcessed.weekly",
+            overrun_policy="BLOCK",
+            project_id="64707f06c519c20c3a2b1b03",
+            tenant_name="FederatedDatabseInstance0",
+            value=5147483648)
+        ```
 
         ## Import
 

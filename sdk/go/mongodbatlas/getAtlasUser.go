@@ -17,6 +17,54 @@ import (
 // > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
 //
 // ## Example Usage
+// ### Using userId attribute to query
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.GetAtlasUser(ctx, &mongodbatlas.GetAtlasUserArgs{
+//				UserId: pulumi.StringRef("<USER_ID>"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Using username attribute to query
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.GetAtlasUser(ctx, &mongodbatlas.GetAtlasUserArgs{
+//				Username: pulumi.StringRef("<USERNAME>"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetAtlasUser(ctx *pulumi.Context, args *GetAtlasUserArgs, opts ...pulumi.InvokeOption) (*GetAtlasUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAtlasUserResult

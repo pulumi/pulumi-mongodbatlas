@@ -14,6 +14,26 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
  *
  * ## Example Usage
+ * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORGANIZATION ID"});
+ * const testCloudProviderAccess = new mongodbatlas.CloudProviderAccess("testCloudProviderAccess", {
+ *     projectId: testProject.id,
+ *     providerName: "AWS",
+ *     iamAssumedRoleArn: "AWS ROLE ID",
+ * });
+ * const basicDs = new mongodbatlas.DataLake("basicDs", {
+ *     projectId: testProject.id,
+ *     aws: {
+ *         roleId: testCloudProviderAccess.roleId,
+ *         testS3Bucket: "TEST S3 BUCKET NAME",
+ *     },
+ * });
+ * ```
  *
  * ## Import
  *

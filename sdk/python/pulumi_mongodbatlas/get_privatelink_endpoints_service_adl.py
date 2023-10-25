@@ -89,6 +89,19 @@ def get_privatelink_endpoints_service_adl(project_id: Optional[str] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
+    ### Basic
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    adl_test = mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest",
+        project_id="<PROJECT_ID>",
+        endpoint_id="<ENDPOINT_ID>",
+        comment="Comment for PrivateLink endpoint ADL",
+        type="DATA_LAKE",
+        provider_name="AWS")
+    test = mongodbatlas.get_privatelink_endpoints_service_adl_output(project_id=adl_test.project_id)
+    ```
 
 
     :param str project_id: The unique ID for the project.
@@ -119,6 +132,19 @@ def get_privatelink_endpoints_service_adl_output(project_id: Optional[pulumi.Inp
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
+    ### Basic
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    adl_test = mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest",
+        project_id="<PROJECT_ID>",
+        endpoint_id="<ENDPOINT_ID>",
+        comment="Comment for PrivateLink endpoint ADL",
+        type="DATA_LAKE",
+        provider_name="AWS")
+    test = mongodbatlas.get_privatelink_endpoints_service_adl_output(project_id=adl_test.project_id)
+    ```
 
 
     :param str project_id: The unique ID for the project.

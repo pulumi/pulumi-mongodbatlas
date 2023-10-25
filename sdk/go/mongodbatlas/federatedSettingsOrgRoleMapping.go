@@ -15,6 +15,63 @@ import (
 
 // `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedSettingsOrgRoleMapping(ctx, "orgGroupRoleMappingImport", &mongodbatlas.FederatedSettingsOrgRoleMappingArgs{
+//				ExternalGroupName:    pulumi.String("myGrouptest"),
+//				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
+//				OrgId:                pulumi.String("627a9683e7f7f7ff7fe306f14"),
+//				RoleAssignments: mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArray{
+//					&mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
+//						OrgId: pulumi.String("627a9683e7f7f7ff7fe306f14"),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("ORG_MEMBER"),
+//							pulumi.String("ORG_GROUP_CREATOR"),
+//							pulumi.String("ORG_BILLING_ADMIN"),
+//						},
+//					},
+//					&mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
+//						GroupId: pulumi.String("628aa20d7f7f7f7f7098b81b8"),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//							pulumi.String("GROUP_DATA_ACCESS_ADMIN"),
+//							pulumi.String("GROUP_SEARCH_INDEX_EDITOR"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
+//						},
+//					},
+//					&mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
+//						GroupId: pulumi.String("628aa20d7f7f7f7f7078b81b8"),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//							pulumi.String("GROUP_DATA_ACCESS_ADMIN"),
+//							pulumi.String("GROUP_SEARCH_INDEX_EDITOR"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // FederatedSettingsOrgRoleMapping can be imported using federation_settings_id-org_id-role_mapping_id, e.g.

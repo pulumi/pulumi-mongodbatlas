@@ -17,6 +17,36 @@ import (
 // `CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testRole, err := mongodbatlas.NewCloudProviderAccess(ctx, "testRole", &mongodbatlas.CloudProviderAccessArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudProviderAccessOutput(ctx, mongodbatlas.GetCloudProviderAccessOutputArgs{
+//				ProjectId: testRole.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCloudProviderAccess(ctx *pulumi.Context, args *LookupCloudProviderAccessArgs, opts ...pulumi.InvokeOption) (*LookupCloudProviderAccessResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudProviderAccessResult

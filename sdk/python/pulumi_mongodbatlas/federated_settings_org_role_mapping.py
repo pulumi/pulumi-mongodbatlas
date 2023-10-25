@@ -224,6 +224,47 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         """
         `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
+            external_group_name="myGrouptest",
+            federation_settings_id="627a9687f7f7f7f774de306f14",
+            org_id="627a9683e7f7f7ff7fe306f14",
+            role_assignments=[
+                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                    org_id="627a9683e7f7f7ff7fe306f14",
+                    roles=[
+                        "ORG_MEMBER",
+                        "ORG_GROUP_CREATOR",
+                        "ORG_BILLING_ADMIN",
+                    ],
+                ),
+                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                    group_id="628aa20d7f7f7f7f7098b81b8",
+                    roles=[
+                        "GROUP_OWNER",
+                        "GROUP_DATA_ACCESS_ADMIN",
+                        "GROUP_SEARCH_INDEX_EDITOR",
+                        "GROUP_DATA_ACCESS_READ_ONLY",
+                    ],
+                ),
+                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                    group_id="628aa20d7f7f7f7f7078b81b8",
+                    roles=[
+                        "GROUP_OWNER",
+                        "GROUP_DATA_ACCESS_ADMIN",
+                        "GROUP_SEARCH_INDEX_EDITOR",
+                        "GROUP_DATA_ACCESS_READ_ONLY",
+                        "GROUP_DATA_ACCESS_READ_WRITE",
+                    ],
+                ),
+            ])
+        ```
+
         ## Import
 
         FederatedSettingsOrgRoleMapping can be imported using federation_settings_id-org_id-role_mapping_id, e.g.
@@ -248,6 +289,47 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
+            external_group_name="myGrouptest",
+            federation_settings_id="627a9687f7f7f7f774de306f14",
+            org_id="627a9683e7f7f7ff7fe306f14",
+            role_assignments=[
+                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                    org_id="627a9683e7f7f7ff7fe306f14",
+                    roles=[
+                        "ORG_MEMBER",
+                        "ORG_GROUP_CREATOR",
+                        "ORG_BILLING_ADMIN",
+                    ],
+                ),
+                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                    group_id="628aa20d7f7f7f7f7098b81b8",
+                    roles=[
+                        "GROUP_OWNER",
+                        "GROUP_DATA_ACCESS_ADMIN",
+                        "GROUP_SEARCH_INDEX_EDITOR",
+                        "GROUP_DATA_ACCESS_READ_ONLY",
+                    ],
+                ),
+                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                    group_id="628aa20d7f7f7f7f7078b81b8",
+                    roles=[
+                        "GROUP_OWNER",
+                        "GROUP_DATA_ACCESS_ADMIN",
+                        "GROUP_SEARCH_INDEX_EDITOR",
+                        "GROUP_DATA_ACCESS_READ_ONLY",
+                        "GROUP_DATA_ACCESS_READ_WRITE",
+                    ],
+                ),
+            ])
+        ```
 
         ## Import
 

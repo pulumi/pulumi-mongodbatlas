@@ -13,12 +13,90 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new()
+        ///     {
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///         DomainRestrictionEnabled = false,
+        ///         DomainAllowLists = new[]
+        ///         {
+        ///             "mydomain.com",
+        ///         },
+        ///         PostAuthRoleGrants = new[]
+        ///         {
+        ///             "ORG_MEMBER",
+        ///         },
+        ///     });
+        /// 
+        ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfig.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = orgConnections.Id,
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetFederatedSettingsOrgConfigResult> InvokeAsync(GetFederatedSettingsOrgConfigArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgConfigResult>("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", args ?? new GetFederatedSettingsOrgConfigArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new()
+        ///     {
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///         DomainRestrictionEnabled = false,
+        ///         DomainAllowLists = new[]
+        ///         {
+        ///             "mydomain.com",
+        ///         },
+        ///         PostAuthRoleGrants = new[]
+        ///         {
+        ///             "ORG_MEMBER",
+        ///         },
+        ///     });
+        /// 
+        ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfig.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = orgConnections.Id,
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetFederatedSettingsOrgConfigResult> Invoke(GetFederatedSettingsOrgConfigInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgConfigResult>("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", args ?? new GetFederatedSettingsOrgConfigInvokeArgs(), options.WithDefaults());

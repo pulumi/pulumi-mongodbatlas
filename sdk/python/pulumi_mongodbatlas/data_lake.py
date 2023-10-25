@@ -347,6 +347,24 @@ class DataLake(pulumi.CustomResource):
         > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_project = mongodbatlas.Project("testProject", org_id="ORGANIZATION ID")
+        test_cloud_provider_access = mongodbatlas.CloudProviderAccess("testCloudProviderAccess",
+            project_id=test_project.id,
+            provider_name="AWS",
+            iam_assumed_role_arn="AWS ROLE ID")
+        basic_ds = mongodbatlas.DataLake("basicDs",
+            project_id=test_project.id,
+            aws=mongodbatlas.DataLakeAwsArgs(
+                role_id=test_cloud_provider_access.role_id,
+                test_s3_bucket="TEST S3 BUCKET NAME",
+            ))
+        ```
 
         ## Import
 
@@ -382,6 +400,24 @@ class DataLake(pulumi.CustomResource):
         > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_project = mongodbatlas.Project("testProject", org_id="ORGANIZATION ID")
+        test_cloud_provider_access = mongodbatlas.CloudProviderAccess("testCloudProviderAccess",
+            project_id=test_project.id,
+            provider_name="AWS",
+            iam_assumed_role_arn="AWS ROLE ID")
+        basic_ds = mongodbatlas.DataLake("basicDs",
+            project_id=test_project.id,
+            aws=mongodbatlas.DataLakeAwsArgs(
+                role_id=test_cloud_provider_access.role_id,
+                test_s3_bucket="TEST S3 BUCKET NAME",
+            ))
+        ```
 
         ## Import
 

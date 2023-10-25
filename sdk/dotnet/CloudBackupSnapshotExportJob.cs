@@ -14,6 +14,43 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
+    ///     {
+    ///         ProjectId = "{PROJECT_ID}",
+    ///         IamRoleId = "{IAM_ROLE_ID}",
+    ///         BucketName = "example_bucket",
+    ///         CloudProvider = "AWS",
+    ///     });
+    /// 
+    ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", new()
+    ///     {
+    ///         ProjectId = "{PROJECT_ID}",
+    ///         ClusterName = "{CLUSTER_NAME}",
+    ///         SnapshotId = "{SNAPSHOT_ID}",
+    ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
+    ///         CustomDatas = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudBackupSnapshotExportJobCustomDataArgs
+    ///             {
+    ///                 Key = "exported by",
+    ///                 Value = "myName",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Cloud Backup Snapshot Export Backup entries can be imported using project project_id, cluster_name and export_job_id (Unique identifier of the snapshot export job), in the format `PROJECTID-CLUSTERNAME-EXPORTJOBID`, e.g.

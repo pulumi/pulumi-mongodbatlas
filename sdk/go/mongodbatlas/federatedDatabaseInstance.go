@@ -18,6 +18,130 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // ## Example Usage
+// ### S With MongoDB Atlas Cluster As Storage Database
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedDatabaseInstance(ctx, "test", &mongodbatlas.FederatedDatabaseInstanceArgs{
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				StorageDatabases: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArray{
+//					&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs{
+//						Collections: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArray{
+//							&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs{
+//								DataSources: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArray{
+//									&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs{
+//										Collection: pulumi.String("COLLECTION IN THE CLUSTER"),
+//										Database:   pulumi.String("DB IN THE CLUSTER"),
+//										StoreName:  pulumi.String("CLUSTER NAME"),
+//									},
+//								},
+//								Name: pulumi.String("NAME OF THE COLLECTION"),
+//							},
+//						},
+//						Name: pulumi.String("VirtualDatabase0"),
+//					},
+//				},
+//				StorageStores: mongodbatlas.FederatedDatabaseInstanceStorageStoreArray{
+//					&mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs{
+//						ClusterName: pulumi.String("CLUSTER NAME"),
+//						Name:        pulumi.String("STORE 1 NAME"),
+//						ProjectId:   pulumi.String("PROJECT ID"),
+//						Provider:    pulumi.String("atlas"),
+//						ReadPreference: &mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs{
+//							Mode: pulumi.String("secondary"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### S With Amazon S3 Bucket As Storage Database
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedDatabaseInstance(ctx, "test", &mongodbatlas.FederatedDatabaseInstanceArgs{
+//				CloudProviderConfig: &mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigArgs{
+//					Aws: &mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigAwsArgs{
+//						RoleId:       pulumi.String("AWS ROLE ID"),
+//						TestS3Bucket: pulumi.String("S3 BUCKET NAME"),
+//					},
+//				},
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				StorageDatabases: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArray{
+//					&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs{
+//						Collections: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArray{
+//							&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs{
+//								DataSources: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArray{
+//									&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs{
+//										Collection: pulumi.String("COLLECTION IN THE CLUSTER"),
+//										Database:   pulumi.String("DB IN THE CLUSTER"),
+//										StoreName:  pulumi.String("CLUSTER NAME"),
+//									},
+//									&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs{
+//										Path:      pulumi.String("S3 BUCKET PATH"),
+//										StoreName: pulumi.String("S3 BUCKET NAME"),
+//									},
+//								},
+//								Name: pulumi.String("NAME OF THE COLLECTION"),
+//							},
+//						},
+//						Name: pulumi.String("VirtualDatabase0"),
+//					},
+//				},
+//				StorageStores: mongodbatlas.FederatedDatabaseInstanceStorageStoreArray{
+//					&mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs{
+//						ClusterName: pulumi.String("CLUSTER NAME"),
+//						Name:        pulumi.String("STORE 1 NAME"),
+//						ProjectId:   pulumi.String("PROJECT ID"),
+//						Provider:    pulumi.String("atlas"),
+//						ReadPreference: &mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs{
+//							Mode: pulumi.String("secondary"),
+//						},
+//					},
+//					&mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs{
+//						Bucket:    pulumi.String("STORE 2 NAME"),
+//						Delimiter: pulumi.String("/"),
+//						Name:      pulumi.String("S3 BUCKET NAME"),
+//						Prefix:    pulumi.String("S3 BUCKET PREFIX"),
+//						Provider:  pulumi.String("s3"),
+//						Region:    pulumi.String("AWS REGION"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

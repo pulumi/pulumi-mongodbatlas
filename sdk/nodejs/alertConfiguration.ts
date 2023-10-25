@@ -11,6 +11,121 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.AlertConfiguration("test", {
+ *     enabled: true,
+ *     eventType: "OUTSIDE_METRIC_THRESHOLD",
+ *     matchers: [{
+ *         fieldName: "HOSTNAME_AND_PORT",
+ *         operator: "EQUALS",
+ *         value: "SECONDARY",
+ *     }],
+ *     metricThresholdConfig: {
+ *         metricName: "ASSERT_REGULAR",
+ *         mode: "AVERAGE",
+ *         operator: "LESS_THAN",
+ *         threshold: 99,
+ *         units: "RAW",
+ *     },
+ *     notifications: [{
+ *         delayMin: 0,
+ *         emailEnabled: true,
+ *         intervalMin: 5,
+ *         roles: [
+ *             "GROUP_CHARTS_ADMIN",
+ *             "GROUP_CLUSTER_MANAGER",
+ *         ],
+ *         smsEnabled: false,
+ *         typeName: "GROUP",
+ *     }],
+ *     projectId: "<PROJECT-ID>",
+ * });
+ * ```
+ *
+ * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.AlertConfiguration("test", {
+ *     enabled: true,
+ *     eventType: "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+ *     matchers: [{
+ *         fieldName: "HOSTNAME_AND_PORT",
+ *         operator: "EQUALS",
+ *         value: "SECONDARY",
+ *     }],
+ *     notifications: [{
+ *         delayMin: 0,
+ *         emailEnabled: true,
+ *         intervalMin: 5,
+ *         roles: [
+ *             "GROUP_CHARTS_ADMIN",
+ *             "GROUP_CLUSTER_MANAGER",
+ *         ],
+ *         smsEnabled: false,
+ *         typeName: "GROUP",
+ *     }],
+ *     projectId: "<PROJECT-ID>",
+ *     thresholdConfig: {
+ *         operator: "LESS_THAN",
+ *         threshold: 1,
+ *         units: "HOURS",
+ *     },
+ * });
+ * ```
+ * ### Create an alert with two notifications using Email and SMS
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.AlertConfiguration("test", {
+ *     enabled: true,
+ *     eventType: "OUTSIDE_METRIC_THRESHOLD",
+ *     matchers: [{
+ *         fieldName: "HOSTNAME_AND_PORT",
+ *         operator: "EQUALS",
+ *         value: "SECONDARY",
+ *     }],
+ *     metricThresholdConfig: {
+ *         metricName: "ASSERT_REGULAR",
+ *         mode: "AVERAGE",
+ *         operator: "LESS_THAN",
+ *         threshold: 99,
+ *         units: "RAW",
+ *     },
+ *     notifications: [
+ *         {
+ *             delayMin: 0,
+ *             emailEnabled: true,
+ *             intervalMin: 5,
+ *             roles: [
+ *                 "GROUP_DATA_ACCESS_READ_ONLY",
+ *                 "GROUP_CLUSTER_MANAGER",
+ *                 "GROUP_DATA_ACCESS_ADMIN",
+ *             ],
+ *             smsEnabled: false,
+ *             typeName: "GROUP",
+ *         },
+ *         {
+ *             delayMin: 0,
+ *             emailEnabled: false,
+ *             intervalMin: 5,
+ *             smsEnabled: true,
+ *             typeName: "ORG",
+ *         },
+ *     ],
+ *     projectId: "PROJECT ID",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.

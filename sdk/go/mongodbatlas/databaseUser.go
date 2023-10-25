@@ -22,6 +22,187 @@ import (
 // > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 //
 // ## Example Usage
+// ### S
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				AuthDatabaseName: pulumi.String("admin"),
+//				Labels: mongodbatlas.DatabaseUserLabelArray{
+//					&mongodbatlas.DatabaseUserLabelArgs{
+//						Key:   pulumi.String("My Key"),
+//						Value: pulumi.String("My Value"),
+//					},
+//				},
+//				Password:  pulumi.String("test-acc-password"),
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						DatabaseName: pulumi.String("dbforApp"),
+//						RoleName:     pulumi.String("readWrite"),
+//					},
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						DatabaseName: pulumi.String("admin"),
+//						RoleName:     pulumi.String("readAnyDatabase"),
+//					},
+//				},
+//				Scopes: mongodbatlas.DatabaseUserScopeArray{
+//					&mongodbatlas.DatabaseUserScopeArgs{
+//						Name: pulumi.String("My cluster name"),
+//						Type: pulumi.String("CLUSTER"),
+//					},
+//					&mongodbatlas.DatabaseUserScopeArgs{
+//						Name: pulumi.String("My second cluster name"),
+//						Type: pulumi.String("CLUSTER"),
+//					},
+//				},
+//				Username: pulumi.String("test-acc-username"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				AuthDatabaseName: pulumi.String("$external"),
+//				Labels: mongodbatlas.DatabaseUserLabelArray{
+//					&mongodbatlas.DatabaseUserLabelArgs{
+//						Key:   pulumi.String("%s"),
+//						Value: pulumi.String("%s"),
+//					},
+//				},
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						DatabaseName: pulumi.String("admin"),
+//						RoleName:     pulumi.String("readAnyDatabase"),
+//					},
+//				},
+//				Scopes: mongodbatlas.DatabaseUserScopeArray{
+//					&mongodbatlas.DatabaseUserScopeArgs{
+//						Name: pulumi.String("My cluster name"),
+//						Type: pulumi.String("CLUSTER"),
+//					},
+//				},
+//				Username: pulumi.String("test-acc-username"),
+//				X509Type: pulumi.String("MANAGED"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				Username:         pulumi.Any(aws_iam_role.Test.Arn),
+//				ProjectId:        pulumi.String("<PROJECT-ID>"),
+//				AuthDatabaseName: pulumi.String("$external"),
+//				AwsIamType:       pulumi.String("ROLE"),
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("readAnyDatabase"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
+//				Labels: mongodbatlas.DatabaseUserLabelArray{
+//					&mongodbatlas.DatabaseUserLabelArgs{
+//						Key:   pulumi.String("%s"),
+//						Value: pulumi.String("%s"),
+//					},
+//				},
+//				Scopes: mongodbatlas.DatabaseUserScopeArray{
+//					&mongodbatlas.DatabaseUserScopeArgs{
+//						Name: pulumi.String("My cluster name"),
+//						Type: pulumi.String("CLUSTER"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ## Example of how to create a OIDC federated authentication user
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				AuthDatabaseName: pulumi.String("admin"),
+//				OidcAuthType:     pulumi.String("IDP_GROUP"),
+//				ProjectId:        pulumi.String("6414908c207f4d22f4d8f232"),
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						DatabaseName: pulumi.String("admin"),
+//						RoleName:     pulumi.String("readWriteAnyDatabase"),
+//					},
+//				},
+//				Username: pulumi.String("64d613677e1ad50839cce4db/testUserOr"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
+//
+// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 //
 // ## Import
 //

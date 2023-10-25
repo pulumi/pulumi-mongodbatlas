@@ -13,6 +13,99 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ *     actions: [
+ *         {
+ *             action: "UPDATE",
+ *             resources: [{
+ *                 collectionName: "",
+ *                 databaseName: "anyDatabase",
+ *             }],
+ *         },
+ *         {
+ *             action: "INSERT",
+ *             resources: [{
+ *                 collectionName: "",
+ *                 databaseName: "anyDatabase",
+ *             }],
+ *         },
+ *         {
+ *             action: "REMOVE",
+ *             resources: [{
+ *                 collectionName: "",
+ *                 databaseName: "anyDatabase",
+ *             }],
+ *         },
+ *     ],
+ *     projectId: "<PROJECT-ID>",
+ *     roleName: "myCustomRole",
+ * });
+ * ```
+ * ### With Inherited Roles
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const inheritedRoleOne = new mongodbatlas.CustomDbRole("inheritedRoleOne", {
+ *     projectId: "<PROJECT-ID>",
+ *     roleName: "insertRole",
+ *     actions: [{
+ *         action: "INSERT",
+ *         resources: [{
+ *             collectionName: "",
+ *             databaseName: "anyDatabase",
+ *         }],
+ *     }],
+ * });
+ * const inheritedRoleTwo = new mongodbatlas.CustomDbRole("inheritedRoleTwo", {
+ *     projectId: inheritedRoleOne.projectId,
+ *     roleName: "statusServerRole",
+ *     actions: [{
+ *         action: "SERVER_STATUS",
+ *         resources: [{
+ *             cluster: true,
+ *         }],
+ *     }],
+ * });
+ * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ *     projectId: inheritedRoleOne.projectId,
+ *     roleName: "myCustomRole",
+ *     actions: [
+ *         {
+ *             action: "UPDATE",
+ *             resources: [{
+ *                 collectionName: "",
+ *                 databaseName: "anyDatabase",
+ *             }],
+ *         },
+ *         {
+ *             action: "REMOVE",
+ *             resources: [{
+ *                 collectionName: "",
+ *                 databaseName: "anyDatabase",
+ *             }],
+ *         },
+ *     ],
+ *     inheritedRoles: [
+ *         {
+ *             roleName: inheritedRoleOne.roleName,
+ *             databaseName: "admin",
+ *         },
+ *         {
+ *             roleName: inheritedRoleTwo.roleName,
+ *             databaseName: "admin",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Database users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.
