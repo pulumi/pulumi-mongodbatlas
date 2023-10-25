@@ -15,60 +15,6 @@ import (
 // `getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
-// ## Example Usage
-//
-// First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "testCloudBackupSnapshot", &mongodbatlas.CloudBackupSnapshotArgs{
-//				ProjectId:       pulumi.String("5cf5a45a9ccf6400e60981b6"),
-//				ClusterName:     pulumi.String("MyCluster"),
-//				Description:     pulumi.String("MyDescription"),
-//				RetentionInDays: pulumi.Int(1),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			testCloudBackupSnapshotRestoreJob, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "testCloudBackupSnapshotRestoreJob", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
-//				ProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
-//				ClusterName: pulumi.String("MyCluster"),
-//				SnapshotId:  testCloudBackupSnapshot.ID(),
-//				DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
-//					Automated:         pulumi.Bool(true),
-//					TargetClusterName: pulumi.String("MyCluster"),
-//					TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = pulumi.All(testCloudBackupSnapshotRestoreJob.ProjectId, testCloudBackupSnapshotRestoreJob.ClusterName).ApplyT(func(_args []interface{}) (mongodbatlas.GetCloudBackupSnapshotRestoreJobsResult, error) {
-//				projectId := _args[0].(string)
-//				clusterName := _args[1].(string)
-//				return mongodbatlas.LookupCloudBackupSnapshotRestoreJobsOutput(ctx, mongodbatlas.GetCloudBackupSnapshotRestoreJobsOutputArgs{
-//					ProjectId:    projectId,
-//					ClusterName:  clusterName,
-//					PageNum:      1,
-//					ItemsPerPage: 5,
-//				}, nil), nil
-//			}).(mongodbatlas.GetCloudBackupSnapshotRestoreJobsResultOutput)
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupCloudBackupSnapshotRestoreJobs(ctx *pulumi.Context, args *LookupCloudBackupSnapshotRestoreJobsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotRestoreJobsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotRestoreJobsResult

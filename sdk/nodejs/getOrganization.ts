@@ -10,15 +10,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
  *
  * ## Example Usage
- * ### Using projectId attribute to query
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getOrganization({
- *     orgId: "<org_id>",
- * });
- * ```
  */
 export function getOrganization(args: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
 
@@ -61,15 +52,6 @@ export interface GetOrganizationResult {
  * `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
  *
  * ## Example Usage
- * ### Using projectId attribute to query
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getOrganization({
- *     orgId: "<org_id>",
- * });
- * ```
  */
 export function getOrganizationOutput(args: GetOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {
     return pulumi.output(args).apply((a: any) => getOrganization(a, opts))

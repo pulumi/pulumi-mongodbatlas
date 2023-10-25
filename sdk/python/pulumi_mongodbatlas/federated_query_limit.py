@@ -47,14 +47,38 @@ class FederatedQueryLimitArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             limit_name: pulumi.Input[str],
-             overrun_policy: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             tenant_name: pulumi.Input[str],
-             value: pulumi.Input[int],
+             limit_name: Optional[pulumi.Input[str]] = None,
+             overrun_policy: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             tenant_name: Optional[pulumi.Input[str]] = None,
+             value: Optional[pulumi.Input[int]] = None,
              default_limit: Optional[pulumi.Input[int]] = None,
              maximum_limit: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if limit_name is None and 'limitName' in kwargs:
+            limit_name = kwargs['limitName']
+        if limit_name is None:
+            raise TypeError("Missing 'limit_name' argument")
+        if overrun_policy is None and 'overrunPolicy' in kwargs:
+            overrun_policy = kwargs['overrunPolicy']
+        if overrun_policy is None:
+            raise TypeError("Missing 'overrun_policy' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if tenant_name is None and 'tenantName' in kwargs:
+            tenant_name = kwargs['tenantName']
+        if tenant_name is None:
+            raise TypeError("Missing 'tenant_name' argument")
+        if value is None:
+            raise TypeError("Missing 'value' argument")
+        if default_limit is None and 'defaultLimit' in kwargs:
+            default_limit = kwargs['defaultLimit']
+        if maximum_limit is None and 'maximumLimit' in kwargs:
+            maximum_limit = kwargs['maximumLimit']
+
         _setter("limit_name", limit_name)
         _setter("overrun_policy", overrun_policy)
         _setter("project_id", project_id)
@@ -201,7 +225,25 @@ class _FederatedQueryLimitState:
              project_id: Optional[pulumi.Input[str]] = None,
              tenant_name: Optional[pulumi.Input[str]] = None,
              value: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if current_usage is None and 'currentUsage' in kwargs:
+            current_usage = kwargs['currentUsage']
+        if default_limit is None and 'defaultLimit' in kwargs:
+            default_limit = kwargs['defaultLimit']
+        if last_modified_date is None and 'lastModifiedDate' in kwargs:
+            last_modified_date = kwargs['lastModifiedDate']
+        if limit_name is None and 'limitName' in kwargs:
+            limit_name = kwargs['limitName']
+        if maximum_limit is None and 'maximumLimit' in kwargs:
+            maximum_limit = kwargs['maximumLimit']
+        if overrun_policy is None and 'overrunPolicy' in kwargs:
+            overrun_policy = kwargs['overrunPolicy']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if tenant_name is None and 'tenantName' in kwargs:
+            tenant_name = kwargs['tenantName']
+
         if current_usage is not None:
             _setter("current_usage", current_usage)
         if default_limit is not None:
@@ -347,19 +389,6 @@ class FederatedQueryLimit(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
-        ### S
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.FederatedQueryLimit("test",
-            limit_name="bytesProcessed.weekly",
-            overrun_policy="BLOCK",
-            project_id="64707f06c519c20c3a2b1b03",
-            tenant_name="FederatedDatabseInstance0",
-            value=5147483648)
-        ```
 
         ## Import
 
@@ -395,19 +424,6 @@ class FederatedQueryLimit(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
-        ### S
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.FederatedQueryLimit("test",
-            limit_name="bytesProcessed.weekly",
-            overrun_policy="BLOCK",
-            project_id="64707f06c519c20c3a2b1b03",
-            tenant_name="FederatedDatabseInstance0",
-            value=5147483648)
-        ```
 
         ## Import
 

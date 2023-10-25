@@ -46,14 +46,36 @@ class PrivateLinkEndpointServiceArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             endpoint_service_id: pulumi.Input[str],
-             private_link_id: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             provider_name: pulumi.Input[str],
+             endpoint_service_id: Optional[pulumi.Input[str]] = None,
+             private_link_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
              endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]] = None,
              gcp_project_id: Optional[pulumi.Input[str]] = None,
              private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if endpoint_service_id is None and 'endpointServiceId' in kwargs:
+            endpoint_service_id = kwargs['endpointServiceId']
+        if endpoint_service_id is None:
+            raise TypeError("Missing 'endpoint_service_id' argument")
+        if private_link_id is None and 'privateLinkId' in kwargs:
+            private_link_id = kwargs['privateLinkId']
+        if private_link_id is None:
+            raise TypeError("Missing 'private_link_id' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if provider_name is None:
+            raise TypeError("Missing 'provider_name' argument")
+        if gcp_project_id is None and 'gcpProjectId' in kwargs:
+            gcp_project_id = kwargs['gcpProjectId']
+        if private_endpoint_ip_address is None and 'privateEndpointIpAddress' in kwargs:
+            private_endpoint_ip_address = kwargs['privateEndpointIpAddress']
+
         _setter("endpoint_service_id", endpoint_service_id)
         _setter("private_link_id", private_link_id)
         _setter("project_id", project_id)
@@ -229,7 +251,39 @@ class _PrivateLinkEndpointServiceState:
              private_link_id: Optional[pulumi.Input[str]] = None,
              project_id: Optional[pulumi.Input[str]] = None,
              provider_name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if aws_connection_status is None and 'awsConnectionStatus' in kwargs:
+            aws_connection_status = kwargs['awsConnectionStatus']
+        if azure_status is None and 'azureStatus' in kwargs:
+            azure_status = kwargs['azureStatus']
+        if delete_requested is None and 'deleteRequested' in kwargs:
+            delete_requested = kwargs['deleteRequested']
+        if endpoint_group_name is None and 'endpointGroupName' in kwargs:
+            endpoint_group_name = kwargs['endpointGroupName']
+        if endpoint_service_id is None and 'endpointServiceId' in kwargs:
+            endpoint_service_id = kwargs['endpointServiceId']
+        if error_message is None and 'errorMessage' in kwargs:
+            error_message = kwargs['errorMessage']
+        if gcp_project_id is None and 'gcpProjectId' in kwargs:
+            gcp_project_id = kwargs['gcpProjectId']
+        if gcp_status is None and 'gcpStatus' in kwargs:
+            gcp_status = kwargs['gcpStatus']
+        if interface_endpoint_id is None and 'interfaceEndpointId' in kwargs:
+            interface_endpoint_id = kwargs['interfaceEndpointId']
+        if private_endpoint_connection_name is None and 'privateEndpointConnectionName' in kwargs:
+            private_endpoint_connection_name = kwargs['privateEndpointConnectionName']
+        if private_endpoint_ip_address is None and 'privateEndpointIpAddress' in kwargs:
+            private_endpoint_ip_address = kwargs['privateEndpointIpAddress']
+        if private_endpoint_resource_id is None and 'privateEndpointResourceId' in kwargs:
+            private_endpoint_resource_id = kwargs['privateEndpointResourceId']
+        if private_link_id is None and 'privateLinkId' in kwargs:
+            private_link_id = kwargs['privateLinkId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+
         if aws_connection_status is not None:
             _setter("aws_connection_status", aws_connection_status)
         if azure_status is not None:

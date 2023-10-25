@@ -35,11 +35,23 @@ class OrgInvitationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             org_id: pulumi.Input[str],
-             roles: pulumi.Input[Sequence[pulumi.Input[str]]],
-             username: pulumi.Input[str],
+             org_id: Optional[pulumi.Input[str]] = None,
+             roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             username: Optional[pulumi.Input[str]] = None,
              teams_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if org_id is None:
+            raise TypeError("Missing 'org_id' argument")
+        if roles is None:
+            raise TypeError("Missing 'roles' argument")
+        if username is None:
+            raise TypeError("Missing 'username' argument")
+        if teams_ids is None and 'teamsIds' in kwargs:
+            teams_ids = kwargs['teamsIds']
+
         _setter("org_id", org_id)
         _setter("roles", roles)
         _setter("username", username)
@@ -139,7 +151,21 @@ class _OrgInvitationState:
              roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              teams_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              username: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if expires_at is None and 'expiresAt' in kwargs:
+            expires_at = kwargs['expiresAt']
+        if invitation_id is None and 'invitationId' in kwargs:
+            invitation_id = kwargs['invitationId']
+        if inviter_username is None and 'inviterUsername' in kwargs:
+            inviter_username = kwargs['inviterUsername']
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if teams_ids is None and 'teamsIds' in kwargs:
+            teams_ids = kwargs['teamsIds']
+
         if created_at is not None:
             _setter("created_at", created_at)
         if expires_at is not None:
@@ -266,44 +292,6 @@ class OrgInvitation(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
-        ### S
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test0 = mongodbatlas.OrgInvitation("test0",
-            org_id="<ORG-ID>",
-            roles=["ORG_OWNER"],
-            username="test0-acc-username")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test0 = mongodbatlas.OrgInvitation("test0",
-            org_id="<ORG-ID>",
-            roles=[
-                "ORG_MEMBER",
-                "ORG_BILLING_ADMIN",
-            ],
-            username="test0-acc-username")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test1 = mongodbatlas.OrgInvitation("test1",
-            org_id="<ORG-ID>",
-            roles=["ORG_MEMBER"],
-            teams_ids=[
-                "<TEAM-0-ID>",
-                "<TEAM-1-ID>",
-            ],
-            username="test1-acc-username")
-        ```
 
         ## Import
 
@@ -330,44 +318,6 @@ class OrgInvitation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
-        ### S
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test0 = mongodbatlas.OrgInvitation("test0",
-            org_id="<ORG-ID>",
-            roles=["ORG_OWNER"],
-            username="test0-acc-username")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test0 = mongodbatlas.OrgInvitation("test0",
-            org_id="<ORG-ID>",
-            roles=[
-                "ORG_MEMBER",
-                "ORG_BILLING_ADMIN",
-            ],
-            username="test0-acc-username")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test1 = mongodbatlas.OrgInvitation("test1",
-            org_id="<ORG-ID>",
-            roles=["ORG_MEMBER"],
-            teams_ids=[
-                "<TEAM-0-ID>",
-                "<TEAM-1-ID>",
-            ],
-            username="test1-acc-username")
-        ```
 
         ## Import
 

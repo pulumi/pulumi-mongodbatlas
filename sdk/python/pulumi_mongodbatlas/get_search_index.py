@@ -210,17 +210,6 @@ def get_search_index(analyzer: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_search_index(cluster_name="<CLUSTER_NAME>",
-        index_id="<INDEX_ID",
-        project_id="<PROJECT_ID>")
-    ```
-
 
     :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
     :param str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
@@ -285,17 +274,6 @@ def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = No
     `SearchIndex` describe a single search indexes. This represents a single search index that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_search_index(cluster_name="<CLUSTER_NAME>",
-        index_id="<INDEX_ID",
-        project_id="<PROJECT_ID>")
-    ```
 
 
     :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.

@@ -17,34 +17,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
-        ///     {
-        ///         ProjectId = "64259ee860c43338194b0f8e",
-        ///         ProviderName = "AWS",
-        ///     });
-        /// 
-        ///     var all = Mongodbatlas.GetCloudProviderAccess.Invoke(new()
-        ///     {
-        ///         ProjectId = testRole.ProjectId,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudProviderAccessResult> InvokeAsync(GetCloudProviderAccessArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderAccessResult>("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", args ?? new GetCloudProviderAccessArgs(), options.WithDefaults());
@@ -55,34 +27,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
-        ///     {
-        ///         ProjectId = "64259ee860c43338194b0f8e",
-        ///         ProviderName = "AWS",
-        ///     });
-        /// 
-        ///     var all = Mongodbatlas.GetCloudProviderAccess.Invoke(new()
-        ///     {
-        ///         ProjectId = testRole.ProjectId,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetCloudProviderAccessResult> Invoke(GetCloudProviderAccessInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudProviderAccessResult>("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", args ?? new GetCloudProviderAccessInvokeArgs(), options.WithDefaults());

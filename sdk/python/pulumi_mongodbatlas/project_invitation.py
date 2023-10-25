@@ -32,10 +32,20 @@ class ProjectInvitationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
-             roles: pulumi.Input[Sequence[pulumi.Input[str]]],
-             username: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             project_id: Optional[pulumi.Input[str]] = None,
+             roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             username: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if roles is None:
+            raise TypeError("Missing 'roles' argument")
+        if username is None:
+            raise TypeError("Missing 'username' argument")
+
         _setter("project_id", project_id)
         _setter("roles", roles)
         _setter("username", username)
@@ -117,7 +127,19 @@ class _ProjectInvitationState:
              project_id: Optional[pulumi.Input[str]] = None,
              roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              username: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if expires_at is None and 'expiresAt' in kwargs:
+            expires_at = kwargs['expiresAt']
+        if invitation_id is None and 'invitationId' in kwargs:
+            invitation_id = kwargs['invitationId']
+        if inviter_username is None and 'inviterUsername' in kwargs:
+            inviter_username = kwargs['inviterUsername']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
         if created_at is not None:
             _setter("created_at", created_at)
         if expires_at is not None:
@@ -229,30 +251,6 @@ class ProjectInvitation(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
-        ### S
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectInvitation("test",
-            project_id="<PROJECT-ID>",
-            roles=["GROUP_DATA_ACCESS_READ_WRITE"],
-            username="test-acc-username")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectInvitation("test",
-            project_id="<PROJECT-ID>",
-            roles=[
-                "GROUP_READ_ONLY",
-                "GROUP_DATA_ACCESS_READ_ONLY",
-            ],
-            username="test-acc-username")
-        ```
 
         ## Import
 
@@ -278,30 +276,6 @@ class ProjectInvitation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
-        ### S
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectInvitation("test",
-            project_id="<PROJECT-ID>",
-            roles=["GROUP_DATA_ACCESS_READ_WRITE"],
-            username="test-acc-username")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectInvitation("test",
-            project_id="<PROJECT-ID>",
-            roles=[
-                "GROUP_READ_ONLY",
-                "GROUP_DATA_ACCESS_READ_ONLY",
-            ],
-            username="test-acc-username")
-        ```
 
         ## Import
 

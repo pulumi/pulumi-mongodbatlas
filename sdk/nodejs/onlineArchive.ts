@@ -16,68 +16,6 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:** There are fields that are immutable after creation, i.e if `dateField` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
  *
  * ## Example Usage
- * ### S
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.OnlineArchive("test", {
- *     projectId: _var.project_id,
- *     clusterName: _var.cluster_name,
- *     collName: _var.collection_name,
- *     dbName: _var.database_name,
- *     partitionFields: [
- *         {
- *             fieldName: "firstName",
- *             order: 0,
- *         },
- *         {
- *             fieldName: "lastName",
- *             order: 1,
- *         },
- *     ],
- *     criteria: {
- *         type: "DATE",
- *         dateField: "created",
- *         expireAfterDays: 5,
- *     },
- *     schedule: {
- *         type: "DAILY",
- *         endHour: 1,
- *         endMinute: 1,
- *         startHour: 1,
- *         startMinute: 1,
- *     },
- * });
- * ```
- *
- * For custom criteria example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.OnlineArchive("test", {
- *     projectId: _var.project_id,
- *     clusterName: _var.cluster_name,
- *     collName: _var.collection_name,
- *     dbName: _var.database_name,
- *     partitionFields: [
- *         {
- *             fieldName: "firstName",
- *             order: 0,
- *         },
- *         {
- *             fieldName: "secondName",
- *             order: 1,
- *         },
- *     ],
- *     criteria: {
- *         type: "CUSTOM",
- *         query: "{ \"department\": \"engineering\" }",
- *     },
- * });
- * ```
  */
 export class OnlineArchive extends pulumi.CustomResource {
     /**

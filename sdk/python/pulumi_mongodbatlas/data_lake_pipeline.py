@@ -40,12 +40,18 @@ class DataLakePipelineArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              sink: Optional[pulumi.Input['DataLakePipelineSinkArgs']] = None,
              source: Optional[pulumi.Input['DataLakePipelineSourceArgs']] = None,
              transformations: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineTransformationArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+
         _setter("project_id", project_id)
         if name is not None:
             _setter("name", name)
@@ -184,7 +190,17 @@ class _DataLakePipelineState:
              source: Optional[pulumi.Input['DataLakePipelineSourceArgs']] = None,
              state: Optional[pulumi.Input[str]] = None,
              transformations: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineTransformationArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if created_date is None and 'createdDate' in kwargs:
+            created_date = kwargs['createdDate']
+        if ingestion_schedules is None and 'ingestionSchedules' in kwargs:
+            ingestion_schedules = kwargs['ingestionSchedules']
+        if last_updated_date is None and 'lastUpdatedDate' in kwargs:
+            last_updated_date = kwargs['lastUpdatedDate']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
         if created_date is not None:
             _setter("created_date", created_date)
         if ingestion_schedules is not None:
@@ -436,17 +452,9 @@ class DataLakePipeline(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
-            if sink is not None and not isinstance(sink, DataLakePipelineSinkArgs):
-                sink = sink or {}
-                def _setter(key, value):
-                    sink[key] = value
-                DataLakePipelineSinkArgs._configure(_setter, **sink)
+            sink = _utilities.configure(sink, DataLakePipelineSinkArgs, True)
             __props__.__dict__["sink"] = sink
-            if source is not None and not isinstance(source, DataLakePipelineSourceArgs):
-                source = source or {}
-                def _setter(key, value):
-                    source[key] = value
-                DataLakePipelineSourceArgs._configure(_setter, **source)
+            source = _utilities.configure(source, DataLakePipelineSourceArgs, True)
             __props__.__dict__["source"] = source
             __props__.__dict__["transformations"] = transformations
             __props__.__dict__["created_date"] = None

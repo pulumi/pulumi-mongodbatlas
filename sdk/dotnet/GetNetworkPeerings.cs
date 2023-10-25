@@ -19,36 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### Basic Example (AWS).
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
-        ///     {
-        ///         AccepterRegionName = "us-east-1",
-        ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
-        ///         ContainerId = "507f1f77bcf86cd799439011",
-        ///         ProviderName = "AWS",
-        ///         RouteTableCidrBlock = "192.168.0.0/24",
-        ///         VpcId = "vpc-abc123abc123",
-        ///         AwsAccountId = "abc123abc123",
-        ///     });
-        /// 
-        ///     var testNetworkPeerings = Mongodbatlas.GetNetworkPeerings.Invoke(new()
-        ///     {
-        ///         ProjectId = testNetworkPeering.ProjectId,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetworkPeeringsResult> InvokeAsync(GetNetworkPeeringsArgs args, InvokeOptions? options = null)
@@ -62,36 +32,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### Basic Example (AWS).
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
-        ///     {
-        ///         AccepterRegionName = "us-east-1",
-        ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
-        ///         ContainerId = "507f1f77bcf86cd799439011",
-        ///         ProviderName = "AWS",
-        ///         RouteTableCidrBlock = "192.168.0.0/24",
-        ///         VpcId = "vpc-abc123abc123",
-        ///         AwsAccountId = "abc123abc123",
-        ///     });
-        /// 
-        ///     var testNetworkPeerings = Mongodbatlas.GetNetworkPeerings.Invoke(new()
-        ///     {
-        ///         ProjectId = testNetworkPeering.ProjectId,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetNetworkPeeringsResult> Invoke(GetNetworkPeeringsInvokeArgs args, InvokeOptions? options = null)

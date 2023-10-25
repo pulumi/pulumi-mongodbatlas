@@ -29,9 +29,17 @@ class CustomDnsConfigurationClusterAwsArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             enabled: pulumi.Input[bool],
-             project_id: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             enabled: Optional[pulumi.Input[bool]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if enabled is None:
+            raise TypeError("Missing 'enabled' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+
         _setter("enabled", enabled)
         _setter("project_id", project_id)
 
@@ -80,7 +88,11 @@ class _CustomDnsConfigurationClusterAwsState:
              _setter: Callable[[Any, Any], None],
              enabled: Optional[pulumi.Input[bool]] = None,
              project_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
         if enabled is not None:
             _setter("enabled", enabled)
         if project_id is not None:
@@ -128,17 +140,6 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.CustomDnsConfigurationClusterAws("test",
-            enabled=True,
-            project_id="<PROJECT-ID>")
-        ```
-
         ## Import
 
         Custom DNS Configuration for Atlas Clusters on AWS must be imported using Project ID, e.g.
@@ -167,17 +168,6 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
           * Project Owner
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.CustomDnsConfigurationClusterAws("test",
-            enabled=True,
-            project_id="<PROJECT-ID>")
-        ```
 
         ## Import
 

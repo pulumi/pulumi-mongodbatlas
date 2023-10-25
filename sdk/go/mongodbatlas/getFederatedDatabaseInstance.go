@@ -19,63 +19,6 @@ import (
 // > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 //
 // ## Example Usage
-// ### S With MongoDB Atlas Cluster As Storage Database
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
-//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-//				ProjectId: "PROJECT ID",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// ### S With Amazon S3 Bucket As Storage Database
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
-//				CloudProviderConfig: mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfig{
-//					Aws: mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAws{
-//						TestS3Bucket: "Amazon S3 Bucket Name",
-//					},
-//				},
-//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-//				ProjectId: "PROJECT ID",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupFederatedDatabaseInstance(ctx *pulumi.Context, args *LookupFederatedDatabaseInstanceArgs, opts ...pulumi.InvokeOption) (*LookupFederatedDatabaseInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedDatabaseInstanceResult

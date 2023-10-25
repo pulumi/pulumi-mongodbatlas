@@ -7,45 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORG ID"});
- * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("testLdapConfiguration", {
- *     projectId: testProject.id,
- *     authenticationEnabled: true,
- *     hostname: "HOSTNAME",
- *     port: 636,
- *     bindUsername: "USERNAME",
- *     bindPassword: "PASSWORD",
- * });
- * ```
- * ### LDAP With User To DN Mapping
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORG ID"});
- * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("testLdapConfiguration", {
- *     projectId: testProject.id,
- *     authenticationEnabled: true,
- *     hostname: "HOSTNAME",
- *     port: 636,
- *     bindUsername: "USERNAME",
- *     bindPassword: "PASSWORD",
- *     caCertificate: "CA CERTIFICATE",
- *     authzQueryTemplate: "{USER}?memberOf?base",
- *     userToDnMappings: [{
- *         match: "(.+)",
- *         ldapQuery: "DC=example,DC=com??sub?(userPrincipalName={0})",
- *     }],
- * });
- * ```
- *
  * ## Import
  *
  * LDAP Configuration must be imported using project ID, e.g.

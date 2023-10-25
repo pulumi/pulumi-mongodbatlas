@@ -52,16 +52,46 @@ class FederatedSettingsIdentityProviderArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             federation_settings_id: pulumi.Input[str],
-             issuer_uri: pulumi.Input[str],
-             request_binding: pulumi.Input[str],
-             response_signature_algorithm: pulumi.Input[str],
-             sso_debug_enabled: pulumi.Input[bool],
-             sso_url: pulumi.Input[str],
-             status: pulumi.Input[str],
+             federation_settings_id: Optional[pulumi.Input[str]] = None,
+             issuer_uri: Optional[pulumi.Input[str]] = None,
+             request_binding: Optional[pulumi.Input[str]] = None,
+             response_signature_algorithm: Optional[pulumi.Input[str]] = None,
+             sso_debug_enabled: Optional[pulumi.Input[bool]] = None,
+             sso_url: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
              associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if federation_settings_id is None:
+            raise TypeError("Missing 'federation_settings_id' argument")
+        if issuer_uri is None and 'issuerUri' in kwargs:
+            issuer_uri = kwargs['issuerUri']
+        if issuer_uri is None:
+            raise TypeError("Missing 'issuer_uri' argument")
+        if request_binding is None and 'requestBinding' in kwargs:
+            request_binding = kwargs['requestBinding']
+        if request_binding is None:
+            raise TypeError("Missing 'request_binding' argument")
+        if response_signature_algorithm is None and 'responseSignatureAlgorithm' in kwargs:
+            response_signature_algorithm = kwargs['responseSignatureAlgorithm']
+        if response_signature_algorithm is None:
+            raise TypeError("Missing 'response_signature_algorithm' argument")
+        if sso_debug_enabled is None and 'ssoDebugEnabled' in kwargs:
+            sso_debug_enabled = kwargs['ssoDebugEnabled']
+        if sso_debug_enabled is None:
+            raise TypeError("Missing 'sso_debug_enabled' argument")
+        if sso_url is None and 'ssoUrl' in kwargs:
+            sso_url = kwargs['ssoUrl']
+        if sso_url is None:
+            raise TypeError("Missing 'sso_url' argument")
+        if status is None:
+            raise TypeError("Missing 'status' argument")
+        if associated_domains is None and 'associatedDomains' in kwargs:
+            associated_domains = kwargs['associatedDomains']
+
         _setter("federation_settings_id", federation_settings_id)
         _setter("issuer_uri", issuer_uri)
         _setter("request_binding", request_binding)
@@ -239,7 +269,25 @@ class _FederatedSettingsIdentityProviderState:
              sso_debug_enabled: Optional[pulumi.Input[bool]] = None,
              sso_url: Optional[pulumi.Input[str]] = None,
              status: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if associated_domains is None and 'associatedDomains' in kwargs:
+            associated_domains = kwargs['associatedDomains']
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if issuer_uri is None and 'issuerUri' in kwargs:
+            issuer_uri = kwargs['issuerUri']
+        if okta_idp_id is None and 'oktaIdpId' in kwargs:
+            okta_idp_id = kwargs['oktaIdpId']
+        if request_binding is None and 'requestBinding' in kwargs:
+            request_binding = kwargs['requestBinding']
+        if response_signature_algorithm is None and 'responseSignatureAlgorithm' in kwargs:
+            response_signature_algorithm = kwargs['responseSignatureAlgorithm']
+        if sso_debug_enabled is None and 'ssoDebugEnabled' in kwargs:
+            sso_debug_enabled = kwargs['ssoDebugEnabled']
+        if sso_url is None and 'ssoUrl' in kwargs:
+            sso_url = kwargs['ssoUrl']
+
         if associated_domains is not None:
             _setter("associated_domains", associated_domains)
         if federation_settings_id is not None:
@@ -401,24 +449,6 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  __props__=None):
         """
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
-        ## Example Usage
-
-        > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
-            associated_domains=["yourdomain.com"],
-            federation_settings_id="627a9687f7f7f7f774de306f14",
-            issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
-            request_binding="HTTP-POST",
-            response_signature_algorithm="SHA-256",
-            sso_debug_enabled=True,
-            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
-            status="ACTIVE")
-        ```
 
         ## Import
 
@@ -451,24 +481,6 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
-        ## Example Usage
-
-        > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
-            associated_domains=["yourdomain.com"],
-            federation_settings_id="627a9687f7f7f7f774de306f14",
-            issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
-            request_binding="HTTP-POST",
-            response_signature_algorithm="SHA-256",
-            sso_debug_enabled=True,
-            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
-            status="ACTIVE")
-        ```
 
         ## Import
 

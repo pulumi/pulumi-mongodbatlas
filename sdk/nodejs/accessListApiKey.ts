@@ -6,28 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
- * ### Using CIDR Block
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.AccessListApiKey("test", {
- *     apiKeyId: "a29120e123cd",
- *     cidrBlock: "1.2.3.4/32",
- *     orgId: "<ORG-ID>",
- * });
- * ```
- * ### Using IP Address
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.AccessListApiKey("test", {
- *     apiKeyId: "a29120e123cd",
- *     ipAddress: "2.3.4.5",
- *     orgId: "<ORG-ID>",
- * });
- * ```
  *
  * ## Import
  *

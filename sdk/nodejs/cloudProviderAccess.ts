@@ -7,59 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testRole = new mongodbatlas.CloudProviderAccess("testRole", {
- *     projectId: "64259ee860c43338194b0f8e",
- *     providerName: "AWS",
- * });
- * ```
- * ### With AWS
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
- *     projectId: "64259ee860c43338194b0f8e",
- *     providerName: "AWS",
- * });
- * ```
- * ### With Azure
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
- *     azureConfigs: [{
- *         atlasAzureAppId: "9f2deb0d-be22-4524-a403-df531868bac0",
- *         servicePrincipalId: "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
- *         tenantId: "91402384-d71e-22f5-22dd-759e272cdc1c",
- *     }],
- *     projectId: "64259ee860c43338194b0f8e",
- *     providerName: "AZURE",
- * });
- * ```
- * ## Authorize role
- *
- * Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testRole = new mongodbatlas.CloudProviderAccess("testRole", {
- *     iamAssumedRoleArn: "arn:aws:iam::772401394250:role/test-user-role",
- *     projectId: "<PROJECT-ID>",
- *     providerName: "AWS",
- * });
- * ```
- *
  * ## Import
  *
  * The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.

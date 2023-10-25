@@ -89,15 +89,6 @@ def get_online_archives(cluster_name: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_online_archives(project_id=var["project_id"],
-        cluster_name=var["cluster_name"])
-    ```
     ## Attributes reference
 
     * `db_name`          -  Name of the database that contains the collection.
@@ -158,15 +149,6 @@ def get_online_archives_output(cluster_name: Optional[pulumi.Input[str]] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_online_archives(project_id=var["project_id"],
-        cluster_name=var["cluster_name"])
-    ```
     ## Attributes reference
 
     * `db_name`          -  Name of the database that contains the collection.

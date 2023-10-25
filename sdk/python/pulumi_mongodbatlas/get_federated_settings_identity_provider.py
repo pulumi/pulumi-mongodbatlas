@@ -229,25 +229,6 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
     """
     `FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
-        federation_settings_id="627a9687f7f7f7f774de306f14",
-        associated_domains=["yourdomain.com"],
-        sso_debug_enabled=True,
-        status="ACTIVE",
-        sso_url="https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml",
-        issuer_uri="http://www.okta.com/exk17f7f7f7f7p50h8",
-        request_binding="HTTP-POST",
-        response_signature_algorithm="SHA-256")
-    identity_provider_ds = mongodbatlas.get_federated_settings_identity_provider_output(federation_settings_id=identity_provider.id,
-        identity_provider_id="0oad47f7fXnk1297")
-    ```
-
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param str identity_provider_id: Unique 20-hexadecimal digit string that identifies the IdP.
@@ -283,25 +264,6 @@ def get_federated_settings_identity_provider_output(federation_settings_id: Opti
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsIdentityProviderResult]:
     """
     `FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
-        federation_settings_id="627a9687f7f7f7f774de306f14",
-        associated_domains=["yourdomain.com"],
-        sso_debug_enabled=True,
-        status="ACTIVE",
-        sso_url="https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml",
-        issuer_uri="http://www.okta.com/exk17f7f7f7f7p50h8",
-        request_binding="HTTP-POST",
-        response_signature_algorithm="SHA-256")
-    identity_provider_ds = mongodbatlas.get_federated_settings_identity_provider_output(federation_settings_id=identity_provider.id,
-        identity_provider_id="0oad47f7fXnk1297")
-    ```
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.

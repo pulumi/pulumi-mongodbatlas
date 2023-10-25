@@ -82,8 +82,8 @@ class ThirdPartyIntegrationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
-             type: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
              api_key: Optional[pulumi.Input[str]] = None,
              channel_name: Optional[pulumi.Input[str]] = None,
              enabled: Optional[pulumi.Input[bool]] = None,
@@ -98,7 +98,31 @@ class ThirdPartyIntegrationArgs:
              team_name: Optional[pulumi.Input[str]] = None,
              url: Optional[pulumi.Input[str]] = None,
              user_name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if api_key is None and 'apiKey' in kwargs:
+            api_key = kwargs['apiKey']
+        if channel_name is None and 'channelName' in kwargs:
+            channel_name = kwargs['channelName']
+        if microsoft_teams_webhook_url is None and 'microsoftTeamsWebhookUrl' in kwargs:
+            microsoft_teams_webhook_url = kwargs['microsoftTeamsWebhookUrl']
+        if routing_key is None and 'routingKey' in kwargs:
+            routing_key = kwargs['routingKey']
+        if service_discovery is None and 'serviceDiscovery' in kwargs:
+            service_discovery = kwargs['serviceDiscovery']
+        if service_key is None and 'serviceKey' in kwargs:
+            service_key = kwargs['serviceKey']
+        if team_name is None and 'teamName' in kwargs:
+            team_name = kwargs['teamName']
+        if user_name is None and 'userName' in kwargs:
+            user_name = kwargs['userName']
+
         _setter("project_id", project_id)
         _setter("type", type)
         if api_key is not None:
@@ -417,7 +441,27 @@ class _ThirdPartyIntegrationState:
              type: Optional[pulumi.Input[str]] = None,
              url: Optional[pulumi.Input[str]] = None,
              user_name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if api_key is None and 'apiKey' in kwargs:
+            api_key = kwargs['apiKey']
+        if channel_name is None and 'channelName' in kwargs:
+            channel_name = kwargs['channelName']
+        if microsoft_teams_webhook_url is None and 'microsoftTeamsWebhookUrl' in kwargs:
+            microsoft_teams_webhook_url = kwargs['microsoftTeamsWebhookUrl']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if routing_key is None and 'routingKey' in kwargs:
+            routing_key = kwargs['routingKey']
+        if service_discovery is None and 'serviceDiscovery' in kwargs:
+            service_discovery = kwargs['serviceDiscovery']
+        if service_key is None and 'serviceKey' in kwargs:
+            service_key = kwargs['serviceKey']
+        if team_name is None and 'teamName' in kwargs:
+            team_name = kwargs['teamName']
+        if user_name is None and 'userName' in kwargs:
+            user_name = kwargs['userName']
+
         if api_key is not None:
             _setter("api_key", api_key)
         if channel_name is not None:

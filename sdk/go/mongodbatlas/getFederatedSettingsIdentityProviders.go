@@ -13,44 +13,6 @@ import (
 )
 
 // `getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			identityProvider, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identityProvider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
-//				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
-//				AssociatedDomains: pulumi.StringArray{
-//					pulumi.String("yourdomain.com"),
-//				},
-//				SsoDebugEnabled: pulumi.Bool(true),
-//				Status:          pulumi.String("ACTIVE"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = identityProvider.ID().ApplyT(func(id string) (mongodbatlas.GetFederatedSettingsIdentityProvidersResult, error) {
-//				return mongodbatlas.LookupFederatedSettingsIdentityProvidersOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProvidersOutputArgs{
-//					FederationSettingsId: id,
-//					PageNum:              1,
-//					ItemsPerPage:         5,
-//				}, nil), nil
-//			}).(mongodbatlas.GetFederatedSettingsIdentityProvidersResultOutput)
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupFederatedSettingsIdentityProviders(ctx *pulumi.Context, args *LookupFederatedSettingsIdentityProvidersArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsIdentityProvidersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsIdentityProvidersResult

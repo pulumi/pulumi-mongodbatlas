@@ -12,62 +12,6 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", new()
-    ///     {
-    ///         ExternalGroupName = "myGrouptest",
-    ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
-    ///         OrgId = "627a9683e7f7f7ff7fe306f14",
-    ///         RoleAssignments = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
-    ///             {
-    ///                 OrgId = "627a9683e7f7f7ff7fe306f14",
-    ///                 Roles = new[]
-    ///                 {
-    ///                     "ORG_MEMBER",
-    ///                     "ORG_GROUP_CREATOR",
-    ///                     "ORG_BILLING_ADMIN",
-    ///                 },
-    ///             },
-    ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
-    ///             {
-    ///                 GroupId = "628aa20d7f7f7f7f7098b81b8",
-    ///                 Roles = new[]
-    ///                 {
-    ///                     "GROUP_OWNER",
-    ///                     "GROUP_DATA_ACCESS_ADMIN",
-    ///                     "GROUP_SEARCH_INDEX_EDITOR",
-    ///                     "GROUP_DATA_ACCESS_READ_ONLY",
-    ///                 },
-    ///             },
-    ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
-    ///             {
-    ///                 GroupId = "628aa20d7f7f7f7f7078b81b8",
-    ///                 Roles = new[]
-    ///                 {
-    ///                     "GROUP_OWNER",
-    ///                     "GROUP_DATA_ACCESS_ADMIN",
-    ///                     "GROUP_SEARCH_INDEX_EDITOR",
-    ///                     "GROUP_DATA_ACCESS_READ_ONLY",
-    ///                     "GROUP_DATA_ACCESS_READ_WRITE",
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// FederatedSettingsOrgRoleMapping can be imported using federation_settings_id-org_id-role_mapping_id, e.g.

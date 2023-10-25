@@ -15,57 +15,6 @@ import (
 // `CustomDbRole` describe a Custom DB Role. This represents a custom db role.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testRole, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
-//				RoleName:  pulumi.String("myCustomRole"),
-//				Actions: mongodbatlas.CustomDbRoleActionArray{
-//					&mongodbatlas.CustomDbRoleActionArgs{
-//						Action: pulumi.String("UPDATE"),
-//						Resources: mongodbatlas.CustomDbRoleActionResourceArray{
-//							&mongodbatlas.CustomDbRoleActionResourceArgs{
-//								CollectionName: pulumi.String(""),
-//								DatabaseName:   pulumi.String("anyDatabase"),
-//							},
-//						},
-//					},
-//					&mongodbatlas.CustomDbRoleActionArgs{
-//						Action: pulumi.String("INSERT"),
-//						Resources: mongodbatlas.CustomDbRoleActionResourceArray{
-//							&mongodbatlas.CustomDbRoleActionResourceArgs{
-//								CollectionName: pulumi.String(""),
-//								DatabaseName:   pulumi.String("anyDatabase"),
-//							},
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = mongodbatlas.LookupCustomDbRoleOutput(ctx, mongodbatlas.GetCustomDbRoleOutputArgs{
-//				ProjectId: testRole.ProjectId,
-//				RoleName:  testRole.RoleName,
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupCustomDbRole(ctx *pulumi.Context, args *LookupCustomDbRoleArgs, opts ...pulumi.InvokeOption) (*LookupCustomDbRoleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCustomDbRoleResult

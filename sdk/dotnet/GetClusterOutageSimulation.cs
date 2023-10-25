@@ -14,27 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### S
-        /// 
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var outageSimulation = Mongodbatlas.GetClusterOutageSimulation.Invoke(new()
-        ///     {
-        ///         ClusterName = "Cluster0",
-        ///         ProjectId = "64707f06c519c20c3a2b1b03",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetClusterOutageSimulationResult> InvokeAsync(GetClusterOutageSimulationArgs args, InvokeOptions? options = null)
@@ -43,27 +22,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### S
-        /// 
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var outageSimulation = Mongodbatlas.GetClusterOutageSimulation.Invoke(new()
-        ///     {
-        ///         ClusterName = "Cluster0",
-        ///         ProjectId = "64707f06c519c20c3a2b1b03",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetClusterOutageSimulationResult> Invoke(GetClusterOutageSimulationInvokeArgs args, InvokeOptions? options = null)

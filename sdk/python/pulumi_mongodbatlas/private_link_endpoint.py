@@ -33,10 +33,22 @@ class PrivateLinkEndpointArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
-             provider_name: pulumi.Input[str],
-             region: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if provider_name is None:
+            raise TypeError("Missing 'provider_name' argument")
+        if region is None:
+            raise TypeError("Missing 'region' argument")
+
         _setter("project_id", project_id)
         _setter("provider_name", provider_name)
         _setter("region", region)
@@ -151,7 +163,33 @@ class _PrivateLinkEndpointState:
              region_name: Optional[pulumi.Input[str]] = None,
              service_attachment_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              status: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if endpoint_group_names is None and 'endpointGroupNames' in kwargs:
+            endpoint_group_names = kwargs['endpointGroupNames']
+        if endpoint_service_name is None and 'endpointServiceName' in kwargs:
+            endpoint_service_name = kwargs['endpointServiceName']
+        if error_message is None and 'errorMessage' in kwargs:
+            error_message = kwargs['errorMessage']
+        if interface_endpoints is None and 'interfaceEndpoints' in kwargs:
+            interface_endpoints = kwargs['interfaceEndpoints']
+        if private_endpoints is None and 'privateEndpoints' in kwargs:
+            private_endpoints = kwargs['privateEndpoints']
+        if private_link_id is None and 'privateLinkId' in kwargs:
+            private_link_id = kwargs['privateLinkId']
+        if private_link_service_name is None and 'privateLinkServiceName' in kwargs:
+            private_link_service_name = kwargs['privateLinkServiceName']
+        if private_link_service_resource_id is None and 'privateLinkServiceResourceId' in kwargs:
+            private_link_service_resource_id = kwargs['privateLinkServiceResourceId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if region_name is None and 'regionName' in kwargs:
+            region_name = kwargs['regionName']
+        if service_attachment_names is None and 'serviceAttachmentNames' in kwargs:
+            service_attachment_names = kwargs['serviceAttachmentNames']
+
         if endpoint_group_names is not None:
             _setter("endpoint_group_names", endpoint_group_names)
         if endpoint_service_name is not None:

@@ -54,17 +54,41 @@ class ServerlessInstanceArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
-             provider_settings_backing_provider_name: pulumi.Input[str],
-             provider_settings_provider_name: pulumi.Input[str],
-             provider_settings_region_name: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_settings_backing_provider_name: Optional[pulumi.Input[str]] = None,
+             provider_settings_provider_name: Optional[pulumi.Input[str]] = None,
+             provider_settings_region_name: Optional[pulumi.Input[str]] = None,
              continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
              links: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
              name: Optional[pulumi.Input[str]] = None,
              state_name: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]] = None,
              termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_settings_backing_provider_name is None and 'providerSettingsBackingProviderName' in kwargs:
+            provider_settings_backing_provider_name = kwargs['providerSettingsBackingProviderName']
+        if provider_settings_backing_provider_name is None:
+            raise TypeError("Missing 'provider_settings_backing_provider_name' argument")
+        if provider_settings_provider_name is None and 'providerSettingsProviderName' in kwargs:
+            provider_settings_provider_name = kwargs['providerSettingsProviderName']
+        if provider_settings_provider_name is None:
+            raise TypeError("Missing 'provider_settings_provider_name' argument")
+        if provider_settings_region_name is None and 'providerSettingsRegionName' in kwargs:
+            provider_settings_region_name = kwargs['providerSettingsRegionName']
+        if provider_settings_region_name is None:
+            raise TypeError("Missing 'provider_settings_region_name' argument")
+        if continuous_backup_enabled is None and 'continuousBackupEnabled' in kwargs:
+            continuous_backup_enabled = kwargs['continuousBackupEnabled']
+        if state_name is None and 'stateName' in kwargs:
+            state_name = kwargs['stateName']
+        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
+            termination_protection_enabled = kwargs['terminationProtectionEnabled']
+
         _setter("project_id", project_id)
         _setter("provider_settings_backing_provider_name", provider_settings_backing_provider_name)
         _setter("provider_settings_provider_name", provider_settings_provider_name)
@@ -267,7 +291,31 @@ class _ServerlessInstanceState:
              state_name: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]] = None,
              termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if connection_strings_private_endpoint_srvs is None and 'connectionStringsPrivateEndpointSrvs' in kwargs:
+            connection_strings_private_endpoint_srvs = kwargs['connectionStringsPrivateEndpointSrvs']
+        if connection_strings_standard_srv is None and 'connectionStringsStandardSrv' in kwargs:
+            connection_strings_standard_srv = kwargs['connectionStringsStandardSrv']
+        if continuous_backup_enabled is None and 'continuousBackupEnabled' in kwargs:
+            continuous_backup_enabled = kwargs['continuousBackupEnabled']
+        if create_date is None and 'createDate' in kwargs:
+            create_date = kwargs['createDate']
+        if mongo_db_version is None and 'mongoDbVersion' in kwargs:
+            mongo_db_version = kwargs['mongoDbVersion']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_settings_backing_provider_name is None and 'providerSettingsBackingProviderName' in kwargs:
+            provider_settings_backing_provider_name = kwargs['providerSettingsBackingProviderName']
+        if provider_settings_provider_name is None and 'providerSettingsProviderName' in kwargs:
+            provider_settings_provider_name = kwargs['providerSettingsProviderName']
+        if provider_settings_region_name is None and 'providerSettingsRegionName' in kwargs:
+            provider_settings_region_name = kwargs['providerSettingsRegionName']
+        if state_name is None and 'stateName' in kwargs:
+            state_name = kwargs['stateName']
+        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
+            termination_protection_enabled = kwargs['terminationProtectionEnabled']
+
         if connection_strings_private_endpoint_srvs is not None:
             _setter("connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
         if connection_strings_standard_srv is not None:

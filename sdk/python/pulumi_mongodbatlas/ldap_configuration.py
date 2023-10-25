@@ -58,17 +58,45 @@ class LdapConfigurationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             authentication_enabled: pulumi.Input[bool],
-             bind_password: pulumi.Input[str],
-             bind_username: pulumi.Input[str],
-             hostname: pulumi.Input[str],
-             project_id: pulumi.Input[str],
+             authentication_enabled: Optional[pulumi.Input[bool]] = None,
+             bind_password: Optional[pulumi.Input[str]] = None,
+             bind_username: Optional[pulumi.Input[str]] = None,
+             hostname: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
              authorization_enabled: Optional[pulumi.Input[bool]] = None,
              authz_query_template: Optional[pulumi.Input[str]] = None,
              ca_certificate: Optional[pulumi.Input[str]] = None,
              port: Optional[pulumi.Input[int]] = None,
              user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if authentication_enabled is None and 'authenticationEnabled' in kwargs:
+            authentication_enabled = kwargs['authenticationEnabled']
+        if authentication_enabled is None:
+            raise TypeError("Missing 'authentication_enabled' argument")
+        if bind_password is None and 'bindPassword' in kwargs:
+            bind_password = kwargs['bindPassword']
+        if bind_password is None:
+            raise TypeError("Missing 'bind_password' argument")
+        if bind_username is None and 'bindUsername' in kwargs:
+            bind_username = kwargs['bindUsername']
+        if bind_username is None:
+            raise TypeError("Missing 'bind_username' argument")
+        if hostname is None:
+            raise TypeError("Missing 'hostname' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if authorization_enabled is None and 'authorizationEnabled' in kwargs:
+            authorization_enabled = kwargs['authorizationEnabled']
+        if authz_query_template is None and 'authzQueryTemplate' in kwargs:
+            authz_query_template = kwargs['authzQueryTemplate']
+        if ca_certificate is None and 'caCertificate' in kwargs:
+            ca_certificate = kwargs['caCertificate']
+        if user_to_dn_mappings is None and 'userToDnMappings' in kwargs:
+            user_to_dn_mappings = kwargs['userToDnMappings']
+
         _setter("authentication_enabled", authentication_enabled)
         _setter("bind_password", bind_password)
         _setter("bind_username", bind_username)
@@ -264,7 +292,25 @@ class _LdapConfigurationState:
              port: Optional[pulumi.Input[int]] = None,
              project_id: Optional[pulumi.Input[str]] = None,
              user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if authentication_enabled is None and 'authenticationEnabled' in kwargs:
+            authentication_enabled = kwargs['authenticationEnabled']
+        if authorization_enabled is None and 'authorizationEnabled' in kwargs:
+            authorization_enabled = kwargs['authorizationEnabled']
+        if authz_query_template is None and 'authzQueryTemplate' in kwargs:
+            authz_query_template = kwargs['authzQueryTemplate']
+        if bind_password is None and 'bindPassword' in kwargs:
+            bind_password = kwargs['bindPassword']
+        if bind_username is None and 'bindUsername' in kwargs:
+            bind_username = kwargs['bindUsername']
+        if ca_certificate is None and 'caCertificate' in kwargs:
+            ca_certificate = kwargs['caCertificate']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if user_to_dn_mappings is None and 'userToDnMappings' in kwargs:
+            user_to_dn_mappings = kwargs['userToDnMappings']
+
         if authentication_enabled is not None:
             _setter("authentication_enabled", authentication_enabled)
         if authorization_enabled is not None:
@@ -427,43 +473,6 @@ class LdapConfiguration(pulumi.CustomResource):
                  user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LdapConfigurationUserToDnMappingArgs']]]]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
-            project_id=test_project.id,
-            authentication_enabled=True,
-            hostname="HOSTNAME",
-            port=636,
-            bind_username="USERNAME",
-            bind_password="PASSWORD")
-        ```
-        ### LDAP With User To DN Mapping
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
-            project_id=test_project.id,
-            authentication_enabled=True,
-            hostname="HOSTNAME",
-            port=636,
-            bind_username="USERNAME",
-            bind_password="PASSWORD",
-            ca_certificate="CA CERTIFICATE",
-            authz_query_template="{USER}?memberOf?base",
-            user_to_dn_mappings=[mongodbatlas.LdapConfigurationUserToDnMappingArgs(
-                match="(.+)",
-                ldap_query="DC=example,DC=com??sub?(userPrincipalName={0})",
-            )])
-        ```
-
         ## Import
 
         LDAP Configuration must be imported using project ID, e.g.
@@ -496,43 +505,6 @@ class LdapConfiguration(pulumi.CustomResource):
                  args: LdapConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
-            project_id=test_project.id,
-            authentication_enabled=True,
-            hostname="HOSTNAME",
-            port=636,
-            bind_username="USERNAME",
-            bind_password="PASSWORD")
-        ```
-        ### LDAP With User To DN Mapping
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
-            project_id=test_project.id,
-            authentication_enabled=True,
-            hostname="HOSTNAME",
-            port=636,
-            bind_username="USERNAME",
-            bind_password="PASSWORD",
-            ca_certificate="CA CERTIFICATE",
-            authz_query_template="{USER}?memberOf?base",
-            user_to_dn_mappings=[mongodbatlas.LdapConfigurationUserToDnMappingArgs(
-                match="(.+)",
-                ldap_query="DC=example,DC=com??sub?(userPrincipalName={0})",
-            )])
-        ```
-
         ## Import
 
         LDAP Configuration must be imported using project ID, e.g.

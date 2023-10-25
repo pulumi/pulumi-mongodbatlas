@@ -16,33 +16,6 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
     /// ## Example Usage
-    /// ### AWS Example
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
-    ///     {
-    ///         ProjectId = "&lt;PROJECT_ID&gt;",
-    ///         ProviderSettingsBackingProviderName = "AWS",
-    ///         ProviderSettingsProviderName = "SERVERLESS",
-    ///         ProviderSettingsRegionName = "US_EAST_1",
-    ///         ContinuousBackupEnabled = true,
-    ///     });
-    /// 
-    ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", new()
-    ///     {
-    ///         ProjectId = "&lt;PROJECT_ID&gt;",
-    ///         InstanceName = testServerlessInstance.Name,
-    ///         ProviderName = "AWS",
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// 
     /// ## Import
     /// 

@@ -8,25 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
- *     federationSettingsId: "627a9687f7f7f7f774de306f14",
- *     associatedDomains: ["yourdomain.com"],
- *     ssoDebugEnabled: true,
- *     status: "ACTIVE",
- * });
- * const identittyProvider = identityProvider.id.apply(id => mongodbatlas.getFederatedSettingsIdentityProvidersOutput({
- *     federationSettingsId: id,
- *     pageNum: 1,
- *     itemsPerPage: 5,
- * }));
- * ```
  */
 export function getFederatedSettingsIdentityProviders(args: GetFederatedSettingsIdentityProvidersArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsIdentityProvidersResult> {
 
@@ -77,25 +58,6 @@ export interface GetFederatedSettingsIdentityProvidersResult {
 }
 /**
  * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
- *     federationSettingsId: "627a9687f7f7f7f774de306f14",
- *     associatedDomains: ["yourdomain.com"],
- *     ssoDebugEnabled: true,
- *     status: "ACTIVE",
- * });
- * const identittyProvider = identityProvider.id.apply(id => mongodbatlas.getFederatedSettingsIdentityProvidersOutput({
- *     federationSettingsId: id,
- *     pageNum: 1,
- *     itemsPerPage: 5,
- * }));
- * ```
  */
 export function getFederatedSettingsIdentityProvidersOutput(args: GetFederatedSettingsIdentityProvidersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsIdentityProvidersResult> {
     return pulumi.output(args).apply((a: any) => getFederatedSettingsIdentityProviders(a, opts))

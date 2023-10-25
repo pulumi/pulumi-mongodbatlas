@@ -71,9 +71,6 @@ class ClusterArgs:
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               ```python
-               import pulumi
-               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input['ClusterBiConnectorConfigArgs'] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -149,9 +146,9 @@ class ClusterArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
-             provider_instance_size_name: pulumi.Input[str],
-             provider_name: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_instance_size_name: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
              advanced_configuration: Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']] = None,
              auto_scaling_compute_enabled: Optional[pulumi.Input[bool]] = None,
              auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[bool]] = None,
@@ -182,7 +179,73 @@ class ClusterArgs:
              tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]] = None,
              termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
              version_release_system: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_instance_size_name is None and 'providerInstanceSizeName' in kwargs:
+            provider_instance_size_name = kwargs['providerInstanceSizeName']
+        if provider_instance_size_name is None:
+            raise TypeError("Missing 'provider_instance_size_name' argument")
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if provider_name is None:
+            raise TypeError("Missing 'provider_name' argument")
+        if advanced_configuration is None and 'advancedConfiguration' in kwargs:
+            advanced_configuration = kwargs['advancedConfiguration']
+        if auto_scaling_compute_enabled is None and 'autoScalingComputeEnabled' in kwargs:
+            auto_scaling_compute_enabled = kwargs['autoScalingComputeEnabled']
+        if auto_scaling_compute_scale_down_enabled is None and 'autoScalingComputeScaleDownEnabled' in kwargs:
+            auto_scaling_compute_scale_down_enabled = kwargs['autoScalingComputeScaleDownEnabled']
+        if auto_scaling_disk_gb_enabled is None and 'autoScalingDiskGbEnabled' in kwargs:
+            auto_scaling_disk_gb_enabled = kwargs['autoScalingDiskGbEnabled']
+        if backing_provider_name is None and 'backingProviderName' in kwargs:
+            backing_provider_name = kwargs['backingProviderName']
+        if backup_enabled is None and 'backupEnabled' in kwargs:
+            backup_enabled = kwargs['backupEnabled']
+        if bi_connector_config is None and 'biConnectorConfig' in kwargs:
+            bi_connector_config = kwargs['biConnectorConfig']
+        if cloud_backup is None and 'cloudBackup' in kwargs:
+            cloud_backup = kwargs['cloudBackup']
+        if cluster_type is None and 'clusterType' in kwargs:
+            cluster_type = kwargs['clusterType']
+        if disk_size_gb is None and 'diskSizeGb' in kwargs:
+            disk_size_gb = kwargs['diskSizeGb']
+        if encryption_at_rest_provider is None and 'encryptionAtRestProvider' in kwargs:
+            encryption_at_rest_provider = kwargs['encryptionAtRestProvider']
+        if mongo_db_major_version is None and 'mongoDbMajorVersion' in kwargs:
+            mongo_db_major_version = kwargs['mongoDbMajorVersion']
+        if num_shards is None and 'numShards' in kwargs:
+            num_shards = kwargs['numShards']
+        if pit_enabled is None and 'pitEnabled' in kwargs:
+            pit_enabled = kwargs['pitEnabled']
+        if provider_auto_scaling_compute_max_instance_size is None and 'providerAutoScalingComputeMaxInstanceSize' in kwargs:
+            provider_auto_scaling_compute_max_instance_size = kwargs['providerAutoScalingComputeMaxInstanceSize']
+        if provider_auto_scaling_compute_min_instance_size is None and 'providerAutoScalingComputeMinInstanceSize' in kwargs:
+            provider_auto_scaling_compute_min_instance_size = kwargs['providerAutoScalingComputeMinInstanceSize']
+        if provider_disk_iops is None and 'providerDiskIops' in kwargs:
+            provider_disk_iops = kwargs['providerDiskIops']
+        if provider_disk_type_name is None and 'providerDiskTypeName' in kwargs:
+            provider_disk_type_name = kwargs['providerDiskTypeName']
+        if provider_encrypt_ebs_volume is None and 'providerEncryptEbsVolume' in kwargs:
+            provider_encrypt_ebs_volume = kwargs['providerEncryptEbsVolume']
+        if provider_region_name is None and 'providerRegionName' in kwargs:
+            provider_region_name = kwargs['providerRegionName']
+        if provider_volume_type is None and 'providerVolumeType' in kwargs:
+            provider_volume_type = kwargs['providerVolumeType']
+        if replication_factor is None and 'replicationFactor' in kwargs:
+            replication_factor = kwargs['replicationFactor']
+        if replication_specs is None and 'replicationSpecs' in kwargs:
+            replication_specs = kwargs['replicationSpecs']
+        if retain_backups_enabled is None and 'retainBackupsEnabled' in kwargs:
+            retain_backups_enabled = kwargs['retainBackupsEnabled']
+        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
+            termination_protection_enabled = kwargs['terminationProtectionEnabled']
+        if version_release_system is None and 'versionReleaseSystem' in kwargs:
+            version_release_system = kwargs['versionReleaseSystem']
+
         _setter("project_id", project_id)
         _setter("provider_instance_size_name", provider_instance_size_name)
         _setter("provider_name", provider_name)
@@ -359,9 +422,6 @@ class ClusterArgs:
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-        ```python
-        import pulumi
-        ```
         * The default value is false.  M10 and above only.
         """
         return pulumi.get(self, "backup_enabled")
@@ -735,9 +795,6 @@ class _ClusterState:
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               ```python
-               import pulumi
-               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input['ClusterBiConnectorConfigArgs'] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_id: The cluster ID.
@@ -889,7 +946,89 @@ class _ClusterState:
              tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]] = None,
              termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
              version_release_system: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if advanced_configuration is None and 'advancedConfiguration' in kwargs:
+            advanced_configuration = kwargs['advancedConfiguration']
+        if auto_scaling_compute_enabled is None and 'autoScalingComputeEnabled' in kwargs:
+            auto_scaling_compute_enabled = kwargs['autoScalingComputeEnabled']
+        if auto_scaling_compute_scale_down_enabled is None and 'autoScalingComputeScaleDownEnabled' in kwargs:
+            auto_scaling_compute_scale_down_enabled = kwargs['autoScalingComputeScaleDownEnabled']
+        if auto_scaling_disk_gb_enabled is None and 'autoScalingDiskGbEnabled' in kwargs:
+            auto_scaling_disk_gb_enabled = kwargs['autoScalingDiskGbEnabled']
+        if backing_provider_name is None and 'backingProviderName' in kwargs:
+            backing_provider_name = kwargs['backingProviderName']
+        if backup_enabled is None and 'backupEnabled' in kwargs:
+            backup_enabled = kwargs['backupEnabled']
+        if bi_connector_config is None and 'biConnectorConfig' in kwargs:
+            bi_connector_config = kwargs['biConnectorConfig']
+        if cloud_backup is None and 'cloudBackup' in kwargs:
+            cloud_backup = kwargs['cloudBackup']
+        if cluster_id is None and 'clusterId' in kwargs:
+            cluster_id = kwargs['clusterId']
+        if cluster_type is None and 'clusterType' in kwargs:
+            cluster_type = kwargs['clusterType']
+        if connection_strings is None and 'connectionStrings' in kwargs:
+            connection_strings = kwargs['connectionStrings']
+        if container_id is None and 'containerId' in kwargs:
+            container_id = kwargs['containerId']
+        if disk_size_gb is None and 'diskSizeGb' in kwargs:
+            disk_size_gb = kwargs['diskSizeGb']
+        if encryption_at_rest_provider is None and 'encryptionAtRestProvider' in kwargs:
+            encryption_at_rest_provider = kwargs['encryptionAtRestProvider']
+        if mongo_db_major_version is None and 'mongoDbMajorVersion' in kwargs:
+            mongo_db_major_version = kwargs['mongoDbMajorVersion']
+        if mongo_db_version is None and 'mongoDbVersion' in kwargs:
+            mongo_db_version = kwargs['mongoDbVersion']
+        if mongo_uri is None and 'mongoUri' in kwargs:
+            mongo_uri = kwargs['mongoUri']
+        if mongo_uri_updated is None and 'mongoUriUpdated' in kwargs:
+            mongo_uri_updated = kwargs['mongoUriUpdated']
+        if mongo_uri_with_options is None and 'mongoUriWithOptions' in kwargs:
+            mongo_uri_with_options = kwargs['mongoUriWithOptions']
+        if num_shards is None and 'numShards' in kwargs:
+            num_shards = kwargs['numShards']
+        if pit_enabled is None and 'pitEnabled' in kwargs:
+            pit_enabled = kwargs['pitEnabled']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_auto_scaling_compute_max_instance_size is None and 'providerAutoScalingComputeMaxInstanceSize' in kwargs:
+            provider_auto_scaling_compute_max_instance_size = kwargs['providerAutoScalingComputeMaxInstanceSize']
+        if provider_auto_scaling_compute_min_instance_size is None and 'providerAutoScalingComputeMinInstanceSize' in kwargs:
+            provider_auto_scaling_compute_min_instance_size = kwargs['providerAutoScalingComputeMinInstanceSize']
+        if provider_disk_iops is None and 'providerDiskIops' in kwargs:
+            provider_disk_iops = kwargs['providerDiskIops']
+        if provider_disk_type_name is None and 'providerDiskTypeName' in kwargs:
+            provider_disk_type_name = kwargs['providerDiskTypeName']
+        if provider_encrypt_ebs_volume is None and 'providerEncryptEbsVolume' in kwargs:
+            provider_encrypt_ebs_volume = kwargs['providerEncryptEbsVolume']
+        if provider_encrypt_ebs_volume_flag is None and 'providerEncryptEbsVolumeFlag' in kwargs:
+            provider_encrypt_ebs_volume_flag = kwargs['providerEncryptEbsVolumeFlag']
+        if provider_instance_size_name is None and 'providerInstanceSizeName' in kwargs:
+            provider_instance_size_name = kwargs['providerInstanceSizeName']
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if provider_region_name is None and 'providerRegionName' in kwargs:
+            provider_region_name = kwargs['providerRegionName']
+        if provider_volume_type is None and 'providerVolumeType' in kwargs:
+            provider_volume_type = kwargs['providerVolumeType']
+        if replication_factor is None and 'replicationFactor' in kwargs:
+            replication_factor = kwargs['replicationFactor']
+        if replication_specs is None and 'replicationSpecs' in kwargs:
+            replication_specs = kwargs['replicationSpecs']
+        if retain_backups_enabled is None and 'retainBackupsEnabled' in kwargs:
+            retain_backups_enabled = kwargs['retainBackupsEnabled']
+        if snapshot_backup_policies is None and 'snapshotBackupPolicies' in kwargs:
+            snapshot_backup_policies = kwargs['snapshotBackupPolicies']
+        if srv_address is None and 'srvAddress' in kwargs:
+            srv_address = kwargs['srvAddress']
+        if state_name is None and 'stateName' in kwargs:
+            state_name = kwargs['stateName']
+        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
+            termination_protection_enabled = kwargs['terminationProtectionEnabled']
+        if version_release_system is None and 'versionReleaseSystem' in kwargs:
+            version_release_system = kwargs['versionReleaseSystem']
+
         if advanced_configuration is not None:
             _setter("advanced_configuration", advanced_configuration)
         if auto_scaling_compute_enabled is not None:
@@ -1053,9 +1192,6 @@ class _ClusterState:
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-        ```python
-        import pulumi
-        ```
         * The default value is false.  M10 and above only.
         """
         return pulumi.get(self, "backup_enabled")
@@ -1604,9 +1740,6 @@ class Cluster(pulumi.CustomResource):
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               ```python
-               import pulumi
-               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -1725,22 +1858,14 @@ class Cluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ClusterArgs.__new__(ClusterArgs)
 
-            if advanced_configuration is not None and not isinstance(advanced_configuration, ClusterAdvancedConfigurationArgs):
-                advanced_configuration = advanced_configuration or {}
-                def _setter(key, value):
-                    advanced_configuration[key] = value
-                ClusterAdvancedConfigurationArgs._configure(_setter, **advanced_configuration)
+            advanced_configuration = _utilities.configure(advanced_configuration, ClusterAdvancedConfigurationArgs, True)
             __props__.__dict__["advanced_configuration"] = advanced_configuration
             __props__.__dict__["auto_scaling_compute_enabled"] = auto_scaling_compute_enabled
             __props__.__dict__["auto_scaling_compute_scale_down_enabled"] = auto_scaling_compute_scale_down_enabled
             __props__.__dict__["auto_scaling_disk_gb_enabled"] = auto_scaling_disk_gb_enabled
             __props__.__dict__["backing_provider_name"] = backing_provider_name
             __props__.__dict__["backup_enabled"] = backup_enabled
-            if bi_connector_config is not None and not isinstance(bi_connector_config, ClusterBiConnectorConfigArgs):
-                bi_connector_config = bi_connector_config or {}
-                def _setter(key, value):
-                    bi_connector_config[key] = value
-                ClusterBiConnectorConfigArgs._configure(_setter, **bi_connector_config)
+            bi_connector_config = _utilities.configure(bi_connector_config, ClusterBiConnectorConfigArgs, True)
             __props__.__dict__["bi_connector_config"] = bi_connector_config
             __props__.__dict__["cloud_backup"] = cloud_backup
             __props__.__dict__["cluster_type"] = cluster_type
@@ -1861,9 +1986,6 @@ class Cluster(pulumi.CustomResource):
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               ```python
-               import pulumi
-               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_id: The cluster ID.
@@ -2019,9 +2141,6 @@ class Cluster(pulumi.CustomResource):
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-        ```python
-        import pulumi
-        ```
         * The default value is false.  M10 and above only.
         """
         return pulumi.get(self, "backup_enabled")

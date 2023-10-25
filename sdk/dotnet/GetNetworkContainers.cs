@@ -19,34 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### Basic Example.
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
-        ///     {
-        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-        ///         AtlasCidrBlock = "10.8.0.0/21",
-        ///         ProviderName = "AWS",
-        ///         RegionName = "US_EAST_1",
-        ///     });
-        /// 
-        ///     var testNetworkContainers = Mongodbatlas.GetNetworkContainers.Invoke(new()
-        ///     {
-        ///         ProjectId = testNetworkContainer.ProjectId,
-        ///         ProviderName = testNetworkContainer.ProviderName,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetworkContainersResult> InvokeAsync(GetNetworkContainersArgs args, InvokeOptions? options = null)
@@ -60,34 +32,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### Basic Example.
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
-        ///     {
-        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-        ///         AtlasCidrBlock = "10.8.0.0/21",
-        ///         ProviderName = "AWS",
-        ///         RegionName = "US_EAST_1",
-        ///     });
-        /// 
-        ///     var testNetworkContainers = Mongodbatlas.GetNetworkContainers.Invoke(new()
-        ///     {
-        ///         ProjectId = testNetworkContainer.ProjectId,
-        ///         ProviderName = testNetworkContainer.ProviderName,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetNetworkContainersResult> Invoke(GetNetworkContainersInvokeArgs args, InvokeOptions? options = null)

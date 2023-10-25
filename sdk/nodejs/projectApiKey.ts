@@ -8,45 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
- * ### Create And Assign PAK Together
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.ProjectApiKey("test", {
- *     description: "Description of your API key",
- *     projectAssignments: [{
- *         projectId: "64259ee860c43338194b0f8e",
- *         roleNames: ["GROUP_OWNER"],
- *     }],
- *     projectId: "64259ee860c43338194b0f8e",
- * });
- * ```
- * ### Create And Assign PAK To Multiple Projects
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.ProjectApiKey("test", {
- *     description: "Description of your API key",
- *     projectAssignments: [
- *         {
- *             projectId: "64259ee860c43338194b0f8e",
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_OWNER",
- *             ],
- *         },
- *         {
- *             projectId: "74259ee860c43338194b0f8e",
- *             roleNames: ["GROUP_READ_ONLY"],
- *         },
- *     ],
- *     projectId: "64259ee860c43338194b0f8e",
- * });
- * ```
  *
  * ## Import
  *

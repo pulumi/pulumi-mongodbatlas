@@ -12,24 +12,6 @@ import * as utilities from "./utilities";
  * > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
  *
  * ## Example Usage
- * ### Using userId attribute to query
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getAtlasUser({
- *     userId: "<USER_ID>",
- * });
- * ```
- * ### Using username attribute to query
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getAtlasUser({
- *     username: "<USERNAME>",
- * });
- * ```
  */
 export function getAtlasUser(args?: GetAtlasUserArgs, opts?: pulumi.InvokeOptions): Promise<GetAtlasUserResult> {
     args = args || {};
@@ -113,24 +95,6 @@ export interface GetAtlasUserResult {
  * > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
  *
  * ## Example Usage
- * ### Using userId attribute to query
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getAtlasUser({
- *     userId: "<USER_ID>",
- * });
- * ```
- * ### Using username attribute to query
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getAtlasUser({
- *     username: "<USERNAME>",
- * });
- * ```
  */
 export function getAtlasUserOutput(args?: GetAtlasUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAtlasUserResult> {
     return pulumi.output(args).apply((a: any) => getAtlasUser(a, opts))

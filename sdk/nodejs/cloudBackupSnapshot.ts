@@ -14,36 +14,6 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it's taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const myCluster = new mongodbatlas.Cluster("myCluster", {
- *     projectId: "5cf5a45a9ccf6400e60981b6",
- *     providerName: "AWS",
- *     providerRegionName: "EU_WEST_2",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
- * });
- * // enable cloud backup snapshots
- * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", {
- *     projectId: myCluster.projectId,
- *     clusterName: myCluster.name,
- *     description: "myDescription",
- *     retentionInDays: 1,
- * });
- * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", {
- *     projectId: testCloudBackupSnapshot.projectId,
- *     clusterName: testCloudBackupSnapshot.clusterName,
- *     snapshotId: testCloudBackupSnapshot.snapshotId,
- *     deliveryTypeConfig: {
- *         download: true,
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.

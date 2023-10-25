@@ -7,20 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.Auditing` provides an Auditing resource. This allows auditing to be created.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.Auditing("test", {
- *     auditAuthorizationSuccess: false,
- *     auditFilter: "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
- *     enabled: true,
- *     projectId: "<project-id>",
- * });
- * ```
- *
  * ## Import
  *
  * Auditing must be imported using auditing ID, e.g.

@@ -13,90 +13,12 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
-        /// 
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
-        ///     {
-        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
-        ///         AssociatedDomains = new[]
-        ///         {
-        ///             "yourdomain.com",
-        ///         },
-        ///         SsoDebugEnabled = true,
-        ///         Status = "ACTIVE",
-        ///         SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml",
-        ///         IssuerUri = "http://www.okta.com/exk17f7f7f7f7p50h8",
-        ///         RequestBinding = "HTTP-POST",
-        ///         ResponseSignatureAlgorithm = "SHA-256",
-        ///     });
-        /// 
-        ///     var identityProviderDs = Mongodbatlas.GetFederatedSettingsIdentityProvider.Invoke(new()
-        ///     {
-        ///         FederationSettingsId = identityProvider.Id,
-        ///         IdentityProviderId = "0oad47f7fXnk1297",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetFederatedSettingsIdentityProviderResult> InvokeAsync(GetFederatedSettingsIdentityProviderArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsIdentityProviderResult>("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", args ?? new GetFederatedSettingsIdentityProviderArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
-        /// 
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
-        ///     {
-        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
-        ///         AssociatedDomains = new[]
-        ///         {
-        ///             "yourdomain.com",
-        ///         },
-        ///         SsoDebugEnabled = true,
-        ///         Status = "ACTIVE",
-        ///         SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml",
-        ///         IssuerUri = "http://www.okta.com/exk17f7f7f7f7p50h8",
-        ///         RequestBinding = "HTTP-POST",
-        ///         ResponseSignatureAlgorithm = "SHA-256",
-        ///     });
-        /// 
-        ///     var identityProviderDs = Mongodbatlas.GetFederatedSettingsIdentityProvider.Invoke(new()
-        ///     {
-        ///         FederationSettingsId = identityProvider.Id,
-        ///         IdentityProviderId = "0oad47f7fXnk1297",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetFederatedSettingsIdentityProviderResult> Invoke(GetFederatedSettingsIdentityProviderInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProviderResult>("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", args ?? new GetFederatedSettingsIdentityProviderInvokeArgs(), options.WithDefaults());

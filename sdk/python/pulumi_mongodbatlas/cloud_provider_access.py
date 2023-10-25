@@ -34,10 +34,22 @@ class CloudProviderAccessArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
-             provider_name: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
              iam_assumed_role_arn: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if provider_name is None:
+            raise TypeError("Missing 'provider_name' argument")
+        if iam_assumed_role_arn is None and 'iamAssumedRoleArn' in kwargs:
+            iam_assumed_role_arn = kwargs['iamAssumedRoleArn']
+
         _setter("project_id", project_id)
         _setter("provider_name", provider_name)
         if iam_assumed_role_arn is not None:
@@ -130,7 +142,27 @@ class _CloudProviderAccessState:
              project_id: Optional[pulumi.Input[str]] = None,
              provider_name: Optional[pulumi.Input[str]] = None,
              role_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if atlas_assumed_role_external_id is None and 'atlasAssumedRoleExternalId' in kwargs:
+            atlas_assumed_role_external_id = kwargs['atlasAssumedRoleExternalId']
+        if atlas_aws_account_arn is None and 'atlasAwsAccountArn' in kwargs:
+            atlas_aws_account_arn = kwargs['atlasAwsAccountArn']
+        if authorized_date is None and 'authorizedDate' in kwargs:
+            authorized_date = kwargs['authorizedDate']
+        if created_date is None and 'createdDate' in kwargs:
+            created_date = kwargs['createdDate']
+        if feature_usages is None and 'featureUsages' in kwargs:
+            feature_usages = kwargs['featureUsages']
+        if iam_assumed_role_arn is None and 'iamAssumedRoleArn' in kwargs:
+            iam_assumed_role_arn = kwargs['iamAssumedRoleArn']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if role_id is None and 'roleId' in kwargs:
+            role_id = kwargs['roleId']
+
         if atlas_assumed_role_external_id is not None:
             _setter("atlas_assumed_role_external_id", atlas_assumed_role_external_id)
         if atlas_aws_account_arn is not None:
@@ -271,55 +303,6 @@ class CloudProviderAccess(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_role = mongodbatlas.CloudProviderAccess("testRole",
-            project_id="64259ee860c43338194b0f8e",
-            provider_name="AWS")
-        ```
-        ### With AWS
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
-            project_id="64259ee860c43338194b0f8e",
-            provider_name="AWS")
-        ```
-        ### With Azure
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
-            azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
-                atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
-                service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
-                tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
-            )],
-            project_id="64259ee860c43338194b0f8e",
-            provider_name="AZURE")
-        ```
-        ## Authorize role
-
-        Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_role = mongodbatlas.CloudProviderAccess("testRole",
-            iam_assumed_role_arn="arn:aws:iam::772401394250:role/test-user-role",
-            project_id="<PROJECT-ID>",
-            provider_name="AWS")
-        ```
-
         ## Import
 
         The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
@@ -342,55 +325,6 @@ class CloudProviderAccess(pulumi.CustomResource):
                  args: CloudProviderAccessArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_role = mongodbatlas.CloudProviderAccess("testRole",
-            project_id="64259ee860c43338194b0f8e",
-            provider_name="AWS")
-        ```
-        ### With AWS
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
-            project_id="64259ee860c43338194b0f8e",
-            provider_name="AWS")
-        ```
-        ### With Azure
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
-            azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
-                atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
-                service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
-                tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
-            )],
-            project_id="64259ee860c43338194b0f8e",
-            provider_name="AZURE")
-        ```
-        ## Authorize role
-
-        Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_role = mongodbatlas.CloudProviderAccess("testRole",
-            iam_assumed_role_arn="arn:aws:iam::772401394250:role/test-user-role",
-            project_id="<PROJECT-ID>",
-            provider_name="AWS")
-        ```
-
         ## Import
 
         The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.

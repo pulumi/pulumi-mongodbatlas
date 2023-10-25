@@ -18,27 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### S
-        /// 
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetFederatedQueryLimits.Invoke(new()
-        ///     {
-        ///         ProjectId = "PROJECT_ID",
-        ///         TenantName = "FEDERATED_DATABASE_INSTANCE_NAME",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetFederatedQueryLimitsResult> InvokeAsync(GetFederatedQueryLimitsArgs args, InvokeOptions? options = null)
@@ -51,27 +30,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### S
-        /// 
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetFederatedQueryLimits.Invoke(new()
-        ///     {
-        ///         ProjectId = "PROJECT_ID",
-        ///         TenantName = "FEDERATED_DATABASE_INSTANCE_NAME",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetFederatedQueryLimitsResult> Invoke(GetFederatedQueryLimitsInvokeArgs args, InvokeOptions? options = null)

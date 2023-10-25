@@ -15,54 +15,6 @@ import (
 
 // `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
-//				OrgId: pulumi.String("ORG ID"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
-//				ProjectId:                testProject.ID(),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderRegionName:       pulumi.String("US_EAST_2"),
-//				ProviderInstanceSizeName: pulumi.String("M10"),
-//				CloudBackup:              pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = mongodbatlas.NewLdapVerify(ctx, "testLdapVerify", &mongodbatlas.LdapVerifyArgs{
-//				ProjectId:    testProject.ID(),
-//				Hostname:     pulumi.String("HOSTNAME"),
-//				Port:         pulumi.Int(636),
-//				BindUsername: pulumi.String("USERNAME"),
-//				BindPassword: pulumi.String("PASSWORD"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				testCluster,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // LDAP Configuration must be imported using project ID and request ID, e.g.

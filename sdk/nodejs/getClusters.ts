@@ -14,34 +14,6 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:**
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testCluster = new mongodbatlas.Cluster("testCluster", {
- *     projectId: "<YOUR-PROJECT-ID>",
- *     clusterType: "REPLICASET",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             regionName: "US_EAST_1",
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *         }],
- *     }],
- *     cloudBackup: true,
- *     autoScalingDiskGbEnabled: true,
- *     providerName: "AWS",
- *     providerInstanceSizeName: "M40",
- * });
- * const testClusters = mongodbatlas.getClustersOutput({
- *     projectId: testCluster.projectId,
- * });
- * ```
  */
 export function getClusters(args: GetClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetClustersResult> {
 
@@ -83,34 +55,6 @@ export interface GetClustersResult {
  * > **IMPORTANT:**
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testCluster = new mongodbatlas.Cluster("testCluster", {
- *     projectId: "<YOUR-PROJECT-ID>",
- *     clusterType: "REPLICASET",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             regionName: "US_EAST_1",
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *         }],
- *     }],
- *     cloudBackup: true,
- *     autoScalingDiskGbEnabled: true,
- *     providerName: "AWS",
- *     providerInstanceSizeName: "M40",
- * });
- * const testClusters = mongodbatlas.getClustersOutput({
- *     projectId: testCluster.projectId,
- * });
- * ```
  */
 export function getClustersOutput(args: GetClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClustersResult> {
     return pulumi.output(args).apply((a: any) => getClusters(a, opts))

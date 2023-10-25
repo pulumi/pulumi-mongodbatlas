@@ -83,13 +83,27 @@ class FederatedDatabaseInstanceArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
              cloud_provider_config: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs']] = None,
              data_process_region: Optional[pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs']] = None,
              name: Optional[pulumi.Input[str]] = None,
              storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]] = None,
              storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if cloud_provider_config is None and 'cloudProviderConfig' in kwargs:
+            cloud_provider_config = kwargs['cloudProviderConfig']
+        if data_process_region is None and 'dataProcessRegion' in kwargs:
+            data_process_region = kwargs['dataProcessRegion']
+        if storage_databases is None and 'storageDatabases' in kwargs:
+            storage_databases = kwargs['storageDatabases']
+        if storage_stores is None and 'storageStores' in kwargs:
+            storage_stores = kwargs['storageStores']
+
         _setter("project_id", project_id)
         if cloud_provider_config is not None:
             _setter("cloud_provider_config", cloud_provider_config)
@@ -295,7 +309,19 @@ class _FederatedDatabaseInstanceState:
              state: Optional[pulumi.Input[str]] = None,
              storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]] = None,
              storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cloud_provider_config is None and 'cloudProviderConfig' in kwargs:
+            cloud_provider_config = kwargs['cloudProviderConfig']
+        if data_process_region is None and 'dataProcessRegion' in kwargs:
+            data_process_region = kwargs['dataProcessRegion']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if storage_databases is None and 'storageDatabases' in kwargs:
+            storage_databases = kwargs['storageDatabases']
+        if storage_stores is None and 'storageStores' in kwargs:
+            storage_stores = kwargs['storageStores']
+
         if cloud_provider_config is not None:
             _setter("cloud_provider_config", cloud_provider_config)
         if data_process_region is not None:
@@ -464,86 +490,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
-        ### S With MongoDB Atlas Cluster As Storage Database
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.FederatedDatabaseInstance("test",
-            project_id="PROJECT ID",
-            storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
-                collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
-                    data_sources=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
-                        collection="COLLECTION IN THE CLUSTER",
-                        database="DB IN THE CLUSTER",
-                        store_name="CLUSTER NAME",
-                    )],
-                    name="NAME OF THE COLLECTION",
-                )],
-                name="VirtualDatabase0",
-            )],
-            storage_stores=[mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
-                cluster_name="CLUSTER NAME",
-                name="STORE 1 NAME",
-                project_id="PROJECT ID",
-                provider="atlas",
-                read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
-                    mode="secondary",
-                ),
-            )])
-        ```
-        ### S With Amazon S3 Bucket As Storage Database
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.FederatedDatabaseInstance("test",
-            cloud_provider_config=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigArgs(
-                aws=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigAwsArgs(
-                    role_id="AWS ROLE ID",
-                    test_s3_bucket="S3 BUCKET NAME",
-                ),
-            ),
-            project_id="PROJECT ID",
-            storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
-                collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
-                    data_sources=[
-                        mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
-                            collection="COLLECTION IN THE CLUSTER",
-                            database="DB IN THE CLUSTER",
-                            store_name="CLUSTER NAME",
-                        ),
-                        mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
-                            path="S3 BUCKET PATH",
-                            store_name="S3 BUCKET NAME",
-                        ),
-                    ],
-                    name="NAME OF THE COLLECTION",
-                )],
-                name="VirtualDatabase0",
-            )],
-            storage_stores=[
-                mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
-                    cluster_name="CLUSTER NAME",
-                    name="STORE 1 NAME",
-                    project_id="PROJECT ID",
-                    provider="atlas",
-                    read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
-                        mode="secondary",
-                    ),
-                ),
-                mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
-                    bucket="STORE 2 NAME",
-                    delimiter="/",
-                    name="S3 BUCKET NAME",
-                    prefix="S3 BUCKET PREFIX",
-                    provider="s3",
-                    region="AWS REGION",
-                ),
-            ])
-        ```
 
         ## Import
 
@@ -622,86 +568,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
-        ### S With MongoDB Atlas Cluster As Storage Database
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.FederatedDatabaseInstance("test",
-            project_id="PROJECT ID",
-            storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
-                collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
-                    data_sources=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
-                        collection="COLLECTION IN THE CLUSTER",
-                        database="DB IN THE CLUSTER",
-                        store_name="CLUSTER NAME",
-                    )],
-                    name="NAME OF THE COLLECTION",
-                )],
-                name="VirtualDatabase0",
-            )],
-            storage_stores=[mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
-                cluster_name="CLUSTER NAME",
-                name="STORE 1 NAME",
-                project_id="PROJECT ID",
-                provider="atlas",
-                read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
-                    mode="secondary",
-                ),
-            )])
-        ```
-        ### S With Amazon S3 Bucket As Storage Database
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.FederatedDatabaseInstance("test",
-            cloud_provider_config=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigArgs(
-                aws=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigAwsArgs(
-                    role_id="AWS ROLE ID",
-                    test_s3_bucket="S3 BUCKET NAME",
-                ),
-            ),
-            project_id="PROJECT ID",
-            storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
-                collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
-                    data_sources=[
-                        mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
-                            collection="COLLECTION IN THE CLUSTER",
-                            database="DB IN THE CLUSTER",
-                            store_name="CLUSTER NAME",
-                        ),
-                        mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
-                            path="S3 BUCKET PATH",
-                            store_name="S3 BUCKET NAME",
-                        ),
-                    ],
-                    name="NAME OF THE COLLECTION",
-                )],
-                name="VirtualDatabase0",
-            )],
-            storage_stores=[
-                mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
-                    cluster_name="CLUSTER NAME",
-                    name="STORE 1 NAME",
-                    project_id="PROJECT ID",
-                    provider="atlas",
-                    read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
-                        mode="secondary",
-                    ),
-                ),
-                mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
-                    bucket="STORE 2 NAME",
-                    delimiter="/",
-                    name="S3 BUCKET NAME",
-                    prefix="S3 BUCKET PREFIX",
-                    provider="s3",
-                    region="AWS REGION",
-                ),
-            ])
-        ```
 
         ## Import
 
@@ -753,17 +619,9 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FederatedDatabaseInstanceArgs.__new__(FederatedDatabaseInstanceArgs)
 
-            if cloud_provider_config is not None and not isinstance(cloud_provider_config, FederatedDatabaseInstanceCloudProviderConfigArgs):
-                cloud_provider_config = cloud_provider_config or {}
-                def _setter(key, value):
-                    cloud_provider_config[key] = value
-                FederatedDatabaseInstanceCloudProviderConfigArgs._configure(_setter, **cloud_provider_config)
+            cloud_provider_config = _utilities.configure(cloud_provider_config, FederatedDatabaseInstanceCloudProviderConfigArgs, True)
             __props__.__dict__["cloud_provider_config"] = cloud_provider_config
-            if data_process_region is not None and not isinstance(data_process_region, FederatedDatabaseInstanceDataProcessRegionArgs):
-                data_process_region = data_process_region or {}
-                def _setter(key, value):
-                    data_process_region[key] = value
-                FederatedDatabaseInstanceDataProcessRegionArgs._configure(_setter, **data_process_region)
+            data_process_region = _utilities.configure(data_process_region, FederatedDatabaseInstanceDataProcessRegionArgs, True)
             __props__.__dict__["data_process_region"] = data_process_region
             __props__.__dict__["name"] = name
             if project_id is None and not opts.urn:

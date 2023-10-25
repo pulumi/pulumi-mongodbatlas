@@ -53,18 +53,54 @@ class BackupCompliancePolicyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             authorized_email: pulumi.Input[str],
-             copy_protection_enabled: pulumi.Input[bool],
-             encryption_at_rest_enabled: pulumi.Input[bool],
-             on_demand_policy_item: pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs'],
-             pit_enabled: pulumi.Input[bool],
-             project_id: pulumi.Input[str],
+             authorized_email: Optional[pulumi.Input[str]] = None,
+             copy_protection_enabled: Optional[pulumi.Input[bool]] = None,
+             encryption_at_rest_enabled: Optional[pulumi.Input[bool]] = None,
+             on_demand_policy_item: Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']] = None,
+             pit_enabled: Optional[pulumi.Input[bool]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
              policy_item_daily: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']] = None,
              policy_item_hourly: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']] = None,
              policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]] = None,
              policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]] = None,
              restore_window_days: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if authorized_email is None and 'authorizedEmail' in kwargs:
+            authorized_email = kwargs['authorizedEmail']
+        if authorized_email is None:
+            raise TypeError("Missing 'authorized_email' argument")
+        if copy_protection_enabled is None and 'copyProtectionEnabled' in kwargs:
+            copy_protection_enabled = kwargs['copyProtectionEnabled']
+        if copy_protection_enabled is None:
+            raise TypeError("Missing 'copy_protection_enabled' argument")
+        if encryption_at_rest_enabled is None and 'encryptionAtRestEnabled' in kwargs:
+            encryption_at_rest_enabled = kwargs['encryptionAtRestEnabled']
+        if encryption_at_rest_enabled is None:
+            raise TypeError("Missing 'encryption_at_rest_enabled' argument")
+        if on_demand_policy_item is None and 'onDemandPolicyItem' in kwargs:
+            on_demand_policy_item = kwargs['onDemandPolicyItem']
+        if on_demand_policy_item is None:
+            raise TypeError("Missing 'on_demand_policy_item' argument")
+        if pit_enabled is None and 'pitEnabled' in kwargs:
+            pit_enabled = kwargs['pitEnabled']
+        if pit_enabled is None:
+            raise TypeError("Missing 'pit_enabled' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if policy_item_daily is None and 'policyItemDaily' in kwargs:
+            policy_item_daily = kwargs['policyItemDaily']
+        if policy_item_hourly is None and 'policyItemHourly' in kwargs:
+            policy_item_hourly = kwargs['policyItemHourly']
+        if policy_item_monthlies is None and 'policyItemMonthlies' in kwargs:
+            policy_item_monthlies = kwargs['policyItemMonthlies']
+        if policy_item_weeklies is None and 'policyItemWeeklies' in kwargs:
+            policy_item_weeklies = kwargs['policyItemWeeklies']
+        if restore_window_days is None and 'restoreWindowDays' in kwargs:
+            restore_window_days = kwargs['restoreWindowDays']
+
         _setter("authorized_email", authorized_email)
         _setter("copy_protection_enabled", copy_protection_enabled)
         _setter("encryption_at_rest_enabled", encryption_at_rest_enabled)
@@ -263,7 +299,35 @@ class _BackupCompliancePolicyState:
              state: Optional[pulumi.Input[str]] = None,
              updated_date: Optional[pulumi.Input[str]] = None,
              updated_user: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if authorized_email is None and 'authorizedEmail' in kwargs:
+            authorized_email = kwargs['authorizedEmail']
+        if copy_protection_enabled is None and 'copyProtectionEnabled' in kwargs:
+            copy_protection_enabled = kwargs['copyProtectionEnabled']
+        if encryption_at_rest_enabled is None and 'encryptionAtRestEnabled' in kwargs:
+            encryption_at_rest_enabled = kwargs['encryptionAtRestEnabled']
+        if on_demand_policy_item is None and 'onDemandPolicyItem' in kwargs:
+            on_demand_policy_item = kwargs['onDemandPolicyItem']
+        if pit_enabled is None and 'pitEnabled' in kwargs:
+            pit_enabled = kwargs['pitEnabled']
+        if policy_item_daily is None and 'policyItemDaily' in kwargs:
+            policy_item_daily = kwargs['policyItemDaily']
+        if policy_item_hourly is None and 'policyItemHourly' in kwargs:
+            policy_item_hourly = kwargs['policyItemHourly']
+        if policy_item_monthlies is None and 'policyItemMonthlies' in kwargs:
+            policy_item_monthlies = kwargs['policyItemMonthlies']
+        if policy_item_weeklies is None and 'policyItemWeeklies' in kwargs:
+            policy_item_weeklies = kwargs['policyItemWeeklies']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if restore_window_days is None and 'restoreWindowDays' in kwargs:
+            restore_window_days = kwargs['restoreWindowDays']
+        if updated_date is None and 'updatedDate' in kwargs:
+            updated_date = kwargs['updatedDate']
+        if updated_user is None and 'updatedUser' in kwargs:
+            updated_user = kwargs['updatedUser']
+
         if authorized_email is not None:
             _setter("authorized_email", authorized_email)
         if copy_protection_enabled is not None:
@@ -551,28 +615,16 @@ class BackupCompliancePolicy(pulumi.CustomResource):
             if encryption_at_rest_enabled is None and not opts.urn:
                 raise TypeError("Missing required property 'encryption_at_rest_enabled'")
             __props__.__dict__["encryption_at_rest_enabled"] = encryption_at_rest_enabled
-            if on_demand_policy_item is not None and not isinstance(on_demand_policy_item, BackupCompliancePolicyOnDemandPolicyItemArgs):
-                on_demand_policy_item = on_demand_policy_item or {}
-                def _setter(key, value):
-                    on_demand_policy_item[key] = value
-                BackupCompliancePolicyOnDemandPolicyItemArgs._configure(_setter, **on_demand_policy_item)
+            on_demand_policy_item = _utilities.configure(on_demand_policy_item, BackupCompliancePolicyOnDemandPolicyItemArgs, True)
             if on_demand_policy_item is None and not opts.urn:
                 raise TypeError("Missing required property 'on_demand_policy_item'")
             __props__.__dict__["on_demand_policy_item"] = on_demand_policy_item
             if pit_enabled is None and not opts.urn:
                 raise TypeError("Missing required property 'pit_enabled'")
             __props__.__dict__["pit_enabled"] = pit_enabled
-            if policy_item_daily is not None and not isinstance(policy_item_daily, BackupCompliancePolicyPolicyItemDailyArgs):
-                policy_item_daily = policy_item_daily or {}
-                def _setter(key, value):
-                    policy_item_daily[key] = value
-                BackupCompliancePolicyPolicyItemDailyArgs._configure(_setter, **policy_item_daily)
+            policy_item_daily = _utilities.configure(policy_item_daily, BackupCompliancePolicyPolicyItemDailyArgs, True)
             __props__.__dict__["policy_item_daily"] = policy_item_daily
-            if policy_item_hourly is not None and not isinstance(policy_item_hourly, BackupCompliancePolicyPolicyItemHourlyArgs):
-                policy_item_hourly = policy_item_hourly or {}
-                def _setter(key, value):
-                    policy_item_hourly[key] = value
-                BackupCompliancePolicyPolicyItemHourlyArgs._configure(_setter, **policy_item_hourly)
+            policy_item_hourly = _utilities.configure(policy_item_hourly, BackupCompliancePolicyPolicyItemHourlyArgs, True)
             __props__.__dict__["policy_item_hourly"] = policy_item_hourly
             __props__.__dict__["policy_item_monthlies"] = policy_item_monthlies
             __props__.__dict__["policy_item_weeklies"] = policy_item_weeklies

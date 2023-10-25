@@ -45,11 +45,27 @@ class CloudBackupSnapshotRestoreJobArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cluster_name: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             snapshot_id: pulumi.Input[str],
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             snapshot_id: Optional[pulumi.Input[str]] = None,
              delivery_type_config: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if cluster_name is None:
+            raise TypeError("Missing 'cluster_name' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if snapshot_id is None and 'snapshotId' in kwargs:
+            snapshot_id = kwargs['snapshotId']
+        if snapshot_id is None:
+            raise TypeError("Missing 'snapshot_id' argument")
+        if delivery_type_config is None and 'deliveryTypeConfig' in kwargs:
+            delivery_type_config = kwargs['deliveryTypeConfig']
+
         _setter("cluster_name", cluster_name)
         _setter("project_id", project_id)
         _setter("snapshot_id", snapshot_id)
@@ -181,7 +197,27 @@ class _CloudBackupSnapshotRestoreJobState:
              snapshot_id: Optional[pulumi.Input[str]] = None,
              snapshot_restore_job_id: Optional[pulumi.Input[str]] = None,
              timestamp: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if delivery_type_config is None and 'deliveryTypeConfig' in kwargs:
+            delivery_type_config = kwargs['deliveryTypeConfig']
+        if delivery_urls is None and 'deliveryUrls' in kwargs:
+            delivery_urls = kwargs['deliveryUrls']
+        if expires_at is None and 'expiresAt' in kwargs:
+            expires_at = kwargs['expiresAt']
+        if finished_at is None and 'finishedAt' in kwargs:
+            finished_at = kwargs['finishedAt']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if snapshot_id is None and 'snapshotId' in kwargs:
+            snapshot_id = kwargs['snapshotId']
+        if snapshot_restore_job_id is None and 'snapshotRestoreJobId' in kwargs:
+            snapshot_restore_job_id = kwargs['snapshotRestoreJobId']
+
         if cancelled is not None:
             _setter("cancelled", cancelled)
         if cluster_name is not None:
@@ -446,11 +482,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
             __props__.__dict__["cluster_name"] = cluster_name
-            if delivery_type_config is not None and not isinstance(delivery_type_config, CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs):
-                delivery_type_config = delivery_type_config or {}
-                def _setter(key, value):
-                    delivery_type_config[key] = value
-                CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs._configure(_setter, **delivery_type_config)
+            delivery_type_config = _utilities.configure(delivery_type_config, CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs, True)
             __props__.__dict__["delivery_type_config"] = delivery_type_config
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")

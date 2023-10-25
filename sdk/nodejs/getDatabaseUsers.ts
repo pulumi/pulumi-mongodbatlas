@@ -12,64 +12,6 @@ import * as utilities from "./utilities";
  * Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
- *     username: "test-acc-username",
- *     password: "test-acc-password",
- *     projectId: "<PROJECT-ID>",
- *     authDatabaseName: "admin",
- *     roles: [
- *         {
- *             roleName: "readWrite",
- *             databaseName: "admin",
- *         },
- *         {
- *             roleName: "atlasAdmin",
- *             databaseName: "admin",
- *         },
- *     ],
- *     labels: [
- *         {
- *             key: "key 1",
- *             value: "value 1",
- *         },
- *         {
- *             key: "key 2",
- *             value: "value 2",
- *         },
- *     ],
- * });
- * const testDatabaseUsers = mongodbatlas.getDatabaseUsersOutput({
- *     projectId: testDatabaseUser.projectId,
- * });
- * ```
- * **Example of usage with a OIDC federated authentication user**
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
- *     authDatabaseName: "admin",
- *     oidcAuthType: "IDP_GROUP",
- *     projectId: "6414908c207f4d22f4d8f232",
- *     roles: [{
- *         databaseName: "admin",
- *         roleName: "readWriteAnyDatabase",
- *     }],
- *     username: "64d613677e1ad50839cce4db/testUserOrGroup",
- * });
- * const testDatabaseUsers = mongodbatlas.getDatabaseUsers({
- *     projectId: "6414908c207f4d22f4d8f232",
- * });
- * ```
- * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  */
 export function getDatabaseUsers(args: GetDatabaseUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseUsersResult> {
 
@@ -112,64 +54,6 @@ export interface GetDatabaseUsersResult {
  * Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
- *     username: "test-acc-username",
- *     password: "test-acc-password",
- *     projectId: "<PROJECT-ID>",
- *     authDatabaseName: "admin",
- *     roles: [
- *         {
- *             roleName: "readWrite",
- *             databaseName: "admin",
- *         },
- *         {
- *             roleName: "atlasAdmin",
- *             databaseName: "admin",
- *         },
- *     ],
- *     labels: [
- *         {
- *             key: "key 1",
- *             value: "value 1",
- *         },
- *         {
- *             key: "key 2",
- *             value: "value 2",
- *         },
- *     ],
- * });
- * const testDatabaseUsers = mongodbatlas.getDatabaseUsersOutput({
- *     projectId: testDatabaseUser.projectId,
- * });
- * ```
- * **Example of usage with a OIDC federated authentication user**
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
- *     authDatabaseName: "admin",
- *     oidcAuthType: "IDP_GROUP",
- *     projectId: "6414908c207f4d22f4d8f232",
- *     roles: [{
- *         databaseName: "admin",
- *         roleName: "readWriteAnyDatabase",
- *     }],
- *     username: "64d613677e1ad50839cce4db/testUserOrGroup",
- * });
- * const testDatabaseUsers = mongodbatlas.getDatabaseUsers({
- *     projectId: "6414908c207f4d22f4d8f232",
- * });
- * ```
- * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  */
 export function getDatabaseUsersOutput(args: GetDatabaseUsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseUsersResult> {
     return pulumi.output(args).apply((a: any) => getDatabaseUsers(a, opts))
