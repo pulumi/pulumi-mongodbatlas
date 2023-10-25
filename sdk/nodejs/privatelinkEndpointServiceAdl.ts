@@ -8,6 +8,19 @@ import * as utilities from "./utilities";
  * `privatelinkEndpointServiceAdl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.   The same configuration will provide a PrivateLink connection for either Atlas Data Lake or Online Archive.
  *
  * ## Example Usage
+ * ### Basic
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const adlTest = new mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", {
+ *     comment: "comments for private link endpoint adl",
+ *     endpointId: "<ENDPOINT_ID>",
+ *     projectId: "<PROJECT_ID>",
+ *     providerName: "AWS",
+ *     type: "DATA_LAKE",
+ * });
+ * ```
  *
  * ## Import
  *

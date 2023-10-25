@@ -19,6 +19,91 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **IMPORTANT:** There are fields that are immutable after creation, i.e if `date_field` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
     /// 
     /// ## Example Usage
+    /// ### S
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.OnlineArchive("test", new()
+    ///     {
+    ///         ProjectId = @var.Project_id,
+    ///         ClusterName = @var.Cluster_name,
+    ///         CollName = @var.Collection_name,
+    ///         DbName = @var.Database_name,
+    ///         PartitionFields = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
+    ///             {
+    ///                 FieldName = "firstName",
+    ///                 Order = 0,
+    ///             },
+    ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
+    ///             {
+    ///                 FieldName = "lastName",
+    ///                 Order = 1,
+    ///             },
+    ///         },
+    ///         Criteria = new Mongodbatlas.Inputs.OnlineArchiveCriteriaArgs
+    ///         {
+    ///             Type = "DATE",
+    ///             DateField = "created",
+    ///             ExpireAfterDays = 5,
+    ///         },
+    ///         Schedule = new Mongodbatlas.Inputs.OnlineArchiveScheduleArgs
+    ///         {
+    ///             Type = "DAILY",
+    ///             EndHour = 1,
+    ///             EndMinute = 1,
+    ///             StartHour = 1,
+    ///             StartMinute = 1,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// For custom criteria example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.OnlineArchive("test", new()
+    ///     {
+    ///         ProjectId = @var.Project_id,
+    ///         ClusterName = @var.Cluster_name,
+    ///         CollName = @var.Collection_name,
+    ///         DbName = @var.Database_name,
+    ///         PartitionFields = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
+    ///             {
+    ///                 FieldName = "firstName",
+    ///                 Order = 0,
+    ///             },
+    ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
+    ///             {
+    ///                 FieldName = "secondName",
+    ///                 Order = 1,
+    ///             },
+    ///         },
+    ///         Criteria = new Mongodbatlas.Inputs.OnlineArchiveCriteriaArgs
+    ///         {
+    ///             Type = "CUSTOM",
+    ///             Query = "{ \"department\": \"engineering\" }",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/onlineArchive:OnlineArchive")]
     public partial class OnlineArchive : global::Pulumi.CustomResource

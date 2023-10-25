@@ -8,6 +8,53 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", {
+ *     federationSettingsId: data.mongodbatlas_federated_settings.federated_settings.id,
+ *     orgId: "627a9683e7f7f7ff7fe306f14",
+ *     externalGroupName: "myGrouptest",
+ *     roleAssignments: [
+ *         {
+ *             orgId: "627a9683e7f7f7ff7fe306f14",
+ *             roles: [
+ *                 "ORG_MEMBER",
+ *                 "ORG_GROUP_CREATOR",
+ *                 "ORG_BILLING_ADMIN",
+ *             ],
+ *         },
+ *         {
+ *             groupId: "628aa20db7f7f7f98b81b8",
+ *             roles: [
+ *                 "GROUP_OWNER",
+ *                 "GROUP_DATA_ACCESS_ADMIN",
+ *                 "GROUP_SEARCH_INDEX_EDITOR",
+ *                 "GROUP_DATA_ACCESS_READ_ONLY",
+ *             ],
+ *         },
+ *         {
+ *             groupId: "62b477f7f7f7f5e741489c",
+ *             roles: [
+ *                 "GROUP_OWNER",
+ *                 "GROUP_DATA_ACCESS_ADMIN",
+ *                 "GROUP_SEARCH_INDEX_EDITOR",
+ *                 "GROUP_DATA_ACCESS_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *         },
+ *     ],
+ * });
+ * const roleMapping = mongodbatlas.getFederatedSettingsOrgRoleMappingOutput({
+ *     federationSettingsId: orgGroupRoleMappingImport.id,
+ *     orgId: "627a9683e7f7f7ff7fe306f14",
+ *     roleMappingId: "627a9673e7f7f7ff7fe306f14",
+ * });
+ * ```
  */
 export function getFederatedSettingsOrgRoleMapping(args: GetFederatedSettingsOrgRoleMappingArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgRoleMappingResult> {
 
@@ -56,6 +103,53 @@ export interface GetFederatedSettingsOrgRoleMappingResult {
 }
 /**
  * `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", {
+ *     federationSettingsId: data.mongodbatlas_federated_settings.federated_settings.id,
+ *     orgId: "627a9683e7f7f7ff7fe306f14",
+ *     externalGroupName: "myGrouptest",
+ *     roleAssignments: [
+ *         {
+ *             orgId: "627a9683e7f7f7ff7fe306f14",
+ *             roles: [
+ *                 "ORG_MEMBER",
+ *                 "ORG_GROUP_CREATOR",
+ *                 "ORG_BILLING_ADMIN",
+ *             ],
+ *         },
+ *         {
+ *             groupId: "628aa20db7f7f7f98b81b8",
+ *             roles: [
+ *                 "GROUP_OWNER",
+ *                 "GROUP_DATA_ACCESS_ADMIN",
+ *                 "GROUP_SEARCH_INDEX_EDITOR",
+ *                 "GROUP_DATA_ACCESS_READ_ONLY",
+ *             ],
+ *         },
+ *         {
+ *             groupId: "62b477f7f7f7f5e741489c",
+ *             roles: [
+ *                 "GROUP_OWNER",
+ *                 "GROUP_DATA_ACCESS_ADMIN",
+ *                 "GROUP_SEARCH_INDEX_EDITOR",
+ *                 "GROUP_DATA_ACCESS_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *         },
+ *     ],
+ * });
+ * const roleMapping = mongodbatlas.getFederatedSettingsOrgRoleMappingOutput({
+ *     federationSettingsId: orgGroupRoleMappingImport.id,
+ *     orgId: "627a9683e7f7f7ff7fe306f14",
+ *     roleMappingId: "627a9673e7f7f7ff7fe306f14",
+ * });
+ * ```
  */
 export function getFederatedSettingsOrgRoleMappingOutput(args: GetFederatedSettingsOrgRoleMappingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingResult> {
     return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgRoleMapping(a, opts))

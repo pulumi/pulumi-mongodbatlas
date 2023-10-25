@@ -251,6 +251,30 @@ class ProjectInvitation(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectInvitation("test",
+            project_id="<PROJECT-ID>",
+            roles=["GROUP_DATA_ACCESS_READ_WRITE"],
+            username="test-acc-username")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectInvitation("test",
+            project_id="<PROJECT-ID>",
+            roles=[
+                "GROUP_READ_ONLY",
+                "GROUP_DATA_ACCESS_READ_ONLY",
+            ],
+            username="test-acc-username")
+        ```
 
         ## Import
 
@@ -276,6 +300,30 @@ class ProjectInvitation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectInvitation("test",
+            project_id="<PROJECT-ID>",
+            roles=["GROUP_DATA_ACCESS_READ_WRITE"],
+            username="test-acc-username")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectInvitation("test",
+            project_id="<PROJECT-ID>",
+            roles=[
+                "GROUP_READ_ONLY",
+                "GROUP_DATA_ACCESS_READ_ONLY",
+            ],
+            username="test-acc-username")
+        ```
 
         ## Import
 

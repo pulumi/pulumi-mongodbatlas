@@ -304,6 +304,18 @@ class Organization(pulumi.CustomResource):
 
         > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Organization("test",
+            description="test API key from Org Creation Test",
+            org_owner_id="6205e5fffff79cde6f",
+            role_names=["ORG_OWNER"])
+        ```
+
         ## Import
 
         Organization must be imported using organization ID, e.g.
@@ -332,6 +344,18 @@ class Organization(pulumi.CustomResource):
         `Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
 
         > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Organization("test",
+            description="test API key from Org Creation Test",
+            org_owner_id="6205e5fffff79cde6f",
+            role_names=["ORG_OWNER"])
+        ```
 
         ## Import
 

@@ -10,6 +10,91 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
+    ///     {
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### With AWS
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+    ///     {
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### With Azure
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+    ///     {
+    ///         AzureConfigs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudProviderAccessSetupAzureConfigArgs
+    ///             {
+    ///                 AtlasAzureAppId = "9f2deb0d-be22-4524-a403-df531868bac0",
+    ///                 ServicePrincipalId = "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+    ///                 TenantId = "91402384-d71e-22f5-22dd-759e272cdc1c",
+    ///             },
+    ///         },
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///         ProviderName = "AZURE",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ## Authorize role
+    /// 
+    /// Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
+    ///     {
+    ///         IamAssumedRoleArn = "arn:aws:iam::772401394250:role/test-user-role",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.

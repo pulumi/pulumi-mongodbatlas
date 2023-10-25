@@ -16,6 +16,111 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
  *
  * ## Example Usage
+ * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.DatabaseUser("test", {
+ *     authDatabaseName: "admin",
+ *     labels: [{
+ *         key: "My Key",
+ *         value: "My Value",
+ *     }],
+ *     password: "test-acc-password",
+ *     projectId: "<PROJECT-ID>",
+ *     roles: [
+ *         {
+ *             databaseName: "dbforApp",
+ *             roleName: "readWrite",
+ *         },
+ *         {
+ *             databaseName: "admin",
+ *             roleName: "readAnyDatabase",
+ *         },
+ *     ],
+ *     scopes: [
+ *         {
+ *             name: "My cluster name",
+ *             type: "CLUSTER",
+ *         },
+ *         {
+ *             name: "My second cluster name",
+ *             type: "CLUSTER",
+ *         },
+ *     ],
+ *     username: "test-acc-username",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.DatabaseUser("test", {
+ *     authDatabaseName: "$external",
+ *     labels: [{
+ *         key: "%s",
+ *         value: "%s",
+ *     }],
+ *     projectId: "<PROJECT-ID>",
+ *     roles: [{
+ *         databaseName: "admin",
+ *         roleName: "readAnyDatabase",
+ *     }],
+ *     scopes: [{
+ *         name: "My cluster name",
+ *         type: "CLUSTER",
+ *     }],
+ *     username: "test-acc-username",
+ *     x509Type: "MANAGED",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.DatabaseUser("test", {
+ *     username: aws_iam_role.test.arn,
+ *     projectId: "<PROJECT-ID>",
+ *     authDatabaseName: "$external",
+ *     awsIamType: "ROLE",
+ *     roles: [{
+ *         roleName: "readAnyDatabase",
+ *         databaseName: "admin",
+ *     }],
+ *     labels: [{
+ *         key: "%s",
+ *         value: "%s",
+ *     }],
+ *     scopes: [{
+ *         name: "My cluster name",
+ *         type: "CLUSTER",
+ *     }],
+ * });
+ * ```
+ * ## Example of how to create a OIDC federated authentication user
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.DatabaseUser("test", {
+ *     authDatabaseName: "admin",
+ *     oidcAuthType: "IDP_GROUP",
+ *     projectId: "6414908c207f4d22f4d8f232",
+ *     roles: [{
+ *         databaseName: "admin",
+ *         roleName: "readWriteAnyDatabase",
+ *     }],
+ *     username: "64d613677e1ad50839cce4db/testUserOr",
+ * });
+ * ```
+ * `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
+ *
+ * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  *
  * ## Import
  *

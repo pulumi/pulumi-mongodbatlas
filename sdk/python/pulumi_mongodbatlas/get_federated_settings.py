@@ -106,6 +106,15 @@ def get_federated_settings(org_id: Optional[str] = None,
     """
     `get_federated_settings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    settings = mongodbatlas.get_federated_settings(org_id="627a9683e7f7f7ff7fe306f14")
+    ```
+
 
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     """
@@ -128,6 +137,15 @@ def get_federated_settings_output(org_id: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsResult]:
     """
     `get_federated_settings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    settings = mongodbatlas.get_federated_settings(org_id="627a9683e7f7f7ff7fe306f14")
+    ```
 
 
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.

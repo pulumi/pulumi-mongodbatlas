@@ -13,6 +13,45 @@ import (
 )
 
 // `FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			identityProvider, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identityProvider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
+//				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
+//				AssociatedDomains: pulumi.StringArray{
+//					pulumi.String("yourdomain.com"),
+//				},
+//				SsoDebugEnabled:            pulumi.Bool(true),
+//				Status:                     pulumi.String("ACTIVE"),
+//				SsoUrl:                     pulumi.String("https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml"),
+//				IssuerUri:                  pulumi.String("http://www.okta.com/exk17f7f7f7f7p50h8"),
+//				RequestBinding:             pulumi.String("HTTP-POST"),
+//				ResponseSignatureAlgorithm: pulumi.String("SHA-256"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupFederatedSettingsIdentityProviderOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProviderOutputArgs{
+//				FederationSettingsId: identityProvider.ID(),
+//				IdentityProviderId:   pulumi.String("0oad47f7fXnk1297"),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupFederatedSettingsIdentityProvider(ctx *pulumi.Context, args *LookupFederatedSettingsIdentityProviderArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsIdentityProviderResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsIdentityProviderResult

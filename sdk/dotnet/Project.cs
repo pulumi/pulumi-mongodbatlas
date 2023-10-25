@@ -14,6 +14,66 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRolesOrgId = Mongodbatlas.GetRolesOrgId.Invoke();
+    /// 
+    ///     var testProject = new Mongodbatlas.Project("testProject", new()
+    ///     {
+    ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+    ///         ProjectOwnerId = "&lt;OWNER_ACCOUNT_ID&gt;",
+    ///         Teams = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+    ///             {
+    ///                 TeamId = "5e0fa8c99ccf641c722fe645",
+    ///                 RoleNames = new[]
+    ///                 {
+    ///                     "GROUP_OWNER",
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+    ///             {
+    ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
+    ///                 RoleNames = new[]
+    ///                 {
+    ///                     "GROUP_READ_ONLY",
+    ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+    ///                 },
+    ///             },
+    ///         },
+    ///         Limits = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+    ///             {
+    ///                 Name = "atlas.project.deployment.clusters",
+    ///                 Value = 26,
+    ///             },
+    ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+    ///             {
+    ///                 Name = "atlas.project.deployment.nodesPerPrivateLinkRegion",
+    ///                 Value = 51,
+    ///             },
+    ///         },
+    ///         IsCollectDatabaseSpecificsStatisticsEnabled = true,
+    ///         IsDataExplorerEnabled = true,
+    ///         IsExtendedStorageSizesEnabled = true,
+    ///         IsPerformanceAdvisorEnabled = true,
+    ///         IsRealtimePerformancePanelEnabled = true,
+    ///         IsSchemaAdvisorEnabled = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Project must be imported using project ID, e.g.

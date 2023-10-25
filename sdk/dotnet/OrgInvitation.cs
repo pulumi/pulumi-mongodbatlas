@@ -11,6 +11,76 @@ namespace Pulumi.Mongodbatlas
 {
     /// <summary>
     /// ## Example Usage
+    /// ### S
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test0 = new Mongodbatlas.OrgInvitation("test0", new()
+    ///     {
+    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         Roles = new[]
+    ///         {
+    ///             "ORG_OWNER",
+    ///         },
+    ///         Username = "test0-acc-username",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test0 = new Mongodbatlas.OrgInvitation("test0", new()
+    ///     {
+    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         Roles = new[]
+    ///         {
+    ///             "ORG_MEMBER",
+    ///             "ORG_BILLING_ADMIN",
+    ///         },
+    ///         Username = "test0-acc-username",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test1 = new Mongodbatlas.OrgInvitation("test1", new()
+    ///     {
+    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         Roles = new[]
+    ///         {
+    ///             "ORG_MEMBER",
+    ///         },
+    ///         TeamsIds = new[]
+    ///         {
+    ///             "&lt;TEAM-0-ID&gt;",
+    ///             "&lt;TEAM-1-ID&gt;",
+    ///         },
+    ///         Username = "test1-acc-username",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

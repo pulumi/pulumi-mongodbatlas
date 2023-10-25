@@ -11,6 +11,35 @@ namespace Pulumi.Mongodbatlas
 {
     /// <summary>
     /// `mongodbatlas.FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
+    /// ## Example Usage
+    /// 
+    /// &gt; **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
+    ///     {
+    ///         AssociatedDomains = new[]
+    ///         {
+    ///             "yourdomain.com",
+    ///         },
+    ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+    ///         IssuerUri = "http://www.okta.com/exk17q7f7f7f7fp50h8",
+    ///         RequestBinding = "HTTP-POST",
+    ///         ResponseSignatureAlgorithm = "SHA-256",
+    ///         SsoDebugEnabled = true,
+    ///         SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
+    ///         Status = "ACTIVE",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

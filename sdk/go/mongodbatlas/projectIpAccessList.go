@@ -21,6 +21,109 @@ import (
 // When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
 //
 // ## Example Usage
+// ### Using CIDR Block
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProjectIpAccessList(ctx, "test", &mongodbatlas.ProjectIpAccessListArgs{
+//				CidrBlock: pulumi.String("1.2.3.4/32"),
+//				Comment:   pulumi.String("cidr block for tf acc testing"),
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Using IP Address
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProjectIpAccessList(ctx, "test", &mongodbatlas.ProjectIpAccessListArgs{
+//				Comment:   pulumi.String("ip address for tf acc testing"),
+//				IpAddress: pulumi.String("2.3.4.5"),
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Using an AWS Security Group
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
+//				ProjectId:      pulumi.String("<PROJECT-ID>"),
+//				AtlasCidrBlock: pulumi.String("192.168.208.0/21"),
+//				ProviderName:   pulumi.String("AWS"),
+//				RegionName:     pulumi.String("US_EAST_1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
+//				ProjectId:           pulumi.String("<PROJECT-ID>"),
+//				ContainerId:         testNetworkContainer.ContainerId,
+//				AccepterRegionName:  pulumi.String("us-east-1"),
+//				ProviderName:        pulumi.String("AWS"),
+//				RouteTableCidrBlock: pulumi.String("172.31.0.0/16"),
+//				VpcId:               pulumi.String("vpc-0d93d6f69f1578bd8"),
+//				AwsAccountId:        pulumi.String("232589400519"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewProjectIpAccessList(ctx, "testProjectIpAccessList", &mongodbatlas.ProjectIpAccessListArgs{
+//				ProjectId:        pulumi.String("<PROJECT-ID>"),
+//				AwsSecurityGroup: pulumi.String("sg-0026348ec11780bd1"),
+//				Comment:          pulumi.String("TestAcc for awsSecurityGroup"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				pulumi.Resource("mongodbatlas_network_peering.test"),
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
 //
 // ## Import
 //

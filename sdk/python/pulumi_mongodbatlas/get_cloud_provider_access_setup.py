@@ -144,6 +144,35 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[pulumi.Inpu
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
     ## Example Usage
+    ### With AWS
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+        project_id="64259ee860c43338194b0f8e",
+        provider_name="AWS")
+    single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
+        provider_name=test_role.provider_name,
+        role_id=test_role.role_id)
+    ```
+    ### With AZURE
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+        project_id="64259ee860c43338194b0f8e",
+        provider_name="AZURE",
+        azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
+            atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
+            service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+            tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
+        )])
+    single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
+        provider_name=test_role.provider_name,
+        role_id=test_role.role_id)
+    ```
 
 
     :param Sequence[pulumi.InputType['GetCloudProviderAccessSetupAzureConfigArgs']] azure_configs: azure related configurations
@@ -183,6 +212,35 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
     ## Example Usage
+    ### With AWS
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+        project_id="64259ee860c43338194b0f8e",
+        provider_name="AWS")
+    single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
+        provider_name=test_role.provider_name,
+        role_id=test_role.role_id)
+    ```
+    ### With AZURE
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+        project_id="64259ee860c43338194b0f8e",
+        provider_name="AZURE",
+        azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
+            atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
+            service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+            tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
+        )])
+    single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
+        provider_name=test_role.provider_name,
+        role_id=test_role.role_id)
+    ```
 
 
     :param Sequence[pulumi.InputType['GetCloudProviderAccessSetupAzureConfigArgs']] azure_configs: azure related configurations

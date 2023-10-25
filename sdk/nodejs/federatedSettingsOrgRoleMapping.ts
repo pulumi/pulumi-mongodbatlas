@@ -9,6 +9,48 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", {
+ *     externalGroupName: "myGrouptest",
+ *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     orgId: "627a9683e7f7f7ff7fe306f14",
+ *     roleAssignments: [
+ *         {
+ *             orgId: "627a9683e7f7f7ff7fe306f14",
+ *             roles: [
+ *                 "ORG_MEMBER",
+ *                 "ORG_GROUP_CREATOR",
+ *                 "ORG_BILLING_ADMIN",
+ *             ],
+ *         },
+ *         {
+ *             groupId: "628aa20d7f7f7f7f7098b81b8",
+ *             roles: [
+ *                 "GROUP_OWNER",
+ *                 "GROUP_DATA_ACCESS_ADMIN",
+ *                 "GROUP_SEARCH_INDEX_EDITOR",
+ *                 "GROUP_DATA_ACCESS_READ_ONLY",
+ *             ],
+ *         },
+ *         {
+ *             groupId: "628aa20d7f7f7f7f7078b81b8",
+ *             roles: [
+ *                 "GROUP_OWNER",
+ *                 "GROUP_DATA_ACCESS_ADMIN",
+ *                 "GROUP_SEARCH_INDEX_EDITOR",
+ *                 "GROUP_DATA_ACCESS_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * FederatedSettingsOrgRoleMapping can be imported using federation_settings_id-org_id-role_mapping_id, e.g.

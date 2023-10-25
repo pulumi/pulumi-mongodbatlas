@@ -228,6 +228,43 @@ class ProjectApiKey(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+        ### Create And Assign PAK Together
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectApiKey("test",
+            description="Description of your API key",
+            project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+                project_id="64259ee860c43338194b0f8e",
+                role_names=["GROUP_OWNER"],
+            )],
+            project_id="64259ee860c43338194b0f8e")
+        ```
+        ### Create And Assign PAK To Multiple Projects
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectApiKey("test",
+            description="Description of your API key",
+            project_assignments=[
+                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+                    project_id="64259ee860c43338194b0f8e",
+                    role_names=[
+                        "GROUP_READ_ONLY",
+                        "GROUP_OWNER",
+                    ],
+                ),
+                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+                    project_id="74259ee860c43338194b0f8e",
+                    role_names=["GROUP_READ_ONLY"],
+                ),
+            ],
+            project_id="64259ee860c43338194b0f8e")
+        ```
 
         ## Import
 
@@ -253,6 +290,43 @@ class ProjectApiKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+        ### Create And Assign PAK Together
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectApiKey("test",
+            description="Description of your API key",
+            project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+                project_id="64259ee860c43338194b0f8e",
+                role_names=["GROUP_OWNER"],
+            )],
+            project_id="64259ee860c43338194b0f8e")
+        ```
+        ### Create And Assign PAK To Multiple Projects
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectApiKey("test",
+            description="Description of your API key",
+            project_assignments=[
+                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+                    project_id="64259ee860c43338194b0f8e",
+                    role_names=[
+                        "GROUP_READ_ONLY",
+                        "GROUP_OWNER",
+                    ],
+                ),
+                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+                    project_id="74259ee860c43338194b0f8e",
+                    role_names=["GROUP_READ_ONLY"],
+                ),
+            ],
+            project_id="64259ee860c43338194b0f8e")
+        ```
 
         ## Import
 

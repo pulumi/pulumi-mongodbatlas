@@ -602,6 +602,47 @@ class Project(pulumi.CustomResource):
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_roles_org_id = mongodbatlas.get_roles_org_id()
+        test_project = mongodbatlas.Project("testProject",
+            org_id=test_roles_org_id.org_id,
+            project_owner_id="<OWNER_ACCOUNT_ID>",
+            teams=[
+                mongodbatlas.ProjectTeamArgs(
+                    team_id="5e0fa8c99ccf641c722fe645",
+                    role_names=["GROUP_OWNER"],
+                ),
+                mongodbatlas.ProjectTeamArgs(
+                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                    role_names=[
+                        "GROUP_READ_ONLY",
+                        "GROUP_DATA_ACCESS_READ_WRITE",
+                    ],
+                ),
+            ],
+            limits=[
+                mongodbatlas.ProjectLimitArgs(
+                    name="atlas.project.deployment.clusters",
+                    value=26,
+                ),
+                mongodbatlas.ProjectLimitArgs(
+                    name="atlas.project.deployment.nodesPerPrivateLinkRegion",
+                    value=51,
+                ),
+            ],
+            is_collect_database_specifics_statistics_enabled=True,
+            is_data_explorer_enabled=True,
+            is_extended_storage_sizes_enabled=True,
+            is_performance_advisor_enabled=True,
+            is_realtime_performance_panel_enabled=True,
+            is_schema_advisor_enabled=True)
+        ```
+
         ## Import
 
         Project must be imported using project ID, e.g.
@@ -635,6 +676,47 @@ class Project(pulumi.CustomResource):
         `Project` provides a Project resource. This allows project to be created.
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_roles_org_id = mongodbatlas.get_roles_org_id()
+        test_project = mongodbatlas.Project("testProject",
+            org_id=test_roles_org_id.org_id,
+            project_owner_id="<OWNER_ACCOUNT_ID>",
+            teams=[
+                mongodbatlas.ProjectTeamArgs(
+                    team_id="5e0fa8c99ccf641c722fe645",
+                    role_names=["GROUP_OWNER"],
+                ),
+                mongodbatlas.ProjectTeamArgs(
+                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                    role_names=[
+                        "GROUP_READ_ONLY",
+                        "GROUP_DATA_ACCESS_READ_WRITE",
+                    ],
+                ),
+            ],
+            limits=[
+                mongodbatlas.ProjectLimitArgs(
+                    name="atlas.project.deployment.clusters",
+                    value=26,
+                ),
+                mongodbatlas.ProjectLimitArgs(
+                    name="atlas.project.deployment.nodesPerPrivateLinkRegion",
+                    value=51,
+                ),
+            ],
+            is_collect_database_specifics_statistics_enabled=True,
+            is_data_explorer_enabled=True,
+            is_extended_storage_sizes_enabled=True,
+            is_performance_advisor_enabled=True,
+            is_realtime_performance_panel_enabled=True,
+            is_schema_advisor_enabled=True)
+        ```
 
         ## Import
 

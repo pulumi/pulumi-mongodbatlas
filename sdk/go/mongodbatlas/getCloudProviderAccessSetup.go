@@ -17,6 +17,73 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
 // ## Example Usage
+// ### With AWS
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testRole, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "testRole", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudProviderAccessSetupOutput(ctx, mongodbatlas.GetCloudProviderAccessSetupOutputArgs{
+//				ProjectId:    testRole.ProjectId,
+//				ProviderName: testRole.ProviderName,
+//				RoleId:       testRole.RoleId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### With AZURE
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testRole, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "testRole", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("AZURE"),
+//				AzureConfigs: mongodbatlas.CloudProviderAccessSetupAzureConfigArray{
+//					&mongodbatlas.CloudProviderAccessSetupAzureConfigArgs{
+//						AtlasAzureAppId:    pulumi.String("9f2deb0d-be22-4524-a403-df531868bac0"),
+//						ServicePrincipalId: pulumi.String("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1"),
+//						TenantId:           pulumi.String("91402384-d71e-22f5-22dd-759e272cdc1c"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudProviderAccessSetupOutput(ctx, mongodbatlas.GetCloudProviderAccessSetupOutputArgs{
+//				ProjectId:    testRole.ProjectId,
+//				ProviderName: testRole.ProviderName,
+//				RoleId:       testRole.RoleId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCloudProviderAccessSetup(ctx *pulumi.Context, args *LookupCloudProviderAccessSetupArgs, opts ...pulumi.InvokeOption) (*LookupCloudProviderAccessSetupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudProviderAccessSetupResult

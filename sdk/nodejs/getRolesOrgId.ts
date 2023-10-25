@@ -8,6 +8,14 @@ import * as utilities from "./utilities";
  * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
  *
  * ## Example Usage
+ * ### Using projectId attribute to query
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getRolesOrgId({});
+ * export const orgId = test.then(test => test.orgId);
+ * ```
  */
 export function getRolesOrgId(opts?: pulumi.InvokeOptions): Promise<GetRolesOrgIdResult> {
 
@@ -33,6 +41,14 @@ export interface GetRolesOrgIdResult {
  * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
  *
  * ## Example Usage
+ * ### Using projectId attribute to query
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getRolesOrgId({});
+ * export const orgId = test.then(test => test.orgId);
+ * ```
  */
 export function getRolesOrgIdOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetRolesOrgIdResult> {
     return pulumi.output(getRolesOrgId(opts))

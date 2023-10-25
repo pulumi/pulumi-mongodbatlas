@@ -12,6 +12,17 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getFederatedQueryLimits({
+ *     projectId: "PROJECT_ID",
+ *     tenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
+ * });
+ * ```
  */
 export function getFederatedQueryLimits(args: GetFederatedQueryLimitsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedQueryLimitsResult> {
 
@@ -57,6 +68,17 @@ export interface GetFederatedQueryLimitsResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getFederatedQueryLimits({
+ *     projectId: "PROJECT_ID",
+ *     tenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
+ * });
+ * ```
  */
 export function getFederatedQueryLimitsOutput(args: GetFederatedQueryLimitsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedQueryLimitsResult> {
     return pulumi.output(args).apply((a: any) => getFederatedQueryLimits(a, opts))

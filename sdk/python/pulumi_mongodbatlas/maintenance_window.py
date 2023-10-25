@@ -360,6 +360,27 @@ class MaintenanceWindow(pulumi.CustomResource):
         - Maintenance Requires Replica Set Elections: Atlas performs maintenance the same way as the manual maintenance procedure. This requires at least one replica set election during the maintenance window per replica set.
         - Maintenance Starts As Close to the Hour As Possible: Maintenance always begins as close to the scheduled hour as possible, but in-progress cluster updates or expected system issues could delay the start time.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.MaintenanceWindow("test",
+            day_of_week=3,
+            hour_of_day=4,
+            project_id="<your-project-id>")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.MaintenanceWindow("test",
+            defer=True,
+            project_id="<your-project-id>")
+        ```
+
         ## Import
 
         Maintenance Window entries can be imported using project project_id, in the format `PROJECTID`, e.g.
@@ -396,6 +417,27 @@ class MaintenanceWindow(pulumi.CustomResource):
         Once maintenance is scheduled for your cluster, you cannot change your maintenance window until the current maintenance efforts have completed.
         - Maintenance Requires Replica Set Elections: Atlas performs maintenance the same way as the manual maintenance procedure. This requires at least one replica set election during the maintenance window per replica set.
         - Maintenance Starts As Close to the Hour As Possible: Maintenance always begins as close to the scheduled hour as possible, but in-progress cluster updates or expected system issues could delay the start time.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.MaintenanceWindow("test",
+            day_of_week=3,
+            hour_of_day=4,
+            project_id="<your-project-id>")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.MaintenanceWindow("test",
+            defer=True,
+            project_id="<your-project-id>")
+        ```
 
         ## Import
 

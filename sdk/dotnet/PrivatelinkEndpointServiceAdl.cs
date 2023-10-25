@@ -13,6 +13,26 @@ namespace Pulumi.Mongodbatlas
     /// `privatelink_endpoint_service_adl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.   The same configuration will provide a PrivateLink connection for either Atlas Data Lake or Online Archive.
     /// 
     /// ## Example Usage
+    /// ### Basic
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var adlTest = new Mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", new()
+    ///     {
+    ///         Comment = "comments for private link endpoint adl",
+    ///         EndpointId = "&lt;ENDPOINT_ID&gt;",
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         ProviderName = "AWS",
+    ///         Type = "DATA_LAKE",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

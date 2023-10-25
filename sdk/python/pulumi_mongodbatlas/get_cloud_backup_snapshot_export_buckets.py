@@ -105,6 +105,20 @@ def get_cloud_backup_snapshot_export_buckets(items_per_page: Optional[int] = Non
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
+        bucket_name="example-bucket",
+        cloud_provider="AWS",
+        iam_role_id="{IAM_ROLE_ID}",
+        project_id="{PROJECT_ID}")
+    test_cloud_backup_snapshot_export_buckets = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
+    ```
+
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param int page_num: The page to return. Defaults to `1`.
@@ -135,6 +149,20 @@ def get_cloud_backup_snapshot_export_buckets_output(items_per_page: Optional[pul
     `get_cloud_backup_snapshot_export_buckets` datasource allows you to retrieve all the buckets for the specified project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
+        bucket_name="example-bucket",
+        cloud_provider="AWS",
+        iam_role_id="{IAM_ROLE_ID}",
+        project_id="{PROJECT_ID}")
+    test_cloud_backup_snapshot_export_buckets = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
+    ```
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.

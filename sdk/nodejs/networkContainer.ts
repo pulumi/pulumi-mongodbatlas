@@ -16,6 +16,48 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
+ * ### Example with AWS
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.NetworkContainer("test", {
+ *     atlasCidrBlock: "10.8.0.0/21",
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     providerName: "AWS",
+ *     regionName: "US_EAST_1",
+ * });
+ * ```
+ * ### Example with GCP
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.NetworkContainer("test", {
+ *     atlasCidrBlock: "10.8.0.0/21",
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     providerName: "GCP",
+ *     regions: [
+ *         "US_EAST_4",
+ *         "US_WEST_3",
+ *     ],
+ * });
+ * ```
+ * ### Example with Azure
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.NetworkContainer("test", {
+ *     atlasCidrBlock: "10.8.0.0/21",
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     providerName: "AZURE",
+ *     region: "US_EAST_2",
+ * });
+ * ```
  *
  * ## Import
  *

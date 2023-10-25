@@ -15,6 +15,136 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
     /// ## Example Usage
+    /// ### S With MongoDB Atlas Cluster As Storage Database
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         StorageDatabases = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseArgs
+    ///             {
+    ///                 Collections = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionArgs
+    ///                     {
+    ///                         DataSources = new[]
+    ///                         {
+    ///                             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs
+    ///                             {
+    ///                                 Collection = "COLLECTION IN THE CLUSTER",
+    ///                                 Database = "DB IN THE CLUSTER",
+    ///                                 StoreName = "CLUSTER NAME",
+    ///                             },
+    ///                         },
+    ///                         Name = "NAME OF THE COLLECTION",
+    ///                     },
+    ///                 },
+    ///                 Name = "VirtualDatabase0",
+    ///             },
+    ///         },
+    ///         StorageStores = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreArgs
+    ///             {
+    ///                 ClusterName = "CLUSTER NAME",
+    ///                 Name = "STORE 1 NAME",
+    ///                 ProjectId = "PROJECT ID",
+    ///                 Provider = "atlas",
+    ///                 ReadPreference = new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs
+    ///                 {
+    ///                     Mode = "secondary",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### S With Amazon S3 Bucket As Storage Database
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
+    ///     {
+    ///         CloudProviderConfig = new Mongodbatlas.Inputs.FederatedDatabaseInstanceCloudProviderConfigArgs
+    ///         {
+    ///             Aws = new Mongodbatlas.Inputs.FederatedDatabaseInstanceCloudProviderConfigAwsArgs
+    ///             {
+    ///                 RoleId = "AWS ROLE ID",
+    ///                 TestS3Bucket = "S3 BUCKET NAME",
+    ///             },
+    ///         },
+    ///         ProjectId = "PROJECT ID",
+    ///         StorageDatabases = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseArgs
+    ///             {
+    ///                 Collections = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionArgs
+    ///                     {
+    ///                         DataSources = new[]
+    ///                         {
+    ///                             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs
+    ///                             {
+    ///                                 Collection = "COLLECTION IN THE CLUSTER",
+    ///                                 Database = "DB IN THE CLUSTER",
+    ///                                 StoreName = "CLUSTER NAME",
+    ///                             },
+    ///                             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs
+    ///                             {
+    ///                                 Path = "S3 BUCKET PATH",
+    ///                                 StoreName = "S3 BUCKET NAME",
+    ///                             },
+    ///                         },
+    ///                         Name = "NAME OF THE COLLECTION",
+    ///                     },
+    ///                 },
+    ///                 Name = "VirtualDatabase0",
+    ///             },
+    ///         },
+    ///         StorageStores = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreArgs
+    ///             {
+    ///                 ClusterName = "CLUSTER NAME",
+    ///                 Name = "STORE 1 NAME",
+    ///                 ProjectId = "PROJECT ID",
+    ///                 Provider = "atlas",
+    ///                 ReadPreference = new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs
+    ///                 {
+    ///                     Mode = "secondary",
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreArgs
+    ///             {
+    ///                 Bucket = "STORE 2 NAME",
+    ///                 Delimiter = "/",
+    ///                 Name = "S3 BUCKET NAME",
+    ///                 Prefix = "S3 BUCKET PREFIX",
+    ///                 Provider = "s3",
+    ///                 Region = "AWS REGION",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

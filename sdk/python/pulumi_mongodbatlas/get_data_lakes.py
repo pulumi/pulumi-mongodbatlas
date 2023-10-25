@@ -73,6 +73,15 @@ def get_data_lakes(project_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_data_lakes(project_id="PROJECT ID")
+    ```
+
 
     :param str project_id: The unique ID for the project to get all data lakes.
     """
@@ -94,6 +103,15 @@ def get_data_lakes_output(project_id: Optional[pulumi.Input[str]] = None,
     `get_data_lakes` describe all Data Lakes.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_data_lakes(project_id="PROJECT ID")
+    ```
 
 
     :param str project_id: The unique ID for the project to get all data lakes.

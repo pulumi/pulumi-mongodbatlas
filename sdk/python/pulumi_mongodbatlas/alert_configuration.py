@@ -375,6 +375,118 @@ class AlertConfiguration(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            enabled=True,
+            event_type="OUTSIDE_METRIC_THRESHOLD",
+            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+                field_name="HOSTNAME_AND_PORT",
+                operator="EQUALS",
+                value="SECONDARY",
+            )],
+            metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
+                metric_name="ASSERT_REGULAR",
+                mode="AVERAGE",
+                operator="LESS_THAN",
+                threshold=99,
+                units="RAW",
+            ),
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                delay_min=0,
+                email_enabled=True,
+                interval_min=5,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+                sms_enabled=False,
+                type_name="GROUP",
+            )],
+            project_id="<PROJECT-ID>")
+        ```
+
+        > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            enabled=True,
+            event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+                field_name="HOSTNAME_AND_PORT",
+                operator="EQUALS",
+                value="SECONDARY",
+            )],
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                delay_min=0,
+                email_enabled=True,
+                interval_min=5,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+                sms_enabled=False,
+                type_name="GROUP",
+            )],
+            project_id="<PROJECT-ID>",
+            threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
+                operator="LESS_THAN",
+                threshold=1,
+                units="HOURS",
+            ))
+        ```
+        ### Create an alert with two notifications using Email and SMS
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            enabled=True,
+            event_type="OUTSIDE_METRIC_THRESHOLD",
+            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+                field_name="HOSTNAME_AND_PORT",
+                operator="EQUALS",
+                value="SECONDARY",
+            )],
+            metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
+                metric_name="ASSERT_REGULAR",
+                mode="AVERAGE",
+                operator="LESS_THAN",
+                threshold=99,
+                units="RAW",
+            ),
+            notifications=[
+                mongodbatlas.AlertConfigurationNotificationArgs(
+                    delay_min=0,
+                    email_enabled=True,
+                    interval_min=5,
+                    roles=[
+                        "GROUP_DATA_ACCESS_READ_ONLY",
+                        "GROUP_CLUSTER_MANAGER",
+                        "GROUP_DATA_ACCESS_ADMIN",
+                    ],
+                    sms_enabled=False,
+                    type_name="GROUP",
+                ),
+                mongodbatlas.AlertConfigurationNotificationArgs(
+                    delay_min=0,
+                    email_enabled=False,
+                    interval_min=5,
+                    sms_enabled=True,
+                    type_name="ORG",
+                ),
+            ],
+            project_id="PROJECT ID")
+        ```
+
         ## Import
 
         Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.
@@ -404,6 +516,118 @@ class AlertConfiguration(pulumi.CustomResource):
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            enabled=True,
+            event_type="OUTSIDE_METRIC_THRESHOLD",
+            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+                field_name="HOSTNAME_AND_PORT",
+                operator="EQUALS",
+                value="SECONDARY",
+            )],
+            metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
+                metric_name="ASSERT_REGULAR",
+                mode="AVERAGE",
+                operator="LESS_THAN",
+                threshold=99,
+                units="RAW",
+            ),
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                delay_min=0,
+                email_enabled=True,
+                interval_min=5,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+                sms_enabled=False,
+                type_name="GROUP",
+            )],
+            project_id="<PROJECT-ID>")
+        ```
+
+        > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            enabled=True,
+            event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+                field_name="HOSTNAME_AND_PORT",
+                operator="EQUALS",
+                value="SECONDARY",
+            )],
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                delay_min=0,
+                email_enabled=True,
+                interval_min=5,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+                sms_enabled=False,
+                type_name="GROUP",
+            )],
+            project_id="<PROJECT-ID>",
+            threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
+                operator="LESS_THAN",
+                threshold=1,
+                units="HOURS",
+            ))
+        ```
+        ### Create an alert with two notifications using Email and SMS
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            enabled=True,
+            event_type="OUTSIDE_METRIC_THRESHOLD",
+            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+                field_name="HOSTNAME_AND_PORT",
+                operator="EQUALS",
+                value="SECONDARY",
+            )],
+            metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
+                metric_name="ASSERT_REGULAR",
+                mode="AVERAGE",
+                operator="LESS_THAN",
+                threshold=99,
+                units="RAW",
+            ),
+            notifications=[
+                mongodbatlas.AlertConfigurationNotificationArgs(
+                    delay_min=0,
+                    email_enabled=True,
+                    interval_min=5,
+                    roles=[
+                        "GROUP_DATA_ACCESS_READ_ONLY",
+                        "GROUP_CLUSTER_MANAGER",
+                        "GROUP_DATA_ACCESS_ADMIN",
+                    ],
+                    sms_enabled=False,
+                    type_name="GROUP",
+                ),
+                mongodbatlas.AlertConfigurationNotificationArgs(
+                    delay_min=0,
+                    email_enabled=False,
+                    interval_min=5,
+                    sms_enabled=True,
+                    type_name="ORG",
+                ),
+            ],
+            project_id="PROJECT ID")
+        ```
 
         ## Import
 

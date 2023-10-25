@@ -94,6 +94,21 @@ def get_federated_settings_org_configs(federation_settings_id: Optional[str] = N
     """
     `get_federated_settings_org_configs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    org_connections = mongodbatlas.FederatedSettingsOrgConfig("orgConnections",
+        federation_settings_id="627a9687f7f7f7f774de306f14",
+        org_id="627a9683ea7ff7f74de306f14",
+        domain_restriction_enabled=False,
+        domain_allow_lists=["mydomain.com"],
+        post_auth_role_grants=["ORG_MEMBER"])
+    org_configs_ds = mongodbatlas.get_federated_settings_org_configs_output(federation_settings_id=org_connections.id)
+    ```
+
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -121,6 +136,21 @@ def get_federated_settings_org_configs_output(federation_settings_id: Optional[p
                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsOrgConfigsResult]:
     """
     `get_federated_settings_org_configs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    org_connections = mongodbatlas.FederatedSettingsOrgConfig("orgConnections",
+        federation_settings_id="627a9687f7f7f7f774de306f14",
+        org_id="627a9683ea7ff7f74de306f14",
+        domain_restriction_enabled=False,
+        domain_allow_lists=["mydomain.com"],
+        post_auth_role_grants=["ORG_MEMBER"])
+    org_configs_ds = mongodbatlas.get_federated_settings_org_configs_output(federation_settings_id=org_connections.id)
+    ```
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.

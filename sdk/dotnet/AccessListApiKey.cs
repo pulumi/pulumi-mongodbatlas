@@ -11,6 +11,42 @@ namespace Pulumi.Mongodbatlas
 {
     /// <summary>
     /// ## Example Usage
+    /// ### Using CIDR Block
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.AccessListApiKey("test", new()
+    ///     {
+    ///         ApiKeyId = "a29120e123cd",
+    ///         CidrBlock = "1.2.3.4/32",
+    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Using IP Address
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.AccessListApiKey("test", new()
+    ///     {
+    ///         ApiKeyId = "a29120e123cd",
+    ///         IpAddress = "2.3.4.5",
+    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

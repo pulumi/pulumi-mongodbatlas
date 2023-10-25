@@ -262,6 +262,22 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
+        ### AWS Example
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
+            project_id="<PROJECT_ID>",
+            provider_settings_backing_provider_name="AWS",
+            provider_settings_provider_name="SERVERLESS",
+            provider_settings_region_name="US_EAST_1",
+            continuous_backup_enabled=True)
+        test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
+            project_id="<PROJECT_ID>",
+            instance_name=test_serverless_instance.name,
+            provider_name="AWS")
+        ```
 
         ## Import
 
@@ -291,6 +307,22 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
+        ### AWS Example
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
+            project_id="<PROJECT_ID>",
+            provider_settings_backing_provider_name="AWS",
+            provider_settings_provider_name="SERVERLESS",
+            provider_settings_region_name="US_EAST_1",
+            continuous_backup_enabled=True)
+        test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
+            project_id="<PROJECT_ID>",
+            instance_name=test_serverless_instance.name,
+            provider_name="AWS")
+        ```
 
         ## Import
 

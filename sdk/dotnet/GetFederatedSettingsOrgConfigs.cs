@@ -13,12 +13,88 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// `mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new()
+        ///     {
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///         DomainRestrictionEnabled = false,
+        ///         DomainAllowLists = new[]
+        ///         {
+        ///             "mydomain.com",
+        ///         },
+        ///         PostAuthRoleGrants = new[]
+        ///         {
+        ///             "ORG_MEMBER",
+        ///         },
+        ///     });
+        /// 
+        ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = orgConnections.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetFederatedSettingsOrgConfigsResult> InvokeAsync(GetFederatedSettingsOrgConfigsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgConfigsResult>("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", args ?? new GetFederatedSettingsOrgConfigsArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new()
+        ///     {
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///         DomainRestrictionEnabled = false,
+        ///         DomainAllowLists = new[]
+        ///         {
+        ///             "mydomain.com",
+        ///         },
+        ///         PostAuthRoleGrants = new[]
+        ///         {
+        ///             "ORG_MEMBER",
+        ///         },
+        ///     });
+        /// 
+        ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = orgConnections.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetFederatedSettingsOrgConfigsResult> Invoke(GetFederatedSettingsOrgConfigsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgConfigsResult>("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", args ?? new GetFederatedSettingsOrgConfigsInvokeArgs(), options.WithDefaults());

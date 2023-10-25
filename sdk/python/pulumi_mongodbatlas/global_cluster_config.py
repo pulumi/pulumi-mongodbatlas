@@ -246,6 +246,93 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         ## Examples Usage
 
+        ### Example Global cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Cluster("test",
+            project_id="<YOUR-PROJECT-ID>",
+            cloud_backup=True,
+            cluster_type="GEOSHARDED",
+            provider_name="AWS",
+            provider_instance_size_name="M30",
+            replication_specs=[
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 1",
+                    num_shards=1,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="EU_CENTRAL_1",
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                    )],
+                ),
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 2",
+                    num_shards=1,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_2",
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                    )],
+                ),
+            ])
+        config = mongodbatlas.GlobalClusterConfig("config",
+            project_id=test.project_id,
+            cluster_name=test.name,
+            managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
+                db="mydata",
+                collection="publishers",
+                custom_shard_key="city",
+                is_custom_shard_key_hashed=False,
+                is_shard_key_unique=False,
+            )],
+            custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
+                location="CA",
+                zone="Zone 1",
+            )])
+        ```
+
+        ### Example Global cluster config
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            cluster_type="REPLICASET",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST_1",
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                )],
+            )],
+            backup_enabled=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="4.0",
+            provider_name="AWS",
+            provider_instance_size_name="M40")
+        config = mongodbatlas.GlobalClusterConfig("config",
+            project_id=mongodbatlas_cluster["test"]["project_id"],
+            cluster_name=mongodbatlas_cluster["test"]["name"],
+            managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
+                db="mydata",
+                collection="publishers",
+                custom_shard_key="city",
+            )],
+            custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
+                location="CA",
+                zone="Zone 1",
+            )])
+        ```
+
         ## Import
 
         Global Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTER_NAME`, e.g.
@@ -274,6 +361,93 @@ class GlobalClusterConfig(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Examples Usage
+
+        ### Example Global cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Cluster("test",
+            project_id="<YOUR-PROJECT-ID>",
+            cloud_backup=True,
+            cluster_type="GEOSHARDED",
+            provider_name="AWS",
+            provider_instance_size_name="M30",
+            replication_specs=[
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 1",
+                    num_shards=1,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="EU_CENTRAL_1",
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                    )],
+                ),
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 2",
+                    num_shards=1,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_2",
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                    )],
+                ),
+            ])
+        config = mongodbatlas.GlobalClusterConfig("config",
+            project_id=test.project_id,
+            cluster_name=test.name,
+            managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
+                db="mydata",
+                collection="publishers",
+                custom_shard_key="city",
+                is_custom_shard_key_hashed=False,
+                is_shard_key_unique=False,
+            )],
+            custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
+                location="CA",
+                zone="Zone 1",
+            )])
+        ```
+
+        ### Example Global cluster config
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            cluster_type="REPLICASET",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST_1",
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                )],
+            )],
+            backup_enabled=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="4.0",
+            provider_name="AWS",
+            provider_instance_size_name="M40")
+        config = mongodbatlas.GlobalClusterConfig("config",
+            project_id=mongodbatlas_cluster["test"]["project_id"],
+            cluster_name=mongodbatlas_cluster["test"]["name"],
+            managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
+                db="mydata",
+                collection="publishers",
+                custom_shard_key="city",
+            )],
+            custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
+                location="CA",
+                zone="Zone 1",
+            )])
+        ```
 
         ## Import
 

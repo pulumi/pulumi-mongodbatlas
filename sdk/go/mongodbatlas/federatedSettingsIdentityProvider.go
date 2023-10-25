@@ -14,6 +14,42 @@ import (
 )
 
 // `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
+// ## Example Usage
+//
+// > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identityProvider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
+//				AssociatedDomains: pulumi.StringArray{
+//					pulumi.String("yourdomain.com"),
+//				},
+//				FederationSettingsId:       pulumi.String("627a9687f7f7f7f774de306f14"),
+//				IssuerUri:                  pulumi.String("http://www.okta.com/exk17q7f7f7f7fp50h8"),
+//				RequestBinding:             pulumi.String("HTTP-POST"),
+//				ResponseSignatureAlgorithm: pulumi.String("SHA-256"),
+//				SsoDebugEnabled:            pulumi.Bool(true),
+//				SsoUrl:                     pulumi.String("https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml"),
+//				Status:                     pulumi.String("ACTIVE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

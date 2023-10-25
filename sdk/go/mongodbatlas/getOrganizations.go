@@ -13,6 +13,33 @@ import (
 )
 
 // `getOrganizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.LookupOrganizations(ctx, &mongodbatlas.LookupOrganizationsArgs{
+//				ItemsPerPage: pulumi.IntRef(5),
+//				PageNum:      pulumi.IntRef(1),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupOrganizations(ctx *pulumi.Context, args *LookupOrganizationsArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOrganizationsResult

@@ -103,6 +103,50 @@ def get_federated_settings_org_role_mapping(federation_settings_id: Optional[str
     """
     `FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
+        federation_settings_id=data["mongodbatlas_federated_settings"]["federated_settings"]["id"],
+        org_id="627a9683e7f7f7ff7fe306f14",
+        external_group_name="myGrouptest",
+        role_assignments=[
+            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                org_id="627a9683e7f7f7ff7fe306f14",
+                roles=[
+                    "ORG_MEMBER",
+                    "ORG_GROUP_CREATOR",
+                    "ORG_BILLING_ADMIN",
+                ],
+            ),
+            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                group_id="628aa20db7f7f7f98b81b8",
+                roles=[
+                    "GROUP_OWNER",
+                    "GROUP_DATA_ACCESS_ADMIN",
+                    "GROUP_SEARCH_INDEX_EDITOR",
+                    "GROUP_DATA_ACCESS_READ_ONLY",
+                ],
+            ),
+            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                group_id="62b477f7f7f7f5e741489c",
+                roles=[
+                    "GROUP_OWNER",
+                    "GROUP_DATA_ACCESS_ADMIN",
+                    "GROUP_SEARCH_INDEX_EDITOR",
+                    "GROUP_DATA_ACCESS_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+            ),
+        ])
+    role_mapping = mongodbatlas.get_federated_settings_org_role_mapping_output(federation_settings_id=org_group_role_mapping_import.id,
+        org_id="627a9683e7f7f7ff7fe306f14",
+        role_mapping_id="627a9673e7f7f7ff7fe306f14")
+    ```
+
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -130,6 +174,50 @@ def get_federated_settings_org_role_mapping_output(federation_settings_id: Optio
                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsOrgRoleMappingResult]:
     """
     `FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
+        federation_settings_id=data["mongodbatlas_federated_settings"]["federated_settings"]["id"],
+        org_id="627a9683e7f7f7ff7fe306f14",
+        external_group_name="myGrouptest",
+        role_assignments=[
+            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                org_id="627a9683e7f7f7ff7fe306f14",
+                roles=[
+                    "ORG_MEMBER",
+                    "ORG_GROUP_CREATOR",
+                    "ORG_BILLING_ADMIN",
+                ],
+            ),
+            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                group_id="628aa20db7f7f7f98b81b8",
+                roles=[
+                    "GROUP_OWNER",
+                    "GROUP_DATA_ACCESS_ADMIN",
+                    "GROUP_SEARCH_INDEX_EDITOR",
+                    "GROUP_DATA_ACCESS_READ_ONLY",
+                ],
+            ),
+            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
+                group_id="62b477f7f7f7f5e741489c",
+                roles=[
+                    "GROUP_OWNER",
+                    "GROUP_DATA_ACCESS_ADMIN",
+                    "GROUP_SEARCH_INDEX_EDITOR",
+                    "GROUP_DATA_ACCESS_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+            ),
+        ])
+    role_mapping = mongodbatlas.get_federated_settings_org_role_mapping_output(federation_settings_id=org_group_role_mapping_import.id,
+        org_id="627a9683e7f7f7ff7fe306f14",
+        role_mapping_id="627a9673e7f7f7ff7fe306f14")
+    ```
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.

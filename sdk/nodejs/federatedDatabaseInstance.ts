@@ -12,6 +12,88 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ * ### S With MongoDB Atlas Cluster As Storage Database
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.FederatedDatabaseInstance("test", {
+ *     projectId: "PROJECT ID",
+ *     storageDatabases: [{
+ *         collections: [{
+ *             dataSources: [{
+ *                 collection: "COLLECTION IN THE CLUSTER",
+ *                 database: "DB IN THE CLUSTER",
+ *                 storeName: "CLUSTER NAME",
+ *             }],
+ *             name: "NAME OF THE COLLECTION",
+ *         }],
+ *         name: "VirtualDatabase0",
+ *     }],
+ *     storageStores: [{
+ *         clusterName: "CLUSTER NAME",
+ *         name: "STORE 1 NAME",
+ *         projectId: "PROJECT ID",
+ *         provider: "atlas",
+ *         readPreference: {
+ *             mode: "secondary",
+ *         },
+ *     }],
+ * });
+ * ```
+ * ### S With Amazon S3 Bucket As Storage Database
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.FederatedDatabaseInstance("test", {
+ *     cloudProviderConfig: {
+ *         aws: {
+ *             roleId: "AWS ROLE ID",
+ *             testS3Bucket: "S3 BUCKET NAME",
+ *         },
+ *     },
+ *     projectId: "PROJECT ID",
+ *     storageDatabases: [{
+ *         collections: [{
+ *             dataSources: [
+ *                 {
+ *                     collection: "COLLECTION IN THE CLUSTER",
+ *                     database: "DB IN THE CLUSTER",
+ *                     storeName: "CLUSTER NAME",
+ *                 },
+ *                 {
+ *                     path: "S3 BUCKET PATH",
+ *                     storeName: "S3 BUCKET NAME",
+ *                 },
+ *             ],
+ *             name: "NAME OF THE COLLECTION",
+ *         }],
+ *         name: "VirtualDatabase0",
+ *     }],
+ *     storageStores: [
+ *         {
+ *             clusterName: "CLUSTER NAME",
+ *             name: "STORE 1 NAME",
+ *             projectId: "PROJECT ID",
+ *             provider: "atlas",
+ *             readPreference: {
+ *                 mode: "secondary",
+ *             },
+ *         },
+ *         {
+ *             bucket: "STORE 2 NAME",
+ *             delimiter: "/",
+ *             name: "S3 BUCKET NAME",
+ *             prefix: "S3 BUCKET PREFIX",
+ *             provider: "s3",
+ *             region: "AWS REGION",
+ *         },
+ *     ],
+ * });
+ * ```
  *
  * ## Import
  *

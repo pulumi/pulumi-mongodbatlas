@@ -570,6 +570,88 @@ class SearchIndex(pulumi.CustomResource):
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 
         ## Example Usage
+        ### Basic
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_basic_search_index = mongodbatlas.SearchIndex("test-basic-search-index",
+            analyzer="lucene.standard",
+            cluster_name="<CLUSTER_NAME>",
+            collection_name="collection_test",
+            database="database_test",
+            mappings_dynamic=True,
+            project_id="<PROJECT_ID>",
+            search_analyzer="lucene.standard")
+        ```
+        ### Advanced (with custom analyzers)
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_advanced_search_index = mongodbatlas.SearchIndex("test-advanced-search-index",
+            project_id="%[1]s",
+            cluster_name="%[2]s",
+            analyzer="lucene.standard",
+            collection_name="collection_test",
+            database="database_test",
+            mappings_dynamic=False,
+            mappings_fields=\"\"\"{
+              "address": {
+                "type": "document",
+                "fields": {
+                  "city": {
+                    "type": "string",
+                    "analyzer": "lucene.simple",
+                    "ignoreAbove": 255
+                  },
+                  "state": {
+                    "type": "string",
+                    "analyzer": "lucene.english"
+                  }
+                }
+              },
+              "company": {
+                "type": "string",
+                "analyzer": "lucene.whitespace",
+                "multi": {
+                  "mySecondaryAnalyzer": {
+                    "type": "string",
+                    "analyzer": "lucene.french"
+                  }
+                }
+              },
+              "employees": {
+                "type": "string",
+                "analyzer": "lucene.standard"
+              }
+        }
+        \"\"\",
+            search_analyzer="lucene.standard",
+            analyzers=\"\"\" [{
+         "name": "index_analyzer_test_name",
+         "charFilters": {
+        "type": "mapping",
+        "mappings": {"\\\\" : "/"}
+           	},
+         "tokenizer": {
+         "type": "nGram",
+         "minGram": 2,
+         "maxGram": 5
+        	},
+         "tokenFilters": {
+        "type": "length",
+        "min": 20,
+        "max": 33
+           	}
+         }]
+        \"\"\",
+            synonyms=[mongodbatlas.SearchIndexSynonymArgs(
+                analyzer="lucene.simple",
+                name="synonym_test",
+                source_collection="collection_test",
+            )])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -595,6 +677,88 @@ class SearchIndex(pulumi.CustomResource):
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 
         ## Example Usage
+        ### Basic
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_basic_search_index = mongodbatlas.SearchIndex("test-basic-search-index",
+            analyzer="lucene.standard",
+            cluster_name="<CLUSTER_NAME>",
+            collection_name="collection_test",
+            database="database_test",
+            mappings_dynamic=True,
+            project_id="<PROJECT_ID>",
+            search_analyzer="lucene.standard")
+        ```
+        ### Advanced (with custom analyzers)
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_advanced_search_index = mongodbatlas.SearchIndex("test-advanced-search-index",
+            project_id="%[1]s",
+            cluster_name="%[2]s",
+            analyzer="lucene.standard",
+            collection_name="collection_test",
+            database="database_test",
+            mappings_dynamic=False,
+            mappings_fields=\"\"\"{
+              "address": {
+                "type": "document",
+                "fields": {
+                  "city": {
+                    "type": "string",
+                    "analyzer": "lucene.simple",
+                    "ignoreAbove": 255
+                  },
+                  "state": {
+                    "type": "string",
+                    "analyzer": "lucene.english"
+                  }
+                }
+              },
+              "company": {
+                "type": "string",
+                "analyzer": "lucene.whitespace",
+                "multi": {
+                  "mySecondaryAnalyzer": {
+                    "type": "string",
+                    "analyzer": "lucene.french"
+                  }
+                }
+              },
+              "employees": {
+                "type": "string",
+                "analyzer": "lucene.standard"
+              }
+        }
+        \"\"\",
+            search_analyzer="lucene.standard",
+            analyzers=\"\"\" [{
+         "name": "index_analyzer_test_name",
+         "charFilters": {
+        "type": "mapping",
+        "mappings": {"\\\\" : "/"}
+           	},
+         "tokenizer": {
+         "type": "nGram",
+         "minGram": 2,
+         "maxGram": 5
+        	},
+         "tokenFilters": {
+        "type": "length",
+        "min": 20,
+        "max": 33
+           	}
+         }]
+        \"\"\",
+            synonyms=[mongodbatlas.SearchIndexSynonymArgs(
+                analyzer="lucene.simple",
+                name="synonym_test",
+                source_collection="collection_test",
+            )])
+        ```
 
         :param str resource_name: The name of the resource.
         :param SearchIndexArgs args: The arguments to use to populate this resource's properties.

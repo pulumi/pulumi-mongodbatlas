@@ -14,6 +14,58 @@ import (
 )
 
 // ## Example Usage
+// ### Using CIDR Block
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAccessListApiKey(ctx, "test", &mongodbatlas.AccessListApiKeyArgs{
+//				ApiKeyId:  pulumi.String("a29120e123cd"),
+//				CidrBlock: pulumi.String("1.2.3.4/32"),
+//				OrgId:     pulumi.String("<ORG-ID>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Using IP Address
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAccessListApiKey(ctx, "test", &mongodbatlas.AccessListApiKeyArgs{
+//				ApiKeyId:  pulumi.String("a29120e123cd"),
+//				IpAddress: pulumi.String("2.3.4.5"),
+//				OrgId:     pulumi.String("<ORG-ID>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

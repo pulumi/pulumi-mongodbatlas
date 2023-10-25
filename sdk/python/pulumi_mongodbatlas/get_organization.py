@@ -93,6 +93,13 @@ def get_organization(org_id: Optional[str] = None,
     `Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
 
     ## Example Usage
+    ### Using project_id attribute to query
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_organization(org_id="<org_id>")
+    ```
 
 
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization.
@@ -117,6 +124,13 @@ def get_organization_output(org_id: Optional[pulumi.Input[str]] = None,
     `Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
 
     ## Example Usage
+    ### Using project_id attribute to query
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_organization(org_id="<org_id>")
+    ```
 
 
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization.

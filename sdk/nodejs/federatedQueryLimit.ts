@@ -10,6 +10,20 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.FederatedQueryLimit("test", {
+ *     limitName: "bytesProcessed.weekly",
+ *     overrunPolicy: "BLOCK",
+ *     projectId: "64707f06c519c20c3a2b1b03",
+ *     tenantName: "FederatedDatabseInstance0",
+ *     value: 5147483648,
+ * });
+ * ```
  *
  * ## Import
  *

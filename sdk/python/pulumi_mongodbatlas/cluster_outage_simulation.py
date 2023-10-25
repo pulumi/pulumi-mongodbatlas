@@ -252,6 +252,26 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
 
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        outage_simulation = mongodbatlas.ClusterOutageSimulation("outageSimulation",
+            cluster_name="Cluster0",
+            outage_filters=[
+                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
+                    cloud_provider="AWS",
+                    region_name="US_EAST_1",
+                ),
+                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
+                    cloud_provider="AWS",
+                    region_name="US_EAST_2",
+                ),
+            ],
+            project_id="64707f06c519c20c3a2b1b03")
+        ```
 
         ## Import
 
@@ -284,6 +304,26 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
 
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        outage_simulation = mongodbatlas.ClusterOutageSimulation("outageSimulation",
+            cluster_name="Cluster0",
+            outage_filters=[
+                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
+                    cloud_provider="AWS",
+                    region_name="US_EAST_1",
+                ),
+                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
+                    cloud_provider="AWS",
+                    region_name="US_EAST_2",
+                ),
+            ],
+            project_id="64707f06c519c20c3a2b1b03")
+        ```
 
         ## Import
 

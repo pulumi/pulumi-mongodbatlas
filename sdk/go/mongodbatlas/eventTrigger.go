@@ -20,6 +20,169 @@ import (
 // ## Example Usage
 //
 // ### S
+// ### Example Usage: Database Trigger with Function
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				ProjectId:  pulumi.String("PROJECT ID"),
+//				AppId:      pulumi.String("APPLICATION ID"),
+//				Type:       pulumi.String("DATABASE"),
+//				FunctionId: pulumi.String("FUNCTION ID"),
+//				Disabled:   pulumi.Bool(false),
+//				ConfigOperationTypes: pulumi.StringArray{
+//					pulumi.String("INSERT"),
+//					pulumi.String("UPDATE"),
+//				},
+//				ConfigDatabase:   pulumi.String("DATABASE NAME"),
+//				ConfigCollection: pulumi.String("COLLECTION NAME"),
+//				ConfigServiceId:  pulumi.String("SERVICE ID"),
+//				ConfigMatch: pulumi.String(`{
+//	  "updateDescription.updatedFields": {
+//	    "status": "blocked"
+//	  }
+//	}
+//
+// `),
+//
+//				ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigFullDocument:       pulumi.Bool(false),
+//				ConfigFullDocumentBefore: pulumi.Bool(false),
+//				EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
+//					AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
+//						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
+//						ConfigRegion:    pulumi.String("AWS REGIOn"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Example Usage: Database Trigger with EventBridge
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				AppId:                    pulumi.String("APPLICATION ID"),
+//				ConfigCollection:         pulumi.String("COLLECTION NAME"),
+//				ConfigDatabase:           pulumi.String("DATABASE NAME"),
+//				ConfigFullDocument:       pulumi.Bool(false),
+//				ConfigFullDocumentBefore: pulumi.Bool(false),
+//				ConfigMatch:              pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigOperationType:      pulumi.String("LOGIN"),
+//				ConfigOperationTypes: pulumi.StringArray{
+//					pulumi.String("INSERT"),
+//					pulumi.String("UPDATE"),
+//				},
+//				ConfigProject: pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigProviders: pulumi.StringArray{
+//					pulumi.String("anon-user"),
+//				},
+//				ConfigSchedule:  pulumi.String("*"),
+//				ConfigServiceId: pulumi.String("1"),
+//				Disabled:        pulumi.Bool(false),
+//				EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
+//					AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
+//						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
+//						ConfigRegion:    pulumi.String("AWS REGIOn"),
+//					},
+//				},
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				Type:      pulumi.String("DATABASE"),
+//				Unordered: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Example Usage: Authentication Trigger
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				AppId:               pulumi.String("APPLICATION ID"),
+//				ConfigOperationType: pulumi.String("LOGIN"),
+//				ConfigProviders: pulumi.StringArray{
+//					pulumi.String("anon-user"),
+//				},
+//				Disabled:   pulumi.Bool(false),
+//				FunctionId: pulumi.String("1"),
+//				ProjectId:  pulumi.String("PROJECT ID"),
+//				Type:       pulumi.String("AUTHENTICATION"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Example Usage: Scheduled Trigger
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				AppId:          pulumi.String("APPLICATION ID"),
+//				ConfigSchedule: pulumi.String("*"),
+//				Disabled:       pulumi.Bool(false),
+//				FunctionId:     pulumi.String("1"),
+//				ProjectId:      pulumi.String("PROJECT ID"),
+//				Type:           pulumi.String("SCHEDULED"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

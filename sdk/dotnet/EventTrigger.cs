@@ -17,6 +17,143 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ### S
+    /// ### Example Usage: Database Trigger with Function
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         AppId = "APPLICATION ID",
+    ///         Type = "DATABASE",
+    ///         FunctionId = "FUNCTION ID",
+    ///         Disabled = false,
+    ///         ConfigOperationTypes = new[]
+    ///         {
+    ///             "INSERT",
+    ///             "UPDATE",
+    ///         },
+    ///         ConfigDatabase = "DATABASE NAME",
+    ///         ConfigCollection = "COLLECTION NAME",
+    ///         ConfigServiceId = "SERVICE ID",
+    ///         ConfigMatch = @"{
+    ///   ""updateDescription.updatedFields"": {
+    ///     ""status"": ""blocked""
+    ///   }
+    /// }
+    /// ",
+    ///         ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigFullDocument = false,
+    ///         ConfigFullDocumentBefore = false,
+    ///         EventProcessors = new Mongodbatlas.Inputs.EventTriggerEventProcessorsArgs
+    ///         {
+    ///             AwsEventbridge = new Mongodbatlas.Inputs.EventTriggerEventProcessorsAwsEventbridgeArgs
+    ///             {
+    ///                 ConfigAccountId = "AWS ACCOUNT ID",
+    ///                 ConfigRegion = "AWS REGIOn",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Example Usage: Database Trigger with EventBridge
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
+    ///     {
+    ///         AppId = "APPLICATION ID",
+    ///         ConfigCollection = "COLLECTION NAME",
+    ///         ConfigDatabase = "DATABASE NAME",
+    ///         ConfigFullDocument = false,
+    ///         ConfigFullDocumentBefore = false,
+    ///         ConfigMatch = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigOperationType = "LOGIN",
+    ///         ConfigOperationTypes = new[]
+    ///         {
+    ///             "INSERT",
+    ///             "UPDATE",
+    ///         },
+    ///         ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigProviders = new[]
+    ///         {
+    ///             "anon-user",
+    ///         },
+    ///         ConfigSchedule = "*",
+    ///         ConfigServiceId = "1",
+    ///         Disabled = false,
+    ///         EventProcessors = new Mongodbatlas.Inputs.EventTriggerEventProcessorsArgs
+    ///         {
+    ///             AwsEventbridge = new Mongodbatlas.Inputs.EventTriggerEventProcessorsAwsEventbridgeArgs
+    ///             {
+    ///                 ConfigAccountId = "AWS ACCOUNT ID",
+    ///                 ConfigRegion = "AWS REGIOn",
+    ///             },
+    ///         },
+    ///         ProjectId = "PROJECT ID",
+    ///         Type = "DATABASE",
+    ///         Unordered = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Example Usage: Authentication Trigger
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
+    ///     {
+    ///         AppId = "APPLICATION ID",
+    ///         ConfigOperationType = "LOGIN",
+    ///         ConfigProviders = new[]
+    ///         {
+    ///             "anon-user",
+    ///         },
+    ///         Disabled = false,
+    ///         FunctionId = "1",
+    ///         ProjectId = "PROJECT ID",
+    ///         Type = "AUTHENTICATION",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Example Usage: Scheduled Trigger
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
+    ///     {
+    ///         AppId = "APPLICATION ID",
+    ///         ConfigSchedule = "*",
+    ///         Disabled = false,
+    ///         FunctionId = "1",
+    ///         ProjectId = "PROJECT ID",
+    ///         Type = "SCHEDULED",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

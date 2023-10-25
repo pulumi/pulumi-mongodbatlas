@@ -15,6 +15,29 @@ import (
 // `Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
 //
 // ## Example Usage
+// ### Using projectId attribute to query
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := mongodbatlas.GetRolesOrgId(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("orgId", test.OrgId)
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetRolesOrgId(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetRolesOrgIdResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRolesOrgIdResult

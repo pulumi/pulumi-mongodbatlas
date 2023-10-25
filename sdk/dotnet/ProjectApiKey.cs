@@ -11,6 +11,73 @@ namespace Pulumi.Mongodbatlas
 {
     /// <summary>
     /// ## Example Usage
+    /// ### Create And Assign PAK Together
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.ProjectApiKey("test", new()
+    ///     {
+    ///         Description = "Description of your API key",
+    ///         ProjectAssignments = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ProjectApiKeyProjectAssignmentArgs
+    ///             {
+    ///                 ProjectId = "64259ee860c43338194b0f8e",
+    ///                 RoleNames = new[]
+    ///                 {
+    ///                     "GROUP_OWNER",
+    ///                 },
+    ///             },
+    ///         },
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Create And Assign PAK To Multiple Projects
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.ProjectApiKey("test", new()
+    ///     {
+    ///         Description = "Description of your API key",
+    ///         ProjectAssignments = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ProjectApiKeyProjectAssignmentArgs
+    ///             {
+    ///                 ProjectId = "64259ee860c43338194b0f8e",
+    ///                 RoleNames = new[]
+    ///                 {
+    ///                     "GROUP_READ_ONLY",
+    ///                     "GROUP_OWNER",
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.ProjectApiKeyProjectAssignmentArgs
+    ///             {
+    ///                 ProjectId = "74259ee860c43338194b0f8e",
+    ///                 RoleNames = new[]
+    ///                 {
+    ///                     "GROUP_READ_ONLY",
+    ///                 },
+    ///             },
+    ///         },
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

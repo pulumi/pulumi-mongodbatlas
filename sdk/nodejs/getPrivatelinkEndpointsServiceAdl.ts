@@ -12,6 +12,22 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ * ### Basic
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const adlTest = new mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", {
+ *     projectId: "<PROJECT_ID>",
+ *     endpointId: "<ENDPOINT_ID>",
+ *     comment: "Comment for PrivateLink endpoint ADL",
+ *     type: "DATA_LAKE",
+ *     providerName: "AWS",
+ * });
+ * const test = mongodbatlas.getPrivatelinkEndpointsServiceAdlOutput({
+ *     projectId: adlTest.projectId,
+ * });
+ * ```
  */
 export function getPrivatelinkEndpointsServiceAdl(args: GetPrivatelinkEndpointsServiceAdlArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointsServiceAdlResult> {
 
@@ -54,6 +70,22 @@ export interface GetPrivatelinkEndpointsServiceAdlResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ * ### Basic
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const adlTest = new mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", {
+ *     projectId: "<PROJECT_ID>",
+ *     endpointId: "<ENDPOINT_ID>",
+ *     comment: "Comment for PrivateLink endpoint ADL",
+ *     type: "DATA_LAKE",
+ *     providerName: "AWS",
+ * });
+ * const test = mongodbatlas.getPrivatelinkEndpointsServiceAdlOutput({
+ *     projectId: adlTest.projectId,
+ * });
+ * ```
  */
 export function getPrivatelinkEndpointsServiceAdlOutput(args: GetPrivatelinkEndpointsServiceAdlOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointsServiceAdlResult> {
     return pulumi.output(args).apply((a: any) => getPrivatelinkEndpointsServiceAdl(a, opts))

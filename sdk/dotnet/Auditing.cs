@@ -12,6 +12,27 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.Auditing` provides an Auditing resource. This allows auditing to be created.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.Auditing("test", new()
+    ///     {
+    ///         AuditAuthorizationSuccess = false,
+    ///         AuditFilter = "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+    ///         Enabled = true,
+    ///         ProjectId = "&lt;project-id&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Auditing must be imported using auditing ID, e.g.

@@ -249,6 +249,19 @@ class Auditing(pulumi.CustomResource):
         """
         `Auditing` provides an Auditing resource. This allows auditing to be created.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Auditing("test",
+            audit_authorization_success=False,
+            audit_filter="{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+            enabled=True,
+            project_id="<project-id>")
+        ```
+
         ## Import
 
         Auditing must be imported using auditing ID, e.g.
@@ -275,6 +288,19 @@ class Auditing(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `Auditing` provides an Auditing resource. This allows auditing to be created.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Auditing("test",
+            audit_authorization_success=False,
+            audit_filter="{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+            enabled=True,
+            project_id="<project-id>")
+        ```
 
         ## Import
 

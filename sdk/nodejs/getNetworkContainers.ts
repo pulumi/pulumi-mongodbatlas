@@ -12,6 +12,23 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
+ * ### Basic Example.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
+ *     providerName: "AWS",
+ *     regionName: "US_EAST_1",
+ * });
+ * const testNetworkContainers = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
+ *     projectId: projectId,
+ *     providerName: providerName,
+ * }));
+ * ```
  */
 export function getNetworkContainers(args: GetNetworkContainersArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainersResult> {
 
@@ -60,6 +77,23 @@ export interface GetNetworkContainersResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
+ * ### Basic Example.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
+ *     providerName: "AWS",
+ *     regionName: "US_EAST_1",
+ * });
+ * const testNetworkContainers = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
+ *     projectId: projectId,
+ *     providerName: providerName,
+ * }));
+ * ```
  */
 export function getNetworkContainersOutput(args: GetNetworkContainersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkContainersResult> {
     return pulumi.output(args).apply((a: any) => getNetworkContainers(a, opts))

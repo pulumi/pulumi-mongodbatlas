@@ -234,6 +234,95 @@ class CustomDbRole(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_role = mongodbatlas.CustomDbRole("testRole",
+            actions=[
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="UPDATE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="INSERT",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="REMOVE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+            ],
+            project_id="<PROJECT-ID>",
+            role_name="myCustomRole")
+        ```
+        ### With Inherited Roles
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        inherited_role_one = mongodbatlas.CustomDbRole("inheritedRoleOne",
+            project_id="<PROJECT-ID>",
+            role_name="insertRole",
+            actions=[mongodbatlas.CustomDbRoleActionArgs(
+                action="INSERT",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    collection_name="",
+                    database_name="anyDatabase",
+                )],
+            )])
+        inherited_role_two = mongodbatlas.CustomDbRole("inheritedRoleTwo",
+            project_id=inherited_role_one.project_id,
+            role_name="statusServerRole",
+            actions=[mongodbatlas.CustomDbRoleActionArgs(
+                action="SERVER_STATUS",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    cluster=True,
+                )],
+            )])
+        test_role = mongodbatlas.CustomDbRole("testRole",
+            project_id=inherited_role_one.project_id,
+            role_name="myCustomRole",
+            actions=[
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="UPDATE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="REMOVE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+            ],
+            inherited_roles=[
+                mongodbatlas.CustomDbRoleInheritedRoleArgs(
+                    role_name=inherited_role_one.role_name,
+                    database_name="admin",
+                ),
+                mongodbatlas.CustomDbRoleInheritedRoleArgs(
+                    role_name=inherited_role_two.role_name,
+                    database_name="admin",
+                ),
+            ])
+        ```
+
         ## Import
 
         Database users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.
@@ -267,6 +356,95 @@ class CustomDbRole(pulumi.CustomResource):
         > **IMPORTANT**  You define custom roles at the project level for all clusters in the project. The `CustomDbRole` resource supports a subset of MongoDB privilege actions. For a complete list of [privilege actions](https://docs.mongodb.com/manual/reference/privilege-actions/) available for this resource, see [Custom Role actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions/). Custom roles must include actions that all project's clusters support, and that are compatible with each MongoDB version used by your project's clusters. For example, if your project has MongoDB 4.2 clusters, you can't create custom roles that use actions introduced in MongoDB 4.4.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_role = mongodbatlas.CustomDbRole("testRole",
+            actions=[
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="UPDATE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="INSERT",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="REMOVE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+            ],
+            project_id="<PROJECT-ID>",
+            role_name="myCustomRole")
+        ```
+        ### With Inherited Roles
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        inherited_role_one = mongodbatlas.CustomDbRole("inheritedRoleOne",
+            project_id="<PROJECT-ID>",
+            role_name="insertRole",
+            actions=[mongodbatlas.CustomDbRoleActionArgs(
+                action="INSERT",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    collection_name="",
+                    database_name="anyDatabase",
+                )],
+            )])
+        inherited_role_two = mongodbatlas.CustomDbRole("inheritedRoleTwo",
+            project_id=inherited_role_one.project_id,
+            role_name="statusServerRole",
+            actions=[mongodbatlas.CustomDbRoleActionArgs(
+                action="SERVER_STATUS",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    cluster=True,
+                )],
+            )])
+        test_role = mongodbatlas.CustomDbRole("testRole",
+            project_id=inherited_role_one.project_id,
+            role_name="myCustomRole",
+            actions=[
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="UPDATE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="REMOVE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+            ],
+            inherited_roles=[
+                mongodbatlas.CustomDbRoleInheritedRoleArgs(
+                    role_name=inherited_role_one.role_name,
+                    database_name="admin",
+                ),
+                mongodbatlas.CustomDbRoleInheritedRoleArgs(
+                    role_name=inherited_role_two.role_name,
+                    database_name="admin",
+                ),
+            ])
+        ```
 
         ## Import
 

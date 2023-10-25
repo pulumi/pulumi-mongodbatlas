@@ -292,6 +292,44 @@ class OrgInvitation(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test0 = mongodbatlas.OrgInvitation("test0",
+            org_id="<ORG-ID>",
+            roles=["ORG_OWNER"],
+            username="test0-acc-username")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test0 = mongodbatlas.OrgInvitation("test0",
+            org_id="<ORG-ID>",
+            roles=[
+                "ORG_MEMBER",
+                "ORG_BILLING_ADMIN",
+            ],
+            username="test0-acc-username")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test1 = mongodbatlas.OrgInvitation("test1",
+            org_id="<ORG-ID>",
+            roles=["ORG_MEMBER"],
+            teams_ids=[
+                "<TEAM-0-ID>",
+                "<TEAM-1-ID>",
+            ],
+            username="test1-acc-username")
+        ```
 
         ## Import
 
@@ -318,6 +356,44 @@ class OrgInvitation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test0 = mongodbatlas.OrgInvitation("test0",
+            org_id="<ORG-ID>",
+            roles=["ORG_OWNER"],
+            username="test0-acc-username")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test0 = mongodbatlas.OrgInvitation("test0",
+            org_id="<ORG-ID>",
+            roles=[
+                "ORG_MEMBER",
+                "ORG_BILLING_ADMIN",
+            ],
+            username="test0-acc-username")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test1 = mongodbatlas.OrgInvitation("test1",
+            org_id="<ORG-ID>",
+            roles=["ORG_MEMBER"],
+            teams_ids=[
+                "<TEAM-0-ID>",
+                "<TEAM-1-ID>",
+            ],
+            username="test1-acc-username")
+        ```
 
         ## Import
 

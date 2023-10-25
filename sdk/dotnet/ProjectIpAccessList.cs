@@ -18,6 +18,87 @@ namespace Pulumi.Mongodbatlas
     /// When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
     /// 
     /// ## Example Usage
+    /// ### Using CIDR Block
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.ProjectIpAccessList("test", new()
+    ///     {
+    ///         CidrBlock = "1.2.3.4/32",
+    ///         Comment = "cidr block for tf acc testing",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Using IP Address
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.ProjectIpAccessList("test", new()
+    ///     {
+    ///         Comment = "ip address for tf acc testing",
+    ///         IpAddress = "2.3.4.5",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Using an AWS Security Group
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         AtlasCidrBlock = "192.168.208.0/21",
+    ///         ProviderName = "AWS",
+    ///         RegionName = "US_EAST_1",
+    ///     });
+    /// 
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ContainerId = testNetworkContainer.ContainerId,
+    ///         AccepterRegionName = "us-east-1",
+    ///         ProviderName = "AWS",
+    ///         RouteTableCidrBlock = "172.31.0.0/16",
+    ///         VpcId = "vpc-0d93d6f69f1578bd8",
+    ///         AwsAccountId = "232589400519",
+    ///     });
+    /// 
+    ///     var testProjectIpAccessList = new Mongodbatlas.ProjectIpAccessList("testProjectIpAccessList", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         AwsSecurityGroup = "sg-0026348ec11780bd1",
+    ///         Comment = "TestAcc for awsSecurityGroup",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             "mongodbatlas_network_peering.test",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
     /// 
     /// ## Import
     /// 

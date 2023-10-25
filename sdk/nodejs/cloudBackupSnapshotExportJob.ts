@@ -11,6 +11,30 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ *     projectId: "{PROJECT_ID}",
+ *     iamRoleId: "{IAM_ROLE_ID}",
+ *     bucketName: "example_bucket",
+ *     cloudProvider: "AWS",
+ * });
+ * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", {
+ *     projectId: "{PROJECT_ID}",
+ *     clusterName: "{CLUSTER_NAME}",
+ *     snapshotId: "{SNAPSHOT_ID}",
+ *     exportBucketId: testCloudBackupSnapshotExportBucket.exportBucketId,
+ *     customDatas: [{
+ *         key: "exported by",
+ *         value: "myName",
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Cloud Backup Snapshot Export Backup entries can be imported using project project_id, cluster_name and export_job_id (Unique identifier of the snapshot export job), in the format `PROJECTID-CLUSTERNAME-EXPORTJOBID`, e.g.

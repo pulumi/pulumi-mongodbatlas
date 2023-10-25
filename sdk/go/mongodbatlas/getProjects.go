@@ -15,6 +15,64 @@ import (
 // `getProjects` describe all Projects. This represents projects that have been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testRolesOrgId, err := mongodbatlas.GetRolesOrgId(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				OrgId: *pulumi.String(testRolesOrgId.OrgId),
+//				Teams: mongodbatlas.ProjectTeamArray{
+//					&mongodbatlas.ProjectTeamArgs{
+//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//						},
+//					},
+//					&mongodbatlas.ProjectTeamArgs{
+//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_READ_ONLY"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//						},
+//					},
+//				},
+//				Limits: mongodbatlas.ProjectLimitArray{
+//					&mongodbatlas.ProjectLimitArgs{
+//						Name:  pulumi.String("atlas.project.deployment.clusters"),
+//						Value: pulumi.Int(26),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.LookupProjects(ctx, &mongodbatlas.LookupProjectsArgs{
+//				PageNum:      pulumi.IntRef(1),
+//				ItemsPerPage: pulumi.IntRef(5),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupProjects(ctx *pulumi.Context, args *LookupProjectsArgs, opts ...pulumi.InvokeOption) (*LookupProjectsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectsResult
