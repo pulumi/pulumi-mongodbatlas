@@ -37,11 +37,29 @@ class FederatedSettingsOrgRoleMappingArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             external_group_name: pulumi.Input[str],
-             federation_settings_id: pulumi.Input[str],
-             org_id: pulumi.Input[str],
-             role_assignments: pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             external_group_name: Optional[pulumi.Input[str]] = None,
+             federation_settings_id: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
+             role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if external_group_name is None and 'externalGroupName' in kwargs:
+            external_group_name = kwargs['externalGroupName']
+        if external_group_name is None:
+            raise TypeError("Missing 'external_group_name' argument")
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if federation_settings_id is None:
+            raise TypeError("Missing 'federation_settings_id' argument")
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if org_id is None:
+            raise TypeError("Missing 'org_id' argument")
+        if role_assignments is None and 'roleAssignments' in kwargs:
+            role_assignments = kwargs['roleAssignments']
+        if role_assignments is None:
+            raise TypeError("Missing 'role_assignments' argument")
+
         _setter("external_group_name", external_group_name)
         _setter("federation_settings_id", federation_settings_id)
         _setter("org_id", org_id)
@@ -124,7 +142,17 @@ class _FederatedSettingsOrgRoleMappingState:
              federation_settings_id: Optional[pulumi.Input[str]] = None,
              org_id: Optional[pulumi.Input[str]] = None,
              role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if external_group_name is None and 'externalGroupName' in kwargs:
+            external_group_name = kwargs['externalGroupName']
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if role_assignments is None and 'roleAssignments' in kwargs:
+            role_assignments = kwargs['roleAssignments']
+
         if external_group_name is not None:
             _setter("external_group_name", external_group_name)
         if federation_settings_id is not None:
@@ -196,47 +224,6 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         """
         `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
-            external_group_name="myGrouptest",
-            federation_settings_id="627a9687f7f7f7f774de306f14",
-            org_id="627a9683e7f7f7ff7fe306f14",
-            role_assignments=[
-                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                    org_id="627a9683e7f7f7ff7fe306f14",
-                    roles=[
-                        "ORG_MEMBER",
-                        "ORG_GROUP_CREATOR",
-                        "ORG_BILLING_ADMIN",
-                    ],
-                ),
-                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                    group_id="628aa20d7f7f7f7f7098b81b8",
-                    roles=[
-                        "GROUP_OWNER",
-                        "GROUP_DATA_ACCESS_ADMIN",
-                        "GROUP_SEARCH_INDEX_EDITOR",
-                        "GROUP_DATA_ACCESS_READ_ONLY",
-                    ],
-                ),
-                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                    group_id="628aa20d7f7f7f7f7078b81b8",
-                    roles=[
-                        "GROUP_OWNER",
-                        "GROUP_DATA_ACCESS_ADMIN",
-                        "GROUP_SEARCH_INDEX_EDITOR",
-                        "GROUP_DATA_ACCESS_READ_ONLY",
-                        "GROUP_DATA_ACCESS_READ_WRITE",
-                    ],
-                ),
-            ])
-        ```
-
         ## Import
 
         FederatedSettingsOrgRoleMapping can be imported using federation_settings_id-org_id-role_mapping_id, e.g.
@@ -261,47 +248,6 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
-            external_group_name="myGrouptest",
-            federation_settings_id="627a9687f7f7f7f774de306f14",
-            org_id="627a9683e7f7f7ff7fe306f14",
-            role_assignments=[
-                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                    org_id="627a9683e7f7f7ff7fe306f14",
-                    roles=[
-                        "ORG_MEMBER",
-                        "ORG_GROUP_CREATOR",
-                        "ORG_BILLING_ADMIN",
-                    ],
-                ),
-                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                    group_id="628aa20d7f7f7f7f7098b81b8",
-                    roles=[
-                        "GROUP_OWNER",
-                        "GROUP_DATA_ACCESS_ADMIN",
-                        "GROUP_SEARCH_INDEX_EDITOR",
-                        "GROUP_DATA_ACCESS_READ_ONLY",
-                    ],
-                ),
-                mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                    group_id="628aa20d7f7f7f7f7078b81b8",
-                    roles=[
-                        "GROUP_OWNER",
-                        "GROUP_DATA_ACCESS_ADMIN",
-                        "GROUP_SEARCH_INDEX_EDITOR",
-                        "GROUP_DATA_ACCESS_READ_ONLY",
-                        "GROUP_DATA_ACCESS_READ_WRITE",
-                    ],
-                ),
-            ])
-        ```
 
         ## Import
 

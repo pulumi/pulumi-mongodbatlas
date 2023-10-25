@@ -13,32 +13,6 @@ import (
 )
 
 // ## Example Usage
-// ### S
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupClusterOutageSimulation(ctx, &mongodbatlas.LookupClusterOutageSimulationArgs{
-//				ClusterName: "Cluster0",
-//				ProjectId:   "64707f06c519c20c3a2b1b03",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupClusterOutageSimulation(ctx *pulumi.Context, args *LookupClusterOutageSimulationArgs, opts ...pulumi.InvokeOption) (*LookupClusterOutageSimulationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClusterOutageSimulationResult

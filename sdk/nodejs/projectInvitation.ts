@@ -6,32 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
- * ### S
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.ProjectInvitation("test", {
- *     projectId: "<PROJECT-ID>",
- *     roles: ["GROUP_DATA_ACCESS_READ_WRITE"],
- *     username: "test-acc-username",
- * });
- * ```
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.ProjectInvitation("test", {
- *     projectId: "<PROJECT-ID>",
- *     roles: [
- *         "GROUP_READ_ONLY",
- *         "GROUP_DATA_ACCESS_READ_ONLY",
- *     ],
- *     username: "test-acc-username",
- * });
- * ```
  *
  * ## Import
  *

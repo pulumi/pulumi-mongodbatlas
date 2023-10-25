@@ -182,29 +182,6 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
     > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 
     ## Example Usage
-    ### S With MongoDB Atlas Cluster As Storage Database
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_federated_database_instance(name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
-    ```
-    ### S With Amazon S3 Bucket As Storage Database
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_federated_database_instance(cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
-            aws=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs(
-                test_s3_bucket="Amazon S3 Bucket Name",
-            ),
-        ),
-        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
-    ```
 
 
     :param str name: Name of the Atlas Federated Database Instance.
@@ -242,29 +219,6 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
     > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 
     ## Example Usage
-    ### S With MongoDB Atlas Cluster As Storage Database
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_federated_database_instance(name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
-    ```
-    ### S With Amazon S3 Bucket As Storage Database
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_federated_database_instance(cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
-            aws=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs(
-                test_s3_bucket="Amazon S3 Bucket Name",
-            ),
-        ),
-        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
-    ```
 
 
     :param str name: Name of the Atlas Federated Database Instance.

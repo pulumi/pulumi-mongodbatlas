@@ -76,15 +76,6 @@ def get_serverless_instances(project_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    data_serverless = mongodbatlas.get_serverless_instances(project_id="<PROJECT_ID")
-    ```
-
 
     :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
     """
@@ -109,15 +100,6 @@ def get_serverless_instances_output(project_id: Optional[pulumi.Input[str]] = No
     For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    data_serverless = mongodbatlas.get_serverless_instances(project_id="<PROJECT_ID")
-    ```
 
 
     :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.

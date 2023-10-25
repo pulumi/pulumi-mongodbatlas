@@ -13,44 +13,6 @@ import (
 )
 
 // `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			orgConnections, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, "orgConnections", &mongodbatlas.FederatedSettingsOrgConfigArgs{
-//				FederationSettingsId:     pulumi.String("627a9687f7f7f7f774de306f14"),
-//				OrgId:                    pulumi.String("627a9683ea7ff7f74de306f14"),
-//				DomainRestrictionEnabled: pulumi.Bool(false),
-//				DomainAllowLists: pulumi.StringArray{
-//					pulumi.String("mydomain.com"),
-//				},
-//				PostAuthRoleGrants: pulumi.StringArray{
-//					pulumi.String("ORG_MEMBER"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = mongodbatlas.LookupFederatedSettingsOrgConfigOutput(ctx, mongodbatlas.GetFederatedSettingsOrgConfigOutputArgs{
-//				FederationSettingsId: orgConnections.ID(),
-//				OrgId:                pulumi.String("627a9683ea7ff7f74de306f14"),
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupFederatedSettingsOrgConfig(ctx *pulumi.Context, args *LookupFederatedSettingsOrgConfigArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsOrgConfigResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsOrgConfigResult

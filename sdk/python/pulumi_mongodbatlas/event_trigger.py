@@ -84,9 +84,9 @@ class EventTriggerArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             app_id: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             type: pulumi.Input[str],
+             app_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
              config_collection: Optional[pulumi.Input[str]] = None,
              config_database: Optional[pulumi.Input[str]] = None,
              config_full_document: Optional[pulumi.Input[bool]] = None,
@@ -103,7 +103,45 @@ class EventTriggerArgs:
              function_id: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              unordered: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if app_id is None and 'appId' in kwargs:
+            app_id = kwargs['appId']
+        if app_id is None:
+            raise TypeError("Missing 'app_id' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if config_collection is None and 'configCollection' in kwargs:
+            config_collection = kwargs['configCollection']
+        if config_database is None and 'configDatabase' in kwargs:
+            config_database = kwargs['configDatabase']
+        if config_full_document is None and 'configFullDocument' in kwargs:
+            config_full_document = kwargs['configFullDocument']
+        if config_full_document_before is None and 'configFullDocumentBefore' in kwargs:
+            config_full_document_before = kwargs['configFullDocumentBefore']
+        if config_match is None and 'configMatch' in kwargs:
+            config_match = kwargs['configMatch']
+        if config_operation_type is None and 'configOperationType' in kwargs:
+            config_operation_type = kwargs['configOperationType']
+        if config_operation_types is None and 'configOperationTypes' in kwargs:
+            config_operation_types = kwargs['configOperationTypes']
+        if config_project is None and 'configProject' in kwargs:
+            config_project = kwargs['configProject']
+        if config_providers is None and 'configProviders' in kwargs:
+            config_providers = kwargs['configProviders']
+        if config_schedule is None and 'configSchedule' in kwargs:
+            config_schedule = kwargs['configSchedule']
+        if config_service_id is None and 'configServiceId' in kwargs:
+            config_service_id = kwargs['configServiceId']
+        if event_processors is None and 'eventProcessors' in kwargs:
+            event_processors = kwargs['eventProcessors']
+        if function_id is None and 'functionId' in kwargs:
+            function_id = kwargs['functionId']
+
         _setter("app_id", app_id)
         _setter("project_id", project_id)
         _setter("type", type)
@@ -470,7 +508,45 @@ class _EventTriggerState:
              trigger_id: Optional[pulumi.Input[str]] = None,
              type: Optional[pulumi.Input[str]] = None,
              unordered: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if app_id is None and 'appId' in kwargs:
+            app_id = kwargs['appId']
+        if config_collection is None and 'configCollection' in kwargs:
+            config_collection = kwargs['configCollection']
+        if config_database is None and 'configDatabase' in kwargs:
+            config_database = kwargs['configDatabase']
+        if config_full_document is None and 'configFullDocument' in kwargs:
+            config_full_document = kwargs['configFullDocument']
+        if config_full_document_before is None and 'configFullDocumentBefore' in kwargs:
+            config_full_document_before = kwargs['configFullDocumentBefore']
+        if config_match is None and 'configMatch' in kwargs:
+            config_match = kwargs['configMatch']
+        if config_operation_type is None and 'configOperationType' in kwargs:
+            config_operation_type = kwargs['configOperationType']
+        if config_operation_types is None and 'configOperationTypes' in kwargs:
+            config_operation_types = kwargs['configOperationTypes']
+        if config_project is None and 'configProject' in kwargs:
+            config_project = kwargs['configProject']
+        if config_providers is None and 'configProviders' in kwargs:
+            config_providers = kwargs['configProviders']
+        if config_schedule is None and 'configSchedule' in kwargs:
+            config_schedule = kwargs['configSchedule']
+        if config_schedule_type is None and 'configScheduleType' in kwargs:
+            config_schedule_type = kwargs['configScheduleType']
+        if config_service_id is None and 'configServiceId' in kwargs:
+            config_service_id = kwargs['configServiceId']
+        if event_processors is None and 'eventProcessors' in kwargs:
+            event_processors = kwargs['eventProcessors']
+        if function_id is None and 'functionId' in kwargs:
+            function_id = kwargs['functionId']
+        if function_name is None and 'functionName' in kwargs:
+            function_name = kwargs['functionName']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if trigger_id is None and 'triggerId' in kwargs:
+            trigger_id = kwargs['triggerId']
+
         if app_id is not None:
             _setter("app_id", app_id)
         if config_collection is not None:
@@ -811,99 +887,6 @@ class EventTrigger(pulumi.CustomResource):
         ## Example Usage
 
         ### S
-        ### Example Usage: Database Trigger with Function
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.EventTrigger("test",
-            project_id="PROJECT ID",
-            app_id="APPLICATION ID",
-            type="DATABASE",
-            function_id="FUNCTION ID",
-            disabled=False,
-            config_operation_types=[
-                "INSERT",
-                "UPDATE",
-            ],
-            config_database="DATABASE NAME",
-            config_collection="COLLECTION NAME",
-            config_service_id="SERVICE ID",
-            config_match=\"\"\"{
-          "updateDescription.updatedFields": {
-            "status": "blocked"
-          }
-        }
-        \"\"\",
-            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
-            config_full_document=False,
-            config_full_document_before=False,
-            event_processors=mongodbatlas.EventTriggerEventProcessorsArgs(
-                aws_eventbridge=mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs(
-                    config_account_id="AWS ACCOUNT ID",
-                    config_region="AWS REGIOn",
-                ),
-            ))
-        ```
-        ### Example Usage: Database Trigger with EventBridge
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.EventTrigger("test",
-            app_id="APPLICATION ID",
-            config_collection="COLLECTION NAME",
-            config_database="DATABASE NAME",
-            config_full_document=False,
-            config_full_document_before=False,
-            config_match="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
-            config_operation_type="LOGIN",
-            config_operation_types=[
-                "INSERT",
-                "UPDATE",
-            ],
-            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
-            config_providers=["anon-user"],
-            config_schedule="*",
-            config_service_id="1",
-            disabled=False,
-            event_processors=mongodbatlas.EventTriggerEventProcessorsArgs(
-                aws_eventbridge=mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs(
-                    config_account_id="AWS ACCOUNT ID",
-                    config_region="AWS REGIOn",
-                ),
-            ),
-            project_id="PROJECT ID",
-            type="DATABASE",
-            unordered=False)
-        ```
-        ### Example Usage: Authentication Trigger
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.EventTrigger("test",
-            app_id="APPLICATION ID",
-            config_operation_type="LOGIN",
-            config_providers=["anon-user"],
-            disabled=False,
-            function_id="1",
-            project_id="PROJECT ID",
-            type="AUTHENTICATION")
-        ```
-        ### Example Usage: Scheduled Trigger
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.EventTrigger("test",
-            app_id="APPLICATION ID",
-            config_schedule="*",
-            disabled=False,
-            function_id="1",
-            project_id="PROJECT ID",
-            type="SCHEDULED")
-        ```
 
         ## Import
 
@@ -952,99 +935,6 @@ class EventTrigger(pulumi.CustomResource):
         ## Example Usage
 
         ### S
-        ### Example Usage: Database Trigger with Function
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.EventTrigger("test",
-            project_id="PROJECT ID",
-            app_id="APPLICATION ID",
-            type="DATABASE",
-            function_id="FUNCTION ID",
-            disabled=False,
-            config_operation_types=[
-                "INSERT",
-                "UPDATE",
-            ],
-            config_database="DATABASE NAME",
-            config_collection="COLLECTION NAME",
-            config_service_id="SERVICE ID",
-            config_match=\"\"\"{
-          "updateDescription.updatedFields": {
-            "status": "blocked"
-          }
-        }
-        \"\"\",
-            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
-            config_full_document=False,
-            config_full_document_before=False,
-            event_processors=mongodbatlas.EventTriggerEventProcessorsArgs(
-                aws_eventbridge=mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs(
-                    config_account_id="AWS ACCOUNT ID",
-                    config_region="AWS REGIOn",
-                ),
-            ))
-        ```
-        ### Example Usage: Database Trigger with EventBridge
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.EventTrigger("test",
-            app_id="APPLICATION ID",
-            config_collection="COLLECTION NAME",
-            config_database="DATABASE NAME",
-            config_full_document=False,
-            config_full_document_before=False,
-            config_match="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
-            config_operation_type="LOGIN",
-            config_operation_types=[
-                "INSERT",
-                "UPDATE",
-            ],
-            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
-            config_providers=["anon-user"],
-            config_schedule="*",
-            config_service_id="1",
-            disabled=False,
-            event_processors=mongodbatlas.EventTriggerEventProcessorsArgs(
-                aws_eventbridge=mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs(
-                    config_account_id="AWS ACCOUNT ID",
-                    config_region="AWS REGIOn",
-                ),
-            ),
-            project_id="PROJECT ID",
-            type="DATABASE",
-            unordered=False)
-        ```
-        ### Example Usage: Authentication Trigger
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.EventTrigger("test",
-            app_id="APPLICATION ID",
-            config_operation_type="LOGIN",
-            config_providers=["anon-user"],
-            disabled=False,
-            function_id="1",
-            project_id="PROJECT ID",
-            type="AUTHENTICATION")
-        ```
-        ### Example Usage: Scheduled Trigger
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.EventTrigger("test",
-            app_id="APPLICATION ID",
-            config_schedule="*",
-            disabled=False,
-            function_id="1",
-            project_id="PROJECT ID",
-            type="SCHEDULED")
-        ```
 
         ## Import
 
@@ -1117,11 +1007,7 @@ class EventTrigger(pulumi.CustomResource):
             __props__.__dict__["config_schedule"] = config_schedule
             __props__.__dict__["config_service_id"] = config_service_id
             __props__.__dict__["disabled"] = disabled
-            if event_processors is not None and not isinstance(event_processors, EventTriggerEventProcessorsArgs):
-                event_processors = event_processors or {}
-                def _setter(key, value):
-                    event_processors[key] = value
-                EventTriggerEventProcessorsArgs._configure(_setter, **event_processors)
+            event_processors = _utilities.configure(event_processors, EventTriggerEventProcessorsArgs, True)
             __props__.__dict__["event_processors"] = event_processors
             __props__.__dict__["function_id"] = function_id
             __props__.__dict__["name"] = name

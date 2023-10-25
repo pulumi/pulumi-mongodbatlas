@@ -37,11 +37,27 @@ class CloudBackupSnapshotArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cluster_name: pulumi.Input[str],
-             description: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             retention_in_days: pulumi.Input[int],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             retention_in_days: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if cluster_name is None:
+            raise TypeError("Missing 'cluster_name' argument")
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if retention_in_days is None and 'retentionInDays' in kwargs:
+            retention_in_days = kwargs['retentionInDays']
+        if retention_in_days is None:
+            raise TypeError("Missing 'retention_in_days' argument")
+
         _setter("cluster_name", cluster_name)
         _setter("description", description)
         _setter("project_id", project_id)
@@ -176,7 +192,35 @@ class _CloudBackupSnapshotState:
              status: Optional[pulumi.Input[str]] = None,
              storage_size_bytes: Optional[pulumi.Input[int]] = None,
              type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cloud_provider is None and 'cloudProvider' in kwargs:
+            cloud_provider = kwargs['cloudProvider']
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if expires_at is None and 'expiresAt' in kwargs:
+            expires_at = kwargs['expiresAt']
+        if master_key_uuid is None and 'masterKeyUuid' in kwargs:
+            master_key_uuid = kwargs['masterKeyUuid']
+        if mongod_version is None and 'mongodVersion' in kwargs:
+            mongod_version = kwargs['mongodVersion']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if replica_set_name is None and 'replicaSetName' in kwargs:
+            replica_set_name = kwargs['replicaSetName']
+        if retention_in_days is None and 'retentionInDays' in kwargs:
+            retention_in_days = kwargs['retentionInDays']
+        if snapshot_id is None and 'snapshotId' in kwargs:
+            snapshot_id = kwargs['snapshotId']
+        if snapshot_ids is None and 'snapshotIds' in kwargs:
+            snapshot_ids = kwargs['snapshotIds']
+        if snapshot_type is None and 'snapshotType' in kwargs:
+            snapshot_type = kwargs['snapshotType']
+        if storage_size_bytes is None and 'storageSizeBytes' in kwargs:
+            storage_size_bytes = kwargs['storageSizeBytes']
+
         if cloud_provider is not None:
             _setter("cloud_provider", cloud_provider)
         if cluster_name is not None:
@@ -435,33 +479,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it's taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        my_cluster = mongodbatlas.Cluster("myCluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
-        # enable cloud backup snapshots
-        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
-            project_id=my_cluster.project_id,
-            cluster_name=my_cluster.name,
-            description="myDescription",
-            retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-            project_id=test_cloud_backup_snapshot.project_id,
-            cluster_name=test_cloud_backup_snapshot.cluster_name,
-            snapshot_id=test_cloud_backup_snapshot.snapshot_id,
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                download=True,
-            ))
-        ```
-
         ## Import
 
         Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
@@ -491,33 +508,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it's taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        my_cluster = mongodbatlas.Cluster("myCluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
-        # enable cloud backup snapshots
-        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
-            project_id=my_cluster.project_id,
-            cluster_name=my_cluster.name,
-            description="myDescription",
-            retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-            project_id=test_cloud_backup_snapshot.project_id,
-            cluster_name=test_cloud_backup_snapshot.cluster_name,
-            snapshot_id=test_cloud_backup_snapshot.snapshot_id,
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                download=True,
-            ))
-        ```
 
         ## Import
 

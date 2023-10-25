@@ -37,11 +37,21 @@ class AuditingArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
              audit_authorization_success: Optional[pulumi.Input[bool]] = None,
              audit_filter: Optional[pulumi.Input[str]] = None,
              enabled: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if audit_authorization_success is None and 'auditAuthorizationSuccess' in kwargs:
+            audit_authorization_success = kwargs['auditAuthorizationSuccess']
+        if audit_filter is None and 'auditFilter' in kwargs:
+            audit_filter = kwargs['auditFilter']
+
         _setter("project_id", project_id)
         if audit_authorization_success is not None:
             _setter("audit_authorization_success", audit_authorization_success)
@@ -138,7 +148,17 @@ class _AuditingState:
              configuration_type: Optional[pulumi.Input[str]] = None,
              enabled: Optional[pulumi.Input[bool]] = None,
              project_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if audit_authorization_success is None and 'auditAuthorizationSuccess' in kwargs:
+            audit_authorization_success = kwargs['auditAuthorizationSuccess']
+        if audit_filter is None and 'auditFilter' in kwargs:
+            audit_filter = kwargs['auditFilter']
+        if configuration_type is None and 'configurationType' in kwargs:
+            configuration_type = kwargs['configurationType']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
         if audit_authorization_success is not None:
             _setter("audit_authorization_success", audit_authorization_success)
         if audit_filter is not None:
@@ -229,19 +249,6 @@ class Auditing(pulumi.CustomResource):
         """
         `Auditing` provides an Auditing resource. This allows auditing to be created.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.Auditing("test",
-            audit_authorization_success=False,
-            audit_filter="{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
-            enabled=True,
-            project_id="<project-id>")
-        ```
-
         ## Import
 
         Auditing must be imported using auditing ID, e.g.
@@ -268,19 +275,6 @@ class Auditing(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `Auditing` provides an Auditing resource. This allows auditing to be created.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.Auditing("test",
-            audit_authorization_success=False,
-            audit_filter="{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
-            enabled=True,
-            project_id="<project-id>")
-        ```
 
         ## Import
 

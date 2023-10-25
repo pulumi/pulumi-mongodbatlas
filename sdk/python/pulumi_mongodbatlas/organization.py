@@ -37,12 +37,26 @@ class OrganizationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             description: pulumi.Input[str],
-             org_owner_id: pulumi.Input[str],
-             role_names: pulumi.Input[Sequence[pulumi.Input[str]]],
+             description: Optional[pulumi.Input[str]] = None,
+             org_owner_id: Optional[pulumi.Input[str]] = None,
+             role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              federation_settings_id: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if org_owner_id is None and 'orgOwnerId' in kwargs:
+            org_owner_id = kwargs['orgOwnerId']
+        if org_owner_id is None:
+            raise TypeError("Missing 'org_owner_id' argument")
+        if role_names is None and 'roleNames' in kwargs:
+            role_names = kwargs['roleNames']
+        if role_names is None:
+            raise TypeError("Missing 'role_names' argument")
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+
         _setter("description", description)
         _setter("org_owner_id", org_owner_id)
         _setter("role_names", role_names)
@@ -151,7 +165,21 @@ class _OrganizationState:
              private_key: Optional[pulumi.Input[str]] = None,
              public_key: Optional[pulumi.Input[str]] = None,
              role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if org_owner_id is None and 'orgOwnerId' in kwargs:
+            org_owner_id = kwargs['orgOwnerId']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if role_names is None and 'roleNames' in kwargs:
+            role_names = kwargs['roleNames']
+
         if description is not None:
             _setter("description", description)
         if federation_settings_id is not None:
@@ -276,18 +304,6 @@ class Organization(pulumi.CustomResource):
 
         > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.Organization("test",
-            description="test API key from Org Creation Test",
-            org_owner_id="6205e5fffff79cde6f",
-            role_names=["ORG_OWNER"])
-        ```
-
         ## Import
 
         Organization must be imported using organization ID, e.g.
@@ -316,18 +332,6 @@ class Organization(pulumi.CustomResource):
         `Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
 
         > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.Organization("test",
-            description="test API key from Org Creation Test",
-            org_owner_id="6205e5fffff79cde6f",
-            role_names=["ORG_OWNER"])
-        ```
 
         ## Import
 

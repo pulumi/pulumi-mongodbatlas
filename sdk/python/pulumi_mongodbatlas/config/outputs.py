@@ -49,7 +49,21 @@ class AssumeRole(dict):
              source_identity: Optional[str] = None,
              tags: Optional[Mapping[str, str]] = None,
              transitive_tag_keys: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if external_id is None and 'externalId' in kwargs:
+            external_id = kwargs['externalId']
+        if policy_arns is None and 'policyArns' in kwargs:
+            policy_arns = kwargs['policyArns']
+        if role_arn is None and 'roleArn' in kwargs:
+            role_arn = kwargs['roleArn']
+        if session_name is None and 'sessionName' in kwargs:
+            session_name = kwargs['sessionName']
+        if source_identity is None and 'sourceIdentity' in kwargs:
+            source_identity = kwargs['sourceIdentity']
+        if transitive_tag_keys is None and 'transitiveTagKeys' in kwargs:
+            transitive_tag_keys = kwargs['transitiveTagKeys']
+
         if duration is not None:
             _setter("duration", duration)
         if external_id is not None:

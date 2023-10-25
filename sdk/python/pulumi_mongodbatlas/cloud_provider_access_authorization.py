@@ -33,11 +33,21 @@ class CloudProviderAccessAuthorizationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
-             role_id: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
+             role_id: Optional[pulumi.Input[str]] = None,
              aws: Optional[pulumi.Input['CloudProviderAccessAuthorizationAwsArgs']] = None,
              azure: Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if role_id is None and 'roleId' in kwargs:
+            role_id = kwargs['roleId']
+        if role_id is None:
+            raise TypeError("Missing 'role_id' argument")
+
         _setter("project_id", project_id)
         _setter("role_id", role_id)
         if aws is not None:
@@ -112,7 +122,17 @@ class _CloudProviderAccessAuthorizationState:
              feature_usages: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationFeatureUsageArgs']]]] = None,
              project_id: Optional[pulumi.Input[str]] = None,
              role_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if authorized_date is None and 'authorizedDate' in kwargs:
+            authorized_date = kwargs['authorizedDate']
+        if feature_usages is None and 'featureUsages' in kwargs:
+            feature_usages = kwargs['featureUsages']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if role_id is None and 'roleId' in kwargs:
+            role_id = kwargs['roleId']
+
         if authorized_date is not None:
             _setter("authorized_date", authorized_date)
         if aws is not None:
@@ -236,17 +256,9 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CloudProviderAccessAuthorizationArgs.__new__(CloudProviderAccessAuthorizationArgs)
 
-            if aws is not None and not isinstance(aws, CloudProviderAccessAuthorizationAwsArgs):
-                aws = aws or {}
-                def _setter(key, value):
-                    aws[key] = value
-                CloudProviderAccessAuthorizationAwsArgs._configure(_setter, **aws)
+            aws = _utilities.configure(aws, CloudProviderAccessAuthorizationAwsArgs, True)
             __props__.__dict__["aws"] = aws
-            if azure is not None and not isinstance(azure, CloudProviderAccessAuthorizationAzureArgs):
-                azure = azure or {}
-                def _setter(key, value):
-                    azure[key] = value
-                CloudProviderAccessAuthorizationAzureArgs._configure(_setter, **azure)
+            azure = _utilities.configure(azure, CloudProviderAccessAuthorizationAzureArgs, True)
             __props__.__dict__["azure"] = azure
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")

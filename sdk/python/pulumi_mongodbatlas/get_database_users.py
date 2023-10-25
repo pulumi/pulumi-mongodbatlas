@@ -78,58 +78,6 @@ def get_database_users(project_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_database_user = mongodbatlas.DatabaseUser("testDatabaseUser",
-        username="test-acc-username",
-        password="test-acc-password",
-        project_id="<PROJECT-ID>",
-        auth_database_name="admin",
-        roles=[
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readWrite",
-                database_name="admin",
-            ),
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="atlasAdmin",
-                database_name="admin",
-            ),
-        ],
-        labels=[
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 1",
-                value="value 1",
-            ),
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 2",
-                value="value 2",
-            ),
-        ])
-    test_database_users = mongodbatlas.get_database_users_output(project_id=test_database_user.project_id)
-    ```
-    **Example of usage with a OIDC federated authentication user**
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_database_user = mongodbatlas.DatabaseUser("testDatabaseUser",
-        auth_database_name="admin",
-        oidc_auth_type="IDP_GROUP",
-        project_id="6414908c207f4d22f4d8f232",
-        roles=[mongodbatlas.DatabaseUserRoleArgs(
-            database_name="admin",
-            role_name="readWriteAnyDatabase",
-        )],
-        username="64d613677e1ad50839cce4db/testUserOrGroup")
-    test_database_users = mongodbatlas.get_database_users(project_id="6414908c207f4d22f4d8f232")
-    ```
-    Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
-
 
     :param str project_id: The unique ID for the project to get all database users.
     """
@@ -153,58 +101,6 @@ def get_database_users_output(project_id: Optional[pulumi.Input[str]] = None,
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_database_user = mongodbatlas.DatabaseUser("testDatabaseUser",
-        username="test-acc-username",
-        password="test-acc-password",
-        project_id="<PROJECT-ID>",
-        auth_database_name="admin",
-        roles=[
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readWrite",
-                database_name="admin",
-            ),
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="atlasAdmin",
-                database_name="admin",
-            ),
-        ],
-        labels=[
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 1",
-                value="value 1",
-            ),
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 2",
-                value="value 2",
-            ),
-        ])
-    test_database_users = mongodbatlas.get_database_users_output(project_id=test_database_user.project_id)
-    ```
-    **Example of usage with a OIDC federated authentication user**
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_database_user = mongodbatlas.DatabaseUser("testDatabaseUser",
-        auth_database_name="admin",
-        oidc_auth_type="IDP_GROUP",
-        project_id="6414908c207f4d22f4d8f232",
-        roles=[mongodbatlas.DatabaseUserRoleArgs(
-            database_name="admin",
-            role_name="readWriteAnyDatabase",
-        )],
-        username="64d613677e1ad50839cce4db/testUserOrGroup")
-    test_database_users = mongodbatlas.get_database_users(project_id="6414908c207f4d22f4d8f232")
-    ```
-    Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
 
     :param str project_id: The unique ID for the project to get all database users.

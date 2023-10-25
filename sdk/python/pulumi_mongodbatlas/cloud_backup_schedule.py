@@ -67,8 +67,8 @@ class CloudBackupScheduleArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cluster_name: pulumi.Input[str],
-             project_id: pulumi.Input[str],
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
              auto_export_enabled: Optional[pulumi.Input[bool]] = None,
              copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]]] = None,
              export: Optional[pulumi.Input['CloudBackupScheduleExportArgs']] = None,
@@ -81,7 +81,39 @@ class CloudBackupScheduleArgs:
              restore_window_days: Optional[pulumi.Input[int]] = None,
              update_snapshots: Optional[pulumi.Input[bool]] = None,
              use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if cluster_name is None:
+            raise TypeError("Missing 'cluster_name' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if auto_export_enabled is None and 'autoExportEnabled' in kwargs:
+            auto_export_enabled = kwargs['autoExportEnabled']
+        if copy_settings is None and 'copySettings' in kwargs:
+            copy_settings = kwargs['copySettings']
+        if policy_item_daily is None and 'policyItemDaily' in kwargs:
+            policy_item_daily = kwargs['policyItemDaily']
+        if policy_item_hourly is None and 'policyItemHourly' in kwargs:
+            policy_item_hourly = kwargs['policyItemHourly']
+        if policy_item_monthlies is None and 'policyItemMonthlies' in kwargs:
+            policy_item_monthlies = kwargs['policyItemMonthlies']
+        if policy_item_weeklies is None and 'policyItemWeeklies' in kwargs:
+            policy_item_weeklies = kwargs['policyItemWeeklies']
+        if reference_hour_of_day is None and 'referenceHourOfDay' in kwargs:
+            reference_hour_of_day = kwargs['referenceHourOfDay']
+        if reference_minute_of_hour is None and 'referenceMinuteOfHour' in kwargs:
+            reference_minute_of_hour = kwargs['referenceMinuteOfHour']
+        if restore_window_days is None and 'restoreWindowDays' in kwargs:
+            restore_window_days = kwargs['restoreWindowDays']
+        if update_snapshots is None and 'updateSnapshots' in kwargs:
+            update_snapshots = kwargs['updateSnapshots']
+        if use_org_and_group_names_in_export_prefix is None and 'useOrgAndGroupNamesInExportPrefix' in kwargs:
+            use_org_and_group_names_in_export_prefix = kwargs['useOrgAndGroupNamesInExportPrefix']
+
         _setter("cluster_name", cluster_name)
         _setter("project_id", project_id)
         if auto_export_enabled is not None:
@@ -352,7 +384,41 @@ class _CloudBackupScheduleState:
              restore_window_days: Optional[pulumi.Input[int]] = None,
              update_snapshots: Optional[pulumi.Input[bool]] = None,
              use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if auto_export_enabled is None and 'autoExportEnabled' in kwargs:
+            auto_export_enabled = kwargs['autoExportEnabled']
+        if cluster_id is None and 'clusterId' in kwargs:
+            cluster_id = kwargs['clusterId']
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if copy_settings is None and 'copySettings' in kwargs:
+            copy_settings = kwargs['copySettings']
+        if id_policy is None and 'idPolicy' in kwargs:
+            id_policy = kwargs['idPolicy']
+        if next_snapshot is None and 'nextSnapshot' in kwargs:
+            next_snapshot = kwargs['nextSnapshot']
+        if policy_item_daily is None and 'policyItemDaily' in kwargs:
+            policy_item_daily = kwargs['policyItemDaily']
+        if policy_item_hourly is None and 'policyItemHourly' in kwargs:
+            policy_item_hourly = kwargs['policyItemHourly']
+        if policy_item_monthlies is None and 'policyItemMonthlies' in kwargs:
+            policy_item_monthlies = kwargs['policyItemMonthlies']
+        if policy_item_weeklies is None and 'policyItemWeeklies' in kwargs:
+            policy_item_weeklies = kwargs['policyItemWeeklies']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if reference_hour_of_day is None and 'referenceHourOfDay' in kwargs:
+            reference_hour_of_day = kwargs['referenceHourOfDay']
+        if reference_minute_of_hour is None and 'referenceMinuteOfHour' in kwargs:
+            reference_minute_of_hour = kwargs['referenceMinuteOfHour']
+        if restore_window_days is None and 'restoreWindowDays' in kwargs:
+            restore_window_days = kwargs['restoreWindowDays']
+        if update_snapshots is None and 'updateSnapshots' in kwargs:
+            update_snapshots = kwargs['updateSnapshots']
+        if use_org_and_group_names_in_export_prefix is None and 'useOrgAndGroupNamesInExportPrefix' in kwargs:
+            use_org_and_group_names_in_export_prefix = kwargs['useOrgAndGroupNamesInExportPrefix']
+
         if auto_export_enabled is not None:
             _setter("auto_export_enabled", auto_export_enabled)
         if cluster_id is not None:
@@ -697,23 +763,11 @@ class CloudBackupSchedule(pulumi.CustomResource):
                 raise TypeError("Missing required property 'cluster_name'")
             __props__.__dict__["cluster_name"] = cluster_name
             __props__.__dict__["copy_settings"] = copy_settings
-            if export is not None and not isinstance(export, CloudBackupScheduleExportArgs):
-                export = export or {}
-                def _setter(key, value):
-                    export[key] = value
-                CloudBackupScheduleExportArgs._configure(_setter, **export)
+            export = _utilities.configure(export, CloudBackupScheduleExportArgs, True)
             __props__.__dict__["export"] = export
-            if policy_item_daily is not None and not isinstance(policy_item_daily, CloudBackupSchedulePolicyItemDailyArgs):
-                policy_item_daily = policy_item_daily or {}
-                def _setter(key, value):
-                    policy_item_daily[key] = value
-                CloudBackupSchedulePolicyItemDailyArgs._configure(_setter, **policy_item_daily)
+            policy_item_daily = _utilities.configure(policy_item_daily, CloudBackupSchedulePolicyItemDailyArgs, True)
             __props__.__dict__["policy_item_daily"] = policy_item_daily
-            if policy_item_hourly is not None and not isinstance(policy_item_hourly, CloudBackupSchedulePolicyItemHourlyArgs):
-                policy_item_hourly = policy_item_hourly or {}
-                def _setter(key, value):
-                    policy_item_hourly[key] = value
-                CloudBackupSchedulePolicyItemHourlyArgs._configure(_setter, **policy_item_hourly)
+            policy_item_hourly = _utilities.configure(policy_item_hourly, CloudBackupSchedulePolicyItemHourlyArgs, True)
             __props__.__dict__["policy_item_hourly"] = policy_item_hourly
             __props__.__dict__["policy_item_monthlies"] = policy_item_monthlies
             __props__.__dict__["policy_item_weeklies"] = policy_item_weeklies

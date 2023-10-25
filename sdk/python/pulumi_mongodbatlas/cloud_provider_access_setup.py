@@ -31,10 +31,22 @@ class CloudProviderAccessSetupArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
-             provider_name: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
              azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if provider_name is None:
+            raise TypeError("Missing 'provider_name' argument")
+        if azure_configs is None and 'azureConfigs' in kwargs:
+            azure_configs = kwargs['azureConfigs']
+
         _setter("project_id", project_id)
         _setter("provider_name", provider_name)
         if azure_configs is not None:
@@ -101,7 +113,23 @@ class _CloudProviderAccessSetupState:
              project_id: Optional[pulumi.Input[str]] = None,
              provider_name: Optional[pulumi.Input[str]] = None,
              role_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if aws_configs is None and 'awsConfigs' in kwargs:
+            aws_configs = kwargs['awsConfigs']
+        if azure_configs is None and 'azureConfigs' in kwargs:
+            azure_configs = kwargs['azureConfigs']
+        if created_date is None and 'createdDate' in kwargs:
+            created_date = kwargs['createdDate']
+        if last_updated_date is None and 'lastUpdatedDate' in kwargs:
+            last_updated_date = kwargs['lastUpdatedDate']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if role_id is None and 'roleId' in kwargs:
+            role_id = kwargs['roleId']
+
         if aws_configs is not None:
             _setter("aws_configs", aws_configs)
         if azure_configs is not None:

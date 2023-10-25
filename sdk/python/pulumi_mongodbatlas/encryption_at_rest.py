@@ -34,11 +34,23 @@ class EncryptionAtRestArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
              aws_kms_config: Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']] = None,
              azure_key_vault_config: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']] = None,
              google_cloud_kms_config: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if aws_kms_config is None and 'awsKmsConfig' in kwargs:
+            aws_kms_config = kwargs['awsKmsConfig']
+        if azure_key_vault_config is None and 'azureKeyVaultConfig' in kwargs:
+            azure_key_vault_config = kwargs['azureKeyVaultConfig']
+        if google_cloud_kms_config is None and 'googleCloudKmsConfig' in kwargs:
+            google_cloud_kms_config = kwargs['googleCloudKmsConfig']
+
         _setter("project_id", project_id)
         if aws_kms_config is not None:
             _setter("aws_kms_config", aws_kms_config)
@@ -112,7 +124,17 @@ class _EncryptionAtRestState:
              azure_key_vault_config: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']] = None,
              google_cloud_kms_config: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None,
              project_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if aws_kms_config is None and 'awsKmsConfig' in kwargs:
+            aws_kms_config = kwargs['awsKmsConfig']
+        if azure_key_vault_config is None and 'azureKeyVaultConfig' in kwargs:
+            azure_key_vault_config = kwargs['azureKeyVaultConfig']
+        if google_cloud_kms_config is None and 'googleCloudKmsConfig' in kwargs:
+            google_cloud_kms_config = kwargs['googleCloudKmsConfig']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
         if aws_kms_config is not None:
             _setter("aws_kms_config", aws_kms_config)
         if azure_key_vault_config is not None:
@@ -234,23 +256,11 @@ class EncryptionAtRest(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = EncryptionAtRestArgs.__new__(EncryptionAtRestArgs)
 
-            if aws_kms_config is not None and not isinstance(aws_kms_config, EncryptionAtRestAwsKmsConfigArgs):
-                aws_kms_config = aws_kms_config or {}
-                def _setter(key, value):
-                    aws_kms_config[key] = value
-                EncryptionAtRestAwsKmsConfigArgs._configure(_setter, **aws_kms_config)
+            aws_kms_config = _utilities.configure(aws_kms_config, EncryptionAtRestAwsKmsConfigArgs, True)
             __props__.__dict__["aws_kms_config"] = aws_kms_config
-            if azure_key_vault_config is not None and not isinstance(azure_key_vault_config, EncryptionAtRestAzureKeyVaultConfigArgs):
-                azure_key_vault_config = azure_key_vault_config or {}
-                def _setter(key, value):
-                    azure_key_vault_config[key] = value
-                EncryptionAtRestAzureKeyVaultConfigArgs._configure(_setter, **azure_key_vault_config)
+            azure_key_vault_config = _utilities.configure(azure_key_vault_config, EncryptionAtRestAzureKeyVaultConfigArgs, True)
             __props__.__dict__["azure_key_vault_config"] = azure_key_vault_config
-            if google_cloud_kms_config is not None and not isinstance(google_cloud_kms_config, EncryptionAtRestGoogleCloudKmsConfigArgs):
-                google_cloud_kms_config = google_cloud_kms_config or {}
-                def _setter(key, value):
-                    google_cloud_kms_config[key] = value
-                EncryptionAtRestGoogleCloudKmsConfigArgs._configure(_setter, **google_cloud_kms_config)
+            google_cloud_kms_config = _utilities.configure(google_cloud_kms_config, EncryptionAtRestGoogleCloudKmsConfigArgs, True)
             __props__.__dict__["google_cloud_kms_config"] = google_cloud_kms_config
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")

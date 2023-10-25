@@ -56,9 +56,9 @@ class DatabaseUserArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             auth_database_name: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             username: pulumi.Input[str],
+             auth_database_name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             username: Optional[pulumi.Input[str]] = None,
              aws_iam_type: Optional[pulumi.Input[str]] = None,
              labels: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
              ldap_auth_type: Optional[pulumi.Input[str]] = None,
@@ -67,7 +67,27 @@ class DatabaseUserArgs:
              roles: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]] = None,
              scopes: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
              x509_type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if auth_database_name is None and 'authDatabaseName' in kwargs:
+            auth_database_name = kwargs['authDatabaseName']
+        if auth_database_name is None:
+            raise TypeError("Missing 'auth_database_name' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if username is None:
+            raise TypeError("Missing 'username' argument")
+        if aws_iam_type is None and 'awsIamType' in kwargs:
+            aws_iam_type = kwargs['awsIamType']
+        if ldap_auth_type is None and 'ldapAuthType' in kwargs:
+            ldap_auth_type = kwargs['ldapAuthType']
+        if oidc_auth_type is None and 'oidcAuthType' in kwargs:
+            oidc_auth_type = kwargs['oidcAuthType']
+        if x509_type is None and 'x509Type' in kwargs:
+            x509_type = kwargs['x509Type']
+
         _setter("auth_database_name", auth_database_name)
         _setter("project_id", project_id)
         _setter("username", username)
@@ -267,7 +287,21 @@ class _DatabaseUserState:
              scopes: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
              username: Optional[pulumi.Input[str]] = None,
              x509_type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if auth_database_name is None and 'authDatabaseName' in kwargs:
+            auth_database_name = kwargs['authDatabaseName']
+        if aws_iam_type is None and 'awsIamType' in kwargs:
+            aws_iam_type = kwargs['awsIamType']
+        if ldap_auth_type is None and 'ldapAuthType' in kwargs:
+            ldap_auth_type = kwargs['ldapAuthType']
+        if oidc_auth_type is None and 'oidcAuthType' in kwargs:
+            oidc_auth_type = kwargs['oidcAuthType']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if x509_type is None and 'x509Type' in kwargs:
+            x509_type = kwargs['x509Type']
+
         if auth_database_name is not None:
             _setter("auth_database_name", auth_database_name)
         if aws_iam_type is not None:
@@ -443,107 +477,6 @@ class DatabaseUser(pulumi.CustomResource):
         > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 
         ## Example Usage
-        ### S
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.DatabaseUser("test",
-            auth_database_name="admin",
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="My Key",
-                value="My Value",
-            )],
-            password="test-acc-password",
-            project_id="<PROJECT-ID>",
-            roles=[
-                mongodbatlas.DatabaseUserRoleArgs(
-                    database_name="dbforApp",
-                    role_name="readWrite",
-                ),
-                mongodbatlas.DatabaseUserRoleArgs(
-                    database_name="admin",
-                    role_name="readAnyDatabase",
-                ),
-            ],
-            scopes=[
-                mongodbatlas.DatabaseUserScopeArgs(
-                    name="My cluster name",
-                    type="CLUSTER",
-                ),
-                mongodbatlas.DatabaseUserScopeArgs(
-                    name="My second cluster name",
-                    type="CLUSTER",
-                ),
-            ],
-            username="test-acc-username")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.DatabaseUser("test",
-            auth_database_name="$external",
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="%s",
-                value="%s",
-            )],
-            project_id="<PROJECT-ID>",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
-                role_name="readAnyDatabase",
-            )],
-            scopes=[mongodbatlas.DatabaseUserScopeArgs(
-                name="My cluster name",
-                type="CLUSTER",
-            )],
-            username="test-acc-username",
-            x509_type="MANAGED")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.DatabaseUser("test",
-            username=aws_iam_role["test"]["arn"],
-            project_id="<PROJECT-ID>",
-            auth_database_name="$external",
-            aws_iam_type="ROLE",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readAnyDatabase",
-                database_name="admin",
-            )],
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="%s",
-                value="%s",
-            )],
-            scopes=[mongodbatlas.DatabaseUserScopeArgs(
-                name="My cluster name",
-                type="CLUSTER",
-            )])
-        ```
-        ## Example of how to create a OIDC federated authentication user
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.DatabaseUser("test",
-            auth_database_name="admin",
-            oidc_auth_type="IDP_GROUP",
-            project_id="6414908c207f4d22f4d8f232",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
-                role_name="readWriteAnyDatabase",
-            )],
-            username="64d613677e1ad50839cce4db/testUserOr")
-        ```
-        `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
-
-        Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
         ## Import
 
@@ -582,107 +515,6 @@ class DatabaseUser(pulumi.CustomResource):
         > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 
         ## Example Usage
-        ### S
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.DatabaseUser("test",
-            auth_database_name="admin",
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="My Key",
-                value="My Value",
-            )],
-            password="test-acc-password",
-            project_id="<PROJECT-ID>",
-            roles=[
-                mongodbatlas.DatabaseUserRoleArgs(
-                    database_name="dbforApp",
-                    role_name="readWrite",
-                ),
-                mongodbatlas.DatabaseUserRoleArgs(
-                    database_name="admin",
-                    role_name="readAnyDatabase",
-                ),
-            ],
-            scopes=[
-                mongodbatlas.DatabaseUserScopeArgs(
-                    name="My cluster name",
-                    type="CLUSTER",
-                ),
-                mongodbatlas.DatabaseUserScopeArgs(
-                    name="My second cluster name",
-                    type="CLUSTER",
-                ),
-            ],
-            username="test-acc-username")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.DatabaseUser("test",
-            auth_database_name="$external",
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="%s",
-                value="%s",
-            )],
-            project_id="<PROJECT-ID>",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
-                role_name="readAnyDatabase",
-            )],
-            scopes=[mongodbatlas.DatabaseUserScopeArgs(
-                name="My cluster name",
-                type="CLUSTER",
-            )],
-            username="test-acc-username",
-            x509_type="MANAGED")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.DatabaseUser("test",
-            username=aws_iam_role["test"]["arn"],
-            project_id="<PROJECT-ID>",
-            auth_database_name="$external",
-            aws_iam_type="ROLE",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readAnyDatabase",
-                database_name="admin",
-            )],
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="%s",
-                value="%s",
-            )],
-            scopes=[mongodbatlas.DatabaseUserScopeArgs(
-                name="My cluster name",
-                type="CLUSTER",
-            )])
-        ```
-        ## Example of how to create a OIDC federated authentication user
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.DatabaseUser("test",
-            auth_database_name="admin",
-            oidc_auth_type="IDP_GROUP",
-            project_id="6414908c207f4d22f4d8f232",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
-                role_name="readWriteAnyDatabase",
-            )],
-            username="64d613677e1ad50839cce4db/testUserOr")
-        ```
-        `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
-
-        Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
         ## Import
 

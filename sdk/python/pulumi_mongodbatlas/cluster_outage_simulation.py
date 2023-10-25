@@ -34,10 +34,24 @@ class ClusterOutageSimulationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cluster_name: pulumi.Input[str],
-             outage_filters: pulumi.Input[Sequence[pulumi.Input['ClusterOutageSimulationOutageFilterArgs']]],
-             project_id: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             outage_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterOutageSimulationOutageFilterArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if cluster_name is None:
+            raise TypeError("Missing 'cluster_name' argument")
+        if outage_filters is None and 'outageFilters' in kwargs:
+            outage_filters = kwargs['outageFilters']
+        if outage_filters is None:
+            raise TypeError("Missing 'outage_filters' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+
         _setter("cluster_name", cluster_name)
         _setter("outage_filters", outage_filters)
         _setter("project_id", project_id)
@@ -115,7 +129,19 @@ class _ClusterOutageSimulationState:
              simulation_id: Optional[pulumi.Input[str]] = None,
              start_request_date: Optional[pulumi.Input[str]] = None,
              state: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if outage_filters is None and 'outageFilters' in kwargs:
+            outage_filters = kwargs['outageFilters']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if simulation_id is None and 'simulationId' in kwargs:
+            simulation_id = kwargs['simulationId']
+        if start_request_date is None and 'startRequestDate' in kwargs:
+            start_request_date = kwargs['startRequestDate']
+
         if cluster_name is not None:
             _setter("cluster_name", cluster_name)
         if outage_filters is not None:
@@ -226,26 +252,6 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
 
         ## Example Usage
-        ### S
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        outage_simulation = mongodbatlas.ClusterOutageSimulation("outageSimulation",
-            cluster_name="Cluster0",
-            outage_filters=[
-                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
-                    cloud_provider="AWS",
-                    region_name="US_EAST_1",
-                ),
-                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
-                    cloud_provider="AWS",
-                    region_name="US_EAST_2",
-                ),
-            ],
-            project_id="64707f06c519c20c3a2b1b03")
-        ```
 
         ## Import
 
@@ -278,26 +284,6 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
 
         ## Example Usage
-        ### S
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        outage_simulation = mongodbatlas.ClusterOutageSimulation("outageSimulation",
-            cluster_name="Cluster0",
-            outage_filters=[
-                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
-                    cloud_provider="AWS",
-                    region_name="US_EAST_1",
-                ),
-                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
-                    cloud_provider="AWS",
-                    region_name="US_EAST_2",
-                ),
-            ],
-            project_id="64707f06c519c20c3a2b1b03")
-        ```
 
         ## Import
 

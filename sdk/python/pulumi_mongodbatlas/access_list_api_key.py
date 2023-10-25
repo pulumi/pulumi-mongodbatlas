@@ -37,11 +37,25 @@ class AccessListApiKeyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             api_key_id: pulumi.Input[str],
-             org_id: pulumi.Input[str],
+             api_key_id: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
              cidr_block: Optional[pulumi.Input[str]] = None,
              ip_address: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if api_key_id is None and 'apiKeyId' in kwargs:
+            api_key_id = kwargs['apiKeyId']
+        if api_key_id is None:
+            raise TypeError("Missing 'api_key_id' argument")
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if org_id is None:
+            raise TypeError("Missing 'org_id' argument")
+        if cidr_block is None and 'cidrBlock' in kwargs:
+            cidr_block = kwargs['cidrBlock']
+        if ip_address is None and 'ipAddress' in kwargs:
+            ip_address = kwargs['ipAddress']
+
         _setter("api_key_id", api_key_id)
         _setter("org_id", org_id)
         if cidr_block is not None:
@@ -130,7 +144,17 @@ class _AccessListApiKeyState:
              cidr_block: Optional[pulumi.Input[str]] = None,
              ip_address: Optional[pulumi.Input[str]] = None,
              org_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if api_key_id is None and 'apiKeyId' in kwargs:
+            api_key_id = kwargs['apiKeyId']
+        if cidr_block is None and 'cidrBlock' in kwargs:
+            cidr_block = kwargs['cidrBlock']
+        if ip_address is None and 'ipAddress' in kwargs:
+            ip_address = kwargs['ipAddress']
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+
         if api_key_id is not None:
             _setter("api_key_id", api_key_id)
         if cidr_block is not None:
@@ -203,26 +227,6 @@ class AccessListApiKey(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
-        ### Using CIDR Block
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.AccessListApiKey("test",
-            api_key_id="a29120e123cd",
-            cidr_block="1.2.3.4/32",
-            org_id="<ORG-ID>")
-        ```
-        ### Using IP Address
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.AccessListApiKey("test",
-            api_key_id="a29120e123cd",
-            ip_address="2.3.4.5",
-            org_id="<ORG-ID>")
-        ```
 
         ## Import
 
@@ -250,26 +254,6 @@ class AccessListApiKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
-        ### Using CIDR Block
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.AccessListApiKey("test",
-            api_key_id="a29120e123cd",
-            cidr_block="1.2.3.4/32",
-            org_id="<ORG-ID>")
-        ```
-        ### Using IP Address
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.AccessListApiKey("test",
-            api_key_id="a29120e123cd",
-            ip_address="2.3.4.5",
-            org_id="<ORG-ID>")
-        ```
 
         ## Import
 

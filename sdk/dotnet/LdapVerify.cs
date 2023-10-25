@@ -12,49 +12,6 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var testProject = new Mongodbatlas.Project("testProject", new()
-    ///     {
-    ///         OrgId = "ORG ID",
-    ///     });
-    /// 
-    ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
-    ///     {
-    ///         ProjectId = testProject.Id,
-    ///         ProviderName = "AWS",
-    ///         ProviderRegionName = "US_EAST_2",
-    ///         ProviderInstanceSizeName = "M10",
-    ///         CloudBackup = true,
-    ///     });
-    /// 
-    ///     //enable cloud provider snapshots
-    ///     var testLdapVerify = new Mongodbatlas.LdapVerify("testLdapVerify", new()
-    ///     {
-    ///         ProjectId = testProject.Id,
-    ///         Hostname = "HOSTNAME",
-    ///         Port = 636,
-    ///         BindUsername = "USERNAME",
-    ///         BindPassword = "PASSWORD",
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn = new[]
-    ///         {
-    ///             testCluster,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// LDAP Configuration must be imported using project ID and request ID, e.g.

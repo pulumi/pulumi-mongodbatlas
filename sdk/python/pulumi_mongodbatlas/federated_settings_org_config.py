@@ -35,13 +35,35 @@ class FederatedSettingsOrgConfigArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             domain_restriction_enabled: pulumi.Input[bool],
-             federation_settings_id: pulumi.Input[str],
-             identity_provider_id: pulumi.Input[str],
-             org_id: pulumi.Input[str],
+             domain_restriction_enabled: Optional[pulumi.Input[bool]] = None,
+             federation_settings_id: Optional[pulumi.Input[str]] = None,
+             identity_provider_id: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
              domain_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if domain_restriction_enabled is None and 'domainRestrictionEnabled' in kwargs:
+            domain_restriction_enabled = kwargs['domainRestrictionEnabled']
+        if domain_restriction_enabled is None:
+            raise TypeError("Missing 'domain_restriction_enabled' argument")
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if federation_settings_id is None:
+            raise TypeError("Missing 'federation_settings_id' argument")
+        if identity_provider_id is None and 'identityProviderId' in kwargs:
+            identity_provider_id = kwargs['identityProviderId']
+        if identity_provider_id is None:
+            raise TypeError("Missing 'identity_provider_id' argument")
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if org_id is None:
+            raise TypeError("Missing 'org_id' argument")
+        if domain_allow_lists is None and 'domainAllowLists' in kwargs:
+            domain_allow_lists = kwargs['domainAllowLists']
+        if post_auth_role_grants is None and 'postAuthRoleGrants' in kwargs:
+            post_auth_role_grants = kwargs['postAuthRoleGrants']
+
         _setter("domain_restriction_enabled", domain_restriction_enabled)
         _setter("federation_settings_id", federation_settings_id)
         _setter("identity_provider_id", identity_provider_id)
@@ -136,7 +158,21 @@ class _FederatedSettingsOrgConfigState:
              identity_provider_id: Optional[pulumi.Input[str]] = None,
              org_id: Optional[pulumi.Input[str]] = None,
              post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if domain_allow_lists is None and 'domainAllowLists' in kwargs:
+            domain_allow_lists = kwargs['domainAllowLists']
+        if domain_restriction_enabled is None and 'domainRestrictionEnabled' in kwargs:
+            domain_restriction_enabled = kwargs['domainRestrictionEnabled']
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if identity_provider_id is None and 'identityProviderId' in kwargs:
+            identity_provider_id = kwargs['identityProviderId']
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if post_auth_role_grants is None and 'postAuthRoleGrants' in kwargs:
+            post_auth_role_grants = kwargs['postAuthRoleGrants']
+
         if domain_allow_lists is not None:
             _setter("domain_allow_lists", domain_allow_lists)
         if domain_restriction_enabled is not None:

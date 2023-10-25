@@ -8,25 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("orgConnections", {
- *     federationSettingsId: "627a9687f7f7f7f774de306f14",
- *     orgId: "627a9683ea7ff7f74de306f14",
- *     domainRestrictionEnabled: false,
- *     domainAllowLists: ["mydomain.com"],
- *     postAuthRoleGrants: ["ORG_MEMBER"],
- * });
- * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigOutput({
- *     federationSettingsId: orgConnections.id,
- *     orgId: "627a9683ea7ff7f74de306f14",
- * });
- * ```
  */
 export function getFederatedSettingsOrgConfig(args: GetFederatedSettingsOrgConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgConfigResult> {
 
@@ -85,25 +66,6 @@ export interface GetFederatedSettingsOrgConfigResult {
 }
 /**
  * `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("orgConnections", {
- *     federationSettingsId: "627a9687f7f7f7f774de306f14",
- *     orgId: "627a9683ea7ff7f74de306f14",
- *     domainRestrictionEnabled: false,
- *     domainAllowLists: ["mydomain.com"],
- *     postAuthRoleGrants: ["ORG_MEMBER"],
- * });
- * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigOutput({
- *     federationSettingsId: orgConnections.id,
- *     orgId: "627a9683ea7ff7f74de306f14",
- * });
- * ```
  */
 export function getFederatedSettingsOrgConfigOutput(args: GetFederatedSettingsOrgConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgConfigResult> {
     return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgConfig(a, opts))

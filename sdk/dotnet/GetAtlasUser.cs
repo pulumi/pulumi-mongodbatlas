@@ -18,42 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### Using user_id attribute to query
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
-        ///     {
-        ///         UserId = "&lt;USER_ID&gt;",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% example %}}
-        /// ### Using username attribute to query
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
-        ///     {
-        ///         Username = "&lt;USERNAME&gt;",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAtlasUserResult> InvokeAsync(GetAtlasUserArgs? args = null, InvokeOptions? options = null)
@@ -66,42 +30,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### Using user_id attribute to query
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
-        ///     {
-        ///         UserId = "&lt;USER_ID&gt;",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% example %}}
-        /// ### Using username attribute to query
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
-        ///     {
-        ///         Username = "&lt;USERNAME&gt;",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAtlasUserResult> Invoke(GetAtlasUserInvokeArgs? args = null, InvokeOptions? options = null)

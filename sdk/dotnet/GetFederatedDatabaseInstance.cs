@@ -20,54 +20,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### S With MongoDB Atlas Cluster As Storage Database
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
-        ///     {
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        ///         ProjectId = "PROJECT ID",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// 
-        /// {{% /example %}}
-        /// {{% example %}}
-        /// ### S With Amazon S3 Bucket As Storage Database
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
-        ///     {
-        ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
-        ///         {
-        ///             Aws = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs
-        ///             {
-        ///                 TestS3Bucket = "Amazon S3 Bucket Name",
-        ///             },
-        ///         },
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        ///         ProjectId = "PROJECT ID",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetFederatedDatabaseInstanceResult> InvokeAsync(GetFederatedDatabaseInstanceArgs args, InvokeOptions? options = null)
@@ -82,54 +34,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### S With MongoDB Atlas Cluster As Storage Database
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
-        ///     {
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        ///         ProjectId = "PROJECT ID",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// 
-        /// {{% /example %}}
-        /// {{% example %}}
-        /// ### S With Amazon S3 Bucket As Storage Database
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
-        ///     {
-        ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
-        ///         {
-        ///             Aws = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs
-        ///             {
-        ///                 TestS3Bucket = "Amazon S3 Bucket Name",
-        ///             },
-        ///         },
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        ///         ProjectId = "PROJECT ID",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetFederatedDatabaseInstanceResult> Invoke(GetFederatedDatabaseInstanceInvokeArgs args, InvokeOptions? options = null)

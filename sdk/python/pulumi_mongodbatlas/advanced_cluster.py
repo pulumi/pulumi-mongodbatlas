@@ -86,9 +86,9 @@ class AdvancedClusterArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cluster_type: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             replication_specs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]],
+             cluster_type: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]] = None,
              advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
              backup_enabled: Optional[pulumi.Input[bool]] = None,
              bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
@@ -104,7 +104,43 @@ class AdvancedClusterArgs:
              tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
              termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
              version_release_system: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_type is None and 'clusterType' in kwargs:
+            cluster_type = kwargs['clusterType']
+        if cluster_type is None:
+            raise TypeError("Missing 'cluster_type' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if replication_specs is None and 'replicationSpecs' in kwargs:
+            replication_specs = kwargs['replicationSpecs']
+        if replication_specs is None:
+            raise TypeError("Missing 'replication_specs' argument")
+        if advanced_configuration is None and 'advancedConfiguration' in kwargs:
+            advanced_configuration = kwargs['advancedConfiguration']
+        if backup_enabled is None and 'backupEnabled' in kwargs:
+            backup_enabled = kwargs['backupEnabled']
+        if bi_connector_config is None and 'biConnectorConfig' in kwargs:
+            bi_connector_config = kwargs['biConnectorConfig']
+        if disk_size_gb is None and 'diskSizeGb' in kwargs:
+            disk_size_gb = kwargs['diskSizeGb']
+        if encryption_at_rest_provider is None and 'encryptionAtRestProvider' in kwargs:
+            encryption_at_rest_provider = kwargs['encryptionAtRestProvider']
+        if mongo_db_major_version is None and 'mongoDbMajorVersion' in kwargs:
+            mongo_db_major_version = kwargs['mongoDbMajorVersion']
+        if pit_enabled is None and 'pitEnabled' in kwargs:
+            pit_enabled = kwargs['pitEnabled']
+        if retain_backups_enabled is None and 'retainBackupsEnabled' in kwargs:
+            retain_backups_enabled = kwargs['retainBackupsEnabled']
+        if root_cert_type is None and 'rootCertType' in kwargs:
+            root_cert_type = kwargs['rootCertType']
+        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
+            termination_protection_enabled = kwargs['terminationProtectionEnabled']
+        if version_release_system is None and 'versionReleaseSystem' in kwargs:
+            version_release_system = kwargs['versionReleaseSystem']
+
         _setter("cluster_type", cluster_type)
         _setter("project_id", project_id)
         _setter("replication_specs", replication_specs)
@@ -481,7 +517,47 @@ class _AdvancedClusterState:
              tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
              termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
              version_release_system: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if advanced_configuration is None and 'advancedConfiguration' in kwargs:
+            advanced_configuration = kwargs['advancedConfiguration']
+        if backup_enabled is None and 'backupEnabled' in kwargs:
+            backup_enabled = kwargs['backupEnabled']
+        if bi_connector_config is None and 'biConnectorConfig' in kwargs:
+            bi_connector_config = kwargs['biConnectorConfig']
+        if cluster_id is None and 'clusterId' in kwargs:
+            cluster_id = kwargs['clusterId']
+        if cluster_type is None and 'clusterType' in kwargs:
+            cluster_type = kwargs['clusterType']
+        if connection_strings is None and 'connectionStrings' in kwargs:
+            connection_strings = kwargs['connectionStrings']
+        if create_date is None and 'createDate' in kwargs:
+            create_date = kwargs['createDate']
+        if disk_size_gb is None and 'diskSizeGb' in kwargs:
+            disk_size_gb = kwargs['diskSizeGb']
+        if encryption_at_rest_provider is None and 'encryptionAtRestProvider' in kwargs:
+            encryption_at_rest_provider = kwargs['encryptionAtRestProvider']
+        if mongo_db_major_version is None and 'mongoDbMajorVersion' in kwargs:
+            mongo_db_major_version = kwargs['mongoDbMajorVersion']
+        if mongo_db_version is None and 'mongoDbVersion' in kwargs:
+            mongo_db_version = kwargs['mongoDbVersion']
+        if pit_enabled is None and 'pitEnabled' in kwargs:
+            pit_enabled = kwargs['pitEnabled']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if replication_specs is None and 'replicationSpecs' in kwargs:
+            replication_specs = kwargs['replicationSpecs']
+        if retain_backups_enabled is None and 'retainBackupsEnabled' in kwargs:
+            retain_backups_enabled = kwargs['retainBackupsEnabled']
+        if root_cert_type is None and 'rootCertType' in kwargs:
+            root_cert_type = kwargs['rootCertType']
+        if state_name is None and 'stateName' in kwargs:
+            state_name = kwargs['stateName']
+        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
+            termination_protection_enabled = kwargs['terminationProtectionEnabled']
+        if version_release_system is None and 'versionReleaseSystem' in kwargs:
+            version_release_system = kwargs['versionReleaseSystem']
+
         if advanced_configuration is not None:
             _setter("advanced_configuration", advanced_configuration)
         if backup_enabled is not None:
@@ -942,18 +1018,10 @@ class AdvancedCluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AdvancedClusterArgs.__new__(AdvancedClusterArgs)
 
-            if advanced_configuration is not None and not isinstance(advanced_configuration, AdvancedClusterAdvancedConfigurationArgs):
-                advanced_configuration = advanced_configuration or {}
-                def _setter(key, value):
-                    advanced_configuration[key] = value
-                AdvancedClusterAdvancedConfigurationArgs._configure(_setter, **advanced_configuration)
+            advanced_configuration = _utilities.configure(advanced_configuration, AdvancedClusterAdvancedConfigurationArgs, True)
             __props__.__dict__["advanced_configuration"] = advanced_configuration
             __props__.__dict__["backup_enabled"] = backup_enabled
-            if bi_connector_config is not None and not isinstance(bi_connector_config, AdvancedClusterBiConnectorConfigArgs):
-                bi_connector_config = bi_connector_config or {}
-                def _setter(key, value):
-                    bi_connector_config[key] = value
-                AdvancedClusterBiConnectorConfigArgs._configure(_setter, **bi_connector_config)
+            bi_connector_config = _utilities.configure(bi_connector_config, AdvancedClusterBiConnectorConfigArgs, True)
             __props__.__dict__["bi_connector_config"] = bi_connector_config
             if cluster_type is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_type'")

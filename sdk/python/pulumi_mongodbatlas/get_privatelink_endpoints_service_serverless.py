@@ -103,58 +103,6 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
-    ## Example with AWS
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
-        project_id="<PROJECT_ID>",
-        provider_settings_backing_provider_name="AWS",
-        provider_settings_provider_name="SERVERLESS",
-        provider_settings_region_name="US_EAST_1",
-        continuous_backup_enabled=True)
-    test_privatelink_endpoints_service_serverless = mongodbatlas.get_privatelink_endpoints_service_serverless_output(project_id="<PROJECT_ID>",
-        instance_name=test_serverless_instance.name)
-    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
-        project_id="<PROJECT_ID>",
-        instance_name=test_serverless_instance.name,
-        provider_name="AWS")
-    test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless",
-        project_id="<PROJECT_ID>",
-        instance_name="test-db",
-        endpoint_id=test_privatelink_endpoint_serverless.endpoint_id,
-        provider_name="AWS",
-        comment="New serverless endpoint")
-    ```
-
-    ## Example with AZURE
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
-        project_id="<PROJECT_ID>",
-        provider_settings_backing_provider_name="AZURE",
-        provider_settings_provider_name="SERVERLESS",
-        provider_settings_region_name="US_EAST",
-        continuous_backup_enabled=True)
-    test_privatelink_endpoints_service_serverless = mongodbatlas.get_privatelink_endpoints_service_serverless_output(project_id="<PROJECT_ID>",
-        instance_name=test_serverless_instance.name)
-    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
-        project_id="<PROJECT_ID>",
-        instance_name=test_serverless_instance.name,
-        provider_name="AZURE")
-    test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless",
-        project_id="<PROJECT_ID>",
-        instance_name="test-db",
-        endpoint_id=test_privatelink_endpoint_serverless.endpoint_id,
-        provider_name="AZURE",
-        comment="New serverless endpoint")
-    ```
-
 
     :param str instance_name: Human-readable label that identifies the serverless instance
     :param str project_id: Unique 24-digit hexadecimal string that identifies the project.
@@ -186,58 +134,6 @@ def get_privatelink_endpoints_service_serverless_output(instance_name: Optional[
     `privatelink_endpoints_service_serverless` Describes the list of all Serverless PrivateLink Endpoint Service resource.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
-    ## Example with AWS
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
-        project_id="<PROJECT_ID>",
-        provider_settings_backing_provider_name="AWS",
-        provider_settings_provider_name="SERVERLESS",
-        provider_settings_region_name="US_EAST_1",
-        continuous_backup_enabled=True)
-    test_privatelink_endpoints_service_serverless = mongodbatlas.get_privatelink_endpoints_service_serverless_output(project_id="<PROJECT_ID>",
-        instance_name=test_serverless_instance.name)
-    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
-        project_id="<PROJECT_ID>",
-        instance_name=test_serverless_instance.name,
-        provider_name="AWS")
-    test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless",
-        project_id="<PROJECT_ID>",
-        instance_name="test-db",
-        endpoint_id=test_privatelink_endpoint_serverless.endpoint_id,
-        provider_name="AWS",
-        comment="New serverless endpoint")
-    ```
-
-    ## Example with AZURE
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
-        project_id="<PROJECT_ID>",
-        provider_settings_backing_provider_name="AZURE",
-        provider_settings_provider_name="SERVERLESS",
-        provider_settings_region_name="US_EAST",
-        continuous_backup_enabled=True)
-    test_privatelink_endpoints_service_serverless = mongodbatlas.get_privatelink_endpoints_service_serverless_output(project_id="<PROJECT_ID>",
-        instance_name=test_serverless_instance.name)
-    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
-        project_id="<PROJECT_ID>",
-        instance_name=test_serverless_instance.name,
-        provider_name="AZURE")
-    test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless",
-        project_id="<PROJECT_ID>",
-        instance_name="test-db",
-        endpoint_id=test_privatelink_endpoint_serverless.endpoint_id,
-        provider_name="AZURE",
-        comment="New serverless endpoint")
-    ```
 
 
     :param str instance_name: Human-readable label that identifies the serverless instance

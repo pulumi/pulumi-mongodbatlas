@@ -112,34 +112,6 @@ def get_cloud_backup_snapshot_restore_jobs(cluster_name: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-    ## Example Usage
-
-    First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
-        project_id="5cf5a45a9ccf6400e60981b6",
-        cluster_name="MyCluster",
-        description="MyDescription",
-        retention_in_days=1)
-    test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-        project_id="5cf5a45a9ccf6400e60981b6",
-        cluster_name="MyCluster",
-        snapshot_id=test_cloud_backup_snapshot.id,
-        delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-            automated=True,
-            target_cluster_name="MyCluster",
-            target_project_id="5cf5a45a9ccf6400e60981b6",
-        ))
-    test_cloud_backup_snapshot_restore_jobs = pulumi.Output.all(test_cloud_backup_snapshot_restore_job.project_id, test_cloud_backup_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=project_id,
-        cluster_name=cluster_name,
-        page_num=1,
-        items_per_page=5))
-    ```
-
 
     :param str cluster_name: The name of the Atlas cluster for which you want to retrieve restore jobs.
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -174,34 +146,6 @@ def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.
     `get_cloud_backup_snapshot_restore_jobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-    ## Example Usage
-
-    First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
-        project_id="5cf5a45a9ccf6400e60981b6",
-        cluster_name="MyCluster",
-        description="MyDescription",
-        retention_in_days=1)
-    test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-        project_id="5cf5a45a9ccf6400e60981b6",
-        cluster_name="MyCluster",
-        snapshot_id=test_cloud_backup_snapshot.id,
-        delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-            automated=True,
-            target_cluster_name="MyCluster",
-            target_project_id="5cf5a45a9ccf6400e60981b6",
-        ))
-    test_cloud_backup_snapshot_restore_jobs = pulumi.Output.all(test_cloud_backup_snapshot_restore_job.project_id, test_cloud_backup_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=project_id,
-        cluster_name=cluster_name,
-        page_num=1,
-        items_per_page=5))
-    ```
 
 
     :param str cluster_name: The name of the Atlas cluster for which you want to retrieve restore jobs.

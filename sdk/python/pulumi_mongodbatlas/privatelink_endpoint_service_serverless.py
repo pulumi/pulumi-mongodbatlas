@@ -44,14 +44,36 @@ class PrivatelinkEndpointServiceServerlessArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             endpoint_id: pulumi.Input[str],
-             instance_name: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             provider_name: pulumi.Input[str],
+             endpoint_id: Optional[pulumi.Input[str]] = None,
+             instance_name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
              cloud_provider_endpoint_id: Optional[pulumi.Input[str]] = None,
              comment: Optional[pulumi.Input[str]] = None,
              private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if endpoint_id is None and 'endpointId' in kwargs:
+            endpoint_id = kwargs['endpointId']
+        if endpoint_id is None:
+            raise TypeError("Missing 'endpoint_id' argument")
+        if instance_name is None and 'instanceName' in kwargs:
+            instance_name = kwargs['instanceName']
+        if instance_name is None:
+            raise TypeError("Missing 'instance_name' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if provider_name is None:
+            raise TypeError("Missing 'provider_name' argument")
+        if cloud_provider_endpoint_id is None and 'cloudProviderEndpointId' in kwargs:
+            cloud_provider_endpoint_id = kwargs['cloudProviderEndpointId']
+        if private_endpoint_ip_address is None and 'privateEndpointIpAddress' in kwargs:
+            private_endpoint_ip_address = kwargs['privateEndpointIpAddress']
+
         _setter("endpoint_id", endpoint_id)
         _setter("instance_name", instance_name)
         _setter("project_id", project_id)
@@ -196,7 +218,23 @@ class _PrivatelinkEndpointServiceServerlessState:
              project_id: Optional[pulumi.Input[str]] = None,
              provider_name: Optional[pulumi.Input[str]] = None,
              status: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cloud_provider_endpoint_id is None and 'cloudProviderEndpointId' in kwargs:
+            cloud_provider_endpoint_id = kwargs['cloudProviderEndpointId']
+        if endpoint_id is None and 'endpointId' in kwargs:
+            endpoint_id = kwargs['endpointId']
+        if instance_name is None and 'instanceName' in kwargs:
+            instance_name = kwargs['instanceName']
+        if private_endpoint_ip_address is None and 'privateEndpointIpAddress' in kwargs:
+            private_endpoint_ip_address = kwargs['privateEndpointIpAddress']
+        if private_link_service_resource_id is None and 'privateLinkServiceResourceId' in kwargs:
+            private_link_service_resource_id = kwargs['privateLinkServiceResourceId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+
         if cloud_provider_endpoint_id is not None:
             _setter("cloud_provider_endpoint_id", cloud_provider_endpoint_id)
         if comment is not None:

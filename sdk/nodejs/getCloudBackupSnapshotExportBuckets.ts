@@ -10,23 +10,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
- *     bucketName: "example-bucket",
- *     cloudProvider: "AWS",
- *     iamRoleId: "{IAM_ROLE_ID}",
- *     projectId: "{PROJECT_ID}",
- * });
- * const testCloudBackupSnapshotExportBuckets = mongodbatlas.getCloudBackupSnapshotExportBuckets({
- *     projectId: "{PROJECT_ID}",
- * });
- * ```
  */
 export function getCloudBackupSnapshotExportBuckets(args: GetCloudBackupSnapshotExportBucketsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportBucketsResult> {
 
@@ -80,23 +63,6 @@ export interface GetCloudBackupSnapshotExportBucketsResult {
  * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
- *     bucketName: "example-bucket",
- *     cloudProvider: "AWS",
- *     iamRoleId: "{IAM_ROLE_ID}",
- *     projectId: "{PROJECT_ID}",
- * });
- * const testCloudBackupSnapshotExportBuckets = mongodbatlas.getCloudBackupSnapshotExportBuckets({
- *     projectId: "{PROJECT_ID}",
- * });
- * ```
  */
 export function getCloudBackupSnapshotExportBucketsOutput(args: GetCloudBackupSnapshotExportBucketsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportBucketsResult> {
     return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportBuckets(a, opts))

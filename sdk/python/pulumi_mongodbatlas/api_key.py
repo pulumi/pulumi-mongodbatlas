@@ -33,10 +33,22 @@ class ApiKeyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             description: pulumi.Input[str],
-             org_id: pulumi.Input[str],
-             role_names: pulumi.Input[Sequence[pulumi.Input[str]]],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             description: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
+             role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if org_id is None:
+            raise TypeError("Missing 'org_id' argument")
+        if role_names is None and 'roleNames' in kwargs:
+            role_names = kwargs['roleNames']
+        if role_names is None:
+            raise TypeError("Missing 'role_names' argument")
+
         _setter("description", description)
         _setter("org_id", org_id)
         _setter("role_names", role_names)
@@ -114,7 +126,19 @@ class _ApiKeyState:
              private_key: Optional[pulumi.Input[str]] = None,
              public_key: Optional[pulumi.Input[str]] = None,
              role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if api_key_id is None and 'apiKeyId' in kwargs:
+            api_key_id = kwargs['apiKeyId']
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if role_names is None and 'roleNames' in kwargs:
+            role_names = kwargs['roleNames']
+
         if api_key_id is not None:
             _setter("api_key_id", api_key_id)
         if description is not None:

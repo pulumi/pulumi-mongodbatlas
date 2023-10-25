@@ -142,17 +142,6 @@ def get_federated_query_limit(limit_name: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_federated_query_limit(limit_name="LIMIT_NAME",
-        project_id="PROJECT_ID",
-        tenant_name="FEDERATED_DATABASE_INSTANCE_NAME")
-    ```
-
 
     :param str limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
            * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
@@ -193,17 +182,6 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[str]] = N
     `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_federated_query_limit(limit_name="LIMIT_NAME",
-        project_id="PROJECT_ID",
-        tenant_name="FEDERATED_DATABASE_INSTANCE_NAME")
-    ```
 
 
     :param str limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:

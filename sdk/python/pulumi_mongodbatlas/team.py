@@ -29,10 +29,18 @@ class TeamArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             org_id: pulumi.Input[str],
-             usernames: pulumi.Input[Sequence[pulumi.Input[str]]],
+             org_id: Optional[pulumi.Input[str]] = None,
+             usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if org_id is None:
+            raise TypeError("Missing 'org_id' argument")
+        if usernames is None:
+            raise TypeError("Missing 'usernames' argument")
+
         _setter("org_id", org_id)
         _setter("usernames", usernames)
         if name is not None:
@@ -90,7 +98,13 @@ class _TeamState:
              org_id: Optional[pulumi.Input[str]] = None,
              team_id: Optional[pulumi.Input[str]] = None,
              usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if team_id is None and 'teamId' in kwargs:
+            team_id = kwargs['teamId']
+
         if name is not None:
             _setter("name", name)
         if org_id is not None:

@@ -191,20 +191,6 @@ def get_atlas_user(user_id: Optional[str] = None,
     > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
 
     ## Example Usage
-    ### Using user_id attribute to query
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_atlas_user(user_id="<USER_ID>")
-    ```
-    ### Using username attribute to query
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_atlas_user(username="<USERNAME>")
-    ```
 
 
     :param str user_id: Unique 24-hexadecimal digit string that identifies this user.
@@ -244,20 +230,6 @@ def get_atlas_user_output(user_id: Optional[pulumi.Input[Optional[str]]] = None,
     > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
 
     ## Example Usage
-    ### Using user_id attribute to query
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_atlas_user(user_id="<USER_ID>")
-    ```
-    ### Using username attribute to query
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_atlas_user(username="<USERNAME>")
-    ```
 
 
     :param str user_id: Unique 24-hexadecimal digit string that identifies this user.

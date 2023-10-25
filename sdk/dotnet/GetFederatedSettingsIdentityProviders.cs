@@ -13,84 +13,12 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
-        /// 
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
-        ///     {
-        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
-        ///         AssociatedDomains = new[]
-        ///         {
-        ///             "yourdomain.com",
-        ///         },
-        ///         SsoDebugEnabled = true,
-        ///         Status = "ACTIVE",
-        ///     });
-        /// 
-        ///     var identittyProvider = Mongodbatlas.GetFederatedSettingsIdentityProviders.Invoke(new()
-        ///     {
-        ///         FederationSettingsId = identityProvider.Id,
-        ///         PageNum = 1,
-        ///         ItemsPerPage = 5,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetFederatedSettingsIdentityProvidersResult> InvokeAsync(GetFederatedSettingsIdentityProvidersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
-        /// 
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
-        ///     {
-        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
-        ///         AssociatedDomains = new[]
-        ///         {
-        ///             "yourdomain.com",
-        ///         },
-        ///         SsoDebugEnabled = true,
-        ///         Status = "ACTIVE",
-        ///     });
-        /// 
-        ///     var identittyProvider = Mongodbatlas.GetFederatedSettingsIdentityProviders.Invoke(new()
-        ///     {
-        ///         FederationSettingsId = identityProvider.Id,
-        ///         PageNum = 1,
-        ///         ItemsPerPage = 5,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetFederatedSettingsIdentityProvidersResult> Invoke(GetFederatedSettingsIdentityProvidersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersInvokeArgs(), options.WithDefaults());

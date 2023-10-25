@@ -62,7 +62,7 @@ class ProjectArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             org_id: pulumi.Input[str],
+             org_id: Optional[pulumi.Input[str]] = None,
              is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
              is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
              is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
@@ -75,7 +75,31 @@ class ProjectArgs:
              region_usage_restrictions: Optional[pulumi.Input[str]] = None,
              teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
              with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if org_id is None:
+            raise TypeError("Missing 'org_id' argument")
+        if is_collect_database_specifics_statistics_enabled is None and 'isCollectDatabaseSpecificsStatisticsEnabled' in kwargs:
+            is_collect_database_specifics_statistics_enabled = kwargs['isCollectDatabaseSpecificsStatisticsEnabled']
+        if is_data_explorer_enabled is None and 'isDataExplorerEnabled' in kwargs:
+            is_data_explorer_enabled = kwargs['isDataExplorerEnabled']
+        if is_extended_storage_sizes_enabled is None and 'isExtendedStorageSizesEnabled' in kwargs:
+            is_extended_storage_sizes_enabled = kwargs['isExtendedStorageSizesEnabled']
+        if is_performance_advisor_enabled is None and 'isPerformanceAdvisorEnabled' in kwargs:
+            is_performance_advisor_enabled = kwargs['isPerformanceAdvisorEnabled']
+        if is_realtime_performance_panel_enabled is None and 'isRealtimePerformancePanelEnabled' in kwargs:
+            is_realtime_performance_panel_enabled = kwargs['isRealtimePerformancePanelEnabled']
+        if is_schema_advisor_enabled is None and 'isSchemaAdvisorEnabled' in kwargs:
+            is_schema_advisor_enabled = kwargs['isSchemaAdvisorEnabled']
+        if project_owner_id is None and 'projectOwnerId' in kwargs:
+            project_owner_id = kwargs['projectOwnerId']
+        if region_usage_restrictions is None and 'regionUsageRestrictions' in kwargs:
+            region_usage_restrictions = kwargs['regionUsageRestrictions']
+        if with_default_alerts_settings is None and 'withDefaultAlertsSettings' in kwargs:
+            with_default_alerts_settings = kwargs['withDefaultAlertsSettings']
+
         _setter("org_id", org_id)
         if is_collect_database_specifics_statistics_enabled is not None:
             _setter("is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
@@ -323,7 +347,31 @@ class _ProjectState:
              region_usage_restrictions: Optional[pulumi.Input[str]] = None,
              teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
              with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_count is None and 'clusterCount' in kwargs:
+            cluster_count = kwargs['clusterCount']
+        if is_collect_database_specifics_statistics_enabled is None and 'isCollectDatabaseSpecificsStatisticsEnabled' in kwargs:
+            is_collect_database_specifics_statistics_enabled = kwargs['isCollectDatabaseSpecificsStatisticsEnabled']
+        if is_data_explorer_enabled is None and 'isDataExplorerEnabled' in kwargs:
+            is_data_explorer_enabled = kwargs['isDataExplorerEnabled']
+        if is_extended_storage_sizes_enabled is None and 'isExtendedStorageSizesEnabled' in kwargs:
+            is_extended_storage_sizes_enabled = kwargs['isExtendedStorageSizesEnabled']
+        if is_performance_advisor_enabled is None and 'isPerformanceAdvisorEnabled' in kwargs:
+            is_performance_advisor_enabled = kwargs['isPerformanceAdvisorEnabled']
+        if is_realtime_performance_panel_enabled is None and 'isRealtimePerformancePanelEnabled' in kwargs:
+            is_realtime_performance_panel_enabled = kwargs['isRealtimePerformancePanelEnabled']
+        if is_schema_advisor_enabled is None and 'isSchemaAdvisorEnabled' in kwargs:
+            is_schema_advisor_enabled = kwargs['isSchemaAdvisorEnabled']
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if project_owner_id is None and 'projectOwnerId' in kwargs:
+            project_owner_id = kwargs['projectOwnerId']
+        if region_usage_restrictions is None and 'regionUsageRestrictions' in kwargs:
+            region_usage_restrictions = kwargs['regionUsageRestrictions']
+        if with_default_alerts_settings is None and 'withDefaultAlertsSettings' in kwargs:
+            with_default_alerts_settings = kwargs['withDefaultAlertsSettings']
+
         if cluster_count is not None:
             _setter("cluster_count", cluster_count)
         if created is not None:
@@ -554,47 +602,6 @@ class Project(pulumi.CustomResource):
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_roles_org_id = mongodbatlas.get_roles_org_id()
-        test_project = mongodbatlas.Project("testProject",
-            org_id=test_roles_org_id.org_id,
-            project_owner_id="<OWNER_ACCOUNT_ID>",
-            teams=[
-                mongodbatlas.ProjectTeamArgs(
-                    team_id="5e0fa8c99ccf641c722fe645",
-                    role_names=["GROUP_OWNER"],
-                ),
-                mongodbatlas.ProjectTeamArgs(
-                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                    role_names=[
-                        "GROUP_READ_ONLY",
-                        "GROUP_DATA_ACCESS_READ_WRITE",
-                    ],
-                ),
-            ],
-            limits=[
-                mongodbatlas.ProjectLimitArgs(
-                    name="atlas.project.deployment.clusters",
-                    value=26,
-                ),
-                mongodbatlas.ProjectLimitArgs(
-                    name="atlas.project.deployment.nodesPerPrivateLinkRegion",
-                    value=51,
-                ),
-            ],
-            is_collect_database_specifics_statistics_enabled=True,
-            is_data_explorer_enabled=True,
-            is_extended_storage_sizes_enabled=True,
-            is_performance_advisor_enabled=True,
-            is_realtime_performance_panel_enabled=True,
-            is_schema_advisor_enabled=True)
-        ```
-
         ## Import
 
         Project must be imported using project ID, e.g.
@@ -628,47 +635,6 @@ class Project(pulumi.CustomResource):
         `Project` provides a Project resource. This allows project to be created.
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_roles_org_id = mongodbatlas.get_roles_org_id()
-        test_project = mongodbatlas.Project("testProject",
-            org_id=test_roles_org_id.org_id,
-            project_owner_id="<OWNER_ACCOUNT_ID>",
-            teams=[
-                mongodbatlas.ProjectTeamArgs(
-                    team_id="5e0fa8c99ccf641c722fe645",
-                    role_names=["GROUP_OWNER"],
-                ),
-                mongodbatlas.ProjectTeamArgs(
-                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                    role_names=[
-                        "GROUP_READ_ONLY",
-                        "GROUP_DATA_ACCESS_READ_WRITE",
-                    ],
-                ),
-            ],
-            limits=[
-                mongodbatlas.ProjectLimitArgs(
-                    name="atlas.project.deployment.clusters",
-                    value=26,
-                ),
-                mongodbatlas.ProjectLimitArgs(
-                    name="atlas.project.deployment.nodesPerPrivateLinkRegion",
-                    value=51,
-                ),
-            ],
-            is_collect_database_specifics_statistics_enabled=True,
-            is_data_explorer_enabled=True,
-            is_extended_storage_sizes_enabled=True,
-            is_performance_advisor_enabled=True,
-            is_realtime_performance_panel_enabled=True,
-            is_schema_advisor_enabled=True)
-        ```
 
         ## Import
 

@@ -48,13 +48,27 @@ class NetworkContainerArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             atlas_cidr_block: pulumi.Input[str],
-             project_id: pulumi.Input[str],
+             atlas_cidr_block: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
              provider_name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              region_name: Optional[pulumi.Input[str]] = None,
              regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if atlas_cidr_block is None and 'atlasCidrBlock' in kwargs:
+            atlas_cidr_block = kwargs['atlasCidrBlock']
+        if atlas_cidr_block is None:
+            raise TypeError("Missing 'atlas_cidr_block' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if region_name is None and 'regionName' in kwargs:
+            region_name = kwargs['regionName']
+
         _setter("atlas_cidr_block", atlas_cidr_block)
         _setter("project_id", project_id)
         if provider_name is not None:
@@ -217,7 +231,29 @@ class _NetworkContainerState:
              regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              vnet_name: Optional[pulumi.Input[str]] = None,
              vpc_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if atlas_cidr_block is None and 'atlasCidrBlock' in kwargs:
+            atlas_cidr_block = kwargs['atlasCidrBlock']
+        if azure_subscription_id is None and 'azureSubscriptionId' in kwargs:
+            azure_subscription_id = kwargs['azureSubscriptionId']
+        if container_id is None and 'containerId' in kwargs:
+            container_id = kwargs['containerId']
+        if gcp_project_id is None and 'gcpProjectId' in kwargs:
+            gcp_project_id = kwargs['gcpProjectId']
+        if network_name is None and 'networkName' in kwargs:
+            network_name = kwargs['networkName']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if region_name is None and 'regionName' in kwargs:
+            region_name = kwargs['regionName']
+        if vnet_name is None and 'vnetName' in kwargs:
+            vnet_name = kwargs['vnetName']
+        if vpc_id is None and 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+
         if atlas_cidr_block is not None:
             _setter("atlas_cidr_block", atlas_cidr_block)
         if azure_subscription_id is not None:
@@ -433,45 +469,6 @@ class NetworkContainer(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
         ## Example Usage
-        ### Example with AWS
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_name="AWS",
-            region_name="US_EAST_1")
-        ```
-        ### Example with GCP
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_name="GCP",
-            regions=[
-                "US_EAST_4",
-                "US_WEST_3",
-            ])
-        ```
-        ### Example with Azure
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_name="AZURE",
-            region="US_EAST_2")
-        ```
 
         ## Import
 
@@ -518,45 +515,6 @@ class NetworkContainer(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
         ## Example Usage
-        ### Example with AWS
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_name="AWS",
-            region_name="US_EAST_1")
-        ```
-        ### Example with GCP
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_name="GCP",
-            regions=[
-                "US_EAST_4",
-                "US_WEST_3",
-            ])
-        ```
-        ### Example with Azure
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_name="AZURE",
-            region="US_EAST_2")
-        ```
 
         ## Import
 

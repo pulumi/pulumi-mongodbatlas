@@ -46,14 +46,36 @@ class LdapVerifyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             bind_password: pulumi.Input[str],
-             bind_username: pulumi.Input[str],
-             hostname: pulumi.Input[str],
-             port: pulumi.Input[int],
-             project_id: pulumi.Input[str],
+             bind_password: Optional[pulumi.Input[str]] = None,
+             bind_username: Optional[pulumi.Input[str]] = None,
+             hostname: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
              authz_query_template: Optional[pulumi.Input[str]] = None,
              ca_certificate: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if bind_password is None and 'bindPassword' in kwargs:
+            bind_password = kwargs['bindPassword']
+        if bind_password is None:
+            raise TypeError("Missing 'bind_password' argument")
+        if bind_username is None and 'bindUsername' in kwargs:
+            bind_username = kwargs['bindUsername']
+        if bind_username is None:
+            raise TypeError("Missing 'bind_username' argument")
+        if hostname is None:
+            raise TypeError("Missing 'hostname' argument")
+        if port is None:
+            raise TypeError("Missing 'port' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if authz_query_template is None and 'authzQueryTemplate' in kwargs:
+            authz_query_template = kwargs['authzQueryTemplate']
+        if ca_certificate is None and 'caCertificate' in kwargs:
+            ca_certificate = kwargs['caCertificate']
+
         _setter("bind_password", bind_password)
         _setter("bind_username", bind_username)
         _setter("hostname", hostname)
@@ -205,7 +227,21 @@ class _LdapVerifyState:
              request_id: Optional[pulumi.Input[str]] = None,
              status: Optional[pulumi.Input[str]] = None,
              validations: Optional[pulumi.Input[Sequence[pulumi.Input['LdapVerifyValidationArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if authz_query_template is None and 'authzQueryTemplate' in kwargs:
+            authz_query_template = kwargs['authzQueryTemplate']
+        if bind_password is None and 'bindPassword' in kwargs:
+            bind_password = kwargs['bindPassword']
+        if bind_username is None and 'bindUsername' in kwargs:
+            bind_username = kwargs['bindUsername']
+        if ca_certificate is None and 'caCertificate' in kwargs:
+            ca_certificate = kwargs['caCertificate']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if request_id is None and 'requestId' in kwargs:
+            request_id = kwargs['requestId']
+
         if authz_query_template is not None:
             _setter("authz_query_template", authz_query_template)
         if bind_password is not None:
@@ -378,29 +414,6 @@ class LdapVerify(pulumi.CustomResource):
         """
         `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=test_project.id,
-            provider_name="AWS",
-            provider_region_name="US_EAST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
-        #enable cloud provider snapshots
-        test_ldap_verify = mongodbatlas.LdapVerify("testLdapVerify",
-            project_id=test_project.id,
-            hostname="HOSTNAME",
-            port=636,
-            bind_username="USERNAME",
-            bind_password="PASSWORD",
-            opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
-        ```
-
         ## Import
 
         LDAP Configuration must be imported using project ID and request ID, e.g.
@@ -428,29 +441,6 @@ class LdapVerify(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=test_project.id,
-            provider_name="AWS",
-            provider_region_name="US_EAST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
-        #enable cloud provider snapshots
-        test_ldap_verify = mongodbatlas.LdapVerify("testLdapVerify",
-            project_id=test_project.id,
-            hostname="HOSTNAME",
-            port=636,
-            bind_username="USERNAME",
-            bind_password="PASSWORD",
-            opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
-        ```
 
         ## Import
 

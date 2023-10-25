@@ -94,22 +94,6 @@ def get_federated_settings_identity_providers(federation_settings_id: Optional[s
     """
     `get_federated_settings_identity_providers` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
-        federation_settings_id="627a9687f7f7f7f774de306f14",
-        associated_domains=["yourdomain.com"],
-        sso_debug_enabled=True,
-        status="ACTIVE")
-    identitty_provider = identity_provider.id.apply(lambda id: mongodbatlas.get_federated_settings_identity_providers_output(federation_settings_id=id,
-        page_num=1,
-        items_per_page=5))
-    ```
-
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -137,22 +121,6 @@ def get_federated_settings_identity_providers_output(federation_settings_id: Opt
                                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsIdentityProvidersResult]:
     """
     `get_federated_settings_identity_providers` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
-        federation_settings_id="627a9687f7f7f7f774de306f14",
-        associated_domains=["yourdomain.com"],
-        sso_debug_enabled=True,
-        status="ACTIVE")
-    identitty_provider = identity_provider.id.apply(lambda id: mongodbatlas.get_federated_settings_identity_providers_output(federation_settings_id=id,
-        page_num=1,
-        items_per_page=5))
-    ```
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.

@@ -43,14 +43,30 @@ class MaintenanceWindowArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
              auto_defer: Optional[pulumi.Input[bool]] = None,
              auto_defer_once_enabled: Optional[pulumi.Input[bool]] = None,
              day_of_week: Optional[pulumi.Input[int]] = None,
              defer: Optional[pulumi.Input[bool]] = None,
              hour_of_day: Optional[pulumi.Input[int]] = None,
              number_of_deferrals: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if auto_defer is None and 'autoDefer' in kwargs:
+            auto_defer = kwargs['autoDefer']
+        if auto_defer_once_enabled is None and 'autoDeferOnceEnabled' in kwargs:
+            auto_defer_once_enabled = kwargs['autoDeferOnceEnabled']
+        if day_of_week is None and 'dayOfWeek' in kwargs:
+            day_of_week = kwargs['dayOfWeek']
+        if hour_of_day is None and 'hourOfDay' in kwargs:
+            hour_of_day = kwargs['hourOfDay']
+        if number_of_deferrals is None and 'numberOfDeferrals' in kwargs:
+            number_of_deferrals = kwargs['numberOfDeferrals']
+
         _setter("project_id", project_id)
         if auto_defer is not None:
             _setter("auto_defer", auto_defer)
@@ -190,7 +206,23 @@ class _MaintenanceWindowState:
              number_of_deferrals: Optional[pulumi.Input[int]] = None,
              project_id: Optional[pulumi.Input[str]] = None,
              start_asap: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if auto_defer is None and 'autoDefer' in kwargs:
+            auto_defer = kwargs['autoDefer']
+        if auto_defer_once_enabled is None and 'autoDeferOnceEnabled' in kwargs:
+            auto_defer_once_enabled = kwargs['autoDeferOnceEnabled']
+        if day_of_week is None and 'dayOfWeek' in kwargs:
+            day_of_week = kwargs['dayOfWeek']
+        if hour_of_day is None and 'hourOfDay' in kwargs:
+            hour_of_day = kwargs['hourOfDay']
+        if number_of_deferrals is None and 'numberOfDeferrals' in kwargs:
+            number_of_deferrals = kwargs['numberOfDeferrals']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if start_asap is None and 'startAsap' in kwargs:
+            start_asap = kwargs['startAsap']
+
         if auto_defer is not None:
             _setter("auto_defer", auto_defer)
         if auto_defer_once_enabled is not None:
@@ -328,27 +360,6 @@ class MaintenanceWindow(pulumi.CustomResource):
         - Maintenance Requires Replica Set Elections: Atlas performs maintenance the same way as the manual maintenance procedure. This requires at least one replica set election during the maintenance window per replica set.
         - Maintenance Starts As Close to the Hour As Possible: Maintenance always begins as close to the scheduled hour as possible, but in-progress cluster updates or expected system issues could delay the start time.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.MaintenanceWindow("test",
-            day_of_week=3,
-            hour_of_day=4,
-            project_id="<your-project-id>")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.MaintenanceWindow("test",
-            defer=True,
-            project_id="<your-project-id>")
-        ```
-
         ## Import
 
         Maintenance Window entries can be imported using project project_id, in the format `PROJECTID`, e.g.
@@ -385,27 +396,6 @@ class MaintenanceWindow(pulumi.CustomResource):
         Once maintenance is scheduled for your cluster, you cannot change your maintenance window until the current maintenance efforts have completed.
         - Maintenance Requires Replica Set Elections: Atlas performs maintenance the same way as the manual maintenance procedure. This requires at least one replica set election during the maintenance window per replica set.
         - Maintenance Starts As Close to the Hour As Possible: Maintenance always begins as close to the scheduled hour as possible, but in-progress cluster updates or expected system issues could delay the start time.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.MaintenanceWindow("test",
-            day_of_week=3,
-            hour_of_day=4,
-            project_id="<your-project-id>")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.MaintenanceWindow("test",
-            defer=True,
-            project_id="<your-project-id>")
-        ```
 
         ## Import
 

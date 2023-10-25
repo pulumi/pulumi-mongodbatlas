@@ -8,17 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
- * ### S
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const outageSimulation = mongodbatlas.getClusterOutageSimulation({
- *     clusterName: "Cluster0",
- *     projectId: "64707f06c519c20c3a2b1b03",
- * });
- * ```
  */
 export function getClusterOutageSimulation(args: GetClusterOutageSimulationArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterOutageSimulationResult> {
 
@@ -72,17 +61,6 @@ export interface GetClusterOutageSimulationResult {
 }
 /**
  * ## Example Usage
- * ### S
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const outageSimulation = mongodbatlas.getClusterOutageSimulation({
- *     clusterName: "Cluster0",
- *     projectId: "64707f06c519c20c3a2b1b03",
- * });
- * ```
  */
 export function getClusterOutageSimulationOutput(args: GetClusterOutageSimulationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterOutageSimulationResult> {
     return pulumi.output(args).apply((a: any) => getClusterOutageSimulation(a, opts))

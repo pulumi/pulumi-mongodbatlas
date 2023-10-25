@@ -6,25 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
- * ## Example Usage
- *
- * > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
- *     associatedDomains: ["yourdomain.com"],
- *     federationSettingsId: "627a9687f7f7f7f774de306f14",
- *     issuerUri: "http://www.okta.com/exk17q7f7f7f7fp50h8",
- *     requestBinding: "HTTP-POST",
- *     responseSignatureAlgorithm: "SHA-256",
- *     ssoDebugEnabled: true,
- *     ssoUrl: "https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
- *     status: "ACTIVE",
- * });
- * ```
  *
  * ## Import
  *

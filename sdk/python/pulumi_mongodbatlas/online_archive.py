@@ -53,17 +53,43 @@ class OnlineArchiveArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cluster_name: pulumi.Input[str],
-             coll_name: pulumi.Input[str],
-             criteria: pulumi.Input['OnlineArchiveCriteriaArgs'],
-             db_name: pulumi.Input[str],
-             project_id: pulumi.Input[str],
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             coll_name: Optional[pulumi.Input[str]] = None,
+             criteria: Optional[pulumi.Input['OnlineArchiveCriteriaArgs']] = None,
+             db_name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
              collection_type: Optional[pulumi.Input[str]] = None,
              partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
              paused: Optional[pulumi.Input[bool]] = None,
              schedule: Optional[pulumi.Input['OnlineArchiveScheduleArgs']] = None,
              sync_creation: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if cluster_name is None:
+            raise TypeError("Missing 'cluster_name' argument")
+        if coll_name is None and 'collName' in kwargs:
+            coll_name = kwargs['collName']
+        if coll_name is None:
+            raise TypeError("Missing 'coll_name' argument")
+        if criteria is None:
+            raise TypeError("Missing 'criteria' argument")
+        if db_name is None and 'dbName' in kwargs:
+            db_name = kwargs['dbName']
+        if db_name is None:
+            raise TypeError("Missing 'db_name' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if collection_type is None and 'collectionType' in kwargs:
+            collection_type = kwargs['collectionType']
+        if partition_fields is None and 'partitionFields' in kwargs:
+            partition_fields = kwargs['partitionFields']
+        if sync_creation is None and 'syncCreation' in kwargs:
+            sync_creation = kwargs['syncCreation']
+
         _setter("cluster_name", cluster_name)
         _setter("coll_name", coll_name)
         _setter("criteria", criteria)
@@ -253,7 +279,25 @@ class _OnlineArchiveState:
              schedule: Optional[pulumi.Input['OnlineArchiveScheduleArgs']] = None,
              state: Optional[pulumi.Input[str]] = None,
              sync_creation: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if archive_id is None and 'archiveId' in kwargs:
+            archive_id = kwargs['archiveId']
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if coll_name is None and 'collName' in kwargs:
+            coll_name = kwargs['collName']
+        if collection_type is None and 'collectionType' in kwargs:
+            collection_type = kwargs['collectionType']
+        if db_name is None and 'dbName' in kwargs:
+            db_name = kwargs['dbName']
+        if partition_fields is None and 'partitionFields' in kwargs:
+            partition_fields = kwargs['partitionFields']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if sync_creation is None and 'syncCreation' in kwargs:
+            sync_creation = kwargs['syncCreation']
+
         if archive_id is not None:
             _setter("archive_id", archive_id)
         if cluster_name is not None:
@@ -444,66 +488,6 @@ class OnlineArchive(pulumi.CustomResource):
         > **IMPORTANT:** There are fields that are immutable after creation, i.e if `date_field` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
 
         ## Example Usage
-        ### S
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
-            partition_fields=[
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="firstName",
-                    order=0,
-                ),
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="lastName",
-                    order=1,
-                ),
-            ],
-            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
-                type="DATE",
-                date_field="created",
-                expire_after_days=5,
-            ),
-            schedule=mongodbatlas.OnlineArchiveScheduleArgs(
-                type="DAILY",
-                end_hour=1,
-                end_minute=1,
-                start_hour=1,
-                start_minute=1,
-            ))
-        ```
-
-        For custom criteria example
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
-            partition_fields=[
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="firstName",
-                    order=0,
-                ),
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="secondName",
-                    order=1,
-                ),
-            ],
-            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
-                type="CUSTOM",
-                query="{ \\"department\\": \\"engineering\\" }",
-            ))
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -532,66 +516,6 @@ class OnlineArchive(pulumi.CustomResource):
         > **IMPORTANT:** There are fields that are immutable after creation, i.e if `date_field` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
 
         ## Example Usage
-        ### S
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
-            partition_fields=[
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="firstName",
-                    order=0,
-                ),
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="lastName",
-                    order=1,
-                ),
-            ],
-            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
-                type="DATE",
-                date_field="created",
-                expire_after_days=5,
-            ),
-            schedule=mongodbatlas.OnlineArchiveScheduleArgs(
-                type="DAILY",
-                end_hour=1,
-                end_minute=1,
-                start_hour=1,
-                start_minute=1,
-            ))
-        ```
-
-        For custom criteria example
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
-            partition_fields=[
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="firstName",
-                    order=0,
-                ),
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="secondName",
-                    order=1,
-                ),
-            ],
-            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
-                type="CUSTOM",
-                query="{ \\"department\\": \\"engineering\\" }",
-            ))
-        ```
 
         :param str resource_name: The name of the resource.
         :param OnlineArchiveArgs args: The arguments to use to populate this resource's properties.
@@ -638,11 +562,7 @@ class OnlineArchive(pulumi.CustomResource):
                 raise TypeError("Missing required property 'coll_name'")
             __props__.__dict__["coll_name"] = coll_name
             __props__.__dict__["collection_type"] = collection_type
-            if criteria is not None and not isinstance(criteria, OnlineArchiveCriteriaArgs):
-                criteria = criteria or {}
-                def _setter(key, value):
-                    criteria[key] = value
-                OnlineArchiveCriteriaArgs._configure(_setter, **criteria)
+            criteria = _utilities.configure(criteria, OnlineArchiveCriteriaArgs, True)
             if criteria is None and not opts.urn:
                 raise TypeError("Missing required property 'criteria'")
             __props__.__dict__["criteria"] = criteria
@@ -654,11 +574,7 @@ class OnlineArchive(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
-            if schedule is not None and not isinstance(schedule, OnlineArchiveScheduleArgs):
-                schedule = schedule or {}
-                def _setter(key, value):
-                    schedule[key] = value
-                OnlineArchiveScheduleArgs._configure(_setter, **schedule)
+            schedule = _utilities.configure(schedule, OnlineArchiveScheduleArgs, True)
             __props__.__dict__["schedule"] = schedule
             __props__.__dict__["sync_creation"] = sync_creation
             __props__.__dict__["archive_id"] = None

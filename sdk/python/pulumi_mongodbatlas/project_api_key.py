@@ -35,10 +35,20 @@ class ProjectApiKeyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             description: pulumi.Input[str],
-             project_id: pulumi.Input[str],
+             description: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
              project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if project_assignments is None and 'projectAssignments' in kwargs:
+            project_assignments = kwargs['projectAssignments']
+
         _setter("description", description)
         _setter("project_id", project_id)
         if project_assignments is not None:
@@ -115,7 +125,19 @@ class _ProjectApiKeyState:
              project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None,
              project_id: Optional[pulumi.Input[str]] = None,
              public_key: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if api_key_id is None and 'apiKeyId' in kwargs:
+            api_key_id = kwargs['apiKeyId']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if project_assignments is None and 'projectAssignments' in kwargs:
+            project_assignments = kwargs['projectAssignments']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+
         if api_key_id is not None:
             _setter("api_key_id", api_key_id)
         if description is not None:
@@ -206,43 +228,6 @@ class ProjectApiKey(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
-        ### Create And Assign PAK Together
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectApiKey("test",
-            description="Description of your API key",
-            project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                project_id="64259ee860c43338194b0f8e",
-                role_names=["GROUP_OWNER"],
-            )],
-            project_id="64259ee860c43338194b0f8e")
-        ```
-        ### Create And Assign PAK To Multiple Projects
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectApiKey("test",
-            description="Description of your API key",
-            project_assignments=[
-                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                    project_id="64259ee860c43338194b0f8e",
-                    role_names=[
-                        "GROUP_READ_ONLY",
-                        "GROUP_OWNER",
-                    ],
-                ),
-                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                    project_id="74259ee860c43338194b0f8e",
-                    role_names=["GROUP_READ_ONLY"],
-                ),
-            ],
-            project_id="64259ee860c43338194b0f8e")
-        ```
 
         ## Import
 
@@ -268,43 +253,6 @@ class ProjectApiKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
-        ### Create And Assign PAK Together
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectApiKey("test",
-            description="Description of your API key",
-            project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                project_id="64259ee860c43338194b0f8e",
-                role_names=["GROUP_OWNER"],
-            )],
-            project_id="64259ee860c43338194b0f8e")
-        ```
-        ### Create And Assign PAK To Multiple Projects
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectApiKey("test",
-            description="Description of your API key",
-            project_assignments=[
-                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                    project_id="64259ee860c43338194b0f8e",
-                    role_names=[
-                        "GROUP_READ_ONLY",
-                        "GROUP_OWNER",
-                    ],
-                ),
-                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                    project_id="74259ee860c43338194b0f8e",
-                    role_names=["GROUP_READ_ONLY"],
-                ),
-            ],
-            project_id="64259ee860c43338194b0f8e")
-        ```
 
         ## Import
 

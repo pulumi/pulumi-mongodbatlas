@@ -44,13 +44,25 @@ class ProjectIpAccessListArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             project_id: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
              aws_security_group: Optional[pulumi.Input[str]] = None,
              cidr_block: Optional[pulumi.Input[str]] = None,
              comment: Optional[pulumi.Input[str]] = None,
              ip_address: Optional[pulumi.Input[str]] = None,
              timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if aws_security_group is None and 'awsSecurityGroup' in kwargs:
+            aws_security_group = kwargs['awsSecurityGroup']
+        if cidr_block is None and 'cidrBlock' in kwargs:
+            cidr_block = kwargs['cidrBlock']
+        if ip_address is None and 'ipAddress' in kwargs:
+            ip_address = kwargs['ipAddress']
+
         _setter("project_id", project_id)
         if aws_security_group is not None:
             _setter("aws_security_group", aws_security_group)
@@ -172,7 +184,17 @@ class _ProjectIpAccessListState:
              ip_address: Optional[pulumi.Input[str]] = None,
              project_id: Optional[pulumi.Input[str]] = None,
              timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if aws_security_group is None and 'awsSecurityGroup' in kwargs:
+            aws_security_group = kwargs['awsSecurityGroup']
+        if cidr_block is None and 'cidrBlock' in kwargs:
+            cidr_block = kwargs['cidrBlock']
+        if ip_address is None and 'ipAddress' in kwargs:
+            ip_address = kwargs['ipAddress']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
         if aws_security_group is not None:
             _setter("aws_security_group", aws_security_group)
         if cidr_block is not None:
@@ -279,52 +301,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
         When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
 
         ## Example Usage
-        ### Using CIDR Block
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectIpAccessList("test",
-            cidr_block="1.2.3.4/32",
-            comment="cidr block for tf acc testing",
-            project_id="<PROJECT-ID>")
-        ```
-        ### Using IP Address
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectIpAccessList("test",
-            comment="ip address for tf acc testing",
-            ip_address="2.3.4.5",
-            project_id="<PROJECT-ID>")
-        ```
-        ### Using an AWS Security Group
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
-            project_id="<PROJECT-ID>",
-            atlas_cidr_block="192.168.208.0/21",
-            provider_name="AWS",
-            region_name="US_EAST_1")
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
-            project_id="<PROJECT-ID>",
-            container_id=test_network_container.container_id,
-            accepter_region_name="us-east-1",
-            provider_name="AWS",
-            route_table_cidr_block="172.31.0.0/16",
-            vpc_id="vpc-0d93d6f69f1578bd8",
-            aws_account_id="232589400519")
-        test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("testProjectIpAccessList",
-            project_id="<PROJECT-ID>",
-            aws_security_group="sg-0026348ec11780bd1",
-            comment="TestAcc for awsSecurityGroup",
-            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
-        ```
-
-        > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
 
         ## Import
 
@@ -360,52 +336,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
         When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
 
         ## Example Usage
-        ### Using CIDR Block
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectIpAccessList("test",
-            cidr_block="1.2.3.4/32",
-            comment="cidr block for tf acc testing",
-            project_id="<PROJECT-ID>")
-        ```
-        ### Using IP Address
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.ProjectIpAccessList("test",
-            comment="ip address for tf acc testing",
-            ip_address="2.3.4.5",
-            project_id="<PROJECT-ID>")
-        ```
-        ### Using an AWS Security Group
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
-            project_id="<PROJECT-ID>",
-            atlas_cidr_block="192.168.208.0/21",
-            provider_name="AWS",
-            region_name="US_EAST_1")
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
-            project_id="<PROJECT-ID>",
-            container_id=test_network_container.container_id,
-            accepter_region_name="us-east-1",
-            provider_name="AWS",
-            route_table_cidr_block="172.31.0.0/16",
-            vpc_id="vpc-0d93d6f69f1578bd8",
-            aws_account_id="232589400519")
-        test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("testProjectIpAccessList",
-            project_id="<PROJECT-ID>",
-            aws_security_group="sg-0026348ec11780bd1",
-            comment="TestAcc for awsSecurityGroup",
-            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
-        ```
-
-        > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
 
         ## Import
 
@@ -457,11 +387,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
-            if timeouts is not None and not isinstance(timeouts, ProjectIpAccessListTimeoutsArgs):
-                timeouts = timeouts or {}
-                def _setter(key, value):
-                    timeouts[key] = value
-                ProjectIpAccessListTimeoutsArgs._configure(_setter, **timeouts)
+            timeouts = _utilities.configure(timeouts, ProjectIpAccessListTimeoutsArgs, True)
             __props__.__dict__["timeouts"] = timeouts
         super(ProjectIpAccessList, __self__).__init__(
             'mongodbatlas:index/projectIpAccessList:ProjectIpAccessList',

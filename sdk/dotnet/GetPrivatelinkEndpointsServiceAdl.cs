@@ -19,33 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### Basic
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var adlTest = new Mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         EndpointId = "&lt;ENDPOINT_ID&gt;",
-        ///         Comment = "Comment for PrivateLink endpoint ADL",
-        ///         Type = "DATA_LAKE",
-        ///         ProviderName = "AWS",
-        ///     });
-        /// 
-        ///     var test = Mongodbatlas.GetPrivatelinkEndpointsServiceAdl.Invoke(new()
-        ///     {
-        ///         ProjectId = adlTest.ProjectId,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPrivatelinkEndpointsServiceAdlResult> InvokeAsync(GetPrivatelinkEndpointsServiceAdlArgs args, InvokeOptions? options = null)
@@ -59,33 +32,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### Basic
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var adlTest = new Mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         EndpointId = "&lt;ENDPOINT_ID&gt;",
-        ///         Comment = "Comment for PrivateLink endpoint ADL",
-        ///         Type = "DATA_LAKE",
-        ///         ProviderName = "AWS",
-        ///     });
-        /// 
-        ///     var test = Mongodbatlas.GetPrivatelinkEndpointsServiceAdl.Invoke(new()
-        ///     {
-        ///         ProjectId = adlTest.ProjectId,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPrivatelinkEndpointsServiceAdlResult> Invoke(GetPrivatelinkEndpointsServiceAdlInvokeArgs args, InvokeOptions? options = null)

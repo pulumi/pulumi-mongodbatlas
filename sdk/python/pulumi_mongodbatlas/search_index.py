@@ -62,10 +62,10 @@ class SearchIndexArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cluster_name: pulumi.Input[str],
-             collection_name: pulumi.Input[str],
-             database: pulumi.Input[str],
-             project_id: pulumi.Input[str],
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             collection_name: Optional[pulumi.Input[str]] = None,
+             database: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
              analyzer: Optional[pulumi.Input[str]] = None,
              analyzers: Optional[pulumi.Input[str]] = None,
              mappings_dynamic: Optional[pulumi.Input[bool]] = None,
@@ -75,7 +75,31 @@ class SearchIndexArgs:
              status: Optional[pulumi.Input[str]] = None,
              synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
              wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if cluster_name is None:
+            raise TypeError("Missing 'cluster_name' argument")
+        if collection_name is None and 'collectionName' in kwargs:
+            collection_name = kwargs['collectionName']
+        if collection_name is None:
+            raise TypeError("Missing 'collection_name' argument")
+        if database is None:
+            raise TypeError("Missing 'database' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if mappings_dynamic is None and 'mappingsDynamic' in kwargs:
+            mappings_dynamic = kwargs['mappingsDynamic']
+        if mappings_fields is None and 'mappingsFields' in kwargs:
+            mappings_fields = kwargs['mappingsFields']
+        if search_analyzer is None and 'searchAnalyzer' in kwargs:
+            search_analyzer = kwargs['searchAnalyzer']
+        if wait_for_index_build_completion is None and 'waitForIndexBuildCompletion' in kwargs:
+            wait_for_index_build_completion = kwargs['waitForIndexBuildCompletion']
+
         _setter("cluster_name", cluster_name)
         _setter("collection_name", collection_name)
         _setter("database", database)
@@ -315,7 +339,25 @@ class _SearchIndexState:
              status: Optional[pulumi.Input[str]] = None,
              synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
              wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if collection_name is None and 'collectionName' in kwargs:
+            collection_name = kwargs['collectionName']
+        if index_id is None and 'indexId' in kwargs:
+            index_id = kwargs['indexId']
+        if mappings_dynamic is None and 'mappingsDynamic' in kwargs:
+            mappings_dynamic = kwargs['mappingsDynamic']
+        if mappings_fields is None and 'mappingsFields' in kwargs:
+            mappings_fields = kwargs['mappingsFields']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if search_analyzer is None and 'searchAnalyzer' in kwargs:
+            search_analyzer = kwargs['searchAnalyzer']
+        if wait_for_index_build_completion is None and 'waitForIndexBuildCompletion' in kwargs:
+            wait_for_index_build_completion = kwargs['waitForIndexBuildCompletion']
+
         if analyzer is not None:
             _setter("analyzer", analyzer)
         if analyzers is not None:
@@ -528,88 +570,6 @@ class SearchIndex(pulumi.CustomResource):
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 
         ## Example Usage
-        ### Basic
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_basic_search_index = mongodbatlas.SearchIndex("test-basic-search-index",
-            analyzer="lucene.standard",
-            cluster_name="<CLUSTER_NAME>",
-            collection_name="collection_test",
-            database="database_test",
-            mappings_dynamic=True,
-            project_id="<PROJECT_ID>",
-            search_analyzer="lucene.standard")
-        ```
-        ### Advanced (with custom analyzers)
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_advanced_search_index = mongodbatlas.SearchIndex("test-advanced-search-index",
-            project_id="%[1]s",
-            cluster_name="%[2]s",
-            analyzer="lucene.standard",
-            collection_name="collection_test",
-            database="database_test",
-            mappings_dynamic=False,
-            mappings_fields=\"\"\"{
-              "address": {
-                "type": "document",
-                "fields": {
-                  "city": {
-                    "type": "string",
-                    "analyzer": "lucene.simple",
-                    "ignoreAbove": 255
-                  },
-                  "state": {
-                    "type": "string",
-                    "analyzer": "lucene.english"
-                  }
-                }
-              },
-              "company": {
-                "type": "string",
-                "analyzer": "lucene.whitespace",
-                "multi": {
-                  "mySecondaryAnalyzer": {
-                    "type": "string",
-                    "analyzer": "lucene.french"
-                  }
-                }
-              },
-              "employees": {
-                "type": "string",
-                "analyzer": "lucene.standard"
-              }
-        }
-        \"\"\",
-            search_analyzer="lucene.standard",
-            analyzers=\"\"\" [{
-         "name": "index_analyzer_test_name",
-         "charFilters": {
-        "type": "mapping",
-        "mappings": {"\\\\" : "/"}
-           	},
-         "tokenizer": {
-         "type": "nGram",
-         "minGram": 2,
-         "maxGram": 5
-        	},
-         "tokenFilters": {
-        "type": "length",
-        "min": 20,
-        "max": 33
-           	}
-         }]
-        \"\"\",
-            synonyms=[mongodbatlas.SearchIndexSynonymArgs(
-                analyzer="lucene.simple",
-                name="synonym_test",
-                source_collection="collection_test",
-            )])
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -635,88 +595,6 @@ class SearchIndex(pulumi.CustomResource):
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 
         ## Example Usage
-        ### Basic
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_basic_search_index = mongodbatlas.SearchIndex("test-basic-search-index",
-            analyzer="lucene.standard",
-            cluster_name="<CLUSTER_NAME>",
-            collection_name="collection_test",
-            database="database_test",
-            mappings_dynamic=True,
-            project_id="<PROJECT_ID>",
-            search_analyzer="lucene.standard")
-        ```
-        ### Advanced (with custom analyzers)
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_advanced_search_index = mongodbatlas.SearchIndex("test-advanced-search-index",
-            project_id="%[1]s",
-            cluster_name="%[2]s",
-            analyzer="lucene.standard",
-            collection_name="collection_test",
-            database="database_test",
-            mappings_dynamic=False,
-            mappings_fields=\"\"\"{
-              "address": {
-                "type": "document",
-                "fields": {
-                  "city": {
-                    "type": "string",
-                    "analyzer": "lucene.simple",
-                    "ignoreAbove": 255
-                  },
-                  "state": {
-                    "type": "string",
-                    "analyzer": "lucene.english"
-                  }
-                }
-              },
-              "company": {
-                "type": "string",
-                "analyzer": "lucene.whitespace",
-                "multi": {
-                  "mySecondaryAnalyzer": {
-                    "type": "string",
-                    "analyzer": "lucene.french"
-                  }
-                }
-              },
-              "employees": {
-                "type": "string",
-                "analyzer": "lucene.standard"
-              }
-        }
-        \"\"\",
-            search_analyzer="lucene.standard",
-            analyzers=\"\"\" [{
-         "name": "index_analyzer_test_name",
-         "charFilters": {
-        "type": "mapping",
-        "mappings": {"\\\\" : "/"}
-           	},
-         "tokenizer": {
-         "type": "nGram",
-         "minGram": 2,
-         "maxGram": 5
-        	},
-         "tokenFilters": {
-        "type": "length",
-        "min": 20,
-        "max": 33
-           	}
-         }]
-        \"\"\",
-            synonyms=[mongodbatlas.SearchIndexSynonymArgs(
-                analyzer="lucene.simple",
-                name="synonym_test",
-                source_collection="collection_test",
-            )])
-        ```
 
         :param str resource_name: The name of the resource.
         :param SearchIndexArgs args: The arguments to use to populate this resource's properties.

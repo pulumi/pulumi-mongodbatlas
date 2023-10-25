@@ -38,12 +38,28 @@ class PrivatelinkEndpointServiceAdlArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             endpoint_id: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             provider_name: pulumi.Input[str],
-             type: pulumi.Input[str],
+             endpoint_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
              comment: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if endpoint_id is None and 'endpointId' in kwargs:
+            endpoint_id = kwargs['endpointId']
+        if endpoint_id is None:
+            raise TypeError("Missing 'endpoint_id' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if provider_name is None:
+            raise TypeError("Missing 'provider_name' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+
         _setter("endpoint_id", endpoint_id)
         _setter("project_id", project_id)
         _setter("provider_name", provider_name)
@@ -144,7 +160,15 @@ class _PrivatelinkEndpointServiceAdlState:
              project_id: Optional[pulumi.Input[str]] = None,
              provider_name: Optional[pulumi.Input[str]] = None,
              type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if endpoint_id is None and 'endpointId' in kwargs:
+            endpoint_id = kwargs['endpointId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+
         if comment is not None:
             _setter("comment", comment)
         if endpoint_id is not None:
@@ -232,18 +256,6 @@ class PrivatelinkEndpointServiceAdl(pulumi.CustomResource):
         `privatelink_endpoint_service_adl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.   The same configuration will provide a PrivateLink connection for either Atlas Data Lake or Online Archive.
 
         ## Example Usage
-        ### Basic
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        adl_test = mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest",
-            comment="comments for private link endpoint adl",
-            endpoint_id="<ENDPOINT_ID>",
-            project_id="<PROJECT_ID>",
-            provider_name="AWS",
-            type="DATA_LAKE")
-        ```
 
         ## Import
 
@@ -274,18 +286,6 @@ class PrivatelinkEndpointServiceAdl(pulumi.CustomResource):
         `privatelink_endpoint_service_adl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.   The same configuration will provide a PrivateLink connection for either Atlas Data Lake or Online Archive.
 
         ## Example Usage
-        ### Basic
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        adl_test = mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest",
-            comment="comments for private link endpoint adl",
-            endpoint_id="<ENDPOINT_ID>",
-            project_id="<PROJECT_ID>",
-            provider_name="AWS",
-            type="DATA_LAKE")
-        ```
 
         ## Import
 

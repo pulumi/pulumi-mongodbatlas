@@ -40,12 +40,34 @@ class CloudBackupSnapshotExportJobArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cluster_name: pulumi.Input[str],
-             custom_datas: pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]],
-             export_bucket_id: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             snapshot_id: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]] = None,
+             export_bucket_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             snapshot_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if cluster_name is None:
+            raise TypeError("Missing 'cluster_name' argument")
+        if custom_datas is None and 'customDatas' in kwargs:
+            custom_datas = kwargs['customDatas']
+        if custom_datas is None:
+            raise TypeError("Missing 'custom_datas' argument")
+        if export_bucket_id is None and 'exportBucketId' in kwargs:
+            export_bucket_id = kwargs['exportBucketId']
+        if export_bucket_id is None:
+            raise TypeError("Missing 'export_bucket_id' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if snapshot_id is None and 'snapshotId' in kwargs:
+            snapshot_id = kwargs['snapshotId']
+        if snapshot_id is None:
+            raise TypeError("Missing 'snapshot_id' argument")
+
         _setter("cluster_name", cluster_name)
         _setter("custom_datas", custom_datas)
         _setter("export_bucket_id", export_bucket_id)
@@ -179,7 +201,31 @@ class _CloudBackupSnapshotExportJobState:
              project_id: Optional[pulumi.Input[str]] = None,
              snapshot_id: Optional[pulumi.Input[str]] = None,
              state: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if custom_datas is None and 'customDatas' in kwargs:
+            custom_datas = kwargs['customDatas']
+        if err_msg is None and 'errMsg' in kwargs:
+            err_msg = kwargs['errMsg']
+        if export_bucket_id is None and 'exportBucketId' in kwargs:
+            export_bucket_id = kwargs['exportBucketId']
+        if export_job_id is None and 'exportJobId' in kwargs:
+            export_job_id = kwargs['exportJobId']
+        if export_status_exported_collections is None and 'exportStatusExportedCollections' in kwargs:
+            export_status_exported_collections = kwargs['exportStatusExportedCollections']
+        if export_status_total_collections is None and 'exportStatusTotalCollections' in kwargs:
+            export_status_total_collections = kwargs['exportStatusTotalCollections']
+        if finished_at is None and 'finishedAt' in kwargs:
+            finished_at = kwargs['finishedAt']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if snapshot_id is None and 'snapshotId' in kwargs:
+            snapshot_id = kwargs['snapshotId']
+
         if cluster_name is not None:
             _setter("cluster_name", cluster_name)
         if components is not None:
@@ -386,28 +432,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
-            project_id="{PROJECT_ID}",
-            iam_role_id="{IAM_ROLE_ID}",
-            bucket_name="example_bucket",
-            cloud_provider="AWS")
-        test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob",
-            project_id="{PROJECT_ID}",
-            cluster_name="{CLUSTER_NAME}",
-            snapshot_id="{SNAPSHOT_ID}",
-            export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id,
-            custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
-                key="exported by",
-                value="myName",
-            )])
-        ```
-
         ## Import
 
         Cloud Backup Snapshot Export Backup entries can be imported using project project_id, cluster_name and export_job_id (Unique identifier of the snapshot export job), in the format `PROJECTID-CLUSTERNAME-EXPORTJOBID`, e.g.
@@ -435,28 +459,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         `CloudBackupSnapshotExportJob` resource allows you to create a cloud backup snapshot export job for the specified project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
-            project_id="{PROJECT_ID}",
-            iam_role_id="{IAM_ROLE_ID}",
-            bucket_name="example_bucket",
-            cloud_provider="AWS")
-        test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob",
-            project_id="{PROJECT_ID}",
-            cluster_name="{CLUSTER_NAME}",
-            snapshot_id="{SNAPSHOT_ID}",
-            export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id,
-            custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
-                key="exported by",
-                value="myName",
-            )])
-        ```
 
         ## Import
 

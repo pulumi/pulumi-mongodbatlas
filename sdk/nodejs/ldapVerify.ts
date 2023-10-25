@@ -9,32 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORG ID"});
- * const testCluster = new mongodbatlas.Cluster("testCluster", {
- *     projectId: testProject.id,
- *     providerName: "AWS",
- *     providerRegionName: "US_EAST_2",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
- * });
- * //enable cloud provider snapshots
- * const testLdapVerify = new mongodbatlas.LdapVerify("testLdapVerify", {
- *     projectId: testProject.id,
- *     hostname: "HOSTNAME",
- *     port: 636,
- *     bindUsername: "USERNAME",
- *     bindPassword: "PASSWORD",
- * }, {
- *     dependsOn: [testCluster],
- * });
- * ```
- *
  * ## Import
  *
  * LDAP Configuration must be imported using project ID and request ID, e.g.

@@ -107,16 +107,6 @@ def get_organizations(include_deleted_orgs: Optional[bool] = None,
     """
     `get_organizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_organizations(items_per_page=5,
-        page_num=1)
-    ```
-
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param str name: Human-readable label that identifies the organization.
@@ -148,16 +138,6 @@ def get_organizations_output(include_deleted_orgs: Optional[pulumi.Input[Optiona
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationsResult]:
     """
     `get_organizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_organizations(items_per_page=5,
-        page_num=1)
-    ```
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.

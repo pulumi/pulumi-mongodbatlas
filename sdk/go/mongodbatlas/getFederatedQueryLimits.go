@@ -17,32 +17,6 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // ## Example Usage
-// ### S
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupFederatedQueryLimits(ctx, &mongodbatlas.LookupFederatedQueryLimitsArgs{
-//				ProjectId:  "PROJECT_ID",
-//				TenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupFederatedQueryLimits(ctx *pulumi.Context, args *LookupFederatedQueryLimitsArgs, opts ...pulumi.InvokeOption) (*LookupFederatedQueryLimitsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedQueryLimitsResult

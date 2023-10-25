@@ -35,11 +35,29 @@ class CloudBackupSnapshotExportBucketArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             bucket_name: pulumi.Input[str],
-             cloud_provider: pulumi.Input[str],
-             iam_role_id: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             cloud_provider: Optional[pulumi.Input[str]] = None,
+             iam_role_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if cloud_provider is None and 'cloudProvider' in kwargs:
+            cloud_provider = kwargs['cloudProvider']
+        if cloud_provider is None:
+            raise TypeError("Missing 'cloud_provider' argument")
+        if iam_role_id is None and 'iamRoleId' in kwargs:
+            iam_role_id = kwargs['iamRoleId']
+        if iam_role_id is None:
+            raise TypeError("Missing 'iam_role_id' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+
         _setter("bucket_name", bucket_name)
         _setter("cloud_provider", cloud_provider)
         _setter("iam_role_id", iam_role_id)
@@ -126,7 +144,19 @@ class _CloudBackupSnapshotExportBucketState:
              export_bucket_id: Optional[pulumi.Input[str]] = None,
              iam_role_id: Optional[pulumi.Input[str]] = None,
              project_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if cloud_provider is None and 'cloudProvider' in kwargs:
+            cloud_provider = kwargs['cloudProvider']
+        if export_bucket_id is None and 'exportBucketId' in kwargs:
+            export_bucket_id = kwargs['exportBucketId']
+        if iam_role_id is None and 'iamRoleId' in kwargs:
+            iam_role_id = kwargs['iamRoleId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
         if bucket_name is not None:
             _setter("bucket_name", bucket_name)
         if cloud_provider is not None:
@@ -214,19 +244,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.CloudBackupSnapshotExportBucket("test",
-            bucket_name="example-bucket",
-            cloud_provider="AWS",
-            iam_role_id="{IAM_ROLE_ID}",
-            project_id="{PROJECT_ID}")
-        ```
-
         ## Import
 
         Cloud Backup Snapshot Export Backup entries can be imported using project project_id, and bucket_id (Unique identifier of the snapshot export bucket), in the format `PROJECTID-BUCKETID`, e.g.
@@ -253,19 +270,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         `CloudBackupSnapshotExportBucket` resource allows you to create an export snapshot bucket for the specified project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.CloudBackupSnapshotExportBucket("test",
-            bucket_name="example-bucket",
-            cloud_provider="AWS",
-            iam_role_id="{IAM_ROLE_ID}",
-            project_id="{PROJECT_ID}")
-        ```
 
         ## Import
 

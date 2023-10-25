@@ -14,33 +14,6 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
  *
  * ## Example Usage
- * ### S With MongoDB Atlas Cluster As Storage Database
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getFederatedDatabaseInstance({
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
- *     projectId: "PROJECT ID",
- * });
- * ```
- * ### S With Amazon S3 Bucket As Storage Database
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getFederatedDatabaseInstance({
- *     cloudProviderConfig: {
- *         aws: {
- *             testS3Bucket: "Amazon S3 Bucket Name",
- *         },
- *     },
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
- *     projectId: "PROJECT ID",
- * });
- * ```
  */
 export function getFederatedDatabaseInstance(args: GetFederatedDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedDatabaseInstanceResult> {
 
@@ -144,33 +117,6 @@ export interface GetFederatedDatabaseInstanceResult {
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
  *
  * ## Example Usage
- * ### S With MongoDB Atlas Cluster As Storage Database
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getFederatedDatabaseInstance({
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
- *     projectId: "PROJECT ID",
- * });
- * ```
- * ### S With Amazon S3 Bucket As Storage Database
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getFederatedDatabaseInstance({
- *     cloudProviderConfig: {
- *         aws: {
- *             testS3Bucket: "Amazon S3 Bucket Name",
- *         },
- *     },
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
- *     projectId: "PROJECT ID",
- * });
- * ```
  */
 export function getFederatedDatabaseInstanceOutput(args: GetFederatedDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedDatabaseInstanceResult> {
     return pulumi.output(args).apply((a: any) => getFederatedDatabaseInstance(a, opts))

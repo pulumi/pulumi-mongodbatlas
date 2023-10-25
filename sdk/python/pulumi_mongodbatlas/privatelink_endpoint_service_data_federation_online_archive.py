@@ -35,11 +35,25 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             endpoint_id: pulumi.Input[str],
-             project_id: pulumi.Input[str],
-             provider_name: pulumi.Input[str],
+             endpoint_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
              comment: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if endpoint_id is None and 'endpointId' in kwargs:
+            endpoint_id = kwargs['endpointId']
+        if endpoint_id is None:
+            raise TypeError("Missing 'endpoint_id' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if provider_name is None:
+            raise TypeError("Missing 'provider_name' argument")
+
         _setter("endpoint_id", endpoint_id)
         _setter("project_id", project_id)
         _setter("provider_name", provider_name)
@@ -127,7 +141,15 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
              project_id: Optional[pulumi.Input[str]] = None,
              provider_name: Optional[pulumi.Input[str]] = None,
              type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if endpoint_id is None and 'endpointId' in kwargs:
+            endpoint_id = kwargs['endpointId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+
         if comment is not None:
             _setter("comment", comment)
         if endpoint_id is not None:
@@ -215,20 +237,6 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        atlas_project = mongodbatlas.Project("atlas-project", org_id=var["atlas_org_id"])
-        test = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
-            project_id=atlas_project.id,
-            endpoint_id="<PRIVATE-ENDPOINT-SERVICE-ID>",
-            provider_name="AWS",
-            comment="Test")
-        ```
-
         ## Import
 
         Private Endpoint Service resource for Data Federation and Online Archive can be imported using project ID, endpoint ID, in the format `project_id`--`endpoint_id`, e.g.
@@ -255,20 +263,6 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         `PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        atlas_project = mongodbatlas.Project("atlas-project", org_id=var["atlas_org_id"])
-        test = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
-            project_id=atlas_project.id,
-            endpoint_id="<PRIVATE-ENDPOINT-SERVICE-ID>",
-            provider_name="AWS",
-            comment="Test")
-        ```
 
         ## Import
 

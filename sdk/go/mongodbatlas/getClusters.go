@@ -19,53 +19,6 @@ import (
 // > **IMPORTANT:**
 // <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
 // <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
-//				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
-//				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-//					&mongodbatlas.ClusterReplicationSpecArgs{
-//						NumShards: pulumi.Int(1),
-//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-//								RegionName:     pulumi.String("US_EAST_1"),
-//								ElectableNodes: pulumi.Int(3),
-//								Priority:       pulumi.Int(7),
-//								ReadOnlyNodes:  pulumi.Int(0),
-//							},
-//						},
-//					},
-//				},
-//				CloudBackup:              pulumi.Bool(true),
-//				AutoScalingDiskGbEnabled: pulumi.Bool(true),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderInstanceSizeName: pulumi.String("M40"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = mongodbatlas.LookupClustersOutput(ctx, mongodbatlas.GetClustersOutputArgs{
-//				ProjectId: testCluster.ProjectId,
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupClusters(ctx *pulumi.Context, args *LookupClustersArgs, opts ...pulumi.InvokeOption) (*LookupClustersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClustersResult

@@ -11,50 +11,6 @@ namespace Pulumi.Mongodbatlas
 {
     /// <summary>
     /// ## Example Usage
-    /// ### S
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Mongodbatlas.ProjectInvitation("test", new()
-    ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         Roles = new[]
-    ///         {
-    ///             "GROUP_DATA_ACCESS_READ_WRITE",
-    ///         },
-    ///         Username = "test-acc-username",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Mongodbatlas.ProjectInvitation("test", new()
-    ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         Roles = new[]
-    ///         {
-    ///             "GROUP_READ_ONLY",
-    ///             "GROUP_DATA_ACCESS_READ_ONLY",
-    ///         },
-    ///         Username = "test-acc-username",
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// 
     /// ## Import
     /// 

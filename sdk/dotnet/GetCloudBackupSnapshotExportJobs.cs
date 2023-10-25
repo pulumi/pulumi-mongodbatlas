@@ -16,53 +16,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
-        ///     {
-        ///         ProjectId = "{PROJECT_ID}",
-        ///         IamRoleId = "{IAM_ROLE_ID}",
-        ///         BucketName = "example_bucket",
-        ///         CloudProvider = "AWS",
-        ///     });
-        /// 
-        ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", new()
-        ///     {
-        ///         ProjectId = "{PROJECT_ID}",
-        ///         ClusterName = "{CLUSTER_NAME}",
-        ///         SnapshotId = "{SNAPSHOT_ID}",
-        ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
-        ///         CustomDatas = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.CloudBackupSnapshotExportJobCustomDataArgs
-        ///             {
-        ///                 Key = "exported by",
-        ///                 Value = "myName",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var testCloudBackupSnapshotExportJobs = Mongodbatlas.GetCloudBackupSnapshotExportJobs.Invoke(new()
-        ///     {
-        ///         ProjectId = "{PROJECT_ID}",
-        ///         ClusterName = "{CLUSTER_NAME}",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudBackupSnapshotExportJobsResult> InvokeAsync(GetCloudBackupSnapshotExportJobsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportJobsResult>("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", args ?? new GetCloudBackupSnapshotExportJobsArgs(), options.WithDefaults());
@@ -72,53 +25,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
-        ///     {
-        ///         ProjectId = "{PROJECT_ID}",
-        ///         IamRoleId = "{IAM_ROLE_ID}",
-        ///         BucketName = "example_bucket",
-        ///         CloudProvider = "AWS",
-        ///     });
-        /// 
-        ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", new()
-        ///     {
-        ///         ProjectId = "{PROJECT_ID}",
-        ///         ClusterName = "{CLUSTER_NAME}",
-        ///         SnapshotId = "{SNAPSHOT_ID}",
-        ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
-        ///         CustomDatas = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.CloudBackupSnapshotExportJobCustomDataArgs
-        ///             {
-        ///                 Key = "exported by",
-        ///                 Value = "myName",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var testCloudBackupSnapshotExportJobs = Mongodbatlas.GetCloudBackupSnapshotExportJobs.Invoke(new()
-        ///     {
-        ///         ProjectId = "{PROJECT_ID}",
-        ///         ClusterName = "{CLUSTER_NAME}",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetCloudBackupSnapshotExportJobsResult> Invoke(GetCloudBackupSnapshotExportJobsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportJobsResult>("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", args ?? new GetCloudBackupSnapshotExportJobsInvokeArgs(), options.WithDefaults());

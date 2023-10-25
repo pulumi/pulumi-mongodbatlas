@@ -11,48 +11,6 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
- * const testProject = new mongodbatlas.Project("testProject", {
- *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
- *     projectOwnerId: "<OWNER_ACCOUNT_ID>",
- *     teams: [
- *         {
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *             roleNames: ["GROUP_OWNER"],
- *         },
- *         {
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *         },
- *     ],
- *     limits: [
- *         {
- *             name: "atlas.project.deployment.clusters",
- *             value: 26,
- *         },
- *         {
- *             name: "atlas.project.deployment.nodesPerPrivateLinkRegion",
- *             value: 51,
- *         },
- *     ],
- *     isCollectDatabaseSpecificsStatisticsEnabled: true,
- *     isDataExplorerEnabled: true,
- *     isExtendedStorageSizesEnabled: true,
- *     isPerformanceAdvisorEnabled: true,
- *     isRealtimePerformancePanelEnabled: true,
- *     isSchemaAdvisorEnabled: true,
- * });
- * ```
- *
  * ## Import
  *
  * Project must be imported using project ID, e.g.
