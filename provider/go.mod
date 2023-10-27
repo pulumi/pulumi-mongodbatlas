@@ -6,9 +6,9 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 require (
 	github.com/mongodb/terraform-provider-mongodbatlas v1.12.1
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.18.2
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.63.1
-	github.com/pulumi/pulumi/sdk/v3 v3.90.1
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.18.3-0.20231027211323-cefb369296c9
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.63.2-0.20231027211323-cefb369296c9
+	github.com/pulumi/pulumi/sdk/v3 v3.91.0
 )
 
 require (
@@ -246,3 +246,7 @@ require (
 	lukechampine.com/frand v1.4.2 // indirect
 	sourcegraph.com/sourcegraph/appdash v0.0.0-20211028080628-e2786a622600 // indirect
 )
+
+replace github.com/pulumi/pulumi/pkg/v3 => github.com/pulumi/pulumi/pkg/v3 v3.78.2-0.20231027191454-9941f901c988
+
+replace github.com/pulumi/pulumi/sdk/v3 => github.com/pulumi/pulumi/sdk/v3 v3.91.1-0.20231027191454-9941f901c988
