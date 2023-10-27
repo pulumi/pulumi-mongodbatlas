@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AccessListApiKeyArgs', 'AccessListApiKey']
@@ -27,41 +27,12 @@ class AccessListApiKeyArgs:
         :param pulumi.Input[str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list.
         """
-        AccessListApiKeyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key_id=api_key_id,
-            org_id=org_id,
-            cidr_block=cidr_block,
-            ip_address=ip_address,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key_id: Optional[pulumi.Input[str]] = None,
-             org_id: Optional[pulumi.Input[str]] = None,
-             cidr_block: Optional[pulumi.Input[str]] = None,
-             ip_address: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if api_key_id is None and 'apiKeyId' in kwargs:
-            api_key_id = kwargs['apiKeyId']
-        if api_key_id is None:
-            raise TypeError("Missing 'api_key_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if cidr_block is None and 'cidrBlock' in kwargs:
-            cidr_block = kwargs['cidrBlock']
-        if ip_address is None and 'ipAddress' in kwargs:
-            ip_address = kwargs['ipAddress']
-
-        _setter("api_key_id", api_key_id)
-        _setter("org_id", org_id)
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "org_id", org_id)
         if cidr_block is not None:
-            _setter("cidr_block", cidr_block)
+            pulumi.set(__self__, "cidr_block", cidr_block)
         if ip_address is not None:
-            _setter("ip_address", ip_address)
+            pulumi.set(__self__, "ip_address", ip_address)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -130,39 +101,14 @@ class _AccessListApiKeyState:
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list.
         :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
-        _AccessListApiKeyState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key_id=api_key_id,
-            cidr_block=cidr_block,
-            ip_address=ip_address,
-            org_id=org_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key_id: Optional[pulumi.Input[str]] = None,
-             cidr_block: Optional[pulumi.Input[str]] = None,
-             ip_address: Optional[pulumi.Input[str]] = None,
-             org_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if api_key_id is None and 'apiKeyId' in kwargs:
-            api_key_id = kwargs['apiKeyId']
-        if cidr_block is None and 'cidrBlock' in kwargs:
-            cidr_block = kwargs['cidrBlock']
-        if ip_address is None and 'ipAddress' in kwargs:
-            ip_address = kwargs['ipAddress']
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-
         if api_key_id is not None:
-            _setter("api_key_id", api_key_id)
+            pulumi.set(__self__, "api_key_id", api_key_id)
         if cidr_block is not None:
-            _setter("cidr_block", cidr_block)
+            pulumi.set(__self__, "cidr_block", cidr_block)
         if ip_address is not None:
-            _setter("ip_address", ip_address)
+            pulumi.set(__self__, "ip_address", ip_address)
         if org_id is not None:
-            _setter("org_id", org_id)
+            pulumi.set(__self__, "org_id", org_id)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -314,10 +260,6 @@ class AccessListApiKey(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            AccessListApiKeyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

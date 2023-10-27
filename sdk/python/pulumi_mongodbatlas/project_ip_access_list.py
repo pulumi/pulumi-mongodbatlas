@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -32,48 +32,17 @@ class ProjectIpAccessListArgs:
                > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         """
-        ProjectIpAccessListArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            project_id=project_id,
-            aws_security_group=aws_security_group,
-            cidr_block=cidr_block,
-            comment=comment,
-            ip_address=ip_address,
-            timeouts=timeouts,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             project_id: Optional[pulumi.Input[str]] = None,
-             aws_security_group: Optional[pulumi.Input[str]] = None,
-             cidr_block: Optional[pulumi.Input[str]] = None,
-             comment: Optional[pulumi.Input[str]] = None,
-             ip_address: Optional[pulumi.Input[str]] = None,
-             timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if aws_security_group is None and 'awsSecurityGroup' in kwargs:
-            aws_security_group = kwargs['awsSecurityGroup']
-        if cidr_block is None and 'cidrBlock' in kwargs:
-            cidr_block = kwargs['cidrBlock']
-        if ip_address is None and 'ipAddress' in kwargs:
-            ip_address = kwargs['ipAddress']
-
-        _setter("project_id", project_id)
+        pulumi.set(__self__, "project_id", project_id)
         if aws_security_group is not None:
-            _setter("aws_security_group", aws_security_group)
+            pulumi.set(__self__, "aws_security_group", aws_security_group)
         if cidr_block is not None:
-            _setter("cidr_block", cidr_block)
+            pulumi.set(__self__, "cidr_block", cidr_block)
         if comment is not None:
-            _setter("comment", comment)
+            pulumi.set(__self__, "comment", comment)
         if ip_address is not None:
-            _setter("ip_address", ip_address)
+            pulumi.set(__self__, "ip_address", ip_address)
         if timeouts is not None:
-            _setter("timeouts", timeouts)
+            pulumi.set(__self__, "timeouts", timeouts)
 
     @property
     @pulumi.getter(name="projectId")
@@ -166,47 +135,18 @@ class _ProjectIpAccessListState:
         :param pulumi.Input[str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
         """
-        _ProjectIpAccessListState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws_security_group=aws_security_group,
-            cidr_block=cidr_block,
-            comment=comment,
-            ip_address=ip_address,
-            project_id=project_id,
-            timeouts=timeouts,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws_security_group: Optional[pulumi.Input[str]] = None,
-             cidr_block: Optional[pulumi.Input[str]] = None,
-             comment: Optional[pulumi.Input[str]] = None,
-             ip_address: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws_security_group is None and 'awsSecurityGroup' in kwargs:
-            aws_security_group = kwargs['awsSecurityGroup']
-        if cidr_block is None and 'cidrBlock' in kwargs:
-            cidr_block = kwargs['cidrBlock']
-        if ip_address is None and 'ipAddress' in kwargs:
-            ip_address = kwargs['ipAddress']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if aws_security_group is not None:
-            _setter("aws_security_group", aws_security_group)
+            pulumi.set(__self__, "aws_security_group", aws_security_group)
         if cidr_block is not None:
-            _setter("cidr_block", cidr_block)
+            pulumi.set(__self__, "cidr_block", cidr_block)
         if comment is not None:
-            _setter("comment", comment)
+            pulumi.set(__self__, "comment", comment)
         if ip_address is not None:
-            _setter("ip_address", ip_address)
+            pulumi.set(__self__, "ip_address", ip_address)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if timeouts is not None:
-            _setter("timeouts", timeouts)
+            pulumi.set(__self__, "timeouts", timeouts)
 
     @property
     @pulumi.getter(name="awsSecurityGroup")
@@ -448,10 +388,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ProjectIpAccessListArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -479,7 +415,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
-            timeouts = _utilities.configure(timeouts, ProjectIpAccessListTimeoutsArgs, True)
             __props__.__dict__["timeouts"] = timeouts
         super(ProjectIpAccessList, __self__).__init__(
             'mongodbatlas:index/projectIpAccessList:ProjectIpAccessList',

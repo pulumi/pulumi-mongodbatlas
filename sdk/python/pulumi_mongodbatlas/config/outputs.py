@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
@@ -25,63 +25,24 @@ class AssumeRole(dict):
                  source_identity: Optional[str] = None,
                  tags: Optional[Mapping[str, str]] = None,
                  transitive_tag_keys: Optional[Sequence[str]] = None):
-        AssumeRole._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            duration=duration,
-            external_id=external_id,
-            policy=policy,
-            policy_arns=policy_arns,
-            role_arn=role_arn,
-            session_name=session_name,
-            source_identity=source_identity,
-            tags=tags,
-            transitive_tag_keys=transitive_tag_keys,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             duration: Optional[str] = None,
-             external_id: Optional[str] = None,
-             policy: Optional[str] = None,
-             policy_arns: Optional[Sequence[str]] = None,
-             role_arn: Optional[str] = None,
-             session_name: Optional[str] = None,
-             source_identity: Optional[str] = None,
-             tags: Optional[Mapping[str, str]] = None,
-             transitive_tag_keys: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if external_id is None and 'externalId' in kwargs:
-            external_id = kwargs['externalId']
-        if policy_arns is None and 'policyArns' in kwargs:
-            policy_arns = kwargs['policyArns']
-        if role_arn is None and 'roleArn' in kwargs:
-            role_arn = kwargs['roleArn']
-        if session_name is None and 'sessionName' in kwargs:
-            session_name = kwargs['sessionName']
-        if source_identity is None and 'sourceIdentity' in kwargs:
-            source_identity = kwargs['sourceIdentity']
-        if transitive_tag_keys is None and 'transitiveTagKeys' in kwargs:
-            transitive_tag_keys = kwargs['transitiveTagKeys']
-
         if duration is not None:
-            _setter("duration", duration)
+            pulumi.set(__self__, "duration", duration)
         if external_id is not None:
-            _setter("external_id", external_id)
+            pulumi.set(__self__, "external_id", external_id)
         if policy is not None:
-            _setter("policy", policy)
+            pulumi.set(__self__, "policy", policy)
         if policy_arns is not None:
-            _setter("policy_arns", policy_arns)
+            pulumi.set(__self__, "policy_arns", policy_arns)
         if role_arn is not None:
-            _setter("role_arn", role_arn)
+            pulumi.set(__self__, "role_arn", role_arn)
         if session_name is not None:
-            _setter("session_name", session_name)
+            pulumi.set(__self__, "session_name", session_name)
         if source_identity is not None:
-            _setter("source_identity", source_identity)
+            pulumi.set(__self__, "source_identity", source_identity)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if transitive_tag_keys is not None:
-            _setter("transitive_tag_keys", transitive_tag_keys)
+            pulumi.set(__self__, "transitive_tag_keys", transitive_tag_keys)
 
     @property
     @pulumi.getter
