@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -422,81 +422,28 @@ class AdvancedClusterAdvancedConfiguration(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
-        AdvancedClusterAdvancedConfiguration._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            default_read_concern=default_read_concern,
-            default_write_concern=default_write_concern,
-            fail_index_key_too_long=fail_index_key_too_long,
-            javascript_enabled=javascript_enabled,
-            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
-            no_table_scan=no_table_scan,
-            oplog_min_retention_hours=oplog_min_retention_hours,
-            oplog_size_mb=oplog_size_mb,
-            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
-            sample_size_bi_connector=sample_size_bi_connector,
-            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             default_read_concern: Optional[str] = None,
-             default_write_concern: Optional[str] = None,
-             fail_index_key_too_long: Optional[bool] = None,
-             javascript_enabled: Optional[bool] = None,
-             minimum_enabled_tls_protocol: Optional[str] = None,
-             no_table_scan: Optional[bool] = None,
-             oplog_min_retention_hours: Optional[int] = None,
-             oplog_size_mb: Optional[int] = None,
-             sample_refresh_interval_bi_connector: Optional[int] = None,
-             sample_size_bi_connector: Optional[int] = None,
-             transaction_lifetime_limit_seconds: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if default_read_concern is None and 'defaultReadConcern' in kwargs:
-            default_read_concern = kwargs['defaultReadConcern']
-        if default_write_concern is None and 'defaultWriteConcern' in kwargs:
-            default_write_concern = kwargs['defaultWriteConcern']
-        if fail_index_key_too_long is None and 'failIndexKeyTooLong' in kwargs:
-            fail_index_key_too_long = kwargs['failIndexKeyTooLong']
-        if javascript_enabled is None and 'javascriptEnabled' in kwargs:
-            javascript_enabled = kwargs['javascriptEnabled']
-        if minimum_enabled_tls_protocol is None and 'minimumEnabledTlsProtocol' in kwargs:
-            minimum_enabled_tls_protocol = kwargs['minimumEnabledTlsProtocol']
-        if no_table_scan is None and 'noTableScan' in kwargs:
-            no_table_scan = kwargs['noTableScan']
-        if oplog_min_retention_hours is None and 'oplogMinRetentionHours' in kwargs:
-            oplog_min_retention_hours = kwargs['oplogMinRetentionHours']
-        if oplog_size_mb is None and 'oplogSizeMb' in kwargs:
-            oplog_size_mb = kwargs['oplogSizeMb']
-        if sample_refresh_interval_bi_connector is None and 'sampleRefreshIntervalBiConnector' in kwargs:
-            sample_refresh_interval_bi_connector = kwargs['sampleRefreshIntervalBiConnector']
-        if sample_size_bi_connector is None and 'sampleSizeBiConnector' in kwargs:
-            sample_size_bi_connector = kwargs['sampleSizeBiConnector']
-        if transaction_lifetime_limit_seconds is None and 'transactionLifetimeLimitSeconds' in kwargs:
-            transaction_lifetime_limit_seconds = kwargs['transactionLifetimeLimitSeconds']
-
         if default_read_concern is not None:
-            _setter("default_read_concern", default_read_concern)
+            pulumi.set(__self__, "default_read_concern", default_read_concern)
         if default_write_concern is not None:
-            _setter("default_write_concern", default_write_concern)
+            pulumi.set(__self__, "default_write_concern", default_write_concern)
         if fail_index_key_too_long is not None:
-            _setter("fail_index_key_too_long", fail_index_key_too_long)
+            pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
         if javascript_enabled is not None:
-            _setter("javascript_enabled", javascript_enabled)
+            pulumi.set(__self__, "javascript_enabled", javascript_enabled)
         if minimum_enabled_tls_protocol is not None:
-            _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+            pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         if no_table_scan is not None:
-            _setter("no_table_scan", no_table_scan)
+            pulumi.set(__self__, "no_table_scan", no_table_scan)
         if oplog_min_retention_hours is not None:
-            _setter("oplog_min_retention_hours", oplog_min_retention_hours)
+            pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
         if oplog_size_mb is not None:
-            _setter("oplog_size_mb", oplog_size_mb)
+            pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         if sample_refresh_interval_bi_connector is not None:
-            _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+            pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
-            _setter("sample_size_bi_connector", sample_size_bi_connector)
+            pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
         if transaction_lifetime_limit_seconds is not None:
-            _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+            pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -627,25 +574,10 @@ class AdvancedClusterBiConnectorConfig(dict):
                
                - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
         """
-        AdvancedClusterBiConnectorConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            read_preference=read_preference,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[bool] = None,
-             read_preference: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if read_preference is None and 'readPreference' in kwargs:
-            read_preference = kwargs['readPreference']
-
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if read_preference is not None:
-            _setter("read_preference", read_preference)
+            pulumi.set(__self__, "read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -702,41 +634,16 @@ class AdvancedClusterConnectionString(dict):
                  private_srv: Optional[str] = None,
                  standard: Optional[str] = None,
                  standard_srv: Optional[str] = None):
-        AdvancedClusterConnectionString._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            private=private,
-            private_endpoints=private_endpoints,
-            private_srv=private_srv,
-            standard=standard,
-            standard_srv=standard_srv,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             private: Optional[str] = None,
-             private_endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpoint']] = None,
-             private_srv: Optional[str] = None,
-             standard: Optional[str] = None,
-             standard_srv: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if private_endpoints is None and 'privateEndpoints' in kwargs:
-            private_endpoints = kwargs['privateEndpoints']
-        if private_srv is None and 'privateSrv' in kwargs:
-            private_srv = kwargs['privateSrv']
-        if standard_srv is None and 'standardSrv' in kwargs:
-            standard_srv = kwargs['standardSrv']
-
         if private is not None:
-            _setter("private", private)
+            pulumi.set(__self__, "private", private)
         if private_endpoints is not None:
-            _setter("private_endpoints", private_endpoints)
+            pulumi.set(__self__, "private_endpoints", private_endpoints)
         if private_srv is not None:
-            _setter("private_srv", private_srv)
+            pulumi.set(__self__, "private_srv", private_srv)
         if standard is not None:
-            _setter("standard", standard)
+            pulumi.set(__self__, "standard", standard)
         if standard_srv is not None:
-            _setter("standard_srv", standard_srv)
+            pulumi.set(__self__, "standard_srv", standard_srv)
 
     @property
     @pulumi.getter
@@ -793,41 +700,16 @@ class AdvancedClusterConnectionStringPrivateEndpoint(dict):
                  srv_connection_string: Optional[str] = None,
                  srv_shard_optimized_connection_string: Optional[str] = None,
                  type: Optional[str] = None):
-        AdvancedClusterConnectionStringPrivateEndpoint._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            connection_string=connection_string,
-            endpoints=endpoints,
-            srv_connection_string=srv_connection_string,
-            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             connection_string: Optional[str] = None,
-             endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpointEndpoint']] = None,
-             srv_connection_string: Optional[str] = None,
-             srv_shard_optimized_connection_string: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if connection_string is None and 'connectionString' in kwargs:
-            connection_string = kwargs['connectionString']
-        if srv_connection_string is None and 'srvConnectionString' in kwargs:
-            srv_connection_string = kwargs['srvConnectionString']
-        if srv_shard_optimized_connection_string is None and 'srvShardOptimizedConnectionString' in kwargs:
-            srv_shard_optimized_connection_string = kwargs['srvShardOptimizedConnectionString']
-
         if connection_string is not None:
-            _setter("connection_string", connection_string)
+            pulumi.set(__self__, "connection_string", connection_string)
         if endpoints is not None:
-            _setter("endpoints", endpoints)
+            pulumi.set(__self__, "endpoints", endpoints)
         if srv_connection_string is not None:
-            _setter("srv_connection_string", srv_connection_string)
+            pulumi.set(__self__, "srv_connection_string", srv_connection_string)
         if srv_shard_optimized_connection_string is not None:
-            _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+            pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -884,31 +766,12 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
         :param str provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
         """
-        AdvancedClusterConnectionStringPrivateEndpointEndpoint._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoint_id=endpoint_id,
-            provider_name=provider_name,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoint_id: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if endpoint_id is None and 'endpointId' in kwargs:
-            endpoint_id = kwargs['endpointId']
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-
         if endpoint_id is not None:
-            _setter("endpoint_id", endpoint_id)
+            pulumi.set(__self__, "endpoint_id", endpoint_id)
         if provider_name is not None:
-            _setter("provider_name", provider_name)
+            pulumi.set(__self__, "provider_name", provider_name)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -941,23 +804,10 @@ class AdvancedClusterLabel(dict):
                
                > **NOTE:** MongoDB Atlas doesn't display your labels.
         """
-        AdvancedClusterLabel._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if key is not None:
-            _setter("key", key)
+            pulumi.set(__self__, "key", key)
         if value is not None:
-            _setter("value", value)
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -1014,44 +864,15 @@ class AdvancedClusterReplicationSpec(dict):
         :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
         :param str zone_name: Name for the zone in a Global Cluster.
         """
-        AdvancedClusterReplicationSpec._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            region_configs=region_configs,
-            container_id=container_id,
-            id=id,
-            num_shards=num_shards,
-            zone_name=zone_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             region_configs: Optional[Sequence['outputs.AdvancedClusterReplicationSpecRegionConfig']] = None,
-             container_id: Optional[Mapping[str, str]] = None,
-             id: Optional[str] = None,
-             num_shards: Optional[int] = None,
-             zone_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if region_configs is None and 'regionConfigs' in kwargs:
-            region_configs = kwargs['regionConfigs']
-        if region_configs is None:
-            raise TypeError("Missing 'region_configs' argument")
-        if container_id is None and 'containerId' in kwargs:
-            container_id = kwargs['containerId']
-        if num_shards is None and 'numShards' in kwargs:
-            num_shards = kwargs['numShards']
-        if zone_name is None and 'zoneName' in kwargs:
-            zone_name = kwargs['zoneName']
-
-        _setter("region_configs", region_configs)
+        pulumi.set(__self__, "region_configs", region_configs)
         if container_id is not None:
-            _setter("container_id", container_id)
+            pulumi.set(__self__, "container_id", container_id)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if num_shards is not None:
-            _setter("num_shards", num_shards)
+            pulumi.set(__self__, "num_shards", num_shards)
         if zone_name is not None:
-            _setter("zone_name", zone_name)
+            pulumi.set(__self__, "zone_name", zone_name)
 
     @property
     @pulumi.getter(name="regionConfigs")
@@ -1145,70 +966,21 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         :param 'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
         """
-        AdvancedClusterReplicationSpecRegionConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            priority=priority,
-            provider_name=provider_name,
-            region_name=region_name,
-            analytics_auto_scaling=analytics_auto_scaling,
-            analytics_specs=analytics_specs,
-            auto_scaling=auto_scaling,
-            backing_provider_name=backing_provider_name,
-            electable_specs=electable_specs,
-            read_only_specs=read_only_specs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             priority: Optional[int] = None,
-             provider_name: Optional[str] = None,
-             region_name: Optional[str] = None,
-             analytics_auto_scaling: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling'] = None,
-             analytics_specs: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs'] = None,
-             auto_scaling: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling'] = None,
-             backing_provider_name: Optional[str] = None,
-             electable_specs: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs'] = None,
-             read_only_specs: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs'] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if priority is None:
-            raise TypeError("Missing 'priority' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if region_name is None:
-            raise TypeError("Missing 'region_name' argument")
-        if analytics_auto_scaling is None and 'analyticsAutoScaling' in kwargs:
-            analytics_auto_scaling = kwargs['analyticsAutoScaling']
-        if analytics_specs is None and 'analyticsSpecs' in kwargs:
-            analytics_specs = kwargs['analyticsSpecs']
-        if auto_scaling is None and 'autoScaling' in kwargs:
-            auto_scaling = kwargs['autoScaling']
-        if backing_provider_name is None and 'backingProviderName' in kwargs:
-            backing_provider_name = kwargs['backingProviderName']
-        if electable_specs is None and 'electableSpecs' in kwargs:
-            electable_specs = kwargs['electableSpecs']
-        if read_only_specs is None and 'readOnlySpecs' in kwargs:
-            read_only_specs = kwargs['readOnlySpecs']
-
-        _setter("priority", priority)
-        _setter("provider_name", provider_name)
-        _setter("region_name", region_name)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region_name", region_name)
         if analytics_auto_scaling is not None:
-            _setter("analytics_auto_scaling", analytics_auto_scaling)
+            pulumi.set(__self__, "analytics_auto_scaling", analytics_auto_scaling)
         if analytics_specs is not None:
-            _setter("analytics_specs", analytics_specs)
+            pulumi.set(__self__, "analytics_specs", analytics_specs)
         if auto_scaling is not None:
-            _setter("auto_scaling", auto_scaling)
+            pulumi.set(__self__, "auto_scaling", auto_scaling)
         if backing_provider_name is not None:
-            _setter("backing_provider_name", backing_provider_name)
+            pulumi.set(__self__, "backing_provider_name", backing_provider_name)
         if electable_specs is not None:
-            _setter("electable_specs", electable_specs)
+            pulumi.set(__self__, "electable_specs", electable_specs)
         if read_only_specs is not None:
-            _setter("read_only_specs", read_only_specs)
+            pulumi.set(__self__, "read_only_specs", read_only_specs)
 
     @property
     @pulumi.getter
@@ -1325,45 +1097,16 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
         """
-        AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            compute_enabled=compute_enabled,
-            compute_max_instance_size=compute_max_instance_size,
-            compute_min_instance_size=compute_min_instance_size,
-            compute_scale_down_enabled=compute_scale_down_enabled,
-            disk_gb_enabled=disk_gb_enabled,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             compute_enabled: Optional[bool] = None,
-             compute_max_instance_size: Optional[str] = None,
-             compute_min_instance_size: Optional[str] = None,
-             compute_scale_down_enabled: Optional[bool] = None,
-             disk_gb_enabled: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if compute_enabled is None and 'computeEnabled' in kwargs:
-            compute_enabled = kwargs['computeEnabled']
-        if compute_max_instance_size is None and 'computeMaxInstanceSize' in kwargs:
-            compute_max_instance_size = kwargs['computeMaxInstanceSize']
-        if compute_min_instance_size is None and 'computeMinInstanceSize' in kwargs:
-            compute_min_instance_size = kwargs['computeMinInstanceSize']
-        if compute_scale_down_enabled is None and 'computeScaleDownEnabled' in kwargs:
-            compute_scale_down_enabled = kwargs['computeScaleDownEnabled']
-        if disk_gb_enabled is None and 'diskGbEnabled' in kwargs:
-            disk_gb_enabled = kwargs['diskGbEnabled']
-
         if compute_enabled is not None:
-            _setter("compute_enabled", compute_enabled)
+            pulumi.set(__self__, "compute_enabled", compute_enabled)
         if compute_max_instance_size is not None:
-            _setter("compute_max_instance_size", compute_max_instance_size)
+            pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
         if compute_min_instance_size is not None:
-            _setter("compute_min_instance_size", compute_min_instance_size)
+            pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
         if compute_scale_down_enabled is not None:
-            _setter("compute_scale_down_enabled", compute_scale_down_enabled)
+            pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
         if disk_gb_enabled is not None:
-            _setter("disk_gb_enabled", disk_gb_enabled)
+            pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -1439,40 +1182,13 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_size=instance_size,
-            disk_iops=disk_iops,
-            ebs_volume_type=ebs_volume_type,
-            node_count=node_count,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_size: Optional[str] = None,
-             disk_iops: Optional[int] = None,
-             ebs_volume_type: Optional[str] = None,
-             node_count: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_size is None and 'instanceSize' in kwargs:
-            instance_size = kwargs['instanceSize']
-        if instance_size is None:
-            raise TypeError("Missing 'instance_size' argument")
-        if disk_iops is None and 'diskIops' in kwargs:
-            disk_iops = kwargs['diskIops']
-        if ebs_volume_type is None and 'ebsVolumeType' in kwargs:
-            ebs_volume_type = kwargs['ebsVolumeType']
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-
-        _setter("instance_size", instance_size)
+        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
-            _setter("disk_iops", disk_iops)
+            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            _setter("ebs_volume_type", ebs_volume_type)
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -1545,45 +1261,16 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
         :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
         """
-        AdvancedClusterReplicationSpecRegionConfigAutoScaling._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            compute_enabled=compute_enabled,
-            compute_max_instance_size=compute_max_instance_size,
-            compute_min_instance_size=compute_min_instance_size,
-            compute_scale_down_enabled=compute_scale_down_enabled,
-            disk_gb_enabled=disk_gb_enabled,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             compute_enabled: Optional[bool] = None,
-             compute_max_instance_size: Optional[str] = None,
-             compute_min_instance_size: Optional[str] = None,
-             compute_scale_down_enabled: Optional[bool] = None,
-             disk_gb_enabled: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if compute_enabled is None and 'computeEnabled' in kwargs:
-            compute_enabled = kwargs['computeEnabled']
-        if compute_max_instance_size is None and 'computeMaxInstanceSize' in kwargs:
-            compute_max_instance_size = kwargs['computeMaxInstanceSize']
-        if compute_min_instance_size is None and 'computeMinInstanceSize' in kwargs:
-            compute_min_instance_size = kwargs['computeMinInstanceSize']
-        if compute_scale_down_enabled is None and 'computeScaleDownEnabled' in kwargs:
-            compute_scale_down_enabled = kwargs['computeScaleDownEnabled']
-        if disk_gb_enabled is None and 'diskGbEnabled' in kwargs:
-            disk_gb_enabled = kwargs['diskGbEnabled']
-
         if compute_enabled is not None:
-            _setter("compute_enabled", compute_enabled)
+            pulumi.set(__self__, "compute_enabled", compute_enabled)
         if compute_max_instance_size is not None:
-            _setter("compute_max_instance_size", compute_max_instance_size)
+            pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
         if compute_min_instance_size is not None:
-            _setter("compute_min_instance_size", compute_min_instance_size)
+            pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
         if compute_scale_down_enabled is not None:
-            _setter("compute_scale_down_enabled", compute_scale_down_enabled)
+            pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
         if disk_gb_enabled is not None:
-            _setter("disk_gb_enabled", disk_gb_enabled)
+            pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -1656,40 +1343,13 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        AdvancedClusterReplicationSpecRegionConfigElectableSpecs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_size=instance_size,
-            disk_iops=disk_iops,
-            ebs_volume_type=ebs_volume_type,
-            node_count=node_count,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_size: Optional[str] = None,
-             disk_iops: Optional[int] = None,
-             ebs_volume_type: Optional[str] = None,
-             node_count: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_size is None and 'instanceSize' in kwargs:
-            instance_size = kwargs['instanceSize']
-        if instance_size is None:
-            raise TypeError("Missing 'instance_size' argument")
-        if disk_iops is None and 'diskIops' in kwargs:
-            disk_iops = kwargs['diskIops']
-        if ebs_volume_type is None and 'ebsVolumeType' in kwargs:
-            ebs_volume_type = kwargs['ebsVolumeType']
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-
-        _setter("instance_size", instance_size)
+        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
-            _setter("disk_iops", disk_iops)
+            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            _setter("ebs_volume_type", ebs_volume_type)
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -1760,40 +1420,13 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_size=instance_size,
-            disk_iops=disk_iops,
-            ebs_volume_type=ebs_volume_type,
-            node_count=node_count,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_size: Optional[str] = None,
-             disk_iops: Optional[int] = None,
-             ebs_volume_type: Optional[str] = None,
-             node_count: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_size is None and 'instanceSize' in kwargs:
-            instance_size = kwargs['instanceSize']
-        if instance_size is None:
-            raise TypeError("Missing 'instance_size' argument")
-        if disk_iops is None and 'diskIops' in kwargs:
-            disk_iops = kwargs['diskIops']
-        if ebs_volume_type is None and 'ebsVolumeType' in kwargs:
-            ebs_volume_type = kwargs['ebsVolumeType']
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-
-        _setter("instance_size", instance_size)
+        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
-            _setter("disk_iops", disk_iops)
+            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            _setter("ebs_volume_type", ebs_volume_type)
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -1839,25 +1472,8 @@ class AdvancedClusterTag(dict):
                
                To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
         """
-        AdvancedClusterTag._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -1919,32 +1535,9 @@ class AlertConfigurationMatcher(dict):
                Accepted values are:
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
-        AlertConfigurationMatcher._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field_name=field_name,
-            operator=operator,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field_name: Optional[str] = None,
-             operator: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field_name is None and 'fieldName' in kwargs:
-            field_name = kwargs['fieldName']
-        if field_name is None:
-            raise TypeError("Missing 'field_name' argument")
-        if operator is None:
-            raise TypeError("Missing 'operator' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("field_name", field_name)
-        _setter("operator", operator)
-        _setter("value", value)
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -2018,38 +1611,15 @@ class AlertConfigurationMetricThresholdConfig(dict):
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
-        AlertConfigurationMetricThresholdConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            metric_name=metric_name,
-            mode=mode,
-            operator=operator,
-            threshold=threshold,
-            units=units,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             metric_name: Optional[str] = None,
-             mode: Optional[str] = None,
-             operator: Optional[str] = None,
-             threshold: Optional[float] = None,
-             units: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if metric_name is None and 'metricName' in kwargs:
-            metric_name = kwargs['metricName']
-        if metric_name is None:
-            raise TypeError("Missing 'metric_name' argument")
-
-        _setter("metric_name", metric_name)
+        pulumi.set(__self__, "metric_name", metric_name)
         if mode is not None:
-            _setter("mode", mode)
+            pulumi.set(__self__, "mode", mode)
         if operator is not None:
-            _setter("operator", operator)
+            pulumi.set(__self__, "operator", operator)
         if threshold is not None:
-            _setter("threshold", threshold)
+            pulumi.set(__self__, "threshold", threshold)
         if units is not None:
-            _setter("units", units)
+            pulumi.set(__self__, "units", units)
 
     @property
     @pulumi.getter(name="metricName")
@@ -2214,150 +1784,51 @@ class AlertConfigurationNotification(dict):
         :param str webhook_secret: Optional authentication secret for the `WEBHOOK` notifications type.
         :param str webhook_url: Target URL  for the `WEBHOOK` notifications type.
         """
-        AlertConfigurationNotification._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            type_name=type_name,
-            api_token=api_token,
-            channel_name=channel_name,
-            datadog_api_key=datadog_api_key,
-            datadog_region=datadog_region,
-            delay_min=delay_min,
-            email_address=email_address,
-            email_enabled=email_enabled,
-            interval_min=interval_min,
-            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
-            mobile_number=mobile_number,
-            ops_genie_api_key=ops_genie_api_key,
-            ops_genie_region=ops_genie_region,
-            roles=roles,
-            service_key=service_key,
-            sms_enabled=sms_enabled,
-            team_id=team_id,
-            team_name=team_name,
-            username=username,
-            victor_ops_api_key=victor_ops_api_key,
-            victor_ops_routing_key=victor_ops_routing_key,
-            webhook_secret=webhook_secret,
-            webhook_url=webhook_url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             type_name: Optional[str] = None,
-             api_token: Optional[str] = None,
-             channel_name: Optional[str] = None,
-             datadog_api_key: Optional[str] = None,
-             datadog_region: Optional[str] = None,
-             delay_min: Optional[int] = None,
-             email_address: Optional[str] = None,
-             email_enabled: Optional[bool] = None,
-             interval_min: Optional[int] = None,
-             microsoft_teams_webhook_url: Optional[str] = None,
-             mobile_number: Optional[str] = None,
-             ops_genie_api_key: Optional[str] = None,
-             ops_genie_region: Optional[str] = None,
-             roles: Optional[Sequence[str]] = None,
-             service_key: Optional[str] = None,
-             sms_enabled: Optional[bool] = None,
-             team_id: Optional[str] = None,
-             team_name: Optional[str] = None,
-             username: Optional[str] = None,
-             victor_ops_api_key: Optional[str] = None,
-             victor_ops_routing_key: Optional[str] = None,
-             webhook_secret: Optional[str] = None,
-             webhook_url: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if type_name is None and 'typeName' in kwargs:
-            type_name = kwargs['typeName']
-        if type_name is None:
-            raise TypeError("Missing 'type_name' argument")
-        if api_token is None and 'apiToken' in kwargs:
-            api_token = kwargs['apiToken']
-        if channel_name is None and 'channelName' in kwargs:
-            channel_name = kwargs['channelName']
-        if datadog_api_key is None and 'datadogApiKey' in kwargs:
-            datadog_api_key = kwargs['datadogApiKey']
-        if datadog_region is None and 'datadogRegion' in kwargs:
-            datadog_region = kwargs['datadogRegion']
-        if delay_min is None and 'delayMin' in kwargs:
-            delay_min = kwargs['delayMin']
-        if email_address is None and 'emailAddress' in kwargs:
-            email_address = kwargs['emailAddress']
-        if email_enabled is None and 'emailEnabled' in kwargs:
-            email_enabled = kwargs['emailEnabled']
-        if interval_min is None and 'intervalMin' in kwargs:
-            interval_min = kwargs['intervalMin']
-        if microsoft_teams_webhook_url is None and 'microsoftTeamsWebhookUrl' in kwargs:
-            microsoft_teams_webhook_url = kwargs['microsoftTeamsWebhookUrl']
-        if mobile_number is None and 'mobileNumber' in kwargs:
-            mobile_number = kwargs['mobileNumber']
-        if ops_genie_api_key is None and 'opsGenieApiKey' in kwargs:
-            ops_genie_api_key = kwargs['opsGenieApiKey']
-        if ops_genie_region is None and 'opsGenieRegion' in kwargs:
-            ops_genie_region = kwargs['opsGenieRegion']
-        if service_key is None and 'serviceKey' in kwargs:
-            service_key = kwargs['serviceKey']
-        if sms_enabled is None and 'smsEnabled' in kwargs:
-            sms_enabled = kwargs['smsEnabled']
-        if team_id is None and 'teamId' in kwargs:
-            team_id = kwargs['teamId']
-        if team_name is None and 'teamName' in kwargs:
-            team_name = kwargs['teamName']
-        if victor_ops_api_key is None and 'victorOpsApiKey' in kwargs:
-            victor_ops_api_key = kwargs['victorOpsApiKey']
-        if victor_ops_routing_key is None and 'victorOpsRoutingKey' in kwargs:
-            victor_ops_routing_key = kwargs['victorOpsRoutingKey']
-        if webhook_secret is None and 'webhookSecret' in kwargs:
-            webhook_secret = kwargs['webhookSecret']
-        if webhook_url is None and 'webhookUrl' in kwargs:
-            webhook_url = kwargs['webhookUrl']
-
-        _setter("type_name", type_name)
+        pulumi.set(__self__, "type_name", type_name)
         if api_token is not None:
-            _setter("api_token", api_token)
+            pulumi.set(__self__, "api_token", api_token)
         if channel_name is not None:
-            _setter("channel_name", channel_name)
+            pulumi.set(__self__, "channel_name", channel_name)
         if datadog_api_key is not None:
-            _setter("datadog_api_key", datadog_api_key)
+            pulumi.set(__self__, "datadog_api_key", datadog_api_key)
         if datadog_region is not None:
-            _setter("datadog_region", datadog_region)
+            pulumi.set(__self__, "datadog_region", datadog_region)
         if delay_min is not None:
-            _setter("delay_min", delay_min)
+            pulumi.set(__self__, "delay_min", delay_min)
         if email_address is not None:
-            _setter("email_address", email_address)
+            pulumi.set(__self__, "email_address", email_address)
         if email_enabled is not None:
-            _setter("email_enabled", email_enabled)
+            pulumi.set(__self__, "email_enabled", email_enabled)
         if interval_min is not None:
-            _setter("interval_min", interval_min)
+            pulumi.set(__self__, "interval_min", interval_min)
         if microsoft_teams_webhook_url is not None:
-            _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if mobile_number is not None:
-            _setter("mobile_number", mobile_number)
+            pulumi.set(__self__, "mobile_number", mobile_number)
         if ops_genie_api_key is not None:
-            _setter("ops_genie_api_key", ops_genie_api_key)
+            pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
         if ops_genie_region is not None:
-            _setter("ops_genie_region", ops_genie_region)
+            pulumi.set(__self__, "ops_genie_region", ops_genie_region)
         if roles is not None:
-            _setter("roles", roles)
+            pulumi.set(__self__, "roles", roles)
         if service_key is not None:
-            _setter("service_key", service_key)
+            pulumi.set(__self__, "service_key", service_key)
         if sms_enabled is not None:
-            _setter("sms_enabled", sms_enabled)
+            pulumi.set(__self__, "sms_enabled", sms_enabled)
         if team_id is not None:
-            _setter("team_id", team_id)
+            pulumi.set(__self__, "team_id", team_id)
         if team_name is not None:
-            _setter("team_name", team_name)
+            pulumi.set(__self__, "team_name", team_name)
         if username is not None:
-            _setter("username", username)
+            pulumi.set(__self__, "username", username)
         if victor_ops_api_key is not None:
-            _setter("victor_ops_api_key", victor_ops_api_key)
+            pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
         if victor_ops_routing_key is not None:
-            _setter("victor_ops_routing_key", victor_ops_routing_key)
+            pulumi.set(__self__, "victor_ops_routing_key", victor_ops_routing_key)
         if webhook_secret is not None:
-            _setter("webhook_secret", webhook_secret)
+            pulumi.set(__self__, "webhook_secret", webhook_secret)
         if webhook_url is not None:
-            _setter("webhook_url", webhook_url)
+            pulumi.set(__self__, "webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="typeName")
@@ -2569,27 +2040,12 @@ class AlertConfigurationThresholdConfig(dict):
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
-        AlertConfigurationThresholdConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            operator=operator,
-            threshold=threshold,
-            units=units,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             operator: Optional[str] = None,
-             threshold: Optional[float] = None,
-             units: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if operator is not None:
-            _setter("operator", operator)
+            pulumi.set(__self__, "operator", operator)
         if threshold is not None:
-            _setter("threshold", threshold)
+            pulumi.set(__self__, "threshold", threshold)
         if units is not None:
-            _setter("units", units)
+            pulumi.set(__self__, "units", units)
 
     @property
     @pulumi.getter
@@ -2656,46 +2112,13 @@ class BackupCompliancePolicyOnDemandPolicyItem(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        BackupCompliancePolicyOnDemandPolicyItem._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-            frequency_type=frequency_type,
-            id=id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2776,46 +2199,13 @@ class BackupCompliancePolicyPolicyItemDaily(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        BackupCompliancePolicyPolicyItemDaily._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-            frequency_type=frequency_type,
-            id=id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2896,46 +2286,13 @@ class BackupCompliancePolicyPolicyItemHourly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        BackupCompliancePolicyPolicyItemHourly._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-            frequency_type=frequency_type,
-            id=id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -3016,46 +2373,13 @@ class BackupCompliancePolicyPolicyItemMonthly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        BackupCompliancePolicyPolicyItemMonthly._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-            frequency_type=frequency_type,
-            id=id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -3136,46 +2460,13 @@ class BackupCompliancePolicyPolicyItemWeekly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        BackupCompliancePolicyPolicyItemWeekly._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-            frequency_type=frequency_type,
-            id=id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -3256,43 +2547,16 @@ class CloudBackupScheduleCopySetting(dict):
         :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
         :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         """
-        CloudBackupScheduleCopySetting._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            frequencies=frequencies,
-            region_name=region_name,
-            replication_spec_id=replication_spec_id,
-            should_copy_oplogs=should_copy_oplogs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             frequencies: Optional[Sequence[str]] = None,
-             region_name: Optional[str] = None,
-             replication_spec_id: Optional[str] = None,
-             should_copy_oplogs: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if replication_spec_id is None and 'replicationSpecId' in kwargs:
-            replication_spec_id = kwargs['replicationSpecId']
-        if should_copy_oplogs is None and 'shouldCopyOplogs' in kwargs:
-            should_copy_oplogs = kwargs['shouldCopyOplogs']
-
         if cloud_provider is not None:
-            _setter("cloud_provider", cloud_provider)
+            pulumi.set(__self__, "cloud_provider", cloud_provider)
         if frequencies is not None:
-            _setter("frequencies", frequencies)
+            pulumi.set(__self__, "frequencies", frequencies)
         if region_name is not None:
-            _setter("region_name", region_name)
+            pulumi.set(__self__, "region_name", region_name)
         if replication_spec_id is not None:
-            _setter("replication_spec_id", replication_spec_id)
+            pulumi.set(__self__, "replication_spec_id", replication_spec_id)
         if should_copy_oplogs is not None:
-            _setter("should_copy_oplogs", should_copy_oplogs)
+            pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -3363,27 +2627,10 @@ class CloudBackupScheduleExport(dict):
         :param str export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
         :param str frequency_type: Frequency associated with the export snapshot item.
         """
-        CloudBackupScheduleExport._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            export_bucket_id=export_bucket_id,
-            frequency_type=frequency_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             export_bucket_id: Optional[str] = None,
-             frequency_type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if export_bucket_id is None and 'exportBucketId' in kwargs:
-            export_bucket_id = kwargs['exportBucketId']
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-
         if export_bucket_id is not None:
-            _setter("export_bucket_id", export_bucket_id)
+            pulumi.set(__self__, "export_bucket_id", export_bucket_id)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
 
     @property
     @pulumi.getter(name="exportBucketId")
@@ -3440,46 +2687,13 @@ class CloudBackupSchedulePolicyItemDaily(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        CloudBackupSchedulePolicyItemDaily._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-            frequency_type=frequency_type,
-            id=id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -3560,46 +2774,13 @@ class CloudBackupSchedulePolicyItemHourly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        CloudBackupSchedulePolicyItemHourly._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-            frequency_type=frequency_type,
-            id=id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -3680,46 +2861,13 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        CloudBackupSchedulePolicyItemMonthly._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-            frequency_type=frequency_type,
-            id=id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -3800,46 +2948,13 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
         :param str frequency_type: Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param str id: Unique identifier of the backup policy item.
         """
-        CloudBackupSchedulePolicyItemWeekly._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-            frequency_type=frequency_type,
-            id=id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -3910,27 +3025,10 @@ class CloudBackupSnapshotExportJobComponent(dict):
         :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
         """
-        CloudBackupSnapshotExportJobComponent._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            export_id=export_id,
-            replica_set_name=replica_set_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             export_id: Optional[str] = None,
-             replica_set_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if export_id is None and 'exportId' in kwargs:
-            export_id = kwargs['exportId']
-        if replica_set_name is None and 'replicaSetName' in kwargs:
-            replica_set_name = kwargs['replicaSetName']
-
         if export_id is not None:
-            _setter("export_id", export_id)
+            pulumi.set(__self__, "export_id", export_id)
         if replica_set_name is not None:
-            _setter("replica_set_name", replica_set_name)
+            pulumi.set(__self__, "replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="exportId")
@@ -3958,25 +3056,8 @@ class CloudBackupSnapshotExportJobCustomData(dict):
         :param str key: Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
         :param str value: Required if you specify `key`.
         """
-        CloudBackupSnapshotExportJobCustomData._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -4025,31 +3106,12 @@ class CloudBackupSnapshotMember(dict):
         :param str id: Unique identifier for the sharded cluster snapshot.
         :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         """
-        CloudBackupSnapshotMember._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            id=id,
-            replica_set_name=replica_set_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             id: Optional[str] = None,
-             replica_set_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if replica_set_name is None and 'replicaSetName' in kwargs:
-            replica_set_name = kwargs['replicaSetName']
-
         if cloud_provider is not None:
-            _setter("cloud_provider", cloud_provider)
+            pulumi.set(__self__, "cloud_provider", cloud_provider)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if replica_set_name is not None:
-            _setter("replica_set_name", replica_set_name)
+            pulumi.set(__self__, "replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -4118,59 +3180,22 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfig(dict):
         :param str target_cluster_name: Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
         :param str target_project_id: Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
         """
-        CloudBackupSnapshotRestoreJobDeliveryTypeConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            automated=automated,
-            download=download,
-            oplog_inc=oplog_inc,
-            oplog_ts=oplog_ts,
-            point_in_time=point_in_time,
-            point_in_time_utc_seconds=point_in_time_utc_seconds,
-            target_cluster_name=target_cluster_name,
-            target_project_id=target_project_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             automated: Optional[bool] = None,
-             download: Optional[bool] = None,
-             oplog_inc: Optional[int] = None,
-             oplog_ts: Optional[int] = None,
-             point_in_time: Optional[bool] = None,
-             point_in_time_utc_seconds: Optional[int] = None,
-             target_cluster_name: Optional[str] = None,
-             target_project_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if oplog_inc is None and 'oplogInc' in kwargs:
-            oplog_inc = kwargs['oplogInc']
-        if oplog_ts is None and 'oplogTs' in kwargs:
-            oplog_ts = kwargs['oplogTs']
-        if point_in_time is None and 'pointInTime' in kwargs:
-            point_in_time = kwargs['pointInTime']
-        if point_in_time_utc_seconds is None and 'pointInTimeUtcSeconds' in kwargs:
-            point_in_time_utc_seconds = kwargs['pointInTimeUtcSeconds']
-        if target_cluster_name is None and 'targetClusterName' in kwargs:
-            target_cluster_name = kwargs['targetClusterName']
-        if target_project_id is None and 'targetProjectId' in kwargs:
-            target_project_id = kwargs['targetProjectId']
-
         if automated is not None:
-            _setter("automated", automated)
+            pulumi.set(__self__, "automated", automated)
         if download is not None:
-            _setter("download", download)
+            pulumi.set(__self__, "download", download)
         if oplog_inc is not None:
-            _setter("oplog_inc", oplog_inc)
+            pulumi.set(__self__, "oplog_inc", oplog_inc)
         if oplog_ts is not None:
-            _setter("oplog_ts", oplog_ts)
+            pulumi.set(__self__, "oplog_ts", oplog_ts)
         if point_in_time is not None:
-            _setter("point_in_time", point_in_time)
+            pulumi.set(__self__, "point_in_time", point_in_time)
         if point_in_time_utc_seconds is not None:
-            _setter("point_in_time_utc_seconds", point_in_time_utc_seconds)
+            pulumi.set(__self__, "point_in_time_utc_seconds", point_in_time_utc_seconds)
         if target_cluster_name is not None:
-            _setter("target_cluster_name", target_cluster_name)
+            pulumi.set(__self__, "target_cluster_name", target_cluster_name)
         if target_project_id is not None:
-            _setter("target_project_id", target_project_id)
+            pulumi.set(__self__, "target_project_id", target_project_id)
 
     @property
     @pulumi.getter
@@ -4240,22 +3265,7 @@ class CloudProviderAccessAuthorizationAws(dict):
 
     def __init__(__self__, *,
                  iam_assumed_role_arn: str):
-        CloudProviderAccessAuthorizationAws._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            iam_assumed_role_arn=iam_assumed_role_arn,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             iam_assumed_role_arn: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if iam_assumed_role_arn is None and 'iamAssumedRoleArn' in kwargs:
-            iam_assumed_role_arn = kwargs['iamAssumedRoleArn']
-        if iam_assumed_role_arn is None:
-            raise TypeError("Missing 'iam_assumed_role_arn' argument")
-
-        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
 
     @property
     @pulumi.getter(name="iamAssumedRoleArn")
@@ -4290,36 +3300,9 @@ class CloudProviderAccessAuthorizationAzure(dict):
                  atlas_azure_app_id: str,
                  service_principal_id: str,
                  tenant_id: str):
-        CloudProviderAccessAuthorizationAzure._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            atlas_azure_app_id=atlas_azure_app_id,
-            service_principal_id=service_principal_id,
-            tenant_id=tenant_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             atlas_azure_app_id: Optional[str] = None,
-             service_principal_id: Optional[str] = None,
-             tenant_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if atlas_azure_app_id is None and 'atlasAzureAppId' in kwargs:
-            atlas_azure_app_id = kwargs['atlasAzureAppId']
-        if atlas_azure_app_id is None:
-            raise TypeError("Missing 'atlas_azure_app_id' argument")
-        if service_principal_id is None and 'servicePrincipalId' in kwargs:
-            service_principal_id = kwargs['servicePrincipalId']
-        if service_principal_id is None:
-            raise TypeError("Missing 'service_principal_id' argument")
-        if tenant_id is None and 'tenantId' in kwargs:
-            tenant_id = kwargs['tenantId']
-        if tenant_id is None:
-            raise TypeError("Missing 'tenant_id' argument")
-
-        _setter("atlas_azure_app_id", atlas_azure_app_id)
-        _setter("service_principal_id", service_principal_id)
-        _setter("tenant_id", tenant_id)
+        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="atlasAzureAppId")
@@ -4361,27 +3344,10 @@ class CloudProviderAccessAuthorizationFeatureUsage(dict):
     def __init__(__self__, *,
                  feature_id: Optional[Mapping[str, Any]] = None,
                  feature_type: Optional[str] = None):
-        CloudProviderAccessAuthorizationFeatureUsage._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            feature_id=feature_id,
-            feature_type=feature_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             feature_id: Optional[Mapping[str, Any]] = None,
-             feature_type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if feature_id is None and 'featureId' in kwargs:
-            feature_id = kwargs['featureId']
-        if feature_type is None and 'featureType' in kwargs:
-            feature_type = kwargs['featureType']
-
         if feature_id is not None:
-            _setter("feature_id", feature_id)
+            pulumi.set(__self__, "feature_id", feature_id)
         if feature_type is not None:
-            _setter("feature_type", feature_type)
+            pulumi.set(__self__, "feature_type", feature_type)
 
     @property
     @pulumi.getter(name="featureId")
@@ -4418,27 +3384,10 @@ class CloudProviderAccessFeatureUsage(dict):
     def __init__(__self__, *,
                  feature_id: Optional[Mapping[str, Any]] = None,
                  feature_type: Optional[str] = None):
-        CloudProviderAccessFeatureUsage._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            feature_id=feature_id,
-            feature_type=feature_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             feature_id: Optional[Mapping[str, Any]] = None,
-             feature_type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if feature_id is None and 'featureId' in kwargs:
-            feature_id = kwargs['featureId']
-        if feature_type is None and 'featureType' in kwargs:
-            feature_type = kwargs['featureType']
-
         if feature_id is not None:
-            _setter("feature_id", feature_id)
+            pulumi.set(__self__, "feature_id", feature_id)
         if feature_type is not None:
-            _setter("feature_type", feature_type)
+            pulumi.set(__self__, "feature_type", feature_type)
 
     @property
     @pulumi.getter(name="featureId")
@@ -4475,27 +3424,10 @@ class CloudProviderAccessSetupAwsConfig(dict):
     def __init__(__self__, *,
                  atlas_assumed_role_external_id: Optional[str] = None,
                  atlas_aws_account_arn: Optional[str] = None):
-        CloudProviderAccessSetupAwsConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            atlas_assumed_role_external_id=atlas_assumed_role_external_id,
-            atlas_aws_account_arn=atlas_aws_account_arn,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             atlas_assumed_role_external_id: Optional[str] = None,
-             atlas_aws_account_arn: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if atlas_assumed_role_external_id is None and 'atlasAssumedRoleExternalId' in kwargs:
-            atlas_assumed_role_external_id = kwargs['atlasAssumedRoleExternalId']
-        if atlas_aws_account_arn is None and 'atlasAwsAccountArn' in kwargs:
-            atlas_aws_account_arn = kwargs['atlasAwsAccountArn']
-
         if atlas_assumed_role_external_id is not None:
-            _setter("atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+            pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
         if atlas_aws_account_arn is not None:
-            _setter("atlas_aws_account_arn", atlas_aws_account_arn)
+            pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
 
     @property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
@@ -4535,36 +3467,9 @@ class CloudProviderAccessSetupAzureConfig(dict):
                  atlas_azure_app_id: str,
                  service_principal_id: str,
                  tenant_id: str):
-        CloudProviderAccessSetupAzureConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            atlas_azure_app_id=atlas_azure_app_id,
-            service_principal_id=service_principal_id,
-            tenant_id=tenant_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             atlas_azure_app_id: Optional[str] = None,
-             service_principal_id: Optional[str] = None,
-             tenant_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if atlas_azure_app_id is None and 'atlasAzureAppId' in kwargs:
-            atlas_azure_app_id = kwargs['atlasAzureAppId']
-        if atlas_azure_app_id is None:
-            raise TypeError("Missing 'atlas_azure_app_id' argument")
-        if service_principal_id is None and 'servicePrincipalId' in kwargs:
-            service_principal_id = kwargs['servicePrincipalId']
-        if service_principal_id is None:
-            raise TypeError("Missing 'service_principal_id' argument")
-        if tenant_id is None and 'tenantId' in kwargs:
-            tenant_id = kwargs['tenantId']
-        if tenant_id is None:
-            raise TypeError("Missing 'tenant_id' argument")
-
-        _setter("atlas_azure_app_id", atlas_azure_app_id)
-        _setter("service_principal_id", service_principal_id)
-        _setter("tenant_id", tenant_id)
+        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="atlasAzureAppId")
@@ -4651,81 +3556,28 @@ class ClusterAdvancedConfiguration(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
-        ClusterAdvancedConfiguration._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            default_read_concern=default_read_concern,
-            default_write_concern=default_write_concern,
-            fail_index_key_too_long=fail_index_key_too_long,
-            javascript_enabled=javascript_enabled,
-            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
-            no_table_scan=no_table_scan,
-            oplog_min_retention_hours=oplog_min_retention_hours,
-            oplog_size_mb=oplog_size_mb,
-            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
-            sample_size_bi_connector=sample_size_bi_connector,
-            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             default_read_concern: Optional[str] = None,
-             default_write_concern: Optional[str] = None,
-             fail_index_key_too_long: Optional[bool] = None,
-             javascript_enabled: Optional[bool] = None,
-             minimum_enabled_tls_protocol: Optional[str] = None,
-             no_table_scan: Optional[bool] = None,
-             oplog_min_retention_hours: Optional[int] = None,
-             oplog_size_mb: Optional[int] = None,
-             sample_refresh_interval_bi_connector: Optional[int] = None,
-             sample_size_bi_connector: Optional[int] = None,
-             transaction_lifetime_limit_seconds: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if default_read_concern is None and 'defaultReadConcern' in kwargs:
-            default_read_concern = kwargs['defaultReadConcern']
-        if default_write_concern is None and 'defaultWriteConcern' in kwargs:
-            default_write_concern = kwargs['defaultWriteConcern']
-        if fail_index_key_too_long is None and 'failIndexKeyTooLong' in kwargs:
-            fail_index_key_too_long = kwargs['failIndexKeyTooLong']
-        if javascript_enabled is None and 'javascriptEnabled' in kwargs:
-            javascript_enabled = kwargs['javascriptEnabled']
-        if minimum_enabled_tls_protocol is None and 'minimumEnabledTlsProtocol' in kwargs:
-            minimum_enabled_tls_protocol = kwargs['minimumEnabledTlsProtocol']
-        if no_table_scan is None and 'noTableScan' in kwargs:
-            no_table_scan = kwargs['noTableScan']
-        if oplog_min_retention_hours is None and 'oplogMinRetentionHours' in kwargs:
-            oplog_min_retention_hours = kwargs['oplogMinRetentionHours']
-        if oplog_size_mb is None and 'oplogSizeMb' in kwargs:
-            oplog_size_mb = kwargs['oplogSizeMb']
-        if sample_refresh_interval_bi_connector is None and 'sampleRefreshIntervalBiConnector' in kwargs:
-            sample_refresh_interval_bi_connector = kwargs['sampleRefreshIntervalBiConnector']
-        if sample_size_bi_connector is None and 'sampleSizeBiConnector' in kwargs:
-            sample_size_bi_connector = kwargs['sampleSizeBiConnector']
-        if transaction_lifetime_limit_seconds is None and 'transactionLifetimeLimitSeconds' in kwargs:
-            transaction_lifetime_limit_seconds = kwargs['transactionLifetimeLimitSeconds']
-
         if default_read_concern is not None:
-            _setter("default_read_concern", default_read_concern)
+            pulumi.set(__self__, "default_read_concern", default_read_concern)
         if default_write_concern is not None:
-            _setter("default_write_concern", default_write_concern)
+            pulumi.set(__self__, "default_write_concern", default_write_concern)
         if fail_index_key_too_long is not None:
-            _setter("fail_index_key_too_long", fail_index_key_too_long)
+            pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
         if javascript_enabled is not None:
-            _setter("javascript_enabled", javascript_enabled)
+            pulumi.set(__self__, "javascript_enabled", javascript_enabled)
         if minimum_enabled_tls_protocol is not None:
-            _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+            pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         if no_table_scan is not None:
-            _setter("no_table_scan", no_table_scan)
+            pulumi.set(__self__, "no_table_scan", no_table_scan)
         if oplog_min_retention_hours is not None:
-            _setter("oplog_min_retention_hours", oplog_min_retention_hours)
+            pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
         if oplog_size_mb is not None:
-            _setter("oplog_size_mb", oplog_size_mb)
+            pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
         if sample_refresh_interval_bi_connector is not None:
-            _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+            pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
-            _setter("sample_size_bi_connector", sample_size_bi_connector)
+            pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
         if transaction_lifetime_limit_seconds is not None:
-            _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+            pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -4856,25 +3708,10 @@ class ClusterBiConnectorConfig(dict):
                
                - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
         """
-        ClusterBiConnectorConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            read_preference=read_preference,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[bool] = None,
-             read_preference: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if read_preference is None and 'readPreference' in kwargs:
-            read_preference = kwargs['readPreference']
-
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if read_preference is not None:
-            _setter("read_preference", read_preference)
+            pulumi.set(__self__, "read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -4931,41 +3768,16 @@ class ClusterConnectionString(dict):
                  private_srv: Optional[str] = None,
                  standard: Optional[str] = None,
                  standard_srv: Optional[str] = None):
-        ClusterConnectionString._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            private=private,
-            private_endpoints=private_endpoints,
-            private_srv=private_srv,
-            standard=standard,
-            standard_srv=standard_srv,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             private: Optional[str] = None,
-             private_endpoints: Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpoint']] = None,
-             private_srv: Optional[str] = None,
-             standard: Optional[str] = None,
-             standard_srv: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if private_endpoints is None and 'privateEndpoints' in kwargs:
-            private_endpoints = kwargs['privateEndpoints']
-        if private_srv is None and 'privateSrv' in kwargs:
-            private_srv = kwargs['privateSrv']
-        if standard_srv is None and 'standardSrv' in kwargs:
-            standard_srv = kwargs['standardSrv']
-
         if private is not None:
-            _setter("private", private)
+            pulumi.set(__self__, "private", private)
         if private_endpoints is not None:
-            _setter("private_endpoints", private_endpoints)
+            pulumi.set(__self__, "private_endpoints", private_endpoints)
         if private_srv is not None:
-            _setter("private_srv", private_srv)
+            pulumi.set(__self__, "private_srv", private_srv)
         if standard is not None:
-            _setter("standard", standard)
+            pulumi.set(__self__, "standard", standard)
         if standard_srv is not None:
-            _setter("standard_srv", standard_srv)
+            pulumi.set(__self__, "standard_srv", standard_srv)
 
     @property
     @pulumi.getter
@@ -5022,41 +3834,16 @@ class ClusterConnectionStringPrivateEndpoint(dict):
                  srv_connection_string: Optional[str] = None,
                  srv_shard_optimized_connection_string: Optional[str] = None,
                  type: Optional[str] = None):
-        ClusterConnectionStringPrivateEndpoint._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            connection_string=connection_string,
-            endpoints=endpoints,
-            srv_connection_string=srv_connection_string,
-            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             connection_string: Optional[str] = None,
-             endpoints: Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpointEndpoint']] = None,
-             srv_connection_string: Optional[str] = None,
-             srv_shard_optimized_connection_string: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if connection_string is None and 'connectionString' in kwargs:
-            connection_string = kwargs['connectionString']
-        if srv_connection_string is None and 'srvConnectionString' in kwargs:
-            srv_connection_string = kwargs['srvConnectionString']
-        if srv_shard_optimized_connection_string is None and 'srvShardOptimizedConnectionString' in kwargs:
-            srv_shard_optimized_connection_string = kwargs['srvShardOptimizedConnectionString']
-
         if connection_string is not None:
-            _setter("connection_string", connection_string)
+            pulumi.set(__self__, "connection_string", connection_string)
         if endpoints is not None:
-            _setter("endpoints", endpoints)
+            pulumi.set(__self__, "endpoints", endpoints)
         if srv_connection_string is not None:
-            _setter("srv_connection_string", srv_connection_string)
+            pulumi.set(__self__, "srv_connection_string", srv_connection_string)
         if srv_shard_optimized_connection_string is not None:
-            _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+            pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -5114,31 +3901,12 @@ class ClusterConnectionStringPrivateEndpointEndpoint(dict):
                
                The possible values are:
         """
-        ClusterConnectionStringPrivateEndpointEndpoint._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoint_id=endpoint_id,
-            provider_name=provider_name,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoint_id: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if endpoint_id is None and 'endpointId' in kwargs:
-            endpoint_id = kwargs['endpointId']
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-
         if endpoint_id is not None:
-            _setter("endpoint_id", endpoint_id)
+            pulumi.set(__self__, "endpoint_id", endpoint_id)
         if provider_name is not None:
-            _setter("provider_name", provider_name)
+            pulumi.set(__self__, "provider_name", provider_name)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -5172,23 +3940,10 @@ class ClusterLabel(dict):
                
                > **NOTE:** MongoDB Atlas doesn't display your labels.
         """
-        ClusterLabel._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if key is not None:
-            _setter("key", key)
+            pulumi.set(__self__, "key", key)
         if value is not None:
-            _setter("value", value)
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -5239,33 +3994,10 @@ class ClusterOutageSimulationOutageFilter(dict):
         :param str region_name: The Atlas name of the region to undergo an outage simulation.
         :param str type: The type of cluster outage simulation. Following values are supported:
         """
-        ClusterOutageSimulationOutageFilter._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            region_name=region_name,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             region_name: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if region_name is None:
-            raise TypeError("Missing 'region_name' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("region_name", region_name)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region_name", region_name)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -5329,38 +4061,13 @@ class ClusterReplicationSpec(dict):
                
                **Region Config**
         """
-        ClusterReplicationSpec._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            num_shards=num_shards,
-            id=id,
-            regions_configs=regions_configs,
-            zone_name=zone_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             num_shards: Optional[int] = None,
-             id: Optional[str] = None,
-             regions_configs: Optional[Sequence['outputs.ClusterReplicationSpecRegionsConfig']] = None,
-             zone_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if num_shards is None and 'numShards' in kwargs:
-            num_shards = kwargs['numShards']
-        if num_shards is None:
-            raise TypeError("Missing 'num_shards' argument")
-        if regions_configs is None and 'regionsConfigs' in kwargs:
-            regions_configs = kwargs['regionsConfigs']
-        if zone_name is None and 'zoneName' in kwargs:
-            zone_name = kwargs['zoneName']
-
-        _setter("num_shards", num_shards)
+        pulumi.set(__self__, "num_shards", num_shards)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if regions_configs is not None:
-            _setter("regions_configs", regions_configs)
+            pulumi.set(__self__, "regions_configs", regions_configs)
         if zone_name is not None:
-            _setter("zone_name", zone_name)
+            pulumi.set(__self__, "zone_name", zone_name)
 
     @property
     @pulumi.getter(name="numShards")
@@ -5442,44 +4149,15 @@ class ClusterReplicationSpecRegionsConfig(dict):
                * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
         :param int read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         """
-        ClusterReplicationSpecRegionsConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            region_name=region_name,
-            analytics_nodes=analytics_nodes,
-            electable_nodes=electable_nodes,
-            priority=priority,
-            read_only_nodes=read_only_nodes,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             region_name: Optional[str] = None,
-             analytics_nodes: Optional[int] = None,
-             electable_nodes: Optional[int] = None,
-             priority: Optional[int] = None,
-             read_only_nodes: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if region_name is None:
-            raise TypeError("Missing 'region_name' argument")
-        if analytics_nodes is None and 'analyticsNodes' in kwargs:
-            analytics_nodes = kwargs['analyticsNodes']
-        if electable_nodes is None and 'electableNodes' in kwargs:
-            electable_nodes = kwargs['electableNodes']
-        if read_only_nodes is None and 'readOnlyNodes' in kwargs:
-            read_only_nodes = kwargs['readOnlyNodes']
-
-        _setter("region_name", region_name)
+        pulumi.set(__self__, "region_name", region_name)
         if analytics_nodes is not None:
-            _setter("analytics_nodes", analytics_nodes)
+            pulumi.set(__self__, "analytics_nodes", analytics_nodes)
         if electable_nodes is not None:
-            _setter("electable_nodes", electable_nodes)
+            pulumi.set(__self__, "electable_nodes", electable_nodes)
         if priority is not None:
-            _setter("priority", priority)
+            pulumi.set(__self__, "priority", priority)
         if read_only_nodes is not None:
-            _setter("read_only_nodes", read_only_nodes)
+            pulumi.set(__self__, "read_only_nodes", read_only_nodes)
 
     @property
     @pulumi.getter(name="regionName")
@@ -5571,61 +4249,22 @@ class ClusterSnapshotBackupPolicy(dict):
         """
         :param str cluster_id: The cluster ID.
         """
-        ClusterSnapshotBackupPolicy._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_id=cluster_id,
-            cluster_name=cluster_name,
-            next_snapshot=next_snapshot,
-            policies=policies,
-            reference_hour_of_day=reference_hour_of_day,
-            reference_minute_of_hour=reference_minute_of_hour,
-            restore_window_days=restore_window_days,
-            update_snapshots=update_snapshots,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_id: Optional[str] = None,
-             cluster_name: Optional[str] = None,
-             next_snapshot: Optional[str] = None,
-             policies: Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicy']] = None,
-             reference_hour_of_day: Optional[int] = None,
-             reference_minute_of_hour: Optional[int] = None,
-             restore_window_days: Optional[int] = None,
-             update_snapshots: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_id is None and 'clusterId' in kwargs:
-            cluster_id = kwargs['clusterId']
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if next_snapshot is None and 'nextSnapshot' in kwargs:
-            next_snapshot = kwargs['nextSnapshot']
-        if reference_hour_of_day is None and 'referenceHourOfDay' in kwargs:
-            reference_hour_of_day = kwargs['referenceHourOfDay']
-        if reference_minute_of_hour is None and 'referenceMinuteOfHour' in kwargs:
-            reference_minute_of_hour = kwargs['referenceMinuteOfHour']
-        if restore_window_days is None and 'restoreWindowDays' in kwargs:
-            restore_window_days = kwargs['restoreWindowDays']
-        if update_snapshots is None and 'updateSnapshots' in kwargs:
-            update_snapshots = kwargs['updateSnapshots']
-
         if cluster_id is not None:
-            _setter("cluster_id", cluster_id)
+            pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_name is not None:
-            _setter("cluster_name", cluster_name)
+            pulumi.set(__self__, "cluster_name", cluster_name)
         if next_snapshot is not None:
-            _setter("next_snapshot", next_snapshot)
+            pulumi.set(__self__, "next_snapshot", next_snapshot)
         if policies is not None:
-            _setter("policies", policies)
+            pulumi.set(__self__, "policies", policies)
         if reference_hour_of_day is not None:
-            _setter("reference_hour_of_day", reference_hour_of_day)
+            pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
         if reference_minute_of_hour is not None:
-            _setter("reference_minute_of_hour", reference_minute_of_hour)
+            pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
         if restore_window_days is not None:
-            _setter("restore_window_days", restore_window_days)
+            pulumi.set(__self__, "restore_window_days", restore_window_days)
         if update_snapshots is not None:
-            _setter("update_snapshots", update_snapshots)
+            pulumi.set(__self__, "update_snapshots", update_snapshots)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -5696,25 +4335,10 @@ class ClusterSnapshotBackupPolicyPolicy(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
-        ClusterSnapshotBackupPolicyPolicy._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            policy_items=policy_items,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             policy_items: Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if policy_items is None and 'policyItems' in kwargs:
-            policy_items = kwargs['policyItems']
-
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if policy_items is not None:
-            _setter("policy_items", policy_items)
+            pulumi.set(__self__, "policy_items", policy_items)
 
     @property
     @pulumi.getter
@@ -5764,43 +4388,16 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
-        ClusterSnapshotBackupPolicyPolicyPolicyItem._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-
         if frequency_interval is not None:
-            _setter("frequency_interval", frequency_interval)
+            pulumi.set(__self__, "frequency_interval", frequency_interval)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if retention_unit is not None:
-            _setter("retention_unit", retention_unit)
+            pulumi.set(__self__, "retention_unit", retention_unit)
         if retention_value is not None:
-            _setter("retention_value", retention_value)
+            pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -5842,25 +4439,8 @@ class ClusterTag(dict):
                
                To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
         """
-        ClusterTag._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -5903,25 +4483,8 @@ class CustomDbRoleAction(dict):
                
                > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
         """
-        CustomDbRoleAction._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            action=action,
-            resources=resources,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             action: Optional[str] = None,
-             resources: Optional[Sequence['outputs.CustomDbRoleActionResource']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if action is None:
-            raise TypeError("Missing 'action' argument")
-        if resources is None:
-            raise TypeError("Missing 'resources' argument")
-
-        _setter("action", action)
-        _setter("resources", resources)
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
@@ -5983,31 +4546,12 @@ class CustomDbRoleActionResource(dict):
                
                > **NOTE** This value should be admin for all roles except read and readWrite.
         """
-        CustomDbRoleActionResource._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster=cluster,
-            collection_name=collection_name,
-            database_name=database_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster: Optional[bool] = None,
-             collection_name: Optional[str] = None,
-             database_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-
         if cluster is not None:
-            _setter("cluster", cluster)
+            pulumi.set(__self__, "cluster", cluster)
         if collection_name is not None:
-            _setter("collection_name", collection_name)
+            pulumi.set(__self__, "collection_name", collection_name)
         if database_name is not None:
-            _setter("database_name", database_name)
+            pulumi.set(__self__, "database_name", database_name)
 
     @property
     @pulumi.getter
@@ -6060,29 +4604,8 @@ class CustomDbRoleInheritedRole(dict):
                > **NOTE** This value should be admin for all roles except read and readWrite.
         :param str role_name: Name of the inherited role. This can either be another custom role or a built-in role.
         """
-        CustomDbRoleInheritedRole._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            database_name=database_name,
-            role_name=role_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             database_name: Optional[str] = None,
-             role_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if database_name is None:
-            raise TypeError("Missing 'database_name' argument")
-        if role_name is None and 'roleName' in kwargs:
-            role_name = kwargs['roleName']
-        if role_name is None:
-            raise TypeError("Missing 'role_name' argument")
-
-        _setter("database_name", database_name)
-        _setter("role_name", role_name)
+        pulumi.set(__self__, "database_name", database_name)
+        pulumi.set(__self__, "role_name", role_name)
 
     @property
     @pulumi.getter(name="databaseName")
@@ -6136,47 +4659,14 @@ class DataLakeAws(dict):
                  external_id: Optional[str] = None,
                  iam_assumed_role_arn: Optional[str] = None,
                  iam_user_arn: Optional[str] = None):
-        DataLakeAws._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            role_id=role_id,
-            test_s3_bucket=test_s3_bucket,
-            external_id=external_id,
-            iam_assumed_role_arn=iam_assumed_role_arn,
-            iam_user_arn=iam_user_arn,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             role_id: Optional[str] = None,
-             test_s3_bucket: Optional[str] = None,
-             external_id: Optional[str] = None,
-             iam_assumed_role_arn: Optional[str] = None,
-             iam_user_arn: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if role_id is None and 'roleId' in kwargs:
-            role_id = kwargs['roleId']
-        if role_id is None:
-            raise TypeError("Missing 'role_id' argument")
-        if test_s3_bucket is None and 'testS3Bucket' in kwargs:
-            test_s3_bucket = kwargs['testS3Bucket']
-        if test_s3_bucket is None:
-            raise TypeError("Missing 'test_s3_bucket' argument")
-        if external_id is None and 'externalId' in kwargs:
-            external_id = kwargs['externalId']
-        if iam_assumed_role_arn is None and 'iamAssumedRoleArn' in kwargs:
-            iam_assumed_role_arn = kwargs['iamAssumedRoleArn']
-        if iam_user_arn is None and 'iamUserArn' in kwargs:
-            iam_user_arn = kwargs['iamUserArn']
-
-        _setter("role_id", role_id)
-        _setter("test_s3_bucket", test_s3_bucket)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
         if external_id is not None:
-            _setter("external_id", external_id)
+            pulumi.set(__self__, "external_id", external_id)
         if iam_assumed_role_arn is not None:
-            _setter("iam_assumed_role_arn", iam_assumed_role_arn)
+            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
         if iam_user_arn is not None:
-            _setter("iam_user_arn", iam_user_arn)
+            pulumi.set(__self__, "iam_user_arn", iam_user_arn)
 
     @property
     @pulumi.getter(name="roleId")
@@ -6226,27 +4716,8 @@ class DataLakeDataProcessRegion(dict):
     def __init__(__self__, *,
                  cloud_provider: str,
                  region: str):
-        DataLakeDataProcessRegion._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("region", region)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -6293,43 +4764,16 @@ class DataLakePipelineIngestionSchedule(dict):
         """
         :param str id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
         """
-        DataLakePipelineIngestionSchedule._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-
         if frequency_interval is not None:
-            _setter("frequency_interval", frequency_interval)
+            pulumi.set(__self__, "frequency_interval", frequency_interval)
         if frequency_type is not None:
-            _setter("frequency_type", frequency_type)
+            pulumi.set(__self__, "frequency_type", frequency_type)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if retention_unit is not None:
-            _setter("retention_unit", retention_unit)
+            pulumi.set(__self__, "retention_unit", retention_unit)
         if retention_value is not None:
-            _setter("retention_value", retention_value)
+            pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -6392,33 +4836,14 @@ class DataLakePipelineSink(dict):
         :param str region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        DataLakePipelineSink._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            partition_fields=partition_fields,
-            provider=provider,
-            region=region,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             partition_fields: Optional[Sequence['outputs.DataLakePipelineSinkPartitionField']] = None,
-             provider: Optional[str] = None,
-             region: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if partition_fields is None and 'partitionFields' in kwargs:
-            partition_fields = kwargs['partitionFields']
-
         if partition_fields is not None:
-            _setter("partition_fields", partition_fields)
+            pulumi.set(__self__, "partition_fields", partition_fields)
         if provider is not None:
-            _setter("provider", provider)
+            pulumi.set(__self__, "provider", provider)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="partitionFields")
@@ -6477,27 +4902,8 @@ class DataLakePipelineSinkPartitionField(dict):
     def __init__(__self__, *,
                  field_name: str,
                  order: int):
-        DataLakePipelineSinkPartitionField._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field_name=field_name,
-            order=order,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field_name: Optional[str] = None,
-             order: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field_name is None and 'fieldName' in kwargs:
-            field_name = kwargs['fieldName']
-        if field_name is None:
-            raise TypeError("Missing 'field_name' argument")
-        if order is None:
-            raise TypeError("Missing 'order' argument")
-
-        _setter("field_name", field_name)
-        _setter("order", order)
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "order", order)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -6563,87 +4969,34 @@ class DataLakePipelineSnapshot(dict):
         :param str provider: Target cloud provider for this Data Lake Pipeline.
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        DataLakePipelineSnapshot._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            copy_region=copy_region,
-            created_at=created_at,
-            expires_at=expires_at,
-            frequency_yype=frequency_yype,
-            id=id,
-            master_key=master_key,
-            mongod_version=mongod_version,
-            policies=policies,
-            provider=provider,
-            replica_set_name=replica_set_name,
-            size=size,
-            snapshot_type=snapshot_type,
-            status=status,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             copy_region: Optional[str] = None,
-             created_at: Optional[str] = None,
-             expires_at: Optional[str] = None,
-             frequency_yype: Optional[str] = None,
-             id: Optional[str] = None,
-             master_key: Optional[str] = None,
-             mongod_version: Optional[str] = None,
-             policies: Optional[Sequence[str]] = None,
-             provider: Optional[str] = None,
-             replica_set_name: Optional[str] = None,
-             size: Optional[int] = None,
-             snapshot_type: Optional[str] = None,
-             status: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if copy_region is None and 'copyRegion' in kwargs:
-            copy_region = kwargs['copyRegion']
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if expires_at is None and 'expiresAt' in kwargs:
-            expires_at = kwargs['expiresAt']
-        if frequency_yype is None and 'frequencyYype' in kwargs:
-            frequency_yype = kwargs['frequencyYype']
-        if master_key is None and 'masterKey' in kwargs:
-            master_key = kwargs['masterKey']
-        if mongod_version is None and 'mongodVersion' in kwargs:
-            mongod_version = kwargs['mongodVersion']
-        if replica_set_name is None and 'replicaSetName' in kwargs:
-            replica_set_name = kwargs['replicaSetName']
-        if snapshot_type is None and 'snapshotType' in kwargs:
-            snapshot_type = kwargs['snapshotType']
-
         if copy_region is not None:
-            _setter("copy_region", copy_region)
+            pulumi.set(__self__, "copy_region", copy_region)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if expires_at is not None:
-            _setter("expires_at", expires_at)
+            pulumi.set(__self__, "expires_at", expires_at)
         if frequency_yype is not None:
-            _setter("frequency_yype", frequency_yype)
+            pulumi.set(__self__, "frequency_yype", frequency_yype)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if master_key is not None:
-            _setter("master_key", master_key)
+            pulumi.set(__self__, "master_key", master_key)
         if mongod_version is not None:
-            _setter("mongod_version", mongod_version)
+            pulumi.set(__self__, "mongod_version", mongod_version)
         if policies is not None:
-            _setter("policies", policies)
+            pulumi.set(__self__, "policies", policies)
         if provider is not None:
-            _setter("provider", provider)
+            pulumi.set(__self__, "provider", provider)
         if replica_set_name is not None:
-            _setter("replica_set_name", replica_set_name)
+            pulumi.set(__self__, "replica_set_name", replica_set_name)
         if size is not None:
-            _setter("size", size)
+            pulumi.set(__self__, "size", size)
         if snapshot_type is not None:
-            _setter("snapshot_type", snapshot_type)
+            pulumi.set(__self__, "snapshot_type", snapshot_type)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="copyRegion")
@@ -6766,49 +5119,18 @@ class DataLakePipelineSource(dict):
         :param str project_id: The unique ID for the project to create a data lake pipeline.
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        DataLakePipelineSource._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_name=cluster_name,
-            collection_name=collection_name,
-            database_name=database_name,
-            policy_item_id=policy_item_id,
-            project_id=project_id,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_name: Optional[str] = None,
-             collection_name: Optional[str] = None,
-             database_name: Optional[str] = None,
-             policy_item_id: Optional[str] = None,
-             project_id: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if policy_item_id is None and 'policyItemId' in kwargs:
-            policy_item_id = kwargs['policyItemId']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if cluster_name is not None:
-            _setter("cluster_name", cluster_name)
+            pulumi.set(__self__, "cluster_name", cluster_name)
         if collection_name is not None:
-            _setter("collection_name", collection_name)
+            pulumi.set(__self__, "collection_name", collection_name)
         if database_name is not None:
-            _setter("database_name", database_name)
+            pulumi.set(__self__, "database_name", database_name)
         if policy_item_id is not None:
-            _setter("policy_item_id", policy_item_id)
+            pulumi.set(__self__, "policy_item_id", policy_item_id)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -6864,23 +5186,10 @@ class DataLakePipelineTransformation(dict):
         """
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        DataLakePipelineTransformation._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field=field,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if field is not None:
-            _setter("field", field)
+            pulumi.set(__self__, "field", field)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -6923,33 +5232,14 @@ class DataLakeStorageDatabase(dict):
         """
         :param str name: Name of the Atlas Data Lake.
         """
-        DataLakeStorageDatabase._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            collections=collections,
-            max_wildcard_collections=max_wildcard_collections,
-            name=name,
-            views=views,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             collections: Optional[Sequence['outputs.DataLakeStorageDatabaseCollection']] = None,
-             max_wildcard_collections: Optional[int] = None,
-             name: Optional[str] = None,
-             views: Optional[Sequence['outputs.DataLakeStorageDatabaseView']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if max_wildcard_collections is None and 'maxWildcardCollections' in kwargs:
-            max_wildcard_collections = kwargs['maxWildcardCollections']
-
         if collections is not None:
-            _setter("collections", collections)
+            pulumi.set(__self__, "collections", collections)
         if max_wildcard_collections is not None:
-            _setter("max_wildcard_collections", max_wildcard_collections)
+            pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if views is not None:
-            _setter("views", views)
+            pulumi.set(__self__, "views", views)
 
     @property
     @pulumi.getter
@@ -7000,25 +5290,10 @@ class DataLakeStorageDatabaseCollection(dict):
         """
         :param str name: Name of the Atlas Data Lake.
         """
-        DataLakeStorageDatabaseCollection._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            data_sources=data_sources,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             data_sources: Optional[Sequence['outputs.DataLakeStorageDatabaseCollectionDataSource']] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if data_sources is None and 'dataSources' in kwargs:
-            data_sources = kwargs['dataSources']
-
         if data_sources is not None:
-            _setter("data_sources", data_sources)
+            pulumi.set(__self__, "data_sources", data_sources)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -7059,31 +5334,12 @@ class DataLakeStorageDatabaseCollectionDataSource(dict):
                  default_format: Optional[str] = None,
                  path: Optional[str] = None,
                  store_name: Optional[str] = None):
-        DataLakeStorageDatabaseCollectionDataSource._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            default_format=default_format,
-            path=path,
-            store_name=store_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             default_format: Optional[str] = None,
-             path: Optional[str] = None,
-             store_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if default_format is None and 'defaultFormat' in kwargs:
-            default_format = kwargs['defaultFormat']
-        if store_name is None and 'storeName' in kwargs:
-            store_name = kwargs['storeName']
-
         if default_format is not None:
-            _setter("default_format", default_format)
+            pulumi.set(__self__, "default_format", default_format)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if store_name is not None:
-            _setter("store_name", store_name)
+            pulumi.set(__self__, "store_name", store_name)
 
     @property
     @pulumi.getter(name="defaultFormat")
@@ -7110,27 +5366,12 @@ class DataLakeStorageDatabaseView(dict):
         """
         :param str name: Name of the Atlas Data Lake.
         """
-        DataLakeStorageDatabaseView._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            pipeline=pipeline,
-            source=source,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             pipeline: Optional[str] = None,
-             source: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if pipeline is not None:
-            _setter("pipeline", pipeline)
+            pulumi.set(__self__, "pipeline", pipeline)
         if source is not None:
-            _setter("source", source)
+            pulumi.set(__self__, "source", source)
 
     @property
     @pulumi.getter
@@ -7184,51 +5425,22 @@ class DataLakeStorageStore(dict):
         """
         :param str name: Name of the Atlas Data Lake.
         """
-        DataLakeStorageStore._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            additional_storage_classes=additional_storage_classes,
-            bucket=bucket,
-            delimiter=delimiter,
-            include_tags=include_tags,
-            name=name,
-            prefix=prefix,
-            provider=provider,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             additional_storage_classes: Optional[Sequence[str]] = None,
-             bucket: Optional[str] = None,
-             delimiter: Optional[str] = None,
-             include_tags: Optional[bool] = None,
-             name: Optional[str] = None,
-             prefix: Optional[str] = None,
-             provider: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if additional_storage_classes is None and 'additionalStorageClasses' in kwargs:
-            additional_storage_classes = kwargs['additionalStorageClasses']
-        if include_tags is None and 'includeTags' in kwargs:
-            include_tags = kwargs['includeTags']
-
         if additional_storage_classes is not None:
-            _setter("additional_storage_classes", additional_storage_classes)
+            pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
         if bucket is not None:
-            _setter("bucket", bucket)
+            pulumi.set(__self__, "bucket", bucket)
         if delimiter is not None:
-            _setter("delimiter", delimiter)
+            pulumi.set(__self__, "delimiter", delimiter)
         if include_tags is not None:
-            _setter("include_tags", include_tags)
+            pulumi.set(__self__, "include_tags", include_tags)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if prefix is not None:
-            _setter("prefix", prefix)
+            pulumi.set(__self__, "prefix", prefix)
         if provider is not None:
-            _setter("provider", provider)
+            pulumi.set(__self__, "provider", provider)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -7283,23 +5495,10 @@ class DatabaseUserLabel(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        DatabaseUserLabel._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if key is not None:
-            _setter("key", key)
+            pulumi.set(__self__, "key", key)
         if value is not None:
-            _setter("value", value)
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -7350,35 +5549,10 @@ class DatabaseUserRole(dict):
         :param str role_name: Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
         :param str collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         """
-        DatabaseUserRole._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            database_name=database_name,
-            role_name=role_name,
-            collection_name=collection_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             database_name: Optional[str] = None,
-             role_name: Optional[str] = None,
-             collection_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if database_name is None:
-            raise TypeError("Missing 'database_name' argument")
-        if role_name is None and 'roleName' in kwargs:
-            role_name = kwargs['roleName']
-        if role_name is None:
-            raise TypeError("Missing 'role_name' argument")
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-
-        _setter("database_name", database_name)
-        _setter("role_name", role_name)
+        pulumi.set(__self__, "database_name", database_name)
+        pulumi.set(__self__, "role_name", role_name)
         if collection_name is not None:
-            _setter("collection_name", collection_name)
+            pulumi.set(__self__, "collection_name", collection_name)
 
     @property
     @pulumi.getter(name="databaseName")
@@ -7414,23 +5588,10 @@ class DatabaseUserScope(dict):
         :param str name: Name of the cluster or Atlas Data Lake that the user has access to.
         :param str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
         """
-        DatabaseUserScope._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -7487,47 +5648,18 @@ class EncryptionAtRestAwsKmsConfig(dict):
         :param str region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
         :param str role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
         """
-        EncryptionAtRestAwsKmsConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key_id=access_key_id,
-            customer_master_key_id=customer_master_key_id,
-            enabled=enabled,
-            region=region,
-            role_id=role_id,
-            secret_access_key=secret_access_key,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key_id: Optional[str] = None,
-             customer_master_key_id: Optional[str] = None,
-             enabled: Optional[bool] = None,
-             region: Optional[str] = None,
-             role_id: Optional[str] = None,
-             secret_access_key: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if access_key_id is None and 'accessKeyId' in kwargs:
-            access_key_id = kwargs['accessKeyId']
-        if customer_master_key_id is None and 'customerMasterKeyId' in kwargs:
-            customer_master_key_id = kwargs['customerMasterKeyId']
-        if role_id is None and 'roleId' in kwargs:
-            role_id = kwargs['roleId']
-        if secret_access_key is None and 'secretAccessKey' in kwargs:
-            secret_access_key = kwargs['secretAccessKey']
-
         if access_key_id is not None:
-            _setter("access_key_id", access_key_id)
+            pulumi.set(__self__, "access_key_id", access_key_id)
         if customer_master_key_id is not None:
-            _setter("customer_master_key_id", customer_master_key_id)
+            pulumi.set(__self__, "customer_master_key_id", customer_master_key_id)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if role_id is not None:
-            _setter("role_id", role_id)
+            pulumi.set(__self__, "role_id", role_id)
         if secret_access_key is not None:
-            _setter("secret_access_key", secret_access_key)
+            pulumi.set(__self__, "secret_access_key", secret_access_key)
 
     @property
     @pulumi.getter(name="accessKeyId")
@@ -7624,65 +5756,24 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
         :param str subscription_id: The unique identifier associated with an Azure subscription.
         :param str tenant_id: The unique identifier for an Azure AD tenant within an Azure subscription.
         """
-        EncryptionAtRestAzureKeyVaultConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            azure_environment=azure_environment,
-            client_id=client_id,
-            enabled=enabled,
-            key_identifier=key_identifier,
-            key_vault_name=key_vault_name,
-            resource_group_name=resource_group_name,
-            secret=secret,
-            subscription_id=subscription_id,
-            tenant_id=tenant_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             azure_environment: Optional[str] = None,
-             client_id: Optional[str] = None,
-             enabled: Optional[bool] = None,
-             key_identifier: Optional[str] = None,
-             key_vault_name: Optional[str] = None,
-             resource_group_name: Optional[str] = None,
-             secret: Optional[str] = None,
-             subscription_id: Optional[str] = None,
-             tenant_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if azure_environment is None and 'azureEnvironment' in kwargs:
-            azure_environment = kwargs['azureEnvironment']
-        if client_id is None and 'clientId' in kwargs:
-            client_id = kwargs['clientId']
-        if key_identifier is None and 'keyIdentifier' in kwargs:
-            key_identifier = kwargs['keyIdentifier']
-        if key_vault_name is None and 'keyVaultName' in kwargs:
-            key_vault_name = kwargs['keyVaultName']
-        if resource_group_name is None and 'resourceGroupName' in kwargs:
-            resource_group_name = kwargs['resourceGroupName']
-        if subscription_id is None and 'subscriptionId' in kwargs:
-            subscription_id = kwargs['subscriptionId']
-        if tenant_id is None and 'tenantId' in kwargs:
-            tenant_id = kwargs['tenantId']
-
         if azure_environment is not None:
-            _setter("azure_environment", azure_environment)
+            pulumi.set(__self__, "azure_environment", azure_environment)
         if client_id is not None:
-            _setter("client_id", client_id)
+            pulumi.set(__self__, "client_id", client_id)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if key_identifier is not None:
-            _setter("key_identifier", key_identifier)
+            pulumi.set(__self__, "key_identifier", key_identifier)
         if key_vault_name is not None:
-            _setter("key_vault_name", key_vault_name)
+            pulumi.set(__self__, "key_vault_name", key_vault_name)
         if resource_group_name is not None:
-            _setter("resource_group_name", resource_group_name)
+            pulumi.set(__self__, "resource_group_name", resource_group_name)
         if secret is not None:
-            _setter("secret", secret)
+            pulumi.set(__self__, "secret", secret)
         if subscription_id is not None:
-            _setter("subscription_id", subscription_id)
+            pulumi.set(__self__, "subscription_id", subscription_id)
         if tenant_id is not None:
-            _setter("tenant_id", tenant_id)
+            pulumi.set(__self__, "tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="azureEnvironment")
@@ -7787,31 +5878,12 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
         :param str key_version_resource_id: The Key Version Resource ID from your GCP account.
         :param str service_account_key: String-formatted JSON object containing GCP KMS credentials from your GCP account.
         """
-        EncryptionAtRestGoogleCloudKmsConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            key_version_resource_id=key_version_resource_id,
-            service_account_key=service_account_key,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[bool] = None,
-             key_version_resource_id: Optional[str] = None,
-             service_account_key: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key_version_resource_id is None and 'keyVersionResourceId' in kwargs:
-            key_version_resource_id = kwargs['keyVersionResourceId']
-        if service_account_key is None and 'serviceAccountKey' in kwargs:
-            service_account_key = kwargs['serviceAccountKey']
-
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if key_version_resource_id is not None:
-            _setter("key_version_resource_id", key_version_resource_id)
+            pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
         if service_account_key is not None:
-            _setter("service_account_key", service_account_key)
+            pulumi.set(__self__, "service_account_key", service_account_key)
 
     @property
     @pulumi.getter
@@ -7859,21 +5931,8 @@ class EventTriggerEventProcessors(dict):
 
     def __init__(__self__, *,
                  aws_eventbridge: Optional['outputs.EventTriggerEventProcessorsAwsEventbridge'] = None):
-        EventTriggerEventProcessors._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws_eventbridge=aws_eventbridge,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws_eventbridge: Optional['outputs.EventTriggerEventProcessorsAwsEventbridge'] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws_eventbridge is None and 'awsEventbridge' in kwargs:
-            aws_eventbridge = kwargs['awsEventbridge']
-
         if aws_eventbridge is not None:
-            _setter("aws_eventbridge", aws_eventbridge)
+            pulumi.set(__self__, "aws_eventbridge", aws_eventbridge)
 
     @property
     @pulumi.getter(name="awsEventbridge")
@@ -7905,27 +5964,10 @@ class EventTriggerEventProcessorsAwsEventbridge(dict):
     def __init__(__self__, *,
                  config_account_id: Optional[str] = None,
                  config_region: Optional[str] = None):
-        EventTriggerEventProcessorsAwsEventbridge._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            config_account_id=config_account_id,
-            config_region=config_region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             config_account_id: Optional[str] = None,
-             config_region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if config_account_id is None and 'configAccountId' in kwargs:
-            config_account_id = kwargs['configAccountId']
-        if config_region is None and 'configRegion' in kwargs:
-            config_region = kwargs['configRegion']
-
         if config_account_id is not None:
-            _setter("config_account_id", config_account_id)
+            pulumi.set(__self__, "config_account_id", config_account_id)
         if config_region is not None:
-            _setter("config_region", config_region)
+            pulumi.set(__self__, "config_region", config_region)
 
     @property
     @pulumi.getter(name="configAccountId")
@@ -7942,20 +5984,7 @@ class EventTriggerEventProcessorsAwsEventbridge(dict):
 class FederatedDatabaseInstanceCloudProviderConfig(dict):
     def __init__(__self__, *,
                  aws: 'outputs.FederatedDatabaseInstanceCloudProviderConfigAws'):
-        FederatedDatabaseInstanceCloudProviderConfig._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws=aws,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws: Optional['outputs.FederatedDatabaseInstanceCloudProviderConfigAws'] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws is None:
-            raise TypeError("Missing 'aws' argument")
-
-        _setter("aws", aws)
+        pulumi.set(__self__, "aws", aws)
 
     @property
     @pulumi.getter
@@ -8007,47 +6036,14 @@ class FederatedDatabaseInstanceCloudProviderConfigAws(dict):
                * `s3:GetObjectVersion`
         :param str iam_user_arn: Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
         """
-        FederatedDatabaseInstanceCloudProviderConfigAws._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            role_id=role_id,
-            test_s3_bucket=test_s3_bucket,
-            external_id=external_id,
-            iam_assumed_role_arn=iam_assumed_role_arn,
-            iam_user_arn=iam_user_arn,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             role_id: Optional[str] = None,
-             test_s3_bucket: Optional[str] = None,
-             external_id: Optional[str] = None,
-             iam_assumed_role_arn: Optional[str] = None,
-             iam_user_arn: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if role_id is None and 'roleId' in kwargs:
-            role_id = kwargs['roleId']
-        if role_id is None:
-            raise TypeError("Missing 'role_id' argument")
-        if test_s3_bucket is None and 'testS3Bucket' in kwargs:
-            test_s3_bucket = kwargs['testS3Bucket']
-        if test_s3_bucket is None:
-            raise TypeError("Missing 'test_s3_bucket' argument")
-        if external_id is None and 'externalId' in kwargs:
-            external_id = kwargs['externalId']
-        if iam_assumed_role_arn is None and 'iamAssumedRoleArn' in kwargs:
-            iam_assumed_role_arn = kwargs['iamAssumedRoleArn']
-        if iam_user_arn is None and 'iamUserArn' in kwargs:
-            iam_user_arn = kwargs['iamUserArn']
-
-        _setter("role_id", role_id)
-        _setter("test_s3_bucket", test_s3_bucket)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
         if external_id is not None:
-            _setter("external_id", external_id)
+            pulumi.set(__self__, "external_id", external_id)
         if iam_assumed_role_arn is not None:
-            _setter("iam_assumed_role_arn", iam_assumed_role_arn)
+            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
         if iam_user_arn is not None:
-            _setter("iam_user_arn", iam_user_arn)
+            pulumi.set(__self__, "iam_user_arn", iam_user_arn)
 
     @property
     @pulumi.getter(name="roleId")
@@ -8120,27 +6116,8 @@ class FederatedDatabaseInstanceDataProcessRegion(dict):
         :param str cloud_provider: Name of the cloud service provider. Atlas Federated Database only supports AWS.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         """
-        FederatedDatabaseInstanceDataProcessRegion._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("region", region)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -8188,33 +6165,14 @@ class FederatedDatabaseInstanceStorageDatabase(dict):
                ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
                #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
-        FederatedDatabaseInstanceStorageDatabase._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            collections=collections,
-            max_wildcard_collections=max_wildcard_collections,
-            name=name,
-            views=views,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             collections: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageDatabaseCollection']] = None,
-             max_wildcard_collections: Optional[int] = None,
-             name: Optional[str] = None,
-             views: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageDatabaseView']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if max_wildcard_collections is None and 'maxWildcardCollections' in kwargs:
-            max_wildcard_collections = kwargs['maxWildcardCollections']
-
         if collections is not None:
-            _setter("collections", collections)
+            pulumi.set(__self__, "collections", collections)
         if max_wildcard_collections is not None:
-            _setter("max_wildcard_collections", max_wildcard_collections)
+            pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if views is not None:
-            _setter("views", views)
+            pulumi.set(__self__, "views", views)
 
     @property
     @pulumi.getter
@@ -8269,25 +6227,10 @@ class FederatedDatabaseInstanceStorageDatabaseCollection(dict):
                ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
                #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
-        FederatedDatabaseInstanceStorageDatabaseCollection._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            data_sources=data_sources,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             data_sources: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSource']] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if data_sources is None and 'dataSources' in kwargs:
-            data_sources = kwargs['dataSources']
-
         if data_sources is not None:
-            _setter("data_sources", data_sources)
+            pulumi.set(__self__, "data_sources", data_sources)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -8348,73 +6291,28 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource(dict):
                  provenance_field_name: Optional[str] = None,
                  store_name: Optional[str] = None,
                  urls: Optional[Sequence[str]] = None):
-        FederatedDatabaseInstanceStorageDatabaseCollectionDataSource._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            allow_insecure=allow_insecure,
-            collection=collection,
-            collection_regex=collection_regex,
-            database=database,
-            database_regex=database_regex,
-            dataset_name=dataset_name,
-            default_format=default_format,
-            path=path,
-            provenance_field_name=provenance_field_name,
-            store_name=store_name,
-            urls=urls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             allow_insecure: Optional[bool] = None,
-             collection: Optional[str] = None,
-             collection_regex: Optional[str] = None,
-             database: Optional[str] = None,
-             database_regex: Optional[str] = None,
-             dataset_name: Optional[str] = None,
-             default_format: Optional[str] = None,
-             path: Optional[str] = None,
-             provenance_field_name: Optional[str] = None,
-             store_name: Optional[str] = None,
-             urls: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if allow_insecure is None and 'allowInsecure' in kwargs:
-            allow_insecure = kwargs['allowInsecure']
-        if collection_regex is None and 'collectionRegex' in kwargs:
-            collection_regex = kwargs['collectionRegex']
-        if database_regex is None and 'databaseRegex' in kwargs:
-            database_regex = kwargs['databaseRegex']
-        if dataset_name is None and 'datasetName' in kwargs:
-            dataset_name = kwargs['datasetName']
-        if default_format is None and 'defaultFormat' in kwargs:
-            default_format = kwargs['defaultFormat']
-        if provenance_field_name is None and 'provenanceFieldName' in kwargs:
-            provenance_field_name = kwargs['provenanceFieldName']
-        if store_name is None and 'storeName' in kwargs:
-            store_name = kwargs['storeName']
-
         if allow_insecure is not None:
-            _setter("allow_insecure", allow_insecure)
+            pulumi.set(__self__, "allow_insecure", allow_insecure)
         if collection is not None:
-            _setter("collection", collection)
+            pulumi.set(__self__, "collection", collection)
         if collection_regex is not None:
-            _setter("collection_regex", collection_regex)
+            pulumi.set(__self__, "collection_regex", collection_regex)
         if database is not None:
-            _setter("database", database)
+            pulumi.set(__self__, "database", database)
         if database_regex is not None:
-            _setter("database_regex", database_regex)
+            pulumi.set(__self__, "database_regex", database_regex)
         if dataset_name is not None:
-            _setter("dataset_name", dataset_name)
+            pulumi.set(__self__, "dataset_name", dataset_name)
         if default_format is not None:
-            _setter("default_format", default_format)
+            pulumi.set(__self__, "default_format", default_format)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if provenance_field_name is not None:
-            _setter("provenance_field_name", provenance_field_name)
+            pulumi.set(__self__, "provenance_field_name", provenance_field_name)
         if store_name is not None:
-            _setter("store_name", store_name)
+            pulumi.set(__self__, "store_name", store_name)
         if urls is not None:
-            _setter("urls", urls)
+            pulumi.set(__self__, "urls", urls)
 
     @property
     @pulumi.getter(name="allowInsecure")
@@ -8483,27 +6381,12 @@ class FederatedDatabaseInstanceStorageDatabaseView(dict):
                ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
                #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
-        FederatedDatabaseInstanceStorageDatabaseView._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            pipeline=pipeline,
-            source=source,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             pipeline: Optional[str] = None,
-             source: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if pipeline is not None:
-            _setter("pipeline", pipeline)
+            pulumi.set(__self__, "pipeline", pipeline)
         if source is not None:
-            _setter("source", source)
+            pulumi.set(__self__, "source", source)
 
     @property
     @pulumi.getter
@@ -8583,95 +6466,38 @@ class FederatedDatabaseInstanceStorageStore(dict):
         :param str project_id: The unique ID for the project to create a Federated Database Instance.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         """
-        FederatedDatabaseInstanceStorageStore._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            additional_storage_classes=additional_storage_classes,
-            allow_insecure=allow_insecure,
-            bucket=bucket,
-            cluster_id=cluster_id,
-            cluster_name=cluster_name,
-            default_format=default_format,
-            delimiter=delimiter,
-            include_tags=include_tags,
-            name=name,
-            prefix=prefix,
-            project_id=project_id,
-            provider=provider,
-            public=public,
-            read_preference=read_preference,
-            region=region,
-            urls=urls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             additional_storage_classes: Optional[Sequence[str]] = None,
-             allow_insecure: Optional[bool] = None,
-             bucket: Optional[str] = None,
-             cluster_id: Optional[str] = None,
-             cluster_name: Optional[str] = None,
-             default_format: Optional[str] = None,
-             delimiter: Optional[str] = None,
-             include_tags: Optional[bool] = None,
-             name: Optional[str] = None,
-             prefix: Optional[str] = None,
-             project_id: Optional[str] = None,
-             provider: Optional[str] = None,
-             public: Optional[str] = None,
-             read_preference: Optional['outputs.FederatedDatabaseInstanceStorageStoreReadPreference'] = None,
-             region: Optional[str] = None,
-             urls: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if additional_storage_classes is None and 'additionalStorageClasses' in kwargs:
-            additional_storage_classes = kwargs['additionalStorageClasses']
-        if allow_insecure is None and 'allowInsecure' in kwargs:
-            allow_insecure = kwargs['allowInsecure']
-        if cluster_id is None and 'clusterId' in kwargs:
-            cluster_id = kwargs['clusterId']
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if default_format is None and 'defaultFormat' in kwargs:
-            default_format = kwargs['defaultFormat']
-        if include_tags is None and 'includeTags' in kwargs:
-            include_tags = kwargs['includeTags']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if read_preference is None and 'readPreference' in kwargs:
-            read_preference = kwargs['readPreference']
-
         if additional_storage_classes is not None:
-            _setter("additional_storage_classes", additional_storage_classes)
+            pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
         if allow_insecure is not None:
-            _setter("allow_insecure", allow_insecure)
+            pulumi.set(__self__, "allow_insecure", allow_insecure)
         if bucket is not None:
-            _setter("bucket", bucket)
+            pulumi.set(__self__, "bucket", bucket)
         if cluster_id is not None:
-            _setter("cluster_id", cluster_id)
+            pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_name is not None:
-            _setter("cluster_name", cluster_name)
+            pulumi.set(__self__, "cluster_name", cluster_name)
         if default_format is not None:
-            _setter("default_format", default_format)
+            pulumi.set(__self__, "default_format", default_format)
         if delimiter is not None:
-            _setter("delimiter", delimiter)
+            pulumi.set(__self__, "delimiter", delimiter)
         if include_tags is not None:
-            _setter("include_tags", include_tags)
+            pulumi.set(__self__, "include_tags", include_tags)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if prefix is not None:
-            _setter("prefix", prefix)
+            pulumi.set(__self__, "prefix", prefix)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if provider is not None:
-            _setter("provider", provider)
+            pulumi.set(__self__, "provider", provider)
         if public is not None:
-            _setter("public", public)
+            pulumi.set(__self__, "public", public)
         if read_preference is not None:
-            _setter("read_preference", read_preference)
+            pulumi.set(__self__, "read_preference", read_preference)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if urls is not None:
-            _setter("urls", urls)
+            pulumi.set(__self__, "urls", urls)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -8793,31 +6619,12 @@ class FederatedDatabaseInstanceStorageStoreReadPreference(dict):
                  max_staleness_seconds: Optional[int] = None,
                  mode: Optional[str] = None,
                  tag_sets: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet']] = None):
-        FederatedDatabaseInstanceStorageStoreReadPreference._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            max_staleness_seconds=max_staleness_seconds,
-            mode=mode,
-            tag_sets=tag_sets,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             max_staleness_seconds: Optional[int] = None,
-             mode: Optional[str] = None,
-             tag_sets: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if max_staleness_seconds is None and 'maxStalenessSeconds' in kwargs:
-            max_staleness_seconds = kwargs['maxStalenessSeconds']
-        if tag_sets is None and 'tagSets' in kwargs:
-            tag_sets = kwargs['tagSets']
-
         if max_staleness_seconds is not None:
-            _setter("max_staleness_seconds", max_staleness_seconds)
+            pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
         if mode is not None:
-            _setter("mode", mode)
+            pulumi.set(__self__, "mode", mode)
         if tag_sets is not None:
-            _setter("tag_sets", tag_sets)
+            pulumi.set(__self__, "tag_sets", tag_sets)
 
     @property
     @pulumi.getter(name="maxStalenessSeconds")
@@ -8839,20 +6646,7 @@ class FederatedDatabaseInstanceStorageStoreReadPreference(dict):
 class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet(dict):
     def __init__(__self__, *,
                  tags: Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag']):
-        FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            tags=tags,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             tags: Optional[Sequence['outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if tags is None:
-            raise TypeError("Missing 'tags' argument")
-
-        _setter("tags", tags)
+        pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -8870,23 +6664,10 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag(dict):
                ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
                #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
-        FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if value is not None:
-            _setter("value", value)
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -8935,31 +6716,12 @@ class FederatedSettingsOrgRoleMappingRoleAssignment(dict):
         :param Sequence[str] roles: Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
                Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
         """
-        FederatedSettingsOrgRoleMappingRoleAssignment._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            org_id=org_id,
-            roles=roles,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             roles: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-
         if group_id is not None:
-            _setter("group_id", group_id)
+            pulumi.set(__self__, "group_id", group_id)
         if org_id is not None:
-            _setter("org_id", org_id)
+            pulumi.set(__self__, "org_id", org_id)
         if roles is not None:
-            _setter("roles", roles)
+            pulumi.set(__self__, "roles", roles)
 
     @property
     @pulumi.getter(name="groupId")
@@ -8996,23 +6758,10 @@ class GlobalClusterConfigCustomZoneMapping(dict):
         :param str location: The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
         :param str zone: The name of the zone in your Global Cluster that you want to map to location.
         """
-        GlobalClusterConfigCustomZoneMapping._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            location=location,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             location: Optional[str] = None,
-             zone: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if location is not None:
-            _setter("location", location)
+            pulumi.set(__self__, "location", location)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -9067,44 +6816,13 @@ class GlobalClusterConfigManagedNamespace(dict):
         :param bool is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
         :param bool is_shard_key_unique: Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
         """
-        GlobalClusterConfigManagedNamespace._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            collection=collection,
-            custom_shard_key=custom_shard_key,
-            db=db,
-            is_custom_shard_key_hashed=is_custom_shard_key_hashed,
-            is_shard_key_unique=is_shard_key_unique,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             collection: Optional[str] = None,
-             custom_shard_key: Optional[str] = None,
-             db: Optional[str] = None,
-             is_custom_shard_key_hashed: Optional[bool] = None,
-             is_shard_key_unique: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if collection is None:
-            raise TypeError("Missing 'collection' argument")
-        if custom_shard_key is None and 'customShardKey' in kwargs:
-            custom_shard_key = kwargs['customShardKey']
-        if custom_shard_key is None:
-            raise TypeError("Missing 'custom_shard_key' argument")
-        if db is None:
-            raise TypeError("Missing 'db' argument")
-        if is_custom_shard_key_hashed is None and 'isCustomShardKeyHashed' in kwargs:
-            is_custom_shard_key_hashed = kwargs['isCustomShardKeyHashed']
-        if is_shard_key_unique is None and 'isShardKeyUnique' in kwargs:
-            is_shard_key_unique = kwargs['isShardKeyUnique']
-
-        _setter("collection", collection)
-        _setter("custom_shard_key", custom_shard_key)
-        _setter("db", db)
+        pulumi.set(__self__, "collection", collection)
+        pulumi.set(__self__, "custom_shard_key", custom_shard_key)
+        pulumi.set(__self__, "db", db)
         if is_custom_shard_key_hashed is not None:
-            _setter("is_custom_shard_key_hashed", is_custom_shard_key_hashed)
+            pulumi.set(__self__, "is_custom_shard_key_hashed", is_custom_shard_key_hashed)
         if is_shard_key_unique is not None:
-            _setter("is_shard_key_unique", is_shard_key_unique)
+            pulumi.set(__self__, "is_shard_key_unique", is_shard_key_unique)
 
     @property
     @pulumi.getter
@@ -9170,29 +6888,12 @@ class LdapConfigurationUserToDnMapping(dict):
                  ldap_query: Optional[str] = None,
                  match: Optional[str] = None,
                  substitution: Optional[str] = None):
-        LdapConfigurationUserToDnMapping._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            ldap_query=ldap_query,
-            match=match,
-            substitution=substitution,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             ldap_query: Optional[str] = None,
-             match: Optional[str] = None,
-             substitution: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if ldap_query is None and 'ldapQuery' in kwargs:
-            ldap_query = kwargs['ldapQuery']
-
         if ldap_query is not None:
-            _setter("ldap_query", ldap_query)
+            pulumi.set(__self__, "ldap_query", ldap_query)
         if match is not None:
-            _setter("match", match)
+            pulumi.set(__self__, "match", match)
         if substitution is not None:
-            _setter("substitution", substitution)
+            pulumi.set(__self__, "substitution", substitution)
 
     @property
     @pulumi.getter(name="ldapQuery")
@@ -9215,23 +6916,10 @@ class LdapVerifyLink(dict):
     def __init__(__self__, *,
                  href: Optional[str] = None,
                  rel: Optional[str] = None):
-        LdapVerifyLink._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            href=href,
-            rel=rel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             href: Optional[str] = None,
-             rel: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if href is not None:
-            _setter("href", href)
+            pulumi.set(__self__, "href", href)
         if rel is not None:
-            _setter("rel", rel)
+            pulumi.set(__self__, "rel", rel)
 
     @property
     @pulumi.getter
@@ -9269,25 +6957,10 @@ class LdapVerifyValidation(dict):
         """
         :param str status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
         """
-        LdapVerifyValidation._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            status=status,
-            validation_type=validation_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             status: Optional[str] = None,
-             validation_type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if validation_type is None and 'validationType' in kwargs:
-            validation_type = kwargs['validationType']
-
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if validation_type is not None:
-            _setter("validation_type", validation_type)
+            pulumi.set(__self__, "validation_type", validation_type)
 
     @property
     @pulumi.getter
@@ -9345,42 +7018,15 @@ class OnlineArchiveCriteria(dict):
                The only field required for criteria type `CUSTOM`
         :param str query: JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
         """
-        OnlineArchiveCriteria._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            type=type,
-            date_field=date_field,
-            date_format=date_format,
-            expire_after_days=expire_after_days,
-            query=query,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             type: Optional[str] = None,
-             date_field: Optional[str] = None,
-             date_format: Optional[str] = None,
-             expire_after_days: Optional[int] = None,
-             query: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if date_field is None and 'dateField' in kwargs:
-            date_field = kwargs['dateField']
-        if date_format is None and 'dateFormat' in kwargs:
-            date_format = kwargs['dateFormat']
-        if expire_after_days is None and 'expireAfterDays' in kwargs:
-            expire_after_days = kwargs['expireAfterDays']
-
-        _setter("type", type)
+        pulumi.set(__self__, "type", type)
         if date_field is not None:
-            _setter("date_field", date_field)
+            pulumi.set(__self__, "date_field", date_field)
         if date_format is not None:
-            _setter("date_format", date_format)
+            pulumi.set(__self__, "date_format", date_format)
         if expire_after_days is not None:
-            _setter("expire_after_days", expire_after_days)
+            pulumi.set(__self__, "expire_after_days", expire_after_days)
         if query is not None:
-            _setter("query", query)
+            pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
@@ -9459,33 +7105,10 @@ class OnlineArchivePartitionField(dict):
         :param int order: Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
         :param str field_type: Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
         """
-        OnlineArchivePartitionField._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field_name=field_name,
-            order=order,
-            field_type=field_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field_name: Optional[str] = None,
-             order: Optional[int] = None,
-             field_type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field_name is None and 'fieldName' in kwargs:
-            field_name = kwargs['fieldName']
-        if field_name is None:
-            raise TypeError("Missing 'field_name' argument")
-        if order is None:
-            raise TypeError("Missing 'order' argument")
-        if field_type is None and 'fieldType' in kwargs:
-            field_type = kwargs['fieldType']
-
-        _setter("field_name", field_name)
-        _setter("order", order)
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "order", order)
         if field_type is not None:
-            _setter("field_type", field_type)
+            pulumi.set(__self__, "field_type", field_type)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -9558,56 +7181,19 @@ class OnlineArchiveSchedule(dict):
         :param int start_hour: Hour of the day when the when the scheduled window to run one online archive starts.
         :param int start_minute: Minute of the hour when the scheduled window to run one online archive starts.
         """
-        OnlineArchiveSchedule._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            type=type,
-            day_of_month=day_of_month,
-            day_of_week=day_of_week,
-            end_hour=end_hour,
-            end_minute=end_minute,
-            start_hour=start_hour,
-            start_minute=start_minute,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             type: Optional[str] = None,
-             day_of_month: Optional[int] = None,
-             day_of_week: Optional[int] = None,
-             end_hour: Optional[int] = None,
-             end_minute: Optional[int] = None,
-             start_hour: Optional[int] = None,
-             start_minute: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if day_of_month is None and 'dayOfMonth' in kwargs:
-            day_of_month = kwargs['dayOfMonth']
-        if day_of_week is None and 'dayOfWeek' in kwargs:
-            day_of_week = kwargs['dayOfWeek']
-        if end_hour is None and 'endHour' in kwargs:
-            end_hour = kwargs['endHour']
-        if end_minute is None and 'endMinute' in kwargs:
-            end_minute = kwargs['endMinute']
-        if start_hour is None and 'startHour' in kwargs:
-            start_hour = kwargs['startHour']
-        if start_minute is None and 'startMinute' in kwargs:
-            start_minute = kwargs['startMinute']
-
-        _setter("type", type)
+        pulumi.set(__self__, "type", type)
         if day_of_month is not None:
-            _setter("day_of_month", day_of_month)
+            pulumi.set(__self__, "day_of_month", day_of_month)
         if day_of_week is not None:
-            _setter("day_of_week", day_of_week)
+            pulumi.set(__self__, "day_of_week", day_of_week)
         if end_hour is not None:
-            _setter("end_hour", end_hour)
+            pulumi.set(__self__, "end_hour", end_hour)
         if end_minute is not None:
-            _setter("end_minute", end_minute)
+            pulumi.set(__self__, "end_minute", end_minute)
         if start_hour is not None:
-            _setter("start_hour", start_hour)
+            pulumi.set(__self__, "start_hour", start_hour)
         if start_minute is not None:
-            _setter("start_minute", start_minute)
+            pulumi.set(__self__, "start_minute", start_minute)
 
     @property
     @pulumi.getter
@@ -9700,37 +7286,14 @@ class PrivateLinkEndpointServiceEndpoint(dict):
         :param str service_attachment_name: Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         :param str status: Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
-        PrivateLinkEndpointServiceEndpoint._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoint_name=endpoint_name,
-            ip_address=ip_address,
-            service_attachment_name=service_attachment_name,
-            status=status,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoint_name: Optional[str] = None,
-             ip_address: Optional[str] = None,
-             service_attachment_name: Optional[str] = None,
-             status: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if endpoint_name is None and 'endpointName' in kwargs:
-            endpoint_name = kwargs['endpointName']
-        if ip_address is None and 'ipAddress' in kwargs:
-            ip_address = kwargs['ipAddress']
-        if service_attachment_name is None and 'serviceAttachmentName' in kwargs:
-            service_attachment_name = kwargs['serviceAttachmentName']
-
         if endpoint_name is not None:
-            _setter("endpoint_name", endpoint_name)
+            pulumi.set(__self__, "endpoint_name", endpoint_name)
         if ip_address is not None:
-            _setter("ip_address", ip_address)
+            pulumi.set(__self__, "ip_address", ip_address)
         if service_attachment_name is not None:
-            _setter("service_attachment_name", service_attachment_name)
+            pulumi.set(__self__, "service_attachment_name", service_attachment_name)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="endpointName")
@@ -9793,29 +7356,8 @@ class ProjectApiKeyProjectAssignment(dict):
         :param str project_id: Project ID to assign to Access Key
         :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
-        ProjectApiKeyProjectAssignment._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            project_id=project_id,
-            role_names=role_names,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             project_id: Optional[str] = None,
-             role_names: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if role_names is None and 'roleNames' in kwargs:
-            role_names = kwargs['roleNames']
-        if role_names is None:
-            raise TypeError("Missing 'role_names' argument")
-
-        _setter("project_id", project_id)
-        _setter("role_names", role_names)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "role_names", role_names)
 
     @property
     @pulumi.getter(name="projectId")
@@ -9839,23 +7381,10 @@ class ProjectIpAccessListTimeouts(dict):
     def __init__(__self__, *,
                  delete: Optional[str] = None,
                  read: Optional[str] = None):
-        ProjectIpAccessListTimeouts._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            delete=delete,
-            read=read,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             delete: Optional[str] = None,
-             read: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if delete is not None:
-            _setter("delete", delete)
+            pulumi.set(__self__, "delete", delete)
         if read is not None:
-            _setter("read", read)
+            pulumi.set(__self__, "read", read)
 
     @property
     @pulumi.getter
@@ -9901,43 +7430,14 @@ class ProjectLimit(dict):
         :param str name: Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
         :param int value: Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
         """
-        ProjectLimit._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            value=value,
-            current_usage=current_usage,
-            default_limit=default_limit,
-            maximum_limit=maximum_limit,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             value: Optional[int] = None,
-             current_usage: Optional[int] = None,
-             default_limit: Optional[int] = None,
-             maximum_limit: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-        if current_usage is None and 'currentUsage' in kwargs:
-            current_usage = kwargs['currentUsage']
-        if default_limit is None and 'defaultLimit' in kwargs:
-            default_limit = kwargs['defaultLimit']
-        if maximum_limit is None and 'maximumLimit' in kwargs:
-            maximum_limit = kwargs['maximumLimit']
-
-        _setter("name", name)
-        _setter("value", value)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
         if current_usage is not None:
-            _setter("current_usage", current_usage)
+            pulumi.set(__self__, "current_usage", current_usage)
         if default_limit is not None:
-            _setter("default_limit", default_limit)
+            pulumi.set(__self__, "default_limit", default_limit)
         if maximum_limit is not None:
-            _setter("maximum_limit", maximum_limit)
+            pulumi.set(__self__, "maximum_limit", maximum_limit)
 
     @property
     @pulumi.getter
@@ -10001,29 +7501,8 @@ class ProjectTeam(dict):
                > **NOTE:** Project created by API Keys must belong to an existing organization.
         :param str team_id: The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         """
-        ProjectTeam._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            role_names=role_names,
-            team_id=team_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             role_names: Optional[Sequence[str]] = None,
-             team_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if role_names is None and 'roleNames' in kwargs:
-            role_names = kwargs['roleNames']
-        if role_names is None:
-            raise TypeError("Missing 'role_names' argument")
-        if team_id is None and 'teamId' in kwargs:
-            team_id = kwargs['teamId']
-        if team_id is None:
-            raise TypeError("Missing 'team_id' argument")
-
-        _setter("role_names", role_names)
-        _setter("team_id", team_id)
+        pulumi.set(__self__, "role_names", role_names)
+        pulumi.set(__self__, "team_id", team_id)
 
     @property
     @pulumi.getter(name="roleNames")
@@ -10086,32 +7565,9 @@ class SearchIndexSynonym(dict):
         :param str name: Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
         :param str source_collection: Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
         """
-        SearchIndexSynonym._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            analyzer=analyzer,
-            name=name,
-            source_collection=source_collection,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             analyzer: Optional[str] = None,
-             name: Optional[str] = None,
-             source_collection: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if analyzer is None:
-            raise TypeError("Missing 'analyzer' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if source_collection is None and 'sourceCollection' in kwargs:
-            source_collection = kwargs['sourceCollection']
-        if source_collection is None:
-            raise TypeError("Missing 'source_collection' argument")
-
-        _setter("analyzer", analyzer)
-        _setter("name", name)
-        _setter("source_collection", source_collection)
+        pulumi.set(__self__, "analyzer", analyzer)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "source_collection", source_collection)
 
     @property
     @pulumi.getter
@@ -10157,23 +7613,10 @@ class ServerlessInstanceLink(dict):
     def __init__(__self__, *,
                  href: Optional[str] = None,
                  rel: Optional[str] = None):
-        ServerlessInstanceLink._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            href=href,
-            rel=rel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             href: Optional[str] = None,
-             rel: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if href is not None:
-            _setter("href", href)
+            pulumi.set(__self__, "href", href)
         if rel is not None:
-            _setter("rel", rel)
+            pulumi.set(__self__, "rel", rel)
 
     @property
     @pulumi.getter
@@ -10197,25 +7640,8 @@ class ServerlessInstanceTag(dict):
                
                To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
         """
-        ServerlessInstanceTag._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -10265,41 +7691,16 @@ class X509AuthenticationDatabaseUserCertificate(dict):
                  id: Optional[int] = None,
                  not_after: Optional[str] = None,
                  subject: Optional[str] = None):
-        X509AuthenticationDatabaseUserCertificate._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            group_id=group_id,
-            id=id,
-            not_after=not_after,
-            subject=subject,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[str] = None,
-             group_id: Optional[str] = None,
-             id: Optional[int] = None,
-             not_after: Optional[str] = None,
-             subject: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if not_after is None and 'notAfter' in kwargs:
-            not_after = kwargs['notAfter']
-
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if group_id is not None:
-            _setter("group_id", group_id)
+            pulumi.set(__self__, "group_id", group_id)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if not_after is not None:
-            _setter("not_after", not_after)
+            pulumi.set(__self__, "not_after", not_after)
         if subject is not None:
-            _setter("subject", subject)
+            pulumi.set(__self__, "subject", subject)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -10335,46 +7736,11 @@ class Get509AuthenticationDatabaseUserCertificateResult(dict):
                  id: int,
                  not_after: str,
                  subject: str):
-        Get509AuthenticationDatabaseUserCertificateResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            group_id=group_id,
-            id=id,
-            not_after=not_after,
-            subject=subject,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[str] = None,
-             group_id: Optional[str] = None,
-             id: Optional[int] = None,
-             not_after: Optional[str] = None,
-             subject: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if created_at is None:
-            raise TypeError("Missing 'created_at' argument")
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if group_id is None:
-            raise TypeError("Missing 'group_id' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if not_after is None and 'notAfter' in kwargs:
-            not_after = kwargs['notAfter']
-        if not_after is None:
-            raise TypeError("Missing 'not_after' argument")
-        if subject is None:
-            raise TypeError("Missing 'subject' argument")
-
-        _setter("created_at", created_at)
-        _setter("group_id", group_id)
-        _setter("id", id)
-        _setter("not_after", not_after)
-        _setter("subject", subject)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "not_after", not_after)
+        pulumi.set(__self__, "subject", subject)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -10415,55 +7781,12 @@ class GetAccessListApiKeysResultResult(dict):
         :param str cidr_block: Range of IP addresses in CIDR notation to be added to the access list.
         :param str ip_address: Single IP address to be added to the access list.
         """
-        GetAccessListApiKeysResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_count=access_count,
-            cidr_block=cidr_block,
-            created=created,
-            ip_address=ip_address,
-            last_used=last_used,
-            last_used_address=last_used_address,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_count: Optional[int] = None,
-             cidr_block: Optional[str] = None,
-             created: Optional[str] = None,
-             ip_address: Optional[str] = None,
-             last_used: Optional[str] = None,
-             last_used_address: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if access_count is None and 'accessCount' in kwargs:
-            access_count = kwargs['accessCount']
-        if access_count is None:
-            raise TypeError("Missing 'access_count' argument")
-        if cidr_block is None and 'cidrBlock' in kwargs:
-            cidr_block = kwargs['cidrBlock']
-        if cidr_block is None:
-            raise TypeError("Missing 'cidr_block' argument")
-        if created is None:
-            raise TypeError("Missing 'created' argument")
-        if ip_address is None and 'ipAddress' in kwargs:
-            ip_address = kwargs['ipAddress']
-        if ip_address is None:
-            raise TypeError("Missing 'ip_address' argument")
-        if last_used is None and 'lastUsed' in kwargs:
-            last_used = kwargs['lastUsed']
-        if last_used is None:
-            raise TypeError("Missing 'last_used' argument")
-        if last_used_address is None and 'lastUsedAddress' in kwargs:
-            last_used_address = kwargs['lastUsedAddress']
-        if last_used_address is None:
-            raise TypeError("Missing 'last_used_address' argument")
-
-        _setter("access_count", access_count)
-        _setter("cidr_block", cidr_block)
-        _setter("created", created)
-        _setter("ip_address", ip_address)
-        _setter("last_used", last_used)
-        _setter("last_used_address", last_used_address)
+        pulumi.set(__self__, "access_count", access_count)
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "last_used", last_used)
+        pulumi.set(__self__, "last_used_address", last_used_address)
 
     @property
     @pulumi.getter(name="accessCount")
@@ -10529,92 +7852,17 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
-        GetAdvancedClusterAdvancedConfigurationResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            default_read_concern=default_read_concern,
-            default_write_concern=default_write_concern,
-            fail_index_key_too_long=fail_index_key_too_long,
-            javascript_enabled=javascript_enabled,
-            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
-            no_table_scan=no_table_scan,
-            oplog_min_retention_hours=oplog_min_retention_hours,
-            oplog_size_mb=oplog_size_mb,
-            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
-            sample_size_bi_connector=sample_size_bi_connector,
-            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             default_read_concern: Optional[str] = None,
-             default_write_concern: Optional[str] = None,
-             fail_index_key_too_long: Optional[bool] = None,
-             javascript_enabled: Optional[bool] = None,
-             minimum_enabled_tls_protocol: Optional[str] = None,
-             no_table_scan: Optional[bool] = None,
-             oplog_min_retention_hours: Optional[int] = None,
-             oplog_size_mb: Optional[int] = None,
-             sample_refresh_interval_bi_connector: Optional[int] = None,
-             sample_size_bi_connector: Optional[int] = None,
-             transaction_lifetime_limit_seconds: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if default_read_concern is None and 'defaultReadConcern' in kwargs:
-            default_read_concern = kwargs['defaultReadConcern']
-        if default_read_concern is None:
-            raise TypeError("Missing 'default_read_concern' argument")
-        if default_write_concern is None and 'defaultWriteConcern' in kwargs:
-            default_write_concern = kwargs['defaultWriteConcern']
-        if default_write_concern is None:
-            raise TypeError("Missing 'default_write_concern' argument")
-        if fail_index_key_too_long is None and 'failIndexKeyTooLong' in kwargs:
-            fail_index_key_too_long = kwargs['failIndexKeyTooLong']
-        if fail_index_key_too_long is None:
-            raise TypeError("Missing 'fail_index_key_too_long' argument")
-        if javascript_enabled is None and 'javascriptEnabled' in kwargs:
-            javascript_enabled = kwargs['javascriptEnabled']
-        if javascript_enabled is None:
-            raise TypeError("Missing 'javascript_enabled' argument")
-        if minimum_enabled_tls_protocol is None and 'minimumEnabledTlsProtocol' in kwargs:
-            minimum_enabled_tls_protocol = kwargs['minimumEnabledTlsProtocol']
-        if minimum_enabled_tls_protocol is None:
-            raise TypeError("Missing 'minimum_enabled_tls_protocol' argument")
-        if no_table_scan is None and 'noTableScan' in kwargs:
-            no_table_scan = kwargs['noTableScan']
-        if no_table_scan is None:
-            raise TypeError("Missing 'no_table_scan' argument")
-        if oplog_min_retention_hours is None and 'oplogMinRetentionHours' in kwargs:
-            oplog_min_retention_hours = kwargs['oplogMinRetentionHours']
-        if oplog_min_retention_hours is None:
-            raise TypeError("Missing 'oplog_min_retention_hours' argument")
-        if oplog_size_mb is None and 'oplogSizeMb' in kwargs:
-            oplog_size_mb = kwargs['oplogSizeMb']
-        if oplog_size_mb is None:
-            raise TypeError("Missing 'oplog_size_mb' argument")
-        if sample_refresh_interval_bi_connector is None and 'sampleRefreshIntervalBiConnector' in kwargs:
-            sample_refresh_interval_bi_connector = kwargs['sampleRefreshIntervalBiConnector']
-        if sample_refresh_interval_bi_connector is None:
-            raise TypeError("Missing 'sample_refresh_interval_bi_connector' argument")
-        if sample_size_bi_connector is None and 'sampleSizeBiConnector' in kwargs:
-            sample_size_bi_connector = kwargs['sampleSizeBiConnector']
-        if sample_size_bi_connector is None:
-            raise TypeError("Missing 'sample_size_bi_connector' argument")
-        if transaction_lifetime_limit_seconds is None and 'transactionLifetimeLimitSeconds' in kwargs:
-            transaction_lifetime_limit_seconds = kwargs['transactionLifetimeLimitSeconds']
-        if transaction_lifetime_limit_seconds is None:
-            raise TypeError("Missing 'transaction_lifetime_limit_seconds' argument")
-
-        _setter("default_read_concern", default_read_concern)
-        _setter("default_write_concern", default_write_concern)
-        _setter("fail_index_key_too_long", fail_index_key_too_long)
-        _setter("javascript_enabled", javascript_enabled)
-        _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
-        _setter("no_table_scan", no_table_scan)
-        _setter("oplog_min_retention_hours", oplog_min_retention_hours)
-        _setter("oplog_size_mb", oplog_size_mb)
-        _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
-        _setter("sample_size_bi_connector", sample_size_bi_connector)
-        _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+        pulumi.set(__self__, "default_read_concern", default_read_concern)
+        pulumi.set(__self__, "default_write_concern", default_write_concern)
+        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
+        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -10714,27 +7962,8 @@ class GetAdvancedClusterBiConnectorConfigResult(dict):
         :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
         :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
         """
-        GetAdvancedClusterBiConnectorConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            read_preference=read_preference,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[bool] = None,
-             read_preference: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if enabled is None:
-            raise TypeError("Missing 'enabled' argument")
-        if read_preference is None and 'readPreference' in kwargs:
-            read_preference = kwargs['readPreference']
-        if read_preference is None:
-            raise TypeError("Missing 'read_preference' argument")
-
-        _setter("enabled", enabled)
-        _setter("read_preference", read_preference)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -10761,46 +7990,11 @@ class GetAdvancedClusterConnectionStringResult(dict):
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
-        GetAdvancedClusterConnectionStringResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            private=private,
-            private_endpoints=private_endpoints,
-            private_srv=private_srv,
-            standard=standard,
-            standard_srv=standard_srv,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             private: Optional[str] = None,
-             private_endpoints: Optional[Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointResult']] = None,
-             private_srv: Optional[str] = None,
-             standard: Optional[str] = None,
-             standard_srv: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if private is None:
-            raise TypeError("Missing 'private' argument")
-        if private_endpoints is None and 'privateEndpoints' in kwargs:
-            private_endpoints = kwargs['privateEndpoints']
-        if private_endpoints is None:
-            raise TypeError("Missing 'private_endpoints' argument")
-        if private_srv is None and 'privateSrv' in kwargs:
-            private_srv = kwargs['privateSrv']
-        if private_srv is None:
-            raise TypeError("Missing 'private_srv' argument")
-        if standard is None:
-            raise TypeError("Missing 'standard' argument")
-        if standard_srv is None and 'standardSrv' in kwargs:
-            standard_srv = kwargs['standardSrv']
-        if standard_srv is None:
-            raise TypeError("Missing 'standard_srv' argument")
-
-        _setter("private", private)
-        _setter("private_endpoints", private_endpoints)
-        _setter("private_srv", private_srv)
-        _setter("standard", standard)
-        _setter("standard_srv", standard_srv)
+        pulumi.set(__self__, "private", private)
+        pulumi.set(__self__, "private_endpoints", private_endpoints)
+        pulumi.set(__self__, "private_srv", private_srv)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "standard_srv", standard_srv)
 
     @property
     @pulumi.getter
@@ -10836,46 +8030,11 @@ class GetAdvancedClusterConnectionStringPrivateEndpointResult(dict):
                  srv_connection_string: str,
                  srv_shard_optimized_connection_string: str,
                  type: str):
-        GetAdvancedClusterConnectionStringPrivateEndpointResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            connection_string=connection_string,
-            endpoints=endpoints,
-            srv_connection_string=srv_connection_string,
-            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             connection_string: Optional[str] = None,
-             endpoints: Optional[Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult']] = None,
-             srv_connection_string: Optional[str] = None,
-             srv_shard_optimized_connection_string: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if connection_string is None and 'connectionString' in kwargs:
-            connection_string = kwargs['connectionString']
-        if connection_string is None:
-            raise TypeError("Missing 'connection_string' argument")
-        if endpoints is None:
-            raise TypeError("Missing 'endpoints' argument")
-        if srv_connection_string is None and 'srvConnectionString' in kwargs:
-            srv_connection_string = kwargs['srvConnectionString']
-        if srv_connection_string is None:
-            raise TypeError("Missing 'srv_connection_string' argument")
-        if srv_shard_optimized_connection_string is None and 'srvShardOptimizedConnectionString' in kwargs:
-            srv_shard_optimized_connection_string = kwargs['srvShardOptimizedConnectionString']
-        if srv_shard_optimized_connection_string is None:
-            raise TypeError("Missing 'srv_shard_optimized_connection_string' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("connection_string", connection_string)
-        _setter("endpoints", endpoints)
-        _setter("srv_connection_string", srv_connection_string)
-        _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
-        _setter("type", type)
+        pulumi.set(__self__, "connection_string", connection_string)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -10912,34 +8071,9 @@ class GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult(dict):
         """
         :param str provider_name: Cloud service provider on which the servers are provisioned.
         """
-        GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoint_id=endpoint_id,
-            provider_name=provider_name,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoint_id: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if endpoint_id is None and 'endpointId' in kwargs:
-            endpoint_id = kwargs['endpointId']
-        if endpoint_id is None:
-            raise TypeError("Missing 'endpoint_id' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("endpoint_id", endpoint_id)
-        _setter("provider_name", provider_name)
-        _setter("region", region)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -10969,25 +8103,8 @@ class GetAdvancedClusterLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        GetAdvancedClusterLabelResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -11020,48 +8137,11 @@ class GetAdvancedClusterReplicationSpecResult(dict):
         :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
         :param str zone_name: Name for the zone in a Global Cluster.
         """
-        GetAdvancedClusterReplicationSpecResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            container_id=container_id,
-            id=id,
-            num_shards=num_shards,
-            region_configs=region_configs,
-            zone_name=zone_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             container_id: Optional[Mapping[str, str]] = None,
-             id: Optional[str] = None,
-             num_shards: Optional[int] = None,
-             region_configs: Optional[Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigResult']] = None,
-             zone_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if container_id is None and 'containerId' in kwargs:
-            container_id = kwargs['containerId']
-        if container_id is None:
-            raise TypeError("Missing 'container_id' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if num_shards is None and 'numShards' in kwargs:
-            num_shards = kwargs['numShards']
-        if num_shards is None:
-            raise TypeError("Missing 'num_shards' argument")
-        if region_configs is None and 'regionConfigs' in kwargs:
-            region_configs = kwargs['regionConfigs']
-        if region_configs is None:
-            raise TypeError("Missing 'region_configs' argument")
-        if zone_name is None and 'zoneName' in kwargs:
-            zone_name = kwargs['zoneName']
-        if zone_name is None:
-            raise TypeError("Missing 'zone_name' argument")
-
-        _setter("container_id", container_id)
-        _setter("id", id)
-        _setter("num_shards", num_shards)
-        _setter("region_configs", region_configs)
-        _setter("zone_name", zone_name)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "num_shards", num_shards)
+        pulumi.set(__self__, "region_configs", region_configs)
+        pulumi.set(__self__, "zone_name", zone_name)
 
     @property
     @pulumi.getter(name="containerId")
@@ -11124,73 +8204,18 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
         :param 'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param 'GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below
         """
-        GetAdvancedClusterReplicationSpecRegionConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            analytics_auto_scalings=analytics_auto_scalings,
-            auto_scalings=auto_scalings,
-            backing_provider_name=backing_provider_name,
-            priority=priority,
-            provider_name=provider_name,
-            region_name=region_name,
-            analytics_specs=analytics_specs,
-            electable_specs=electable_specs,
-            read_only_specs=read_only_specs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             analytics_auto_scalings: Optional[Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult']] = None,
-             auto_scalings: Optional[Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult']] = None,
-             backing_provider_name: Optional[str] = None,
-             priority: Optional[int] = None,
-             provider_name: Optional[str] = None,
-             region_name: Optional[str] = None,
-             analytics_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult'] = None,
-             electable_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult'] = None,
-             read_only_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult'] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if analytics_auto_scalings is None and 'analyticsAutoScalings' in kwargs:
-            analytics_auto_scalings = kwargs['analyticsAutoScalings']
-        if analytics_auto_scalings is None:
-            raise TypeError("Missing 'analytics_auto_scalings' argument")
-        if auto_scalings is None and 'autoScalings' in kwargs:
-            auto_scalings = kwargs['autoScalings']
-        if auto_scalings is None:
-            raise TypeError("Missing 'auto_scalings' argument")
-        if backing_provider_name is None and 'backingProviderName' in kwargs:
-            backing_provider_name = kwargs['backingProviderName']
-        if backing_provider_name is None:
-            raise TypeError("Missing 'backing_provider_name' argument")
-        if priority is None:
-            raise TypeError("Missing 'priority' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if region_name is None:
-            raise TypeError("Missing 'region_name' argument")
-        if analytics_specs is None and 'analyticsSpecs' in kwargs:
-            analytics_specs = kwargs['analyticsSpecs']
-        if electable_specs is None and 'electableSpecs' in kwargs:
-            electable_specs = kwargs['electableSpecs']
-        if read_only_specs is None and 'readOnlySpecs' in kwargs:
-            read_only_specs = kwargs['readOnlySpecs']
-
-        _setter("analytics_auto_scalings", analytics_auto_scalings)
-        _setter("auto_scalings", auto_scalings)
-        _setter("backing_provider_name", backing_provider_name)
-        _setter("priority", priority)
-        _setter("provider_name", provider_name)
-        _setter("region_name", region_name)
+        pulumi.set(__self__, "analytics_auto_scalings", analytics_auto_scalings)
+        pulumi.set(__self__, "auto_scalings", auto_scalings)
+        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region_name", region_name)
         if analytics_specs is not None:
-            _setter("analytics_specs", analytics_specs)
+            pulumi.set(__self__, "analytics_specs", analytics_specs)
         if electable_specs is not None:
-            _setter("electable_specs", electable_specs)
+            pulumi.set(__self__, "electable_specs", electable_specs)
         if read_only_specs is not None:
-            _setter("read_only_specs", read_only_specs)
+            pulumi.set(__self__, "read_only_specs", read_only_specs)
 
     @property
     @pulumi.getter(name="analyticsAutoScalings")
@@ -11281,50 +8306,11 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult(di
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
         """
-        GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            compute_enabled=compute_enabled,
-            compute_max_instance_size=compute_max_instance_size,
-            compute_min_instance_size=compute_min_instance_size,
-            compute_scale_down_enabled=compute_scale_down_enabled,
-            disk_gb_enabled=disk_gb_enabled,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             compute_enabled: Optional[bool] = None,
-             compute_max_instance_size: Optional[str] = None,
-             compute_min_instance_size: Optional[str] = None,
-             compute_scale_down_enabled: Optional[bool] = None,
-             disk_gb_enabled: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if compute_enabled is None and 'computeEnabled' in kwargs:
-            compute_enabled = kwargs['computeEnabled']
-        if compute_enabled is None:
-            raise TypeError("Missing 'compute_enabled' argument")
-        if compute_max_instance_size is None and 'computeMaxInstanceSize' in kwargs:
-            compute_max_instance_size = kwargs['computeMaxInstanceSize']
-        if compute_max_instance_size is None:
-            raise TypeError("Missing 'compute_max_instance_size' argument")
-        if compute_min_instance_size is None and 'computeMinInstanceSize' in kwargs:
-            compute_min_instance_size = kwargs['computeMinInstanceSize']
-        if compute_min_instance_size is None:
-            raise TypeError("Missing 'compute_min_instance_size' argument")
-        if compute_scale_down_enabled is None and 'computeScaleDownEnabled' in kwargs:
-            compute_scale_down_enabled = kwargs['computeScaleDownEnabled']
-        if compute_scale_down_enabled is None:
-            raise TypeError("Missing 'compute_scale_down_enabled' argument")
-        if disk_gb_enabled is None and 'diskGbEnabled' in kwargs:
-            disk_gb_enabled = kwargs['diskGbEnabled']
-        if disk_gb_enabled is None:
-            raise TypeError("Missing 'disk_gb_enabled' argument")
-
-        _setter("compute_enabled", compute_enabled)
-        _setter("compute_max_instance_size", compute_max_instance_size)
-        _setter("compute_min_instance_size", compute_min_instance_size)
-        _setter("compute_scale_down_enabled", compute_scale_down_enabled)
-        _setter("disk_gb_enabled", disk_gb_enabled)
+        pulumi.set(__self__, "compute_enabled", compute_enabled)
+        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -11381,40 +8367,13 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_size=instance_size,
-            disk_iops=disk_iops,
-            ebs_volume_type=ebs_volume_type,
-            node_count=node_count,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_size: Optional[str] = None,
-             disk_iops: Optional[int] = None,
-             ebs_volume_type: Optional[str] = None,
-             node_count: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_size is None and 'instanceSize' in kwargs:
-            instance_size = kwargs['instanceSize']
-        if instance_size is None:
-            raise TypeError("Missing 'instance_size' argument")
-        if disk_iops is None and 'diskIops' in kwargs:
-            disk_iops = kwargs['diskIops']
-        if ebs_volume_type is None and 'ebsVolumeType' in kwargs:
-            ebs_volume_type = kwargs['ebsVolumeType']
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-
-        _setter("instance_size", instance_size)
+        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
-            _setter("disk_iops", disk_iops)
+            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            _setter("ebs_volume_type", ebs_volume_type)
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -11465,50 +8424,11 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
         """
-        GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            compute_enabled=compute_enabled,
-            compute_max_instance_size=compute_max_instance_size,
-            compute_min_instance_size=compute_min_instance_size,
-            compute_scale_down_enabled=compute_scale_down_enabled,
-            disk_gb_enabled=disk_gb_enabled,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             compute_enabled: Optional[bool] = None,
-             compute_max_instance_size: Optional[str] = None,
-             compute_min_instance_size: Optional[str] = None,
-             compute_scale_down_enabled: Optional[bool] = None,
-             disk_gb_enabled: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if compute_enabled is None and 'computeEnabled' in kwargs:
-            compute_enabled = kwargs['computeEnabled']
-        if compute_enabled is None:
-            raise TypeError("Missing 'compute_enabled' argument")
-        if compute_max_instance_size is None and 'computeMaxInstanceSize' in kwargs:
-            compute_max_instance_size = kwargs['computeMaxInstanceSize']
-        if compute_max_instance_size is None:
-            raise TypeError("Missing 'compute_max_instance_size' argument")
-        if compute_min_instance_size is None and 'computeMinInstanceSize' in kwargs:
-            compute_min_instance_size = kwargs['computeMinInstanceSize']
-        if compute_min_instance_size is None:
-            raise TypeError("Missing 'compute_min_instance_size' argument")
-        if compute_scale_down_enabled is None and 'computeScaleDownEnabled' in kwargs:
-            compute_scale_down_enabled = kwargs['computeScaleDownEnabled']
-        if compute_scale_down_enabled is None:
-            raise TypeError("Missing 'compute_scale_down_enabled' argument")
-        if disk_gb_enabled is None and 'diskGbEnabled' in kwargs:
-            disk_gb_enabled = kwargs['diskGbEnabled']
-        if disk_gb_enabled is None:
-            raise TypeError("Missing 'disk_gb_enabled' argument")
-
-        _setter("compute_enabled", compute_enabled)
-        _setter("compute_max_instance_size", compute_max_instance_size)
-        _setter("compute_min_instance_size", compute_min_instance_size)
-        _setter("compute_scale_down_enabled", compute_scale_down_enabled)
-        _setter("disk_gb_enabled", disk_gb_enabled)
+        pulumi.set(__self__, "compute_enabled", compute_enabled)
+        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -11565,40 +8485,13 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_size=instance_size,
-            disk_iops=disk_iops,
-            ebs_volume_type=ebs_volume_type,
-            node_count=node_count,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_size: Optional[str] = None,
-             disk_iops: Optional[int] = None,
-             ebs_volume_type: Optional[str] = None,
-             node_count: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_size is None and 'instanceSize' in kwargs:
-            instance_size = kwargs['instanceSize']
-        if instance_size is None:
-            raise TypeError("Missing 'instance_size' argument")
-        if disk_iops is None and 'diskIops' in kwargs:
-            disk_iops = kwargs['diskIops']
-        if ebs_volume_type is None and 'ebsVolumeType' in kwargs:
-            ebs_volume_type = kwargs['ebsVolumeType']
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-
-        _setter("instance_size", instance_size)
+        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
-            _setter("disk_iops", disk_iops)
+            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            _setter("ebs_volume_type", ebs_volume_type)
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -11646,40 +8539,13 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_size=instance_size,
-            disk_iops=disk_iops,
-            ebs_volume_type=ebs_volume_type,
-            node_count=node_count,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_size: Optional[str] = None,
-             disk_iops: Optional[int] = None,
-             ebs_volume_type: Optional[str] = None,
-             node_count: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_size is None and 'instanceSize' in kwargs:
-            instance_size = kwargs['instanceSize']
-        if instance_size is None:
-            raise TypeError("Missing 'instance_size' argument")
-        if disk_iops is None and 'diskIops' in kwargs:
-            disk_iops = kwargs['diskIops']
-        if ebs_volume_type is None and 'ebsVolumeType' in kwargs:
-            ebs_volume_type = kwargs['ebsVolumeType']
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-
-        _setter("instance_size", instance_size)
+        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
-            _setter("disk_iops", disk_iops)
+            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            _setter("ebs_volume_type", ebs_volume_type)
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -11723,25 +8589,8 @@ class GetAdvancedClusterTagResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        GetAdvancedClusterTagResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -11802,147 +8651,26 @@ class GetAdvancedClustersResultResult(dict):
         :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param str version_release_system: Release cadence that Atlas uses for this cluster.
         """
-        GetAdvancedClustersResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            advanced_configurations=advanced_configurations,
-            backup_enabled=backup_enabled,
-            bi_connector_configs=bi_connector_configs,
-            cluster_type=cluster_type,
-            connection_strings=connection_strings,
-            create_date=create_date,
-            disk_size_gb=disk_size_gb,
-            encryption_at_rest_provider=encryption_at_rest_provider,
-            labels=labels,
-            mongo_db_major_version=mongo_db_major_version,
-            mongo_db_version=mongo_db_version,
-            name=name,
-            paused=paused,
-            pit_enabled=pit_enabled,
-            replication_specs=replication_specs,
-            root_cert_type=root_cert_type,
-            state_name=state_name,
-            tags=tags,
-            termination_protection_enabled=termination_protection_enabled,
-            version_release_system=version_release_system,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             advanced_configurations: Optional[Sequence['outputs.GetAdvancedClustersResultAdvancedConfigurationResult']] = None,
-             backup_enabled: Optional[bool] = None,
-             bi_connector_configs: Optional[Sequence['outputs.GetAdvancedClustersResultBiConnectorConfigResult']] = None,
-             cluster_type: Optional[str] = None,
-             connection_strings: Optional[Sequence['outputs.GetAdvancedClustersResultConnectionStringResult']] = None,
-             create_date: Optional[str] = None,
-             disk_size_gb: Optional[float] = None,
-             encryption_at_rest_provider: Optional[str] = None,
-             labels: Optional[Sequence['outputs.GetAdvancedClustersResultLabelResult']] = None,
-             mongo_db_major_version: Optional[str] = None,
-             mongo_db_version: Optional[str] = None,
-             name: Optional[str] = None,
-             paused: Optional[bool] = None,
-             pit_enabled: Optional[bool] = None,
-             replication_specs: Optional[Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult']] = None,
-             root_cert_type: Optional[str] = None,
-             state_name: Optional[str] = None,
-             tags: Optional[Sequence['outputs.GetAdvancedClustersResultTagResult']] = None,
-             termination_protection_enabled: Optional[bool] = None,
-             version_release_system: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if advanced_configurations is None and 'advancedConfigurations' in kwargs:
-            advanced_configurations = kwargs['advancedConfigurations']
-        if advanced_configurations is None:
-            raise TypeError("Missing 'advanced_configurations' argument")
-        if backup_enabled is None and 'backupEnabled' in kwargs:
-            backup_enabled = kwargs['backupEnabled']
-        if backup_enabled is None:
-            raise TypeError("Missing 'backup_enabled' argument")
-        if bi_connector_configs is None and 'biConnectorConfigs' in kwargs:
-            bi_connector_configs = kwargs['biConnectorConfigs']
-        if bi_connector_configs is None:
-            raise TypeError("Missing 'bi_connector_configs' argument")
-        if cluster_type is None and 'clusterType' in kwargs:
-            cluster_type = kwargs['clusterType']
-        if cluster_type is None:
-            raise TypeError("Missing 'cluster_type' argument")
-        if connection_strings is None and 'connectionStrings' in kwargs:
-            connection_strings = kwargs['connectionStrings']
-        if connection_strings is None:
-            raise TypeError("Missing 'connection_strings' argument")
-        if create_date is None and 'createDate' in kwargs:
-            create_date = kwargs['createDate']
-        if create_date is None:
-            raise TypeError("Missing 'create_date' argument")
-        if disk_size_gb is None and 'diskSizeGb' in kwargs:
-            disk_size_gb = kwargs['diskSizeGb']
-        if disk_size_gb is None:
-            raise TypeError("Missing 'disk_size_gb' argument")
-        if encryption_at_rest_provider is None and 'encryptionAtRestProvider' in kwargs:
-            encryption_at_rest_provider = kwargs['encryptionAtRestProvider']
-        if encryption_at_rest_provider is None:
-            raise TypeError("Missing 'encryption_at_rest_provider' argument")
-        if labels is None:
-            raise TypeError("Missing 'labels' argument")
-        if mongo_db_major_version is None and 'mongoDbMajorVersion' in kwargs:
-            mongo_db_major_version = kwargs['mongoDbMajorVersion']
-        if mongo_db_major_version is None:
-            raise TypeError("Missing 'mongo_db_major_version' argument")
-        if mongo_db_version is None and 'mongoDbVersion' in kwargs:
-            mongo_db_version = kwargs['mongoDbVersion']
-        if mongo_db_version is None:
-            raise TypeError("Missing 'mongo_db_version' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if paused is None:
-            raise TypeError("Missing 'paused' argument")
-        if pit_enabled is None and 'pitEnabled' in kwargs:
-            pit_enabled = kwargs['pitEnabled']
-        if pit_enabled is None:
-            raise TypeError("Missing 'pit_enabled' argument")
-        if replication_specs is None and 'replicationSpecs' in kwargs:
-            replication_specs = kwargs['replicationSpecs']
-        if replication_specs is None:
-            raise TypeError("Missing 'replication_specs' argument")
-        if root_cert_type is None and 'rootCertType' in kwargs:
-            root_cert_type = kwargs['rootCertType']
-        if root_cert_type is None:
-            raise TypeError("Missing 'root_cert_type' argument")
-        if state_name is None and 'stateName' in kwargs:
-            state_name = kwargs['stateName']
-        if state_name is None:
-            raise TypeError("Missing 'state_name' argument")
-        if tags is None:
-            raise TypeError("Missing 'tags' argument")
-        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
-            termination_protection_enabled = kwargs['terminationProtectionEnabled']
-        if termination_protection_enabled is None:
-            raise TypeError("Missing 'termination_protection_enabled' argument")
-        if version_release_system is None and 'versionReleaseSystem' in kwargs:
-            version_release_system = kwargs['versionReleaseSystem']
-        if version_release_system is None:
-            raise TypeError("Missing 'version_release_system' argument")
-
-        _setter("advanced_configurations", advanced_configurations)
-        _setter("backup_enabled", backup_enabled)
-        _setter("bi_connector_configs", bi_connector_configs)
-        _setter("cluster_type", cluster_type)
-        _setter("connection_strings", connection_strings)
-        _setter("create_date", create_date)
-        _setter("disk_size_gb", disk_size_gb)
-        _setter("encryption_at_rest_provider", encryption_at_rest_provider)
-        _setter("labels", labels)
-        _setter("mongo_db_major_version", mongo_db_major_version)
-        _setter("mongo_db_version", mongo_db_version)
-        _setter("name", name)
-        _setter("paused", paused)
-        _setter("pit_enabled", pit_enabled)
-        _setter("replication_specs", replication_specs)
-        _setter("root_cert_type", root_cert_type)
-        _setter("state_name", state_name)
-        _setter("tags", tags)
-        _setter("termination_protection_enabled", termination_protection_enabled)
-        _setter("version_release_system", version_release_system)
+        pulumi.set(__self__, "advanced_configurations", advanced_configurations)
+        pulumi.set(__self__, "backup_enabled", backup_enabled)
+        pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "connection_strings", connection_strings)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "paused", paused)
+        pulumi.set(__self__, "pit_enabled", pit_enabled)
+        pulumi.set(__self__, "replication_specs", replication_specs)
+        pulumi.set(__self__, "root_cert_type", root_cert_type)
+        pulumi.set(__self__, "state_name", state_name)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+        pulumi.set(__self__, "version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="advancedConfigurations")
@@ -12125,92 +8853,17 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
-        GetAdvancedClustersResultAdvancedConfigurationResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            default_read_concern=default_read_concern,
-            default_write_concern=default_write_concern,
-            fail_index_key_too_long=fail_index_key_too_long,
-            javascript_enabled=javascript_enabled,
-            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
-            no_table_scan=no_table_scan,
-            oplog_min_retention_hours=oplog_min_retention_hours,
-            oplog_size_mb=oplog_size_mb,
-            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
-            sample_size_bi_connector=sample_size_bi_connector,
-            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             default_read_concern: Optional[str] = None,
-             default_write_concern: Optional[str] = None,
-             fail_index_key_too_long: Optional[bool] = None,
-             javascript_enabled: Optional[bool] = None,
-             minimum_enabled_tls_protocol: Optional[str] = None,
-             no_table_scan: Optional[bool] = None,
-             oplog_min_retention_hours: Optional[int] = None,
-             oplog_size_mb: Optional[int] = None,
-             sample_refresh_interval_bi_connector: Optional[int] = None,
-             sample_size_bi_connector: Optional[int] = None,
-             transaction_lifetime_limit_seconds: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if default_read_concern is None and 'defaultReadConcern' in kwargs:
-            default_read_concern = kwargs['defaultReadConcern']
-        if default_read_concern is None:
-            raise TypeError("Missing 'default_read_concern' argument")
-        if default_write_concern is None and 'defaultWriteConcern' in kwargs:
-            default_write_concern = kwargs['defaultWriteConcern']
-        if default_write_concern is None:
-            raise TypeError("Missing 'default_write_concern' argument")
-        if fail_index_key_too_long is None and 'failIndexKeyTooLong' in kwargs:
-            fail_index_key_too_long = kwargs['failIndexKeyTooLong']
-        if fail_index_key_too_long is None:
-            raise TypeError("Missing 'fail_index_key_too_long' argument")
-        if javascript_enabled is None and 'javascriptEnabled' in kwargs:
-            javascript_enabled = kwargs['javascriptEnabled']
-        if javascript_enabled is None:
-            raise TypeError("Missing 'javascript_enabled' argument")
-        if minimum_enabled_tls_protocol is None and 'minimumEnabledTlsProtocol' in kwargs:
-            minimum_enabled_tls_protocol = kwargs['minimumEnabledTlsProtocol']
-        if minimum_enabled_tls_protocol is None:
-            raise TypeError("Missing 'minimum_enabled_tls_protocol' argument")
-        if no_table_scan is None and 'noTableScan' in kwargs:
-            no_table_scan = kwargs['noTableScan']
-        if no_table_scan is None:
-            raise TypeError("Missing 'no_table_scan' argument")
-        if oplog_min_retention_hours is None and 'oplogMinRetentionHours' in kwargs:
-            oplog_min_retention_hours = kwargs['oplogMinRetentionHours']
-        if oplog_min_retention_hours is None:
-            raise TypeError("Missing 'oplog_min_retention_hours' argument")
-        if oplog_size_mb is None and 'oplogSizeMb' in kwargs:
-            oplog_size_mb = kwargs['oplogSizeMb']
-        if oplog_size_mb is None:
-            raise TypeError("Missing 'oplog_size_mb' argument")
-        if sample_refresh_interval_bi_connector is None and 'sampleRefreshIntervalBiConnector' in kwargs:
-            sample_refresh_interval_bi_connector = kwargs['sampleRefreshIntervalBiConnector']
-        if sample_refresh_interval_bi_connector is None:
-            raise TypeError("Missing 'sample_refresh_interval_bi_connector' argument")
-        if sample_size_bi_connector is None and 'sampleSizeBiConnector' in kwargs:
-            sample_size_bi_connector = kwargs['sampleSizeBiConnector']
-        if sample_size_bi_connector is None:
-            raise TypeError("Missing 'sample_size_bi_connector' argument")
-        if transaction_lifetime_limit_seconds is None and 'transactionLifetimeLimitSeconds' in kwargs:
-            transaction_lifetime_limit_seconds = kwargs['transactionLifetimeLimitSeconds']
-        if transaction_lifetime_limit_seconds is None:
-            raise TypeError("Missing 'transaction_lifetime_limit_seconds' argument")
-
-        _setter("default_read_concern", default_read_concern)
-        _setter("default_write_concern", default_write_concern)
-        _setter("fail_index_key_too_long", fail_index_key_too_long)
-        _setter("javascript_enabled", javascript_enabled)
-        _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
-        _setter("no_table_scan", no_table_scan)
-        _setter("oplog_min_retention_hours", oplog_min_retention_hours)
-        _setter("oplog_size_mb", oplog_size_mb)
-        _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
-        _setter("sample_size_bi_connector", sample_size_bi_connector)
-        _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+        pulumi.set(__self__, "default_read_concern", default_read_concern)
+        pulumi.set(__self__, "default_write_concern", default_write_concern)
+        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
+        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -12307,27 +8960,8 @@ class GetAdvancedClustersResultBiConnectorConfigResult(dict):
         :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
         :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
         """
-        GetAdvancedClustersResultBiConnectorConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            read_preference=read_preference,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[bool] = None,
-             read_preference: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if enabled is None:
-            raise TypeError("Missing 'enabled' argument")
-        if read_preference is None and 'readPreference' in kwargs:
-            read_preference = kwargs['readPreference']
-        if read_preference is None:
-            raise TypeError("Missing 'read_preference' argument")
-
-        _setter("enabled", enabled)
-        _setter("read_preference", read_preference)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -12354,46 +8988,11 @@ class GetAdvancedClustersResultConnectionStringResult(dict):
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
-        GetAdvancedClustersResultConnectionStringResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            private=private,
-            private_endpoints=private_endpoints,
-            private_srv=private_srv,
-            standard=standard,
-            standard_srv=standard_srv,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             private: Optional[str] = None,
-             private_endpoints: Optional[Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointResult']] = None,
-             private_srv: Optional[str] = None,
-             standard: Optional[str] = None,
-             standard_srv: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if private is None:
-            raise TypeError("Missing 'private' argument")
-        if private_endpoints is None and 'privateEndpoints' in kwargs:
-            private_endpoints = kwargs['privateEndpoints']
-        if private_endpoints is None:
-            raise TypeError("Missing 'private_endpoints' argument")
-        if private_srv is None and 'privateSrv' in kwargs:
-            private_srv = kwargs['privateSrv']
-        if private_srv is None:
-            raise TypeError("Missing 'private_srv' argument")
-        if standard is None:
-            raise TypeError("Missing 'standard' argument")
-        if standard_srv is None and 'standardSrv' in kwargs:
-            standard_srv = kwargs['standardSrv']
-        if standard_srv is None:
-            raise TypeError("Missing 'standard_srv' argument")
-
-        _setter("private", private)
-        _setter("private_endpoints", private_endpoints)
-        _setter("private_srv", private_srv)
-        _setter("standard", standard)
-        _setter("standard_srv", standard_srv)
+        pulumi.set(__self__, "private", private)
+        pulumi.set(__self__, "private_endpoints", private_endpoints)
+        pulumi.set(__self__, "private_srv", private_srv)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "standard_srv", standard_srv)
 
     @property
     @pulumi.getter
@@ -12429,46 +9028,11 @@ class GetAdvancedClustersResultConnectionStringPrivateEndpointResult(dict):
                  srv_connection_string: str,
                  srv_shard_optimized_connection_string: str,
                  type: str):
-        GetAdvancedClustersResultConnectionStringPrivateEndpointResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            connection_string=connection_string,
-            endpoints=endpoints,
-            srv_connection_string=srv_connection_string,
-            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             connection_string: Optional[str] = None,
-             endpoints: Optional[Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult']] = None,
-             srv_connection_string: Optional[str] = None,
-             srv_shard_optimized_connection_string: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if connection_string is None and 'connectionString' in kwargs:
-            connection_string = kwargs['connectionString']
-        if connection_string is None:
-            raise TypeError("Missing 'connection_string' argument")
-        if endpoints is None:
-            raise TypeError("Missing 'endpoints' argument")
-        if srv_connection_string is None and 'srvConnectionString' in kwargs:
-            srv_connection_string = kwargs['srvConnectionString']
-        if srv_connection_string is None:
-            raise TypeError("Missing 'srv_connection_string' argument")
-        if srv_shard_optimized_connection_string is None and 'srvShardOptimizedConnectionString' in kwargs:
-            srv_shard_optimized_connection_string = kwargs['srvShardOptimizedConnectionString']
-        if srv_shard_optimized_connection_string is None:
-            raise TypeError("Missing 'srv_shard_optimized_connection_string' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("connection_string", connection_string)
-        _setter("endpoints", endpoints)
-        _setter("srv_connection_string", srv_connection_string)
-        _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
-        _setter("type", type)
+        pulumi.set(__self__, "connection_string", connection_string)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -12505,34 +9069,9 @@ class GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult(dic
         """
         :param str provider_name: Cloud service provider on which the servers are provisioned.
         """
-        GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoint_id=endpoint_id,
-            provider_name=provider_name,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoint_id: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if endpoint_id is None and 'endpointId' in kwargs:
-            endpoint_id = kwargs['endpointId']
-        if endpoint_id is None:
-            raise TypeError("Missing 'endpoint_id' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("endpoint_id", endpoint_id)
-        _setter("provider_name", provider_name)
-        _setter("region", region)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -12562,25 +9101,8 @@ class GetAdvancedClustersResultLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        GetAdvancedClustersResultLabelResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -12613,48 +9135,11 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
         :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
         :param str zone_name: Name for the zone in a Global Cluster.
         """
-        GetAdvancedClustersResultReplicationSpecResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            container_id=container_id,
-            id=id,
-            num_shards=num_shards,
-            region_configs=region_configs,
-            zone_name=zone_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             container_id: Optional[Mapping[str, str]] = None,
-             id: Optional[str] = None,
-             num_shards: Optional[int] = None,
-             region_configs: Optional[Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigResult']] = None,
-             zone_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if container_id is None and 'containerId' in kwargs:
-            container_id = kwargs['containerId']
-        if container_id is None:
-            raise TypeError("Missing 'container_id' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if num_shards is None and 'numShards' in kwargs:
-            num_shards = kwargs['numShards']
-        if num_shards is None:
-            raise TypeError("Missing 'num_shards' argument")
-        if region_configs is None and 'regionConfigs' in kwargs:
-            region_configs = kwargs['regionConfigs']
-        if region_configs is None:
-            raise TypeError("Missing 'region_configs' argument")
-        if zone_name is None and 'zoneName' in kwargs:
-            zone_name = kwargs['zoneName']
-        if zone_name is None:
-            raise TypeError("Missing 'zone_name' argument")
-
-        _setter("container_id", container_id)
-        _setter("id", id)
-        _setter("num_shards", num_shards)
-        _setter("region_configs", region_configs)
-        _setter("zone_name", zone_name)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "num_shards", num_shards)
+        pulumi.set(__self__, "region_configs", region_configs)
+        pulumi.set(__self__, "zone_name", zone_name)
 
     @property
     @pulumi.getter(name="containerId")
@@ -12717,73 +9202,18 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
         :param 'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param 'GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below
         """
-        GetAdvancedClustersResultReplicationSpecRegionConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            analytics_auto_scalings=analytics_auto_scalings,
-            auto_scalings=auto_scalings,
-            backing_provider_name=backing_provider_name,
-            priority=priority,
-            provider_name=provider_name,
-            region_name=region_name,
-            analytics_specs=analytics_specs,
-            electable_specs=electable_specs,
-            read_only_specs=read_only_specs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             analytics_auto_scalings: Optional[Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult']] = None,
-             auto_scalings: Optional[Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult']] = None,
-             backing_provider_name: Optional[str] = None,
-             priority: Optional[int] = None,
-             provider_name: Optional[str] = None,
-             region_name: Optional[str] = None,
-             analytics_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult'] = None,
-             electable_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult'] = None,
-             read_only_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult'] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if analytics_auto_scalings is None and 'analyticsAutoScalings' in kwargs:
-            analytics_auto_scalings = kwargs['analyticsAutoScalings']
-        if analytics_auto_scalings is None:
-            raise TypeError("Missing 'analytics_auto_scalings' argument")
-        if auto_scalings is None and 'autoScalings' in kwargs:
-            auto_scalings = kwargs['autoScalings']
-        if auto_scalings is None:
-            raise TypeError("Missing 'auto_scalings' argument")
-        if backing_provider_name is None and 'backingProviderName' in kwargs:
-            backing_provider_name = kwargs['backingProviderName']
-        if backing_provider_name is None:
-            raise TypeError("Missing 'backing_provider_name' argument")
-        if priority is None:
-            raise TypeError("Missing 'priority' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if region_name is None:
-            raise TypeError("Missing 'region_name' argument")
-        if analytics_specs is None and 'analyticsSpecs' in kwargs:
-            analytics_specs = kwargs['analyticsSpecs']
-        if electable_specs is None and 'electableSpecs' in kwargs:
-            electable_specs = kwargs['electableSpecs']
-        if read_only_specs is None and 'readOnlySpecs' in kwargs:
-            read_only_specs = kwargs['readOnlySpecs']
-
-        _setter("analytics_auto_scalings", analytics_auto_scalings)
-        _setter("auto_scalings", auto_scalings)
-        _setter("backing_provider_name", backing_provider_name)
-        _setter("priority", priority)
-        _setter("provider_name", provider_name)
-        _setter("region_name", region_name)
+        pulumi.set(__self__, "analytics_auto_scalings", analytics_auto_scalings)
+        pulumi.set(__self__, "auto_scalings", auto_scalings)
+        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region_name", region_name)
         if analytics_specs is not None:
-            _setter("analytics_specs", analytics_specs)
+            pulumi.set(__self__, "analytics_specs", analytics_specs)
         if electable_specs is not None:
-            _setter("electable_specs", electable_specs)
+            pulumi.set(__self__, "electable_specs", electable_specs)
         if read_only_specs is not None:
-            _setter("read_only_specs", read_only_specs)
+            pulumi.set(__self__, "read_only_specs", read_only_specs)
 
     @property
     @pulumi.getter(name="analyticsAutoScalings")
@@ -12873,50 +9303,11 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingRe
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
         """
-        GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            compute_enabled=compute_enabled,
-            compute_max_instance_size=compute_max_instance_size,
-            compute_min_instance_size=compute_min_instance_size,
-            compute_scale_down_enabled=compute_scale_down_enabled,
-            disk_gb_enabled=disk_gb_enabled,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             compute_enabled: Optional[bool] = None,
-             compute_max_instance_size: Optional[str] = None,
-             compute_min_instance_size: Optional[str] = None,
-             compute_scale_down_enabled: Optional[bool] = None,
-             disk_gb_enabled: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if compute_enabled is None and 'computeEnabled' in kwargs:
-            compute_enabled = kwargs['computeEnabled']
-        if compute_enabled is None:
-            raise TypeError("Missing 'compute_enabled' argument")
-        if compute_max_instance_size is None and 'computeMaxInstanceSize' in kwargs:
-            compute_max_instance_size = kwargs['computeMaxInstanceSize']
-        if compute_max_instance_size is None:
-            raise TypeError("Missing 'compute_max_instance_size' argument")
-        if compute_min_instance_size is None and 'computeMinInstanceSize' in kwargs:
-            compute_min_instance_size = kwargs['computeMinInstanceSize']
-        if compute_min_instance_size is None:
-            raise TypeError("Missing 'compute_min_instance_size' argument")
-        if compute_scale_down_enabled is None and 'computeScaleDownEnabled' in kwargs:
-            compute_scale_down_enabled = kwargs['computeScaleDownEnabled']
-        if compute_scale_down_enabled is None:
-            raise TypeError("Missing 'compute_scale_down_enabled' argument")
-        if disk_gb_enabled is None and 'diskGbEnabled' in kwargs:
-            disk_gb_enabled = kwargs['diskGbEnabled']
-        if disk_gb_enabled is None:
-            raise TypeError("Missing 'disk_gb_enabled' argument")
-
-        _setter("compute_enabled", compute_enabled)
-        _setter("compute_max_instance_size", compute_max_instance_size)
-        _setter("compute_min_instance_size", compute_min_instance_size)
-        _setter("compute_scale_down_enabled", compute_scale_down_enabled)
-        _setter("disk_gb_enabled", disk_gb_enabled)
+        pulumi.set(__self__, "compute_enabled", compute_enabled)
+        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -12972,40 +9363,13 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_size=instance_size,
-            disk_iops=disk_iops,
-            ebs_volume_type=ebs_volume_type,
-            node_count=node_count,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_size: Optional[str] = None,
-             disk_iops: Optional[int] = None,
-             ebs_volume_type: Optional[str] = None,
-             node_count: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_size is None and 'instanceSize' in kwargs:
-            instance_size = kwargs['instanceSize']
-        if instance_size is None:
-            raise TypeError("Missing 'instance_size' argument")
-        if disk_iops is None and 'diskIops' in kwargs:
-            disk_iops = kwargs['diskIops']
-        if ebs_volume_type is None and 'ebsVolumeType' in kwargs:
-            ebs_volume_type = kwargs['ebsVolumeType']
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-
-        _setter("instance_size", instance_size)
+        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
-            _setter("disk_iops", disk_iops)
+            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            _setter("ebs_volume_type", ebs_volume_type)
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -13055,50 +9419,11 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult(dict
         :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
         """
-        GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            compute_enabled=compute_enabled,
-            compute_max_instance_size=compute_max_instance_size,
-            compute_min_instance_size=compute_min_instance_size,
-            compute_scale_down_enabled=compute_scale_down_enabled,
-            disk_gb_enabled=disk_gb_enabled,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             compute_enabled: Optional[bool] = None,
-             compute_max_instance_size: Optional[str] = None,
-             compute_min_instance_size: Optional[str] = None,
-             compute_scale_down_enabled: Optional[bool] = None,
-             disk_gb_enabled: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if compute_enabled is None and 'computeEnabled' in kwargs:
-            compute_enabled = kwargs['computeEnabled']
-        if compute_enabled is None:
-            raise TypeError("Missing 'compute_enabled' argument")
-        if compute_max_instance_size is None and 'computeMaxInstanceSize' in kwargs:
-            compute_max_instance_size = kwargs['computeMaxInstanceSize']
-        if compute_max_instance_size is None:
-            raise TypeError("Missing 'compute_max_instance_size' argument")
-        if compute_min_instance_size is None and 'computeMinInstanceSize' in kwargs:
-            compute_min_instance_size = kwargs['computeMinInstanceSize']
-        if compute_min_instance_size is None:
-            raise TypeError("Missing 'compute_min_instance_size' argument")
-        if compute_scale_down_enabled is None and 'computeScaleDownEnabled' in kwargs:
-            compute_scale_down_enabled = kwargs['computeScaleDownEnabled']
-        if compute_scale_down_enabled is None:
-            raise TypeError("Missing 'compute_scale_down_enabled' argument")
-        if disk_gb_enabled is None and 'diskGbEnabled' in kwargs:
-            disk_gb_enabled = kwargs['diskGbEnabled']
-        if disk_gb_enabled is None:
-            raise TypeError("Missing 'disk_gb_enabled' argument")
-
-        _setter("compute_enabled", compute_enabled)
-        _setter("compute_max_instance_size", compute_max_instance_size)
-        _setter("compute_min_instance_size", compute_min_instance_size)
-        _setter("compute_scale_down_enabled", compute_scale_down_enabled)
-        _setter("disk_gb_enabled", disk_gb_enabled)
+        pulumi.set(__self__, "compute_enabled", compute_enabled)
+        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
 
     @property
     @pulumi.getter(name="computeEnabled")
@@ -13154,40 +9479,13 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_size=instance_size,
-            disk_iops=disk_iops,
-            ebs_volume_type=ebs_volume_type,
-            node_count=node_count,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_size: Optional[str] = None,
-             disk_iops: Optional[int] = None,
-             ebs_volume_type: Optional[str] = None,
-             node_count: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_size is None and 'instanceSize' in kwargs:
-            instance_size = kwargs['instanceSize']
-        if instance_size is None:
-            raise TypeError("Missing 'instance_size' argument")
-        if disk_iops is None and 'diskIops' in kwargs:
-            disk_iops = kwargs['diskIops']
-        if ebs_volume_type is None and 'ebsVolumeType' in kwargs:
-            ebs_volume_type = kwargs['ebsVolumeType']
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-
-        _setter("instance_size", instance_size)
+        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
-            _setter("disk_iops", disk_iops)
+            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            _setter("ebs_volume_type", ebs_volume_type)
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -13235,40 +9533,13 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_size=instance_size,
-            disk_iops=disk_iops,
-            ebs_volume_type=ebs_volume_type,
-            node_count=node_count,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_size: Optional[str] = None,
-             disk_iops: Optional[int] = None,
-             ebs_volume_type: Optional[str] = None,
-             node_count: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_size is None and 'instanceSize' in kwargs:
-            instance_size = kwargs['instanceSize']
-        if instance_size is None:
-            raise TypeError("Missing 'instance_size' argument")
-        if disk_iops is None and 'diskIops' in kwargs:
-            disk_iops = kwargs['diskIops']
-        if ebs_volume_type is None and 'ebsVolumeType' in kwargs:
-            ebs_volume_type = kwargs['ebsVolumeType']
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-
-        _setter("instance_size", instance_size)
+        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
-            _setter("disk_iops", disk_iops)
+            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
-            _setter("ebs_volume_type", ebs_volume_type)
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -13312,25 +9583,8 @@ class GetAdvancedClustersResultTagResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        GetAdvancedClustersResultTagResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -13361,32 +9615,9 @@ class GetAlertConfigurationMatcherResult(dict):
                Accepted values are:
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
-        GetAlertConfigurationMatcherResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field_name=field_name,
-            operator=operator,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field_name: Optional[str] = None,
-             operator: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field_name is None and 'fieldName' in kwargs:
-            field_name = kwargs['fieldName']
-        if field_name is None:
-            raise TypeError("Missing 'field_name' argument")
-        if operator is None:
-            raise TypeError("Missing 'operator' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("field_name", field_name)
-        _setter("operator", operator)
-        _setter("value", value)
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -13431,42 +9662,11 @@ class GetAlertConfigurationMetricThresholdConfigResult(dict):
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
-        GetAlertConfigurationMetricThresholdConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            metric_name=metric_name,
-            mode=mode,
-            operator=operator,
-            threshold=threshold,
-            units=units,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             metric_name: Optional[str] = None,
-             mode: Optional[str] = None,
-             operator: Optional[str] = None,
-             threshold: Optional[float] = None,
-             units: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if metric_name is None and 'metricName' in kwargs:
-            metric_name = kwargs['metricName']
-        if metric_name is None:
-            raise TypeError("Missing 'metric_name' argument")
-        if mode is None:
-            raise TypeError("Missing 'mode' argument")
-        if operator is None:
-            raise TypeError("Missing 'operator' argument")
-        if threshold is None:
-            raise TypeError("Missing 'threshold' argument")
-        if units is None:
-            raise TypeError("Missing 'units' argument")
-
-        _setter("metric_name", metric_name)
-        _setter("mode", mode)
-        _setter("operator", operator)
-        _setter("threshold", threshold)
-        _setter("units", units)
+        pulumi.set(__self__, "metric_name", metric_name)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "threshold", threshold)
+        pulumi.set(__self__, "units", units)
 
     @property
     @pulumi.getter(name="metricName")
@@ -13563,172 +9763,29 @@ class GetAlertConfigurationNotificationResult(dict):
         :param str webhook_secret: Authentication secret for the `WEBHOOK` notifications type.
         :param str webhook_url: Target URL  for the `WEBHOOK` notifications type.
         """
-        GetAlertConfigurationNotificationResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_token=api_token,
-            channel_name=channel_name,
-            datadog_api_key=datadog_api_key,
-            datadog_region=datadog_region,
-            delay_min=delay_min,
-            email_address=email_address,
-            email_enabled=email_enabled,
-            interval_min=interval_min,
-            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
-            mobile_number=mobile_number,
-            ops_genie_api_key=ops_genie_api_key,
-            ops_genie_region=ops_genie_region,
-            roles=roles,
-            service_key=service_key,
-            sms_enabled=sms_enabled,
-            team_id=team_id,
-            team_name=team_name,
-            type_name=type_name,
-            username=username,
-            victor_ops_api_key=victor_ops_api_key,
-            victor_ops_routing_key=victor_ops_routing_key,
-            webhook_secret=webhook_secret,
-            webhook_url=webhook_url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_token: Optional[str] = None,
-             channel_name: Optional[str] = None,
-             datadog_api_key: Optional[str] = None,
-             datadog_region: Optional[str] = None,
-             delay_min: Optional[int] = None,
-             email_address: Optional[str] = None,
-             email_enabled: Optional[bool] = None,
-             interval_min: Optional[int] = None,
-             microsoft_teams_webhook_url: Optional[str] = None,
-             mobile_number: Optional[str] = None,
-             ops_genie_api_key: Optional[str] = None,
-             ops_genie_region: Optional[str] = None,
-             roles: Optional[Sequence[str]] = None,
-             service_key: Optional[str] = None,
-             sms_enabled: Optional[bool] = None,
-             team_id: Optional[str] = None,
-             team_name: Optional[str] = None,
-             type_name: Optional[str] = None,
-             username: Optional[str] = None,
-             victor_ops_api_key: Optional[str] = None,
-             victor_ops_routing_key: Optional[str] = None,
-             webhook_secret: Optional[str] = None,
-             webhook_url: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if api_token is None and 'apiToken' in kwargs:
-            api_token = kwargs['apiToken']
-        if api_token is None:
-            raise TypeError("Missing 'api_token' argument")
-        if channel_name is None and 'channelName' in kwargs:
-            channel_name = kwargs['channelName']
-        if channel_name is None:
-            raise TypeError("Missing 'channel_name' argument")
-        if datadog_api_key is None and 'datadogApiKey' in kwargs:
-            datadog_api_key = kwargs['datadogApiKey']
-        if datadog_api_key is None:
-            raise TypeError("Missing 'datadog_api_key' argument")
-        if datadog_region is None and 'datadogRegion' in kwargs:
-            datadog_region = kwargs['datadogRegion']
-        if datadog_region is None:
-            raise TypeError("Missing 'datadog_region' argument")
-        if delay_min is None and 'delayMin' in kwargs:
-            delay_min = kwargs['delayMin']
-        if delay_min is None:
-            raise TypeError("Missing 'delay_min' argument")
-        if email_address is None and 'emailAddress' in kwargs:
-            email_address = kwargs['emailAddress']
-        if email_address is None:
-            raise TypeError("Missing 'email_address' argument")
-        if email_enabled is None and 'emailEnabled' in kwargs:
-            email_enabled = kwargs['emailEnabled']
-        if email_enabled is None:
-            raise TypeError("Missing 'email_enabled' argument")
-        if interval_min is None and 'intervalMin' in kwargs:
-            interval_min = kwargs['intervalMin']
-        if interval_min is None:
-            raise TypeError("Missing 'interval_min' argument")
-        if microsoft_teams_webhook_url is None and 'microsoftTeamsWebhookUrl' in kwargs:
-            microsoft_teams_webhook_url = kwargs['microsoftTeamsWebhookUrl']
-        if microsoft_teams_webhook_url is None:
-            raise TypeError("Missing 'microsoft_teams_webhook_url' argument")
-        if mobile_number is None and 'mobileNumber' in kwargs:
-            mobile_number = kwargs['mobileNumber']
-        if mobile_number is None:
-            raise TypeError("Missing 'mobile_number' argument")
-        if ops_genie_api_key is None and 'opsGenieApiKey' in kwargs:
-            ops_genie_api_key = kwargs['opsGenieApiKey']
-        if ops_genie_api_key is None:
-            raise TypeError("Missing 'ops_genie_api_key' argument")
-        if ops_genie_region is None and 'opsGenieRegion' in kwargs:
-            ops_genie_region = kwargs['opsGenieRegion']
-        if ops_genie_region is None:
-            raise TypeError("Missing 'ops_genie_region' argument")
-        if roles is None:
-            raise TypeError("Missing 'roles' argument")
-        if service_key is None and 'serviceKey' in kwargs:
-            service_key = kwargs['serviceKey']
-        if service_key is None:
-            raise TypeError("Missing 'service_key' argument")
-        if sms_enabled is None and 'smsEnabled' in kwargs:
-            sms_enabled = kwargs['smsEnabled']
-        if sms_enabled is None:
-            raise TypeError("Missing 'sms_enabled' argument")
-        if team_id is None and 'teamId' in kwargs:
-            team_id = kwargs['teamId']
-        if team_id is None:
-            raise TypeError("Missing 'team_id' argument")
-        if team_name is None and 'teamName' in kwargs:
-            team_name = kwargs['teamName']
-        if team_name is None:
-            raise TypeError("Missing 'team_name' argument")
-        if type_name is None and 'typeName' in kwargs:
-            type_name = kwargs['typeName']
-        if type_name is None:
-            raise TypeError("Missing 'type_name' argument")
-        if username is None:
-            raise TypeError("Missing 'username' argument")
-        if victor_ops_api_key is None and 'victorOpsApiKey' in kwargs:
-            victor_ops_api_key = kwargs['victorOpsApiKey']
-        if victor_ops_api_key is None:
-            raise TypeError("Missing 'victor_ops_api_key' argument")
-        if victor_ops_routing_key is None and 'victorOpsRoutingKey' in kwargs:
-            victor_ops_routing_key = kwargs['victorOpsRoutingKey']
-        if victor_ops_routing_key is None:
-            raise TypeError("Missing 'victor_ops_routing_key' argument")
-        if webhook_secret is None and 'webhookSecret' in kwargs:
-            webhook_secret = kwargs['webhookSecret']
-        if webhook_secret is None:
-            raise TypeError("Missing 'webhook_secret' argument")
-        if webhook_url is None and 'webhookUrl' in kwargs:
-            webhook_url = kwargs['webhookUrl']
-        if webhook_url is None:
-            raise TypeError("Missing 'webhook_url' argument")
-
-        _setter("api_token", api_token)
-        _setter("channel_name", channel_name)
-        _setter("datadog_api_key", datadog_api_key)
-        _setter("datadog_region", datadog_region)
-        _setter("delay_min", delay_min)
-        _setter("email_address", email_address)
-        _setter("email_enabled", email_enabled)
-        _setter("interval_min", interval_min)
-        _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
-        _setter("mobile_number", mobile_number)
-        _setter("ops_genie_api_key", ops_genie_api_key)
-        _setter("ops_genie_region", ops_genie_region)
-        _setter("roles", roles)
-        _setter("service_key", service_key)
-        _setter("sms_enabled", sms_enabled)
-        _setter("team_id", team_id)
-        _setter("team_name", team_name)
-        _setter("type_name", type_name)
-        _setter("username", username)
-        _setter("victor_ops_api_key", victor_ops_api_key)
-        _setter("victor_ops_routing_key", victor_ops_routing_key)
-        _setter("webhook_secret", webhook_secret)
-        _setter("webhook_url", webhook_url)
+        pulumi.set(__self__, "api_token", api_token)
+        pulumi.set(__self__, "channel_name", channel_name)
+        pulumi.set(__self__, "datadog_api_key", datadog_api_key)
+        pulumi.set(__self__, "datadog_region", datadog_region)
+        pulumi.set(__self__, "delay_min", delay_min)
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "email_enabled", email_enabled)
+        pulumi.set(__self__, "interval_min", interval_min)
+        pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+        pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
+        pulumi.set(__self__, "ops_genie_region", ops_genie_region)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "service_key", service_key)
+        pulumi.set(__self__, "sms_enabled", sms_enabled)
+        pulumi.set(__self__, "team_id", team_id)
+        pulumi.set(__self__, "team_name", team_name)
+        pulumi.set(__self__, "type_name", type_name)
+        pulumi.set(__self__, "username", username)
+        pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
+        pulumi.set(__self__, "victor_ops_routing_key", victor_ops_routing_key)
+        pulumi.set(__self__, "webhook_secret", webhook_secret)
+        pulumi.set(__self__, "webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -13925,29 +9982,10 @@ class GetAlertConfigurationOutputResult(dict):
         """
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
-        GetAlertConfigurationOutputResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            type=type,
-            value=value,
-            label=label,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             type: Optional[str] = None,
-             value: Optional[str] = None,
-             label: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("type", type)
-        _setter("value", value)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
         if label is not None:
-            _setter("label", label)
+            pulumi.set(__self__, "label", label)
 
     @property
     @pulumi.getter
@@ -13981,30 +10019,9 @@ class GetAlertConfigurationThresholdConfigResult(dict):
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
-        GetAlertConfigurationThresholdConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            operator=operator,
-            threshold=threshold,
-            units=units,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             operator: Optional[str] = None,
-             threshold: Optional[float] = None,
-             units: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if operator is None:
-            raise TypeError("Missing 'operator' argument")
-        if threshold is None:
-            raise TypeError("Missing 'threshold' argument")
-        if units is None:
-            raise TypeError("Missing 'units' argument")
-
-        _setter("operator", operator)
-        _setter("threshold", threshold)
-        _setter("units", units)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "threshold", threshold)
+        pulumi.set(__self__, "units", units)
 
     @property
     @pulumi.getter
@@ -14039,33 +10056,12 @@ class GetAlertConfigurationsListOptionResult(dict):
                  include_count: Optional[bool] = None,
                  items_per_page: Optional[int] = None,
                  page_num: Optional[int] = None):
-        GetAlertConfigurationsListOptionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            include_count=include_count,
-            items_per_page=items_per_page,
-            page_num=page_num,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             include_count: Optional[bool] = None,
-             items_per_page: Optional[int] = None,
-             page_num: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if include_count is None and 'includeCount' in kwargs:
-            include_count = kwargs['includeCount']
-        if items_per_page is None and 'itemsPerPage' in kwargs:
-            items_per_page = kwargs['itemsPerPage']
-        if page_num is None and 'pageNum' in kwargs:
-            page_num = kwargs['pageNum']
-
         if include_count is not None:
-            _setter("include_count", include_count)
+            pulumi.set(__self__, "include_count", include_count)
         if items_per_page is not None:
-            _setter("items_per_page", items_per_page)
+            pulumi.set(__self__, "items_per_page", items_per_page)
         if page_num is not None:
-            _setter("page_num", page_num)
+            pulumi.set(__self__, "page_num", page_num)
 
     @property
     @pulumi.getter(name="includeCount")
@@ -14110,85 +10106,18 @@ class GetAlertConfigurationsResultResult(dict):
         :param Sequence['GetAlertConfigurationsResultThresholdConfigArgs'] threshold_configs: Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`.
         :param str updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
-        GetAlertConfigurationsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            alert_configuration_id=alert_configuration_id,
-            created=created,
-            enabled=enabled,
-            event_type=event_type,
-            id=id,
-            matchers=matchers,
-            metric_threshold_configs=metric_threshold_configs,
-            notifications=notifications,
-            outputs=outputs,
-            project_id=project_id,
-            threshold_configs=threshold_configs,
-            updated=updated,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             alert_configuration_id: Optional[str] = None,
-             created: Optional[str] = None,
-             enabled: Optional[bool] = None,
-             event_type: Optional[str] = None,
-             id: Optional[str] = None,
-             matchers: Optional[Sequence['outputs.GetAlertConfigurationsResultMatcherResult']] = None,
-             metric_threshold_configs: Optional[Sequence['outputs.GetAlertConfigurationsResultMetricThresholdConfigResult']] = None,
-             notifications: Optional[Sequence['outputs.GetAlertConfigurationsResultNotificationResult']] = None,
-             outputs: Optional[Sequence['outputs.GetAlertConfigurationsResultOutputResult']] = None,
-             project_id: Optional[str] = None,
-             threshold_configs: Optional[Sequence['outputs.GetAlertConfigurationsResultThresholdConfigResult']] = None,
-             updated: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if alert_configuration_id is None and 'alertConfigurationId' in kwargs:
-            alert_configuration_id = kwargs['alertConfigurationId']
-        if alert_configuration_id is None:
-            raise TypeError("Missing 'alert_configuration_id' argument")
-        if created is None:
-            raise TypeError("Missing 'created' argument")
-        if enabled is None:
-            raise TypeError("Missing 'enabled' argument")
-        if event_type is None and 'eventType' in kwargs:
-            event_type = kwargs['eventType']
-        if event_type is None:
-            raise TypeError("Missing 'event_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if matchers is None:
-            raise TypeError("Missing 'matchers' argument")
-        if metric_threshold_configs is None and 'metricThresholdConfigs' in kwargs:
-            metric_threshold_configs = kwargs['metricThresholdConfigs']
-        if metric_threshold_configs is None:
-            raise TypeError("Missing 'metric_threshold_configs' argument")
-        if notifications is None:
-            raise TypeError("Missing 'notifications' argument")
-        if outputs is None:
-            raise TypeError("Missing 'outputs' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if threshold_configs is None and 'thresholdConfigs' in kwargs:
-            threshold_configs = kwargs['thresholdConfigs']
-        if threshold_configs is None:
-            raise TypeError("Missing 'threshold_configs' argument")
-        if updated is None:
-            raise TypeError("Missing 'updated' argument")
-
-        _setter("alert_configuration_id", alert_configuration_id)
-        _setter("created", created)
-        _setter("enabled", enabled)
-        _setter("event_type", event_type)
-        _setter("id", id)
-        _setter("matchers", matchers)
-        _setter("metric_threshold_configs", metric_threshold_configs)
-        _setter("notifications", notifications)
-        _setter("outputs", outputs)
-        _setter("project_id", project_id)
-        _setter("threshold_configs", threshold_configs)
-        _setter("updated", updated)
+        pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "matchers", matchers)
+        pulumi.set(__self__, "metric_threshold_configs", metric_threshold_configs)
+        pulumi.set(__self__, "notifications", notifications)
+        pulumi.set(__self__, "outputs", outputs)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "threshold_configs", threshold_configs)
+        pulumi.set(__self__, "updated", updated)
 
     @property
     @pulumi.getter(name="alertConfigurationId")
@@ -14287,32 +10216,9 @@ class GetAlertConfigurationsResultMatcherResult(dict):
                  field_name: str,
                  operator: str,
                  value: str):
-        GetAlertConfigurationsResultMatcherResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field_name=field_name,
-            operator=operator,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field_name: Optional[str] = None,
-             operator: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field_name is None and 'fieldName' in kwargs:
-            field_name = kwargs['fieldName']
-        if field_name is None:
-            raise TypeError("Missing 'field_name' argument")
-        if operator is None:
-            raise TypeError("Missing 'operator' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("field_name", field_name)
-        _setter("operator", operator)
-        _setter("value", value)
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -14338,42 +10244,11 @@ class GetAlertConfigurationsResultMetricThresholdConfigResult(dict):
                  operator: str,
                  threshold: float,
                  units: str):
-        GetAlertConfigurationsResultMetricThresholdConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            metric_name=metric_name,
-            mode=mode,
-            operator=operator,
-            threshold=threshold,
-            units=units,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             metric_name: Optional[str] = None,
-             mode: Optional[str] = None,
-             operator: Optional[str] = None,
-             threshold: Optional[float] = None,
-             units: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if metric_name is None and 'metricName' in kwargs:
-            metric_name = kwargs['metricName']
-        if metric_name is None:
-            raise TypeError("Missing 'metric_name' argument")
-        if mode is None:
-            raise TypeError("Missing 'mode' argument")
-        if operator is None:
-            raise TypeError("Missing 'operator' argument")
-        if threshold is None:
-            raise TypeError("Missing 'threshold' argument")
-        if units is None:
-            raise TypeError("Missing 'units' argument")
-
-        _setter("metric_name", metric_name)
-        _setter("mode", mode)
-        _setter("operator", operator)
-        _setter("threshold", threshold)
-        _setter("units", units)
+        pulumi.set(__self__, "metric_name", metric_name)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "threshold", threshold)
+        pulumi.set(__self__, "units", units)
 
     @property
     @pulumi.getter(name="metricName")
@@ -14427,172 +10302,29 @@ class GetAlertConfigurationsResultNotificationResult(dict):
                  victor_ops_routing_key: str,
                  webhook_secret: str,
                  webhook_url: str):
-        GetAlertConfigurationsResultNotificationResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_token=api_token,
-            channel_name=channel_name,
-            datadog_api_key=datadog_api_key,
-            datadog_region=datadog_region,
-            delay_min=delay_min,
-            email_address=email_address,
-            email_enabled=email_enabled,
-            interval_min=interval_min,
-            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
-            mobile_number=mobile_number,
-            ops_genie_api_key=ops_genie_api_key,
-            ops_genie_region=ops_genie_region,
-            roles=roles,
-            service_key=service_key,
-            sms_enabled=sms_enabled,
-            team_id=team_id,
-            team_name=team_name,
-            type_name=type_name,
-            username=username,
-            victor_ops_api_key=victor_ops_api_key,
-            victor_ops_routing_key=victor_ops_routing_key,
-            webhook_secret=webhook_secret,
-            webhook_url=webhook_url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_token: Optional[str] = None,
-             channel_name: Optional[str] = None,
-             datadog_api_key: Optional[str] = None,
-             datadog_region: Optional[str] = None,
-             delay_min: Optional[int] = None,
-             email_address: Optional[str] = None,
-             email_enabled: Optional[bool] = None,
-             interval_min: Optional[int] = None,
-             microsoft_teams_webhook_url: Optional[str] = None,
-             mobile_number: Optional[str] = None,
-             ops_genie_api_key: Optional[str] = None,
-             ops_genie_region: Optional[str] = None,
-             roles: Optional[Sequence[str]] = None,
-             service_key: Optional[str] = None,
-             sms_enabled: Optional[bool] = None,
-             team_id: Optional[str] = None,
-             team_name: Optional[str] = None,
-             type_name: Optional[str] = None,
-             username: Optional[str] = None,
-             victor_ops_api_key: Optional[str] = None,
-             victor_ops_routing_key: Optional[str] = None,
-             webhook_secret: Optional[str] = None,
-             webhook_url: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if api_token is None and 'apiToken' in kwargs:
-            api_token = kwargs['apiToken']
-        if api_token is None:
-            raise TypeError("Missing 'api_token' argument")
-        if channel_name is None and 'channelName' in kwargs:
-            channel_name = kwargs['channelName']
-        if channel_name is None:
-            raise TypeError("Missing 'channel_name' argument")
-        if datadog_api_key is None and 'datadogApiKey' in kwargs:
-            datadog_api_key = kwargs['datadogApiKey']
-        if datadog_api_key is None:
-            raise TypeError("Missing 'datadog_api_key' argument")
-        if datadog_region is None and 'datadogRegion' in kwargs:
-            datadog_region = kwargs['datadogRegion']
-        if datadog_region is None:
-            raise TypeError("Missing 'datadog_region' argument")
-        if delay_min is None and 'delayMin' in kwargs:
-            delay_min = kwargs['delayMin']
-        if delay_min is None:
-            raise TypeError("Missing 'delay_min' argument")
-        if email_address is None and 'emailAddress' in kwargs:
-            email_address = kwargs['emailAddress']
-        if email_address is None:
-            raise TypeError("Missing 'email_address' argument")
-        if email_enabled is None and 'emailEnabled' in kwargs:
-            email_enabled = kwargs['emailEnabled']
-        if email_enabled is None:
-            raise TypeError("Missing 'email_enabled' argument")
-        if interval_min is None and 'intervalMin' in kwargs:
-            interval_min = kwargs['intervalMin']
-        if interval_min is None:
-            raise TypeError("Missing 'interval_min' argument")
-        if microsoft_teams_webhook_url is None and 'microsoftTeamsWebhookUrl' in kwargs:
-            microsoft_teams_webhook_url = kwargs['microsoftTeamsWebhookUrl']
-        if microsoft_teams_webhook_url is None:
-            raise TypeError("Missing 'microsoft_teams_webhook_url' argument")
-        if mobile_number is None and 'mobileNumber' in kwargs:
-            mobile_number = kwargs['mobileNumber']
-        if mobile_number is None:
-            raise TypeError("Missing 'mobile_number' argument")
-        if ops_genie_api_key is None and 'opsGenieApiKey' in kwargs:
-            ops_genie_api_key = kwargs['opsGenieApiKey']
-        if ops_genie_api_key is None:
-            raise TypeError("Missing 'ops_genie_api_key' argument")
-        if ops_genie_region is None and 'opsGenieRegion' in kwargs:
-            ops_genie_region = kwargs['opsGenieRegion']
-        if ops_genie_region is None:
-            raise TypeError("Missing 'ops_genie_region' argument")
-        if roles is None:
-            raise TypeError("Missing 'roles' argument")
-        if service_key is None and 'serviceKey' in kwargs:
-            service_key = kwargs['serviceKey']
-        if service_key is None:
-            raise TypeError("Missing 'service_key' argument")
-        if sms_enabled is None and 'smsEnabled' in kwargs:
-            sms_enabled = kwargs['smsEnabled']
-        if sms_enabled is None:
-            raise TypeError("Missing 'sms_enabled' argument")
-        if team_id is None and 'teamId' in kwargs:
-            team_id = kwargs['teamId']
-        if team_id is None:
-            raise TypeError("Missing 'team_id' argument")
-        if team_name is None and 'teamName' in kwargs:
-            team_name = kwargs['teamName']
-        if team_name is None:
-            raise TypeError("Missing 'team_name' argument")
-        if type_name is None and 'typeName' in kwargs:
-            type_name = kwargs['typeName']
-        if type_name is None:
-            raise TypeError("Missing 'type_name' argument")
-        if username is None:
-            raise TypeError("Missing 'username' argument")
-        if victor_ops_api_key is None and 'victorOpsApiKey' in kwargs:
-            victor_ops_api_key = kwargs['victorOpsApiKey']
-        if victor_ops_api_key is None:
-            raise TypeError("Missing 'victor_ops_api_key' argument")
-        if victor_ops_routing_key is None and 'victorOpsRoutingKey' in kwargs:
-            victor_ops_routing_key = kwargs['victorOpsRoutingKey']
-        if victor_ops_routing_key is None:
-            raise TypeError("Missing 'victor_ops_routing_key' argument")
-        if webhook_secret is None and 'webhookSecret' in kwargs:
-            webhook_secret = kwargs['webhookSecret']
-        if webhook_secret is None:
-            raise TypeError("Missing 'webhook_secret' argument")
-        if webhook_url is None and 'webhookUrl' in kwargs:
-            webhook_url = kwargs['webhookUrl']
-        if webhook_url is None:
-            raise TypeError("Missing 'webhook_url' argument")
-
-        _setter("api_token", api_token)
-        _setter("channel_name", channel_name)
-        _setter("datadog_api_key", datadog_api_key)
-        _setter("datadog_region", datadog_region)
-        _setter("delay_min", delay_min)
-        _setter("email_address", email_address)
-        _setter("email_enabled", email_enabled)
-        _setter("interval_min", interval_min)
-        _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
-        _setter("mobile_number", mobile_number)
-        _setter("ops_genie_api_key", ops_genie_api_key)
-        _setter("ops_genie_region", ops_genie_region)
-        _setter("roles", roles)
-        _setter("service_key", service_key)
-        _setter("sms_enabled", sms_enabled)
-        _setter("team_id", team_id)
-        _setter("team_name", team_name)
-        _setter("type_name", type_name)
-        _setter("username", username)
-        _setter("victor_ops_api_key", victor_ops_api_key)
-        _setter("victor_ops_routing_key", victor_ops_routing_key)
-        _setter("webhook_secret", webhook_secret)
-        _setter("webhook_url", webhook_url)
+        pulumi.set(__self__, "api_token", api_token)
+        pulumi.set(__self__, "channel_name", channel_name)
+        pulumi.set(__self__, "datadog_api_key", datadog_api_key)
+        pulumi.set(__self__, "datadog_region", datadog_region)
+        pulumi.set(__self__, "delay_min", delay_min)
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "email_enabled", email_enabled)
+        pulumi.set(__self__, "interval_min", interval_min)
+        pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+        pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
+        pulumi.set(__self__, "ops_genie_region", ops_genie_region)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "service_key", service_key)
+        pulumi.set(__self__, "sms_enabled", sms_enabled)
+        pulumi.set(__self__, "team_id", team_id)
+        pulumi.set(__self__, "team_name", team_name)
+        pulumi.set(__self__, "type_name", type_name)
+        pulumi.set(__self__, "username", username)
+        pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
+        pulumi.set(__self__, "victor_ops_routing_key", victor_ops_routing_key)
+        pulumi.set(__self__, "webhook_secret", webhook_secret)
+        pulumi.set(__self__, "webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -14716,30 +10448,9 @@ class GetAlertConfigurationsResultOutputResult(dict):
                  label: str,
                  type: str,
                  value: str):
-        GetAlertConfigurationsResultOutputResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            label=label,
-            type=type,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             label: Optional[str] = None,
-             type: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if label is None:
-            raise TypeError("Missing 'label' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("label", label)
-        _setter("type", type)
-        _setter("value", value)
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -14763,30 +10474,9 @@ class GetAlertConfigurationsResultThresholdConfigResult(dict):
                  operator: str,
                  threshold: float,
                  units: str):
-        GetAlertConfigurationsResultThresholdConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            operator=operator,
-            threshold=threshold,
-            units=units,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             operator: Optional[str] = None,
-             threshold: Optional[float] = None,
-             units: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if operator is None:
-            raise TypeError("Missing 'operator' argument")
-        if threshold is None:
-            raise TypeError("Missing 'threshold' argument")
-        if units is None:
-            raise TypeError("Missing 'units' argument")
-
-        _setter("operator", operator)
-        _setter("threshold", threshold)
-        _setter("units", units)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "threshold", threshold)
+        pulumi.set(__self__, "units", units)
 
     @property
     @pulumi.getter
@@ -14818,41 +10508,10 @@ class GetApiKeysResultResult(dict):
                
                The following are valid roles:
         """
-        GetApiKeysResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key_id=api_key_id,
-            description=description,
-            public_key=public_key,
-            role_names=role_names,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key_id: Optional[str] = None,
-             description: Optional[str] = None,
-             public_key: Optional[str] = None,
-             role_names: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if api_key_id is None and 'apiKeyId' in kwargs:
-            api_key_id = kwargs['apiKeyId']
-        if api_key_id is None:
-            raise TypeError("Missing 'api_key_id' argument")
-        if description is None:
-            raise TypeError("Missing 'description' argument")
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if public_key is None:
-            raise TypeError("Missing 'public_key' argument")
-        if role_names is None and 'roleNames' in kwargs:
-            role_names = kwargs['roleNames']
-        if role_names is None:
-            raise TypeError("Missing 'role_names' argument")
-
-        _setter("api_key_id", api_key_id)
-        _setter("description", description)
-        _setter("public_key", public_key)
-        _setter("role_names", role_names)
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "public_key", public_key)
+        pulumi.set(__self__, "role_names", role_names)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -14891,25 +10550,8 @@ class GetAtlasUserLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        GetAtlasUserLinkResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            href=href,
-            rel=rel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             href: Optional[str] = None,
-             rel: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if href is None:
-            raise TypeError("Missing 'href' argument")
-        if rel is None:
-            raise TypeError("Missing 'rel' argument")
-
-        _setter("href", href)
-        _setter("rel", rel)
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
 
     @property
     @pulumi.getter
@@ -14928,36 +10570,9 @@ class GetAtlasUserRoleResult(dict):
                  group_id: str,
                  org_id: str,
                  role_name: str):
-        GetAtlasUserRoleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            org_id=org_id,
-            role_name=role_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             role_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if group_id is None:
-            raise TypeError("Missing 'group_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if role_name is None and 'roleName' in kwargs:
-            role_name = kwargs['roleName']
-        if role_name is None:
-            raise TypeError("Missing 'role_name' argument")
-
-        _setter("group_id", group_id)
-        _setter("org_id", org_id)
-        _setter("role_name", role_name)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role_name", role_name)
 
     @property
     @pulumi.getter(name="groupId")
@@ -15008,96 +10623,19 @@ class GetAtlasUsersResultResult(dict):
         :param str user_id: Unique 24-hexadecimal digit string that identifies this user.
         :param str username: Email address that belongs to the MongoDB Atlas user account. You cannot modify this address after creating the user.
         """
-        GetAtlasUsersResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            country=country,
-            created_at=created_at,
-            email_address=email_address,
-            first_name=first_name,
-            id=id,
-            last_auth=last_auth,
-            last_name=last_name,
-            links=links,
-            mobile_number=mobile_number,
-            roles=roles,
-            team_ids=team_ids,
-            user_id=user_id,
-            username=username,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             country: Optional[str] = None,
-             created_at: Optional[str] = None,
-             email_address: Optional[str] = None,
-             first_name: Optional[str] = None,
-             id: Optional[str] = None,
-             last_auth: Optional[str] = None,
-             last_name: Optional[str] = None,
-             links: Optional[Sequence['outputs.GetAtlasUsersResultLinkResult']] = None,
-             mobile_number: Optional[str] = None,
-             roles: Optional[Sequence['outputs.GetAtlasUsersResultRoleResult']] = None,
-             team_ids: Optional[Sequence[str]] = None,
-             user_id: Optional[str] = None,
-             username: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if country is None:
-            raise TypeError("Missing 'country' argument")
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if created_at is None:
-            raise TypeError("Missing 'created_at' argument")
-        if email_address is None and 'emailAddress' in kwargs:
-            email_address = kwargs['emailAddress']
-        if email_address is None:
-            raise TypeError("Missing 'email_address' argument")
-        if first_name is None and 'firstName' in kwargs:
-            first_name = kwargs['firstName']
-        if first_name is None:
-            raise TypeError("Missing 'first_name' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if last_auth is None and 'lastAuth' in kwargs:
-            last_auth = kwargs['lastAuth']
-        if last_auth is None:
-            raise TypeError("Missing 'last_auth' argument")
-        if last_name is None and 'lastName' in kwargs:
-            last_name = kwargs['lastName']
-        if last_name is None:
-            raise TypeError("Missing 'last_name' argument")
-        if links is None:
-            raise TypeError("Missing 'links' argument")
-        if mobile_number is None and 'mobileNumber' in kwargs:
-            mobile_number = kwargs['mobileNumber']
-        if mobile_number is None:
-            raise TypeError("Missing 'mobile_number' argument")
-        if roles is None:
-            raise TypeError("Missing 'roles' argument")
-        if team_ids is None and 'teamIds' in kwargs:
-            team_ids = kwargs['teamIds']
-        if team_ids is None:
-            raise TypeError("Missing 'team_ids' argument")
-        if user_id is None and 'userId' in kwargs:
-            user_id = kwargs['userId']
-        if user_id is None:
-            raise TypeError("Missing 'user_id' argument")
-        if username is None:
-            raise TypeError("Missing 'username' argument")
-
-        _setter("country", country)
-        _setter("created_at", created_at)
-        _setter("email_address", email_address)
-        _setter("first_name", first_name)
-        _setter("id", id)
-        _setter("last_auth", last_auth)
-        _setter("last_name", last_name)
-        _setter("links", links)
-        _setter("mobile_number", mobile_number)
-        _setter("roles", roles)
-        _setter("team_ids", team_ids)
-        _setter("user_id", user_id)
-        _setter("username", username)
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_auth", last_auth)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "links", links)
+        pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "team_ids", team_ids)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
@@ -15205,25 +10743,8 @@ class GetAtlasUsersResultLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        GetAtlasUsersResultLinkResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            href=href,
-            rel=rel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             href: Optional[str] = None,
-             rel: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if href is None:
-            raise TypeError("Missing 'href' argument")
-        if rel is None:
-            raise TypeError("Missing 'rel' argument")
-
-        _setter("href", href)
-        _setter("rel", rel)
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
 
     @property
     @pulumi.getter
@@ -15245,36 +10766,9 @@ class GetAtlasUsersResultRoleResult(dict):
         """
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
         """
-        GetAtlasUsersResultRoleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            org_id=org_id,
-            role_name=role_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             role_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if group_id is None:
-            raise TypeError("Missing 'group_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if role_name is None and 'roleName' in kwargs:
-            role_name = kwargs['roleName']
-        if role_name is None:
-            raise TypeError("Missing 'role_name' argument")
-
-        _setter("group_id", group_id)
-        _setter("org_id", org_id)
-        _setter("role_name", role_name)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role_name", role_name)
 
     @property
     @pulumi.getter(name="groupId")
@@ -15310,48 +10804,11 @@ class GetBackupCompliancePolicyOnDemandPolicyItemResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        GetBackupCompliancePolicyOnDemandPolicyItemResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -15409,48 +10866,11 @@ class GetBackupCompliancePolicyPolicyItemDailyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        GetBackupCompliancePolicyPolicyItemDailyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -15508,48 +10928,11 @@ class GetBackupCompliancePolicyPolicyItemHourlyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        GetBackupCompliancePolicyPolicyItemHourlyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -15607,48 +10990,11 @@ class GetBackupCompliancePolicyPolicyItemMonthlyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        GetBackupCompliancePolicyPolicyItemMonthlyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -15706,48 +11052,11 @@ class GetBackupCompliancePolicyPolicyItemWeeklyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        GetBackupCompliancePolicyPolicyItemWeeklyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -15805,48 +11114,11 @@ class GetCloudBackupScheduleCopySettingResult(dict):
         :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
         :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         """
-        GetCloudBackupScheduleCopySettingResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            frequencies=frequencies,
-            region_name=region_name,
-            replication_spec_id=replication_spec_id,
-            should_copy_oplogs=should_copy_oplogs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             frequencies: Optional[Sequence[str]] = None,
-             region_name: Optional[str] = None,
-             replication_spec_id: Optional[str] = None,
-             should_copy_oplogs: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if frequencies is None:
-            raise TypeError("Missing 'frequencies' argument")
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if region_name is None:
-            raise TypeError("Missing 'region_name' argument")
-        if replication_spec_id is None and 'replicationSpecId' in kwargs:
-            replication_spec_id = kwargs['replicationSpecId']
-        if replication_spec_id is None:
-            raise TypeError("Missing 'replication_spec_id' argument")
-        if should_copy_oplogs is None and 'shouldCopyOplogs' in kwargs:
-            should_copy_oplogs = kwargs['shouldCopyOplogs']
-        if should_copy_oplogs is None:
-            raise TypeError("Missing 'should_copy_oplogs' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("frequencies", frequencies)
-        _setter("region_name", region_name)
-        _setter("replication_spec_id", replication_spec_id)
-        _setter("should_copy_oplogs", should_copy_oplogs)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "frequencies", frequencies)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "replication_spec_id", replication_spec_id)
+        pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -15898,29 +11170,8 @@ class GetCloudBackupScheduleExportResult(dict):
         :param str export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
         :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
-        GetCloudBackupScheduleExportResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            export_bucket_id=export_bucket_id,
-            frequency_type=frequency_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             export_bucket_id: Optional[str] = None,
-             frequency_type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if export_bucket_id is None and 'exportBucketId' in kwargs:
-            export_bucket_id = kwargs['exportBucketId']
-        if export_bucket_id is None:
-            raise TypeError("Missing 'export_bucket_id' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-
-        _setter("export_bucket_id", export_bucket_id)
-        _setter("frequency_type", frequency_type)
+        pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+        pulumi.set(__self__, "frequency_type", frequency_type)
 
     @property
     @pulumi.getter(name="exportBucketId")
@@ -15954,48 +11205,11 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        GetCloudBackupSchedulePolicyItemDailyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -16053,48 +11267,11 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        GetCloudBackupSchedulePolicyItemHourlyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -16152,48 +11329,11 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        GetCloudBackupSchedulePolicyItemMonthlyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -16251,48 +11391,11 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
         :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
         :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         """
-        GetCloudBackupSchedulePolicyItemWeeklyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -16348,43 +11451,10 @@ class GetCloudBackupSnapshotExportBucketsResultResult(dict):
         :param str export_bucket_id: Unique identifier of the snapshot bucket id.
         :param str iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
         """
-        GetCloudBackupSnapshotExportBucketsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            bucket_name=bucket_name,
-            cloud_provider=cloud_provider,
-            export_bucket_id=export_bucket_id,
-            iam_role_id=iam_role_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             bucket_name: Optional[str] = None,
-             cloud_provider: Optional[str] = None,
-             export_bucket_id: Optional[str] = None,
-             iam_role_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if bucket_name is None and 'bucketName' in kwargs:
-            bucket_name = kwargs['bucketName']
-        if bucket_name is None:
-            raise TypeError("Missing 'bucket_name' argument")
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if export_bucket_id is None and 'exportBucketId' in kwargs:
-            export_bucket_id = kwargs['exportBucketId']
-        if export_bucket_id is None:
-            raise TypeError("Missing 'export_bucket_id' argument")
-        if iam_role_id is None and 'iamRoleId' in kwargs:
-            iam_role_id = kwargs['iamRoleId']
-        if iam_role_id is None:
-            raise TypeError("Missing 'iam_role_id' argument")
-
-        _setter("bucket_name", bucket_name)
-        _setter("cloud_provider", cloud_provider)
-        _setter("export_bucket_id", export_bucket_id)
-        _setter("iam_role_id", iam_role_id)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+        pulumi.set(__self__, "iam_role_id", iam_role_id)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -16428,29 +11498,8 @@ class GetCloudBackupSnapshotExportJobComponentResult(dict):
         :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
         """
-        GetCloudBackupSnapshotExportJobComponentResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            export_id=export_id,
-            replica_set_name=replica_set_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             export_id: Optional[str] = None,
-             replica_set_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if export_id is None and 'exportId' in kwargs:
-            export_id = kwargs['exportId']
-        if export_id is None:
-            raise TypeError("Missing 'export_id' argument")
-        if replica_set_name is None and 'replicaSetName' in kwargs:
-            replica_set_name = kwargs['replicaSetName']
-        if replica_set_name is None:
-            raise TypeError("Missing 'replica_set_name' argument")
-
-        _setter("export_id", export_id)
-        _setter("replica_set_name", replica_set_name)
+        pulumi.set(__self__, "export_id", export_id)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="exportId")
@@ -16478,25 +11527,8 @@ class GetCloudBackupSnapshotExportJobCustomDataResult(dict):
         :param str key: Custom data specified as key in the key and value pair.
         :param str value: Value for the key specified using `key`.
         """
-        GetCloudBackupSnapshotExportJobCustomDataResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -16542,93 +11574,18 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
         :param str snapshot_id: Unique identifier of the Cloud Backup snapshot to export.
         :param str state: Status of the export job. Value can be one of the following:
         """
-        GetCloudBackupSnapshotExportJobsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            components=components,
-            created_at=created_at,
-            custom_datas=custom_datas,
-            err_msg=err_msg,
-            export_bucket_id=export_bucket_id,
-            export_job_id=export_job_id,
-            export_status_exported_collections=export_status_exported_collections,
-            export_status_total_collections=export_status_total_collections,
-            finished_at=finished_at,
-            prefix=prefix,
-            snapshot_id=snapshot_id,
-            state=state,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             components: Optional[Sequence['outputs.GetCloudBackupSnapshotExportJobsResultComponentResult']] = None,
-             created_at: Optional[str] = None,
-             custom_datas: Optional[Sequence['outputs.GetCloudBackupSnapshotExportJobsResultCustomDataResult']] = None,
-             err_msg: Optional[str] = None,
-             export_bucket_id: Optional[str] = None,
-             export_job_id: Optional[str] = None,
-             export_status_exported_collections: Optional[int] = None,
-             export_status_total_collections: Optional[int] = None,
-             finished_at: Optional[str] = None,
-             prefix: Optional[str] = None,
-             snapshot_id: Optional[str] = None,
-             state: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if components is None:
-            raise TypeError("Missing 'components' argument")
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if created_at is None:
-            raise TypeError("Missing 'created_at' argument")
-        if custom_datas is None and 'customDatas' in kwargs:
-            custom_datas = kwargs['customDatas']
-        if custom_datas is None:
-            raise TypeError("Missing 'custom_datas' argument")
-        if err_msg is None and 'errMsg' in kwargs:
-            err_msg = kwargs['errMsg']
-        if err_msg is None:
-            raise TypeError("Missing 'err_msg' argument")
-        if export_bucket_id is None and 'exportBucketId' in kwargs:
-            export_bucket_id = kwargs['exportBucketId']
-        if export_bucket_id is None:
-            raise TypeError("Missing 'export_bucket_id' argument")
-        if export_job_id is None and 'exportJobId' in kwargs:
-            export_job_id = kwargs['exportJobId']
-        if export_job_id is None:
-            raise TypeError("Missing 'export_job_id' argument")
-        if export_status_exported_collections is None and 'exportStatusExportedCollections' in kwargs:
-            export_status_exported_collections = kwargs['exportStatusExportedCollections']
-        if export_status_exported_collections is None:
-            raise TypeError("Missing 'export_status_exported_collections' argument")
-        if export_status_total_collections is None and 'exportStatusTotalCollections' in kwargs:
-            export_status_total_collections = kwargs['exportStatusTotalCollections']
-        if export_status_total_collections is None:
-            raise TypeError("Missing 'export_status_total_collections' argument")
-        if finished_at is None and 'finishedAt' in kwargs:
-            finished_at = kwargs['finishedAt']
-        if finished_at is None:
-            raise TypeError("Missing 'finished_at' argument")
-        if prefix is None:
-            raise TypeError("Missing 'prefix' argument")
-        if snapshot_id is None and 'snapshotId' in kwargs:
-            snapshot_id = kwargs['snapshotId']
-        if snapshot_id is None:
-            raise TypeError("Missing 'snapshot_id' argument")
-        if state is None:
-            raise TypeError("Missing 'state' argument")
-
-        _setter("components", components)
-        _setter("created_at", created_at)
-        _setter("custom_datas", custom_datas)
-        _setter("err_msg", err_msg)
-        _setter("export_bucket_id", export_bucket_id)
-        _setter("export_job_id", export_job_id)
-        _setter("export_status_exported_collections", export_status_exported_collections)
-        _setter("export_status_total_collections", export_status_total_collections)
-        _setter("finished_at", finished_at)
-        _setter("prefix", prefix)
-        _setter("snapshot_id", snapshot_id)
-        _setter("state", state)
+        pulumi.set(__self__, "components", components)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "custom_datas", custom_datas)
+        pulumi.set(__self__, "err_msg", err_msg)
+        pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+        pulumi.set(__self__, "export_job_id", export_job_id)
+        pulumi.set(__self__, "export_status_exported_collections", export_status_exported_collections)
+        pulumi.set(__self__, "export_status_total_collections", export_status_total_collections)
+        pulumi.set(__self__, "finished_at", finished_at)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "state", state)
 
     @property
     @pulumi.getter
@@ -16728,29 +11685,8 @@ class GetCloudBackupSnapshotExportJobsResultComponentResult(dict):
         :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
         """
-        GetCloudBackupSnapshotExportJobsResultComponentResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            export_id=export_id,
-            replica_set_name=replica_set_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             export_id: Optional[str] = None,
-             replica_set_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if export_id is None and 'exportId' in kwargs:
-            export_id = kwargs['exportId']
-        if export_id is None:
-            raise TypeError("Missing 'export_id' argument")
-        if replica_set_name is None and 'replicaSetName' in kwargs:
-            replica_set_name = kwargs['replicaSetName']
-        if replica_set_name is None:
-            raise TypeError("Missing 'replica_set_name' argument")
-
-        _setter("export_id", export_id)
-        _setter("replica_set_name", replica_set_name)
+        pulumi.set(__self__, "export_id", export_id)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="exportId")
@@ -16778,25 +11714,8 @@ class GetCloudBackupSnapshotExportJobsResultCustomDataResult(dict):
         :param str key: Custom data specified as key in the key and value pair.
         :param str value: Value for the key specified using `key`.
         """
-        GetCloudBackupSnapshotExportJobsResultCustomDataResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -16826,34 +11745,9 @@ class GetCloudBackupSnapshotMemberResult(dict):
         :param str id: Unique identifier for the sharded cluster snapshot.
         :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         """
-        GetCloudBackupSnapshotMemberResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            id=id,
-            replica_set_name=replica_set_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             id: Optional[str] = None,
-             replica_set_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if replica_set_name is None and 'replicaSetName' in kwargs:
-            replica_set_name = kwargs['replicaSetName']
-        if replica_set_name is None:
-            raise TypeError("Missing 'replica_set_name' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("id", id)
-        _setter("replica_set_name", replica_set_name)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -16912,112 +11806,21 @@ class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
         :param str target_project_id: Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
         :param str timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
         """
-        GetCloudBackupSnapshotRestoreJobsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cancelled=cancelled,
-            created_at=created_at,
-            delivery_type=delivery_type,
-            delivery_urls=delivery_urls,
-            expired=expired,
-            expires_at=expires_at,
-            finished_at=finished_at,
-            id=id,
-            oplog_inc=oplog_inc,
-            oplog_ts=oplog_ts,
-            point_in_time_utc_seconds=point_in_time_utc_seconds,
-            snapshot_id=snapshot_id,
-            target_cluster_name=target_cluster_name,
-            target_project_id=target_project_id,
-            timestamp=timestamp,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cancelled: Optional[bool] = None,
-             created_at: Optional[str] = None,
-             delivery_type: Optional[str] = None,
-             delivery_urls: Optional[Sequence[str]] = None,
-             expired: Optional[bool] = None,
-             expires_at: Optional[str] = None,
-             finished_at: Optional[str] = None,
-             id: Optional[str] = None,
-             oplog_inc: Optional[int] = None,
-             oplog_ts: Optional[int] = None,
-             point_in_time_utc_seconds: Optional[int] = None,
-             snapshot_id: Optional[str] = None,
-             target_cluster_name: Optional[str] = None,
-             target_project_id: Optional[str] = None,
-             timestamp: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cancelled is None:
-            raise TypeError("Missing 'cancelled' argument")
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if created_at is None:
-            raise TypeError("Missing 'created_at' argument")
-        if delivery_type is None and 'deliveryType' in kwargs:
-            delivery_type = kwargs['deliveryType']
-        if delivery_type is None:
-            raise TypeError("Missing 'delivery_type' argument")
-        if delivery_urls is None and 'deliveryUrls' in kwargs:
-            delivery_urls = kwargs['deliveryUrls']
-        if delivery_urls is None:
-            raise TypeError("Missing 'delivery_urls' argument")
-        if expired is None:
-            raise TypeError("Missing 'expired' argument")
-        if expires_at is None and 'expiresAt' in kwargs:
-            expires_at = kwargs['expiresAt']
-        if expires_at is None:
-            raise TypeError("Missing 'expires_at' argument")
-        if finished_at is None and 'finishedAt' in kwargs:
-            finished_at = kwargs['finishedAt']
-        if finished_at is None:
-            raise TypeError("Missing 'finished_at' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if oplog_inc is None and 'oplogInc' in kwargs:
-            oplog_inc = kwargs['oplogInc']
-        if oplog_inc is None:
-            raise TypeError("Missing 'oplog_inc' argument")
-        if oplog_ts is None and 'oplogTs' in kwargs:
-            oplog_ts = kwargs['oplogTs']
-        if oplog_ts is None:
-            raise TypeError("Missing 'oplog_ts' argument")
-        if point_in_time_utc_seconds is None and 'pointInTimeUtcSeconds' in kwargs:
-            point_in_time_utc_seconds = kwargs['pointInTimeUtcSeconds']
-        if point_in_time_utc_seconds is None:
-            raise TypeError("Missing 'point_in_time_utc_seconds' argument")
-        if snapshot_id is None and 'snapshotId' in kwargs:
-            snapshot_id = kwargs['snapshotId']
-        if snapshot_id is None:
-            raise TypeError("Missing 'snapshot_id' argument")
-        if target_cluster_name is None and 'targetClusterName' in kwargs:
-            target_cluster_name = kwargs['targetClusterName']
-        if target_cluster_name is None:
-            raise TypeError("Missing 'target_cluster_name' argument")
-        if target_project_id is None and 'targetProjectId' in kwargs:
-            target_project_id = kwargs['targetProjectId']
-        if target_project_id is None:
-            raise TypeError("Missing 'target_project_id' argument")
-        if timestamp is None:
-            raise TypeError("Missing 'timestamp' argument")
-
-        _setter("cancelled", cancelled)
-        _setter("created_at", created_at)
-        _setter("delivery_type", delivery_type)
-        _setter("delivery_urls", delivery_urls)
-        _setter("expired", expired)
-        _setter("expires_at", expires_at)
-        _setter("finished_at", finished_at)
-        _setter("id", id)
-        _setter("oplog_inc", oplog_inc)
-        _setter("oplog_ts", oplog_ts)
-        _setter("point_in_time_utc_seconds", point_in_time_utc_seconds)
-        _setter("snapshot_id", snapshot_id)
-        _setter("target_cluster_name", target_cluster_name)
-        _setter("target_project_id", target_project_id)
-        _setter("timestamp", timestamp)
+        pulumi.set(__self__, "cancelled", cancelled)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "delivery_type", delivery_type)
+        pulumi.set(__self__, "delivery_urls", delivery_urls)
+        pulumi.set(__self__, "expired", expired)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "finished_at", finished_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "oplog_inc", oplog_inc)
+        pulumi.set(__self__, "oplog_ts", oplog_ts)
+        pulumi.set(__self__, "point_in_time_utc_seconds", point_in_time_utc_seconds)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "target_cluster_name", target_cluster_name)
+        pulumi.set(__self__, "target_project_id", target_project_id)
+        pulumi.set(__self__, "timestamp", timestamp)
 
     @property
     @pulumi.getter
@@ -17164,103 +11967,20 @@ class GetCloudBackupSnapshotsResultResult(dict):
         :param int storage_size_bytes: Specifies the size of the snapshot in bytes.
         :param str type: Specifies the type of cluster: replicaSet or shardedCluster.
         """
-        GetCloudBackupSnapshotsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            created_at=created_at,
-            description=description,
-            expires_at=expires_at,
-            id=id,
-            master_key_uuid=master_key_uuid,
-            members=members,
-            mongod_version=mongod_version,
-            replica_set_name=replica_set_name,
-            snapshot_ids=snapshot_ids,
-            snapshot_type=snapshot_type,
-            status=status,
-            storage_size_bytes=storage_size_bytes,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             created_at: Optional[str] = None,
-             description: Optional[str] = None,
-             expires_at: Optional[str] = None,
-             id: Optional[str] = None,
-             master_key_uuid: Optional[str] = None,
-             members: Optional[Sequence['outputs.GetCloudBackupSnapshotsResultMemberResult']] = None,
-             mongod_version: Optional[str] = None,
-             replica_set_name: Optional[str] = None,
-             snapshot_ids: Optional[Sequence[str]] = None,
-             snapshot_type: Optional[str] = None,
-             status: Optional[str] = None,
-             storage_size_bytes: Optional[int] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if created_at is None:
-            raise TypeError("Missing 'created_at' argument")
-        if description is None:
-            raise TypeError("Missing 'description' argument")
-        if expires_at is None and 'expiresAt' in kwargs:
-            expires_at = kwargs['expiresAt']
-        if expires_at is None:
-            raise TypeError("Missing 'expires_at' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if master_key_uuid is None and 'masterKeyUuid' in kwargs:
-            master_key_uuid = kwargs['masterKeyUuid']
-        if master_key_uuid is None:
-            raise TypeError("Missing 'master_key_uuid' argument")
-        if members is None:
-            raise TypeError("Missing 'members' argument")
-        if mongod_version is None and 'mongodVersion' in kwargs:
-            mongod_version = kwargs['mongodVersion']
-        if mongod_version is None:
-            raise TypeError("Missing 'mongod_version' argument")
-        if replica_set_name is None and 'replicaSetName' in kwargs:
-            replica_set_name = kwargs['replicaSetName']
-        if replica_set_name is None:
-            raise TypeError("Missing 'replica_set_name' argument")
-        if snapshot_ids is None and 'snapshotIds' in kwargs:
-            snapshot_ids = kwargs['snapshotIds']
-        if snapshot_ids is None:
-            raise TypeError("Missing 'snapshot_ids' argument")
-        if snapshot_type is None and 'snapshotType' in kwargs:
-            snapshot_type = kwargs['snapshotType']
-        if snapshot_type is None:
-            raise TypeError("Missing 'snapshot_type' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-        if storage_size_bytes is None and 'storageSizeBytes' in kwargs:
-            storage_size_bytes = kwargs['storageSizeBytes']
-        if storage_size_bytes is None:
-            raise TypeError("Missing 'storage_size_bytes' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("created_at", created_at)
-        _setter("description", description)
-        _setter("expires_at", expires_at)
-        _setter("id", id)
-        _setter("master_key_uuid", master_key_uuid)
-        _setter("members", members)
-        _setter("mongod_version", mongod_version)
-        _setter("replica_set_name", replica_set_name)
-        _setter("snapshot_ids", snapshot_ids)
-        _setter("snapshot_type", snapshot_type)
-        _setter("status", status)
-        _setter("storage_size_bytes", storage_size_bytes)
-        _setter("type", type)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "master_key_uuid", master_key_uuid)
+        pulumi.set(__self__, "members", members)
+        pulumi.set(__self__, "mongod_version", mongod_version)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
+        pulumi.set(__self__, "snapshot_ids", snapshot_ids)
+        pulumi.set(__self__, "snapshot_type", snapshot_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "storage_size_bytes", storage_size_bytes)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -17386,34 +12106,9 @@ class GetCloudBackupSnapshotsResultMemberResult(dict):
         :param str id: Unique identifier for the sharded cluster snapshot.
         :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         """
-        GetCloudBackupSnapshotsResultMemberResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            id=id,
-            replica_set_name=replica_set_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             id: Optional[str] = None,
-             replica_set_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if replica_set_name is None and 'replicaSetName' in kwargs:
-            replica_set_name = kwargs['replicaSetName']
-        if replica_set_name is None:
-            raise TypeError("Missing 'replica_set_name' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("id", id)
-        _setter("replica_set_name", replica_set_name)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -17461,71 +12156,14 @@ class GetCloudProviderAccessAwsIamRoleResult(dict):
         :param str provider_name: Name of the cloud provider. Currently limited to AWS.
         :param str role_id: Unique ID of this role.
         """
-        GetCloudProviderAccessAwsIamRoleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            atlas_assumed_role_external_id=atlas_assumed_role_external_id,
-            atlas_aws_account_arn=atlas_aws_account_arn,
-            authorized_date=authorized_date,
-            created_date=created_date,
-            feature_usages=feature_usages,
-            iam_assumed_role_arn=iam_assumed_role_arn,
-            provider_name=provider_name,
-            role_id=role_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             atlas_assumed_role_external_id: Optional[str] = None,
-             atlas_aws_account_arn: Optional[str] = None,
-             authorized_date: Optional[str] = None,
-             created_date: Optional[str] = None,
-             feature_usages: Optional[Sequence['outputs.GetCloudProviderAccessAwsIamRoleFeatureUsageResult']] = None,
-             iam_assumed_role_arn: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             role_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if atlas_assumed_role_external_id is None and 'atlasAssumedRoleExternalId' in kwargs:
-            atlas_assumed_role_external_id = kwargs['atlasAssumedRoleExternalId']
-        if atlas_assumed_role_external_id is None:
-            raise TypeError("Missing 'atlas_assumed_role_external_id' argument")
-        if atlas_aws_account_arn is None and 'atlasAwsAccountArn' in kwargs:
-            atlas_aws_account_arn = kwargs['atlasAwsAccountArn']
-        if atlas_aws_account_arn is None:
-            raise TypeError("Missing 'atlas_aws_account_arn' argument")
-        if authorized_date is None and 'authorizedDate' in kwargs:
-            authorized_date = kwargs['authorizedDate']
-        if authorized_date is None:
-            raise TypeError("Missing 'authorized_date' argument")
-        if created_date is None and 'createdDate' in kwargs:
-            created_date = kwargs['createdDate']
-        if created_date is None:
-            raise TypeError("Missing 'created_date' argument")
-        if feature_usages is None and 'featureUsages' in kwargs:
-            feature_usages = kwargs['featureUsages']
-        if feature_usages is None:
-            raise TypeError("Missing 'feature_usages' argument")
-        if iam_assumed_role_arn is None and 'iamAssumedRoleArn' in kwargs:
-            iam_assumed_role_arn = kwargs['iamAssumedRoleArn']
-        if iam_assumed_role_arn is None:
-            raise TypeError("Missing 'iam_assumed_role_arn' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if role_id is None and 'roleId' in kwargs:
-            role_id = kwargs['roleId']
-        if role_id is None:
-            raise TypeError("Missing 'role_id' argument")
-
-        _setter("atlas_assumed_role_external_id", atlas_assumed_role_external_id)
-        _setter("atlas_aws_account_arn", atlas_aws_account_arn)
-        _setter("authorized_date", authorized_date)
-        _setter("created_date", created_date)
-        _setter("feature_usages", feature_usages)
-        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
-        _setter("provider_name", provider_name)
-        _setter("role_id", role_id)
+        pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+        pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
+        pulumi.set(__self__, "authorized_date", authorized_date)
+        pulumi.set(__self__, "created_date", created_date)
+        pulumi.set(__self__, "feature_usages", feature_usages)
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "role_id", role_id)
 
     @property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
@@ -17597,29 +12235,8 @@ class GetCloudProviderAccessAwsIamRoleFeatureUsageResult(dict):
     def __init__(__self__, *,
                  feature_id: Mapping[str, Any],
                  feature_type: str):
-        GetCloudProviderAccessAwsIamRoleFeatureUsageResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            feature_id=feature_id,
-            feature_type=feature_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             feature_id: Optional[Mapping[str, Any]] = None,
-             feature_type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if feature_id is None and 'featureId' in kwargs:
-            feature_id = kwargs['featureId']
-        if feature_id is None:
-            raise TypeError("Missing 'feature_id' argument")
-        if feature_type is None and 'featureType' in kwargs:
-            feature_type = kwargs['featureType']
-        if feature_type is None:
-            raise TypeError("Missing 'feature_type' argument")
-
-        _setter("feature_id", feature_id)
-        _setter("feature_type", feature_type)
+        pulumi.set(__self__, "feature_id", feature_id)
+        pulumi.set(__self__, "feature_type", feature_type)
 
     @property
     @pulumi.getter(name="featureId")
@@ -17641,29 +12258,8 @@ class GetCloudProviderAccessSetupAwsConfigResult(dict):
         :param str atlas_assumed_role_external_id: Unique external ID Atlas uses when assuming the IAM role in your AWS account.
         :param str atlas_aws_account_arn: ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
         """
-        GetCloudProviderAccessSetupAwsConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            atlas_assumed_role_external_id=atlas_assumed_role_external_id,
-            atlas_aws_account_arn=atlas_aws_account_arn,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             atlas_assumed_role_external_id: Optional[str] = None,
-             atlas_aws_account_arn: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if atlas_assumed_role_external_id is None and 'atlasAssumedRoleExternalId' in kwargs:
-            atlas_assumed_role_external_id = kwargs['atlasAssumedRoleExternalId']
-        if atlas_assumed_role_external_id is None:
-            raise TypeError("Missing 'atlas_assumed_role_external_id' argument")
-        if atlas_aws_account_arn is None and 'atlasAwsAccountArn' in kwargs:
-            atlas_aws_account_arn = kwargs['atlasAwsAccountArn']
-        if atlas_aws_account_arn is None:
-            raise TypeError("Missing 'atlas_aws_account_arn' argument")
-
-        _setter("atlas_assumed_role_external_id", atlas_assumed_role_external_id)
-        _setter("atlas_aws_account_arn", atlas_aws_account_arn)
+        pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+        pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
 
     @property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
@@ -17693,36 +12289,9 @@ class GetCloudProviderAccessSetupAzureConfigResult(dict):
         :param str service_principal_id: UUID string that identifies the Azure Service Principal.
         :param str tenant_id: UUID String that identifies the Azure Active Directory Tenant ID.
         """
-        GetCloudProviderAccessSetupAzureConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            atlas_azure_app_id=atlas_azure_app_id,
-            service_principal_id=service_principal_id,
-            tenant_id=tenant_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             atlas_azure_app_id: Optional[str] = None,
-             service_principal_id: Optional[str] = None,
-             tenant_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if atlas_azure_app_id is None and 'atlasAzureAppId' in kwargs:
-            atlas_azure_app_id = kwargs['atlasAzureAppId']
-        if atlas_azure_app_id is None:
-            raise TypeError("Missing 'atlas_azure_app_id' argument")
-        if service_principal_id is None and 'servicePrincipalId' in kwargs:
-            service_principal_id = kwargs['servicePrincipalId']
-        if service_principal_id is None:
-            raise TypeError("Missing 'service_principal_id' argument")
-        if tenant_id is None and 'tenantId' in kwargs:
-            tenant_id = kwargs['tenantId']
-        if tenant_id is None:
-            raise TypeError("Missing 'tenant_id' argument")
-
-        _setter("atlas_azure_app_id", atlas_azure_app_id)
-        _setter("service_principal_id", service_principal_id)
-        _setter("tenant_id", tenant_id)
+        pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="atlasAzureAppId")
@@ -17776,92 +12345,17 @@ class GetClusterAdvancedConfigurationResult(dict):
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
-        GetClusterAdvancedConfigurationResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            default_read_concern=default_read_concern,
-            default_write_concern=default_write_concern,
-            fail_index_key_too_long=fail_index_key_too_long,
-            javascript_enabled=javascript_enabled,
-            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
-            no_table_scan=no_table_scan,
-            oplog_min_retention_hours=oplog_min_retention_hours,
-            oplog_size_mb=oplog_size_mb,
-            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
-            sample_size_bi_connector=sample_size_bi_connector,
-            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             default_read_concern: Optional[str] = None,
-             default_write_concern: Optional[str] = None,
-             fail_index_key_too_long: Optional[bool] = None,
-             javascript_enabled: Optional[bool] = None,
-             minimum_enabled_tls_protocol: Optional[str] = None,
-             no_table_scan: Optional[bool] = None,
-             oplog_min_retention_hours: Optional[int] = None,
-             oplog_size_mb: Optional[int] = None,
-             sample_refresh_interval_bi_connector: Optional[int] = None,
-             sample_size_bi_connector: Optional[int] = None,
-             transaction_lifetime_limit_seconds: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if default_read_concern is None and 'defaultReadConcern' in kwargs:
-            default_read_concern = kwargs['defaultReadConcern']
-        if default_read_concern is None:
-            raise TypeError("Missing 'default_read_concern' argument")
-        if default_write_concern is None and 'defaultWriteConcern' in kwargs:
-            default_write_concern = kwargs['defaultWriteConcern']
-        if default_write_concern is None:
-            raise TypeError("Missing 'default_write_concern' argument")
-        if fail_index_key_too_long is None and 'failIndexKeyTooLong' in kwargs:
-            fail_index_key_too_long = kwargs['failIndexKeyTooLong']
-        if fail_index_key_too_long is None:
-            raise TypeError("Missing 'fail_index_key_too_long' argument")
-        if javascript_enabled is None and 'javascriptEnabled' in kwargs:
-            javascript_enabled = kwargs['javascriptEnabled']
-        if javascript_enabled is None:
-            raise TypeError("Missing 'javascript_enabled' argument")
-        if minimum_enabled_tls_protocol is None and 'minimumEnabledTlsProtocol' in kwargs:
-            minimum_enabled_tls_protocol = kwargs['minimumEnabledTlsProtocol']
-        if minimum_enabled_tls_protocol is None:
-            raise TypeError("Missing 'minimum_enabled_tls_protocol' argument")
-        if no_table_scan is None and 'noTableScan' in kwargs:
-            no_table_scan = kwargs['noTableScan']
-        if no_table_scan is None:
-            raise TypeError("Missing 'no_table_scan' argument")
-        if oplog_min_retention_hours is None and 'oplogMinRetentionHours' in kwargs:
-            oplog_min_retention_hours = kwargs['oplogMinRetentionHours']
-        if oplog_min_retention_hours is None:
-            raise TypeError("Missing 'oplog_min_retention_hours' argument")
-        if oplog_size_mb is None and 'oplogSizeMb' in kwargs:
-            oplog_size_mb = kwargs['oplogSizeMb']
-        if oplog_size_mb is None:
-            raise TypeError("Missing 'oplog_size_mb' argument")
-        if sample_refresh_interval_bi_connector is None and 'sampleRefreshIntervalBiConnector' in kwargs:
-            sample_refresh_interval_bi_connector = kwargs['sampleRefreshIntervalBiConnector']
-        if sample_refresh_interval_bi_connector is None:
-            raise TypeError("Missing 'sample_refresh_interval_bi_connector' argument")
-        if sample_size_bi_connector is None and 'sampleSizeBiConnector' in kwargs:
-            sample_size_bi_connector = kwargs['sampleSizeBiConnector']
-        if sample_size_bi_connector is None:
-            raise TypeError("Missing 'sample_size_bi_connector' argument")
-        if transaction_lifetime_limit_seconds is None and 'transactionLifetimeLimitSeconds' in kwargs:
-            transaction_lifetime_limit_seconds = kwargs['transactionLifetimeLimitSeconds']
-        if transaction_lifetime_limit_seconds is None:
-            raise TypeError("Missing 'transaction_lifetime_limit_seconds' argument")
-
-        _setter("default_read_concern", default_read_concern)
-        _setter("default_write_concern", default_write_concern)
-        _setter("fail_index_key_too_long", fail_index_key_too_long)
-        _setter("javascript_enabled", javascript_enabled)
-        _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
-        _setter("no_table_scan", no_table_scan)
-        _setter("oplog_min_retention_hours", oplog_min_retention_hours)
-        _setter("oplog_size_mb", oplog_size_mb)
-        _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
-        _setter("sample_size_bi_connector", sample_size_bi_connector)
-        _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+        pulumi.set(__self__, "default_read_concern", default_read_concern)
+        pulumi.set(__self__, "default_write_concern", default_write_concern)
+        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
+        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -17961,27 +12455,8 @@ class GetClusterBiConnectorConfigResult(dict):
         :param bool enabled: Indicates whether or not BI Connector for Atlas is enabled on the cluster.
         :param str read_preference: Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
         """
-        GetClusterBiConnectorConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            read_preference=read_preference,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[bool] = None,
-             read_preference: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if enabled is None:
-            raise TypeError("Missing 'enabled' argument")
-        if read_preference is None and 'readPreference' in kwargs:
-            read_preference = kwargs['readPreference']
-        if read_preference is None:
-            raise TypeError("Missing 'read_preference' argument")
-
-        _setter("enabled", enabled)
-        _setter("read_preference", read_preference)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -18010,60 +12485,13 @@ class GetClusterConnectionStringResult(dict):
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
-        GetClusterConnectionStringResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws_private_link=aws_private_link,
-            aws_private_link_srv=aws_private_link_srv,
-            private=private,
-            private_endpoints=private_endpoints,
-            private_srv=private_srv,
-            standard=standard,
-            standard_srv=standard_srv,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws_private_link: Optional[Mapping[str, Any]] = None,
-             aws_private_link_srv: Optional[Mapping[str, Any]] = None,
-             private: Optional[str] = None,
-             private_endpoints: Optional[Sequence['outputs.GetClusterConnectionStringPrivateEndpointResult']] = None,
-             private_srv: Optional[str] = None,
-             standard: Optional[str] = None,
-             standard_srv: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws_private_link is None and 'awsPrivateLink' in kwargs:
-            aws_private_link = kwargs['awsPrivateLink']
-        if aws_private_link is None:
-            raise TypeError("Missing 'aws_private_link' argument")
-        if aws_private_link_srv is None and 'awsPrivateLinkSrv' in kwargs:
-            aws_private_link_srv = kwargs['awsPrivateLinkSrv']
-        if aws_private_link_srv is None:
-            raise TypeError("Missing 'aws_private_link_srv' argument")
-        if private is None:
-            raise TypeError("Missing 'private' argument")
-        if private_endpoints is None and 'privateEndpoints' in kwargs:
-            private_endpoints = kwargs['privateEndpoints']
-        if private_endpoints is None:
-            raise TypeError("Missing 'private_endpoints' argument")
-        if private_srv is None and 'privateSrv' in kwargs:
-            private_srv = kwargs['privateSrv']
-        if private_srv is None:
-            raise TypeError("Missing 'private_srv' argument")
-        if standard is None:
-            raise TypeError("Missing 'standard' argument")
-        if standard_srv is None and 'standardSrv' in kwargs:
-            standard_srv = kwargs['standardSrv']
-        if standard_srv is None:
-            raise TypeError("Missing 'standard_srv' argument")
-
-        _setter("aws_private_link", aws_private_link)
-        _setter("aws_private_link_srv", aws_private_link_srv)
-        _setter("private", private)
-        _setter("private_endpoints", private_endpoints)
-        _setter("private_srv", private_srv)
-        _setter("standard", standard)
-        _setter("standard_srv", standard_srv)
+        pulumi.set(__self__, "aws_private_link", aws_private_link)
+        pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
+        pulumi.set(__self__, "private", private)
+        pulumi.set(__self__, "private_endpoints", private_endpoints)
+        pulumi.set(__self__, "private_srv", private_srv)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "standard_srv", standard_srv)
 
     @property
     @pulumi.getter(name="awsPrivateLink")
@@ -18109,46 +12537,11 @@ class GetClusterConnectionStringPrivateEndpointResult(dict):
                  srv_connection_string: str,
                  srv_shard_optimized_connection_string: str,
                  type: str):
-        GetClusterConnectionStringPrivateEndpointResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            connection_string=connection_string,
-            endpoints=endpoints,
-            srv_connection_string=srv_connection_string,
-            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             connection_string: Optional[str] = None,
-             endpoints: Optional[Sequence['outputs.GetClusterConnectionStringPrivateEndpointEndpointResult']] = None,
-             srv_connection_string: Optional[str] = None,
-             srv_shard_optimized_connection_string: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if connection_string is None and 'connectionString' in kwargs:
-            connection_string = kwargs['connectionString']
-        if connection_string is None:
-            raise TypeError("Missing 'connection_string' argument")
-        if endpoints is None:
-            raise TypeError("Missing 'endpoints' argument")
-        if srv_connection_string is None and 'srvConnectionString' in kwargs:
-            srv_connection_string = kwargs['srvConnectionString']
-        if srv_connection_string is None:
-            raise TypeError("Missing 'srv_connection_string' argument")
-        if srv_shard_optimized_connection_string is None and 'srvShardOptimizedConnectionString' in kwargs:
-            srv_shard_optimized_connection_string = kwargs['srvShardOptimizedConnectionString']
-        if srv_shard_optimized_connection_string is None:
-            raise TypeError("Missing 'srv_shard_optimized_connection_string' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("connection_string", connection_string)
-        _setter("endpoints", endpoints)
-        _setter("srv_connection_string", srv_connection_string)
-        _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
-        _setter("type", type)
+        pulumi.set(__self__, "connection_string", connection_string)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -18185,34 +12578,9 @@ class GetClusterConnectionStringPrivateEndpointEndpointResult(dict):
         """
         :param str provider_name: Indicates the cloud service provider on which the servers are provisioned.
         """
-        GetClusterConnectionStringPrivateEndpointEndpointResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoint_id=endpoint_id,
-            provider_name=provider_name,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoint_id: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if endpoint_id is None and 'endpointId' in kwargs:
-            endpoint_id = kwargs['endpointId']
-        if endpoint_id is None:
-            raise TypeError("Missing 'endpoint_id' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("endpoint_id", endpoint_id)
-        _setter("provider_name", provider_name)
-        _setter("region", region)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -18242,25 +12610,8 @@ class GetClusterLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        GetClusterLabelResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -18290,34 +12641,9 @@ class GetClusterOutageSimulationOutageFilterResult(dict):
         :param str region_name: The Atlas name of the region undergoing an outage simulation.
         :param str type: The type of cluster outage simulation. Following values are supported:
         """
-        GetClusterOutageSimulationOutageFilterResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            region_name=region_name,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             region_name: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if region_name is None:
-            raise TypeError("Missing 'region_name' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("region_name", region_name)
-        _setter("type", type)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -18357,41 +12683,10 @@ class GetClusterReplicationSpecResult(dict):
         :param Sequence['GetClusterReplicationSpecRegionsConfigArgs'] regions_configs: Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Indicates the n ame for the zone in a Global Cluster.
         """
-        GetClusterReplicationSpecResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            num_shards=num_shards,
-            regions_configs=regions_configs,
-            zone_name=zone_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             num_shards: Optional[int] = None,
-             regions_configs: Optional[Sequence['outputs.GetClusterReplicationSpecRegionsConfigResult']] = None,
-             zone_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if num_shards is None and 'numShards' in kwargs:
-            num_shards = kwargs['numShards']
-        if num_shards is None:
-            raise TypeError("Missing 'num_shards' argument")
-        if regions_configs is None and 'regionsConfigs' in kwargs:
-            regions_configs = kwargs['regionsConfigs']
-        if regions_configs is None:
-            raise TypeError("Missing 'regions_configs' argument")
-        if zone_name is None and 'zoneName' in kwargs:
-            zone_name = kwargs['zoneName']
-        if zone_name is None:
-            raise TypeError("Missing 'zone_name' argument")
-
-        _setter("id", id)
-        _setter("num_shards", num_shards)
-        _setter("regions_configs", regions_configs)
-        _setter("zone_name", zone_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "num_shards", num_shards)
+        pulumi.set(__self__, "regions_configs", regions_configs)
+        pulumi.set(__self__, "zone_name", zone_name)
 
     @property
     @pulumi.getter
@@ -18441,48 +12736,11 @@ class GetClusterReplicationSpecRegionsConfigResult(dict):
         :param int read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         :param str region_name: Name for the region specified.
         """
-        GetClusterReplicationSpecRegionsConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            analytics_nodes=analytics_nodes,
-            electable_nodes=electable_nodes,
-            priority=priority,
-            read_only_nodes=read_only_nodes,
-            region_name=region_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             analytics_nodes: Optional[int] = None,
-             electable_nodes: Optional[int] = None,
-             priority: Optional[int] = None,
-             read_only_nodes: Optional[int] = None,
-             region_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if analytics_nodes is None and 'analyticsNodes' in kwargs:
-            analytics_nodes = kwargs['analyticsNodes']
-        if analytics_nodes is None:
-            raise TypeError("Missing 'analytics_nodes' argument")
-        if electable_nodes is None and 'electableNodes' in kwargs:
-            electable_nodes = kwargs['electableNodes']
-        if electable_nodes is None:
-            raise TypeError("Missing 'electable_nodes' argument")
-        if priority is None:
-            raise TypeError("Missing 'priority' argument")
-        if read_only_nodes is None and 'readOnlyNodes' in kwargs:
-            read_only_nodes = kwargs['readOnlyNodes']
-        if read_only_nodes is None:
-            raise TypeError("Missing 'read_only_nodes' argument")
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if region_name is None:
-            raise TypeError("Missing 'region_name' argument")
-
-        _setter("analytics_nodes", analytics_nodes)
-        _setter("electable_nodes", electable_nodes)
-        _setter("priority", priority)
-        _setter("read_only_nodes", read_only_nodes)
-        _setter("region_name", region_name)
+        pulumi.set(__self__, "analytics_nodes", analytics_nodes)
+        pulumi.set(__self__, "electable_nodes", electable_nodes)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "read_only_nodes", read_only_nodes)
+        pulumi.set(__self__, "region_name", region_name)
 
     @property
     @pulumi.getter(name="analyticsNodes")
@@ -18536,69 +12794,14 @@ class GetClusterSnapshotBackupPolicyResult(dict):
                  reference_minute_of_hour: int,
                  restore_window_days: int,
                  update_snapshots: bool):
-        GetClusterSnapshotBackupPolicyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_id=cluster_id,
-            cluster_name=cluster_name,
-            next_snapshot=next_snapshot,
-            policies=policies,
-            reference_hour_of_day=reference_hour_of_day,
-            reference_minute_of_hour=reference_minute_of_hour,
-            restore_window_days=restore_window_days,
-            update_snapshots=update_snapshots,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_id: Optional[str] = None,
-             cluster_name: Optional[str] = None,
-             next_snapshot: Optional[str] = None,
-             policies: Optional[Sequence['outputs.GetClusterSnapshotBackupPolicyPolicyResult']] = None,
-             reference_hour_of_day: Optional[int] = None,
-             reference_minute_of_hour: Optional[int] = None,
-             restore_window_days: Optional[int] = None,
-             update_snapshots: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_id is None and 'clusterId' in kwargs:
-            cluster_id = kwargs['clusterId']
-        if cluster_id is None:
-            raise TypeError("Missing 'cluster_id' argument")
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if cluster_name is None:
-            raise TypeError("Missing 'cluster_name' argument")
-        if next_snapshot is None and 'nextSnapshot' in kwargs:
-            next_snapshot = kwargs['nextSnapshot']
-        if next_snapshot is None:
-            raise TypeError("Missing 'next_snapshot' argument")
-        if policies is None:
-            raise TypeError("Missing 'policies' argument")
-        if reference_hour_of_day is None and 'referenceHourOfDay' in kwargs:
-            reference_hour_of_day = kwargs['referenceHourOfDay']
-        if reference_hour_of_day is None:
-            raise TypeError("Missing 'reference_hour_of_day' argument")
-        if reference_minute_of_hour is None and 'referenceMinuteOfHour' in kwargs:
-            reference_minute_of_hour = kwargs['referenceMinuteOfHour']
-        if reference_minute_of_hour is None:
-            raise TypeError("Missing 'reference_minute_of_hour' argument")
-        if restore_window_days is None and 'restoreWindowDays' in kwargs:
-            restore_window_days = kwargs['restoreWindowDays']
-        if restore_window_days is None:
-            raise TypeError("Missing 'restore_window_days' argument")
-        if update_snapshots is None and 'updateSnapshots' in kwargs:
-            update_snapshots = kwargs['updateSnapshots']
-        if update_snapshots is None:
-            raise TypeError("Missing 'update_snapshots' argument")
-
-        _setter("cluster_id", cluster_id)
-        _setter("cluster_name", cluster_name)
-        _setter("next_snapshot", next_snapshot)
-        _setter("policies", policies)
-        _setter("reference_hour_of_day", reference_hour_of_day)
-        _setter("reference_minute_of_hour", reference_minute_of_hour)
-        _setter("restore_window_days", restore_window_days)
-        _setter("update_snapshots", update_snapshots)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "next_snapshot", next_snapshot)
+        pulumi.set(__self__, "policies", policies)
+        pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
+        pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
+        pulumi.set(__self__, "restore_window_days", restore_window_days)
+        pulumi.set(__self__, "update_snapshots", update_snapshots)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -18649,27 +12852,8 @@ class GetClusterSnapshotBackupPolicyPolicyResult(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
-        GetClusterSnapshotBackupPolicyPolicyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            policy_items=policy_items,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             policy_items: Optional[Sequence['outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItemResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if policy_items is None and 'policyItems' in kwargs:
-            policy_items = kwargs['policyItems']
-        if policy_items is None:
-            raise TypeError("Missing 'policy_items' argument")
-
-        _setter("id", id)
-        _setter("policy_items", policy_items)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policy_items", policy_items)
 
     @property
     @pulumi.getter
@@ -18696,48 +12880,11 @@ class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
-        GetClusterSnapshotBackupPolicyPolicyPolicyItemResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -18777,25 +12924,8 @@ class GetClusterTagResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        GetClusterTagResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -18918,287 +13048,46 @@ class GetClustersResultResult(dict):
         :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param str version_release_system: Release cadence that Atlas uses for this cluster.
         """
-        GetClustersResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            advanced_configurations=advanced_configurations,
-            auto_scaling_compute_enabled=auto_scaling_compute_enabled,
-            auto_scaling_compute_scale_down_enabled=auto_scaling_compute_scale_down_enabled,
-            auto_scaling_disk_gb_enabled=auto_scaling_disk_gb_enabled,
-            backing_provider_name=backing_provider_name,
-            backup_enabled=backup_enabled,
-            bi_connector_configs=bi_connector_configs,
-            cluster_type=cluster_type,
-            connection_strings=connection_strings,
-            container_id=container_id,
-            disk_size_gb=disk_size_gb,
-            encryption_at_rest_provider=encryption_at_rest_provider,
-            labels=labels,
-            mongo_db_major_version=mongo_db_major_version,
-            mongo_db_version=mongo_db_version,
-            mongo_uri=mongo_uri,
-            mongo_uri_updated=mongo_uri_updated,
-            mongo_uri_with_options=mongo_uri_with_options,
-            name=name,
-            num_shards=num_shards,
-            paused=paused,
-            pit_enabled=pit_enabled,
-            provider_auto_scaling_compute_max_instance_size=provider_auto_scaling_compute_max_instance_size,
-            provider_auto_scaling_compute_min_instance_size=provider_auto_scaling_compute_min_instance_size,
-            provider_backup_enabled=provider_backup_enabled,
-            provider_disk_iops=provider_disk_iops,
-            provider_disk_type_name=provider_disk_type_name,
-            provider_encrypt_ebs_volume=provider_encrypt_ebs_volume,
-            provider_instance_size_name=provider_instance_size_name,
-            provider_name=provider_name,
-            provider_region_name=provider_region_name,
-            provider_volume_type=provider_volume_type,
-            replication_factor=replication_factor,
-            replication_specs=replication_specs,
-            snapshot_backup_policies=snapshot_backup_policies,
-            srv_address=srv_address,
-            state_name=state_name,
-            tags=tags,
-            termination_protection_enabled=termination_protection_enabled,
-            version_release_system=version_release_system,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             advanced_configurations: Optional[Sequence['outputs.GetClustersResultAdvancedConfigurationResult']] = None,
-             auto_scaling_compute_enabled: Optional[bool] = None,
-             auto_scaling_compute_scale_down_enabled: Optional[bool] = None,
-             auto_scaling_disk_gb_enabled: Optional[bool] = None,
-             backing_provider_name: Optional[str] = None,
-             backup_enabled: Optional[bool] = None,
-             bi_connector_configs: Optional[Sequence['outputs.GetClustersResultBiConnectorConfigResult']] = None,
-             cluster_type: Optional[str] = None,
-             connection_strings: Optional[Sequence['outputs.GetClustersResultConnectionStringResult']] = None,
-             container_id: Optional[str] = None,
-             disk_size_gb: Optional[float] = None,
-             encryption_at_rest_provider: Optional[str] = None,
-             labels: Optional[Sequence['outputs.GetClustersResultLabelResult']] = None,
-             mongo_db_major_version: Optional[str] = None,
-             mongo_db_version: Optional[str] = None,
-             mongo_uri: Optional[str] = None,
-             mongo_uri_updated: Optional[str] = None,
-             mongo_uri_with_options: Optional[str] = None,
-             name: Optional[str] = None,
-             num_shards: Optional[int] = None,
-             paused: Optional[bool] = None,
-             pit_enabled: Optional[bool] = None,
-             provider_auto_scaling_compute_max_instance_size: Optional[str] = None,
-             provider_auto_scaling_compute_min_instance_size: Optional[str] = None,
-             provider_backup_enabled: Optional[bool] = None,
-             provider_disk_iops: Optional[int] = None,
-             provider_disk_type_name: Optional[str] = None,
-             provider_encrypt_ebs_volume: Optional[bool] = None,
-             provider_instance_size_name: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             provider_region_name: Optional[str] = None,
-             provider_volume_type: Optional[str] = None,
-             replication_factor: Optional[int] = None,
-             replication_specs: Optional[Sequence['outputs.GetClustersResultReplicationSpecResult']] = None,
-             snapshot_backup_policies: Optional[Sequence['outputs.GetClustersResultSnapshotBackupPolicyResult']] = None,
-             srv_address: Optional[str] = None,
-             state_name: Optional[str] = None,
-             tags: Optional[Sequence['outputs.GetClustersResultTagResult']] = None,
-             termination_protection_enabled: Optional[bool] = None,
-             version_release_system: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if advanced_configurations is None and 'advancedConfigurations' in kwargs:
-            advanced_configurations = kwargs['advancedConfigurations']
-        if advanced_configurations is None:
-            raise TypeError("Missing 'advanced_configurations' argument")
-        if auto_scaling_compute_enabled is None and 'autoScalingComputeEnabled' in kwargs:
-            auto_scaling_compute_enabled = kwargs['autoScalingComputeEnabled']
-        if auto_scaling_compute_enabled is None:
-            raise TypeError("Missing 'auto_scaling_compute_enabled' argument")
-        if auto_scaling_compute_scale_down_enabled is None and 'autoScalingComputeScaleDownEnabled' in kwargs:
-            auto_scaling_compute_scale_down_enabled = kwargs['autoScalingComputeScaleDownEnabled']
-        if auto_scaling_compute_scale_down_enabled is None:
-            raise TypeError("Missing 'auto_scaling_compute_scale_down_enabled' argument")
-        if auto_scaling_disk_gb_enabled is None and 'autoScalingDiskGbEnabled' in kwargs:
-            auto_scaling_disk_gb_enabled = kwargs['autoScalingDiskGbEnabled']
-        if auto_scaling_disk_gb_enabled is None:
-            raise TypeError("Missing 'auto_scaling_disk_gb_enabled' argument")
-        if backing_provider_name is None and 'backingProviderName' in kwargs:
-            backing_provider_name = kwargs['backingProviderName']
-        if backing_provider_name is None:
-            raise TypeError("Missing 'backing_provider_name' argument")
-        if backup_enabled is None and 'backupEnabled' in kwargs:
-            backup_enabled = kwargs['backupEnabled']
-        if backup_enabled is None:
-            raise TypeError("Missing 'backup_enabled' argument")
-        if bi_connector_configs is None and 'biConnectorConfigs' in kwargs:
-            bi_connector_configs = kwargs['biConnectorConfigs']
-        if bi_connector_configs is None:
-            raise TypeError("Missing 'bi_connector_configs' argument")
-        if cluster_type is None and 'clusterType' in kwargs:
-            cluster_type = kwargs['clusterType']
-        if cluster_type is None:
-            raise TypeError("Missing 'cluster_type' argument")
-        if connection_strings is None and 'connectionStrings' in kwargs:
-            connection_strings = kwargs['connectionStrings']
-        if connection_strings is None:
-            raise TypeError("Missing 'connection_strings' argument")
-        if container_id is None and 'containerId' in kwargs:
-            container_id = kwargs['containerId']
-        if container_id is None:
-            raise TypeError("Missing 'container_id' argument")
-        if disk_size_gb is None and 'diskSizeGb' in kwargs:
-            disk_size_gb = kwargs['diskSizeGb']
-        if disk_size_gb is None:
-            raise TypeError("Missing 'disk_size_gb' argument")
-        if encryption_at_rest_provider is None and 'encryptionAtRestProvider' in kwargs:
-            encryption_at_rest_provider = kwargs['encryptionAtRestProvider']
-        if encryption_at_rest_provider is None:
-            raise TypeError("Missing 'encryption_at_rest_provider' argument")
-        if labels is None:
-            raise TypeError("Missing 'labels' argument")
-        if mongo_db_major_version is None and 'mongoDbMajorVersion' in kwargs:
-            mongo_db_major_version = kwargs['mongoDbMajorVersion']
-        if mongo_db_major_version is None:
-            raise TypeError("Missing 'mongo_db_major_version' argument")
-        if mongo_db_version is None and 'mongoDbVersion' in kwargs:
-            mongo_db_version = kwargs['mongoDbVersion']
-        if mongo_db_version is None:
-            raise TypeError("Missing 'mongo_db_version' argument")
-        if mongo_uri is None and 'mongoUri' in kwargs:
-            mongo_uri = kwargs['mongoUri']
-        if mongo_uri is None:
-            raise TypeError("Missing 'mongo_uri' argument")
-        if mongo_uri_updated is None and 'mongoUriUpdated' in kwargs:
-            mongo_uri_updated = kwargs['mongoUriUpdated']
-        if mongo_uri_updated is None:
-            raise TypeError("Missing 'mongo_uri_updated' argument")
-        if mongo_uri_with_options is None and 'mongoUriWithOptions' in kwargs:
-            mongo_uri_with_options = kwargs['mongoUriWithOptions']
-        if mongo_uri_with_options is None:
-            raise TypeError("Missing 'mongo_uri_with_options' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if num_shards is None and 'numShards' in kwargs:
-            num_shards = kwargs['numShards']
-        if num_shards is None:
-            raise TypeError("Missing 'num_shards' argument")
-        if paused is None:
-            raise TypeError("Missing 'paused' argument")
-        if pit_enabled is None and 'pitEnabled' in kwargs:
-            pit_enabled = kwargs['pitEnabled']
-        if pit_enabled is None:
-            raise TypeError("Missing 'pit_enabled' argument")
-        if provider_auto_scaling_compute_max_instance_size is None and 'providerAutoScalingComputeMaxInstanceSize' in kwargs:
-            provider_auto_scaling_compute_max_instance_size = kwargs['providerAutoScalingComputeMaxInstanceSize']
-        if provider_auto_scaling_compute_max_instance_size is None:
-            raise TypeError("Missing 'provider_auto_scaling_compute_max_instance_size' argument")
-        if provider_auto_scaling_compute_min_instance_size is None and 'providerAutoScalingComputeMinInstanceSize' in kwargs:
-            provider_auto_scaling_compute_min_instance_size = kwargs['providerAutoScalingComputeMinInstanceSize']
-        if provider_auto_scaling_compute_min_instance_size is None:
-            raise TypeError("Missing 'provider_auto_scaling_compute_min_instance_size' argument")
-        if provider_backup_enabled is None and 'providerBackupEnabled' in kwargs:
-            provider_backup_enabled = kwargs['providerBackupEnabled']
-        if provider_backup_enabled is None:
-            raise TypeError("Missing 'provider_backup_enabled' argument")
-        if provider_disk_iops is None and 'providerDiskIops' in kwargs:
-            provider_disk_iops = kwargs['providerDiskIops']
-        if provider_disk_iops is None:
-            raise TypeError("Missing 'provider_disk_iops' argument")
-        if provider_disk_type_name is None and 'providerDiskTypeName' in kwargs:
-            provider_disk_type_name = kwargs['providerDiskTypeName']
-        if provider_disk_type_name is None:
-            raise TypeError("Missing 'provider_disk_type_name' argument")
-        if provider_encrypt_ebs_volume is None and 'providerEncryptEbsVolume' in kwargs:
-            provider_encrypt_ebs_volume = kwargs['providerEncryptEbsVolume']
-        if provider_encrypt_ebs_volume is None:
-            raise TypeError("Missing 'provider_encrypt_ebs_volume' argument")
-        if provider_instance_size_name is None and 'providerInstanceSizeName' in kwargs:
-            provider_instance_size_name = kwargs['providerInstanceSizeName']
-        if provider_instance_size_name is None:
-            raise TypeError("Missing 'provider_instance_size_name' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if provider_region_name is None and 'providerRegionName' in kwargs:
-            provider_region_name = kwargs['providerRegionName']
-        if provider_region_name is None:
-            raise TypeError("Missing 'provider_region_name' argument")
-        if provider_volume_type is None and 'providerVolumeType' in kwargs:
-            provider_volume_type = kwargs['providerVolumeType']
-        if provider_volume_type is None:
-            raise TypeError("Missing 'provider_volume_type' argument")
-        if replication_factor is None and 'replicationFactor' in kwargs:
-            replication_factor = kwargs['replicationFactor']
-        if replication_factor is None:
-            raise TypeError("Missing 'replication_factor' argument")
-        if replication_specs is None and 'replicationSpecs' in kwargs:
-            replication_specs = kwargs['replicationSpecs']
-        if replication_specs is None:
-            raise TypeError("Missing 'replication_specs' argument")
-        if snapshot_backup_policies is None and 'snapshotBackupPolicies' in kwargs:
-            snapshot_backup_policies = kwargs['snapshotBackupPolicies']
-        if snapshot_backup_policies is None:
-            raise TypeError("Missing 'snapshot_backup_policies' argument")
-        if srv_address is None and 'srvAddress' in kwargs:
-            srv_address = kwargs['srvAddress']
-        if srv_address is None:
-            raise TypeError("Missing 'srv_address' argument")
-        if state_name is None and 'stateName' in kwargs:
-            state_name = kwargs['stateName']
-        if state_name is None:
-            raise TypeError("Missing 'state_name' argument")
-        if tags is None:
-            raise TypeError("Missing 'tags' argument")
-        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
-            termination_protection_enabled = kwargs['terminationProtectionEnabled']
-        if termination_protection_enabled is None:
-            raise TypeError("Missing 'termination_protection_enabled' argument")
-        if version_release_system is None and 'versionReleaseSystem' in kwargs:
-            version_release_system = kwargs['versionReleaseSystem']
-        if version_release_system is None:
-            raise TypeError("Missing 'version_release_system' argument")
-
-        _setter("advanced_configurations", advanced_configurations)
-        _setter("auto_scaling_compute_enabled", auto_scaling_compute_enabled)
-        _setter("auto_scaling_compute_scale_down_enabled", auto_scaling_compute_scale_down_enabled)
-        _setter("auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
-        _setter("backing_provider_name", backing_provider_name)
-        _setter("backup_enabled", backup_enabled)
-        _setter("bi_connector_configs", bi_connector_configs)
-        _setter("cluster_type", cluster_type)
-        _setter("connection_strings", connection_strings)
-        _setter("container_id", container_id)
-        _setter("disk_size_gb", disk_size_gb)
-        _setter("encryption_at_rest_provider", encryption_at_rest_provider)
-        _setter("labels", labels)
-        _setter("mongo_db_major_version", mongo_db_major_version)
-        _setter("mongo_db_version", mongo_db_version)
-        _setter("mongo_uri", mongo_uri)
-        _setter("mongo_uri_updated", mongo_uri_updated)
-        _setter("mongo_uri_with_options", mongo_uri_with_options)
-        _setter("name", name)
-        _setter("num_shards", num_shards)
-        _setter("paused", paused)
-        _setter("pit_enabled", pit_enabled)
-        _setter("provider_auto_scaling_compute_max_instance_size", provider_auto_scaling_compute_max_instance_size)
-        _setter("provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
-        _setter("provider_backup_enabled", provider_backup_enabled)
-        _setter("provider_disk_iops", provider_disk_iops)
-        _setter("provider_disk_type_name", provider_disk_type_name)
-        _setter("provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
-        _setter("provider_instance_size_name", provider_instance_size_name)
-        _setter("provider_name", provider_name)
-        _setter("provider_region_name", provider_region_name)
-        _setter("provider_volume_type", provider_volume_type)
-        _setter("replication_factor", replication_factor)
-        _setter("replication_specs", replication_specs)
-        _setter("snapshot_backup_policies", snapshot_backup_policies)
-        _setter("srv_address", srv_address)
-        _setter("state_name", state_name)
-        _setter("tags", tags)
-        _setter("termination_protection_enabled", termination_protection_enabled)
-        _setter("version_release_system", version_release_system)
+        pulumi.set(__self__, "advanced_configurations", advanced_configurations)
+        pulumi.set(__self__, "auto_scaling_compute_enabled", auto_scaling_compute_enabled)
+        pulumi.set(__self__, "auto_scaling_compute_scale_down_enabled", auto_scaling_compute_scale_down_enabled)
+        pulumi.set(__self__, "auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
+        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "backup_enabled", backup_enabled)
+        pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "connection_strings", connection_strings)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "mongo_uri", mongo_uri)
+        pulumi.set(__self__, "mongo_uri_updated", mongo_uri_updated)
+        pulumi.set(__self__, "mongo_uri_with_options", mongo_uri_with_options)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "num_shards", num_shards)
+        pulumi.set(__self__, "paused", paused)
+        pulumi.set(__self__, "pit_enabled", pit_enabled)
+        pulumi.set(__self__, "provider_auto_scaling_compute_max_instance_size", provider_auto_scaling_compute_max_instance_size)
+        pulumi.set(__self__, "provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
+        pulumi.set(__self__, "provider_backup_enabled", provider_backup_enabled)
+        pulumi.set(__self__, "provider_disk_iops", provider_disk_iops)
+        pulumi.set(__self__, "provider_disk_type_name", provider_disk_type_name)
+        pulumi.set(__self__, "provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
+        pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "provider_region_name", provider_region_name)
+        pulumi.set(__self__, "provider_volume_type", provider_volume_type)
+        pulumi.set(__self__, "replication_factor", replication_factor)
+        pulumi.set(__self__, "replication_specs", replication_specs)
+        pulumi.set(__self__, "snapshot_backup_policies", snapshot_backup_policies)
+        pulumi.set(__self__, "srv_address", srv_address)
+        pulumi.set(__self__, "state_name", state_name)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+        pulumi.set(__self__, "version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="advancedConfigurations")
@@ -19569,92 +13458,17 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
-        GetClustersResultAdvancedConfigurationResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            default_read_concern=default_read_concern,
-            default_write_concern=default_write_concern,
-            fail_index_key_too_long=fail_index_key_too_long,
-            javascript_enabled=javascript_enabled,
-            minimum_enabled_tls_protocol=minimum_enabled_tls_protocol,
-            no_table_scan=no_table_scan,
-            oplog_min_retention_hours=oplog_min_retention_hours,
-            oplog_size_mb=oplog_size_mb,
-            sample_refresh_interval_bi_connector=sample_refresh_interval_bi_connector,
-            sample_size_bi_connector=sample_size_bi_connector,
-            transaction_lifetime_limit_seconds=transaction_lifetime_limit_seconds,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             default_read_concern: Optional[str] = None,
-             default_write_concern: Optional[str] = None,
-             fail_index_key_too_long: Optional[bool] = None,
-             javascript_enabled: Optional[bool] = None,
-             minimum_enabled_tls_protocol: Optional[str] = None,
-             no_table_scan: Optional[bool] = None,
-             oplog_min_retention_hours: Optional[int] = None,
-             oplog_size_mb: Optional[int] = None,
-             sample_refresh_interval_bi_connector: Optional[int] = None,
-             sample_size_bi_connector: Optional[int] = None,
-             transaction_lifetime_limit_seconds: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if default_read_concern is None and 'defaultReadConcern' in kwargs:
-            default_read_concern = kwargs['defaultReadConcern']
-        if default_read_concern is None:
-            raise TypeError("Missing 'default_read_concern' argument")
-        if default_write_concern is None and 'defaultWriteConcern' in kwargs:
-            default_write_concern = kwargs['defaultWriteConcern']
-        if default_write_concern is None:
-            raise TypeError("Missing 'default_write_concern' argument")
-        if fail_index_key_too_long is None and 'failIndexKeyTooLong' in kwargs:
-            fail_index_key_too_long = kwargs['failIndexKeyTooLong']
-        if fail_index_key_too_long is None:
-            raise TypeError("Missing 'fail_index_key_too_long' argument")
-        if javascript_enabled is None and 'javascriptEnabled' in kwargs:
-            javascript_enabled = kwargs['javascriptEnabled']
-        if javascript_enabled is None:
-            raise TypeError("Missing 'javascript_enabled' argument")
-        if minimum_enabled_tls_protocol is None and 'minimumEnabledTlsProtocol' in kwargs:
-            minimum_enabled_tls_protocol = kwargs['minimumEnabledTlsProtocol']
-        if minimum_enabled_tls_protocol is None:
-            raise TypeError("Missing 'minimum_enabled_tls_protocol' argument")
-        if no_table_scan is None and 'noTableScan' in kwargs:
-            no_table_scan = kwargs['noTableScan']
-        if no_table_scan is None:
-            raise TypeError("Missing 'no_table_scan' argument")
-        if oplog_min_retention_hours is None and 'oplogMinRetentionHours' in kwargs:
-            oplog_min_retention_hours = kwargs['oplogMinRetentionHours']
-        if oplog_min_retention_hours is None:
-            raise TypeError("Missing 'oplog_min_retention_hours' argument")
-        if oplog_size_mb is None and 'oplogSizeMb' in kwargs:
-            oplog_size_mb = kwargs['oplogSizeMb']
-        if oplog_size_mb is None:
-            raise TypeError("Missing 'oplog_size_mb' argument")
-        if sample_refresh_interval_bi_connector is None and 'sampleRefreshIntervalBiConnector' in kwargs:
-            sample_refresh_interval_bi_connector = kwargs['sampleRefreshIntervalBiConnector']
-        if sample_refresh_interval_bi_connector is None:
-            raise TypeError("Missing 'sample_refresh_interval_bi_connector' argument")
-        if sample_size_bi_connector is None and 'sampleSizeBiConnector' in kwargs:
-            sample_size_bi_connector = kwargs['sampleSizeBiConnector']
-        if sample_size_bi_connector is None:
-            raise TypeError("Missing 'sample_size_bi_connector' argument")
-        if transaction_lifetime_limit_seconds is None and 'transactionLifetimeLimitSeconds' in kwargs:
-            transaction_lifetime_limit_seconds = kwargs['transactionLifetimeLimitSeconds']
-        if transaction_lifetime_limit_seconds is None:
-            raise TypeError("Missing 'transaction_lifetime_limit_seconds' argument")
-
-        _setter("default_read_concern", default_read_concern)
-        _setter("default_write_concern", default_write_concern)
-        _setter("fail_index_key_too_long", fail_index_key_too_long)
-        _setter("javascript_enabled", javascript_enabled)
-        _setter("minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
-        _setter("no_table_scan", no_table_scan)
-        _setter("oplog_min_retention_hours", oplog_min_retention_hours)
-        _setter("oplog_size_mb", oplog_size_mb)
-        _setter("sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
-        _setter("sample_size_bi_connector", sample_size_bi_connector)
-        _setter("transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
+        pulumi.set(__self__, "default_read_concern", default_read_concern)
+        pulumi.set(__self__, "default_write_concern", default_write_concern)
+        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_min_retention_hours", oplog_min_retention_hours)
+        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+        pulumi.set(__self__, "transaction_lifetime_limit_seconds", transaction_lifetime_limit_seconds)
 
     @property
     @pulumi.getter(name="defaultReadConcern")
@@ -19751,27 +13565,8 @@ class GetClustersResultBiConnectorConfigResult(dict):
         :param bool enabled: Indicates whether or not BI Connector for Atlas is enabled on the cluster.
         :param str read_preference: Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
         """
-        GetClustersResultBiConnectorConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            read_preference=read_preference,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[bool] = None,
-             read_preference: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if enabled is None:
-            raise TypeError("Missing 'enabled' argument")
-        if read_preference is None and 'readPreference' in kwargs:
-            read_preference = kwargs['readPreference']
-        if read_preference is None:
-            raise TypeError("Missing 'read_preference' argument")
-
-        _setter("enabled", enabled)
-        _setter("read_preference", read_preference)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "read_preference", read_preference)
 
     @property
     @pulumi.getter
@@ -19800,60 +13595,13 @@ class GetClustersResultConnectionStringResult(dict):
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
-        GetClustersResultConnectionStringResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws_private_link=aws_private_link,
-            aws_private_link_srv=aws_private_link_srv,
-            private=private,
-            private_endpoints=private_endpoints,
-            private_srv=private_srv,
-            standard=standard,
-            standard_srv=standard_srv,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws_private_link: Optional[Mapping[str, Any]] = None,
-             aws_private_link_srv: Optional[Mapping[str, Any]] = None,
-             private: Optional[str] = None,
-             private_endpoints: Optional[Sequence['outputs.GetClustersResultConnectionStringPrivateEndpointResult']] = None,
-             private_srv: Optional[str] = None,
-             standard: Optional[str] = None,
-             standard_srv: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws_private_link is None and 'awsPrivateLink' in kwargs:
-            aws_private_link = kwargs['awsPrivateLink']
-        if aws_private_link is None:
-            raise TypeError("Missing 'aws_private_link' argument")
-        if aws_private_link_srv is None and 'awsPrivateLinkSrv' in kwargs:
-            aws_private_link_srv = kwargs['awsPrivateLinkSrv']
-        if aws_private_link_srv is None:
-            raise TypeError("Missing 'aws_private_link_srv' argument")
-        if private is None:
-            raise TypeError("Missing 'private' argument")
-        if private_endpoints is None and 'privateEndpoints' in kwargs:
-            private_endpoints = kwargs['privateEndpoints']
-        if private_endpoints is None:
-            raise TypeError("Missing 'private_endpoints' argument")
-        if private_srv is None and 'privateSrv' in kwargs:
-            private_srv = kwargs['privateSrv']
-        if private_srv is None:
-            raise TypeError("Missing 'private_srv' argument")
-        if standard is None:
-            raise TypeError("Missing 'standard' argument")
-        if standard_srv is None and 'standardSrv' in kwargs:
-            standard_srv = kwargs['standardSrv']
-        if standard_srv is None:
-            raise TypeError("Missing 'standard_srv' argument")
-
-        _setter("aws_private_link", aws_private_link)
-        _setter("aws_private_link_srv", aws_private_link_srv)
-        _setter("private", private)
-        _setter("private_endpoints", private_endpoints)
-        _setter("private_srv", private_srv)
-        _setter("standard", standard)
-        _setter("standard_srv", standard_srv)
+        pulumi.set(__self__, "aws_private_link", aws_private_link)
+        pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
+        pulumi.set(__self__, "private", private)
+        pulumi.set(__self__, "private_endpoints", private_endpoints)
+        pulumi.set(__self__, "private_srv", private_srv)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "standard_srv", standard_srv)
 
     @property
     @pulumi.getter(name="awsPrivateLink")
@@ -19899,46 +13647,11 @@ class GetClustersResultConnectionStringPrivateEndpointResult(dict):
                  srv_connection_string: str,
                  srv_shard_optimized_connection_string: str,
                  type: str):
-        GetClustersResultConnectionStringPrivateEndpointResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            connection_string=connection_string,
-            endpoints=endpoints,
-            srv_connection_string=srv_connection_string,
-            srv_shard_optimized_connection_string=srv_shard_optimized_connection_string,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             connection_string: Optional[str] = None,
-             endpoints: Optional[Sequence['outputs.GetClustersResultConnectionStringPrivateEndpointEndpointResult']] = None,
-             srv_connection_string: Optional[str] = None,
-             srv_shard_optimized_connection_string: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if connection_string is None and 'connectionString' in kwargs:
-            connection_string = kwargs['connectionString']
-        if connection_string is None:
-            raise TypeError("Missing 'connection_string' argument")
-        if endpoints is None:
-            raise TypeError("Missing 'endpoints' argument")
-        if srv_connection_string is None and 'srvConnectionString' in kwargs:
-            srv_connection_string = kwargs['srvConnectionString']
-        if srv_connection_string is None:
-            raise TypeError("Missing 'srv_connection_string' argument")
-        if srv_shard_optimized_connection_string is None and 'srvShardOptimizedConnectionString' in kwargs:
-            srv_shard_optimized_connection_string = kwargs['srvShardOptimizedConnectionString']
-        if srv_shard_optimized_connection_string is None:
-            raise TypeError("Missing 'srv_shard_optimized_connection_string' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("connection_string", connection_string)
-        _setter("endpoints", endpoints)
-        _setter("srv_connection_string", srv_connection_string)
-        _setter("srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
-        _setter("type", type)
+        pulumi.set(__self__, "connection_string", connection_string)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        pulumi.set(__self__, "srv_shard_optimized_connection_string", srv_shard_optimized_connection_string)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="connectionString")
@@ -19975,34 +13688,9 @@ class GetClustersResultConnectionStringPrivateEndpointEndpointResult(dict):
         """
         :param str provider_name: Indicates the cloud service provider on which the servers are provisioned.
         """
-        GetClustersResultConnectionStringPrivateEndpointEndpointResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoint_id=endpoint_id,
-            provider_name=provider_name,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoint_id: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if endpoint_id is None and 'endpointId' in kwargs:
-            endpoint_id = kwargs['endpointId']
-        if endpoint_id is None:
-            raise TypeError("Missing 'endpoint_id' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("endpoint_id", endpoint_id)
-        _setter("provider_name", provider_name)
-        _setter("region", region)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -20032,25 +13720,8 @@ class GetClustersResultLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        GetClustersResultLabelResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -20082,41 +13753,10 @@ class GetClustersResultReplicationSpecResult(dict):
         :param Sequence['GetClustersResultReplicationSpecRegionsConfigArgs'] regions_configs: Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Indicates the n ame for the zone in a Global Cluster.
         """
-        GetClustersResultReplicationSpecResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            num_shards=num_shards,
-            regions_configs=regions_configs,
-            zone_name=zone_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             num_shards: Optional[int] = None,
-             regions_configs: Optional[Sequence['outputs.GetClustersResultReplicationSpecRegionsConfigResult']] = None,
-             zone_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if num_shards is None and 'numShards' in kwargs:
-            num_shards = kwargs['numShards']
-        if num_shards is None:
-            raise TypeError("Missing 'num_shards' argument")
-        if regions_configs is None and 'regionsConfigs' in kwargs:
-            regions_configs = kwargs['regionsConfigs']
-        if regions_configs is None:
-            raise TypeError("Missing 'regions_configs' argument")
-        if zone_name is None and 'zoneName' in kwargs:
-            zone_name = kwargs['zoneName']
-        if zone_name is None:
-            raise TypeError("Missing 'zone_name' argument")
-
-        _setter("id", id)
-        _setter("num_shards", num_shards)
-        _setter("regions_configs", regions_configs)
-        _setter("zone_name", zone_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "num_shards", num_shards)
+        pulumi.set(__self__, "regions_configs", regions_configs)
+        pulumi.set(__self__, "zone_name", zone_name)
 
     @property
     @pulumi.getter
@@ -20166,48 +13806,11 @@ class GetClustersResultReplicationSpecRegionsConfigResult(dict):
         :param int read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         :param str region_name: Name for the region specified.
         """
-        GetClustersResultReplicationSpecRegionsConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            analytics_nodes=analytics_nodes,
-            electable_nodes=electable_nodes,
-            priority=priority,
-            read_only_nodes=read_only_nodes,
-            region_name=region_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             analytics_nodes: Optional[int] = None,
-             electable_nodes: Optional[int] = None,
-             priority: Optional[int] = None,
-             read_only_nodes: Optional[int] = None,
-             region_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if analytics_nodes is None and 'analyticsNodes' in kwargs:
-            analytics_nodes = kwargs['analyticsNodes']
-        if analytics_nodes is None:
-            raise TypeError("Missing 'analytics_nodes' argument")
-        if electable_nodes is None and 'electableNodes' in kwargs:
-            electable_nodes = kwargs['electableNodes']
-        if electable_nodes is None:
-            raise TypeError("Missing 'electable_nodes' argument")
-        if priority is None:
-            raise TypeError("Missing 'priority' argument")
-        if read_only_nodes is None and 'readOnlyNodes' in kwargs:
-            read_only_nodes = kwargs['readOnlyNodes']
-        if read_only_nodes is None:
-            raise TypeError("Missing 'read_only_nodes' argument")
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if region_name is None:
-            raise TypeError("Missing 'region_name' argument")
-
-        _setter("analytics_nodes", analytics_nodes)
-        _setter("electable_nodes", electable_nodes)
-        _setter("priority", priority)
-        _setter("read_only_nodes", read_only_nodes)
-        _setter("region_name", region_name)
+        pulumi.set(__self__, "analytics_nodes", analytics_nodes)
+        pulumi.set(__self__, "electable_nodes", electable_nodes)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "read_only_nodes", read_only_nodes)
+        pulumi.set(__self__, "region_name", region_name)
 
     @property
     @pulumi.getter(name="analyticsNodes")
@@ -20261,69 +13864,14 @@ class GetClustersResultSnapshotBackupPolicyResult(dict):
                  reference_minute_of_hour: int,
                  restore_window_days: int,
                  update_snapshots: bool):
-        GetClustersResultSnapshotBackupPolicyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_id=cluster_id,
-            cluster_name=cluster_name,
-            next_snapshot=next_snapshot,
-            policies=policies,
-            reference_hour_of_day=reference_hour_of_day,
-            reference_minute_of_hour=reference_minute_of_hour,
-            restore_window_days=restore_window_days,
-            update_snapshots=update_snapshots,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_id: Optional[str] = None,
-             cluster_name: Optional[str] = None,
-             next_snapshot: Optional[str] = None,
-             policies: Optional[Sequence['outputs.GetClustersResultSnapshotBackupPolicyPolicyResult']] = None,
-             reference_hour_of_day: Optional[int] = None,
-             reference_minute_of_hour: Optional[int] = None,
-             restore_window_days: Optional[int] = None,
-             update_snapshots: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_id is None and 'clusterId' in kwargs:
-            cluster_id = kwargs['clusterId']
-        if cluster_id is None:
-            raise TypeError("Missing 'cluster_id' argument")
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if cluster_name is None:
-            raise TypeError("Missing 'cluster_name' argument")
-        if next_snapshot is None and 'nextSnapshot' in kwargs:
-            next_snapshot = kwargs['nextSnapshot']
-        if next_snapshot is None:
-            raise TypeError("Missing 'next_snapshot' argument")
-        if policies is None:
-            raise TypeError("Missing 'policies' argument")
-        if reference_hour_of_day is None and 'referenceHourOfDay' in kwargs:
-            reference_hour_of_day = kwargs['referenceHourOfDay']
-        if reference_hour_of_day is None:
-            raise TypeError("Missing 'reference_hour_of_day' argument")
-        if reference_minute_of_hour is None and 'referenceMinuteOfHour' in kwargs:
-            reference_minute_of_hour = kwargs['referenceMinuteOfHour']
-        if reference_minute_of_hour is None:
-            raise TypeError("Missing 'reference_minute_of_hour' argument")
-        if restore_window_days is None and 'restoreWindowDays' in kwargs:
-            restore_window_days = kwargs['restoreWindowDays']
-        if restore_window_days is None:
-            raise TypeError("Missing 'restore_window_days' argument")
-        if update_snapshots is None and 'updateSnapshots' in kwargs:
-            update_snapshots = kwargs['updateSnapshots']
-        if update_snapshots is None:
-            raise TypeError("Missing 'update_snapshots' argument")
-
-        _setter("cluster_id", cluster_id)
-        _setter("cluster_name", cluster_name)
-        _setter("next_snapshot", next_snapshot)
-        _setter("policies", policies)
-        _setter("reference_hour_of_day", reference_hour_of_day)
-        _setter("reference_minute_of_hour", reference_minute_of_hour)
-        _setter("restore_window_days", restore_window_days)
-        _setter("update_snapshots", update_snapshots)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "next_snapshot", next_snapshot)
+        pulumi.set(__self__, "policies", policies)
+        pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
+        pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
+        pulumi.set(__self__, "restore_window_days", restore_window_days)
+        pulumi.set(__self__, "update_snapshots", update_snapshots)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -20374,27 +13922,8 @@ class GetClustersResultSnapshotBackupPolicyPolicyResult(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
-        GetClustersResultSnapshotBackupPolicyPolicyResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            policy_items=policy_items,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             policy_items: Optional[Sequence['outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if policy_items is None and 'policyItems' in kwargs:
-            policy_items = kwargs['policyItems']
-        if policy_items is None:
-            raise TypeError("Missing 'policy_items' argument")
-
-        _setter("id", id)
-        _setter("policy_items", policy_items)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policy_items", policy_items)
 
     @property
     @pulumi.getter
@@ -20421,48 +13950,11 @@ class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
-        GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -20502,25 +13994,8 @@ class GetClustersResultTagResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        GetClustersResultTagResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -20548,25 +14023,8 @@ class GetCustomDbRoleActionResult(dict):
         :param str action: (Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see Custom Role Actions.
         :param Sequence['GetCustomDbRoleActionResourceArgs'] resources: (Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
         """
-        GetCustomDbRoleActionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            action=action,
-            resources=resources,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             action: Optional[str] = None,
-             resources: Optional[Sequence['outputs.GetCustomDbRoleActionResourceResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if action is None:
-            raise TypeError("Missing 'action' argument")
-        if resources is None:
-            raise TypeError("Missing 'resources' argument")
-
-        _setter("action", action)
-        _setter("resources", resources)
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
@@ -20594,34 +14052,9 @@ class GetCustomDbRoleActionResourceResult(dict):
         """
         :param str database_name: (Required) Database on which the inherited role is granted.
         """
-        GetCustomDbRoleActionResourceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster=cluster,
-            collection_name=collection_name,
-            database_name=database_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster: Optional[bool] = None,
-             collection_name: Optional[str] = None,
-             database_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster is None:
-            raise TypeError("Missing 'cluster' argument")
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if collection_name is None:
-            raise TypeError("Missing 'collection_name' argument")
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if database_name is None:
-            raise TypeError("Missing 'database_name' argument")
-
-        _setter("cluster", cluster)
-        _setter("collection_name", collection_name)
-        _setter("database_name", database_name)
+        pulumi.set(__self__, "cluster", cluster)
+        pulumi.set(__self__, "collection_name", collection_name)
+        pulumi.set(__self__, "database_name", database_name)
 
     @property
     @pulumi.getter
@@ -20651,29 +14084,8 @@ class GetCustomDbRoleInheritedRoleResult(dict):
         :param str database_name: (Required) Database on which the inherited role is granted.
         :param str role_name: Name of the custom role.
         """
-        GetCustomDbRoleInheritedRoleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            database_name=database_name,
-            role_name=role_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             database_name: Optional[str] = None,
-             role_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if database_name is None:
-            raise TypeError("Missing 'database_name' argument")
-        if role_name is None and 'roleName' in kwargs:
-            role_name = kwargs['roleName']
-        if role_name is None:
-            raise TypeError("Missing 'role_name' argument")
-
-        _setter("database_name", database_name)
-        _setter("role_name", role_name)
+        pulumi.set(__self__, "database_name", database_name)
+        pulumi.set(__self__, "role_name", role_name)
 
     @property
     @pulumi.getter(name="databaseName")
@@ -20701,34 +14113,9 @@ class GetCustomDbRolesResultResult(dict):
         """
         :param str role_name: (Required) Name of the inherited role. This can either be another custom role or a built-in role.
         """
-        GetCustomDbRolesResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            actions=actions,
-            inherited_roles=inherited_roles,
-            role_name=role_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             actions: Optional[Sequence['outputs.GetCustomDbRolesResultActionResult']] = None,
-             inherited_roles: Optional[Sequence['outputs.GetCustomDbRolesResultInheritedRoleResult']] = None,
-             role_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if actions is None:
-            raise TypeError("Missing 'actions' argument")
-        if inherited_roles is None and 'inheritedRoles' in kwargs:
-            inherited_roles = kwargs['inheritedRoles']
-        if inherited_roles is None:
-            raise TypeError("Missing 'inherited_roles' argument")
-        if role_name is None and 'roleName' in kwargs:
-            role_name = kwargs['roleName']
-        if role_name is None:
-            raise TypeError("Missing 'role_name' argument")
-
-        _setter("actions", actions)
-        _setter("inherited_roles", inherited_roles)
-        _setter("role_name", role_name)
+        pulumi.set(__self__, "actions", actions)
+        pulumi.set(__self__, "inherited_roles", inherited_roles)
+        pulumi.set(__self__, "role_name", role_name)
 
     @property
     @pulumi.getter
@@ -20758,25 +14145,8 @@ class GetCustomDbRolesResultActionResult(dict):
         :param str action: (Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see Custom Role Actions.
         :param Sequence['GetCustomDbRolesResultActionResourceArgs'] resources: (Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
         """
-        GetCustomDbRolesResultActionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            action=action,
-            resources=resources,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             action: Optional[str] = None,
-             resources: Optional[Sequence['outputs.GetCustomDbRolesResultActionResourceResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if action is None:
-            raise TypeError("Missing 'action' argument")
-        if resources is None:
-            raise TypeError("Missing 'resources' argument")
-
-        _setter("action", action)
-        _setter("resources", resources)
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
@@ -20804,34 +14174,9 @@ class GetCustomDbRolesResultActionResourceResult(dict):
         """
         :param str database_name: (Required) Database on which the inherited role is granted.
         """
-        GetCustomDbRolesResultActionResourceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster=cluster,
-            collection_name=collection_name,
-            database_name=database_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster: Optional[bool] = None,
-             collection_name: Optional[str] = None,
-             database_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster is None:
-            raise TypeError("Missing 'cluster' argument")
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if collection_name is None:
-            raise TypeError("Missing 'collection_name' argument")
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if database_name is None:
-            raise TypeError("Missing 'database_name' argument")
-
-        _setter("cluster", cluster)
-        _setter("collection_name", collection_name)
-        _setter("database_name", database_name)
+        pulumi.set(__self__, "cluster", cluster)
+        pulumi.set(__self__, "collection_name", collection_name)
+        pulumi.set(__self__, "database_name", database_name)
 
     @property
     @pulumi.getter
@@ -20861,29 +14206,8 @@ class GetCustomDbRolesResultInheritedRoleResult(dict):
         :param str database_name: (Required) Database on which the inherited role is granted.
         :param str role_name: (Required) Name of the inherited role. This can either be another custom role or a built-in role.
         """
-        GetCustomDbRolesResultInheritedRoleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            database_name=database_name,
-            role_name=role_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             database_name: Optional[str] = None,
-             role_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if database_name is None:
-            raise TypeError("Missing 'database_name' argument")
-        if role_name is None and 'roleName' in kwargs:
-            role_name = kwargs['roleName']
-        if role_name is None:
-            raise TypeError("Missing 'role_name' argument")
-
-        _setter("database_name", database_name)
-        _setter("role_name", role_name)
+        pulumi.set(__self__, "database_name", database_name)
+        pulumi.set(__self__, "role_name", role_name)
 
     @property
     @pulumi.getter(name="databaseName")
@@ -20910,50 +14234,11 @@ class GetDataLakeAwResult(dict):
                  iam_user_arn: str,
                  role_id: str,
                  test_s3_bucket: str):
-        GetDataLakeAwResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            external_id=external_id,
-            iam_assumed_role_arn=iam_assumed_role_arn,
-            iam_user_arn=iam_user_arn,
-            role_id=role_id,
-            test_s3_bucket=test_s3_bucket,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             external_id: Optional[str] = None,
-             iam_assumed_role_arn: Optional[str] = None,
-             iam_user_arn: Optional[str] = None,
-             role_id: Optional[str] = None,
-             test_s3_bucket: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if external_id is None and 'externalId' in kwargs:
-            external_id = kwargs['externalId']
-        if external_id is None:
-            raise TypeError("Missing 'external_id' argument")
-        if iam_assumed_role_arn is None and 'iamAssumedRoleArn' in kwargs:
-            iam_assumed_role_arn = kwargs['iamAssumedRoleArn']
-        if iam_assumed_role_arn is None:
-            raise TypeError("Missing 'iam_assumed_role_arn' argument")
-        if iam_user_arn is None and 'iamUserArn' in kwargs:
-            iam_user_arn = kwargs['iamUserArn']
-        if iam_user_arn is None:
-            raise TypeError("Missing 'iam_user_arn' argument")
-        if role_id is None and 'roleId' in kwargs:
-            role_id = kwargs['roleId']
-        if role_id is None:
-            raise TypeError("Missing 'role_id' argument")
-        if test_s3_bucket is None and 'testS3Bucket' in kwargs:
-            test_s3_bucket = kwargs['testS3Bucket']
-        if test_s3_bucket is None:
-            raise TypeError("Missing 'test_s3_bucket' argument")
-
-        _setter("external_id", external_id)
-        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
-        _setter("iam_user_arn", iam_user_arn)
-        _setter("role_id", role_id)
-        _setter("test_s3_bucket", test_s3_bucket)
+        pulumi.set(__self__, "external_id", external_id)
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
 
     @property
     @pulumi.getter(name="externalId")
@@ -20986,27 +14271,8 @@ class GetDataLakeDataProcessRegionResult(dict):
     def __init__(__self__, *,
                  cloud_provider: str,
                  region: str):
-        GetDataLakeDataProcessRegionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("region", region)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -21030,48 +14296,11 @@ class GetDataLakePipelineIngestionScheduleResult(dict):
         """
         :param str id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
         """
-        GetDataLakePipelineIngestionScheduleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            frequency_interval=frequency_interval,
-            frequency_type=frequency_type,
-            id=id,
-            retention_unit=retention_unit,
-            retention_value=retention_value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             frequency_interval: Optional[int] = None,
-             frequency_type: Optional[str] = None,
-             id: Optional[str] = None,
-             retention_unit: Optional[str] = None,
-             retention_value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if frequency_interval is None and 'frequencyInterval' in kwargs:
-            frequency_interval = kwargs['frequencyInterval']
-        if frequency_interval is None:
-            raise TypeError("Missing 'frequency_interval' argument")
-        if frequency_type is None and 'frequencyType' in kwargs:
-            frequency_type = kwargs['frequencyType']
-        if frequency_type is None:
-            raise TypeError("Missing 'frequency_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if retention_unit is None and 'retentionUnit' in kwargs:
-            retention_unit = kwargs['retentionUnit']
-        if retention_unit is None:
-            raise TypeError("Missing 'retention_unit' argument")
-        if retention_value is None and 'retentionValue' in kwargs:
-            retention_value = kwargs['retentionValue']
-        if retention_value is None:
-            raise TypeError("Missing 'retention_value' argument")
-
-        _setter("frequency_interval", frequency_interval)
-        _setter("frequency_type", frequency_type)
-        _setter("id", id)
-        _setter("retention_unit", retention_unit)
-        _setter("retention_value", retention_value)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -21111,29 +14340,8 @@ class GetDataLakePipelineRunStatResult(dict):
         :param int bytes_exported: Total data size in bytes exported for this pipeline run.
         :param int num_docs: Number of docs ingested for a this pipeline run.
         """
-        GetDataLakePipelineRunStatResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            bytes_exported=bytes_exported,
-            num_docs=num_docs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             bytes_exported: Optional[int] = None,
-             num_docs: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if bytes_exported is None and 'bytesExported' in kwargs:
-            bytes_exported = kwargs['bytesExported']
-        if bytes_exported is None:
-            raise TypeError("Missing 'bytes_exported' argument")
-        if num_docs is None and 'numDocs' in kwargs:
-            num_docs = kwargs['numDocs']
-        if num_docs is None:
-            raise TypeError("Missing 'num_docs' argument")
-
-        _setter("bytes_exported", bytes_exported)
-        _setter("num_docs", num_docs)
+        pulumi.set(__self__, "bytes_exported", bytes_exported)
+        pulumi.set(__self__, "num_docs", num_docs)
 
     @property
     @pulumi.getter(name="bytesExported")
@@ -21177,77 +14385,16 @@ class GetDataLakePipelineRunsResultResult(dict):
         :param str state: State of the pipeline run.
         :param Sequence['GetDataLakePipelineRunsResultStatArgs'] stats: Runtime statistics for this Data Lake Pipeline run.
         """
-        GetDataLakePipelineRunsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            backup_frequency_type=backup_frequency_type,
-            created_date=created_date,
-            id=id,
-            last_updated_date=last_updated_date,
-            phase=phase,
-            pipeline_id=pipeline_id,
-            pipeline_run_id=pipeline_run_id,
-            snapshot_id=snapshot_id,
-            state=state,
-            stats=stats,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             backup_frequency_type: Optional[str] = None,
-             created_date: Optional[str] = None,
-             id: Optional[str] = None,
-             last_updated_date: Optional[str] = None,
-             phase: Optional[str] = None,
-             pipeline_id: Optional[str] = None,
-             pipeline_run_id: Optional[str] = None,
-             snapshot_id: Optional[str] = None,
-             state: Optional[str] = None,
-             stats: Optional[Sequence['outputs.GetDataLakePipelineRunsResultStatResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if backup_frequency_type is None and 'backupFrequencyType' in kwargs:
-            backup_frequency_type = kwargs['backupFrequencyType']
-        if backup_frequency_type is None:
-            raise TypeError("Missing 'backup_frequency_type' argument")
-        if created_date is None and 'createdDate' in kwargs:
-            created_date = kwargs['createdDate']
-        if created_date is None:
-            raise TypeError("Missing 'created_date' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if last_updated_date is None and 'lastUpdatedDate' in kwargs:
-            last_updated_date = kwargs['lastUpdatedDate']
-        if last_updated_date is None:
-            raise TypeError("Missing 'last_updated_date' argument")
-        if phase is None:
-            raise TypeError("Missing 'phase' argument")
-        if pipeline_id is None and 'pipelineId' in kwargs:
-            pipeline_id = kwargs['pipelineId']
-        if pipeline_id is None:
-            raise TypeError("Missing 'pipeline_id' argument")
-        if pipeline_run_id is None and 'pipelineRunId' in kwargs:
-            pipeline_run_id = kwargs['pipelineRunId']
-        if pipeline_run_id is None:
-            raise TypeError("Missing 'pipeline_run_id' argument")
-        if snapshot_id is None and 'snapshotId' in kwargs:
-            snapshot_id = kwargs['snapshotId']
-        if snapshot_id is None:
-            raise TypeError("Missing 'snapshot_id' argument")
-        if state is None:
-            raise TypeError("Missing 'state' argument")
-        if stats is None:
-            raise TypeError("Missing 'stats' argument")
-
-        _setter("backup_frequency_type", backup_frequency_type)
-        _setter("created_date", created_date)
-        _setter("id", id)
-        _setter("last_updated_date", last_updated_date)
-        _setter("phase", phase)
-        _setter("pipeline_id", pipeline_id)
-        _setter("pipeline_run_id", pipeline_run_id)
-        _setter("snapshot_id", snapshot_id)
-        _setter("state", state)
-        _setter("stats", stats)
+        pulumi.set(__self__, "backup_frequency_type", backup_frequency_type)
+        pulumi.set(__self__, "created_date", created_date)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_updated_date", last_updated_date)
+        pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "pipeline_id", pipeline_id)
+        pulumi.set(__self__, "pipeline_run_id", pipeline_run_id)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "stats", stats)
 
     @property
     @pulumi.getter(name="backupFrequencyType")
@@ -21339,29 +14486,8 @@ class GetDataLakePipelineRunsResultStatResult(dict):
         :param int bytes_exported: Total data size in bytes exported for this pipeline run.
         :param int num_docs: Number of docs ingested for a this pipeline run.
         """
-        GetDataLakePipelineRunsResultStatResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            bytes_exported=bytes_exported,
-            num_docs=num_docs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             bytes_exported: Optional[int] = None,
-             num_docs: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if bytes_exported is None and 'bytesExported' in kwargs:
-            bytes_exported = kwargs['bytesExported']
-        if bytes_exported is None:
-            raise TypeError("Missing 'bytes_exported' argument")
-        if num_docs is None and 'numDocs' in kwargs:
-            num_docs = kwargs['numDocs']
-        if num_docs is None:
-            raise TypeError("Missing 'num_docs' argument")
-
-        _setter("bytes_exported", bytes_exported)
-        _setter("num_docs", num_docs)
+        pulumi.set(__self__, "bytes_exported", bytes_exported)
+        pulumi.set(__self__, "num_docs", num_docs)
 
     @property
     @pulumi.getter(name="bytesExported")
@@ -21395,37 +14521,10 @@ class GetDataLakePipelineSinkResult(dict):
         :param str region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        GetDataLakePipelineSinkResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            partition_fields=partition_fields,
-            provider=provider,
-            region=region,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             partition_fields: Optional[Sequence['outputs.GetDataLakePipelineSinkPartitionFieldResult']] = None,
-             provider: Optional[str] = None,
-             region: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if partition_fields is None and 'partitionFields' in kwargs:
-            partition_fields = kwargs['partitionFields']
-        if partition_fields is None:
-            raise TypeError("Missing 'partition_fields' argument")
-        if provider is None:
-            raise TypeError("Missing 'provider' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("partition_fields", partition_fields)
-        _setter("provider", provider)
-        _setter("region", region)
-        _setter("type", type)
+        pulumi.set(__self__, "partition_fields", partition_fields)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="partitionFields")
@@ -21467,27 +14566,8 @@ class GetDataLakePipelineSinkPartitionFieldResult(dict):
     def __init__(__self__, *,
                  field_name: str,
                  order: int):
-        GetDataLakePipelineSinkPartitionFieldResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field_name=field_name,
-            order=order,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field_name: Optional[str] = None,
-             order: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field_name is None and 'fieldName' in kwargs:
-            field_name = kwargs['fieldName']
-        if field_name is None:
-            raise TypeError("Missing 'field_name' argument")
-        if order is None:
-            raise TypeError("Missing 'order' argument")
-
-        _setter("field_name", field_name)
-        _setter("order", order)
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "order", order)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -21521,94 +14601,19 @@ class GetDataLakePipelineSnapshotResult(dict):
         :param str provider: Target cloud provider for this Data Lake Pipeline.
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        GetDataLakePipelineSnapshotResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            copy_region=copy_region,
-            created_at=created_at,
-            expires_at=expires_at,
-            frequency_yype=frequency_yype,
-            id=id,
-            master_key=master_key,
-            mongod_version=mongod_version,
-            policies=policies,
-            provider=provider,
-            replica_set_name=replica_set_name,
-            size=size,
-            status=status,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             copy_region: Optional[str] = None,
-             created_at: Optional[str] = None,
-             expires_at: Optional[str] = None,
-             frequency_yype: Optional[str] = None,
-             id: Optional[str] = None,
-             master_key: Optional[str] = None,
-             mongod_version: Optional[str] = None,
-             policies: Optional[Sequence[str]] = None,
-             provider: Optional[str] = None,
-             replica_set_name: Optional[str] = None,
-             size: Optional[int] = None,
-             status: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if copy_region is None and 'copyRegion' in kwargs:
-            copy_region = kwargs['copyRegion']
-        if copy_region is None:
-            raise TypeError("Missing 'copy_region' argument")
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if created_at is None:
-            raise TypeError("Missing 'created_at' argument")
-        if expires_at is None and 'expiresAt' in kwargs:
-            expires_at = kwargs['expiresAt']
-        if expires_at is None:
-            raise TypeError("Missing 'expires_at' argument")
-        if frequency_yype is None and 'frequencyYype' in kwargs:
-            frequency_yype = kwargs['frequencyYype']
-        if frequency_yype is None:
-            raise TypeError("Missing 'frequency_yype' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if master_key is None and 'masterKey' in kwargs:
-            master_key = kwargs['masterKey']
-        if master_key is None:
-            raise TypeError("Missing 'master_key' argument")
-        if mongod_version is None and 'mongodVersion' in kwargs:
-            mongod_version = kwargs['mongodVersion']
-        if mongod_version is None:
-            raise TypeError("Missing 'mongod_version' argument")
-        if policies is None:
-            raise TypeError("Missing 'policies' argument")
-        if provider is None:
-            raise TypeError("Missing 'provider' argument")
-        if replica_set_name is None and 'replicaSetName' in kwargs:
-            replica_set_name = kwargs['replicaSetName']
-        if replica_set_name is None:
-            raise TypeError("Missing 'replica_set_name' argument")
-        if size is None:
-            raise TypeError("Missing 'size' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("copy_region", copy_region)
-        _setter("created_at", created_at)
-        _setter("expires_at", expires_at)
-        _setter("frequency_yype", frequency_yype)
-        _setter("id", id)
-        _setter("master_key", master_key)
-        _setter("mongod_version", mongod_version)
-        _setter("policies", policies)
-        _setter("provider", provider)
-        _setter("replica_set_name", replica_set_name)
-        _setter("size", size)
-        _setter("status", status)
-        _setter("type", type)
+        pulumi.set(__self__, "copy_region", copy_region)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "frequency_yype", frequency_yype)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "master_key", master_key)
+        pulumi.set(__self__, "mongod_version", mongod_version)
+        pulumi.set(__self__, "policies", policies)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="copyRegion")
@@ -21700,48 +14705,11 @@ class GetDataLakePipelineSourceResult(dict):
         :param str project_id: The unique ID for the project to create a Data Lake Pipeline.
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        GetDataLakePipelineSourceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_name=cluster_name,
-            collection_name=collection_name,
-            database_name=database_name,
-            project_id=project_id,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_name: Optional[str] = None,
-             collection_name: Optional[str] = None,
-             database_name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if cluster_name is None:
-            raise TypeError("Missing 'cluster_name' argument")
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if collection_name is None:
-            raise TypeError("Missing 'collection_name' argument")
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if database_name is None:
-            raise TypeError("Missing 'database_name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("cluster_name", cluster_name)
-        _setter("collection_name", collection_name)
-        _setter("database_name", database_name)
-        _setter("project_id", project_id)
-        _setter("type", type)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "collection_name", collection_name)
+        pulumi.set(__self__, "database_name", database_name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -21792,25 +14760,8 @@ class GetDataLakePipelineTransformationResult(dict):
         """
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        GetDataLakePipelineTransformationResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field=field,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field is None:
-            raise TypeError("Missing 'field' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("field", field)
-        _setter("type", type)
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -21848,66 +14799,15 @@ class GetDataLakePipelinesResultResult(dict):
                * `transformations.#.field` - Key in the document.
                * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
         """
-        GetDataLakePipelinesResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_date=created_date,
-            id=id,
-            last_updated_date=last_updated_date,
-            name=name,
-            project_id=project_id,
-            sinks=sinks,
-            sources=sources,
-            state=state,
-            transformations=transformations,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_date: Optional[str] = None,
-             id: Optional[str] = None,
-             last_updated_date: Optional[str] = None,
-             name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             sinks: Optional[Sequence['outputs.GetDataLakePipelinesResultSinkResult']] = None,
-             sources: Optional[Sequence['outputs.GetDataLakePipelinesResultSourceResult']] = None,
-             state: Optional[str] = None,
-             transformations: Optional[Sequence['outputs.GetDataLakePipelinesResultTransformationResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if created_date is None and 'createdDate' in kwargs:
-            created_date = kwargs['createdDate']
-        if created_date is None:
-            raise TypeError("Missing 'created_date' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if last_updated_date is None and 'lastUpdatedDate' in kwargs:
-            last_updated_date = kwargs['lastUpdatedDate']
-        if last_updated_date is None:
-            raise TypeError("Missing 'last_updated_date' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if sinks is None:
-            raise TypeError("Missing 'sinks' argument")
-        if sources is None:
-            raise TypeError("Missing 'sources' argument")
-        if state is None:
-            raise TypeError("Missing 'state' argument")
-        if transformations is None:
-            raise TypeError("Missing 'transformations' argument")
-
-        _setter("created_date", created_date)
-        _setter("id", id)
-        _setter("last_updated_date", last_updated_date)
-        _setter("name", name)
-        _setter("project_id", project_id)
-        _setter("sinks", sinks)
-        _setter("sources", sources)
-        _setter("state", state)
-        _setter("transformations", transformations)
+        pulumi.set(__self__, "created_date", created_date)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_updated_date", last_updated_date)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "sinks", sinks)
+        pulumi.set(__self__, "sources", sources)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "transformations", transformations)
 
     @property
     @pulumi.getter(name="createdDate")
@@ -21990,37 +14890,10 @@ class GetDataLakePipelinesResultSinkResult(dict):
         :param str region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        GetDataLakePipelinesResultSinkResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            partition_fields=partition_fields,
-            provider=provider,
-            region=region,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             partition_fields: Optional[Sequence['outputs.GetDataLakePipelinesResultSinkPartitionFieldResult']] = None,
-             provider: Optional[str] = None,
-             region: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if partition_fields is None and 'partitionFields' in kwargs:
-            partition_fields = kwargs['partitionFields']
-        if partition_fields is None:
-            raise TypeError("Missing 'partition_fields' argument")
-        if provider is None:
-            raise TypeError("Missing 'provider' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("partition_fields", partition_fields)
-        _setter("provider", provider)
-        _setter("region", region)
-        _setter("type", type)
+        pulumi.set(__self__, "partition_fields", partition_fields)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="partitionFields")
@@ -22062,27 +14935,8 @@ class GetDataLakePipelinesResultSinkPartitionFieldResult(dict):
     def __init__(__self__, *,
                  field_name: str,
                  order: int):
-        GetDataLakePipelinesResultSinkPartitionFieldResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field_name=field_name,
-            order=order,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field_name: Optional[str] = None,
-             order: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field_name is None and 'fieldName' in kwargs:
-            field_name = kwargs['fieldName']
-        if field_name is None:
-            raise TypeError("Missing 'field_name' argument")
-        if order is None:
-            raise TypeError("Missing 'order' argument")
-
-        _setter("field_name", field_name)
-        _setter("order", order)
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "order", order)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -22110,48 +14964,11 @@ class GetDataLakePipelinesResultSourceResult(dict):
         :param str project_id: The unique ID for the project to create a data lake pipeline.
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        GetDataLakePipelinesResultSourceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_name=cluster_name,
-            collection_name=collection_name,
-            database_name=database_name,
-            project_id=project_id,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_name: Optional[str] = None,
-             collection_name: Optional[str] = None,
-             database_name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if cluster_name is None:
-            raise TypeError("Missing 'cluster_name' argument")
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if collection_name is None:
-            raise TypeError("Missing 'collection_name' argument")
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if database_name is None:
-            raise TypeError("Missing 'database_name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("cluster_name", cluster_name)
-        _setter("collection_name", collection_name)
-        _setter("database_name", database_name)
-        _setter("project_id", project_id)
-        _setter("type", type)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "collection_name", collection_name)
+        pulumi.set(__self__, "database_name", database_name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -22202,25 +15019,8 @@ class GetDataLakePipelinesResultTransformationResult(dict):
         """
         :param str type: Type of ingestion source of this Data Lake Pipeline.
         """
-        GetDataLakePipelinesResultTransformationResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field=field,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field is None:
-            raise TypeError("Missing 'field' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("field", field)
-        _setter("type", type)
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -22246,37 +15046,10 @@ class GetDataLakeStorageDatabaseResult(dict):
         """
         :param str name: Name of the data lake.
         """
-        GetDataLakeStorageDatabaseResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            collections=collections,
-            max_wildcard_collections=max_wildcard_collections,
-            name=name,
-            views=views,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             collections: Optional[Sequence['outputs.GetDataLakeStorageDatabaseCollectionResult']] = None,
-             max_wildcard_collections: Optional[int] = None,
-             name: Optional[str] = None,
-             views: Optional[Sequence['outputs.GetDataLakeStorageDatabaseViewResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if collections is None:
-            raise TypeError("Missing 'collections' argument")
-        if max_wildcard_collections is None and 'maxWildcardCollections' in kwargs:
-            max_wildcard_collections = kwargs['maxWildcardCollections']
-        if max_wildcard_collections is None:
-            raise TypeError("Missing 'max_wildcard_collections' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if views is None:
-            raise TypeError("Missing 'views' argument")
-
-        _setter("collections", collections)
-        _setter("max_wildcard_collections", max_wildcard_collections)
-        _setter("name", name)
-        _setter("views", views)
+        pulumi.set(__self__, "collections", collections)
+        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "views", views)
 
     @property
     @pulumi.getter
@@ -22310,27 +15083,8 @@ class GetDataLakeStorageDatabaseCollectionResult(dict):
         """
         :param str name: Name of the data lake.
         """
-        GetDataLakeStorageDatabaseCollectionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            data_sources=data_sources,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             data_sources: Optional[Sequence['outputs.GetDataLakeStorageDatabaseCollectionDataSourceResult']] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if data_sources is None and 'dataSources' in kwargs:
-            data_sources = kwargs['dataSources']
-        if data_sources is None:
-            raise TypeError("Missing 'data_sources' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("data_sources", data_sources)
-        _setter("name", name)
+        pulumi.set(__self__, "data_sources", data_sources)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -22352,34 +15106,9 @@ class GetDataLakeStorageDatabaseCollectionDataSourceResult(dict):
                  default_format: str,
                  path: str,
                  store_name: str):
-        GetDataLakeStorageDatabaseCollectionDataSourceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            default_format=default_format,
-            path=path,
-            store_name=store_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             default_format: Optional[str] = None,
-             path: Optional[str] = None,
-             store_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if default_format is None and 'defaultFormat' in kwargs:
-            default_format = kwargs['defaultFormat']
-        if default_format is None:
-            raise TypeError("Missing 'default_format' argument")
-        if path is None:
-            raise TypeError("Missing 'path' argument")
-        if store_name is None and 'storeName' in kwargs:
-            store_name = kwargs['storeName']
-        if store_name is None:
-            raise TypeError("Missing 'store_name' argument")
-
-        _setter("default_format", default_format)
-        _setter("path", path)
-        _setter("store_name", store_name)
+        pulumi.set(__self__, "default_format", default_format)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "store_name", store_name)
 
     @property
     @pulumi.getter(name="defaultFormat")
@@ -22406,30 +15135,9 @@ class GetDataLakeStorageDatabaseViewResult(dict):
         """
         :param str name: Name of the data lake.
         """
-        GetDataLakeStorageDatabaseViewResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            pipeline=pipeline,
-            source=source,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             pipeline: Optional[str] = None,
-             source: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if pipeline is None:
-            raise TypeError("Missing 'pipeline' argument")
-        if source is None:
-            raise TypeError("Missing 'source' argument")
-
-        _setter("name", name)
-        _setter("pipeline", pipeline)
-        _setter("source", source)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pipeline", pipeline)
+        pulumi.set(__self__, "source", source)
 
     @property
     @pulumi.getter
@@ -22464,59 +15172,14 @@ class GetDataLakeStorageStoreResult(dict):
         """
         :param str name: Name of the data lake.
         """
-        GetDataLakeStorageStoreResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            additional_storage_classes=additional_storage_classes,
-            bucket=bucket,
-            delimiter=delimiter,
-            include_tags=include_tags,
-            name=name,
-            prefix=prefix,
-            provider=provider,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             additional_storage_classes: Optional[Sequence[str]] = None,
-             bucket: Optional[str] = None,
-             delimiter: Optional[str] = None,
-             include_tags: Optional[bool] = None,
-             name: Optional[str] = None,
-             prefix: Optional[str] = None,
-             provider: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if additional_storage_classes is None and 'additionalStorageClasses' in kwargs:
-            additional_storage_classes = kwargs['additionalStorageClasses']
-        if additional_storage_classes is None:
-            raise TypeError("Missing 'additional_storage_classes' argument")
-        if bucket is None:
-            raise TypeError("Missing 'bucket' argument")
-        if delimiter is None:
-            raise TypeError("Missing 'delimiter' argument")
-        if include_tags is None and 'includeTags' in kwargs:
-            include_tags = kwargs['includeTags']
-        if include_tags is None:
-            raise TypeError("Missing 'include_tags' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if prefix is None:
-            raise TypeError("Missing 'prefix' argument")
-        if provider is None:
-            raise TypeError("Missing 'provider' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("additional_storage_classes", additional_storage_classes)
-        _setter("bucket", bucket)
-        _setter("delimiter", delimiter)
-        _setter("include_tags", include_tags)
-        _setter("name", name)
-        _setter("prefix", prefix)
-        _setter("provider", provider)
-        _setter("region", region)
+        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "include_tags", include_tags)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -22601,63 +15264,14 @@ class GetDataLakesResultResult(dict):
                * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
                * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
         """
-        GetDataLakesResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws=aws,
-            data_process_regions=data_process_regions,
-            hostnames=hostnames,
-            name=name,
-            project_id=project_id,
-            state=state,
-            storage_databases=storage_databases,
-            storage_stores=storage_stores,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws: Optional[Sequence['outputs.GetDataLakesResultAwResult']] = None,
-             data_process_regions: Optional[Sequence['outputs.GetDataLakesResultDataProcessRegionResult']] = None,
-             hostnames: Optional[Sequence[str]] = None,
-             name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             state: Optional[str] = None,
-             storage_databases: Optional[Sequence['outputs.GetDataLakesResultStorageDatabaseResult']] = None,
-             storage_stores: Optional[Sequence['outputs.GetDataLakesResultStorageStoreResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws is None:
-            raise TypeError("Missing 'aws' argument")
-        if data_process_regions is None and 'dataProcessRegions' in kwargs:
-            data_process_regions = kwargs['dataProcessRegions']
-        if data_process_regions is None:
-            raise TypeError("Missing 'data_process_regions' argument")
-        if hostnames is None:
-            raise TypeError("Missing 'hostnames' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if state is None:
-            raise TypeError("Missing 'state' argument")
-        if storage_databases is None and 'storageDatabases' in kwargs:
-            storage_databases = kwargs['storageDatabases']
-        if storage_databases is None:
-            raise TypeError("Missing 'storage_databases' argument")
-        if storage_stores is None and 'storageStores' in kwargs:
-            storage_stores = kwargs['storageStores']
-        if storage_stores is None:
-            raise TypeError("Missing 'storage_stores' argument")
-
-        _setter("aws", aws)
-        _setter("data_process_regions", data_process_regions)
-        _setter("hostnames", hostnames)
-        _setter("name", name)
-        _setter("project_id", project_id)
-        _setter("state", state)
-        _setter("storage_databases", storage_databases)
-        _setter("storage_stores", storage_stores)
+        pulumi.set(__self__, "aws", aws)
+        pulumi.set(__self__, "data_process_regions", data_process_regions)
+        pulumi.set(__self__, "hostnames", hostnames)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "storage_databases", storage_databases)
+        pulumi.set(__self__, "storage_stores", storage_stores)
 
     @property
     @pulumi.getter
@@ -22746,50 +15360,11 @@ class GetDataLakesResultAwResult(dict):
                  iam_user_arn: str,
                  role_id: str,
                  test_s3_bucket: str):
-        GetDataLakesResultAwResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            external_id=external_id,
-            iam_assumed_role_arn=iam_assumed_role_arn,
-            iam_user_arn=iam_user_arn,
-            role_id=role_id,
-            test_s3_bucket=test_s3_bucket,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             external_id: Optional[str] = None,
-             iam_assumed_role_arn: Optional[str] = None,
-             iam_user_arn: Optional[str] = None,
-             role_id: Optional[str] = None,
-             test_s3_bucket: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if external_id is None and 'externalId' in kwargs:
-            external_id = kwargs['externalId']
-        if external_id is None:
-            raise TypeError("Missing 'external_id' argument")
-        if iam_assumed_role_arn is None and 'iamAssumedRoleArn' in kwargs:
-            iam_assumed_role_arn = kwargs['iamAssumedRoleArn']
-        if iam_assumed_role_arn is None:
-            raise TypeError("Missing 'iam_assumed_role_arn' argument")
-        if iam_user_arn is None and 'iamUserArn' in kwargs:
-            iam_user_arn = kwargs['iamUserArn']
-        if iam_user_arn is None:
-            raise TypeError("Missing 'iam_user_arn' argument")
-        if role_id is None and 'roleId' in kwargs:
-            role_id = kwargs['roleId']
-        if role_id is None:
-            raise TypeError("Missing 'role_id' argument")
-        if test_s3_bucket is None and 'testS3Bucket' in kwargs:
-            test_s3_bucket = kwargs['testS3Bucket']
-        if test_s3_bucket is None:
-            raise TypeError("Missing 'test_s3_bucket' argument")
-
-        _setter("external_id", external_id)
-        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
-        _setter("iam_user_arn", iam_user_arn)
-        _setter("role_id", role_id)
-        _setter("test_s3_bucket", test_s3_bucket)
+        pulumi.set(__self__, "external_id", external_id)
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
 
     @property
     @pulumi.getter(name="externalId")
@@ -22822,27 +15397,8 @@ class GetDataLakesResultDataProcessRegionResult(dict):
     def __init__(__self__, *,
                  cloud_provider: str,
                  region: str):
-        GetDataLakesResultDataProcessRegionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("region", region)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -22862,37 +15418,10 @@ class GetDataLakesResultStorageDatabaseResult(dict):
                  max_wildcard_collections: int,
                  name: str,
                  views: Sequence['outputs.GetDataLakesResultStorageDatabaseViewResult']):
-        GetDataLakesResultStorageDatabaseResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            collections=collections,
-            max_wildcard_collections=max_wildcard_collections,
-            name=name,
-            views=views,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             collections: Optional[Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionResult']] = None,
-             max_wildcard_collections: Optional[int] = None,
-             name: Optional[str] = None,
-             views: Optional[Sequence['outputs.GetDataLakesResultStorageDatabaseViewResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if collections is None:
-            raise TypeError("Missing 'collections' argument")
-        if max_wildcard_collections is None and 'maxWildcardCollections' in kwargs:
-            max_wildcard_collections = kwargs['maxWildcardCollections']
-        if max_wildcard_collections is None:
-            raise TypeError("Missing 'max_wildcard_collections' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if views is None:
-            raise TypeError("Missing 'views' argument")
-
-        _setter("collections", collections)
-        _setter("max_wildcard_collections", max_wildcard_collections)
-        _setter("name", name)
-        _setter("views", views)
+        pulumi.set(__self__, "collections", collections)
+        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "views", views)
 
     @property
     @pulumi.getter
@@ -22920,27 +15449,8 @@ class GetDataLakesResultStorageDatabaseCollectionResult(dict):
     def __init__(__self__, *,
                  data_sources: Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionDataSourceResult'],
                  name: str):
-        GetDataLakesResultStorageDatabaseCollectionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            data_sources=data_sources,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             data_sources: Optional[Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionDataSourceResult']] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if data_sources is None and 'dataSources' in kwargs:
-            data_sources = kwargs['dataSources']
-        if data_sources is None:
-            raise TypeError("Missing 'data_sources' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("data_sources", data_sources)
-        _setter("name", name)
+        pulumi.set(__self__, "data_sources", data_sources)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -22959,34 +15469,9 @@ class GetDataLakesResultStorageDatabaseCollectionDataSourceResult(dict):
                  default_format: str,
                  path: str,
                  store_name: str):
-        GetDataLakesResultStorageDatabaseCollectionDataSourceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            default_format=default_format,
-            path=path,
-            store_name=store_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             default_format: Optional[str] = None,
-             path: Optional[str] = None,
-             store_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if default_format is None and 'defaultFormat' in kwargs:
-            default_format = kwargs['defaultFormat']
-        if default_format is None:
-            raise TypeError("Missing 'default_format' argument")
-        if path is None:
-            raise TypeError("Missing 'path' argument")
-        if store_name is None and 'storeName' in kwargs:
-            store_name = kwargs['storeName']
-        if store_name is None:
-            raise TypeError("Missing 'store_name' argument")
-
-        _setter("default_format", default_format)
-        _setter("path", path)
-        _setter("store_name", store_name)
+        pulumi.set(__self__, "default_format", default_format)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "store_name", store_name)
 
     @property
     @pulumi.getter(name="defaultFormat")
@@ -23010,30 +15495,9 @@ class GetDataLakesResultStorageDatabaseViewResult(dict):
                  name: str,
                  pipeline: str,
                  source: str):
-        GetDataLakesResultStorageDatabaseViewResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            pipeline=pipeline,
-            source=source,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             pipeline: Optional[str] = None,
-             source: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if pipeline is None:
-            raise TypeError("Missing 'pipeline' argument")
-        if source is None:
-            raise TypeError("Missing 'source' argument")
-
-        _setter("name", name)
-        _setter("pipeline", pipeline)
-        _setter("source", source)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pipeline", pipeline)
+        pulumi.set(__self__, "source", source)
 
     @property
     @pulumi.getter
@@ -23062,59 +15526,14 @@ class GetDataLakesResultStorageStoreResult(dict):
                  prefix: str,
                  provider: str,
                  region: str):
-        GetDataLakesResultStorageStoreResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            additional_storage_classes=additional_storage_classes,
-            bucket=bucket,
-            delimiter=delimiter,
-            include_tags=include_tags,
-            name=name,
-            prefix=prefix,
-            provider=provider,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             additional_storage_classes: Optional[Sequence[str]] = None,
-             bucket: Optional[str] = None,
-             delimiter: Optional[str] = None,
-             include_tags: Optional[bool] = None,
-             name: Optional[str] = None,
-             prefix: Optional[str] = None,
-             provider: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if additional_storage_classes is None and 'additionalStorageClasses' in kwargs:
-            additional_storage_classes = kwargs['additionalStorageClasses']
-        if additional_storage_classes is None:
-            raise TypeError("Missing 'additional_storage_classes' argument")
-        if bucket is None:
-            raise TypeError("Missing 'bucket' argument")
-        if delimiter is None:
-            raise TypeError("Missing 'delimiter' argument")
-        if include_tags is None and 'includeTags' in kwargs:
-            include_tags = kwargs['includeTags']
-        if include_tags is None:
-            raise TypeError("Missing 'include_tags' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if prefix is None:
-            raise TypeError("Missing 'prefix' argument")
-        if provider is None:
-            raise TypeError("Missing 'provider' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("additional_storage_classes", additional_storage_classes)
-        _setter("bucket", bucket)
-        _setter("delimiter", delimiter)
-        _setter("include_tags", include_tags)
-        _setter("name", name)
-        _setter("prefix", prefix)
-        _setter("provider", provider)
-        _setter("region", region)
+        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "include_tags", include_tags)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -23166,25 +15585,8 @@ class GetDatabaseUserLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        GetDatabaseUserLabelResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -23213,36 +15615,9 @@ class GetDatabaseUserRoleResult(dict):
         :param str collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         :param str database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         """
-        GetDatabaseUserRoleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            collection_name=collection_name,
-            database_name=database_name,
-            role_name=role_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             collection_name: Optional[str] = None,
-             database_name: Optional[str] = None,
-             role_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if collection_name is None:
-            raise TypeError("Missing 'collection_name' argument")
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if database_name is None:
-            raise TypeError("Missing 'database_name' argument")
-        if role_name is None and 'roleName' in kwargs:
-            role_name = kwargs['roleName']
-        if role_name is None:
-            raise TypeError("Missing 'role_name' argument")
-
-        _setter("collection_name", collection_name)
-        _setter("database_name", database_name)
-        _setter("role_name", role_name)
+        pulumi.set(__self__, "collection_name", collection_name)
+        pulumi.set(__self__, "database_name", database_name)
+        pulumi.set(__self__, "role_name", role_name)
 
     @property
     @pulumi.getter(name="collectionName")
@@ -23275,25 +15650,8 @@ class GetDatabaseUserScopeResult(dict):
         :param str name: Name of the role to grant.
         :param str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
         """
-        GetDatabaseUserScopeResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("name", name)
-        _setter("type", type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -23340,87 +15698,18 @@ class GetDatabaseUsersResultResult(dict):
         :param str username: Username for authenticating to MongoDB.
         :param str x509_type: X.509 method by which the provided username is authenticated.
         """
-        GetDatabaseUsersResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            auth_database_name=auth_database_name,
-            aws_iam_type=aws_iam_type,
-            id=id,
-            labels=labels,
-            ldap_auth_type=ldap_auth_type,
-            oidc_auth_type=oidc_auth_type,
-            password=password,
-            project_id=project_id,
-            roles=roles,
-            scopes=scopes,
-            username=username,
-            x509_type=x509_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             auth_database_name: Optional[str] = None,
-             aws_iam_type: Optional[str] = None,
-             id: Optional[str] = None,
-             labels: Optional[Sequence['outputs.GetDatabaseUsersResultLabelResult']] = None,
-             ldap_auth_type: Optional[str] = None,
-             oidc_auth_type: Optional[str] = None,
-             password: Optional[str] = None,
-             project_id: Optional[str] = None,
-             roles: Optional[Sequence['outputs.GetDatabaseUsersResultRoleResult']] = None,
-             scopes: Optional[Sequence['outputs.GetDatabaseUsersResultScopeResult']] = None,
-             username: Optional[str] = None,
-             x509_type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if auth_database_name is None and 'authDatabaseName' in kwargs:
-            auth_database_name = kwargs['authDatabaseName']
-        if auth_database_name is None:
-            raise TypeError("Missing 'auth_database_name' argument")
-        if aws_iam_type is None and 'awsIamType' in kwargs:
-            aws_iam_type = kwargs['awsIamType']
-        if aws_iam_type is None:
-            raise TypeError("Missing 'aws_iam_type' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if labels is None:
-            raise TypeError("Missing 'labels' argument")
-        if ldap_auth_type is None and 'ldapAuthType' in kwargs:
-            ldap_auth_type = kwargs['ldapAuthType']
-        if ldap_auth_type is None:
-            raise TypeError("Missing 'ldap_auth_type' argument")
-        if oidc_auth_type is None and 'oidcAuthType' in kwargs:
-            oidc_auth_type = kwargs['oidcAuthType']
-        if oidc_auth_type is None:
-            raise TypeError("Missing 'oidc_auth_type' argument")
-        if password is None:
-            raise TypeError("Missing 'password' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if roles is None:
-            raise TypeError("Missing 'roles' argument")
-        if scopes is None:
-            raise TypeError("Missing 'scopes' argument")
-        if username is None:
-            raise TypeError("Missing 'username' argument")
-        if x509_type is None and 'x509Type' in kwargs:
-            x509_type = kwargs['x509Type']
-        if x509_type is None:
-            raise TypeError("Missing 'x509_type' argument")
-
-        _setter("auth_database_name", auth_database_name)
-        _setter("aws_iam_type", aws_iam_type)
-        _setter("id", id)
-        _setter("labels", labels)
-        _setter("ldap_auth_type", ldap_auth_type)
-        _setter("oidc_auth_type", oidc_auth_type)
-        _setter("password", password)
-        _setter("project_id", project_id)
-        _setter("roles", roles)
-        _setter("scopes", scopes)
-        _setter("username", username)
-        _setter("x509_type", x509_type)
+        pulumi.set(__self__, "auth_database_name", auth_database_name)
+        pulumi.set(__self__, "aws_iam_type", aws_iam_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
+        pulumi.set(__self__, "oidc_auth_type", oidc_auth_type)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "scopes", scopes)
+        pulumi.set(__self__, "username", username)
+        pulumi.set(__self__, "x509_type", x509_type)
 
     @property
     @pulumi.getter(name="authDatabaseName")
@@ -23523,25 +15812,8 @@ class GetDatabaseUsersResultLabelResult(dict):
         :param str key: The key that you want to write.
         :param str value: The value that you want to write.
         """
-        GetDatabaseUsersResultLabelResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -23570,36 +15842,9 @@ class GetDatabaseUsersResultRoleResult(dict):
         :param str collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         :param str database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         """
-        GetDatabaseUsersResultRoleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            collection_name=collection_name,
-            database_name=database_name,
-            role_name=role_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             collection_name: Optional[str] = None,
-             database_name: Optional[str] = None,
-             role_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if collection_name is None:
-            raise TypeError("Missing 'collection_name' argument")
-        if database_name is None and 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if database_name is None:
-            raise TypeError("Missing 'database_name' argument")
-        if role_name is None and 'roleName' in kwargs:
-            role_name = kwargs['roleName']
-        if role_name is None:
-            raise TypeError("Missing 'role_name' argument")
-
-        _setter("collection_name", collection_name)
-        _setter("database_name", database_name)
-        _setter("role_name", role_name)
+        pulumi.set(__self__, "collection_name", collection_name)
+        pulumi.set(__self__, "database_name", database_name)
+        pulumi.set(__self__, "role_name", role_name)
 
     @property
     @pulumi.getter(name="collectionName")
@@ -23632,25 +15877,8 @@ class GetDatabaseUsersResultScopeResult(dict):
         :param str name: Name of the role to grant.
         :param str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
         """
-        GetDatabaseUsersResultScopeResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("name", name)
-        _setter("type", type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -23673,22 +15901,7 @@ class GetDatabaseUsersResultScopeResult(dict):
 class GetEventTriggerEventProcessorResult(dict):
     def __init__(__self__, *,
                  aws_eventbridges: Sequence['outputs.GetEventTriggerEventProcessorAwsEventbridgeResult']):
-        GetEventTriggerEventProcessorResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws_eventbridges=aws_eventbridges,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws_eventbridges: Optional[Sequence['outputs.GetEventTriggerEventProcessorAwsEventbridgeResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws_eventbridges is None and 'awsEventbridges' in kwargs:
-            aws_eventbridges = kwargs['awsEventbridges']
-        if aws_eventbridges is None:
-            raise TypeError("Missing 'aws_eventbridges' argument")
-
-        _setter("aws_eventbridges", aws_eventbridges)
+        pulumi.set(__self__, "aws_eventbridges", aws_eventbridges)
 
     @property
     @pulumi.getter(name="awsEventbridges")
@@ -23701,29 +15914,8 @@ class GetEventTriggerEventProcessorAwsEventbridgeResult(dict):
     def __init__(__self__, *,
                  config_account_id: str,
                  config_region: str):
-        GetEventTriggerEventProcessorAwsEventbridgeResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            config_account_id=config_account_id,
-            config_region=config_region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             config_account_id: Optional[str] = None,
-             config_region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if config_account_id is None and 'configAccountId' in kwargs:
-            config_account_id = kwargs['configAccountId']
-        if config_account_id is None:
-            raise TypeError("Missing 'config_account_id' argument")
-        if config_region is None and 'configRegion' in kwargs:
-            config_region = kwargs['configRegion']
-        if config_region is None:
-            raise TypeError("Missing 'config_region' argument")
-
-        _setter("config_account_id", config_account_id)
-        _setter("config_region", config_region)
+        pulumi.set(__self__, "config_account_id", config_account_id)
+        pulumi.set(__self__, "config_region", config_region)
 
     @property
     @pulumi.getter(name="configAccountId")
@@ -23780,147 +15972,26 @@ class GetEventTriggersResultResult(dict):
         :param str type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
         :param bool unordered: Sort order for `DATABASE` type.
         """
-        GetEventTriggersResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            config_collection=config_collection,
-            config_database=config_database,
-            config_full_document=config_full_document,
-            config_full_document_before=config_full_document_before,
-            config_match=config_match,
-            config_operation_type=config_operation_type,
-            config_operation_types=config_operation_types,
-            config_project=config_project,
-            config_providers=config_providers,
-            config_schedule=config_schedule,
-            config_schedule_type=config_schedule_type,
-            config_service_id=config_service_id,
-            disabled=disabled,
-            event_processors=event_processors,
-            function_id=function_id,
-            function_name=function_name,
-            name=name,
-            trigger_id=trigger_id,
-            type=type,
-            unordered=unordered,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             config_collection: Optional[str] = None,
-             config_database: Optional[str] = None,
-             config_full_document: Optional[bool] = None,
-             config_full_document_before: Optional[bool] = None,
-             config_match: Optional[str] = None,
-             config_operation_type: Optional[str] = None,
-             config_operation_types: Optional[Sequence[str]] = None,
-             config_project: Optional[str] = None,
-             config_providers: Optional[Sequence[str]] = None,
-             config_schedule: Optional[str] = None,
-             config_schedule_type: Optional[str] = None,
-             config_service_id: Optional[str] = None,
-             disabled: Optional[bool] = None,
-             event_processors: Optional[Sequence['outputs.GetEventTriggersResultEventProcessorResult']] = None,
-             function_id: Optional[str] = None,
-             function_name: Optional[str] = None,
-             name: Optional[str] = None,
-             trigger_id: Optional[str] = None,
-             type: Optional[str] = None,
-             unordered: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if config_collection is None and 'configCollection' in kwargs:
-            config_collection = kwargs['configCollection']
-        if config_collection is None:
-            raise TypeError("Missing 'config_collection' argument")
-        if config_database is None and 'configDatabase' in kwargs:
-            config_database = kwargs['configDatabase']
-        if config_database is None:
-            raise TypeError("Missing 'config_database' argument")
-        if config_full_document is None and 'configFullDocument' in kwargs:
-            config_full_document = kwargs['configFullDocument']
-        if config_full_document is None:
-            raise TypeError("Missing 'config_full_document' argument")
-        if config_full_document_before is None and 'configFullDocumentBefore' in kwargs:
-            config_full_document_before = kwargs['configFullDocumentBefore']
-        if config_full_document_before is None:
-            raise TypeError("Missing 'config_full_document_before' argument")
-        if config_match is None and 'configMatch' in kwargs:
-            config_match = kwargs['configMatch']
-        if config_match is None:
-            raise TypeError("Missing 'config_match' argument")
-        if config_operation_type is None and 'configOperationType' in kwargs:
-            config_operation_type = kwargs['configOperationType']
-        if config_operation_type is None:
-            raise TypeError("Missing 'config_operation_type' argument")
-        if config_operation_types is None and 'configOperationTypes' in kwargs:
-            config_operation_types = kwargs['configOperationTypes']
-        if config_operation_types is None:
-            raise TypeError("Missing 'config_operation_types' argument")
-        if config_project is None and 'configProject' in kwargs:
-            config_project = kwargs['configProject']
-        if config_project is None:
-            raise TypeError("Missing 'config_project' argument")
-        if config_providers is None and 'configProviders' in kwargs:
-            config_providers = kwargs['configProviders']
-        if config_providers is None:
-            raise TypeError("Missing 'config_providers' argument")
-        if config_schedule is None and 'configSchedule' in kwargs:
-            config_schedule = kwargs['configSchedule']
-        if config_schedule is None:
-            raise TypeError("Missing 'config_schedule' argument")
-        if config_schedule_type is None and 'configScheduleType' in kwargs:
-            config_schedule_type = kwargs['configScheduleType']
-        if config_schedule_type is None:
-            raise TypeError("Missing 'config_schedule_type' argument")
-        if config_service_id is None and 'configServiceId' in kwargs:
-            config_service_id = kwargs['configServiceId']
-        if config_service_id is None:
-            raise TypeError("Missing 'config_service_id' argument")
-        if disabled is None:
-            raise TypeError("Missing 'disabled' argument")
-        if event_processors is None and 'eventProcessors' in kwargs:
-            event_processors = kwargs['eventProcessors']
-        if event_processors is None:
-            raise TypeError("Missing 'event_processors' argument")
-        if function_id is None and 'functionId' in kwargs:
-            function_id = kwargs['functionId']
-        if function_id is None:
-            raise TypeError("Missing 'function_id' argument")
-        if function_name is None and 'functionName' in kwargs:
-            function_name = kwargs['functionName']
-        if function_name is None:
-            raise TypeError("Missing 'function_name' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if trigger_id is None and 'triggerId' in kwargs:
-            trigger_id = kwargs['triggerId']
-        if trigger_id is None:
-            raise TypeError("Missing 'trigger_id' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if unordered is None:
-            raise TypeError("Missing 'unordered' argument")
-
-        _setter("config_collection", config_collection)
-        _setter("config_database", config_database)
-        _setter("config_full_document", config_full_document)
-        _setter("config_full_document_before", config_full_document_before)
-        _setter("config_match", config_match)
-        _setter("config_operation_type", config_operation_type)
-        _setter("config_operation_types", config_operation_types)
-        _setter("config_project", config_project)
-        _setter("config_providers", config_providers)
-        _setter("config_schedule", config_schedule)
-        _setter("config_schedule_type", config_schedule_type)
-        _setter("config_service_id", config_service_id)
-        _setter("disabled", disabled)
-        _setter("event_processors", event_processors)
-        _setter("function_id", function_id)
-        _setter("function_name", function_name)
-        _setter("name", name)
-        _setter("trigger_id", trigger_id)
-        _setter("type", type)
-        _setter("unordered", unordered)
+        pulumi.set(__self__, "config_collection", config_collection)
+        pulumi.set(__self__, "config_database", config_database)
+        pulumi.set(__self__, "config_full_document", config_full_document)
+        pulumi.set(__self__, "config_full_document_before", config_full_document_before)
+        pulumi.set(__self__, "config_match", config_match)
+        pulumi.set(__self__, "config_operation_type", config_operation_type)
+        pulumi.set(__self__, "config_operation_types", config_operation_types)
+        pulumi.set(__self__, "config_project", config_project)
+        pulumi.set(__self__, "config_providers", config_providers)
+        pulumi.set(__self__, "config_schedule", config_schedule)
+        pulumi.set(__self__, "config_schedule_type", config_schedule_type)
+        pulumi.set(__self__, "config_service_id", config_service_id)
+        pulumi.set(__self__, "disabled", disabled)
+        pulumi.set(__self__, "event_processors", event_processors)
+        pulumi.set(__self__, "function_id", function_id)
+        pulumi.set(__self__, "function_name", function_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "trigger_id", trigger_id)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unordered", unordered)
 
     @property
     @pulumi.getter(name="configCollection")
@@ -24080,22 +16151,7 @@ class GetEventTriggersResultResult(dict):
 class GetEventTriggersResultEventProcessorResult(dict):
     def __init__(__self__, *,
                  aws_eventbridges: Sequence['outputs.GetEventTriggersResultEventProcessorAwsEventbridgeResult']):
-        GetEventTriggersResultEventProcessorResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws_eventbridges=aws_eventbridges,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws_eventbridges: Optional[Sequence['outputs.GetEventTriggersResultEventProcessorAwsEventbridgeResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws_eventbridges is None and 'awsEventbridges' in kwargs:
-            aws_eventbridges = kwargs['awsEventbridges']
-        if aws_eventbridges is None:
-            raise TypeError("Missing 'aws_eventbridges' argument")
-
-        _setter("aws_eventbridges", aws_eventbridges)
+        pulumi.set(__self__, "aws_eventbridges", aws_eventbridges)
 
     @property
     @pulumi.getter(name="awsEventbridges")
@@ -24108,29 +16164,8 @@ class GetEventTriggersResultEventProcessorAwsEventbridgeResult(dict):
     def __init__(__self__, *,
                  config_account_id: str,
                  config_region: str):
-        GetEventTriggersResultEventProcessorAwsEventbridgeResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            config_account_id=config_account_id,
-            config_region=config_region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             config_account_id: Optional[str] = None,
-             config_region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if config_account_id is None and 'configAccountId' in kwargs:
-            config_account_id = kwargs['configAccountId']
-        if config_account_id is None:
-            raise TypeError("Missing 'config_account_id' argument")
-        if config_region is None and 'configRegion' in kwargs:
-            config_region = kwargs['configRegion']
-        if config_region is None:
-            raise TypeError("Missing 'config_region' argument")
-
-        _setter("config_account_id", config_account_id)
-        _setter("config_region", config_region)
+        pulumi.set(__self__, "config_account_id", config_account_id)
+        pulumi.set(__self__, "config_region", config_region)
 
     @property
     @pulumi.getter(name="configAccountId")
@@ -24147,20 +16182,7 @@ class GetEventTriggersResultEventProcessorAwsEventbridgeResult(dict):
 class GetFederatedDatabaseInstanceCloudProviderConfigResult(dict):
     def __init__(__self__, *,
                  aws: 'outputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsResult'):
-        GetFederatedDatabaseInstanceCloudProviderConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws=aws,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws: Optional['outputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsResult'] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws is None:
-            raise TypeError("Missing 'aws' argument")
-
-        _setter("aws", aws)
+        pulumi.set(__self__, "aws", aws)
 
     @property
     @pulumi.getter
@@ -24185,50 +16207,11 @@ class GetFederatedDatabaseInstanceCloudProviderConfigAwsResult(dict):
         :param str iam_user_arn: Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
         :param str role_id: Unique identifier of the role that the data lake can use to access the data stores.
         """
-        GetFederatedDatabaseInstanceCloudProviderConfigAwsResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            external_id=external_id,
-            iam_assumed_role_arn=iam_assumed_role_arn,
-            iam_user_arn=iam_user_arn,
-            role_id=role_id,
-            test_s3_bucket=test_s3_bucket,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             external_id: Optional[str] = None,
-             iam_assumed_role_arn: Optional[str] = None,
-             iam_user_arn: Optional[str] = None,
-             role_id: Optional[str] = None,
-             test_s3_bucket: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if external_id is None and 'externalId' in kwargs:
-            external_id = kwargs['externalId']
-        if external_id is None:
-            raise TypeError("Missing 'external_id' argument")
-        if iam_assumed_role_arn is None and 'iamAssumedRoleArn' in kwargs:
-            iam_assumed_role_arn = kwargs['iamAssumedRoleArn']
-        if iam_assumed_role_arn is None:
-            raise TypeError("Missing 'iam_assumed_role_arn' argument")
-        if iam_user_arn is None and 'iamUserArn' in kwargs:
-            iam_user_arn = kwargs['iamUserArn']
-        if iam_user_arn is None:
-            raise TypeError("Missing 'iam_user_arn' argument")
-        if role_id is None and 'roleId' in kwargs:
-            role_id = kwargs['roleId']
-        if role_id is None:
-            raise TypeError("Missing 'role_id' argument")
-        if test_s3_bucket is None and 'testS3Bucket' in kwargs:
-            test_s3_bucket = kwargs['testS3Bucket']
-        if test_s3_bucket is None:
-            raise TypeError("Missing 'test_s3_bucket' argument")
-
-        _setter("external_id", external_id)
-        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
-        _setter("iam_user_arn", iam_user_arn)
-        _setter("role_id", role_id)
-        _setter("test_s3_bucket", test_s3_bucket)
+        pulumi.set(__self__, "external_id", external_id)
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
 
     @property
     @pulumi.getter(name="externalId")
@@ -24280,27 +16263,8 @@ class GetFederatedDatabaseInstanceDataProcessRegionResult(dict):
         :param str cloud_provider: Name of the cloud service provider. Atlas Federated Database only supports AWS.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing.
         """
-        GetFederatedDatabaseInstanceDataProcessRegionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("region", region)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -24329,37 +16293,10 @@ class GetFederatedDatabaseInstanceStorageDatabaseResult(dict):
         """
         :param str name: Name of the Atlas Federated Database Instance.
         """
-        GetFederatedDatabaseInstanceStorageDatabaseResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            collections=collections,
-            max_wildcard_collections=max_wildcard_collections,
-            name=name,
-            views=views,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             collections: Optional[Sequence['outputs.GetFederatedDatabaseInstanceStorageDatabaseCollectionResult']] = None,
-             max_wildcard_collections: Optional[int] = None,
-             name: Optional[str] = None,
-             views: Optional[Sequence['outputs.GetFederatedDatabaseInstanceStorageDatabaseViewResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if collections is None:
-            raise TypeError("Missing 'collections' argument")
-        if max_wildcard_collections is None and 'maxWildcardCollections' in kwargs:
-            max_wildcard_collections = kwargs['maxWildcardCollections']
-        if max_wildcard_collections is None:
-            raise TypeError("Missing 'max_wildcard_collections' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if views is None:
-            raise TypeError("Missing 'views' argument")
-
-        _setter("collections", collections)
-        _setter("max_wildcard_collections", max_wildcard_collections)
-        _setter("name", name)
-        _setter("views", views)
+        pulumi.set(__self__, "collections", collections)
+        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "views", views)
 
     @property
     @pulumi.getter
@@ -24393,27 +16330,8 @@ class GetFederatedDatabaseInstanceStorageDatabaseCollectionResult(dict):
         """
         :param str name: Name of the Atlas Federated Database Instance.
         """
-        GetFederatedDatabaseInstanceStorageDatabaseCollectionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            data_sources=data_sources,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             data_sources: Optional[Sequence['outputs.GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceResult']] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if data_sources is None and 'dataSources' in kwargs:
-            data_sources = kwargs['dataSources']
-        if data_sources is None:
-            raise TypeError("Missing 'data_sources' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("data_sources", data_sources)
-        _setter("name", name)
+        pulumi.set(__self__, "data_sources", data_sources)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -24443,84 +16361,17 @@ class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceResult(dict
                  provenance_field_name: str,
                  store_name: str,
                  urls: Sequence[str]):
-        GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            allow_insecure=allow_insecure,
-            collection=collection,
-            collection_regex=collection_regex,
-            database=database,
-            database_regex=database_regex,
-            dataset_name=dataset_name,
-            default_format=default_format,
-            path=path,
-            provenance_field_name=provenance_field_name,
-            store_name=store_name,
-            urls=urls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             allow_insecure: Optional[bool] = None,
-             collection: Optional[str] = None,
-             collection_regex: Optional[str] = None,
-             database: Optional[str] = None,
-             database_regex: Optional[str] = None,
-             dataset_name: Optional[str] = None,
-             default_format: Optional[str] = None,
-             path: Optional[str] = None,
-             provenance_field_name: Optional[str] = None,
-             store_name: Optional[str] = None,
-             urls: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if allow_insecure is None and 'allowInsecure' in kwargs:
-            allow_insecure = kwargs['allowInsecure']
-        if allow_insecure is None:
-            raise TypeError("Missing 'allow_insecure' argument")
-        if collection is None:
-            raise TypeError("Missing 'collection' argument")
-        if collection_regex is None and 'collectionRegex' in kwargs:
-            collection_regex = kwargs['collectionRegex']
-        if collection_regex is None:
-            raise TypeError("Missing 'collection_regex' argument")
-        if database is None:
-            raise TypeError("Missing 'database' argument")
-        if database_regex is None and 'databaseRegex' in kwargs:
-            database_regex = kwargs['databaseRegex']
-        if database_regex is None:
-            raise TypeError("Missing 'database_regex' argument")
-        if dataset_name is None and 'datasetName' in kwargs:
-            dataset_name = kwargs['datasetName']
-        if dataset_name is None:
-            raise TypeError("Missing 'dataset_name' argument")
-        if default_format is None and 'defaultFormat' in kwargs:
-            default_format = kwargs['defaultFormat']
-        if default_format is None:
-            raise TypeError("Missing 'default_format' argument")
-        if path is None:
-            raise TypeError("Missing 'path' argument")
-        if provenance_field_name is None and 'provenanceFieldName' in kwargs:
-            provenance_field_name = kwargs['provenanceFieldName']
-        if provenance_field_name is None:
-            raise TypeError("Missing 'provenance_field_name' argument")
-        if store_name is None and 'storeName' in kwargs:
-            store_name = kwargs['storeName']
-        if store_name is None:
-            raise TypeError("Missing 'store_name' argument")
-        if urls is None:
-            raise TypeError("Missing 'urls' argument")
-
-        _setter("allow_insecure", allow_insecure)
-        _setter("collection", collection)
-        _setter("collection_regex", collection_regex)
-        _setter("database", database)
-        _setter("database_regex", database_regex)
-        _setter("dataset_name", dataset_name)
-        _setter("default_format", default_format)
-        _setter("path", path)
-        _setter("provenance_field_name", provenance_field_name)
-        _setter("store_name", store_name)
-        _setter("urls", urls)
+        pulumi.set(__self__, "allow_insecure", allow_insecure)
+        pulumi.set(__self__, "collection", collection)
+        pulumi.set(__self__, "collection_regex", collection_regex)
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "database_regex", database_regex)
+        pulumi.set(__self__, "dataset_name", dataset_name)
+        pulumi.set(__self__, "default_format", default_format)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "provenance_field_name", provenance_field_name)
+        pulumi.set(__self__, "store_name", store_name)
+        pulumi.set(__self__, "urls", urls)
 
     @property
     @pulumi.getter(name="allowInsecure")
@@ -24587,30 +16438,9 @@ class GetFederatedDatabaseInstanceStorageDatabaseViewResult(dict):
         """
         :param str name: Name of the Atlas Federated Database Instance.
         """
-        GetFederatedDatabaseInstanceStorageDatabaseViewResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            pipeline=pipeline,
-            source=source,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             pipeline: Optional[str] = None,
-             source: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if pipeline is None:
-            raise TypeError("Missing 'pipeline' argument")
-        if source is None:
-            raise TypeError("Missing 'source' argument")
-
-        _setter("name", name)
-        _setter("pipeline", pipeline)
-        _setter("source", source)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pipeline", pipeline)
+        pulumi.set(__self__, "source", source)
 
     @property
     @pulumi.getter
@@ -24655,111 +16485,22 @@ class GetFederatedDatabaseInstanceStorageStoreResult(dict):
         :param str project_id: The unique ID for the project to create a Federated Database Instance.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing.
         """
-        GetFederatedDatabaseInstanceStorageStoreResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            additional_storage_classes=additional_storage_classes,
-            allow_insecure=allow_insecure,
-            bucket=bucket,
-            cluster_id=cluster_id,
-            cluster_name=cluster_name,
-            default_format=default_format,
-            delimiter=delimiter,
-            include_tags=include_tags,
-            name=name,
-            prefix=prefix,
-            project_id=project_id,
-            provider=provider,
-            public=public,
-            read_preferences=read_preferences,
-            region=region,
-            urls=urls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             additional_storage_classes: Optional[Sequence[str]] = None,
-             allow_insecure: Optional[bool] = None,
-             bucket: Optional[str] = None,
-             cluster_id: Optional[str] = None,
-             cluster_name: Optional[str] = None,
-             default_format: Optional[str] = None,
-             delimiter: Optional[str] = None,
-             include_tags: Optional[bool] = None,
-             name: Optional[str] = None,
-             prefix: Optional[str] = None,
-             project_id: Optional[str] = None,
-             provider: Optional[str] = None,
-             public: Optional[str] = None,
-             read_preferences: Optional[Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult']] = None,
-             region: Optional[str] = None,
-             urls: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if additional_storage_classes is None and 'additionalStorageClasses' in kwargs:
-            additional_storage_classes = kwargs['additionalStorageClasses']
-        if additional_storage_classes is None:
-            raise TypeError("Missing 'additional_storage_classes' argument")
-        if allow_insecure is None and 'allowInsecure' in kwargs:
-            allow_insecure = kwargs['allowInsecure']
-        if allow_insecure is None:
-            raise TypeError("Missing 'allow_insecure' argument")
-        if bucket is None:
-            raise TypeError("Missing 'bucket' argument")
-        if cluster_id is None and 'clusterId' in kwargs:
-            cluster_id = kwargs['clusterId']
-        if cluster_id is None:
-            raise TypeError("Missing 'cluster_id' argument")
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if cluster_name is None:
-            raise TypeError("Missing 'cluster_name' argument")
-        if default_format is None and 'defaultFormat' in kwargs:
-            default_format = kwargs['defaultFormat']
-        if default_format is None:
-            raise TypeError("Missing 'default_format' argument")
-        if delimiter is None:
-            raise TypeError("Missing 'delimiter' argument")
-        if include_tags is None and 'includeTags' in kwargs:
-            include_tags = kwargs['includeTags']
-        if include_tags is None:
-            raise TypeError("Missing 'include_tags' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if prefix is None:
-            raise TypeError("Missing 'prefix' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if provider is None:
-            raise TypeError("Missing 'provider' argument")
-        if public is None:
-            raise TypeError("Missing 'public' argument")
-        if read_preferences is None and 'readPreferences' in kwargs:
-            read_preferences = kwargs['readPreferences']
-        if read_preferences is None:
-            raise TypeError("Missing 'read_preferences' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-        if urls is None:
-            raise TypeError("Missing 'urls' argument")
-
-        _setter("additional_storage_classes", additional_storage_classes)
-        _setter("allow_insecure", allow_insecure)
-        _setter("bucket", bucket)
-        _setter("cluster_id", cluster_id)
-        _setter("cluster_name", cluster_name)
-        _setter("default_format", default_format)
-        _setter("delimiter", delimiter)
-        _setter("include_tags", include_tags)
-        _setter("name", name)
-        _setter("prefix", prefix)
-        _setter("project_id", project_id)
-        _setter("provider", provider)
-        _setter("public", public)
-        _setter("read_preferences", read_preferences)
-        _setter("region", region)
-        _setter("urls", urls)
+        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+        pulumi.set(__self__, "allow_insecure", allow_insecure)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "default_format", default_format)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "include_tags", include_tags)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "read_preferences", read_preferences)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "urls", urls)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -24860,34 +16601,9 @@ class GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult(dict):
                  max_staleness_seconds: int,
                  mode: str,
                  tag_sets: Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult']):
-        GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            max_staleness_seconds=max_staleness_seconds,
-            mode=mode,
-            tag_sets=tag_sets,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             max_staleness_seconds: Optional[int] = None,
-             mode: Optional[str] = None,
-             tag_sets: Optional[Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if max_staleness_seconds is None and 'maxStalenessSeconds' in kwargs:
-            max_staleness_seconds = kwargs['maxStalenessSeconds']
-        if max_staleness_seconds is None:
-            raise TypeError("Missing 'max_staleness_seconds' argument")
-        if mode is None:
-            raise TypeError("Missing 'mode' argument")
-        if tag_sets is None and 'tagSets' in kwargs:
-            tag_sets = kwargs['tagSets']
-        if tag_sets is None:
-            raise TypeError("Missing 'tag_sets' argument")
-
-        _setter("max_staleness_seconds", max_staleness_seconds)
-        _setter("mode", mode)
-        _setter("tag_sets", tag_sets)
+        pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "tag_sets", tag_sets)
 
     @property
     @pulumi.getter(name="maxStalenessSeconds")
@@ -24909,20 +16625,7 @@ class GetFederatedDatabaseInstanceStorageStoreReadPreferenceResult(dict):
 class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult(dict):
     def __init__(__self__, *,
                  tags: Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult']):
-        GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            tags=tags,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             tags: Optional[Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if tags is None:
-            raise TypeError("Missing 'tags' argument")
-
-        _setter("tags", tags)
+        pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -24938,25 +16641,8 @@ class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult(dict
         """
         :param str name: Name of the Atlas Federated Database Instance.
         """
-        GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("name", name)
-        _setter("value", value)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -25030,65 +16716,14 @@ class GetFederatedDatabaseInstancesResultResult(dict):
                * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
                * `storage_stores.#.read_preference.tags.value` - Value of the tag.
         """
-        GetFederatedDatabaseInstancesResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider_config=cloud_provider_config,
-            data_process_regions=data_process_regions,
-            hostnames=hostnames,
-            name=name,
-            project_id=project_id,
-            state=state,
-            storage_databases=storage_databases,
-            storage_stores=storage_stores,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider_config: Optional['outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigResult'] = None,
-             data_process_regions: Optional[Sequence['outputs.GetFederatedDatabaseInstancesResultDataProcessRegionResult']] = None,
-             hostnames: Optional[Sequence[str]] = None,
-             name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             state: Optional[str] = None,
-             storage_databases: Optional[Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseResult']] = None,
-             storage_stores: Optional[Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider_config is None and 'cloudProviderConfig' in kwargs:
-            cloud_provider_config = kwargs['cloudProviderConfig']
-        if cloud_provider_config is None:
-            raise TypeError("Missing 'cloud_provider_config' argument")
-        if data_process_regions is None and 'dataProcessRegions' in kwargs:
-            data_process_regions = kwargs['dataProcessRegions']
-        if data_process_regions is None:
-            raise TypeError("Missing 'data_process_regions' argument")
-        if hostnames is None:
-            raise TypeError("Missing 'hostnames' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if state is None:
-            raise TypeError("Missing 'state' argument")
-        if storage_databases is None and 'storageDatabases' in kwargs:
-            storage_databases = kwargs['storageDatabases']
-        if storage_databases is None:
-            raise TypeError("Missing 'storage_databases' argument")
-        if storage_stores is None and 'storageStores' in kwargs:
-            storage_stores = kwargs['storageStores']
-        if storage_stores is None:
-            raise TypeError("Missing 'storage_stores' argument")
-
-        _setter("cloud_provider_config", cloud_provider_config)
-        _setter("data_process_regions", data_process_regions)
-        _setter("hostnames", hostnames)
-        _setter("name", name)
-        _setter("project_id", project_id)
-        _setter("state", state)
-        _setter("storage_databases", storage_databases)
-        _setter("storage_stores", storage_stores)
+        pulumi.set(__self__, "cloud_provider_config", cloud_provider_config)
+        pulumi.set(__self__, "data_process_regions", data_process_regions)
+        pulumi.set(__self__, "hostnames", hostnames)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "storage_databases", storage_databases)
+        pulumi.set(__self__, "storage_stores", storage_stores)
 
     @property
     @pulumi.getter(name="cloudProviderConfig")
@@ -25190,20 +16825,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
 class GetFederatedDatabaseInstancesResultCloudProviderConfigResult(dict):
     def __init__(__self__, *,
                  aws: 'outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult'):
-        GetFederatedDatabaseInstancesResultCloudProviderConfigResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws=aws,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws: Optional['outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult'] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws is None:
-            raise TypeError("Missing 'aws' argument")
-
-        _setter("aws", aws)
+        pulumi.set(__self__, "aws", aws)
 
     @property
     @pulumi.getter
@@ -25229,50 +16851,11 @@ class GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult(dict):
         :param str role_id: Unique identifier of the role that the data lake can use to access the data stores.
                #### `data_process_region` - The cloud provider region to which the Federated Instance routes client connections for data processing.
         """
-        GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            external_id=external_id,
-            iam_assumed_role_arn=iam_assumed_role_arn,
-            iam_user_arn=iam_user_arn,
-            role_id=role_id,
-            test_s3_bucket=test_s3_bucket,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             external_id: Optional[str] = None,
-             iam_assumed_role_arn: Optional[str] = None,
-             iam_user_arn: Optional[str] = None,
-             role_id: Optional[str] = None,
-             test_s3_bucket: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if external_id is None and 'externalId' in kwargs:
-            external_id = kwargs['externalId']
-        if external_id is None:
-            raise TypeError("Missing 'external_id' argument")
-        if iam_assumed_role_arn is None and 'iamAssumedRoleArn' in kwargs:
-            iam_assumed_role_arn = kwargs['iamAssumedRoleArn']
-        if iam_assumed_role_arn is None:
-            raise TypeError("Missing 'iam_assumed_role_arn' argument")
-        if iam_user_arn is None and 'iamUserArn' in kwargs:
-            iam_user_arn = kwargs['iamUserArn']
-        if iam_user_arn is None:
-            raise TypeError("Missing 'iam_user_arn' argument")
-        if role_id is None and 'roleId' in kwargs:
-            role_id = kwargs['roleId']
-        if role_id is None:
-            raise TypeError("Missing 'role_id' argument")
-        if test_s3_bucket is None and 'testS3Bucket' in kwargs:
-            test_s3_bucket = kwargs['testS3Bucket']
-        if test_s3_bucket is None:
-            raise TypeError("Missing 'test_s3_bucket' argument")
-
-        _setter("external_id", external_id)
-        _setter("iam_assumed_role_arn", iam_assumed_role_arn)
-        _setter("iam_user_arn", iam_user_arn)
-        _setter("role_id", role_id)
-        _setter("test_s3_bucket", test_s3_bucket)
+        pulumi.set(__self__, "external_id", external_id)
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
 
     @property
     @pulumi.getter(name="externalId")
@@ -25325,27 +16908,8 @@ class GetFederatedDatabaseInstancesResultDataProcessRegionResult(dict):
         :param str cloud_provider: Name of the cloud service provider. Atlas Federated Database only supports AWS.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing.
         """
-        GetFederatedDatabaseInstancesResultDataProcessRegionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider=cloud_provider,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider: Optional[str] = None,
-             region: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider is None and 'cloudProvider' in kwargs:
-            cloud_provider = kwargs['cloudProvider']
-        if cloud_provider is None:
-            raise TypeError("Missing 'cloud_provider' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-
-        _setter("cloud_provider", cloud_provider)
-        _setter("region", region)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -25371,37 +16935,10 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseResult(dict):
                  max_wildcard_collections: int,
                  name: str,
                  views: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseViewResult']):
-        GetFederatedDatabaseInstancesResultStorageDatabaseResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            collections=collections,
-            max_wildcard_collections=max_wildcard_collections,
-            name=name,
-            views=views,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             collections: Optional[Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseCollectionResult']] = None,
-             max_wildcard_collections: Optional[int] = None,
-             name: Optional[str] = None,
-             views: Optional[Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseViewResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if collections is None:
-            raise TypeError("Missing 'collections' argument")
-        if max_wildcard_collections is None and 'maxWildcardCollections' in kwargs:
-            max_wildcard_collections = kwargs['maxWildcardCollections']
-        if max_wildcard_collections is None:
-            raise TypeError("Missing 'max_wildcard_collections' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if views is None:
-            raise TypeError("Missing 'views' argument")
-
-        _setter("collections", collections)
-        _setter("max_wildcard_collections", max_wildcard_collections)
-        _setter("name", name)
-        _setter("views", views)
+        pulumi.set(__self__, "collections", collections)
+        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "views", views)
 
     @property
     @pulumi.getter
@@ -25429,27 +16966,8 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseCollectionResult(dict):
     def __init__(__self__, *,
                  data_sources: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResult'],
                  name: str):
-        GetFederatedDatabaseInstancesResultStorageDatabaseCollectionResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            data_sources=data_sources,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             data_sources: Optional[Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResult']] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if data_sources is None and 'dataSources' in kwargs:
-            data_sources = kwargs['dataSources']
-        if data_sources is None:
-            raise TypeError("Missing 'data_sources' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("data_sources", data_sources)
-        _setter("name", name)
+        pulumi.set(__self__, "data_sources", data_sources)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="dataSources")
@@ -25476,84 +16994,17 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResu
                  provenance_field_name: str,
                  store_name: str,
                  urls: Sequence[str]):
-        GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            allow_insecure=allow_insecure,
-            collection=collection,
-            collection_regex=collection_regex,
-            database=database,
-            database_regex=database_regex,
-            dataset_name=dataset_name,
-            default_format=default_format,
-            path=path,
-            provenance_field_name=provenance_field_name,
-            store_name=store_name,
-            urls=urls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             allow_insecure: Optional[bool] = None,
-             collection: Optional[str] = None,
-             collection_regex: Optional[str] = None,
-             database: Optional[str] = None,
-             database_regex: Optional[str] = None,
-             dataset_name: Optional[str] = None,
-             default_format: Optional[str] = None,
-             path: Optional[str] = None,
-             provenance_field_name: Optional[str] = None,
-             store_name: Optional[str] = None,
-             urls: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if allow_insecure is None and 'allowInsecure' in kwargs:
-            allow_insecure = kwargs['allowInsecure']
-        if allow_insecure is None:
-            raise TypeError("Missing 'allow_insecure' argument")
-        if collection is None:
-            raise TypeError("Missing 'collection' argument")
-        if collection_regex is None and 'collectionRegex' in kwargs:
-            collection_regex = kwargs['collectionRegex']
-        if collection_regex is None:
-            raise TypeError("Missing 'collection_regex' argument")
-        if database is None:
-            raise TypeError("Missing 'database' argument")
-        if database_regex is None and 'databaseRegex' in kwargs:
-            database_regex = kwargs['databaseRegex']
-        if database_regex is None:
-            raise TypeError("Missing 'database_regex' argument")
-        if dataset_name is None and 'datasetName' in kwargs:
-            dataset_name = kwargs['datasetName']
-        if dataset_name is None:
-            raise TypeError("Missing 'dataset_name' argument")
-        if default_format is None and 'defaultFormat' in kwargs:
-            default_format = kwargs['defaultFormat']
-        if default_format is None:
-            raise TypeError("Missing 'default_format' argument")
-        if path is None:
-            raise TypeError("Missing 'path' argument")
-        if provenance_field_name is None and 'provenanceFieldName' in kwargs:
-            provenance_field_name = kwargs['provenanceFieldName']
-        if provenance_field_name is None:
-            raise TypeError("Missing 'provenance_field_name' argument")
-        if store_name is None and 'storeName' in kwargs:
-            store_name = kwargs['storeName']
-        if store_name is None:
-            raise TypeError("Missing 'store_name' argument")
-        if urls is None:
-            raise TypeError("Missing 'urls' argument")
-
-        _setter("allow_insecure", allow_insecure)
-        _setter("collection", collection)
-        _setter("collection_regex", collection_regex)
-        _setter("database", database)
-        _setter("database_regex", database_regex)
-        _setter("dataset_name", dataset_name)
-        _setter("default_format", default_format)
-        _setter("path", path)
-        _setter("provenance_field_name", provenance_field_name)
-        _setter("store_name", store_name)
-        _setter("urls", urls)
+        pulumi.set(__self__, "allow_insecure", allow_insecure)
+        pulumi.set(__self__, "collection", collection)
+        pulumi.set(__self__, "collection_regex", collection_regex)
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "database_regex", database_regex)
+        pulumi.set(__self__, "dataset_name", dataset_name)
+        pulumi.set(__self__, "default_format", default_format)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "provenance_field_name", provenance_field_name)
+        pulumi.set(__self__, "store_name", store_name)
+        pulumi.set(__self__, "urls", urls)
 
     @property
     @pulumi.getter(name="allowInsecure")
@@ -25617,30 +17068,9 @@ class GetFederatedDatabaseInstancesResultStorageDatabaseViewResult(dict):
                  name: str,
                  pipeline: str,
                  source: str):
-        GetFederatedDatabaseInstancesResultStorageDatabaseViewResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            pipeline=pipeline,
-            source=source,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             pipeline: Optional[str] = None,
-             source: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if pipeline is None:
-            raise TypeError("Missing 'pipeline' argument")
-        if source is None:
-            raise TypeError("Missing 'source' argument")
-
-        _setter("name", name)
-        _setter("pipeline", pipeline)
-        _setter("source", source)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pipeline", pipeline)
+        pulumi.set(__self__, "source", source)
 
     @property
     @pulumi.getter
@@ -25681,111 +17111,22 @@ class GetFederatedDatabaseInstancesResultStorageStoreResult(dict):
         :param str project_id: The unique ID for the project to create a Federated Database Instance.
         :param str region: Name of the region to which the Federanted Instnace routes client connections for data processing.
         """
-        GetFederatedDatabaseInstancesResultStorageStoreResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            additional_storage_classes=additional_storage_classes,
-            allow_insecure=allow_insecure,
-            bucket=bucket,
-            cluster_id=cluster_id,
-            cluster_name=cluster_name,
-            default_format=default_format,
-            delimiter=delimiter,
-            include_tags=include_tags,
-            name=name,
-            prefix=prefix,
-            project_id=project_id,
-            provider=provider,
-            public=public,
-            read_preferences=read_preferences,
-            region=region,
-            urls=urls,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             additional_storage_classes: Optional[Sequence[str]] = None,
-             allow_insecure: Optional[bool] = None,
-             bucket: Optional[str] = None,
-             cluster_id: Optional[str] = None,
-             cluster_name: Optional[str] = None,
-             default_format: Optional[str] = None,
-             delimiter: Optional[str] = None,
-             include_tags: Optional[bool] = None,
-             name: Optional[str] = None,
-             prefix: Optional[str] = None,
-             project_id: Optional[str] = None,
-             provider: Optional[str] = None,
-             public: Optional[str] = None,
-             read_preferences: Optional[Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult']] = None,
-             region: Optional[str] = None,
-             urls: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if additional_storage_classes is None and 'additionalStorageClasses' in kwargs:
-            additional_storage_classes = kwargs['additionalStorageClasses']
-        if additional_storage_classes is None:
-            raise TypeError("Missing 'additional_storage_classes' argument")
-        if allow_insecure is None and 'allowInsecure' in kwargs:
-            allow_insecure = kwargs['allowInsecure']
-        if allow_insecure is None:
-            raise TypeError("Missing 'allow_insecure' argument")
-        if bucket is None:
-            raise TypeError("Missing 'bucket' argument")
-        if cluster_id is None and 'clusterId' in kwargs:
-            cluster_id = kwargs['clusterId']
-        if cluster_id is None:
-            raise TypeError("Missing 'cluster_id' argument")
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if cluster_name is None:
-            raise TypeError("Missing 'cluster_name' argument")
-        if default_format is None and 'defaultFormat' in kwargs:
-            default_format = kwargs['defaultFormat']
-        if default_format is None:
-            raise TypeError("Missing 'default_format' argument")
-        if delimiter is None:
-            raise TypeError("Missing 'delimiter' argument")
-        if include_tags is None and 'includeTags' in kwargs:
-            include_tags = kwargs['includeTags']
-        if include_tags is None:
-            raise TypeError("Missing 'include_tags' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if prefix is None:
-            raise TypeError("Missing 'prefix' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if provider is None:
-            raise TypeError("Missing 'provider' argument")
-        if public is None:
-            raise TypeError("Missing 'public' argument")
-        if read_preferences is None and 'readPreferences' in kwargs:
-            read_preferences = kwargs['readPreferences']
-        if read_preferences is None:
-            raise TypeError("Missing 'read_preferences' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-        if urls is None:
-            raise TypeError("Missing 'urls' argument")
-
-        _setter("additional_storage_classes", additional_storage_classes)
-        _setter("allow_insecure", allow_insecure)
-        _setter("bucket", bucket)
-        _setter("cluster_id", cluster_id)
-        _setter("cluster_name", cluster_name)
-        _setter("default_format", default_format)
-        _setter("delimiter", delimiter)
-        _setter("include_tags", include_tags)
-        _setter("name", name)
-        _setter("prefix", prefix)
-        _setter("project_id", project_id)
-        _setter("provider", provider)
-        _setter("public", public)
-        _setter("read_preferences", read_preferences)
-        _setter("region", region)
-        _setter("urls", urls)
+        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+        pulumi.set(__self__, "allow_insecure", allow_insecure)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "default_format", default_format)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "include_tags", include_tags)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "read_preferences", read_preferences)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "urls", urls)
 
     @property
     @pulumi.getter(name="additionalStorageClasses")
@@ -25883,34 +17224,9 @@ class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult(dict):
                  max_staleness_seconds: int,
                  mode: str,
                  tag_sets: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult']):
-        GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            max_staleness_seconds=max_staleness_seconds,
-            mode=mode,
-            tag_sets=tag_sets,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             max_staleness_seconds: Optional[int] = None,
-             mode: Optional[str] = None,
-             tag_sets: Optional[Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if max_staleness_seconds is None and 'maxStalenessSeconds' in kwargs:
-            max_staleness_seconds = kwargs['maxStalenessSeconds']
-        if max_staleness_seconds is None:
-            raise TypeError("Missing 'max_staleness_seconds' argument")
-        if mode is None:
-            raise TypeError("Missing 'mode' argument")
-        if tag_sets is None and 'tagSets' in kwargs:
-            tag_sets = kwargs['tagSets']
-        if tag_sets is None:
-            raise TypeError("Missing 'tag_sets' argument")
-
-        _setter("max_staleness_seconds", max_staleness_seconds)
-        _setter("mode", mode)
-        _setter("tag_sets", tag_sets)
+        pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "tag_sets", tag_sets)
 
     @property
     @pulumi.getter(name="maxStalenessSeconds")
@@ -25932,20 +17248,7 @@ class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceResult(dict):
 class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult(dict):
     def __init__(__self__, *,
                  tags: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResult']):
-        GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            tags=tags,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             tags: Optional[Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if tags is None:
-            raise TypeError("Missing 'tags' argument")
-
-        _setter("tags", tags)
+        pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -25958,25 +17261,8 @@ class GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResu
     def __init__(__self__, *,
                  name: str,
                  value: str):
-        GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTagResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("name", name)
-        _setter("value", value)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -26007,76 +17293,15 @@ class GetFederatedQueryLimitsResultResult(dict):
         :param str project_id: The unique ID for the project to create a Federated Database Instance.
         :param str tenant_name: Name of the Atlas Federated Database Instance.
         """
-        GetFederatedQueryLimitsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            current_usage=current_usage,
-            default_limit=default_limit,
-            last_modified_date=last_modified_date,
-            limit_name=limit_name,
-            maximum_limit=maximum_limit,
-            overrun_policy=overrun_policy,
-            project_id=project_id,
-            tenant_name=tenant_name,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             current_usage: Optional[int] = None,
-             default_limit: Optional[int] = None,
-             last_modified_date: Optional[str] = None,
-             limit_name: Optional[str] = None,
-             maximum_limit: Optional[int] = None,
-             overrun_policy: Optional[str] = None,
-             project_id: Optional[str] = None,
-             tenant_name: Optional[str] = None,
-             value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if current_usage is None and 'currentUsage' in kwargs:
-            current_usage = kwargs['currentUsage']
-        if current_usage is None:
-            raise TypeError("Missing 'current_usage' argument")
-        if default_limit is None and 'defaultLimit' in kwargs:
-            default_limit = kwargs['defaultLimit']
-        if default_limit is None:
-            raise TypeError("Missing 'default_limit' argument")
-        if last_modified_date is None and 'lastModifiedDate' in kwargs:
-            last_modified_date = kwargs['lastModifiedDate']
-        if last_modified_date is None:
-            raise TypeError("Missing 'last_modified_date' argument")
-        if limit_name is None and 'limitName' in kwargs:
-            limit_name = kwargs['limitName']
-        if limit_name is None:
-            raise TypeError("Missing 'limit_name' argument")
-        if maximum_limit is None and 'maximumLimit' in kwargs:
-            maximum_limit = kwargs['maximumLimit']
-        if maximum_limit is None:
-            raise TypeError("Missing 'maximum_limit' argument")
-        if overrun_policy is None and 'overrunPolicy' in kwargs:
-            overrun_policy = kwargs['overrunPolicy']
-        if overrun_policy is None:
-            raise TypeError("Missing 'overrun_policy' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if tenant_name is None and 'tenantName' in kwargs:
-            tenant_name = kwargs['tenantName']
-        if tenant_name is None:
-            raise TypeError("Missing 'tenant_name' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("current_usage", current_usage)
-        _setter("default_limit", default_limit)
-        _setter("last_modified_date", last_modified_date)
-        _setter("limit_name", limit_name)
-        _setter("maximum_limit", maximum_limit)
-        _setter("overrun_policy", overrun_policy)
-        _setter("project_id", project_id)
-        _setter("tenant_name", tenant_name)
-        _setter("value", value)
+        pulumi.set(__self__, "current_usage", current_usage)
+        pulumi.set(__self__, "default_limit", default_limit)
+        pulumi.set(__self__, "last_modified_date", last_modified_date)
+        pulumi.set(__self__, "limit_name", limit_name)
+        pulumi.set(__self__, "maximum_limit", maximum_limit)
+        pulumi.set(__self__, "overrun_policy", overrun_policy)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "tenant_name", tenant_name)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter(name="currentUsage")
@@ -26153,64 +17378,13 @@ class GetFederatedSettingsIdentityProviderAssociatedOrgResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
         """
-        GetFederatedSettingsIdentityProviderAssociatedOrgResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            domain_allow_lists=domain_allow_lists,
-            domain_restriction_enabled=domain_restriction_enabled,
-            identity_provider_id=identity_provider_id,
-            org_id=org_id,
-            post_auth_role_grants=post_auth_role_grants,
-            role_mappings=role_mappings,
-            user_conflicts=user_conflicts,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             domain_allow_lists: Optional[Sequence[str]] = None,
-             domain_restriction_enabled: Optional[bool] = None,
-             identity_provider_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             post_auth_role_grants: Optional[Sequence[str]] = None,
-             role_mappings: Optional[Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult']] = None,
-             user_conflicts: Optional[Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if domain_allow_lists is None and 'domainAllowLists' in kwargs:
-            domain_allow_lists = kwargs['domainAllowLists']
-        if domain_allow_lists is None:
-            raise TypeError("Missing 'domain_allow_lists' argument")
-        if domain_restriction_enabled is None and 'domainRestrictionEnabled' in kwargs:
-            domain_restriction_enabled = kwargs['domainRestrictionEnabled']
-        if domain_restriction_enabled is None:
-            raise TypeError("Missing 'domain_restriction_enabled' argument")
-        if identity_provider_id is None and 'identityProviderId' in kwargs:
-            identity_provider_id = kwargs['identityProviderId']
-        if identity_provider_id is None:
-            raise TypeError("Missing 'identity_provider_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if post_auth_role_grants is None and 'postAuthRoleGrants' in kwargs:
-            post_auth_role_grants = kwargs['postAuthRoleGrants']
-        if post_auth_role_grants is None:
-            raise TypeError("Missing 'post_auth_role_grants' argument")
-        if role_mappings is None and 'roleMappings' in kwargs:
-            role_mappings = kwargs['roleMappings']
-        if role_mappings is None:
-            raise TypeError("Missing 'role_mappings' argument")
-        if user_conflicts is None and 'userConflicts' in kwargs:
-            user_conflicts = kwargs['userConflicts']
-        if user_conflicts is None:
-            raise TypeError("Missing 'user_conflicts' argument")
-
-        _setter("domain_allow_lists", domain_allow_lists)
-        _setter("domain_restriction_enabled", domain_restriction_enabled)
-        _setter("identity_provider_id", identity_provider_id)
-        _setter("org_id", org_id)
-        _setter("post_auth_role_grants", post_auth_role_grants)
-        _setter("role_mappings", role_mappings)
-        _setter("user_conflicts", user_conflicts)
+        pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
+        pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
+        pulumi.set(__self__, "identity_provider_id", identity_provider_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "post_auth_role_grants", post_auth_role_grants)
+        pulumi.set(__self__, "role_mappings", role_mappings)
+        pulumi.set(__self__, "user_conflicts", user_conflicts)
 
     @property
     @pulumi.getter(name="domainAllowLists")
@@ -26274,34 +17448,9 @@ class GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult(dict):
         :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            external_group_name=external_group_name,
-            id=id,
-            role_assignments=role_assignments,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             external_group_name: Optional[str] = None,
-             id: Optional[str] = None,
-             role_assignments: Optional[Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if external_group_name is None and 'externalGroupName' in kwargs:
-            external_group_name = kwargs['externalGroupName']
-        if external_group_name is None:
-            raise TypeError("Missing 'external_group_name' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if role_assignments is None and 'roleAssignments' in kwargs:
-            role_assignments = kwargs['roleAssignments']
-        if role_assignments is None:
-            raise TypeError("Missing 'role_assignments' argument")
-
-        _setter("external_group_name", external_group_name)
-        _setter("id", id)
-        _setter("role_assignments", role_assignments)
+        pulumi.set(__self__, "external_group_name", external_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -26339,34 +17488,9 @@ class GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            org_id=org_id,
-            role=role,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             role: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if group_id is None:
-            raise TypeError("Missing 'group_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if role is None:
-            raise TypeError("Missing 'role' argument")
-
-        _setter("group_id", group_id)
-        _setter("org_id", org_id)
-        _setter("role", role)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -26408,50 +17532,11 @@ class GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictResult(dict):
         :param str last_name: Last name of the the user that conflicts with selected domains.
         :param str user_id: Name of the Atlas user that conflicts with selected domains.
         """
-        GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            email_address=email_address,
-            federation_settings_id=federation_settings_id,
-            first_name=first_name,
-            last_name=last_name,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             email_address: Optional[str] = None,
-             federation_settings_id: Optional[str] = None,
-             first_name: Optional[str] = None,
-             last_name: Optional[str] = None,
-             user_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if email_address is None and 'emailAddress' in kwargs:
-            email_address = kwargs['emailAddress']
-        if email_address is None:
-            raise TypeError("Missing 'email_address' argument")
-        if federation_settings_id is None and 'federationSettingsId' in kwargs:
-            federation_settings_id = kwargs['federationSettingsId']
-        if federation_settings_id is None:
-            raise TypeError("Missing 'federation_settings_id' argument")
-        if first_name is None and 'firstName' in kwargs:
-            first_name = kwargs['firstName']
-        if first_name is None:
-            raise TypeError("Missing 'first_name' argument")
-        if last_name is None and 'lastName' in kwargs:
-            last_name = kwargs['lastName']
-        if last_name is None:
-            raise TypeError("Missing 'last_name' argument")
-        if user_id is None and 'userId' in kwargs:
-            user_id = kwargs['userId']
-        if user_id is None:
-            raise TypeError("Missing 'user_id' argument")
-
-        _setter("email_address", email_address)
-        _setter("federation_settings_id", federation_settings_id)
-        _setter("first_name", first_name)
-        _setter("last_name", last_name)
-        _setter("user_id", user_id)
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter(name="emailAddress")
@@ -26502,27 +17587,8 @@ class GetFederatedSettingsIdentityProviderPemFileInfoResult(dict):
         """
         :param str file_name: Filename of certificate
         """
-        GetFederatedSettingsIdentityProviderPemFileInfoResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            certificates=certificates,
-            file_name=file_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             certificates: Optional[Sequence['outputs.GetFederatedSettingsIdentityProviderPemFileInfoCertificateResult']] = None,
-             file_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if certificates is None:
-            raise TypeError("Missing 'certificates' argument")
-        if file_name is None and 'fileName' in kwargs:
-            file_name = kwargs['fileName']
-        if file_name is None:
-            raise TypeError("Missing 'file_name' argument")
-
-        _setter("certificates", certificates)
-        _setter("file_name", file_name)
+        pulumi.set(__self__, "certificates", certificates)
+        pulumi.set(__self__, "file_name", file_name)
 
     @property
     @pulumi.getter
@@ -26547,29 +17613,8 @@ class GetFederatedSettingsIdentityProviderPemFileInfoCertificateResult(dict):
         :param str not_after: Expiration  Date.
         :param str not_before: Start Date.
         """
-        GetFederatedSettingsIdentityProviderPemFileInfoCertificateResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            not_after=not_after,
-            not_before=not_before,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             not_after: Optional[str] = None,
-             not_before: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if not_after is None and 'notAfter' in kwargs:
-            not_after = kwargs['notAfter']
-        if not_after is None:
-            raise TypeError("Missing 'not_after' argument")
-        if not_before is None and 'notBefore' in kwargs:
-            not_before = kwargs['notBefore']
-        if not_before is None:
-            raise TypeError("Missing 'not_before' argument")
-
-        _setter("not_after", not_after)
-        _setter("not_before", not_before)
+        pulumi.set(__self__, "not_after", not_after)
+        pulumi.set(__self__, "not_before", not_before)
 
     @property
     @pulumi.getter(name="notAfter")
@@ -26621,104 +17666,19 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         :param str sso_url: URL of the receiver of the SAML AuthNRequest.
         :param str status: Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
         """
-        GetFederatedSettingsIdentityProvidersResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            acs_url=acs_url,
-            associated_domains=associated_domains,
-            associated_orgs=associated_orgs,
-            audience_uri=audience_uri,
-            display_name=display_name,
-            issuer_uri=issuer_uri,
-            okta_idp_id=okta_idp_id,
-            pem_file_infos=pem_file_infos,
-            request_binding=request_binding,
-            response_signature_algorithm=response_signature_algorithm,
-            sso_debug_enabled=sso_debug_enabled,
-            sso_url=sso_url,
-            status=status,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             acs_url: Optional[str] = None,
-             associated_domains: Optional[Sequence[str]] = None,
-             associated_orgs: Optional[Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult']] = None,
-             audience_uri: Optional[str] = None,
-             display_name: Optional[str] = None,
-             issuer_uri: Optional[str] = None,
-             okta_idp_id: Optional[str] = None,
-             pem_file_infos: Optional[Sequence['outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoResult']] = None,
-             request_binding: Optional[str] = None,
-             response_signature_algorithm: Optional[str] = None,
-             sso_debug_enabled: Optional[bool] = None,
-             sso_url: Optional[str] = None,
-             status: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if acs_url is None and 'acsUrl' in kwargs:
-            acs_url = kwargs['acsUrl']
-        if acs_url is None:
-            raise TypeError("Missing 'acs_url' argument")
-        if associated_domains is None and 'associatedDomains' in kwargs:
-            associated_domains = kwargs['associatedDomains']
-        if associated_domains is None:
-            raise TypeError("Missing 'associated_domains' argument")
-        if associated_orgs is None and 'associatedOrgs' in kwargs:
-            associated_orgs = kwargs['associatedOrgs']
-        if associated_orgs is None:
-            raise TypeError("Missing 'associated_orgs' argument")
-        if audience_uri is None and 'audienceUri' in kwargs:
-            audience_uri = kwargs['audienceUri']
-        if audience_uri is None:
-            raise TypeError("Missing 'audience_uri' argument")
-        if display_name is None and 'displayName' in kwargs:
-            display_name = kwargs['displayName']
-        if display_name is None:
-            raise TypeError("Missing 'display_name' argument")
-        if issuer_uri is None and 'issuerUri' in kwargs:
-            issuer_uri = kwargs['issuerUri']
-        if issuer_uri is None:
-            raise TypeError("Missing 'issuer_uri' argument")
-        if okta_idp_id is None and 'oktaIdpId' in kwargs:
-            okta_idp_id = kwargs['oktaIdpId']
-        if okta_idp_id is None:
-            raise TypeError("Missing 'okta_idp_id' argument")
-        if pem_file_infos is None and 'pemFileInfos' in kwargs:
-            pem_file_infos = kwargs['pemFileInfos']
-        if pem_file_infos is None:
-            raise TypeError("Missing 'pem_file_infos' argument")
-        if request_binding is None and 'requestBinding' in kwargs:
-            request_binding = kwargs['requestBinding']
-        if request_binding is None:
-            raise TypeError("Missing 'request_binding' argument")
-        if response_signature_algorithm is None and 'responseSignatureAlgorithm' in kwargs:
-            response_signature_algorithm = kwargs['responseSignatureAlgorithm']
-        if response_signature_algorithm is None:
-            raise TypeError("Missing 'response_signature_algorithm' argument")
-        if sso_debug_enabled is None and 'ssoDebugEnabled' in kwargs:
-            sso_debug_enabled = kwargs['ssoDebugEnabled']
-        if sso_debug_enabled is None:
-            raise TypeError("Missing 'sso_debug_enabled' argument")
-        if sso_url is None and 'ssoUrl' in kwargs:
-            sso_url = kwargs['ssoUrl']
-        if sso_url is None:
-            raise TypeError("Missing 'sso_url' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-
-        _setter("acs_url", acs_url)
-        _setter("associated_domains", associated_domains)
-        _setter("associated_orgs", associated_orgs)
-        _setter("audience_uri", audience_uri)
-        _setter("display_name", display_name)
-        _setter("issuer_uri", issuer_uri)
-        _setter("okta_idp_id", okta_idp_id)
-        _setter("pem_file_infos", pem_file_infos)
-        _setter("request_binding", request_binding)
-        _setter("response_signature_algorithm", response_signature_algorithm)
-        _setter("sso_debug_enabled", sso_debug_enabled)
-        _setter("sso_url", sso_url)
-        _setter("status", status)
+        pulumi.set(__self__, "acs_url", acs_url)
+        pulumi.set(__self__, "associated_domains", associated_domains)
+        pulumi.set(__self__, "associated_orgs", associated_orgs)
+        pulumi.set(__self__, "audience_uri", audience_uri)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "issuer_uri", issuer_uri)
+        pulumi.set(__self__, "okta_idp_id", okta_idp_id)
+        pulumi.set(__self__, "pem_file_infos", pem_file_infos)
+        pulumi.set(__self__, "request_binding", request_binding)
+        pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
+        pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
+        pulumi.set(__self__, "sso_url", sso_url)
+        pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="acsUrl")
@@ -26840,64 +17800,13 @@ class GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
         """
-        GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            domain_allow_lists=domain_allow_lists,
-            domain_restriction_enabled=domain_restriction_enabled,
-            identity_provider_id=identity_provider_id,
-            org_id=org_id,
-            post_auth_role_grants=post_auth_role_grants,
-            role_mappings=role_mappings,
-            user_conflicts=user_conflicts,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             domain_allow_lists: Optional[Sequence[str]] = None,
-             domain_restriction_enabled: Optional[bool] = None,
-             identity_provider_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             post_auth_role_grants: Optional[Sequence[str]] = None,
-             role_mappings: Optional[Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingResult']] = None,
-             user_conflicts: Optional[Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if domain_allow_lists is None and 'domainAllowLists' in kwargs:
-            domain_allow_lists = kwargs['domainAllowLists']
-        if domain_allow_lists is None:
-            raise TypeError("Missing 'domain_allow_lists' argument")
-        if domain_restriction_enabled is None and 'domainRestrictionEnabled' in kwargs:
-            domain_restriction_enabled = kwargs['domainRestrictionEnabled']
-        if domain_restriction_enabled is None:
-            raise TypeError("Missing 'domain_restriction_enabled' argument")
-        if identity_provider_id is None and 'identityProviderId' in kwargs:
-            identity_provider_id = kwargs['identityProviderId']
-        if identity_provider_id is None:
-            raise TypeError("Missing 'identity_provider_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if post_auth_role_grants is None and 'postAuthRoleGrants' in kwargs:
-            post_auth_role_grants = kwargs['postAuthRoleGrants']
-        if post_auth_role_grants is None:
-            raise TypeError("Missing 'post_auth_role_grants' argument")
-        if role_mappings is None and 'roleMappings' in kwargs:
-            role_mappings = kwargs['roleMappings']
-        if role_mappings is None:
-            raise TypeError("Missing 'role_mappings' argument")
-        if user_conflicts is None and 'userConflicts' in kwargs:
-            user_conflicts = kwargs['userConflicts']
-        if user_conflicts is None:
-            raise TypeError("Missing 'user_conflicts' argument")
-
-        _setter("domain_allow_lists", domain_allow_lists)
-        _setter("domain_restriction_enabled", domain_restriction_enabled)
-        _setter("identity_provider_id", identity_provider_id)
-        _setter("org_id", org_id)
-        _setter("post_auth_role_grants", post_auth_role_grants)
-        _setter("role_mappings", role_mappings)
-        _setter("user_conflicts", user_conflicts)
+        pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
+        pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
+        pulumi.set(__self__, "identity_provider_id", identity_provider_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "post_auth_role_grants", post_auth_role_grants)
+        pulumi.set(__self__, "role_mappings", role_mappings)
+        pulumi.set(__self__, "user_conflicts", user_conflicts)
 
     @property
     @pulumi.getter(name="domainAllowLists")
@@ -26961,34 +17870,9 @@ class GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingResult(
         :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            external_group_name=external_group_name,
-            id=id,
-            role_assignments=role_assignments,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             external_group_name: Optional[str] = None,
-             id: Optional[str] = None,
-             role_assignments: Optional[Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if external_group_name is None and 'externalGroupName' in kwargs:
-            external_group_name = kwargs['externalGroupName']
-        if external_group_name is None:
-            raise TypeError("Missing 'external_group_name' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if role_assignments is None and 'roleAssignments' in kwargs:
-            role_assignments = kwargs['roleAssignments']
-        if role_assignments is None:
-            raise TypeError("Missing 'role_assignments' argument")
-
-        _setter("external_group_name", external_group_name)
-        _setter("id", id)
-        _setter("role_assignments", role_assignments)
+        pulumi.set(__self__, "external_group_name", external_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -27026,34 +17910,9 @@ class GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAss
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            org_id=org_id,
-            role=role,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             role: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if group_id is None:
-            raise TypeError("Missing 'group_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if role is None:
-            raise TypeError("Missing 'role' argument")
-
-        _setter("group_id", group_id)
-        _setter("org_id", org_id)
-        _setter("role", role)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -27095,50 +17954,11 @@ class GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictResult
         :param str last_name: Last name of the the user that conflicts with selected domains.
         :param str user_id: Name of the Atlas user that conflicts with selected domains.
         """
-        GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            email_address=email_address,
-            federation_settings_id=federation_settings_id,
-            first_name=first_name,
-            last_name=last_name,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             email_address: Optional[str] = None,
-             federation_settings_id: Optional[str] = None,
-             first_name: Optional[str] = None,
-             last_name: Optional[str] = None,
-             user_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if email_address is None and 'emailAddress' in kwargs:
-            email_address = kwargs['emailAddress']
-        if email_address is None:
-            raise TypeError("Missing 'email_address' argument")
-        if federation_settings_id is None and 'federationSettingsId' in kwargs:
-            federation_settings_id = kwargs['federationSettingsId']
-        if federation_settings_id is None:
-            raise TypeError("Missing 'federation_settings_id' argument")
-        if first_name is None and 'firstName' in kwargs:
-            first_name = kwargs['firstName']
-        if first_name is None:
-            raise TypeError("Missing 'first_name' argument")
-        if last_name is None and 'lastName' in kwargs:
-            last_name = kwargs['lastName']
-        if last_name is None:
-            raise TypeError("Missing 'last_name' argument")
-        if user_id is None and 'userId' in kwargs:
-            user_id = kwargs['userId']
-        if user_id is None:
-            raise TypeError("Missing 'user_id' argument")
-
-        _setter("email_address", email_address)
-        _setter("federation_settings_id", federation_settings_id)
-        _setter("first_name", first_name)
-        _setter("last_name", last_name)
-        _setter("user_id", user_id)
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter(name="emailAddress")
@@ -27189,27 +18009,8 @@ class GetFederatedSettingsIdentityProvidersResultPemFileInfoResult(dict):
         """
         :param str file_name: Filename of certificate
         """
-        GetFederatedSettingsIdentityProvidersResultPemFileInfoResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            certificates=certificates,
-            file_name=file_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             certificates: Optional[Sequence['outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateResult']] = None,
-             file_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if certificates is None:
-            raise TypeError("Missing 'certificates' argument")
-        if file_name is None and 'fileName' in kwargs:
-            file_name = kwargs['fileName']
-        if file_name is None:
-            raise TypeError("Missing 'file_name' argument")
-
-        _setter("certificates", certificates)
-        _setter("file_name", file_name)
+        pulumi.set(__self__, "certificates", certificates)
+        pulumi.set(__self__, "file_name", file_name)
 
     @property
     @pulumi.getter
@@ -27234,29 +18035,8 @@ class GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateResult(di
         :param str not_after: Expiration  Date.
         :param str not_before: Start Date.
         """
-        GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            not_after=not_after,
-            not_before=not_before,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             not_after: Optional[str] = None,
-             not_before: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if not_after is None and 'notAfter' in kwargs:
-            not_after = kwargs['notAfter']
-        if not_after is None:
-            raise TypeError("Missing 'not_after' argument")
-        if not_before is None and 'notBefore' in kwargs:
-            not_before = kwargs['notBefore']
-        if not_before is None:
-            raise TypeError("Missing 'not_before' argument")
-
-        _setter("not_after", not_after)
-        _setter("not_before", not_before)
+        pulumi.set(__self__, "not_after", not_after)
+        pulumi.set(__self__, "not_before", not_before)
 
     @property
     @pulumi.getter(name="notAfter")
@@ -27286,34 +18066,9 @@ class GetFederatedSettingsOrgConfigRoleMappingResult(dict):
         :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        GetFederatedSettingsOrgConfigRoleMappingResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            external_group_name=external_group_name,
-            id=id,
-            role_assignments=role_assignments,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             external_group_name: Optional[str] = None,
-             id: Optional[str] = None,
-             role_assignments: Optional[Sequence['outputs.GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if external_group_name is None and 'externalGroupName' in kwargs:
-            external_group_name = kwargs['externalGroupName']
-        if external_group_name is None:
-            raise TypeError("Missing 'external_group_name' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if role_assignments is None and 'roleAssignments' in kwargs:
-            role_assignments = kwargs['roleAssignments']
-        if role_assignments is None:
-            raise TypeError("Missing 'role_assignments' argument")
-
-        _setter("external_group_name", external_group_name)
-        _setter("id", id)
-        _setter("role_assignments", role_assignments)
+        pulumi.set(__self__, "external_group_name", external_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -27351,34 +18106,9 @@ class GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            org_id=org_id,
-            role=role,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             role: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if group_id is None:
-            raise TypeError("Missing 'group_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if role is None:
-            raise TypeError("Missing 'role' argument")
-
-        _setter("group_id", group_id)
-        _setter("org_id", org_id)
-        _setter("role", role)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -27420,50 +18150,11 @@ class GetFederatedSettingsOrgConfigUserConflictResult(dict):
         :param str last_name: Last name of the the user that conflicts with selected domains.
         :param str user_id: Name of the Atlas user that conflicts with selected domains.
         """
-        GetFederatedSettingsOrgConfigUserConflictResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            email_address=email_address,
-            federation_settings_id=federation_settings_id,
-            first_name=first_name,
-            last_name=last_name,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             email_address: Optional[str] = None,
-             federation_settings_id: Optional[str] = None,
-             first_name: Optional[str] = None,
-             last_name: Optional[str] = None,
-             user_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if email_address is None and 'emailAddress' in kwargs:
-            email_address = kwargs['emailAddress']
-        if email_address is None:
-            raise TypeError("Missing 'email_address' argument")
-        if federation_settings_id is None and 'federationSettingsId' in kwargs:
-            federation_settings_id = kwargs['federationSettingsId']
-        if federation_settings_id is None:
-            raise TypeError("Missing 'federation_settings_id' argument")
-        if first_name is None and 'firstName' in kwargs:
-            first_name = kwargs['firstName']
-        if first_name is None:
-            raise TypeError("Missing 'first_name' argument")
-        if last_name is None and 'lastName' in kwargs:
-            last_name = kwargs['lastName']
-        if last_name is None:
-            raise TypeError("Missing 'last_name' argument")
-        if user_id is None and 'userId' in kwargs:
-            user_id = kwargs['userId']
-        if user_id is None:
-            raise TypeError("Missing 'user_id' argument")
-
-        _setter("email_address", email_address)
-        _setter("federation_settings_id", federation_settings_id)
-        _setter("first_name", first_name)
-        _setter("last_name", last_name)
-        _setter("user_id", user_id)
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter(name="emailAddress")
@@ -27523,64 +18214,13 @@ class GetFederatedSettingsOrgConfigsResultResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
         """
-        GetFederatedSettingsOrgConfigsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            domain_allow_lists=domain_allow_lists,
-            domain_restriction_enabled=domain_restriction_enabled,
-            identity_provider_id=identity_provider_id,
-            org_id=org_id,
-            post_auth_role_grants=post_auth_role_grants,
-            role_mappings=role_mappings,
-            user_conflicts=user_conflicts,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             domain_allow_lists: Optional[Sequence[str]] = None,
-             domain_restriction_enabled: Optional[bool] = None,
-             identity_provider_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             post_auth_role_grants: Optional[Sequence[str]] = None,
-             role_mappings: Optional[Sequence['outputs.GetFederatedSettingsOrgConfigsResultRoleMappingResult']] = None,
-             user_conflicts: Optional[Sequence['outputs.GetFederatedSettingsOrgConfigsResultUserConflictResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if domain_allow_lists is None and 'domainAllowLists' in kwargs:
-            domain_allow_lists = kwargs['domainAllowLists']
-        if domain_allow_lists is None:
-            raise TypeError("Missing 'domain_allow_lists' argument")
-        if domain_restriction_enabled is None and 'domainRestrictionEnabled' in kwargs:
-            domain_restriction_enabled = kwargs['domainRestrictionEnabled']
-        if domain_restriction_enabled is None:
-            raise TypeError("Missing 'domain_restriction_enabled' argument")
-        if identity_provider_id is None and 'identityProviderId' in kwargs:
-            identity_provider_id = kwargs['identityProviderId']
-        if identity_provider_id is None:
-            raise TypeError("Missing 'identity_provider_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if post_auth_role_grants is None and 'postAuthRoleGrants' in kwargs:
-            post_auth_role_grants = kwargs['postAuthRoleGrants']
-        if post_auth_role_grants is None:
-            raise TypeError("Missing 'post_auth_role_grants' argument")
-        if role_mappings is None and 'roleMappings' in kwargs:
-            role_mappings = kwargs['roleMappings']
-        if role_mappings is None:
-            raise TypeError("Missing 'role_mappings' argument")
-        if user_conflicts is None and 'userConflicts' in kwargs:
-            user_conflicts = kwargs['userConflicts']
-        if user_conflicts is None:
-            raise TypeError("Missing 'user_conflicts' argument")
-
-        _setter("domain_allow_lists", domain_allow_lists)
-        _setter("domain_restriction_enabled", domain_restriction_enabled)
-        _setter("identity_provider_id", identity_provider_id)
-        _setter("org_id", org_id)
-        _setter("post_auth_role_grants", post_auth_role_grants)
-        _setter("role_mappings", role_mappings)
-        _setter("user_conflicts", user_conflicts)
+        pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
+        pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
+        pulumi.set(__self__, "identity_provider_id", identity_provider_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "post_auth_role_grants", post_auth_role_grants)
+        pulumi.set(__self__, "role_mappings", role_mappings)
+        pulumi.set(__self__, "user_conflicts", user_conflicts)
 
     @property
     @pulumi.getter(name="domainAllowLists")
@@ -27644,34 +18284,9 @@ class GetFederatedSettingsOrgConfigsResultRoleMappingResult(dict):
         :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        GetFederatedSettingsOrgConfigsResultRoleMappingResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            external_group_name=external_group_name,
-            id=id,
-            role_assignments=role_assignments,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             external_group_name: Optional[str] = None,
-             id: Optional[str] = None,
-             role_assignments: Optional[Sequence['outputs.GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if external_group_name is None and 'externalGroupName' in kwargs:
-            external_group_name = kwargs['externalGroupName']
-        if external_group_name is None:
-            raise TypeError("Missing 'external_group_name' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if role_assignments is None and 'roleAssignments' in kwargs:
-            role_assignments = kwargs['roleAssignments']
-        if role_assignments is None:
-            raise TypeError("Missing 'role_assignments' argument")
-
-        _setter("external_group_name", external_group_name)
-        _setter("id", id)
-        _setter("role_assignments", role_assignments)
+        pulumi.set(__self__, "external_group_name", external_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -27709,34 +18324,9 @@ class GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            org_id=org_id,
-            role=role,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             role: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if group_id is None:
-            raise TypeError("Missing 'group_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if role is None:
-            raise TypeError("Missing 'role' argument")
-
-        _setter("group_id", group_id)
-        _setter("org_id", org_id)
-        _setter("role", role)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -27778,50 +18368,11 @@ class GetFederatedSettingsOrgConfigsResultUserConflictResult(dict):
         :param str last_name: Last name of the the user that conflicts with selected domains.
         :param str user_id: Name of the Atlas user that conflicts with selected domains.
         """
-        GetFederatedSettingsOrgConfigsResultUserConflictResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            email_address=email_address,
-            federation_settings_id=federation_settings_id,
-            first_name=first_name,
-            last_name=last_name,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             email_address: Optional[str] = None,
-             federation_settings_id: Optional[str] = None,
-             first_name: Optional[str] = None,
-             last_name: Optional[str] = None,
-             user_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if email_address is None and 'emailAddress' in kwargs:
-            email_address = kwargs['emailAddress']
-        if email_address is None:
-            raise TypeError("Missing 'email_address' argument")
-        if federation_settings_id is None and 'federationSettingsId' in kwargs:
-            federation_settings_id = kwargs['federationSettingsId']
-        if federation_settings_id is None:
-            raise TypeError("Missing 'federation_settings_id' argument")
-        if first_name is None and 'firstName' in kwargs:
-            first_name = kwargs['firstName']
-        if first_name is None:
-            raise TypeError("Missing 'first_name' argument")
-        if last_name is None and 'lastName' in kwargs:
-            last_name = kwargs['lastName']
-        if last_name is None:
-            raise TypeError("Missing 'last_name' argument")
-        if user_id is None and 'userId' in kwargs:
-            user_id = kwargs['userId']
-        if user_id is None:
-            raise TypeError("Missing 'user_id' argument")
-
-        _setter("email_address", email_address)
-        _setter("federation_settings_id", federation_settings_id)
-        _setter("first_name", first_name)
-        _setter("last_name", last_name)
-        _setter("user_id", user_id)
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter(name="emailAddress")
@@ -27875,34 +18426,9 @@ class GetFederatedSettingsOrgRoleMappingRoleAssignmentResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        GetFederatedSettingsOrgRoleMappingRoleAssignmentResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            org_id=org_id,
-            role=role,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             role: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if group_id is None:
-            raise TypeError("Missing 'group_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if role is None:
-            raise TypeError("Missing 'role' argument")
-
-        _setter("group_id", group_id)
-        _setter("org_id", org_id)
-        _setter("role", role)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -27940,34 +18466,9 @@ class GetFederatedSettingsOrgRoleMappingsResultResult(dict):
         :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
         :param Sequence['GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        GetFederatedSettingsOrgRoleMappingsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            external_group_name=external_group_name,
-            id=id,
-            role_assignments=role_assignments,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             external_group_name: Optional[str] = None,
-             id: Optional[str] = None,
-             role_assignments: Optional[Sequence['outputs.GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if external_group_name is None and 'externalGroupName' in kwargs:
-            external_group_name = kwargs['externalGroupName']
-        if external_group_name is None:
-            raise TypeError("Missing 'external_group_name' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if role_assignments is None and 'roleAssignments' in kwargs:
-            role_assignments = kwargs['roleAssignments']
-        if role_assignments is None:
-            raise TypeError("Missing 'role_assignments' argument")
-
-        _setter("external_group_name", external_group_name)
-        _setter("id", id)
-        _setter("role_assignments", role_assignments)
+        pulumi.set(__self__, "external_group_name", external_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -28005,34 +18506,9 @@ class GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult(dict):
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param str role: Specifies the Role that is attached to the Role Mapping.
         """
-        GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            org_id=org_id,
-            role=role,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: Optional[str] = None,
-             org_id: Optional[str] = None,
-             role: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if group_id is None and 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if group_id is None:
-            raise TypeError("Missing 'group_id' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if role is None:
-            raise TypeError("Missing 'role' argument")
-
-        _setter("group_id", group_id)
-        _setter("org_id", org_id)
-        _setter("role", role)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter(name="groupId")
@@ -28074,46 +18550,11 @@ class GetGlobalClusterConfigManagedNamespaceResult(dict):
         :param bool is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
         :param bool is_shard_key_unique: Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
         """
-        GetGlobalClusterConfigManagedNamespaceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            collection=collection,
-            custom_shard_key=custom_shard_key,
-            db=db,
-            is_custom_shard_key_hashed=is_custom_shard_key_hashed,
-            is_shard_key_unique=is_shard_key_unique,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             collection: Optional[str] = None,
-             custom_shard_key: Optional[str] = None,
-             db: Optional[str] = None,
-             is_custom_shard_key_hashed: Optional[bool] = None,
-             is_shard_key_unique: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if collection is None:
-            raise TypeError("Missing 'collection' argument")
-        if custom_shard_key is None and 'customShardKey' in kwargs:
-            custom_shard_key = kwargs['customShardKey']
-        if custom_shard_key is None:
-            raise TypeError("Missing 'custom_shard_key' argument")
-        if db is None:
-            raise TypeError("Missing 'db' argument")
-        if is_custom_shard_key_hashed is None and 'isCustomShardKeyHashed' in kwargs:
-            is_custom_shard_key_hashed = kwargs['isCustomShardKeyHashed']
-        if is_custom_shard_key_hashed is None:
-            raise TypeError("Missing 'is_custom_shard_key_hashed' argument")
-        if is_shard_key_unique is None and 'isShardKeyUnique' in kwargs:
-            is_shard_key_unique = kwargs['isShardKeyUnique']
-        if is_shard_key_unique is None:
-            raise TypeError("Missing 'is_shard_key_unique' argument")
-
-        _setter("collection", collection)
-        _setter("custom_shard_key", custom_shard_key)
-        _setter("db", db)
-        _setter("is_custom_shard_key_hashed", is_custom_shard_key_hashed)
-        _setter("is_shard_key_unique", is_shard_key_unique)
+        pulumi.set(__self__, "collection", collection)
+        pulumi.set(__self__, "custom_shard_key", custom_shard_key)
+        pulumi.set(__self__, "db", db)
+        pulumi.set(__self__, "is_custom_shard_key_hashed", is_custom_shard_key_hashed)
+        pulumi.set(__self__, "is_shard_key_unique", is_shard_key_unique)
 
     @property
     @pulumi.getter
@@ -28162,32 +18603,9 @@ class GetLdapConfigurationUserToDnMappingResult(dict):
                  ldap_query: str,
                  match: str,
                  substitution: str):
-        GetLdapConfigurationUserToDnMappingResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            ldap_query=ldap_query,
-            match=match,
-            substitution=substitution,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             ldap_query: Optional[str] = None,
-             match: Optional[str] = None,
-             substitution: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if ldap_query is None and 'ldapQuery' in kwargs:
-            ldap_query = kwargs['ldapQuery']
-        if ldap_query is None:
-            raise TypeError("Missing 'ldap_query' argument")
-        if match is None:
-            raise TypeError("Missing 'match' argument")
-        if substitution is None:
-            raise TypeError("Missing 'substitution' argument")
-
-        _setter("ldap_query", ldap_query)
-        _setter("match", match)
-        _setter("substitution", substitution)
+        pulumi.set(__self__, "ldap_query", ldap_query)
+        pulumi.set(__self__, "match", match)
+        pulumi.set(__self__, "substitution", substitution)
 
     @property
     @pulumi.getter(name="ldapQuery")
@@ -28210,25 +18628,8 @@ class GetLdapVerifyLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        GetLdapVerifyLinkResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            href=href,
-            rel=rel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             href: Optional[str] = None,
-             rel: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if href is None:
-            raise TypeError("Missing 'href' argument")
-        if rel is None:
-            raise TypeError("Missing 'rel' argument")
-
-        _setter("href", href)
-        _setter("rel", rel)
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
 
     @property
     @pulumi.getter
@@ -28249,27 +18650,8 @@ class GetLdapVerifyValidationResult(dict):
         """
         :param str status: The current status of the LDAP over TLS/SSL configuration.
         """
-        GetLdapVerifyValidationResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            status=status,
-            validation_type=validation_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             status: Optional[str] = None,
-             validation_type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-        if validation_type is None and 'validationType' in kwargs:
-            validation_type = kwargs['validationType']
-        if validation_type is None:
-            raise TypeError("Missing 'validation_type' argument")
-
-        _setter("status", status)
-        _setter("validation_type", validation_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "validation_type", validation_type)
 
     @property
     @pulumi.getter
@@ -28314,91 +18696,18 @@ class GetNetworkContainersResultResult(dict):
         :param str vnet_name: The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
         :param str vpc_id: Unique identifier of the project’s VPC.
         """
-        GetNetworkContainersResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            atlas_cidr_block=atlas_cidr_block,
-            azure_subscription_id=azure_subscription_id,
-            gcp_project_id=gcp_project_id,
-            id=id,
-            network_name=network_name,
-            provider_name=provider_name,
-            provisioned=provisioned,
-            region=region,
-            region_name=region_name,
-            regions=regions,
-            vnet_name=vnet_name,
-            vpc_id=vpc_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             atlas_cidr_block: Optional[str] = None,
-             azure_subscription_id: Optional[str] = None,
-             gcp_project_id: Optional[str] = None,
-             id: Optional[str] = None,
-             network_name: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             provisioned: Optional[bool] = None,
-             region: Optional[str] = None,
-             region_name: Optional[str] = None,
-             regions: Optional[Sequence[str]] = None,
-             vnet_name: Optional[str] = None,
-             vpc_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if atlas_cidr_block is None and 'atlasCidrBlock' in kwargs:
-            atlas_cidr_block = kwargs['atlasCidrBlock']
-        if atlas_cidr_block is None:
-            raise TypeError("Missing 'atlas_cidr_block' argument")
-        if azure_subscription_id is None and 'azureSubscriptionId' in kwargs:
-            azure_subscription_id = kwargs['azureSubscriptionId']
-        if azure_subscription_id is None:
-            raise TypeError("Missing 'azure_subscription_id' argument")
-        if gcp_project_id is None and 'gcpProjectId' in kwargs:
-            gcp_project_id = kwargs['gcpProjectId']
-        if gcp_project_id is None:
-            raise TypeError("Missing 'gcp_project_id' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if network_name is None and 'networkName' in kwargs:
-            network_name = kwargs['networkName']
-        if network_name is None:
-            raise TypeError("Missing 'network_name' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if provisioned is None:
-            raise TypeError("Missing 'provisioned' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-        if region_name is None and 'regionName' in kwargs:
-            region_name = kwargs['regionName']
-        if region_name is None:
-            raise TypeError("Missing 'region_name' argument")
-        if regions is None:
-            raise TypeError("Missing 'regions' argument")
-        if vnet_name is None and 'vnetName' in kwargs:
-            vnet_name = kwargs['vnetName']
-        if vnet_name is None:
-            raise TypeError("Missing 'vnet_name' argument")
-        if vpc_id is None and 'vpcId' in kwargs:
-            vpc_id = kwargs['vpcId']
-        if vpc_id is None:
-            raise TypeError("Missing 'vpc_id' argument")
-
-        _setter("atlas_cidr_block", atlas_cidr_block)
-        _setter("azure_subscription_id", azure_subscription_id)
-        _setter("gcp_project_id", gcp_project_id)
-        _setter("id", id)
-        _setter("network_name", network_name)
-        _setter("provider_name", provider_name)
-        _setter("provisioned", provisioned)
-        _setter("region", region)
-        _setter("region_name", region_name)
-        _setter("regions", regions)
-        _setter("vnet_name", vnet_name)
-        _setter("vpc_id", vpc_id)
+        pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
+        pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
+        pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "network_name", network_name)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "provisioned", provisioned)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "regions", regions)
+        pulumi.set(__self__, "vnet_name", vnet_name)
+        pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="atlasCidrBlock")
@@ -28540,153 +18849,26 @@ class GetNetworkPeeringsResultResult(dict):
         :param str vnet_name: Name of your Azure VNet.
         :param str vpc_id: Unique identifier of the peer VPC.
         """
-        GetNetworkPeeringsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            accepter_region_name=accepter_region_name,
-            atlas_cidr_block=atlas_cidr_block,
-            aws_account_id=aws_account_id,
-            azure_directory_id=azure_directory_id,
-            azure_subscription_id=azure_subscription_id,
-            connection_id=connection_id,
-            container_id=container_id,
-            error_message=error_message,
-            error_state=error_state,
-            error_state_name=error_state_name,
-            gcp_project_id=gcp_project_id,
-            network_name=network_name,
-            peering_id=peering_id,
-            provider_name=provider_name,
-            resource_group_name=resource_group_name,
-            route_table_cidr_block=route_table_cidr_block,
-            status=status,
-            status_name=status_name,
-            vnet_name=vnet_name,
-            vpc_id=vpc_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             accepter_region_name: Optional[str] = None,
-             atlas_cidr_block: Optional[str] = None,
-             aws_account_id: Optional[str] = None,
-             azure_directory_id: Optional[str] = None,
-             azure_subscription_id: Optional[str] = None,
-             connection_id: Optional[str] = None,
-             container_id: Optional[str] = None,
-             error_message: Optional[str] = None,
-             error_state: Optional[str] = None,
-             error_state_name: Optional[str] = None,
-             gcp_project_id: Optional[str] = None,
-             network_name: Optional[str] = None,
-             peering_id: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             resource_group_name: Optional[str] = None,
-             route_table_cidr_block: Optional[str] = None,
-             status: Optional[str] = None,
-             status_name: Optional[str] = None,
-             vnet_name: Optional[str] = None,
-             vpc_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if accepter_region_name is None and 'accepterRegionName' in kwargs:
-            accepter_region_name = kwargs['accepterRegionName']
-        if accepter_region_name is None:
-            raise TypeError("Missing 'accepter_region_name' argument")
-        if atlas_cidr_block is None and 'atlasCidrBlock' in kwargs:
-            atlas_cidr_block = kwargs['atlasCidrBlock']
-        if atlas_cidr_block is None:
-            raise TypeError("Missing 'atlas_cidr_block' argument")
-        if aws_account_id is None and 'awsAccountId' in kwargs:
-            aws_account_id = kwargs['awsAccountId']
-        if aws_account_id is None:
-            raise TypeError("Missing 'aws_account_id' argument")
-        if azure_directory_id is None and 'azureDirectoryId' in kwargs:
-            azure_directory_id = kwargs['azureDirectoryId']
-        if azure_directory_id is None:
-            raise TypeError("Missing 'azure_directory_id' argument")
-        if azure_subscription_id is None and 'azureSubscriptionId' in kwargs:
-            azure_subscription_id = kwargs['azureSubscriptionId']
-        if azure_subscription_id is None:
-            raise TypeError("Missing 'azure_subscription_id' argument")
-        if connection_id is None and 'connectionId' in kwargs:
-            connection_id = kwargs['connectionId']
-        if connection_id is None:
-            raise TypeError("Missing 'connection_id' argument")
-        if container_id is None and 'containerId' in kwargs:
-            container_id = kwargs['containerId']
-        if container_id is None:
-            raise TypeError("Missing 'container_id' argument")
-        if error_message is None and 'errorMessage' in kwargs:
-            error_message = kwargs['errorMessage']
-        if error_message is None:
-            raise TypeError("Missing 'error_message' argument")
-        if error_state is None and 'errorState' in kwargs:
-            error_state = kwargs['errorState']
-        if error_state is None:
-            raise TypeError("Missing 'error_state' argument")
-        if error_state_name is None and 'errorStateName' in kwargs:
-            error_state_name = kwargs['errorStateName']
-        if error_state_name is None:
-            raise TypeError("Missing 'error_state_name' argument")
-        if gcp_project_id is None and 'gcpProjectId' in kwargs:
-            gcp_project_id = kwargs['gcpProjectId']
-        if gcp_project_id is None:
-            raise TypeError("Missing 'gcp_project_id' argument")
-        if network_name is None and 'networkName' in kwargs:
-            network_name = kwargs['networkName']
-        if network_name is None:
-            raise TypeError("Missing 'network_name' argument")
-        if peering_id is None and 'peeringId' in kwargs:
-            peering_id = kwargs['peeringId']
-        if peering_id is None:
-            raise TypeError("Missing 'peering_id' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if resource_group_name is None and 'resourceGroupName' in kwargs:
-            resource_group_name = kwargs['resourceGroupName']
-        if resource_group_name is None:
-            raise TypeError("Missing 'resource_group_name' argument")
-        if route_table_cidr_block is None and 'routeTableCidrBlock' in kwargs:
-            route_table_cidr_block = kwargs['routeTableCidrBlock']
-        if route_table_cidr_block is None:
-            raise TypeError("Missing 'route_table_cidr_block' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-        if status_name is None and 'statusName' in kwargs:
-            status_name = kwargs['statusName']
-        if status_name is None:
-            raise TypeError("Missing 'status_name' argument")
-        if vnet_name is None and 'vnetName' in kwargs:
-            vnet_name = kwargs['vnetName']
-        if vnet_name is None:
-            raise TypeError("Missing 'vnet_name' argument")
-        if vpc_id is None and 'vpcId' in kwargs:
-            vpc_id = kwargs['vpcId']
-        if vpc_id is None:
-            raise TypeError("Missing 'vpc_id' argument")
-
-        _setter("accepter_region_name", accepter_region_name)
-        _setter("atlas_cidr_block", atlas_cidr_block)
-        _setter("aws_account_id", aws_account_id)
-        _setter("azure_directory_id", azure_directory_id)
-        _setter("azure_subscription_id", azure_subscription_id)
-        _setter("connection_id", connection_id)
-        _setter("container_id", container_id)
-        _setter("error_message", error_message)
-        _setter("error_state", error_state)
-        _setter("error_state_name", error_state_name)
-        _setter("gcp_project_id", gcp_project_id)
-        _setter("network_name", network_name)
-        _setter("peering_id", peering_id)
-        _setter("provider_name", provider_name)
-        _setter("resource_group_name", resource_group_name)
-        _setter("route_table_cidr_block", route_table_cidr_block)
-        _setter("status", status)
-        _setter("status_name", status_name)
-        _setter("vnet_name", vnet_name)
-        _setter("vpc_id", vpc_id)
+        pulumi.set(__self__, "accepter_region_name", accepter_region_name)
+        pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
+        pulumi.set(__self__, "aws_account_id", aws_account_id)
+        pulumi.set(__self__, "azure_directory_id", azure_directory_id)
+        pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
+        pulumi.set(__self__, "connection_id", connection_id)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "error_state", error_state)
+        pulumi.set(__self__, "error_state_name", error_state_name)
+        pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+        pulumi.set(__self__, "network_name", network_name)
+        pulumi.set(__self__, "peering_id", peering_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "resource_group_name", resource_group_name)
+        pulumi.set(__self__, "route_table_cidr_block", route_table_cidr_block)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "status_name", status_name)
+        pulumi.set(__self__, "vnet_name", vnet_name)
+        pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="accepterRegionName")
@@ -28851,46 +19033,11 @@ class GetOnlineArchiveCriteriaResult(dict):
                  expire_after_days: int,
                  query: str,
                  type: str):
-        GetOnlineArchiveCriteriaResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            date_field=date_field,
-            date_format=date_format,
-            expire_after_days=expire_after_days,
-            query=query,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             date_field: Optional[str] = None,
-             date_format: Optional[str] = None,
-             expire_after_days: Optional[int] = None,
-             query: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if date_field is None and 'dateField' in kwargs:
-            date_field = kwargs['dateField']
-        if date_field is None:
-            raise TypeError("Missing 'date_field' argument")
-        if date_format is None and 'dateFormat' in kwargs:
-            date_format = kwargs['dateFormat']
-        if date_format is None:
-            raise TypeError("Missing 'date_format' argument")
-        if expire_after_days is None and 'expireAfterDays' in kwargs:
-            expire_after_days = kwargs['expireAfterDays']
-        if expire_after_days is None:
-            raise TypeError("Missing 'expire_after_days' argument")
-        if query is None:
-            raise TypeError("Missing 'query' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("date_field", date_field)
-        _setter("date_format", date_format)
-        _setter("expire_after_days", expire_after_days)
-        _setter("query", query)
-        _setter("type", type)
+        pulumi.set(__self__, "date_field", date_field)
+        pulumi.set(__self__, "date_format", date_format)
+        pulumi.set(__self__, "expire_after_days", expire_after_days)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="dateField")
@@ -28924,34 +19071,9 @@ class GetOnlineArchivePartitionFieldResult(dict):
                  field_name: str,
                  field_type: str,
                  order: int):
-        GetOnlineArchivePartitionFieldResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field_name=field_name,
-            field_type=field_type,
-            order=order,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field_name: Optional[str] = None,
-             field_type: Optional[str] = None,
-             order: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field_name is None and 'fieldName' in kwargs:
-            field_name = kwargs['fieldName']
-        if field_name is None:
-            raise TypeError("Missing 'field_name' argument")
-        if field_type is None and 'fieldType' in kwargs:
-            field_type = kwargs['fieldType']
-        if field_type is None:
-            raise TypeError("Missing 'field_type' argument")
-        if order is None:
-            raise TypeError("Missing 'order' argument")
-
-        _setter("field_name", field_name)
-        _setter("field_type", field_type)
-        _setter("order", order)
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "field_type", field_type)
+        pulumi.set(__self__, "order", order)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -28979,60 +19101,15 @@ class GetOnlineArchiveScheduleResult(dict):
                  type: str,
                  day_of_month: Optional[int] = None,
                  day_of_week: Optional[int] = None):
-        GetOnlineArchiveScheduleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            end_hour=end_hour,
-            end_minute=end_minute,
-            start_hour=start_hour,
-            start_minute=start_minute,
-            type=type,
-            day_of_month=day_of_month,
-            day_of_week=day_of_week,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             end_hour: Optional[int] = None,
-             end_minute: Optional[int] = None,
-             start_hour: Optional[int] = None,
-             start_minute: Optional[int] = None,
-             type: Optional[str] = None,
-             day_of_month: Optional[int] = None,
-             day_of_week: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if end_hour is None and 'endHour' in kwargs:
-            end_hour = kwargs['endHour']
-        if end_hour is None:
-            raise TypeError("Missing 'end_hour' argument")
-        if end_minute is None and 'endMinute' in kwargs:
-            end_minute = kwargs['endMinute']
-        if end_minute is None:
-            raise TypeError("Missing 'end_minute' argument")
-        if start_hour is None and 'startHour' in kwargs:
-            start_hour = kwargs['startHour']
-        if start_hour is None:
-            raise TypeError("Missing 'start_hour' argument")
-        if start_minute is None and 'startMinute' in kwargs:
-            start_minute = kwargs['startMinute']
-        if start_minute is None:
-            raise TypeError("Missing 'start_minute' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if day_of_month is None and 'dayOfMonth' in kwargs:
-            day_of_month = kwargs['dayOfMonth']
-        if day_of_week is None and 'dayOfWeek' in kwargs:
-            day_of_week = kwargs['dayOfWeek']
-
-        _setter("end_hour", end_hour)
-        _setter("end_minute", end_minute)
-        _setter("start_hour", start_hour)
-        _setter("start_minute", start_minute)
-        _setter("type", type)
+        pulumi.set(__self__, "end_hour", end_hour)
+        pulumi.set(__self__, "end_minute", end_minute)
+        pulumi.set(__self__, "start_hour", start_hour)
+        pulumi.set(__self__, "start_minute", start_minute)
+        pulumi.set(__self__, "type", type)
         if day_of_month is not None:
-            _setter("day_of_month", day_of_month)
+            pulumi.set(__self__, "day_of_month", day_of_month)
         if day_of_week is not None:
-            _setter("day_of_week", day_of_week)
+            pulumi.set(__self__, "day_of_week", day_of_week)
 
     @property
     @pulumi.getter(name="endHour")
@@ -29092,84 +19169,17 @@ class GetOnlineArchivesResultResult(dict):
                In addition to all arguments above, the following attributes are exported:
         :param str project_id: The unique ID for the project.
         """
-        GetOnlineArchivesResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            archive_id=archive_id,
-            cluster_name=cluster_name,
-            coll_name=coll_name,
-            collection_type=collection_type,
-            criterias=criterias,
-            db_name=db_name,
-            partition_fields=partition_fields,
-            paused=paused,
-            project_id=project_id,
-            schedules=schedules,
-            state=state,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             archive_id: Optional[str] = None,
-             cluster_name: Optional[str] = None,
-             coll_name: Optional[str] = None,
-             collection_type: Optional[str] = None,
-             criterias: Optional[Sequence['outputs.GetOnlineArchivesResultCriteriaResult']] = None,
-             db_name: Optional[str] = None,
-             partition_fields: Optional[Sequence['outputs.GetOnlineArchivesResultPartitionFieldResult']] = None,
-             paused: Optional[bool] = None,
-             project_id: Optional[str] = None,
-             schedules: Optional[Sequence['outputs.GetOnlineArchivesResultScheduleResult']] = None,
-             state: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if archive_id is None and 'archiveId' in kwargs:
-            archive_id = kwargs['archiveId']
-        if archive_id is None:
-            raise TypeError("Missing 'archive_id' argument")
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if cluster_name is None:
-            raise TypeError("Missing 'cluster_name' argument")
-        if coll_name is None and 'collName' in kwargs:
-            coll_name = kwargs['collName']
-        if coll_name is None:
-            raise TypeError("Missing 'coll_name' argument")
-        if collection_type is None and 'collectionType' in kwargs:
-            collection_type = kwargs['collectionType']
-        if collection_type is None:
-            raise TypeError("Missing 'collection_type' argument")
-        if criterias is None:
-            raise TypeError("Missing 'criterias' argument")
-        if db_name is None and 'dbName' in kwargs:
-            db_name = kwargs['dbName']
-        if db_name is None:
-            raise TypeError("Missing 'db_name' argument")
-        if partition_fields is None and 'partitionFields' in kwargs:
-            partition_fields = kwargs['partitionFields']
-        if partition_fields is None:
-            raise TypeError("Missing 'partition_fields' argument")
-        if paused is None:
-            raise TypeError("Missing 'paused' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if schedules is None:
-            raise TypeError("Missing 'schedules' argument")
-        if state is None:
-            raise TypeError("Missing 'state' argument")
-
-        _setter("archive_id", archive_id)
-        _setter("cluster_name", cluster_name)
-        _setter("coll_name", coll_name)
-        _setter("collection_type", collection_type)
-        _setter("criterias", criterias)
-        _setter("db_name", db_name)
-        _setter("partition_fields", partition_fields)
-        _setter("paused", paused)
-        _setter("project_id", project_id)
-        _setter("schedules", schedules)
-        _setter("state", state)
+        pulumi.set(__self__, "archive_id", archive_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "coll_name", coll_name)
+        pulumi.set(__self__, "collection_type", collection_type)
+        pulumi.set(__self__, "criterias", criterias)
+        pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "partition_fields", partition_fields)
+        pulumi.set(__self__, "paused", paused)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "schedules", schedules)
+        pulumi.set(__self__, "state", state)
 
     @property
     @pulumi.getter(name="archiveId")
@@ -29245,46 +19255,11 @@ class GetOnlineArchivesResultCriteriaResult(dict):
                  expire_after_days: int,
                  query: str,
                  type: str):
-        GetOnlineArchivesResultCriteriaResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            date_field=date_field,
-            date_format=date_format,
-            expire_after_days=expire_after_days,
-            query=query,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             date_field: Optional[str] = None,
-             date_format: Optional[str] = None,
-             expire_after_days: Optional[int] = None,
-             query: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if date_field is None and 'dateField' in kwargs:
-            date_field = kwargs['dateField']
-        if date_field is None:
-            raise TypeError("Missing 'date_field' argument")
-        if date_format is None and 'dateFormat' in kwargs:
-            date_format = kwargs['dateFormat']
-        if date_format is None:
-            raise TypeError("Missing 'date_format' argument")
-        if expire_after_days is None and 'expireAfterDays' in kwargs:
-            expire_after_days = kwargs['expireAfterDays']
-        if expire_after_days is None:
-            raise TypeError("Missing 'expire_after_days' argument")
-        if query is None:
-            raise TypeError("Missing 'query' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("date_field", date_field)
-        _setter("date_format", date_format)
-        _setter("expire_after_days", expire_after_days)
-        _setter("query", query)
-        _setter("type", type)
+        pulumi.set(__self__, "date_field", date_field)
+        pulumi.set(__self__, "date_format", date_format)
+        pulumi.set(__self__, "expire_after_days", expire_after_days)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="dateField")
@@ -29318,34 +19293,9 @@ class GetOnlineArchivesResultPartitionFieldResult(dict):
                  field_name: str,
                  field_type: str,
                  order: int):
-        GetOnlineArchivesResultPartitionFieldResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            field_name=field_name,
-            field_type=field_type,
-            order=order,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             field_name: Optional[str] = None,
-             field_type: Optional[str] = None,
-             order: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if field_name is None and 'fieldName' in kwargs:
-            field_name = kwargs['fieldName']
-        if field_name is None:
-            raise TypeError("Missing 'field_name' argument")
-        if field_type is None and 'fieldType' in kwargs:
-            field_type = kwargs['fieldType']
-        if field_type is None:
-            raise TypeError("Missing 'field_type' argument")
-        if order is None:
-            raise TypeError("Missing 'order' argument")
-
-        _setter("field_name", field_name)
-        _setter("field_type", field_type)
-        _setter("order", order)
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "field_type", field_type)
+        pulumi.set(__self__, "order", order)
 
     @property
     @pulumi.getter(name="fieldName")
@@ -29373,60 +19323,15 @@ class GetOnlineArchivesResultScheduleResult(dict):
                  type: str,
                  day_of_month: Optional[int] = None,
                  day_of_week: Optional[int] = None):
-        GetOnlineArchivesResultScheduleResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            end_hour=end_hour,
-            end_minute=end_minute,
-            start_hour=start_hour,
-            start_minute=start_minute,
-            type=type,
-            day_of_month=day_of_month,
-            day_of_week=day_of_week,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             end_hour: Optional[int] = None,
-             end_minute: Optional[int] = None,
-             start_hour: Optional[int] = None,
-             start_minute: Optional[int] = None,
-             type: Optional[str] = None,
-             day_of_month: Optional[int] = None,
-             day_of_week: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if end_hour is None and 'endHour' in kwargs:
-            end_hour = kwargs['endHour']
-        if end_hour is None:
-            raise TypeError("Missing 'end_hour' argument")
-        if end_minute is None and 'endMinute' in kwargs:
-            end_minute = kwargs['endMinute']
-        if end_minute is None:
-            raise TypeError("Missing 'end_minute' argument")
-        if start_hour is None and 'startHour' in kwargs:
-            start_hour = kwargs['startHour']
-        if start_hour is None:
-            raise TypeError("Missing 'start_hour' argument")
-        if start_minute is None and 'startMinute' in kwargs:
-            start_minute = kwargs['startMinute']
-        if start_minute is None:
-            raise TypeError("Missing 'start_minute' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if day_of_month is None and 'dayOfMonth' in kwargs:
-            day_of_month = kwargs['dayOfMonth']
-        if day_of_week is None and 'dayOfWeek' in kwargs:
-            day_of_week = kwargs['dayOfWeek']
-
-        _setter("end_hour", end_hour)
-        _setter("end_minute", end_minute)
-        _setter("start_hour", start_hour)
-        _setter("start_minute", start_minute)
-        _setter("type", type)
+        pulumi.set(__self__, "end_hour", end_hour)
+        pulumi.set(__self__, "end_minute", end_minute)
+        pulumi.set(__self__, "start_hour", start_hour)
+        pulumi.set(__self__, "start_minute", start_minute)
+        pulumi.set(__self__, "type", type)
         if day_of_month is not None:
-            _setter("day_of_month", day_of_month)
+            pulumi.set(__self__, "day_of_month", day_of_month)
         if day_of_week is not None:
-            _setter("day_of_week", day_of_week)
+            pulumi.set(__self__, "day_of_week", day_of_week)
 
     @property
     @pulumi.getter(name="endHour")
@@ -29469,25 +19374,8 @@ class GetOrganizationLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        GetOrganizationLinkResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            href=href,
-            rel=rel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             href: Optional[str] = None,
-             rel: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if href is None:
-            raise TypeError("Missing 'href' argument")
-        if rel is None:
-            raise TypeError("Missing 'rel' argument")
-
-        _setter("href", href)
-        _setter("rel", rel)
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
 
     @property
     @pulumi.getter
@@ -29514,37 +19402,10 @@ class GetOrganizationsResultResult(dict):
                See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         :param str name: Human-readable label that identifies the organization.
         """
-        GetOrganizationsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            is_deleted=is_deleted,
-            links=links,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             is_deleted: Optional[bool] = None,
-             links: Optional[Sequence['outputs.GetOrganizationsResultLinkResult']] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if is_deleted is None and 'isDeleted' in kwargs:
-            is_deleted = kwargs['isDeleted']
-        if is_deleted is None:
-            raise TypeError("Missing 'is_deleted' argument")
-        if links is None:
-            raise TypeError("Missing 'links' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-
-        _setter("id", id)
-        _setter("is_deleted", is_deleted)
-        _setter("links", links)
-        _setter("name", name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_deleted", is_deleted)
+        pulumi.set(__self__, "links", links)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -29583,25 +19444,8 @@ class GetOrganizationsResultLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        GetOrganizationsResultLinkResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            href=href,
-            rel=rel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             href: Optional[str] = None,
-             rel: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if href is None:
-            raise TypeError("Missing 'href' argument")
-        if rel is None:
-            raise TypeError("Missing 'rel' argument")
-
-        _setter("href", href)
-        _setter("rel", rel)
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
 
     @property
     @pulumi.getter
@@ -29627,41 +19471,10 @@ class GetPrivateLinkEndpointServiceEndpointResult(dict):
         :param str service_attachment_name: Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         :param str status: Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
-        GetPrivateLinkEndpointServiceEndpointResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoint_name=endpoint_name,
-            ip_address=ip_address,
-            service_attachment_name=service_attachment_name,
-            status=status,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoint_name: Optional[str] = None,
-             ip_address: Optional[str] = None,
-             service_attachment_name: Optional[str] = None,
-             status: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if endpoint_name is None and 'endpointName' in kwargs:
-            endpoint_name = kwargs['endpointName']
-        if endpoint_name is None:
-            raise TypeError("Missing 'endpoint_name' argument")
-        if ip_address is None and 'ipAddress' in kwargs:
-            ip_address = kwargs['ipAddress']
-        if ip_address is None:
-            raise TypeError("Missing 'ip_address' argument")
-        if service_attachment_name is None and 'serviceAttachmentName' in kwargs:
-            service_attachment_name = kwargs['serviceAttachmentName']
-        if service_attachment_name is None:
-            raise TypeError("Missing 'service_attachment_name' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-
-        _setter("endpoint_name", endpoint_name)
-        _setter("ip_address", ip_address)
-        _setter("service_attachment_name", service_attachment_name)
-        _setter("status", status)
+        pulumi.set(__self__, "endpoint_name", endpoint_name)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "service_attachment_name", service_attachment_name)
+        pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="endpointName")
@@ -29709,39 +19522,10 @@ class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult(dict
         :param str provider_name: Human-readable label that identifies the cloud service provider.
         :param str type: Human-readable label that identifies the resource type associated with this private endpoint.
         """
-        GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            comment=comment,
-            endpoint_id=endpoint_id,
-            provider_name=provider_name,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             comment: Optional[str] = None,
-             endpoint_id: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if comment is None:
-            raise TypeError("Missing 'comment' argument")
-        if endpoint_id is None and 'endpointId' in kwargs:
-            endpoint_id = kwargs['endpointId']
-        if endpoint_id is None:
-            raise TypeError("Missing 'endpoint_id' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("comment", comment)
-        _setter("endpoint_id", endpoint_id)
-        _setter("provider_name", provider_name)
-        _setter("type", type)
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -29781,25 +19565,8 @@ class GetPrivatelinkEndpointsServiceAdlLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        GetPrivatelinkEndpointsServiceAdlLinkResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            href=href,
-            rel=rel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             href: Optional[str] = None,
-             rel: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if href is None:
-            raise TypeError("Missing 'href' argument")
-        if rel is None:
-            raise TypeError("Missing 'rel' argument")
-
-        _setter("href", href)
-        _setter("rel", rel)
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
 
     @property
     @pulumi.getter
@@ -29827,39 +19594,10 @@ class GetPrivatelinkEndpointsServiceAdlResultResult(dict):
         :param str provider_name: Human-readable label that identifies the cloud provider for this endpoint.
         :param str type: Human-readable label that identifies the type of resource to associate with this private endpoint.
         """
-        GetPrivatelinkEndpointsServiceAdlResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            comment=comment,
-            endpoint_id=endpoint_id,
-            provider_name=provider_name,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             comment: Optional[str] = None,
-             endpoint_id: Optional[str] = None,
-             provider_name: Optional[str] = None,
-             type: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if comment is None:
-            raise TypeError("Missing 'comment' argument")
-        if endpoint_id is None and 'endpointId' in kwargs:
-            endpoint_id = kwargs['endpointId']
-        if endpoint_id is None:
-            raise TypeError("Missing 'endpoint_id' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("comment", comment)
-        _setter("endpoint_id", endpoint_id)
-        _setter("provider_name", provider_name)
-        _setter("type", type)
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -29916,67 +19654,14 @@ class GetPrivatelinkEndpointsServiceServerlessResultResult(dict):
         :param str private_link_service_resource_id: Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
         :param str status: Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
         """
-        GetPrivatelinkEndpointsServiceServerlessResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cloud_provider_endpoint_id=cloud_provider_endpoint_id,
-            comment=comment,
-            endpoint_id=endpoint_id,
-            endpoint_service_name=endpoint_service_name,
-            error_message=error_message,
-            private_endpoint_ip_address=private_endpoint_ip_address,
-            private_link_service_resource_id=private_link_service_resource_id,
-            status=status,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cloud_provider_endpoint_id: Optional[str] = None,
-             comment: Optional[str] = None,
-             endpoint_id: Optional[str] = None,
-             endpoint_service_name: Optional[str] = None,
-             error_message: Optional[str] = None,
-             private_endpoint_ip_address: Optional[str] = None,
-             private_link_service_resource_id: Optional[str] = None,
-             status: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cloud_provider_endpoint_id is None and 'cloudProviderEndpointId' in kwargs:
-            cloud_provider_endpoint_id = kwargs['cloudProviderEndpointId']
-        if cloud_provider_endpoint_id is None:
-            raise TypeError("Missing 'cloud_provider_endpoint_id' argument")
-        if comment is None:
-            raise TypeError("Missing 'comment' argument")
-        if endpoint_id is None and 'endpointId' in kwargs:
-            endpoint_id = kwargs['endpointId']
-        if endpoint_id is None:
-            raise TypeError("Missing 'endpoint_id' argument")
-        if endpoint_service_name is None and 'endpointServiceName' in kwargs:
-            endpoint_service_name = kwargs['endpointServiceName']
-        if endpoint_service_name is None:
-            raise TypeError("Missing 'endpoint_service_name' argument")
-        if error_message is None and 'errorMessage' in kwargs:
-            error_message = kwargs['errorMessage']
-        if error_message is None:
-            raise TypeError("Missing 'error_message' argument")
-        if private_endpoint_ip_address is None and 'privateEndpointIpAddress' in kwargs:
-            private_endpoint_ip_address = kwargs['privateEndpointIpAddress']
-        if private_endpoint_ip_address is None:
-            raise TypeError("Missing 'private_endpoint_ip_address' argument")
-        if private_link_service_resource_id is None and 'privateLinkServiceResourceId' in kwargs:
-            private_link_service_resource_id = kwargs['privateLinkServiceResourceId']
-        if private_link_service_resource_id is None:
-            raise TypeError("Missing 'private_link_service_resource_id' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-
-        _setter("cloud_provider_endpoint_id", cloud_provider_endpoint_id)
-        _setter("comment", comment)
-        _setter("endpoint_id", endpoint_id)
-        _setter("endpoint_service_name", endpoint_service_name)
-        _setter("error_message", error_message)
-        _setter("private_endpoint_ip_address", private_endpoint_ip_address)
-        _setter("private_link_service_resource_id", private_link_service_resource_id)
-        _setter("status", status)
+        pulumi.set(__self__, "cloud_provider_endpoint_id", cloud_provider_endpoint_id)
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "private_endpoint_ip_address", private_endpoint_ip_address)
+        pulumi.set(__self__, "private_link_service_resource_id", private_link_service_resource_id)
+        pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="cloudProviderEndpointId")
@@ -30049,29 +19734,8 @@ class GetProjectApiKeyProjectAssignmentResult(dict):
         :param str project_id: The unique ID for the project.
         :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
-        GetProjectApiKeyProjectAssignmentResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            project_id=project_id,
-            role_names=role_names,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             project_id: Optional[str] = None,
-             role_names: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if role_names is None and 'roleNames' in kwargs:
-            role_names = kwargs['roleNames']
-        if role_names is None:
-            raise TypeError("Missing 'role_names' argument")
-
-        _setter("project_id", project_id)
-        _setter("role_names", role_names)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "role_names", role_names)
 
     @property
     @pulumi.getter(name="projectId")
@@ -30102,47 +19766,12 @@ class GetProjectApiKeysResultResult(dict):
         :param str api_key_id: Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
         :param str description: Description of this Project API key.
         """
-        GetProjectApiKeysResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key_id=api_key_id,
-            description=description,
-            private_key=private_key,
-            public_key=public_key,
-            project_assignments=project_assignments,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key_id: Optional[str] = None,
-             description: Optional[str] = None,
-             private_key: Optional[str] = None,
-             public_key: Optional[str] = None,
-             project_assignments: Optional[Sequence['outputs.GetProjectApiKeysResultProjectAssignmentResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if api_key_id is None and 'apiKeyId' in kwargs:
-            api_key_id = kwargs['apiKeyId']
-        if api_key_id is None:
-            raise TypeError("Missing 'api_key_id' argument")
-        if description is None:
-            raise TypeError("Missing 'description' argument")
-        if private_key is None and 'privateKey' in kwargs:
-            private_key = kwargs['privateKey']
-        if private_key is None:
-            raise TypeError("Missing 'private_key' argument")
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if public_key is None:
-            raise TypeError("Missing 'public_key' argument")
-        if project_assignments is None and 'projectAssignments' in kwargs:
-            project_assignments = kwargs['projectAssignments']
-
-        _setter("api_key_id", api_key_id)
-        _setter("description", description)
-        _setter("private_key", private_key)
-        _setter("public_key", public_key)
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "private_key", private_key)
+        pulumi.set(__self__, "public_key", public_key)
         if project_assignments is not None:
-            _setter("project_assignments", project_assignments)
+            pulumi.set(__self__, "project_assignments", project_assignments)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -30188,29 +19817,8 @@ class GetProjectApiKeysResultProjectAssignmentResult(dict):
                
                See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
         """
-        GetProjectApiKeysResultProjectAssignmentResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            project_id=project_id,
-            role_names=role_names,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             project_id: Optional[str] = None,
-             role_names: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if role_names is None and 'roleNames' in kwargs:
-            role_names = kwargs['roleNames']
-        if role_names is None:
-            raise TypeError("Missing 'role_names' argument")
-
-        _setter("project_id", project_id)
-        _setter("role_names", role_names)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "role_names", role_names)
 
     @property
     @pulumi.getter(name="projectId")
@@ -30245,46 +19853,11 @@ class GetProjectLimitResult(dict):
                
                > **IMPORTANT:** Either `project_id` or `name` must be configurated.
         """
-        GetProjectLimitResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            current_usage=current_usage,
-            default_limit=default_limit,
-            maximum_limit=maximum_limit,
-            name=name,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             current_usage: Optional[int] = None,
-             default_limit: Optional[int] = None,
-             maximum_limit: Optional[int] = None,
-             name: Optional[str] = None,
-             value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if current_usage is None and 'currentUsage' in kwargs:
-            current_usage = kwargs['currentUsage']
-        if current_usage is None:
-            raise TypeError("Missing 'current_usage' argument")
-        if default_limit is None and 'defaultLimit' in kwargs:
-            default_limit = kwargs['defaultLimit']
-        if default_limit is None:
-            raise TypeError("Missing 'default_limit' argument")
-        if maximum_limit is None and 'maximumLimit' in kwargs:
-            maximum_limit = kwargs['maximumLimit']
-        if maximum_limit is None:
-            raise TypeError("Missing 'maximum_limit' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("current_usage", current_usage)
-        _setter("default_limit", default_limit)
-        _setter("maximum_limit", maximum_limit)
-        _setter("name", name)
-        _setter("value", value)
+        pulumi.set(__self__, "current_usage", current_usage)
+        pulumi.set(__self__, "default_limit", default_limit)
+        pulumi.set(__self__, "maximum_limit", maximum_limit)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter(name="currentUsage")
@@ -30322,29 +19895,8 @@ class GetProjectTeamResult(dict):
     def __init__(__self__, *,
                  role_names: Sequence[str],
                  team_id: str):
-        GetProjectTeamResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            role_names=role_names,
-            team_id=team_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             role_names: Optional[Sequence[str]] = None,
-             team_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if role_names is None and 'roleNames' in kwargs:
-            role_names = kwargs['roleNames']
-        if role_names is None:
-            raise TypeError("Missing 'role_names' argument")
-        if team_id is None and 'teamId' in kwargs:
-            team_id = kwargs['teamId']
-        if team_id is None:
-            raise TypeError("Missing 'team_id' argument")
-
-        _setter("role_names", role_names)
-        _setter("team_id", team_id)
+        pulumi.set(__self__, "role_names", role_names)
+        pulumi.set(__self__, "team_id", team_id)
 
     @property
     @pulumi.getter(name="roleNames")
@@ -30398,110 +19950,21 @@ class GetProjectsResultResult(dict):
                
                See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
         """
-        GetProjectsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_count=cluster_count,
-            created=created,
-            id=id,
-            is_collect_database_specifics_statistics_enabled=is_collect_database_specifics_statistics_enabled,
-            is_data_explorer_enabled=is_data_explorer_enabled,
-            is_extended_storage_sizes_enabled=is_extended_storage_sizes_enabled,
-            is_performance_advisor_enabled=is_performance_advisor_enabled,
-            is_realtime_performance_panel_enabled=is_realtime_performance_panel_enabled,
-            is_schema_advisor_enabled=is_schema_advisor_enabled,
-            limits=limits,
-            name=name,
-            org_id=org_id,
-            project_id=project_id,
-            region_usage_restrictions=region_usage_restrictions,
-            teams=teams,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_count: Optional[int] = None,
-             created: Optional[str] = None,
-             id: Optional[str] = None,
-             is_collect_database_specifics_statistics_enabled: Optional[bool] = None,
-             is_data_explorer_enabled: Optional[bool] = None,
-             is_extended_storage_sizes_enabled: Optional[bool] = None,
-             is_performance_advisor_enabled: Optional[bool] = None,
-             is_realtime_performance_panel_enabled: Optional[bool] = None,
-             is_schema_advisor_enabled: Optional[bool] = None,
-             limits: Optional[Sequence['outputs.GetProjectsResultLimitResult']] = None,
-             name: Optional[str] = None,
-             org_id: Optional[str] = None,
-             project_id: Optional[str] = None,
-             region_usage_restrictions: Optional[str] = None,
-             teams: Optional[Sequence['outputs.GetProjectsResultTeamResult']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_count is None and 'clusterCount' in kwargs:
-            cluster_count = kwargs['clusterCount']
-        if cluster_count is None:
-            raise TypeError("Missing 'cluster_count' argument")
-        if created is None:
-            raise TypeError("Missing 'created' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if is_collect_database_specifics_statistics_enabled is None and 'isCollectDatabaseSpecificsStatisticsEnabled' in kwargs:
-            is_collect_database_specifics_statistics_enabled = kwargs['isCollectDatabaseSpecificsStatisticsEnabled']
-        if is_collect_database_specifics_statistics_enabled is None:
-            raise TypeError("Missing 'is_collect_database_specifics_statistics_enabled' argument")
-        if is_data_explorer_enabled is None and 'isDataExplorerEnabled' in kwargs:
-            is_data_explorer_enabled = kwargs['isDataExplorerEnabled']
-        if is_data_explorer_enabled is None:
-            raise TypeError("Missing 'is_data_explorer_enabled' argument")
-        if is_extended_storage_sizes_enabled is None and 'isExtendedStorageSizesEnabled' in kwargs:
-            is_extended_storage_sizes_enabled = kwargs['isExtendedStorageSizesEnabled']
-        if is_extended_storage_sizes_enabled is None:
-            raise TypeError("Missing 'is_extended_storage_sizes_enabled' argument")
-        if is_performance_advisor_enabled is None and 'isPerformanceAdvisorEnabled' in kwargs:
-            is_performance_advisor_enabled = kwargs['isPerformanceAdvisorEnabled']
-        if is_performance_advisor_enabled is None:
-            raise TypeError("Missing 'is_performance_advisor_enabled' argument")
-        if is_realtime_performance_panel_enabled is None and 'isRealtimePerformancePanelEnabled' in kwargs:
-            is_realtime_performance_panel_enabled = kwargs['isRealtimePerformancePanelEnabled']
-        if is_realtime_performance_panel_enabled is None:
-            raise TypeError("Missing 'is_realtime_performance_panel_enabled' argument")
-        if is_schema_advisor_enabled is None and 'isSchemaAdvisorEnabled' in kwargs:
-            is_schema_advisor_enabled = kwargs['isSchemaAdvisorEnabled']
-        if is_schema_advisor_enabled is None:
-            raise TypeError("Missing 'is_schema_advisor_enabled' argument")
-        if limits is None:
-            raise TypeError("Missing 'limits' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_id is None:
-            raise TypeError("Missing 'org_id' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if region_usage_restrictions is None and 'regionUsageRestrictions' in kwargs:
-            region_usage_restrictions = kwargs['regionUsageRestrictions']
-        if region_usage_restrictions is None:
-            raise TypeError("Missing 'region_usage_restrictions' argument")
-        if teams is None:
-            raise TypeError("Missing 'teams' argument")
-
-        _setter("cluster_count", cluster_count)
-        _setter("created", created)
-        _setter("id", id)
-        _setter("is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
-        _setter("is_data_explorer_enabled", is_data_explorer_enabled)
-        _setter("is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
-        _setter("is_performance_advisor_enabled", is_performance_advisor_enabled)
-        _setter("is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
-        _setter("is_schema_advisor_enabled", is_schema_advisor_enabled)
-        _setter("limits", limits)
-        _setter("name", name)
-        _setter("org_id", org_id)
-        _setter("project_id", project_id)
-        _setter("region_usage_restrictions", region_usage_restrictions)
-        _setter("teams", teams)
+        pulumi.set(__self__, "cluster_count", cluster_count)
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
+        pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
+        pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
+        pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
+        pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
+        pulumi.set(__self__, "limits", limits)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
+        pulumi.set(__self__, "teams", teams)
 
     @property
     @pulumi.getter(name="clusterCount")
@@ -30635,46 +20098,11 @@ class GetProjectsResultLimitResult(dict):
         """
         :param str name: The name of the project you want to create.
         """
-        GetProjectsResultLimitResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            current_usage=current_usage,
-            default_limit=default_limit,
-            maximum_limit=maximum_limit,
-            name=name,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             current_usage: Optional[int] = None,
-             default_limit: Optional[int] = None,
-             maximum_limit: Optional[int] = None,
-             name: Optional[str] = None,
-             value: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if current_usage is None and 'currentUsage' in kwargs:
-            current_usage = kwargs['currentUsage']
-        if current_usage is None:
-            raise TypeError("Missing 'current_usage' argument")
-        if default_limit is None and 'defaultLimit' in kwargs:
-            default_limit = kwargs['defaultLimit']
-        if default_limit is None:
-            raise TypeError("Missing 'default_limit' argument")
-        if maximum_limit is None and 'maximumLimit' in kwargs:
-            maximum_limit = kwargs['maximumLimit']
-        if maximum_limit is None:
-            raise TypeError("Missing 'maximum_limit' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("current_usage", current_usage)
-        _setter("default_limit", default_limit)
-        _setter("maximum_limit", maximum_limit)
-        _setter("name", name)
-        _setter("value", value)
+        pulumi.set(__self__, "current_usage", current_usage)
+        pulumi.set(__self__, "default_limit", default_limit)
+        pulumi.set(__self__, "maximum_limit", maximum_limit)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter(name="currentUsage")
@@ -30710,29 +20138,8 @@ class GetProjectsResultTeamResult(dict):
     def __init__(__self__, *,
                  role_names: Sequence[str],
                  team_id: str):
-        GetProjectsResultTeamResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            role_names=role_names,
-            team_id=team_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             role_names: Optional[Sequence[str]] = None,
-             team_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if role_names is None and 'roleNames' in kwargs:
-            role_names = kwargs['roleNames']
-        if role_names is None:
-            raise TypeError("Missing 'role_names' argument")
-        if team_id is None and 'teamId' in kwargs:
-            team_id = kwargs['teamId']
-        if team_id is None:
-            raise TypeError("Missing 'team_id' argument")
-
-        _setter("role_names", role_names)
-        _setter("team_id", team_id)
+        pulumi.set(__self__, "role_names", role_names)
+        pulumi.set(__self__, "team_id", team_id)
 
     @property
     @pulumi.getter(name="roleNames")
@@ -30755,32 +20162,9 @@ class GetSearchIndexSynonymResult(dict):
         :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         :param str name: Name of the index.
         """
-        GetSearchIndexSynonymResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            analyzer=analyzer,
-            name=name,
-            source_collection=source_collection,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             analyzer: Optional[str] = None,
-             name: Optional[str] = None,
-             source_collection: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if analyzer is None:
-            raise TypeError("Missing 'analyzer' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if source_collection is None and 'sourceCollection' in kwargs:
-            source_collection = kwargs['sourceCollection']
-        if source_collection is None:
-            raise TypeError("Missing 'source_collection' argument")
-
-        _setter("analyzer", analyzer)
-        _setter("name", name)
-        _setter("source_collection", source_collection)
+        pulumi.set(__self__, "analyzer", analyzer)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "source_collection", source_collection)
 
     @property
     @pulumi.getter
@@ -30837,94 +20221,27 @@ class GetSearchIndexesResultResult(dict):
                * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
                * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
         """
-        GetSearchIndexesResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_name=cluster_name,
-            collection_name=collection_name,
-            database=database,
-            index_id=index_id,
-            name=name,
-            project_id=project_id,
-            status=status,
-            analyzer=analyzer,
-            analyzers=analyzers,
-            mappings_dynamic=mappings_dynamic,
-            mappings_fields=mappings_fields,
-            search_analyzer=search_analyzer,
-            synonyms=synonyms,
-            wait_for_index_build_completion=wait_for_index_build_completion,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_name: Optional[str] = None,
-             collection_name: Optional[str] = None,
-             database: Optional[str] = None,
-             index_id: Optional[str] = None,
-             name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             status: Optional[str] = None,
-             analyzer: Optional[str] = None,
-             analyzers: Optional[str] = None,
-             mappings_dynamic: Optional[bool] = None,
-             mappings_fields: Optional[str] = None,
-             search_analyzer: Optional[str] = None,
-             synonyms: Optional[Sequence['outputs.GetSearchIndexesResultSynonymResult']] = None,
-             wait_for_index_build_completion: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if cluster_name is None:
-            raise TypeError("Missing 'cluster_name' argument")
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if collection_name is None:
-            raise TypeError("Missing 'collection_name' argument")
-        if database is None:
-            raise TypeError("Missing 'database' argument")
-        if index_id is None and 'indexId' in kwargs:
-            index_id = kwargs['indexId']
-        if index_id is None:
-            raise TypeError("Missing 'index_id' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-        if mappings_dynamic is None and 'mappingsDynamic' in kwargs:
-            mappings_dynamic = kwargs['mappingsDynamic']
-        if mappings_fields is None and 'mappingsFields' in kwargs:
-            mappings_fields = kwargs['mappingsFields']
-        if search_analyzer is None and 'searchAnalyzer' in kwargs:
-            search_analyzer = kwargs['searchAnalyzer']
-        if wait_for_index_build_completion is None and 'waitForIndexBuildCompletion' in kwargs:
-            wait_for_index_build_completion = kwargs['waitForIndexBuildCompletion']
-
-        _setter("cluster_name", cluster_name)
-        _setter("collection_name", collection_name)
-        _setter("database", database)
-        _setter("index_id", index_id)
-        _setter("name", name)
-        _setter("project_id", project_id)
-        _setter("status", status)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "collection_name", collection_name)
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "index_id", index_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "status", status)
         if analyzer is not None:
-            _setter("analyzer", analyzer)
+            pulumi.set(__self__, "analyzer", analyzer)
         if analyzers is not None:
-            _setter("analyzers", analyzers)
+            pulumi.set(__self__, "analyzers", analyzers)
         if mappings_dynamic is not None:
-            _setter("mappings_dynamic", mappings_dynamic)
+            pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
         if mappings_fields is not None:
-            _setter("mappings_fields", mappings_fields)
+            pulumi.set(__self__, "mappings_fields", mappings_fields)
         if search_analyzer is not None:
-            _setter("search_analyzer", search_analyzer)
+            pulumi.set(__self__, "search_analyzer", search_analyzer)
         if synonyms is not None:
-            _setter("synonyms", synonyms)
+            pulumi.set(__self__, "synonyms", synonyms)
         if wait_for_index_build_completion is not None:
-            _setter("wait_for_index_build_completion", wait_for_index_build_completion)
+            pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -31043,32 +20360,9 @@ class GetSearchIndexesResultSynonymResult(dict):
         :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         :param str name: Name of the index.
         """
-        GetSearchIndexesResultSynonymResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            analyzer=analyzer,
-            name=name,
-            source_collection=source_collection,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             analyzer: Optional[str] = None,
-             name: Optional[str] = None,
-             source_collection: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if analyzer is None:
-            raise TypeError("Missing 'analyzer' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if source_collection is None and 'sourceCollection' in kwargs:
-            source_collection = kwargs['sourceCollection']
-        if source_collection is None:
-            raise TypeError("Missing 'source_collection' argument")
-
-        _setter("analyzer", analyzer)
-        _setter("name", name)
-        _setter("source_collection", source_collection)
+        pulumi.set(__self__, "analyzer", analyzer)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "source_collection", source_collection)
 
     @property
     @pulumi.getter
@@ -31097,25 +20391,8 @@ class GetServerlessInstanceLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        GetServerlessInstanceLinkResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            href=href,
-            rel=rel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             href: Optional[str] = None,
-             rel: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if href is None:
-            raise TypeError("Missing 'href' argument")
-        if rel is None:
-            raise TypeError("Missing 'rel' argument")
-
-        _setter("href", href)
-        _setter("rel", rel)
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
 
     @property
     @pulumi.getter
@@ -31137,25 +20414,8 @@ class GetServerlessInstanceTagResult(dict):
         :param str key: Constant that defines the set of the tag.
         :param str value: Variable that belongs to the set of the tag.
         """
-        GetServerlessInstanceTagResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -31206,112 +20466,21 @@ class GetServerlessInstancesResultResult(dict):
         :param Sequence['GetServerlessInstancesResultTagArgs'] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
-        GetServerlessInstancesResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            connection_strings_private_endpoint_srvs=connection_strings_private_endpoint_srvs,
-            connection_strings_standard_srv=connection_strings_standard_srv,
-            continuous_backup_enabled=continuous_backup_enabled,
-            create_date=create_date,
-            id=id,
-            links=links,
-            mongo_db_version=mongo_db_version,
-            name=name,
-            project_id=project_id,
-            provider_settings_backing_provider_name=provider_settings_backing_provider_name,
-            provider_settings_provider_name=provider_settings_provider_name,
-            provider_settings_region_name=provider_settings_region_name,
-            state_name=state_name,
-            tags=tags,
-            termination_protection_enabled=termination_protection_enabled,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             connection_strings_private_endpoint_srvs: Optional[Sequence[str]] = None,
-             connection_strings_standard_srv: Optional[str] = None,
-             continuous_backup_enabled: Optional[bool] = None,
-             create_date: Optional[str] = None,
-             id: Optional[str] = None,
-             links: Optional[Sequence['outputs.GetServerlessInstancesResultLinkResult']] = None,
-             mongo_db_version: Optional[str] = None,
-             name: Optional[str] = None,
-             project_id: Optional[str] = None,
-             provider_settings_backing_provider_name: Optional[str] = None,
-             provider_settings_provider_name: Optional[str] = None,
-             provider_settings_region_name: Optional[str] = None,
-             state_name: Optional[str] = None,
-             tags: Optional[Sequence['outputs.GetServerlessInstancesResultTagResult']] = None,
-             termination_protection_enabled: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if connection_strings_private_endpoint_srvs is None and 'connectionStringsPrivateEndpointSrvs' in kwargs:
-            connection_strings_private_endpoint_srvs = kwargs['connectionStringsPrivateEndpointSrvs']
-        if connection_strings_private_endpoint_srvs is None:
-            raise TypeError("Missing 'connection_strings_private_endpoint_srvs' argument")
-        if connection_strings_standard_srv is None and 'connectionStringsStandardSrv' in kwargs:
-            connection_strings_standard_srv = kwargs['connectionStringsStandardSrv']
-        if connection_strings_standard_srv is None:
-            raise TypeError("Missing 'connection_strings_standard_srv' argument")
-        if continuous_backup_enabled is None and 'continuousBackupEnabled' in kwargs:
-            continuous_backup_enabled = kwargs['continuousBackupEnabled']
-        if continuous_backup_enabled is None:
-            raise TypeError("Missing 'continuous_backup_enabled' argument")
-        if create_date is None and 'createDate' in kwargs:
-            create_date = kwargs['createDate']
-        if create_date is None:
-            raise TypeError("Missing 'create_date' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if links is None:
-            raise TypeError("Missing 'links' argument")
-        if mongo_db_version is None and 'mongoDbVersion' in kwargs:
-            mongo_db_version = kwargs['mongoDbVersion']
-        if mongo_db_version is None:
-            raise TypeError("Missing 'mongo_db_version' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if provider_settings_backing_provider_name is None and 'providerSettingsBackingProviderName' in kwargs:
-            provider_settings_backing_provider_name = kwargs['providerSettingsBackingProviderName']
-        if provider_settings_backing_provider_name is None:
-            raise TypeError("Missing 'provider_settings_backing_provider_name' argument")
-        if provider_settings_provider_name is None and 'providerSettingsProviderName' in kwargs:
-            provider_settings_provider_name = kwargs['providerSettingsProviderName']
-        if provider_settings_provider_name is None:
-            raise TypeError("Missing 'provider_settings_provider_name' argument")
-        if provider_settings_region_name is None and 'providerSettingsRegionName' in kwargs:
-            provider_settings_region_name = kwargs['providerSettingsRegionName']
-        if provider_settings_region_name is None:
-            raise TypeError("Missing 'provider_settings_region_name' argument")
-        if state_name is None and 'stateName' in kwargs:
-            state_name = kwargs['stateName']
-        if state_name is None:
-            raise TypeError("Missing 'state_name' argument")
-        if tags is None:
-            raise TypeError("Missing 'tags' argument")
-        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
-            termination_protection_enabled = kwargs['terminationProtectionEnabled']
-        if termination_protection_enabled is None:
-            raise TypeError("Missing 'termination_protection_enabled' argument")
-
-        _setter("connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
-        _setter("connection_strings_standard_srv", connection_strings_standard_srv)
-        _setter("continuous_backup_enabled", continuous_backup_enabled)
-        _setter("create_date", create_date)
-        _setter("id", id)
-        _setter("links", links)
-        _setter("mongo_db_version", mongo_db_version)
-        _setter("name", name)
-        _setter("project_id", project_id)
-        _setter("provider_settings_backing_provider_name", provider_settings_backing_provider_name)
-        _setter("provider_settings_provider_name", provider_settings_provider_name)
-        _setter("provider_settings_region_name", provider_settings_region_name)
-        _setter("state_name", state_name)
-        _setter("tags", tags)
-        _setter("termination_protection_enabled", termination_protection_enabled)
+        pulumi.set(__self__, "connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
+        pulumi.set(__self__, "connection_strings_standard_srv", connection_strings_standard_srv)
+        pulumi.set(__self__, "continuous_backup_enabled", continuous_backup_enabled)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "links", links)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider_settings_backing_provider_name", provider_settings_backing_provider_name)
+        pulumi.set(__self__, "provider_settings_provider_name", provider_settings_provider_name)
+        pulumi.set(__self__, "provider_settings_region_name", provider_settings_region_name)
+        pulumi.set(__self__, "state_name", state_name)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
 
     @property
     @pulumi.getter(name="connectionStringsPrivateEndpointSrvs")
@@ -31430,25 +20599,8 @@ class GetServerlessInstancesResultLinkResult(dict):
     def __init__(__self__, *,
                  href: str,
                  rel: str):
-        GetServerlessInstancesResultLinkResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            href=href,
-            rel=rel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             href: Optional[str] = None,
-             rel: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if href is None:
-            raise TypeError("Missing 'href' argument")
-        if rel is None:
-            raise TypeError("Missing 'rel' argument")
-
-        _setter("href", href)
-        _setter("rel", rel)
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
 
     @property
     @pulumi.getter
@@ -31470,25 +20622,8 @@ class GetServerlessInstancesResultTagResult(dict):
         :param str key: Constant that defines the set of the tag.
         :param str value: Variable that belongs to the set of the tag.
         """
-        GetServerlessInstancesResultTagResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[str] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-
-        _setter("key", key)
-        _setter("value", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -31521,90 +20656,17 @@ class GetSharedTierRestoreJobsResultResult(dict):
                  status: str,
                  target_deployment_item_name: str,
                  target_project_id: str):
-        GetSharedTierRestoreJobsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            delivery_type=delivery_type,
-            expiration_date=expiration_date,
-            job_id=job_id,
-            restore_finished_date=restore_finished_date,
-            restore_scheduled_date=restore_scheduled_date,
-            snapshot_finished_date=snapshot_finished_date,
-            snapshot_id=snapshot_id,
-            snapshot_url=snapshot_url,
-            status=status,
-            target_deployment_item_name=target_deployment_item_name,
-            target_project_id=target_project_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             delivery_type: Optional[str] = None,
-             expiration_date: Optional[str] = None,
-             job_id: Optional[str] = None,
-             restore_finished_date: Optional[str] = None,
-             restore_scheduled_date: Optional[str] = None,
-             snapshot_finished_date: Optional[str] = None,
-             snapshot_id: Optional[str] = None,
-             snapshot_url: Optional[str] = None,
-             status: Optional[str] = None,
-             target_deployment_item_name: Optional[str] = None,
-             target_project_id: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if delivery_type is None and 'deliveryType' in kwargs:
-            delivery_type = kwargs['deliveryType']
-        if delivery_type is None:
-            raise TypeError("Missing 'delivery_type' argument")
-        if expiration_date is None and 'expirationDate' in kwargs:
-            expiration_date = kwargs['expirationDate']
-        if expiration_date is None:
-            raise TypeError("Missing 'expiration_date' argument")
-        if job_id is None and 'jobId' in kwargs:
-            job_id = kwargs['jobId']
-        if job_id is None:
-            raise TypeError("Missing 'job_id' argument")
-        if restore_finished_date is None and 'restoreFinishedDate' in kwargs:
-            restore_finished_date = kwargs['restoreFinishedDate']
-        if restore_finished_date is None:
-            raise TypeError("Missing 'restore_finished_date' argument")
-        if restore_scheduled_date is None and 'restoreScheduledDate' in kwargs:
-            restore_scheduled_date = kwargs['restoreScheduledDate']
-        if restore_scheduled_date is None:
-            raise TypeError("Missing 'restore_scheduled_date' argument")
-        if snapshot_finished_date is None and 'snapshotFinishedDate' in kwargs:
-            snapshot_finished_date = kwargs['snapshotFinishedDate']
-        if snapshot_finished_date is None:
-            raise TypeError("Missing 'snapshot_finished_date' argument")
-        if snapshot_id is None and 'snapshotId' in kwargs:
-            snapshot_id = kwargs['snapshotId']
-        if snapshot_id is None:
-            raise TypeError("Missing 'snapshot_id' argument")
-        if snapshot_url is None and 'snapshotUrl' in kwargs:
-            snapshot_url = kwargs['snapshotUrl']
-        if snapshot_url is None:
-            raise TypeError("Missing 'snapshot_url' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-        if target_deployment_item_name is None and 'targetDeploymentItemName' in kwargs:
-            target_deployment_item_name = kwargs['targetDeploymentItemName']
-        if target_deployment_item_name is None:
-            raise TypeError("Missing 'target_deployment_item_name' argument")
-        if target_project_id is None and 'targetProjectId' in kwargs:
-            target_project_id = kwargs['targetProjectId']
-        if target_project_id is None:
-            raise TypeError("Missing 'target_project_id' argument")
-
-        _setter("delivery_type", delivery_type)
-        _setter("expiration_date", expiration_date)
-        _setter("job_id", job_id)
-        _setter("restore_finished_date", restore_finished_date)
-        _setter("restore_scheduled_date", restore_scheduled_date)
-        _setter("snapshot_finished_date", snapshot_finished_date)
-        _setter("snapshot_id", snapshot_id)
-        _setter("snapshot_url", snapshot_url)
-        _setter("status", status)
-        _setter("target_deployment_item_name", target_deployment_item_name)
-        _setter("target_project_id", target_project_id)
+        pulumi.set(__self__, "delivery_type", delivery_type)
+        pulumi.set(__self__, "expiration_date", expiration_date)
+        pulumi.set(__self__, "job_id", job_id)
+        pulumi.set(__self__, "restore_finished_date", restore_finished_date)
+        pulumi.set(__self__, "restore_scheduled_date", restore_scheduled_date)
+        pulumi.set(__self__, "snapshot_finished_date", snapshot_finished_date)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "snapshot_url", snapshot_url)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "target_deployment_item_name", target_deployment_item_name)
+        pulumi.set(__self__, "target_project_id", target_project_id)
 
     @property
     @pulumi.getter(name="deliveryType")
@@ -31672,60 +20734,13 @@ class GetSharedTierSnapshotsResultResult(dict):
                  snapshot_id: str,
                  start_time: str,
                  status: str):
-        GetSharedTierSnapshotsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            expiration=expiration,
-            finish_time=finish_time,
-            mongo_db_version=mongo_db_version,
-            scheduled_time=scheduled_time,
-            snapshot_id=snapshot_id,
-            start_time=start_time,
-            status=status,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             expiration: Optional[str] = None,
-             finish_time: Optional[str] = None,
-             mongo_db_version: Optional[str] = None,
-             scheduled_time: Optional[str] = None,
-             snapshot_id: Optional[str] = None,
-             start_time: Optional[str] = None,
-             status: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if expiration is None:
-            raise TypeError("Missing 'expiration' argument")
-        if finish_time is None and 'finishTime' in kwargs:
-            finish_time = kwargs['finishTime']
-        if finish_time is None:
-            raise TypeError("Missing 'finish_time' argument")
-        if mongo_db_version is None and 'mongoDbVersion' in kwargs:
-            mongo_db_version = kwargs['mongoDbVersion']
-        if mongo_db_version is None:
-            raise TypeError("Missing 'mongo_db_version' argument")
-        if scheduled_time is None and 'scheduledTime' in kwargs:
-            scheduled_time = kwargs['scheduledTime']
-        if scheduled_time is None:
-            raise TypeError("Missing 'scheduled_time' argument")
-        if snapshot_id is None and 'snapshotId' in kwargs:
-            snapshot_id = kwargs['snapshotId']
-        if snapshot_id is None:
-            raise TypeError("Missing 'snapshot_id' argument")
-        if start_time is None and 'startTime' in kwargs:
-            start_time = kwargs['startTime']
-        if start_time is None:
-            raise TypeError("Missing 'start_time' argument")
-        if status is None:
-            raise TypeError("Missing 'status' argument")
-
-        _setter("expiration", expiration)
-        _setter("finish_time", finish_time)
-        _setter("mongo_db_version", mongo_db_version)
-        _setter("scheduled_time", scheduled_time)
-        _setter("snapshot_id", snapshot_id)
-        _setter("start_time", start_time)
-        _setter("status", status)
+        pulumi.set(__self__, "expiration", expiration)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "scheduled_time", scheduled_time)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -31802,124 +20817,29 @@ class GetThirdPartyIntegrationsResultResult(dict):
         :param str service_discovery: Indicates which service discovery method is used, either file or http.
         :param str user_name: Your Prometheus username.
         """
-        GetThirdPartyIntegrationsResultResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            account_id=account_id,
-            api_key=api_key,
-            api_token=api_token,
-            channel_name=channel_name,
-            license_key=license_key,
-            project_id=project_id,
-            region=region,
-            routing_key=routing_key,
-            secret=secret,
-            service_key=service_key,
-            team_name=team_name,
-            type=type,
-            url=url,
-            enabled=enabled,
-            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
-            scheme=scheme,
-            service_discovery=service_discovery,
-            user_name=user_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             account_id: Optional[str] = None,
-             api_key: Optional[str] = None,
-             api_token: Optional[str] = None,
-             channel_name: Optional[str] = None,
-             license_key: Optional[str] = None,
-             project_id: Optional[str] = None,
-             region: Optional[str] = None,
-             routing_key: Optional[str] = None,
-             secret: Optional[str] = None,
-             service_key: Optional[str] = None,
-             team_name: Optional[str] = None,
-             type: Optional[str] = None,
-             url: Optional[str] = None,
-             enabled: Optional[bool] = None,
-             microsoft_teams_webhook_url: Optional[str] = None,
-             scheme: Optional[str] = None,
-             service_discovery: Optional[str] = None,
-             user_name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if account_id is None and 'accountId' in kwargs:
-            account_id = kwargs['accountId']
-        if account_id is None:
-            raise TypeError("Missing 'account_id' argument")
-        if api_key is None and 'apiKey' in kwargs:
-            api_key = kwargs['apiKey']
-        if api_key is None:
-            raise TypeError("Missing 'api_key' argument")
-        if api_token is None and 'apiToken' in kwargs:
-            api_token = kwargs['apiToken']
-        if api_token is None:
-            raise TypeError("Missing 'api_token' argument")
-        if channel_name is None and 'channelName' in kwargs:
-            channel_name = kwargs['channelName']
-        if channel_name is None:
-            raise TypeError("Missing 'channel_name' argument")
-        if license_key is None and 'licenseKey' in kwargs:
-            license_key = kwargs['licenseKey']
-        if license_key is None:
-            raise TypeError("Missing 'license_key' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-        if routing_key is None and 'routingKey' in kwargs:
-            routing_key = kwargs['routingKey']
-        if routing_key is None:
-            raise TypeError("Missing 'routing_key' argument")
-        if secret is None:
-            raise TypeError("Missing 'secret' argument")
-        if service_key is None and 'serviceKey' in kwargs:
-            service_key = kwargs['serviceKey']
-        if service_key is None:
-            raise TypeError("Missing 'service_key' argument")
-        if team_name is None and 'teamName' in kwargs:
-            team_name = kwargs['teamName']
-        if team_name is None:
-            raise TypeError("Missing 'team_name' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-        if microsoft_teams_webhook_url is None and 'microsoftTeamsWebhookUrl' in kwargs:
-            microsoft_teams_webhook_url = kwargs['microsoftTeamsWebhookUrl']
-        if service_discovery is None and 'serviceDiscovery' in kwargs:
-            service_discovery = kwargs['serviceDiscovery']
-        if user_name is None and 'userName' in kwargs:
-            user_name = kwargs['userName']
-
-        _setter("account_id", account_id)
-        _setter("api_key", api_key)
-        _setter("api_token", api_token)
-        _setter("channel_name", channel_name)
-        _setter("license_key", license_key)
-        _setter("project_id", project_id)
-        _setter("region", region)
-        _setter("routing_key", routing_key)
-        _setter("secret", secret)
-        _setter("service_key", service_key)
-        _setter("team_name", team_name)
-        _setter("type", type)
-        _setter("url", url)
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "api_key", api_key)
+        pulumi.set(__self__, "api_token", api_token)
+        pulumi.set(__self__, "channel_name", channel_name)
+        pulumi.set(__self__, "license_key", license_key)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "routing_key", routing_key)
+        pulumi.set(__self__, "secret", secret)
+        pulumi.set(__self__, "service_key", service_key)
+        pulumi.set(__self__, "team_name", team_name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "url", url)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if microsoft_teams_webhook_url is not None:
-            _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if scheme is not None:
-            _setter("scheme", scheme)
+            pulumi.set(__self__, "scheme", scheme)
         if service_discovery is not None:
-            _setter("service_discovery", service_discovery)
+            pulumi.set(__self__, "service_discovery", service_discovery)
         if user_name is not None:
-            _setter("user_name", user_name)
+            pulumi.set(__self__, "user_name", user_name)
 
     @property
     @pulumi.getter(name="accountId")

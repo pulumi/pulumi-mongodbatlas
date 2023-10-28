@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ProjectInvitationArgs', 'ProjectInvitation']
@@ -23,32 +23,9 @@ class ProjectInvitationArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
         """
-        ProjectInvitationArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            project_id=project_id,
-            roles=roles,
-            username=username,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             project_id: Optional[pulumi.Input[str]] = None,
-             roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             username: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if roles is None:
-            raise TypeError("Missing 'roles' argument")
-        if username is None:
-            raise TypeError("Missing 'username' argument")
-
-        _setter("project_id", project_id)
-        _setter("roles", roles)
-        _setter("username", username)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="projectId")
@@ -107,53 +84,20 @@ class _ProjectInvitationState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
         """
-        _ProjectInvitationState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            expires_at=expires_at,
-            invitation_id=invitation_id,
-            inviter_username=inviter_username,
-            project_id=project_id,
-            roles=roles,
-            username=username,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[pulumi.Input[str]] = None,
-             expires_at: Optional[pulumi.Input[str]] = None,
-             invitation_id: Optional[pulumi.Input[str]] = None,
-             inviter_username: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             username: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if expires_at is None and 'expiresAt' in kwargs:
-            expires_at = kwargs['expiresAt']
-        if invitation_id is None and 'invitationId' in kwargs:
-            invitation_id = kwargs['invitationId']
-        if inviter_username is None and 'inviterUsername' in kwargs:
-            inviter_username = kwargs['inviterUsername']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if expires_at is not None:
-            _setter("expires_at", expires_at)
+            pulumi.set(__self__, "expires_at", expires_at)
         if invitation_id is not None:
-            _setter("invitation_id", invitation_id)
+            pulumi.set(__self__, "invitation_id", invitation_id)
         if inviter_username is not None:
-            _setter("inviter_username", inviter_username)
+            pulumi.set(__self__, "inviter_username", inviter_username)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if roles is not None:
-            _setter("roles", roles)
+            pulumi.set(__self__, "roles", roles)
         if username is not None:
-            _setter("username", username)
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -345,10 +289,6 @@ class ProjectInvitation(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ProjectInvitationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

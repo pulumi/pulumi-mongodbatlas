@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ThirdPartyIntegrationArgs', 'ThirdPartyIntegration']
@@ -60,99 +60,36 @@ class ThirdPartyIntegrationArgs:
         :param pulumi.Input[str] url: Your webhook URL.
         :param pulumi.Input[str] user_name: Your Prometheus username.
         """
-        ThirdPartyIntegrationArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            project_id=project_id,
-            type=type,
-            api_key=api_key,
-            channel_name=channel_name,
-            enabled=enabled,
-            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
-            password=password,
-            region=region,
-            routing_key=routing_key,
-            scheme=scheme,
-            secret=secret,
-            service_discovery=service_discovery,
-            service_key=service_key,
-            team_name=team_name,
-            url=url,
-            user_name=user_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             project_id: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             api_key: Optional[pulumi.Input[str]] = None,
-             channel_name: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
-             password: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             routing_key: Optional[pulumi.Input[str]] = None,
-             scheme: Optional[pulumi.Input[str]] = None,
-             secret: Optional[pulumi.Input[str]] = None,
-             service_discovery: Optional[pulumi.Input[str]] = None,
-             service_key: Optional[pulumi.Input[str]] = None,
-             team_name: Optional[pulumi.Input[str]] = None,
-             url: Optional[pulumi.Input[str]] = None,
-             user_name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if api_key is None and 'apiKey' in kwargs:
-            api_key = kwargs['apiKey']
-        if channel_name is None and 'channelName' in kwargs:
-            channel_name = kwargs['channelName']
-        if microsoft_teams_webhook_url is None and 'microsoftTeamsWebhookUrl' in kwargs:
-            microsoft_teams_webhook_url = kwargs['microsoftTeamsWebhookUrl']
-        if routing_key is None and 'routingKey' in kwargs:
-            routing_key = kwargs['routingKey']
-        if service_discovery is None and 'serviceDiscovery' in kwargs:
-            service_discovery = kwargs['serviceDiscovery']
-        if service_key is None and 'serviceKey' in kwargs:
-            service_key = kwargs['serviceKey']
-        if team_name is None and 'teamName' in kwargs:
-            team_name = kwargs['teamName']
-        if user_name is None and 'userName' in kwargs:
-            user_name = kwargs['userName']
-
-        _setter("project_id", project_id)
-        _setter("type", type)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "type", type)
         if api_key is not None:
-            _setter("api_key", api_key)
+            pulumi.set(__self__, "api_key", api_key)
         if channel_name is not None:
-            _setter("channel_name", channel_name)
+            pulumi.set(__self__, "channel_name", channel_name)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if microsoft_teams_webhook_url is not None:
-            _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if routing_key is not None:
-            _setter("routing_key", routing_key)
+            pulumi.set(__self__, "routing_key", routing_key)
         if scheme is not None:
-            _setter("scheme", scheme)
+            pulumi.set(__self__, "scheme", scheme)
         if secret is not None:
-            _setter("secret", secret)
+            pulumi.set(__self__, "secret", secret)
         if service_discovery is not None:
-            _setter("service_discovery", service_discovery)
+            pulumi.set(__self__, "service_discovery", service_discovery)
         if service_key is not None:
-            _setter("service_key", service_key)
+            pulumi.set(__self__, "service_key", service_key)
         if team_name is not None:
-            _setter("team_name", team_name)
+            pulumi.set(__self__, "team_name", team_name)
         if url is not None:
-            _setter("url", url)
+            pulumi.set(__self__, "url", url)
         if user_name is not None:
-            _setter("user_name", user_name)
+            pulumi.set(__self__, "user_name", user_name)
 
     @property
     @pulumi.getter(name="projectId")
@@ -403,97 +340,38 @@ class _ThirdPartyIntegrationState:
         :param pulumi.Input[str] url: Your webhook URL.
         :param pulumi.Input[str] user_name: Your Prometheus username.
         """
-        _ThirdPartyIntegrationState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key=api_key,
-            channel_name=channel_name,
-            enabled=enabled,
-            microsoft_teams_webhook_url=microsoft_teams_webhook_url,
-            password=password,
-            project_id=project_id,
-            region=region,
-            routing_key=routing_key,
-            scheme=scheme,
-            secret=secret,
-            service_discovery=service_discovery,
-            service_key=service_key,
-            team_name=team_name,
-            type=type,
-            url=url,
-            user_name=user_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key: Optional[pulumi.Input[str]] = None,
-             channel_name: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
-             password: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             routing_key: Optional[pulumi.Input[str]] = None,
-             scheme: Optional[pulumi.Input[str]] = None,
-             secret: Optional[pulumi.Input[str]] = None,
-             service_discovery: Optional[pulumi.Input[str]] = None,
-             service_key: Optional[pulumi.Input[str]] = None,
-             team_name: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             url: Optional[pulumi.Input[str]] = None,
-             user_name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if api_key is None and 'apiKey' in kwargs:
-            api_key = kwargs['apiKey']
-        if channel_name is None and 'channelName' in kwargs:
-            channel_name = kwargs['channelName']
-        if microsoft_teams_webhook_url is None and 'microsoftTeamsWebhookUrl' in kwargs:
-            microsoft_teams_webhook_url = kwargs['microsoftTeamsWebhookUrl']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if routing_key is None and 'routingKey' in kwargs:
-            routing_key = kwargs['routingKey']
-        if service_discovery is None and 'serviceDiscovery' in kwargs:
-            service_discovery = kwargs['serviceDiscovery']
-        if service_key is None and 'serviceKey' in kwargs:
-            service_key = kwargs['serviceKey']
-        if team_name is None and 'teamName' in kwargs:
-            team_name = kwargs['teamName']
-        if user_name is None and 'userName' in kwargs:
-            user_name = kwargs['userName']
-
         if api_key is not None:
-            _setter("api_key", api_key)
+            pulumi.set(__self__, "api_key", api_key)
         if channel_name is not None:
-            _setter("channel_name", channel_name)
+            pulumi.set(__self__, "channel_name", channel_name)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if microsoft_teams_webhook_url is not None:
-            _setter("microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if routing_key is not None:
-            _setter("routing_key", routing_key)
+            pulumi.set(__self__, "routing_key", routing_key)
         if scheme is not None:
-            _setter("scheme", scheme)
+            pulumi.set(__self__, "scheme", scheme)
         if secret is not None:
-            _setter("secret", secret)
+            pulumi.set(__self__, "secret", secret)
         if service_discovery is not None:
-            _setter("service_discovery", service_discovery)
+            pulumi.set(__self__, "service_discovery", service_discovery)
         if service_key is not None:
-            _setter("service_key", service_key)
+            pulumi.set(__self__, "service_key", service_key)
         if team_name is not None:
-            _setter("team_name", team_name)
+            pulumi.set(__self__, "team_name", team_name)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if url is not None:
-            _setter("url", url)
+            pulumi.set(__self__, "url", url)
         if user_name is not None:
-            _setter("user_name", user_name)
+            pulumi.set(__self__, "user_name", user_name)
 
     @property
     @pulumi.getter(name="apiKey")
@@ -807,10 +685,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ThirdPartyIntegrationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

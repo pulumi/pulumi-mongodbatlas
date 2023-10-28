@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -43,85 +43,28 @@ class SearchIndexArgs:
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         """
-        SearchIndexArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_name=cluster_name,
-            collection_name=collection_name,
-            database=database,
-            project_id=project_id,
-            analyzer=analyzer,
-            analyzers=analyzers,
-            mappings_dynamic=mappings_dynamic,
-            mappings_fields=mappings_fields,
-            name=name,
-            search_analyzer=search_analyzer,
-            status=status,
-            synonyms=synonyms,
-            wait_for_index_build_completion=wait_for_index_build_completion,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_name: Optional[pulumi.Input[str]] = None,
-             collection_name: Optional[pulumi.Input[str]] = None,
-             database: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             analyzer: Optional[pulumi.Input[str]] = None,
-             analyzers: Optional[pulumi.Input[str]] = None,
-             mappings_dynamic: Optional[pulumi.Input[bool]] = None,
-             mappings_fields: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             search_analyzer: Optional[pulumi.Input[str]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
-             wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if cluster_name is None:
-            raise TypeError("Missing 'cluster_name' argument")
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if collection_name is None:
-            raise TypeError("Missing 'collection_name' argument")
-        if database is None:
-            raise TypeError("Missing 'database' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if mappings_dynamic is None and 'mappingsDynamic' in kwargs:
-            mappings_dynamic = kwargs['mappingsDynamic']
-        if mappings_fields is None and 'mappingsFields' in kwargs:
-            mappings_fields = kwargs['mappingsFields']
-        if search_analyzer is None and 'searchAnalyzer' in kwargs:
-            search_analyzer = kwargs['searchAnalyzer']
-        if wait_for_index_build_completion is None and 'waitForIndexBuildCompletion' in kwargs:
-            wait_for_index_build_completion = kwargs['waitForIndexBuildCompletion']
-
-        _setter("cluster_name", cluster_name)
-        _setter("collection_name", collection_name)
-        _setter("database", database)
-        _setter("project_id", project_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "collection_name", collection_name)
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "project_id", project_id)
         if analyzer is not None:
-            _setter("analyzer", analyzer)
+            pulumi.set(__self__, "analyzer", analyzer)
         if analyzers is not None:
-            _setter("analyzers", analyzers)
+            pulumi.set(__self__, "analyzers", analyzers)
         if mappings_dynamic is not None:
-            _setter("mappings_dynamic", mappings_dynamic)
+            pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
         if mappings_fields is not None:
-            _setter("mappings_fields", mappings_fields)
+            pulumi.set(__self__, "mappings_fields", mappings_fields)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if search_analyzer is not None:
-            _setter("search_analyzer", search_analyzer)
+            pulumi.set(__self__, "search_analyzer", search_analyzer)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if synonyms is not None:
-            _setter("synonyms", synonyms)
+            pulumi.set(__self__, "synonyms", synonyms)
         if wait_for_index_build_completion is not None:
-            _setter("wait_for_index_build_completion", wait_for_index_build_completion)
+            pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -305,87 +248,34 @@ class _SearchIndexState:
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         """
-        _SearchIndexState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            analyzer=analyzer,
-            analyzers=analyzers,
-            cluster_name=cluster_name,
-            collection_name=collection_name,
-            database=database,
-            index_id=index_id,
-            mappings_dynamic=mappings_dynamic,
-            mappings_fields=mappings_fields,
-            name=name,
-            project_id=project_id,
-            search_analyzer=search_analyzer,
-            status=status,
-            synonyms=synonyms,
-            wait_for_index_build_completion=wait_for_index_build_completion,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             analyzer: Optional[pulumi.Input[str]] = None,
-             analyzers: Optional[pulumi.Input[str]] = None,
-             cluster_name: Optional[pulumi.Input[str]] = None,
-             collection_name: Optional[pulumi.Input[str]] = None,
-             database: Optional[pulumi.Input[str]] = None,
-             index_id: Optional[pulumi.Input[str]] = None,
-             mappings_dynamic: Optional[pulumi.Input[bool]] = None,
-             mappings_fields: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             search_analyzer: Optional[pulumi.Input[str]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
-             wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if collection_name is None and 'collectionName' in kwargs:
-            collection_name = kwargs['collectionName']
-        if index_id is None and 'indexId' in kwargs:
-            index_id = kwargs['indexId']
-        if mappings_dynamic is None and 'mappingsDynamic' in kwargs:
-            mappings_dynamic = kwargs['mappingsDynamic']
-        if mappings_fields is None and 'mappingsFields' in kwargs:
-            mappings_fields = kwargs['mappingsFields']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if search_analyzer is None and 'searchAnalyzer' in kwargs:
-            search_analyzer = kwargs['searchAnalyzer']
-        if wait_for_index_build_completion is None and 'waitForIndexBuildCompletion' in kwargs:
-            wait_for_index_build_completion = kwargs['waitForIndexBuildCompletion']
-
         if analyzer is not None:
-            _setter("analyzer", analyzer)
+            pulumi.set(__self__, "analyzer", analyzer)
         if analyzers is not None:
-            _setter("analyzers", analyzers)
+            pulumi.set(__self__, "analyzers", analyzers)
         if cluster_name is not None:
-            _setter("cluster_name", cluster_name)
+            pulumi.set(__self__, "cluster_name", cluster_name)
         if collection_name is not None:
-            _setter("collection_name", collection_name)
+            pulumi.set(__self__, "collection_name", collection_name)
         if database is not None:
-            _setter("database", database)
+            pulumi.set(__self__, "database", database)
         if index_id is not None:
-            _setter("index_id", index_id)
+            pulumi.set(__self__, "index_id", index_id)
         if mappings_dynamic is not None:
-            _setter("mappings_dynamic", mappings_dynamic)
+            pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
         if mappings_fields is not None:
-            _setter("mappings_fields", mappings_fields)
+            pulumi.set(__self__, "mappings_fields", mappings_fields)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if search_analyzer is not None:
-            _setter("search_analyzer", search_analyzer)
+            pulumi.set(__self__, "search_analyzer", search_analyzer)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if synonyms is not None:
-            _setter("synonyms", synonyms)
+            pulumi.set(__self__, "synonyms", synonyms)
         if wait_for_index_build_completion is not None:
-            _setter("wait_for_index_build_completion", wait_for_index_build_completion)
+            pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
 
     @property
     @pulumi.getter
@@ -770,10 +660,6 @@ class SearchIndex(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            SearchIndexArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['OrganizationArgs', 'Organization']
@@ -26,44 +26,13 @@ class OrganizationArgs:
         :param pulumi.Input[str] federation_settings_id: (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
         :param pulumi.Input[str] name: The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
         """
-        OrganizationArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            org_owner_id=org_owner_id,
-            role_names=role_names,
-            federation_settings_id=federation_settings_id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             org_owner_id: Optional[pulumi.Input[str]] = None,
-             role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             federation_settings_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if description is None:
-            raise TypeError("Missing 'description' argument")
-        if org_owner_id is None and 'orgOwnerId' in kwargs:
-            org_owner_id = kwargs['orgOwnerId']
-        if org_owner_id is None:
-            raise TypeError("Missing 'org_owner_id' argument")
-        if role_names is None and 'roleNames' in kwargs:
-            role_names = kwargs['roleNames']
-        if role_names is None:
-            raise TypeError("Missing 'role_names' argument")
-        if federation_settings_id is None and 'federationSettingsId' in kwargs:
-            federation_settings_id = kwargs['federationSettingsId']
-
-        _setter("description", description)
-        _setter("org_owner_id", org_owner_id)
-        _setter("role_names", role_names)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "org_owner_id", org_owner_id)
+        pulumi.set(__self__, "role_names", role_names)
         if federation_settings_id is not None:
-            _setter("federation_settings_id", federation_settings_id)
+            pulumi.set(__self__, "federation_settings_id", federation_settings_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -143,59 +112,22 @@ class _OrganizationState:
         :param pulumi.Input[str] public_key: Public API key value set for the specified organization API key.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
         """
-        _OrganizationState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            federation_settings_id=federation_settings_id,
-            name=name,
-            org_id=org_id,
-            org_owner_id=org_owner_id,
-            private_key=private_key,
-            public_key=public_key,
-            role_names=role_names,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             federation_settings_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             org_id: Optional[pulumi.Input[str]] = None,
-             org_owner_id: Optional[pulumi.Input[str]] = None,
-             private_key: Optional[pulumi.Input[str]] = None,
-             public_key: Optional[pulumi.Input[str]] = None,
-             role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if federation_settings_id is None and 'federationSettingsId' in kwargs:
-            federation_settings_id = kwargs['federationSettingsId']
-        if org_id is None and 'orgId' in kwargs:
-            org_id = kwargs['orgId']
-        if org_owner_id is None and 'orgOwnerId' in kwargs:
-            org_owner_id = kwargs['orgOwnerId']
-        if private_key is None and 'privateKey' in kwargs:
-            private_key = kwargs['privateKey']
-        if public_key is None and 'publicKey' in kwargs:
-            public_key = kwargs['publicKey']
-        if role_names is None and 'roleNames' in kwargs:
-            role_names = kwargs['roleNames']
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if federation_settings_id is not None:
-            _setter("federation_settings_id", federation_settings_id)
+            pulumi.set(__self__, "federation_settings_id", federation_settings_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if org_id is not None:
-            _setter("org_id", org_id)
+            pulumi.set(__self__, "org_id", org_id)
         if org_owner_id is not None:
-            _setter("org_owner_id", org_owner_id)
+            pulumi.set(__self__, "org_owner_id", org_owner_id)
         if private_key is not None:
-            _setter("private_key", private_key)
+            pulumi.set(__self__, "private_key", private_key)
         if public_key is not None:
-            _setter("public_key", public_key)
+            pulumi.set(__self__, "public_key", public_key)
         if role_names is not None:
-            _setter("role_names", role_names)
+            pulumi.set(__self__, "role_names", role_names)
 
     @property
     @pulumi.getter
@@ -378,10 +310,6 @@ class Organization(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            OrganizationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

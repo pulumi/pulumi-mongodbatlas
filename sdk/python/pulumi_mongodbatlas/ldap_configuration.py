@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -42,76 +42,21 @@ class LdapConfigurationArgs:
                * `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
                * `user_to_dn_mapping.0.ldap_query` - (Optional) An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
         """
-        LdapConfigurationArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            authentication_enabled=authentication_enabled,
-            bind_password=bind_password,
-            bind_username=bind_username,
-            hostname=hostname,
-            project_id=project_id,
-            authorization_enabled=authorization_enabled,
-            authz_query_template=authz_query_template,
-            ca_certificate=ca_certificate,
-            port=port,
-            user_to_dn_mappings=user_to_dn_mappings,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             authentication_enabled: Optional[pulumi.Input[bool]] = None,
-             bind_password: Optional[pulumi.Input[str]] = None,
-             bind_username: Optional[pulumi.Input[str]] = None,
-             hostname: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             authorization_enabled: Optional[pulumi.Input[bool]] = None,
-             authz_query_template: Optional[pulumi.Input[str]] = None,
-             ca_certificate: Optional[pulumi.Input[str]] = None,
-             port: Optional[pulumi.Input[int]] = None,
-             user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if authentication_enabled is None and 'authenticationEnabled' in kwargs:
-            authentication_enabled = kwargs['authenticationEnabled']
-        if authentication_enabled is None:
-            raise TypeError("Missing 'authentication_enabled' argument")
-        if bind_password is None and 'bindPassword' in kwargs:
-            bind_password = kwargs['bindPassword']
-        if bind_password is None:
-            raise TypeError("Missing 'bind_password' argument")
-        if bind_username is None and 'bindUsername' in kwargs:
-            bind_username = kwargs['bindUsername']
-        if bind_username is None:
-            raise TypeError("Missing 'bind_username' argument")
-        if hostname is None:
-            raise TypeError("Missing 'hostname' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if authorization_enabled is None and 'authorizationEnabled' in kwargs:
-            authorization_enabled = kwargs['authorizationEnabled']
-        if authz_query_template is None and 'authzQueryTemplate' in kwargs:
-            authz_query_template = kwargs['authzQueryTemplate']
-        if ca_certificate is None and 'caCertificate' in kwargs:
-            ca_certificate = kwargs['caCertificate']
-        if user_to_dn_mappings is None and 'userToDnMappings' in kwargs:
-            user_to_dn_mappings = kwargs['userToDnMappings']
-
-        _setter("authentication_enabled", authentication_enabled)
-        _setter("bind_password", bind_password)
-        _setter("bind_username", bind_username)
-        _setter("hostname", hostname)
-        _setter("project_id", project_id)
+        pulumi.set(__self__, "authentication_enabled", authentication_enabled)
+        pulumi.set(__self__, "bind_password", bind_password)
+        pulumi.set(__self__, "bind_username", bind_username)
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "project_id", project_id)
         if authorization_enabled is not None:
-            _setter("authorization_enabled", authorization_enabled)
+            pulumi.set(__self__, "authorization_enabled", authorization_enabled)
         if authz_query_template is not None:
-            _setter("authz_query_template", authz_query_template)
+            pulumi.set(__self__, "authz_query_template", authz_query_template)
         if ca_certificate is not None:
-            _setter("ca_certificate", ca_certificate)
+            pulumi.set(__self__, "ca_certificate", ca_certificate)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if user_to_dn_mappings is not None:
-            _setter("user_to_dn_mappings", user_to_dn_mappings)
+            pulumi.set(__self__, "user_to_dn_mappings", user_to_dn_mappings)
 
     @property
     @pulumi.getter(name="authenticationEnabled")
@@ -266,71 +211,26 @@ class _LdapConfigurationState:
                * `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
                * `user_to_dn_mapping.0.ldap_query` - (Optional) An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
         """
-        _LdapConfigurationState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            authentication_enabled=authentication_enabled,
-            authorization_enabled=authorization_enabled,
-            authz_query_template=authz_query_template,
-            bind_password=bind_password,
-            bind_username=bind_username,
-            ca_certificate=ca_certificate,
-            hostname=hostname,
-            port=port,
-            project_id=project_id,
-            user_to_dn_mappings=user_to_dn_mappings,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             authentication_enabled: Optional[pulumi.Input[bool]] = None,
-             authorization_enabled: Optional[pulumi.Input[bool]] = None,
-             authz_query_template: Optional[pulumi.Input[str]] = None,
-             bind_password: Optional[pulumi.Input[str]] = None,
-             bind_username: Optional[pulumi.Input[str]] = None,
-             ca_certificate: Optional[pulumi.Input[str]] = None,
-             hostname: Optional[pulumi.Input[str]] = None,
-             port: Optional[pulumi.Input[int]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if authentication_enabled is None and 'authenticationEnabled' in kwargs:
-            authentication_enabled = kwargs['authenticationEnabled']
-        if authorization_enabled is None and 'authorizationEnabled' in kwargs:
-            authorization_enabled = kwargs['authorizationEnabled']
-        if authz_query_template is None and 'authzQueryTemplate' in kwargs:
-            authz_query_template = kwargs['authzQueryTemplate']
-        if bind_password is None and 'bindPassword' in kwargs:
-            bind_password = kwargs['bindPassword']
-        if bind_username is None and 'bindUsername' in kwargs:
-            bind_username = kwargs['bindUsername']
-        if ca_certificate is None and 'caCertificate' in kwargs:
-            ca_certificate = kwargs['caCertificate']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if user_to_dn_mappings is None and 'userToDnMappings' in kwargs:
-            user_to_dn_mappings = kwargs['userToDnMappings']
-
         if authentication_enabled is not None:
-            _setter("authentication_enabled", authentication_enabled)
+            pulumi.set(__self__, "authentication_enabled", authentication_enabled)
         if authorization_enabled is not None:
-            _setter("authorization_enabled", authorization_enabled)
+            pulumi.set(__self__, "authorization_enabled", authorization_enabled)
         if authz_query_template is not None:
-            _setter("authz_query_template", authz_query_template)
+            pulumi.set(__self__, "authz_query_template", authz_query_template)
         if bind_password is not None:
-            _setter("bind_password", bind_password)
+            pulumi.set(__self__, "bind_password", bind_password)
         if bind_username is not None:
-            _setter("bind_username", bind_username)
+            pulumi.set(__self__, "bind_username", bind_username)
         if ca_certificate is not None:
-            _setter("ca_certificate", ca_certificate)
+            pulumi.set(__self__, "ca_certificate", ca_certificate)
         if hostname is not None:
-            _setter("hostname", hostname)
+            pulumi.set(__self__, "hostname", hostname)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if user_to_dn_mappings is not None:
-            _setter("user_to_dn_mappings", user_to_dn_mappings)
+            pulumi.set(__self__, "user_to_dn_mappings", user_to_dn_mappings)
 
     @property
     @pulumi.getter(name="authenticationEnabled")
@@ -598,10 +498,6 @@ class LdapConfiguration(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            LdapConfigurationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

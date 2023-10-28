@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,38 +27,13 @@ class X509AuthenticationDatabaseUserArgs:
         :param pulumi.Input[int] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
         :param pulumi.Input[str] username: Username of the database user to create a certificate for.
         """
-        X509AuthenticationDatabaseUserArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            project_id=project_id,
-            customer_x509_cas=customer_x509_cas,
-            months_until_expiration=months_until_expiration,
-            username=username,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             project_id: Optional[pulumi.Input[str]] = None,
-             customer_x509_cas: Optional[pulumi.Input[str]] = None,
-             months_until_expiration: Optional[pulumi.Input[int]] = None,
-             username: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if customer_x509_cas is None and 'customerX509Cas' in kwargs:
-            customer_x509_cas = kwargs['customerX509Cas']
-        if months_until_expiration is None and 'monthsUntilExpiration' in kwargs:
-            months_until_expiration = kwargs['monthsUntilExpiration']
-
-        _setter("project_id", project_id)
+        pulumi.set(__self__, "project_id", project_id)
         if customer_x509_cas is not None:
-            _setter("customer_x509_cas", customer_x509_cas)
+            pulumi.set(__self__, "customer_x509_cas", customer_x509_cas)
         if months_until_expiration is not None:
-            _setter("months_until_expiration", months_until_expiration)
+            pulumi.set(__self__, "months_until_expiration", months_until_expiration)
         if username is not None:
-            _setter("username", username)
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="projectId")
@@ -127,47 +102,18 @@ class _X509AuthenticationDatabaseUserState:
         :param pulumi.Input[str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
         :param pulumi.Input[str] username: Username of the database user to create a certificate for.
         """
-        _X509AuthenticationDatabaseUserState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            certificates=certificates,
-            current_certificate=current_certificate,
-            customer_x509_cas=customer_x509_cas,
-            months_until_expiration=months_until_expiration,
-            project_id=project_id,
-            username=username,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             certificates: Optional[pulumi.Input[Sequence[pulumi.Input['X509AuthenticationDatabaseUserCertificateArgs']]]] = None,
-             current_certificate: Optional[pulumi.Input[str]] = None,
-             customer_x509_cas: Optional[pulumi.Input[str]] = None,
-             months_until_expiration: Optional[pulumi.Input[int]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             username: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if current_certificate is None and 'currentCertificate' in kwargs:
-            current_certificate = kwargs['currentCertificate']
-        if customer_x509_cas is None and 'customerX509Cas' in kwargs:
-            customer_x509_cas = kwargs['customerX509Cas']
-        if months_until_expiration is None and 'monthsUntilExpiration' in kwargs:
-            months_until_expiration = kwargs['monthsUntilExpiration']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if certificates is not None:
-            _setter("certificates", certificates)
+            pulumi.set(__self__, "certificates", certificates)
         if current_certificate is not None:
-            _setter("current_certificate", current_certificate)
+            pulumi.set(__self__, "current_certificate", current_certificate)
         if customer_x509_cas is not None:
-            _setter("customer_x509_cas", customer_x509_cas)
+            pulumi.set(__self__, "customer_x509_cas", customer_x509_cas)
         if months_until_expiration is not None:
-            _setter("months_until_expiration", months_until_expiration)
+            pulumi.set(__self__, "months_until_expiration", months_until_expiration)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if username is not None:
-            _setter("username", username)
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
@@ -335,10 +281,6 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            X509AuthenticationDatabaseUserArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
