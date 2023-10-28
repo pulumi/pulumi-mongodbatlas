@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -33,53 +33,18 @@ class AlertConfigurationArgs:
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         """
-        AlertConfigurationArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            event_type=event_type,
-            project_id=project_id,
-            enabled=enabled,
-            matchers=matchers,
-            metric_threshold_config=metric_threshold_config,
-            notifications=notifications,
-            threshold_config=threshold_config,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             event_type: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             matchers: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]] = None,
-             metric_threshold_config: Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']] = None,
-             notifications: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]] = None,
-             threshold_config: Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if event_type is None and 'eventType' in kwargs:
-            event_type = kwargs['eventType']
-        if event_type is None:
-            raise TypeError("Missing 'event_type' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if metric_threshold_config is None and 'metricThresholdConfig' in kwargs:
-            metric_threshold_config = kwargs['metricThresholdConfig']
-        if threshold_config is None and 'thresholdConfig' in kwargs:
-            threshold_config = kwargs['thresholdConfig']
-
-        _setter("event_type", event_type)
-        _setter("project_id", project_id)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "project_id", project_id)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if matchers is not None:
-            _setter("matchers", matchers)
+            pulumi.set(__self__, "matchers", matchers)
         if metric_threshold_config is not None:
-            _setter("metric_threshold_config", metric_threshold_config)
+            pulumi.set(__self__, "metric_threshold_config", metric_threshold_config)
         if notifications is not None:
-            _setter("notifications", notifications)
+            pulumi.set(__self__, "notifications", notifications)
         if threshold_config is not None:
-            _setter("threshold_config", threshold_config)
+            pulumi.set(__self__, "threshold_config", threshold_config)
 
     @property
     @pulumi.getter(name="eventType")
@@ -184,65 +149,26 @@ class _AlertConfigurationState:
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
-        _AlertConfigurationState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            alert_configuration_id=alert_configuration_id,
-            created=created,
-            enabled=enabled,
-            event_type=event_type,
-            matchers=matchers,
-            metric_threshold_config=metric_threshold_config,
-            notifications=notifications,
-            project_id=project_id,
-            threshold_config=threshold_config,
-            updated=updated,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             alert_configuration_id: Optional[pulumi.Input[str]] = None,
-             created: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             event_type: Optional[pulumi.Input[str]] = None,
-             matchers: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]] = None,
-             metric_threshold_config: Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']] = None,
-             notifications: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             threshold_config: Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']] = None,
-             updated: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if alert_configuration_id is None and 'alertConfigurationId' in kwargs:
-            alert_configuration_id = kwargs['alertConfigurationId']
-        if event_type is None and 'eventType' in kwargs:
-            event_type = kwargs['eventType']
-        if metric_threshold_config is None and 'metricThresholdConfig' in kwargs:
-            metric_threshold_config = kwargs['metricThresholdConfig']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if threshold_config is None and 'thresholdConfig' in kwargs:
-            threshold_config = kwargs['thresholdConfig']
-
         if alert_configuration_id is not None:
-            _setter("alert_configuration_id", alert_configuration_id)
+            pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
         if created is not None:
-            _setter("created", created)
+            pulumi.set(__self__, "created", created)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if event_type is not None:
-            _setter("event_type", event_type)
+            pulumi.set(__self__, "event_type", event_type)
         if matchers is not None:
-            _setter("matchers", matchers)
+            pulumi.set(__self__, "matchers", matchers)
         if metric_threshold_config is not None:
-            _setter("metric_threshold_config", metric_threshold_config)
+            pulumi.set(__self__, "metric_threshold_config", metric_threshold_config)
         if notifications is not None:
-            _setter("notifications", notifications)
+            pulumi.set(__self__, "notifications", notifications)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if threshold_config is not None:
-            _setter("threshold_config", threshold_config)
+            pulumi.set(__self__, "threshold_config", threshold_config)
         if updated is not None:
-            _setter("updated", updated)
+            pulumi.set(__self__, "updated", updated)
 
     @property
     @pulumi.getter(name="alertConfigurationId")
@@ -648,10 +574,6 @@ class AlertConfiguration(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            AlertConfigurationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -678,13 +600,11 @@ class AlertConfiguration(pulumi.CustomResource):
                 raise TypeError("Missing required property 'event_type'")
             __props__.__dict__["event_type"] = event_type
             __props__.__dict__["matchers"] = matchers
-            metric_threshold_config = _utilities.configure(metric_threshold_config, AlertConfigurationMetricThresholdConfigArgs, True)
             __props__.__dict__["metric_threshold_config"] = metric_threshold_config
             __props__.__dict__["notifications"] = notifications
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
-            threshold_config = _utilities.configure(threshold_config, AlertConfigurationThresholdConfigArgs, True)
             __props__.__dict__["threshold_config"] = threshold_config
             __props__.__dict__["alert_configuration_id"] = None
             __props__.__dict__["created"] = None

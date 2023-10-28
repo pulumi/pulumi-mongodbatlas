@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -33,59 +33,16 @@ class PrivateLinkEndpointServiceArgs:
         :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
         :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
         """
-        PrivateLinkEndpointServiceArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoint_service_id=endpoint_service_id,
-            private_link_id=private_link_id,
-            project_id=project_id,
-            provider_name=provider_name,
-            endpoints=endpoints,
-            gcp_project_id=gcp_project_id,
-            private_endpoint_ip_address=private_endpoint_ip_address,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoint_service_id: Optional[pulumi.Input[str]] = None,
-             private_link_id: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             provider_name: Optional[pulumi.Input[str]] = None,
-             endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]] = None,
-             gcp_project_id: Optional[pulumi.Input[str]] = None,
-             private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if endpoint_service_id is None and 'endpointServiceId' in kwargs:
-            endpoint_service_id = kwargs['endpointServiceId']
-        if endpoint_service_id is None:
-            raise TypeError("Missing 'endpoint_service_id' argument")
-        if private_link_id is None and 'privateLinkId' in kwargs:
-            private_link_id = kwargs['privateLinkId']
-        if private_link_id is None:
-            raise TypeError("Missing 'private_link_id' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-        if provider_name is None:
-            raise TypeError("Missing 'provider_name' argument")
-        if gcp_project_id is None and 'gcpProjectId' in kwargs:
-            gcp_project_id = kwargs['gcpProjectId']
-        if private_endpoint_ip_address is None and 'privateEndpointIpAddress' in kwargs:
-            private_endpoint_ip_address = kwargs['privateEndpointIpAddress']
-
-        _setter("endpoint_service_id", endpoint_service_id)
-        _setter("private_link_id", private_link_id)
-        _setter("project_id", project_id)
-        _setter("provider_name", provider_name)
+        pulumi.set(__self__, "endpoint_service_id", endpoint_service_id)
+        pulumi.set(__self__, "private_link_id", private_link_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider_name", provider_name)
         if endpoints is not None:
-            _setter("endpoints", endpoints)
+            pulumi.set(__self__, "endpoints", endpoints)
         if gcp_project_id is not None:
-            _setter("gcp_project_id", gcp_project_id)
+            pulumi.set(__self__, "gcp_project_id", gcp_project_id)
         if private_endpoint_ip_address is not None:
-            _setter("private_endpoint_ip_address", private_endpoint_ip_address)
+            pulumi.set(__self__, "private_endpoint_ip_address", private_endpoint_ip_address)
 
     @property
     @pulumi.getter(name="endpointServiceId")
@@ -213,109 +170,38 @@ class _PrivateLinkEndpointServiceState:
         :param pulumi.Input[str] project_id: Unique identifier for the project.
         :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
-        _PrivateLinkEndpointServiceState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws_connection_status=aws_connection_status,
-            azure_status=azure_status,
-            delete_requested=delete_requested,
-            endpoint_group_name=endpoint_group_name,
-            endpoint_service_id=endpoint_service_id,
-            endpoints=endpoints,
-            error_message=error_message,
-            gcp_project_id=gcp_project_id,
-            gcp_status=gcp_status,
-            interface_endpoint_id=interface_endpoint_id,
-            private_endpoint_connection_name=private_endpoint_connection_name,
-            private_endpoint_ip_address=private_endpoint_ip_address,
-            private_endpoint_resource_id=private_endpoint_resource_id,
-            private_link_id=private_link_id,
-            project_id=project_id,
-            provider_name=provider_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws_connection_status: Optional[pulumi.Input[str]] = None,
-             azure_status: Optional[pulumi.Input[str]] = None,
-             delete_requested: Optional[pulumi.Input[bool]] = None,
-             endpoint_group_name: Optional[pulumi.Input[str]] = None,
-             endpoint_service_id: Optional[pulumi.Input[str]] = None,
-             endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]] = None,
-             error_message: Optional[pulumi.Input[str]] = None,
-             gcp_project_id: Optional[pulumi.Input[str]] = None,
-             gcp_status: Optional[pulumi.Input[str]] = None,
-             interface_endpoint_id: Optional[pulumi.Input[str]] = None,
-             private_endpoint_connection_name: Optional[pulumi.Input[str]] = None,
-             private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
-             private_endpoint_resource_id: Optional[pulumi.Input[str]] = None,
-             private_link_id: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             provider_name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws_connection_status is None and 'awsConnectionStatus' in kwargs:
-            aws_connection_status = kwargs['awsConnectionStatus']
-        if azure_status is None and 'azureStatus' in kwargs:
-            azure_status = kwargs['azureStatus']
-        if delete_requested is None and 'deleteRequested' in kwargs:
-            delete_requested = kwargs['deleteRequested']
-        if endpoint_group_name is None and 'endpointGroupName' in kwargs:
-            endpoint_group_name = kwargs['endpointGroupName']
-        if endpoint_service_id is None and 'endpointServiceId' in kwargs:
-            endpoint_service_id = kwargs['endpointServiceId']
-        if error_message is None and 'errorMessage' in kwargs:
-            error_message = kwargs['errorMessage']
-        if gcp_project_id is None and 'gcpProjectId' in kwargs:
-            gcp_project_id = kwargs['gcpProjectId']
-        if gcp_status is None and 'gcpStatus' in kwargs:
-            gcp_status = kwargs['gcpStatus']
-        if interface_endpoint_id is None and 'interfaceEndpointId' in kwargs:
-            interface_endpoint_id = kwargs['interfaceEndpointId']
-        if private_endpoint_connection_name is None and 'privateEndpointConnectionName' in kwargs:
-            private_endpoint_connection_name = kwargs['privateEndpointConnectionName']
-        if private_endpoint_ip_address is None and 'privateEndpointIpAddress' in kwargs:
-            private_endpoint_ip_address = kwargs['privateEndpointIpAddress']
-        if private_endpoint_resource_id is None and 'privateEndpointResourceId' in kwargs:
-            private_endpoint_resource_id = kwargs['privateEndpointResourceId']
-        if private_link_id is None and 'privateLinkId' in kwargs:
-            private_link_id = kwargs['privateLinkId']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if provider_name is None and 'providerName' in kwargs:
-            provider_name = kwargs['providerName']
-
         if aws_connection_status is not None:
-            _setter("aws_connection_status", aws_connection_status)
+            pulumi.set(__self__, "aws_connection_status", aws_connection_status)
         if azure_status is not None:
-            _setter("azure_status", azure_status)
+            pulumi.set(__self__, "azure_status", azure_status)
         if delete_requested is not None:
-            _setter("delete_requested", delete_requested)
+            pulumi.set(__self__, "delete_requested", delete_requested)
         if endpoint_group_name is not None:
-            _setter("endpoint_group_name", endpoint_group_name)
+            pulumi.set(__self__, "endpoint_group_name", endpoint_group_name)
         if endpoint_service_id is not None:
-            _setter("endpoint_service_id", endpoint_service_id)
+            pulumi.set(__self__, "endpoint_service_id", endpoint_service_id)
         if endpoints is not None:
-            _setter("endpoints", endpoints)
+            pulumi.set(__self__, "endpoints", endpoints)
         if error_message is not None:
-            _setter("error_message", error_message)
+            pulumi.set(__self__, "error_message", error_message)
         if gcp_project_id is not None:
-            _setter("gcp_project_id", gcp_project_id)
+            pulumi.set(__self__, "gcp_project_id", gcp_project_id)
         if gcp_status is not None:
-            _setter("gcp_status", gcp_status)
+            pulumi.set(__self__, "gcp_status", gcp_status)
         if interface_endpoint_id is not None:
-            _setter("interface_endpoint_id", interface_endpoint_id)
+            pulumi.set(__self__, "interface_endpoint_id", interface_endpoint_id)
         if private_endpoint_connection_name is not None:
-            _setter("private_endpoint_connection_name", private_endpoint_connection_name)
+            pulumi.set(__self__, "private_endpoint_connection_name", private_endpoint_connection_name)
         if private_endpoint_ip_address is not None:
-            _setter("private_endpoint_ip_address", private_endpoint_ip_address)
+            pulumi.set(__self__, "private_endpoint_ip_address", private_endpoint_ip_address)
         if private_endpoint_resource_id is not None:
-            _setter("private_endpoint_resource_id", private_endpoint_resource_id)
+            pulumi.set(__self__, "private_endpoint_resource_id", private_endpoint_resource_id)
         if private_link_id is not None:
-            _setter("private_link_id", private_link_id)
+            pulumi.set(__self__, "private_link_id", private_link_id)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if provider_name is not None:
-            _setter("provider_name", provider_name)
+            pulumi.set(__self__, "provider_name", provider_name)
 
     @property
     @pulumi.getter(name="awsConnectionStatus")
@@ -572,10 +458,6 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            PrivateLinkEndpointServiceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

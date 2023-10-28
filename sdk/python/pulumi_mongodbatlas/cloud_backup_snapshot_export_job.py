@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -29,50 +29,11 @@ class CloudBackupSnapshotExportJobArgs:
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
         """
-        CloudBackupSnapshotExportJobArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_name=cluster_name,
-            custom_datas=custom_datas,
-            export_bucket_id=export_bucket_id,
-            project_id=project_id,
-            snapshot_id=snapshot_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_name: Optional[pulumi.Input[str]] = None,
-             custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]] = None,
-             export_bucket_id: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             snapshot_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if cluster_name is None:
-            raise TypeError("Missing 'cluster_name' argument")
-        if custom_datas is None and 'customDatas' in kwargs:
-            custom_datas = kwargs['customDatas']
-        if custom_datas is None:
-            raise TypeError("Missing 'custom_datas' argument")
-        if export_bucket_id is None and 'exportBucketId' in kwargs:
-            export_bucket_id = kwargs['exportBucketId']
-        if export_bucket_id is None:
-            raise TypeError("Missing 'export_bucket_id' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if snapshot_id is None and 'snapshotId' in kwargs:
-            snapshot_id = kwargs['snapshotId']
-        if snapshot_id is None:
-            raise TypeError("Missing 'snapshot_id' argument")
-
-        _setter("cluster_name", cluster_name)
-        _setter("custom_datas", custom_datas)
-        _setter("export_bucket_id", export_bucket_id)
-        _setter("project_id", project_id)
-        _setter("snapshot_id", snapshot_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "custom_datas", custom_datas)
+        pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -167,93 +128,34 @@ class _CloudBackupSnapshotExportJobState:
         :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
         :param pulumi.Input[str] state: Status of the export job. Value can be one of the following:
         """
-        _CloudBackupSnapshotExportJobState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_name=cluster_name,
-            components=components,
-            created_at=created_at,
-            custom_datas=custom_datas,
-            err_msg=err_msg,
-            export_bucket_id=export_bucket_id,
-            export_job_id=export_job_id,
-            export_status_exported_collections=export_status_exported_collections,
-            export_status_total_collections=export_status_total_collections,
-            finished_at=finished_at,
-            prefix=prefix,
-            project_id=project_id,
-            snapshot_id=snapshot_id,
-            state=state,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_name: Optional[pulumi.Input[str]] = None,
-             components: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]] = None,
-             err_msg: Optional[pulumi.Input[str]] = None,
-             export_bucket_id: Optional[pulumi.Input[str]] = None,
-             export_job_id: Optional[pulumi.Input[str]] = None,
-             export_status_exported_collections: Optional[pulumi.Input[int]] = None,
-             export_status_total_collections: Optional[pulumi.Input[int]] = None,
-             finished_at: Optional[pulumi.Input[str]] = None,
-             prefix: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             snapshot_id: Optional[pulumi.Input[str]] = None,
-             state: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_name is None and 'clusterName' in kwargs:
-            cluster_name = kwargs['clusterName']
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if custom_datas is None and 'customDatas' in kwargs:
-            custom_datas = kwargs['customDatas']
-        if err_msg is None and 'errMsg' in kwargs:
-            err_msg = kwargs['errMsg']
-        if export_bucket_id is None and 'exportBucketId' in kwargs:
-            export_bucket_id = kwargs['exportBucketId']
-        if export_job_id is None and 'exportJobId' in kwargs:
-            export_job_id = kwargs['exportJobId']
-        if export_status_exported_collections is None and 'exportStatusExportedCollections' in kwargs:
-            export_status_exported_collections = kwargs['exportStatusExportedCollections']
-        if export_status_total_collections is None and 'exportStatusTotalCollections' in kwargs:
-            export_status_total_collections = kwargs['exportStatusTotalCollections']
-        if finished_at is None and 'finishedAt' in kwargs:
-            finished_at = kwargs['finishedAt']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if snapshot_id is None and 'snapshotId' in kwargs:
-            snapshot_id = kwargs['snapshotId']
-
         if cluster_name is not None:
-            _setter("cluster_name", cluster_name)
+            pulumi.set(__self__, "cluster_name", cluster_name)
         if components is not None:
-            _setter("components", components)
+            pulumi.set(__self__, "components", components)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if custom_datas is not None:
-            _setter("custom_datas", custom_datas)
+            pulumi.set(__self__, "custom_datas", custom_datas)
         if err_msg is not None:
-            _setter("err_msg", err_msg)
+            pulumi.set(__self__, "err_msg", err_msg)
         if export_bucket_id is not None:
-            _setter("export_bucket_id", export_bucket_id)
+            pulumi.set(__self__, "export_bucket_id", export_bucket_id)
         if export_job_id is not None:
-            _setter("export_job_id", export_job_id)
+            pulumi.set(__self__, "export_job_id", export_job_id)
         if export_status_exported_collections is not None:
-            _setter("export_status_exported_collections", export_status_exported_collections)
+            pulumi.set(__self__, "export_status_exported_collections", export_status_exported_collections)
         if export_status_total_collections is not None:
-            _setter("export_status_total_collections", export_status_total_collections)
+            pulumi.set(__self__, "export_status_total_collections", export_status_total_collections)
         if finished_at is not None:
-            _setter("finished_at", finished_at)
+            pulumi.set(__self__, "finished_at", finished_at)
         if prefix is not None:
-            _setter("prefix", prefix)
+            pulumi.set(__self__, "prefix", prefix)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if snapshot_id is not None:
-            _setter("snapshot_id", snapshot_id)
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
         if state is not None:
-            _setter("state", state)
+            pulumi.set(__self__, "state", state)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -523,10 +425,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            CloudBackupSnapshotExportJobArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

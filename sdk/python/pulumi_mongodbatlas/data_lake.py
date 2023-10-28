@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -31,37 +31,12 @@ class DataLakeArgs:
                * `data_process_region.0.region` - (Required). Name of the region to which Data Lake routes client connections for data processing. Atlas Data Lake only supports the following regions:
         :param pulumi.Input[str] name: Name of the Atlas Data Lake.
         """
-        DataLakeArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws=aws,
-            project_id=project_id,
-            data_process_region=data_process_region,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws: Optional[pulumi.Input['DataLakeAwsArgs']] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             data_process_region: Optional[pulumi.Input['DataLakeDataProcessRegionArgs']] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws is None:
-            raise TypeError("Missing 'aws' argument")
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if project_id is None:
-            raise TypeError("Missing 'project_id' argument")
-        if data_process_region is None and 'dataProcessRegion' in kwargs:
-            data_process_region = kwargs['dataProcessRegion']
-
-        _setter("aws", aws)
-        _setter("project_id", project_id)
+        pulumi.set(__self__, "aws", aws)
+        pulumi.set(__self__, "project_id", project_id)
         if data_process_region is not None:
-            _setter("data_process_region", data_process_region)
+            pulumi.set(__self__, "data_process_region", data_process_region)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -160,55 +135,22 @@ class _DataLakeState:
                * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
                * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
         """
-        _DataLakeState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            aws=aws,
-            data_process_region=data_process_region,
-            hostnames=hostnames,
-            name=name,
-            project_id=project_id,
-            state=state,
-            storage_databases=storage_databases,
-            storage_stores=storage_stores,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             aws: Optional[pulumi.Input['DataLakeAwsArgs']] = None,
-             data_process_region: Optional[pulumi.Input['DataLakeDataProcessRegionArgs']] = None,
-             hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             state: Optional[pulumi.Input[str]] = None,
-             storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseArgs']]]] = None,
-             storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageStoreArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if data_process_region is None and 'dataProcessRegion' in kwargs:
-            data_process_region = kwargs['dataProcessRegion']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if storage_databases is None and 'storageDatabases' in kwargs:
-            storage_databases = kwargs['storageDatabases']
-        if storage_stores is None and 'storageStores' in kwargs:
-            storage_stores = kwargs['storageStores']
-
         if aws is not None:
-            _setter("aws", aws)
+            pulumi.set(__self__, "aws", aws)
         if data_process_region is not None:
-            _setter("data_process_region", data_process_region)
+            pulumi.set(__self__, "data_process_region", data_process_region)
         if hostnames is not None:
-            _setter("hostnames", hostnames)
+            pulumi.set(__self__, "hostnames", hostnames)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if state is not None:
-            _setter("state", state)
+            pulumi.set(__self__, "state", state)
         if storage_databases is not None:
-            _setter("storage_databases", storage_databases)
+            pulumi.set(__self__, "storage_databases", storage_databases)
         if storage_stores is not None:
-            _setter("storage_stores", storage_stores)
+            pulumi.set(__self__, "storage_stores", storage_stores)
 
     @property
     @pulumi.getter
@@ -438,10 +380,6 @@ class DataLake(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            DataLakeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -460,11 +398,9 @@ class DataLake(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DataLakeArgs.__new__(DataLakeArgs)
 
-            aws = _utilities.configure(aws, DataLakeAwsArgs, True)
             if aws is None and not opts.urn:
                 raise TypeError("Missing required property 'aws'")
             __props__.__dict__["aws"] = aws
-            data_process_region = _utilities.configure(data_process_region, DataLakeDataProcessRegionArgs, True)
             __props__.__dict__["data_process_region"] = data_process_region
             __props__.__dict__["name"] = name
             if project_id is None and not opts.urn:
