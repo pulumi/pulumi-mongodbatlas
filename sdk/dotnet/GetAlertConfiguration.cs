@@ -113,11 +113,20 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string EventType;
         public readonly string Id;
+        /// <summary>
+        /// Rules to apply when matching an object against this alert configuration. See matchers.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationMatcherResult> Matchers;
+        /// <summary>
+        /// The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationMetricThresholdConfigResult> MetricThresholdConfigs;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationNotificationResult> Notifications;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationOutputResult> Outputs;
         public readonly string ProjectId;
+        /// <summary>
+        /// Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationThresholdConfigResult> ThresholdConfigs;
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.

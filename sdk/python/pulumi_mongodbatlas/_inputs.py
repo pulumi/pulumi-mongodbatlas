@@ -65,19 +65,12 @@ __all__ = [
     'CustomDbRoleActionArgs',
     'CustomDbRoleActionResourceArgs',
     'CustomDbRoleInheritedRoleArgs',
-    'DataLakeAwsArgs',
-    'DataLakeDataProcessRegionArgs',
     'DataLakePipelineIngestionScheduleArgs',
     'DataLakePipelineSinkArgs',
     'DataLakePipelineSinkPartitionFieldArgs',
     'DataLakePipelineSnapshotArgs',
     'DataLakePipelineSourceArgs',
     'DataLakePipelineTransformationArgs',
-    'DataLakeStorageDatabaseArgs',
-    'DataLakeStorageDatabaseCollectionArgs',
-    'DataLakeStorageDatabaseCollectionDataSourceArgs',
-    'DataLakeStorageDatabaseViewArgs',
-    'DataLakeStorageStoreArgs',
     'DatabaseUserLabelArgs',
     'DatabaseUserRoleArgs',
     'DatabaseUserScopeArgs',
@@ -104,6 +97,7 @@ __all__ = [
     'LdapVerifyLinkArgs',
     'LdapVerifyValidationArgs',
     'OnlineArchiveCriteriaArgs',
+    'OnlineArchiveDataExpirationRuleArgs',
     'OnlineArchivePartitionFieldArgs',
     'OnlineArchiveScheduleArgs',
     'PrivateLinkEndpointServiceEndpointArgs',
@@ -1430,6 +1424,7 @@ class AlertConfigurationNotificationArgs:
                  interval_min: Optional[pulumi.Input[int]] = None,
                  microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
                  mobile_number: Optional[pulumi.Input[str]] = None,
+                 notifier_id: Optional[pulumi.Input[str]] = None,
                  ops_genie_api_key: Optional[pulumi.Input[str]] = None,
                  ops_genie_region: Optional[pulumi.Input[str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1455,6 +1450,7 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[int] interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         :param pulumi.Input[str] microsoft_teams_webhook_url: Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
         :param pulumi.Input[str] mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
+        :param pulumi.Input[str] notifier_id: The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
         :param pulumi.Input[str] ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[str] ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
@@ -1500,6 +1496,8 @@ class AlertConfigurationNotificationArgs:
             pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if mobile_number is not None:
             pulumi.set(__self__, "mobile_number", mobile_number)
+        if notifier_id is not None:
+            pulumi.set(__self__, "notifier_id", notifier_id)
         if ops_genie_api_key is not None:
             pulumi.set(__self__, "ops_genie_api_key", ops_genie_api_key)
         if ops_genie_region is not None:
@@ -1657,6 +1655,18 @@ class AlertConfigurationNotificationArgs:
     @mobile_number.setter
     def mobile_number(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mobile_number", value)
+
+    @property
+    @pulumi.getter(name="notifierId")
+    def notifier_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+        """
+        return pulumi.get(self, "notifier_id")
+
+    @notifier_id.setter
+    def notifier_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "notifier_id", value)
 
     @property
     @pulumi.getter(name="opsGenieApiKey")
@@ -4287,96 +4297,6 @@ class CustomDbRoleInheritedRoleArgs:
 
 
 @pulumi.input_type
-class DataLakeAwsArgs:
-    def __init__(__self__, *,
-                 role_id: pulumi.Input[str],
-                 test_s3_bucket: pulumi.Input[str],
-                 external_id: Optional[pulumi.Input[str]] = None,
-                 iam_assumed_role_arn: Optional[pulumi.Input[str]] = None,
-                 iam_user_arn: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "role_id", role_id)
-        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
-        if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
-        if iam_assumed_role_arn is not None:
-            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
-        if iam_user_arn is not None:
-            pulumi.set(__self__, "iam_user_arn", iam_user_arn)
-
-    @property
-    @pulumi.getter(name="roleId")
-    def role_id(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "role_id")
-
-    @role_id.setter
-    def role_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "role_id", value)
-
-    @property
-    @pulumi.getter(name="testS3Bucket")
-    def test_s3_bucket(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "test_s3_bucket")
-
-    @test_s3_bucket.setter
-    def test_s3_bucket(self, value: pulumi.Input[str]):
-        pulumi.set(self, "test_s3_bucket", value)
-
-    @property
-    @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "external_id")
-
-    @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "external_id", value)
-
-    @property
-    @pulumi.getter(name="iamAssumedRoleArn")
-    def iam_assumed_role_arn(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "iam_assumed_role_arn")
-
-    @iam_assumed_role_arn.setter
-    def iam_assumed_role_arn(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "iam_assumed_role_arn", value)
-
-    @property
-    @pulumi.getter(name="iamUserArn")
-    def iam_user_arn(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "iam_user_arn")
-
-    @iam_user_arn.setter
-    def iam_user_arn(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "iam_user_arn", value)
-
-
-@pulumi.input_type
-class DataLakeDataProcessRegionArgs:
-    def __init__(__self__, *,
-                 cloud_provider: pulumi.Input[str],
-                 region: pulumi.Input[str]):
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "cloud_provider")
-
-    @cloud_provider.setter
-    def cloud_provider(self, value: pulumi.Input[str]):
-        pulumi.set(self, "cloud_provider", value)
-
-    @property
-    @pulumi.getter
-    def region(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "region")
-
-    @region.setter
-    def region(self, value: pulumi.Input[str]):
-        pulumi.set(self, "region", value)
-
-
-@pulumi.input_type
 class DataLakePipelineIngestionScheduleArgs:
     def __init__(__self__, *,
                  frequency_interval: Optional[pulumi.Input[int]] = None,
@@ -4868,295 +4788,6 @@ class DataLakePipelineTransformationArgs:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
-
-
-@pulumi.input_type
-class DataLakeStorageDatabaseArgs:
-    def __init__(__self__, *,
-                 collections: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionArgs']]]] = None,
-                 max_wildcard_collections: Optional[pulumi.Input[int]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 views: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseViewArgs']]]] = None):
-        """
-        :param pulumi.Input[str] name: Name of the Atlas Data Lake.
-        """
-        if collections is not None:
-            pulumi.set(__self__, "collections", collections)
-        if max_wildcard_collections is not None:
-            pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if views is not None:
-            pulumi.set(__self__, "views", views)
-
-    @property
-    @pulumi.getter
-    def collections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionArgs']]]]:
-        return pulumi.get(self, "collections")
-
-    @collections.setter
-    def collections(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionArgs']]]]):
-        pulumi.set(self, "collections", value)
-
-    @property
-    @pulumi.getter(name="maxWildcardCollections")
-    def max_wildcard_collections(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "max_wildcard_collections")
-
-    @max_wildcard_collections.setter
-    def max_wildcard_collections(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "max_wildcard_collections", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the Atlas Data Lake.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def views(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseViewArgs']]]]:
-        return pulumi.get(self, "views")
-
-    @views.setter
-    def views(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseViewArgs']]]]):
-        pulumi.set(self, "views", value)
-
-
-@pulumi.input_type
-class DataLakeStorageDatabaseCollectionArgs:
-    def __init__(__self__, *,
-                 data_sources: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionDataSourceArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: Name of the Atlas Data Lake.
-        """
-        if data_sources is not None:
-            pulumi.set(__self__, "data_sources", data_sources)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter(name="dataSources")
-    def data_sources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionDataSourceArgs']]]]:
-        return pulumi.get(self, "data_sources")
-
-    @data_sources.setter
-    def data_sources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionDataSourceArgs']]]]):
-        pulumi.set(self, "data_sources", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the Atlas Data Lake.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class DataLakeStorageDatabaseCollectionDataSourceArgs:
-    def __init__(__self__, *,
-                 default_format: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None,
-                 store_name: Optional[pulumi.Input[str]] = None):
-        if default_format is not None:
-            pulumi.set(__self__, "default_format", default_format)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if store_name is not None:
-            pulumi.set(__self__, "store_name", store_name)
-
-    @property
-    @pulumi.getter(name="defaultFormat")
-    def default_format(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "default_format")
-
-    @default_format.setter
-    def default_format(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "default_format", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-    @property
-    @pulumi.getter(name="storeName")
-    def store_name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "store_name")
-
-    @store_name.setter
-    def store_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "store_name", value)
-
-
-@pulumi.input_type
-class DataLakeStorageDatabaseViewArgs:
-    def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None,
-                 pipeline: Optional[pulumi.Input[str]] = None,
-                 source: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: Name of the Atlas Data Lake.
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if pipeline is not None:
-            pulumi.set(__self__, "pipeline", pipeline)
-        if source is not None:
-            pulumi.set(__self__, "source", source)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the Atlas Data Lake.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def pipeline(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "pipeline")
-
-    @pipeline.setter
-    def pipeline(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "pipeline", value)
-
-    @property
-    @pulumi.getter
-    def source(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "source")
-
-    @source.setter
-    def source(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "source", value)
-
-
-@pulumi.input_type
-class DataLakeStorageStoreArgs:
-    def __init__(__self__, *,
-                 additional_storage_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 bucket: Optional[pulumi.Input[str]] = None,
-                 delimiter: Optional[pulumi.Input[str]] = None,
-                 include_tags: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 prefix: Optional[pulumi.Input[str]] = None,
-                 provider: Optional[pulumi.Input[str]] = None,
-                 region: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: Name of the Atlas Data Lake.
-        """
-        if additional_storage_classes is not None:
-            pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
-        if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
-        if delimiter is not None:
-            pulumi.set(__self__, "delimiter", delimiter)
-        if include_tags is not None:
-            pulumi.set(__self__, "include_tags", include_tags)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if prefix is not None:
-            pulumi.set(__self__, "prefix", prefix)
-        if provider is not None:
-            pulumi.set(__self__, "provider", provider)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter(name="additionalStorageClasses")
-    def additional_storage_classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "additional_storage_classes")
-
-    @additional_storage_classes.setter
-    def additional_storage_classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "additional_storage_classes", value)
-
-    @property
-    @pulumi.getter
-    def bucket(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "bucket")
-
-    @bucket.setter
-    def bucket(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "bucket", value)
-
-    @property
-    @pulumi.getter
-    def delimiter(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "delimiter")
-
-    @delimiter.setter
-    def delimiter(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "delimiter", value)
-
-    @property
-    @pulumi.getter(name="includeTags")
-    def include_tags(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "include_tags")
-
-    @include_tags.setter
-    def include_tags(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "include_tags", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the Atlas Data Lake.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def prefix(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "prefix")
-
-    @prefix.setter
-    def prefix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "prefix", value)
-
-    @property
-    @pulumi.getter
-    def provider(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "provider")
-
-    @provider.setter
-    def provider(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "provider", value)
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "region")
-
-    @region.setter
-    def region(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
@@ -6771,6 +6402,28 @@ class OnlineArchiveCriteriaArgs:
     @query.setter
     def query(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class OnlineArchiveDataExpirationRuleArgs:
+    def __init__(__self__, *,
+                 expire_after_days: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] expire_after_days: Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+        """
+        pulumi.set(__self__, "expire_after_days", expire_after_days)
+
+    @property
+    @pulumi.getter(name="expireAfterDays")
+    def expire_after_days(self) -> pulumi.Input[int]:
+        """
+        Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+        """
+        return pulumi.get(self, "expire_after_days")
+
+    @expire_after_days.setter
+    def expire_after_days(self, value: pulumi.Input[int]):
+        pulumi.set(self, "expire_after_days", value)
 
 
 @pulumi.input_type

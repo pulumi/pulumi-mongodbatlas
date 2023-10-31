@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  * ```
  * ## Authorize role
  *
- * Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
+ * Once the resource is created add the field `iamAssumedRoleArn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

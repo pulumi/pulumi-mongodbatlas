@@ -22,6 +22,7 @@ class OnlineArchiveArgs:
                  db_name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  collection_type: Optional[pulumi.Input[str]] = None,
+                 data_expiration_rule: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  schedule: Optional[pulumi.Input['OnlineArchiveScheduleArgs']] = None,
@@ -30,12 +31,14 @@ class OnlineArchiveArgs:
         The set of arguments for constructing a OnlineArchive resource.
         :param pulumi.Input[str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[str] coll_name: Name of the collection.
-        :param pulumi.Input['OnlineArchiveCriteriaArgs'] criteria: Criteria to use for archiving data.
+        :param pulumi.Input['OnlineArchiveCriteriaArgs'] criteria: Criteria to use for archiving data. See criteria.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
         :param pulumi.Input[str] project_id: The unique ID for the project
-        :param pulumi.Input[str] collection_type: Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
-        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
-        :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+        :param pulumi.Input[str] collection_type: Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        :param pulumi.Input['OnlineArchiveDataExpirationRuleArgs'] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
+        :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "coll_name", coll_name)
@@ -44,6 +47,8 @@ class OnlineArchiveArgs:
         pulumi.set(__self__, "project_id", project_id)
         if collection_type is not None:
             pulumi.set(__self__, "collection_type", collection_type)
+        if data_expiration_rule is not None:
+            pulumi.set(__self__, "data_expiration_rule", data_expiration_rule)
         if partition_fields is not None:
             pulumi.set(__self__, "partition_fields", partition_fields)
         if paused is not None:
@@ -81,7 +86,7 @@ class OnlineArchiveArgs:
     @pulumi.getter
     def criteria(self) -> pulumi.Input['OnlineArchiveCriteriaArgs']:
         """
-        Criteria to use for archiving data.
+        Criteria to use for archiving data. See criteria.
         """
         return pulumi.get(self, "criteria")
 
@@ -117,7 +122,7 @@ class OnlineArchiveArgs:
     @pulumi.getter(name="collectionType")
     def collection_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         """
         return pulumi.get(self, "collection_type")
 
@@ -126,10 +131,22 @@ class OnlineArchiveArgs:
         pulumi.set(self, "collection_type", value)
 
     @property
+    @pulumi.getter(name="dataExpirationRule")
+    def data_expiration_rule(self) -> Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']]:
+        """
+        Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        """
+        return pulumi.get(self, "data_expiration_rule")
+
+    @data_expiration_rule.setter
+    def data_expiration_rule(self, value: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']]):
+        pulumi.set(self, "data_expiration_rule", value)
+
+    @property
     @pulumi.getter(name="partitionFields")
     def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
         """
-        Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+        Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 
@@ -141,7 +158,7 @@ class OnlineArchiveArgs:
     @pulumi.getter
     def paused(self) -> Optional[pulumi.Input[bool]]:
         """
-        State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+        State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         """
         return pulumi.get(self, "paused")
 
@@ -152,6 +169,9 @@ class OnlineArchiveArgs:
     @property
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input['OnlineArchiveScheduleArgs']]:
+        """
+        Regular frequency and duration when archiving process occurs. See schedule.
+        """
         return pulumi.get(self, "schedule")
 
     @schedule.setter
@@ -176,6 +196,7 @@ class _OnlineArchiveState:
                  coll_name: Optional[pulumi.Input[str]] = None,
                  collection_type: Optional[pulumi.Input[str]] = None,
                  criteria: Optional[pulumi.Input['OnlineArchiveCriteriaArgs']] = None,
+                 data_expiration_rule: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
@@ -188,12 +209,14 @@ class _OnlineArchiveState:
         :param pulumi.Input[str] archive_id: ID of the online archive.
         :param pulumi.Input[str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[str] coll_name: Name of the collection.
-        :param pulumi.Input[str] collection_type: Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
-        :param pulumi.Input['OnlineArchiveCriteriaArgs'] criteria: Criteria to use for archiving data.
+        :param pulumi.Input[str] collection_type: Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        :param pulumi.Input['OnlineArchiveCriteriaArgs'] criteria: Criteria to use for archiving data. See criteria.
+        :param pulumi.Input['OnlineArchiveDataExpirationRuleArgs'] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
-        :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[str] project_id: The unique ID for the project
+        :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         :param pulumi.Input[str] state: Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         """
         if archive_id is not None:
@@ -206,6 +229,8 @@ class _OnlineArchiveState:
             pulumi.set(__self__, "collection_type", collection_type)
         if criteria is not None:
             pulumi.set(__self__, "criteria", criteria)
+        if data_expiration_rule is not None:
+            pulumi.set(__self__, "data_expiration_rule", data_expiration_rule)
         if db_name is not None:
             pulumi.set(__self__, "db_name", db_name)
         if partition_fields is not None:
@@ -261,7 +286,7 @@ class _OnlineArchiveState:
     @pulumi.getter(name="collectionType")
     def collection_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         """
         return pulumi.get(self, "collection_type")
 
@@ -273,13 +298,25 @@ class _OnlineArchiveState:
     @pulumi.getter
     def criteria(self) -> Optional[pulumi.Input['OnlineArchiveCriteriaArgs']]:
         """
-        Criteria to use for archiving data.
+        Criteria to use for archiving data. See criteria.
         """
         return pulumi.get(self, "criteria")
 
     @criteria.setter
     def criteria(self, value: Optional[pulumi.Input['OnlineArchiveCriteriaArgs']]):
         pulumi.set(self, "criteria", value)
+
+    @property
+    @pulumi.getter(name="dataExpirationRule")
+    def data_expiration_rule(self) -> Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']]:
+        """
+        Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        """
+        return pulumi.get(self, "data_expiration_rule")
+
+    @data_expiration_rule.setter
+    def data_expiration_rule(self, value: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']]):
+        pulumi.set(self, "data_expiration_rule", value)
 
     @property
     @pulumi.getter(name="dbName")
@@ -297,7 +334,7 @@ class _OnlineArchiveState:
     @pulumi.getter(name="partitionFields")
     def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
         """
-        Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+        Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 
@@ -309,7 +346,7 @@ class _OnlineArchiveState:
     @pulumi.getter
     def paused(self) -> Optional[pulumi.Input[bool]]:
         """
-        State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+        State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         """
         return pulumi.get(self, "paused")
 
@@ -332,6 +369,9 @@ class _OnlineArchiveState:
     @property
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input['OnlineArchiveScheduleArgs']]:
+        """
+        Regular frequency and duration when archiving process occurs. See schedule.
+        """
         return pulumi.get(self, "schedule")
 
     @schedule.setter
@@ -369,6 +409,7 @@ class OnlineArchive(pulumi.CustomResource):
                  coll_name: Optional[pulumi.Input[str]] = None,
                  collection_type: Optional[pulumi.Input[str]] = None,
                  criteria: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']]] = None,
+                 data_expiration_rule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
@@ -451,12 +492,14 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[str] coll_name: Name of the collection.
-        :param pulumi.Input[str] collection_type: Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
-        :param pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']] criteria: Criteria to use for archiving data.
+        :param pulumi.Input[str] collection_type: Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        :param pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']] criteria: Criteria to use for archiving data. See criteria.
+        :param pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
-        :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[str] project_id: The unique ID for the project
+        :param pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         """
         ...
     @overload
@@ -554,6 +597,7 @@ class OnlineArchive(pulumi.CustomResource):
                  coll_name: Optional[pulumi.Input[str]] = None,
                  collection_type: Optional[pulumi.Input[str]] = None,
                  criteria: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']]] = None,
+                 data_expiration_rule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
@@ -579,6 +623,7 @@ class OnlineArchive(pulumi.CustomResource):
             if criteria is None and not opts.urn:
                 raise TypeError("Missing required property 'criteria'")
             __props__.__dict__["criteria"] = criteria
+            __props__.__dict__["data_expiration_rule"] = data_expiration_rule
             if db_name is None and not opts.urn:
                 raise TypeError("Missing required property 'db_name'")
             __props__.__dict__["db_name"] = db_name
@@ -606,6 +651,7 @@ class OnlineArchive(pulumi.CustomResource):
             coll_name: Optional[pulumi.Input[str]] = None,
             collection_type: Optional[pulumi.Input[str]] = None,
             criteria: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']]] = None,
+            data_expiration_rule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']]] = None,
             db_name: Optional[pulumi.Input[str]] = None,
             partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
             paused: Optional[pulumi.Input[bool]] = None,
@@ -623,12 +669,14 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[str] archive_id: ID of the online archive.
         :param pulumi.Input[str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[str] coll_name: Name of the collection.
-        :param pulumi.Input[str] collection_type: Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
-        :param pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']] criteria: Criteria to use for archiving data.
+        :param pulumi.Input[str] collection_type: Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        :param pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']] criteria: Criteria to use for archiving data. See criteria.
+        :param pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
-        :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[str] project_id: The unique ID for the project
+        :param pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         :param pulumi.Input[str] state: Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -640,6 +688,7 @@ class OnlineArchive(pulumi.CustomResource):
         __props__.__dict__["coll_name"] = coll_name
         __props__.__dict__["collection_type"] = collection_type
         __props__.__dict__["criteria"] = criteria
+        __props__.__dict__["data_expiration_rule"] = data_expiration_rule
         __props__.__dict__["db_name"] = db_name
         __props__.__dict__["partition_fields"] = partition_fields
         __props__.__dict__["paused"] = paused
@@ -677,7 +726,7 @@ class OnlineArchive(pulumi.CustomResource):
     @pulumi.getter(name="collectionType")
     def collection_type(self) -> pulumi.Output[str]:
         """
-        Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         """
         return pulumi.get(self, "collection_type")
 
@@ -685,9 +734,17 @@ class OnlineArchive(pulumi.CustomResource):
     @pulumi.getter
     def criteria(self) -> pulumi.Output['outputs.OnlineArchiveCriteria']:
         """
-        Criteria to use for archiving data.
+        Criteria to use for archiving data. See criteria.
         """
         return pulumi.get(self, "criteria")
+
+    @property
+    @pulumi.getter(name="dataExpirationRule")
+    def data_expiration_rule(self) -> pulumi.Output[Optional['outputs.OnlineArchiveDataExpirationRule']]:
+        """
+        Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        """
+        return pulumi.get(self, "data_expiration_rule")
 
     @property
     @pulumi.getter(name="dbName")
@@ -701,7 +758,7 @@ class OnlineArchive(pulumi.CustomResource):
     @pulumi.getter(name="partitionFields")
     def partition_fields(self) -> pulumi.Output[Sequence['outputs.OnlineArchivePartitionField']]:
         """
-        Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+        Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 
@@ -709,7 +766,7 @@ class OnlineArchive(pulumi.CustomResource):
     @pulumi.getter
     def paused(self) -> pulumi.Output[bool]:
         """
-        State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+        State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         """
         return pulumi.get(self, "paused")
 
@@ -724,6 +781,9 @@ class OnlineArchive(pulumi.CustomResource):
     @property
     @pulumi.getter
     def schedule(self) -> pulumi.Output[Optional['outputs.OnlineArchiveSchedule']]:
+        """
+        Regular frequency and duration when archiving process occurs. See schedule.
+        """
         return pulumi.get(self, "schedule")
 
     @property

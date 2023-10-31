@@ -54,6 +54,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string MobileNumber;
         /// <summary>
+        /// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+        /// </summary>
+        public readonly string NotifierId;
+        /// <summary>
         /// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         /// </summary>
         public readonly string OpsGenieApiKey;
@@ -129,6 +133,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string mobileNumber,
 
+            string notifierId,
+
             string opsGenieApiKey,
 
             string opsGenieRegion,
@@ -165,6 +171,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             IntervalMin = intervalMin;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             MobileNumber = mobileNumber;
+            NotifierId = notifierId;
             OpsGenieApiKey = opsGenieApiKey;
             OpsGenieRegion = opsGenieRegion;
             Roles = roles;

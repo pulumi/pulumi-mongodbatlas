@@ -21,7 +21,7 @@ public final class GetAlertConfigurationMetricThresholdConfig {
      */
     private String mode;
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      * 
      */
@@ -54,7 +54,7 @@ public final class GetAlertConfigurationMetricThresholdConfig {
         return this.mode;
     }
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      * 
      */

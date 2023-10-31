@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAlertConfigurationThresholdConfigResult
     {
         /// <summary>
-        /// Operator to apply when checking the current metric value against the threshold value.
+        /// The operator to apply when checking the current metric value against the threshold value.
         /// Accepted values are:
         /// </summary>
         public readonly string Operator;

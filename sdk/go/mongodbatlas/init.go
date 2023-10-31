@@ -57,8 +57,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CustomDbRole{}
 	case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
 		r = &CustomDnsConfigurationClusterAws{}
-	case "mongodbatlas:index/dataLake:DataLake":
-		r = &DataLake{}
 	case "mongodbatlas:index/dataLakePipeline:DataLakePipeline":
 		r = &DataLakePipeline{}
 	case "mongodbatlas:index/databaseUser:DatabaseUser":
@@ -103,8 +101,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &PrivateLinkEndpointService{}
 	case "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless":
 		r = &PrivatelinkEndpointServerless{}
-	case "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl":
-		r = &PrivatelinkEndpointServiceAdl{}
 	case "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive":
 		r = &PrivatelinkEndpointServiceDataFederationOnlineArchive{}
 	case "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless":
@@ -252,11 +248,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
-		"index/dataLake",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"mongodbatlas",
 		"index/dataLakePipeline",
 		&module{version},
 	)
@@ -363,11 +354,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/privatelinkEndpointServerless",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"mongodbatlas",
-		"index/privatelinkEndpointServiceAdl",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

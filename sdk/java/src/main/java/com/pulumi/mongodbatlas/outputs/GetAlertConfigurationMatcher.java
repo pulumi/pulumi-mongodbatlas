@@ -15,7 +15,7 @@ public final class GetAlertConfigurationMatcher {
      */
     private String fieldName;
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      * 
      */
@@ -35,7 +35,7 @@ public final class GetAlertConfigurationMatcher {
         return this.fieldName;
     }
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      * 
      */

@@ -98,11 +98,17 @@ class GetAlertConfigurationResult:
     @property
     @pulumi.getter
     def matchers(self) -> Sequence['outputs.GetAlertConfigurationMatcherResult']:
+        """
+        Rules to apply when matching an object against this alert configuration. See matchers.
+        """
         return pulumi.get(self, "matchers")
 
     @property
     @pulumi.getter(name="metricThresholdConfigs")
     def metric_threshold_configs(self) -> Sequence['outputs.GetAlertConfigurationMetricThresholdConfigResult']:
+        """
+        The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
+        """
         return pulumi.get(self, "metric_threshold_configs")
 
     @property
@@ -123,6 +129,9 @@ class GetAlertConfigurationResult:
     @property
     @pulumi.getter(name="thresholdConfigs")
     def threshold_configs(self) -> Sequence['outputs.GetAlertConfigurationThresholdConfigResult']:
+        """
+        Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
+        """
         return pulumi.get(self, "threshold_configs")
 
     @property

@@ -15,6 +15,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         public readonly string Label;
         public readonly string Type;
+        /// <summary>
+        /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

@@ -11,6 +11,10 @@ import java.util.Objects;
 public final class GetAlertConfigurationsResultOutput {
     private String label;
     private String type;
+    /**
+     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * 
+     */
     private String value;
 
     private GetAlertConfigurationsResultOutput() {}
@@ -20,6 +24,10 @@ public final class GetAlertConfigurationsResultOutput {
     public String type() {
         return this.type;
     }
+    /**
+     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * 
+     */
     public String value() {
         return this.value;
     }

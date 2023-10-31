@@ -638,6 +638,9 @@
                     "criteria": {
                         "maxItemsOne": true
                     },
+                    "data_expiration_rule": {
+                        "maxItemsOne": true
+                    },
                     "partition_fields": {
                         "maxItemsOne": false
                     },
@@ -2216,6 +2219,9 @@
                     "criteria": {
                         "maxItemsOne": false
                     },
+                    "data_expiration_rule": {
+                        "maxItemsOne": false
+                    },
                     "partition_fields": {
                         "maxItemsOne": false
                     },
@@ -2233,6 +2239,9 @@
                         "elem": {
                             "fields": {
                                 "criteria": {
+                                    "maxItemsOne": false
+                                },
+                                "data_expiration_rule": {
                                     "maxItemsOne": false
                                 },
                                 "partition_fields": {
@@ -2583,7 +2592,14 @@
                 }
             },
             "mongodbatlas_x509_authentication_database_user": {
-                "current": "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser",
+                "current": "mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser",
+                "past": [
+                    {
+                        "name": "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser",
+                        "inCodegen": false,
+                        "majorVersion": 3
+                    }
+                ],
                 "majorVersion": 3,
                 "fields": {
                     "certificates": {
@@ -2613,7 +2629,6 @@
             "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation": 0,
             "mongodbatlas:index/customDbRole:CustomDbRole": 0,
             "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws": 0,
-            "mongodbatlas:index/dataLake:DataLake": 0,
             "mongodbatlas:index/dataLakePipeline:DataLakePipeline": 0,
             "mongodbatlas:index/databaseUser:DatabaseUser": 1,
             "mongodbatlas:index/encryptionAtRest:EncryptionAtRest": 1,
@@ -2636,7 +2651,6 @@
             "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint": 0,
             "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService": 0,
             "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless": 0,
-            "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl": 0,
             "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive": 0,
             "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless": 0,
             "mongodbatlas:index/project:Project": 1,
@@ -2681,12 +2695,10 @@
             "mongodbatlas:index/getCustomDbRole:getCustomDbRole": 0,
             "mongodbatlas:index/getCustomDbRoles:getCustomDbRoles": 0,
             "mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws": 0,
-            "mongodbatlas:index/getDataLake:getDataLake": 0,
             "mongodbatlas:index/getDataLakePipeline:getDataLakePipeline": 0,
             "mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun": 0,
             "mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns": 0,
             "mongodbatlas:index/getDataLakePipelines:getDataLakePipelines": 0,
-            "mongodbatlas:index/getDataLakes:getDataLakes": 0,
             "mongodbatlas:index/getDatabaseUser:getDatabaseUser": 1,
             "mongodbatlas:index/getDatabaseUsers:getDatabaseUsers": 1,
             "mongodbatlas:index/getEventTrigger:getEventTrigger": 0,
@@ -2718,11 +2730,9 @@
             "mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode": 0,
             "mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint": 0,
             "mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService": 0,
-            "mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl": 0,
             "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive": 0,
             "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives": 0,
             "mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless": 0,
-            "mongodbatlas:index/getPrivatelinkEndpointsServiceAdl:getPrivatelinkEndpointsServiceAdl": 0,
             "mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless": 0,
             "mongodbatlas:index/getProject:getProject": 1,
             "mongodbatlas:index/getProjectApiKey:getProjectApiKey": 0,
@@ -2742,7 +2752,8 @@
             "mongodbatlas:index/getTeam:getTeam": 0,
             "mongodbatlas:index/getTeams:getTeams": 0,
             "mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration": 0,
-            "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations": 0
+            "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations": 0,
+            "mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser": 0
         }
     },
     "renames": {
@@ -2765,7 +2776,6 @@
             "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation": "mongodbatlas_cluster_outage_simulation",
             "mongodbatlas:index/customDbRole:CustomDbRole": "mongodbatlas_custom_db_role",
             "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws": "mongodbatlas_custom_dns_configuration_cluster_aws",
-            "mongodbatlas:index/dataLake:DataLake": "mongodbatlas_data_lake",
             "mongodbatlas:index/dataLakePipeline:DataLakePipeline": "mongodbatlas_data_lake_pipeline",
             "mongodbatlas:index/databaseUser:DatabaseUser": "mongodbatlas_database_user",
             "mongodbatlas:index/encryptionAtRest:EncryptionAtRest": "mongodbatlas_encryption_at_rest",
@@ -2788,7 +2798,6 @@
             "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint": "mongodbatlas_privatelink_endpoint",
             "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService": "mongodbatlas_privatelink_endpoint_service",
             "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless": "mongodbatlas_privatelink_endpoint_serverless",
-            "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl": "mongodbatlas_privatelink_endpoint_service_adl",
             "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive": "mongodbatlas_privatelink_endpoint_service_data_federation_online_archive",
             "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless": "mongodbatlas_privatelink_endpoint_service_serverless",
             "mongodbatlas:index/project:Project": "mongodbatlas_project",
@@ -2803,7 +2812,7 @@
             "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser": "mongodbatlas_x509_authentication_database_user"
         },
         "functions": {
-            "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser": "mongodbatlas_x509_authentication_database_user",
+            "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser": "mongodbatlas_x509_authentication_database_user_legacy",
             "mongodbatlas:index/getAccessListApiKey:getAccessListApiKey": "mongodbatlas_access_list_api_key",
             "mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys": "mongodbatlas_access_list_api_keys",
             "mongodbatlas:index/getAdvancedCluster:getAdvancedCluster": "mongodbatlas_advanced_cluster",
@@ -2833,12 +2842,10 @@
             "mongodbatlas:index/getCustomDbRole:getCustomDbRole": "mongodbatlas_custom_db_role",
             "mongodbatlas:index/getCustomDbRoles:getCustomDbRoles": "mongodbatlas_custom_db_roles",
             "mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws": "mongodbatlas_custom_dns_configuration_cluster_aws",
-            "mongodbatlas:index/getDataLake:getDataLake": "mongodbatlas_data_lake",
             "mongodbatlas:index/getDataLakePipeline:getDataLakePipeline": "mongodbatlas_data_lake_pipeline",
             "mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun": "mongodbatlas_data_lake_pipeline_run",
             "mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns": "mongodbatlas_data_lake_pipeline_runs",
             "mongodbatlas:index/getDataLakePipelines:getDataLakePipelines": "mongodbatlas_data_lake_pipelines",
-            "mongodbatlas:index/getDataLakes:getDataLakes": "mongodbatlas_data_lakes",
             "mongodbatlas:index/getDatabaseUser:getDatabaseUser": "mongodbatlas_database_user",
             "mongodbatlas:index/getDatabaseUsers:getDatabaseUsers": "mongodbatlas_database_users",
             "mongodbatlas:index/getEventTrigger:getEventTrigger": "mongodbatlas_event_trigger",
@@ -2870,11 +2877,9 @@
             "mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode": "mongodbatlas_private_endpoint_regional_mode",
             "mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint": "mongodbatlas_privatelink_endpoint",
             "mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService": "mongodbatlas_privatelink_endpoint_service",
-            "mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl": "mongodbatlas_privatelink_endpoint_service_adl",
             "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive": "mongodbatlas_privatelink_endpoint_service_data_federation_online_archive",
             "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives": "mongodbatlas_privatelink_endpoint_service_data_federation_online_archives",
             "mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless": "mongodbatlas_privatelink_endpoint_service_serverless",
-            "mongodbatlas:index/getPrivatelinkEndpointsServiceAdl:getPrivatelinkEndpointsServiceAdl": "mongodbatlas_privatelink_endpoints_service_adl",
             "mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless": "mongodbatlas_privatelink_endpoints_service_serverless",
             "mongodbatlas:index/getProject:getProject": "mongodbatlas_project",
             "mongodbatlas:index/getProjectApiKey:getProjectApiKey": "mongodbatlas_project_api_key",
@@ -2894,7 +2899,8 @@
             "mongodbatlas:index/getTeam:getTeam": "mongodbatlas_team",
             "mongodbatlas:index/getTeams:getTeams": "mongodbatlas_teams",
             "mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration": "mongodbatlas_third_party_integration",
-            "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations": "mongodbatlas_third_party_integrations"
+            "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations": "mongodbatlas_third_party_integrations",
+            "mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser": "mongodbatlas_x509_authentication_database_user"
         },
         "renamedProperties": {
             "mongodbatlas:config/assumeRole:assumeRole": {
@@ -3000,6 +3006,7 @@
                 "intervalMin": "interval_min",
                 "microsoftTeamsWebhookUrl": "microsoft_teams_webhook_url",
                 "mobileNumber": "mobile_number",
+                "notifierId": "notifier_id",
                 "opsGenieApiKey": "ops_genie_api_key",
                 "opsGenieRegion": "ops_genie_region",
                 "serviceKey": "service_key",
@@ -3188,16 +3195,6 @@
                 "databaseName": "database_name",
                 "roleName": "role_name"
             },
-            "mongodbatlas:index/DataLakeAws:DataLakeAws": {
-                "externalId": "external_id",
-                "iamAssumedRoleArn": "iam_assumed_role_arn",
-                "iamUserArn": "iam_user_arn",
-                "roleId": "role_id",
-                "testS3Bucket": "test_s3_bucket"
-            },
-            "mongodbatlas:index/DataLakeDataProcessRegion:DataLakeDataProcessRegion": {
-                "cloudProvider": "cloud_provider"
-            },
             "mongodbatlas:index/DataLakePipelineIngestionSchedule:DataLakePipelineIngestionSchedule": {
                 "frequencyInterval": "frequency_interval",
                 "frequencyType": "frequency_type",
@@ -3226,20 +3223,6 @@
                 "databaseName": "database_name",
                 "policyItemId": "policy_item_id",
                 "projectId": "project_id"
-            },
-            "mongodbatlas:index/DataLakeStorageDatabase:DataLakeStorageDatabase": {
-                "maxWildcardCollections": "max_wildcard_collections"
-            },
-            "mongodbatlas:index/DataLakeStorageDatabaseCollection:DataLakeStorageDatabaseCollection": {
-                "dataSources": "data_sources"
-            },
-            "mongodbatlas:index/DataLakeStorageDatabaseCollectionDataSource:DataLakeStorageDatabaseCollectionDataSource": {
-                "defaultFormat": "default_format",
-                "storeName": "store_name"
-            },
-            "mongodbatlas:index/DataLakeStorageStore:DataLakeStorageStore": {
-                "additionalStorageClasses": "additional_storage_classes",
-                "includeTags": "include_tags"
             },
             "mongodbatlas:index/DatabaseUserRole:DatabaseUserRole": {
                 "collectionName": "collection_name",
@@ -3329,6 +3312,9 @@
             "mongodbatlas:index/OnlineArchiveCriteria:OnlineArchiveCriteria": {
                 "dateField": "date_field",
                 "dateFormat": "date_format",
+                "expireAfterDays": "expire_after_days"
+            },
+            "mongodbatlas:index/OnlineArchiveDataExpirationRule:OnlineArchiveDataExpirationRule": {
                 "expireAfterDays": "expire_after_days"
             },
             "mongodbatlas:index/OnlineArchivePartitionField:OnlineArchivePartitionField": {
@@ -3587,12 +3573,6 @@
             },
             "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws": {
                 "projectId": "project_id"
-            },
-            "mongodbatlas:index/dataLake:DataLake": {
-                "dataProcessRegion": "data_process_region",
-                "projectId": "project_id",
-                "storageDatabases": "storage_databases",
-                "storageStores": "storage_stores"
             },
             "mongodbatlas:index/dataLakePipeline:DataLakePipeline": {
                 "createdDate": "created_date",
@@ -3929,6 +3909,7 @@
                 "intervalMin": "interval_min",
                 "microsoftTeamsWebhookUrl": "microsoft_teams_webhook_url",
                 "mobileNumber": "mobile_number",
+                "notifierId": "notifier_id",
                 "opsGenieApiKey": "ops_genie_api_key",
                 "opsGenieRegion": "ops_genie_region",
                 "serviceKey": "service_key",
@@ -3979,6 +3960,7 @@
                 "intervalMin": "interval_min",
                 "microsoftTeamsWebhookUrl": "microsoft_teams_webhook_url",
                 "mobileNumber": "mobile_number",
+                "notifierId": "notifier_id",
                 "opsGenieApiKey": "ops_genie_api_key",
                 "opsGenieRegion": "ops_genie_region",
                 "serviceKey": "service_key",
@@ -4563,22 +4545,6 @@
             "mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws": {
                 "projectId": "project_id"
             },
-            "mongodbatlas:index/getDataLake:getDataLake": {
-                "dataProcessRegions": "data_process_region",
-                "projectId": "project_id",
-                "storageDatabases": "storage_databases",
-                "storageStores": "storage_stores"
-            },
-            "mongodbatlas:index/getDataLakeAw:getDataLakeAw": {
-                "externalId": "external_id",
-                "iamAssumedRoleArn": "iam_assumed_role_arn",
-                "iamUserArn": "iam_user_arn",
-                "roleId": "role_id",
-                "testS3Bucket": "test_s3_bucket"
-            },
-            "mongodbatlas:index/getDataLakeDataProcessRegion:getDataLakeDataProcessRegion": {
-                "cloudProvider": "cloud_provider"
-            },
             "mongodbatlas:index/getDataLakePipeline:getDataLakePipeline": {
                 "createdDate": "created_date",
                 "ingestionSchedules": "ingestion_schedules",
@@ -4666,53 +4632,6 @@
                 "collectionName": "collection_name",
                 "databaseName": "database_name",
                 "projectId": "project_id"
-            },
-            "mongodbatlas:index/getDataLakeStorageDatabase:getDataLakeStorageDatabase": {
-                "maxWildcardCollections": "max_wildcard_collections"
-            },
-            "mongodbatlas:index/getDataLakeStorageDatabaseCollection:getDataLakeStorageDatabaseCollection": {
-                "dataSources": "data_sources"
-            },
-            "mongodbatlas:index/getDataLakeStorageDatabaseCollectionDataSource:getDataLakeStorageDatabaseCollectionDataSource": {
-                "defaultFormat": "default_format",
-                "storeName": "store_name"
-            },
-            "mongodbatlas:index/getDataLakeStorageStore:getDataLakeStorageStore": {
-                "additionalStorageClasses": "additional_storage_classes",
-                "includeTags": "include_tags"
-            },
-            "mongodbatlas:index/getDataLakes:getDataLakes": {
-                "projectId": "project_id"
-            },
-            "mongodbatlas:index/getDataLakesResult:getDataLakesResult": {
-                "dataProcessRegions": "data_process_region",
-                "projectId": "project_id",
-                "storageDatabases": "storage_databases",
-                "storageStores": "storage_stores"
-            },
-            "mongodbatlas:index/getDataLakesResultAw:getDataLakesResultAw": {
-                "externalId": "external_id",
-                "iamAssumedRoleArn": "iam_assumed_role_arn",
-                "iamUserArn": "iam_user_arn",
-                "roleId": "role_id",
-                "testS3Bucket": "test_s3_bucket"
-            },
-            "mongodbatlas:index/getDataLakesResultDataProcessRegion:getDataLakesResultDataProcessRegion": {
-                "cloudProvider": "cloud_provider"
-            },
-            "mongodbatlas:index/getDataLakesResultStorageDatabase:getDataLakesResultStorageDatabase": {
-                "maxWildcardCollections": "max_wildcard_collections"
-            },
-            "mongodbatlas:index/getDataLakesResultStorageDatabaseCollection:getDataLakesResultStorageDatabaseCollection": {
-                "dataSources": "data_sources"
-            },
-            "mongodbatlas:index/getDataLakesResultStorageDatabaseCollectionDataSource:getDataLakesResultStorageDatabaseCollectionDataSource": {
-                "defaultFormat": "default_format",
-                "storeName": "store_name"
-            },
-            "mongodbatlas:index/getDataLakesResultStorageStore:getDataLakesResultStorageStore": {
-                "additionalStorageClasses": "additional_storage_classes",
-                "includeTags": "include_tags"
             },
             "mongodbatlas:index/getDatabaseUser:getDatabaseUser": {
                 "authDatabaseName": "auth_database_name",
@@ -5220,6 +5139,7 @@
                 "collName": "coll_name",
                 "collectionType": "collection_type",
                 "criterias": "criteria",
+                "dataExpirationRules": "data_expiration_rule",
                 "dbName": "db_name",
                 "partitionFields": "partition_fields",
                 "projectId": "project_id",
@@ -5228,6 +5148,9 @@
             "mongodbatlas:index/getOnlineArchiveCriteria:getOnlineArchiveCriteria": {
                 "dateField": "date_field",
                 "dateFormat": "date_format",
+                "expireAfterDays": "expire_after_days"
+            },
+            "mongodbatlas:index/getOnlineArchiveDataExpirationRule:getOnlineArchiveDataExpirationRule": {
                 "expireAfterDays": "expire_after_days"
             },
             "mongodbatlas:index/getOnlineArchivePartitionField:getOnlineArchivePartitionField": {
@@ -5253,6 +5176,7 @@
                 "collName": "coll_name",
                 "collectionType": "collection_type",
                 "criterias": "criteria",
+                "dataExpirationRules": "data_expiration_rule",
                 "dbName": "db_name",
                 "partitionFields": "partition_fields",
                 "projectId": "project_id",
@@ -5261,6 +5185,9 @@
             "mongodbatlas:index/getOnlineArchivesResultCriteria:getOnlineArchivesResultCriteria": {
                 "dateField": "date_field",
                 "dateFormat": "date_format",
+                "expireAfterDays": "expire_after_days"
+            },
+            "mongodbatlas:index/getOnlineArchivesResultDataExpirationRule:getOnlineArchivesResultDataExpirationRule": {
                 "expireAfterDays": "expire_after_days"
             },
             "mongodbatlas:index/getOnlineArchivesResultPartitionField:getOnlineArchivesResultPartitionField": {
@@ -5333,11 +5260,6 @@
                 "ipAddress": "ip_address",
                 "serviceAttachmentName": "service_attachment_name"
             },
-            "mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl": {
-                "endpointId": "endpoint_id",
-                "projectId": "project_id",
-                "providerName": "provider_name"
-            },
             "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive": {
                 "endpointId": "endpoint_id",
                 "projectId": "project_id",
@@ -5359,14 +5281,6 @@
                 "privateEndpointIpAddress": "private_endpoint_ip_address",
                 "privateLinkServiceResourceId": "private_link_service_resource_id",
                 "projectId": "project_id"
-            },
-            "mongodbatlas:index/getPrivatelinkEndpointsServiceAdl:getPrivatelinkEndpointsServiceAdl": {
-                "projectId": "project_id",
-                "totalCount": "total_count"
-            },
-            "mongodbatlas:index/getPrivatelinkEndpointsServiceAdlResult:getPrivatelinkEndpointsServiceAdlResult": {
-                "endpointId": "endpoint_id",
-                "providerName": "provider_name"
             },
             "mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless": {
                 "instanceName": "instance_name",
@@ -5624,6 +5538,15 @@
                 "teamName": "team_name",
                 "userName": "user_name"
             },
+            "mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser": {
+                "customerX509Cas": "customer_x509_cas",
+                "projectId": "project_id"
+            },
+            "mongodbatlas:index/getX509AuthenticationDatabaseUserCertificate:getX509AuthenticationDatabaseUserCertificate": {
+                "createdAt": "created_at",
+                "groupId": "group_id",
+                "notAfter": "not_after"
+            },
             "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig": {
                 "clusterName": "cluster_name",
                 "customZoneMapping": "custom_zone_mapping",
@@ -5700,6 +5623,7 @@
                 "clusterName": "cluster_name",
                 "collName": "coll_name",
                 "collectionType": "collection_type",
+                "dataExpirationRule": "data_expiration_rule",
                 "dbName": "db_name",
                 "partitionFields": "partition_fields",
                 "projectId": "project_id",
@@ -5760,11 +5684,6 @@
                 "endpointServiceName": "endpoint_service_name",
                 "instanceName": "instance_name",
                 "privateLinkServiceResourceId": "private_link_service_resource_id",
-                "projectId": "project_id",
-                "providerName": "provider_name"
-            },
-            "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl": {
-                "endpointId": "endpoint_id",
                 "projectId": "project_id",
                 "providerName": "provider_name"
             },

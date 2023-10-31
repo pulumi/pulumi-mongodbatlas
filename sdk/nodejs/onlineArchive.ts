@@ -120,29 +120,36 @@ export class OnlineArchive extends pulumi.CustomResource {
      */
     public readonly collName!: pulumi.Output<string>;
     /**
-     * Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+     * Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
      */
     public readonly collectionType!: pulumi.Output<string>;
     /**
-     * Criteria to use for archiving data.
+     * Criteria to use for archiving data. See criteria.
      */
     public readonly criteria!: pulumi.Output<outputs.OnlineArchiveCriteria>;
+    /**
+     * Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     */
+    public readonly dataExpirationRule!: pulumi.Output<outputs.OnlineArchiveDataExpirationRule | undefined>;
     /**
      * Name of the database that contains the collection.
      */
     public readonly dbName!: pulumi.Output<string>;
     /**
-     * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+     * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      */
     public readonly partitionFields!: pulumi.Output<outputs.OnlineArchivePartitionField[]>;
     /**
-     * State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+     * State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      */
     public readonly paused!: pulumi.Output<boolean>;
     /**
      * The unique ID for the project
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Regular frequency and duration when archiving process occurs. See schedule.
+     */
     public readonly schedule!: pulumi.Output<outputs.OnlineArchiveSchedule | undefined>;
     /**
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
@@ -168,6 +175,7 @@ export class OnlineArchive extends pulumi.CustomResource {
             resourceInputs["collName"] = state ? state.collName : undefined;
             resourceInputs["collectionType"] = state ? state.collectionType : undefined;
             resourceInputs["criteria"] = state ? state.criteria : undefined;
+            resourceInputs["dataExpirationRule"] = state ? state.dataExpirationRule : undefined;
             resourceInputs["dbName"] = state ? state.dbName : undefined;
             resourceInputs["partitionFields"] = state ? state.partitionFields : undefined;
             resourceInputs["paused"] = state ? state.paused : undefined;
@@ -196,6 +204,7 @@ export class OnlineArchive extends pulumi.CustomResource {
             resourceInputs["collName"] = args ? args.collName : undefined;
             resourceInputs["collectionType"] = args ? args.collectionType : undefined;
             resourceInputs["criteria"] = args ? args.criteria : undefined;
+            resourceInputs["dataExpirationRule"] = args ? args.dataExpirationRule : undefined;
             resourceInputs["dbName"] = args ? args.dbName : undefined;
             resourceInputs["partitionFields"] = args ? args.partitionFields : undefined;
             resourceInputs["paused"] = args ? args.paused : undefined;
@@ -227,29 +236,36 @@ export interface OnlineArchiveState {
      */
     collName?: pulumi.Input<string>;
     /**
-     * Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+     * Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
      */
     collectionType?: pulumi.Input<string>;
     /**
-     * Criteria to use for archiving data.
+     * Criteria to use for archiving data. See criteria.
      */
     criteria?: pulumi.Input<inputs.OnlineArchiveCriteria>;
+    /**
+     * Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     */
+    dataExpirationRule?: pulumi.Input<inputs.OnlineArchiveDataExpirationRule>;
     /**
      * Name of the database that contains the collection.
      */
     dbName?: pulumi.Input<string>;
     /**
-     * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+     * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      */
     partitionFields?: pulumi.Input<pulumi.Input<inputs.OnlineArchivePartitionField>[]>;
     /**
-     * State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+     * State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      */
     paused?: pulumi.Input<boolean>;
     /**
      * The unique ID for the project
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Regular frequency and duration when archiving process occurs. See schedule.
+     */
     schedule?: pulumi.Input<inputs.OnlineArchiveSchedule>;
     /**
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
@@ -271,29 +287,36 @@ export interface OnlineArchiveArgs {
      */
     collName: pulumi.Input<string>;
     /**
-     * Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+     * Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
      */
     collectionType?: pulumi.Input<string>;
     /**
-     * Criteria to use for archiving data.
+     * Criteria to use for archiving data. See criteria.
      */
     criteria: pulumi.Input<inputs.OnlineArchiveCriteria>;
+    /**
+     * Rule for specifying when data should be deleted from the archive. See data expiration rule.
+     */
+    dataExpirationRule?: pulumi.Input<inputs.OnlineArchiveDataExpirationRule>;
     /**
      * Name of the database that contains the collection.
      */
     dbName: pulumi.Input<string>;
     /**
-     * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+     * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      */
     partitionFields?: pulumi.Input<pulumi.Input<inputs.OnlineArchivePartitionField>[]>;
     /**
-     * State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+     * State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      */
     paused?: pulumi.Input<boolean>;
     /**
      * The unique ID for the project
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Regular frequency and duration when archiving process occurs. See schedule.
+     */
     schedule?: pulumi.Input<inputs.OnlineArchiveSchedule>;
     syncCreation?: pulumi.Input<boolean>;
 }

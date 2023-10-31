@@ -102,6 +102,12 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("mobileNumber")]
         public Input<string>? MobileNumber { get; set; }
 
+        /// <summary>
+        /// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+        /// </summary>
+        [Input("notifierId")]
+        public Input<string>? NotifierId { get; set; }
+
         [Input("opsGenieApiKey")]
         private Input<string>? _opsGenieApiKey;
 

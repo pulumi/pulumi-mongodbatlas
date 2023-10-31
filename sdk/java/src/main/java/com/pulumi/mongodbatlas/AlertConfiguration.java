@@ -209,7 +209,9 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
  * ```
- *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
+ *  __NOTE__Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
+ * 
+ * For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
  * 
  */
 @ResourceType(type="mongodbatlas:index/alertConfiguration:AlertConfiguration")
@@ -259,7 +261,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
     /**
      * The type of event that will trigger an alert.
      * 
-     * &gt; ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+     * &gt; ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
      * 
      * &gt; **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
      * 
@@ -270,7 +272,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
     /**
      * @return The type of event that will trigger an alert.
      * 
-     * &gt; ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+     * &gt; ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
      * 
      * &gt; **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
      * 

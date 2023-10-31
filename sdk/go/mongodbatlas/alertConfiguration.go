@@ -197,7 +197,9 @@ import (
 //
 // ```
 //
-//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
+//	__NOTE__Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
+//
+// For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
 type AlertConfiguration struct {
 	pulumi.CustomResourceState
 
@@ -209,7 +211,7 @@ type AlertConfiguration struct {
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
 	//
-	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+	// > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
 	//
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType             pulumi.StringOutput                              `pulumi:"eventType"`
@@ -267,7 +269,7 @@ type alertConfigurationState struct {
 	Enabled *bool `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
 	//
-	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+	// > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
 	//
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType             *string                                  `pulumi:"eventType"`
@@ -290,7 +292,7 @@ type AlertConfigurationState struct {
 	Enabled pulumi.BoolPtrInput
 	// The type of event that will trigger an alert.
 	//
-	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+	// > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
 	//
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType             pulumi.StringPtrInput
@@ -313,7 +315,7 @@ type alertConfigurationArgs struct {
 	Enabled *bool `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
 	//
-	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+	// > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
 	//
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType             string                                   `pulumi:"eventType"`
@@ -331,7 +333,7 @@ type AlertConfigurationArgs struct {
 	Enabled pulumi.BoolPtrInput
 	// The type of event that will trigger an alert.
 	//
-	// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+	// > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
 	//
 	// > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 	EventType             pulumi.StringInput
@@ -471,7 +473,7 @@ func (o AlertConfigurationOutput) Enabled() pulumi.BoolOutput {
 
 // The type of event that will trigger an alert.
 //
-// > ***IMPORTANT:*** Event Type has many possible values. All current options at available at https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/ and https://www.mongodb.com/docs/atlas/reference/alert-conditions/ Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/) and checking the latest eventTypeName options.
+// > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.
 //
 // > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
 func (o AlertConfigurationOutput) EventType() pulumi.StringOutput {

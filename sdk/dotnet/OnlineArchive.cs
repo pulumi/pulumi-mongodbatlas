@@ -127,16 +127,22 @@ namespace Pulumi.Mongodbatlas
         public Output<string> CollName { get; private set; } = null!;
 
         /// <summary>
-        /// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        /// Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         /// </summary>
         [Output("collectionType")]
         public Output<string> CollectionType { get; private set; } = null!;
 
         /// <summary>
-        /// Criteria to use for archiving data.
+        /// Criteria to use for archiving data. See criteria.
         /// </summary>
         [Output("criteria")]
         public Output<Outputs.OnlineArchiveCriteria> Criteria { get; private set; } = null!;
+
+        /// <summary>
+        /// Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        /// </summary>
+        [Output("dataExpirationRule")]
+        public Output<Outputs.OnlineArchiveDataExpirationRule?> DataExpirationRule { get; private set; } = null!;
 
         /// <summary>
         /// Name of the database that contains the collection.
@@ -145,13 +151,13 @@ namespace Pulumi.Mongodbatlas
         public Output<string> DbName { get; private set; } = null!;
 
         /// <summary>
-        /// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+        /// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// </summary>
         [Output("partitionFields")]
         public Output<ImmutableArray<Outputs.OnlineArchivePartitionField>> PartitionFields { get; private set; } = null!;
 
         /// <summary>
-        /// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+        /// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         /// </summary>
         [Output("paused")]
         public Output<bool> Paused { get; private set; } = null!;
@@ -162,6 +168,9 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// Regular frequency and duration when archiving process occurs. See schedule.
+        /// </summary>
         [Output("schedule")]
         public Output<Outputs.OnlineArchiveSchedule?> Schedule { get; private set; } = null!;
 
@@ -233,16 +242,22 @@ namespace Pulumi.Mongodbatlas
         public Input<string> CollName { get; set; } = null!;
 
         /// <summary>
-        /// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        /// Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         /// </summary>
         [Input("collectionType")]
         public Input<string>? CollectionType { get; set; }
 
         /// <summary>
-        /// Criteria to use for archiving data.
+        /// Criteria to use for archiving data. See criteria.
         /// </summary>
         [Input("criteria", required: true)]
         public Input<Inputs.OnlineArchiveCriteriaArgs> Criteria { get; set; } = null!;
+
+        /// <summary>
+        /// Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        /// </summary>
+        [Input("dataExpirationRule")]
+        public Input<Inputs.OnlineArchiveDataExpirationRuleArgs>? DataExpirationRule { get; set; }
 
         /// <summary>
         /// Name of the database that contains the collection.
@@ -254,7 +269,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.OnlineArchivePartitionFieldArgs>? _partitionFields;
 
         /// <summary>
-        /// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+        /// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// </summary>
         public InputList<Inputs.OnlineArchivePartitionFieldArgs> PartitionFields
         {
@@ -263,7 +278,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+        /// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         /// </summary>
         [Input("paused")]
         public Input<bool>? Paused { get; set; }
@@ -274,6 +289,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Regular frequency and duration when archiving process occurs. See schedule.
+        /// </summary>
         [Input("schedule")]
         public Input<Inputs.OnlineArchiveScheduleArgs>? Schedule { get; set; }
 
@@ -307,16 +325,22 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? CollName { get; set; }
 
         /// <summary>
-        /// Classification of MongoDB database collection that you want to return, "TIMESERIES" or "STANDARD". Default is "STANDARD".
+        /// Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         /// </summary>
         [Input("collectionType")]
         public Input<string>? CollectionType { get; set; }
 
         /// <summary>
-        /// Criteria to use for archiving data.
+        /// Criteria to use for archiving data. See criteria.
         /// </summary>
         [Input("criteria")]
         public Input<Inputs.OnlineArchiveCriteriaGetArgs>? Criteria { get; set; }
+
+        /// <summary>
+        /// Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        /// </summary>
+        [Input("dataExpirationRule")]
+        public Input<Inputs.OnlineArchiveDataExpirationRuleGetArgs>? DataExpirationRule { get; set; }
 
         /// <summary>
         /// Name of the database that contains the collection.
@@ -328,7 +352,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.OnlineArchivePartitionFieldGetArgs>? _partitionFields;
 
         /// <summary>
-        /// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+        /// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// </summary>
         public InputList<Inputs.OnlineArchivePartitionFieldGetArgs> PartitionFields
         {
@@ -337,7 +361,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+        /// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         /// </summary>
         [Input("paused")]
         public Input<bool>? Paused { get; set; }
@@ -348,6 +372,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// Regular frequency and duration when archiving process occurs. See schedule.
+        /// </summary>
         [Input("schedule")]
         public Input<Inputs.OnlineArchiveScheduleGetArgs>? Schedule { get; set; }
 

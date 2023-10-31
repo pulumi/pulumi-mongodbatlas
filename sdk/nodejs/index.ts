@@ -95,11 +95,6 @@ export type CustomDnsConfigurationClusterAws = import("./customDnsConfigurationC
 export const CustomDnsConfigurationClusterAws: typeof import("./customDnsConfigurationClusterAws").CustomDnsConfigurationClusterAws = null as any;
 utilities.lazyLoad(exports, ["CustomDnsConfigurationClusterAws"], () => require("./customDnsConfigurationClusterAws"));
 
-export { DataLakeArgs, DataLakeState } from "./dataLake";
-export type DataLake = import("./dataLake").DataLake;
-export const DataLake: typeof import("./dataLake").DataLake = null as any;
-utilities.lazyLoad(exports, ["DataLake"], () => require("./dataLake"));
-
 export { DataLakePipelineArgs, DataLakePipelineState } from "./dataLakePipeline";
 export type DataLakePipeline = import("./dataLakePipeline").DataLakePipeline;
 export const DataLakePipeline: typeof import("./dataLakePipeline").DataLakePipeline = null as any;
@@ -295,11 +290,6 @@ export const getCustomDnsConfigurationClusterAws: typeof import("./getCustomDnsC
 export const getCustomDnsConfigurationClusterAwsOutput: typeof import("./getCustomDnsConfigurationClusterAws").getCustomDnsConfigurationClusterAwsOutput = null as any;
 utilities.lazyLoad(exports, ["getCustomDnsConfigurationClusterAws","getCustomDnsConfigurationClusterAwsOutput"], () => require("./getCustomDnsConfigurationClusterAws"));
 
-export { GetDataLakeArgs, GetDataLakeResult, GetDataLakeOutputArgs } from "./getDataLake";
-export const getDataLake: typeof import("./getDataLake").getDataLake = null as any;
-export const getDataLakeOutput: typeof import("./getDataLake").getDataLakeOutput = null as any;
-utilities.lazyLoad(exports, ["getDataLake","getDataLakeOutput"], () => require("./getDataLake"));
-
 export { GetDataLakePipelineArgs, GetDataLakePipelineResult, GetDataLakePipelineOutputArgs } from "./getDataLakePipeline";
 export const getDataLakePipeline: typeof import("./getDataLakePipeline").getDataLakePipeline = null as any;
 export const getDataLakePipelineOutput: typeof import("./getDataLakePipeline").getDataLakePipelineOutput = null as any;
@@ -319,11 +309,6 @@ export { GetDataLakePipelinesArgs, GetDataLakePipelinesResult, GetDataLakePipeli
 export const getDataLakePipelines: typeof import("./getDataLakePipelines").getDataLakePipelines = null as any;
 export const getDataLakePipelinesOutput: typeof import("./getDataLakePipelines").getDataLakePipelinesOutput = null as any;
 utilities.lazyLoad(exports, ["getDataLakePipelines","getDataLakePipelinesOutput"], () => require("./getDataLakePipelines"));
-
-export { GetDataLakesArgs, GetDataLakesResult, GetDataLakesOutputArgs } from "./getDataLakes";
-export const getDataLakes: typeof import("./getDataLakes").getDataLakes = null as any;
-export const getDataLakesOutput: typeof import("./getDataLakes").getDataLakesOutput = null as any;
-utilities.lazyLoad(exports, ["getDataLakes","getDataLakesOutput"], () => require("./getDataLakes"));
 
 export { GetDatabaseUserArgs, GetDatabaseUserResult, GetDatabaseUserOutputArgs } from "./getDatabaseUser";
 export const getDatabaseUser: typeof import("./getDatabaseUser").getDatabaseUser = null as any;
@@ -480,11 +465,6 @@ export const getPrivateLinkEndpointService: typeof import("./getPrivateLinkEndpo
 export const getPrivateLinkEndpointServiceOutput: typeof import("./getPrivateLinkEndpointService").getPrivateLinkEndpointServiceOutput = null as any;
 utilities.lazyLoad(exports, ["getPrivateLinkEndpointService","getPrivateLinkEndpointServiceOutput"], () => require("./getPrivateLinkEndpointService"));
 
-export { GetPrivatelinkEndpointServiceAdlArgs, GetPrivatelinkEndpointServiceAdlResult, GetPrivatelinkEndpointServiceAdlOutputArgs } from "./getPrivatelinkEndpointServiceAdl";
-export const getPrivatelinkEndpointServiceAdl: typeof import("./getPrivatelinkEndpointServiceAdl").getPrivatelinkEndpointServiceAdl = null as any;
-export const getPrivatelinkEndpointServiceAdlOutput: typeof import("./getPrivatelinkEndpointServiceAdl").getPrivatelinkEndpointServiceAdlOutput = null as any;
-utilities.lazyLoad(exports, ["getPrivatelinkEndpointServiceAdl","getPrivatelinkEndpointServiceAdlOutput"], () => require("./getPrivatelinkEndpointServiceAdl"));
-
 export { GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs, GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult, GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs } from "./getPrivatelinkEndpointServiceDataFederationOnlineArchive";
 export const getPrivatelinkEndpointServiceDataFederationOnlineArchive: typeof import("./getPrivatelinkEndpointServiceDataFederationOnlineArchive").getPrivatelinkEndpointServiceDataFederationOnlineArchive = null as any;
 export const getPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput: typeof import("./getPrivatelinkEndpointServiceDataFederationOnlineArchive").getPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput = null as any;
@@ -499,11 +479,6 @@ export { GetPrivatelinkEndpointServiceServerlessArgs, GetPrivatelinkEndpointServ
 export const getPrivatelinkEndpointServiceServerless: typeof import("./getPrivatelinkEndpointServiceServerless").getPrivatelinkEndpointServiceServerless = null as any;
 export const getPrivatelinkEndpointServiceServerlessOutput: typeof import("./getPrivatelinkEndpointServiceServerless").getPrivatelinkEndpointServiceServerlessOutput = null as any;
 utilities.lazyLoad(exports, ["getPrivatelinkEndpointServiceServerless","getPrivatelinkEndpointServiceServerlessOutput"], () => require("./getPrivatelinkEndpointServiceServerless"));
-
-export { GetPrivatelinkEndpointsServiceAdlArgs, GetPrivatelinkEndpointsServiceAdlResult, GetPrivatelinkEndpointsServiceAdlOutputArgs } from "./getPrivatelinkEndpointsServiceAdl";
-export const getPrivatelinkEndpointsServiceAdl: typeof import("./getPrivatelinkEndpointsServiceAdl").getPrivatelinkEndpointsServiceAdl = null as any;
-export const getPrivatelinkEndpointsServiceAdlOutput: typeof import("./getPrivatelinkEndpointsServiceAdl").getPrivatelinkEndpointsServiceAdlOutput = null as any;
-utilities.lazyLoad(exports, ["getPrivatelinkEndpointsServiceAdl","getPrivatelinkEndpointsServiceAdlOutput"], () => require("./getPrivatelinkEndpointsServiceAdl"));
 
 export { GetPrivatelinkEndpointsServiceServerlessArgs, GetPrivatelinkEndpointsServiceServerlessResult, GetPrivatelinkEndpointsServiceServerlessOutputArgs } from "./getPrivatelinkEndpointsServiceServerless";
 export const getPrivatelinkEndpointsServiceServerless: typeof import("./getPrivatelinkEndpointsServiceServerless").getPrivatelinkEndpointsServiceServerless = null as any;
@@ -605,6 +580,11 @@ export const getThirdPartyIntegrations: typeof import("./getThirdPartyIntegratio
 export const getThirdPartyIntegrationsOutput: typeof import("./getThirdPartyIntegrations").getThirdPartyIntegrationsOutput = null as any;
 utilities.lazyLoad(exports, ["getThirdPartyIntegrations","getThirdPartyIntegrationsOutput"], () => require("./getThirdPartyIntegrations"));
 
+export { GetX509AuthenticationDatabaseUserArgs, GetX509AuthenticationDatabaseUserResult, GetX509AuthenticationDatabaseUserOutputArgs } from "./getX509AuthenticationDatabaseUser";
+export const getX509AuthenticationDatabaseUser: typeof import("./getX509AuthenticationDatabaseUser").getX509AuthenticationDatabaseUser = null as any;
+export const getX509AuthenticationDatabaseUserOutput: typeof import("./getX509AuthenticationDatabaseUser").getX509AuthenticationDatabaseUserOutput = null as any;
+utilities.lazyLoad(exports, ["getX509AuthenticationDatabaseUser","getX509AuthenticationDatabaseUserOutput"], () => require("./getX509AuthenticationDatabaseUser"));
+
 export { GlobalClusterConfigArgs, GlobalClusterConfigState } from "./globalClusterConfig";
 export type GlobalClusterConfig = import("./globalClusterConfig").GlobalClusterConfig;
 export const GlobalClusterConfig: typeof import("./globalClusterConfig").GlobalClusterConfig = null as any;
@@ -669,11 +649,6 @@ export { PrivatelinkEndpointServerlessArgs, PrivatelinkEndpointServerlessState }
 export type PrivatelinkEndpointServerless = import("./privatelinkEndpointServerless").PrivatelinkEndpointServerless;
 export const PrivatelinkEndpointServerless: typeof import("./privatelinkEndpointServerless").PrivatelinkEndpointServerless = null as any;
 utilities.lazyLoad(exports, ["PrivatelinkEndpointServerless"], () => require("./privatelinkEndpointServerless"));
-
-export { PrivatelinkEndpointServiceAdlArgs, PrivatelinkEndpointServiceAdlState } from "./privatelinkEndpointServiceAdl";
-export type PrivatelinkEndpointServiceAdl = import("./privatelinkEndpointServiceAdl").PrivatelinkEndpointServiceAdl;
-export const PrivatelinkEndpointServiceAdl: typeof import("./privatelinkEndpointServiceAdl").PrivatelinkEndpointServiceAdl = null as any;
-utilities.lazyLoad(exports, ["PrivatelinkEndpointServiceAdl"], () => require("./privatelinkEndpointServiceAdl"));
 
 export { PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs, PrivatelinkEndpointServiceDataFederationOnlineArchiveState } from "./privatelinkEndpointServiceDataFederationOnlineArchive";
 export type PrivatelinkEndpointServiceDataFederationOnlineArchive = import("./privatelinkEndpointServiceDataFederationOnlineArchive").PrivatelinkEndpointServiceDataFederationOnlineArchive;
@@ -790,8 +765,6 @@ const _module = {
                 return new CustomDbRole(name, <any>undefined, { urn })
             case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
                 return new CustomDnsConfigurationClusterAws(name, <any>undefined, { urn })
-            case "mongodbatlas:index/dataLake:DataLake":
-                return new DataLake(name, <any>undefined, { urn })
             case "mongodbatlas:index/dataLakePipeline:DataLakePipeline":
                 return new DataLakePipeline(name, <any>undefined, { urn })
             case "mongodbatlas:index/databaseUser:DatabaseUser":
@@ -836,8 +809,6 @@ const _module = {
                 return new PrivateLinkEndpointService(name, <any>undefined, { urn })
             case "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless":
                 return new PrivatelinkEndpointServerless(name, <any>undefined, { urn })
-            case "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl":
-                return new PrivatelinkEndpointServiceAdl(name, <any>undefined, { urn })
             case "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive":
                 return new PrivatelinkEndpointServiceDataFederationOnlineArchive(name, <any>undefined, { urn })
             case "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless":
@@ -885,7 +856,6 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/cluster", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/clusterOutageSimulation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDbRole", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDnsConfigurationClusterAws", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/dataLake", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/dataLakePipeline", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/databaseUser", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/encryptionAtRest", _module)
@@ -908,7 +878,6 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateEndpointRegi
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpointService", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpointServerless", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpointServiceAdl", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpointServiceDataFederationOnlineArchive", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpointServiceServerless", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)

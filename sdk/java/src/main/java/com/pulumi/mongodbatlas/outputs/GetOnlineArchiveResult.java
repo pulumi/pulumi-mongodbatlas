@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchiveCriteria;
+import com.pulumi.mongodbatlas.outputs.GetOnlineArchiveDataExpirationRule;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivePartitionField;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchiveSchedule;
 import java.lang.Boolean;
@@ -19,6 +20,7 @@ public final class GetOnlineArchiveResult {
     private String collName;
     private String collectionType;
     private List<GetOnlineArchiveCriteria> criterias;
+    private List<GetOnlineArchiveDataExpirationRule> dataExpirationRules;
     private String dbName;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -46,6 +48,9 @@ public final class GetOnlineArchiveResult {
     }
     public List<GetOnlineArchiveCriteria> criterias() {
         return this.criterias;
+    }
+    public List<GetOnlineArchiveDataExpirationRule> dataExpirationRules() {
+        return this.dataExpirationRules;
     }
     public String dbName() {
         return this.dbName;
@@ -87,6 +92,7 @@ public final class GetOnlineArchiveResult {
         private String collName;
         private String collectionType;
         private List<GetOnlineArchiveCriteria> criterias;
+        private List<GetOnlineArchiveDataExpirationRule> dataExpirationRules;
         private String dbName;
         private String id;
         private List<GetOnlineArchivePartitionField> partitionFields;
@@ -102,6 +108,7 @@ public final class GetOnlineArchiveResult {
     	      this.collName = defaults.collName;
     	      this.collectionType = defaults.collectionType;
     	      this.criterias = defaults.criterias;
+    	      this.dataExpirationRules = defaults.dataExpirationRules;
     	      this.dbName = defaults.dbName;
     	      this.id = defaults.id;
     	      this.partitionFields = defaults.partitionFields;
@@ -138,6 +145,14 @@ public final class GetOnlineArchiveResult {
         }
         public Builder criterias(GetOnlineArchiveCriteria... criterias) {
             return criterias(List.of(criterias));
+        }
+        @CustomType.Setter
+        public Builder dataExpirationRules(List<GetOnlineArchiveDataExpirationRule> dataExpirationRules) {
+            this.dataExpirationRules = Objects.requireNonNull(dataExpirationRules);
+            return this;
+        }
+        public Builder dataExpirationRules(GetOnlineArchiveDataExpirationRule... dataExpirationRules) {
+            return dataExpirationRules(List.of(dataExpirationRules));
         }
         @CustomType.Setter
         public Builder dbName(String dbName) {
@@ -187,6 +202,7 @@ public final class GetOnlineArchiveResult {
             o.collName = collName;
             o.collectionType = collectionType;
             o.criterias = criterias;
+            o.dataExpirationRules = dataExpirationRules;
             o.dbName = dbName;
             o.id = id;
             o.partitionFields = partitionFields;

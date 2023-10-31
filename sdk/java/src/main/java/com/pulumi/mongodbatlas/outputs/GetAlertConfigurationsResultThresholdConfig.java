@@ -10,17 +10,45 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAlertConfigurationsResultThresholdConfig {
+    /**
+     * @return The operator to apply when checking the current metric value against the threshold value.
+     * Accepted values are:
+     * 
+     */
     private String operator;
+    /**
+     * @return Threshold value outside of which an alert will be triggered.
+     * 
+     */
     private Double threshold;
+    /**
+     * @return The units for the threshold value. Depends on the type of metric.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     * 
+     */
     private String units;
 
     private GetAlertConfigurationsResultThresholdConfig() {}
+    /**
+     * @return The operator to apply when checking the current metric value against the threshold value.
+     * Accepted values are:
+     * 
+     */
     public String operator() {
         return this.operator;
     }
+    /**
+     * @return Threshold value outside of which an alert will be triggered.
+     * 
+     */
     public Double threshold() {
         return this.threshold;
     }
+    /**
+     * @return The units for the threshold value. Depends on the type of metric.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     * 
+     */
     public String units() {
         return this.units;
     }
