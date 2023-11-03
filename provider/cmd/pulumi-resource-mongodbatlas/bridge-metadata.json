@@ -3370,6 +3370,7 @@
                 "orgId": "org_id"
             },
             "mongodbatlas:index/advancedCluster:AdvancedCluster": {
+                "acceptDataRisksAndForceReplicaSetReconfig": "accept_data_risks_and_force_replica_set_reconfig",
                 "advancedConfiguration": "advanced_configuration",
                 "backupEnabled": "backup_enabled",
                 "biConnectorConfig": "bi_connector_config",
@@ -3518,6 +3519,7 @@
                 "roleId": "role_id"
             },
             "mongodbatlas:index/cluster:Cluster": {
+                "acceptDataRisksAndForceReplicaSetReconfig": "accept_data_risks_and_force_replica_set_reconfig",
                 "advancedConfiguration": "advanced_configuration",
                 "autoScalingComputeEnabled": "auto_scaling_compute_enabled",
                 "autoScalingComputeScaleDownEnabled": "auto_scaling_compute_scale_down_enabled",
