@@ -92,7 +92,7 @@ import (
 //
 // ## Import
 //
-// API Keys must be imported using org ID, API Key ID e.g.
+// API Keys must be imported using project ID, API Key ID e.g.
 //
 // ```sh
 //

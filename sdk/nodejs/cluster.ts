@@ -44,6 +44,10 @@ export class Cluster extends pulumi.CustomResource {
         return obj['__pulumiType'] === Cluster.__pulumiType;
     }
 
+    /**
+     * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     */
+    public readonly acceptDataRisksAndForceReplicaSetReconfig!: pulumi.Output<string | undefined>;
     public readonly advancedConfiguration!: pulumi.Output<outputs.ClusterAdvancedConfiguration>;
     public readonly autoScalingComputeEnabled!: pulumi.Output<boolean>;
     /**
@@ -74,7 +78,7 @@ export class Cluster extends pulumi.CustomResource {
      * ```
      * * The default value is false.  M10 and above only.
      */
-    public readonly backupEnabled!: pulumi.Output<boolean | undefined>;
+    public readonly backupEnabled!: pulumi.Output<boolean>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
@@ -118,7 +122,7 @@ export class Cluster extends pulumi.CustomResource {
      *
      * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
      */
-    public readonly labels!: pulumi.Output<outputs.ClusterLabel[]>;
+    public readonly labels!: pulumi.Output<outputs.ClusterLabel[] | undefined>;
     /**
      * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `providerInstanceSizeName`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      */
@@ -146,8 +150,8 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
-    public readonly numShards!: pulumi.Output<number | undefined>;
-    public readonly paused!: pulumi.Output<boolean | undefined>;
+    public readonly numShards!: pulumi.Output<number>;
+    public readonly paused!: pulumi.Output<boolean>;
     /**
      * Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
@@ -241,7 +245,7 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
      */
-    public readonly versionReleaseSystem!: pulumi.Output<string | undefined>;
+    public readonly versionReleaseSystem!: pulumi.Output<string>;
 
     /**
      * Create a Cluster resource with the given unique name, arguments, and options.
@@ -256,6 +260,7 @@ export class Cluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClusterState | undefined;
+            resourceInputs["acceptDataRisksAndForceReplicaSetReconfig"] = state ? state.acceptDataRisksAndForceReplicaSetReconfig : undefined;
             resourceInputs["advancedConfiguration"] = state ? state.advancedConfiguration : undefined;
             resourceInputs["autoScalingComputeEnabled"] = state ? state.autoScalingComputeEnabled : undefined;
             resourceInputs["autoScalingComputeScaleDownEnabled"] = state ? state.autoScalingComputeScaleDownEnabled : undefined;
@@ -311,6 +316,7 @@ export class Cluster extends pulumi.CustomResource {
             if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
+            resourceInputs["acceptDataRisksAndForceReplicaSetReconfig"] = args ? args.acceptDataRisksAndForceReplicaSetReconfig : undefined;
             resourceInputs["advancedConfiguration"] = args ? args.advancedConfiguration : undefined;
             resourceInputs["autoScalingComputeEnabled"] = args ? args.autoScalingComputeEnabled : undefined;
             resourceInputs["autoScalingComputeScaleDownEnabled"] = args ? args.autoScalingComputeScaleDownEnabled : undefined;
@@ -365,6 +371,10 @@ export class Cluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Cluster resources.
  */
 export interface ClusterState {
+    /**
+     * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     */
+    acceptDataRisksAndForceReplicaSetReconfig?: pulumi.Input<string>;
     advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
     autoScalingComputeEnabled?: pulumi.Input<boolean>;
     /**
@@ -569,6 +579,10 @@ export interface ClusterState {
  * The set of arguments for constructing a Cluster resource.
  */
 export interface ClusterArgs {
+    /**
+     * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     */
+    acceptDataRisksAndForceReplicaSetReconfig?: pulumi.Input<string>;
     advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
     autoScalingComputeEnabled?: pulumi.Input<boolean>;
     /**

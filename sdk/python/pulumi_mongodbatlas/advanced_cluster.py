@@ -19,6 +19,7 @@ class AdvancedClusterArgs:
                  cluster_type: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  replication_specs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]],
+                 accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
                  advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
@@ -40,6 +41,7 @@ class AdvancedClusterArgs:
                Accepted values include:
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
+        :param pulumi.Input[str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
                
@@ -65,6 +67,8 @@ class AdvancedClusterArgs:
         pulumi.set(__self__, "cluster_type", cluster_type)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "replication_specs", replication_specs)
+        if accept_data_risks_and_force_replica_set_reconfig is not None:
+            pulumi.set(__self__, "accept_data_risks_and_force_replica_set_reconfig", accept_data_risks_and_force_replica_set_reconfig)
         if advanced_configuration is not None:
             pulumi.set(__self__, "advanced_configuration", advanced_configuration)
         if backup_enabled is not None:
@@ -135,6 +139,18 @@ class AdvancedClusterArgs:
     @replication_specs.setter
     def replication_specs(self, value: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]):
         pulumi.set(self, "replication_specs", value)
+
+    @property
+    @pulumi.getter(name="acceptDataRisksAndForceReplicaSetReconfig")
+    def accept_data_risks_and_force_replica_set_reconfig(self) -> Optional[pulumi.Input[str]]:
+        """
+        If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        """
+        return pulumi.get(self, "accept_data_risks_and_force_replica_set_reconfig")
+
+    @accept_data_risks_and_force_replica_set_reconfig.setter
+    def accept_data_risks_and_force_replica_set_reconfig(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accept_data_risks_and_force_replica_set_reconfig", value)
 
     @property
     @pulumi.getter(name="advancedConfiguration")
@@ -325,6 +341,7 @@ class AdvancedClusterArgs:
 @pulumi.input_type
 class _AdvancedClusterState:
     def __init__(__self__, *,
+                 accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
                  advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
@@ -350,6 +367,7 @@ class _AdvancedClusterState:
                  version_release_system: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AdvancedCluster resources.
+        :param pulumi.Input[str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
                
@@ -386,6 +404,8 @@ class _AdvancedClusterState:
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
+        if accept_data_risks_and_force_replica_set_reconfig is not None:
+            pulumi.set(__self__, "accept_data_risks_and_force_replica_set_reconfig", accept_data_risks_and_force_replica_set_reconfig)
         if advanced_configuration is not None:
             pulumi.set(__self__, "advanced_configuration", advanced_configuration)
         if backup_enabled is not None:
@@ -435,6 +455,18 @@ class _AdvancedClusterState:
             pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
             pulumi.set(__self__, "version_release_system", version_release_system)
+
+    @property
+    @pulumi.getter(name="acceptDataRisksAndForceReplicaSetReconfig")
+    def accept_data_risks_and_force_replica_set_reconfig(self) -> Optional[pulumi.Input[str]]:
+        """
+        If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        """
+        return pulumi.get(self, "accept_data_risks_and_force_replica_set_reconfig")
+
+    @accept_data_risks_and_force_replica_set_reconfig.setter
+    def accept_data_risks_and_force_replica_set_reconfig(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accept_data_risks_and_force_replica_set_reconfig", value)
 
     @property
     @pulumi.getter(name="advancedConfiguration")
@@ -727,6 +759,7 @@ class AdvancedCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
                  advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
@@ -758,6 +791,7 @@ class AdvancedCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
                
@@ -815,6 +849,7 @@ class AdvancedCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
                  advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
@@ -842,6 +877,7 @@ class AdvancedCluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AdvancedClusterArgs.__new__(AdvancedClusterArgs)
 
+            __props__.__dict__["accept_data_risks_and_force_replica_set_reconfig"] = accept_data_risks_and_force_replica_set_reconfig
             __props__.__dict__["advanced_configuration"] = advanced_configuration
             __props__.__dict__["backup_enabled"] = backup_enabled
             __props__.__dict__["bi_connector_config"] = bi_connector_config
@@ -881,6 +917,7 @@ class AdvancedCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
             advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
             backup_enabled: Optional[pulumi.Input[bool]] = None,
             bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
@@ -911,6 +948,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
                
@@ -951,6 +989,7 @@ class AdvancedCluster(pulumi.CustomResource):
 
         __props__ = _AdvancedClusterState.__new__(_AdvancedClusterState)
 
+        __props__.__dict__["accept_data_risks_and_force_replica_set_reconfig"] = accept_data_risks_and_force_replica_set_reconfig
         __props__.__dict__["advanced_configuration"] = advanced_configuration
         __props__.__dict__["backup_enabled"] = backup_enabled
         __props__.__dict__["bi_connector_config"] = bi_connector_config
@@ -975,6 +1014,14 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
         __props__.__dict__["version_release_system"] = version_release_system
         return AdvancedCluster(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="acceptDataRisksAndForceReplicaSetReconfig")
+    def accept_data_risks_and_force_replica_set_reconfig(self) -> pulumi.Output[Optional[str]]:
+        """
+        If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        """
+        return pulumi.get(self, "accept_data_risks_and_force_replica_set_reconfig")
 
     @property
     @pulumi.getter(name="advancedConfiguration")
@@ -1053,7 +1100,7 @@ class AdvancedCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def labels(self) -> pulumi.Output[Sequence['outputs.AdvancedClusterLabel']]:
+    def labels(self) -> pulumi.Output[Optional[Sequence['outputs.AdvancedClusterLabel']]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
@@ -1088,7 +1135,7 @@ class AdvancedCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def paused(self) -> pulumi.Output[Optional[bool]]:
+    def paused(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "paused")
 
     @property
@@ -1163,7 +1210,7 @@ class AdvancedCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="versionReleaseSystem")
-    def version_release_system(self) -> pulumi.Output[Optional[str]]:
+    def version_release_system(self) -> pulumi.Output[str]:
         """
         Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """

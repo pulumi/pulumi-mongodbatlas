@@ -107,13 +107,13 @@ export interface AdvancedClusterLabel {
     /**
      * The key that you want to write.
      */
-    key: string;
+    key?: string;
     /**
      * The value that you want to write.
      *
      * > **NOTE:** MongoDB Atlas doesn't display your labels.
      */
-    value: string;
+    value?: string;
 }
 
 export interface AdvancedClusterReplicationSpec {
@@ -892,13 +892,13 @@ export interface ClusterLabel {
     /**
      * The key that you want to write.
      */
-    key: string;
+    key?: string;
     /**
      * The value that you want to write.
      *
      * > **NOTE:** MongoDB Atlas doesn't display your labels.
      */
-    value: string;
+    value?: string;
 }
 
 export interface ClusterOutageSimulationOutageFilter {

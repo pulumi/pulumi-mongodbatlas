@@ -80,8 +80,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test_advanced_search_index = new SearchIndex(&#34;test-advanced-search-index&#34;, SearchIndexArgs.builder()        
- *             .projectId(&#34;%[1]s&#34;)
- *             .clusterName(&#34;%[2]s&#34;)
+ *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
  *             .analyzer(&#34;lucene.standard&#34;)
  *             .collectionName(&#34;collection_test&#34;)
  *             .database(&#34;database_test&#34;)
@@ -122,20 +122,20 @@ import javax.annotation.Nullable;
  *             .analyzers(&#34;&#34;&#34;
  *  [{
  *  &#34;name&#34;: &#34;index_analyzer_test_name&#34;,
- *  &#34;charFilters&#34;: {
+ *  &#34;charFilters&#34;: [{
  * &#34;type&#34;: &#34;mapping&#34;,
  * &#34;mappings&#34;: {&#34;\\&#34; : &#34;/&#34;}
- *    	},
+ *    	}],
  *  &#34;tokenizer&#34;: {
  *  &#34;type&#34;: &#34;nGram&#34;,
  *  &#34;minGram&#34;: 2,
  *  &#34;maxGram&#34;: 5
  * 	},
- *  &#34;tokenFilters&#34;: {
+ *  &#34;tokenFilters&#34;: [{
  * &#34;type&#34;: &#34;length&#34;,
  * &#34;min&#34;: 20,
  * &#34;max&#34;: 33
- *    	}
+ *    	}]
  *  }]
  *             &#34;&#34;&#34;)
  *             .synonyms(SearchIndexSynonymArgs.builder()

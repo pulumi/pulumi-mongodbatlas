@@ -81,7 +81,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
-    /// API Keys must be imported using org ID, API Key ID e.g.
+    /// API Keys must be imported using project ID, API Key ID e.g.
     /// 
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/projectApiKey:ProjectApiKey test 5d09d6a59ccf6445652a444a-6576974933969669

@@ -26,6 +26,21 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
 
     public static final ClusterState Empty = new ClusterState();
 
+    /**
+     * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     * 
+     */
+    @Import(name="acceptDataRisksAndForceReplicaSetReconfig")
+    private @Nullable Output<String> acceptDataRisksAndForceReplicaSetReconfig;
+
+    /**
+     * @return If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     * 
+     */
+    public Optional<Output<String>> acceptDataRisksAndForceReplicaSetReconfig() {
+        return Optional.ofNullable(this.acceptDataRisksAndForceReplicaSetReconfig);
+    }
+
     @Import(name="advancedConfiguration")
     private @Nullable Output<ClusterAdvancedConfigurationArgs> advancedConfiguration;
 
@@ -767,6 +782,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     private ClusterState() {}
 
     private ClusterState(ClusterState $) {
+        this.acceptDataRisksAndForceReplicaSetReconfig = $.acceptDataRisksAndForceReplicaSetReconfig;
         this.advancedConfiguration = $.advancedConfiguration;
         this.autoScalingComputeEnabled = $.autoScalingComputeEnabled;
         this.autoScalingComputeScaleDownEnabled = $.autoScalingComputeScaleDownEnabled;
@@ -829,6 +845,27 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ClusterState defaults) {
             $ = new ClusterState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param acceptDataRisksAndForceReplicaSetReconfig If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder acceptDataRisksAndForceReplicaSetReconfig(@Nullable Output<String> acceptDataRisksAndForceReplicaSetReconfig) {
+            $.acceptDataRisksAndForceReplicaSetReconfig = acceptDataRisksAndForceReplicaSetReconfig;
+            return this;
+        }
+
+        /**
+         * @param acceptDataRisksAndForceReplicaSetReconfig If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder acceptDataRisksAndForceReplicaSetReconfig(String acceptDataRisksAndForceReplicaSetReconfig) {
+            return acceptDataRisksAndForceReplicaSetReconfig(Output.of(acceptDataRisksAndForceReplicaSetReconfig));
         }
 
         public Builder advancedConfiguration(@Nullable Output<ClusterAdvancedConfigurationArgs> advancedConfiguration) {

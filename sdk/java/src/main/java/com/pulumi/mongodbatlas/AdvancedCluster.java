@@ -36,6 +36,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/advancedCluster:AdvancedCluster")
 public class AdvancedCluster extends com.pulumi.resources.CustomResource {
+    /**
+     * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     * 
+     */
+    @Export(name="acceptDataRisksAndForceReplicaSetReconfig", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> acceptDataRisksAndForceReplicaSetReconfig;
+
+    /**
+     * @return If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     * 
+     */
+    public Output<Optional<String>> acceptDataRisksAndForceReplicaSetReconfig() {
+        return Codegen.optional(this.acceptDataRisksAndForceReplicaSetReconfig);
+    }
     @Export(name="advancedConfiguration", refs={AdvancedClusterAdvancedConfiguration.class}, tree="[0]")
     private Output<AdvancedClusterAdvancedConfiguration> advancedConfiguration;
 
@@ -173,14 +187,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      */
     @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     @Export(name="labels", refs={List.class,AdvancedClusterLabel.class}, tree="[0,1]")
-    private Output<List<AdvancedClusterLabel>> labels;
+    private Output</* @Nullable */ List<AdvancedClusterLabel>> labels;
 
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      */
-    public Output<List<AdvancedClusterLabel>> labels() {
-        return this.labels;
+    public Output<Optional<List<AdvancedClusterLabel>>> labels() {
+        return Codegen.optional(this.labels);
     }
     /**
      * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
@@ -225,10 +239,10 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     @Export(name="paused", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> paused;
+    private Output<Boolean> paused;
 
-    public Output<Optional<Boolean>> paused() {
-        return Codegen.optional(this.paused);
+    public Output<Boolean> paused() {
+        return this.paused;
     }
     /**
      * Flag that indicates if the cluster uses Continuous Cloud Backup.
@@ -359,14 +373,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="versionReleaseSystem", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> versionReleaseSystem;
+    private Output<String> versionReleaseSystem;
 
     /**
      * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
-    public Output<Optional<String>> versionReleaseSystem() {
-        return Codegen.optional(this.versionReleaseSystem);
+    public Output<String> versionReleaseSystem() {
+        return this.versionReleaseSystem;
     }
 
     /**
