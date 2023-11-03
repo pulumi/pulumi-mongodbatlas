@@ -46,8 +46,8 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test_advanced_search_index = new Mongodbatlas.SearchIndex("test-advanced-search-index", new()
     ///     {
-    ///         ProjectId = "%[1]s",
-    ///         ClusterName = "%[2]s",
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
     ///         Analyzer = "lucene.standard",
     ///         CollectionName = "collection_test",
     ///         Database = "database_test",
@@ -86,20 +86,20 @@ namespace Pulumi.Mongodbatlas
     ///         SearchAnalyzer = "lucene.standard",
     ///         Analyzers = @" [{
     ///  ""name"": ""index_analyzer_test_name"",
-    ///  ""charFilters"": {
+    ///  ""charFilters"": [{
     /// ""type"": ""mapping"",
     /// ""mappings"": {""\\"" : ""/""}
-    ///    	},
+    ///    	}],
     ///  ""tokenizer"": {
     ///  ""type"": ""nGram"",
     ///  ""minGram"": 2,
     ///  ""maxGram"": 5
     /// 	},
-    ///  ""tokenFilters"": {
+    ///  ""tokenFilters"": [{
     /// ""type"": ""length"",
     /// ""min"": 20,
     /// ""max"": 33
-    ///    	}
+    ///    	}]
     ///  }]
     /// ",
     ///         Synonyms = new[]

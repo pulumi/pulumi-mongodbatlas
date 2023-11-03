@@ -22,6 +22,12 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/advancedCluster:AdvancedCluster")]
     public partial class AdvancedCluster : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// </summary>
+        [Output("acceptDataRisksAndForceReplicaSetReconfig")]
+        public Output<string?> AcceptDataRisksAndForceReplicaSetReconfig { get; private set; } = null!;
+
         [Output("advancedConfiguration")]
         public Output<Outputs.AdvancedClusterAdvancedConfiguration> AdvancedConfiguration { get; private set; } = null!;
 
@@ -104,7 +110,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Name { get; private set; } = null!;
 
         [Output("paused")]
-        public Output<bool?> Paused { get; private set; } = null!;
+        public Output<bool> Paused { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates if the cluster uses Continuous Cloud Backup.
@@ -164,7 +170,7 @@ namespace Pulumi.Mongodbatlas
         /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         /// </summary>
         [Output("versionReleaseSystem")]
-        public Output<string?> VersionReleaseSystem { get; private set; } = null!;
+        public Output<string> VersionReleaseSystem { get; private set; } = null!;
 
 
         /// <summary>
@@ -212,6 +218,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class AdvancedClusterArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// </summary>
+        [Input("acceptDataRisksAndForceReplicaSetReconfig")]
+        public Input<string>? AcceptDataRisksAndForceReplicaSetReconfig { get; set; }
+
         [Input("advancedConfiguration")]
         public Input<Inputs.AdvancedClusterAdvancedConfigurationArgs>? AdvancedConfiguration { get; set; }
 
@@ -350,6 +362,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class AdvancedClusterState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// </summary>
+        [Input("acceptDataRisksAndForceReplicaSetReconfig")]
+        public Input<string>? AcceptDataRisksAndForceReplicaSetReconfig { get; set; }
+
         [Input("advancedConfiguration")]
         public Input<Inputs.AdvancedClusterAdvancedConfigurationGetArgs>? AdvancedConfiguration { get; set; }
 

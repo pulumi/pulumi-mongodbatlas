@@ -83,11 +83,17 @@ class GetSearchIndexesResult:
     @property
     @pulumi.getter(name="itemsPerPage")
     def items_per_page(self) -> Optional[int]:
+        warnings.warn("""this parameter is deprecated and will be removed in version 1.15.0""", DeprecationWarning)
+        pulumi.log.warn("""items_per_page is deprecated: this parameter is deprecated and will be removed in version 1.15.0""")
+
         return pulumi.get(self, "items_per_page")
 
     @property
     @pulumi.getter(name="pageNum")
     def page_num(self) -> Optional[int]:
+        warnings.warn("""this parameter is deprecated and will be removed in version 1.15.0""", DeprecationWarning)
+        pulumi.log.warn("""page_num is deprecated: this parameter is deprecated and will be removed in version 1.15.0""")
+
         return pulumi.get(self, "page_num")
 
     @property
@@ -145,8 +151,8 @@ def get_search_indexes(cluster_name: Optional[str] = None,
     :param str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
     :param str collection_name: Name of the collection with one or more Atlas Search indexes.
     :param str database: (Required) Name of the database the collection is in.
-    :param int items_per_page: Number of items that Atlas returns per page, up to a maximum of 500.
-    :param int page_num: Page number, starting with one, that Atlas returns of the total number of objects.
+    :param int items_per_page: Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
+    :param int page_num: Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
     :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
     """
     __args__ = dict()
@@ -188,8 +194,8 @@ def get_search_indexes_output(cluster_name: Optional[pulumi.Input[str]] = None,
     :param str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
     :param str collection_name: Name of the collection with one or more Atlas Search indexes.
     :param str database: (Required) Name of the database the collection is in.
-    :param int items_per_page: Number of items that Atlas returns per page, up to a maximum of 500.
-    :param int page_num: Page number, starting with one, that Atlas returns of the total number of objects.
+    :param int items_per_page: Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
+    :param int page_num: Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
     :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
     """
     ...

@@ -30,7 +30,19 @@ public final class GetSearchIndexesInvokeResult {
      * 
      */
     private String id;
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.15.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
     private @Nullable Integer itemsPerPage;
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.15.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
     private @Nullable Integer pageNum;
     private String projectId;
     /**
@@ -69,9 +81,21 @@ public final class GetSearchIndexesInvokeResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.15.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
     public Optional<Integer> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
     }
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.15.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
     public Optional<Integer> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }

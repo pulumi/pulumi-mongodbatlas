@@ -38,6 +38,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/cluster:Cluster")
 public class Cluster extends com.pulumi.resources.CustomResource {
+    /**
+     * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     * 
+     */
+    @Export(name="acceptDataRisksAndForceReplicaSetReconfig", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> acceptDataRisksAndForceReplicaSetReconfig;
+
+    /**
+     * @return If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     * 
+     */
+    public Output<Optional<String>> acceptDataRisksAndForceReplicaSetReconfig() {
+        return Codegen.optional(this.acceptDataRisksAndForceReplicaSetReconfig);
+    }
     @Export(name="advancedConfiguration", refs={ClusterAdvancedConfiguration.class}, tree="[0]")
     private Output<ClusterAdvancedConfiguration> advancedConfiguration;
 
@@ -133,7 +147,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="backupEnabled", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> backupEnabled;
+    private Output<Boolean> backupEnabled;
 
     /**
      * @return Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
@@ -165,8 +179,8 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * * The default value is false.  M10 and above only.
      * 
      */
-    public Output<Optional<Boolean>> backupEnabled() {
-        return Codegen.optional(this.backupEnabled);
+    public Output<Boolean> backupEnabled() {
+        return this.backupEnabled;
     }
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
@@ -299,14 +313,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      */
     @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
     @Export(name="labels", refs={List.class,ClusterLabel.class}, tree="[0,1]")
-    private Output<List<ClusterLabel>> labels;
+    private Output</* @Nullable */ List<ClusterLabel>> labels;
 
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      */
-    public Output<List<ClusterLabel>> labels() {
-        return this.labels;
+    public Output<Optional<List<ClusterLabel>>> labels() {
+        return Codegen.optional(this.labels);
     }
     /**
      * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
@@ -397,20 +411,20 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="numShards", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> numShards;
+    private Output<Integer> numShards;
 
     /**
      * @return Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
-    public Output<Optional<Integer>> numShards() {
-        return Codegen.optional(this.numShards);
+    public Output<Integer> numShards() {
+        return this.numShards;
     }
     @Export(name="paused", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> paused;
+    private Output<Boolean> paused;
 
-    public Output<Optional<Boolean>> paused() {
-        return Codegen.optional(this.paused);
+    public Output<Boolean> paused() {
+        return this.paused;
     }
     /**
      * Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
@@ -715,14 +729,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="versionReleaseSystem", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> versionReleaseSystem;
+    private Output<String> versionReleaseSystem;
 
     /**
      * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
-    public Output<Optional<String>> versionReleaseSystem() {
-        return Codegen.optional(this.versionReleaseSystem);
+    public Output<String> versionReleaseSystem() {
+        return this.versionReleaseSystem;
     }
 
     /**

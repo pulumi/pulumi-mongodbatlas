@@ -41,11 +41,15 @@ export interface GetSearchIndexesArgs {
      */
     database: string;
     /**
-     * Number of items that Atlas returns per page, up to a maximum of 500.
+     * Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
+     *
+     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
      */
     itemsPerPage?: number;
     /**
-     * Page number, starting with one, that Atlas returns of the total number of objects.
+     * Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
+     *
+     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
      */
     pageNum?: number;
     /**
@@ -71,7 +75,13 @@ export interface GetSearchIndexesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
+     */
     readonly itemsPerPage?: number;
+    /**
+     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
+     */
     readonly pageNum?: number;
     readonly projectId: string;
     /**
@@ -109,11 +119,15 @@ export interface GetSearchIndexesOutputArgs {
      */
     database: pulumi.Input<string>;
     /**
-     * Number of items that Atlas returns per page, up to a maximum of 500.
+     * Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
+     *
+     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
      */
     itemsPerPage?: pulumi.Input<number>;
     /**
-     * Page number, starting with one, that Atlas returns of the total number of objects.
+     * Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
+     *
+     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
      */
     pageNum?: pulumi.Input<number>;
     /**

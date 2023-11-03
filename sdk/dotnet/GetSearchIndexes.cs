@@ -50,13 +50,13 @@ namespace Pulumi.Mongodbatlas
         public string Database { get; set; } = null!;
 
         /// <summary>
-        /// Number of items that Atlas returns per page, up to a maximum of 500.
+        /// Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
         /// </summary>
         [Input("itemsPerPage")]
         public int? ItemsPerPage { get; set; }
 
         /// <summary>
-        /// Page number, starting with one, that Atlas returns of the total number of objects.
+        /// Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
         /// </summary>
         [Input("pageNum")]
         public int? PageNum { get; set; }
@@ -94,13 +94,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Database { get; set; } = null!;
 
         /// <summary>
-        /// Number of items that Atlas returns per page, up to a maximum of 500.
+        /// Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
         /// </summary>
         [Input("itemsPerPage")]
         public Input<int>? ItemsPerPage { get; set; }
 
         /// <summary>
-        /// Page number, starting with one, that Atlas returns of the total number of objects.
+        /// Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
         /// </summary>
         [Input("pageNum")]
         public Input<int>? PageNum { get; set; }

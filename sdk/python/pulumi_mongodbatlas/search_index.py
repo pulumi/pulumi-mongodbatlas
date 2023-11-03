@@ -480,8 +480,8 @@ class SearchIndex(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test_advanced_search_index = mongodbatlas.SearchIndex("test-advanced-search-index",
-            project_id="%[1]s",
-            cluster_name="%[2]s",
+            project_id="<PROJECT_ID>",
+            cluster_name="<CLUSTER_NAME>",
             analyzer="lucene.standard",
             collection_name="collection_test",
             database="database_test",
@@ -520,20 +520,20 @@ class SearchIndex(pulumi.CustomResource):
             search_analyzer="lucene.standard",
             analyzers=\"\"\" [{
          "name": "index_analyzer_test_name",
-         "charFilters": {
+         "charFilters": [{
         "type": "mapping",
         "mappings": {"\\\\" : "/"}
-           	},
+           	}],
          "tokenizer": {
          "type": "nGram",
          "minGram": 2,
          "maxGram": 5
         	},
-         "tokenFilters": {
+         "tokenFilters": [{
         "type": "length",
         "min": 20,
         "max": 33
-           	}
+           	}]
          }]
         \"\"\",
             synonyms=[mongodbatlas.SearchIndexSynonymArgs(
@@ -587,8 +587,8 @@ class SearchIndex(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test_advanced_search_index = mongodbatlas.SearchIndex("test-advanced-search-index",
-            project_id="%[1]s",
-            cluster_name="%[2]s",
+            project_id="<PROJECT_ID>",
+            cluster_name="<CLUSTER_NAME>",
             analyzer="lucene.standard",
             collection_name="collection_test",
             database="database_test",
@@ -627,20 +627,20 @@ class SearchIndex(pulumi.CustomResource):
             search_analyzer="lucene.standard",
             analyzers=\"\"\" [{
          "name": "index_analyzer_test_name",
-         "charFilters": {
+         "charFilters": [{
         "type": "mapping",
         "mappings": {"\\\\" : "/"}
-           	},
+           	}],
          "tokenizer": {
          "type": "nGram",
          "minGram": 2,
          "maxGram": 5
         	},
-         "tokenFilters": {
+         "tokenFilters": [{
         "type": "length",
         "min": 20,
         "max": 33
-           	}
+           	}]
          }]
         \"\"\",
             synonyms=[mongodbatlas.SearchIndexSynonymArgs(
