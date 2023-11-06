@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -232,12 +231,6 @@ func (i *ProjectApiKey) ToProjectApiKeyOutputWithContext(ctx context.Context) Pr
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectApiKeyOutput)
 }
 
-func (i *ProjectApiKey) ToOutput(ctx context.Context) pulumix.Output[*ProjectApiKey] {
-	return pulumix.Output[*ProjectApiKey]{
-		OutputState: i.ToProjectApiKeyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ProjectApiKeyArrayInput is an input type that accepts ProjectApiKeyArray and ProjectApiKeyArrayOutput values.
 // You can construct a concrete instance of `ProjectApiKeyArrayInput` via:
 //
@@ -261,12 +254,6 @@ func (i ProjectApiKeyArray) ToProjectApiKeyArrayOutput() ProjectApiKeyArrayOutpu
 
 func (i ProjectApiKeyArray) ToProjectApiKeyArrayOutputWithContext(ctx context.Context) ProjectApiKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectApiKeyArrayOutput)
-}
-
-func (i ProjectApiKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*ProjectApiKey] {
-	return pulumix.Output[[]*ProjectApiKey]{
-		OutputState: i.ToProjectApiKeyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ProjectApiKeyMapInput is an input type that accepts ProjectApiKeyMap and ProjectApiKeyMapOutput values.
@@ -294,12 +281,6 @@ func (i ProjectApiKeyMap) ToProjectApiKeyMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectApiKeyMapOutput)
 }
 
-func (i ProjectApiKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ProjectApiKey] {
-	return pulumix.Output[map[string]*ProjectApiKey]{
-		OutputState: i.ToProjectApiKeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ProjectApiKeyOutput struct{ *pulumi.OutputState }
 
 func (ProjectApiKeyOutput) ElementType() reflect.Type {
@@ -312,12 +293,6 @@ func (o ProjectApiKeyOutput) ToProjectApiKeyOutput() ProjectApiKeyOutput {
 
 func (o ProjectApiKeyOutput) ToProjectApiKeyOutputWithContext(ctx context.Context) ProjectApiKeyOutput {
 	return o
-}
-
-func (o ProjectApiKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*ProjectApiKey] {
-	return pulumix.Output[*ProjectApiKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Unique identifier for this Project API key.
@@ -363,12 +338,6 @@ func (o ProjectApiKeyArrayOutput) ToProjectApiKeyArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o ProjectApiKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ProjectApiKey] {
-	return pulumix.Output[[]*ProjectApiKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ProjectApiKeyArrayOutput) Index(i pulumi.IntInput) ProjectApiKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ProjectApiKey {
 		return vs[0].([]*ProjectApiKey)[vs[1].(int)]
@@ -387,12 +356,6 @@ func (o ProjectApiKeyMapOutput) ToProjectApiKeyMapOutput() ProjectApiKeyMapOutpu
 
 func (o ProjectApiKeyMapOutput) ToProjectApiKeyMapOutputWithContext(ctx context.Context) ProjectApiKeyMapOutput {
 	return o
-}
-
-func (o ProjectApiKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ProjectApiKey] {
-	return pulumix.Output[map[string]*ProjectApiKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ProjectApiKeyMapOutput) MapIndex(k pulumi.StringInput) ProjectApiKeyOutput {

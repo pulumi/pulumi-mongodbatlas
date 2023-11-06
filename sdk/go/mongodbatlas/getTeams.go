@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupTeams(ctx *pulumi.Context, args *LookupTeamsArgs, opts ...pulumi.InvokeOption) (*LookupTeamsResult, error) {
@@ -76,12 +75,6 @@ func (o LookupTeamsResultOutput) ToLookupTeamsResultOutput() LookupTeamsResultOu
 
 func (o LookupTeamsResultOutput) ToLookupTeamsResultOutputWithContext(ctx context.Context) LookupTeamsResultOutput {
 	return o
-}
-
-func (o LookupTeamsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupTeamsResult] {
-	return pulumix.Output[LookupTeamsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `AlertConfiguration` describes an Alert Configuration.
@@ -100,12 +99,6 @@ func (o LookupAlertConfigurationResultOutput) ToLookupAlertConfigurationResultOu
 
 func (o LookupAlertConfigurationResultOutput) ToLookupAlertConfigurationResultOutputWithContext(ctx context.Context) LookupAlertConfigurationResultOutput {
 	return o
-}
-
-func (o LookupAlertConfigurationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAlertConfigurationResult] {
-	return pulumix.Output[LookupAlertConfigurationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupAlertConfigurationResultOutput) AlertConfigurationId() pulumi.StringOutput {

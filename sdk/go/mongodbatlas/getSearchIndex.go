@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `SearchIndex` describe a single search indexes. This represents a single search index that have been created.
@@ -168,12 +167,6 @@ func (o LookupSearchIndexResultOutput) ToLookupSearchIndexResultOutput() LookupS
 
 func (o LookupSearchIndexResultOutput) ToLookupSearchIndexResultOutputWithContext(ctx context.Context) LookupSearchIndexResultOutput {
 	return o
-}
-
-func (o LookupSearchIndexResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSearchIndexResult] {
-	return pulumix.Output[LookupSearchIndexResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `CustomDnsConfigurationClusterAws` provides a Custom DNS Configuration for Atlas Clusters on AWS resource. This represents a Custom DNS Configuration for Atlas Clusters on AWS that can be updated in an Atlas project.
@@ -159,12 +158,6 @@ func (i *CustomDnsConfigurationClusterAws) ToCustomDnsConfigurationClusterAwsOut
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDnsConfigurationClusterAwsOutput)
 }
 
-func (i *CustomDnsConfigurationClusterAws) ToOutput(ctx context.Context) pulumix.Output[*CustomDnsConfigurationClusterAws] {
-	return pulumix.Output[*CustomDnsConfigurationClusterAws]{
-		OutputState: i.ToCustomDnsConfigurationClusterAwsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CustomDnsConfigurationClusterAwsArrayInput is an input type that accepts CustomDnsConfigurationClusterAwsArray and CustomDnsConfigurationClusterAwsArrayOutput values.
 // You can construct a concrete instance of `CustomDnsConfigurationClusterAwsArrayInput` via:
 //
@@ -188,12 +181,6 @@ func (i CustomDnsConfigurationClusterAwsArray) ToCustomDnsConfigurationClusterAw
 
 func (i CustomDnsConfigurationClusterAwsArray) ToCustomDnsConfigurationClusterAwsArrayOutputWithContext(ctx context.Context) CustomDnsConfigurationClusterAwsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDnsConfigurationClusterAwsArrayOutput)
-}
-
-func (i CustomDnsConfigurationClusterAwsArray) ToOutput(ctx context.Context) pulumix.Output[[]*CustomDnsConfigurationClusterAws] {
-	return pulumix.Output[[]*CustomDnsConfigurationClusterAws]{
-		OutputState: i.ToCustomDnsConfigurationClusterAwsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CustomDnsConfigurationClusterAwsMapInput is an input type that accepts CustomDnsConfigurationClusterAwsMap and CustomDnsConfigurationClusterAwsMapOutput values.
@@ -221,12 +208,6 @@ func (i CustomDnsConfigurationClusterAwsMap) ToCustomDnsConfigurationClusterAwsM
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDnsConfigurationClusterAwsMapOutput)
 }
 
-func (i CustomDnsConfigurationClusterAwsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CustomDnsConfigurationClusterAws] {
-	return pulumix.Output[map[string]*CustomDnsConfigurationClusterAws]{
-		OutputState: i.ToCustomDnsConfigurationClusterAwsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CustomDnsConfigurationClusterAwsOutput struct{ *pulumi.OutputState }
 
 func (CustomDnsConfigurationClusterAwsOutput) ElementType() reflect.Type {
@@ -239,12 +220,6 @@ func (o CustomDnsConfigurationClusterAwsOutput) ToCustomDnsConfigurationClusterA
 
 func (o CustomDnsConfigurationClusterAwsOutput) ToCustomDnsConfigurationClusterAwsOutputWithContext(ctx context.Context) CustomDnsConfigurationClusterAwsOutput {
 	return o
-}
-
-func (o CustomDnsConfigurationClusterAwsOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomDnsConfigurationClusterAws] {
-	return pulumix.Output[*CustomDnsConfigurationClusterAws]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
@@ -271,12 +246,6 @@ func (o CustomDnsConfigurationClusterAwsArrayOutput) ToCustomDnsConfigurationClu
 	return o
 }
 
-func (o CustomDnsConfigurationClusterAwsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CustomDnsConfigurationClusterAws] {
-	return pulumix.Output[[]*CustomDnsConfigurationClusterAws]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CustomDnsConfigurationClusterAwsArrayOutput) Index(i pulumi.IntInput) CustomDnsConfigurationClusterAwsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CustomDnsConfigurationClusterAws {
 		return vs[0].([]*CustomDnsConfigurationClusterAws)[vs[1].(int)]
@@ -295,12 +264,6 @@ func (o CustomDnsConfigurationClusterAwsMapOutput) ToCustomDnsConfigurationClust
 
 func (o CustomDnsConfigurationClusterAwsMapOutput) ToCustomDnsConfigurationClusterAwsMapOutputWithContext(ctx context.Context) CustomDnsConfigurationClusterAwsMapOutput {
 	return o
-}
-
-func (o CustomDnsConfigurationClusterAwsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CustomDnsConfigurationClusterAws] {
-	return pulumix.Output[map[string]*CustomDnsConfigurationClusterAws]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CustomDnsConfigurationClusterAwsMapOutput) MapIndex(k pulumi.StringInput) CustomDnsConfigurationClusterAwsOutput {

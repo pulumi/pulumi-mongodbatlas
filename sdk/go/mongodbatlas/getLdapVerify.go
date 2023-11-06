@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `LdapVerify` describes a LDAP Verify.
@@ -92,12 +91,6 @@ func (o LookupLdapVerifyResultOutput) ToLookupLdapVerifyResultOutput() LookupLda
 
 func (o LookupLdapVerifyResultOutput) ToLookupLdapVerifyResultOutputWithContext(ctx context.Context) LookupLdapVerifyResultOutput {
 	return o
-}
-
-func (o LookupLdapVerifyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLdapVerifyResult] {
-	return pulumix.Output[LookupLdapVerifyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The user DN that Atlas uses to connect to the LDAP server.

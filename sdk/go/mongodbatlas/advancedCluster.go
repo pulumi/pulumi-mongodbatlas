@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -387,12 +386,6 @@ func (i *AdvancedCluster) ToAdvancedClusterOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterOutput)
 }
 
-func (i *AdvancedCluster) ToOutput(ctx context.Context) pulumix.Output[*AdvancedCluster] {
-	return pulumix.Output[*AdvancedCluster]{
-		OutputState: i.ToAdvancedClusterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AdvancedClusterArrayInput is an input type that accepts AdvancedClusterArray and AdvancedClusterArrayOutput values.
 // You can construct a concrete instance of `AdvancedClusterArrayInput` via:
 //
@@ -416,12 +409,6 @@ func (i AdvancedClusterArray) ToAdvancedClusterArrayOutput() AdvancedClusterArra
 
 func (i AdvancedClusterArray) ToAdvancedClusterArrayOutputWithContext(ctx context.Context) AdvancedClusterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterArrayOutput)
-}
-
-func (i AdvancedClusterArray) ToOutput(ctx context.Context) pulumix.Output[[]*AdvancedCluster] {
-	return pulumix.Output[[]*AdvancedCluster]{
-		OutputState: i.ToAdvancedClusterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AdvancedClusterMapInput is an input type that accepts AdvancedClusterMap and AdvancedClusterMapOutput values.
@@ -449,12 +436,6 @@ func (i AdvancedClusterMap) ToAdvancedClusterMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterMapOutput)
 }
 
-func (i AdvancedClusterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AdvancedCluster] {
-	return pulumix.Output[map[string]*AdvancedCluster]{
-		OutputState: i.ToAdvancedClusterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AdvancedClusterOutput struct{ *pulumi.OutputState }
 
 func (AdvancedClusterOutput) ElementType() reflect.Type {
@@ -467,12 +448,6 @@ func (o AdvancedClusterOutput) ToAdvancedClusterOutput() AdvancedClusterOutput {
 
 func (o AdvancedClusterOutput) ToAdvancedClusterOutputWithContext(ctx context.Context) AdvancedClusterOutput {
 	return o
-}
-
-func (o AdvancedClusterOutput) ToOutput(ctx context.Context) pulumix.Output[*AdvancedCluster] {
-	return pulumix.Output[*AdvancedCluster]{
-		OutputState: o.OutputState,
-	}
 }
 
 // If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
@@ -623,12 +598,6 @@ func (o AdvancedClusterArrayOutput) ToAdvancedClusterArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o AdvancedClusterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AdvancedCluster] {
-	return pulumix.Output[[]*AdvancedCluster]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AdvancedClusterArrayOutput) Index(i pulumi.IntInput) AdvancedClusterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AdvancedCluster {
 		return vs[0].([]*AdvancedCluster)[vs[1].(int)]
@@ -647,12 +616,6 @@ func (o AdvancedClusterMapOutput) ToAdvancedClusterMapOutput() AdvancedClusterMa
 
 func (o AdvancedClusterMapOutput) ToAdvancedClusterMapOutputWithContext(ctx context.Context) AdvancedClusterMapOutput {
 	return o
-}
-
-func (o AdvancedClusterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AdvancedCluster] {
-	return pulumix.Output[map[string]*AdvancedCluster]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AdvancedClusterMapOutput) MapIndex(k pulumi.StringInput) AdvancedClusterOutput {

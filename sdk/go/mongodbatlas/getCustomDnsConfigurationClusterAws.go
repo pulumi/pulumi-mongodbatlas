@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
@@ -76,12 +75,6 @@ func (o LookupCustomDnsConfigurationClusterAwsResultOutput) ToLookupCustomDnsCon
 
 func (o LookupCustomDnsConfigurationClusterAwsResultOutput) ToLookupCustomDnsConfigurationClusterAwsResultOutputWithContext(ctx context.Context) LookupCustomDnsConfigurationClusterAwsResultOutput {
 	return o
-}
-
-func (o LookupCustomDnsConfigurationClusterAwsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCustomDnsConfigurationClusterAwsResult] {
-	return pulumix.Output[LookupCustomDnsConfigurationClusterAwsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Indicates whether the project's clusters deployed to AWS use custom DNS.

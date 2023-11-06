@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `DataLakePipeline` provides a Data Lake Pipeline resource.
@@ -244,12 +243,6 @@ func (i *DataLakePipeline) ToDataLakePipelineOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(DataLakePipelineOutput)
 }
 
-func (i *DataLakePipeline) ToOutput(ctx context.Context) pulumix.Output[*DataLakePipeline] {
-	return pulumix.Output[*DataLakePipeline]{
-		OutputState: i.ToDataLakePipelineOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DataLakePipelineArrayInput is an input type that accepts DataLakePipelineArray and DataLakePipelineArrayOutput values.
 // You can construct a concrete instance of `DataLakePipelineArrayInput` via:
 //
@@ -273,12 +266,6 @@ func (i DataLakePipelineArray) ToDataLakePipelineArrayOutput() DataLakePipelineA
 
 func (i DataLakePipelineArray) ToDataLakePipelineArrayOutputWithContext(ctx context.Context) DataLakePipelineArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DataLakePipelineArrayOutput)
-}
-
-func (i DataLakePipelineArray) ToOutput(ctx context.Context) pulumix.Output[[]*DataLakePipeline] {
-	return pulumix.Output[[]*DataLakePipeline]{
-		OutputState: i.ToDataLakePipelineArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DataLakePipelineMapInput is an input type that accepts DataLakePipelineMap and DataLakePipelineMapOutput values.
@@ -306,12 +293,6 @@ func (i DataLakePipelineMap) ToDataLakePipelineMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(DataLakePipelineMapOutput)
 }
 
-func (i DataLakePipelineMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DataLakePipeline] {
-	return pulumix.Output[map[string]*DataLakePipeline]{
-		OutputState: i.ToDataLakePipelineMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DataLakePipelineOutput struct{ *pulumi.OutputState }
 
 func (DataLakePipelineOutput) ElementType() reflect.Type {
@@ -324,12 +305,6 @@ func (o DataLakePipelineOutput) ToDataLakePipelineOutput() DataLakePipelineOutpu
 
 func (o DataLakePipelineOutput) ToDataLakePipelineOutputWithContext(ctx context.Context) DataLakePipelineOutput {
 	return o
-}
-
-func (o DataLakePipelineOutput) ToOutput(ctx context.Context) pulumix.Output[*DataLakePipeline] {
-	return pulumix.Output[*DataLakePipeline]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Timestamp that indicates when the Data Lake Pipeline was created.
@@ -415,12 +390,6 @@ func (o DataLakePipelineArrayOutput) ToDataLakePipelineArrayOutputWithContext(ct
 	return o
 }
 
-func (o DataLakePipelineArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DataLakePipeline] {
-	return pulumix.Output[[]*DataLakePipeline]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DataLakePipelineArrayOutput) Index(i pulumi.IntInput) DataLakePipelineOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DataLakePipeline {
 		return vs[0].([]*DataLakePipeline)[vs[1].(int)]
@@ -439,12 +408,6 @@ func (o DataLakePipelineMapOutput) ToDataLakePipelineMapOutput() DataLakePipelin
 
 func (o DataLakePipelineMapOutput) ToDataLakePipelineMapOutputWithContext(ctx context.Context) DataLakePipelineMapOutput {
 	return o
-}
-
-func (o DataLakePipelineMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DataLakePipeline] {
-	return pulumix.Output[map[string]*DataLakePipeline]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DataLakePipelineMapOutput) MapIndex(k pulumi.StringInput) DataLakePipelineOutput {

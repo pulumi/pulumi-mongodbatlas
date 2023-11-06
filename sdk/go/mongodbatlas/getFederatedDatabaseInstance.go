@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `FederatedDatabaseInstance` provides a Federated Database Instance data source.
@@ -192,12 +191,6 @@ func (o LookupFederatedDatabaseInstanceResultOutput) ToLookupFederatedDatabaseIn
 
 func (o LookupFederatedDatabaseInstanceResultOutput) ToLookupFederatedDatabaseInstanceResultOutputWithContext(ctx context.Context) LookupFederatedDatabaseInstanceResultOutput {
 	return o
-}
-
-func (o LookupFederatedDatabaseInstanceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFederatedDatabaseInstanceResult] {
-	return pulumix.Output[LookupFederatedDatabaseInstanceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupFederatedDatabaseInstanceResultOutput) CloudProviderConfig() GetFederatedDatabaseInstanceCloudProviderConfigOutput {

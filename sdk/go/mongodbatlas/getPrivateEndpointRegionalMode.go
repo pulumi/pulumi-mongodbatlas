@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `privateEndpointRegionalMode` describe a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
@@ -79,12 +78,6 @@ func (o LookupPrivateEndpointRegionalModeResultOutput) ToLookupPrivateEndpointRe
 
 func (o LookupPrivateEndpointRegionalModeResultOutput) ToLookupPrivateEndpointRegionalModeResultOutputWithContext(ctx context.Context) LookupPrivateEndpointRegionalModeResultOutput {
 	return o
-}
-
-func (o LookupPrivateEndpointRegionalModeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupPrivateEndpointRegionalModeResult] {
-	return pulumix.Output[LookupPrivateEndpointRegionalModeResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupPrivateEndpointRegionalModeResultOutput) Enabled() pulumi.BoolPtrOutput {

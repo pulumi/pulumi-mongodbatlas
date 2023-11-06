@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
@@ -80,12 +79,6 @@ func (o GetRolesOrgIdResultOutput) ToGetRolesOrgIdResultOutput() GetRolesOrgIdRe
 
 func (o GetRolesOrgIdResultOutput) ToGetRolesOrgIdResultOutputWithContext(ctx context.Context) GetRolesOrgIdResultOutput {
 	return o
-}
-
-func (o GetRolesOrgIdResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRolesOrgIdResult] {
-	return pulumix.Output[GetRolesOrgIdResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

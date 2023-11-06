@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getProjects` describe all Projects. This represents projects that have been created.
@@ -139,12 +138,6 @@ func (o LookupProjectsResultOutput) ToLookupProjectsResultOutput() LookupProject
 
 func (o LookupProjectsResultOutput) ToLookupProjectsResultOutputWithContext(ctx context.Context) LookupProjectsResultOutput {
 	return o
-}
-
-func (o LookupProjectsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupProjectsResult] {
-	return pulumix.Output[LookupProjectsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Deprecated: Please use each project's id attribute instead

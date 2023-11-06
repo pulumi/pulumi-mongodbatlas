@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupApiKeys(ctx *pulumi.Context, args *LookupApiKeysArgs, opts ...pulumi.InvokeOption) (*LookupApiKeysResult, error) {
@@ -82,12 +81,6 @@ func (o LookupApiKeysResultOutput) ToLookupApiKeysResultOutput() LookupApiKeysRe
 
 func (o LookupApiKeysResultOutput) ToLookupApiKeysResultOutputWithContext(ctx context.Context) LookupApiKeysResultOutput {
 	return o
-}
-
-func (o LookupApiKeysResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupApiKeysResult] {
-	return pulumix.Output[LookupApiKeysResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.
