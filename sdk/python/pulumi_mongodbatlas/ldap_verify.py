@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -33,15 +33,58 @@ class LdapVerifyArgs:
         :param pulumi.Input[str] authz_query_template: An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
         :param pulumi.Input[str] ca_certificate: CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         """
-        pulumi.set(__self__, "bind_password", bind_password)
-        pulumi.set(__self__, "bind_username", bind_username)
-        pulumi.set(__self__, "hostname", hostname)
-        pulumi.set(__self__, "port", port)
-        pulumi.set(__self__, "project_id", project_id)
+        LdapVerifyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bind_password=bind_password,
+            bind_username=bind_username,
+            hostname=hostname,
+            port=port,
+            project_id=project_id,
+            authz_query_template=authz_query_template,
+            ca_certificate=ca_certificate,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bind_password: Optional[pulumi.Input[str]] = None,
+             bind_username: Optional[pulumi.Input[str]] = None,
+             hostname: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             authz_query_template: Optional[pulumi.Input[str]] = None,
+             ca_certificate: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if bind_password is None and 'bindPassword' in kwargs:
+            bind_password = kwargs['bindPassword']
+        if bind_password is None:
+            raise TypeError("Missing 'bind_password' argument")
+        if bind_username is None and 'bindUsername' in kwargs:
+            bind_username = kwargs['bindUsername']
+        if bind_username is None:
+            raise TypeError("Missing 'bind_username' argument")
+        if hostname is None:
+            raise TypeError("Missing 'hostname' argument")
+        if port is None:
+            raise TypeError("Missing 'port' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if authz_query_template is None and 'authzQueryTemplate' in kwargs:
+            authz_query_template = kwargs['authzQueryTemplate']
+        if ca_certificate is None and 'caCertificate' in kwargs:
+            ca_certificate = kwargs['caCertificate']
+
+        _setter("bind_password", bind_password)
+        _setter("bind_username", bind_username)
+        _setter("hostname", hostname)
+        _setter("port", port)
+        _setter("project_id", project_id)
         if authz_query_template is not None:
-            pulumi.set(__self__, "authz_query_template", authz_query_template)
+            _setter("authz_query_template", authz_query_template)
         if ca_certificate is not None:
-            pulumi.set(__self__, "ca_certificate", ca_certificate)
+            _setter("ca_certificate", ca_certificate)
 
     @property
     @pulumi.getter(name="bindPassword")
@@ -156,28 +199,71 @@ class _LdapVerifyState:
         :param pulumi.Input[str] status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
         :param pulumi.Input[Sequence[pulumi.Input['LdapVerifyValidationArgs']]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
         """
+        _LdapVerifyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            authz_query_template=authz_query_template,
+            bind_password=bind_password,
+            bind_username=bind_username,
+            ca_certificate=ca_certificate,
+            hostname=hostname,
+            links=links,
+            port=port,
+            project_id=project_id,
+            request_id=request_id,
+            status=status,
+            validations=validations,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             authz_query_template: Optional[pulumi.Input[str]] = None,
+             bind_password: Optional[pulumi.Input[str]] = None,
+             bind_username: Optional[pulumi.Input[str]] = None,
+             ca_certificate: Optional[pulumi.Input[str]] = None,
+             hostname: Optional[pulumi.Input[str]] = None,
+             links: Optional[pulumi.Input[Sequence[pulumi.Input['LdapVerifyLinkArgs']]]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             request_id: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             validations: Optional[pulumi.Input[Sequence[pulumi.Input['LdapVerifyValidationArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if authz_query_template is None and 'authzQueryTemplate' in kwargs:
+            authz_query_template = kwargs['authzQueryTemplate']
+        if bind_password is None and 'bindPassword' in kwargs:
+            bind_password = kwargs['bindPassword']
+        if bind_username is None and 'bindUsername' in kwargs:
+            bind_username = kwargs['bindUsername']
+        if ca_certificate is None and 'caCertificate' in kwargs:
+            ca_certificate = kwargs['caCertificate']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if request_id is None and 'requestId' in kwargs:
+            request_id = kwargs['requestId']
+
         if authz_query_template is not None:
-            pulumi.set(__self__, "authz_query_template", authz_query_template)
+            _setter("authz_query_template", authz_query_template)
         if bind_password is not None:
-            pulumi.set(__self__, "bind_password", bind_password)
+            _setter("bind_password", bind_password)
         if bind_username is not None:
-            pulumi.set(__self__, "bind_username", bind_username)
+            _setter("bind_username", bind_username)
         if ca_certificate is not None:
-            pulumi.set(__self__, "ca_certificate", ca_certificate)
+            _setter("ca_certificate", ca_certificate)
         if hostname is not None:
-            pulumi.set(__self__, "hostname", hostname)
+            _setter("hostname", hostname)
         if links is not None:
-            pulumi.set(__self__, "links", links)
+            _setter("links", links)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if request_id is not None:
-            pulumi.set(__self__, "request_id", request_id)
+            _setter("request_id", request_id)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if validations is not None:
-            pulumi.set(__self__, "validations", validations)
+            _setter("validations", validations)
 
     @property
     @pulumi.getter(name="authzQueryTemplate")
@@ -421,6 +507,10 @@ class LdapVerify(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            LdapVerifyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['CloudBackupSnapshotExportBucketArgs', 'CloudBackupSnapshotExportBucket']
@@ -25,10 +25,43 @@ class CloudBackupSnapshotExportBucketArgs:
         :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         """
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "iam_role_id", iam_role_id)
-        pulumi.set(__self__, "project_id", project_id)
+        CloudBackupSnapshotExportBucketArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket_name=bucket_name,
+            cloud_provider=cloud_provider,
+            iam_role_id=iam_role_id,
+            project_id=project_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             cloud_provider: Optional[pulumi.Input[str]] = None,
+             iam_role_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if bucket_name is None:
+            raise TypeError("Missing 'bucket_name' argument")
+        if cloud_provider is None and 'cloudProvider' in kwargs:
+            cloud_provider = kwargs['cloudProvider']
+        if cloud_provider is None:
+            raise TypeError("Missing 'cloud_provider' argument")
+        if iam_role_id is None and 'iamRoleId' in kwargs:
+            iam_role_id = kwargs['iamRoleId']
+        if iam_role_id is None:
+            raise TypeError("Missing 'iam_role_id' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+
+        _setter("bucket_name", bucket_name)
+        _setter("cloud_provider", cloud_provider)
+        _setter("iam_role_id", iam_role_id)
+        _setter("project_id", project_id)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -95,16 +128,45 @@ class _CloudBackupSnapshotExportBucketState:
         :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         """
+        _CloudBackupSnapshotExportBucketState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket_name=bucket_name,
+            cloud_provider=cloud_provider,
+            export_bucket_id=export_bucket_id,
+            iam_role_id=iam_role_id,
+            project_id=project_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket_name: Optional[pulumi.Input[str]] = None,
+             cloud_provider: Optional[pulumi.Input[str]] = None,
+             export_bucket_id: Optional[pulumi.Input[str]] = None,
+             iam_role_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if bucket_name is None and 'bucketName' in kwargs:
+            bucket_name = kwargs['bucketName']
+        if cloud_provider is None and 'cloudProvider' in kwargs:
+            cloud_provider = kwargs['cloudProvider']
+        if export_bucket_id is None and 'exportBucketId' in kwargs:
+            export_bucket_id = kwargs['exportBucketId']
+        if iam_role_id is None and 'iamRoleId' in kwargs:
+            iam_role_id = kwargs['iamRoleId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
         if bucket_name is not None:
-            pulumi.set(__self__, "bucket_name", bucket_name)
+            _setter("bucket_name", bucket_name)
         if cloud_provider is not None:
-            pulumi.set(__self__, "cloud_provider", cloud_provider)
+            _setter("cloud_provider", cloud_provider)
         if export_bucket_id is not None:
-            pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+            _setter("export_bucket_id", export_bucket_id)
         if iam_role_id is not None:
-            pulumi.set(__self__, "iam_role_id", iam_role_id)
+            _setter("iam_role_id", iam_role_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -254,6 +316,10 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CloudBackupSnapshotExportBucketArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

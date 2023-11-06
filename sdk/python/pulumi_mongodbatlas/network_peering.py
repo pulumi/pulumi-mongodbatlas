@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['NetworkPeeringArgs', 'NetworkPeering']
@@ -53,35 +53,114 @@ class NetworkPeeringArgs:
         :param pulumi.Input[str] vnet_name: Name of your Azure VNet.
         :param pulumi.Input[str] vpc_id: Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
         """
-        pulumi.set(__self__, "container_id", container_id)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "provider_name", provider_name)
+        NetworkPeeringArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            container_id=container_id,
+            project_id=project_id,
+            provider_name=provider_name,
+            accepter_region_name=accepter_region_name,
+            atlas_cidr_block=atlas_cidr_block,
+            atlas_gcp_project_id=atlas_gcp_project_id,
+            atlas_vpc_name=atlas_vpc_name,
+            aws_account_id=aws_account_id,
+            azure_directory_id=azure_directory_id,
+            azure_subscription_id=azure_subscription_id,
+            gcp_project_id=gcp_project_id,
+            network_name=network_name,
+            resource_group_name=resource_group_name,
+            route_table_cidr_block=route_table_cidr_block,
+            vnet_name=vnet_name,
+            vpc_id=vpc_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             container_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             accepter_region_name: Optional[pulumi.Input[str]] = None,
+             atlas_cidr_block: Optional[pulumi.Input[str]] = None,
+             atlas_gcp_project_id: Optional[pulumi.Input[str]] = None,
+             atlas_vpc_name: Optional[pulumi.Input[str]] = None,
+             aws_account_id: Optional[pulumi.Input[str]] = None,
+             azure_directory_id: Optional[pulumi.Input[str]] = None,
+             azure_subscription_id: Optional[pulumi.Input[str]] = None,
+             gcp_project_id: Optional[pulumi.Input[str]] = None,
+             network_name: Optional[pulumi.Input[str]] = None,
+             resource_group_name: Optional[pulumi.Input[str]] = None,
+             route_table_cidr_block: Optional[pulumi.Input[str]] = None,
+             vnet_name: Optional[pulumi.Input[str]] = None,
+             vpc_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if container_id is None and 'containerId' in kwargs:
+            container_id = kwargs['containerId']
+        if container_id is None:
+            raise TypeError("Missing 'container_id' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if provider_name is None:
+            raise TypeError("Missing 'provider_name' argument")
+        if accepter_region_name is None and 'accepterRegionName' in kwargs:
+            accepter_region_name = kwargs['accepterRegionName']
+        if atlas_cidr_block is None and 'atlasCidrBlock' in kwargs:
+            atlas_cidr_block = kwargs['atlasCidrBlock']
+        if atlas_gcp_project_id is None and 'atlasGcpProjectId' in kwargs:
+            atlas_gcp_project_id = kwargs['atlasGcpProjectId']
+        if atlas_vpc_name is None and 'atlasVpcName' in kwargs:
+            atlas_vpc_name = kwargs['atlasVpcName']
+        if aws_account_id is None and 'awsAccountId' in kwargs:
+            aws_account_id = kwargs['awsAccountId']
+        if azure_directory_id is None and 'azureDirectoryId' in kwargs:
+            azure_directory_id = kwargs['azureDirectoryId']
+        if azure_subscription_id is None and 'azureSubscriptionId' in kwargs:
+            azure_subscription_id = kwargs['azureSubscriptionId']
+        if gcp_project_id is None and 'gcpProjectId' in kwargs:
+            gcp_project_id = kwargs['gcpProjectId']
+        if network_name is None and 'networkName' in kwargs:
+            network_name = kwargs['networkName']
+        if resource_group_name is None and 'resourceGroupName' in kwargs:
+            resource_group_name = kwargs['resourceGroupName']
+        if route_table_cidr_block is None and 'routeTableCidrBlock' in kwargs:
+            route_table_cidr_block = kwargs['routeTableCidrBlock']
+        if vnet_name is None and 'vnetName' in kwargs:
+            vnet_name = kwargs['vnetName']
+        if vpc_id is None and 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+
+        _setter("container_id", container_id)
+        _setter("project_id", project_id)
+        _setter("provider_name", provider_name)
         if accepter_region_name is not None:
-            pulumi.set(__self__, "accepter_region_name", accepter_region_name)
+            _setter("accepter_region_name", accepter_region_name)
         if atlas_cidr_block is not None:
-            pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
+            _setter("atlas_cidr_block", atlas_cidr_block)
         if atlas_gcp_project_id is not None:
-            pulumi.set(__self__, "atlas_gcp_project_id", atlas_gcp_project_id)
+            _setter("atlas_gcp_project_id", atlas_gcp_project_id)
         if atlas_vpc_name is not None:
-            pulumi.set(__self__, "atlas_vpc_name", atlas_vpc_name)
+            _setter("atlas_vpc_name", atlas_vpc_name)
         if aws_account_id is not None:
-            pulumi.set(__self__, "aws_account_id", aws_account_id)
+            _setter("aws_account_id", aws_account_id)
         if azure_directory_id is not None:
-            pulumi.set(__self__, "azure_directory_id", azure_directory_id)
+            _setter("azure_directory_id", azure_directory_id)
         if azure_subscription_id is not None:
-            pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
+            _setter("azure_subscription_id", azure_subscription_id)
         if gcp_project_id is not None:
-            pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+            _setter("gcp_project_id", gcp_project_id)
         if network_name is not None:
-            pulumi.set(__self__, "network_name", network_name)
+            _setter("network_name", network_name)
         if resource_group_name is not None:
-            pulumi.set(__self__, "resource_group_name", resource_group_name)
+            _setter("resource_group_name", resource_group_name)
         if route_table_cidr_block is not None:
-            pulumi.set(__self__, "route_table_cidr_block", route_table_cidr_block)
+            _setter("route_table_cidr_block", route_table_cidr_block)
         if vnet_name is not None:
-            pulumi.set(__self__, "vnet_name", vnet_name)
+            _setter("vnet_name", vnet_name)
         if vpc_id is not None:
-            pulumi.set(__self__, "vpc_id", vpc_id)
+            _setter("vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="containerId")
@@ -333,54 +412,157 @@ class _NetworkPeeringState:
         :param pulumi.Input[str] vnet_name: Name of your Azure VNet.
         :param pulumi.Input[str] vpc_id: Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
         """
+        _NetworkPeeringState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            accepter_region_name=accepter_region_name,
+            atlas_cidr_block=atlas_cidr_block,
+            atlas_gcp_project_id=atlas_gcp_project_id,
+            atlas_id=atlas_id,
+            atlas_vpc_name=atlas_vpc_name,
+            aws_account_id=aws_account_id,
+            azure_directory_id=azure_directory_id,
+            azure_subscription_id=azure_subscription_id,
+            connection_id=connection_id,
+            container_id=container_id,
+            error_message=error_message,
+            error_state=error_state,
+            error_state_name=error_state_name,
+            gcp_project_id=gcp_project_id,
+            network_name=network_name,
+            peer_id=peer_id,
+            project_id=project_id,
+            provider_name=provider_name,
+            resource_group_name=resource_group_name,
+            route_table_cidr_block=route_table_cidr_block,
+            status=status,
+            status_name=status_name,
+            vnet_name=vnet_name,
+            vpc_id=vpc_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             accepter_region_name: Optional[pulumi.Input[str]] = None,
+             atlas_cidr_block: Optional[pulumi.Input[str]] = None,
+             atlas_gcp_project_id: Optional[pulumi.Input[str]] = None,
+             atlas_id: Optional[pulumi.Input[str]] = None,
+             atlas_vpc_name: Optional[pulumi.Input[str]] = None,
+             aws_account_id: Optional[pulumi.Input[str]] = None,
+             azure_directory_id: Optional[pulumi.Input[str]] = None,
+             azure_subscription_id: Optional[pulumi.Input[str]] = None,
+             connection_id: Optional[pulumi.Input[str]] = None,
+             container_id: Optional[pulumi.Input[str]] = None,
+             error_message: Optional[pulumi.Input[str]] = None,
+             error_state: Optional[pulumi.Input[str]] = None,
+             error_state_name: Optional[pulumi.Input[str]] = None,
+             gcp_project_id: Optional[pulumi.Input[str]] = None,
+             network_name: Optional[pulumi.Input[str]] = None,
+             peer_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             provider_name: Optional[pulumi.Input[str]] = None,
+             resource_group_name: Optional[pulumi.Input[str]] = None,
+             route_table_cidr_block: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             status_name: Optional[pulumi.Input[str]] = None,
+             vnet_name: Optional[pulumi.Input[str]] = None,
+             vpc_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if accepter_region_name is None and 'accepterRegionName' in kwargs:
+            accepter_region_name = kwargs['accepterRegionName']
+        if atlas_cidr_block is None and 'atlasCidrBlock' in kwargs:
+            atlas_cidr_block = kwargs['atlasCidrBlock']
+        if atlas_gcp_project_id is None and 'atlasGcpProjectId' in kwargs:
+            atlas_gcp_project_id = kwargs['atlasGcpProjectId']
+        if atlas_id is None and 'atlasId' in kwargs:
+            atlas_id = kwargs['atlasId']
+        if atlas_vpc_name is None and 'atlasVpcName' in kwargs:
+            atlas_vpc_name = kwargs['atlasVpcName']
+        if aws_account_id is None and 'awsAccountId' in kwargs:
+            aws_account_id = kwargs['awsAccountId']
+        if azure_directory_id is None and 'azureDirectoryId' in kwargs:
+            azure_directory_id = kwargs['azureDirectoryId']
+        if azure_subscription_id is None and 'azureSubscriptionId' in kwargs:
+            azure_subscription_id = kwargs['azureSubscriptionId']
+        if connection_id is None and 'connectionId' in kwargs:
+            connection_id = kwargs['connectionId']
+        if container_id is None and 'containerId' in kwargs:
+            container_id = kwargs['containerId']
+        if error_message is None and 'errorMessage' in kwargs:
+            error_message = kwargs['errorMessage']
+        if error_state is None and 'errorState' in kwargs:
+            error_state = kwargs['errorState']
+        if error_state_name is None and 'errorStateName' in kwargs:
+            error_state_name = kwargs['errorStateName']
+        if gcp_project_id is None and 'gcpProjectId' in kwargs:
+            gcp_project_id = kwargs['gcpProjectId']
+        if network_name is None and 'networkName' in kwargs:
+            network_name = kwargs['networkName']
+        if peer_id is None and 'peerId' in kwargs:
+            peer_id = kwargs['peerId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if provider_name is None and 'providerName' in kwargs:
+            provider_name = kwargs['providerName']
+        if resource_group_name is None and 'resourceGroupName' in kwargs:
+            resource_group_name = kwargs['resourceGroupName']
+        if route_table_cidr_block is None and 'routeTableCidrBlock' in kwargs:
+            route_table_cidr_block = kwargs['routeTableCidrBlock']
+        if status_name is None and 'statusName' in kwargs:
+            status_name = kwargs['statusName']
+        if vnet_name is None and 'vnetName' in kwargs:
+            vnet_name = kwargs['vnetName']
+        if vpc_id is None and 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+
         if accepter_region_name is not None:
-            pulumi.set(__self__, "accepter_region_name", accepter_region_name)
+            _setter("accepter_region_name", accepter_region_name)
         if atlas_cidr_block is not None:
-            pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
+            _setter("atlas_cidr_block", atlas_cidr_block)
         if atlas_gcp_project_id is not None:
-            pulumi.set(__self__, "atlas_gcp_project_id", atlas_gcp_project_id)
+            _setter("atlas_gcp_project_id", atlas_gcp_project_id)
         if atlas_id is not None:
-            pulumi.set(__self__, "atlas_id", atlas_id)
+            _setter("atlas_id", atlas_id)
         if atlas_vpc_name is not None:
-            pulumi.set(__self__, "atlas_vpc_name", atlas_vpc_name)
+            _setter("atlas_vpc_name", atlas_vpc_name)
         if aws_account_id is not None:
-            pulumi.set(__self__, "aws_account_id", aws_account_id)
+            _setter("aws_account_id", aws_account_id)
         if azure_directory_id is not None:
-            pulumi.set(__self__, "azure_directory_id", azure_directory_id)
+            _setter("azure_directory_id", azure_directory_id)
         if azure_subscription_id is not None:
-            pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
+            _setter("azure_subscription_id", azure_subscription_id)
         if connection_id is not None:
-            pulumi.set(__self__, "connection_id", connection_id)
+            _setter("connection_id", connection_id)
         if container_id is not None:
-            pulumi.set(__self__, "container_id", container_id)
+            _setter("container_id", container_id)
         if error_message is not None:
-            pulumi.set(__self__, "error_message", error_message)
+            _setter("error_message", error_message)
         if error_state is not None:
-            pulumi.set(__self__, "error_state", error_state)
+            _setter("error_state", error_state)
         if error_state_name is not None:
-            pulumi.set(__self__, "error_state_name", error_state_name)
+            _setter("error_state_name", error_state_name)
         if gcp_project_id is not None:
-            pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+            _setter("gcp_project_id", gcp_project_id)
         if network_name is not None:
-            pulumi.set(__self__, "network_name", network_name)
+            _setter("network_name", network_name)
         if peer_id is not None:
-            pulumi.set(__self__, "peer_id", peer_id)
+            _setter("peer_id", peer_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if provider_name is not None:
-            pulumi.set(__self__, "provider_name", provider_name)
+            _setter("provider_name", provider_name)
         if resource_group_name is not None:
-            pulumi.set(__self__, "resource_group_name", resource_group_name)
+            _setter("resource_group_name", resource_group_name)
         if route_table_cidr_block is not None:
-            pulumi.set(__self__, "route_table_cidr_block", route_table_cidr_block)
+            _setter("route_table_cidr_block", route_table_cidr_block)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if status_name is not None:
-            pulumi.set(__self__, "status_name", status_name)
+            _setter("status_name", status_name)
         if vnet_name is not None:
-            pulumi.set(__self__, "vnet_name", vnet_name)
+            _setter("vnet_name", vnet_name)
         if vpc_id is not None:
-            pulumi.set(__self__, "vpc_id", vpc_id)
+            _setter("vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="accepterRegionName")
@@ -1273,6 +1455,10 @@ class NetworkPeering(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            NetworkPeeringArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

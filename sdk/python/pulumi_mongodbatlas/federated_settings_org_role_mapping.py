@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,10 +27,43 @@ class FederatedSettingsOrgRoleMappingArgs:
         :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
-        pulumi.set(__self__, "external_group_name", external_group_name)
-        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "role_assignments", role_assignments)
+        FederatedSettingsOrgRoleMappingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_group_name=external_group_name,
+            federation_settings_id=federation_settings_id,
+            org_id=org_id,
+            role_assignments=role_assignments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_group_name: Optional[pulumi.Input[str]] = None,
+             federation_settings_id: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
+             role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if external_group_name is None and 'externalGroupName' in kwargs:
+            external_group_name = kwargs['externalGroupName']
+        if external_group_name is None:
+            raise TypeError("Missing 'external_group_name' argument")
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if federation_settings_id is None:
+            raise TypeError("Missing 'federation_settings_id' argument")
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if org_id is None:
+            raise TypeError("Missing 'org_id' argument")
+        if role_assignments is None and 'roleAssignments' in kwargs:
+            role_assignments = kwargs['roleAssignments']
+        if role_assignments is None:
+            raise TypeError("Missing 'role_assignments' argument")
+
+        _setter("external_group_name", external_group_name)
+        _setter("federation_settings_id", federation_settings_id)
+        _setter("org_id", org_id)
+        _setter("role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -95,14 +128,39 @@ class _FederatedSettingsOrgRoleMappingState:
         :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
+        _FederatedSettingsOrgRoleMappingState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_group_name=external_group_name,
+            federation_settings_id=federation_settings_id,
+            org_id=org_id,
+            role_assignments=role_assignments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_group_name: Optional[pulumi.Input[str]] = None,
+             federation_settings_id: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
+             role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if external_group_name is None and 'externalGroupName' in kwargs:
+            external_group_name = kwargs['externalGroupName']
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if role_assignments is None and 'roleAssignments' in kwargs:
+            role_assignments = kwargs['roleAssignments']
+
         if external_group_name is not None:
-            pulumi.set(__self__, "external_group_name", external_group_name)
+            _setter("external_group_name", external_group_name)
         if federation_settings_id is not None:
-            pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+            _setter("federation_settings_id", federation_settings_id)
         if org_id is not None:
-            pulumi.set(__self__, "org_id", org_id)
+            _setter("org_id", org_id)
         if role_assignments is not None:
-            pulumi.set(__self__, "role_assignments", role_assignments)
+            _setter("role_assignments", role_assignments)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -292,6 +350,10 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FederatedSettingsOrgRoleMappingArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

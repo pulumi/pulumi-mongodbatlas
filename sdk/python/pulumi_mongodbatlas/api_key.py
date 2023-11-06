@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ApiKeyArgs', 'ApiKey']
@@ -24,9 +24,34 @@ class ApiKeyArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
                The following are valid roles:
         """
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "role_names", role_names)
+        ApiKeyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            org_id=org_id,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
+             role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if org_id is None:
+            raise TypeError("Missing 'org_id' argument")
+        if role_names is None and 'roleNames' in kwargs:
+            role_names = kwargs['roleNames']
+        if role_names is None:
+            raise TypeError("Missing 'role_names' argument")
+
+        _setter("description", description)
+        _setter("org_id", org_id)
+        _setter("role_names", role_names)
 
     @property
     @pulumi.getter
@@ -83,18 +108,49 @@ class _ApiKeyState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
                The following are valid roles:
         """
+        _ApiKeyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_key_id=api_key_id,
+            description=description,
+            org_id=org_id,
+            private_key=private_key,
+            public_key=public_key,
+            role_names=role_names,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_key_id: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             org_id: Optional[pulumi.Input[str]] = None,
+             private_key: Optional[pulumi.Input[str]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if api_key_id is None and 'apiKeyId' in kwargs:
+            api_key_id = kwargs['apiKeyId']
+        if org_id is None and 'orgId' in kwargs:
+            org_id = kwargs['orgId']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+        if role_names is None and 'roleNames' in kwargs:
+            role_names = kwargs['roleNames']
+
         if api_key_id is not None:
-            pulumi.set(__self__, "api_key_id", api_key_id)
+            _setter("api_key_id", api_key_id)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if org_id is not None:
-            pulumi.set(__self__, "org_id", org_id)
+            _setter("org_id", org_id)
         if private_key is not None:
-            pulumi.set(__self__, "private_key", private_key)
+            _setter("private_key", private_key)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
         if role_names is not None:
-            pulumi.set(__self__, "role_names", role_names)
+            _setter("role_names", role_names)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -216,6 +272,10 @@ class ApiKey(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ApiKeyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

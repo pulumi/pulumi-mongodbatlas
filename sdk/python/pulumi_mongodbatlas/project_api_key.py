@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -26,10 +26,33 @@ class ProjectApiKeyArgs:
                > **NOTE:** Project created by API Keys must belong to an existing organization.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "project_id", project_id)
+        ProjectApiKeyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            project_id=project_id,
+            project_assignments=project_assignments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if project_assignments is None and 'projectAssignments' in kwargs:
+            project_assignments = kwargs['projectAssignments']
+
+        _setter("description", description)
+        _setter("project_id", project_id)
         if project_assignments is not None:
-            pulumi.set(__self__, "project_assignments", project_assignments)
+            _setter("project_assignments", project_assignments)
 
     @property
     @pulumi.getter
@@ -84,18 +107,49 @@ class _ProjectApiKeyState:
                > **NOTE:** Project created by API Keys must belong to an existing organization.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
+        _ProjectApiKeyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_key_id=api_key_id,
+            description=description,
+            private_key=private_key,
+            project_assignments=project_assignments,
+            project_id=project_id,
+            public_key=public_key,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_key_id: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             private_key: Optional[pulumi.Input[str]] = None,
+             project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if api_key_id is None and 'apiKeyId' in kwargs:
+            api_key_id = kwargs['apiKeyId']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if project_assignments is None and 'projectAssignments' in kwargs:
+            project_assignments = kwargs['projectAssignments']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if public_key is None and 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
+
         if api_key_id is not None:
-            pulumi.set(__self__, "api_key_id", api_key_id)
+            _setter("api_key_id", api_key_id)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if private_key is not None:
-            pulumi.set(__self__, "private_key", private_key)
+            _setter("private_key", private_key)
         if project_assignments is not None:
-            pulumi.set(__self__, "project_assignments", project_assignments)
+            _setter("project_assignments", project_assignments)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if public_key is not None:
-            pulumi.set(__self__, "public_key", public_key)
+            _setter("public_key", public_key)
 
     @property
     @pulumi.getter(name="apiKeyId")
@@ -293,6 +347,10 @@ class ProjectApiKey(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ProjectApiKeyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

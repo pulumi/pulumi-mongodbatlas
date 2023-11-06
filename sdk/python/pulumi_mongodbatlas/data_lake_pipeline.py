@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -29,15 +29,38 @@ class DataLakePipelineArgs:
                * `transformations.#.field` - Key in the document.
                * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
         """
-        pulumi.set(__self__, "project_id", project_id)
+        DataLakePipelineArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            project_id=project_id,
+            name=name,
+            sink=sink,
+            source=source,
+            transformations=transformations,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             project_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             sink: Optional[pulumi.Input['DataLakePipelineSinkArgs']] = None,
+             source: Optional[pulumi.Input['DataLakePipelineSourceArgs']] = None,
+             transformations: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineTransformationArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+
+        _setter("project_id", project_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if sink is not None:
-            pulumi.set(__self__, "sink", sink)
+            _setter("sink", sink)
         if source is not None:
-            pulumi.set(__self__, "source", source)
+            _setter("source", source)
         if transformations is not None:
-            pulumi.set(__self__, "transformations", transformations)
+            _setter("transformations", transformations)
 
     @property
     @pulumi.getter(name="projectId")
@@ -141,26 +164,63 @@ class _DataLakePipelineState:
                * `transformations.#.field` - Key in the document.
                * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
         """
+        _DataLakePipelineState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            created_date=created_date,
+            ingestion_schedules=ingestion_schedules,
+            last_updated_date=last_updated_date,
+            name=name,
+            project_id=project_id,
+            sink=sink,
+            snapshots=snapshots,
+            source=source,
+            state=state,
+            transformations=transformations,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             created_date: Optional[pulumi.Input[str]] = None,
+             ingestion_schedules: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineIngestionScheduleArgs']]]] = None,
+             last_updated_date: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             sink: Optional[pulumi.Input['DataLakePipelineSinkArgs']] = None,
+             snapshots: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineSnapshotArgs']]]] = None,
+             source: Optional[pulumi.Input['DataLakePipelineSourceArgs']] = None,
+             state: Optional[pulumi.Input[str]] = None,
+             transformations: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineTransformationArgs']]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if created_date is None and 'createdDate' in kwargs:
+            created_date = kwargs['createdDate']
+        if ingestion_schedules is None and 'ingestionSchedules' in kwargs:
+            ingestion_schedules = kwargs['ingestionSchedules']
+        if last_updated_date is None and 'lastUpdatedDate' in kwargs:
+            last_updated_date = kwargs['lastUpdatedDate']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
         if created_date is not None:
-            pulumi.set(__self__, "created_date", created_date)
+            _setter("created_date", created_date)
         if ingestion_schedules is not None:
-            pulumi.set(__self__, "ingestion_schedules", ingestion_schedules)
+            _setter("ingestion_schedules", ingestion_schedules)
         if last_updated_date is not None:
-            pulumi.set(__self__, "last_updated_date", last_updated_date)
+            _setter("last_updated_date", last_updated_date)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if sink is not None:
-            pulumi.set(__self__, "sink", sink)
+            _setter("sink", sink)
         if snapshots is not None:
-            pulumi.set(__self__, "snapshots", snapshots)
+            _setter("snapshots", snapshots)
         if source is not None:
-            pulumi.set(__self__, "source", source)
+            _setter("source", source)
         if state is not None:
-            pulumi.set(__self__, "state", state)
+            _setter("state", state)
         if transformations is not None:
-            pulumi.set(__self__, "transformations", transformations)
+            _setter("transformations", transformations)
 
     @property
     @pulumi.getter(name="createdDate")
@@ -365,6 +425,10 @@ class DataLakePipeline(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DataLakePipelineArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -388,7 +452,17 @@ class DataLakePipeline(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            if sink is not None and not isinstance(sink, DataLakePipelineSinkArgs):
+                sink = sink or {}
+                def _setter(key, value):
+                    sink[key] = value
+                DataLakePipelineSinkArgs._configure(_setter, **sink)
             __props__.__dict__["sink"] = sink
+            if source is not None and not isinstance(source, DataLakePipelineSourceArgs):
+                source = source or {}
+                def _setter(key, value):
+                    source[key] = value
+                DataLakePipelineSourceArgs._configure(_setter, **source)
             __props__.__dict__["source"] = source
             __props__.__dict__["transformations"] = transformations
             __props__.__dict__["created_date"] = None

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['FederatedSettingsIdentityProviderArgs', 'FederatedSettingsIdentityProvider']
@@ -37,17 +37,72 @@ class FederatedSettingsIdentityProviderArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
         :param pulumi.Input[str] name: Human-readable label that identifies the identity provider.
         """
-        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
-        pulumi.set(__self__, "issuer_uri", issuer_uri)
-        pulumi.set(__self__, "request_binding", request_binding)
-        pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
-        pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
-        pulumi.set(__self__, "sso_url", sso_url)
-        pulumi.set(__self__, "status", status)
+        FederatedSettingsIdentityProviderArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            federation_settings_id=federation_settings_id,
+            issuer_uri=issuer_uri,
+            request_binding=request_binding,
+            response_signature_algorithm=response_signature_algorithm,
+            sso_debug_enabled=sso_debug_enabled,
+            sso_url=sso_url,
+            status=status,
+            associated_domains=associated_domains,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             federation_settings_id: Optional[pulumi.Input[str]] = None,
+             issuer_uri: Optional[pulumi.Input[str]] = None,
+             request_binding: Optional[pulumi.Input[str]] = None,
+             response_signature_algorithm: Optional[pulumi.Input[str]] = None,
+             sso_debug_enabled: Optional[pulumi.Input[bool]] = None,
+             sso_url: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if federation_settings_id is None:
+            raise TypeError("Missing 'federation_settings_id' argument")
+        if issuer_uri is None and 'issuerUri' in kwargs:
+            issuer_uri = kwargs['issuerUri']
+        if issuer_uri is None:
+            raise TypeError("Missing 'issuer_uri' argument")
+        if request_binding is None and 'requestBinding' in kwargs:
+            request_binding = kwargs['requestBinding']
+        if request_binding is None:
+            raise TypeError("Missing 'request_binding' argument")
+        if response_signature_algorithm is None and 'responseSignatureAlgorithm' in kwargs:
+            response_signature_algorithm = kwargs['responseSignatureAlgorithm']
+        if response_signature_algorithm is None:
+            raise TypeError("Missing 'response_signature_algorithm' argument")
+        if sso_debug_enabled is None and 'ssoDebugEnabled' in kwargs:
+            sso_debug_enabled = kwargs['ssoDebugEnabled']
+        if sso_debug_enabled is None:
+            raise TypeError("Missing 'sso_debug_enabled' argument")
+        if sso_url is None and 'ssoUrl' in kwargs:
+            sso_url = kwargs['ssoUrl']
+        if sso_url is None:
+            raise TypeError("Missing 'sso_url' argument")
+        if status is None:
+            raise TypeError("Missing 'status' argument")
+        if associated_domains is None and 'associatedDomains' in kwargs:
+            associated_domains = kwargs['associatedDomains']
+
+        _setter("federation_settings_id", federation_settings_id)
+        _setter("issuer_uri", issuer_uri)
+        _setter("request_binding", request_binding)
+        _setter("response_signature_algorithm", response_signature_algorithm)
+        _setter("sso_debug_enabled", sso_debug_enabled)
+        _setter("sso_url", sso_url)
+        _setter("status", status)
         if associated_domains is not None:
-            pulumi.set(__self__, "associated_domains", associated_domains)
+            _setter("associated_domains", associated_domains)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="federationSettingsId")
@@ -188,26 +243,71 @@ class _FederatedSettingsIdentityProviderState:
         :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
         """
+        _FederatedSettingsIdentityProviderState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            associated_domains=associated_domains,
+            federation_settings_id=federation_settings_id,
+            issuer_uri=issuer_uri,
+            name=name,
+            okta_idp_id=okta_idp_id,
+            request_binding=request_binding,
+            response_signature_algorithm=response_signature_algorithm,
+            sso_debug_enabled=sso_debug_enabled,
+            sso_url=sso_url,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             federation_settings_id: Optional[pulumi.Input[str]] = None,
+             issuer_uri: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             okta_idp_id: Optional[pulumi.Input[str]] = None,
+             request_binding: Optional[pulumi.Input[str]] = None,
+             response_signature_algorithm: Optional[pulumi.Input[str]] = None,
+             sso_debug_enabled: Optional[pulumi.Input[bool]] = None,
+             sso_url: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if associated_domains is None and 'associatedDomains' in kwargs:
+            associated_domains = kwargs['associatedDomains']
+        if federation_settings_id is None and 'federationSettingsId' in kwargs:
+            federation_settings_id = kwargs['federationSettingsId']
+        if issuer_uri is None and 'issuerUri' in kwargs:
+            issuer_uri = kwargs['issuerUri']
+        if okta_idp_id is None and 'oktaIdpId' in kwargs:
+            okta_idp_id = kwargs['oktaIdpId']
+        if request_binding is None and 'requestBinding' in kwargs:
+            request_binding = kwargs['requestBinding']
+        if response_signature_algorithm is None and 'responseSignatureAlgorithm' in kwargs:
+            response_signature_algorithm = kwargs['responseSignatureAlgorithm']
+        if sso_debug_enabled is None and 'ssoDebugEnabled' in kwargs:
+            sso_debug_enabled = kwargs['ssoDebugEnabled']
+        if sso_url is None and 'ssoUrl' in kwargs:
+            sso_url = kwargs['ssoUrl']
+
         if associated_domains is not None:
-            pulumi.set(__self__, "associated_domains", associated_domains)
+            _setter("associated_domains", associated_domains)
         if federation_settings_id is not None:
-            pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+            _setter("federation_settings_id", federation_settings_id)
         if issuer_uri is not None:
-            pulumi.set(__self__, "issuer_uri", issuer_uri)
+            _setter("issuer_uri", issuer_uri)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if okta_idp_id is not None:
-            pulumi.set(__self__, "okta_idp_id", okta_idp_id)
+            _setter("okta_idp_id", okta_idp_id)
         if request_binding is not None:
-            pulumi.set(__self__, "request_binding", request_binding)
+            _setter("request_binding", request_binding)
         if response_signature_algorithm is not None:
-            pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
+            _setter("response_signature_algorithm", response_signature_algorithm)
         if sso_debug_enabled is not None:
-            pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
+            _setter("sso_debug_enabled", sso_debug_enabled)
         if sso_url is not None:
-            pulumi.set(__self__, "sso_url", sso_url)
+            _setter("sso_url", sso_url)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
 
     @property
     @pulumi.getter(name="associatedDomains")
@@ -437,6 +537,10 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FederatedSettingsIdentityProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

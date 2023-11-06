@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -64,44 +64,127 @@ class AdvancedClusterArgs:
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
-        pulumi.set(__self__, "cluster_type", cluster_type)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "replication_specs", replication_specs)
+        AdvancedClusterArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_type=cluster_type,
+            project_id=project_id,
+            replication_specs=replication_specs,
+            accept_data_risks_and_force_replica_set_reconfig=accept_data_risks_and_force_replica_set_reconfig,
+            advanced_configuration=advanced_configuration,
+            backup_enabled=backup_enabled,
+            bi_connector_config=bi_connector_config,
+            disk_size_gb=disk_size_gb,
+            encryption_at_rest_provider=encryption_at_rest_provider,
+            labels=labels,
+            mongo_db_major_version=mongo_db_major_version,
+            name=name,
+            paused=paused,
+            pit_enabled=pit_enabled,
+            retain_backups_enabled=retain_backups_enabled,
+            root_cert_type=root_cert_type,
+            tags=tags,
+            termination_protection_enabled=termination_protection_enabled,
+            version_release_system=version_release_system,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_type: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]] = None,
+             accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
+             advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
+             backup_enabled: Optional[pulumi.Input[bool]] = None,
+             bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
+             disk_size_gb: Optional[pulumi.Input[float]] = None,
+             encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]] = None,
+             mongo_db_major_version: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             paused: Optional[pulumi.Input[bool]] = None,
+             pit_enabled: Optional[pulumi.Input[bool]] = None,
+             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
+             root_cert_type: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
+             termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
+             version_release_system: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if cluster_type is None and 'clusterType' in kwargs:
+            cluster_type = kwargs['clusterType']
+        if cluster_type is None:
+            raise TypeError("Missing 'cluster_type' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if replication_specs is None and 'replicationSpecs' in kwargs:
+            replication_specs = kwargs['replicationSpecs']
+        if replication_specs is None:
+            raise TypeError("Missing 'replication_specs' argument")
+        if accept_data_risks_and_force_replica_set_reconfig is None and 'acceptDataRisksAndForceReplicaSetReconfig' in kwargs:
+            accept_data_risks_and_force_replica_set_reconfig = kwargs['acceptDataRisksAndForceReplicaSetReconfig']
+        if advanced_configuration is None and 'advancedConfiguration' in kwargs:
+            advanced_configuration = kwargs['advancedConfiguration']
+        if backup_enabled is None and 'backupEnabled' in kwargs:
+            backup_enabled = kwargs['backupEnabled']
+        if bi_connector_config is None and 'biConnectorConfig' in kwargs:
+            bi_connector_config = kwargs['biConnectorConfig']
+        if disk_size_gb is None and 'diskSizeGb' in kwargs:
+            disk_size_gb = kwargs['diskSizeGb']
+        if encryption_at_rest_provider is None and 'encryptionAtRestProvider' in kwargs:
+            encryption_at_rest_provider = kwargs['encryptionAtRestProvider']
+        if mongo_db_major_version is None and 'mongoDbMajorVersion' in kwargs:
+            mongo_db_major_version = kwargs['mongoDbMajorVersion']
+        if pit_enabled is None and 'pitEnabled' in kwargs:
+            pit_enabled = kwargs['pitEnabled']
+        if retain_backups_enabled is None and 'retainBackupsEnabled' in kwargs:
+            retain_backups_enabled = kwargs['retainBackupsEnabled']
+        if root_cert_type is None and 'rootCertType' in kwargs:
+            root_cert_type = kwargs['rootCertType']
+        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
+            termination_protection_enabled = kwargs['terminationProtectionEnabled']
+        if version_release_system is None and 'versionReleaseSystem' in kwargs:
+            version_release_system = kwargs['versionReleaseSystem']
+
+        _setter("cluster_type", cluster_type)
+        _setter("project_id", project_id)
+        _setter("replication_specs", replication_specs)
         if accept_data_risks_and_force_replica_set_reconfig is not None:
-            pulumi.set(__self__, "accept_data_risks_and_force_replica_set_reconfig", accept_data_risks_and_force_replica_set_reconfig)
+            _setter("accept_data_risks_and_force_replica_set_reconfig", accept_data_risks_and_force_replica_set_reconfig)
         if advanced_configuration is not None:
-            pulumi.set(__self__, "advanced_configuration", advanced_configuration)
+            _setter("advanced_configuration", advanced_configuration)
         if backup_enabled is not None:
-            pulumi.set(__self__, "backup_enabled", backup_enabled)
+            _setter("backup_enabled", backup_enabled)
         if bi_connector_config is not None:
-            pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+            _setter("bi_connector_config", bi_connector_config)
         if disk_size_gb is not None:
-            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+            _setter("disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
-            pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+            _setter("encryption_at_rest_provider", encryption_at_rest_provider)
         if labels is not None:
             warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
             pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if mongo_db_major_version is not None:
-            pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
+            _setter("mongo_db_major_version", mongo_db_major_version)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if paused is not None:
-            pulumi.set(__self__, "paused", paused)
+            _setter("paused", paused)
         if pit_enabled is not None:
-            pulumi.set(__self__, "pit_enabled", pit_enabled)
+            _setter("pit_enabled", pit_enabled)
         if retain_backups_enabled is not None:
-            pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
+            _setter("retain_backups_enabled", retain_backups_enabled)
         if root_cert_type is not None:
-            pulumi.set(__self__, "root_cert_type", root_cert_type)
+            _setter("root_cert_type", root_cert_type)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if termination_protection_enabled is not None:
-            pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+            _setter("termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
-            pulumi.set(__self__, "version_release_system", version_release_system)
+            _setter("version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="clusterType")
@@ -404,57 +487,154 @@ class _AdvancedClusterState:
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
+        _AdvancedClusterState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            accept_data_risks_and_force_replica_set_reconfig=accept_data_risks_and_force_replica_set_reconfig,
+            advanced_configuration=advanced_configuration,
+            backup_enabled=backup_enabled,
+            bi_connector_config=bi_connector_config,
+            cluster_id=cluster_id,
+            cluster_type=cluster_type,
+            connection_strings=connection_strings,
+            create_date=create_date,
+            disk_size_gb=disk_size_gb,
+            encryption_at_rest_provider=encryption_at_rest_provider,
+            labels=labels,
+            mongo_db_major_version=mongo_db_major_version,
+            mongo_db_version=mongo_db_version,
+            name=name,
+            paused=paused,
+            pit_enabled=pit_enabled,
+            project_id=project_id,
+            replication_specs=replication_specs,
+            retain_backups_enabled=retain_backups_enabled,
+            root_cert_type=root_cert_type,
+            state_name=state_name,
+            tags=tags,
+            termination_protection_enabled=termination_protection_enabled,
+            version_release_system=version_release_system,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
+             advanced_configuration: Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']] = None,
+             backup_enabled: Optional[pulumi.Input[bool]] = None,
+             bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
+             cluster_id: Optional[pulumi.Input[str]] = None,
+             cluster_type: Optional[pulumi.Input[str]] = None,
+             connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]]] = None,
+             create_date: Optional[pulumi.Input[str]] = None,
+             disk_size_gb: Optional[pulumi.Input[float]] = None,
+             encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]] = None,
+             mongo_db_major_version: Optional[pulumi.Input[str]] = None,
+             mongo_db_version: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             paused: Optional[pulumi.Input[bool]] = None,
+             pit_enabled: Optional[pulumi.Input[bool]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]] = None,
+             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
+             root_cert_type: Optional[pulumi.Input[str]] = None,
+             state_name: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
+             termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
+             version_release_system: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if accept_data_risks_and_force_replica_set_reconfig is None and 'acceptDataRisksAndForceReplicaSetReconfig' in kwargs:
+            accept_data_risks_and_force_replica_set_reconfig = kwargs['acceptDataRisksAndForceReplicaSetReconfig']
+        if advanced_configuration is None and 'advancedConfiguration' in kwargs:
+            advanced_configuration = kwargs['advancedConfiguration']
+        if backup_enabled is None and 'backupEnabled' in kwargs:
+            backup_enabled = kwargs['backupEnabled']
+        if bi_connector_config is None and 'biConnectorConfig' in kwargs:
+            bi_connector_config = kwargs['biConnectorConfig']
+        if cluster_id is None and 'clusterId' in kwargs:
+            cluster_id = kwargs['clusterId']
+        if cluster_type is None and 'clusterType' in kwargs:
+            cluster_type = kwargs['clusterType']
+        if connection_strings is None and 'connectionStrings' in kwargs:
+            connection_strings = kwargs['connectionStrings']
+        if create_date is None and 'createDate' in kwargs:
+            create_date = kwargs['createDate']
+        if disk_size_gb is None and 'diskSizeGb' in kwargs:
+            disk_size_gb = kwargs['diskSizeGb']
+        if encryption_at_rest_provider is None and 'encryptionAtRestProvider' in kwargs:
+            encryption_at_rest_provider = kwargs['encryptionAtRestProvider']
+        if mongo_db_major_version is None and 'mongoDbMajorVersion' in kwargs:
+            mongo_db_major_version = kwargs['mongoDbMajorVersion']
+        if mongo_db_version is None and 'mongoDbVersion' in kwargs:
+            mongo_db_version = kwargs['mongoDbVersion']
+        if pit_enabled is None and 'pitEnabled' in kwargs:
+            pit_enabled = kwargs['pitEnabled']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if replication_specs is None and 'replicationSpecs' in kwargs:
+            replication_specs = kwargs['replicationSpecs']
+        if retain_backups_enabled is None and 'retainBackupsEnabled' in kwargs:
+            retain_backups_enabled = kwargs['retainBackupsEnabled']
+        if root_cert_type is None and 'rootCertType' in kwargs:
+            root_cert_type = kwargs['rootCertType']
+        if state_name is None and 'stateName' in kwargs:
+            state_name = kwargs['stateName']
+        if termination_protection_enabled is None and 'terminationProtectionEnabled' in kwargs:
+            termination_protection_enabled = kwargs['terminationProtectionEnabled']
+        if version_release_system is None and 'versionReleaseSystem' in kwargs:
+            version_release_system = kwargs['versionReleaseSystem']
+
         if accept_data_risks_and_force_replica_set_reconfig is not None:
-            pulumi.set(__self__, "accept_data_risks_and_force_replica_set_reconfig", accept_data_risks_and_force_replica_set_reconfig)
+            _setter("accept_data_risks_and_force_replica_set_reconfig", accept_data_risks_and_force_replica_set_reconfig)
         if advanced_configuration is not None:
-            pulumi.set(__self__, "advanced_configuration", advanced_configuration)
+            _setter("advanced_configuration", advanced_configuration)
         if backup_enabled is not None:
-            pulumi.set(__self__, "backup_enabled", backup_enabled)
+            _setter("backup_enabled", backup_enabled)
         if bi_connector_config is not None:
-            pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+            _setter("bi_connector_config", bi_connector_config)
         if cluster_id is not None:
-            pulumi.set(__self__, "cluster_id", cluster_id)
+            _setter("cluster_id", cluster_id)
         if cluster_type is not None:
-            pulumi.set(__self__, "cluster_type", cluster_type)
+            _setter("cluster_type", cluster_type)
         if connection_strings is not None:
-            pulumi.set(__self__, "connection_strings", connection_strings)
+            _setter("connection_strings", connection_strings)
         if create_date is not None:
-            pulumi.set(__self__, "create_date", create_date)
+            _setter("create_date", create_date)
         if disk_size_gb is not None:
-            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+            _setter("disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
-            pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+            _setter("encryption_at_rest_provider", encryption_at_rest_provider)
         if labels is not None:
             warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
             pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if mongo_db_major_version is not None:
-            pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
+            _setter("mongo_db_major_version", mongo_db_major_version)
         if mongo_db_version is not None:
-            pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+            _setter("mongo_db_version", mongo_db_version)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if paused is not None:
-            pulumi.set(__self__, "paused", paused)
+            _setter("paused", paused)
         if pit_enabled is not None:
-            pulumi.set(__self__, "pit_enabled", pit_enabled)
+            _setter("pit_enabled", pit_enabled)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if replication_specs is not None:
-            pulumi.set(__self__, "replication_specs", replication_specs)
+            _setter("replication_specs", replication_specs)
         if retain_backups_enabled is not None:
-            pulumi.set(__self__, "retain_backups_enabled", retain_backups_enabled)
+            _setter("retain_backups_enabled", retain_backups_enabled)
         if root_cert_type is not None:
-            pulumi.set(__self__, "root_cert_type", root_cert_type)
+            _setter("root_cert_type", root_cert_type)
         if state_name is not None:
-            pulumi.set(__self__, "state_name", state_name)
+            _setter("state_name", state_name)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if termination_protection_enabled is not None:
-            pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+            _setter("termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
-            pulumi.set(__self__, "version_release_system", version_release_system)
+            _setter("version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="acceptDataRisksAndForceReplicaSetReconfig")
@@ -844,6 +1024,10 @@ class AdvancedCluster(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AdvancedClusterArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -878,8 +1062,18 @@ class AdvancedCluster(pulumi.CustomResource):
             __props__ = AdvancedClusterArgs.__new__(AdvancedClusterArgs)
 
             __props__.__dict__["accept_data_risks_and_force_replica_set_reconfig"] = accept_data_risks_and_force_replica_set_reconfig
+            if advanced_configuration is not None and not isinstance(advanced_configuration, AdvancedClusterAdvancedConfigurationArgs):
+                advanced_configuration = advanced_configuration or {}
+                def _setter(key, value):
+                    advanced_configuration[key] = value
+                AdvancedClusterAdvancedConfigurationArgs._configure(_setter, **advanced_configuration)
             __props__.__dict__["advanced_configuration"] = advanced_configuration
             __props__.__dict__["backup_enabled"] = backup_enabled
+            if bi_connector_config is not None and not isinstance(bi_connector_config, AdvancedClusterBiConnectorConfigArgs):
+                bi_connector_config = bi_connector_config or {}
+                def _setter(key, value):
+                    bi_connector_config[key] = value
+                AdvancedClusterBiConnectorConfigArgs._configure(_setter, **bi_connector_config)
             __props__.__dict__["bi_connector_config"] = bi_connector_config
             if cluster_type is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_type'")

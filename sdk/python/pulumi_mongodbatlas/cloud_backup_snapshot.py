@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,10 +27,41 @@ class CloudBackupSnapshotArgs:
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         """
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "retention_in_days", retention_in_days)
+        CloudBackupSnapshotArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_name=cluster_name,
+            description=description,
+            project_id=project_id,
+            retention_in_days=retention_in_days,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             retention_in_days: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if cluster_name is None:
+            raise TypeError("Missing 'cluster_name' argument")
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if retention_in_days is None and 'retentionInDays' in kwargs:
+            retention_in_days = kwargs['retentionInDays']
+        if retention_in_days is None:
+            raise TypeError("Missing 'retention_in_days' argument")
+
+        _setter("cluster_name", cluster_name)
+        _setter("description", description)
+        _setter("project_id", project_id)
+        _setter("retention_in_days", retention_in_days)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -121,40 +152,109 @@ class _CloudBackupSnapshotState:
         :param pulumi.Input[int] storage_size_bytes: Specifies the size of the snapshot in bytes.
         :param pulumi.Input[str] type: Specifies the type of cluster: replicaSet or shardedCluster.
         """
+        _CloudBackupSnapshotState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cloud_provider=cloud_provider,
+            cluster_name=cluster_name,
+            created_at=created_at,
+            description=description,
+            expires_at=expires_at,
+            master_key_uuid=master_key_uuid,
+            members=members,
+            mongod_version=mongod_version,
+            project_id=project_id,
+            replica_set_name=replica_set_name,
+            retention_in_days=retention_in_days,
+            snapshot_id=snapshot_id,
+            snapshot_ids=snapshot_ids,
+            snapshot_type=snapshot_type,
+            status=status,
+            storage_size_bytes=storage_size_bytes,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cloud_provider: Optional[pulumi.Input[str]] = None,
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             expires_at: Optional[pulumi.Input[str]] = None,
+             master_key_uuid: Optional[pulumi.Input[str]] = None,
+             members: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotMemberArgs']]]] = None,
+             mongod_version: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             replica_set_name: Optional[pulumi.Input[str]] = None,
+             retention_in_days: Optional[pulumi.Input[int]] = None,
+             snapshot_id: Optional[pulumi.Input[str]] = None,
+             snapshot_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             snapshot_type: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             storage_size_bytes: Optional[pulumi.Input[int]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if cloud_provider is None and 'cloudProvider' in kwargs:
+            cloud_provider = kwargs['cloudProvider']
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if expires_at is None and 'expiresAt' in kwargs:
+            expires_at = kwargs['expiresAt']
+        if master_key_uuid is None and 'masterKeyUuid' in kwargs:
+            master_key_uuid = kwargs['masterKeyUuid']
+        if mongod_version is None and 'mongodVersion' in kwargs:
+            mongod_version = kwargs['mongodVersion']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if replica_set_name is None and 'replicaSetName' in kwargs:
+            replica_set_name = kwargs['replicaSetName']
+        if retention_in_days is None and 'retentionInDays' in kwargs:
+            retention_in_days = kwargs['retentionInDays']
+        if snapshot_id is None and 'snapshotId' in kwargs:
+            snapshot_id = kwargs['snapshotId']
+        if snapshot_ids is None and 'snapshotIds' in kwargs:
+            snapshot_ids = kwargs['snapshotIds']
+        if snapshot_type is None and 'snapshotType' in kwargs:
+            snapshot_type = kwargs['snapshotType']
+        if storage_size_bytes is None and 'storageSizeBytes' in kwargs:
+            storage_size_bytes = kwargs['storageSizeBytes']
+
         if cloud_provider is not None:
-            pulumi.set(__self__, "cloud_provider", cloud_provider)
+            _setter("cloud_provider", cloud_provider)
         if cluster_name is not None:
-            pulumi.set(__self__, "cluster_name", cluster_name)
+            _setter("cluster_name", cluster_name)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if expires_at is not None:
-            pulumi.set(__self__, "expires_at", expires_at)
+            _setter("expires_at", expires_at)
         if master_key_uuid is not None:
-            pulumi.set(__self__, "master_key_uuid", master_key_uuid)
+            _setter("master_key_uuid", master_key_uuid)
         if members is not None:
-            pulumi.set(__self__, "members", members)
+            _setter("members", members)
         if mongod_version is not None:
-            pulumi.set(__self__, "mongod_version", mongod_version)
+            _setter("mongod_version", mongod_version)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if replica_set_name is not None:
-            pulumi.set(__self__, "replica_set_name", replica_set_name)
+            _setter("replica_set_name", replica_set_name)
         if retention_in_days is not None:
-            pulumi.set(__self__, "retention_in_days", retention_in_days)
+            _setter("retention_in_days", retention_in_days)
         if snapshot_id is not None:
-            pulumi.set(__self__, "snapshot_id", snapshot_id)
+            _setter("snapshot_id", snapshot_id)
         if snapshot_ids is not None:
-            pulumi.set(__self__, "snapshot_ids", snapshot_ids)
+            _setter("snapshot_ids", snapshot_ids)
         if snapshot_type is not None:
-            pulumi.set(__self__, "snapshot_type", snapshot_type)
+            _setter("snapshot_type", snapshot_type)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if storage_size_bytes is not None:
-            pulumi.set(__self__, "storage_size_bytes", storage_size_bytes)
+            _setter("storage_size_bytes", storage_size_bytes)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -482,6 +582,10 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CloudBackupSnapshotArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

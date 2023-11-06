@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -40,23 +40,80 @@ class OnlineArchiveArgs:
         :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         """
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "coll_name", coll_name)
-        pulumi.set(__self__, "criteria", criteria)
-        pulumi.set(__self__, "db_name", db_name)
-        pulumi.set(__self__, "project_id", project_id)
+        OnlineArchiveArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_name=cluster_name,
+            coll_name=coll_name,
+            criteria=criteria,
+            db_name=db_name,
+            project_id=project_id,
+            collection_type=collection_type,
+            data_expiration_rule=data_expiration_rule,
+            partition_fields=partition_fields,
+            paused=paused,
+            schedule=schedule,
+            sync_creation=sync_creation,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             coll_name: Optional[pulumi.Input[str]] = None,
+             criteria: Optional[pulumi.Input['OnlineArchiveCriteriaArgs']] = None,
+             db_name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             collection_type: Optional[pulumi.Input[str]] = None,
+             data_expiration_rule: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']] = None,
+             partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
+             paused: Optional[pulumi.Input[bool]] = None,
+             schedule: Optional[pulumi.Input['OnlineArchiveScheduleArgs']] = None,
+             sync_creation: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if cluster_name is None:
+            raise TypeError("Missing 'cluster_name' argument")
+        if coll_name is None and 'collName' in kwargs:
+            coll_name = kwargs['collName']
+        if coll_name is None:
+            raise TypeError("Missing 'coll_name' argument")
+        if criteria is None:
+            raise TypeError("Missing 'criteria' argument")
+        if db_name is None and 'dbName' in kwargs:
+            db_name = kwargs['dbName']
+        if db_name is None:
+            raise TypeError("Missing 'db_name' argument")
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if project_id is None:
+            raise TypeError("Missing 'project_id' argument")
+        if collection_type is None and 'collectionType' in kwargs:
+            collection_type = kwargs['collectionType']
+        if data_expiration_rule is None and 'dataExpirationRule' in kwargs:
+            data_expiration_rule = kwargs['dataExpirationRule']
+        if partition_fields is None and 'partitionFields' in kwargs:
+            partition_fields = kwargs['partitionFields']
+        if sync_creation is None and 'syncCreation' in kwargs:
+            sync_creation = kwargs['syncCreation']
+
+        _setter("cluster_name", cluster_name)
+        _setter("coll_name", coll_name)
+        _setter("criteria", criteria)
+        _setter("db_name", db_name)
+        _setter("project_id", project_id)
         if collection_type is not None:
-            pulumi.set(__self__, "collection_type", collection_type)
+            _setter("collection_type", collection_type)
         if data_expiration_rule is not None:
-            pulumi.set(__self__, "data_expiration_rule", data_expiration_rule)
+            _setter("data_expiration_rule", data_expiration_rule)
         if partition_fields is not None:
-            pulumi.set(__self__, "partition_fields", partition_fields)
+            _setter("partition_fields", partition_fields)
         if paused is not None:
-            pulumi.set(__self__, "paused", paused)
+            _setter("paused", paused)
         if schedule is not None:
-            pulumi.set(__self__, "schedule", schedule)
+            _setter("schedule", schedule)
         if sync_creation is not None:
-            pulumi.set(__self__, "sync_creation", sync_creation)
+            _setter("sync_creation", sync_creation)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -219,32 +276,85 @@ class _OnlineArchiveState:
         :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         :param pulumi.Input[str] state: Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         """
+        _OnlineArchiveState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            archive_id=archive_id,
+            cluster_name=cluster_name,
+            coll_name=coll_name,
+            collection_type=collection_type,
+            criteria=criteria,
+            data_expiration_rule=data_expiration_rule,
+            db_name=db_name,
+            partition_fields=partition_fields,
+            paused=paused,
+            project_id=project_id,
+            schedule=schedule,
+            state=state,
+            sync_creation=sync_creation,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             archive_id: Optional[pulumi.Input[str]] = None,
+             cluster_name: Optional[pulumi.Input[str]] = None,
+             coll_name: Optional[pulumi.Input[str]] = None,
+             collection_type: Optional[pulumi.Input[str]] = None,
+             criteria: Optional[pulumi.Input['OnlineArchiveCriteriaArgs']] = None,
+             data_expiration_rule: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']] = None,
+             db_name: Optional[pulumi.Input[str]] = None,
+             partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
+             paused: Optional[pulumi.Input[bool]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             schedule: Optional[pulumi.Input['OnlineArchiveScheduleArgs']] = None,
+             state: Optional[pulumi.Input[str]] = None,
+             sync_creation: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if archive_id is None and 'archiveId' in kwargs:
+            archive_id = kwargs['archiveId']
+        if cluster_name is None and 'clusterName' in kwargs:
+            cluster_name = kwargs['clusterName']
+        if coll_name is None and 'collName' in kwargs:
+            coll_name = kwargs['collName']
+        if collection_type is None and 'collectionType' in kwargs:
+            collection_type = kwargs['collectionType']
+        if data_expiration_rule is None and 'dataExpirationRule' in kwargs:
+            data_expiration_rule = kwargs['dataExpirationRule']
+        if db_name is None and 'dbName' in kwargs:
+            db_name = kwargs['dbName']
+        if partition_fields is None and 'partitionFields' in kwargs:
+            partition_fields = kwargs['partitionFields']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if sync_creation is None and 'syncCreation' in kwargs:
+            sync_creation = kwargs['syncCreation']
+
         if archive_id is not None:
-            pulumi.set(__self__, "archive_id", archive_id)
+            _setter("archive_id", archive_id)
         if cluster_name is not None:
-            pulumi.set(__self__, "cluster_name", cluster_name)
+            _setter("cluster_name", cluster_name)
         if coll_name is not None:
-            pulumi.set(__self__, "coll_name", coll_name)
+            _setter("coll_name", coll_name)
         if collection_type is not None:
-            pulumi.set(__self__, "collection_type", collection_type)
+            _setter("collection_type", collection_type)
         if criteria is not None:
-            pulumi.set(__self__, "criteria", criteria)
+            _setter("criteria", criteria)
         if data_expiration_rule is not None:
-            pulumi.set(__self__, "data_expiration_rule", data_expiration_rule)
+            _setter("data_expiration_rule", data_expiration_rule)
         if db_name is not None:
-            pulumi.set(__self__, "db_name", db_name)
+            _setter("db_name", db_name)
         if partition_fields is not None:
-            pulumi.set(__self__, "partition_fields", partition_fields)
+            _setter("partition_fields", partition_fields)
         if paused is not None:
-            pulumi.set(__self__, "paused", paused)
+            _setter("paused", paused)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if schedule is not None:
-            pulumi.set(__self__, "schedule", schedule)
+            _setter("schedule", schedule)
         if state is not None:
-            pulumi.set(__self__, "state", state)
+            _setter("state", state)
         if sync_creation is not None:
-            pulumi.set(__self__, "sync_creation", sync_creation)
+            _setter("sync_creation", sync_creation)
 
     @property
     @pulumi.getter(name="archiveId")
@@ -588,6 +698,10 @@ class OnlineArchive(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            OnlineArchiveArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -620,9 +734,19 @@ class OnlineArchive(pulumi.CustomResource):
                 raise TypeError("Missing required property 'coll_name'")
             __props__.__dict__["coll_name"] = coll_name
             __props__.__dict__["collection_type"] = collection_type
+            if criteria is not None and not isinstance(criteria, OnlineArchiveCriteriaArgs):
+                criteria = criteria or {}
+                def _setter(key, value):
+                    criteria[key] = value
+                OnlineArchiveCriteriaArgs._configure(_setter, **criteria)
             if criteria is None and not opts.urn:
                 raise TypeError("Missing required property 'criteria'")
             __props__.__dict__["criteria"] = criteria
+            if data_expiration_rule is not None and not isinstance(data_expiration_rule, OnlineArchiveDataExpirationRuleArgs):
+                data_expiration_rule = data_expiration_rule or {}
+                def _setter(key, value):
+                    data_expiration_rule[key] = value
+                OnlineArchiveDataExpirationRuleArgs._configure(_setter, **data_expiration_rule)
             __props__.__dict__["data_expiration_rule"] = data_expiration_rule
             if db_name is None and not opts.urn:
                 raise TypeError("Missing required property 'db_name'")
@@ -632,6 +756,11 @@ class OnlineArchive(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            if schedule is not None and not isinstance(schedule, OnlineArchiveScheduleArgs):
+                schedule = schedule or {}
+                def _setter(key, value):
+                    schedule[key] = value
+                OnlineArchiveScheduleArgs._configure(_setter, **schedule)
             __props__.__dict__["schedule"] = schedule
             __props__.__dict__["sync_creation"] = sync_creation
             __props__.__dict__["archive_id"] = None
