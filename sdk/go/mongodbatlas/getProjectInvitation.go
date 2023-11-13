@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `ProjectInvitation` describes an invitation to a user to join an Atlas project.
@@ -94,12 +93,6 @@ func (o LookupProjectInvitationResultOutput) ToLookupProjectInvitationResultOutp
 
 func (o LookupProjectInvitationResultOutput) ToLookupProjectInvitationResultOutputWithContext(ctx context.Context) LookupProjectInvitationResultOutput {
 	return o
-}
-
-func (o LookupProjectInvitationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupProjectInvitationResult] {
-	return pulumix.Output[LookupProjectInvitationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.

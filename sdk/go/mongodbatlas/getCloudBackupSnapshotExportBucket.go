@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
@@ -86,12 +85,6 @@ func (o LookupCloudBackupSnapshotExportBucketResultOutput) ToLookupCloudBackupSn
 
 func (o LookupCloudBackupSnapshotExportBucketResultOutput) ToLookupCloudBackupSnapshotExportBucketResultOutputWithContext(ctx context.Context) LookupCloudBackupSnapshotExportBucketResultOutput {
 	return o
-}
-
-func (o LookupCloudBackupSnapshotExportBucketResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCloudBackupSnapshotExportBucketResult] {
-	return pulumix.Output[LookupCloudBackupSnapshotExportBucketResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.

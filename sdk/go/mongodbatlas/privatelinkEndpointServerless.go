@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `privatelinkEndpointServerless` Provides a Serverless PrivateLink Endpoint resource.
@@ -204,12 +203,6 @@ func (i *PrivatelinkEndpointServerless) ToPrivatelinkEndpointServerlessOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServerlessOutput)
 }
 
-func (i *PrivatelinkEndpointServerless) ToOutput(ctx context.Context) pulumix.Output[*PrivatelinkEndpointServerless] {
-	return pulumix.Output[*PrivatelinkEndpointServerless]{
-		OutputState: i.ToPrivatelinkEndpointServerlessOutputWithContext(ctx).OutputState,
-	}
-}
-
 // PrivatelinkEndpointServerlessArrayInput is an input type that accepts PrivatelinkEndpointServerlessArray and PrivatelinkEndpointServerlessArrayOutput values.
 // You can construct a concrete instance of `PrivatelinkEndpointServerlessArrayInput` via:
 //
@@ -233,12 +226,6 @@ func (i PrivatelinkEndpointServerlessArray) ToPrivatelinkEndpointServerlessArray
 
 func (i PrivatelinkEndpointServerlessArray) ToPrivatelinkEndpointServerlessArrayOutputWithContext(ctx context.Context) PrivatelinkEndpointServerlessArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServerlessArrayOutput)
-}
-
-func (i PrivatelinkEndpointServerlessArray) ToOutput(ctx context.Context) pulumix.Output[[]*PrivatelinkEndpointServerless] {
-	return pulumix.Output[[]*PrivatelinkEndpointServerless]{
-		OutputState: i.ToPrivatelinkEndpointServerlessArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // PrivatelinkEndpointServerlessMapInput is an input type that accepts PrivatelinkEndpointServerlessMap and PrivatelinkEndpointServerlessMapOutput values.
@@ -266,12 +253,6 @@ func (i PrivatelinkEndpointServerlessMap) ToPrivatelinkEndpointServerlessMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServerlessMapOutput)
 }
 
-func (i PrivatelinkEndpointServerlessMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivatelinkEndpointServerless] {
-	return pulumix.Output[map[string]*PrivatelinkEndpointServerless]{
-		OutputState: i.ToPrivatelinkEndpointServerlessMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type PrivatelinkEndpointServerlessOutput struct{ *pulumi.OutputState }
 
 func (PrivatelinkEndpointServerlessOutput) ElementType() reflect.Type {
@@ -284,12 +265,6 @@ func (o PrivatelinkEndpointServerlessOutput) ToPrivatelinkEndpointServerlessOutp
 
 func (o PrivatelinkEndpointServerlessOutput) ToPrivatelinkEndpointServerlessOutputWithContext(ctx context.Context) PrivatelinkEndpointServerlessOutput {
 	return o
-}
-
-func (o PrivatelinkEndpointServerlessOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivatelinkEndpointServerless] {
-	return pulumix.Output[*PrivatelinkEndpointServerless]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Unique 24-hexadecimal digit string that identifies the private endpoint.
@@ -341,12 +316,6 @@ func (o PrivatelinkEndpointServerlessArrayOutput) ToPrivatelinkEndpointServerles
 	return o
 }
 
-func (o PrivatelinkEndpointServerlessArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*PrivatelinkEndpointServerless] {
-	return pulumix.Output[[]*PrivatelinkEndpointServerless]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivatelinkEndpointServerlessArrayOutput) Index(i pulumi.IntInput) PrivatelinkEndpointServerlessOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *PrivatelinkEndpointServerless {
 		return vs[0].([]*PrivatelinkEndpointServerless)[vs[1].(int)]
@@ -365,12 +334,6 @@ func (o PrivatelinkEndpointServerlessMapOutput) ToPrivatelinkEndpointServerlessM
 
 func (o PrivatelinkEndpointServerlessMapOutput) ToPrivatelinkEndpointServerlessMapOutputWithContext(ctx context.Context) PrivatelinkEndpointServerlessMapOutput {
 	return o
-}
-
-func (o PrivatelinkEndpointServerlessMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivatelinkEndpointServerless] {
-	return pulumix.Output[map[string]*PrivatelinkEndpointServerless]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PrivatelinkEndpointServerlessMapOutput) MapIndex(k pulumi.StringInput) PrivatelinkEndpointServerlessOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
@@ -263,12 +262,6 @@ func (i *FederatedSettingsIdentityProvider) ToFederatedSettingsIdentityProviderO
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsIdentityProviderOutput)
 }
 
-func (i *FederatedSettingsIdentityProvider) ToOutput(ctx context.Context) pulumix.Output[*FederatedSettingsIdentityProvider] {
-	return pulumix.Output[*FederatedSettingsIdentityProvider]{
-		OutputState: i.ToFederatedSettingsIdentityProviderOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FederatedSettingsIdentityProviderArrayInput is an input type that accepts FederatedSettingsIdentityProviderArray and FederatedSettingsIdentityProviderArrayOutput values.
 // You can construct a concrete instance of `FederatedSettingsIdentityProviderArrayInput` via:
 //
@@ -292,12 +285,6 @@ func (i FederatedSettingsIdentityProviderArray) ToFederatedSettingsIdentityProvi
 
 func (i FederatedSettingsIdentityProviderArray) ToFederatedSettingsIdentityProviderArrayOutputWithContext(ctx context.Context) FederatedSettingsIdentityProviderArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsIdentityProviderArrayOutput)
-}
-
-func (i FederatedSettingsIdentityProviderArray) ToOutput(ctx context.Context) pulumix.Output[[]*FederatedSettingsIdentityProvider] {
-	return pulumix.Output[[]*FederatedSettingsIdentityProvider]{
-		OutputState: i.ToFederatedSettingsIdentityProviderArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FederatedSettingsIdentityProviderMapInput is an input type that accepts FederatedSettingsIdentityProviderMap and FederatedSettingsIdentityProviderMapOutput values.
@@ -325,12 +312,6 @@ func (i FederatedSettingsIdentityProviderMap) ToFederatedSettingsIdentityProvide
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsIdentityProviderMapOutput)
 }
 
-func (i FederatedSettingsIdentityProviderMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederatedSettingsIdentityProvider] {
-	return pulumix.Output[map[string]*FederatedSettingsIdentityProvider]{
-		OutputState: i.ToFederatedSettingsIdentityProviderMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FederatedSettingsIdentityProviderOutput struct{ *pulumi.OutputState }
 
 func (FederatedSettingsIdentityProviderOutput) ElementType() reflect.Type {
@@ -343,12 +324,6 @@ func (o FederatedSettingsIdentityProviderOutput) ToFederatedSettingsIdentityProv
 
 func (o FederatedSettingsIdentityProviderOutput) ToFederatedSettingsIdentityProviderOutputWithContext(ctx context.Context) FederatedSettingsIdentityProviderOutput {
 	return o
-}
-
-func (o FederatedSettingsIdentityProviderOutput) ToOutput(ctx context.Context) pulumix.Output[*FederatedSettingsIdentityProvider] {
-	return pulumix.Output[*FederatedSettingsIdentityProvider]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List that contains the domains associated with the identity provider.
@@ -417,12 +392,6 @@ func (o FederatedSettingsIdentityProviderArrayOutput) ToFederatedSettingsIdentit
 	return o
 }
 
-func (o FederatedSettingsIdentityProviderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FederatedSettingsIdentityProvider] {
-	return pulumix.Output[[]*FederatedSettingsIdentityProvider]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FederatedSettingsIdentityProviderArrayOutput) Index(i pulumi.IntInput) FederatedSettingsIdentityProviderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FederatedSettingsIdentityProvider {
 		return vs[0].([]*FederatedSettingsIdentityProvider)[vs[1].(int)]
@@ -441,12 +410,6 @@ func (o FederatedSettingsIdentityProviderMapOutput) ToFederatedSettingsIdentityP
 
 func (o FederatedSettingsIdentityProviderMapOutput) ToFederatedSettingsIdentityProviderMapOutputWithContext(ctx context.Context) FederatedSettingsIdentityProviderMapOutput {
 	return o
-}
-
-func (o FederatedSettingsIdentityProviderMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederatedSettingsIdentityProvider] {
-	return pulumix.Output[map[string]*FederatedSettingsIdentityProvider]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FederatedSettingsIdentityProviderMapOutput) MapIndex(k pulumi.StringInput) FederatedSettingsIdentityProviderOutput {

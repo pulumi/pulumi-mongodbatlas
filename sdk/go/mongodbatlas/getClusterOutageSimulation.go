@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -111,12 +110,6 @@ func (o LookupClusterOutageSimulationResultOutput) ToLookupClusterOutageSimulati
 
 func (o LookupClusterOutageSimulationResultOutput) ToLookupClusterOutageSimulationResultOutputWithContext(ctx context.Context) LookupClusterOutageSimulationResultOutput {
 	return o
-}
-
-func (o LookupClusterOutageSimulationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupClusterOutageSimulationResult] {
-	return pulumix.Output[LookupClusterOutageSimulationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupClusterOutageSimulationResultOutput) ClusterName() pulumi.StringOutput {

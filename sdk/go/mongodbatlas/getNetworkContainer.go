@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
@@ -105,12 +104,6 @@ func (o LookupNetworkContainerResultOutput) ToLookupNetworkContainerResultOutput
 
 func (o LookupNetworkContainerResultOutput) ToLookupNetworkContainerResultOutputWithContext(ctx context.Context) LookupNetworkContainerResultOutput {
 	return o
-}
-
-func (o LookupNetworkContainerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupNetworkContainerResult] {
-	return pulumix.Output[LookupNetworkContainerResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -208,12 +207,6 @@ func (i *AccessListApiKey) ToAccessListApiKeyOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(AccessListApiKeyOutput)
 }
 
-func (i *AccessListApiKey) ToOutput(ctx context.Context) pulumix.Output[*AccessListApiKey] {
-	return pulumix.Output[*AccessListApiKey]{
-		OutputState: i.ToAccessListApiKeyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AccessListApiKeyArrayInput is an input type that accepts AccessListApiKeyArray and AccessListApiKeyArrayOutput values.
 // You can construct a concrete instance of `AccessListApiKeyArrayInput` via:
 //
@@ -237,12 +230,6 @@ func (i AccessListApiKeyArray) ToAccessListApiKeyArrayOutput() AccessListApiKeyA
 
 func (i AccessListApiKeyArray) ToAccessListApiKeyArrayOutputWithContext(ctx context.Context) AccessListApiKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AccessListApiKeyArrayOutput)
-}
-
-func (i AccessListApiKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*AccessListApiKey] {
-	return pulumix.Output[[]*AccessListApiKey]{
-		OutputState: i.ToAccessListApiKeyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AccessListApiKeyMapInput is an input type that accepts AccessListApiKeyMap and AccessListApiKeyMapOutput values.
@@ -270,12 +257,6 @@ func (i AccessListApiKeyMap) ToAccessListApiKeyMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(AccessListApiKeyMapOutput)
 }
 
-func (i AccessListApiKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AccessListApiKey] {
-	return pulumix.Output[map[string]*AccessListApiKey]{
-		OutputState: i.ToAccessListApiKeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AccessListApiKeyOutput struct{ *pulumi.OutputState }
 
 func (AccessListApiKeyOutput) ElementType() reflect.Type {
@@ -288,12 +269,6 @@ func (o AccessListApiKeyOutput) ToAccessListApiKeyOutput() AccessListApiKeyOutpu
 
 func (o AccessListApiKeyOutput) ToAccessListApiKeyOutputWithContext(ctx context.Context) AccessListApiKeyOutput {
 	return o
-}
-
-func (o AccessListApiKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*AccessListApiKey] {
-	return pulumix.Output[*AccessListApiKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Unique identifier for the Organization API Key for which you want to create a new access list entry.
@@ -332,12 +307,6 @@ func (o AccessListApiKeyArrayOutput) ToAccessListApiKeyArrayOutputWithContext(ct
 	return o
 }
 
-func (o AccessListApiKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AccessListApiKey] {
-	return pulumix.Output[[]*AccessListApiKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AccessListApiKeyArrayOutput) Index(i pulumi.IntInput) AccessListApiKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AccessListApiKey {
 		return vs[0].([]*AccessListApiKey)[vs[1].(int)]
@@ -356,12 +325,6 @@ func (o AccessListApiKeyMapOutput) ToAccessListApiKeyMapOutput() AccessListApiKe
 
 func (o AccessListApiKeyMapOutput) ToAccessListApiKeyMapOutputWithContext(ctx context.Context) AccessListApiKeyMapOutput {
 	return o
-}
-
-func (o AccessListApiKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AccessListApiKey] {
-	return pulumix.Output[map[string]*AccessListApiKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AccessListApiKeyMapOutput) MapIndex(k pulumi.StringInput) AccessListApiKeyOutput {

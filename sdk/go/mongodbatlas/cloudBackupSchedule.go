@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -262,12 +261,6 @@ func (i *CloudBackupSchedule) ToCloudBackupScheduleOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupScheduleOutput)
 }
 
-func (i *CloudBackupSchedule) ToOutput(ctx context.Context) pulumix.Output[*CloudBackupSchedule] {
-	return pulumix.Output[*CloudBackupSchedule]{
-		OutputState: i.ToCloudBackupScheduleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CloudBackupScheduleArrayInput is an input type that accepts CloudBackupScheduleArray and CloudBackupScheduleArrayOutput values.
 // You can construct a concrete instance of `CloudBackupScheduleArrayInput` via:
 //
@@ -291,12 +284,6 @@ func (i CloudBackupScheduleArray) ToCloudBackupScheduleArrayOutput() CloudBackup
 
 func (i CloudBackupScheduleArray) ToCloudBackupScheduleArrayOutputWithContext(ctx context.Context) CloudBackupScheduleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupScheduleArrayOutput)
-}
-
-func (i CloudBackupScheduleArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudBackupSchedule] {
-	return pulumix.Output[[]*CloudBackupSchedule]{
-		OutputState: i.ToCloudBackupScheduleArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CloudBackupScheduleMapInput is an input type that accepts CloudBackupScheduleMap and CloudBackupScheduleMapOutput values.
@@ -324,12 +311,6 @@ func (i CloudBackupScheduleMap) ToCloudBackupScheduleMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupScheduleMapOutput)
 }
 
-func (i CloudBackupScheduleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudBackupSchedule] {
-	return pulumix.Output[map[string]*CloudBackupSchedule]{
-		OutputState: i.ToCloudBackupScheduleMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CloudBackupScheduleOutput struct{ *pulumi.OutputState }
 
 func (CloudBackupScheduleOutput) ElementType() reflect.Type {
@@ -342,12 +323,6 @@ func (o CloudBackupScheduleOutput) ToCloudBackupScheduleOutput() CloudBackupSche
 
 func (o CloudBackupScheduleOutput) ToCloudBackupScheduleOutputWithContext(ctx context.Context) CloudBackupScheduleOutput {
 	return o
-}
-
-func (o CloudBackupScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudBackupSchedule] {
-	return pulumix.Output[*CloudBackupSchedule]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
@@ -453,12 +428,6 @@ func (o CloudBackupScheduleArrayOutput) ToCloudBackupScheduleArrayOutputWithCont
 	return o
 }
 
-func (o CloudBackupScheduleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudBackupSchedule] {
-	return pulumix.Output[[]*CloudBackupSchedule]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CloudBackupScheduleArrayOutput) Index(i pulumi.IntInput) CloudBackupScheduleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudBackupSchedule {
 		return vs[0].([]*CloudBackupSchedule)[vs[1].(int)]
@@ -477,12 +446,6 @@ func (o CloudBackupScheduleMapOutput) ToCloudBackupScheduleMapOutput() CloudBack
 
 func (o CloudBackupScheduleMapOutput) ToCloudBackupScheduleMapOutputWithContext(ctx context.Context) CloudBackupScheduleMapOutput {
 	return o
-}
-
-func (o CloudBackupScheduleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudBackupSchedule] {
-	return pulumix.Output[map[string]*CloudBackupSchedule]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudBackupScheduleMapOutput) MapIndex(k pulumi.StringInput) CloudBackupScheduleOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CloudProviderAccessSetup struct {
@@ -120,12 +119,6 @@ func (i *CloudProviderAccessSetup) ToCloudProviderAccessSetupOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupOutput)
 }
 
-func (i *CloudProviderAccessSetup) ToOutput(ctx context.Context) pulumix.Output[*CloudProviderAccessSetup] {
-	return pulumix.Output[*CloudProviderAccessSetup]{
-		OutputState: i.ToCloudProviderAccessSetupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CloudProviderAccessSetupArrayInput is an input type that accepts CloudProviderAccessSetupArray and CloudProviderAccessSetupArrayOutput values.
 // You can construct a concrete instance of `CloudProviderAccessSetupArrayInput` via:
 //
@@ -149,12 +142,6 @@ func (i CloudProviderAccessSetupArray) ToCloudProviderAccessSetupArrayOutput() C
 
 func (i CloudProviderAccessSetupArray) ToCloudProviderAccessSetupArrayOutputWithContext(ctx context.Context) CloudProviderAccessSetupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupArrayOutput)
-}
-
-func (i CloudProviderAccessSetupArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudProviderAccessSetup] {
-	return pulumix.Output[[]*CloudProviderAccessSetup]{
-		OutputState: i.ToCloudProviderAccessSetupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CloudProviderAccessSetupMapInput is an input type that accepts CloudProviderAccessSetupMap and CloudProviderAccessSetupMapOutput values.
@@ -182,12 +169,6 @@ func (i CloudProviderAccessSetupMap) ToCloudProviderAccessSetupMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupMapOutput)
 }
 
-func (i CloudProviderAccessSetupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudProviderAccessSetup] {
-	return pulumix.Output[map[string]*CloudProviderAccessSetup]{
-		OutputState: i.ToCloudProviderAccessSetupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CloudProviderAccessSetupOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderAccessSetupOutput) ElementType() reflect.Type {
@@ -200,12 +181,6 @@ func (o CloudProviderAccessSetupOutput) ToCloudProviderAccessSetupOutput() Cloud
 
 func (o CloudProviderAccessSetupOutput) ToCloudProviderAccessSetupOutputWithContext(ctx context.Context) CloudProviderAccessSetupOutput {
 	return o
-}
-
-func (o CloudProviderAccessSetupOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudProviderAccessSetup] {
-	return pulumix.Output[*CloudProviderAccessSetup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudProviderAccessSetupOutput) AwsConfigs() CloudProviderAccessSetupAwsConfigArrayOutput {
@@ -252,12 +227,6 @@ func (o CloudProviderAccessSetupArrayOutput) ToCloudProviderAccessSetupArrayOutp
 	return o
 }
 
-func (o CloudProviderAccessSetupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudProviderAccessSetup] {
-	return pulumix.Output[[]*CloudProviderAccessSetup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CloudProviderAccessSetupArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessSetupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudProviderAccessSetup {
 		return vs[0].([]*CloudProviderAccessSetup)[vs[1].(int)]
@@ -276,12 +245,6 @@ func (o CloudProviderAccessSetupMapOutput) ToCloudProviderAccessSetupMapOutput()
 
 func (o CloudProviderAccessSetupMapOutput) ToCloudProviderAccessSetupMapOutputWithContext(ctx context.Context) CloudProviderAccessSetupMapOutput {
 	return o
-}
-
-func (o CloudProviderAccessSetupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudProviderAccessSetup] {
-	return pulumix.Output[map[string]*CloudProviderAccessSetup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudProviderAccessSetupMapOutput) MapIndex(k pulumi.StringInput) CloudProviderAccessSetupOutput {

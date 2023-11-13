@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getCustomDbRoles` describe all Custom DB Roles. This represents a custom db roles.
@@ -76,12 +75,6 @@ func (o LookupCustomDbRolesResultOutput) ToLookupCustomDbRolesResultOutput() Loo
 
 func (o LookupCustomDbRolesResultOutput) ToLookupCustomDbRolesResultOutputWithContext(ctx context.Context) LookupCustomDbRolesResultOutput {
 	return o
-}
-
-func (o LookupCustomDbRolesResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCustomDbRolesResult] {
-	return pulumix.Output[LookupCustomDbRolesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.
