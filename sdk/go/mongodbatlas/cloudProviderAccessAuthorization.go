@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CloudProviderAccessAuthorization struct {
@@ -119,12 +118,6 @@ func (i *CloudProviderAccessAuthorization) ToCloudProviderAccessAuthorizationOut
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationOutput)
 }
 
-func (i *CloudProviderAccessAuthorization) ToOutput(ctx context.Context) pulumix.Output[*CloudProviderAccessAuthorization] {
-	return pulumix.Output[*CloudProviderAccessAuthorization]{
-		OutputState: i.ToCloudProviderAccessAuthorizationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CloudProviderAccessAuthorizationArrayInput is an input type that accepts CloudProviderAccessAuthorizationArray and CloudProviderAccessAuthorizationArrayOutput values.
 // You can construct a concrete instance of `CloudProviderAccessAuthorizationArrayInput` via:
 //
@@ -148,12 +141,6 @@ func (i CloudProviderAccessAuthorizationArray) ToCloudProviderAccessAuthorizatio
 
 func (i CloudProviderAccessAuthorizationArray) ToCloudProviderAccessAuthorizationArrayOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationArrayOutput)
-}
-
-func (i CloudProviderAccessAuthorizationArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudProviderAccessAuthorization] {
-	return pulumix.Output[[]*CloudProviderAccessAuthorization]{
-		OutputState: i.ToCloudProviderAccessAuthorizationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CloudProviderAccessAuthorizationMapInput is an input type that accepts CloudProviderAccessAuthorizationMap and CloudProviderAccessAuthorizationMapOutput values.
@@ -181,12 +168,6 @@ func (i CloudProviderAccessAuthorizationMap) ToCloudProviderAccessAuthorizationM
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationMapOutput)
 }
 
-func (i CloudProviderAccessAuthorizationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudProviderAccessAuthorization] {
-	return pulumix.Output[map[string]*CloudProviderAccessAuthorization]{
-		OutputState: i.ToCloudProviderAccessAuthorizationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CloudProviderAccessAuthorizationOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderAccessAuthorizationOutput) ElementType() reflect.Type {
@@ -199,12 +180,6 @@ func (o CloudProviderAccessAuthorizationOutput) ToCloudProviderAccessAuthorizati
 
 func (o CloudProviderAccessAuthorizationOutput) ToCloudProviderAccessAuthorizationOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationOutput {
 	return o
-}
-
-func (o CloudProviderAccessAuthorizationOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudProviderAccessAuthorization] {
-	return pulumix.Output[*CloudProviderAccessAuthorization]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudProviderAccessAuthorizationOutput) AuthorizedDate() pulumi.StringOutput {
@@ -249,12 +224,6 @@ func (o CloudProviderAccessAuthorizationArrayOutput) ToCloudProviderAccessAuthor
 	return o
 }
 
-func (o CloudProviderAccessAuthorizationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudProviderAccessAuthorization] {
-	return pulumix.Output[[]*CloudProviderAccessAuthorization]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CloudProviderAccessAuthorizationArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessAuthorizationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudProviderAccessAuthorization {
 		return vs[0].([]*CloudProviderAccessAuthorization)[vs[1].(int)]
@@ -273,12 +242,6 @@ func (o CloudProviderAccessAuthorizationMapOutput) ToCloudProviderAccessAuthoriz
 
 func (o CloudProviderAccessAuthorizationMapOutput) ToCloudProviderAccessAuthorizationMapOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationMapOutput {
 	return o
-}
-
-func (o CloudProviderAccessAuthorizationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudProviderAccessAuthorization] {
-	return pulumix.Output[map[string]*CloudProviderAccessAuthorization]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudProviderAccessAuthorizationMapOutput) MapIndex(k pulumi.StringInput) CloudProviderAccessAuthorizationOutput {

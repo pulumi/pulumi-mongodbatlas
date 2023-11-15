@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
@@ -198,12 +197,6 @@ func (i *ClusterOutageSimulation) ToClusterOutageSimulationOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterOutageSimulationOutput)
 }
 
-func (i *ClusterOutageSimulation) ToOutput(ctx context.Context) pulumix.Output[*ClusterOutageSimulation] {
-	return pulumix.Output[*ClusterOutageSimulation]{
-		OutputState: i.ToClusterOutageSimulationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ClusterOutageSimulationArrayInput is an input type that accepts ClusterOutageSimulationArray and ClusterOutageSimulationArrayOutput values.
 // You can construct a concrete instance of `ClusterOutageSimulationArrayInput` via:
 //
@@ -227,12 +220,6 @@ func (i ClusterOutageSimulationArray) ToClusterOutageSimulationArrayOutput() Clu
 
 func (i ClusterOutageSimulationArray) ToClusterOutageSimulationArrayOutputWithContext(ctx context.Context) ClusterOutageSimulationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterOutageSimulationArrayOutput)
-}
-
-func (i ClusterOutageSimulationArray) ToOutput(ctx context.Context) pulumix.Output[[]*ClusterOutageSimulation] {
-	return pulumix.Output[[]*ClusterOutageSimulation]{
-		OutputState: i.ToClusterOutageSimulationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ClusterOutageSimulationMapInput is an input type that accepts ClusterOutageSimulationMap and ClusterOutageSimulationMapOutput values.
@@ -260,12 +247,6 @@ func (i ClusterOutageSimulationMap) ToClusterOutageSimulationMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterOutageSimulationMapOutput)
 }
 
-func (i ClusterOutageSimulationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClusterOutageSimulation] {
-	return pulumix.Output[map[string]*ClusterOutageSimulation]{
-		OutputState: i.ToClusterOutageSimulationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ClusterOutageSimulationOutput struct{ *pulumi.OutputState }
 
 func (ClusterOutageSimulationOutput) ElementType() reflect.Type {
@@ -278,12 +259,6 @@ func (o ClusterOutageSimulationOutput) ToClusterOutageSimulationOutput() Cluster
 
 func (o ClusterOutageSimulationOutput) ToClusterOutageSimulationOutputWithContext(ctx context.Context) ClusterOutageSimulationOutput {
 	return o
-}
-
-func (o ClusterOutageSimulationOutput) ToOutput(ctx context.Context) pulumix.Output[*ClusterOutageSimulation] {
-	return pulumix.Output[*ClusterOutageSimulation]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the Atlas Cluster that is/will undergoing outage simulation.
@@ -332,12 +307,6 @@ func (o ClusterOutageSimulationArrayOutput) ToClusterOutageSimulationArrayOutput
 	return o
 }
 
-func (o ClusterOutageSimulationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ClusterOutageSimulation] {
-	return pulumix.Output[[]*ClusterOutageSimulation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ClusterOutageSimulationArrayOutput) Index(i pulumi.IntInput) ClusterOutageSimulationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ClusterOutageSimulation {
 		return vs[0].([]*ClusterOutageSimulation)[vs[1].(int)]
@@ -356,12 +325,6 @@ func (o ClusterOutageSimulationMapOutput) ToClusterOutageSimulationMapOutput() C
 
 func (o ClusterOutageSimulationMapOutput) ToClusterOutageSimulationMapOutputWithContext(ctx context.Context) ClusterOutageSimulationMapOutput {
 	return o
-}
-
-func (o ClusterOutageSimulationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ClusterOutageSimulation] {
-	return pulumix.Output[map[string]*ClusterOutageSimulation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ClusterOutageSimulationMapOutput) MapIndex(k pulumi.StringInput) ClusterOutageSimulationOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupPrivateLinkEndpoint(ctx *pulumi.Context, args *LookupPrivateLinkEndpointArgs, opts ...pulumi.InvokeOption) (*LookupPrivateLinkEndpointResult, error) {
@@ -102,12 +101,6 @@ func (o LookupPrivateLinkEndpointResultOutput) ToLookupPrivateLinkEndpointResult
 
 func (o LookupPrivateLinkEndpointResultOutput) ToLookupPrivateLinkEndpointResultOutputWithContext(ctx context.Context) LookupPrivateLinkEndpointResultOutput {
 	return o
-}
-
-func (o LookupPrivateLinkEndpointResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupPrivateLinkEndpointResult] {
-	return pulumix.Output[LookupPrivateLinkEndpointResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // GCP network endpoint groups corresponding to the Private Service Connect endpoint service.

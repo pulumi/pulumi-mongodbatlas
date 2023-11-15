@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
@@ -184,12 +183,6 @@ func (i *X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(X509AuthenticationDatabaseUserOutput)
 }
 
-func (i *X509AuthenticationDatabaseUser) ToOutput(ctx context.Context) pulumix.Output[*X509AuthenticationDatabaseUser] {
-	return pulumix.Output[*X509AuthenticationDatabaseUser]{
-		OutputState: i.ToX509AuthenticationDatabaseUserOutputWithContext(ctx).OutputState,
-	}
-}
-
 // X509AuthenticationDatabaseUserArrayInput is an input type that accepts X509AuthenticationDatabaseUserArray and X509AuthenticationDatabaseUserArrayOutput values.
 // You can construct a concrete instance of `X509AuthenticationDatabaseUserArrayInput` via:
 //
@@ -213,12 +206,6 @@ func (i X509AuthenticationDatabaseUserArray) ToX509AuthenticationDatabaseUserArr
 
 func (i X509AuthenticationDatabaseUserArray) ToX509AuthenticationDatabaseUserArrayOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(X509AuthenticationDatabaseUserArrayOutput)
-}
-
-func (i X509AuthenticationDatabaseUserArray) ToOutput(ctx context.Context) pulumix.Output[[]*X509AuthenticationDatabaseUser] {
-	return pulumix.Output[[]*X509AuthenticationDatabaseUser]{
-		OutputState: i.ToX509AuthenticationDatabaseUserArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // X509AuthenticationDatabaseUserMapInput is an input type that accepts X509AuthenticationDatabaseUserMap and X509AuthenticationDatabaseUserMapOutput values.
@@ -246,12 +233,6 @@ func (i X509AuthenticationDatabaseUserMap) ToX509AuthenticationDatabaseUserMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(X509AuthenticationDatabaseUserMapOutput)
 }
 
-func (i X509AuthenticationDatabaseUserMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*X509AuthenticationDatabaseUser] {
-	return pulumix.Output[map[string]*X509AuthenticationDatabaseUser]{
-		OutputState: i.ToX509AuthenticationDatabaseUserMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type X509AuthenticationDatabaseUserOutput struct{ *pulumi.OutputState }
 
 func (X509AuthenticationDatabaseUserOutput) ElementType() reflect.Type {
@@ -264,12 +245,6 @@ func (o X509AuthenticationDatabaseUserOutput) ToX509AuthenticationDatabaseUserOu
 
 func (o X509AuthenticationDatabaseUserOutput) ToX509AuthenticationDatabaseUserOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserOutput {
 	return o
-}
-
-func (o X509AuthenticationDatabaseUserOutput) ToOutput(ctx context.Context) pulumix.Output[*X509AuthenticationDatabaseUser] {
-	return pulumix.Output[*X509AuthenticationDatabaseUser]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Array of objects where each details one unexpired database user certificate.
@@ -318,12 +293,6 @@ func (o X509AuthenticationDatabaseUserArrayOutput) ToX509AuthenticationDatabaseU
 	return o
 }
 
-func (o X509AuthenticationDatabaseUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*X509AuthenticationDatabaseUser] {
-	return pulumix.Output[[]*X509AuthenticationDatabaseUser]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o X509AuthenticationDatabaseUserArrayOutput) Index(i pulumi.IntInput) X509AuthenticationDatabaseUserOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *X509AuthenticationDatabaseUser {
 		return vs[0].([]*X509AuthenticationDatabaseUser)[vs[1].(int)]
@@ -342,12 +311,6 @@ func (o X509AuthenticationDatabaseUserMapOutput) ToX509AuthenticationDatabaseUse
 
 func (o X509AuthenticationDatabaseUserMapOutput) ToX509AuthenticationDatabaseUserMapOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserMapOutput {
 	return o
-}
-
-func (o X509AuthenticationDatabaseUserMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*X509AuthenticationDatabaseUser] {
-	return pulumix.Output[map[string]*X509AuthenticationDatabaseUser]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o X509AuthenticationDatabaseUserMapOutput) MapIndex(k pulumi.StringInput) X509AuthenticationDatabaseUserOutput {

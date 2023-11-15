@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getAtlasUser` Provides a MongoDB Atlas User.
@@ -156,12 +155,6 @@ func (o GetAtlasUserResultOutput) ToGetAtlasUserResultOutput() GetAtlasUserResul
 
 func (o GetAtlasUserResultOutput) ToGetAtlasUserResultOutputWithContext(ctx context.Context) GetAtlasUserResultOutput {
 	return o
-}
-
-func (o GetAtlasUserResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAtlasUserResult] {
-	return pulumix.Output[GetAtlasUserResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Two alphabet characters that identifies MongoDB Atlas user's geographic location. This parameter uses the ISO 3166-1a2 code format.

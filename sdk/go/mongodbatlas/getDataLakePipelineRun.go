@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getDataLakePipelineRun` describe a Data Lake Pipeline Run.
@@ -102,12 +101,6 @@ func (o GetDataLakePipelineRunResultOutput) ToGetDataLakePipelineRunResultOutput
 
 func (o GetDataLakePipelineRunResultOutput) ToGetDataLakePipelineRunResultOutputWithContext(ctx context.Context) GetDataLakePipelineRunResultOutput {
 	return o
-}
-
-func (o GetDataLakePipelineRunResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDataLakePipelineRunResult] {
-	return pulumix.Output[GetDataLakePipelineRunResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Backup schedule interval of the Data Lake Pipeline.

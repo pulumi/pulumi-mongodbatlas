@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
@@ -242,12 +241,6 @@ func (i *FederatedQueryLimit) ToFederatedQueryLimitOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedQueryLimitOutput)
 }
 
-func (i *FederatedQueryLimit) ToOutput(ctx context.Context) pulumix.Output[*FederatedQueryLimit] {
-	return pulumix.Output[*FederatedQueryLimit]{
-		OutputState: i.ToFederatedQueryLimitOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FederatedQueryLimitArrayInput is an input type that accepts FederatedQueryLimitArray and FederatedQueryLimitArrayOutput values.
 // You can construct a concrete instance of `FederatedQueryLimitArrayInput` via:
 //
@@ -271,12 +264,6 @@ func (i FederatedQueryLimitArray) ToFederatedQueryLimitArrayOutput() FederatedQu
 
 func (i FederatedQueryLimitArray) ToFederatedQueryLimitArrayOutputWithContext(ctx context.Context) FederatedQueryLimitArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedQueryLimitArrayOutput)
-}
-
-func (i FederatedQueryLimitArray) ToOutput(ctx context.Context) pulumix.Output[[]*FederatedQueryLimit] {
-	return pulumix.Output[[]*FederatedQueryLimit]{
-		OutputState: i.ToFederatedQueryLimitArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FederatedQueryLimitMapInput is an input type that accepts FederatedQueryLimitMap and FederatedQueryLimitMapOutput values.
@@ -304,12 +291,6 @@ func (i FederatedQueryLimitMap) ToFederatedQueryLimitMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedQueryLimitMapOutput)
 }
 
-func (i FederatedQueryLimitMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederatedQueryLimit] {
-	return pulumix.Output[map[string]*FederatedQueryLimit]{
-		OutputState: i.ToFederatedQueryLimitMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FederatedQueryLimitOutput struct{ *pulumi.OutputState }
 
 func (FederatedQueryLimitOutput) ElementType() reflect.Type {
@@ -322,12 +303,6 @@ func (o FederatedQueryLimitOutput) ToFederatedQueryLimitOutput() FederatedQueryL
 
 func (o FederatedQueryLimitOutput) ToFederatedQueryLimitOutputWithContext(ctx context.Context) FederatedQueryLimitOutput {
 	return o
-}
-
-func (o FederatedQueryLimitOutput) ToOutput(ctx context.Context) pulumix.Output[*FederatedQueryLimit] {
-	return pulumix.Output[*FederatedQueryLimit]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Amount that indicates the current usage of the limit.
@@ -391,12 +366,6 @@ func (o FederatedQueryLimitArrayOutput) ToFederatedQueryLimitArrayOutputWithCont
 	return o
 }
 
-func (o FederatedQueryLimitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FederatedQueryLimit] {
-	return pulumix.Output[[]*FederatedQueryLimit]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FederatedQueryLimitArrayOutput) Index(i pulumi.IntInput) FederatedQueryLimitOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FederatedQueryLimit {
 		return vs[0].([]*FederatedQueryLimit)[vs[1].(int)]
@@ -415,12 +384,6 @@ func (o FederatedQueryLimitMapOutput) ToFederatedQueryLimitMapOutput() Federated
 
 func (o FederatedQueryLimitMapOutput) ToFederatedQueryLimitMapOutputWithContext(ctx context.Context) FederatedQueryLimitMapOutput {
 	return o
-}
-
-func (o FederatedQueryLimitMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederatedQueryLimit] {
-	return pulumix.Output[map[string]*FederatedQueryLimit]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FederatedQueryLimitMapOutput) MapIndex(k pulumi.StringInput) FederatedQueryLimitOutput {

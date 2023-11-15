@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -221,12 +220,6 @@ func (i *ProjectInvitation) ToProjectInvitationOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectInvitationOutput)
 }
 
-func (i *ProjectInvitation) ToOutput(ctx context.Context) pulumix.Output[*ProjectInvitation] {
-	return pulumix.Output[*ProjectInvitation]{
-		OutputState: i.ToProjectInvitationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ProjectInvitationArrayInput is an input type that accepts ProjectInvitationArray and ProjectInvitationArrayOutput values.
 // You can construct a concrete instance of `ProjectInvitationArrayInput` via:
 //
@@ -250,12 +243,6 @@ func (i ProjectInvitationArray) ToProjectInvitationArrayOutput() ProjectInvitati
 
 func (i ProjectInvitationArray) ToProjectInvitationArrayOutputWithContext(ctx context.Context) ProjectInvitationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectInvitationArrayOutput)
-}
-
-func (i ProjectInvitationArray) ToOutput(ctx context.Context) pulumix.Output[[]*ProjectInvitation] {
-	return pulumix.Output[[]*ProjectInvitation]{
-		OutputState: i.ToProjectInvitationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ProjectInvitationMapInput is an input type that accepts ProjectInvitationMap and ProjectInvitationMapOutput values.
@@ -283,12 +270,6 @@ func (i ProjectInvitationMap) ToProjectInvitationMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectInvitationMapOutput)
 }
 
-func (i ProjectInvitationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ProjectInvitation] {
-	return pulumix.Output[map[string]*ProjectInvitation]{
-		OutputState: i.ToProjectInvitationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ProjectInvitationOutput struct{ *pulumi.OutputState }
 
 func (ProjectInvitationOutput) ElementType() reflect.Type {
@@ -301,12 +282,6 @@ func (o ProjectInvitationOutput) ToProjectInvitationOutput() ProjectInvitationOu
 
 func (o ProjectInvitationOutput) ToProjectInvitationOutputWithContext(ctx context.Context) ProjectInvitationOutput {
 	return o
-}
-
-func (o ProjectInvitationOutput) ToOutput(ctx context.Context) pulumix.Output[*ProjectInvitation] {
-	return pulumix.Output[*ProjectInvitation]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
@@ -358,12 +333,6 @@ func (o ProjectInvitationArrayOutput) ToProjectInvitationArrayOutputWithContext(
 	return o
 }
 
-func (o ProjectInvitationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ProjectInvitation] {
-	return pulumix.Output[[]*ProjectInvitation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ProjectInvitationArrayOutput) Index(i pulumi.IntInput) ProjectInvitationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ProjectInvitation {
 		return vs[0].([]*ProjectInvitation)[vs[1].(int)]
@@ -382,12 +351,6 @@ func (o ProjectInvitationMapOutput) ToProjectInvitationMapOutput() ProjectInvita
 
 func (o ProjectInvitationMapOutput) ToProjectInvitationMapOutputWithContext(ctx context.Context) ProjectInvitationMapOutput {
 	return o
-}
-
-func (o ProjectInvitationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ProjectInvitation] {
-	return pulumix.Output[map[string]*ProjectInvitation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ProjectInvitationMapOutput) MapIndex(k pulumi.StringInput) ProjectInvitationOutput {

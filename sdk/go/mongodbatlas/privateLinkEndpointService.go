@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -243,12 +242,6 @@ func (i *PrivateLinkEndpointService) ToPrivateLinkEndpointServiceOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointServiceOutput)
 }
 
-func (i *PrivateLinkEndpointService) ToOutput(ctx context.Context) pulumix.Output[*PrivateLinkEndpointService] {
-	return pulumix.Output[*PrivateLinkEndpointService]{
-		OutputState: i.ToPrivateLinkEndpointServiceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // PrivateLinkEndpointServiceArrayInput is an input type that accepts PrivateLinkEndpointServiceArray and PrivateLinkEndpointServiceArrayOutput values.
 // You can construct a concrete instance of `PrivateLinkEndpointServiceArrayInput` via:
 //
@@ -272,12 +265,6 @@ func (i PrivateLinkEndpointServiceArray) ToPrivateLinkEndpointServiceArrayOutput
 
 func (i PrivateLinkEndpointServiceArray) ToPrivateLinkEndpointServiceArrayOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointServiceArrayOutput)
-}
-
-func (i PrivateLinkEndpointServiceArray) ToOutput(ctx context.Context) pulumix.Output[[]*PrivateLinkEndpointService] {
-	return pulumix.Output[[]*PrivateLinkEndpointService]{
-		OutputState: i.ToPrivateLinkEndpointServiceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // PrivateLinkEndpointServiceMapInput is an input type that accepts PrivateLinkEndpointServiceMap and PrivateLinkEndpointServiceMapOutput values.
@@ -305,12 +292,6 @@ func (i PrivateLinkEndpointServiceMap) ToPrivateLinkEndpointServiceMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointServiceMapOutput)
 }
 
-func (i PrivateLinkEndpointServiceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivateLinkEndpointService] {
-	return pulumix.Output[map[string]*PrivateLinkEndpointService]{
-		OutputState: i.ToPrivateLinkEndpointServiceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type PrivateLinkEndpointServiceOutput struct{ *pulumi.OutputState }
 
 func (PrivateLinkEndpointServiceOutput) ElementType() reflect.Type {
@@ -323,12 +304,6 @@ func (o PrivateLinkEndpointServiceOutput) ToPrivateLinkEndpointServiceOutput() P
 
 func (o PrivateLinkEndpointServiceOutput) ToPrivateLinkEndpointServiceOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceOutput {
 	return o
-}
-
-func (o PrivateLinkEndpointServiceOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateLinkEndpointService] {
-	return pulumix.Output[*PrivateLinkEndpointService]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Status of the interface endpoint for AWS.
@@ -428,12 +403,6 @@ func (o PrivateLinkEndpointServiceArrayOutput) ToPrivateLinkEndpointServiceArray
 	return o
 }
 
-func (o PrivateLinkEndpointServiceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*PrivateLinkEndpointService] {
-	return pulumix.Output[[]*PrivateLinkEndpointService]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivateLinkEndpointServiceArrayOutput) Index(i pulumi.IntInput) PrivateLinkEndpointServiceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *PrivateLinkEndpointService {
 		return vs[0].([]*PrivateLinkEndpointService)[vs[1].(int)]
@@ -452,12 +421,6 @@ func (o PrivateLinkEndpointServiceMapOutput) ToPrivateLinkEndpointServiceMapOutp
 
 func (o PrivateLinkEndpointServiceMapOutput) ToPrivateLinkEndpointServiceMapOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceMapOutput {
 	return o
-}
-
-func (o PrivateLinkEndpointServiceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivateLinkEndpointService] {
-	return pulumix.Output[map[string]*PrivateLinkEndpointService]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PrivateLinkEndpointServiceMapOutput) MapIndex(k pulumi.StringInput) PrivateLinkEndpointServiceOutput {

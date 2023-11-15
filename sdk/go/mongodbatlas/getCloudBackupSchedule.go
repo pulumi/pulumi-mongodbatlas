@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
@@ -105,12 +104,6 @@ func (o LookupCloudBackupScheduleResultOutput) ToLookupCloudBackupScheduleResult
 
 func (o LookupCloudBackupScheduleResultOutput) ToLookupCloudBackupScheduleResultOutputWithContext(ctx context.Context) LookupCloudBackupScheduleResultOutput {
 	return o
-}
-
-func (o LookupCloudBackupScheduleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCloudBackupScheduleResult] {
-	return pulumix.Output[LookupCloudBackupScheduleResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:

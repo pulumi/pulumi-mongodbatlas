@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getDataLakePipelineRun` describe Data Lake Pipeline Runs.
@@ -81,12 +80,6 @@ func (o LookupDataLakePipelineRunsResultOutput) ToLookupDataLakePipelineRunsResu
 
 func (o LookupDataLakePipelineRunsResultOutput) ToLookupDataLakePipelineRunsResultOutputWithContext(ctx context.Context) LookupDataLakePipelineRunsResultOutput {
 	return o
-}
-
-func (o LookupDataLakePipelineRunsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDataLakePipelineRunsResult] {
-	return pulumix.Output[LookupDataLakePipelineRunsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

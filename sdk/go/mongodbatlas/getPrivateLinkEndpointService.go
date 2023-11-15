@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupPrivateLinkEndpointService(ctx *pulumi.Context, args *LookupPrivateLinkEndpointServiceArgs, opts ...pulumi.InvokeOption) (*LookupPrivateLinkEndpointServiceResult, error) {
@@ -109,12 +108,6 @@ func (o LookupPrivateLinkEndpointServiceResultOutput) ToLookupPrivateLinkEndpoin
 
 func (o LookupPrivateLinkEndpointServiceResultOutput) ToLookupPrivateLinkEndpointServiceResultOutputWithContext(ctx context.Context) LookupPrivateLinkEndpointServiceResultOutput {
 	return o
-}
-
-func (o LookupPrivateLinkEndpointServiceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupPrivateLinkEndpointServiceResult] {
-	return pulumix.Output[LookupPrivateLinkEndpointServiceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Status of the interface endpoint for AWS.

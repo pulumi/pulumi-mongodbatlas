@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `OrgInvitation` describes an invitation for a user to join an Atlas organization.
@@ -92,12 +91,6 @@ func (o LookupOrgInvitationResultOutput) ToLookupOrgInvitationResultOutput() Loo
 
 func (o LookupOrgInvitationResultOutput) ToLookupOrgInvitationResultOutputWithContext(ctx context.Context) LookupOrgInvitationResultOutput {
 	return o
-}
-
-func (o LookupOrgInvitationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupOrgInvitationResult] {
-	return pulumix.Output[LookupOrgInvitationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.

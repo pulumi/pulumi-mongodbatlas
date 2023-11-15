@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `OnlineArchive` Describes the list of all the online archives for a cluster
@@ -152,12 +151,6 @@ func (o LookupOnlineArchivesResultOutput) ToLookupOnlineArchivesResultOutput() L
 
 func (o LookupOnlineArchivesResultOutput) ToLookupOnlineArchivesResultOutputWithContext(ctx context.Context) LookupOnlineArchivesResultOutput {
 	return o
-}
-
-func (o LookupOnlineArchivesResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupOnlineArchivesResult] {
-	return pulumix.Output[LookupOnlineArchivesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupOnlineArchivesResultOutput) ClusterName() pulumi.StringOutput {

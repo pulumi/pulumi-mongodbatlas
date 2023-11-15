@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
@@ -126,12 +125,6 @@ func (o LookupFederatedSettingsOrgConfigResultOutput) ToLookupFederatedSettingsO
 
 func (o LookupFederatedSettingsOrgConfigResultOutput) ToLookupFederatedSettingsOrgConfigResultOutputWithContext(ctx context.Context) LookupFederatedSettingsOrgConfigResultOutput {
 	return o
-}
-
-func (o LookupFederatedSettingsOrgConfigResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFederatedSettingsOrgConfigResult] {
-	return pulumix.Output[LookupFederatedSettingsOrgConfigResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domainAllowList` includes: any SSO domains associated with organization's identity provider and any custom domains associated with the specific organization.

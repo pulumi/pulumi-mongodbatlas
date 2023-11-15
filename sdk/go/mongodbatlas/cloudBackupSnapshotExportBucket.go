@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `CloudBackupSnapshotExportBucket` resource allows you to create an export snapshot bucket for the specified project.
@@ -189,12 +188,6 @@ func (i *CloudBackupSnapshotExportBucket) ToCloudBackupSnapshotExportBucketOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotExportBucketOutput)
 }
 
-func (i *CloudBackupSnapshotExportBucket) ToOutput(ctx context.Context) pulumix.Output[*CloudBackupSnapshotExportBucket] {
-	return pulumix.Output[*CloudBackupSnapshotExportBucket]{
-		OutputState: i.ToCloudBackupSnapshotExportBucketOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CloudBackupSnapshotExportBucketArrayInput is an input type that accepts CloudBackupSnapshotExportBucketArray and CloudBackupSnapshotExportBucketArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotExportBucketArrayInput` via:
 //
@@ -218,12 +211,6 @@ func (i CloudBackupSnapshotExportBucketArray) ToCloudBackupSnapshotExportBucketA
 
 func (i CloudBackupSnapshotExportBucketArray) ToCloudBackupSnapshotExportBucketArrayOutputWithContext(ctx context.Context) CloudBackupSnapshotExportBucketArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotExportBucketArrayOutput)
-}
-
-func (i CloudBackupSnapshotExportBucketArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudBackupSnapshotExportBucket] {
-	return pulumix.Output[[]*CloudBackupSnapshotExportBucket]{
-		OutputState: i.ToCloudBackupSnapshotExportBucketArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CloudBackupSnapshotExportBucketMapInput is an input type that accepts CloudBackupSnapshotExportBucketMap and CloudBackupSnapshotExportBucketMapOutput values.
@@ -251,12 +238,6 @@ func (i CloudBackupSnapshotExportBucketMap) ToCloudBackupSnapshotExportBucketMap
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotExportBucketMapOutput)
 }
 
-func (i CloudBackupSnapshotExportBucketMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudBackupSnapshotExportBucket] {
-	return pulumix.Output[map[string]*CloudBackupSnapshotExportBucket]{
-		OutputState: i.ToCloudBackupSnapshotExportBucketMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CloudBackupSnapshotExportBucketOutput struct{ *pulumi.OutputState }
 
 func (CloudBackupSnapshotExportBucketOutput) ElementType() reflect.Type {
@@ -269,12 +250,6 @@ func (o CloudBackupSnapshotExportBucketOutput) ToCloudBackupSnapshotExportBucket
 
 func (o CloudBackupSnapshotExportBucketOutput) ToCloudBackupSnapshotExportBucketOutputWithContext(ctx context.Context) CloudBackupSnapshotExportBucketOutput {
 	return o
-}
-
-func (o CloudBackupSnapshotExportBucketOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudBackupSnapshotExportBucket] {
-	return pulumix.Output[*CloudBackupSnapshotExportBucket]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
@@ -316,12 +291,6 @@ func (o CloudBackupSnapshotExportBucketArrayOutput) ToCloudBackupSnapshotExportB
 	return o
 }
 
-func (o CloudBackupSnapshotExportBucketArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudBackupSnapshotExportBucket] {
-	return pulumix.Output[[]*CloudBackupSnapshotExportBucket]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CloudBackupSnapshotExportBucketArrayOutput) Index(i pulumi.IntInput) CloudBackupSnapshotExportBucketOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudBackupSnapshotExportBucket {
 		return vs[0].([]*CloudBackupSnapshotExportBucket)[vs[1].(int)]
@@ -340,12 +309,6 @@ func (o CloudBackupSnapshotExportBucketMapOutput) ToCloudBackupSnapshotExportBuc
 
 func (o CloudBackupSnapshotExportBucketMapOutput) ToCloudBackupSnapshotExportBucketMapOutputWithContext(ctx context.Context) CloudBackupSnapshotExportBucketMapOutput {
 	return o
-}
-
-func (o CloudBackupSnapshotExportBucketMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudBackupSnapshotExportBucket] {
-	return pulumix.Output[map[string]*CloudBackupSnapshotExportBucket]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudBackupSnapshotExportBucketMapOutput) MapIndex(k pulumi.StringInput) CloudBackupSnapshotExportBucketOutput {

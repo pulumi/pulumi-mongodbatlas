@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // **WARNING:** The data source `CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `CloudProviderAccessSetup` instead.
@@ -108,12 +107,6 @@ func (o LookupCloudProviderAccessResultOutput) ToLookupCloudProviderAccessResult
 
 func (o LookupCloudProviderAccessResultOutput) ToLookupCloudProviderAccessResultOutputWithContext(ctx context.Context) LookupCloudProviderAccessResultOutput {
 	return o
-}
-
-func (o LookupCloudProviderAccessResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCloudProviderAccessResult] {
-	return pulumix.Output[LookupCloudProviderAccessResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list where each represents a Cloud Provider Access Role.

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
@@ -125,12 +124,6 @@ func (o LookupAdvancedClusterResultOutput) ToLookupAdvancedClusterResultOutput()
 
 func (o LookupAdvancedClusterResultOutput) ToLookupAdvancedClusterResultOutputWithContext(ctx context.Context) LookupAdvancedClusterResultOutput {
 	return o
-}
-
-func (o LookupAdvancedClusterResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAdvancedClusterResult] {
-	return pulumix.Output[LookupAdvancedClusterResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Get the advanced configuration options. See Advanced Configuration below for more details.

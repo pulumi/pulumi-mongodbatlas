@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `FederatedDatabaseInstance` provides a Federated Database Instance resource.
@@ -511,12 +510,6 @@ func (i *FederatedDatabaseInstance) ToFederatedDatabaseInstanceOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceOutput)
 }
 
-func (i *FederatedDatabaseInstance) ToOutput(ctx context.Context) pulumix.Output[*FederatedDatabaseInstance] {
-	return pulumix.Output[*FederatedDatabaseInstance]{
-		OutputState: i.ToFederatedDatabaseInstanceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FederatedDatabaseInstanceArrayInput is an input type that accepts FederatedDatabaseInstanceArray and FederatedDatabaseInstanceArrayOutput values.
 // You can construct a concrete instance of `FederatedDatabaseInstanceArrayInput` via:
 //
@@ -540,12 +533,6 @@ func (i FederatedDatabaseInstanceArray) ToFederatedDatabaseInstanceArrayOutput()
 
 func (i FederatedDatabaseInstanceArray) ToFederatedDatabaseInstanceArrayOutputWithContext(ctx context.Context) FederatedDatabaseInstanceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceArrayOutput)
-}
-
-func (i FederatedDatabaseInstanceArray) ToOutput(ctx context.Context) pulumix.Output[[]*FederatedDatabaseInstance] {
-	return pulumix.Output[[]*FederatedDatabaseInstance]{
-		OutputState: i.ToFederatedDatabaseInstanceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FederatedDatabaseInstanceMapInput is an input type that accepts FederatedDatabaseInstanceMap and FederatedDatabaseInstanceMapOutput values.
@@ -573,12 +560,6 @@ func (i FederatedDatabaseInstanceMap) ToFederatedDatabaseInstanceMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceMapOutput)
 }
 
-func (i FederatedDatabaseInstanceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederatedDatabaseInstance] {
-	return pulumix.Output[map[string]*FederatedDatabaseInstance]{
-		OutputState: i.ToFederatedDatabaseInstanceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FederatedDatabaseInstanceOutput struct{ *pulumi.OutputState }
 
 func (FederatedDatabaseInstanceOutput) ElementType() reflect.Type {
@@ -591,12 +572,6 @@ func (o FederatedDatabaseInstanceOutput) ToFederatedDatabaseInstanceOutput() Fed
 
 func (o FederatedDatabaseInstanceOutput) ToFederatedDatabaseInstanceOutputWithContext(ctx context.Context) FederatedDatabaseInstanceOutput {
 	return o
-}
-
-func (o FederatedDatabaseInstanceOutput) ToOutput(ctx context.Context) pulumix.Output[*FederatedDatabaseInstance] {
-	return pulumix.Output[*FederatedDatabaseInstance]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FederatedDatabaseInstanceOutput) CloudProviderConfig() FederatedDatabaseInstanceCloudProviderConfigPtrOutput {
@@ -701,12 +676,6 @@ func (o FederatedDatabaseInstanceArrayOutput) ToFederatedDatabaseInstanceArrayOu
 	return o
 }
 
-func (o FederatedDatabaseInstanceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FederatedDatabaseInstance] {
-	return pulumix.Output[[]*FederatedDatabaseInstance]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FederatedDatabaseInstanceArrayOutput) Index(i pulumi.IntInput) FederatedDatabaseInstanceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FederatedDatabaseInstance {
 		return vs[0].([]*FederatedDatabaseInstance)[vs[1].(int)]
@@ -725,12 +694,6 @@ func (o FederatedDatabaseInstanceMapOutput) ToFederatedDatabaseInstanceMapOutput
 
 func (o FederatedDatabaseInstanceMapOutput) ToFederatedDatabaseInstanceMapOutputWithContext(ctx context.Context) FederatedDatabaseInstanceMapOutput {
 	return o
-}
-
-func (o FederatedDatabaseInstanceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederatedDatabaseInstance] {
-	return pulumix.Output[map[string]*FederatedDatabaseInstance]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FederatedDatabaseInstanceMapOutput) MapIndex(k pulumi.StringInput) FederatedDatabaseInstanceOutput {
