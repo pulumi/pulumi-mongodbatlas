@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `Cluster` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
@@ -80,12 +79,6 @@ func (o LookupAdvancedClustersResultOutput) ToLookupAdvancedClustersResultOutput
 
 func (o LookupAdvancedClustersResultOutput) ToLookupAdvancedClustersResultOutputWithContext(ctx context.Context) LookupAdvancedClustersResultOutput {
 	return o
-}
-
-func (o LookupAdvancedClustersResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAdvancedClustersResult] {
-	return pulumix.Output[LookupAdvancedClustersResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

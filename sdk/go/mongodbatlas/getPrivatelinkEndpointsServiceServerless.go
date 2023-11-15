@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `privatelinkEndpointsServiceServerless` Describes the list of all Serverless PrivateLink Endpoint Service resource.
@@ -191,12 +190,6 @@ func (o LookupPrivatelinkEndpointsServiceServerlessResultOutput) ToLookupPrivate
 
 func (o LookupPrivatelinkEndpointsServiceServerlessResultOutput) ToLookupPrivatelinkEndpointsServiceServerlessResultOutputWithContext(ctx context.Context) LookupPrivatelinkEndpointsServiceServerlessResultOutput {
 	return o
-}
-
-func (o LookupPrivatelinkEndpointsServiceServerlessResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupPrivatelinkEndpointsServiceServerlessResult] {
-	return pulumix.Output[LookupPrivatelinkEndpointsServiceServerlessResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
@@ -115,12 +114,6 @@ func (o LookupSearchIndexesResultOutput) ToLookupSearchIndexesResultOutput() Loo
 
 func (o LookupSearchIndexesResultOutput) ToLookupSearchIndexesResultOutputWithContext(ctx context.Context) LookupSearchIndexesResultOutput {
 	return o
-}
-
-func (o LookupSearchIndexesResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSearchIndexesResult] {
-	return pulumix.Output[LookupSearchIndexesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupSearchIndexesResultOutput) ClusterName() pulumi.StringOutput {

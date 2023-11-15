@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
@@ -127,12 +126,6 @@ func (o LookupClustersResultOutput) ToLookupClustersResultOutput() LookupCluster
 
 func (o LookupClustersResultOutput) ToLookupClustersResultOutputWithContext(ctx context.Context) LookupClustersResultOutput {
 	return o
-}
-
-func (o LookupClustersResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupClustersResult] {
-	return pulumix.Output[LookupClustersResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

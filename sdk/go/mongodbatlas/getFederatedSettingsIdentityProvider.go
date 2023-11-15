@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
@@ -146,12 +145,6 @@ func (o LookupFederatedSettingsIdentityProviderResultOutput) ToLookupFederatedSe
 
 func (o LookupFederatedSettingsIdentityProviderResultOutput) ToLookupFederatedSettingsIdentityProviderResultOutputWithContext(ctx context.Context) LookupFederatedSettingsIdentityProviderResultOutput {
 	return o
-}
-
-func (o LookupFederatedSettingsIdentityProviderResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFederatedSettingsIdentityProviderResult] {
-	return pulumix.Output[LookupFederatedSettingsIdentityProviderResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Assertion consumer service URL to which the IdP sends the SAML response.

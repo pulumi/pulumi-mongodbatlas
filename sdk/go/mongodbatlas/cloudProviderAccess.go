@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -291,12 +290,6 @@ func (i *CloudProviderAccess) ToCloudProviderAccessOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessOutput)
 }
 
-func (i *CloudProviderAccess) ToOutput(ctx context.Context) pulumix.Output[*CloudProviderAccess] {
-	return pulumix.Output[*CloudProviderAccess]{
-		OutputState: i.ToCloudProviderAccessOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CloudProviderAccessArrayInput is an input type that accepts CloudProviderAccessArray and CloudProviderAccessArrayOutput values.
 // You can construct a concrete instance of `CloudProviderAccessArrayInput` via:
 //
@@ -320,12 +313,6 @@ func (i CloudProviderAccessArray) ToCloudProviderAccessArrayOutput() CloudProvid
 
 func (i CloudProviderAccessArray) ToCloudProviderAccessArrayOutputWithContext(ctx context.Context) CloudProviderAccessArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessArrayOutput)
-}
-
-func (i CloudProviderAccessArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudProviderAccess] {
-	return pulumix.Output[[]*CloudProviderAccess]{
-		OutputState: i.ToCloudProviderAccessArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CloudProviderAccessMapInput is an input type that accepts CloudProviderAccessMap and CloudProviderAccessMapOutput values.
@@ -353,12 +340,6 @@ func (i CloudProviderAccessMap) ToCloudProviderAccessMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessMapOutput)
 }
 
-func (i CloudProviderAccessMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudProviderAccess] {
-	return pulumix.Output[map[string]*CloudProviderAccess]{
-		OutputState: i.ToCloudProviderAccessMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CloudProviderAccessOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderAccessOutput) ElementType() reflect.Type {
@@ -371,12 +352,6 @@ func (o CloudProviderAccessOutput) ToCloudProviderAccessOutput() CloudProviderAc
 
 func (o CloudProviderAccessOutput) ToCloudProviderAccessOutputWithContext(ctx context.Context) CloudProviderAccessOutput {
 	return o
-}
-
-func (o CloudProviderAccessOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudProviderAccess] {
-	return pulumix.Output[*CloudProviderAccess]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Unique external ID Atlas uses when assuming the IAM role in your AWS account.
@@ -440,12 +415,6 @@ func (o CloudProviderAccessArrayOutput) ToCloudProviderAccessArrayOutputWithCont
 	return o
 }
 
-func (o CloudProviderAccessArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudProviderAccess] {
-	return pulumix.Output[[]*CloudProviderAccess]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CloudProviderAccessArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudProviderAccess {
 		return vs[0].([]*CloudProviderAccess)[vs[1].(int)]
@@ -464,12 +433,6 @@ func (o CloudProviderAccessMapOutput) ToCloudProviderAccessMapOutput() CloudProv
 
 func (o CloudProviderAccessMapOutput) ToCloudProviderAccessMapOutputWithContext(ctx context.Context) CloudProviderAccessMapOutput {
 	return o
-}
-
-func (o CloudProviderAccessMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudProviderAccess] {
-	return pulumix.Output[map[string]*CloudProviderAccess]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudProviderAccessMapOutput) MapIndex(k pulumi.StringInput) CloudProviderAccessOutput {

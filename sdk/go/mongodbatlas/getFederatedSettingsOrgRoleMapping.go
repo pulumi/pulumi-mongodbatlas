@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
@@ -146,12 +145,6 @@ func (o LookupFederatedSettingsOrgRoleMappingResultOutput) ToLookupFederatedSett
 
 func (o LookupFederatedSettingsOrgRoleMappingResultOutput) ToLookupFederatedSettingsOrgRoleMappingResultOutputWithContext(ctx context.Context) LookupFederatedSettingsOrgRoleMappingResultOutput {
 	return o
-}
-
-func (o LookupFederatedSettingsOrgRoleMappingResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFederatedSettingsOrgRoleMappingResult] {
-	return pulumix.Output[LookupFederatedSettingsOrgRoleMappingResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Unique human-readable label that identifies the identity provider group to which this role mapping applies.

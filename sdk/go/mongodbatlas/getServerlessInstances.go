@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getServerlessInstances` describe all serverless instances. This represents serverless instances that have been created for the specified group id.
@@ -105,12 +104,6 @@ func (o LookupServerlessInstancesResultOutput) ToLookupServerlessInstancesResult
 
 func (o LookupServerlessInstancesResultOutput) ToLookupServerlessInstancesResultOutputWithContext(ctx context.Context) LookupServerlessInstancesResultOutput {
 	return o
-}
-
-func (o LookupServerlessInstancesResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupServerlessInstancesResult] {
-	return pulumix.Output[LookupServerlessInstancesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

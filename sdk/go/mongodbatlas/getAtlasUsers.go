@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
@@ -180,12 +179,6 @@ func (o LookupAtlasUsersResultOutput) ToLookupAtlasUsersResultOutput() LookupAtl
 
 func (o LookupAtlasUsersResultOutput) ToLookupAtlasUsersResultOutputWithContext(ctx context.Context) LookupAtlasUsersResultOutput {
 	return o
-}
-
-func (o LookupAtlasUsersResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAtlasUsersResult] {
-	return pulumix.Output[LookupAtlasUsersResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Deprecated: Please use each user's id attribute instead

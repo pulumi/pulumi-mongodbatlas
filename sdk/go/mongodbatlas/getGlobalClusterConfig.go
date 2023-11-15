@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
@@ -87,12 +86,6 @@ func (o LookupGlobalClusterConfigResultOutput) ToLookupGlobalClusterConfigResult
 
 func (o LookupGlobalClusterConfigResultOutput) ToLookupGlobalClusterConfigResultOutputWithContext(ctx context.Context) LookupGlobalClusterConfigResultOutput {
 	return o
-}
-
-func (o LookupGlobalClusterConfigResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupGlobalClusterConfigResult] {
-	return pulumix.Output[LookupGlobalClusterConfigResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupGlobalClusterConfigResultOutput) ClusterName() pulumi.StringOutput {

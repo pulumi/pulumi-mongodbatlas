@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
@@ -90,12 +89,6 @@ func (o LookupCloudBackupSnapshotsResultOutput) ToLookupCloudBackupSnapshotsResu
 
 func (o LookupCloudBackupSnapshotsResultOutput) ToLookupCloudBackupSnapshotsResultOutputWithContext(ctx context.Context) LookupCloudBackupSnapshotsResultOutput {
 	return o
-}
-
-func (o LookupCloudBackupSnapshotsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCloudBackupSnapshotsResult] {
-	return pulumix.Output[LookupCloudBackupSnapshotsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupCloudBackupSnapshotsResultOutput) ClusterName() pulumi.StringOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // `ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
@@ -366,12 +365,6 @@ func (i *ThirdPartyIntegration) ToThirdPartyIntegrationOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationOutput)
 }
 
-func (i *ThirdPartyIntegration) ToOutput(ctx context.Context) pulumix.Output[*ThirdPartyIntegration] {
-	return pulumix.Output[*ThirdPartyIntegration]{
-		OutputState: i.ToThirdPartyIntegrationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ThirdPartyIntegrationArrayInput is an input type that accepts ThirdPartyIntegrationArray and ThirdPartyIntegrationArrayOutput values.
 // You can construct a concrete instance of `ThirdPartyIntegrationArrayInput` via:
 //
@@ -395,12 +388,6 @@ func (i ThirdPartyIntegrationArray) ToThirdPartyIntegrationArrayOutput() ThirdPa
 
 func (i ThirdPartyIntegrationArray) ToThirdPartyIntegrationArrayOutputWithContext(ctx context.Context) ThirdPartyIntegrationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationArrayOutput)
-}
-
-func (i ThirdPartyIntegrationArray) ToOutput(ctx context.Context) pulumix.Output[[]*ThirdPartyIntegration] {
-	return pulumix.Output[[]*ThirdPartyIntegration]{
-		OutputState: i.ToThirdPartyIntegrationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ThirdPartyIntegrationMapInput is an input type that accepts ThirdPartyIntegrationMap and ThirdPartyIntegrationMapOutput values.
@@ -428,12 +415,6 @@ func (i ThirdPartyIntegrationMap) ToThirdPartyIntegrationMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationMapOutput)
 }
 
-func (i ThirdPartyIntegrationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ThirdPartyIntegration] {
-	return pulumix.Output[map[string]*ThirdPartyIntegration]{
-		OutputState: i.ToThirdPartyIntegrationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ThirdPartyIntegrationOutput struct{ *pulumi.OutputState }
 
 func (ThirdPartyIntegrationOutput) ElementType() reflect.Type {
@@ -446,12 +427,6 @@ func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationOutput() ThirdPartyI
 
 func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationOutputWithContext(ctx context.Context) ThirdPartyIntegrationOutput {
 	return o
-}
-
-func (o ThirdPartyIntegrationOutput) ToOutput(ctx context.Context) pulumix.Output[*ThirdPartyIntegration] {
-	return pulumix.Output[*ThirdPartyIntegration]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Your API Key.
@@ -559,12 +534,6 @@ func (o ThirdPartyIntegrationArrayOutput) ToThirdPartyIntegrationArrayOutputWith
 	return o
 }
 
-func (o ThirdPartyIntegrationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ThirdPartyIntegration] {
-	return pulumix.Output[[]*ThirdPartyIntegration]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ThirdPartyIntegrationArrayOutput) Index(i pulumi.IntInput) ThirdPartyIntegrationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ThirdPartyIntegration {
 		return vs[0].([]*ThirdPartyIntegration)[vs[1].(int)]
@@ -583,12 +552,6 @@ func (o ThirdPartyIntegrationMapOutput) ToThirdPartyIntegrationMapOutput() Third
 
 func (o ThirdPartyIntegrationMapOutput) ToThirdPartyIntegrationMapOutputWithContext(ctx context.Context) ThirdPartyIntegrationMapOutput {
 	return o
-}
-
-func (o ThirdPartyIntegrationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ThirdPartyIntegration] {
-	return pulumix.Output[map[string]*ThirdPartyIntegration]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ThirdPartyIntegrationMapOutput) MapIndex(k pulumi.StringInput) ThirdPartyIntegrationOutput {
