@@ -162,7 +162,7 @@
                 },
                 "minimumEnabledTlsProtocol": {
                     "type": "string",
-                    "description": "Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:\n\n- TLS1_0\n- TLS1_1\n- TLS1_2\n"
+                    "description": "Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:\n- TLS1_0\n- TLS1_1\n- TLS1_2\n"
                 },
                 "noTableScan": {
                     "type": "boolean",
@@ -211,11 +211,11 @@
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Specifies whether or not BI Connector for Atlas is enabled on the cluster.l\n*\n- Set to `true` to enable BI Connector for Atlas.\n- Set to `false` to disable BI Connector for Atlas.\n"
+                    "description": "Specifies whether or not BI Connector for Atlas is enabled on the cluster.l\n* \n- Set to `true` to enable BI Connector for Atlas.\n- Set to `false` to disable BI Connector for Atlas.\n"
                 },
                 "readPreference": {
                     "type": "string",
-                    "description": "Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).\n\n- Set to \"primary\" to have BI Connector for Atlas read from the primary.\n\n- Set to \"secondary\" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.\n\n- Set to \"analytics\" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.\n"
+                    "description": "Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).\n- Set to \"primary\" to have BI Connector for Atlas read from the primary.\n\n\n- Set to \"secondary\" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.\n\n\n- Set to \"analytics\" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.\n"
                 }
             },
             "type": "object",
@@ -497,15 +497,15 @@
                 },
                 "computeMaxInstanceSize": {
                     "type": "string",
-                    "description": "Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.\n"
+                    "description": "Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.\n"
                 },
                 "computeMinInstanceSize": {
                     "type": "string",
-                    "description": "Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.\n"
+                    "description": "Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.\n"
                 },
                 "computeScaleDownEnabled": {
                     "type": "boolean",
-                    "description": "Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.\n"
+                    "description": "Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.\n"
                 },
                 "diskGbEnabled": {
                     "type": "boolean"
@@ -593,7 +593,7 @@
             "properties": {
                 "fieldName": {
                     "type": "string",
-                    "description": "Name of the field in the target object to match on.\n\n| Host alerts         | Replica set alerts  |  Sharded cluster alerts |\n|:----------           |:-------------       |:------                 |\n| `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |\n| `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |\n| `PORT`              | `CLUSTER_NAME`      |                         |\n| `HOSTNAME_AND_PORT` |                     |                         |\n| `REPLICA_SET_NAME`  |                     |                         |\n\n\n\nAll other types of alerts do not support matchers.\n"
+                    "description": "Name of the field in the target object to match on.\n\n| Host alerts         | Replica set alerts  |  Sharded cluster alerts |\n|:----------           |:-------------       |:------                 |\n| `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |\n| `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |\n| `PORT`              | `CLUSTER_NAME`      |                         |\n| `HOSTNAME_AND_PORT` |                     |                         |\n| `REPLICA_SET_NAME`  |                     |                         |\n\nAll other types of alerts do not support matchers.\n"
                 },
                 "operator": {
                     "type": "string",
@@ -1299,18 +1299,22 @@
             "properties": {
                 "automated": {
                     "type": "boolean",
+                    "description": "Set to `true` to use the automated configuration.\n",
                     "willReplaceOnChanges": true
                 },
                 "download": {
                     "type": "boolean",
+                    "description": "Set to `true` to use the download configuration.\n",
                     "willReplaceOnChanges": true
                 },
                 "oplogInc": {
                     "type": "integer",
+                    "description": "Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.\n",
                     "willReplaceOnChanges": true
                 },
                 "oplogTs": {
                     "type": "integer",
+                    "description": "Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.\n",
                     "willReplaceOnChanges": true
                 },
                 "pointInTime": {
@@ -1319,16 +1323,17 @@
                 },
                 "pointInTimeUtcSeconds": {
                     "type": "integer",
+                    "description": "Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.\n",
                     "willReplaceOnChanges": true
                 },
                 "targetClusterName": {
                     "type": "string",
-                    "description": "Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.\n",
+                    "description": "Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.\n",
                     "willReplaceOnChanges": true
                 },
                 "targetProjectId": {
                     "type": "string",
-                    "description": "Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.\n",
+                    "description": "Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -1466,7 +1471,7 @@
                 },
                 "minimumEnabledTlsProtocol": {
                     "type": "string",
-                    "description": "Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:\n\n- TLS1_0\n- TLS1_1\n- TLS1_2\n"
+                    "description": "Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:\n- TLS1_0\n- TLS1_1\n- TLS1_2\n"
                 },
                 "noTableScan": {
                     "type": "boolean",
@@ -1515,11 +1520,11 @@
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Specifies whether or not BI Connector for Atlas is enabled on the cluster.l\n*\n- Set to `true` to enable BI Connector for Atlas.\n- Set to `false` to disable BI Connector for Atlas.\n"
+                    "description": "Specifies whether or not BI Connector for Atlas is enabled on the cluster.l\n* \n  - Set to `true` to enable BI Connector for Atlas.\n  - Set to `false` to disable BI Connector for Atlas.\n"
                 },
                 "readPreference": {
                     "type": "string",
-                    "description": "Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).\n\n- Set to \"primary\" to have BI Connector for Atlas read from the primary.\n\n- Set to \"secondary\" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.\n\n- Set to \"analytics\" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.\n"
+                    "description": "Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).\n- Set to \"primary\" to have BI Connector for Atlas read from the primary.\n\n\n- Set to \"secondary\" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.\n\n\n- Set to \"analytics\" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.\n"
                 }
             },
             "type": "object",
@@ -1686,7 +1691,7 @@
                 },
                 "zoneName": {
                     "type": "string",
-                    "description": "Name for the zone in a Global Cluster.\n\n\n**Region Config**\n"
+                    "description": "Name for the zone in a Global Cluster.\n\n**Region Config**\n"
                 }
             },
             "type": "object",
@@ -1870,7 +1875,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/CustomDbRoleActionResource:CustomDbRoleActionResource"
                     },
-                    "description": "Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.\n\n* `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.\n\n\u003e **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.\n\n* `resources.#.database_name`\tDatabase on which the action is granted.\n\n\u003e **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.\n\n* `resources.#.cluster`\t(Optional) Set to true to indicate that the action is granted on the cluster resource.\n\n\u003e **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.\n"
+                    "description": "Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.\n"
                 }
             },
             "type": "object",
@@ -1882,14 +1887,16 @@
         "mongodbatlas:index/CustomDbRoleActionResource:CustomDbRoleActionResource": {
             "properties": {
                 "cluster": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "`resources.#.cluster`\t(Optional) Set to true to indicate that the action is granted on the cluster resource.\n\n\u003e **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.\n"
                 },
                 "collectionName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "`resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.\n\n\u003e **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.\n"
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "Database on which the inherited role is granted.\n\n\u003e **NOTE** This value should be admin for all roles except read and readWrite.\n"
+                    "description": "`resources.#.database_name`\tDatabase on which the action is granted.\n\n\u003e **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.\n"
                 }
             },
             "type": "object"
@@ -2290,10 +2297,12 @@
         "mongodbatlas:index/EventTriggerEventProcessorsAwsEventbridge:EventTriggerEventProcessorsAwsEventbridge": {
             "properties": {
                 "configAccountId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "AWS Account ID.\n"
                 },
                 "configRegion": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Region of AWS Account.\n"
                 }
             },
             "type": "object"
@@ -2329,7 +2338,7 @@
                 },
                 "testS3Bucket": {
                     "type": "string",
-                    "description": "Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.\n### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.\n"
+                    "description": "Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.\n"
                 }
             },
             "type": "object",
@@ -2379,7 +2388,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the Atlas Federated Database Instance.\n### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.\n#### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.\n"
+                    "description": "Name of the Atlas Federated Database Instance.\n"
                 },
                 "views": {
                     "type": "array",
@@ -2407,7 +2416,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the Atlas Federated Database Instance.\n### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.\n#### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.\n"
+                    "description": "Name of the Atlas Federated Database Instance.\n"
                 }
             },
             "type": "object"
@@ -2457,7 +2466,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "Name of the Atlas Federated Database Instance.\n### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.\n#### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.\n"
+                    "description": "Name of the Atlas Federated Database Instance.\n"
                 },
                 "pipeline": {
                     "type": "string"
@@ -2509,7 +2518,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the Atlas Federated Database Instance.\n### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.\n#### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.\n"
+                    "description": "Name of the Atlas Federated Database Instance.\n"
                 },
                 "prefix": {
                     "type": "string"
@@ -2575,7 +2584,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "Name of the Atlas Federated Database Instance.\n### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.\n#### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.\n"
+                    "description": "Name of the Atlas Federated Database Instance.\n"
                 },
                 "value": {
                     "type": "string"
@@ -2668,13 +2677,16 @@
         "mongodbatlas:index/LdapConfigurationUserToDnMapping:LdapConfigurationUserToDnMapping": {
             "properties": {
                 "ldapQuery": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.\n"
                 },
                 "match": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.\n"
                 },
                 "substitution": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.\n"
                 }
             },
             "type": "object",
@@ -3003,7 +3015,7 @@
             "properties": {
                 "analyzer": {
                     "type": "string",
-                    "description": "Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers\n* [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter\n* [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\n```\n```python\nimport pulumi\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n    }\n}\n```\n```yaml\n{}\n```\n\n\n\nFor more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.\n"
+                    "description": "Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers\n* [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter\n* [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\n```\n```python\nimport pulumi\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n    }\n}\n```\n```yaml\n{}\n```\n\nFor more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.\n"
                 },
                 "name": {
                     "type": "string",
@@ -4481,7 +4493,8 @@
                     "type": "string"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:\n"
                 },
                 "value": {
                     "type": "string",
@@ -4531,13 +4544,16 @@
         "mongodbatlas:index/getAlertConfigurationsListOption:getAlertConfigurationsListOption": {
             "properties": {
                 "includeCount": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Whether to include total count of results in the response (default false)\n"
                 },
                 "itemsPerPage": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "How many alerts to retrieve per page (default 100)\n"
                 },
                 "pageNum": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Which page of results to retrieve (default to first page)\n"
                 }
             },
             "type": "object"
@@ -10750,7 +10766,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.\n\n\nSee [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.\n"
+                    "description": "List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.\n\nSee [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.\n"
                 }
             },
             "type": "object",
@@ -10828,7 +10844,7 @@
                 },
                 "created": {
                     "type": "string",
-                    "description": "The ISO-8601-formatted timestamp of when Atlas created the project.\n* `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.\n* `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.\n* `limits.#.name` - Human-readable label that identifies this project limit.\n* `limits.#.value` - Amount the limit is set to.\n* `limits.#.current_usage` - Amount that indicates the current usage of the limit.\n* `limits.#.default_limit` - Default value of the limit.\n* `limits.#.maximum_limit` - Maximum value of the limit.\n"
+                    "description": "The ISO-8601-formatted timestamp of when Atlas created the project.\n"
                 },
                 "id": {
                     "type": "string",
@@ -10866,7 +10882,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the project you want to create.\n"
+                    "description": "`limits.#.name` - Human-readable label that identifies this project limit.\n"
                 },
                 "orgId": {
                     "type": "string",
@@ -10913,20 +10929,24 @@
         "mongodbatlas:index/getProjectsResultLimit:getProjectsResultLimit": {
             "properties": {
                 "currentUsage": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "`limits.#.current_usage` - Amount that indicates the current usage of the limit.\n"
                 },
                 "defaultLimit": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "`limits.#.default_limit` - Default value of the limit.\n"
                 },
                 "maximumLimit": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "`limits.#.maximum_limit` - Maximum value of the limit.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the project you want to create.\n"
+                    "description": "`limits.#.name` - Human-readable label that identifies this project limit.\n"
                 },
                 "value": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "`limits.#.value` - Amount the limit is set to.\n"
                 }
             },
             "type": "object",
@@ -10949,10 +10969,12 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "`teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.\n"
                 },
                 "teamId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "`teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.\n"
                 }
             },
             "type": "object",
@@ -11706,7 +11728,7 @@
                 },
                 "clusterType": {
                     "type": "string",
-                    "description": "Type of the cluster that you want to create.\nAccepted values include:\n"
+                    "description": "Type of the cluster that you want to create.\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED`\tSharded cluster\n- `GEOSHARDED` Global Cluster\n"
                 },
                 "connectionStrings": {
                     "type": "array",
@@ -11832,7 +11854,7 @@
                 },
                 "clusterType": {
                     "type": "string",
-                    "description": "Type of the cluster that you want to create.\nAccepted values include:\n"
+                    "description": "Type of the cluster that you want to create.\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED`\tSharded cluster\n- `GEOSHARDED` Global Cluster\n"
                 },
                 "diskSizeGb": {
                     "type": "number",
@@ -11931,7 +11953,7 @@
                     },
                     "clusterType": {
                         "type": "string",
-                        "description": "Type of the cluster that you want to create.\nAccepted values include:\n"
+                        "description": "Type of the cluster that you want to create.\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED`\tSharded cluster\n- `GEOSHARDED` Global Cluster\n"
                     },
                     "connectionStrings": {
                         "type": "array",
@@ -12039,7 +12061,7 @@
                 },
                 "eventType": {
                     "type": "string",
-                    "description": "The type of event that will trigger an alert.\n\n\u003e ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.\n\n\n\u003e **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.\n"
+                    "description": "The type of event that will trigger an alert.\n\n\u003e ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.\n\n\u003e **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.\n"
                 },
                 "matchers": {
                     "type": "array",
@@ -12083,7 +12105,7 @@
                 },
                 "eventType": {
                     "type": "string",
-                    "description": "The type of event that will trigger an alert.\n\n\u003e ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.\n\n\n\u003e **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.\n"
+                    "description": "The type of event that will trigger an alert.\n\n\u003e ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.\n\n\u003e **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.\n"
                 },
                 "matchers": {
                     "type": "array",
@@ -12129,7 +12151,7 @@
                     },
                     "eventType": {
                         "type": "string",
-                        "description": "The type of event that will trigger an alert.\n\n\u003e ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.\n\n\n\u003e **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.\n"
+                        "description": "The type of event that will trigger an alert.\n\n\u003e ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) and checking the latest eventTypeName options.\n\n\u003e **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.\n"
                     },
                     "matchers": {
                         "type": "array",
@@ -12531,8 +12553,7 @@
             "description": "\n\n\n## Import\n\nCloud Backup Schedule entries can be imported using project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest\n```\n For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)\n\n",
             "properties": {
                 "autoExportEnabled": {
-                    "type": "boolean",
-                    "description": "Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:\n\ntrue - enables automatic export of cloud backup snapshots to the AWS bucket\nfalse - disables automatic export of cloud backup snapshots to the AWS bucket (default)\n"
+                    "type": "boolean"
                 },
                 "clusterId": {
                     "type": "string",
@@ -12621,8 +12642,7 @@
             ],
             "inputProperties": {
                 "autoExportEnabled": {
-                    "type": "boolean",
-                    "description": "Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:\n\ntrue - enables automatic export of cloud backup snapshots to the AWS bucket\nfalse - disables automatic export of cloud backup snapshots to the AWS bucket (default)\n"
+                    "type": "boolean"
                 },
                 "clusterName": {
                     "type": "string",
@@ -12692,8 +12712,7 @@
                 "description": "Input properties used for looking up and filtering CloudBackupSchedule resources.\n",
                 "properties": {
                     "autoExportEnabled": {
-                        "type": "boolean",
-                        "description": "Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:\n\ntrue - enables automatic export of cloud backup snapshots to the AWS bucket\nfalse - disables automatic export of cloud backup snapshots to the AWS bucket (default)\n"
+                        "type": "boolean"
                     },
                     "clusterId": {
                         "type": "string",
@@ -13274,7 +13293,7 @@
                 },
                 "deliveryTypeConfig": {
                     "$ref": "#/types/mongodbatlas:index/CloudBackupSnapshotRestoreJobDeliveryTypeConfig:CloudBackupSnapshotRestoreJobDeliveryTypeConfig",
-                    "description": "Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.\n* `delivery_type_config.automated` - Set to `true` to use the automated configuration.\n* `delivery_type_config.download` - Set to `true` to use the download configuration.\n* `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.\n* `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.\n* `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.\n* `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.\n* `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.\n* `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.\n"
+                    "description": "Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.\n"
                 },
                 "deliveryUrls": {
                     "type": "array",
@@ -13333,7 +13352,7 @@
                 },
                 "deliveryTypeConfig": {
                     "$ref": "#/types/mongodbatlas:index/CloudBackupSnapshotRestoreJobDeliveryTypeConfig:CloudBackupSnapshotRestoreJobDeliveryTypeConfig",
-                    "description": "Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.\n* `delivery_type_config.automated` - Set to `true` to use the automated configuration.\n* `delivery_type_config.download` - Set to `true` to use the download configuration.\n* `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.\n* `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.\n* `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.\n* `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.\n* `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.\n* `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.\n",
+                    "description": "Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.\n",
                     "willReplaceOnChanges": true
                 },
                 "projectId": {
@@ -13370,7 +13389,7 @@
                     },
                     "deliveryTypeConfig": {
                         "$ref": "#/types/mongodbatlas:index/CloudBackupSnapshotRestoreJobDeliveryTypeConfig:CloudBackupSnapshotRestoreJobDeliveryTypeConfig",
-                        "description": "Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.\n* `delivery_type_config.automated` - Set to `true` to use the automated configuration.\n* `delivery_type_config.download` - Set to `true` to use the download configuration.\n* `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.\n* `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.\n* `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.\n* `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.\n* `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.\n* `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.\n",
+                        "description": "Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.\n",
                         "willReplaceOnChanges": true
                     },
                     "deliveryUrls": {
@@ -13721,11 +13740,11 @@
                 },
                 "backingProviderName": {
                     "type": "string",
-                    "description": "Cloud service provider on which the server for a multi-tenant cluster is provisioned.\n\nThis setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.\n\nThe possible values are:\n\n- AWS - Amazon AWS\n- GCP - Google Cloud Platform\n- AZURE - Microsoft Azure\n"
+                    "description": "Cloud service provider on which the server for a multi-tenant cluster is provisioned.\n\nThis setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.\n\nThe possible values are:\n- AWS - Amazon AWS\n- GCP - Google Cloud Platform\n- AZURE - Microsoft Azure\n"
                 },
                 "backupEnabled": {
                     "type": "boolean",
-                    "description": "Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.\n**Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).\n* New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.\n* Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\n```\n```python\nimport pulumi\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n    }\n}\n```\n```yaml\n{}\n```\n* The default value is false.  M10 and above only.\n"
+                    "description": "Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.\n**Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).\n* New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.\n* Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\n```\n```python\nimport pulumi\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n    }\n}\n```\n```yaml\n{}\n```\n* The default value is false.  M10 and above only.\n"
                 },
                 "biConnectorConfig": {
                     "$ref": "#/types/mongodbatlas:index/ClusterBiConnectorConfig:ClusterBiConnectorConfig",
@@ -13740,7 +13759,7 @@
                 },
                 "clusterType": {
                     "type": "string",
-                    "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n"
+                    "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED`\tSharded cluster\n- `GEOSHARDED` Global Cluster\n"
                 },
                 "connectionStrings": {
                     "type": "array",
@@ -13846,11 +13865,11 @@
                 },
                 "providerVolumeType": {
                     "type": "string",
-                    "description": "The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n"
+                    "description": "(AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n"
                 },
                 "replicationFactor": {
                     "type": "integer",
-                    "description": "Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.\n"
+                    "description": "(Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.\n"
                 },
                 "replicationSpecs": {
                     "type": "array",
@@ -13955,11 +13974,11 @@
                 },
                 "backingProviderName": {
                     "type": "string",
-                    "description": "Cloud service provider on which the server for a multi-tenant cluster is provisioned.\n\nThis setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.\n\nThe possible values are:\n\n- AWS - Amazon AWS\n- GCP - Google Cloud Platform\n- AZURE - Microsoft Azure\n"
+                    "description": "Cloud service provider on which the server for a multi-tenant cluster is provisioned.\n\nThis setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.\n\nThe possible values are:\n- AWS - Amazon AWS\n- GCP - Google Cloud Platform\n- AZURE - Microsoft Azure\n"
                 },
                 "backupEnabled": {
                     "type": "boolean",
-                    "description": "Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.\n**Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).\n* New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.\n* Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\n```\n```python\nimport pulumi\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n    }\n}\n```\n```yaml\n{}\n```\n* The default value is false.  M10 and above only.\n"
+                    "description": "Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.\n**Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).\n* New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.\n* Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\n```\n```python\nimport pulumi\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n    }\n}\n```\n```yaml\n{}\n```\n* The default value is false.  M10 and above only.\n"
                 },
                 "biConnectorConfig": {
                     "$ref": "#/types/mongodbatlas:index/ClusterBiConnectorConfig:ClusterBiConnectorConfig",
@@ -13970,7 +13989,7 @@
                 },
                 "clusterType": {
                     "type": "string",
-                    "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n"
+                    "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED`\tSharded cluster\n- `GEOSHARDED` Global Cluster\n"
                 },
                 "diskSizeGb": {
                     "type": "number",
@@ -14048,11 +14067,11 @@
                 },
                 "providerVolumeType": {
                     "type": "string",
-                    "description": "The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n"
+                    "description": "(AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n"
                 },
                 "replicationFactor": {
                     "type": "integer",
-                    "description": "Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.\n"
+                    "description": "(Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.\n"
                 },
                 "replicationSpecs": {
                     "type": "array",
@@ -14108,11 +14127,11 @@
                     },
                     "backingProviderName": {
                         "type": "string",
-                        "description": "Cloud service provider on which the server for a multi-tenant cluster is provisioned.\n\nThis setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.\n\nThe possible values are:\n\n- AWS - Amazon AWS\n- GCP - Google Cloud Platform\n- AZURE - Microsoft Azure\n"
+                        "description": "Cloud service provider on which the server for a multi-tenant cluster is provisioned.\n\nThis setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.\n\nThe possible values are:\n- AWS - Amazon AWS\n- GCP - Google Cloud Platform\n- AZURE - Microsoft Azure\n"
                     },
                     "backupEnabled": {
                         "type": "boolean",
-                        "description": "Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.\n**Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).\n* New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.\n* Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\n```\n```python\nimport pulumi\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n    }\n}\n```\n```yaml\n{}\n```\n* The default value is false.  M10 and above only.\n"
+                        "description": "Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.\n**Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).\n* New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.\n* Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\n```\n```python\nimport pulumi\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n    }\n}\n```\n```yaml\n{}\n```\n* The default value is false.  M10 and above only.\n"
                     },
                     "biConnectorConfig": {
                         "$ref": "#/types/mongodbatlas:index/ClusterBiConnectorConfig:ClusterBiConnectorConfig",
@@ -14127,7 +14146,7 @@
                     },
                     "clusterType": {
                         "type": "string",
-                        "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n"
+                        "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED`\tSharded cluster\n- `GEOSHARDED` Global Cluster\n"
                     },
                     "connectionStrings": {
                         "type": "array",
@@ -14235,11 +14254,11 @@
                     },
                     "providerVolumeType": {
                         "type": "string",
-                        "description": "The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n"
+                        "description": "(AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.\n\u003e **NOTE:** `STANDARD` is not available for NVME clusters.\n"
                     },
                     "replicationFactor": {
                         "type": "integer",
-                        "description": "Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.\n"
+                        "description": "(Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.\n"
                     },
                     "replicationSpecs": {
                         "type": "array",
@@ -14298,7 +14317,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/ClusterOutageSimulationOutageFilter:ClusterOutageSimulationOutageFilter"
                     },
-                    "description": "List of settings that specify the type of cluster outage simulation.\n"
+                    "description": "(Minimum one required) List of settings that specify the type of cluster outage simulation.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -14335,7 +14354,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/ClusterOutageSimulationOutageFilter:ClusterOutageSimulationOutageFilter"
                     },
-                    "description": "List of settings that specify the type of cluster outage simulation.\n"
+                    "description": "(Minimum one required) List of settings that specify the type of cluster outage simulation.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -14359,7 +14378,7 @@
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/ClusterOutageSimulationOutageFilter:ClusterOutageSimulationOutageFilter"
                         },
-                        "description": "List of settings that specify the type of cluster outage simulation.\n"
+                        "description": "(Minimum one required) List of settings that specify the type of cluster outage simulation.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -14402,7 +14421,7 @@
                 },
                 "roleName": {
                     "type": "string",
-                    "description": "Name of the custom role.\n\n\u003e **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:\n\n* Is a name already used by an existing custom role in the project\n* Is a name of any of the built-in roles\n* Is `atlasAdmin`\n* Starts with `xgen-`\n"
+                    "description": "Name of the custom role.\n\n\u003e **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:\n* Is a name already used by an existing custom role in the project\n* Is a name of any of the built-in roles\n* Is `atlasAdmin`\n* Starts with `xgen-`\n"
                 }
             },
             "required": [
@@ -14429,7 +14448,7 @@
                 },
                 "roleName": {
                     "type": "string",
-                    "description": "Name of the custom role.\n\n\u003e **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:\n\n* Is a name already used by an existing custom role in the project\n* Is a name of any of the built-in roles\n* Is `atlasAdmin`\n* Starts with `xgen-`\n",
+                    "description": "Name of the custom role.\n\n\u003e **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:\n* Is a name already used by an existing custom role in the project\n* Is a name of any of the built-in roles\n* Is `atlasAdmin`\n* Starts with `xgen-`\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -14459,7 +14478,7 @@
                     },
                     "roleName": {
                         "type": "string",
-                        "description": "Name of the custom role.\n\n\u003e **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:\n\n* Is a name already used by an existing custom role in the project\n* Is a name of any of the built-in roles\n* Is `atlasAdmin`\n* Starts with `xgen-`\n",
+                        "description": "Name of the custom role.\n\n\u003e **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:\n* Is a name already used by an existing custom role in the project\n* Is a name of any of the built-in roles\n* Is `atlasAdmin`\n* Starts with `xgen-`\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -14956,7 +14975,7 @@
                 },
                 "eventProcessors": {
                     "$ref": "#/types/mongodbatlas:index/EventTriggerEventProcessors:EventTriggerEventProcessors",
-                    "description": "An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).\n* `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.\n* `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.\n"
+                    "description": "An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).\n"
                 },
                 "functionId": {
                     "type": "string",
@@ -15070,7 +15089,7 @@
                 },
                 "eventProcessors": {
                     "$ref": "#/types/mongodbatlas:index/EventTriggerEventProcessors:EventTriggerEventProcessors",
-                    "description": "An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).\n* `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.\n* `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.\n"
+                    "description": "An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).\n"
                 },
                 "functionId": {
                     "type": "string",
@@ -15164,7 +15183,7 @@
                     },
                     "eventProcessors": {
                         "$ref": "#/types/mongodbatlas:index/EventTriggerEventProcessors:EventTriggerEventProcessors",
-                        "description": "An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).\n* `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.\n* `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.\n"
+                        "description": "An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).\n"
                     },
                     "functionId": {
                         "type": "string",
@@ -15216,7 +15235,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the Atlas Federated Database Instance.\n### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.\n#### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.\n"
+                    "description": "Name of the Atlas Federated Database Instance.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -15257,7 +15276,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the Atlas Federated Database Instance.\n### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.\n#### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.\n"
+                    "description": "Name of the Atlas Federated Database Instance.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -15299,7 +15318,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name of the Atlas Federated Database Instance.\n### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.\n#### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.\n"
+                        "description": "Name of the Atlas Federated Database Instance.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -15343,7 +15362,7 @@
                 },
                 "limitName": {
                     "type": "string",
-                    "description": "String enum that indicates whether the identity provider is active or not. Accepted values are:\n* `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.\n* `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.\n* `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.\n* `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.\n"
+                    "description": "String enum that indicates whether the identity provider is active or not. Accepted values are:\n"
                 },
                 "maximumLimit": {
                     "type": "integer"
@@ -15381,7 +15400,7 @@
                 },
                 "limitName": {
                     "type": "string",
-                    "description": "String enum that indicates whether the identity provider is active or not. Accepted values are:\n* `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.\n* `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.\n* `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.\n* `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.\n"
+                    "description": "String enum that indicates whether the identity provider is active or not. Accepted values are:\n"
                 },
                 "maximumLimit": {
                     "type": "integer"
@@ -15426,7 +15445,7 @@
                     },
                     "limitName": {
                         "type": "string",
-                        "description": "String enum that indicates whether the identity provider is active or not. Accepted values are:\n* `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.\n* `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.\n* `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.\n* `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.\n"
+                        "description": "String enum that indicates whether the identity provider is active or not. Accepted values are:\n"
                     },
                     "maximumLimit": {
                         "type": "integer"
@@ -15939,7 +15958,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/LdapConfigurationUserToDnMapping:LdapConfigurationUserToDnMapping"
                     },
-                    "description": "Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).\n* `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.\n* `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.\n* `user_to_dn_mapping.0.ldap_query` - (Optional) An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.\n"
+                    "description": "Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).\n"
                 }
             },
             "required": [
@@ -15996,7 +16015,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/LdapConfigurationUserToDnMapping:LdapConfigurationUserToDnMapping"
                     },
-                    "description": "Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).\n* `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.\n* `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.\n* `user_to_dn_mapping.0.ldap_query` - (Optional) An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.\n"
+                    "description": "Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).\n"
                 }
             },
             "requiredInputs": [
@@ -16051,7 +16070,7 @@
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/LdapConfigurationUserToDnMapping:LdapConfigurationUserToDnMapping"
                         },
-                        "description": "Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).\n* `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.\n* `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.\n* `user_to_dn_mapping.0.ldap_query` - (Optional) An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.\n"
+                        "description": "Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).\n"
                     }
                 },
                 "type": "object"
@@ -16352,7 +16371,7 @@
             "properties": {
                 "atlasCidrBlock": {
                     "type": "string",
-                    "description": "CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):\n* Lower bound: 10.0.0.0 -\tUpper bound: 10.255.255.255 -\tPrefix: 10/8\n* Lower bound: 172.16.0.0 -\tUpper bound:172.31.255.255 -\tPrefix:\t172.16/12\n* Lower bound: 192.168.0.0 -\tUpper bound:192.168.255.255 -\tPrefix:\t192.168/16\n\n**Atlas locks this value** if an M10+ cluster or a Network Peering connection already exists. To modify the CIDR block, ensure there are no M10+ clusters in the project and no other Network Peering connections in the project.\n\n**Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.\n"
+                    "description": "CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):\n* Lower bound: 10.0.0.0 -\tUpper bound: 10.255.255.255 -\tPrefix: 10/8\n* Lower bound: 172.16.0.0 -\tUpper bound:172.31.255.255 -\tPrefix:\t172.16/12\n* Lower bound: 192.168.0.0 -\tUpper bound:192.168.255.255 -\tPrefix:\t192.168/16\n  \n  **Atlas locks this value** if an M10+ cluster or a Network Peering connection already exists. To modify the CIDR block, ensure there are no M10+ clusters in the project and no other Network Peering connections in the project.\n  \n  **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.\n"
                 },
                 "azureSubscriptionId": {
                     "type": "string",
@@ -16422,7 +16441,7 @@
             "inputProperties": {
                 "atlasCidrBlock": {
                     "type": "string",
-                    "description": "CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):\n* Lower bound: 10.0.0.0 -\tUpper bound: 10.255.255.255 -\tPrefix: 10/8\n* Lower bound: 172.16.0.0 -\tUpper bound:172.31.255.255 -\tPrefix:\t172.16/12\n* Lower bound: 192.168.0.0 -\tUpper bound:192.168.255.255 -\tPrefix:\t192.168/16\n\n**Atlas locks this value** if an M10+ cluster or a Network Peering connection already exists. To modify the CIDR block, ensure there are no M10+ clusters in the project and no other Network Peering connections in the project.\n\n**Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.\n"
+                    "description": "CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):\n* Lower bound: 10.0.0.0 -\tUpper bound: 10.255.255.255 -\tPrefix: 10/8\n* Lower bound: 172.16.0.0 -\tUpper bound:172.31.255.255 -\tPrefix:\t172.16/12\n* Lower bound: 192.168.0.0 -\tUpper bound:192.168.255.255 -\tPrefix:\t192.168/16\n  \n  **Atlas locks this value** if an M10+ cluster or a Network Peering connection already exists. To modify the CIDR block, ensure there are no M10+ clusters in the project and no other Network Peering connections in the project.\n  \n  **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -16458,7 +16477,7 @@
                 "properties": {
                     "atlasCidrBlock": {
                         "type": "string",
-                        "description": "CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):\n* Lower bound: 10.0.0.0 -\tUpper bound: 10.255.255.255 -\tPrefix: 10/8\n* Lower bound: 172.16.0.0 -\tUpper bound:172.31.255.255 -\tPrefix:\t172.16/12\n* Lower bound: 192.168.0.0 -\tUpper bound:192.168.255.255 -\tPrefix:\t192.168/16\n\n**Atlas locks this value** if an M10+ cluster or a Network Peering connection already exists. To modify the CIDR block, ensure there are no M10+ clusters in the project and no other Network Peering connections in the project.\n\n**Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.\n"
+                        "description": "CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):\n* Lower bound: 10.0.0.0 -\tUpper bound: 10.255.255.255 -\tPrefix: 10/8\n* Lower bound: 172.16.0.0 -\tUpper bound:172.31.255.255 -\tPrefix:\t172.16/12\n* Lower bound: 192.168.0.0 -\tUpper bound:192.168.255.255 -\tPrefix:\t192.168/16\n  \n  **Atlas locks this value** if an M10+ cluster or a Network Peering connection already exists. To modify the CIDR block, ensure there are no M10+ clusters in the project and no other Network Peering connections in the project.\n  \n  **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.\n"
                     },
                     "azureSubscriptionId": {
                         "type": "string",
@@ -16852,7 +16871,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/OnlineArchivePartitionField:OnlineArchivePartitionField"
                     },
-                    "description": "Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.\n"
+                    "description": "(Recommended) Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.\n"
                 },
                 "paused": {
                     "type": "boolean",
@@ -16917,7 +16936,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/OnlineArchivePartitionField:OnlineArchivePartitionField"
                     },
-                    "description": "Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.\n"
+                    "description": "(Recommended) Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.\n"
                 },
                 "paused": {
                     "type": "boolean",
@@ -16980,7 +16999,7 @@
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/OnlineArchivePartitionField:OnlineArchivePartitionField"
                         },
-                        "description": "Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.\n"
+                        "description": "(Recommended) Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.\n"
                     },
                     "paused": {
                         "type": "boolean",
@@ -17257,7 +17276,7 @@
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:\n* More than one private endpoint in more than one region, or\n* More than one private endpoint in one region and one private endpoint in one or more regions.\nYou can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.\n"
+                    "description": "Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:\n* More than one private endpoint in more than one region, or\n* More than one private endpoint in one region and one private endpoint in one or more regions.\n  You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -17270,7 +17289,7 @@
             "inputProperties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:\n* More than one private endpoint in more than one region, or\n* More than one private endpoint in one region and one private endpoint in one or more regions.\nYou can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.\n"
+                    "description": "Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:\n* More than one private endpoint in more than one region, or\n* More than one private endpoint in one region and one private endpoint in one or more regions.\n  You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -17286,7 +17305,7 @@
                 "properties": {
                     "enabled": {
                         "type": "boolean",
-                        "description": "Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:\n* More than one private endpoint in more than one region, or\n* More than one private endpoint in one region and one private endpoint in one or more regions.\nYou can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.\n"
+                        "description": "Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:\n* More than one private endpoint in more than one region, or\n* More than one private endpoint in one region and one private endpoint in one or more regions.\n  You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -18536,7 +18555,7 @@
                 },
                 "analyzers": {
                     "type": "string",
-                    "description": "[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.\n"
+                    "description": "[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.\n\n"
                 },
                 "clusterName": {
                     "type": "string",
@@ -18559,7 +18578,7 @@
                 },
                 "mappingsFields": {
                     "type": "string",
-                    "description": "attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.\n"
+                    "description": "attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.\n\n"
                 },
                 "name": {
                     "type": "string",
@@ -18603,7 +18622,7 @@
                 },
                 "analyzers": {
                     "type": "string",
-                    "description": "[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.\n"
+                    "description": "[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.\n\n"
                 },
                 "clusterName": {
                     "type": "string",
@@ -18624,7 +18643,7 @@
                 },
                 "mappingsFields": {
                     "type": "string",
-                    "description": "attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.\n"
+                    "description": "attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.\n\n"
                 },
                 "name": {
                     "type": "string",
@@ -18668,7 +18687,7 @@
                     },
                     "analyzers": {
                         "type": "string",
-                        "description": "[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.\n"
+                        "description": "[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.\n\n"
                     },
                     "clusterName": {
                         "type": "string",
@@ -18692,7 +18711,7 @@
                     },
                     "mappingsFields": {
                         "type": "string",
-                        "description": "attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.\n"
+                        "description": "attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.\n\n"
                     },
                     "name": {
                         "type": "string",
@@ -19094,7 +19113,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Indicates which API URL to use, either \"US\" or \"EU\". OpsGenie will use \"US\" by default.\n"
+                    "description": "Indicates which API URL to use, either \"US\", \"EU\", \"US3\", or \"US5\". Datadog will use \"US\" by default.\n"
                 },
                 "routingKey": {
                     "type": "string",
@@ -19125,7 +19144,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Third-Party Integration Settings type \n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n* NEW_RELIC*\n* FLOWDOCK*\n\n*resource has now been fully deprecated as part of v1.10.0 release\n\nAdditional values based on Type\n"
+                    "description": "Third-Party Integration Settings type\n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n* NEW_RELIC*\n* FLOWDOCK*\n\n*resource has now been fully deprecated as part of v1.10.0 release\n\nAdditional values based on Type\n"
                 },
                 "url": {
                     "type": "string",
@@ -19172,7 +19191,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Indicates which API URL to use, either \"US\" or \"EU\". OpsGenie will use \"US\" by default.\n"
+                    "description": "Indicates which API URL to use, either \"US\", \"EU\", \"US3\", or \"US5\". Datadog will use \"US\" by default.\n"
                 },
                 "routingKey": {
                     "type": "string",
@@ -19203,7 +19222,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Third-Party Integration Settings type \n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n* NEW_RELIC*\n* FLOWDOCK*\n\n*resource has now been fully deprecated as part of v1.10.0 release\n\nAdditional values based on Type\n",
+                    "description": "Third-Party Integration Settings type\n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n* NEW_RELIC*\n* FLOWDOCK*\n\n*resource has now been fully deprecated as part of v1.10.0 release\n\nAdditional values based on Type\n",
                     "willReplaceOnChanges": true
                 },
                 "url": {
@@ -19252,7 +19271,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "Indicates which API URL to use, either \"US\" or \"EU\". OpsGenie will use \"US\" by default.\n"
+                        "description": "Indicates which API URL to use, either \"US\", \"EU\", \"US3\", or \"US5\". Datadog will use \"US\" by default.\n"
                     },
                     "routingKey": {
                         "type": "string",
@@ -19283,7 +19302,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Third-Party Integration Settings type \n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n* NEW_RELIC*\n* FLOWDOCK*\n\n*resource has now been fully deprecated as part of v1.10.0 release\n\nAdditional values based on Type\n",
+                        "description": "Third-Party Integration Settings type\n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n* NEW_RELIC*\n* FLOWDOCK*\n\n*resource has now been fully deprecated as part of v1.10.0 release\n\nAdditional values based on Type\n",
                         "willReplaceOnChanges": true
                     },
                     "url": {
@@ -19468,7 +19487,7 @@
                 "properties": {
                     "apiKeyId": {
                         "type": "string",
-                        "description": "Unique identifier for the Organization API Key for which you want to retrieve an access list entry.\n*\n-\u003e**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.\n"
+                        "description": "Unique identifier for the Organization API Key for which you want to retrieve an access list entry.\n* -\u003e**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.\n"
                     },
                     "ipAddress": {
                         "type": "string",
@@ -19539,7 +19558,7 @@
                 "properties": {
                     "apiKeyId": {
                         "type": "string",
-                        "description": "Unique identifier for the Organization API Key for which you want to retrieve an access list entry.\n*\n\u003e **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.\n"
+                        "description": "Unique identifier for the Organization API Key for which you want to retrieve an access list entry.\n* \u003e **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.\n"
                     },
                     "itemsPerPage": {
                         "type": "integer",
@@ -19808,7 +19827,7 @@
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getAlertConfigurationOutput:getAlertConfigurationOutput"
                         },
-                        "description": "List of formatted output requested for this alert configuration\n* `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:\n"
+                        "description": "List of formatted output requested for this alert configuration\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -19908,7 +19927,7 @@
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getAlertConfigurationsListOption:getAlertConfigurationsListOption"
                         },
-                        "description": "Arguments that dictate how many and which results are returned by the data source\n* `list_options.page_num` - Which page of results to retrieve (default to first page)\n* `list_options.items_per_page` - How many alerts to retrieve per page (default 100)\n* `list_options.include_count` - Whether to include total count of results in the response (default false)\n"
+                        "description": "Arguments that dictate how many and which results are returned by the data source\n"
                     },
                     "outputTypes": {
                         "type": "array",
@@ -22631,7 +22650,7 @@
                 "properties": {
                     "limitName": {
                         "type": "string",
-                        "description": "String enum that indicates whether the identity provider is active or not. Accepted values are:\n* `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.\n* `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.\n* `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.\n* `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.\n"
+                        "description": "String enum that indicates whether the identity provider is active or not. Accepted values are:\n"
                     },
                     "projectId": {
                         "type": "string",
