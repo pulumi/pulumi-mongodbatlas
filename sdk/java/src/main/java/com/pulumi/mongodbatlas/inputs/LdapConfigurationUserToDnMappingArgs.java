@@ -15,23 +15,47 @@ public final class LdapConfigurationUserToDnMappingArgs extends com.pulumi.resou
 
     public static final LdapConfigurationUserToDnMappingArgs Empty = new LdapConfigurationUserToDnMappingArgs();
 
+    /**
+     * An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+     * 
+     */
     @Import(name="ldapQuery")
     private @Nullable Output<String> ldapQuery;
 
+    /**
+     * @return An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+     * 
+     */
     public Optional<Output<String>> ldapQuery() {
         return Optional.ofNullable(this.ldapQuery);
     }
 
+    /**
+     * A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
+     * 
+     */
     @Import(name="match")
     private @Nullable Output<String> match;
 
+    /**
+     * @return A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
+     * 
+     */
     public Optional<Output<String>> match() {
         return Optional.ofNullable(this.match);
     }
 
+    /**
+     * An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+     * 
+     */
     @Import(name="substitution")
     private @Nullable Output<String> substitution;
 
+    /**
+     * @return An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+     * 
+     */
     public Optional<Output<String>> substitution() {
         return Optional.ofNullable(this.substitution);
     }
@@ -62,29 +86,65 @@ public final class LdapConfigurationUserToDnMappingArgs extends com.pulumi.resou
             $ = new LdapConfigurationUserToDnMappingArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param ldapQuery An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ldapQuery(@Nullable Output<String> ldapQuery) {
             $.ldapQuery = ldapQuery;
             return this;
         }
 
+        /**
+         * @param ldapQuery An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ldapQuery(String ldapQuery) {
             return ldapQuery(Output.of(ldapQuery));
         }
 
+        /**
+         * @param match A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
+         * 
+         * @return builder
+         * 
+         */
         public Builder match(@Nullable Output<String> match) {
             $.match = match;
             return this;
         }
 
+        /**
+         * @param match A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
+         * 
+         * @return builder
+         * 
+         */
         public Builder match(String match) {
             return match(Output.of(match));
         }
 
+        /**
+         * @param substitution An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+         * 
+         * @return builder
+         * 
+         */
         public Builder substitution(@Nullable Output<String> substitution) {
             $.substitution = substitution;
             return this;
         }
 
+        /**
+         * @param substitution An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+         * 
+         * @return builder
+         * 
+         */
         public Builder substitution(String substitution) {
             return substitution(Output.of(substitution));
         }

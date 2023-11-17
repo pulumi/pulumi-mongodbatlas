@@ -15,23 +15,47 @@ public final class GetAlertConfigurationsListOption extends com.pulumi.resources
 
     public static final GetAlertConfigurationsListOption Empty = new GetAlertConfigurationsListOption();
 
+    /**
+     * Whether to include total count of results in the response (default false)
+     * 
+     */
     @Import(name="includeCount")
     private @Nullable Boolean includeCount;
 
+    /**
+     * @return Whether to include total count of results in the response (default false)
+     * 
+     */
     public Optional<Boolean> includeCount() {
         return Optional.ofNullable(this.includeCount);
     }
 
+    /**
+     * How many alerts to retrieve per page (default 100)
+     * 
+     */
     @Import(name="itemsPerPage")
     private @Nullable Integer itemsPerPage;
 
+    /**
+     * @return How many alerts to retrieve per page (default 100)
+     * 
+     */
     public Optional<Integer> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
     }
 
+    /**
+     * Which page of results to retrieve (default to first page)
+     * 
+     */
     @Import(name="pageNum")
     private @Nullable Integer pageNum;
 
+    /**
+     * @return Which page of results to retrieve (default to first page)
+     * 
+     */
     public Optional<Integer> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }
@@ -62,16 +86,34 @@ public final class GetAlertConfigurationsListOption extends com.pulumi.resources
             $ = new GetAlertConfigurationsListOption(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param includeCount Whether to include total count of results in the response (default false)
+         * 
+         * @return builder
+         * 
+         */
         public Builder includeCount(@Nullable Boolean includeCount) {
             $.includeCount = includeCount;
             return this;
         }
 
+        /**
+         * @param itemsPerPage How many alerts to retrieve per page (default 100)
+         * 
+         * @return builder
+         * 
+         */
         public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
             $.itemsPerPage = itemsPerPage;
             return this;
         }
 
+        /**
+         * @param pageNum Which page of results to retrieve (default to first page)
+         * 
+         * @return builder
+         * 
+         */
         public Builder pageNum(@Nullable Integer pageNum) {
             $.pageNum = pageNum;
             return this;

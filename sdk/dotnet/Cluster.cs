@@ -50,7 +50,6 @@ namespace Pulumi.Mongodbatlas
         /// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
         /// 
         /// The possible values are:
-        /// 
         /// - AWS - Amazon AWS
         /// - GCP - Google Cloud Platform
         /// - AZURE - Microsoft Azure
@@ -63,6 +62,7 @@ namespace Pulumi.Mongodbatlas
         /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         /// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+        /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -99,6 +99,9 @@ namespace Pulumi.Mongodbatlas
         /// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
         /// 
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED`	Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Output("clusterType")]
         public Output<string> ClusterType { get; private set; } = null!;
@@ -250,14 +253,14 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProviderRegionName { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        /// (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         /// &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
         /// </summary>
         [Output("providerVolumeType")]
         public Output<string> ProviderVolumeType { get; private set; } = null!;
 
         /// <summary>
-        /// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        /// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         /// </summary>
         [Output("replicationFactor")]
         public Output<int> ReplicationFactor { get; private set; } = null!;
@@ -390,7 +393,6 @@ namespace Pulumi.Mongodbatlas
         /// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
         /// 
         /// The possible values are:
-        /// 
         /// - AWS - Amazon AWS
         /// - GCP - Google Cloud Platform
         /// - AZURE - Microsoft Azure
@@ -403,6 +405,7 @@ namespace Pulumi.Mongodbatlas
         /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         /// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+        /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -433,6 +436,9 @@ namespace Pulumi.Mongodbatlas
         /// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
         /// 
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED`	Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Input("clusterType")]
         public Input<string>? ClusterType { get; set; }
@@ -552,14 +558,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderRegionName { get; set; }
 
         /// <summary>
-        /// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        /// (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         /// &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
         /// </summary>
         [Input("providerVolumeType")]
         public Input<string>? ProviderVolumeType { get; set; }
 
         /// <summary>
-        /// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        /// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         /// </summary>
         [Input("replicationFactor")]
         public Input<int>? ReplicationFactor { get; set; }
@@ -642,7 +648,6 @@ namespace Pulumi.Mongodbatlas
         /// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
         /// 
         /// The possible values are:
-        /// 
         /// - AWS - Amazon AWS
         /// - GCP - Google Cloud Platform
         /// - AZURE - Microsoft Azure
@@ -655,6 +660,7 @@ namespace Pulumi.Mongodbatlas
         /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         /// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+        /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -691,6 +697,9 @@ namespace Pulumi.Mongodbatlas
         /// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
         /// 
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED`	Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Input("clusterType")]
         public Input<string>? ClusterType { get; set; }
@@ -855,14 +864,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderRegionName { get; set; }
 
         /// <summary>
-        /// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        /// (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         /// &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
         /// </summary>
         [Input("providerVolumeType")]
         public Input<string>? ProviderVolumeType { get; set; }
 
         /// <summary>
-        /// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        /// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         /// </summary>
         [Input("replicationFactor")]
         public Input<int>? ReplicationFactor { get; set; }

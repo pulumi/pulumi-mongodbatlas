@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class EventTriggerEventProcessorsAwsEventbridge {
+    /**
+     * @return AWS Account ID.
+     * 
+     */
     private @Nullable String configAccountId;
+    /**
+     * @return Region of AWS Account.
+     * 
+     */
     private @Nullable String configRegion;
 
     private EventTriggerEventProcessorsAwsEventbridge() {}
+    /**
+     * @return AWS Account ID.
+     * 
+     */
     public Optional<String> configAccountId() {
         return Optional.ofNullable(this.configAccountId);
     }
+    /**
+     * @return Region of AWS Account.
+     * 
+     */
     public Optional<String> configRegion() {
         return Optional.ofNullable(this.configRegion);
     }

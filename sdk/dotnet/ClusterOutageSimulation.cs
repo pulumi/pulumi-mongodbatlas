@@ -70,7 +70,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ClusterName { get; private set; } = null!;
 
         /// <summary>
-        /// List of settings that specify the type of cluster outage simulation.
+        /// (Minimum one required) List of settings that specify the type of cluster outage simulation.
         /// </summary>
         [Output("outageFilters")]
         public Output<ImmutableArray<Outputs.ClusterOutageSimulationOutageFilter>> OutageFilters { get; private set; } = null!;
@@ -155,7 +155,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.ClusterOutageSimulationOutageFilterArgs>? _outageFilters;
 
         /// <summary>
-        /// List of settings that specify the type of cluster outage simulation.
+        /// (Minimum one required) List of settings that specify the type of cluster outage simulation.
         /// </summary>
         public InputList<Inputs.ClusterOutageSimulationOutageFilterArgs> OutageFilters
         {
@@ -187,7 +187,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.ClusterOutageSimulationOutageFilterGetArgs>? _outageFilters;
 
         /// <summary>
-        /// List of settings that specify the type of cluster outage simulation.
+        /// (Minimum one required) List of settings that specify the type of cluster outage simulation.
         /// </summary>
         public InputList<Inputs.ClusterOutageSimulationOutageFilterGetArgs> OutageFilters
         {

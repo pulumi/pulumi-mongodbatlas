@@ -36,7 +36,6 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAws {
     private String roleId;
     /**
      * @return Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-     * ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
      * 
      */
     private String testS3Bucket;
@@ -75,7 +74,6 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAws {
     }
     /**
      * @return Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-     * ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
      * 
      */
     public String testS3Bucket() {

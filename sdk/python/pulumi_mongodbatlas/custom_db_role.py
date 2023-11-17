@@ -26,7 +26,6 @@ class CustomDbRoleArgs:
         :param pulumi.Input[str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-               
                * Is a name already used by an existing custom role in the project
                * Is a name of any of the built-in roles
                * Is `atlasAdmin`
@@ -58,7 +57,6 @@ class CustomDbRoleArgs:
         Name of the custom role.
 
         > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-
         * Is a name already used by an existing custom role in the project
         * Is a name of any of the built-in roles
         * Is `atlasAdmin`
@@ -102,7 +100,6 @@ class _CustomDbRoleState:
         :param pulumi.Input[str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-               
                * Is a name already used by an existing custom role in the project
                * Is a name of any of the built-in roles
                * Is `atlasAdmin`
@@ -154,7 +151,6 @@ class _CustomDbRoleState:
         Name of the custom role.
 
         > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-
         * Is a name already used by an existing custom role in the project
         * Is a name of any of the built-in roles
         * Is `atlasAdmin`
@@ -288,7 +284,6 @@ class CustomDbRole(pulumi.CustomResource):
         :param pulumi.Input[str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-               
                * Is a name already used by an existing custom role in the project
                * Is a name of any of the built-in roles
                * Is `atlasAdmin`
@@ -466,7 +461,6 @@ class CustomDbRole(pulumi.CustomResource):
         :param pulumi.Input[str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-               
                * Is a name already used by an existing custom role in the project
                * Is a name of any of the built-in roles
                * Is `atlasAdmin`
@@ -507,7 +501,6 @@ class CustomDbRole(pulumi.CustomResource):
         Name of the custom role.
 
         > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-
         * Is a name already used by an existing custom role in the project
         * Is a name of any of the built-in roles
         * Is `atlasAdmin`

@@ -44,12 +44,6 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
         return obj['__pulumiType'] === CloudBackupSchedule.__pulumiType;
     }
 
-    /**
-     * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     *
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-     */
     public readonly autoExportEnabled!: pulumi.Output<boolean>;
     /**
      * Unique identifier of the Atlas cluster.
@@ -172,12 +166,6 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CloudBackupSchedule resources.
  */
 export interface CloudBackupScheduleState {
-    /**
-     * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     *
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-     */
     autoExportEnabled?: pulumi.Input<boolean>;
     /**
      * Unique identifier of the Atlas cluster.
@@ -240,12 +228,6 @@ export interface CloudBackupScheduleState {
  * The set of arguments for constructing a CloudBackupSchedule resource.
  */
 export interface CloudBackupScheduleArgs {
-    /**
-     * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     *
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-     */
     autoExportEnabled?: pulumi.Input<boolean>;
     /**
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.

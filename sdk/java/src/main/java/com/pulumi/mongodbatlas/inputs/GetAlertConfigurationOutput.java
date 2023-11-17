@@ -21,9 +21,17 @@ public final class GetAlertConfigurationOutput extends com.pulumi.resources.Invo
         return Optional.ofNullable(this.label);
     }
 
+    /**
+     * If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+     * 
+     */
     @Import(name="type", required=true)
     private String type;
 
+    /**
+     * @return If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+     * 
+     */
     public String type() {
         return this.type;
     }
@@ -74,6 +82,12 @@ public final class GetAlertConfigurationOutput extends com.pulumi.resources.Invo
             return this;
         }
 
+        /**
+         * @param type If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(String type) {
             $.type = type;
             return this;

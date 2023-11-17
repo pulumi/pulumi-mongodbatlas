@@ -175,7 +175,6 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.
     :param Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']] outputs: List of formatted output requested for this alert configuration
-           * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
     :param str project_id: The ID of the project where the alert configuration will create.
     """
     __args__ = dict()
@@ -213,7 +212,6 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.
     :param Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']] outputs: List of formatted output requested for this alert configuration
-           * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
     :param str project_id: The ID of the project where the alert configuration will create.
     """
     ...

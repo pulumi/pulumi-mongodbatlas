@@ -402,8 +402,6 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
     }
     /**
      * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-     * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-     * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      * 
      */
     @Export(name="eventProcessors", refs={EventTriggerEventProcessors.class}, tree="[0]")
@@ -411,8 +409,6 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
 
     /**
      * @return An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-     * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-     * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      * 
      */
     public Output<Optional<EventTriggerEventProcessors>> eventProcessors() {

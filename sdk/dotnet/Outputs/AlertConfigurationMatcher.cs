@@ -24,8 +24,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// | `HOSTNAME_AND_PORT` |                     |                         |
         /// | `REPLICA_SET_NAME`  |                     |                         |
         /// 
-        /// 
-        /// 
         /// All other types of alerts do not support matchers.
         /// </summary>
         public readonly string FieldName;

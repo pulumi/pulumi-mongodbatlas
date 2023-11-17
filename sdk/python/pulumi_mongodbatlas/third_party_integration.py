@@ -33,7 +33,7 @@ class ThirdPartyIntegrationArgs:
         """
         The set of arguments for constructing a ThirdPartyIntegration resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] type: Third-Party Integration Settings type 
+        :param pulumi.Input[str] type: Third-Party Integration Settings type
                * PAGER_DUTY
                * DATADOG
                * OPS_GENIE
@@ -51,7 +51,7 @@ class ThirdPartyIntegrationArgs:
         :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
-        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        :param pulumi.Input[str] region: Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
@@ -107,7 +107,7 @@ class ThirdPartyIntegrationArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Third-Party Integration Settings type 
+        Third-Party Integration Settings type
         * PAGER_DUTY
         * DATADOG
         * OPS_GENIE
@@ -189,7 +189,7 @@ class ThirdPartyIntegrationArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
         """
         return pulumi.get(self, "region")
 
@@ -317,13 +317,13 @@ class _ThirdPartyIntegrationState:
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        :param pulumi.Input[str] region: Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
         :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
         :param pulumi.Input[str] service_key: Your Service Key.
-        :param pulumi.Input[str] type: Third-Party Integration Settings type 
+        :param pulumi.Input[str] type: Third-Party Integration Settings type
                * PAGER_DUTY
                * DATADOG
                * OPS_GENIE
@@ -446,7 +446,7 @@ class _ThirdPartyIntegrationState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
         """
         return pulumi.get(self, "region")
 
@@ -527,7 +527,7 @@ class _ThirdPartyIntegrationState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Third-Party Integration Settings type 
+        Third-Party Integration Settings type
         * PAGER_DUTY
         * DATADOG
         * OPS_GENIE
@@ -624,13 +624,13 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        :param pulumi.Input[str] region: Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
         :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
         :param pulumi.Input[str] service_key: Your Service Key.
-        :param pulumi.Input[str] type: Third-Party Integration Settings type 
+        :param pulumi.Input[str] type: Third-Party Integration Settings type
                * PAGER_DUTY
                * DATADOG
                * OPS_GENIE
@@ -775,13 +775,13 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        :param pulumi.Input[str] region: Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
         :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
         :param pulumi.Input[str] service_key: Your Service Key.
-        :param pulumi.Input[str] type: Third-Party Integration Settings type 
+        :param pulumi.Input[str] type: Third-Party Integration Settings type
                * PAGER_DUTY
                * DATADOG
                * OPS_GENIE
@@ -869,7 +869,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
         """
         return pulumi.get(self, "region")
 
@@ -922,7 +922,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Third-Party Integration Settings type 
+        Third-Party Integration Settings type
         * PAGER_DUTY
         * DATADOG
         * OPS_GENIE

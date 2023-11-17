@@ -10,33 +10,65 @@ import java.util.Objects;
 
 @CustomType
 public final class GetProjectsResultLimit {
+    /**
+     * @return `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+     * 
+     */
     private Integer currentUsage;
+    /**
+     * @return `limits.#.default_limit` - Default value of the limit.
+     * 
+     */
     private Integer defaultLimit;
+    /**
+     * @return `limits.#.maximum_limit` - Maximum value of the limit.
+     * 
+     */
     private Integer maximumLimit;
     /**
-     * @return The name of the project you want to create.
+     * @return `limits.#.name` - Human-readable label that identifies this project limit.
      * 
      */
     private String name;
+    /**
+     * @return `limits.#.value` - Amount the limit is set to.
+     * 
+     */
     private Integer value;
 
     private GetProjectsResultLimit() {}
+    /**
+     * @return `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+     * 
+     */
     public Integer currentUsage() {
         return this.currentUsage;
     }
+    /**
+     * @return `limits.#.default_limit` - Default value of the limit.
+     * 
+     */
     public Integer defaultLimit() {
         return this.defaultLimit;
     }
+    /**
+     * @return `limits.#.maximum_limit` - Maximum value of the limit.
+     * 
+     */
     public Integer maximumLimit() {
         return this.maximumLimit;
     }
     /**
-     * @return The name of the project you want to create.
+     * @return `limits.#.name` - Human-readable label that identifies this project limit.
      * 
      */
     public String name() {
         return this.name;
     }
+    /**
+     * @return `limits.#.value` - Amount the limit is set to.
+     * 
+     */
     public Integer value() {
         return this.value;
     }

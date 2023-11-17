@@ -73,10 +73,6 @@ export class FederatedQueryLimit extends pulumi.CustomResource {
     public /*out*/ readonly lastModifiedDate!: pulumi.Output<string>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are:
-     * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-     * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-     * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-     * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      */
     public readonly limitName!: pulumi.Output<string>;
     public readonly maximumLimit!: pulumi.Output<number | undefined>;
@@ -166,10 +162,6 @@ export interface FederatedQueryLimitState {
     lastModifiedDate?: pulumi.Input<string>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are:
-     * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-     * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-     * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-     * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      */
     limitName?: pulumi.Input<string>;
     maximumLimit?: pulumi.Input<number>;
@@ -201,10 +193,6 @@ export interface FederatedQueryLimitArgs {
     defaultLimit?: pulumi.Input<number>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are:
-     * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-     * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-     * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-     * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      */
     limitName: pulumi.Input<string>;
     maximumLimit?: pulumi.Input<number>;

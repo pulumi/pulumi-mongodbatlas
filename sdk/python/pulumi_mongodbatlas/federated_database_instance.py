@@ -26,8 +26,6 @@ class FederatedDatabaseInstanceArgs:
         The set of arguments for constructing a FederatedDatabaseInstance resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         :param pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
                * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
                * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
@@ -118,8 +116,6 @@ class FederatedDatabaseInstanceArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -207,8 +203,6 @@ class _FederatedDatabaseInstanceState:
         Input properties used for looking up and filtering FederatedDatabaseInstance resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
         :param pulumi.Input[str] state: Current state of the Federated Database Instance:
         :param pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
@@ -306,8 +300,6 @@ class _FederatedDatabaseInstanceState:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -522,8 +514,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedDatabaseInstanceStorageDatabaseArgs']]]] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
                * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -744,8 +734,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
         :param pulumi.Input[str] state: Current state of the Federated Database Instance:
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedDatabaseInstanceStorageDatabaseArgs']]]] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
@@ -828,8 +816,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
     def name(self) -> pulumi.Output[str]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 

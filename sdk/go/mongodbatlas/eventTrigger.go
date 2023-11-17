@@ -225,8 +225,6 @@ type EventTrigger struct {
 	// Default: `false` If `true`, the trigger is disabled.
 	Disabled pulumi.BoolOutput `pulumi:"disabled"`
 	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-	// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-	// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 	EventProcessors EventTriggerEventProcessorsPtrOutput `pulumi:"eventProcessors"`
 	// The ID of the function associated with the trigger.
 	FunctionId pulumi.StringPtrOutput `pulumi:"functionId"`
@@ -311,8 +309,6 @@ type eventTriggerState struct {
 	// Default: `false` If `true`, the trigger is disabled.
 	Disabled *bool `pulumi:"disabled"`
 	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-	// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-	// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 	EventProcessors *EventTriggerEventProcessors `pulumi:"eventProcessors"`
 	// The ID of the function associated with the trigger.
 	FunctionId *string `pulumi:"functionId"`
@@ -359,8 +355,6 @@ type EventTriggerState struct {
 	// Default: `false` If `true`, the trigger is disabled.
 	Disabled pulumi.BoolPtrInput
 	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-	// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-	// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 	EventProcessors EventTriggerEventProcessorsPtrInput
 	// The ID of the function associated with the trigger.
 	FunctionId pulumi.StringPtrInput
@@ -410,8 +404,6 @@ type eventTriggerArgs struct {
 	// Default: `false` If `true`, the trigger is disabled.
 	Disabled *bool `pulumi:"disabled"`
 	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-	// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-	// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 	EventProcessors *EventTriggerEventProcessors `pulumi:"eventProcessors"`
 	// The ID of the function associated with the trigger.
 	FunctionId *string `pulumi:"functionId"`
@@ -454,8 +446,6 @@ type EventTriggerArgs struct {
 	// Default: `false` If `true`, the trigger is disabled.
 	Disabled pulumi.BoolPtrInput
 	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-	// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-	// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 	EventProcessors EventTriggerEventProcessorsPtrInput
 	// The ID of the function associated with the trigger.
 	FunctionId pulumi.StringPtrInput
@@ -626,8 +616,6 @@ func (o EventTriggerOutput) Disabled() pulumi.BoolOutput {
 }
 
 // An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 func (o EventTriggerOutput) EventProcessors() EventTriggerEventProcessorsPtrOutput {
 	return o.ApplyT(func(v *EventTrigger) EventTriggerEventProcessorsPtrOutput { return v.EventProcessors }).(EventTriggerEventProcessorsPtrOutput)
 }

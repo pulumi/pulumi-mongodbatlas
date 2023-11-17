@@ -55,10 +55,6 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
 
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are:
-     * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-     * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-     * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-     * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      * 
      */
     @Import(name="limitName")
@@ -66,10 +62,6 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
 
     /**
      * @return String enum that indicates whether the identity provider is active or not. Accepted values are:
-     * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-     * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-     * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-     * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      * 
      */
     public Optional<Output<String>> limitName() {
@@ -228,10 +220,6 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
 
         /**
          * @param limitName String enum that indicates whether the identity provider is active or not. Accepted values are:
-         * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-         * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-         * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-         * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
          * 
          * @return builder
          * 
@@ -243,10 +231,6 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
 
         /**
          * @param limitName String enum that indicates whether the identity provider is active or not. Accepted values are:
-         * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-         * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-         * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-         * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
          * 
          * @return builder
          * 

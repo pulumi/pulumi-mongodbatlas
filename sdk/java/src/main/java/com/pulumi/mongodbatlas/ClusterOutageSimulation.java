@@ -93,14 +93,14 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
         return this.clusterName;
     }
     /**
-     * List of settings that specify the type of cluster outage simulation.
+     * (Minimum one required) List of settings that specify the type of cluster outage simulation.
      * 
      */
     @Export(name="outageFilters", refs={List.class,ClusterOutageSimulationOutageFilter.class}, tree="[0,1]")
     private Output<List<ClusterOutageSimulationOutageFilter>> outageFilters;
 
     /**
-     * @return List of settings that specify the type of cluster outage simulation.
+     * @return (Minimum one required) List of settings that specify the type of cluster outage simulation.
      * 
      */
     public Output<List<ClusterOutageSimulationOutageFilter>> outageFilters() {

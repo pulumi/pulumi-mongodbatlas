@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAlertConfigurationsListOption {
+    /**
+     * @return Whether to include total count of results in the response (default false)
+     * 
+     */
     private @Nullable Boolean includeCount;
+    /**
+     * @return How many alerts to retrieve per page (default 100)
+     * 
+     */
     private @Nullable Integer itemsPerPage;
+    /**
+     * @return Which page of results to retrieve (default to first page)
+     * 
+     */
     private @Nullable Integer pageNum;
 
     private GetAlertConfigurationsListOption() {}
+    /**
+     * @return Whether to include total count of results in the response (default false)
+     * 
+     */
     public Optional<Boolean> includeCount() {
         return Optional.ofNullable(this.includeCount);
     }
+    /**
+     * @return How many alerts to retrieve per page (default 100)
+     * 
+     */
     public Optional<Integer> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
     }
+    /**
+     * @return Which page of results to retrieve (default to first page)
+     * 
+     */
     public Optional<Integer> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }

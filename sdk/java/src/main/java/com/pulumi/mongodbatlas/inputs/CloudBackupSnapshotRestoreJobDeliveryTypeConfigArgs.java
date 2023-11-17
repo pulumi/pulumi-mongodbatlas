@@ -17,30 +17,62 @@ public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs extends c
 
     public static final CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs Empty = new CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs();
 
+    /**
+     * Set to `true` to use the automated configuration.
+     * 
+     */
     @Import(name="automated")
     private @Nullable Output<Boolean> automated;
 
+    /**
+     * @return Set to `true` to use the automated configuration.
+     * 
+     */
     public Optional<Output<Boolean>> automated() {
         return Optional.ofNullable(this.automated);
     }
 
+    /**
+     * Set to `true` to use the download configuration.
+     * 
+     */
     @Import(name="download")
     private @Nullable Output<Boolean> download;
 
+    /**
+     * @return Set to `true` to use the download configuration.
+     * 
+     */
     public Optional<Output<Boolean>> download() {
         return Optional.ofNullable(this.download);
     }
 
+    /**
+     * Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
+     * 
+     */
     @Import(name="oplogInc")
     private @Nullable Output<Integer> oplogInc;
 
+    /**
+     * @return Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
+     * 
+     */
     public Optional<Output<Integer>> oplogInc() {
         return Optional.ofNullable(this.oplogInc);
     }
 
+    /**
+     * Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+     * 
+     */
     @Import(name="oplogTs")
     private @Nullable Output<Integer> oplogTs;
 
+    /**
+     * @return Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+     * 
+     */
     public Optional<Output<Integer>> oplogTs() {
         return Optional.ofNullable(this.oplogTs);
     }
@@ -52,22 +84,30 @@ public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs extends c
         return Optional.ofNullable(this.pointInTime);
     }
 
+    /**
+     * Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+     * 
+     */
     @Import(name="pointInTimeUtcSeconds")
     private @Nullable Output<Integer> pointInTimeUtcSeconds;
 
+    /**
+     * @return Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+     * 
+     */
     public Optional<Output<Integer>> pointInTimeUtcSeconds() {
         return Optional.ofNullable(this.pointInTimeUtcSeconds);
     }
 
     /**
-     * Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+     * Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
      * 
      */
     @Import(name="targetClusterName")
     private @Nullable Output<String> targetClusterName;
 
     /**
-     * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+     * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
      * 
      */
     public Optional<Output<String>> targetClusterName() {
@@ -75,14 +115,14 @@ public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs extends c
     }
 
     /**
-     * Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+     * Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
      * 
      */
     @Import(name="targetProjectId")
     private @Nullable Output<String> targetProjectId;
 
     /**
-     * @return Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+     * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
      * 
      */
     public Optional<Output<String>> targetProjectId() {
@@ -120,38 +160,86 @@ public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs extends c
             $ = new CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param automated Set to `true` to use the automated configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder automated(@Nullable Output<Boolean> automated) {
             $.automated = automated;
             return this;
         }
 
+        /**
+         * @param automated Set to `true` to use the automated configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder automated(Boolean automated) {
             return automated(Output.of(automated));
         }
 
+        /**
+         * @param download Set to `true` to use the download configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder download(@Nullable Output<Boolean> download) {
             $.download = download;
             return this;
         }
 
+        /**
+         * @param download Set to `true` to use the download configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder download(Boolean download) {
             return download(Output.of(download));
         }
 
+        /**
+         * @param oplogInc Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oplogInc(@Nullable Output<Integer> oplogInc) {
             $.oplogInc = oplogInc;
             return this;
         }
 
+        /**
+         * @param oplogInc Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oplogInc(Integer oplogInc) {
             return oplogInc(Output.of(oplogInc));
         }
 
+        /**
+         * @param oplogTs Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oplogTs(@Nullable Output<Integer> oplogTs) {
             $.oplogTs = oplogTs;
             return this;
         }
 
+        /**
+         * @param oplogTs Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oplogTs(Integer oplogTs) {
             return oplogTs(Output.of(oplogTs));
         }
@@ -165,17 +253,29 @@ public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs extends c
             return pointInTime(Output.of(pointInTime));
         }
 
+        /**
+         * @param pointInTimeUtcSeconds Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pointInTimeUtcSeconds(@Nullable Output<Integer> pointInTimeUtcSeconds) {
             $.pointInTimeUtcSeconds = pointInTimeUtcSeconds;
             return this;
         }
 
+        /**
+         * @param pointInTimeUtcSeconds Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pointInTimeUtcSeconds(Integer pointInTimeUtcSeconds) {
             return pointInTimeUtcSeconds(Output.of(pointInTimeUtcSeconds));
         }
 
         /**
-         * @param targetClusterName Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+         * @param targetClusterName Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
          * 
          * @return builder
          * 
@@ -186,7 +286,7 @@ public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs extends c
         }
 
         /**
-         * @param targetClusterName Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+         * @param targetClusterName Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
          * 
          * @return builder
          * 
@@ -196,7 +296,7 @@ public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs extends c
         }
 
         /**
-         * @param targetProjectId Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+         * @param targetProjectId Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
          * 
          * @return builder
          * 
@@ -207,7 +307,7 @@ public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs extends c
         }
 
         /**
-         * @param targetProjectId Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+         * @param targetProjectId Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
          * 
          * @return builder
          * 

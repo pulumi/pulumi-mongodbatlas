@@ -16,23 +16,47 @@ public final class GetAlertConfigurationsListOptionArgs extends com.pulumi.resou
 
     public static final GetAlertConfigurationsListOptionArgs Empty = new GetAlertConfigurationsListOptionArgs();
 
+    /**
+     * Whether to include total count of results in the response (default false)
+     * 
+     */
     @Import(name="includeCount")
     private @Nullable Output<Boolean> includeCount;
 
+    /**
+     * @return Whether to include total count of results in the response (default false)
+     * 
+     */
     public Optional<Output<Boolean>> includeCount() {
         return Optional.ofNullable(this.includeCount);
     }
 
+    /**
+     * How many alerts to retrieve per page (default 100)
+     * 
+     */
     @Import(name="itemsPerPage")
     private @Nullable Output<Integer> itemsPerPage;
 
+    /**
+     * @return How many alerts to retrieve per page (default 100)
+     * 
+     */
     public Optional<Output<Integer>> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
     }
 
+    /**
+     * Which page of results to retrieve (default to first page)
+     * 
+     */
     @Import(name="pageNum")
     private @Nullable Output<Integer> pageNum;
 
+    /**
+     * @return Which page of results to retrieve (default to first page)
+     * 
+     */
     public Optional<Output<Integer>> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }
@@ -63,29 +87,65 @@ public final class GetAlertConfigurationsListOptionArgs extends com.pulumi.resou
             $ = new GetAlertConfigurationsListOptionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param includeCount Whether to include total count of results in the response (default false)
+         * 
+         * @return builder
+         * 
+         */
         public Builder includeCount(@Nullable Output<Boolean> includeCount) {
             $.includeCount = includeCount;
             return this;
         }
 
+        /**
+         * @param includeCount Whether to include total count of results in the response (default false)
+         * 
+         * @return builder
+         * 
+         */
         public Builder includeCount(Boolean includeCount) {
             return includeCount(Output.of(includeCount));
         }
 
+        /**
+         * @param itemsPerPage How many alerts to retrieve per page (default 100)
+         * 
+         * @return builder
+         * 
+         */
         public Builder itemsPerPage(@Nullable Output<Integer> itemsPerPage) {
             $.itemsPerPage = itemsPerPage;
             return this;
         }
 
+        /**
+         * @param itemsPerPage How many alerts to retrieve per page (default 100)
+         * 
+         * @return builder
+         * 
+         */
         public Builder itemsPerPage(Integer itemsPerPage) {
             return itemsPerPage(Output.of(itemsPerPage));
         }
 
+        /**
+         * @param pageNum Which page of results to retrieve (default to first page)
+         * 
+         * @return builder
+         * 
+         */
         public Builder pageNum(@Nullable Output<Integer> pageNum) {
             $.pageNum = pageNum;
             return this;
         }
 
+        /**
+         * @param pageNum Which page of results to retrieve (default to first page)
+         * 
+         * @return builder
+         * 
+         */
         public Builder pageNum(Integer pageNum) {
             return pageNum(Output.of(pageNum));
         }

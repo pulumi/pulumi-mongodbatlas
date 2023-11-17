@@ -11,17 +11,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LdapConfigurationUserToDnMapping {
+    /**
+     * @return An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+     * 
+     */
     private @Nullable String ldapQuery;
+    /**
+     * @return A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
+     * 
+     */
     private @Nullable String match;
+    /**
+     * @return An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+     * 
+     */
     private @Nullable String substitution;
 
     private LdapConfigurationUserToDnMapping() {}
+    /**
+     * @return An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+     * 
+     */
     public Optional<String> ldapQuery() {
         return Optional.ofNullable(this.ldapQuery);
     }
+    /**
+     * @return A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
+     * 
+     */
     public Optional<String> match() {
         return Optional.ofNullable(this.match);
     }
+    /**
+     * @return An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+     * 
+     */
     public Optional<String> substitution() {
         return Optional.ofNullable(this.substitution);
     }

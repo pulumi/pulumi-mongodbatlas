@@ -23,7 +23,6 @@ type AdvancedClusterAdvancedConfiguration struct {
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-	//
 	// - TLS1_0
 	// - TLS1_1
 	// - TLS1_2
@@ -64,7 +63,6 @@ type AdvancedClusterAdvancedConfigurationArgs struct {
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-	//
 	// - TLS1_0
 	// - TLS1_1
 	// - TLS1_2
@@ -182,7 +180,6 @@ func (o AdvancedClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.B
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-//
 // - TLS1_0
 // - TLS1_1
 // - TLS1_2
@@ -286,7 +283,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulum
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-//
 // - TLS1_0
 // - TLS1_1
 // - TLS1_2
@@ -367,7 +363,6 @@ type AdvancedClusterBiConnectorConfig struct {
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled *bool `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	//
 	// - Set to "primary" to have BI Connector for Atlas read from the primary.
 	//
 	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
@@ -394,7 +389,6 @@ type AdvancedClusterBiConnectorConfigArgs struct {
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	//
 	// - Set to "primary" to have BI Connector for Atlas read from the primary.
 	//
 	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
@@ -489,7 +483,6 @@ func (o AdvancedClusterBiConnectorConfigOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-//
 // - Set to "primary" to have BI Connector for Atlas read from the primary.
 //
 // - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
@@ -537,7 +530,6 @@ func (o AdvancedClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutpu
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-//
 // - Set to "primary" to have BI Connector for Atlas read from the primary.
 //
 // - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
@@ -1746,11 +1738,11 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) NodeC
 
 type AdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
 	ComputeEnabled *bool `pulumi:"computeEnabled"`
-	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
 	ComputeMaxInstanceSize *string `pulumi:"computeMaxInstanceSize"`
-	// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+	// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
 	ComputeMinInstanceSize *string `pulumi:"computeMinInstanceSize"`
-	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
 	ComputeScaleDownEnabled *bool `pulumi:"computeScaleDownEnabled"`
 	DiskGbEnabled           *bool `pulumi:"diskGbEnabled"`
 }
@@ -1768,11 +1760,11 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScalingInput interface {
 
 type AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
 	ComputeEnabled pulumi.BoolPtrInput `pulumi:"computeEnabled"`
-	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
 	ComputeMaxInstanceSize pulumi.StringPtrInput `pulumi:"computeMaxInstanceSize"`
-	// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+	// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
 	ComputeMinInstanceSize pulumi.StringPtrInput `pulumi:"computeMinInstanceSize"`
-	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
 	ComputeScaleDownEnabled pulumi.BoolPtrInput `pulumi:"computeScaleDownEnabled"`
 	DiskGbEnabled           pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
 }
@@ -1858,17 +1850,17 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeEnab
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.ComputeEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeMaxInstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *string { return v.ComputeMaxInstanceSize }).(pulumi.StringPtrOutput)
 }
 
-// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeMinInstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *string { return v.ComputeMinInstanceSize }).(pulumi.StringPtrOutput)
 }
 
-// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeScaleDownEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.ComputeScaleDownEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -1910,7 +1902,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeE
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeMaxInstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *string {
 		if v == nil {
@@ -1920,7 +1912,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeM
 	}).(pulumi.StringPtrOutput)
 }
 
-// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeMinInstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *string {
 		if v == nil {
@@ -1930,7 +1922,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeM
 	}).(pulumi.StringPtrOutput)
 }
 
-// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeScaleDownEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool {
 		if v == nil {
@@ -5555,15 +5547,20 @@ func (o CloudBackupSnapshotMemberArrayOutput) Index(i pulumi.IntInput) CloudBack
 }
 
 type CloudBackupSnapshotRestoreJobDeliveryTypeConfig struct {
-	Automated             *bool `pulumi:"automated"`
-	Download              *bool `pulumi:"download"`
-	OplogInc              *int  `pulumi:"oplogInc"`
-	OplogTs               *int  `pulumi:"oplogTs"`
-	PointInTime           *bool `pulumi:"pointInTime"`
-	PointInTimeUtcSeconds *int  `pulumi:"pointInTimeUtcSeconds"`
-	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+	// Set to `true` to use the automated configuration.
+	Automated *bool `pulumi:"automated"`
+	// Set to `true` to use the download configuration.
+	Download *bool `pulumi:"download"`
+	// Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
+	OplogInc *int `pulumi:"oplogInc"`
+	// Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+	OplogTs     *int  `pulumi:"oplogTs"`
+	PointInTime *bool `pulumi:"pointInTime"`
+	// Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+	PointInTimeUtcSeconds *int `pulumi:"pointInTimeUtcSeconds"`
+	// Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
 	TargetClusterName *string `pulumi:"targetClusterName"`
-	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+	// Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
 	TargetProjectId *string `pulumi:"targetProjectId"`
 }
 
@@ -5579,15 +5576,20 @@ type CloudBackupSnapshotRestoreJobDeliveryTypeConfigInput interface {
 }
 
 type CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs struct {
-	Automated             pulumi.BoolPtrInput `pulumi:"automated"`
-	Download              pulumi.BoolPtrInput `pulumi:"download"`
-	OplogInc              pulumi.IntPtrInput  `pulumi:"oplogInc"`
-	OplogTs               pulumi.IntPtrInput  `pulumi:"oplogTs"`
-	PointInTime           pulumi.BoolPtrInput `pulumi:"pointInTime"`
-	PointInTimeUtcSeconds pulumi.IntPtrInput  `pulumi:"pointInTimeUtcSeconds"`
-	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+	// Set to `true` to use the automated configuration.
+	Automated pulumi.BoolPtrInput `pulumi:"automated"`
+	// Set to `true` to use the download configuration.
+	Download pulumi.BoolPtrInput `pulumi:"download"`
+	// Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
+	OplogInc pulumi.IntPtrInput `pulumi:"oplogInc"`
+	// Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+	OplogTs     pulumi.IntPtrInput  `pulumi:"oplogTs"`
+	PointInTime pulumi.BoolPtrInput `pulumi:"pointInTime"`
+	// Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+	PointInTimeUtcSeconds pulumi.IntPtrInput `pulumi:"pointInTimeUtcSeconds"`
+	// Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
 	TargetClusterName pulumi.StringPtrInput `pulumi:"targetClusterName"`
-	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+	// Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
 	TargetProjectId pulumi.StringPtrInput `pulumi:"targetProjectId"`
 }
 
@@ -5668,18 +5670,22 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) ToCloudBackupSnap
 	}).(CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput)
 }
 
+// Set to `true` to use the automated configuration.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) Automated() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool { return v.Automated }).(pulumi.BoolPtrOutput)
 }
 
+// Set to `true` to use the download configuration.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) Download() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool { return v.Download }).(pulumi.BoolPtrOutput)
 }
 
+// Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) OplogInc() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int { return v.OplogInc }).(pulumi.IntPtrOutput)
 }
 
+// Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) OplogTs() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int { return v.OplogTs }).(pulumi.IntPtrOutput)
 }
@@ -5688,16 +5694,17 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) PointInTime() pul
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool { return v.PointInTime }).(pulumi.BoolPtrOutput)
 }
 
+// Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) PointInTimeUtcSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int { return v.PointInTimeUtcSeconds }).(pulumi.IntPtrOutput)
 }
 
-// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+// Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) TargetClusterName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string { return v.TargetClusterName }).(pulumi.StringPtrOutput)
 }
 
-// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+// Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) TargetProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string { return v.TargetProjectId }).(pulumi.StringPtrOutput)
 }
@@ -5726,6 +5733,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Elem() CloudBa
 	}).(CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput)
 }
 
+// Set to `true` to use the automated configuration.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Automated() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool {
 		if v == nil {
@@ -5735,6 +5743,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Automated() pu
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Set to `true` to use the download configuration.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Download() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool {
 		if v == nil {
@@ -5744,6 +5753,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Download() pul
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) OplogInc() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int {
 		if v == nil {
@@ -5753,6 +5763,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) OplogInc() pul
 	}).(pulumi.IntPtrOutput)
 }
 
+// Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) OplogTs() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int {
 		if v == nil {
@@ -5771,6 +5782,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) PointInTime() 
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) PointInTimeUtcSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int {
 		if v == nil {
@@ -5780,7 +5792,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) PointInTimeUtc
 	}).(pulumi.IntPtrOutput)
 }
 
-// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+// Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetClusterName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string {
 		if v == nil {
@@ -5790,7 +5802,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetClusterN
 	}).(pulumi.StringPtrOutput)
 }
 
-// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+// Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string {
 		if v == nil {
@@ -6512,7 +6524,6 @@ type ClusterAdvancedConfiguration struct {
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-	//
 	// - TLS1_0
 	// - TLS1_1
 	// - TLS1_2
@@ -6553,7 +6564,6 @@ type ClusterAdvancedConfigurationArgs struct {
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
 	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-	//
 	// - TLS1_0
 	// - TLS1_1
 	// - TLS1_2
@@ -6671,7 +6681,6 @@ func (o ClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolPtrOu
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-//
 // - TLS1_0
 // - TLS1_1
 // - TLS1_2
@@ -6775,7 +6784,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulumi.BoolPt
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-//
 // - TLS1_0
 // - TLS1_1
 // - TLS1_2
@@ -6852,11 +6860,10 @@ func (o ClusterAdvancedConfigurationPtrOutput) TransactionLifetimeLimitSeconds()
 type ClusterBiConnectorConfig struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
 	// *
-	// - Set to `true` to enable BI Connector for Atlas.
-	// - Set to `false` to disable BI Connector for Atlas.
+	//   - Set to `true` to enable BI Connector for Atlas.
+	//   - Set to `false` to disable BI Connector for Atlas.
 	Enabled *bool `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	//
 	// - Set to "primary" to have BI Connector for Atlas read from the primary.
 	//
 	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
@@ -6879,11 +6886,10 @@ type ClusterBiConnectorConfigInput interface {
 type ClusterBiConnectorConfigArgs struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
 	// *
-	// - Set to `true` to enable BI Connector for Atlas.
-	// - Set to `false` to disable BI Connector for Atlas.
+	//   - Set to `true` to enable BI Connector for Atlas.
+	//   - Set to `false` to disable BI Connector for Atlas.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	//
 	// - Set to "primary" to have BI Connector for Atlas read from the primary.
 	//
 	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
@@ -6971,14 +6977,13 @@ func (o ClusterBiConnectorConfigOutput) ToClusterBiConnectorConfigPtrOutputWithC
 
 // Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
 // *
-// - Set to `true` to enable BI Connector for Atlas.
-// - Set to `false` to disable BI Connector for Atlas.
+//   - Set to `true` to enable BI Connector for Atlas.
+//   - Set to `false` to disable BI Connector for Atlas.
 func (o ClusterBiConnectorConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterBiConnectorConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-//
 // - Set to "primary" to have BI Connector for Atlas read from the primary.
 //
 // - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
@@ -7014,8 +7019,8 @@ func (o ClusterBiConnectorConfigPtrOutput) Elem() ClusterBiConnectorConfigOutput
 
 // Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
 // *
-// - Set to `true` to enable BI Connector for Atlas.
-// - Set to `false` to disable BI Connector for Atlas.
+//   - Set to `true` to enable BI Connector for Atlas.
+//   - Set to `false` to disable BI Connector for Atlas.
 func (o ClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClusterBiConnectorConfig) *bool {
 		if v == nil {
@@ -7026,7 +7031,6 @@ func (o ClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-//
 // - Set to "primary" to have BI Connector for Atlas read from the primary.
 //
 // - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
@@ -8384,18 +8388,6 @@ type CustomDbRoleAction struct {
 	// > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
 	Action string `pulumi:"action"`
 	// Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
-	//
-	// * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
-	//
-	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-	//
-	// * `resources.#.database_name`	Database on which the action is granted.
-	//
-	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-	//
-	// * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
-	//
-	// > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
 	Resources []CustomDbRoleActionResource `pulumi:"resources"`
 }
 
@@ -8415,18 +8407,6 @@ type CustomDbRoleActionArgs struct {
 	// > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
 	Action pulumi.StringInput `pulumi:"action"`
 	// Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
-	//
-	// * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
-	//
-	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-	//
-	// * `resources.#.database_name`	Database on which the action is granted.
-	//
-	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-	//
-	// * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
-	//
-	// > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
 	Resources CustomDbRoleActionResourceArrayInput `pulumi:"resources"`
 }
 
@@ -8488,18 +8468,6 @@ func (o CustomDbRoleActionOutput) Action() pulumi.StringOutput {
 }
 
 // Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
-//
-// * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
-//
-// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-//
-// * `resources.#.database_name`	Database on which the action is granted.
-//
-// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-//
-// * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
-//
-// > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
 func (o CustomDbRoleActionOutput) Resources() CustomDbRoleActionResourceArrayOutput {
 	return o.ApplyT(func(v CustomDbRoleAction) []CustomDbRoleActionResource { return v.Resources }).(CustomDbRoleActionResourceArrayOutput)
 }
@@ -8525,11 +8493,17 @@ func (o CustomDbRoleActionArrayOutput) Index(i pulumi.IntInput) CustomDbRoleActi
 }
 
 type CustomDbRoleActionResource struct {
-	Cluster        *bool   `pulumi:"cluster"`
-	CollectionName *string `pulumi:"collectionName"`
-	// Database on which the inherited role is granted.
+	// `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
 	//
-	// > **NOTE** This value should be admin for all roles except read and readWrite.
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+	Cluster *bool `pulumi:"cluster"`
+	// `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+	//
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+	CollectionName *string `pulumi:"collectionName"`
+	// `resources.#.database_name`	Database on which the action is granted.
+	//
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 	DatabaseName *string `pulumi:"databaseName"`
 }
 
@@ -8545,11 +8519,17 @@ type CustomDbRoleActionResourceInput interface {
 }
 
 type CustomDbRoleActionResourceArgs struct {
-	Cluster        pulumi.BoolPtrInput   `pulumi:"cluster"`
-	CollectionName pulumi.StringPtrInput `pulumi:"collectionName"`
-	// Database on which the inherited role is granted.
+	// `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
 	//
-	// > **NOTE** This value should be admin for all roles except read and readWrite.
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+	Cluster pulumi.BoolPtrInput `pulumi:"cluster"`
+	// `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+	//
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+	CollectionName pulumi.StringPtrInput `pulumi:"collectionName"`
+	// `resources.#.database_name`	Database on which the action is granted.
+	//
+	// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 	DatabaseName pulumi.StringPtrInput `pulumi:"databaseName"`
 }
 
@@ -8604,17 +8584,23 @@ func (o CustomDbRoleActionResourceOutput) ToCustomDbRoleActionResourceOutputWith
 	return o
 }
 
+// `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+//
+// > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
 func (o CustomDbRoleActionResourceOutput) Cluster() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CustomDbRoleActionResource) *bool { return v.Cluster }).(pulumi.BoolPtrOutput)
 }
 
+// `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+//
+// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 func (o CustomDbRoleActionResourceOutput) CollectionName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CustomDbRoleActionResource) *string { return v.CollectionName }).(pulumi.StringPtrOutput)
 }
 
-// Database on which the inherited role is granted.
+// `resources.#.database_name`	Database on which the action is granted.
 //
-// > **NOTE** This value should be admin for all roles except read and readWrite.
+// > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
 func (o CustomDbRoleActionResourceOutput) DatabaseName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CustomDbRoleActionResource) *string { return v.DatabaseName }).(pulumi.StringPtrOutput)
 }
@@ -10837,8 +10823,10 @@ func (o EventTriggerEventProcessorsPtrOutput) AwsEventbridge() EventTriggerEvent
 }
 
 type EventTriggerEventProcessorsAwsEventbridge struct {
+	// AWS Account ID.
 	ConfigAccountId *string `pulumi:"configAccountId"`
-	ConfigRegion    *string `pulumi:"configRegion"`
+	// Region of AWS Account.
+	ConfigRegion *string `pulumi:"configRegion"`
 }
 
 // EventTriggerEventProcessorsAwsEventbridgeInput is an input type that accepts EventTriggerEventProcessorsAwsEventbridgeArgs and EventTriggerEventProcessorsAwsEventbridgeOutput values.
@@ -10853,8 +10841,10 @@ type EventTriggerEventProcessorsAwsEventbridgeInput interface {
 }
 
 type EventTriggerEventProcessorsAwsEventbridgeArgs struct {
+	// AWS Account ID.
 	ConfigAccountId pulumi.StringPtrInput `pulumi:"configAccountId"`
-	ConfigRegion    pulumi.StringPtrInput `pulumi:"configRegion"`
+	// Region of AWS Account.
+	ConfigRegion pulumi.StringPtrInput `pulumi:"configRegion"`
 }
 
 func (EventTriggerEventProcessorsAwsEventbridgeArgs) ElementType() reflect.Type {
@@ -10934,10 +10924,12 @@ func (o EventTriggerEventProcessorsAwsEventbridgeOutput) ToEventTriggerEventProc
 	}).(EventTriggerEventProcessorsAwsEventbridgePtrOutput)
 }
 
+// AWS Account ID.
 func (o EventTriggerEventProcessorsAwsEventbridgeOutput) ConfigAccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EventTriggerEventProcessorsAwsEventbridge) *string { return v.ConfigAccountId }).(pulumi.StringPtrOutput)
 }
 
+// Region of AWS Account.
 func (o EventTriggerEventProcessorsAwsEventbridgeOutput) ConfigRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EventTriggerEventProcessorsAwsEventbridge) *string { return v.ConfigRegion }).(pulumi.StringPtrOutput)
 }
@@ -10966,6 +10958,7 @@ func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) Elem() EventTriggerE
 	}).(EventTriggerEventProcessorsAwsEventbridgeOutput)
 }
 
+// AWS Account ID.
 func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ConfigAccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EventTriggerEventProcessorsAwsEventbridge) *string {
 		if v == nil {
@@ -10975,6 +10968,7 @@ func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ConfigAccountId() pu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Region of AWS Account.
 func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ConfigRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EventTriggerEventProcessorsAwsEventbridge) *string {
 		if v == nil {
@@ -11132,7 +11126,6 @@ type FederatedDatabaseInstanceCloudProviderConfigAws struct {
 	// Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
 	RoleId string `pulumi:"roleId"`
 	// Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
-	// ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
 	TestS3Bucket string `pulumi:"testS3Bucket"`
 }
 
@@ -11160,7 +11153,6 @@ type FederatedDatabaseInstanceCloudProviderConfigAwsArgs struct {
 	// Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
 	RoleId pulumi.StringInput `pulumi:"roleId"`
 	// Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
-	// ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
 	TestS3Bucket pulumi.StringInput `pulumi:"testS3Bucket"`
 }
 
@@ -11265,7 +11257,6 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAwsOutput) RoleId() pulumi.S
 }
 
 // Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
-// ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
 func (o FederatedDatabaseInstanceCloudProviderConfigAwsOutput) TestS3Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAws) string { return v.TestS3Bucket }).(pulumi.StringOutput)
 }
@@ -11338,7 +11329,6 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) RoleId() pulum
 }
 
 // Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
-// ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
 func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) TestS3Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigAws) *string {
 		if v == nil {
@@ -11508,8 +11498,6 @@ type FederatedDatabaseInstanceStorageDatabase struct {
 	Collections            []FederatedDatabaseInstanceStorageDatabaseCollection `pulumi:"collections"`
 	MaxWildcardCollections *int                                                 `pulumi:"maxWildcardCollections"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  *string                                        `pulumi:"name"`
 	Views []FederatedDatabaseInstanceStorageDatabaseView `pulumi:"views"`
 }
@@ -11529,8 +11517,6 @@ type FederatedDatabaseInstanceStorageDatabaseArgs struct {
 	Collections            FederatedDatabaseInstanceStorageDatabaseCollectionArrayInput `pulumi:"collections"`
 	MaxWildcardCollections pulumi.IntPtrInput                                           `pulumi:"maxWildcardCollections"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  pulumi.StringPtrInput                                  `pulumi:"name"`
 	Views FederatedDatabaseInstanceStorageDatabaseViewArrayInput `pulumi:"views"`
 }
@@ -11597,8 +11583,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseOutput) MaxWildcardCollections()
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageDatabaseOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabase) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11632,8 +11616,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseArrayOutput) Index(i pulumi.IntI
 type FederatedDatabaseInstanceStorageDatabaseCollection struct {
 	DataSources []FederatedDatabaseInstanceStorageDatabaseCollectionDataSource `pulumi:"dataSources"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name *string `pulumi:"name"`
 }
 
@@ -11651,8 +11633,6 @@ type FederatedDatabaseInstanceStorageDatabaseCollectionInput interface {
 type FederatedDatabaseInstanceStorageDatabaseCollectionArgs struct {
 	DataSources FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArrayInput `pulumi:"dataSources"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -11714,8 +11694,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseCollectionOutput) DataSources() 
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageDatabaseCollectionOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabaseCollection) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11898,8 +11876,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArrayOutput)
 
 type FederatedDatabaseInstanceStorageDatabaseView struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name     *string `pulumi:"name"`
 	Pipeline *string `pulumi:"pipeline"`
 	Source   *string `pulumi:"source"`
@@ -11918,8 +11894,6 @@ type FederatedDatabaseInstanceStorageDatabaseViewInput interface {
 
 type FederatedDatabaseInstanceStorageDatabaseViewArgs struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name     pulumi.StringPtrInput `pulumi:"name"`
 	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
 	Source   pulumi.StringPtrInput `pulumi:"source"`
@@ -11977,8 +11951,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseViewOutput) ToFederatedDatabaseI
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageDatabaseViewOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabaseView) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -12022,8 +11994,6 @@ type FederatedDatabaseInstanceStorageStore struct {
 	Delimiter     *string `pulumi:"delimiter"`
 	IncludeTags   *bool   `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name   *string `pulumi:"name"`
 	Prefix *string `pulumi:"prefix"`
 	// The unique ID for the project to create a Federated Database Instance.
@@ -12058,8 +12028,6 @@ type FederatedDatabaseInstanceStorageStoreArgs struct {
 	Delimiter     pulumi.StringPtrInput `pulumi:"delimiter"`
 	IncludeTags   pulumi.BoolPtrInput   `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name   pulumi.StringPtrInput `pulumi:"name"`
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 	// The unique ID for the project to create a Federated Database Instance.
@@ -12157,8 +12125,6 @@ func (o FederatedDatabaseInstanceStorageStoreOutput) IncludeTags() pulumi.BoolPt
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageStoreOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -12478,8 +12444,6 @@ func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) In
 
 type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  *string `pulumi:"name"`
 	Value *string `pulumi:"value"`
 }
@@ -12497,8 +12461,6 @@ type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput interface
 
 type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  pulumi.StringPtrInput `pulumi:"name"`
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
@@ -12555,8 +12517,6 @@ func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) ToFe
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -12943,8 +12903,11 @@ func (o GlobalClusterConfigManagedNamespaceArrayOutput) Index(i pulumi.IntInput)
 }
 
 type LdapConfigurationUserToDnMapping struct {
-	LdapQuery    *string `pulumi:"ldapQuery"`
-	Match        *string `pulumi:"match"`
+	// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+	LdapQuery *string `pulumi:"ldapQuery"`
+	// A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
+	Match *string `pulumi:"match"`
+	// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
 	Substitution *string `pulumi:"substitution"`
 }
 
@@ -12960,8 +12923,11 @@ type LdapConfigurationUserToDnMappingInput interface {
 }
 
 type LdapConfigurationUserToDnMappingArgs struct {
-	LdapQuery    pulumi.StringPtrInput `pulumi:"ldapQuery"`
-	Match        pulumi.StringPtrInput `pulumi:"match"`
+	// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+	LdapQuery pulumi.StringPtrInput `pulumi:"ldapQuery"`
+	// A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
+	Match pulumi.StringPtrInput `pulumi:"match"`
+	// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
 	Substitution pulumi.StringPtrInput `pulumi:"substitution"`
 }
 
@@ -13016,14 +12982,17 @@ func (o LdapConfigurationUserToDnMappingOutput) ToLdapConfigurationUserToDnMappi
 	return o
 }
 
+// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
 func (o LdapConfigurationUserToDnMappingOutput) LdapQuery() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LdapConfigurationUserToDnMapping) *string { return v.LdapQuery }).(pulumi.StringPtrOutput)
 }
 
+// A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
 func (o LdapConfigurationUserToDnMappingOutput) Match() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LdapConfigurationUserToDnMapping) *string { return v.Match }).(pulumi.StringPtrOutput)
 }
 
+// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
 func (o LdapConfigurationUserToDnMappingOutput) Substitution() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LdapConfigurationUserToDnMapping) *string { return v.Substitution }).(pulumi.StringPtrOutput)
 }
@@ -20534,7 +20503,8 @@ func (o GetAlertConfigurationNotificationArrayOutput) Index(i pulumi.IntInput) G
 
 type GetAlertConfigurationOutput struct {
 	Label *string `pulumi:"label"`
-	Type  string  `pulumi:"type"`
+	// If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+	Type string `pulumi:"type"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
 	Value string `pulumi:"value"`
 }
@@ -20552,7 +20522,8 @@ type GetAlertConfigurationOutputInput interface {
 
 type GetAlertConfigurationOutputArgs struct {
 	Label pulumi.StringPtrInput `pulumi:"label"`
-	Type  pulumi.StringInput    `pulumi:"type"`
+	// If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+	Type pulumi.StringInput `pulumi:"type"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
 	Value pulumi.StringInput `pulumi:"value"`
 }
@@ -20612,6 +20583,7 @@ func (o GetAlertConfigurationOutputOutput) Label() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAlertConfigurationOutput) *string { return v.Label }).(pulumi.StringPtrOutput)
 }
 
+// If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
 func (o GetAlertConfigurationOutputOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationOutput) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -20763,9 +20735,12 @@ func (o GetAlertConfigurationThresholdConfigArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetAlertConfigurationsListOption struct {
+	// Whether to include total count of results in the response (default false)
 	IncludeCount *bool `pulumi:"includeCount"`
-	ItemsPerPage *int  `pulumi:"itemsPerPage"`
-	PageNum      *int  `pulumi:"pageNum"`
+	// How many alerts to retrieve per page (default 100)
+	ItemsPerPage *int `pulumi:"itemsPerPage"`
+	// Which page of results to retrieve (default to first page)
+	PageNum *int `pulumi:"pageNum"`
 }
 
 // GetAlertConfigurationsListOptionInput is an input type that accepts GetAlertConfigurationsListOptionArgs and GetAlertConfigurationsListOptionOutput values.
@@ -20780,9 +20755,12 @@ type GetAlertConfigurationsListOptionInput interface {
 }
 
 type GetAlertConfigurationsListOptionArgs struct {
+	// Whether to include total count of results in the response (default false)
 	IncludeCount pulumi.BoolPtrInput `pulumi:"includeCount"`
-	ItemsPerPage pulumi.IntPtrInput  `pulumi:"itemsPerPage"`
-	PageNum      pulumi.IntPtrInput  `pulumi:"pageNum"`
+	// How many alerts to retrieve per page (default 100)
+	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
+	// Which page of results to retrieve (default to first page)
+	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
 }
 
 func (GetAlertConfigurationsListOptionArgs) ElementType() reflect.Type {
@@ -20836,14 +20814,17 @@ func (o GetAlertConfigurationsListOptionOutput) ToGetAlertConfigurationsListOpti
 	return o
 }
 
+// Whether to include total count of results in the response (default false)
 func (o GetAlertConfigurationsListOptionOutput) IncludeCount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsListOption) *bool { return v.IncludeCount }).(pulumi.BoolPtrOutput)
 }
 
+// How many alerts to retrieve per page (default 100)
 func (o GetAlertConfigurationsListOptionOutput) ItemsPerPage() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsListOption) *int { return v.ItemsPerPage }).(pulumi.IntPtrOutput)
 }
 
+// Which page of results to retrieve (default to first page)
 func (o GetAlertConfigurationsListOptionOutput) PageNum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsListOption) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }
@@ -43148,13 +43129,6 @@ type GetProjectsResult struct {
 	// The number of Atlas clusters deployed in the project.
 	ClusterCount int `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
-	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-	// * `limits.#.name` - Human-readable label that identifies this project limit.
-	// * `limits.#.value` - Amount the limit is set to.
-	// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-	// * `limits.#.default_limit` - Default value of the limit.
-	// * `limits.#.maximum_limit` - Maximum value of the limit.
 	Created string `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id string `pulumi:"id"`
@@ -43171,7 +43145,7 @@ type GetProjectsResult struct {
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled bool                     `pulumi:"isSchemaAdvisorEnabled"`
 	Limits                 []GetProjectsResultLimit `pulumi:"limits"`
-	// The name of the project you want to create.
+	// `limits.#.name` - Human-readable label that identifies this project limit.
 	Name string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId     string `pulumi:"orgId"`
@@ -43198,13 +43172,6 @@ type GetProjectsResultArgs struct {
 	// The number of Atlas clusters deployed in the project.
 	ClusterCount pulumi.IntInput `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
-	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-	// * `limits.#.name` - Human-readable label that identifies this project limit.
-	// * `limits.#.value` - Amount the limit is set to.
-	// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-	// * `limits.#.default_limit` - Default value of the limit.
-	// * `limits.#.maximum_limit` - Maximum value of the limit.
 	Created pulumi.StringInput `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -43221,7 +43188,7 @@ type GetProjectsResultArgs struct {
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolInput                 `pulumi:"isSchemaAdvisorEnabled"`
 	Limits                 GetProjectsResultLimitArrayInput `pulumi:"limits"`
-	// The name of the project you want to create.
+	// `limits.#.name` - Human-readable label that identifies this project limit.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId     pulumi.StringInput `pulumi:"orgId"`
@@ -43290,13 +43257,6 @@ func (o GetProjectsResultOutput) ClusterCount() pulumi.IntOutput {
 }
 
 // The ISO-8601-formatted timestamp of when Atlas created the project.
-// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-// * `limits.#.name` - Human-readable label that identifies this project limit.
-// * `limits.#.value` - Amount the limit is set to.
-// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-// * `limits.#.default_limit` - Default value of the limit.
-// * `limits.#.maximum_limit` - Maximum value of the limit.
 func (o GetProjectsResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Created }).(pulumi.StringOutput)
 }
@@ -43340,7 +43300,7 @@ func (o GetProjectsResultOutput) Limits() GetProjectsResultLimitArrayOutput {
 	return o.ApplyT(func(v GetProjectsResult) []GetProjectsResultLimit { return v.Limits }).(GetProjectsResultLimitArrayOutput)
 }
 
-// The name of the project you want to create.
+// `limits.#.name` - Human-readable label that identifies this project limit.
 func (o GetProjectsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -43386,12 +43346,16 @@ func (o GetProjectsResultArrayOutput) Index(i pulumi.IntInput) GetProjectsResult
 }
 
 type GetProjectsResultLimit struct {
+	// `limits.#.current_usage` - Amount that indicates the current usage of the limit.
 	CurrentUsage int `pulumi:"currentUsage"`
+	// `limits.#.default_limit` - Default value of the limit.
 	DefaultLimit int `pulumi:"defaultLimit"`
+	// `limits.#.maximum_limit` - Maximum value of the limit.
 	MaximumLimit int `pulumi:"maximumLimit"`
-	// The name of the project you want to create.
-	Name  string `pulumi:"name"`
-	Value int    `pulumi:"value"`
+	// `limits.#.name` - Human-readable label that identifies this project limit.
+	Name string `pulumi:"name"`
+	// `limits.#.value` - Amount the limit is set to.
+	Value int `pulumi:"value"`
 }
 
 // GetProjectsResultLimitInput is an input type that accepts GetProjectsResultLimitArgs and GetProjectsResultLimitOutput values.
@@ -43406,12 +43370,16 @@ type GetProjectsResultLimitInput interface {
 }
 
 type GetProjectsResultLimitArgs struct {
+	// `limits.#.current_usage` - Amount that indicates the current usage of the limit.
 	CurrentUsage pulumi.IntInput `pulumi:"currentUsage"`
+	// `limits.#.default_limit` - Default value of the limit.
 	DefaultLimit pulumi.IntInput `pulumi:"defaultLimit"`
+	// `limits.#.maximum_limit` - Maximum value of the limit.
 	MaximumLimit pulumi.IntInput `pulumi:"maximumLimit"`
-	// The name of the project you want to create.
-	Name  pulumi.StringInput `pulumi:"name"`
-	Value pulumi.IntInput    `pulumi:"value"`
+	// `limits.#.name` - Human-readable label that identifies this project limit.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `limits.#.value` - Amount the limit is set to.
+	Value pulumi.IntInput `pulumi:"value"`
 }
 
 func (GetProjectsResultLimitArgs) ElementType() reflect.Type {
@@ -43465,23 +43433,27 @@ func (o GetProjectsResultLimitOutput) ToGetProjectsResultLimitOutputWithContext(
 	return o
 }
 
+// `limits.#.current_usage` - Amount that indicates the current usage of the limit.
 func (o GetProjectsResultLimitOutput) CurrentUsage() pulumi.IntOutput {
 	return o.ApplyT(func(v GetProjectsResultLimit) int { return v.CurrentUsage }).(pulumi.IntOutput)
 }
 
+// `limits.#.default_limit` - Default value of the limit.
 func (o GetProjectsResultLimitOutput) DefaultLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetProjectsResultLimit) int { return v.DefaultLimit }).(pulumi.IntOutput)
 }
 
+// `limits.#.maximum_limit` - Maximum value of the limit.
 func (o GetProjectsResultLimitOutput) MaximumLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetProjectsResultLimit) int { return v.MaximumLimit }).(pulumi.IntOutput)
 }
 
-// The name of the project you want to create.
+// `limits.#.name` - Human-readable label that identifies this project limit.
 func (o GetProjectsResultLimitOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultLimit) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// `limits.#.value` - Amount the limit is set to.
 func (o GetProjectsResultLimitOutput) Value() pulumi.IntOutput {
 	return o.ApplyT(func(v GetProjectsResultLimit) int { return v.Value }).(pulumi.IntOutput)
 }
@@ -43507,8 +43479,10 @@ func (o GetProjectsResultLimitArrayOutput) Index(i pulumi.IntInput) GetProjectsR
 }
 
 type GetProjectsResultTeam struct {
+	// `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 	RoleNames []string `pulumi:"roleNames"`
-	TeamId    string   `pulumi:"teamId"`
+	// `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+	TeamId string `pulumi:"teamId"`
 }
 
 // GetProjectsResultTeamInput is an input type that accepts GetProjectsResultTeamArgs and GetProjectsResultTeamOutput values.
@@ -43523,8 +43497,10 @@ type GetProjectsResultTeamInput interface {
 }
 
 type GetProjectsResultTeamArgs struct {
+	// `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
-	TeamId    pulumi.StringInput      `pulumi:"teamId"`
+	// `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+	TeamId pulumi.StringInput `pulumi:"teamId"`
 }
 
 func (GetProjectsResultTeamArgs) ElementType() reflect.Type {
@@ -43578,10 +43554,12 @@ func (o GetProjectsResultTeamOutput) ToGetProjectsResultTeamOutputWithContext(ct
 	return o
 }
 
+// `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 func (o GetProjectsResultTeamOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetProjectsResultTeam) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
 
+// `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 func (o GetProjectsResultTeamOutput) TeamId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultTeam) string { return v.TeamId }).(pulumi.StringOutput)
 }

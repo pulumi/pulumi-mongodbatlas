@@ -34,7 +34,6 @@ public final class GetAlertConfigurationArgs extends com.pulumi.resources.Invoke
 
     /**
      * List of formatted output requested for this alert configuration
-     * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
      * 
      */
     @Import(name="outputs")
@@ -42,7 +41,6 @@ public final class GetAlertConfigurationArgs extends com.pulumi.resources.Invoke
 
     /**
      * @return List of formatted output requested for this alert configuration
-     * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
      * 
      */
     public Optional<Output<List<GetAlertConfigurationOutputArgs>>> outputs() {
@@ -113,7 +111,6 @@ public final class GetAlertConfigurationArgs extends com.pulumi.resources.Invoke
 
         /**
          * @param outputs List of formatted output requested for this alert configuration
-         * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
          * 
          * @return builder
          * 
@@ -125,7 +122,6 @@ public final class GetAlertConfigurationArgs extends com.pulumi.resources.Invoke
 
         /**
          * @param outputs List of formatted output requested for this alert configuration
-         * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
          * 
          * @return builder
          * 
@@ -136,7 +132,6 @@ public final class GetAlertConfigurationArgs extends com.pulumi.resources.Invoke
 
         /**
          * @param outputs List of formatted output requested for this alert configuration
-         * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
          * 
          * @return builder
          * 

@@ -125,8 +125,7 @@ def get_access_list_api_key(api_key_id: Optional[str] = None,
 
 
     :param str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-           *
-           ->**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.
+           * ->**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.
     :param str ip_address: Single IP address to be added to the access list.
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     """
@@ -159,8 +158,7 @@ def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[str]] = Non
 
 
     :param str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-           *
-           ->**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.
+           * ->**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.
     :param str ip_address: Single IP address to be added to the access list.
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     """

@@ -26,10 +26,6 @@ import (
 type CloudBackupSchedule struct {
 	pulumi.CustomResourceState
 
-	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	//
-	// true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled pulumi.BoolOutput `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
@@ -98,10 +94,6 @@ func GetCloudBackupSchedule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CloudBackupSchedule resources.
 type cloudBackupScheduleState struct {
-	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	//
-	// true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
 	ClusterId *string `pulumi:"clusterId"`
@@ -135,10 +127,6 @@ type cloudBackupScheduleState struct {
 }
 
 type CloudBackupScheduleState struct {
-	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	//
-	// true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled pulumi.BoolPtrInput
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringPtrInput
@@ -176,10 +164,6 @@ func (CloudBackupScheduleState) ElementType() reflect.Type {
 }
 
 type cloudBackupScheduleArgs struct {
-	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	//
-	// true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName  string                           `pulumi:"clusterName"`
@@ -208,10 +192,6 @@ type cloudBackupScheduleArgs struct {
 
 // The set of arguments for constructing a CloudBackupSchedule resource.
 type CloudBackupScheduleArgs struct {
-	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	//
-	// true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled pulumi.BoolPtrInput
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName  pulumi.StringInput
@@ -325,10 +305,6 @@ func (o CloudBackupScheduleOutput) ToCloudBackupScheduleOutputWithContext(ctx co
 	return o
 }
 
-// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-//
-// true - enables automatic export of cloud backup snapshots to the AWS bucket
-// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 func (o CloudBackupScheduleOutput) AutoExportEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolOutput { return v.AutoExportEnabled }).(pulumi.BoolOutput)
 }

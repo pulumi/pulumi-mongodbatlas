@@ -18,9 +18,6 @@ public final class GetAlertConfigurationsPlainArgs extends com.pulumi.resources.
 
     /**
      * Arguments that dictate how many and which results are returned by the data source
-     * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-     * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-     * * `list_options.include_count` - Whether to include total count of results in the response (default false)
      * 
      */
     @Import(name="listOptions")
@@ -28,9 +25,6 @@ public final class GetAlertConfigurationsPlainArgs extends com.pulumi.resources.
 
     /**
      * @return Arguments that dictate how many and which results are returned by the data source
-     * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-     * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-     * * `list_options.include_count` - Whether to include total count of results in the response (default false)
      * 
      */
     public Optional<List<GetAlertConfigurationsListOption>> listOptions() {
@@ -95,9 +89,6 @@ public final class GetAlertConfigurationsPlainArgs extends com.pulumi.resources.
 
         /**
          * @param listOptions Arguments that dictate how many and which results are returned by the data source
-         * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-         * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-         * * `list_options.include_count` - Whether to include total count of results in the response (default false)
          * 
          * @return builder
          * 
@@ -109,9 +100,6 @@ public final class GetAlertConfigurationsPlainArgs extends com.pulumi.resources.
 
         /**
          * @param listOptions Arguments that dictate how many and which results are returned by the data source
-         * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-         * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-         * * `list_options.include_count` - Whether to include total count of results in the response (default false)
          * 
          * @return builder
          * 

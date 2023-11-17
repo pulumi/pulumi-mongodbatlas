@@ -25,8 +25,7 @@ func LookupAccessListApiKey(ctx *pulumi.Context, args *LookupAccessListApiKeyArg
 // A collection of arguments for invoking getAccessListApiKey.
 type LookupAccessListApiKeyArgs struct {
 	// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-	// *
-	// ->**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don't set both.
+	// * ->**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don't set both.
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// Single IP address to be added to the access list.
 	IpAddress string `pulumi:"ipAddress"`
@@ -64,8 +63,7 @@ func LookupAccessListApiKeyOutput(ctx *pulumi.Context, args LookupAccessListApiK
 // A collection of arguments for invoking getAccessListApiKey.
 type LookupAccessListApiKeyOutputArgs struct {
 	// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-	// *
-	// ->**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don't set both.
+	// * ->**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don't set both.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
 	// Single IP address to be added to the access list.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`

@@ -153,14 +153,14 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
+     * Indicates which API URL to use, either &#34;US&#34;, &#34;EU&#34;, &#34;US3&#34;, or &#34;US5&#34;. Datadog will use &#34;US&#34; by default.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
+     * @return Indicates which API URL to use, either &#34;US&#34;, &#34;EU&#34;, &#34;US3&#34;, or &#34;US5&#34;. Datadog will use &#34;US&#34; by default.
      * 
      */
     public Output<String> region() {

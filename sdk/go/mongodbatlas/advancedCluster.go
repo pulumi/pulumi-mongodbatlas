@@ -45,6 +45,9 @@ type AdvancedCluster struct {
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// Type of the cluster that you want to create.
 	// Accepted values include:
+	// - `REPLICASET` Replica set
+	// - `SHARDED`	Sharded cluster
+	// - `GEOSHARDED` Global Cluster
 	ClusterType pulumi.StringOutput `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings AdvancedClusterConnectionStringArrayOutput `pulumi:"connectionStrings"`
@@ -148,6 +151,9 @@ type advancedClusterState struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// Type of the cluster that you want to create.
 	// Accepted values include:
+	// - `REPLICASET` Replica set
+	// - `SHARDED`	Sharded cluster
+	// - `GEOSHARDED` Global Cluster
 	ClusterType *string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []AdvancedClusterConnectionString `pulumi:"connectionStrings"`
@@ -213,6 +219,9 @@ type AdvancedClusterState struct {
 	ClusterId pulumi.StringPtrInput
 	// Type of the cluster that you want to create.
 	// Accepted values include:
+	// - `REPLICASET` Replica set
+	// - `SHARDED`	Sharded cluster
+	// - `GEOSHARDED` Global Cluster
 	ClusterType pulumi.StringPtrInput
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings AdvancedClusterConnectionStringArrayInput
@@ -280,6 +289,9 @@ type advancedClusterArgs struct {
 	BiConnectorConfig *AdvancedClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
 	// Type of the cluster that you want to create.
 	// Accepted values include:
+	// - `REPLICASET` Replica set
+	// - `SHARDED`	Sharded cluster
+	// - `GEOSHARDED` Global Cluster
 	ClusterType string `pulumi:"clusterType"`
 	// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
@@ -331,6 +343,9 @@ type AdvancedClusterArgs struct {
 	BiConnectorConfig AdvancedClusterBiConnectorConfigPtrInput
 	// Type of the cluster that you want to create.
 	// Accepted values include:
+	// - `REPLICASET` Replica set
+	// - `SHARDED`	Sharded cluster
+	// - `GEOSHARDED` Global Cluster
 	ClusterType pulumi.StringInput
 	// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
 	DiskSizeGb pulumi.Float64PtrInput
@@ -484,6 +499,9 @@ func (o AdvancedClusterOutput) ClusterId() pulumi.StringOutput {
 
 // Type of the cluster that you want to create.
 // Accepted values include:
+// - `REPLICASET` Replica set
+// - `SHARDED`	Sharded cluster
+// - `GEOSHARDED` Global Cluster
 func (o AdvancedClusterOutput) ClusterType() pulumi.StringOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.ClusterType }).(pulumi.StringOutput)
 }

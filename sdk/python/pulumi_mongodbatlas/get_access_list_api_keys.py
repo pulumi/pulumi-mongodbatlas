@@ -100,8 +100,7 @@ def get_access_list_api_keys(api_key_id: Optional[str] = None,
 
 
     :param str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-           *
-           > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
+           * > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     :param int page_num: The page to return. Defaults to `1`.
@@ -134,8 +133,7 @@ def get_access_list_api_keys_output(api_key_id: Optional[pulumi.Input[str]] = No
 
 
     :param str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-           *
-           > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
+           * > **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     :param int page_num: The page to return. Defaults to `1`.

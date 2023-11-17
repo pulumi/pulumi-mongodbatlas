@@ -105,9 +105,6 @@ def get_alert_configurations(list_options: Optional[Sequence[pulumi.InputType['G
     Use this data source to access information about an existing resource.
 
     :param Sequence[pulumi.InputType['GetAlertConfigurationsListOptionArgs']] list_options: Arguments that dictate how many and which results are returned by the data source
-           * `list_options.page_num` - Which page of results to retrieve (default to first page)
-           * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-           * `list_options.include_count` - Whether to include total count of results in the response (default false)
     :param Sequence[str] output_types: List of requested string formatted output to be included on each individual result. Options are `resource_hcl` and `resource_import`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
     :param str project_id: The unique ID for the project to get the alert configurations.
     """
@@ -136,9 +133,6 @@ def get_alert_configurations_output(list_options: Optional[pulumi.Input[Optional
     Use this data source to access information about an existing resource.
 
     :param Sequence[pulumi.InputType['GetAlertConfigurationsListOptionArgs']] list_options: Arguments that dictate how many and which results are returned by the data source
-           * `list_options.page_num` - Which page of results to retrieve (default to first page)
-           * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-           * `list_options.include_count` - Whether to include total count of results in the response (default false)
     :param Sequence[str] output_types: List of requested string formatted output to be included on each individual result. Options are `resource_hcl` and `resource_import`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
     :param str project_id: The unique ID for the project to get the alert configurations.
     """

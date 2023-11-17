@@ -15,16 +15,32 @@ public final class EventTriggerEventProcessorsAwsEventbridgeArgs extends com.pul
 
     public static final EventTriggerEventProcessorsAwsEventbridgeArgs Empty = new EventTriggerEventProcessorsAwsEventbridgeArgs();
 
+    /**
+     * AWS Account ID.
+     * 
+     */
     @Import(name="configAccountId")
     private @Nullable Output<String> configAccountId;
 
+    /**
+     * @return AWS Account ID.
+     * 
+     */
     public Optional<Output<String>> configAccountId() {
         return Optional.ofNullable(this.configAccountId);
     }
 
+    /**
+     * Region of AWS Account.
+     * 
+     */
     @Import(name="configRegion")
     private @Nullable Output<String> configRegion;
 
+    /**
+     * @return Region of AWS Account.
+     * 
+     */
     public Optional<Output<String>> configRegion() {
         return Optional.ofNullable(this.configRegion);
     }
@@ -54,20 +70,44 @@ public final class EventTriggerEventProcessorsAwsEventbridgeArgs extends com.pul
             $ = new EventTriggerEventProcessorsAwsEventbridgeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param configAccountId AWS Account ID.
+         * 
+         * @return builder
+         * 
+         */
         public Builder configAccountId(@Nullable Output<String> configAccountId) {
             $.configAccountId = configAccountId;
             return this;
         }
 
+        /**
+         * @param configAccountId AWS Account ID.
+         * 
+         * @return builder
+         * 
+         */
         public Builder configAccountId(String configAccountId) {
             return configAccountId(Output.of(configAccountId));
         }
 
+        /**
+         * @param configRegion Region of AWS Account.
+         * 
+         * @return builder
+         * 
+         */
         public Builder configRegion(@Nullable Output<String> configRegion) {
             $.configRegion = configRegion;
             return this;
         }
 
+        /**
+         * @param configRegion Region of AWS Account.
+         * 
+         * @return builder
+         * 
+         */
         public Builder configRegion(String configRegion) {
             return configRegion(Output.of(configRegion));
         }

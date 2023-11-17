@@ -22,7 +22,7 @@ class PrivateEndpointRegionalModeArgs:
         :param pulumi.Input[bool] enabled: Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
                * More than one private endpoint in more than one region, or
                * More than one private endpoint in one region and one private endpoint in one or more regions.
-               You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
+                 You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
         """
         pulumi.set(__self__, "project_id", project_id)
         if enabled is not None:
@@ -47,7 +47,7 @@ class PrivateEndpointRegionalModeArgs:
         Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
         * More than one private endpoint in more than one region, or
         * More than one private endpoint in one region and one private endpoint in one or more regions.
-        You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
+          You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
         """
         return pulumi.get(self, "enabled")
 
@@ -66,7 +66,7 @@ class _PrivateEndpointRegionalModeState:
         :param pulumi.Input[bool] enabled: Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
                * More than one private endpoint in more than one region, or
                * More than one private endpoint in one region and one private endpoint in one or more regions.
-               You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
+                 You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
         :param pulumi.Input[str] project_id: Unique identifier for the project.
         """
         if enabled is not None:
@@ -81,7 +81,7 @@ class _PrivateEndpointRegionalModeState:
         Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
         * More than one private endpoint in more than one region, or
         * More than one private endpoint in one region and one private endpoint in one or more regions.
-        You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
+          You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
         """
         return pulumi.get(self, "enabled")
 
@@ -125,7 +125,7 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
                * More than one private endpoint in more than one region, or
                * More than one private endpoint in one region and one private endpoint in one or more regions.
-               You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
+                 You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
         :param pulumi.Input[str] project_id: Unique identifier for the project.
         """
         ...
@@ -196,7 +196,7 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
                * More than one private endpoint in more than one region, or
                * More than one private endpoint in one region and one private endpoint in one or more regions.
-               You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
+                 You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
         :param pulumi.Input[str] project_id: Unique identifier for the project.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -214,7 +214,7 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
         Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
         * More than one private endpoint in more than one region, or
         * More than one private endpoint in one region and one private endpoint in one or more regions.
-        You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
+          You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
         """
         return pulumi.get(self, "enabled")
 

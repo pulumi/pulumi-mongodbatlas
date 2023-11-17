@@ -36,23 +36,9 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule")
 public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
-    /**
-     * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     * 
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-     * 
-     */
     @Export(name="autoExportEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoExportEnabled;
 
-    /**
-     * @return Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     * 
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-     * 
-     */
     public Output<Boolean> autoExportEnabled() {
         return this.autoExportEnabled;
     }

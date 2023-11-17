@@ -71,7 +71,7 @@ type ClusterOutageSimulation struct {
 
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
-	// List of settings that specify the type of cluster outage simulation.
+	// (Minimum one required) List of settings that specify the type of cluster outage simulation.
 	OutageFilters ClusterOutageSimulationOutageFilterArrayOutput `pulumi:"outageFilters"`
 	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -124,7 +124,7 @@ func GetClusterOutageSimulation(ctx *pulumi.Context,
 type clusterOutageSimulationState struct {
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName *string `pulumi:"clusterName"`
-	// List of settings that specify the type of cluster outage simulation.
+	// (Minimum one required) List of settings that specify the type of cluster outage simulation.
 	OutageFilters []ClusterOutageSimulationOutageFilter `pulumi:"outageFilters"`
 	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
 	ProjectId *string `pulumi:"projectId"`
@@ -139,7 +139,7 @@ type clusterOutageSimulationState struct {
 type ClusterOutageSimulationState struct {
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName pulumi.StringPtrInput
-	// List of settings that specify the type of cluster outage simulation.
+	// (Minimum one required) List of settings that specify the type of cluster outage simulation.
 	OutageFilters ClusterOutageSimulationOutageFilterArrayInput
 	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
 	ProjectId pulumi.StringPtrInput
@@ -158,7 +158,7 @@ func (ClusterOutageSimulationState) ElementType() reflect.Type {
 type clusterOutageSimulationArgs struct {
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName string `pulumi:"clusterName"`
-	// List of settings that specify the type of cluster outage simulation.
+	// (Minimum one required) List of settings that specify the type of cluster outage simulation.
 	OutageFilters []ClusterOutageSimulationOutageFilter `pulumi:"outageFilters"`
 	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
 	ProjectId string `pulumi:"projectId"`
@@ -168,7 +168,7 @@ type clusterOutageSimulationArgs struct {
 type ClusterOutageSimulationArgs struct {
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName pulumi.StringInput
-	// List of settings that specify the type of cluster outage simulation.
+	// (Minimum one required) List of settings that specify the type of cluster outage simulation.
 	OutageFilters ClusterOutageSimulationOutageFilterArrayInput
 	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
 	ProjectId pulumi.StringInput
@@ -266,7 +266,7 @@ func (o ClusterOutageSimulationOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClusterOutageSimulation) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
 
-// List of settings that specify the type of cluster outage simulation.
+// (Minimum one required) List of settings that specify the type of cluster outage simulation.
 func (o ClusterOutageSimulationOutput) OutageFilters() ClusterOutageSimulationOutageFilterArrayOutput {
 	return o.ApplyT(func(v *ClusterOutageSimulation) ClusterOutageSimulationOutageFilterArrayOutput {
 		return v.OutageFilters

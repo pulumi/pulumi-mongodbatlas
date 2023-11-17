@@ -24,10 +24,6 @@ class FederatedQueryLimitArgs:
         """
         The set of arguments for constructing a FederatedQueryLimit resource.
         :param pulumi.Input[str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
-               * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-               * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-               * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-               * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
         :param pulumi.Input[str] overrun_policy: String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
         :param pulumi.Input[str] tenant_name: Name of the Atlas Federated Database Instance.
@@ -49,10 +45,6 @@ class FederatedQueryLimitArgs:
     def limit_name(self) -> pulumi.Input[str]:
         """
         String enum that indicates whether the identity provider is active or not. Accepted values are:
-        * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-        * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-        * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-        * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
         """
         return pulumi.get(self, "limit_name")
 
@@ -147,10 +139,6 @@ class _FederatedQueryLimitState:
         :param pulumi.Input[int] current_usage: Amount that indicates the current usage of the limit.
         :param pulumi.Input[int] default_limit: Default value of the limit.
         :param pulumi.Input[str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
-               * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-               * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-               * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-               * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
         :param pulumi.Input[str] overrun_policy: String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
         :param pulumi.Input[str] tenant_name: Name of the Atlas Federated Database Instance.
@@ -213,10 +201,6 @@ class _FederatedQueryLimitState:
     def limit_name(self) -> Optional[pulumi.Input[str]]:
         """
         String enum that indicates whether the identity provider is active or not. Accepted values are:
-        * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-        * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-        * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-        * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
         """
         return pulumi.get(self, "limit_name")
 
@@ -328,10 +312,6 @@ class FederatedQueryLimit(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] default_limit: Default value of the limit.
         :param pulumi.Input[str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
-               * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-               * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-               * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-               * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
         :param pulumi.Input[str] overrun_policy: String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
         :param pulumi.Input[str] tenant_name: Name of the Atlas Federated Database Instance.
@@ -451,10 +431,6 @@ class FederatedQueryLimit(pulumi.CustomResource):
         :param pulumi.Input[int] current_usage: Amount that indicates the current usage of the limit.
         :param pulumi.Input[int] default_limit: Default value of the limit.
         :param pulumi.Input[str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
-               * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-               * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-               * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-               * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
         :param pulumi.Input[str] overrun_policy: String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
         :param pulumi.Input[str] tenant_name: Name of the Atlas Federated Database Instance.
@@ -501,10 +477,6 @@ class FederatedQueryLimit(pulumi.CustomResource):
     def limit_name(self) -> pulumi.Output[str]:
         """
         String enum that indicates whether the identity provider is active or not. Accepted values are:
-        * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-        * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-        * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-        * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
         """
         return pulumi.get(self, "limit_name")
 

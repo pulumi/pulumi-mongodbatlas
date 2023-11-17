@@ -12,12 +12,21 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class LdapConfigurationUserToDnMappingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+        /// </summary>
         [Input("ldapQuery")]
         public Input<string>? LdapQuery { get; set; }
 
+        /// <summary>
+        /// A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
+        /// </summary>
         [Input("match")]
         public Input<string>? Match { get; set; }
 
+        /// <summary>
+        /// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+        /// </summary>
         [Input("substitution")]
         public Input<string>? Substitution { get; set; }
 

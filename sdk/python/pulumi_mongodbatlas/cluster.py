@@ -65,7 +65,6 @@ class ClusterArgs:
                This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
                
                The possible values are:
-               
                - AWS - Amazon AWS
                - GCP - Google Cloud Platform
                - AZURE - Microsoft Azure
@@ -73,6 +72,7 @@ class ClusterArgs:
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+               
                ```python
                import pulumi
                ```
@@ -84,6 +84,9 @@ class ClusterArgs:
                When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
                
                Accepted values include:
+               - `REPLICASET` Replica set
+               - `SHARDED`	Sharded cluster
+               - `GEOSHARDED` Global Cluster
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
                * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
                * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
@@ -103,9 +106,9 @@ class ClusterArgs:
         :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
-        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        :param pulumi.Input[str] provider_volume_type: (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
                > **NOTE:** `STANDARD` is not available for NVME clusters.
-        :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        :param pulumi.Input[int] replication_factor: (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -283,7 +286,6 @@ class ClusterArgs:
         This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
 
         The possible values are:
-
         - AWS - Amazon AWS
         - GCP - Google Cloud Platform
         - AZURE - Microsoft Azure
@@ -302,6 +304,7 @@ class ClusterArgs:
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+
         ```python
         import pulumi
         ```
@@ -344,6 +347,9 @@ class ClusterArgs:
         When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 
         Accepted values include:
+        - `REPLICASET` Replica set
+        - `SHARDED`	Sharded cluster
+        - `GEOSHARDED` Global Cluster
         """
         return pulumi.get(self, "cluster_type")
 
@@ -532,7 +538,7 @@ class ClusterArgs:
     @pulumi.getter(name="providerVolumeType")
     def provider_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         > **NOTE:** `STANDARD` is not available for NVME clusters.
         """
         return pulumi.get(self, "provider_volume_type")
@@ -545,7 +551,7 @@ class ClusterArgs:
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         """
         return pulumi.get(self, "replication_factor")
 
@@ -672,7 +678,6 @@ class _ClusterState:
                This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
                
                The possible values are:
-               
                - AWS - Amazon AWS
                - GCP - Google Cloud Platform
                - AZURE - Microsoft Azure
@@ -680,6 +685,7 @@ class _ClusterState:
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+               
                ```python
                import pulumi
                ```
@@ -692,6 +698,9 @@ class _ClusterState:
                When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
                
                Accepted values include:
+               - `REPLICASET` Replica set
+               - `SHARDED`	Sharded cluster
+               - `GEOSHARDED` Global Cluster
         :param pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringArgs']]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[str] container_id: The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -722,9 +731,9 @@ class _ClusterState:
                The possible values are:
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
-        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        :param pulumi.Input[str] provider_volume_type: (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
                > **NOTE:** `STANDARD` is not available for NVME clusters.
-        :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        :param pulumi.Input[int] replication_factor: (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
@@ -898,7 +907,6 @@ class _ClusterState:
         This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
 
         The possible values are:
-
         - AWS - Amazon AWS
         - GCP - Google Cloud Platform
         - AZURE - Microsoft Azure
@@ -917,6 +925,7 @@ class _ClusterState:
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+
         ```python
         import pulumi
         ```
@@ -971,6 +980,9 @@ class _ClusterState:
         When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 
         Accepted values include:
+        - `REPLICASET` Replica set
+        - `SHARDED`	Sharded cluster
+        - `GEOSHARDED` Global Cluster
         """
         return pulumi.get(self, "cluster_type")
 
@@ -1278,7 +1290,7 @@ class _ClusterState:
     @pulumi.getter(name="providerVolumeType")
     def provider_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         > **NOTE:** `STANDARD` is not available for NVME clusters.
         """
         return pulumi.get(self, "provider_volume_type")
@@ -1291,7 +1303,7 @@ class _ClusterState:
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         """
         return pulumi.get(self, "replication_factor")
 
@@ -1462,7 +1474,6 @@ class Cluster(pulumi.CustomResource):
                This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
                
                The possible values are:
-               
                - AWS - Amazon AWS
                - GCP - Google Cloud Platform
                - AZURE - Microsoft Azure
@@ -1470,6 +1481,7 @@ class Cluster(pulumi.CustomResource):
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+               
                ```python
                import pulumi
                ```
@@ -1481,6 +1493,9 @@ class Cluster(pulumi.CustomResource):
                When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
                
                Accepted values include:
+               - `REPLICASET` Replica set
+               - `SHARDED`	Sharded cluster
+               - `GEOSHARDED` Global Cluster
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
                * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
                * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
@@ -1505,9 +1520,9 @@ class Cluster(pulumi.CustomResource):
                The possible values are:
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
-        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        :param pulumi.Input[str] provider_volume_type: (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
                > **NOTE:** `STANDARD` is not available for NVME clusters.
-        :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        :param pulumi.Input[int] replication_factor: (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -1709,7 +1724,6 @@ class Cluster(pulumi.CustomResource):
                This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
                
                The possible values are:
-               
                - AWS - Amazon AWS
                - GCP - Google Cloud Platform
                - AZURE - Microsoft Azure
@@ -1717,6 +1731,7 @@ class Cluster(pulumi.CustomResource):
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+               
                ```python
                import pulumi
                ```
@@ -1729,6 +1744,9 @@ class Cluster(pulumi.CustomResource):
                When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
                
                Accepted values include:
+               - `REPLICASET` Replica set
+               - `SHARDED`	Sharded cluster
+               - `GEOSHARDED` Global Cluster
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterConnectionStringArgs']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[str] container_id: The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -1759,9 +1777,9 @@ class Cluster(pulumi.CustomResource):
                The possible values are:
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
-        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        :param pulumi.Input[str] provider_volume_type: (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
                > **NOTE:** `STANDARD` is not available for NVME clusters.
-        :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        :param pulumi.Input[int] replication_factor: (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
@@ -1869,7 +1887,6 @@ class Cluster(pulumi.CustomResource):
         This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
 
         The possible values are:
-
         - AWS - Amazon AWS
         - GCP - Google Cloud Platform
         - AZURE - Microsoft Azure
@@ -1884,6 +1901,7 @@ class Cluster(pulumi.CustomResource):
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+
         ```python
         import pulumi
         ```
@@ -1922,6 +1940,9 @@ class Cluster(pulumi.CustomResource):
         When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 
         Accepted values include:
+        - `REPLICASET` Replica set
+        - `SHARDED`	Sharded cluster
+        - `GEOSHARDED` Global Cluster
         """
         return pulumi.get(self, "cluster_type")
 
@@ -2129,7 +2150,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="providerVolumeType")
     def provider_volume_type(self) -> pulumi.Output[str]:
         """
-        The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+        (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         > **NOTE:** `STANDARD` is not available for NVME clusters.
         """
         return pulumi.get(self, "provider_volume_type")
@@ -2138,7 +2159,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> pulumi.Output[int]:
         """
-        Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         """
         return pulumi.get(self, "replication_factor")
 

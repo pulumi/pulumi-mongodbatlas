@@ -179,8 +179,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the Atlas Federated Database Instance.
-        /// ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        /// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -303,8 +301,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the Atlas Federated Database Instance.
-        /// ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        /// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -407,8 +403,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the Atlas Federated Database Instance.
-        /// ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        /// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

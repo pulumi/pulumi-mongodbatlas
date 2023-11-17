@@ -14,6 +14,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAlertConfigurationOutputResult
     {
         public readonly string? Label;
+        /// <summary>
+        /// If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+        /// </summary>
         public readonly string Type;
         /// <summary>
         /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:

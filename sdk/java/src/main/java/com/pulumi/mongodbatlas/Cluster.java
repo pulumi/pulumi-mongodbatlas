@@ -92,7 +92,6 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
      * 
      * The possible values are:
-     * 
      * - AWS - Amazon AWS
      * - GCP - Google Cloud Platform
      * - AZURE - Microsoft Azure
@@ -107,7 +106,6 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
      * 
      * The possible values are:
-     * 
      * - AWS - Amazon AWS
      * - GCP - Google Cloud Platform
      * - AZURE - Microsoft Azure
@@ -223,6 +221,9 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
      * 
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     @Export(name="clusterType", refs={String.class}, tree="[0]")
@@ -235,6 +236,9 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
      * 
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     public Output<String> clusterType() {
@@ -585,7 +589,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.providerRegionName;
     }
     /**
-     * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+     * (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
      * &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
      * 
      */
@@ -593,7 +597,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     private Output<String> providerVolumeType;
 
     /**
-     * @return The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
+     * @return (AWS - Optional) The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
      * &gt; **NOTE:** `STANDARD` is not available for NVME clusters.
      * 
      */
@@ -601,14 +605,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.providerVolumeType;
     }
     /**
-     * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+     * (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      * 
      */
     @Export(name="replicationFactor", refs={Integer.class}, tree="[0]")
     private Output<Integer> replicationFactor;
 
     /**
-     * @return Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+     * @return (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      * 
      */
     public Output<Integer> replicationFactor() {

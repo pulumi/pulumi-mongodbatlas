@@ -42,7 +42,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// List of formatted output requested for this alert configuration
-        /// * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
         /// </summary>
         public List<Inputs.GetAlertConfigurationOutputArgs> Outputs
         {
@@ -75,7 +74,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// List of formatted output requested for this alert configuration
-        /// * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
         /// </summary>
         public InputList<Inputs.GetAlertConfigurationOutputInputArgs> Outputs
         {

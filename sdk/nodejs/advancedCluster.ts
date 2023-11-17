@@ -72,6 +72,9 @@ export class AdvancedCluster extends pulumi.CustomResource {
     /**
      * Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      */
     public readonly clusterType!: pulumi.Output<string>;
     /**
@@ -259,6 +262,9 @@ export interface AdvancedClusterState {
     /**
      * Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      */
     clusterType?: pulumi.Input<string>;
     /**
@@ -365,6 +371,9 @@ export interface AdvancedClusterArgs {
     /**
      * Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      */
     clusterType: pulumi.Input<string>;
     /**

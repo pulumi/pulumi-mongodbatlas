@@ -83,7 +83,6 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAwsArgs extends c
 
     /**
      * Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-     * ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
      * 
      */
     @Import(name="testS3Bucket", required=true)
@@ -91,7 +90,6 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAwsArgs extends c
 
     /**
      * @return Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-     * ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
      * 
      */
     public Output<String> testS3Bucket() {
@@ -218,7 +216,6 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAwsArgs extends c
 
         /**
          * @param testS3Bucket Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-         * ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
          * 
          * @return builder
          * 
@@ -230,7 +227,6 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAwsArgs extends c
 
         /**
          * @param testS3Bucket Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-         * ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
          * 
          * @return builder
          * 

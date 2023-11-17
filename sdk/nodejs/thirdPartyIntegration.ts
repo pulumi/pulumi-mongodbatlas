@@ -76,7 +76,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+     * Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -101,7 +101,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     public readonly serviceKey!: pulumi.Output<string | undefined>;
     public readonly teamName!: pulumi.Output<string | undefined>;
     /**
-     * Third-Party Integration Settings type 
+     * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
      * * OPS_GENIE
@@ -213,7 +213,7 @@ export interface ThirdPartyIntegrationState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+     * Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
      */
     region?: pulumi.Input<string>;
     /**
@@ -238,7 +238,7 @@ export interface ThirdPartyIntegrationState {
     serviceKey?: pulumi.Input<string>;
     teamName?: pulumi.Input<string>;
     /**
-     * Third-Party Integration Settings type 
+     * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
      * * OPS_GENIE
@@ -290,7 +290,7 @@ export interface ThirdPartyIntegrationArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+     * Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
      */
     region?: pulumi.Input<string>;
     /**
@@ -315,7 +315,7 @@ export interface ThirdPartyIntegrationArgs {
     serviceKey?: pulumi.Input<string>;
     teamName?: pulumi.Input<string>;
     /**
-     * Third-Party Integration Settings type 
+     * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
      * * OPS_GENIE

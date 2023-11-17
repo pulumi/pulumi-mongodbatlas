@@ -26,8 +26,7 @@ export function getAccessListApiKeys(args: GetAccessListApiKeysArgs, opts?: pulu
 export interface GetAccessListApiKeysArgs {
     /**
      * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` not both.
+     * * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` not both.
      */
     apiKeyId: string;
     /**
@@ -71,8 +70,7 @@ export function getAccessListApiKeysOutput(args: GetAccessListApiKeysOutputArgs,
 export interface GetAccessListApiKeysOutputArgs {
     /**
      * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` not both.
+     * * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` not both.
      */
     apiKeyId: pulumi.Input<string>;
     /**

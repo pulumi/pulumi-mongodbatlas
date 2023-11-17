@@ -248,8 +248,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-        /// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-        /// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
         /// </summary>
         [Output("eventProcessors")]
         public Output<Outputs.EventTriggerEventProcessors?> EventProcessors { get; private set; } = null!;
@@ -432,8 +430,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-        /// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-        /// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
         /// </summary>
         [Input("eventProcessors")]
         public Input<Inputs.EventTriggerEventProcessorsArgs>? EventProcessors { get; set; }
@@ -569,8 +565,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
-        /// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
-        /// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
         /// </summary>
         [Input("eventProcessors")]
         public Input<Inputs.EventTriggerEventProcessorsGetArgs>? EventProcessors { get; set; }

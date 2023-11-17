@@ -24,9 +24,6 @@ func LookupAlertConfigurations(ctx *pulumi.Context, args *LookupAlertConfigurati
 // A collection of arguments for invoking getAlertConfigurations.
 type LookupAlertConfigurationsArgs struct {
 	// Arguments that dictate how many and which results are returned by the data source
-	// * `list_options.page_num` - Which page of results to retrieve (default to first page)
-	// * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-	// * `list_options.include_count` - Whether to include total count of results in the response (default false)
 	ListOptions []GetAlertConfigurationsListOption `pulumi:"listOptions"`
 	// List of requested string formatted output to be included on each individual result. Options are `resourceHcl` and `resourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
 	OutputTypes []string `pulumi:"outputTypes"`
@@ -63,9 +60,6 @@ func LookupAlertConfigurationsOutput(ctx *pulumi.Context, args LookupAlertConfig
 // A collection of arguments for invoking getAlertConfigurations.
 type LookupAlertConfigurationsOutputArgs struct {
 	// Arguments that dictate how many and which results are returned by the data source
-	// * `list_options.page_num` - Which page of results to retrieve (default to first page)
-	// * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-	// * `list_options.include_count` - Whether to include total count of results in the response (default false)
 	ListOptions GetAlertConfigurationsListOptionArrayInput `pulumi:"listOptions"`
 	// List of requested string formatted output to be included on each individual result. Options are `resourceHcl` and `resourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
 	OutputTypes pulumi.StringArrayInput `pulumi:"outputTypes"`

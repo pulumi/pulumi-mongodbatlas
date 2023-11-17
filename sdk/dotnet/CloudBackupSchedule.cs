@@ -22,12 +22,6 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule")]
     public partial class CloudBackupSchedule : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        /// 
-        /// true - enables automatic export of cloud backup snapshots to the AWS bucket
-        /// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-        /// </summary>
         [Output("autoExportEnabled")]
         public Output<bool> AutoExportEnabled { get; private set; } = null!;
 
@@ -164,12 +158,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class CloudBackupScheduleArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        /// 
-        /// true - enables automatic export of cloud backup snapshots to the AWS bucket
-        /// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-        /// </summary>
         [Input("autoExportEnabled")]
         public Input<bool>? AutoExportEnabled { get; set; }
 
@@ -267,12 +255,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class CloudBackupScheduleState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        /// 
-        /// true - enables automatic export of cloud backup snapshots to the AWS bucket
-        /// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-        /// </summary>
         [Input("autoExportEnabled")]
         public Input<bool>? AutoExportEnabled { get; set; }
 

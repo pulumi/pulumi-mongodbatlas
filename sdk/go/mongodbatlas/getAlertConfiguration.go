@@ -29,7 +29,6 @@ type LookupAlertConfigurationArgs struct {
 	// Unique identifier for the alert configuration.
 	AlertConfigurationId string `pulumi:"alertConfigurationId"`
 	// List of formatted output requested for this alert configuration
-	// * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
 	Outputs []GetAlertConfigurationOutput `pulumi:"outputs"`
 	// The ID of the project where the alert configuration will create.
 	ProjectId string `pulumi:"projectId"`
@@ -76,7 +75,6 @@ type LookupAlertConfigurationOutputArgs struct {
 	// Unique identifier for the alert configuration.
 	AlertConfigurationId pulumi.StringInput `pulumi:"alertConfigurationId"`
 	// List of formatted output requested for this alert configuration
-	// * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
 	Outputs GetAlertConfigurationOutputArrayInput `pulumi:"outputs"`
 	// The ID of the project where the alert configuration will create.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`

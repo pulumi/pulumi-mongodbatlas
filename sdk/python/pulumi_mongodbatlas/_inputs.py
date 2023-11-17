@@ -145,7 +145,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
         :param pulumi.Input[bool] fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param pulumi.Input[bool] javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param pulumi.Input[str] minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-               
                - TLS1_0
                - TLS1_1
                - TLS1_2
@@ -233,7 +232,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     def minimum_enabled_tls_protocol(self) -> Optional[pulumi.Input[str]]:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-
         - TLS1_0
         - TLS1_1
         - TLS1_2
@@ -325,14 +323,15 @@ class AdvancedClusterBiConnectorConfigArgs:
                  read_preference: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
+               * 
                - Set to `true` to enable BI Connector for Atlas.
                - Set to `false` to disable BI Connector for Atlas.
         :param pulumi.Input[str] read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-               
                - Set to "primary" to have BI Connector for Atlas read from the primary.
                
+               
                - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+               
                
                - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
         """
@@ -346,7 +345,7 @@ class AdvancedClusterBiConnectorConfigArgs:
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
+        * 
         - Set to `true` to enable BI Connector for Atlas.
         - Set to `false` to disable BI Connector for Atlas.
         """
@@ -361,10 +360,11 @@ class AdvancedClusterBiConnectorConfigArgs:
     def read_preference(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-
         - Set to "primary" to have BI Connector for Atlas read from the primary.
 
+
         - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+
 
         - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
         """
@@ -991,9 +991,9 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
                  compute_scale_down_enabled: Optional[pulumi.Input[bool]] = None,
                  disk_gb_enabled: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
-        :param pulumi.Input[str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
-        :param pulumi.Input[bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        :param pulumi.Input[str] compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+        :param pulumi.Input[str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+        :param pulumi.Input[bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
         """
         if compute_enabled is not None:
             pulumi.set(__self__, "compute_enabled", compute_enabled)
@@ -1019,7 +1019,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> Optional[pulumi.Input[str]]:
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
         """
         return pulumi.get(self, "compute_max_instance_size")
 
@@ -1031,7 +1031,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     @pulumi.getter(name="computeMinInstanceSize")
     def compute_min_instance_size(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
         """
         return pulumi.get(self, "compute_min_instance_size")
 
@@ -1043,7 +1043,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     @pulumi.getter(name="computeScaleDownEnabled")
     def compute_scale_down_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
         """
         return pulumi.get(self, "compute_scale_down_enabled")
 
@@ -1259,8 +1259,6 @@ class AlertConfigurationMatcherArgs:
                | `HOSTNAME_AND_PORT` |                     |                         |
                | `REPLICA_SET_NAME`  |                     |                         |
                
-               
-               
                All other types of alerts do not support matchers.
         :param pulumi.Input[str] operator: The operator to test the field’s value.
                Accepted values are:
@@ -1283,8 +1281,6 @@ class AlertConfigurationMatcherArgs:
         | `PORT`              | `CLUSTER_NAME`      |                         |
         | `HOSTNAME_AND_PORT` |                     |                         |
         | `REPLICA_SET_NAME`  |                     |                         |
-
-
 
         All other types of alerts do not support matchers.
         """
@@ -2908,8 +2904,13 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
                  target_cluster_name: Optional[pulumi.Input[str]] = None,
                  target_project_id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] target_cluster_name: Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
-        :param pulumi.Input[str] target_project_id: Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+        :param pulumi.Input[bool] automated: Set to `true` to use the automated configuration.
+        :param pulumi.Input[bool] download: Set to `true` to use the download configuration.
+        :param pulumi.Input[int] oplog_inc: Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
+        :param pulumi.Input[int] oplog_ts: Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+        :param pulumi.Input[int] point_in_time_utc_seconds: Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+        :param pulumi.Input[str] target_cluster_name: Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
+        :param pulumi.Input[str] target_project_id: Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         """
         if automated is not None:
             pulumi.set(__self__, "automated", automated)
@@ -2931,6 +2932,9 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
     @property
     @pulumi.getter
     def automated(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to `true` to use the automated configuration.
+        """
         return pulumi.get(self, "automated")
 
     @automated.setter
@@ -2940,6 +2944,9 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
     @property
     @pulumi.getter
     def download(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to `true` to use the download configuration.
+        """
         return pulumi.get(self, "download")
 
     @download.setter
@@ -2949,6 +2956,9 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
     @property
     @pulumi.getter(name="oplogInc")
     def oplog_inc(self) -> Optional[pulumi.Input[int]]:
+        """
+        Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
+        """
         return pulumi.get(self, "oplog_inc")
 
     @oplog_inc.setter
@@ -2958,6 +2968,9 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
     @property
     @pulumi.getter(name="oplogTs")
     def oplog_ts(self) -> Optional[pulumi.Input[int]]:
+        """
+        Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+        """
         return pulumi.get(self, "oplog_ts")
 
     @oplog_ts.setter
@@ -2976,6 +2989,9 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
     @property
     @pulumi.getter(name="pointInTimeUtcSeconds")
     def point_in_time_utc_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+        """
         return pulumi.get(self, "point_in_time_utc_seconds")
 
     @point_in_time_utc_seconds.setter
@@ -2986,7 +3002,7 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
     @pulumi.getter(name="targetClusterName")
     def target_cluster_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+        Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         """
         return pulumi.get(self, "target_cluster_name")
 
@@ -2998,7 +3014,7 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
     @pulumi.getter(name="targetProjectId")
     def target_project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+        Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         """
         return pulumi.get(self, "target_project_id")
 
@@ -3206,7 +3222,6 @@ class ClusterAdvancedConfigurationArgs:
         :param pulumi.Input[bool] fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param pulumi.Input[bool] javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param pulumi.Input[str] minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-               
                - TLS1_0
                - TLS1_1
                - TLS1_2
@@ -3294,7 +3309,6 @@ class ClusterAdvancedConfigurationArgs:
     def minimum_enabled_tls_protocol(self) -> Optional[pulumi.Input[str]]:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-
         - TLS1_0
         - TLS1_1
         - TLS1_2
@@ -3386,14 +3400,15 @@ class ClusterBiConnectorConfigArgs:
                  read_preference: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
-               - Set to `true` to enable BI Connector for Atlas.
-               - Set to `false` to disable BI Connector for Atlas.
+               * 
+                 - Set to `true` to enable BI Connector for Atlas.
+                 - Set to `false` to disable BI Connector for Atlas.
         :param pulumi.Input[str] read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-               
                - Set to "primary" to have BI Connector for Atlas read from the primary.
                
+               
                - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+               
                
                - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
         """
@@ -3407,9 +3422,9 @@ class ClusterBiConnectorConfigArgs:
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
-        - Set to `true` to enable BI Connector for Atlas.
-        - Set to `false` to disable BI Connector for Atlas.
+        * 
+          - Set to `true` to enable BI Connector for Atlas.
+          - Set to `false` to disable BI Connector for Atlas.
         """
         return pulumi.get(self, "enabled")
 
@@ -3422,10 +3437,11 @@ class ClusterBiConnectorConfigArgs:
     def read_preference(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-
         - Set to "primary" to have BI Connector for Atlas read from the primary.
 
+
         - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+
 
         - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
         """
@@ -3726,7 +3742,6 @@ class ClusterReplicationSpecArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]] regions_configs: Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param pulumi.Input[str] zone_name: Name for the zone in a Global Cluster.
                
-               
                **Region Config**
         """
         pulumi.set(__self__, "num_shards", num_shards)
@@ -3778,7 +3793,6 @@ class ClusterReplicationSpecArgs:
     def zone_name(self) -> Optional[pulumi.Input[str]]:
         """
         Name for the zone in a Global Cluster.
-
 
         **Region Config**
         """
@@ -4150,18 +4164,6 @@ class CustomDbRoleActionArgs:
         :param pulumi.Input[str] action: Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
                > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
         :param pulumi.Input[Sequence[pulumi.Input['CustomDbRoleActionResourceArgs']]] resources: Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
-               
-               * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
-               
-               > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-               
-               * `resources.#.database_name`	Database on which the action is granted.
-               
-               > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-               
-               * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
-               
-               > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "resources", resources)
@@ -4184,18 +4186,6 @@ class CustomDbRoleActionArgs:
     def resources(self) -> pulumi.Input[Sequence[pulumi.Input['CustomDbRoleActionResourceArgs']]]:
         """
         Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
-
-        * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
-
-        > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-
-        * `resources.#.database_name`	Database on which the action is granted.
-
-        > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-
-        * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
-
-        > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
         """
         return pulumi.get(self, "resources")
 
@@ -4211,9 +4201,15 @@ class CustomDbRoleActionResourceArgs:
                  collection_name: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] database_name: Database on which the inherited role is granted.
+        :param pulumi.Input[bool] cluster: `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
                
-               > **NOTE** This value should be admin for all roles except read and readWrite.
+               > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+        :param pulumi.Input[str] collection_name: `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+               
+               > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+        :param pulumi.Input[str] database_name: `resources.#.database_name`	Database on which the action is granted.
+               
+               > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
         """
         if cluster is not None:
             pulumi.set(__self__, "cluster", cluster)
@@ -4225,6 +4221,11 @@ class CustomDbRoleActionResourceArgs:
     @property
     @pulumi.getter
     def cluster(self) -> Optional[pulumi.Input[bool]]:
+        """
+        `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+
+        > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+        """
         return pulumi.get(self, "cluster")
 
     @cluster.setter
@@ -4234,6 +4235,11 @@ class CustomDbRoleActionResourceArgs:
     @property
     @pulumi.getter(name="collectionName")
     def collection_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+
+        > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+        """
         return pulumi.get(self, "collection_name")
 
     @collection_name.setter
@@ -4244,9 +4250,9 @@ class CustomDbRoleActionResourceArgs:
     @pulumi.getter(name="databaseName")
     def database_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Database on which the inherited role is granted.
+        `resources.#.database_name`	Database on which the action is granted.
 
-        > **NOTE** This value should be admin for all roles except read and readWrite.
+        > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
         """
         return pulumi.get(self, "database_name")
 
@@ -5244,6 +5250,10 @@ class EventTriggerEventProcessorsAwsEventbridgeArgs:
     def __init__(__self__, *,
                  config_account_id: Optional[pulumi.Input[str]] = None,
                  config_region: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] config_account_id: AWS Account ID.
+        :param pulumi.Input[str] config_region: Region of AWS Account.
+        """
         if config_account_id is not None:
             pulumi.set(__self__, "config_account_id", config_account_id)
         if config_region is not None:
@@ -5252,6 +5262,9 @@ class EventTriggerEventProcessorsAwsEventbridgeArgs:
     @property
     @pulumi.getter(name="configAccountId")
     def config_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS Account ID.
+        """
         return pulumi.get(self, "config_account_id")
 
     @config_account_id.setter
@@ -5261,6 +5274,9 @@ class EventTriggerEventProcessorsAwsEventbridgeArgs:
     @property
     @pulumi.getter(name="configRegion")
     def config_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Region of AWS Account.
+        """
         return pulumi.get(self, "config_region")
 
     @config_region.setter
@@ -5295,7 +5311,6 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
         """
         :param pulumi.Input[str] role_id: Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
         :param pulumi.Input[str] test_s3_bucket: Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-               ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
         :param pulumi.Input[str] external_id: Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
         :param pulumi.Input[str] iam_assumed_role_arn: Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
                * `s3:GetObject`
@@ -5329,7 +5344,6 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
     def test_s3_bucket(self) -> pulumi.Input[str]:
         """
         Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-        ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
         """
         return pulumi.get(self, "test_s3_bucket")
 
@@ -5423,8 +5437,6 @@ class FederatedDatabaseInstanceStorageDatabaseArgs:
                  views: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if collections is not None:
             pulumi.set(__self__, "collections", collections)
@@ -5458,8 +5470,6 @@ class FederatedDatabaseInstanceStorageDatabaseArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5484,8 +5494,6 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if data_sources is not None:
             pulumi.set(__self__, "data_sources", data_sources)
@@ -5506,8 +5514,6 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5661,8 +5667,6 @@ class FederatedDatabaseInstanceStorageDatabaseViewArgs:
                  source: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -5676,8 +5680,6 @@ class FederatedDatabaseInstanceStorageDatabaseViewArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5725,8 +5727,6 @@ class FederatedDatabaseInstanceStorageStoreArgs:
                  urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
         :param pulumi.Input[str] region: Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         """
@@ -5846,8 +5846,6 @@ class FederatedDatabaseInstanceStorageStoreArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5989,8 +5987,6 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs:
                  value: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -6002,8 +5998,6 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -6207,6 +6201,11 @@ class LdapConfigurationUserToDnMappingArgs:
                  ldap_query: Optional[pulumi.Input[str]] = None,
                  match: Optional[pulumi.Input[str]] = None,
                  substitution: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ldap_query: An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+        :param pulumi.Input[str] match: A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
+        :param pulumi.Input[str] substitution: An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+        """
         if ldap_query is not None:
             pulumi.set(__self__, "ldap_query", ldap_query)
         if match is not None:
@@ -6217,6 +6216,9 @@ class LdapConfigurationUserToDnMappingArgs:
     @property
     @pulumi.getter(name="ldapQuery")
     def ldap_query(self) -> Optional[pulumi.Input[str]]:
+        """
+        An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+        """
         return pulumi.get(self, "ldap_query")
 
     @ldap_query.setter
@@ -6226,6 +6228,9 @@ class LdapConfigurationUserToDnMappingArgs:
     @property
     @pulumi.getter
     def match(self) -> Optional[pulumi.Input[str]]:
+        """
+        A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
+        """
         return pulumi.get(self, "match")
 
     @match.setter
@@ -6235,6 +6240,9 @@ class LdapConfigurationUserToDnMappingArgs:
     @property
     @pulumi.getter
     def substitution(self) -> Optional[pulumi.Input[str]]:
+        """
+        An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+        """
         return pulumi.get(self, "substitution")
 
     @substitution.setter
@@ -6980,8 +6988,6 @@ class SearchIndexSynonymArgs:
                import pulumi
                ```
                
-               
-               
                For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
         :param pulumi.Input[str] name: Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
         :param pulumi.Input[str] source_collection: Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
@@ -7005,8 +7011,6 @@ class SearchIndexSynonymArgs:
         ```python
         import pulumi
         ```
-
-
 
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
         """
@@ -7183,6 +7187,7 @@ class GetAlertConfigurationOutputArgs:
                  value: str,
                  label: Optional[str] = None):
         """
+        :param str type: If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
         """
         pulumi.set(__self__, "type", type)
@@ -7193,6 +7198,9 @@ class GetAlertConfigurationOutputArgs:
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -7227,6 +7235,11 @@ class GetAlertConfigurationsListOptionArgs:
                  include_count: Optional[bool] = None,
                  items_per_page: Optional[int] = None,
                  page_num: Optional[int] = None):
+        """
+        :param bool include_count: Whether to include total count of results in the response (default false)
+        :param int items_per_page: How many alerts to retrieve per page (default 100)
+        :param int page_num: Which page of results to retrieve (default to first page)
+        """
         if include_count is not None:
             pulumi.set(__self__, "include_count", include_count)
         if items_per_page is not None:
@@ -7237,6 +7250,9 @@ class GetAlertConfigurationsListOptionArgs:
     @property
     @pulumi.getter(name="includeCount")
     def include_count(self) -> Optional[bool]:
+        """
+        Whether to include total count of results in the response (default false)
+        """
         return pulumi.get(self, "include_count")
 
     @include_count.setter
@@ -7246,6 +7262,9 @@ class GetAlertConfigurationsListOptionArgs:
     @property
     @pulumi.getter(name="itemsPerPage")
     def items_per_page(self) -> Optional[int]:
+        """
+        How many alerts to retrieve per page (default 100)
+        """
         return pulumi.get(self, "items_per_page")
 
     @items_per_page.setter
@@ -7255,6 +7274,9 @@ class GetAlertConfigurationsListOptionArgs:
     @property
     @pulumi.getter(name="pageNum")
     def page_num(self) -> Optional[int]:
+        """
+        Which page of results to retrieve (default to first page)
+        """
         return pulumi.get(self, "page_num")
 
     @page_num.setter

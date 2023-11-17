@@ -80,7 +80,7 @@ export class ClusterOutageSimulation extends pulumi.CustomResource {
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
-     * List of settings that specify the type of cluster outage simulation.
+     * (Minimum one required) List of settings that specify the type of cluster outage simulation.
      */
     public readonly outageFilters!: pulumi.Output<outputs.ClusterOutageSimulationOutageFilter[]>;
     /**
@@ -151,7 +151,7 @@ export interface ClusterOutageSimulationState {
      */
     clusterName?: pulumi.Input<string>;
     /**
-     * List of settings that specify the type of cluster outage simulation.
+     * (Minimum one required) List of settings that specify the type of cluster outage simulation.
      */
     outageFilters?: pulumi.Input<pulumi.Input<inputs.ClusterOutageSimulationOutageFilter>[]>;
     /**
@@ -181,7 +181,7 @@ export interface ClusterOutageSimulationArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * List of settings that specify the type of cluster outage simulation.
+     * (Minimum one required) List of settings that specify the type of cluster outage simulation.
      */
     outageFilters: pulumi.Input<pulumi.Input<inputs.ClusterOutageSimulationOutageFilter>[]>;
     /**

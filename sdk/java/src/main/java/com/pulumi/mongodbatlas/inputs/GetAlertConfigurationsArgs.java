@@ -19,9 +19,6 @@ public final class GetAlertConfigurationsArgs extends com.pulumi.resources.Invok
 
     /**
      * Arguments that dictate how many and which results are returned by the data source
-     * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-     * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-     * * `list_options.include_count` - Whether to include total count of results in the response (default false)
      * 
      */
     @Import(name="listOptions")
@@ -29,9 +26,6 @@ public final class GetAlertConfigurationsArgs extends com.pulumi.resources.Invok
 
     /**
      * @return Arguments that dictate how many and which results are returned by the data source
-     * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-     * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-     * * `list_options.include_count` - Whether to include total count of results in the response (default false)
      * 
      */
     public Optional<Output<List<GetAlertConfigurationsListOptionArgs>>> listOptions() {
@@ -96,9 +90,6 @@ public final class GetAlertConfigurationsArgs extends com.pulumi.resources.Invok
 
         /**
          * @param listOptions Arguments that dictate how many and which results are returned by the data source
-         * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-         * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-         * * `list_options.include_count` - Whether to include total count of results in the response (default false)
          * 
          * @return builder
          * 
@@ -110,9 +101,6 @@ public final class GetAlertConfigurationsArgs extends com.pulumi.resources.Invok
 
         /**
          * @param listOptions Arguments that dictate how many and which results are returned by the data source
-         * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-         * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-         * * `list_options.include_count` - Whether to include total count of results in the response (default false)
          * 
          * @return builder
          * 
@@ -123,9 +111,6 @@ public final class GetAlertConfigurationsArgs extends com.pulumi.resources.Invok
 
         /**
          * @param listOptions Arguments that dictate how many and which results are returned by the data source
-         * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-         * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-         * * `list_options.include_count` - Whether to include total count of results in the response (default false)
          * 
          * @return builder
          * 

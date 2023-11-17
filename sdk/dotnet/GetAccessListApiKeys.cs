@@ -33,8 +33,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-        /// *
-        /// &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
+        /// * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
         /// </summary>
         [Input("apiKeyId", required: true)]
         public string ApiKeyId { get; set; } = null!;
@@ -67,8 +66,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-        /// *
-        /// &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
+        /// * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
         /// </summary>
         [Input("apiKeyId", required: true)]
         public Input<string> ApiKeyId { get; set; } = null!;

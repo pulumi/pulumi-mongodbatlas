@@ -41,7 +41,6 @@ namespace Pulumi.Mongodbatlas.Inputs
 
         /// <summary>
         /// Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-        /// ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
         /// </summary>
         [Input("testS3Bucket", required: true)]
         public Input<string> TestS3Bucket { get; set; } = null!;

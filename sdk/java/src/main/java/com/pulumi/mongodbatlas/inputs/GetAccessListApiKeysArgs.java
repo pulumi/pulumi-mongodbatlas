@@ -18,8 +18,7 @@ public final class GetAccessListApiKeysArgs extends com.pulumi.resources.InvokeA
 
     /**
      * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
+     * * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
      * 
      */
     @Import(name="apiKeyId", required=true)
@@ -27,8 +26,7 @@ public final class GetAccessListApiKeysArgs extends com.pulumi.resources.InvokeA
 
     /**
      * @return Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
+     * * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
      * 
      */
     public Output<String> apiKeyId() {
@@ -109,8 +107,7 @@ public final class GetAccessListApiKeysArgs extends com.pulumi.resources.InvokeA
 
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-         * *
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
+         * * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
          * 
          * @return builder
          * 
@@ -122,8 +119,7 @@ public final class GetAccessListApiKeysArgs extends com.pulumi.resources.InvokeA
 
         /**
          * @param apiKeyId Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-         * *
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
+         * * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
          * 
          * @return builder
          * 

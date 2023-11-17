@@ -15,10 +15,6 @@ public final class GetFederatedQueryLimitArgs extends com.pulumi.resources.Invok
 
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are:
-     * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-     * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-     * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-     * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      * 
      */
     @Import(name="limitName", required=true)
@@ -26,10 +22,6 @@ public final class GetFederatedQueryLimitArgs extends com.pulumi.resources.Invok
 
     /**
      * @return String enum that indicates whether the identity provider is active or not. Accepted values are:
-     * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-     * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-     * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-     * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      * 
      */
     public Output<String> limitName() {
@@ -94,10 +86,6 @@ public final class GetFederatedQueryLimitArgs extends com.pulumi.resources.Invok
 
         /**
          * @param limitName String enum that indicates whether the identity provider is active or not. Accepted values are:
-         * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-         * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-         * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-         * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
          * 
          * @return builder
          * 
@@ -109,10 +97,6 @@ public final class GetFederatedQueryLimitArgs extends com.pulumi.resources.Invok
 
         /**
          * @param limitName String enum that indicates whether the identity provider is active or not. Accepted values are:
-         * * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-         * * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-         * * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-         * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
          * 
          * @return builder
          * 

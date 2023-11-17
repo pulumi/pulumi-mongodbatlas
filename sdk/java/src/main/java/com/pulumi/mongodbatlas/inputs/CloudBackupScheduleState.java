@@ -24,23 +24,9 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
 
     public static final CloudBackupScheduleState Empty = new CloudBackupScheduleState();
 
-    /**
-     * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     * 
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-     * 
-     */
     @Import(name="autoExportEnabled")
     private @Nullable Output<Boolean> autoExportEnabled;
 
-    /**
-     * @return Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     * 
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-     * 
-     */
     public Optional<Output<Boolean>> autoExportEnabled() {
         return Optional.ofNullable(this.autoExportEnabled);
     }
@@ -301,29 +287,11 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
             $ = new CloudBackupScheduleState(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param autoExportEnabled Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-         * 
-         * true - enables automatic export of cloud backup snapshots to the AWS bucket
-         * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoExportEnabled(@Nullable Output<Boolean> autoExportEnabled) {
             $.autoExportEnabled = autoExportEnabled;
             return this;
         }
 
-        /**
-         * @param autoExportEnabled Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-         * 
-         * true - enables automatic export of cloud backup snapshots to the AWS bucket
-         * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoExportEnabled(Boolean autoExportEnabled) {
             return autoExportEnabled(Output.of(autoExportEnabled));
         }

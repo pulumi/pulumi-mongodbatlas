@@ -13,13 +13,25 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetProjectsResultLimitResult
     {
+        /// <summary>
+        /// `limits.#.current_usage` - Amount that indicates the current usage of the limit.
+        /// </summary>
         public readonly int CurrentUsage;
+        /// <summary>
+        /// `limits.#.default_limit` - Default value of the limit.
+        /// </summary>
         public readonly int DefaultLimit;
+        /// <summary>
+        /// `limits.#.maximum_limit` - Maximum value of the limit.
+        /// </summary>
         public readonly int MaximumLimit;
         /// <summary>
-        /// The name of the project you want to create.
+        /// `limits.#.name` - Human-readable label that identifies this project limit.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// `limits.#.value` - Amount the limit is set to.
+        /// </summary>
         public readonly int Value;
 
         [OutputConstructor]

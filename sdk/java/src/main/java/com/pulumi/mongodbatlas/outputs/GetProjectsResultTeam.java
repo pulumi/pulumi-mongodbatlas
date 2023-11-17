@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class GetProjectsResultTeam {
+    /**
+     * @return `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * 
+     */
     private List<String> roleNames;
+    /**
+     * @return `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+     * 
+     */
     private String teamId;
 
     private GetProjectsResultTeam() {}
+    /**
+     * @return `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     * 
+     */
     public List<String> roleNames() {
         return this.roleNames;
     }
+    /**
+     * @return `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+     * 
+     */
     public String teamId() {
         return this.teamId;
     }

@@ -13,12 +13,22 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class CustomDbRoleActionResource
     {
+        /// <summary>
+        /// `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+        /// 
+        /// &gt; **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+        /// </summary>
         public readonly bool? Cluster;
+        /// <summary>
+        /// `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+        /// 
+        /// &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+        /// </summary>
         public readonly string? CollectionName;
         /// <summary>
-        /// Database on which the inherited role is granted.
+        /// `resources.#.database_name`	Database on which the action is granted.
         /// 
-        /// &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+        /// &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
         /// </summary>
         public readonly string? DatabaseName;
 

@@ -22,9 +22,6 @@ export function getAlertConfigurations(args: GetAlertConfigurationsArgs, opts?: 
 export interface GetAlertConfigurationsArgs {
     /**
      * Arguments that dictate how many and which results are returned by the data source
-     * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-     * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-     * * `list_options.include_count` - Whether to include total count of results in the response (default false)
      */
     listOptions?: inputs.GetAlertConfigurationsListOption[];
     /**
@@ -67,9 +64,6 @@ export function getAlertConfigurationsOutput(args: GetAlertConfigurationsOutputA
 export interface GetAlertConfigurationsOutputArgs {
     /**
      * Arguments that dictate how many and which results are returned by the data source
-     * * `list_options.page_num` - Which page of results to retrieve (default to first page)
-     * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-     * * `list_options.include_count` - Whether to include total count of results in the response (default false)
      */
     listOptions?: pulumi.Input<pulumi.Input<inputs.GetAlertConfigurationsListOptionArgs>[]>;
     /**

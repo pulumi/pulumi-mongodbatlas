@@ -35,7 +35,6 @@ public final class AdvancedClusterAdvancedConfiguration {
     private @Nullable Boolean javascriptEnabled;
     /**
      * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-     * 
      * - TLS1_0
      * - TLS1_1
      * - TLS1_2
@@ -105,7 +104,6 @@ public final class AdvancedClusterAdvancedConfiguration {
     }
     /**
      * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-     * 
      * - TLS1_0
      * - TLS1_1
      * - TLS1_2

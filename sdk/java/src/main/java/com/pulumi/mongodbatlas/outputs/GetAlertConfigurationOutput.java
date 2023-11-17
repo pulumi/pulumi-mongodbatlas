@@ -12,6 +12,10 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetAlertConfigurationOutput {
     private @Nullable String label;
+    /**
+     * @return If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+     * 
+     */
     private String type;
     /**
      * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
@@ -23,6 +27,10 @@ public final class GetAlertConfigurationOutput {
     public Optional<String> label() {
         return Optional.ofNullable(this.label);
     }
+    /**
+     * @return If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+     * 
+     */
     public String type() {
         return this.type;
     }

@@ -117,6 +117,9 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     /**
      * Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     @Export(name="clusterType", refs={String.class}, tree="[0]")
@@ -125,6 +128,9 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     /**
      * @return Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     public Output<String> clusterType() {

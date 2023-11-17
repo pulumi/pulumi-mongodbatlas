@@ -13,51 +13,91 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
+    /**
+     * @return Set to `true` to use the automated configuration.
+     * 
+     */
     private @Nullable Boolean automated;
+    /**
+     * @return Set to `true` to use the download configuration.
+     * 
+     */
     private @Nullable Boolean download;
+    /**
+     * @return Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
+     * 
+     */
     private @Nullable Integer oplogInc;
+    /**
+     * @return Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+     * 
+     */
     private @Nullable Integer oplogTs;
     private @Nullable Boolean pointInTime;
+    /**
+     * @return Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+     * 
+     */
     private @Nullable Integer pointInTimeUtcSeconds;
     /**
-     * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+     * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
      * 
      */
     private @Nullable String targetClusterName;
     /**
-     * @return Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+     * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
      * 
      */
     private @Nullable String targetProjectId;
 
     private CloudBackupSnapshotRestoreJobDeliveryTypeConfig() {}
+    /**
+     * @return Set to `true` to use the automated configuration.
+     * 
+     */
     public Optional<Boolean> automated() {
         return Optional.ofNullable(this.automated);
     }
+    /**
+     * @return Set to `true` to use the download configuration.
+     * 
+     */
     public Optional<Boolean> download() {
         return Optional.ofNullable(this.download);
     }
+    /**
+     * @return Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
+     * 
+     */
     public Optional<Integer> oplogInc() {
         return Optional.ofNullable(this.oplogInc);
     }
+    /**
+     * @return Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+     * 
+     */
     public Optional<Integer> oplogTs() {
         return Optional.ofNullable(this.oplogTs);
     }
     public Optional<Boolean> pointInTime() {
         return Optional.ofNullable(this.pointInTime);
     }
+    /**
+     * @return Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+     * 
+     */
     public Optional<Integer> pointInTimeUtcSeconds() {
         return Optional.ofNullable(this.pointInTimeUtcSeconds);
     }
     /**
-     * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+     * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
      * 
      */
     public Optional<String> targetClusterName() {
         return Optional.ofNullable(this.targetClusterName);
     }
     /**
-     * @return Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+     * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
      * 
      */
     public Optional<String> targetProjectId() {

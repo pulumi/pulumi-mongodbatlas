@@ -51,7 +51,6 @@ public final class CustomDbRoleState extends com.pulumi.resources.ResourceArgs {
      * Name of the custom role.
      * 
      * &gt; **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-     * 
      * * Is a name already used by an existing custom role in the project
      * * Is a name of any of the built-in roles
      * * Is `atlasAdmin`
@@ -65,7 +64,6 @@ public final class CustomDbRoleState extends com.pulumi.resources.ResourceArgs {
      * @return Name of the custom role.
      * 
      * &gt; **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-     * 
      * * Is a name already used by an existing custom role in the project
      * * Is a name of any of the built-in roles
      * * Is `atlasAdmin`
@@ -154,7 +152,6 @@ public final class CustomDbRoleState extends com.pulumi.resources.ResourceArgs {
          * @param roleName Name of the custom role.
          * 
          * &gt; **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-         * 
          * * Is a name already used by an existing custom role in the project
          * * Is a name of any of the built-in roles
          * * Is `atlasAdmin`
@@ -172,7 +169,6 @@ public final class CustomDbRoleState extends com.pulumi.resources.ResourceArgs {
          * @param roleName Name of the custom role.
          * 
          * &gt; **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-         * 
          * * Is a name already used by an existing custom role in the project
          * * Is a name of any of the built-in roles
          * * Is `atlasAdmin`

@@ -12,9 +12,15 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class EventTriggerEventProcessorsAwsEventbridgeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// AWS Account ID.
+        /// </summary>
         [Input("configAccountId")]
         public Input<string>? ConfigAccountId { get; set; }
 
+        /// <summary>
+        /// Region of AWS Account.
+        /// </summary>
         [Input("configRegion")]
         public Input<string>? ConfigRegion { get; set; }
 

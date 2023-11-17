@@ -16,33 +16,57 @@ public final class CustomDbRoleActionResourceArgs extends com.pulumi.resources.R
 
     public static final CustomDbRoleActionResourceArgs Empty = new CustomDbRoleActionResourceArgs();
 
+    /**
+     * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+     * 
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+     * 
+     */
     @Import(name="cluster")
     private @Nullable Output<Boolean> cluster;
 
+    /**
+     * @return `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+     * 
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+     * 
+     */
     public Optional<Output<Boolean>> cluster() {
         return Optional.ofNullable(this.cluster);
     }
 
+    /**
+     * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+     * 
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+     * 
+     */
     @Import(name="collectionName")
     private @Nullable Output<String> collectionName;
 
+    /**
+     * @return `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+     * 
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+     * 
+     */
     public Optional<Output<String>> collectionName() {
         return Optional.ofNullable(this.collectionName);
     }
 
     /**
-     * Database on which the inherited role is granted.
+     * `resources.#.database_name`	Database on which the action is granted.
      * 
-     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
      * 
      */
     @Import(name="databaseName")
     private @Nullable Output<String> databaseName;
 
     /**
-     * @return Database on which the inherited role is granted.
+     * @return `resources.#.database_name`	Database on which the action is granted.
      * 
-     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+     * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
      * 
      */
     public Optional<Output<String>> databaseName() {
@@ -75,28 +99,60 @@ public final class CustomDbRoleActionResourceArgs extends com.pulumi.resources.R
             $ = new CustomDbRoleActionResourceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param cluster `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+         * 
+         * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder cluster(@Nullable Output<Boolean> cluster) {
             $.cluster = cluster;
             return this;
         }
 
+        /**
+         * @param cluster `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+         * 
+         * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder cluster(Boolean cluster) {
             return cluster(Output.of(cluster));
         }
 
+        /**
+         * @param collectionName `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+         * 
+         * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+         * 
+         * @return builder
+         * 
+         */
         public Builder collectionName(@Nullable Output<String> collectionName) {
             $.collectionName = collectionName;
             return this;
         }
 
+        /**
+         * @param collectionName `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+         * 
+         * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+         * 
+         * @return builder
+         * 
+         */
         public Builder collectionName(String collectionName) {
             return collectionName(Output.of(collectionName));
         }
 
         /**
-         * @param databaseName Database on which the inherited role is granted.
+         * @param databaseName `resources.#.database_name`	Database on which the action is granted.
          * 
-         * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+         * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
          * 
          * @return builder
          * 
@@ -107,9 +163,9 @@ public final class CustomDbRoleActionResourceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param databaseName Database on which the inherited role is granted.
+         * @param databaseName `resources.#.database_name`	Database on which the action is granted.
          * 
-         * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+         * &gt; **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
          * 
          * @return builder
          * 

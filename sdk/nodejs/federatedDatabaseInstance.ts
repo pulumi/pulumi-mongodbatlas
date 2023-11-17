@@ -147,8 +147,6 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
     public /*out*/ readonly hostnames!: pulumi.Output<string[]>;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -260,8 +258,6 @@ export interface FederatedDatabaseInstanceState {
     hostnames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
     /**
@@ -330,8 +326,6 @@ export interface FederatedDatabaseInstanceArgs {
     dataProcessRegion?: pulumi.Input<inputs.FederatedDatabaseInstanceDataProcessRegion>;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
     /**

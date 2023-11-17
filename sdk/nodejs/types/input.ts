@@ -24,7 +24,6 @@ export interface AdvancedClusterAdvancedConfiguration {
     javascriptEnabled?: pulumi.Input<boolean>;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-     *
      * - TLS1_0
      * - TLS1_1
      * - TLS1_2
@@ -60,17 +59,18 @@ export interface AdvancedClusterAdvancedConfiguration {
 export interface AdvancedClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
+     * * 
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      */
     enabled?: pulumi.Input<boolean>;
     /**
      * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-     *
      * - Set to "primary" to have BI Connector for Atlas read from the primary.
      *
+     *
      * - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+     *
      *
      * - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
      */
@@ -217,15 +217,15 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
 export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
     computeEnabled?: pulumi.Input<boolean>;
     /**
-     * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+     * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
      */
     computeMaxInstanceSize?: pulumi.Input<string>;
     /**
-     * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+     * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
      */
     computeMinInstanceSize?: pulumi.Input<string>;
     /**
-     * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+     * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
      */
     computeScaleDownEnabled?: pulumi.Input<boolean>;
     diskGbEnabled?: pulumi.Input<boolean>;
@@ -293,8 +293,6 @@ export interface AlertConfigurationMatcher {
      * | `PORT`              | `CLUSTER_NAME`      |                         |
      * | `HOSTNAME_AND_PORT` |                     |                         |
      * | `REPLICA_SET_NAME`  |                     |                         |
-     *
-     *
      *
      * All other types of alerts do not support matchers.
      */
@@ -742,18 +740,33 @@ export interface CloudBackupSnapshotMember {
 }
 
 export interface CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
+    /**
+     * Set to `true` to use the automated configuration.
+     */
     automated?: pulumi.Input<boolean>;
+    /**
+     * Set to `true` to use the download configuration.
+     */
     download?: pulumi.Input<boolean>;
+    /**
+     * Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
+     */
     oplogInc?: pulumi.Input<number>;
+    /**
+     * Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+     */
     oplogTs?: pulumi.Input<number>;
     pointInTime?: pulumi.Input<boolean>;
+    /**
+     * Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+     */
     pointInTimeUtcSeconds?: pulumi.Input<number>;
     /**
-     * Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+     * Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
      */
     targetClusterName?: pulumi.Input<string>;
     /**
-     * Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+     * Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
      */
     targetProjectId?: pulumi.Input<string>;
 }
@@ -808,7 +821,6 @@ export interface ClusterAdvancedConfiguration {
     javascriptEnabled?: pulumi.Input<boolean>;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-     *
      * - TLS1_0
      * - TLS1_1
      * - TLS1_2
@@ -844,17 +856,18 @@ export interface ClusterAdvancedConfiguration {
 export interface ClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
-     * - Set to `true` to enable BI Connector for Atlas.
-     * - Set to `false` to disable BI Connector for Atlas.
+     * * 
+     *   - Set to `true` to enable BI Connector for Atlas.
+     *   - Set to `false` to disable BI Connector for Atlas.
      */
     enabled?: pulumi.Input<boolean>;
     /**
      * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-     *
      * - Set to "primary" to have BI Connector for Atlas read from the primary.
      *
+     *
      * - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
+     *
      *
      * - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
      */
@@ -931,7 +944,6 @@ export interface ClusterReplicationSpec {
     regionsConfigs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpecRegionsConfig>[]>;
     /**
      * Name for the zone in a Global Cluster.
-     *
      *
      * **Region Config**
      */
@@ -1021,29 +1033,27 @@ export interface CustomDbRoleAction {
     action: pulumi.Input<string>;
     /**
      * Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
-     *
-     * * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
-     *
-     * > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-     *
-     * * `resources.#.database_name`	Database on which the action is granted.
-     *
-     * > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
-     *
-     * * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
-     *
-     * > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
      */
     resources: pulumi.Input<pulumi.Input<inputs.CustomDbRoleActionResource>[]>;
 }
 
 export interface CustomDbRoleActionResource {
+    /**
+     * `resources.#.cluster`	(Optional) Set to true to indicate that the action is granted on the cluster resource.
+     *
+     * > **NOTE** This field is mutually exclusive with the `actions.resources.collection` and `actions.resources.db fields`.
+     */
     cluster?: pulumi.Input<boolean>;
+    /**
+     * `resources.#.collection_name` - (Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.
+     *
+     * > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
+     */
     collectionName?: pulumi.Input<string>;
     /**
-     * Database on which the inherited role is granted.
+     * `resources.#.database_name`	Database on which the action is granted.
      *
-     * > **NOTE** This value should be admin for all roles except read and readWrite.
+     * > **NOTE** This field is mutually exclusive with the `actions.resources.cluster` field.
      */
     databaseName?: pulumi.Input<string>;
 }
@@ -1273,7 +1283,13 @@ export interface EventTriggerEventProcessors {
 }
 
 export interface EventTriggerEventProcessorsAwsEventbridge {
+    /**
+     * AWS Account ID.
+     */
     configAccountId?: pulumi.Input<string>;
+    /**
+     * Region of AWS Account.
+     */
     configRegion?: pulumi.Input<string>;
 }
 
@@ -1303,7 +1319,6 @@ export interface FederatedDatabaseInstanceCloudProviderConfigAws {
     roleId: pulumi.Input<string>;
     /**
      * Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
-     * ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
      */
     testS3Bucket: pulumi.Input<string>;
 }
@@ -1324,8 +1339,6 @@ export interface FederatedDatabaseInstanceStorageDatabase {
     maxWildcardCollections?: pulumi.Input<number>;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
     views?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseView>[]>;
@@ -1335,8 +1348,6 @@ export interface FederatedDatabaseInstanceStorageDatabaseCollection {
     dataSources?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSource>[]>;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
 }
@@ -1358,8 +1369,6 @@ export interface FederatedDatabaseInstanceStorageDatabaseCollectionDataSource {
 export interface FederatedDatabaseInstanceStorageDatabaseView {
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
     pipeline?: pulumi.Input<string>;
@@ -1380,8 +1389,6 @@ export interface FederatedDatabaseInstanceStorageStore {
     includeTags?: pulumi.Input<boolean>;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
     prefix?: pulumi.Input<string>;
@@ -1412,8 +1419,6 @@ export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
 export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
     value?: pulumi.Input<string>;
@@ -1437,6 +1442,9 @@ export interface FederatedSettingsOrgRoleMappingRoleAssignment {
 
 export interface GetAlertConfigurationOutput {
     label?: string;
+    /**
+     * If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+     */
     type: string;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
@@ -1446,6 +1454,9 @@ export interface GetAlertConfigurationOutput {
 
 export interface GetAlertConfigurationOutputArgs {
     label?: pulumi.Input<string>;
+    /**
+     * If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+     */
     type: pulumi.Input<string>;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
@@ -1454,14 +1465,32 @@ export interface GetAlertConfigurationOutputArgs {
 }
 
 export interface GetAlertConfigurationsListOption {
+    /**
+     * Whether to include total count of results in the response (default false)
+     */
     includeCount?: boolean;
+    /**
+     * How many alerts to retrieve per page (default 100)
+     */
     itemsPerPage?: number;
+    /**
+     * Which page of results to retrieve (default to first page)
+     */
     pageNum?: number;
 }
 
 export interface GetAlertConfigurationsListOptionArgs {
+    /**
+     * Whether to include total count of results in the response (default false)
+     */
     includeCount?: pulumi.Input<boolean>;
+    /**
+     * How many alerts to retrieve per page (default 100)
+     */
     itemsPerPage?: pulumi.Input<number>;
+    /**
+     * Which page of results to retrieve (default to first page)
+     */
     pageNum?: pulumi.Input<number>;
 }
 
@@ -1892,8 +1921,17 @@ export interface GlobalClusterConfigManagedNamespace {
 }
 
 export interface LdapConfigurationUserToDnMapping {
+    /**
+     * An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+     */
     ldapQuery?: pulumi.Input<string>;
+    /**
+     * A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+     */
     substitution?: pulumi.Input<string>;
 }
 
@@ -2079,8 +2117,6 @@ export interface SearchIndexSynonym {
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * ```
-     *
-     *
      *
      * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
      */

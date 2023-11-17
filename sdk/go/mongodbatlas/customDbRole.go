@@ -186,7 +186,6 @@ type CustomDbRole struct {
 	// Name of the custom role.
 	//
 	// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-	//
 	// * Is a name already used by an existing custom role in the project
 	// * Is a name of any of the built-in roles
 	// * Is `atlasAdmin`
@@ -237,7 +236,6 @@ type customDbRoleState struct {
 	// Name of the custom role.
 	//
 	// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-	//
 	// * Is a name already used by an existing custom role in the project
 	// * Is a name of any of the built-in roles
 	// * Is `atlasAdmin`
@@ -253,7 +251,6 @@ type CustomDbRoleState struct {
 	// Name of the custom role.
 	//
 	// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-	//
 	// * Is a name already used by an existing custom role in the project
 	// * Is a name of any of the built-in roles
 	// * Is `atlasAdmin`
@@ -273,7 +270,6 @@ type customDbRoleArgs struct {
 	// Name of the custom role.
 	//
 	// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-	//
 	// * Is a name already used by an existing custom role in the project
 	// * Is a name of any of the built-in roles
 	// * Is `atlasAdmin`
@@ -290,7 +286,6 @@ type CustomDbRoleArgs struct {
 	// Name of the custom role.
 	//
 	// > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-	//
 	// * Is a name already used by an existing custom role in the project
 	// * Is a name of any of the built-in roles
 	// * Is `atlasAdmin`
@@ -401,7 +396,6 @@ func (o CustomDbRoleOutput) ProjectId() pulumi.StringOutput {
 // Name of the custom role.
 //
 // > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-//
 // * Is a name already used by an existing custom role in the project
 // * Is a name of any of the built-in roles
 // * Is `atlasAdmin`

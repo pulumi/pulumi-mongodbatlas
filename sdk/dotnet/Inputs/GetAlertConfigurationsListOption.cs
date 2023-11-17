@@ -12,12 +12,21 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class GetAlertConfigurationsListOptionArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Whether to include total count of results in the response (default false)
+        /// </summary>
         [Input("includeCount")]
         public bool? IncludeCount { get; set; }
 
+        /// <summary>
+        /// How many alerts to retrieve per page (default 100)
+        /// </summary>
         [Input("itemsPerPage")]
         public int? ItemsPerPage { get; set; }
 
+        /// <summary>
+        /// Which page of results to retrieve (default to first page)
+        /// </summary>
         [Input("pageNum")]
         public int? PageNum { get; set; }
 

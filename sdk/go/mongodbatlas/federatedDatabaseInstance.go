@@ -169,8 +169,6 @@ type FederatedDatabaseInstance struct {
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames pulumi.StringArrayOutput `pulumi:"hostnames"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -260,8 +258,6 @@ type federatedDatabaseInstanceState struct {
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames []string `pulumi:"hostnames"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name *string `pulumi:"name"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId *string `pulumi:"projectId"`
@@ -319,8 +315,6 @@ type FederatedDatabaseInstanceState struct {
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames pulumi.StringArrayInput
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name pulumi.StringPtrInput
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId pulumi.StringPtrInput
@@ -380,8 +374,6 @@ type federatedDatabaseInstanceArgs struct {
 	CloudProviderConfig *FederatedDatabaseInstanceCloudProviderConfig `pulumi:"cloudProviderConfig"`
 	DataProcessRegion   *FederatedDatabaseInstanceDataProcessRegion   `pulumi:"dataProcessRegion"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name *string `pulumi:"name"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId string `pulumi:"projectId"`
@@ -436,8 +428,6 @@ type FederatedDatabaseInstanceArgs struct {
 	CloudProviderConfig FederatedDatabaseInstanceCloudProviderConfigPtrInput
 	DataProcessRegion   FederatedDatabaseInstanceDataProcessRegionPtrInput
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name pulumi.StringPtrInput
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId pulumi.StringInput
@@ -592,8 +582,6 @@ func (o FederatedDatabaseInstanceOutput) Hostnames() pulumi.StringArrayOutput {
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

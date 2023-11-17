@@ -34,10 +34,6 @@ class CloudBackupScheduleArgs:
         The set of arguments for constructing a CloudBackupSchedule resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
-        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               
-               true - enables automatic export of cloud backup snapshots to the AWS bucket
-               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input['CloudBackupSchedulePolicyItemDailyArgs'] policy_item_daily: Daily policy item
         :param pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs'] policy_item_hourly: Hourly policy item
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]] policy_item_monthlies: Monthly policy item
@@ -101,12 +97,6 @@ class CloudBackupScheduleArgs:
     @property
     @pulumi.getter(name="autoExportEnabled")
     def auto_export_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-
-        true - enables automatic export of cloud backup snapshots to the AWS bucket
-        false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-        """
         return pulumi.get(self, "auto_export_enabled")
 
     @auto_export_enabled.setter
@@ -259,10 +249,6 @@ class _CloudBackupScheduleState:
                  use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSchedule resources.
-        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               
-               true - enables automatic export of cloud backup snapshots to the AWS bucket
-               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] id_policy: Unique identifier of the backup policy.
@@ -315,12 +301,6 @@ class _CloudBackupScheduleState:
     @property
     @pulumi.getter(name="autoExportEnabled")
     def auto_export_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-
-        true - enables automatic export of cloud backup snapshots to the AWS bucket
-        false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-        """
         return pulumi.get(self, "auto_export_enabled")
 
     @auto_export_enabled.setter
@@ -543,10 +523,6 @@ class CloudBackupSchedule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               
-               true - enables automatic export of cloud backup snapshots to the AWS bucket
-               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemDailyArgs']] policy_item_daily: Daily policy item
         :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']] policy_item_hourly: Hourly policy item
@@ -667,10 +643,6 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               
-               true - enables automatic export of cloud backup snapshots to the AWS bucket
-               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] id_policy: Unique identifier of the backup policy.
@@ -711,12 +683,6 @@ class CloudBackupSchedule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="autoExportEnabled")
     def auto_export_enabled(self) -> pulumi.Output[bool]:
-        """
-        Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-
-        true - enables automatic export of cloud backup snapshots to the AWS bucket
-        false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
-        """
         return pulumi.get(self, "auto_export_enabled")
 
     @property

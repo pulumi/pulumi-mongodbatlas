@@ -26,9 +26,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Arguments that dictate how many and which results are returned by the data source
-        /// * `list_options.page_num` - Which page of results to retrieve (default to first page)
-        /// * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-        /// * `list_options.include_count` - Whether to include total count of results in the response (default false)
         /// </summary>
         public List<Inputs.GetAlertConfigurationsListOptionArgs> ListOptions
         {
@@ -67,9 +64,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Arguments that dictate how many and which results are returned by the data source
-        /// * `list_options.page_num` - Which page of results to retrieve (default to first page)
-        /// * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
-        /// * `list_options.include_count` - Whether to include total count of results in the response (default false)
         /// </summary>
         public InputList<Inputs.GetAlertConfigurationsListOptionInputArgs> ListOptions
         {

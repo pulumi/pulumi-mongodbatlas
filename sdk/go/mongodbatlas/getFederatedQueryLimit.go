@@ -57,10 +57,6 @@ func LookupFederatedQueryLimit(ctx *pulumi.Context, args *LookupFederatedQueryLi
 // A collection of arguments for invoking getFederatedQueryLimit.
 type LookupFederatedQueryLimitArgs struct {
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
-	// * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-	// * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-	// * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-	// * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
 	LimitName string `pulumi:"limitName"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId string `pulumi:"projectId"`
@@ -101,10 +97,6 @@ func LookupFederatedQueryLimitOutput(ctx *pulumi.Context, args LookupFederatedQu
 // A collection of arguments for invoking getFederatedQueryLimit.
 type LookupFederatedQueryLimitOutputArgs struct {
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
-	// * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-	// * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-	// * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-	// * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
 	LimitName pulumi.StringInput `pulumi:"limitName"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`

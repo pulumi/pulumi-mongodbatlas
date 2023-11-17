@@ -13,8 +13,17 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetAlertConfigurationsListOptionResult
     {
+        /// <summary>
+        /// Whether to include total count of results in the response (default false)
+        /// </summary>
         public readonly bool? IncludeCount;
+        /// <summary>
+        /// How many alerts to retrieve per page (default 100)
+        /// </summary>
         public readonly int? ItemsPerPage;
+        /// <summary>
+        /// Which page of results to retrieve (default to first page)
+        /// </summary>
         public readonly int? PageNum;
 
         [OutputConstructor]

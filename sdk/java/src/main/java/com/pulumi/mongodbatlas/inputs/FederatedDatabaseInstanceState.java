@@ -51,8 +51,6 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
 
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
      * 
      */
     @Import(name="name")
@@ -60,8 +58,6 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
 
     /**
      * @return Name of the Atlas Federated Database Instance.
-     * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
      * 
      */
     public Optional<Output<String>> name() {
@@ -290,8 +286,6 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
 
         /**
          * @param name Name of the Atlas Federated Database Instance.
-         * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-         * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
          * 
          * @return builder
          * 
@@ -303,8 +297,6 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
 
         /**
          * @param name Name of the Atlas Federated Database Instance.
-         * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-         * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
          * 
          * @return builder
          * 

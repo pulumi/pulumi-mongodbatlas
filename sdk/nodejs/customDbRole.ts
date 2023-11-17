@@ -153,7 +153,6 @@ export class CustomDbRole extends pulumi.CustomResource {
      * Name of the custom role.
      *
      * > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-     *
      * * Is a name already used by an existing custom role in the project
      * * Is a name of any of the built-in roles
      * * Is `atlasAdmin`
@@ -210,7 +209,6 @@ export interface CustomDbRoleState {
      * Name of the custom role.
      *
      * > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-     *
      * * Is a name already used by an existing custom role in the project
      * * Is a name of any of the built-in roles
      * * Is `atlasAdmin`
@@ -233,7 +231,6 @@ export interface CustomDbRoleArgs {
      * Name of the custom role.
      *
      * > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
-     *
      * * Is a name already used by an existing custom role in the project
      * * Is a name of any of the built-in roles
      * * Is `atlasAdmin`

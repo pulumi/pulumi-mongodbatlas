@@ -32,8 +32,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// });
         /// ```
         /// 
-        /// 
-        /// 
         /// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
         /// </summary>
         public readonly string Analyzer;

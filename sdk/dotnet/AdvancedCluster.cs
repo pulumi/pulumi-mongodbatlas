@@ -60,6 +60,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Type of the cluster that you want to create.
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED`	Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Output("clusterType")]
         public Output<string> ClusterType { get; private set; } = null!;
@@ -250,6 +253,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Type of the cluster that you want to create.
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED`	Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Input("clusterType", required: true)]
         public Input<string> ClusterType { get; set; } = null!;
@@ -400,6 +406,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Type of the cluster that you want to create.
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED`	Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Input("clusterType")]
         public Input<string>? ClusterType { get; set; }

@@ -155,10 +155,6 @@ def get_federated_query_limit(limit_name: Optional[str] = None,
 
 
     :param str limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
-           * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-           * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-           * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-           * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
     :param str project_id: The unique ID for the project to create a Federated Database Instance.
     :param str tenant_name: Name of the Atlas Federated Database Instance.
     """
@@ -207,10 +203,6 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[str]] = N
 
 
     :param str limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
-           * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
-           * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
-           * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
-           * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
     :param str project_id: The unique ID for the project to create a Federated Database Instance.
     :param str tenant_name: Name of the Atlas Federated Database Instance.
     """

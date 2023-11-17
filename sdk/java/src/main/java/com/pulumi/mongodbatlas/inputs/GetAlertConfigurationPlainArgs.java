@@ -33,7 +33,6 @@ public final class GetAlertConfigurationPlainArgs extends com.pulumi.resources.I
 
     /**
      * List of formatted output requested for this alert configuration
-     * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
      * 
      */
     @Import(name="outputs")
@@ -41,7 +40,6 @@ public final class GetAlertConfigurationPlainArgs extends com.pulumi.resources.I
 
     /**
      * @return List of formatted output requested for this alert configuration
-     * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
      * 
      */
     public Optional<List<GetAlertConfigurationOutput>> outputs() {
@@ -102,7 +100,6 @@ public final class GetAlertConfigurationPlainArgs extends com.pulumi.resources.I
 
         /**
          * @param outputs List of formatted output requested for this alert configuration
-         * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
          * 
          * @return builder
          * 
@@ -114,7 +111,6 @@ public final class GetAlertConfigurationPlainArgs extends com.pulumi.resources.I
 
         /**
          * @param outputs List of formatted output requested for this alert configuration
-         * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
          * 
          * @return builder
          * 

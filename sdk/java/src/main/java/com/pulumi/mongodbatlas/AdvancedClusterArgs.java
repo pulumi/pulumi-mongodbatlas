@@ -94,6 +94,9 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     /**
      * Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     @Import(name="clusterType", required=true)
@@ -102,6 +105,9 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     /**
      * @return Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     public Output<String> clusterType() {
@@ -451,6 +457,9 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param clusterType Type of the cluster that you want to create.
          * Accepted values include:
+         * - `REPLICASET` Replica set
+         * - `SHARDED`	Sharded cluster
+         * - `GEOSHARDED` Global Cluster
          * 
          * @return builder
          * 
@@ -463,6 +472,9 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param clusterType Type of the cluster that you want to create.
          * Accepted values include:
+         * - `REPLICASET` Replica set
+         * - `SHARDED`	Sharded cluster
+         * - `GEOSHARDED` Global Cluster
          * 
          * @return builder
          * 

@@ -31,14 +31,14 @@ public final class ClusterOutageSimulationArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * List of settings that specify the type of cluster outage simulation.
+     * (Minimum one required) List of settings that specify the type of cluster outage simulation.
      * 
      */
     @Import(name="outageFilters", required=true)
     private Output<List<ClusterOutageSimulationOutageFilterArgs>> outageFilters;
 
     /**
-     * @return List of settings that specify the type of cluster outage simulation.
+     * @return (Minimum one required) List of settings that specify the type of cluster outage simulation.
      * 
      */
     public Output<List<ClusterOutageSimulationOutageFilterArgs>> outageFilters() {
@@ -108,7 +108,7 @@ public final class ClusterOutageSimulationArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param outageFilters List of settings that specify the type of cluster outage simulation.
+         * @param outageFilters (Minimum one required) List of settings that specify the type of cluster outage simulation.
          * 
          * @return builder
          * 
@@ -119,7 +119,7 @@ public final class ClusterOutageSimulationArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param outageFilters List of settings that specify the type of cluster outage simulation.
+         * @param outageFilters (Minimum one required) List of settings that specify the type of cluster outage simulation.
          * 
          * @return builder
          * 
@@ -129,7 +129,7 @@ public final class ClusterOutageSimulationArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param outageFilters List of settings that specify the type of cluster outage simulation.
+         * @param outageFilters (Minimum one required) List of settings that specify the type of cluster outage simulation.
          * 
          * @return builder
          * 

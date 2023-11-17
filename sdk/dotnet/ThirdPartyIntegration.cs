@@ -68,7 +68,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        /// Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -107,7 +107,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> TeamName { get; private set; } = null!;
 
         /// <summary>
-        /// Third-Party Integration Settings type 
+        /// Third-Party Integration Settings type
         /// * PAGER_DUTY
         /// * DATADOG
         /// * OPS_GENIE
@@ -258,7 +258,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        /// Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -337,7 +337,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? TeamName { get; set; }
 
         /// <summary>
-        /// Third-Party Integration Settings type 
+        /// Third-Party Integration Settings type
         /// * PAGER_DUTY
         /// * DATADOG
         /// * OPS_GENIE
@@ -449,7 +449,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        /// Indicates which API URL to use, either "US", "EU", "US3", or "US5". Datadog will use "US" by default.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -528,7 +528,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? TeamName { get; set; }
 
         /// <summary>
-        /// Third-Party Integration Settings type 
+        /// Third-Party Integration Settings type
         /// * PAGER_DUTY
         /// * DATADOG
         /// * OPS_GENIE

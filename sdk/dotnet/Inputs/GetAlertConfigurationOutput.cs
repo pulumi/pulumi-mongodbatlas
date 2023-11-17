@@ -15,6 +15,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("label")]
         public string? Label { get; set; }
 
+        /// <summary>
+        /// If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
+        /// </summary>
         [Input("type", required: true)]
         public string Type { get; set; } = null!;
 

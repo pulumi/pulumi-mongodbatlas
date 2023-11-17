@@ -19,13 +19,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly int ClusterCount;
         /// <summary>
         /// The ISO-8601-formatted timestamp of when Atlas created the project.
-        /// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-        /// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        /// * `limits.#.name` - Human-readable label that identifies this project limit.
-        /// * `limits.#.value` - Amount the limit is set to.
-        /// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-        /// * `limits.#.default_limit` - Default value of the limit.
-        /// * `limits.#.maximum_limit` - Maximum value of the limit.
         /// </summary>
         public readonly string Created;
         /// <summary>
@@ -58,7 +51,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly bool IsSchemaAdvisorEnabled;
         public readonly ImmutableArray<Outputs.GetProjectsResultLimitResult> Limits;
         /// <summary>
-        /// The name of the project you want to create.
+        /// `limits.#.name` - Human-readable label that identifies this project limit.
         /// </summary>
         public readonly string Name;
         /// <summary>
