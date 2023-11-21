@@ -22,7 +22,7 @@ class GetSearchIndexResult:
     """
     A collection of values returned by getSearchIndex.
     """
-    def __init__(__self__, analyzer=None, analyzers=None, cluster_name=None, collection_name=None, database=None, id=None, index_id=None, mappings_dynamic=None, mappings_fields=None, name=None, project_id=None, search_analyzer=None, status=None, synonyms=None):
+    def __init__(__self__, analyzer=None, analyzers=None, cluster_name=None, collection_name=None, database=None, fields=None, id=None, index_id=None, mappings_dynamic=None, mappings_fields=None, name=None, project_id=None, search_analyzer=None, status=None, synonyms=None, type=None):
         if analyzer and not isinstance(analyzer, str):
             raise TypeError("Expected argument 'analyzer' to be a str")
         pulumi.set(__self__, "analyzer", analyzer)
@@ -38,6 +38,9 @@ class GetSearchIndexResult:
         if database and not isinstance(database, str):
             raise TypeError("Expected argument 'database' to be a str")
         pulumi.set(__self__, "database", database)
+        if fields and not isinstance(fields, str):
+            raise TypeError("Expected argument 'fields' to be a str")
+        pulumi.set(__self__, "fields", fields)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -65,6 +68,9 @@ class GetSearchIndexResult:
         if synonyms and not isinstance(synonyms, list):
             raise TypeError("Expected argument 'synonyms' to be a list")
         pulumi.set(__self__, "synonyms", synonyms)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -102,6 +108,11 @@ class GetSearchIndexResult:
         Name of the database the collection is in.
         """
         return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[str]:
+        return pulumi.get(self, "fields")
 
     @property
     @pulumi.getter
@@ -169,6 +180,11 @@ class GetSearchIndexResult:
         """
         return pulumi.get(self, "synonyms")
 
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
 
 class AwaitableGetSearchIndexResult(GetSearchIndexResult):
     # pylint: disable=using-constant-test
@@ -181,6 +197,7 @@ class AwaitableGetSearchIndexResult(GetSearchIndexResult):
             cluster_name=self.cluster_name,
             collection_name=self.collection_name,
             database=self.database,
+            fields=self.fields,
             id=self.id,
             index_id=self.index_id,
             mappings_dynamic=self.mappings_dynamic,
@@ -189,7 +206,8 @@ class AwaitableGetSearchIndexResult(GetSearchIndexResult):
             project_id=self.project_id,
             search_analyzer=self.search_analyzer,
             status=self.status,
-            synonyms=self.synonyms)
+            synonyms=self.synonyms,
+            type=self.type)
 
 
 def get_search_index(analyzer: Optional[str] = None,
@@ -197,6 +215,7 @@ def get_search_index(analyzer: Optional[str] = None,
                      cluster_name: Optional[str] = None,
                      collection_name: Optional[str] = None,
                      database: Optional[str] = None,
+                     fields: Optional[str] = None,
                      index_id: Optional[str] = None,
                      mappings_dynamic: Optional[bool] = None,
                      mappings_fields: Optional[str] = None,
@@ -204,6 +223,7 @@ def get_search_index(analyzer: Optional[str] = None,
                      project_id: Optional[str] = None,
                      search_analyzer: Optional[str] = None,
                      status: Optional[str] = None,
+                     type: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSearchIndexResult:
     """
     `SearchIndex` describe a single search indexes. This represents a single search index that have been created.
@@ -240,6 +260,7 @@ def get_search_index(analyzer: Optional[str] = None,
     __args__['clusterName'] = cluster_name
     __args__['collectionName'] = collection_name
     __args__['database'] = database
+    __args__['fields'] = fields
     __args__['indexId'] = index_id
     __args__['mappingsDynamic'] = mappings_dynamic
     __args__['mappingsFields'] = mappings_fields
@@ -247,6 +268,7 @@ def get_search_index(analyzer: Optional[str] = None,
     __args__['projectId'] = project_id
     __args__['searchAnalyzer'] = search_analyzer
     __args__['status'] = status
+    __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getSearchIndex:getSearchIndex', __args__, opts=opts, typ=GetSearchIndexResult).value
 
@@ -256,6 +278,7 @@ def get_search_index(analyzer: Optional[str] = None,
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
         collection_name=pulumi.get(__ret__, 'collection_name'),
         database=pulumi.get(__ret__, 'database'),
+        fields=pulumi.get(__ret__, 'fields'),
         id=pulumi.get(__ret__, 'id'),
         index_id=pulumi.get(__ret__, 'index_id'),
         mappings_dynamic=pulumi.get(__ret__, 'mappings_dynamic'),
@@ -264,7 +287,8 @@ def get_search_index(analyzer: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         search_analyzer=pulumi.get(__ret__, 'search_analyzer'),
         status=pulumi.get(__ret__, 'status'),
-        synonyms=pulumi.get(__ret__, 'synonyms'))
+        synonyms=pulumi.get(__ret__, 'synonyms'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_search_index)
@@ -273,6 +297,7 @@ def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = No
                             cluster_name: Optional[pulumi.Input[str]] = None,
                             collection_name: Optional[pulumi.Input[Optional[str]]] = None,
                             database: Optional[pulumi.Input[Optional[str]]] = None,
+                            fields: Optional[pulumi.Input[Optional[str]]] = None,
                             index_id: Optional[pulumi.Input[str]] = None,
                             mappings_dynamic: Optional[pulumi.Input[Optional[bool]]] = None,
                             mappings_fields: Optional[pulumi.Input[Optional[str]]] = None,
@@ -280,6 +305,7 @@ def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = No
                             project_id: Optional[pulumi.Input[str]] = None,
                             search_analyzer: Optional[pulumi.Input[Optional[str]]] = None,
                             status: Optional[pulumi.Input[Optional[str]]] = None,
+                            type: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSearchIndexResult]:
     """
     `SearchIndex` describe a single search indexes. This represents a single search index that have been created.

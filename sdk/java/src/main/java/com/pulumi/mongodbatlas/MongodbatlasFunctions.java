@@ -158,6 +158,8 @@ import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
+import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
 import com.pulumi.mongodbatlas.inputs.GetSearchIndexPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
@@ -260,6 +262,7 @@ import com.pulumi.mongodbatlas.outputs.GetProjectIpAccessListResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetRolesOrgIdResult;
+import com.pulumi.mongodbatlas.outputs.GetSearchDeploymentResult;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexResult;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetServerlessInstanceResult;
@@ -11114,6 +11117,158 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getRolesOrgId:getRolesOrgId", TypeShape.of(GetRolesOrgIdResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.SearchDeployment` describes a search node deployment.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
+     *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetSearchDeploymentResult> getSearchDeployment(GetSearchDeploymentArgs args) {
+        return getSearchDeployment(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.SearchDeployment` describes a search node deployment.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
+     *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetSearchDeploymentResult> getSearchDeploymentPlain(GetSearchDeploymentPlainArgs args) {
+        return getSearchDeploymentPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.SearchDeployment` describes a search node deployment.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
+     *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetSearchDeploymentResult> getSearchDeployment(GetSearchDeploymentArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getSearchDeployment:getSearchDeployment", TypeShape.of(GetSearchDeploymentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.SearchDeployment` describes a search node deployment.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
+     *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetSearchDeploymentResult> getSearchDeploymentPlain(GetSearchDeploymentPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSearchDeployment:getSearchDeployment", TypeShape.of(GetSearchDeploymentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.SearchIndex` describe a single search indexes. This represents a single search index that have been created.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -11715,7 +11870,6 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -11739,16 +11893,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testFlowdock = new ThirdPartyIntegration(&#34;testFlowdock&#34;, ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .type(&#34;FLOWDOCK&#34;)
-     *             .flowName(&#34;&lt;FLOW-NAME&gt;&#34;)
-     *             .apiToken(&#34;&lt;API-TOKEN&gt;&#34;)
-     *             .orgName(&#34;&lt;ORG-NAME&gt;&#34;)
+     *             .type(&#34;DATADOG&#34;)
+     *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
+     *             .region(&#34;&lt;REGION&gt;&#34;)
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
-     *             .projectId(testFlowdock.projectId())
+     *             .projectId(testDatadog.projectId())
      *             .build());
      * 
      *     }
@@ -11765,7 +11918,6 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -11789,16 +11941,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testFlowdock = new ThirdPartyIntegration(&#34;testFlowdock&#34;, ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .type(&#34;FLOWDOCK&#34;)
-     *             .flowName(&#34;&lt;FLOW-NAME&gt;&#34;)
-     *             .apiToken(&#34;&lt;API-TOKEN&gt;&#34;)
-     *             .orgName(&#34;&lt;ORG-NAME&gt;&#34;)
+     *             .type(&#34;DATADOG&#34;)
+     *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
+     *             .region(&#34;&lt;REGION&gt;&#34;)
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
-     *             .projectId(testFlowdock.projectId())
+     *             .projectId(testDatadog.projectId())
      *             .build());
      * 
      *     }
@@ -11815,7 +11966,6 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -11839,16 +11989,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testFlowdock = new ThirdPartyIntegration(&#34;testFlowdock&#34;, ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .type(&#34;FLOWDOCK&#34;)
-     *             .flowName(&#34;&lt;FLOW-NAME&gt;&#34;)
-     *             .apiToken(&#34;&lt;API-TOKEN&gt;&#34;)
-     *             .orgName(&#34;&lt;ORG-NAME&gt;&#34;)
+     *             .type(&#34;DATADOG&#34;)
+     *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
+     *             .region(&#34;&lt;REGION&gt;&#34;)
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
-     *             .projectId(testFlowdock.projectId())
+     *             .projectId(testDatadog.projectId())
      *             .build());
      * 
      *     }
@@ -11865,7 +12014,6 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -11889,16 +12037,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testFlowdock = new ThirdPartyIntegration(&#34;testFlowdock&#34;, ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .type(&#34;FLOWDOCK&#34;)
-     *             .flowName(&#34;&lt;FLOW-NAME&gt;&#34;)
-     *             .apiToken(&#34;&lt;API-TOKEN&gt;&#34;)
-     *             .orgName(&#34;&lt;ORG-NAME&gt;&#34;)
+     *             .type(&#34;DATADOG&#34;)
+     *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
+     *             .region(&#34;&lt;REGION&gt;&#34;)
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
-     *             .projectId(testFlowdock.projectId())
+     *             .projectId(testDatadog.projectId())
      *             .build());
      * 
      *     }
@@ -11910,13 +12057,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", TypeShape.of(GetThirdPartyIntegrationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+     * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
      * applied across the project.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -11946,12 +12092,11 @@ public final class MongodbatlasFunctions {
      *             .serviceKey(&#34;&lt;PAGER-DUTY-SERVICE-KEY&gt;&#34;)
      *             .build());
      * 
-     *         var testFlowdock = new ThirdPartyIntegration(&#34;testFlowdock&#34;, ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .type(&#34;FLOWDOCK&#34;)
-     *             .flowName(&#34;&lt;FLOW-NAME&gt;&#34;)
-     *             .apiToken(&#34;&lt;API-TOKEN&gt;&#34;)
-     *             .orgName(&#34;&lt;ORG-NAME&gt;&#34;)
+     *             .type(&#34;DATADOG&#34;)
+     *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
+     *             .region(&#34;&lt;REGION&gt;&#34;)
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegrations(GetThirdPartyIntegrationsArgs.builder()
@@ -11967,13 +12112,12 @@ public final class MongodbatlasFunctions {
         return getThirdPartyIntegrations(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+     * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
      * applied across the project.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -12003,12 +12147,11 @@ public final class MongodbatlasFunctions {
      *             .serviceKey(&#34;&lt;PAGER-DUTY-SERVICE-KEY&gt;&#34;)
      *             .build());
      * 
-     *         var testFlowdock = new ThirdPartyIntegration(&#34;testFlowdock&#34;, ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .type(&#34;FLOWDOCK&#34;)
-     *             .flowName(&#34;&lt;FLOW-NAME&gt;&#34;)
-     *             .apiToken(&#34;&lt;API-TOKEN&gt;&#34;)
-     *             .orgName(&#34;&lt;ORG-NAME&gt;&#34;)
+     *             .type(&#34;DATADOG&#34;)
+     *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
+     *             .region(&#34;&lt;REGION&gt;&#34;)
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegrations(GetThirdPartyIntegrationsArgs.builder()
@@ -12024,13 +12167,12 @@ public final class MongodbatlasFunctions {
         return getThirdPartyIntegrationsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+     * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
      * applied across the project.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -12060,12 +12202,11 @@ public final class MongodbatlasFunctions {
      *             .serviceKey(&#34;&lt;PAGER-DUTY-SERVICE-KEY&gt;&#34;)
      *             .build());
      * 
-     *         var testFlowdock = new ThirdPartyIntegration(&#34;testFlowdock&#34;, ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .type(&#34;FLOWDOCK&#34;)
-     *             .flowName(&#34;&lt;FLOW-NAME&gt;&#34;)
-     *             .apiToken(&#34;&lt;API-TOKEN&gt;&#34;)
-     *             .orgName(&#34;&lt;ORG-NAME&gt;&#34;)
+     *             .type(&#34;DATADOG&#34;)
+     *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
+     *             .region(&#34;&lt;REGION&gt;&#34;)
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegrations(GetThirdPartyIntegrationsArgs.builder()
@@ -12081,13 +12222,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", TypeShape.of(GetThirdPartyIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+     * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
      * applied across the project.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -12117,12 +12257,11 @@ public final class MongodbatlasFunctions {
      *             .serviceKey(&#34;&lt;PAGER-DUTY-SERVICE-KEY&gt;&#34;)
      *             .build());
      * 
-     *         var testFlowdock = new ThirdPartyIntegration(&#34;testFlowdock&#34;, ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
      *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
-     *             .type(&#34;FLOWDOCK&#34;)
-     *             .flowName(&#34;&lt;FLOW-NAME&gt;&#34;)
-     *             .apiToken(&#34;&lt;API-TOKEN&gt;&#34;)
-     *             .orgName(&#34;&lt;ORG-NAME&gt;&#34;)
+     *             .type(&#34;DATADOG&#34;)
+     *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
+     *             .region(&#34;&lt;REGION&gt;&#34;)
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegrations(GetThirdPartyIntegrationsArgs.builder()

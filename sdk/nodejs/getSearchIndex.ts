@@ -33,6 +33,7 @@ export function getSearchIndex(args: GetSearchIndexArgs, opts?: pulumi.InvokeOpt
         "clusterName": args.clusterName,
         "collectionName": args.collectionName,
         "database": args.database,
+        "fields": args.fields,
         "indexId": args.indexId,
         "mappingsDynamic": args.mappingsDynamic,
         "mappingsFields": args.mappingsFields,
@@ -40,6 +41,7 @@ export function getSearchIndex(args: GetSearchIndexArgs, opts?: pulumi.InvokeOpt
         "projectId": args.projectId,
         "searchAnalyzer": args.searchAnalyzer,
         "status": args.status,
+        "type": args.type,
     }, opts);
 }
 
@@ -67,6 +69,7 @@ export interface GetSearchIndexArgs {
      * Name of the database the collection is in.
      */
     database?: string;
+    fields?: string;
     /**
      * The unique identifier of the Atlas Search index. Use the `mongodbatlas.getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
      */
@@ -92,6 +95,7 @@ export interface GetSearchIndexArgs {
      */
     searchAnalyzer?: string;
     status?: string;
+    type?: string;
 }
 
 /**
@@ -115,6 +119,7 @@ export interface GetSearchIndexResult {
      * Name of the database the collection is in.
      */
     readonly database?: string;
+    readonly fields?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -145,6 +150,7 @@ export interface GetSearchIndexResult {
      * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
      */
     readonly synonyms: outputs.GetSearchIndexSynonym[];
+    readonly type?: string;
 }
 /**
  * `mongodbatlas.SearchIndex` describe a single search indexes. This represents a single search index that have been created.
@@ -192,6 +198,7 @@ export interface GetSearchIndexOutputArgs {
      * Name of the database the collection is in.
      */
     database?: pulumi.Input<string>;
+    fields?: pulumi.Input<string>;
     /**
      * The unique identifier of the Atlas Search index. Use the `mongodbatlas.getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
      */
@@ -217,4 +224,5 @@ export interface GetSearchIndexOutputArgs {
      */
     searchAnalyzer?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }

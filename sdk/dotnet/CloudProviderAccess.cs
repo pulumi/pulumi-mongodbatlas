@@ -73,6 +73,71 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// ### With AWS
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setupOnly", new()
+    ///     {
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("authRole", new()
+    ///     {
+    ///         ProjectId = setupOnly.ProjectId,
+    ///         RoleId = setupOnly.RoleId,
+    ///         Aws = new Mongodbatlas.Inputs.CloudProviderAccessAuthorizationAwsArgs
+    ///         {
+    ///             IamAssumedRoleArn = "arn:aws:iam::772401394250:role/test-user-role",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setupOnly", new()
+    ///     {
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///         ProviderName = "AZURE",
+    ///         AzureConfigs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudProviderAccessSetupAzureConfigArgs
+    ///             {
+    ///                 AtlasAzureAppId = "9f2deb0d-be22-4524-a403-df531868bac0",
+    ///                 ServicePrincipalId = "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+    ///                 TenantId = "91402384-d71e-22f5-22dd-759e272cdc1c",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("authRole", new()
+    ///     {
+    ///         ProjectId = setupOnly.ProjectId,
+    ///         RoleId = setupOnly.RoleId,
+    ///         Azure = new Mongodbatlas.Inputs.CloudProviderAccessAuthorizationAzureArgs
+    ///         {
+    ///             AtlasAzureAppId = "9f2deb0d-be22-4524-a403-df531868bac0",
+    ///             ServicePrincipalId = "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+    ///             TenantId = "91402384-d71e-22f5-22dd-759e272cdc1c",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// ## Authorize role
     /// 
     /// Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.

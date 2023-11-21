@@ -21,8 +21,6 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
- * &gt; **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
- * 
  * &gt; **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
  * 
  * &gt; **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
@@ -30,7 +28,6 @@ import javax.annotation.Nullable;
  * &gt; **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
  * 
  * ## Example Usage
- * 
  * ```java
  * package generated_program;
  * 
@@ -52,12 +49,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testFlowdock = new ThirdPartyIntegration(&#34;testFlowdock&#34;, ThirdPartyIntegrationArgs.builder()        
- *             .apiToken(&#34;&lt;API-TOKEN&gt;&#34;)
- *             .flowName(&#34;&lt;FLOW-NAME&gt;&#34;)
- *             .orgName(&#34;&lt;ORG-NAME&gt;&#34;)
+ *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
+ *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .type(&#34;FLOWDOCK&#34;)
+ *             .region(&#34;&lt;REGION&gt;&#34;)
+ *             .type(&#34;DATADOG&#34;)
  *             .build());
  * 
  *     }
@@ -251,12 +247,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     * * NEW_RELIC*
-     * * FLOWDOCK*
-     * 
-     * *resource has now been fully deprecated as part of v1.10.0 release
-     * 
-     * Additional values based on Type
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
@@ -271,12 +261,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     * * NEW_RELIC*
-     * * FLOWDOCK*
-     * 
-     * *resource has now been fully deprecated as part of v1.10.0 release
-     * 
-     * Additional values based on Type
      * 
      */
     public Output<String> type() {

@@ -72,10 +72,28 @@ class AwaitableGetThirdPartyIntegrationsResult(GetThirdPartyIntegrationsResult):
 def get_third_party_integrations(project_id: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetThirdPartyIntegrationsResult:
     """
-    `get_third_party_integrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+    `get_third_party_integrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
     applied across the project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_pager_duty = mongodbatlas.ThirdPartyIntegration("testPagerDuty",
+        project_id="<PROJECT-ID>",
+        type="PAGER_DUTY",
+        service_key="<PAGER-DUTY-SERVICE-KEY>")
+    test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+        project_id="<PROJECT-ID>",
+        type="DATADOG",
+        api_key="<API-KEY>",
+        region="<REGION>")
+    test = mongodbatlas.get_third_party_integrations_output(project_id=test_pager_duty.project_id)
+    ```
 
 
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
@@ -95,10 +113,28 @@ def get_third_party_integrations(project_id: Optional[str] = None,
 def get_third_party_integrations_output(project_id: Optional[pulumi.Input[str]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetThirdPartyIntegrationsResult]:
     """
-    `get_third_party_integrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+    `get_third_party_integrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
     applied across the project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_pager_duty = mongodbatlas.ThirdPartyIntegration("testPagerDuty",
+        project_id="<PROJECT-ID>",
+        type="PAGER_DUTY",
+        service_key="<PAGER-DUTY-SERVICE-KEY>")
+    test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+        project_id="<PROJECT-ID>",
+        type="DATADOG",
+        api_key="<API-KEY>",
+        region="<REGION>")
+    test = mongodbatlas.get_third_party_integrations_output(project_id=test_pager_duty.project_id)
+    ```
 
 
     :param str project_id: The unique ID for the project to get all Third-Party service integrations

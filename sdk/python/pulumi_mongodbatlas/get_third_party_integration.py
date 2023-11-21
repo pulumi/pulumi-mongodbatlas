@@ -21,16 +21,13 @@ class GetThirdPartyIntegrationResult:
     """
     A collection of values returned by getThirdPartyIntegration.
     """
-    def __init__(__self__, account_id=None, api_key=None, api_token=None, channel_name=None, enabled=None, id=None, license_key=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, scheme=None, secret=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
+    def __init__(__self__, account_id=None, api_key=None, channel_name=None, enabled=None, id=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, scheme=None, secret=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
         if account_id and not isinstance(account_id, str):
             raise TypeError("Expected argument 'account_id' to be a str")
         pulumi.set(__self__, "account_id", account_id)
         if api_key and not isinstance(api_key, str):
             raise TypeError("Expected argument 'api_key' to be a str")
         pulumi.set(__self__, "api_key", api_key)
-        if api_token and not isinstance(api_token, str):
-            raise TypeError("Expected argument 'api_token' to be a str")
-        pulumi.set(__self__, "api_token", api_token)
         if channel_name and not isinstance(channel_name, str):
             raise TypeError("Expected argument 'channel_name' to be a str")
         pulumi.set(__self__, "channel_name", channel_name)
@@ -40,9 +37,6 @@ class GetThirdPartyIntegrationResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if license_key and not isinstance(license_key, str):
-            raise TypeError("Expected argument 'license_key' to be a str")
-        pulumi.set(__self__, "license_key", license_key)
         if microsoft_teams_webhook_url and not isinstance(microsoft_teams_webhook_url, str):
             raise TypeError("Expected argument 'microsoft_teams_webhook_url' to be a str")
         pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
@@ -83,9 +77,6 @@ class GetThirdPartyIntegrationResult:
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> str:
-        """
-        Unique identifier of your New Relic account.
-        """
         return pulumi.get(self, "account_id")
 
     @property
@@ -95,14 +86,6 @@ class GetThirdPartyIntegrationResult:
         Your API Key.
         """
         return pulumi.get(self, "api_key")
-
-    @property
-    @pulumi.getter(name="apiToken")
-    def api_token(self) -> str:
-        """
-        Your API Token.
-        """
-        return pulumi.get(self, "api_token")
 
     @property
     @pulumi.getter(name="channelName")
@@ -124,14 +107,6 @@ class GetThirdPartyIntegrationResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="licenseKey")
-    def license_key(self) -> str:
-        """
-        Your License Key.
-        """
-        return pulumi.get(self, "license_key")
 
     @property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
@@ -232,11 +207,9 @@ class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
         return GetThirdPartyIntegrationResult(
             account_id=self.account_id,
             api_key=self.api_key,
-            api_token=self.api_token,
             channel_name=self.channel_name,
             enabled=self.enabled,
             id=self.id,
-            license_key=self.license_key,
             microsoft_teams_webhook_url=self.microsoft_teams_webhook_url,
             project_id=self.project_id,
             region=self.region,
@@ -264,6 +237,20 @@ def get_third_party_integration(enabled: Optional[bool] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+        project_id="<PROJECT-ID>",
+        type="DATADOG",
+        api_key="<API-KEY>",
+        region="<REGION>")
+    test = mongodbatlas.get_third_party_integration_output(project_id=test_datadog.project_id)
+    ```
+
 
     :param bool enabled: Whether your cluster has Prometheus enabled.
     :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
@@ -273,16 +260,11 @@ def get_third_party_integration(enabled: Optional[bool] = None,
     :param str type: Third-Party service integration type
            * PAGER_DUTY
            * DATADOG
-           * NEW_RELIC*
            * OPS_GENIE
            * VICTOR_OPS
-           * FLOWDOCK*
            * WEBHOOK
            * MICROSOFT_TEAMS
            * PROMETHEUS
-           
-           *resource is now deprecated and will be removed in the next major version, 1.9.0
-           **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
     :param str user_name: Your Prometheus username.
     """
     __args__ = dict()
@@ -299,11 +281,9 @@ def get_third_party_integration(enabled: Optional[bool] = None,
     return AwaitableGetThirdPartyIntegrationResult(
         account_id=pulumi.get(__ret__, 'account_id'),
         api_key=pulumi.get(__ret__, 'api_key'),
-        api_token=pulumi.get(__ret__, 'api_token'),
         channel_name=pulumi.get(__ret__, 'channel_name'),
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
-        license_key=pulumi.get(__ret__, 'license_key'),
         microsoft_teams_webhook_url=pulumi.get(__ret__, 'microsoft_teams_webhook_url'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
@@ -332,6 +312,20 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+        project_id="<PROJECT-ID>",
+        type="DATADOG",
+        api_key="<API-KEY>",
+        region="<REGION>")
+    test = mongodbatlas.get_third_party_integration_output(project_id=test_datadog.project_id)
+    ```
+
 
     :param bool enabled: Whether your cluster has Prometheus enabled.
     :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
@@ -341,16 +335,11 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
     :param str type: Third-Party service integration type
            * PAGER_DUTY
            * DATADOG
-           * NEW_RELIC*
            * OPS_GENIE
            * VICTOR_OPS
-           * FLOWDOCK*
            * WEBHOOK
            * MICROSOFT_TEAMS
            * PROMETHEUS
-           
-           *resource is now deprecated and will be removed in the next major version, 1.9.0
-           **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
     :param str user_name: Your Prometheus username.
     """
     ...

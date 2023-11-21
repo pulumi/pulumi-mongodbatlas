@@ -45,6 +45,47 @@ import * as utilities from "./utilities";
  *     providerName: "AZURE",
  * });
  * ```
+ * ### With AWS
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setupOnly", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "AWS",
+ * });
+ * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("authRole", {
+ *     projectId: setupOnly.projectId,
+ *     roleId: setupOnly.roleId,
+ *     aws: {
+ *         iamAssumedRoleArn: "arn:aws:iam::772401394250:role/test-user-role",
+ *     },
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setupOnly", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "AZURE",
+ *     azureConfigs: [{
+ *         atlasAzureAppId: "9f2deb0d-be22-4524-a403-df531868bac0",
+ *         servicePrincipalId: "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+ *         tenantId: "91402384-d71e-22f5-22dd-759e272cdc1c",
+ *     }],
+ * });
+ * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("authRole", {
+ *     projectId: setupOnly.projectId,
+ *     roleId: setupOnly.roleId,
+ *     azure: {
+ *         atlasAzureAppId: "9f2deb0d-be22-4524-a403-df531868bac0",
+ *         servicePrincipalId: "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+ *         tenantId: "91402384-d71e-22f5-22dd-759e272cdc1c",
+ *     },
+ * });
+ * ```
  * ## Authorize role
  *
  * Once the resource is created add the field `iamAssumedRoleArn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.

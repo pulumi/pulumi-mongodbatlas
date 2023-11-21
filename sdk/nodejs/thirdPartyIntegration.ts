@@ -9,13 +9,25 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
- * > **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
- *
  * > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
  *
  * > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
  *
  * > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ *     apiKey: "<API-KEY>",
+ *     projectId: "<PROJECT-ID>",
+ *     region: "<REGION>",
+ *     type: "DATADOG",
+ * });
+ * ```
  *
  * ## Import
  *
@@ -109,12 +121,6 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     * * NEW_RELIC*
-     * * FLOWDOCK*
-     *
-     * *resource has now been fully deprecated as part of v1.10.0 release
-     *
-     * Additional values based on Type
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -246,12 +252,6 @@ export interface ThirdPartyIntegrationState {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     * * NEW_RELIC*
-     * * FLOWDOCK*
-     *
-     * *resource has now been fully deprecated as part of v1.10.0 release
-     *
-     * Additional values based on Type
      */
     type?: pulumi.Input<string>;
     /**
@@ -323,12 +323,6 @@ export interface ThirdPartyIntegrationArgs {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     * * NEW_RELIC*
-     * * FLOWDOCK*
-     *
-     * *resource has now been fully deprecated as part of v1.10.0 release
-     *
-     * Additional values based on Type
      */
     type: pulumi.Input<string>;
     /**

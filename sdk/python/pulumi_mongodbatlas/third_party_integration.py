@@ -41,12 +41,6 @@ class ThirdPartyIntegrationArgs:
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-               * NEW_RELIC*
-               * FLOWDOCK*
-               
-               *resource has now been fully deprecated as part of v1.10.0 release
-               
-               Additional values based on Type
         :param pulumi.Input[str] api_key: Your API Key.
         :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
@@ -115,12 +109,6 @@ class ThirdPartyIntegrationArgs:
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
-        * NEW_RELIC*
-        * FLOWDOCK*
-
-        *resource has now been fully deprecated as part of v1.10.0 release
-
-        Additional values based on Type
         """
         return pulumi.get(self, "type")
 
@@ -331,12 +319,6 @@ class _ThirdPartyIntegrationState:
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-               * NEW_RELIC*
-               * FLOWDOCK*
-               
-               *resource has now been fully deprecated as part of v1.10.0 release
-               
-               Additional values based on Type
         :param pulumi.Input[str] url: Your webhook URL.
         :param pulumi.Input[str] user_name: Your Prometheus username.
         """
@@ -535,12 +517,6 @@ class _ThirdPartyIntegrationState:
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
-        * NEW_RELIC*
-        * FLOWDOCK*
-
-        *resource has now been fully deprecated as part of v1.10.0 release
-
-        Additional values based on Type
         """
         return pulumi.get(self, "type")
 
@@ -600,13 +576,24 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        > **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
-
         > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 
         > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
 
         > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+            api_key="<API-KEY>",
+            project_id="<PROJECT-ID>",
+            region="<REGION>",
+            type="DATADOG")
+        ```
 
         ## Import
 
@@ -638,12 +625,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-               * NEW_RELIC*
-               * FLOWDOCK*
-               
-               *resource has now been fully deprecated as part of v1.10.0 release
-               
-               Additional values based on Type
         :param pulumi.Input[str] url: Your webhook URL.
         :param pulumi.Input[str] user_name: Your Prometheus username.
         """
@@ -658,13 +639,24 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        > **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
-
         > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 
         > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
 
         > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+            api_key="<API-KEY>",
+            project_id="<PROJECT-ID>",
+            region="<REGION>",
+            type="DATADOG")
+        ```
 
         ## Import
 
@@ -789,12 +781,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-               * NEW_RELIC*
-               * FLOWDOCK*
-               
-               *resource has now been fully deprecated as part of v1.10.0 release
-               
-               Additional values based on Type
         :param pulumi.Input[str] url: Your webhook URL.
         :param pulumi.Input[str] user_name: Your Prometheus username.
         """
@@ -930,12 +916,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
-        * NEW_RELIC*
-        * FLOWDOCK*
-
-        *resource has now been fully deprecated as part of v1.10.0 release
-
-        Additional values based on Type
         """
         return pulumi.get(self, "type")
 

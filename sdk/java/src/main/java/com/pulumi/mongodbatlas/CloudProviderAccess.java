@@ -124,6 +124,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
  * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
  * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -145,7 +146,9 @@ import javax.annotation.Nullable;
  *         var authRole = new CloudProviderAccessAuthorization(&#34;authRole&#34;, CloudProviderAccessAuthorizationArgs.builder()        
  *             .projectId(setupOnly.projectId())
  *             .roleId(setupOnly.roleId())
- *             .awsConfig(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+ *                 .iamAssumedRoleArn(&#34;arn:aws:iam::772401394250:role/test-user-role&#34;)
+ *                 .build())
  *             .build());
  * 
  *     }

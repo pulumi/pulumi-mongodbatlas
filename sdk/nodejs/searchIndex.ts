@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
  *
  * ## Example Usage
- * ### Basic
+ * ### Basic search index
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -25,7 +25,27 @@ import * as utilities from "./utilities";
  *     searchAnalyzer: "lucene.standard",
  * });
  * ```
- * ### Advanced (with custom analyzers)
+ * ### Basic vector index
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test_basic_search_vector = new mongodbatlas.SearchIndex("test-basic-search-vector", {
+ *     projectId: "<PROJECT_ID>",
+ *     clusterName: "<CLUSTER_NAME>",
+ *     collectionName: "collection_test",
+ *     database: "database_test",
+ *     type: "vectorSearch",
+ *     fields: `[{
+ *       "type": "vector",
+ *       "path": "plot_embedding",
+ *       "numDimensions": 1536,
+ *       "similarity": "euclidean"
+ * }]
+ * `,
+ * });
+ * ```
+ * ### Advanced search index (with custom analyzers)
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -143,13 +163,17 @@ export class SearchIndex extends pulumi.CustomResource {
      * Name of the database the collection is in.
      */
     public readonly database!: pulumi.Output<string>;
+    /**
+     * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     */
+    public readonly fields!: pulumi.Output<string | undefined>;
     public /*out*/ readonly indexId!: pulumi.Output<string>;
     /**
-     * Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
      */
     public readonly mappingsDynamic!: pulumi.Output<boolean | undefined>;
     /**
-     * attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
     public readonly mappingsFields!: pulumi.Output<string | undefined>;
     /**
@@ -169,6 +193,10 @@ export class SearchIndex extends pulumi.CustomResource {
      * Synonyms mapping definition to use in this index.
      */
     public readonly synonyms!: pulumi.Output<outputs.SearchIndexSynonym[] | undefined>;
+    /**
+     * Type of index: `search` or `vectorSearch`. Default type is `search`.
+     */
+    public readonly type!: pulumi.Output<string | undefined>;
     public readonly waitForIndexBuildCompletion!: pulumi.Output<boolean | undefined>;
 
     /**
@@ -189,6 +217,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
             resourceInputs["collectionName"] = state ? state.collectionName : undefined;
             resourceInputs["database"] = state ? state.database : undefined;
+            resourceInputs["fields"] = state ? state.fields : undefined;
             resourceInputs["indexId"] = state ? state.indexId : undefined;
             resourceInputs["mappingsDynamic"] = state ? state.mappingsDynamic : undefined;
             resourceInputs["mappingsFields"] = state ? state.mappingsFields : undefined;
@@ -197,6 +226,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["searchAnalyzer"] = state ? state.searchAnalyzer : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["synonyms"] = state ? state.synonyms : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["waitForIndexBuildCompletion"] = state ? state.waitForIndexBuildCompletion : undefined;
         } else {
             const args = argsOrState as SearchIndexArgs | undefined;
@@ -217,6 +247,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["clusterName"] = args ? args.clusterName : undefined;
             resourceInputs["collectionName"] = args ? args.collectionName : undefined;
             resourceInputs["database"] = args ? args.database : undefined;
+            resourceInputs["fields"] = args ? args.fields : undefined;
             resourceInputs["mappingsDynamic"] = args ? args.mappingsDynamic : undefined;
             resourceInputs["mappingsFields"] = args ? args.mappingsFields : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -224,6 +255,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["searchAnalyzer"] = args ? args.searchAnalyzer : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["synonyms"] = args ? args.synonyms : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["waitForIndexBuildCompletion"] = args ? args.waitForIndexBuildCompletion : undefined;
             resourceInputs["indexId"] = undefined /*out*/;
         }
@@ -256,13 +288,17 @@ export interface SearchIndexState {
      * Name of the database the collection is in.
      */
     database?: pulumi.Input<string>;
+    /**
+     * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     */
+    fields?: pulumi.Input<string>;
     indexId?: pulumi.Input<string>;
     /**
-     * Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
      */
     mappingsDynamic?: pulumi.Input<boolean>;
     /**
-     * attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
     mappingsFields?: pulumi.Input<string>;
     /**
@@ -282,6 +318,10 @@ export interface SearchIndexState {
      * Synonyms mapping definition to use in this index.
      */
     synonyms?: pulumi.Input<pulumi.Input<inputs.SearchIndexSynonym>[]>;
+    /**
+     * Type of index: `search` or `vectorSearch`. Default type is `search`.
+     */
+    type?: pulumi.Input<string>;
     waitForIndexBuildCompletion?: pulumi.Input<boolean>;
 }
 
@@ -310,11 +350,15 @@ export interface SearchIndexArgs {
      */
     database: pulumi.Input<string>;
     /**
-     * Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+     * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     */
+    fields?: pulumi.Input<string>;
+    /**
+     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
      */
     mappingsDynamic?: pulumi.Input<boolean>;
     /**
-     * attribute is required when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
     mappingsFields?: pulumi.Input<string>;
     /**
@@ -334,5 +378,9 @@ export interface SearchIndexArgs {
      * Synonyms mapping definition to use in this index.
      */
     synonyms?: pulumi.Input<pulumi.Input<inputs.SearchIndexSynonym>[]>;
+    /**
+     * Type of index: `search` or `vectorSearch`. Default type is `search`.
+     */
+    type?: pulumi.Input<string>;
     waitForIndexBuildCompletion?: pulumi.Input<boolean>;
 }

@@ -64,6 +64,7 @@ type LookupSearchIndexArgs struct {
 	CollectionName *string `pulumi:"collectionName"`
 	// Name of the database the collection is in.
 	Database *string `pulumi:"database"`
+	Fields   *string `pulumi:"fields"`
 	// The unique identifier of the Atlas Search index. Use the `getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
 	IndexId string `pulumi:"indexId"`
 	// Flag indicating whether the index uses dynamic or static mappings.
@@ -77,6 +78,7 @@ type LookupSearchIndexArgs struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
 	Status         *string `pulumi:"status"`
+	Type           *string `pulumi:"type"`
 }
 
 // A collection of values returned by getSearchIndex.
@@ -90,6 +92,7 @@ type LookupSearchIndexResult struct {
 	CollectionName *string `pulumi:"collectionName"`
 	// Name of the database the collection is in.
 	Database *string `pulumi:"database"`
+	Fields   *string `pulumi:"fields"`
 	// The provider-assigned unique ID for this managed resource.
 	Id      string `pulumi:"id"`
 	IndexId string `pulumi:"indexId"`
@@ -108,6 +111,7 @@ type LookupSearchIndexResult struct {
 	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
 	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 	Synonyms []GetSearchIndexSynonym `pulumi:"synonyms"`
+	Type     *string                 `pulumi:"type"`
 }
 
 func LookupSearchIndexOutput(ctx *pulumi.Context, args LookupSearchIndexOutputArgs, opts ...pulumi.InvokeOption) LookupSearchIndexResultOutput {
@@ -135,6 +139,7 @@ type LookupSearchIndexOutputArgs struct {
 	CollectionName pulumi.StringPtrInput `pulumi:"collectionName"`
 	// Name of the database the collection is in.
 	Database pulumi.StringPtrInput `pulumi:"database"`
+	Fields   pulumi.StringPtrInput `pulumi:"fields"`
 	// The unique identifier of the Atlas Search index. Use the `getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
 	IndexId pulumi.StringInput `pulumi:"indexId"`
 	// Flag indicating whether the index uses dynamic or static mappings.
@@ -148,6 +153,7 @@ type LookupSearchIndexOutputArgs struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer pulumi.StringPtrInput `pulumi:"searchAnalyzer"`
 	Status         pulumi.StringPtrInput `pulumi:"status"`
+	Type           pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (LookupSearchIndexOutputArgs) ElementType() reflect.Type {
@@ -193,6 +199,10 @@ func (o LookupSearchIndexResultOutput) Database() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.Database }).(pulumi.StringPtrOutput)
 }
 
+func (o LookupSearchIndexResultOutput) Fields() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.Fields }).(pulumi.StringPtrOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupSearchIndexResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Id }).(pulumi.StringOutput)
@@ -236,6 +246,10 @@ func (o LookupSearchIndexResultOutput) Status() pulumi.StringOutput {
 // * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 func (o LookupSearchIndexResultOutput) Synonyms() GetSearchIndexSynonymArrayOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) []GetSearchIndexSynonym { return v.Synonyms }).(GetSearchIndexSynonymArrayOutput)
+}
+
+func (o LookupSearchIndexResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 func init() {

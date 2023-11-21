@@ -111,6 +111,9 @@ namespace Pulumi.Mongodbatlas
         [Input("database")]
         public string? Database { get; set; }
 
+        [Input("fields")]
+        public string? Fields { get; set; }
+
         /// <summary>
         /// The unique identifier of the Atlas Search index. Use the `mongodbatlas.getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
         /// </summary>
@@ -150,6 +153,9 @@ namespace Pulumi.Mongodbatlas
         [Input("status")]
         public string? Status { get; set; }
 
+        [Input("type")]
+        public string? Type { get; set; }
+
         public GetSearchIndexArgs()
         {
         }
@@ -187,6 +193,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("database")]
         public Input<string>? Database { get; set; }
+
+        [Input("fields")]
+        public Input<string>? Fields { get; set; }
 
         /// <summary>
         /// The unique identifier of the Atlas Search index. Use the `mongodbatlas.getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
@@ -227,6 +236,9 @@ namespace Pulumi.Mongodbatlas
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         public GetSearchIndexInvokeArgs()
         {
         }
@@ -254,6 +266,7 @@ namespace Pulumi.Mongodbatlas
         /// Name of the database the collection is in.
         /// </summary>
         public readonly string? Database;
+        public readonly string? Fields;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -284,6 +297,7 @@ namespace Pulumi.Mongodbatlas
         /// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSearchIndexSynonymResult> Synonyms;
+        public readonly string? Type;
 
         [OutputConstructor]
         private GetSearchIndexResult(
@@ -296,6 +310,8 @@ namespace Pulumi.Mongodbatlas
             string? collectionName,
 
             string? database,
+
+            string? fields,
 
             string id,
 
@@ -313,13 +329,16 @@ namespace Pulumi.Mongodbatlas
 
             string status,
 
-            ImmutableArray<Outputs.GetSearchIndexSynonymResult> synonyms)
+            ImmutableArray<Outputs.GetSearchIndexSynonymResult> synonyms,
+
+            string? type)
         {
             Analyzer = analyzer;
             Analyzers = analyzers;
             ClusterName = clusterName;
             CollectionName = collectionName;
             Database = database;
+            Fields = fields;
             Id = id;
             IndexId = indexId;
             MappingsDynamic = mappingsDynamic;
@@ -329,6 +348,7 @@ namespace Pulumi.Mongodbatlas
             SearchAnalyzer = searchAnalyzer;
             Status = status;
             Synonyms = synonyms;
+            Type = type;
         }
     }
 }

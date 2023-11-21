@@ -33,6 +33,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// (Required) Name of the database the collection is in.
         /// </summary>
         public readonly string Database;
+        public readonly string? Fields;
         public readonly string IndexId;
         /// <summary>
         /// Flag indicating whether the index uses dynamic or static mappings.
@@ -62,6 +63,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSearchIndexesResultSynonymResult> Synonyms;
+        public readonly string? Type;
         public readonly bool? WaitForIndexBuildCompletion;
 
         [OutputConstructor]
@@ -75,6 +77,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             string collectionName,
 
             string database,
+
+            string? fields,
 
             string indexId,
 
@@ -92,6 +96,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetSearchIndexesResultSynonymResult> synonyms,
 
+            string? type,
+
             bool? waitForIndexBuildCompletion)
         {
             Analyzer = analyzer;
@@ -99,6 +105,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ClusterName = clusterName;
             CollectionName = collectionName;
             Database = database;
+            Fields = fields;
             IndexId = indexId;
             MappingsDynamic = mappingsDynamic;
             MappingsFields = mappingsFields;
@@ -107,6 +114,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             SearchAnalyzer = searchAnalyzer;
             Status = status;
             Synonyms = synonyms;
+            Type = type;
             WaitForIndexBuildCompletion = waitForIndexBuildCompletion;
         }
     }

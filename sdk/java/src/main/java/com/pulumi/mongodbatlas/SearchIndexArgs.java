@@ -94,14 +94,29 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+     * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * 
+     */
+    @Import(name="fields")
+    private @Nullable Output<String> fields;
+
+    /**
+     * @return Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * 
+     */
+    public Optional<Output<String>> fields() {
+        return Optional.ofNullable(this.fields);
+    }
+
+    /**
+     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
      * 
      */
     @Import(name="mappingsDynamic")
     private @Nullable Output<Boolean> mappingsDynamic;
 
     /**
-     * @return Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+     * @return Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
      * 
      */
     public Optional<Output<Boolean>> mappingsDynamic() {
@@ -109,14 +124,14 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
     @Import(name="mappingsFields")
     private @Nullable Output<String> mappingsFields;
 
     /**
-     * @return attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+     * @return attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
     public Optional<Output<String>> mappingsFields() {
@@ -190,6 +205,21 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.synonyms);
     }
 
+    /**
+     * Type of index: `search` or `vectorSearch`. Default type is `search`.
+     * 
+     */
+    @Import(name="type")
+    private @Nullable Output<String> type;
+
+    /**
+     * @return Type of index: `search` or `vectorSearch`. Default type is `search`.
+     * 
+     */
+    public Optional<Output<String>> type() {
+        return Optional.ofNullable(this.type);
+    }
+
     @Import(name="waitForIndexBuildCompletion")
     private @Nullable Output<Boolean> waitForIndexBuildCompletion;
 
@@ -205,6 +235,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         this.clusterName = $.clusterName;
         this.collectionName = $.collectionName;
         this.database = $.database;
+        this.fields = $.fields;
         this.mappingsDynamic = $.mappingsDynamic;
         this.mappingsFields = $.mappingsFields;
         this.name = $.name;
@@ -212,6 +243,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         this.searchAnalyzer = $.searchAnalyzer;
         this.status = $.status;
         this.synonyms = $.synonyms;
+        this.type = $.type;
         this.waitForIndexBuildCompletion = $.waitForIndexBuildCompletion;
     }
 
@@ -339,7 +371,28 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mappingsDynamic Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+         * @param fields Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fields(@Nullable Output<String> fields) {
+            $.fields = fields;
+            return this;
+        }
+
+        /**
+         * @param fields Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fields(String fields) {
+            return fields(Output.of(fields));
+        }
+
+        /**
+         * @param mappingsDynamic Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
          * 
          * @return builder
          * 
@@ -350,7 +403,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mappingsDynamic Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+         * @param mappingsDynamic Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
          * 
          * @return builder
          * 
@@ -360,7 +413,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mappingsFields attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+         * @param mappingsFields attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
          * 
          * @return builder
          * 
@@ -371,7 +424,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mappingsFields attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+         * @param mappingsFields attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
          * 
          * @return builder
          * 
@@ -481,6 +534,27 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder synonyms(SearchIndexSynonymArgs... synonyms) {
             return synonyms(List.of(synonyms));
+        }
+
+        /**
+         * @param type Type of index: `search` or `vectorSearch`. Default type is `search`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(@Nullable Output<String> type) {
+            $.type = type;
+            return this;
+        }
+
+        /**
+         * @param type Type of index: `search` or `vectorSearch`. Default type is `search`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(String type) {
+            return type(Output.of(type));
         }
 
         public Builder waitForIndexBuildCompletion(@Nullable Output<Boolean> waitForIndexBuildCompletion) {

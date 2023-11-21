@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  * `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
  * 
  * ## Example Usage
- * ### Basic
+ * ### Basic search index
  * ```java
  * package generated_program;
  * 
@@ -56,7 +56,48 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
- * ### Advanced (with custom analyzers)
+ * ### Basic vector index
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.SearchIndex;
+ * import com.pulumi.mongodbatlas.SearchIndexArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test_basic_search_vector = new SearchIndex(&#34;test-basic-search-vector&#34;, SearchIndexArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
+ *             .collectionName(&#34;collection_test&#34;)
+ *             .database(&#34;database_test&#34;)
+ *             .type(&#34;vectorSearch&#34;)
+ *             .fields(&#34;&#34;&#34;
+ * [{
+ *       &#34;type&#34;: &#34;vector&#34;,
+ *       &#34;path&#34;: &#34;plot_embedding&#34;,
+ *       &#34;numDimensions&#34;: 1536,
+ *       &#34;similarity&#34;: &#34;euclidean&#34;
+ * }]
+ *             &#34;&#34;&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Advanced search index (with custom analyzers)
  * ```java
  * package generated_program;
  * 
@@ -222,6 +263,20 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
     public Output<String> database() {
         return this.database;
     }
+    /**
+     * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * 
+     */
+    @Export(name="fields", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> fields;
+
+    /**
+     * @return Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * 
+     */
+    public Output<Optional<String>> fields() {
+        return Codegen.optional(this.fields);
+    }
     @Export(name="indexId", refs={String.class}, tree="[0]")
     private Output<String> indexId;
 
@@ -229,28 +284,28 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
         return this.indexId;
     }
     /**
-     * Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
      * 
      */
     @Export(name="mappingsDynamic", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> mappingsDynamic;
 
     /**
-     * @return Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+     * @return Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
      * 
      */
     public Output<Optional<Boolean>> mappingsDynamic() {
         return Codegen.optional(this.mappingsDynamic);
     }
     /**
-     * attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+     * attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
     @Export(name="mappingsFields", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mappingsFields;
 
     /**
-     * @return attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+     * @return attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      * 
      */
     public Output<Optional<String>> mappingsFields() {
@@ -317,6 +372,20 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<SearchIndexSynonym>>> synonyms() {
         return Codegen.optional(this.synonyms);
+    }
+    /**
+     * Type of index: `search` or `vectorSearch`. Default type is `search`.
+     * 
+     */
+    @Export(name="type", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> type;
+
+    /**
+     * @return Type of index: `search` or `vectorSearch`. Default type is `search`.
+     * 
+     */
+    public Output<Optional<String>> type() {
+        return Codegen.optional(this.type);
     }
     @Export(name="waitForIndexBuildCompletion", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> waitForIndexBuildCompletion;

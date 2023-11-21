@@ -95,16 +95,11 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
      * Third-Party service integration type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     * 
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
-     * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
      * 
      */
     @Import(name="type", required=true)
@@ -114,16 +109,11 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
      * @return Third-Party service integration type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     * 
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
-     * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
      * 
      */
     public Output<String> type() {
@@ -284,16 +274,11 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
          * @param type Third-Party service integration type
          * * PAGER_DUTY
          * * DATADOG
-         * * NEW_RELIC*
          * * OPS_GENIE
          * * VICTOR_OPS
-         * * FLOWDOCK*
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
-         * 
-         * *resource is now deprecated and will be removed in the next major version, 1.9.0
-         * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
          * 
          * @return builder
          * 
@@ -307,16 +292,11 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
          * @param type Third-Party service integration type
          * * PAGER_DUTY
          * * DATADOG
-         * * NEW_RELIC*
          * * OPS_GENIE
          * * VICTOR_OPS
-         * * FLOWDOCK*
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
-         * 
-         * *resource is now deprecated and will be removed in the next major version, 1.9.0
-         * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
          * 
          * @return builder
          * 

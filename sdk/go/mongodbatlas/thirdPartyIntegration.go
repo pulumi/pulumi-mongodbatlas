@@ -16,13 +16,40 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
-// > **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
-//
 // > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 //
 // > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
 //
 // > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testDatadog", &mongodbatlas.ThirdPartyIntegrationArgs{
+//				ApiKey:    pulumi.String("<API-KEY>"),
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Region:    pulumi.String("<REGION>"),
+//				Type:      pulumi.String("DATADOG"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
@@ -70,12 +97,6 @@ type ThirdPartyIntegration struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
-	// * NEW_RELIC*
-	// * FLOWDOCK*
-	//
-	// *resource has now been fully deprecated as part of v1.10.0 release
-	//
-	// Additional values based on Type
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Your webhook URL.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
@@ -186,12 +207,6 @@ type thirdPartyIntegrationState struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
-	// * NEW_RELIC*
-	// * FLOWDOCK*
-	//
-	// *resource has now been fully deprecated as part of v1.10.0 release
-	//
-	// Additional values based on Type
 	Type *string `pulumi:"type"`
 	// Your webhook URL.
 	Url *string `pulumi:"url"`
@@ -232,12 +247,6 @@ type ThirdPartyIntegrationState struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
-	// * NEW_RELIC*
-	// * FLOWDOCK*
-	//
-	// *resource has now been fully deprecated as part of v1.10.0 release
-	//
-	// Additional values based on Type
 	Type pulumi.StringPtrInput
 	// Your webhook URL.
 	Url pulumi.StringPtrInput
@@ -282,12 +291,6 @@ type thirdPartyIntegrationArgs struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
-	// * NEW_RELIC*
-	// * FLOWDOCK*
-	//
-	// *resource has now been fully deprecated as part of v1.10.0 release
-	//
-	// Additional values based on Type
 	Type string `pulumi:"type"`
 	// Your webhook URL.
 	Url *string `pulumi:"url"`
@@ -329,12 +332,6 @@ type ThirdPartyIntegrationArgs struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
-	// * NEW_RELIC*
-	// * FLOWDOCK*
-	//
-	// *resource has now been fully deprecated as part of v1.10.0 release
-	//
-	// Additional values based on Type
 	Type pulumi.StringInput
 	// Your webhook URL.
 	Url pulumi.StringPtrInput
@@ -500,12 +497,6 @@ func (o ThirdPartyIntegrationOutput) TeamName() pulumi.StringPtrOutput {
 // * WEBHOOK
 // * MICROSOFT_TEAMS
 // * PROMETHEUS
-// * NEW_RELIC*
-// * FLOWDOCK*
-//
-// *resource has now been fully deprecated as part of v1.10.0 release
-//
-// Additional values based on Type
 func (o ThirdPartyIntegrationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

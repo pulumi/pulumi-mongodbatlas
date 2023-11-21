@@ -35,6 +35,7 @@ public final class GetSearchIndexResult {
      * 
      */
     private @Nullable String database;
+    private @Nullable String fields;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -71,6 +72,7 @@ public final class GetSearchIndexResult {
      * 
      */
     private List<GetSearchIndexSynonym> synonyms;
+    private @Nullable String type;
 
     private GetSearchIndexResult() {}
     /**
@@ -103,6 +105,9 @@ public final class GetSearchIndexResult {
      */
     public Optional<String> database() {
         return Optional.ofNullable(this.database);
+    }
+    public Optional<String> fields() {
+        return Optional.ofNullable(this.fields);
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -158,6 +163,9 @@ public final class GetSearchIndexResult {
     public List<GetSearchIndexSynonym> synonyms() {
         return this.synonyms;
     }
+    public Optional<String> type() {
+        return Optional.ofNullable(this.type);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -173,6 +181,7 @@ public final class GetSearchIndexResult {
         private String clusterName;
         private @Nullable String collectionName;
         private @Nullable String database;
+        private @Nullable String fields;
         private String id;
         private String indexId;
         private @Nullable Boolean mappingsDynamic;
@@ -182,6 +191,7 @@ public final class GetSearchIndexResult {
         private @Nullable String searchAnalyzer;
         private String status;
         private List<GetSearchIndexSynonym> synonyms;
+        private @Nullable String type;
         public Builder() {}
         public Builder(GetSearchIndexResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -190,6 +200,7 @@ public final class GetSearchIndexResult {
     	      this.clusterName = defaults.clusterName;
     	      this.collectionName = defaults.collectionName;
     	      this.database = defaults.database;
+    	      this.fields = defaults.fields;
     	      this.id = defaults.id;
     	      this.indexId = defaults.indexId;
     	      this.mappingsDynamic = defaults.mappingsDynamic;
@@ -199,6 +210,7 @@ public final class GetSearchIndexResult {
     	      this.searchAnalyzer = defaults.searchAnalyzer;
     	      this.status = defaults.status;
     	      this.synonyms = defaults.synonyms;
+    	      this.type = defaults.type;
         }
 
         @CustomType.Setter
@@ -224,6 +236,11 @@ public final class GetSearchIndexResult {
         @CustomType.Setter
         public Builder database(@Nullable String database) {
             this.database = database;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder fields(@Nullable String fields) {
+            this.fields = fields;
             return this;
         }
         @CustomType.Setter
@@ -274,6 +291,11 @@ public final class GetSearchIndexResult {
         public Builder synonyms(GetSearchIndexSynonym... synonyms) {
             return synonyms(List.of(synonyms));
         }
+        @CustomType.Setter
+        public Builder type(@Nullable String type) {
+            this.type = type;
+            return this;
+        }
         public GetSearchIndexResult build() {
             final var o = new GetSearchIndexResult();
             o.analyzer = analyzer;
@@ -281,6 +303,7 @@ public final class GetSearchIndexResult {
             o.clusterName = clusterName;
             o.collectionName = collectionName;
             o.database = database;
+            o.fields = fields;
             o.id = id;
             o.indexId = indexId;
             o.mappingsDynamic = mappingsDynamic;
@@ -290,6 +313,7 @@ public final class GetSearchIndexResult {
             o.searchAnalyzer = searchAnalyzer;
             o.status = status;
             o.synonyms = synonyms;
+            o.type = type;
             return o;
         }
     }

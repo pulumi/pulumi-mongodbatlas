@@ -91,6 +91,13 @@ public final class GetSearchIndexArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.database);
     }
 
+    @Import(name="fields")
+    private @Nullable Output<String> fields;
+
+    public Optional<Output<String>> fields() {
+        return Optional.ofNullable(this.fields);
+    }
+
     /**
      * The unique identifier of the Atlas Search index. Use the `mongodbatlas.getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
      * 
@@ -188,6 +195,13 @@ public final class GetSearchIndexArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.status);
     }
 
+    @Import(name="type")
+    private @Nullable Output<String> type;
+
+    public Optional<Output<String>> type() {
+        return Optional.ofNullable(this.type);
+    }
+
     private GetSearchIndexArgs() {}
 
     private GetSearchIndexArgs(GetSearchIndexArgs $) {
@@ -196,6 +210,7 @@ public final class GetSearchIndexArgs extends com.pulumi.resources.InvokeArgs {
         this.clusterName = $.clusterName;
         this.collectionName = $.collectionName;
         this.database = $.database;
+        this.fields = $.fields;
         this.indexId = $.indexId;
         this.mappingsDynamic = $.mappingsDynamic;
         this.mappingsFields = $.mappingsFields;
@@ -203,6 +218,7 @@ public final class GetSearchIndexArgs extends com.pulumi.resources.InvokeArgs {
         this.projectId = $.projectId;
         this.searchAnalyzer = $.searchAnalyzer;
         this.status = $.status;
+        this.type = $.type;
     }
 
     public static Builder builder() {
@@ -326,6 +342,15 @@ public final class GetSearchIndexArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder database(String database) {
             return database(Output.of(database));
+        }
+
+        public Builder fields(@Nullable Output<String> fields) {
+            $.fields = fields;
+            return this;
+        }
+
+        public Builder fields(String fields) {
+            return fields(Output.of(fields));
         }
 
         /**
@@ -461,6 +486,15 @@ public final class GetSearchIndexArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder status(String status) {
             return status(Output.of(status));
+        }
+
+        public Builder type(@Nullable Output<String> type) {
+            $.type = type;
+            return this;
+        }
+
+        public Builder type(String type) {
+            return type(Output.of(type));
         }
 
         public GetSearchIndexArgs build() {

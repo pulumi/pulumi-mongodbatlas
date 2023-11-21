@@ -15,6 +15,36 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "DATADOG",
+        ///         ApiKey = "&lt;API-KEY&gt;",
+        ///         Region = "&lt;REGION&gt;",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
+        ///     {
+        ///         ProjectId = testDatadog.ProjectId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetThirdPartyIntegrationResult> InvokeAsync(GetThirdPartyIntegrationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationArgs(), options.WithDefaults());
@@ -23,6 +53,36 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "DATADOG",
+        ///         ApiKey = "&lt;API-KEY&gt;",
+        ///         Region = "&lt;REGION&gt;",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
+        ///     {
+        ///         ProjectId = testDatadog.ProjectId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetThirdPartyIntegrationResult> Invoke(GetThirdPartyIntegrationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationInvokeArgs(), options.WithDefaults());
@@ -77,16 +137,11 @@ namespace Pulumi.Mongodbatlas
         /// Third-Party service integration type
         /// * PAGER_DUTY
         /// * DATADOG
-        /// * NEW_RELIC*
         /// * OPS_GENIE
         /// * VICTOR_OPS
-        /// * FLOWDOCK*
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
-        /// 
-        /// *resource is now deprecated and will be removed in the next major version, 1.9.0
-        /// **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
         /// </summary>
         [Input("type", required: true)]
         public string Type { get; set; } = null!;
@@ -165,16 +220,11 @@ namespace Pulumi.Mongodbatlas
         /// Third-Party service integration type
         /// * PAGER_DUTY
         /// * DATADOG
-        /// * NEW_RELIC*
         /// * OPS_GENIE
         /// * VICTOR_OPS
-        /// * FLOWDOCK*
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
-        /// 
-        /// *resource is now deprecated and will be removed in the next major version, 1.9.0
-        /// **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -205,18 +255,11 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetThirdPartyIntegrationResult
     {
-        /// <summary>
-        /// Unique identifier of your New Relic account.
-        /// </summary>
         public readonly string AccountId;
         /// <summary>
         /// Your API Key.
         /// </summary>
         public readonly string ApiKey;
-        /// <summary>
-        /// Your API Token.
-        /// </summary>
-        public readonly string ApiToken;
         public readonly string ChannelName;
         /// <summary>
         /// Whether your cluster has Prometheus enabled.
@@ -226,10 +269,6 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Your License Key.
-        /// </summary>
-        public readonly string LicenseKey;
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
         /// </summary>
@@ -279,15 +318,11 @@ namespace Pulumi.Mongodbatlas
 
             string apiKey,
 
-            string apiToken,
-
             string channelName,
 
             bool? enabled,
 
             string id,
-
-            string licenseKey,
 
             string? microsoftTeamsWebhookUrl,
 
@@ -315,11 +350,9 @@ namespace Pulumi.Mongodbatlas
         {
             AccountId = accountId;
             ApiKey = apiKey;
-            ApiToken = apiToken;
             ChannelName = channelName;
             Enabled = enabled;
             Id = id;
-            LicenseKey = licenseKey;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             ProjectId = projectId;
             Region = region;

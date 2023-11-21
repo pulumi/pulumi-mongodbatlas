@@ -39,6 +39,7 @@ public final class GetSearchIndexesResult {
      * 
      */
     private String database;
+    private @Nullable String fields;
     private String indexId;
     /**
      * @return Flag indicating whether the index uses dynamic or static mappings.
@@ -74,6 +75,7 @@ public final class GetSearchIndexesResult {
      * 
      */
     private @Nullable List<GetSearchIndexesResultSynonym> synonyms;
+    private @Nullable String type;
     private @Nullable Boolean waitForIndexBuildCompletion;
 
     private GetSearchIndexesResult() {}
@@ -111,6 +113,9 @@ public final class GetSearchIndexesResult {
      */
     public String database() {
         return this.database;
+    }
+    public Optional<String> fields() {
+        return Optional.ofNullable(this.fields);
     }
     public String indexId() {
         return this.indexId;
@@ -163,6 +168,9 @@ public final class GetSearchIndexesResult {
     public List<GetSearchIndexesResultSynonym> synonyms() {
         return this.synonyms == null ? List.of() : this.synonyms;
     }
+    public Optional<String> type() {
+        return Optional.ofNullable(this.type);
+    }
     public Optional<Boolean> waitForIndexBuildCompletion() {
         return Optional.ofNullable(this.waitForIndexBuildCompletion);
     }
@@ -181,6 +189,7 @@ public final class GetSearchIndexesResult {
         private String clusterName;
         private String collectionName;
         private String database;
+        private @Nullable String fields;
         private String indexId;
         private @Nullable Boolean mappingsDynamic;
         private @Nullable String mappingsFields;
@@ -189,6 +198,7 @@ public final class GetSearchIndexesResult {
         private @Nullable String searchAnalyzer;
         private String status;
         private @Nullable List<GetSearchIndexesResultSynonym> synonyms;
+        private @Nullable String type;
         private @Nullable Boolean waitForIndexBuildCompletion;
         public Builder() {}
         public Builder(GetSearchIndexesResult defaults) {
@@ -198,6 +208,7 @@ public final class GetSearchIndexesResult {
     	      this.clusterName = defaults.clusterName;
     	      this.collectionName = defaults.collectionName;
     	      this.database = defaults.database;
+    	      this.fields = defaults.fields;
     	      this.indexId = defaults.indexId;
     	      this.mappingsDynamic = defaults.mappingsDynamic;
     	      this.mappingsFields = defaults.mappingsFields;
@@ -206,6 +217,7 @@ public final class GetSearchIndexesResult {
     	      this.searchAnalyzer = defaults.searchAnalyzer;
     	      this.status = defaults.status;
     	      this.synonyms = defaults.synonyms;
+    	      this.type = defaults.type;
     	      this.waitForIndexBuildCompletion = defaults.waitForIndexBuildCompletion;
         }
 
@@ -232,6 +244,11 @@ public final class GetSearchIndexesResult {
         @CustomType.Setter
         public Builder database(String database) {
             this.database = Objects.requireNonNull(database);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder fields(@Nullable String fields) {
+            this.fields = fields;
             return this;
         }
         @CustomType.Setter
@@ -278,6 +295,11 @@ public final class GetSearchIndexesResult {
             return synonyms(List.of(synonyms));
         }
         @CustomType.Setter
+        public Builder type(@Nullable String type) {
+            this.type = type;
+            return this;
+        }
+        @CustomType.Setter
         public Builder waitForIndexBuildCompletion(@Nullable Boolean waitForIndexBuildCompletion) {
             this.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
             return this;
@@ -289,6 +311,7 @@ public final class GetSearchIndexesResult {
             o.clusterName = clusterName;
             o.collectionName = collectionName;
             o.database = database;
+            o.fields = fields;
             o.indexId = indexId;
             o.mappingsDynamic = mappingsDynamic;
             o.mappingsFields = mappingsFields;
@@ -297,6 +320,7 @@ public final class GetSearchIndexesResult {
             o.searchAnalyzer = searchAnalyzer;
             o.status = status;
             o.synonyms = synonyms;
+            o.type = type;
             o.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
             return o;
         }
