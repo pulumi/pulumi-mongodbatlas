@@ -268,6 +268,43 @@ class CloudProviderAccess(pulumi.CustomResource):
             project_id="64259ee860c43338194b0f8e",
             provider_name="AZURE")
         ```
+        ### With AWS
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        setup_only = mongodbatlas.CloudProviderAccessSetup("setupOnly",
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="AWS")
+        auth_role = mongodbatlas.CloudProviderAccessAuthorization("authRole",
+            project_id=setup_only.project_id,
+            role_id=setup_only.role_id,
+            aws=mongodbatlas.CloudProviderAccessAuthorizationAwsArgs(
+                iam_assumed_role_arn="arn:aws:iam::772401394250:role/test-user-role",
+            ))
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        setup_only = mongodbatlas.CloudProviderAccessSetup("setupOnly",
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="AZURE",
+            azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
+                atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
+                service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+                tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
+            )])
+        auth_role = mongodbatlas.CloudProviderAccessAuthorization("authRole",
+            project_id=setup_only.project_id,
+            role_id=setup_only.role_id,
+            azure=mongodbatlas.CloudProviderAccessAuthorizationAzureArgs(
+                atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
+                service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+                tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
+            ))
+        ```
         ## Authorize role
 
         Once the resource is created add the field `iam_assumed_role_arn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.
@@ -338,6 +375,43 @@ class CloudProviderAccess(pulumi.CustomResource):
             )],
             project_id="64259ee860c43338194b0f8e",
             provider_name="AZURE")
+        ```
+        ### With AWS
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        setup_only = mongodbatlas.CloudProviderAccessSetup("setupOnly",
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="AWS")
+        auth_role = mongodbatlas.CloudProviderAccessAuthorization("authRole",
+            project_id=setup_only.project_id,
+            role_id=setup_only.role_id,
+            aws=mongodbatlas.CloudProviderAccessAuthorizationAwsArgs(
+                iam_assumed_role_arn="arn:aws:iam::772401394250:role/test-user-role",
+            ))
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        setup_only = mongodbatlas.CloudProviderAccessSetup("setupOnly",
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="AZURE",
+            azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
+                atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
+                service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+                tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
+            )])
+        auth_role = mongodbatlas.CloudProviderAccessAuthorization("authRole",
+            project_id=setup_only.project_id,
+            role_id=setup_only.role_id,
+            azure=mongodbatlas.CloudProviderAccessAuthorizationAzureArgs(
+                atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
+                service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+                tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
+            ))
         ```
         ## Authorize role
 

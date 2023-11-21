@@ -108,6 +108,7 @@ from .get_project_invitation import *
 from .get_project_ip_access_list import *
 from .get_projects import *
 from .get_roles_org_id import *
+from .get_search_deployment import *
 from .get_search_index import *
 from .get_search_indexes import *
 from .get_serverless_instance import *
@@ -141,6 +142,7 @@ from .project_api_key import *
 from .project_invitation import *
 from .project_ip_access_list import *
 from .provider import *
+from .search_deployment import *
 from .search_index import *
 from .serverless_instance import *
 from .team import *
@@ -526,6 +528,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList": "ProjectIpAccessList"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/searchDeployment",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/searchDeployment:SearchDeployment": "SearchDeployment"
   }
  },
  {

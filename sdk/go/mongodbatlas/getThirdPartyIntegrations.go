@@ -11,10 +11,50 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+// `getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
 // applied across the project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testPagerDuty, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testPagerDuty", &mongodbatlas.ThirdPartyIntegrationArgs{
+//				ProjectId:  pulumi.String("<PROJECT-ID>"),
+//				Type:       pulumi.String("PAGER_DUTY"),
+//				ServiceKey: pulumi.String("<PAGER-DUTY-SERVICE-KEY>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewThirdPartyIntegration(ctx, "testDatadog", &mongodbatlas.ThirdPartyIntegrationArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Type:      pulumi.String("DATADOG"),
+//				ApiKey:    pulumi.String("<API-KEY>"),
+//				Region:    pulumi.String("<REGION>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupThirdPartyIntegrationsOutput(ctx, mongodbatlas.GetThirdPartyIntegrationsOutputArgs{
+//				ProjectId: testPagerDuty.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupThirdPartyIntegrations(ctx *pulumi.Context, args *LookupThirdPartyIntegrationsArgs, opts ...pulumi.InvokeOption) (*LookupThirdPartyIntegrationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupThirdPartyIntegrationsResult

@@ -97,6 +97,85 @@ import (
 //	}
 //
 // ```
+// ### With AWS
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setupOnly", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "authRole", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: setupOnly.ProjectId,
+//				RoleId:    setupOnly.RoleId,
+//				Aws: &mongodbatlas.CloudProviderAccessAuthorizationAwsArgs{
+//					IamAssumedRoleArn: pulumi.String("arn:aws:iam::772401394250:role/test-user-role"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setupOnly", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("AZURE"),
+//				AzureConfigs: mongodbatlas.CloudProviderAccessSetupAzureConfigArray{
+//					&mongodbatlas.CloudProviderAccessSetupAzureConfigArgs{
+//						AtlasAzureAppId:    pulumi.String("9f2deb0d-be22-4524-a403-df531868bac0"),
+//						ServicePrincipalId: pulumi.String("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1"),
+//						TenantId:           pulumi.String("91402384-d71e-22f5-22dd-759e272cdc1c"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "authRole", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: setupOnly.ProjectId,
+//				RoleId:    setupOnly.RoleId,
+//				Azure: &mongodbatlas.CloudProviderAccessAuthorizationAzureArgs{
+//					AtlasAzureAppId:    pulumi.String("9f2deb0d-be22-4524-a403-df531868bac0"),
+//					ServicePrincipalId: pulumi.String("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1"),
+//					TenantId:           pulumi.String("91402384-d71e-22f5-22dd-759e272cdc1c"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 // ## Authorize role
 //
 // Once the resource is created add the field `iamAssumedRoleArn` see [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access) , and execute a new `pulumi up` this will create a PATCH request.

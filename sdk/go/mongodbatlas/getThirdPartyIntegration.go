@@ -14,6 +14,38 @@ import (
 // `ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testDatadog, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testDatadog", &mongodbatlas.ThirdPartyIntegrationArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Type:      pulumi.String("DATADOG"),
+//				ApiKey:    pulumi.String("<API-KEY>"),
+//				Region:    pulumi.String("<REGION>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupThirdPartyIntegrationOutput(ctx, mongodbatlas.GetThirdPartyIntegrationOutputArgs{
+//				ProjectId: testDatadog.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupThirdPartyIntegration(ctx *pulumi.Context, args *LookupThirdPartyIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupThirdPartyIntegrationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupThirdPartyIntegrationResult
@@ -39,16 +71,11 @@ type LookupThirdPartyIntegrationArgs struct {
 	// Third-Party service integration type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
-	//
-	// *resource is now deprecated and will be removed in the next major version, 1.9.0
-	// **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
 	Type string `pulumi:"type"`
 	// Your Prometheus username.
 	UserName *string `pulumi:"userName"`
@@ -56,19 +83,14 @@ type LookupThirdPartyIntegrationArgs struct {
 
 // A collection of values returned by getThirdPartyIntegration.
 type LookupThirdPartyIntegrationResult struct {
-	// Unique identifier of your New Relic account.
 	AccountId string `pulumi:"accountId"`
 	// Your API Key.
-	ApiKey string `pulumi:"apiKey"`
-	// Your API Token.
-	ApiToken    string `pulumi:"apiToken"`
+	ApiKey      string `pulumi:"apiKey"`
 	ChannelName string `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled *bool `pulumi:"enabled"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Your License Key.
-	LicenseKey string `pulumi:"licenseKey"`
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	ProjectId                string  `pulumi:"projectId"`
@@ -121,16 +143,11 @@ type LookupThirdPartyIntegrationOutputArgs struct {
 	// Third-Party service integration type
 	// * PAGER_DUTY
 	// * DATADOG
-	// * NEW_RELIC*
 	// * OPS_GENIE
 	// * VICTOR_OPS
-	// * FLOWDOCK*
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
-	//
-	// *resource is now deprecated and will be removed in the next major version, 1.9.0
-	// **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
 	Type pulumi.StringInput `pulumi:"type"`
 	// Your Prometheus username.
 	UserName pulumi.StringPtrInput `pulumi:"userName"`
@@ -155,7 +172,6 @@ func (o LookupThirdPartyIntegrationResultOutput) ToLookupThirdPartyIntegrationRe
 	return o
 }
 
-// Unique identifier of your New Relic account.
 func (o LookupThirdPartyIntegrationResultOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.AccountId }).(pulumi.StringOutput)
 }
@@ -163,11 +179,6 @@ func (o LookupThirdPartyIntegrationResultOutput) AccountId() pulumi.StringOutput
 // Your API Key.
 func (o LookupThirdPartyIntegrationResultOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ApiKey }).(pulumi.StringOutput)
-}
-
-// Your API Token.
-func (o LookupThirdPartyIntegrationResultOutput) ApiToken() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ApiToken }).(pulumi.StringOutput)
 }
 
 func (o LookupThirdPartyIntegrationResultOutput) ChannelName() pulumi.StringOutput {
@@ -182,11 +193,6 @@ func (o LookupThirdPartyIntegrationResultOutput) Enabled() pulumi.BoolPtrOutput 
 // The provider-assigned unique ID for this managed resource.
 func (o LookupThirdPartyIntegrationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Your License Key.
-func (o LookupThirdPartyIntegrationResultOutput) LicenseKey() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.LicenseKey }).(pulumi.StringOutput)
 }
 
 // Your Microsoft Teams incoming webhook URL.

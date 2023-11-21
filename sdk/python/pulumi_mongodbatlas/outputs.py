@@ -106,6 +106,8 @@ __all__ = [
     'ProjectIpAccessListTimeouts',
     'ProjectLimit',
     'ProjectTeam',
+    'SearchDeploymentSpec',
+    'SearchDeploymentTimeouts',
     'SearchIndexSynonym',
     'ServerlessInstanceLink',
     'ServerlessInstanceTag',
@@ -319,6 +321,7 @@ __all__ = [
     'GetProjectsResultResult',
     'GetProjectsResultLimitResult',
     'GetProjectsResultTeamResult',
+    'GetSearchDeploymentSpecResult',
     'GetSearchIndexSynonymResult',
     'GetSearchIndexesResultResult',
     'GetSearchIndexesResultSynonymResult',
@@ -7168,6 +7171,83 @@ class ProjectTeam(dict):
 
 
 @pulumi.output_type
+class SearchDeploymentSpec(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instanceSize":
+            suggest = "instance_size"
+        elif key == "nodeCount":
+            suggest = "node_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SearchDeploymentSpec. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SearchDeploymentSpec.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SearchDeploymentSpec.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 instance_size: str,
+                 node_count: int):
+        """
+        :param str instance_size: Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+        :param int node_count: Number of search nodes in the cluster.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> int:
+        """
+        Number of search nodes in the cluster.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class SearchDeploymentTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[str] = None,
+                 delete: Optional[str] = None,
+                 update: Optional[str] = None):
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @property
+    @pulumi.getter
+    def create(self) -> Optional[str]:
+        return pulumi.get(self, "create")
+
+    @property
+    @pulumi.getter
+    def delete(self) -> Optional[str]:
+        return pulumi.get(self, "delete")
+
+    @property
+    @pulumi.getter
+    def update(self) -> Optional[str]:
+        return pulumi.get(self, "update")
+
+
+@pulumi.output_type
 class SearchIndexSynonym(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -7191,22 +7271,8 @@ class SearchIndexSynonym(dict):
                  name: str,
                  source_collection: str):
         """
-        :param str analyzer: Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
-               * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
-               * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
-               * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
-               * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
-               * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
-               * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
-               
-               ```python
-               import pulumi
-               ```
-               
-               
-               
-               For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
-        :param str name: Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+        :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param str name: The name of the search index you want to create.
         :param str source_collection: Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
         """
         pulumi.set(__self__, "analyzer", analyzer)
@@ -7217,21 +7283,7 @@ class SearchIndexSynonym(dict):
     @pulumi.getter
     def analyzer(self) -> str:
         """
-        Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
-        * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
-        * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
-        * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
-        * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
-        * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
-        * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
-
-        ```python
-        import pulumi
-        ```
-
-
-
-        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
+        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "analyzer")
 
@@ -7239,7 +7291,7 @@ class SearchIndexSynonym(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+        The name of the search index you want to create.
         """
         return pulumi.get(self, "name")
 
@@ -8001,23 +8053,30 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult(di
 @pulumi.output_type
 class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
     def __init__(__self__, *,
+                 disk_iops: int,
                  instance_size: str,
-                 disk_iops: Optional[int] = None,
                  ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
+        pulumi.set(__self__, "disk_iops", disk_iops)
         pulumi.set(__self__, "instance_size", instance_size)
-        if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> int:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -8026,14 +8085,6 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="diskIops")
-    def disk_iops(self) -> Optional[int]:
-        """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        """
-        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="ebsVolumeType")
@@ -8119,23 +8170,30 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
 @pulumi.output_type
 class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
     def __init__(__self__, *,
+                 disk_iops: int,
                  instance_size: str,
-                 disk_iops: Optional[int] = None,
                  ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
+        pulumi.set(__self__, "disk_iops", disk_iops)
         pulumi.set(__self__, "instance_size", instance_size)
-        if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> int:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -8144,14 +8202,6 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="diskIops")
-    def disk_iops(self) -> Optional[int]:
-        """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        """
-        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="ebsVolumeType")
@@ -8173,23 +8223,30 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
 @pulumi.output_type
 class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
     def __init__(__self__, *,
+                 disk_iops: int,
                  instance_size: str,
-                 disk_iops: Optional[int] = None,
                  ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
+        pulumi.set(__self__, "disk_iops", disk_iops)
         pulumi.set(__self__, "instance_size", instance_size)
-        if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> int:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -8198,14 +8255,6 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="diskIops")
-    def disk_iops(self) -> Optional[int]:
-        """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        """
-        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="ebsVolumeType")
@@ -8997,23 +9046,30 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingRe
 @pulumi.output_type
 class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
     def __init__(__self__, *,
+                 disk_iops: int,
                  instance_size: str,
-                 disk_iops: Optional[int] = None,
                  ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
+        pulumi.set(__self__, "disk_iops", disk_iops)
         pulumi.set(__self__, "instance_size", instance_size)
-        if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> int:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -9022,14 +9078,6 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="diskIops")
-    def disk_iops(self) -> Optional[int]:
-        """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        """
-        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="ebsVolumeType")
@@ -9113,23 +9161,30 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult(dict
 @pulumi.output_type
 class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(dict):
     def __init__(__self__, *,
+                 disk_iops: int,
                  instance_size: str,
-                 disk_iops: Optional[int] = None,
                  ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
+        pulumi.set(__self__, "disk_iops", disk_iops)
         pulumi.set(__self__, "instance_size", instance_size)
-        if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> int:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -9138,14 +9193,6 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="diskIops")
-    def disk_iops(self) -> Optional[int]:
-        """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        """
-        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="ebsVolumeType")
@@ -9167,23 +9214,30 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
 @pulumi.output_type
 class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(dict):
     def __init__(__self__, *,
+                 disk_iops: int,
                  instance_size: str,
-                 disk_iops: Optional[int] = None,
                  ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
+        pulumi.set(__self__, "disk_iops", disk_iops)
         pulumi.set(__self__, "instance_size", instance_size)
-        if disk_iops is not None:
-            pulumi.set(__self__, "disk_iops", disk_iops)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> int:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -9192,14 +9246,6 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="diskIops")
-    def disk_iops(self) -> Optional[int]:
-        """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        """
-        return pulumi.get(self, "disk_iops")
 
     @property
     @pulumi.getter(name="ebsVolumeType")
@@ -19339,6 +19385,35 @@ class GetProjectsResultTeamResult(dict):
 
 
 @pulumi.output_type
+class GetSearchDeploymentSpecResult(dict):
+    def __init__(__self__, *,
+                 instance_size: str,
+                 node_count: int):
+        """
+        :param str instance_size: (Required) Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+        :param int node_count: (Required) Number of search nodes in the cluster.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        (Required) Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> int:
+        """
+        (Required) Number of search nodes in the cluster.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
 class GetSearchIndexSynonymResult(dict):
     def __init__(__self__, *,
                  analyzer: str,
@@ -19386,10 +19461,12 @@ class GetSearchIndexesResultResult(dict):
                  status: str,
                  analyzer: Optional[str] = None,
                  analyzers: Optional[str] = None,
+                 fields: Optional[str] = None,
                  mappings_dynamic: Optional[bool] = None,
                  mappings_fields: Optional[str] = None,
                  search_analyzer: Optional[str] = None,
                  synonyms: Optional[Sequence['outputs.GetSearchIndexesResultSynonymResult']] = None,
+                 type: Optional[str] = None,
                  wait_for_index_build_completion: Optional[bool] = None):
         """
         :param str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
@@ -19418,6 +19495,8 @@ class GetSearchIndexesResultResult(dict):
             pulumi.set(__self__, "analyzer", analyzer)
         if analyzers is not None:
             pulumi.set(__self__, "analyzers", analyzers)
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
         if mappings_dynamic is not None:
             pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
         if mappings_fields is not None:
@@ -19426,6 +19505,8 @@ class GetSearchIndexesResultResult(dict):
             pulumi.set(__self__, "search_analyzer", search_analyzer)
         if synonyms is not None:
             pulumi.set(__self__, "synonyms", synonyms)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if wait_for_index_build_completion is not None:
             pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
 
@@ -19496,6 +19577,11 @@ class GetSearchIndexesResultResult(dict):
         return pulumi.get(self, "analyzers")
 
     @property
+    @pulumi.getter
+    def fields(self) -> Optional[str]:
+        return pulumi.get(self, "fields")
+
+    @property
     @pulumi.getter(name="mappingsDynamic")
     def mappings_dynamic(self) -> Optional[bool]:
         """
@@ -19529,6 +19615,11 @@ class GetSearchIndexesResultResult(dict):
         * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
         """
         return pulumi.get(self, "synonyms")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="waitForIndexBuildCompletion")
@@ -19969,9 +20060,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     def __init__(__self__, *,
                  account_id: str,
                  api_key: str,
-                 api_token: str,
                  channel_name: str,
-                 license_key: str,
                  project_id: str,
                  region: str,
                  routing_key: str,
@@ -19986,10 +20075,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
                  service_discovery: Optional[str] = None,
                  user_name: Optional[str] = None):
         """
-        :param str account_id: Unique identifier of your New Relic account.
         :param str api_key: Your API Key.
-        :param str api_token: Your API Token.
-        :param str license_key: Your License Key.
         :param str project_id: The unique ID for the project to get all Third-Party service integrations
         :param str region: Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
         :param str routing_key: An optional field for your Routing Key.
@@ -20005,9 +20091,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
         """
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "api_key", api_key)
-        pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "channel_name", channel_name)
-        pulumi.set(__self__, "license_key", license_key)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "routing_key", routing_key)
@@ -20030,9 +20114,6 @@ class GetThirdPartyIntegrationsResultResult(dict):
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> str:
-        """
-        Unique identifier of your New Relic account.
-        """
         return pulumi.get(self, "account_id")
 
     @property
@@ -20044,25 +20125,9 @@ class GetThirdPartyIntegrationsResultResult(dict):
         return pulumi.get(self, "api_key")
 
     @property
-    @pulumi.getter(name="apiToken")
-    def api_token(self) -> str:
-        """
-        Your API Token.
-        """
-        return pulumi.get(self, "api_token")
-
-    @property
     @pulumi.getter(name="channelName")
     def channel_name(self) -> str:
         return pulumi.get(self, "channel_name")
-
-    @property
-    @pulumi.getter(name="licenseKey")
-    def license_key(self) -> str:
-        """
-        Your License Key.
-        """
-        return pulumi.get(self, "license_key")
 
     @property
     @pulumi.getter(name="projectId")

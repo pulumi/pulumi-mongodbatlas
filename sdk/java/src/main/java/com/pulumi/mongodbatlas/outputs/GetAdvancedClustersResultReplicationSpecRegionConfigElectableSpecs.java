@@ -16,7 +16,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigElectable
      * @return Target throughput (IOPS) desired for AWS storage attached to your cluster.
      * 
      */
-    private @Nullable Integer diskIops;
+    private Integer diskIops;
     /**
      * @return Type of storage you want to attach to your AWS-provisioned cluster.
      * 
@@ -38,8 +38,8 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigElectable
      * @return Target throughput (IOPS) desired for AWS storage attached to your cluster.
      * 
      */
-    public Optional<Integer> diskIops() {
-        return Optional.ofNullable(this.diskIops);
+    public Integer diskIops() {
+        return this.diskIops;
     }
     /**
      * @return Type of storage you want to attach to your AWS-provisioned cluster.
@@ -72,7 +72,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigElectable
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable Integer diskIops;
+        private Integer diskIops;
         private @Nullable String ebsVolumeType;
         private String instanceSize;
         private @Nullable Integer nodeCount;
@@ -86,8 +86,8 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigElectable
         }
 
         @CustomType.Setter
-        public Builder diskIops(@Nullable Integer diskIops) {
-            this.diskIops = diskIops;
+        public Builder diskIops(Integer diskIops) {
+            this.diskIops = Objects.requireNonNull(diskIops);
             return this;
         }
         @CustomType.Setter

@@ -7,10 +7,32 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+ * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
  * applied across the project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("testPagerDuty", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "PAGER_DUTY",
+ *     serviceKey: "<PAGER-DUTY-SERVICE-KEY>",
+ * });
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "DATADOG",
+ *     apiKey: "<API-KEY>",
+ *     region: "<REGION>",
+ * });
+ * const test = mongodbatlas.getThirdPartyIntegrationsOutput({
+ *     projectId: testPagerDuty.projectId,
+ * });
+ * ```
  */
 export function getThirdPartyIntegrations(args: GetThirdPartyIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationsResult> {
 
@@ -48,10 +70,32 @@ export interface GetThirdPartyIntegrationsResult {
     readonly results: outputs.GetThirdPartyIntegrationsResult[];
 }
 /**
- * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+ * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
  * applied across the project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("testPagerDuty", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "PAGER_DUTY",
+ *     serviceKey: "<PAGER-DUTY-SERVICE-KEY>",
+ * });
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "DATADOG",
+ *     apiKey: "<API-KEY>",
+ *     region: "<REGION>",
+ * });
+ * const test = mongodbatlas.getThirdPartyIntegrationsOutput({
+ *     projectId: testPagerDuty.projectId,
+ * });
+ * ```
  */
 export function getThirdPartyIntegrationsOutput(args: GetThirdPartyIntegrationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationsResult> {
     return pulumi.output(args).apply((a: any) => getThirdPartyIntegrations(a, opts))

@@ -14858,32 +14858,279 @@ func (o ProviderAssumeRolePtrOutput) TransitiveTagKeys() pulumi.StringArrayOutpu
 	}).(pulumi.StringArrayOutput)
 }
 
+type SearchDeploymentSpec struct {
+	// Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+	InstanceSize string `pulumi:"instanceSize"`
+	// Number of search nodes in the cluster.
+	NodeCount int `pulumi:"nodeCount"`
+}
+
+// SearchDeploymentSpecInput is an input type that accepts SearchDeploymentSpecArgs and SearchDeploymentSpecOutput values.
+// You can construct a concrete instance of `SearchDeploymentSpecInput` via:
+//
+//	SearchDeploymentSpecArgs{...}
+type SearchDeploymentSpecInput interface {
+	pulumi.Input
+
+	ToSearchDeploymentSpecOutput() SearchDeploymentSpecOutput
+	ToSearchDeploymentSpecOutputWithContext(context.Context) SearchDeploymentSpecOutput
+}
+
+type SearchDeploymentSpecArgs struct {
+	// Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// Number of search nodes in the cluster.
+	NodeCount pulumi.IntInput `pulumi:"nodeCount"`
+}
+
+func (SearchDeploymentSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SearchDeploymentSpec)(nil)).Elem()
+}
+
+func (i SearchDeploymentSpecArgs) ToSearchDeploymentSpecOutput() SearchDeploymentSpecOutput {
+	return i.ToSearchDeploymentSpecOutputWithContext(context.Background())
+}
+
+func (i SearchDeploymentSpecArgs) ToSearchDeploymentSpecOutputWithContext(ctx context.Context) SearchDeploymentSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SearchDeploymentSpecOutput)
+}
+
+// SearchDeploymentSpecArrayInput is an input type that accepts SearchDeploymentSpecArray and SearchDeploymentSpecArrayOutput values.
+// You can construct a concrete instance of `SearchDeploymentSpecArrayInput` via:
+//
+//	SearchDeploymentSpecArray{ SearchDeploymentSpecArgs{...} }
+type SearchDeploymentSpecArrayInput interface {
+	pulumi.Input
+
+	ToSearchDeploymentSpecArrayOutput() SearchDeploymentSpecArrayOutput
+	ToSearchDeploymentSpecArrayOutputWithContext(context.Context) SearchDeploymentSpecArrayOutput
+}
+
+type SearchDeploymentSpecArray []SearchDeploymentSpecInput
+
+func (SearchDeploymentSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SearchDeploymentSpec)(nil)).Elem()
+}
+
+func (i SearchDeploymentSpecArray) ToSearchDeploymentSpecArrayOutput() SearchDeploymentSpecArrayOutput {
+	return i.ToSearchDeploymentSpecArrayOutputWithContext(context.Background())
+}
+
+func (i SearchDeploymentSpecArray) ToSearchDeploymentSpecArrayOutputWithContext(ctx context.Context) SearchDeploymentSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SearchDeploymentSpecArrayOutput)
+}
+
+type SearchDeploymentSpecOutput struct{ *pulumi.OutputState }
+
+func (SearchDeploymentSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SearchDeploymentSpec)(nil)).Elem()
+}
+
+func (o SearchDeploymentSpecOutput) ToSearchDeploymentSpecOutput() SearchDeploymentSpecOutput {
+	return o
+}
+
+func (o SearchDeploymentSpecOutput) ToSearchDeploymentSpecOutputWithContext(ctx context.Context) SearchDeploymentSpecOutput {
+	return o
+}
+
+// Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+func (o SearchDeploymentSpecOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v SearchDeploymentSpec) string { return v.InstanceSize }).(pulumi.StringOutput)
+}
+
+// Number of search nodes in the cluster.
+func (o SearchDeploymentSpecOutput) NodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v SearchDeploymentSpec) int { return v.NodeCount }).(pulumi.IntOutput)
+}
+
+type SearchDeploymentSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (SearchDeploymentSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SearchDeploymentSpec)(nil)).Elem()
+}
+
+func (o SearchDeploymentSpecArrayOutput) ToSearchDeploymentSpecArrayOutput() SearchDeploymentSpecArrayOutput {
+	return o
+}
+
+func (o SearchDeploymentSpecArrayOutput) ToSearchDeploymentSpecArrayOutputWithContext(ctx context.Context) SearchDeploymentSpecArrayOutput {
+	return o
+}
+
+func (o SearchDeploymentSpecArrayOutput) Index(i pulumi.IntInput) SearchDeploymentSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SearchDeploymentSpec {
+		return vs[0].([]SearchDeploymentSpec)[vs[1].(int)]
+	}).(SearchDeploymentSpecOutput)
+}
+
+type SearchDeploymentTimeouts struct {
+	Create *string `pulumi:"create"`
+	Delete *string `pulumi:"delete"`
+	Update *string `pulumi:"update"`
+}
+
+// SearchDeploymentTimeoutsInput is an input type that accepts SearchDeploymentTimeoutsArgs and SearchDeploymentTimeoutsOutput values.
+// You can construct a concrete instance of `SearchDeploymentTimeoutsInput` via:
+//
+//	SearchDeploymentTimeoutsArgs{...}
+type SearchDeploymentTimeoutsInput interface {
+	pulumi.Input
+
+	ToSearchDeploymentTimeoutsOutput() SearchDeploymentTimeoutsOutput
+	ToSearchDeploymentTimeoutsOutputWithContext(context.Context) SearchDeploymentTimeoutsOutput
+}
+
+type SearchDeploymentTimeoutsArgs struct {
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (SearchDeploymentTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SearchDeploymentTimeouts)(nil)).Elem()
+}
+
+func (i SearchDeploymentTimeoutsArgs) ToSearchDeploymentTimeoutsOutput() SearchDeploymentTimeoutsOutput {
+	return i.ToSearchDeploymentTimeoutsOutputWithContext(context.Background())
+}
+
+func (i SearchDeploymentTimeoutsArgs) ToSearchDeploymentTimeoutsOutputWithContext(ctx context.Context) SearchDeploymentTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SearchDeploymentTimeoutsOutput)
+}
+
+func (i SearchDeploymentTimeoutsArgs) ToSearchDeploymentTimeoutsPtrOutput() SearchDeploymentTimeoutsPtrOutput {
+	return i.ToSearchDeploymentTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i SearchDeploymentTimeoutsArgs) ToSearchDeploymentTimeoutsPtrOutputWithContext(ctx context.Context) SearchDeploymentTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SearchDeploymentTimeoutsOutput).ToSearchDeploymentTimeoutsPtrOutputWithContext(ctx)
+}
+
+// SearchDeploymentTimeoutsPtrInput is an input type that accepts SearchDeploymentTimeoutsArgs, SearchDeploymentTimeoutsPtr and SearchDeploymentTimeoutsPtrOutput values.
+// You can construct a concrete instance of `SearchDeploymentTimeoutsPtrInput` via:
+//
+//	        SearchDeploymentTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SearchDeploymentTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToSearchDeploymentTimeoutsPtrOutput() SearchDeploymentTimeoutsPtrOutput
+	ToSearchDeploymentTimeoutsPtrOutputWithContext(context.Context) SearchDeploymentTimeoutsPtrOutput
+}
+
+type searchDeploymentTimeoutsPtrType SearchDeploymentTimeoutsArgs
+
+func SearchDeploymentTimeoutsPtr(v *SearchDeploymentTimeoutsArgs) SearchDeploymentTimeoutsPtrInput {
+	return (*searchDeploymentTimeoutsPtrType)(v)
+}
+
+func (*searchDeploymentTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SearchDeploymentTimeouts)(nil)).Elem()
+}
+
+func (i *searchDeploymentTimeoutsPtrType) ToSearchDeploymentTimeoutsPtrOutput() SearchDeploymentTimeoutsPtrOutput {
+	return i.ToSearchDeploymentTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *searchDeploymentTimeoutsPtrType) ToSearchDeploymentTimeoutsPtrOutputWithContext(ctx context.Context) SearchDeploymentTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SearchDeploymentTimeoutsPtrOutput)
+}
+
+type SearchDeploymentTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (SearchDeploymentTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SearchDeploymentTimeouts)(nil)).Elem()
+}
+
+func (o SearchDeploymentTimeoutsOutput) ToSearchDeploymentTimeoutsOutput() SearchDeploymentTimeoutsOutput {
+	return o
+}
+
+func (o SearchDeploymentTimeoutsOutput) ToSearchDeploymentTimeoutsOutputWithContext(ctx context.Context) SearchDeploymentTimeoutsOutput {
+	return o
+}
+
+func (o SearchDeploymentTimeoutsOutput) ToSearchDeploymentTimeoutsPtrOutput() SearchDeploymentTimeoutsPtrOutput {
+	return o.ToSearchDeploymentTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o SearchDeploymentTimeoutsOutput) ToSearchDeploymentTimeoutsPtrOutputWithContext(ctx context.Context) SearchDeploymentTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SearchDeploymentTimeouts) *SearchDeploymentTimeouts {
+		return &v
+	}).(SearchDeploymentTimeoutsPtrOutput)
+}
+
+func (o SearchDeploymentTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SearchDeploymentTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+func (o SearchDeploymentTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SearchDeploymentTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+func (o SearchDeploymentTimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SearchDeploymentTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type SearchDeploymentTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (SearchDeploymentTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SearchDeploymentTimeouts)(nil)).Elem()
+}
+
+func (o SearchDeploymentTimeoutsPtrOutput) ToSearchDeploymentTimeoutsPtrOutput() SearchDeploymentTimeoutsPtrOutput {
+	return o
+}
+
+func (o SearchDeploymentTimeoutsPtrOutput) ToSearchDeploymentTimeoutsPtrOutputWithContext(ctx context.Context) SearchDeploymentTimeoutsPtrOutput {
+	return o
+}
+
+func (o SearchDeploymentTimeoutsPtrOutput) Elem() SearchDeploymentTimeoutsOutput {
+	return o.ApplyT(func(v *SearchDeploymentTimeouts) SearchDeploymentTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret SearchDeploymentTimeouts
+		return ret
+	}).(SearchDeploymentTimeoutsOutput)
+}
+
+func (o SearchDeploymentTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SearchDeploymentTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o SearchDeploymentTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SearchDeploymentTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o SearchDeploymentTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SearchDeploymentTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(pulumi.StringPtrOutput)
+}
+
 type SearchIndexSynonym struct {
-	// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
-	// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
-	// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
-	// * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
-	// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
-	// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
-	// * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	//
-	// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
+	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer string `pulumi:"analyzer"`
-	// Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+	// The name of the search index you want to create.
 	Name string `pulumi:"name"`
 	// Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
 	SourceCollection string `pulumi:"sourceCollection"`
@@ -14901,31 +15148,9 @@ type SearchIndexSynonymInput interface {
 }
 
 type SearchIndexSynonymArgs struct {
-	// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
-	// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
-	// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
-	// * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
-	// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
-	// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
-	// * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	//
-	// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
+	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer pulumi.StringInput `pulumi:"analyzer"`
-	// Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+	// The name of the search index you want to create.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
 	SourceCollection pulumi.StringInput `pulumi:"sourceCollection"`
@@ -14982,37 +15207,12 @@ func (o SearchIndexSynonymOutput) ToSearchIndexSynonymOutputWithContext(ctx cont
 	return o
 }
 
-// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
-// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
-// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
-// * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
-// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
-// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
-// * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.
+// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 func (o SearchIndexSynonymOutput) Analyzer() pulumi.StringOutput {
 	return o.ApplyT(func(v SearchIndexSynonym) string { return v.Analyzer }).(pulumi.StringOutput)
 }
 
-// Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+// The name of the search index you want to create.
 func (o SearchIndexSynonymOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SearchIndexSynonym) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -16827,7 +17027,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArrayOu
 
 type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops *int `pulumi:"diskIops"`
+	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -16849,7 +17049,7 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface 
 
 type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -16936,8 +17136,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGet
 }
 
 // Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
@@ -16985,7 +17185,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Di
 		if v == nil {
 			return nil
 		}
-		return v.DiskIops
+		return &v.DiskIops
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -17163,7 +17363,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput) Ind
 
 type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops *int `pulumi:"diskIops"`
+	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -17185,7 +17385,7 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface 
 
 type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -17272,8 +17472,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToGet
 }
 
 // Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
@@ -17321,7 +17521,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Di
 		if v == nil {
 			return nil
 		}
-		return v.DiskIops
+		return &v.DiskIops
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -17357,7 +17557,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) No
 
 type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops *int `pulumi:"diskIops"`
+	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -17379,7 +17579,7 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
 
 type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -17466,8 +17666,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetA
 }
 
 // Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
@@ -17515,7 +17715,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Dis
 		if v == nil {
 			return nil
 		}
-		return v.DiskIops
+		return &v.DiskIops
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -19131,7 +19331,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops *int `pulumi:"diskIops"`
+	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -19153,7 +19353,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput int
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -19240,8 +19440,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
 }
 
 // Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
@@ -19293,7 +19493,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOut
 		if v == nil {
 			return nil
 		}
-		return v.DiskIops
+		return &v.DiskIops
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -19468,7 +19668,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutp
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops *int `pulumi:"diskIops"`
+	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -19490,7 +19690,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput int
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -19577,8 +19777,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
 }
 
 // Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
@@ -19630,7 +19830,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOut
 		if v == nil {
 			return nil
 		}
-		return v.DiskIops
+		return &v.DiskIops
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -19666,7 +19866,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOut
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops *int `pulumi:"diskIops"`
+	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -19688,7 +19888,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput inte
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
@@ -19775,8 +19975,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
 // Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
@@ -19828,7 +20028,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutp
 		if v == nil {
 			return nil
 		}
-		return v.DiskIops
+		return &v.DiskIops
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -43606,6 +43806,112 @@ func (o GetProjectsResultTeamArrayOutput) Index(i pulumi.IntInput) GetProjectsRe
 	}).(GetProjectsResultTeamOutput)
 }
 
+type GetSearchDeploymentSpec struct {
+	// (Required) Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+	InstanceSize string `pulumi:"instanceSize"`
+	// (Required) Number of search nodes in the cluster.
+	NodeCount int `pulumi:"nodeCount"`
+}
+
+// GetSearchDeploymentSpecInput is an input type that accepts GetSearchDeploymentSpecArgs and GetSearchDeploymentSpecOutput values.
+// You can construct a concrete instance of `GetSearchDeploymentSpecInput` via:
+//
+//	GetSearchDeploymentSpecArgs{...}
+type GetSearchDeploymentSpecInput interface {
+	pulumi.Input
+
+	ToGetSearchDeploymentSpecOutput() GetSearchDeploymentSpecOutput
+	ToGetSearchDeploymentSpecOutputWithContext(context.Context) GetSearchDeploymentSpecOutput
+}
+
+type GetSearchDeploymentSpecArgs struct {
+	// (Required) Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// (Required) Number of search nodes in the cluster.
+	NodeCount pulumi.IntInput `pulumi:"nodeCount"`
+}
+
+func (GetSearchDeploymentSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSearchDeploymentSpec)(nil)).Elem()
+}
+
+func (i GetSearchDeploymentSpecArgs) ToGetSearchDeploymentSpecOutput() GetSearchDeploymentSpecOutput {
+	return i.ToGetSearchDeploymentSpecOutputWithContext(context.Background())
+}
+
+func (i GetSearchDeploymentSpecArgs) ToGetSearchDeploymentSpecOutputWithContext(ctx context.Context) GetSearchDeploymentSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSearchDeploymentSpecOutput)
+}
+
+// GetSearchDeploymentSpecArrayInput is an input type that accepts GetSearchDeploymentSpecArray and GetSearchDeploymentSpecArrayOutput values.
+// You can construct a concrete instance of `GetSearchDeploymentSpecArrayInput` via:
+//
+//	GetSearchDeploymentSpecArray{ GetSearchDeploymentSpecArgs{...} }
+type GetSearchDeploymentSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetSearchDeploymentSpecArrayOutput() GetSearchDeploymentSpecArrayOutput
+	ToGetSearchDeploymentSpecArrayOutputWithContext(context.Context) GetSearchDeploymentSpecArrayOutput
+}
+
+type GetSearchDeploymentSpecArray []GetSearchDeploymentSpecInput
+
+func (GetSearchDeploymentSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSearchDeploymentSpec)(nil)).Elem()
+}
+
+func (i GetSearchDeploymentSpecArray) ToGetSearchDeploymentSpecArrayOutput() GetSearchDeploymentSpecArrayOutput {
+	return i.ToGetSearchDeploymentSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetSearchDeploymentSpecArray) ToGetSearchDeploymentSpecArrayOutputWithContext(ctx context.Context) GetSearchDeploymentSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSearchDeploymentSpecArrayOutput)
+}
+
+type GetSearchDeploymentSpecOutput struct{ *pulumi.OutputState }
+
+func (GetSearchDeploymentSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSearchDeploymentSpec)(nil)).Elem()
+}
+
+func (o GetSearchDeploymentSpecOutput) ToGetSearchDeploymentSpecOutput() GetSearchDeploymentSpecOutput {
+	return o
+}
+
+func (o GetSearchDeploymentSpecOutput) ToGetSearchDeploymentSpecOutputWithContext(ctx context.Context) GetSearchDeploymentSpecOutput {
+	return o
+}
+
+// (Required) Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+func (o GetSearchDeploymentSpecOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchDeploymentSpec) string { return v.InstanceSize }).(pulumi.StringOutput)
+}
+
+// (Required) Number of search nodes in the cluster.
+func (o GetSearchDeploymentSpecOutput) NodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSearchDeploymentSpec) int { return v.NodeCount }).(pulumi.IntOutput)
+}
+
+type GetSearchDeploymentSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSearchDeploymentSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSearchDeploymentSpec)(nil)).Elem()
+}
+
+func (o GetSearchDeploymentSpecArrayOutput) ToGetSearchDeploymentSpecArrayOutput() GetSearchDeploymentSpecArrayOutput {
+	return o
+}
+
+func (o GetSearchDeploymentSpecArrayOutput) ToGetSearchDeploymentSpecArrayOutputWithContext(ctx context.Context) GetSearchDeploymentSpecArrayOutput {
+	return o
+}
+
+func (o GetSearchDeploymentSpecArrayOutput) Index(i pulumi.IntInput) GetSearchDeploymentSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSearchDeploymentSpec {
+		return vs[0].([]GetSearchDeploymentSpec)[vs[1].(int)]
+	}).(GetSearchDeploymentSpecOutput)
+}
+
 type GetSearchIndexSynonym struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 	Analyzer string `pulumi:"analyzer"`
@@ -43728,8 +44034,9 @@ type GetSearchIndexesResult struct {
 	// Name of the collection with one or more Atlas Search indexes.
 	CollectionName string `pulumi:"collectionName"`
 	// (Required) Name of the database the collection is in.
-	Database string `pulumi:"database"`
-	IndexId  string `pulumi:"indexId"`
+	Database string  `pulumi:"database"`
+	Fields   *string `pulumi:"fields"`
+	IndexId  string  `pulumi:"indexId"`
 	// Flag indicating whether the index uses dynamic or static mappings.
 	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
 	// Object containing one or more field specifications.
@@ -43746,6 +44053,7 @@ type GetSearchIndexesResult struct {
 	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
 	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 	Synonyms                    []GetSearchIndexesResultSynonym `pulumi:"synonyms"`
+	Type                        *string                         `pulumi:"type"`
 	WaitForIndexBuildCompletion *bool                           `pulumi:"waitForIndexBuildCompletion"`
 }
 
@@ -43770,8 +44078,9 @@ type GetSearchIndexesResultArgs struct {
 	// Name of the collection with one or more Atlas Search indexes.
 	CollectionName pulumi.StringInput `pulumi:"collectionName"`
 	// (Required) Name of the database the collection is in.
-	Database pulumi.StringInput `pulumi:"database"`
-	IndexId  pulumi.StringInput `pulumi:"indexId"`
+	Database pulumi.StringInput    `pulumi:"database"`
+	Fields   pulumi.StringPtrInput `pulumi:"fields"`
+	IndexId  pulumi.StringInput    `pulumi:"indexId"`
 	// Flag indicating whether the index uses dynamic or static mappings.
 	MappingsDynamic pulumi.BoolPtrInput `pulumi:"mappingsDynamic"`
 	// Object containing one or more field specifications.
@@ -43788,6 +44097,7 @@ type GetSearchIndexesResultArgs struct {
 	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
 	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 	Synonyms                    GetSearchIndexesResultSynonymArrayInput `pulumi:"synonyms"`
+	Type                        pulumi.StringPtrInput                   `pulumi:"type"`
 	WaitForIndexBuildCompletion pulumi.BoolPtrInput                     `pulumi:"waitForIndexBuildCompletion"`
 }
 
@@ -43867,6 +44177,10 @@ func (o GetSearchIndexesResultOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.Database }).(pulumi.StringOutput)
 }
 
+func (o GetSearchIndexesResultOutput) Fields() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSearchIndexesResult) *string { return v.Fields }).(pulumi.StringPtrOutput)
+}
+
 func (o GetSearchIndexesResultOutput) IndexId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.IndexId }).(pulumi.StringOutput)
 }
@@ -43906,6 +44220,10 @@ func (o GetSearchIndexesResultOutput) Status() pulumi.StringOutput {
 // * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 func (o GetSearchIndexesResultOutput) Synonyms() GetSearchIndexesResultSynonymArrayOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) []GetSearchIndexesResultSynonym { return v.Synonyms }).(GetSearchIndexesResultSynonymArrayOutput)
+}
+
+func (o GetSearchIndexesResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSearchIndexesResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 func (o GetSearchIndexesResultOutput) WaitForIndexBuildCompletion() pulumi.BoolPtrOutput {
@@ -44955,17 +45273,12 @@ func (o GetSharedTierSnapshotsResultArrayOutput) Index(i pulumi.IntInput) GetSha
 }
 
 type GetThirdPartyIntegrationsResult struct {
-	// Unique identifier of your New Relic account.
 	AccountId string `pulumi:"accountId"`
 	// Your API Key.
-	ApiKey string `pulumi:"apiKey"`
-	// Your API Token.
-	ApiToken    string `pulumi:"apiToken"`
+	ApiKey      string `pulumi:"apiKey"`
 	ChannelName string `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled *bool `pulumi:"enabled"`
-	// Your License Key.
-	LicenseKey string `pulumi:"licenseKey"`
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
@@ -45003,17 +45316,12 @@ type GetThirdPartyIntegrationsResultInput interface {
 }
 
 type GetThirdPartyIntegrationsResultArgs struct {
-	// Unique identifier of your New Relic account.
 	AccountId pulumi.StringInput `pulumi:"accountId"`
 	// Your API Key.
-	ApiKey pulumi.StringInput `pulumi:"apiKey"`
-	// Your API Token.
-	ApiToken    pulumi.StringInput `pulumi:"apiToken"`
+	ApiKey      pulumi.StringInput `pulumi:"apiKey"`
 	ChannelName pulumi.StringInput `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// Your License Key.
-	LicenseKey pulumi.StringInput `pulumi:"licenseKey"`
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
@@ -45090,7 +45398,6 @@ func (o GetThirdPartyIntegrationsResultOutput) ToGetThirdPartyIntegrationsResult
 	return o
 }
 
-// Unique identifier of your New Relic account.
 func (o GetThirdPartyIntegrationsResultOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.AccountId }).(pulumi.StringOutput)
 }
@@ -45100,11 +45407,6 @@ func (o GetThirdPartyIntegrationsResultOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
-// Your API Token.
-func (o GetThirdPartyIntegrationsResultOutput) ApiToken() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ApiToken }).(pulumi.StringOutput)
-}
-
 func (o GetThirdPartyIntegrationsResultOutput) ChannelName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ChannelName }).(pulumi.StringOutput)
 }
@@ -45112,11 +45414,6 @@ func (o GetThirdPartyIntegrationsResultOutput) ChannelName() pulumi.StringOutput
 // Whether your cluster has Prometheus enabled.
 func (o GetThirdPartyIntegrationsResultOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
-// Your License Key.
-func (o GetThirdPartyIntegrationsResultOutput) LicenseKey() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.LicenseKey }).(pulumi.StringOutput)
 }
 
 // Your Microsoft Teams incoming webhook URL.
@@ -45509,6 +45806,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamArrayInput)(nil)).Elem(), ProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRoleInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRolePtrInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentSpecInput)(nil)).Elem(), SearchDeploymentSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentSpecArrayInput)(nil)).Elem(), SearchDeploymentSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentTimeoutsInput)(nil)).Elem(), SearchDeploymentTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentTimeoutsPtrInput)(nil)).Elem(), SearchDeploymentTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexSynonymInput)(nil)).Elem(), SearchIndexSynonymArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexSynonymArrayInput)(nil)).Elem(), SearchIndexSynonymArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceLinkInput)(nil)).Elem(), ServerlessInstanceLinkArgs{})
@@ -45933,6 +46234,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultLimitArrayInput)(nil)).Elem(), GetProjectsResultLimitArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamInput)(nil)).Elem(), GetProjectsResultTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamArrayInput)(nil)).Elem(), GetProjectsResultTeamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchDeploymentSpecInput)(nil)).Elem(), GetSearchDeploymentSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchDeploymentSpecArrayInput)(nil)).Elem(), GetSearchDeploymentSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexSynonymInput)(nil)).Elem(), GetSearchIndexSynonymArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexSynonymArrayInput)(nil)).Elem(), GetSearchIndexSynonymArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexesResultInput)(nil)).Elem(), GetSearchIndexesResultArgs{})
@@ -46149,6 +46452,10 @@ func init() {
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(ProviderAssumeRoleOutput{})
 	pulumi.RegisterOutputType(ProviderAssumeRolePtrOutput{})
+	pulumi.RegisterOutputType(SearchDeploymentSpecOutput{})
+	pulumi.RegisterOutputType(SearchDeploymentSpecArrayOutput{})
+	pulumi.RegisterOutputType(SearchDeploymentTimeoutsOutput{})
+	pulumi.RegisterOutputType(SearchDeploymentTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(SearchIndexSynonymOutput{})
 	pulumi.RegisterOutputType(SearchIndexSynonymArrayOutput{})
 	pulumi.RegisterOutputType(ServerlessInstanceLinkOutput{})
@@ -46573,6 +46880,8 @@ func init() {
 	pulumi.RegisterOutputType(GetProjectsResultLimitArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamArrayOutput{})
+	pulumi.RegisterOutputType(GetSearchDeploymentSpecOutput{})
+	pulumi.RegisterOutputType(GetSearchDeploymentSpecArrayOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexSynonymOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexSynonymArrayOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexesResultOutput{})

@@ -12,21 +12,12 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetThirdPartyIntegrationResult {
-    /**
-     * @return Unique identifier of your New Relic account.
-     * 
-     */
     private String accountId;
     /**
      * @return Your API Key.
      * 
      */
     private String apiKey;
-    /**
-     * @return Your API Token.
-     * 
-     */
-    private String apiToken;
     private String channelName;
     /**
      * @return Whether your cluster has Prometheus enabled.
@@ -38,11 +29,6 @@ public final class GetThirdPartyIntegrationResult {
      * 
      */
     private String id;
-    /**
-     * @return Your License Key.
-     * 
-     */
-    private String licenseKey;
     /**
      * @return Your Microsoft Teams incoming webhook URL.
      * 
@@ -97,10 +83,6 @@ public final class GetThirdPartyIntegrationResult {
     private @Nullable String userName;
 
     private GetThirdPartyIntegrationResult() {}
-    /**
-     * @return Unique identifier of your New Relic account.
-     * 
-     */
     public String accountId() {
         return this.accountId;
     }
@@ -110,13 +92,6 @@ public final class GetThirdPartyIntegrationResult {
      */
     public String apiKey() {
         return this.apiKey;
-    }
-    /**
-     * @return Your API Token.
-     * 
-     */
-    public String apiToken() {
-        return this.apiToken;
     }
     public String channelName() {
         return this.channelName;
@@ -134,13 +109,6 @@ public final class GetThirdPartyIntegrationResult {
      */
     public String id() {
         return this.id;
-    }
-    /**
-     * @return Your License Key.
-     * 
-     */
-    public String licenseKey() {
-        return this.licenseKey;
     }
     /**
      * @return Your Microsoft Teams incoming webhook URL.
@@ -230,11 +198,9 @@ public final class GetThirdPartyIntegrationResult {
     public static final class Builder {
         private String accountId;
         private String apiKey;
-        private String apiToken;
         private String channelName;
         private @Nullable Boolean enabled;
         private String id;
-        private String licenseKey;
         private @Nullable String microsoftTeamsWebhookUrl;
         private String projectId;
         private String region;
@@ -252,11 +218,9 @@ public final class GetThirdPartyIntegrationResult {
     	      Objects.requireNonNull(defaults);
     	      this.accountId = defaults.accountId;
     	      this.apiKey = defaults.apiKey;
-    	      this.apiToken = defaults.apiToken;
     	      this.channelName = defaults.channelName;
     	      this.enabled = defaults.enabled;
     	      this.id = defaults.id;
-    	      this.licenseKey = defaults.licenseKey;
     	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
     	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
@@ -282,11 +246,6 @@ public final class GetThirdPartyIntegrationResult {
             return this;
         }
         @CustomType.Setter
-        public Builder apiToken(String apiToken) {
-            this.apiToken = Objects.requireNonNull(apiToken);
-            return this;
-        }
-        @CustomType.Setter
         public Builder channelName(String channelName) {
             this.channelName = Objects.requireNonNull(channelName);
             return this;
@@ -299,11 +258,6 @@ public final class GetThirdPartyIntegrationResult {
         @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder licenseKey(String licenseKey) {
-            this.licenseKey = Objects.requireNonNull(licenseKey);
             return this;
         }
         @CustomType.Setter
@@ -370,11 +324,9 @@ public final class GetThirdPartyIntegrationResult {
             final var o = new GetThirdPartyIntegrationResult();
             o.accountId = accountId;
             o.apiKey = apiKey;
-            o.apiToken = apiToken;
             o.channelName = channelName;
             o.enabled = enabled;
             o.id = id;
-            o.licenseKey = licenseKey;
             o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             o.projectId = projectId;
             o.region = region;

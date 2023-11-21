@@ -8,6 +8,23 @@ import * as utilities from "./utilities";
  * `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "DATADOG",
+ *     apiKey: "<API-KEY>",
+ *     region: "<REGION>",
+ * });
+ * const test = mongodbatlas.getThirdPartyIntegrationOutput({
+ *     projectId: testDatadog.projectId,
+ * });
+ * ```
  */
 export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationResult> {
 
@@ -51,16 +68,11 @@ export interface GetThirdPartyIntegrationArgs {
      * Third-Party service integration type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
-     * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
      */
     type: string;
     /**
@@ -73,18 +85,11 @@ export interface GetThirdPartyIntegrationArgs {
  * A collection of values returned by getThirdPartyIntegration.
  */
 export interface GetThirdPartyIntegrationResult {
-    /**
-     * Unique identifier of your New Relic account.
-     */
     readonly accountId: string;
     /**
      * Your API Key.
      */
     readonly apiKey: string;
-    /**
-     * Your API Token.
-     */
-    readonly apiToken: string;
     readonly channelName: string;
     /**
      * Whether your cluster has Prometheus enabled.
@@ -94,10 +99,6 @@ export interface GetThirdPartyIntegrationResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Your License Key.
-     */
-    readonly licenseKey: string;
     /**
      * Your Microsoft Teams incoming webhook URL.
      */
@@ -145,6 +146,23 @@ export interface GetThirdPartyIntegrationResult {
  * `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "DATADOG",
+ *     apiKey: "<API-KEY>",
+ *     region: "<REGION>",
+ * });
+ * const test = mongodbatlas.getThirdPartyIntegrationOutput({
+ *     projectId: testDatadog.projectId,
+ * });
+ * ```
  */
 export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationResult> {
     return pulumi.output(args).apply((a: any) => getThirdPartyIntegration(a, opts))
@@ -178,16 +196,11 @@ export interface GetThirdPartyIntegrationOutputArgs {
      * Third-Party service integration type
      * * PAGER_DUTY
      * * DATADOG
-     * * NEW_RELIC*
      * * OPS_GENIE
      * * VICTOR_OPS
-     * * FLOWDOCK*
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
-     * *resource is now deprecated and will be removed in the next major version, 1.9.0
-     * **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
      */
     type: pulumi.Input<string>;
     /**

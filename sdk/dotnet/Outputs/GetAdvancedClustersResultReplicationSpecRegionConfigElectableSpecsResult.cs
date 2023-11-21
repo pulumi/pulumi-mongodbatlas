@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Target throughput (IOPS) desired for AWS storage attached to your cluster.
         /// </summary>
-        public readonly int? DiskIops;
+        public readonly int DiskIops;
         /// <summary>
         /// Type of storage you want to attach to your AWS-provisioned cluster.
         /// </summary>
@@ -32,7 +32,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(
-            int? diskIops,
+            int diskIops,
 
             string? ebsVolumeType,
 

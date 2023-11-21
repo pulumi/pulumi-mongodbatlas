@@ -14,13 +14,32 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
-    /// &gt; **Note:** Field types NEW_RELIC, FLOWDOCK have now been fully deprecated as part of v1.10.0 release
-    /// 
     /// &gt; **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
     /// 
     /// &gt; **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
     /// 
     /// &gt; **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+    ///     {
+    ///         ApiKey = "&lt;API-KEY&gt;",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Region = "&lt;REGION&gt;",
+    ///         Type = "DATADOG",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 
@@ -115,12 +134,6 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
-        /// * NEW_RELIC*
-        /// * FLOWDOCK*
-        /// 
-        /// *resource has now been fully deprecated as part of v1.10.0 release
-        /// 
-        /// Additional values based on Type
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -345,12 +358,6 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
-        /// * NEW_RELIC*
-        /// * FLOWDOCK*
-        /// 
-        /// *resource has now been fully deprecated as part of v1.10.0 release
-        /// 
-        /// Additional values based on Type
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -536,12 +543,6 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
-        /// * NEW_RELIC*
-        /// * FLOWDOCK*
-        /// 
-        /// *resource has now been fully deprecated as part of v1.10.0 release
-        /// 
-        /// Additional values based on Type
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

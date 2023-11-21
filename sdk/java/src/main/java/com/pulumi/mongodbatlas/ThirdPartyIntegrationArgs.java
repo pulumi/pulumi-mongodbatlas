@@ -204,12 +204,6 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     * * NEW_RELIC*
-     * * FLOWDOCK*
-     * 
-     * *resource has now been fully deprecated as part of v1.10.0 release
-     * 
-     * Additional values based on Type
      * 
      */
     @Import(name="type", required=true)
@@ -224,12 +218,6 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     * * NEW_RELIC*
-     * * FLOWDOCK*
-     * 
-     * *resource has now been fully deprecated as part of v1.10.0 release
-     * 
-     * Additional values based on Type
      * 
      */
     public Output<String> type() {
@@ -563,12 +551,6 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
-         * * NEW_RELIC*
-         * * FLOWDOCK*
-         * 
-         * *resource has now been fully deprecated as part of v1.10.0 release
-         * 
-         * Additional values based on Type
          * 
          * @return builder
          * 
@@ -587,12 +569,6 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
-         * * NEW_RELIC*
-         * * FLOWDOCK*
-         * 
-         * *resource has now been fully deprecated as part of v1.10.0 release
-         * 
-         * Additional values based on Type
          * 
          * @return builder
          * 

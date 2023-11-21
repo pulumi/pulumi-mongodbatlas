@@ -520,6 +520,11 @@ export const getRolesOrgId: typeof import("./getRolesOrgId").getRolesOrgId = nul
 export const getRolesOrgIdOutput: typeof import("./getRolesOrgId").getRolesOrgIdOutput = null as any;
 utilities.lazyLoad(exports, ["getRolesOrgId","getRolesOrgIdOutput"], () => require("./getRolesOrgId"));
 
+export { GetSearchDeploymentArgs, GetSearchDeploymentResult, GetSearchDeploymentOutputArgs } from "./getSearchDeployment";
+export const getSearchDeployment: typeof import("./getSearchDeployment").getSearchDeployment = null as any;
+export const getSearchDeploymentOutput: typeof import("./getSearchDeployment").getSearchDeploymentOutput = null as any;
+utilities.lazyLoad(exports, ["getSearchDeployment","getSearchDeploymentOutput"], () => require("./getSearchDeployment"));
+
 export { GetSearchIndexArgs, GetSearchIndexResult, GetSearchIndexOutputArgs } from "./getSearchIndex";
 export const getSearchIndex: typeof import("./getSearchIndex").getSearchIndex = null as any;
 export const getSearchIndexOutput: typeof import("./getSearchIndex").getSearchIndexOutput = null as any;
@@ -685,6 +690,11 @@ export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
+export { SearchDeploymentArgs, SearchDeploymentState } from "./searchDeployment";
+export type SearchDeployment = import("./searchDeployment").SearchDeployment;
+export const SearchDeployment: typeof import("./searchDeployment").SearchDeployment = null as any;
+utilities.lazyLoad(exports, ["SearchDeployment"], () => require("./searchDeployment"));
+
 export { SearchIndexArgs, SearchIndexState } from "./searchIndex";
 export type SearchIndex = import("./searchIndex").SearchIndex;
 export const SearchIndex: typeof import("./searchIndex").SearchIndex = null as any;
@@ -821,6 +831,8 @@ const _module = {
                 return new ProjectInvitation(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
                 return new ProjectIpAccessList(name, <any>undefined, { urn })
+            case "mongodbatlas:index/searchDeployment:SearchDeployment":
+                return new SearchDeployment(name, <any>undefined, { urn })
             case "mongodbatlas:index/searchIndex:SearchIndex":
                 return new SearchIndex(name, <any>undefined, { urn })
             case "mongodbatlas:index/serverlessInstance:ServerlessInstance":
@@ -884,6 +896,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectApiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectInvitation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchDeployment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/serverlessInstance", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/team", _module)

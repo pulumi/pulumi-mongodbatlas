@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas
     /// `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
     /// 
     /// ## Example Usage
-    /// ### Basic
+    /// ### Basic search index
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,7 +35,34 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// ### Advanced (with custom analyzers)
+    /// ### Basic vector index
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test_basic_search_vector = new Mongodbatlas.SearchIndex("test-basic-search-vector", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
+    ///         CollectionName = "collection_test",
+    ///         Database = "database_test",
+    ///         Type = "vectorSearch",
+    ///         Fields = @"[{
+    ///       ""type"": ""vector"",
+    ///       ""path"": ""plot_embedding"",
+    ///       ""numDimensions"": 1536,
+    ///       ""similarity"": ""euclidean""
+    /// }]
+    /// ",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Advanced search index (with custom analyzers)
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -149,17 +176,23 @@ namespace Pulumi.Mongodbatlas
         [Output("database")]
         public Output<string> Database { get; private set; } = null!;
 
+        /// <summary>
+        /// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        /// </summary>
+        [Output("fields")]
+        public Output<string?> Fields { get; private set; } = null!;
+
         [Output("indexId")]
         public Output<string> IndexId { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        /// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
         /// </summary>
         [Output("mappingsDynamic")]
         public Output<bool?> MappingsDynamic { get; private set; } = null!;
 
         /// <summary>
-        /// attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Output("mappingsFields")]
         public Output<string?> MappingsFields { get; private set; } = null!;
@@ -190,6 +223,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("synonyms")]
         public Output<ImmutableArray<Outputs.SearchIndexSynonym>> Synonyms { get; private set; } = null!;
+
+        /// <summary>
+        /// Type of index: `search` or `vectorSearch`. Default type is `search`.
+        /// </summary>
+        [Output("type")]
+        public Output<string?> Type { get; private set; } = null!;
 
         [Output("waitForIndexBuildCompletion")]
         public Output<bool?> WaitForIndexBuildCompletion { get; private set; } = null!;
@@ -271,13 +310,19 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Database { get; set; } = null!;
 
         /// <summary>
-        /// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        /// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        /// </summary>
+        [Input("fields")]
+        public Input<string>? Fields { get; set; }
+
+        /// <summary>
+        /// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
         /// </summary>
         [Input("mappingsDynamic")]
         public Input<bool>? MappingsDynamic { get; set; }
 
         /// <summary>
-        /// attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Input("mappingsFields")]
         public Input<string>? MappingsFields { get; set; }
@@ -314,6 +359,12 @@ namespace Pulumi.Mongodbatlas
             get => _synonyms ?? (_synonyms = new InputList<Inputs.SearchIndexSynonymArgs>());
             set => _synonyms = value;
         }
+
+        /// <summary>
+        /// Type of index: `search` or `vectorSearch`. Default type is `search`.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         [Input("waitForIndexBuildCompletion")]
         public Input<bool>? WaitForIndexBuildCompletion { get; set; }
@@ -356,17 +407,23 @@ namespace Pulumi.Mongodbatlas
         [Input("database")]
         public Input<string>? Database { get; set; }
 
+        /// <summary>
+        /// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        /// </summary>
+        [Input("fields")]
+        public Input<string>? Fields { get; set; }
+
         [Input("indexId")]
         public Input<string>? IndexId { get; set; }
 
         /// <summary>
-        /// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        /// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
         /// </summary>
         [Input("mappingsDynamic")]
         public Input<bool>? MappingsDynamic { get; set; }
 
         /// <summary>
-        /// attribute is required when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+        /// attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         /// </summary>
         [Input("mappingsFields")]
         public Input<string>? MappingsFields { get; set; }
@@ -403,6 +460,12 @@ namespace Pulumi.Mongodbatlas
             get => _synonyms ?? (_synonyms = new InputList<Inputs.SearchIndexSynonymGetArgs>());
             set => _synonyms = value;
         }
+
+        /// <summary>
+        /// Type of index: `search` or `vectorSearch`. Default type is `search`.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         [Input("waitForIndexBuildCompletion")]
         public Input<bool>? WaitForIndexBuildCompletion { get; set; }

@@ -13,27 +13,16 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetThirdPartyIntegrationsResultResult
     {
-        /// <summary>
-        /// Unique identifier of your New Relic account.
-        /// </summary>
         public readonly string AccountId;
         /// <summary>
         /// Your API Key.
         /// </summary>
         public readonly string ApiKey;
-        /// <summary>
-        /// Your API Token.
-        /// </summary>
-        public readonly string ApiToken;
         public readonly string ChannelName;
         /// <summary>
         /// Whether your cluster has Prometheus enabled.
         /// </summary>
         public readonly bool? Enabled;
-        /// <summary>
-        /// Your License Key.
-        /// </summary>
-        public readonly string LicenseKey;
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
         /// </summary>
@@ -86,13 +75,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string apiKey,
 
-            string apiToken,
-
             string channelName,
 
             bool? enabled,
-
-            string licenseKey,
 
             string? microsoftTeamsWebhookUrl,
 
@@ -120,10 +105,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         {
             AccountId = accountId;
             ApiKey = apiKey;
-            ApiToken = apiToken;
             ChannelName = channelName;
             Enabled = enabled;
-            LicenseKey = licenseKey;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             ProjectId = projectId;
             Region = region;
