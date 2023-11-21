@@ -765,6 +765,15 @@
                 "current": "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList",
                 "majorVersion": 3
             },
+            "mongodbatlas_search_deployment": {
+                "current": "mongodbatlas:index/searchDeployment:SearchDeployment",
+                "majorVersion": 3,
+                "fields": {
+                    "specs": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_search_index": {
                 "current": "mongodbatlas:index/searchIndex:SearchIndex",
                 "majorVersion": 3,
@@ -2472,6 +2481,15 @@
                 "current": "mongodbatlas:index/getRolesOrgId:getRolesOrgId",
                 "majorVersion": 3
             },
+            "mongodbatlas_search_deployment": {
+                "current": "mongodbatlas:index/getSearchDeployment:getSearchDeployment",
+                "majorVersion": 3,
+                "fields": {
+                    "specs": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_search_index": {
                 "current": "mongodbatlas:index/getSearchIndex:getSearchIndex",
                 "majorVersion": 3,
@@ -2657,6 +2675,7 @@
             "mongodbatlas:index/projectApiKey:ProjectApiKey": 0,
             "mongodbatlas:index/projectInvitation:ProjectInvitation": 0,
             "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList": 1,
+            "mongodbatlas:index/searchDeployment:SearchDeployment": 1,
             "mongodbatlas:index/searchIndex:SearchIndex": 0,
             "mongodbatlas:index/serverlessInstance:ServerlessInstance": 0,
             "mongodbatlas:index/team:Team": 0,
@@ -2741,6 +2760,7 @@
             "mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList": 1,
             "mongodbatlas:index/getProjects:getProjects": 1,
             "mongodbatlas:index/getRolesOrgId:getRolesOrgId": 0,
+            "mongodbatlas:index/getSearchDeployment:getSearchDeployment": 1,
             "mongodbatlas:index/getSearchIndex:getSearchIndex": 0,
             "mongodbatlas:index/getSearchIndexes:getSearchIndexes": 0,
             "mongodbatlas:index/getServerlessInstance:getServerlessInstance": 0,
@@ -2804,6 +2824,7 @@
             "mongodbatlas:index/projectApiKey:ProjectApiKey": "mongodbatlas_project_api_key",
             "mongodbatlas:index/projectInvitation:ProjectInvitation": "mongodbatlas_project_invitation",
             "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList": "mongodbatlas_project_ip_access_list",
+            "mongodbatlas:index/searchDeployment:SearchDeployment": "mongodbatlas_search_deployment",
             "mongodbatlas:index/searchIndex:SearchIndex": "mongodbatlas_search_index",
             "mongodbatlas:index/serverlessInstance:ServerlessInstance": "mongodbatlas_serverless_instance",
             "mongodbatlas:index/team:Team": "mongodbatlas_team",
@@ -2888,6 +2909,7 @@
             "mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList": "mongodbatlas_project_ip_access_list",
             "mongodbatlas:index/getProjects:getProjects": "mongodbatlas_projects",
             "mongodbatlas:index/getRolesOrgId:getRolesOrgId": "mongodbatlas_roles_org_id",
+            "mongodbatlas:index/getSearchDeployment:getSearchDeployment": "mongodbatlas_search_deployment",
             "mongodbatlas:index/getSearchIndex:getSearchIndex": "mongodbatlas_search_index",
             "mongodbatlas:index/getSearchIndexes:getSearchIndexes": "mongodbatlas_search_indexes",
             "mongodbatlas:index/getServerlessInstance:getServerlessInstance": "mongodbatlas_serverless_instance",
@@ -3354,6 +3376,10 @@
                 "sessionName": "session_name",
                 "sourceIdentity": "source_identity",
                 "transitiveTagKeys": "transitive_tag_keys"
+            },
+            "mongodbatlas:index/SearchDeploymentSpec:SearchDeploymentSpec": {
+                "instanceSize": "instance_size",
+                "nodeCount": "node_count"
             },
             "mongodbatlas:index/SearchIndexSynonym:SearchIndexSynonym": {
                 "sourceCollection": "source_collection"
@@ -5387,6 +5413,15 @@
             "mongodbatlas:index/getRolesOrgId:getRolesOrgId": {
                 "orgId": "org_id"
             },
+            "mongodbatlas:index/getSearchDeployment:getSearchDeployment": {
+                "clusterName": "cluster_name",
+                "projectId": "project_id",
+                "stateName": "state_name"
+            },
+            "mongodbatlas:index/getSearchDeploymentSpec:getSearchDeploymentSpec": {
+                "instanceSize": "instance_size",
+                "nodeCount": "node_count"
+            },
             "mongodbatlas:index/getSearchIndex:getSearchIndex": {
                 "clusterName": "cluster_name",
                 "collectionName": "collection_name",
@@ -5512,9 +5547,7 @@
             "mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration": {
                 "accountId": "account_id",
                 "apiKey": "api_key",
-                "apiToken": "api_token",
                 "channelName": "channel_name",
-                "licenseKey": "license_key",
                 "microsoftTeamsWebhookUrl": "microsoft_teams_webhook_url",
                 "projectId": "project_id",
                 "routingKey": "routing_key",
@@ -5529,9 +5562,7 @@
             "mongodbatlas:index/getThirdPartyIntegrationsResult:getThirdPartyIntegrationsResult": {
                 "accountId": "account_id",
                 "apiKey": "api_key",
-                "apiToken": "api_token",
                 "channelName": "channel_name",
-                "licenseKey": "license_key",
                 "microsoftTeamsWebhookUrl": "microsoft_teams_webhook_url",
                 "projectId": "project_id",
                 "routingKey": "routing_key",
@@ -5735,6 +5766,11 @@
                 "cidrBlock": "cidr_block",
                 "ipAddress": "ip_address",
                 "projectId": "project_id"
+            },
+            "mongodbatlas:index/searchDeployment:SearchDeployment": {
+                "clusterName": "cluster_name",
+                "projectId": "project_id",
+                "stateName": "state_name"
             },
             "mongodbatlas:index/searchIndex:SearchIndex": {
                 "clusterName": "cluster_name",
