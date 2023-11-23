@@ -132,6 +132,10 @@ export class OnlineArchive extends pulumi.CustomResource {
      */
     public readonly dataExpirationRule!: pulumi.Output<outputs.OnlineArchiveDataExpirationRule | undefined>;
     /**
+     * Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+     */
+    public readonly dataProcessRegion!: pulumi.Output<outputs.OnlineArchiveDataProcessRegion>;
+    /**
      * Name of the database that contains the collection.
      */
     public readonly dbName!: pulumi.Output<string>;
@@ -176,6 +180,7 @@ export class OnlineArchive extends pulumi.CustomResource {
             resourceInputs["collectionType"] = state ? state.collectionType : undefined;
             resourceInputs["criteria"] = state ? state.criteria : undefined;
             resourceInputs["dataExpirationRule"] = state ? state.dataExpirationRule : undefined;
+            resourceInputs["dataProcessRegion"] = state ? state.dataProcessRegion : undefined;
             resourceInputs["dbName"] = state ? state.dbName : undefined;
             resourceInputs["partitionFields"] = state ? state.partitionFields : undefined;
             resourceInputs["paused"] = state ? state.paused : undefined;
@@ -205,6 +210,7 @@ export class OnlineArchive extends pulumi.CustomResource {
             resourceInputs["collectionType"] = args ? args.collectionType : undefined;
             resourceInputs["criteria"] = args ? args.criteria : undefined;
             resourceInputs["dataExpirationRule"] = args ? args.dataExpirationRule : undefined;
+            resourceInputs["dataProcessRegion"] = args ? args.dataProcessRegion : undefined;
             resourceInputs["dbName"] = args ? args.dbName : undefined;
             resourceInputs["partitionFields"] = args ? args.partitionFields : undefined;
             resourceInputs["paused"] = args ? args.paused : undefined;
@@ -247,6 +253,10 @@ export interface OnlineArchiveState {
      * Rule for specifying when data should be deleted from the archive. See data expiration rule.
      */
     dataExpirationRule?: pulumi.Input<inputs.OnlineArchiveDataExpirationRule>;
+    /**
+     * Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+     */
+    dataProcessRegion?: pulumi.Input<inputs.OnlineArchiveDataProcessRegion>;
     /**
      * Name of the database that contains the collection.
      */
@@ -298,6 +308,10 @@ export interface OnlineArchiveArgs {
      * Rule for specifying when data should be deleted from the archive. See data expiration rule.
      */
     dataExpirationRule?: pulumi.Input<inputs.OnlineArchiveDataExpirationRule>;
+    /**
+     * Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+     */
+    dataProcessRegion?: pulumi.Input<inputs.OnlineArchiveDataProcessRegion>;
     /**
      * Name of the database that contains the collection.
      */

@@ -47,7 +47,7 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
      */
-    public readonly acceptDataRisksAndForceReplicaSetReconfig!: pulumi.Output<string | undefined>;
+    public readonly acceptDataRisksAndForceReplicaSetReconfig!: pulumi.Output<string>;
     public readonly advancedConfiguration!: pulumi.Output<outputs.ClusterAdvancedConfiguration>;
     public readonly autoScalingComputeEnabled!: pulumi.Output<boolean>;
     /**
@@ -55,7 +55,7 @@ export class Cluster extends pulumi.CustomResource {
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
     public readonly autoScalingComputeScaleDownEnabled!: pulumi.Output<boolean>;
-    public readonly autoScalingDiskGbEnabled!: pulumi.Output<boolean | undefined>;
+    public readonly autoScalingDiskGbEnabled!: pulumi.Output<boolean>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      *

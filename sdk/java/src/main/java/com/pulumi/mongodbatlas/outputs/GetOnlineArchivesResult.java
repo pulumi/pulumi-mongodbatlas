@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivesResultCriteria;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivesResultDataExpirationRule;
+import com.pulumi.mongodbatlas.outputs.GetOnlineArchivesResultDataProcessRegion;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivesResultPartitionField;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivesResultSchedule;
 import java.lang.Boolean;
@@ -29,6 +30,7 @@ public final class GetOnlineArchivesResult {
     private String collectionType;
     private List<GetOnlineArchivesResultCriteria> criterias;
     private List<GetOnlineArchivesResultDataExpirationRule> dataExpirationRules;
+    private List<GetOnlineArchivesResultDataProcessRegion> dataProcessRegions;
     private String dbName;
     private List<GetOnlineArchivesResultPartitionField> partitionFields;
     private Boolean paused;
@@ -66,6 +68,9 @@ public final class GetOnlineArchivesResult {
     }
     public List<GetOnlineArchivesResultDataExpirationRule> dataExpirationRules() {
         return this.dataExpirationRules;
+    }
+    public List<GetOnlineArchivesResultDataProcessRegion> dataProcessRegions() {
+        return this.dataProcessRegions;
     }
     public String dbName() {
         return this.dbName;
@@ -105,6 +110,7 @@ public final class GetOnlineArchivesResult {
         private String collectionType;
         private List<GetOnlineArchivesResultCriteria> criterias;
         private List<GetOnlineArchivesResultDataExpirationRule> dataExpirationRules;
+        private List<GetOnlineArchivesResultDataProcessRegion> dataProcessRegions;
         private String dbName;
         private List<GetOnlineArchivesResultPartitionField> partitionFields;
         private Boolean paused;
@@ -120,6 +126,7 @@ public final class GetOnlineArchivesResult {
     	      this.collectionType = defaults.collectionType;
     	      this.criterias = defaults.criterias;
     	      this.dataExpirationRules = defaults.dataExpirationRules;
+    	      this.dataProcessRegions = defaults.dataProcessRegions;
     	      this.dbName = defaults.dbName;
     	      this.partitionFields = defaults.partitionFields;
     	      this.paused = defaults.paused;
@@ -165,6 +172,14 @@ public final class GetOnlineArchivesResult {
             return dataExpirationRules(List.of(dataExpirationRules));
         }
         @CustomType.Setter
+        public Builder dataProcessRegions(List<GetOnlineArchivesResultDataProcessRegion> dataProcessRegions) {
+            this.dataProcessRegions = Objects.requireNonNull(dataProcessRegions);
+            return this;
+        }
+        public Builder dataProcessRegions(GetOnlineArchivesResultDataProcessRegion... dataProcessRegions) {
+            return dataProcessRegions(List.of(dataProcessRegions));
+        }
+        @CustomType.Setter
         public Builder dbName(String dbName) {
             this.dbName = Objects.requireNonNull(dbName);
             return this;
@@ -208,6 +223,7 @@ public final class GetOnlineArchivesResult {
             o.collectionType = collectionType;
             o.criterias = criterias;
             o.dataExpirationRules = dataExpirationRules;
+            o.dataProcessRegions = dataProcessRegions;
             o.dbName = dbName;
             o.partitionFields = partitionFields;
             o.paused = paused;

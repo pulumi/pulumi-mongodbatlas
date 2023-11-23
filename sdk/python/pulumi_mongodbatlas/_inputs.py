@@ -98,6 +98,7 @@ __all__ = [
     'LdapVerifyValidationArgs',
     'OnlineArchiveCriteriaArgs',
     'OnlineArchiveDataExpirationRuleArgs',
+    'OnlineArchiveDataProcessRegionArgs',
     'OnlineArchivePartitionFieldArgs',
     'OnlineArchiveScheduleArgs',
     'PrivateLinkEndpointServiceEndpointArgs',
@@ -6426,6 +6427,45 @@ class OnlineArchiveDataExpirationRuleArgs:
     @expire_after_days.setter
     def expire_after_days(self, value: pulumi.Input[int]):
         pulumi.set(self, "expire_after_days", value)
+
+
+@pulumi.input_type
+class OnlineArchiveDataProcessRegionArgs:
+    def __init__(__self__, *,
+                 cloud_provider: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] cloud_provider: Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+        :param pulumi.Input[str] region: Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+        """
+        if cloud_provider is not None:
+            pulumi.set(__self__, "cloud_provider", cloud_provider)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @cloud_provider.setter
+    def cloud_provider(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloud_provider", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
 
 @pulumi.input_type

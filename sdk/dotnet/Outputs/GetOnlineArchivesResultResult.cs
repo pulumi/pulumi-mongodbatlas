@@ -26,6 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string CollectionType;
         public readonly ImmutableArray<Outputs.GetOnlineArchivesResultCriteriaResult> Criterias;
         public readonly ImmutableArray<Outputs.GetOnlineArchivesResultDataExpirationRuleResult> DataExpirationRules;
+        public readonly ImmutableArray<Outputs.GetOnlineArchivesResultDataProcessRegionResult> DataProcessRegions;
         public readonly string DbName;
         public readonly ImmutableArray<Outputs.GetOnlineArchivesResultPartitionFieldResult> PartitionFields;
         public readonly bool Paused;
@@ -50,6 +51,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetOnlineArchivesResultDataExpirationRuleResult> dataExpirationRules,
 
+            ImmutableArray<Outputs.GetOnlineArchivesResultDataProcessRegionResult> dataProcessRegions,
+
             string dbName,
 
             ImmutableArray<Outputs.GetOnlineArchivesResultPartitionFieldResult> partitionFields,
@@ -68,6 +71,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             CollectionType = collectionType;
             Criterias = criterias;
             DataExpirationRules = dataExpirationRules;
+            DataProcessRegions = dataProcessRegions;
             DbName = dbName;
             PartitionFields = partitionFields;
             Paused = paused;

@@ -22,7 +22,7 @@ class GetOnlineArchiveResult:
     """
     A collection of values returned by getOnlineArchive.
     """
-    def __init__(__self__, archive_id=None, cluster_name=None, coll_name=None, collection_type=None, criterias=None, data_expiration_rules=None, db_name=None, id=None, partition_fields=None, paused=None, project_id=None, schedules=None, state=None):
+    def __init__(__self__, archive_id=None, cluster_name=None, coll_name=None, collection_type=None, criterias=None, data_expiration_rules=None, data_process_regions=None, db_name=None, id=None, partition_fields=None, paused=None, project_id=None, schedules=None, state=None):
         if archive_id and not isinstance(archive_id, str):
             raise TypeError("Expected argument 'archive_id' to be a str")
         pulumi.set(__self__, "archive_id", archive_id)
@@ -41,6 +41,9 @@ class GetOnlineArchiveResult:
         if data_expiration_rules and not isinstance(data_expiration_rules, list):
             raise TypeError("Expected argument 'data_expiration_rules' to be a list")
         pulumi.set(__self__, "data_expiration_rules", data_expiration_rules)
+        if data_process_regions and not isinstance(data_process_regions, list):
+            raise TypeError("Expected argument 'data_process_regions' to be a list")
+        pulumi.set(__self__, "data_process_regions", data_process_regions)
         if db_name and not isinstance(db_name, str):
             raise TypeError("Expected argument 'db_name' to be a str")
         pulumi.set(__self__, "db_name", db_name)
@@ -94,6 +97,11 @@ class GetOnlineArchiveResult:
         return pulumi.get(self, "data_expiration_rules")
 
     @property
+    @pulumi.getter(name="dataProcessRegions")
+    def data_process_regions(self) -> Sequence['outputs.GetOnlineArchiveDataProcessRegionResult']:
+        return pulumi.get(self, "data_process_regions")
+
+    @property
     @pulumi.getter(name="dbName")
     def db_name(self) -> str:
         return pulumi.get(self, "db_name")
@@ -144,6 +152,7 @@ class AwaitableGetOnlineArchiveResult(GetOnlineArchiveResult):
             collection_type=self.collection_type,
             criterias=self.criterias,
             data_expiration_rules=self.data_expiration_rules,
+            data_process_regions=self.data_process_regions,
             db_name=self.db_name,
             id=self.id,
             partition_fields=self.partition_fields,
@@ -179,6 +188,7 @@ def get_online_archive(archive_id: Optional[str] = None,
     * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
     * `criteria` - Criteria to use for archiving data. See criteria.
     * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+    * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
     * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
     * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
     * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
@@ -193,6 +203,10 @@ def get_online_archive(archive_id: Optional[str] = None,
 
     ### Data Expiration Rule
     * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+
+    ### Data Process Region
+    * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+    * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
 
     ### Schedule
 
@@ -230,6 +244,7 @@ def get_online_archive(archive_id: Optional[str] = None,
         collection_type=pulumi.get(__ret__, 'collection_type'),
         criterias=pulumi.get(__ret__, 'criterias'),
         data_expiration_rules=pulumi.get(__ret__, 'data_expiration_rules'),
+        data_process_regions=pulumi.get(__ret__, 'data_process_regions'),
         db_name=pulumi.get(__ret__, 'db_name'),
         id=pulumi.get(__ret__, 'id'),
         partition_fields=pulumi.get(__ret__, 'partition_fields'),
@@ -266,6 +281,7 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
     * `collection_type`  -  Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
     * `criteria` - Criteria to use for archiving data. See criteria.
     * `data_expiration_rule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+    * `data_process_region` - Settings to configure the region where you wish to store your archived data. See data process region.
     * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
     * `partition_fields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
     * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
@@ -280,6 +296,10 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
 
     ### Data Expiration Rule
     * `expire_after_days` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+
+    ### Data Process Region
+    * `cloud_provider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+    * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
 
     ### Schedule
 

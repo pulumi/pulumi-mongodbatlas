@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         /// </summary>
         [Output("acceptDataRisksAndForceReplicaSetReconfig")]
-        public Output<string?> AcceptDataRisksAndForceReplicaSetReconfig { get; private set; } = null!;
+        public Output<string> AcceptDataRisksAndForceReplicaSetReconfig { get; private set; } = null!;
 
         [Output("advancedConfiguration")]
         public Output<Outputs.ClusterAdvancedConfiguration> AdvancedConfiguration { get; private set; } = null!;
@@ -42,7 +42,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> AutoScalingComputeScaleDownEnabled { get; private set; } = null!;
 
         [Output("autoScalingDiskGbEnabled")]
-        public Output<bool?> AutoScalingDiskGbEnabled { get; private set; } = null!;
+        public Output<bool> AutoScalingDiskGbEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
