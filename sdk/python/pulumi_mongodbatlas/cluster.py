@@ -1830,7 +1830,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="acceptDataRisksAndForceReplicaSetReconfig")
-    def accept_data_risks_and_force_replica_set_reconfig(self) -> pulumi.Output[Optional[str]]:
+    def accept_data_risks_and_force_replica_set_reconfig(self) -> pulumi.Output[str]:
         """
         If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         """
@@ -1857,7 +1857,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="autoScalingDiskGbEnabled")
-    def auto_scaling_disk_gb_enabled(self) -> pulumi.Output[Optional[bool]]:
+    def auto_scaling_disk_gb_enabled(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "auto_scaling_disk_gb_enabled")
 
     @property

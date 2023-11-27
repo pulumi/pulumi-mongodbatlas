@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.OnlineArchiveCriteriaArgs;
 import com.pulumi.mongodbatlas.inputs.OnlineArchiveDataExpirationRuleArgs;
+import com.pulumi.mongodbatlas.inputs.OnlineArchiveDataProcessRegionArgs;
 import com.pulumi.mongodbatlas.inputs.OnlineArchivePartitionFieldArgs;
 import com.pulumi.mongodbatlas.inputs.OnlineArchiveScheduleArgs;
 import java.lang.Boolean;
@@ -94,6 +95,21 @@ public final class OnlineArchiveArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<OnlineArchiveDataExpirationRuleArgs>> dataExpirationRule() {
         return Optional.ofNullable(this.dataExpirationRule);
+    }
+
+    /**
+     * Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+     * 
+     */
+    @Import(name="dataProcessRegion")
+    private @Nullable Output<OnlineArchiveDataProcessRegionArgs> dataProcessRegion;
+
+    /**
+     * @return Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+     * 
+     */
+    public Optional<Output<OnlineArchiveDataProcessRegionArgs>> dataProcessRegion() {
+        return Optional.ofNullable(this.dataProcessRegion);
     }
 
     /**
@@ -186,6 +202,7 @@ public final class OnlineArchiveArgs extends com.pulumi.resources.ResourceArgs {
         this.collectionType = $.collectionType;
         this.criteria = $.criteria;
         this.dataExpirationRule = $.dataExpirationRule;
+        this.dataProcessRegion = $.dataProcessRegion;
         this.dbName = $.dbName;
         this.partitionFields = $.partitionFields;
         this.paused = $.paused;
@@ -315,6 +332,27 @@ public final class OnlineArchiveArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder dataExpirationRule(OnlineArchiveDataExpirationRuleArgs dataExpirationRule) {
             return dataExpirationRule(Output.of(dataExpirationRule));
+        }
+
+        /**
+         * @param dataProcessRegion Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataProcessRegion(@Nullable Output<OnlineArchiveDataProcessRegionArgs> dataProcessRegion) {
+            $.dataProcessRegion = dataProcessRegion;
+            return this;
+        }
+
+        /**
+         * @param dataProcessRegion Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataProcessRegion(OnlineArchiveDataProcessRegionArgs dataProcessRegion) {
+            return dataProcessRegion(Output.of(dataProcessRegion));
         }
 
         /**

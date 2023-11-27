@@ -99,6 +99,7 @@ __all__ = [
     'LdapVerifyValidation',
     'OnlineArchiveCriteria',
     'OnlineArchiveDataExpirationRule',
+    'OnlineArchiveDataProcessRegion',
     'OnlineArchivePartitionField',
     'OnlineArchiveSchedule',
     'PrivateLinkEndpointServiceEndpoint',
@@ -300,11 +301,13 @@ __all__ = [
     'GetNetworkPeeringsResultResult',
     'GetOnlineArchiveCriteriaResult',
     'GetOnlineArchiveDataExpirationRuleResult',
+    'GetOnlineArchiveDataProcessRegionResult',
     'GetOnlineArchivePartitionFieldResult',
     'GetOnlineArchiveScheduleResult',
     'GetOnlineArchivesResultResult',
     'GetOnlineArchivesResultCriteriaResult',
     'GetOnlineArchivesResultDataExpirationRuleResult',
+    'GetOnlineArchivesResultDataProcessRegionResult',
     'GetOnlineArchivesResultPartitionFieldResult',
     'GetOnlineArchivesResultScheduleResult',
     'GetOrganizationLinkResult',
@@ -6720,6 +6723,54 @@ class OnlineArchiveDataExpirationRule(dict):
         Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
         """
         return pulumi.get(self, "expire_after_days")
+
+
+@pulumi.output_type
+class OnlineArchiveDataProcessRegion(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cloudProvider":
+            suggest = "cloud_provider"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OnlineArchiveDataProcessRegion. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OnlineArchiveDataProcessRegion.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OnlineArchiveDataProcessRegion.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cloud_provider: Optional[str] = None,
+                 region: Optional[str] = None):
+        """
+        :param str cloud_provider: Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+        :param str region: Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+        """
+        if cloud_provider is not None:
+            pulumi.set(__self__, "cloud_provider", cloud_provider)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> Optional[str]:
+        """
+        Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+        """
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -18353,6 +18404,25 @@ class GetOnlineArchiveDataExpirationRuleResult(dict):
 
 
 @pulumi.output_type
+class GetOnlineArchiveDataProcessRegionResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: str,
+                 region: str):
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
 class GetOnlineArchivePartitionFieldResult(dict):
     def __init__(__self__, *,
                  field_name: str,
@@ -18443,6 +18513,7 @@ class GetOnlineArchivesResultResult(dict):
                  collection_type: str,
                  criterias: Sequence['outputs.GetOnlineArchivesResultCriteriaResult'],
                  data_expiration_rules: Sequence['outputs.GetOnlineArchivesResultDataExpirationRuleResult'],
+                 data_process_regions: Sequence['outputs.GetOnlineArchivesResultDataProcessRegionResult'],
                  db_name: str,
                  partition_fields: Sequence['outputs.GetOnlineArchivesResultPartitionFieldResult'],
                  paused: bool,
@@ -18463,6 +18534,7 @@ class GetOnlineArchivesResultResult(dict):
         pulumi.set(__self__, "collection_type", collection_type)
         pulumi.set(__self__, "criterias", criterias)
         pulumi.set(__self__, "data_expiration_rules", data_expiration_rules)
+        pulumi.set(__self__, "data_process_regions", data_process_regions)
         pulumi.set(__self__, "db_name", db_name)
         pulumi.set(__self__, "partition_fields", partition_fields)
         pulumi.set(__self__, "paused", paused)
@@ -18506,6 +18578,11 @@ class GetOnlineArchivesResultResult(dict):
     @pulumi.getter(name="dataExpirationRules")
     def data_expiration_rules(self) -> Sequence['outputs.GetOnlineArchivesResultDataExpirationRuleResult']:
         return pulumi.get(self, "data_expiration_rules")
+
+    @property
+    @pulumi.getter(name="dataProcessRegions")
+    def data_process_regions(self) -> Sequence['outputs.GetOnlineArchivesResultDataProcessRegionResult']:
+        return pulumi.get(self, "data_process_regions")
 
     @property
     @pulumi.getter(name="dbName")
@@ -18591,6 +18668,25 @@ class GetOnlineArchivesResultDataExpirationRuleResult(dict):
     @pulumi.getter(name="expireAfterDays")
     def expire_after_days(self) -> int:
         return pulumi.get(self, "expire_after_days")
+
+
+@pulumi.output_type
+class GetOnlineArchivesResultDataProcessRegionResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: str,
+                 region: str):
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type

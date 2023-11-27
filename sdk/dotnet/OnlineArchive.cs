@@ -145,6 +145,12 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.OnlineArchiveDataExpirationRule?> DataExpirationRule { get; private set; } = null!;
 
         /// <summary>
+        /// Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+        /// </summary>
+        [Output("dataProcessRegion")]
+        public Output<Outputs.OnlineArchiveDataProcessRegion> DataProcessRegion { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the database that contains the collection.
         /// </summary>
         [Output("dbName")]
@@ -260,6 +266,12 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.OnlineArchiveDataExpirationRuleArgs>? DataExpirationRule { get; set; }
 
         /// <summary>
+        /// Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+        /// </summary>
+        [Input("dataProcessRegion")]
+        public Input<Inputs.OnlineArchiveDataProcessRegionArgs>? DataProcessRegion { get; set; }
+
+        /// <summary>
         /// Name of the database that contains the collection.
         /// </summary>
         [Input("dbName", required: true)]
@@ -341,6 +353,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("dataExpirationRule")]
         public Input<Inputs.OnlineArchiveDataExpirationRuleGetArgs>? DataExpirationRule { get; set; }
+
+        /// <summary>
+        /// Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+        /// </summary>
+        [Input("dataProcessRegion")]
+        public Input<Inputs.OnlineArchiveDataProcessRegionGetArgs>? DataProcessRegion { get; set; }
 
         /// <summary>
         /// Name of the database that contains the collection.

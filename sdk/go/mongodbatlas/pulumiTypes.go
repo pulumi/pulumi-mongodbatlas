@@ -13625,6 +13625,162 @@ func (o OnlineArchiveDataExpirationRulePtrOutput) ExpireAfterDays() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
+type OnlineArchiveDataProcessRegion struct {
+	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+	CloudProvider *string `pulumi:"cloudProvider"`
+	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+	Region *string `pulumi:"region"`
+}
+
+// OnlineArchiveDataProcessRegionInput is an input type that accepts OnlineArchiveDataProcessRegionArgs and OnlineArchiveDataProcessRegionOutput values.
+// You can construct a concrete instance of `OnlineArchiveDataProcessRegionInput` via:
+//
+//	OnlineArchiveDataProcessRegionArgs{...}
+type OnlineArchiveDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToOnlineArchiveDataProcessRegionOutput() OnlineArchiveDataProcessRegionOutput
+	ToOnlineArchiveDataProcessRegionOutputWithContext(context.Context) OnlineArchiveDataProcessRegionOutput
+}
+
+type OnlineArchiveDataProcessRegionArgs struct {
+	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
+	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (OnlineArchiveDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OnlineArchiveDataProcessRegion)(nil)).Elem()
+}
+
+func (i OnlineArchiveDataProcessRegionArgs) ToOnlineArchiveDataProcessRegionOutput() OnlineArchiveDataProcessRegionOutput {
+	return i.ToOnlineArchiveDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i OnlineArchiveDataProcessRegionArgs) ToOnlineArchiveDataProcessRegionOutputWithContext(ctx context.Context) OnlineArchiveDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveDataProcessRegionOutput)
+}
+
+func (i OnlineArchiveDataProcessRegionArgs) ToOnlineArchiveDataProcessRegionPtrOutput() OnlineArchiveDataProcessRegionPtrOutput {
+	return i.ToOnlineArchiveDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (i OnlineArchiveDataProcessRegionArgs) ToOnlineArchiveDataProcessRegionPtrOutputWithContext(ctx context.Context) OnlineArchiveDataProcessRegionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveDataProcessRegionOutput).ToOnlineArchiveDataProcessRegionPtrOutputWithContext(ctx)
+}
+
+// OnlineArchiveDataProcessRegionPtrInput is an input type that accepts OnlineArchiveDataProcessRegionArgs, OnlineArchiveDataProcessRegionPtr and OnlineArchiveDataProcessRegionPtrOutput values.
+// You can construct a concrete instance of `OnlineArchiveDataProcessRegionPtrInput` via:
+//
+//	        OnlineArchiveDataProcessRegionArgs{...}
+//
+//	or:
+//
+//	        nil
+type OnlineArchiveDataProcessRegionPtrInput interface {
+	pulumi.Input
+
+	ToOnlineArchiveDataProcessRegionPtrOutput() OnlineArchiveDataProcessRegionPtrOutput
+	ToOnlineArchiveDataProcessRegionPtrOutputWithContext(context.Context) OnlineArchiveDataProcessRegionPtrOutput
+}
+
+type onlineArchiveDataProcessRegionPtrType OnlineArchiveDataProcessRegionArgs
+
+func OnlineArchiveDataProcessRegionPtr(v *OnlineArchiveDataProcessRegionArgs) OnlineArchiveDataProcessRegionPtrInput {
+	return (*onlineArchiveDataProcessRegionPtrType)(v)
+}
+
+func (*onlineArchiveDataProcessRegionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OnlineArchiveDataProcessRegion)(nil)).Elem()
+}
+
+func (i *onlineArchiveDataProcessRegionPtrType) ToOnlineArchiveDataProcessRegionPtrOutput() OnlineArchiveDataProcessRegionPtrOutput {
+	return i.ToOnlineArchiveDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (i *onlineArchiveDataProcessRegionPtrType) ToOnlineArchiveDataProcessRegionPtrOutputWithContext(ctx context.Context) OnlineArchiveDataProcessRegionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveDataProcessRegionPtrOutput)
+}
+
+type OnlineArchiveDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (OnlineArchiveDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OnlineArchiveDataProcessRegion)(nil)).Elem()
+}
+
+func (o OnlineArchiveDataProcessRegionOutput) ToOnlineArchiveDataProcessRegionOutput() OnlineArchiveDataProcessRegionOutput {
+	return o
+}
+
+func (o OnlineArchiveDataProcessRegionOutput) ToOnlineArchiveDataProcessRegionOutputWithContext(ctx context.Context) OnlineArchiveDataProcessRegionOutput {
+	return o
+}
+
+func (o OnlineArchiveDataProcessRegionOutput) ToOnlineArchiveDataProcessRegionPtrOutput() OnlineArchiveDataProcessRegionPtrOutput {
+	return o.ToOnlineArchiveDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (o OnlineArchiveDataProcessRegionOutput) ToOnlineArchiveDataProcessRegionPtrOutputWithContext(ctx context.Context) OnlineArchiveDataProcessRegionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v OnlineArchiveDataProcessRegion) *OnlineArchiveDataProcessRegion {
+		return &v
+	}).(OnlineArchiveDataProcessRegionPtrOutput)
+}
+
+// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+func (o OnlineArchiveDataProcessRegionOutput) CloudProvider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveDataProcessRegion) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+func (o OnlineArchiveDataProcessRegionOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveDataProcessRegion) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type OnlineArchiveDataProcessRegionPtrOutput struct{ *pulumi.OutputState }
+
+func (OnlineArchiveDataProcessRegionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OnlineArchiveDataProcessRegion)(nil)).Elem()
+}
+
+func (o OnlineArchiveDataProcessRegionPtrOutput) ToOnlineArchiveDataProcessRegionPtrOutput() OnlineArchiveDataProcessRegionPtrOutput {
+	return o
+}
+
+func (o OnlineArchiveDataProcessRegionPtrOutput) ToOnlineArchiveDataProcessRegionPtrOutputWithContext(ctx context.Context) OnlineArchiveDataProcessRegionPtrOutput {
+	return o
+}
+
+func (o OnlineArchiveDataProcessRegionPtrOutput) Elem() OnlineArchiveDataProcessRegionOutput {
+	return o.ApplyT(func(v *OnlineArchiveDataProcessRegion) OnlineArchiveDataProcessRegion {
+		if v != nil {
+			return *v
+		}
+		var ret OnlineArchiveDataProcessRegion
+		return ret
+	}).(OnlineArchiveDataProcessRegionOutput)
+}
+
+// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+func (o OnlineArchiveDataProcessRegionPtrOutput) CloudProvider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveDataProcessRegion) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CloudProvider
+	}).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+func (o OnlineArchiveDataProcessRegionPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveDataProcessRegion) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
 type OnlineArchivePartitionField struct {
 	// Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
 	FieldName string `pulumi:"fieldName"`
@@ -41177,6 +41333,106 @@ func (o GetOnlineArchiveDataExpirationRuleArrayOutput) Index(i pulumi.IntInput) 
 	}).(GetOnlineArchiveDataExpirationRuleOutput)
 }
 
+type GetOnlineArchiveDataProcessRegion struct {
+	CloudProvider string `pulumi:"cloudProvider"`
+	Region        string `pulumi:"region"`
+}
+
+// GetOnlineArchiveDataProcessRegionInput is an input type that accepts GetOnlineArchiveDataProcessRegionArgs and GetOnlineArchiveDataProcessRegionOutput values.
+// You can construct a concrete instance of `GetOnlineArchiveDataProcessRegionInput` via:
+//
+//	GetOnlineArchiveDataProcessRegionArgs{...}
+type GetOnlineArchiveDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchiveDataProcessRegionOutput() GetOnlineArchiveDataProcessRegionOutput
+	ToGetOnlineArchiveDataProcessRegionOutputWithContext(context.Context) GetOnlineArchiveDataProcessRegionOutput
+}
+
+type GetOnlineArchiveDataProcessRegionArgs struct {
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	Region        pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetOnlineArchiveDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchiveDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetOnlineArchiveDataProcessRegionArgs) ToGetOnlineArchiveDataProcessRegionOutput() GetOnlineArchiveDataProcessRegionOutput {
+	return i.ToGetOnlineArchiveDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchiveDataProcessRegionArgs) ToGetOnlineArchiveDataProcessRegionOutputWithContext(ctx context.Context) GetOnlineArchiveDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchiveDataProcessRegionOutput)
+}
+
+// GetOnlineArchiveDataProcessRegionArrayInput is an input type that accepts GetOnlineArchiveDataProcessRegionArray and GetOnlineArchiveDataProcessRegionArrayOutput values.
+// You can construct a concrete instance of `GetOnlineArchiveDataProcessRegionArrayInput` via:
+//
+//	GetOnlineArchiveDataProcessRegionArray{ GetOnlineArchiveDataProcessRegionArgs{...} }
+type GetOnlineArchiveDataProcessRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchiveDataProcessRegionArrayOutput() GetOnlineArchiveDataProcessRegionArrayOutput
+	ToGetOnlineArchiveDataProcessRegionArrayOutputWithContext(context.Context) GetOnlineArchiveDataProcessRegionArrayOutput
+}
+
+type GetOnlineArchiveDataProcessRegionArray []GetOnlineArchiveDataProcessRegionInput
+
+func (GetOnlineArchiveDataProcessRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchiveDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetOnlineArchiveDataProcessRegionArray) ToGetOnlineArchiveDataProcessRegionArrayOutput() GetOnlineArchiveDataProcessRegionArrayOutput {
+	return i.ToGetOnlineArchiveDataProcessRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchiveDataProcessRegionArray) ToGetOnlineArchiveDataProcessRegionArrayOutputWithContext(ctx context.Context) GetOnlineArchiveDataProcessRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchiveDataProcessRegionArrayOutput)
+}
+
+type GetOnlineArchiveDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchiveDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchiveDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetOnlineArchiveDataProcessRegionOutput) ToGetOnlineArchiveDataProcessRegionOutput() GetOnlineArchiveDataProcessRegionOutput {
+	return o
+}
+
+func (o GetOnlineArchiveDataProcessRegionOutput) ToGetOnlineArchiveDataProcessRegionOutputWithContext(ctx context.Context) GetOnlineArchiveDataProcessRegionOutput {
+	return o
+}
+
+func (o GetOnlineArchiveDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchiveDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchiveDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchiveDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetOnlineArchiveDataProcessRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchiveDataProcessRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchiveDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetOnlineArchiveDataProcessRegionArrayOutput) ToGetOnlineArchiveDataProcessRegionArrayOutput() GetOnlineArchiveDataProcessRegionArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchiveDataProcessRegionArrayOutput) ToGetOnlineArchiveDataProcessRegionArrayOutputWithContext(ctx context.Context) GetOnlineArchiveDataProcessRegionArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchiveDataProcessRegionArrayOutput) Index(i pulumi.IntInput) GetOnlineArchiveDataProcessRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchiveDataProcessRegion {
+		return vs[0].([]GetOnlineArchiveDataProcessRegion)[vs[1].(int)]
+	}).(GetOnlineArchiveDataProcessRegionOutput)
+}
+
 type GetOnlineArchivePartitionField struct {
 	FieldName string `pulumi:"fieldName"`
 	FieldType string `pulumi:"fieldType"`
@@ -41425,6 +41681,7 @@ type GetOnlineArchivesResult struct {
 	CollectionType      string                                      `pulumi:"collectionType"`
 	Criterias           []GetOnlineArchivesResultCriteria           `pulumi:"criterias"`
 	DataExpirationRules []GetOnlineArchivesResultDataExpirationRule `pulumi:"dataExpirationRules"`
+	DataProcessRegions  []GetOnlineArchivesResultDataProcessRegion  `pulumi:"dataProcessRegions"`
 	DbName              string                                      `pulumi:"dbName"`
 	PartitionFields     []GetOnlineArchivesResultPartitionField     `pulumi:"partitionFields"`
 	Paused              bool                                        `pulumi:"paused"`
@@ -41457,6 +41714,7 @@ type GetOnlineArchivesResultArgs struct {
 	CollectionType      pulumi.StringInput                                  `pulumi:"collectionType"`
 	Criterias           GetOnlineArchivesResultCriteriaArrayInput           `pulumi:"criterias"`
 	DataExpirationRules GetOnlineArchivesResultDataExpirationRuleArrayInput `pulumi:"dataExpirationRules"`
+	DataProcessRegions  GetOnlineArchivesResultDataProcessRegionArrayInput  `pulumi:"dataProcessRegions"`
 	DbName              pulumi.StringInput                                  `pulumi:"dbName"`
 	PartitionFields     GetOnlineArchivesResultPartitionFieldArrayInput     `pulumi:"partitionFields"`
 	Paused              pulumi.BoolInput                                    `pulumi:"paused"`
@@ -41546,6 +41804,12 @@ func (o GetOnlineArchivesResultOutput) DataExpirationRules() GetOnlineArchivesRe
 	return o.ApplyT(func(v GetOnlineArchivesResult) []GetOnlineArchivesResultDataExpirationRule {
 		return v.DataExpirationRules
 	}).(GetOnlineArchivesResultDataExpirationRuleArrayOutput)
+}
+
+func (o GetOnlineArchivesResultOutput) DataProcessRegions() GetOnlineArchivesResultDataProcessRegionArrayOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResult) []GetOnlineArchivesResultDataProcessRegion {
+		return v.DataProcessRegions
+	}).(GetOnlineArchivesResultDataProcessRegionArrayOutput)
 }
 
 func (o GetOnlineArchivesResultOutput) DbName() pulumi.StringOutput {
@@ -41803,6 +42067,106 @@ func (o GetOnlineArchivesResultDataExpirationRuleArrayOutput) Index(i pulumi.Int
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchivesResultDataExpirationRule {
 		return vs[0].([]GetOnlineArchivesResultDataExpirationRule)[vs[1].(int)]
 	}).(GetOnlineArchivesResultDataExpirationRuleOutput)
+}
+
+type GetOnlineArchivesResultDataProcessRegion struct {
+	CloudProvider string `pulumi:"cloudProvider"`
+	Region        string `pulumi:"region"`
+}
+
+// GetOnlineArchivesResultDataProcessRegionInput is an input type that accepts GetOnlineArchivesResultDataProcessRegionArgs and GetOnlineArchivesResultDataProcessRegionOutput values.
+// You can construct a concrete instance of `GetOnlineArchivesResultDataProcessRegionInput` via:
+//
+//	GetOnlineArchivesResultDataProcessRegionArgs{...}
+type GetOnlineArchivesResultDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivesResultDataProcessRegionOutput() GetOnlineArchivesResultDataProcessRegionOutput
+	ToGetOnlineArchivesResultDataProcessRegionOutputWithContext(context.Context) GetOnlineArchivesResultDataProcessRegionOutput
+}
+
+type GetOnlineArchivesResultDataProcessRegionArgs struct {
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	Region        pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetOnlineArchivesResultDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetOnlineArchivesResultDataProcessRegionArgs) ToGetOnlineArchivesResultDataProcessRegionOutput() GetOnlineArchivesResultDataProcessRegionOutput {
+	return i.ToGetOnlineArchivesResultDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivesResultDataProcessRegionArgs) ToGetOnlineArchivesResultDataProcessRegionOutputWithContext(ctx context.Context) GetOnlineArchivesResultDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivesResultDataProcessRegionOutput)
+}
+
+// GetOnlineArchivesResultDataProcessRegionArrayInput is an input type that accepts GetOnlineArchivesResultDataProcessRegionArray and GetOnlineArchivesResultDataProcessRegionArrayOutput values.
+// You can construct a concrete instance of `GetOnlineArchivesResultDataProcessRegionArrayInput` via:
+//
+//	GetOnlineArchivesResultDataProcessRegionArray{ GetOnlineArchivesResultDataProcessRegionArgs{...} }
+type GetOnlineArchivesResultDataProcessRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivesResultDataProcessRegionArrayOutput() GetOnlineArchivesResultDataProcessRegionArrayOutput
+	ToGetOnlineArchivesResultDataProcessRegionArrayOutputWithContext(context.Context) GetOnlineArchivesResultDataProcessRegionArrayOutput
+}
+
+type GetOnlineArchivesResultDataProcessRegionArray []GetOnlineArchivesResultDataProcessRegionInput
+
+func (GetOnlineArchivesResultDataProcessRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetOnlineArchivesResultDataProcessRegionArray) ToGetOnlineArchivesResultDataProcessRegionArrayOutput() GetOnlineArchivesResultDataProcessRegionArrayOutput {
+	return i.ToGetOnlineArchivesResultDataProcessRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivesResultDataProcessRegionArray) ToGetOnlineArchivesResultDataProcessRegionArrayOutputWithContext(ctx context.Context) GetOnlineArchivesResultDataProcessRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivesResultDataProcessRegionArrayOutput)
+}
+
+type GetOnlineArchivesResultDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivesResultDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetOnlineArchivesResultDataProcessRegionOutput) ToGetOnlineArchivesResultDataProcessRegionOutput() GetOnlineArchivesResultDataProcessRegionOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultDataProcessRegionOutput) ToGetOnlineArchivesResultDataProcessRegionOutputWithContext(ctx context.Context) GetOnlineArchivesResultDataProcessRegionOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetOnlineArchivesResultDataProcessRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivesResultDataProcessRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetOnlineArchivesResultDataProcessRegionArrayOutput) ToGetOnlineArchivesResultDataProcessRegionArrayOutput() GetOnlineArchivesResultDataProcessRegionArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultDataProcessRegionArrayOutput) ToGetOnlineArchivesResultDataProcessRegionArrayOutputWithContext(ctx context.Context) GetOnlineArchivesResultDataProcessRegionArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultDataProcessRegionArrayOutput) Index(i pulumi.IntInput) GetOnlineArchivesResultDataProcessRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchivesResultDataProcessRegion {
+		return vs[0].([]GetOnlineArchivesResultDataProcessRegion)[vs[1].(int)]
+	}).(GetOnlineArchivesResultDataProcessRegionOutput)
 }
 
 type GetOnlineArchivesResultPartitionField struct {
@@ -45790,6 +46154,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveCriteriaPtrInput)(nil)).Elem(), OnlineArchiveCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveDataExpirationRuleInput)(nil)).Elem(), OnlineArchiveDataExpirationRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveDataExpirationRulePtrInput)(nil)).Elem(), OnlineArchiveDataExpirationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveDataProcessRegionInput)(nil)).Elem(), OnlineArchiveDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveDataProcessRegionPtrInput)(nil)).Elem(), OnlineArchiveDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchivePartitionFieldInput)(nil)).Elem(), OnlineArchivePartitionFieldArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchivePartitionFieldArrayInput)(nil)).Elem(), OnlineArchivePartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveScheduleInput)(nil)).Elem(), OnlineArchiveScheduleArgs{})
@@ -46192,6 +46558,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchiveCriteriaArrayInput)(nil)).Elem(), GetOnlineArchiveCriteriaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchiveDataExpirationRuleInput)(nil)).Elem(), GetOnlineArchiveDataExpirationRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchiveDataExpirationRuleArrayInput)(nil)).Elem(), GetOnlineArchiveDataExpirationRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchiveDataProcessRegionInput)(nil)).Elem(), GetOnlineArchiveDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchiveDataProcessRegionArrayInput)(nil)).Elem(), GetOnlineArchiveDataProcessRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivePartitionFieldInput)(nil)).Elem(), GetOnlineArchivePartitionFieldArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivePartitionFieldArrayInput)(nil)).Elem(), GetOnlineArchivePartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchiveScheduleInput)(nil)).Elem(), GetOnlineArchiveScheduleArgs{})
@@ -46202,6 +46570,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultCriteriaArrayInput)(nil)).Elem(), GetOnlineArchivesResultCriteriaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultDataExpirationRuleInput)(nil)).Elem(), GetOnlineArchivesResultDataExpirationRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultDataExpirationRuleArrayInput)(nil)).Elem(), GetOnlineArchivesResultDataExpirationRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultDataProcessRegionInput)(nil)).Elem(), GetOnlineArchivesResultDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultDataProcessRegionArrayInput)(nil)).Elem(), GetOnlineArchivesResultDataProcessRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultPartitionFieldInput)(nil)).Elem(), GetOnlineArchivesResultPartitionFieldArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultPartitionFieldArrayInput)(nil)).Elem(), GetOnlineArchivesResultPartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultScheduleInput)(nil)).Elem(), GetOnlineArchivesResultScheduleArgs{})
@@ -46436,6 +46806,8 @@ func init() {
 	pulumi.RegisterOutputType(OnlineArchiveCriteriaPtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveDataExpirationRuleOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveDataExpirationRulePtrOutput{})
+	pulumi.RegisterOutputType(OnlineArchiveDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(OnlineArchiveDataProcessRegionPtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchivePartitionFieldOutput{})
 	pulumi.RegisterOutputType(OnlineArchivePartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveScheduleOutput{})
@@ -46838,6 +47210,8 @@ func init() {
 	pulumi.RegisterOutputType(GetOnlineArchiveCriteriaArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchiveDataExpirationRuleOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchiveDataExpirationRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchiveDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchiveDataProcessRegionArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivePartitionFieldOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivePartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchiveScheduleOutput{})
@@ -46848,6 +47222,8 @@ func init() {
 	pulumi.RegisterOutputType(GetOnlineArchivesResultCriteriaArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultDataExpirationRuleOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultDataExpirationRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivesResultDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivesResultDataProcessRegionArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultScheduleOutput{})

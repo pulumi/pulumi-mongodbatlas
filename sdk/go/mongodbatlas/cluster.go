@@ -27,13 +27,13 @@ type Cluster struct {
 	pulumi.CustomResourceState
 
 	// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
-	AcceptDataRisksAndForceReplicaSetReconfig pulumi.StringPtrOutput             `pulumi:"acceptDataRisksAndForceReplicaSetReconfig"`
+	AcceptDataRisksAndForceReplicaSetReconfig pulumi.StringOutput                `pulumi:"acceptDataRisksAndForceReplicaSetReconfig"`
 	AdvancedConfiguration                     ClusterAdvancedConfigurationOutput `pulumi:"advancedConfiguration"`
 	AutoScalingComputeEnabled                 pulumi.BoolOutput                  `pulumi:"autoScalingComputeEnabled"`
 	// Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
 	// - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
-	AutoScalingComputeScaleDownEnabled pulumi.BoolOutput    `pulumi:"autoScalingComputeScaleDownEnabled"`
-	AutoScalingDiskGbEnabled           pulumi.BoolPtrOutput `pulumi:"autoScalingDiskGbEnabled"`
+	AutoScalingComputeScaleDownEnabled pulumi.BoolOutput `pulumi:"autoScalingComputeScaleDownEnabled"`
+	AutoScalingDiskGbEnabled           pulumi.BoolOutput `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	//
 	// This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5.
@@ -787,8 +787,8 @@ func (o ClusterOutput) ToClusterOutputWithContext(ctx context.Context) ClusterOu
 }
 
 // If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
-func (o ClusterOutput) AcceptDataRisksAndForceReplicaSetReconfig() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.AcceptDataRisksAndForceReplicaSetReconfig }).(pulumi.StringPtrOutput)
+func (o ClusterOutput) AcceptDataRisksAndForceReplicaSetReconfig() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.AcceptDataRisksAndForceReplicaSetReconfig }).(pulumi.StringOutput)
 }
 
 func (o ClusterOutput) AdvancedConfiguration() ClusterAdvancedConfigurationOutput {
@@ -805,8 +805,8 @@ func (o ClusterOutput) AutoScalingComputeScaleDownEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.AutoScalingComputeScaleDownEnabled }).(pulumi.BoolOutput)
 }
 
-func (o ClusterOutput) AutoScalingDiskGbEnabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.AutoScalingDiskGbEnabled }).(pulumi.BoolPtrOutput)
+func (o ClusterOutput) AutoScalingDiskGbEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.AutoScalingDiskGbEnabled }).(pulumi.BoolOutput)
 }
 
 // Cloud service provider on which the server for a multi-tenant cluster is provisioned.

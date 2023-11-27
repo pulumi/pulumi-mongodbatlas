@@ -1946,6 +1946,17 @@ export interface OnlineArchiveDataExpirationRule {
     expireAfterDays: pulumi.Input<number>;
 }
 
+export interface OnlineArchiveDataProcessRegion {
+    /**
+     * Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     */
+    cloudProvider?: pulumi.Input<string>;
+    /**
+     * Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     */
+    region?: pulumi.Input<string>;
+}
+
 export interface OnlineArchivePartitionField {
     /**
      * Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.

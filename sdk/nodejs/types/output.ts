@@ -5119,6 +5119,11 @@ export interface GetOnlineArchiveDataExpirationRule {
     expireAfterDays: number;
 }
 
+export interface GetOnlineArchiveDataProcessRegion {
+    cloudProvider: string;
+    region: string;
+}
+
 export interface GetOnlineArchivePartitionField {
     fieldName: string;
     fieldType: string;
@@ -5149,6 +5154,7 @@ export interface GetOnlineArchivesResult {
     collectionType: string;
     criterias: outputs.GetOnlineArchivesResultCriteria[];
     dataExpirationRules: outputs.GetOnlineArchivesResultDataExpirationRule[];
+    dataProcessRegions: outputs.GetOnlineArchivesResultDataProcessRegion[];
     dbName: string;
     partitionFields: outputs.GetOnlineArchivesResultPartitionField[];
     paused: boolean;
@@ -5170,6 +5176,11 @@ export interface GetOnlineArchivesResultCriteria {
 
 export interface GetOnlineArchivesResultDataExpirationRule {
     expireAfterDays: number;
+}
+
+export interface GetOnlineArchivesResultDataProcessRegion {
+    cloudProvider: string;
+    region: string;
 }
 
 export interface GetOnlineArchivesResultPartitionField {
@@ -5775,6 +5786,17 @@ export interface OnlineArchiveDataExpirationRule {
      * Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
      */
     expireAfterDays: number;
+}
+
+export interface OnlineArchiveDataProcessRegion {
+    /**
+     * Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     */
+    cloudProvider: string;
+    /**
+     * Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
+     */
+    region: string;
 }
 
 export interface OnlineArchivePartitionField {

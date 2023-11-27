@@ -30,6 +30,7 @@ import * as utilities from "./utilities";
  * * `collectionType`  -  Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
  * * `criteria` - Criteria to use for archiving data. See criteria.
  * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+ * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
  * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
  * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
  * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
@@ -44,6 +45,10 @@ import * as utilities from "./utilities";
  *
  * ### Data Expiration Rule
  * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+ *
+ * ### Data Process Region
+ * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+ * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
  *
  * ### Schedule
  *
@@ -100,6 +105,7 @@ export interface GetOnlineArchiveResult {
     readonly collectionType: string;
     readonly criterias: outputs.GetOnlineArchiveCriteria[];
     readonly dataExpirationRules: outputs.GetOnlineArchiveDataExpirationRule[];
+    readonly dataProcessRegions: outputs.GetOnlineArchiveDataProcessRegion[];
     readonly dbName: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -135,6 +141,7 @@ export interface GetOnlineArchiveResult {
  * * `collectionType`  -  Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
  * * `criteria` - Criteria to use for archiving data. See criteria.
  * * `dataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
+ * * `dataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
  * * `schedule` - Regular frequency and duration when archiving process occurs. See schedule.
  * * `partitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
  * * `paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
@@ -149,6 +156,10 @@ export interface GetOnlineArchiveResult {
  *
  * ### Data Expiration Rule
  * * `expireAfterDays` - Number of days used in the date criteria for nominating documents for deletion. Value must be between 7 and 9215.
+ *
+ * ### Data Process Region
+ * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+ * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
  *
  * ### Schedule
  *
