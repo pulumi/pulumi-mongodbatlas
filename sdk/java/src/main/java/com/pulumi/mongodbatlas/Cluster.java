@@ -43,14 +43,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="acceptDataRisksAndForceReplicaSetReconfig", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> acceptDataRisksAndForceReplicaSetReconfig;
+    private Output<String> acceptDataRisksAndForceReplicaSetReconfig;
 
     /**
      * @return If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
      * 
      */
-    public Output<Optional<String>> acceptDataRisksAndForceReplicaSetReconfig() {
-        return Codegen.optional(this.acceptDataRisksAndForceReplicaSetReconfig);
+    public Output<String> acceptDataRisksAndForceReplicaSetReconfig() {
+        return this.acceptDataRisksAndForceReplicaSetReconfig;
     }
     @Export(name="advancedConfiguration", refs={ClusterAdvancedConfiguration.class}, tree="[0]")
     private Output<ClusterAdvancedConfiguration> advancedConfiguration;
@@ -81,10 +81,10 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.autoScalingComputeScaleDownEnabled;
     }
     @Export(name="autoScalingDiskGbEnabled", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> autoScalingDiskGbEnabled;
+    private Output<Boolean> autoScalingDiskGbEnabled;
 
-    public Output<Optional<Boolean>> autoScalingDiskGbEnabled() {
-        return Codegen.optional(this.autoScalingDiskGbEnabled);
+    public Output<Boolean> autoScalingDiskGbEnabled() {
+        return this.autoScalingDiskGbEnabled;
     }
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.

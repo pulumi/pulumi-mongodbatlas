@@ -12,6 +12,7 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.OnlineArchiveState;
 import com.pulumi.mongodbatlas.outputs.OnlineArchiveCriteria;
 import com.pulumi.mongodbatlas.outputs.OnlineArchiveDataExpirationRule;
+import com.pulumi.mongodbatlas.outputs.OnlineArchiveDataProcessRegion;
 import com.pulumi.mongodbatlas.outputs.OnlineArchivePartitionField;
 import com.pulumi.mongodbatlas.outputs.OnlineArchiveSchedule;
 import java.lang.Boolean;
@@ -221,6 +222,20 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<OnlineArchiveDataExpirationRule>> dataExpirationRule() {
         return Codegen.optional(this.dataExpirationRule);
+    }
+    /**
+     * Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+     * 
+     */
+    @Export(name="dataProcessRegion", refs={OnlineArchiveDataProcessRegion.class}, tree="[0]")
+    private Output<OnlineArchiveDataProcessRegion> dataProcessRegion;
+
+    /**
+     * @return Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+     * 
+     */
+    public Output<OnlineArchiveDataProcessRegion> dataProcessRegion() {
+        return this.dataProcessRegion;
     }
     /**
      * Name of the database that contains the collection.

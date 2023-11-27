@@ -128,6 +128,8 @@ type OnlineArchive struct {
 	Criteria OnlineArchiveCriteriaOutput `pulumi:"criteria"`
 	// Rule for specifying when data should be deleted from the archive. See data expiration rule.
 	DataExpirationRule OnlineArchiveDataExpirationRulePtrOutput `pulumi:"dataExpirationRule"`
+	// Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+	DataProcessRegion OnlineArchiveDataProcessRegionOutput `pulumi:"dataProcessRegion"`
 	// Name of the database that contains the collection.
 	DbName pulumi.StringOutput `pulumi:"dbName"`
 	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
@@ -200,6 +202,8 @@ type onlineArchiveState struct {
 	Criteria *OnlineArchiveCriteria `pulumi:"criteria"`
 	// Rule for specifying when data should be deleted from the archive. See data expiration rule.
 	DataExpirationRule *OnlineArchiveDataExpirationRule `pulumi:"dataExpirationRule"`
+	// Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+	DataProcessRegion *OnlineArchiveDataProcessRegion `pulumi:"dataProcessRegion"`
 	// Name of the database that contains the collection.
 	DbName *string `pulumi:"dbName"`
 	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
@@ -228,6 +232,8 @@ type OnlineArchiveState struct {
 	Criteria OnlineArchiveCriteriaPtrInput
 	// Rule for specifying when data should be deleted from the archive. See data expiration rule.
 	DataExpirationRule OnlineArchiveDataExpirationRulePtrInput
+	// Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+	DataProcessRegion OnlineArchiveDataProcessRegionPtrInput
 	// Name of the database that contains the collection.
 	DbName pulumi.StringPtrInput
 	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
@@ -258,6 +264,8 @@ type onlineArchiveArgs struct {
 	Criteria OnlineArchiveCriteria `pulumi:"criteria"`
 	// Rule for specifying when data should be deleted from the archive. See data expiration rule.
 	DataExpirationRule *OnlineArchiveDataExpirationRule `pulumi:"dataExpirationRule"`
+	// Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+	DataProcessRegion *OnlineArchiveDataProcessRegion `pulumi:"dataProcessRegion"`
 	// Name of the database that contains the collection.
 	DbName string `pulumi:"dbName"`
 	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
@@ -283,6 +291,8 @@ type OnlineArchiveArgs struct {
 	Criteria OnlineArchiveCriteriaInput
 	// Rule for specifying when data should be deleted from the archive. See data expiration rule.
 	DataExpirationRule OnlineArchiveDataExpirationRulePtrInput
+	// Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+	DataProcessRegion OnlineArchiveDataProcessRegionPtrInput
 	// Name of the database that contains the collection.
 	DbName pulumi.StringInput
 	// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
@@ -411,6 +421,11 @@ func (o OnlineArchiveOutput) Criteria() OnlineArchiveCriteriaOutput {
 // Rule for specifying when data should be deleted from the archive. See data expiration rule.
 func (o OnlineArchiveOutput) DataExpirationRule() OnlineArchiveDataExpirationRulePtrOutput {
 	return o.ApplyT(func(v *OnlineArchive) OnlineArchiveDataExpirationRulePtrOutput { return v.DataExpirationRule }).(OnlineArchiveDataExpirationRulePtrOutput)
+}
+
+// Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+func (o OnlineArchiveOutput) DataProcessRegion() OnlineArchiveDataProcessRegionOutput {
+	return o.ApplyT(func(v *OnlineArchive) OnlineArchiveDataProcessRegionOutput { return v.DataProcessRegion }).(OnlineArchiveDataProcessRegionOutput)
 }
 
 // Name of the database that contains the collection.
