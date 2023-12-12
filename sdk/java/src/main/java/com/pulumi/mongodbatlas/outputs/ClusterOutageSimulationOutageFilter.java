@@ -86,11 +86,11 @@ public final class ClusterOutageSimulationOutageFilter {
             return this;
         }
         public ClusterOutageSimulationOutageFilter build() {
-            final var o = new ClusterOutageSimulationOutageFilter();
-            o.cloudProvider = cloudProvider;
-            o.regionName = regionName;
-            o.type = type;
-            return o;
+            final var _resultValue = new ClusterOutageSimulationOutageFilter();
+            _resultValue.cloudProvider = cloudProvider;
+            _resultValue.regionName = regionName;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

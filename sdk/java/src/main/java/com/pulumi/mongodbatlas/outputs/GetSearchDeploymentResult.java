@@ -103,13 +103,13 @@ public final class GetSearchDeploymentResult {
             return this;
         }
         public GetSearchDeploymentResult build() {
-            final var o = new GetSearchDeploymentResult();
-            o.clusterName = clusterName;
-            o.id = id;
-            o.projectId = projectId;
-            o.specs = specs;
-            o.stateName = stateName;
-            return o;
+            final var _resultValue = new GetSearchDeploymentResult();
+            _resultValue.clusterName = clusterName;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.specs = specs;
+            _resultValue.stateName = stateName;
+            return _resultValue;
         }
     }
 }

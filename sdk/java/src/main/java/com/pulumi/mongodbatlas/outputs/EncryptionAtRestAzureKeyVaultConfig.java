@@ -201,17 +201,17 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
             return this;
         }
         public EncryptionAtRestAzureKeyVaultConfig build() {
-            final var o = new EncryptionAtRestAzureKeyVaultConfig();
-            o.azureEnvironment = azureEnvironment;
-            o.clientId = clientId;
-            o.enabled = enabled;
-            o.keyIdentifier = keyIdentifier;
-            o.keyVaultName = keyVaultName;
-            o.resourceGroupName = resourceGroupName;
-            o.secret = secret;
-            o.subscriptionId = subscriptionId;
-            o.tenantId = tenantId;
-            return o;
+            final var _resultValue = new EncryptionAtRestAzureKeyVaultConfig();
+            _resultValue.azureEnvironment = azureEnvironment;
+            _resultValue.clientId = clientId;
+            _resultValue.enabled = enabled;
+            _resultValue.keyIdentifier = keyIdentifier;
+            _resultValue.keyVaultName = keyVaultName;
+            _resultValue.resourceGroupName = resourceGroupName;
+            _resultValue.secret = secret;
+            _resultValue.subscriptionId = subscriptionId;
+            _resultValue.tenantId = tenantId;
+            return _resultValue;
         }
     }
 }

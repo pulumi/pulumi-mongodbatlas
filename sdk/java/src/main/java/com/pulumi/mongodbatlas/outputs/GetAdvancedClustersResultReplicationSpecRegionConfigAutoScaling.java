@@ -123,13 +123,13 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScali
             return this;
         }
         public GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling build() {
-            final var o = new GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling();
-            o.computeEnabled = computeEnabled;
-            o.computeMaxInstanceSize = computeMaxInstanceSize;
-            o.computeMinInstanceSize = computeMinInstanceSize;
-            o.computeScaleDownEnabled = computeScaleDownEnabled;
-            o.diskGbEnabled = diskGbEnabled;
-            return o;
+            final var _resultValue = new GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling();
+            _resultValue.computeEnabled = computeEnabled;
+            _resultValue.computeMaxInstanceSize = computeMaxInstanceSize;
+            _resultValue.computeMinInstanceSize = computeMinInstanceSize;
+            _resultValue.computeScaleDownEnabled = computeScaleDownEnabled;
+            _resultValue.diskGbEnabled = diskGbEnabled;
+            return _resultValue;
         }
     }
 }

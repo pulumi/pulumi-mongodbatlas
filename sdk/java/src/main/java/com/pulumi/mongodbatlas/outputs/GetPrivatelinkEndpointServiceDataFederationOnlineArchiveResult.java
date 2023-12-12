@@ -125,14 +125,14 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
             return this;
         }
         public GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult build() {
-            final var o = new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult();
-            o.comment = comment;
-            o.endpointId = endpointId;
-            o.id = id;
-            o.projectId = projectId;
-            o.providerName = providerName;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult();
+            _resultValue.comment = comment;
+            _resultValue.endpointId = endpointId;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.providerName = providerName;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

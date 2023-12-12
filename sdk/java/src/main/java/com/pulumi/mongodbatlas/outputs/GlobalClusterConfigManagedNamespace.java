@@ -125,13 +125,13 @@ public final class GlobalClusterConfigManagedNamespace {
             return this;
         }
         public GlobalClusterConfigManagedNamespace build() {
-            final var o = new GlobalClusterConfigManagedNamespace();
-            o.collection = collection;
-            o.customShardKey = customShardKey;
-            o.db = db;
-            o.isCustomShardKeyHashed = isCustomShardKeyHashed;
-            o.isShardKeyUnique = isShardKeyUnique;
-            return o;
+            final var _resultValue = new GlobalClusterConfigManagedNamespace();
+            _resultValue.collection = collection;
+            _resultValue.customShardKey = customShardKey;
+            _resultValue.db = db;
+            _resultValue.isCustomShardKeyHashed = isCustomShardKeyHashed;
+            _resultValue.isShardKeyUnique = isShardKeyUnique;
+            return _resultValue;
         }
     }
 }

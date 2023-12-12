@@ -89,11 +89,11 @@ public final class GetDataLakePipelinesInvokeResult {
             return results(List.of(results));
         }
         public GetDataLakePipelinesInvokeResult build() {
-            final var o = new GetDataLakePipelinesInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetDataLakePipelinesInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

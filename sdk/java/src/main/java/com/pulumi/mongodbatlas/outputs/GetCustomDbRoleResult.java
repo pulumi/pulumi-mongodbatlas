@@ -108,13 +108,13 @@ public final class GetCustomDbRoleResult {
             return this;
         }
         public GetCustomDbRoleResult build() {
-            final var o = new GetCustomDbRoleResult();
-            o.actions = actions;
-            o.id = id;
-            o.inheritedRoles = inheritedRoles;
-            o.projectId = projectId;
-            o.roleName = roleName;
-            return o;
+            final var _resultValue = new GetCustomDbRoleResult();
+            _resultValue.actions = actions;
+            _resultValue.id = id;
+            _resultValue.inheritedRoles = inheritedRoles;
+            _resultValue.projectId = projectId;
+            _resultValue.roleName = roleName;
+            return _resultValue;
         }
     }
 }

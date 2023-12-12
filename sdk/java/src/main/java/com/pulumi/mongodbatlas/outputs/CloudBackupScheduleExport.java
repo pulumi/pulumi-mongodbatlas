@@ -67,10 +67,10 @@ public final class CloudBackupScheduleExport {
             return this;
         }
         public CloudBackupScheduleExport build() {
-            final var o = new CloudBackupScheduleExport();
-            o.exportBucketId = exportBucketId;
-            o.frequencyType = frequencyType;
-            return o;
+            final var _resultValue = new CloudBackupScheduleExport();
+            _resultValue.exportBucketId = exportBucketId;
+            _resultValue.frequencyType = frequencyType;
+            return _resultValue;
         }
     }
 }

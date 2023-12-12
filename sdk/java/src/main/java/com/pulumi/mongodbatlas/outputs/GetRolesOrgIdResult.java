@@ -65,10 +65,10 @@ public final class GetRolesOrgIdResult {
             return this;
         }
         public GetRolesOrgIdResult build() {
-            final var o = new GetRolesOrgIdResult();
-            o.id = id;
-            o.orgId = orgId;
-            return o;
+            final var _resultValue = new GetRolesOrgIdResult();
+            _resultValue.id = id;
+            _resultValue.orgId = orgId;
+            return _resultValue;
         }
     }
 }

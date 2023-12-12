@@ -128,14 +128,14 @@ public final class EncryptionAtRestAwsKmsConfig {
             return this;
         }
         public EncryptionAtRestAwsKmsConfig build() {
-            final var o = new EncryptionAtRestAwsKmsConfig();
-            o.accessKeyId = accessKeyId;
-            o.customerMasterKeyId = customerMasterKeyId;
-            o.enabled = enabled;
-            o.region = region;
-            o.roleId = roleId;
-            o.secretAccessKey = secretAccessKey;
-            return o;
+            final var _resultValue = new EncryptionAtRestAwsKmsConfig();
+            _resultValue.accessKeyId = accessKeyId;
+            _resultValue.customerMasterKeyId = customerMasterKeyId;
+            _resultValue.enabled = enabled;
+            _resultValue.region = region;
+            _resultValue.roleId = roleId;
+            _resultValue.secretAccessKey = secretAccessKey;
+            return _resultValue;
         }
     }
 }

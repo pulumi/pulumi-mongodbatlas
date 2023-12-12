@@ -89,13 +89,13 @@ public final class ClusterConnectionString {
             return this;
         }
         public ClusterConnectionString build() {
-            final var o = new ClusterConnectionString();
-            o.private_ = private_;
-            o.privateEndpoints = privateEndpoints;
-            o.privateSrv = privateSrv;
-            o.standard = standard;
-            o.standardSrv = standardSrv;
-            return o;
+            final var _resultValue = new ClusterConnectionString();
+            _resultValue.private_ = private_;
+            _resultValue.privateEndpoints = privateEndpoints;
+            _resultValue.privateSrv = privateSrv;
+            _resultValue.standard = standard;
+            _resultValue.standardSrv = standardSrv;
+            return _resultValue;
         }
     }
 }

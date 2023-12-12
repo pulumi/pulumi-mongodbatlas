@@ -67,10 +67,10 @@ public final class GlobalClusterConfigCustomZoneMapping {
             return this;
         }
         public GlobalClusterConfigCustomZoneMapping build() {
-            final var o = new GlobalClusterConfigCustomZoneMapping();
-            o.location = location;
-            o.zone = zone;
-            return o;
+            final var _resultValue = new GlobalClusterConfigCustomZoneMapping();
+            _resultValue.location = location;
+            _resultValue.zone = zone;
+            return _resultValue;
         }
     }
 }

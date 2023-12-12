@@ -69,10 +69,10 @@ public final class ClusterTag {
             return this;
         }
         public ClusterTag build() {
-            final var o = new ClusterTag();
-            o.key = key;
-            o.value = value;
-            return o;
+            final var _resultValue = new ClusterTag();
+            _resultValue.key = key;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

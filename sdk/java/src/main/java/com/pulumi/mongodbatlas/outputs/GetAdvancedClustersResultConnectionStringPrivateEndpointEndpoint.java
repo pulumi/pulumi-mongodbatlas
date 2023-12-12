@@ -68,11 +68,11 @@ public final class GetAdvancedClustersResultConnectionStringPrivateEndpointEndpo
             return this;
         }
         public GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint build() {
-            final var o = new GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint();
-            o.endpointId = endpointId;
-            o.providerName = providerName;
-            o.region = region;
-            return o;
+            final var _resultValue = new GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint();
+            _resultValue.endpointId = endpointId;
+            _resultValue.providerName = providerName;
+            _resultValue.region = region;
+            return _resultValue;
         }
     }
 }

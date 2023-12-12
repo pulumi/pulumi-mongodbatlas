@@ -62,10 +62,10 @@ public final class GetFederatedSettingsIdentityProvidersResultPemFileInfo {
             return this;
         }
         public GetFederatedSettingsIdentityProvidersResultPemFileInfo build() {
-            final var o = new GetFederatedSettingsIdentityProvidersResultPemFileInfo();
-            o.certificates = certificates;
-            o.fileName = fileName;
-            return o;
+            final var _resultValue = new GetFederatedSettingsIdentityProvidersResultPemFileInfo();
+            _resultValue.certificates = certificates;
+            _resultValue.fileName = fileName;
+            return _resultValue;
         }
     }
 }

@@ -189,22 +189,22 @@ public final class GetSharedTierRestoreJobResult {
             return this;
         }
         public GetSharedTierRestoreJobResult build() {
-            final var o = new GetSharedTierRestoreJobResult();
-            o.clusterName = clusterName;
-            o.deliveryType = deliveryType;
-            o.expirationDate = expirationDate;
-            o.id = id;
-            o.jobId = jobId;
-            o.projectId = projectId;
-            o.restoreFinishedDate = restoreFinishedDate;
-            o.restoreScheduledDate = restoreScheduledDate;
-            o.snapshotFinishedDate = snapshotFinishedDate;
-            o.snapshotId = snapshotId;
-            o.snapshotUrl = snapshotUrl;
-            o.status = status;
-            o.targetDeploymentItemName = targetDeploymentItemName;
-            o.targetProjectId = targetProjectId;
-            return o;
+            final var _resultValue = new GetSharedTierRestoreJobResult();
+            _resultValue.clusterName = clusterName;
+            _resultValue.deliveryType = deliveryType;
+            _resultValue.expirationDate = expirationDate;
+            _resultValue.id = id;
+            _resultValue.jobId = jobId;
+            _resultValue.projectId = projectId;
+            _resultValue.restoreFinishedDate = restoreFinishedDate;
+            _resultValue.restoreScheduledDate = restoreScheduledDate;
+            _resultValue.snapshotFinishedDate = snapshotFinishedDate;
+            _resultValue.snapshotId = snapshotId;
+            _resultValue.snapshotUrl = snapshotUrl;
+            _resultValue.status = status;
+            _resultValue.targetDeploymentItemName = targetDeploymentItemName;
+            _resultValue.targetProjectId = targetProjectId;
+            return _resultValue;
         }
     }
 }

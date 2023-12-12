@@ -68,11 +68,11 @@ public final class GetClustersResultConnectionStringPrivateEndpointEndpoint {
             return this;
         }
         public GetClustersResultConnectionStringPrivateEndpointEndpoint build() {
-            final var o = new GetClustersResultConnectionStringPrivateEndpointEndpoint();
-            o.endpointId = endpointId;
-            o.providerName = providerName;
-            o.region = region;
-            return o;
+            final var _resultValue = new GetClustersResultConnectionStringPrivateEndpointEndpoint();
+            _resultValue.endpointId = endpointId;
+            _resultValue.providerName = providerName;
+            _resultValue.region = region;
+            return _resultValue;
         }
     }
 }

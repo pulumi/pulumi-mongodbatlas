@@ -61,11 +61,11 @@ public final class GetOnlineArchivePartitionField {
             return this;
         }
         public GetOnlineArchivePartitionField build() {
-            final var o = new GetOnlineArchivePartitionField();
-            o.fieldName = fieldName;
-            o.fieldType = fieldType;
-            o.order = order;
-            return o;
+            final var _resultValue = new GetOnlineArchivePartitionField();
+            _resultValue.fieldName = fieldName;
+            _resultValue.fieldType = fieldType;
+            _resultValue.order = order;
+            return _resultValue;
         }
     }
 }

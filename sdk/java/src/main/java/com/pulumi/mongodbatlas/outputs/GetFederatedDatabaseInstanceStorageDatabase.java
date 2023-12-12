@@ -89,12 +89,12 @@ public final class GetFederatedDatabaseInstanceStorageDatabase {
             return views(List.of(views));
         }
         public GetFederatedDatabaseInstanceStorageDatabase build() {
-            final var o = new GetFederatedDatabaseInstanceStorageDatabase();
-            o.collections = collections;
-            o.maxWildcardCollections = maxWildcardCollections;
-            o.name = name;
-            o.views = views;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstanceStorageDatabase();
+            _resultValue.collections = collections;
+            _resultValue.maxWildcardCollections = maxWildcardCollections;
+            _resultValue.name = name;
+            _resultValue.views = views;
+            return _resultValue;
         }
     }
 }

@@ -111,15 +111,15 @@ public final class GetClusterConnectionString {
             return this;
         }
         public GetClusterConnectionString build() {
-            final var o = new GetClusterConnectionString();
-            o.awsPrivateLink = awsPrivateLink;
-            o.awsPrivateLinkSrv = awsPrivateLinkSrv;
-            o.private_ = private_;
-            o.privateEndpoints = privateEndpoints;
-            o.privateSrv = privateSrv;
-            o.standard = standard;
-            o.standardSrv = standardSrv;
-            return o;
+            final var _resultValue = new GetClusterConnectionString();
+            _resultValue.awsPrivateLink = awsPrivateLink;
+            _resultValue.awsPrivateLinkSrv = awsPrivateLinkSrv;
+            _resultValue.private_ = private_;
+            _resultValue.privateEndpoints = privateEndpoints;
+            _resultValue.privateSrv = privateSrv;
+            _resultValue.standard = standard;
+            _resultValue.standardSrv = standardSrv;
+            return _resultValue;
         }
     }
 }

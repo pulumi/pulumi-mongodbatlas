@@ -76,11 +76,11 @@ public final class GetDatabaseUserRole {
             return this;
         }
         public GetDatabaseUserRole build() {
-            final var o = new GetDatabaseUserRole();
-            o.collectionName = collectionName;
-            o.databaseName = databaseName;
-            o.roleName = roleName;
-            return o;
+            final var _resultValue = new GetDatabaseUserRole();
+            _resultValue.collectionName = collectionName;
+            _resultValue.databaseName = databaseName;
+            _resultValue.roleName = roleName;
+            return _resultValue;
         }
     }
 }

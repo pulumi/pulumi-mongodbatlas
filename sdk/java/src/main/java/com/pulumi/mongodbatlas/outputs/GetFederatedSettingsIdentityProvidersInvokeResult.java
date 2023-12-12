@@ -114,13 +114,13 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
             return results(List.of(results));
         }
         public GetFederatedSettingsIdentityProvidersInvokeResult build() {
-            final var o = new GetFederatedSettingsIdentityProvidersInvokeResult();
-            o.federationSettingsId = federationSettingsId;
-            o.id = id;
-            o.itemsPerPage = itemsPerPage;
-            o.pageNum = pageNum;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetFederatedSettingsIdentityProvidersInvokeResult();
+            _resultValue.federationSettingsId = federationSettingsId;
+            _resultValue.id = id;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.pageNum = pageNum;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

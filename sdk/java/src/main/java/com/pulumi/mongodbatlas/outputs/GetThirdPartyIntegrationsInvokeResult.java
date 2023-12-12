@@ -89,11 +89,11 @@ public final class GetThirdPartyIntegrationsInvokeResult {
             return results(List.of(results));
         }
         public GetThirdPartyIntegrationsInvokeResult build() {
-            final var o = new GetThirdPartyIntegrationsInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetThirdPartyIntegrationsInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

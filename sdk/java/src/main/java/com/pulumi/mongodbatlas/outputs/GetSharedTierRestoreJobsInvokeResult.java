@@ -96,13 +96,13 @@ public final class GetSharedTierRestoreJobsInvokeResult {
             return this;
         }
         public GetSharedTierRestoreJobsInvokeResult build() {
-            final var o = new GetSharedTierRestoreJobsInvokeResult();
-            o.clusterName = clusterName;
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            o.totalCount = totalCount;
-            return o;
+            final var _resultValue = new GetSharedTierRestoreJobsInvokeResult();
+            _resultValue.clusterName = clusterName;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            _resultValue.totalCount = totalCount;
+            return _resultValue;
         }
     }
 }

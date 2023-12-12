@@ -89,11 +89,11 @@ public final class GetAlertConfigurationThresholdConfig {
             return this;
         }
         public GetAlertConfigurationThresholdConfig build() {
-            final var o = new GetAlertConfigurationThresholdConfig();
-            o.operator = operator;
-            o.threshold = threshold;
-            o.units = units;
-            return o;
+            final var _resultValue = new GetAlertConfigurationThresholdConfig();
+            _resultValue.operator = operator;
+            _resultValue.threshold = threshold;
+            _resultValue.units = units;
+            return _resultValue;
         }
     }
 }

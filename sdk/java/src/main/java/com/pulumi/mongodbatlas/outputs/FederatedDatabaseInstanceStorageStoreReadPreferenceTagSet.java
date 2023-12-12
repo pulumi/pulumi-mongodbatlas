@@ -42,9 +42,9 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
             return tags(List.of(tags));
         }
         public FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet build() {
-            final var o = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet();
-            o.tags = tags;
-            return o;
+            final var _resultValue = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet();
+            _resultValue.tags = tags;
+            return _resultValue;
         }
     }
 }

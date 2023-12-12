@@ -123,13 +123,13 @@ public final class GetClusterReplicationSpecRegionsConfig {
             return this;
         }
         public GetClusterReplicationSpecRegionsConfig build() {
-            final var o = new GetClusterReplicationSpecRegionsConfig();
-            o.analyticsNodes = analyticsNodes;
-            o.electableNodes = electableNodes;
-            o.priority = priority;
-            o.readOnlyNodes = readOnlyNodes;
-            o.regionName = regionName;
-            return o;
+            final var _resultValue = new GetClusterReplicationSpecRegionsConfig();
+            _resultValue.analyticsNodes = analyticsNodes;
+            _resultValue.electableNodes = electableNodes;
+            _resultValue.priority = priority;
+            _resultValue.readOnlyNodes = readOnlyNodes;
+            _resultValue.regionName = regionName;
+            return _resultValue;
         }
     }
 }

@@ -105,13 +105,13 @@ public final class Get509AuthenticationDatabaseUserResult {
             return this;
         }
         public Get509AuthenticationDatabaseUserResult build() {
-            final var o = new Get509AuthenticationDatabaseUserResult();
-            o.certificates = certificates;
-            o.customerX509Cas = customerX509Cas;
-            o.id = id;
-            o.projectId = projectId;
-            o.username = username;
-            return o;
+            final var _resultValue = new Get509AuthenticationDatabaseUserResult();
+            _resultValue.certificates = certificates;
+            _resultValue.customerX509Cas = customerX509Cas;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

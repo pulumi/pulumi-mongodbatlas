@@ -292,23 +292,23 @@ public final class GetPrivateLinkEndpointServiceResult {
             return this;
         }
         public GetPrivateLinkEndpointServiceResult build() {
-            final var o = new GetPrivateLinkEndpointServiceResult();
-            o.awsConnectionStatus = awsConnectionStatus;
-            o.azureStatus = azureStatus;
-            o.deleteRequested = deleteRequested;
-            o.endpointServiceId = endpointServiceId;
-            o.endpoints = endpoints;
-            o.errorMessage = errorMessage;
-            o.gcpStatus = gcpStatus;
-            o.id = id;
-            o.interfaceEndpointId = interfaceEndpointId;
-            o.privateEndpointConnectionName = privateEndpointConnectionName;
-            o.privateEndpointIpAddress = privateEndpointIpAddress;
-            o.privateEndpointResourceId = privateEndpointResourceId;
-            o.privateLinkId = privateLinkId;
-            o.projectId = projectId;
-            o.providerName = providerName;
-            return o;
+            final var _resultValue = new GetPrivateLinkEndpointServiceResult();
+            _resultValue.awsConnectionStatus = awsConnectionStatus;
+            _resultValue.azureStatus = azureStatus;
+            _resultValue.deleteRequested = deleteRequested;
+            _resultValue.endpointServiceId = endpointServiceId;
+            _resultValue.endpoints = endpoints;
+            _resultValue.errorMessage = errorMessage;
+            _resultValue.gcpStatus = gcpStatus;
+            _resultValue.id = id;
+            _resultValue.interfaceEndpointId = interfaceEndpointId;
+            _resultValue.privateEndpointConnectionName = privateEndpointConnectionName;
+            _resultValue.privateEndpointIpAddress = privateEndpointIpAddress;
+            _resultValue.privateEndpointResourceId = privateEndpointResourceId;
+            _resultValue.privateLinkId = privateLinkId;
+            _resultValue.projectId = projectId;
+            _resultValue.providerName = providerName;
+            return _resultValue;
         }
     }
 }

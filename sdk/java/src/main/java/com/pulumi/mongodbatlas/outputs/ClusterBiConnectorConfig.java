@@ -86,10 +86,10 @@ public final class ClusterBiConnectorConfig {
             return this;
         }
         public ClusterBiConnectorConfig build() {
-            final var o = new ClusterBiConnectorConfig();
-            o.enabled = enabled;
-            o.readPreference = readPreference;
-            return o;
+            final var _resultValue = new ClusterBiConnectorConfig();
+            _resultValue.enabled = enabled;
+            _resultValue.readPreference = readPreference;
+            return _resultValue;
         }
     }
 }

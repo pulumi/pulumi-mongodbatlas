@@ -191,17 +191,17 @@ public final class GetDataLakePipelinesResult {
             return transformations(List.of(transformations));
         }
         public GetDataLakePipelinesResult build() {
-            final var o = new GetDataLakePipelinesResult();
-            o.createdDate = createdDate;
-            o.id = id;
-            o.lastUpdatedDate = lastUpdatedDate;
-            o.name = name;
-            o.projectId = projectId;
-            o.sinks = sinks;
-            o.sources = sources;
-            o.state = state;
-            o.transformations = transformations;
-            return o;
+            final var _resultValue = new GetDataLakePipelinesResult();
+            _resultValue.createdDate = createdDate;
+            _resultValue.id = id;
+            _resultValue.lastUpdatedDate = lastUpdatedDate;
+            _resultValue.name = name;
+            _resultValue.projectId = projectId;
+            _resultValue.sinks = sinks;
+            _resultValue.sources = sources;
+            _resultValue.state = state;
+            _resultValue.transformations = transformations;
+            return _resultValue;
         }
     }
 }

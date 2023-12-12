@@ -254,24 +254,24 @@ public final class FederatedDatabaseInstanceStorageStore {
             return urls(List.of(urls));
         }
         public FederatedDatabaseInstanceStorageStore build() {
-            final var o = new FederatedDatabaseInstanceStorageStore();
-            o.additionalStorageClasses = additionalStorageClasses;
-            o.allowInsecure = allowInsecure;
-            o.bucket = bucket;
-            o.clusterId = clusterId;
-            o.clusterName = clusterName;
-            o.defaultFormat = defaultFormat;
-            o.delimiter = delimiter;
-            o.includeTags = includeTags;
-            o.name = name;
-            o.prefix = prefix;
-            o.projectId = projectId;
-            o.provider = provider;
-            o.public_ = public_;
-            o.readPreference = readPreference;
-            o.region = region;
-            o.urls = urls;
-            return o;
+            final var _resultValue = new FederatedDatabaseInstanceStorageStore();
+            _resultValue.additionalStorageClasses = additionalStorageClasses;
+            _resultValue.allowInsecure = allowInsecure;
+            _resultValue.bucket = bucket;
+            _resultValue.clusterId = clusterId;
+            _resultValue.clusterName = clusterName;
+            _resultValue.defaultFormat = defaultFormat;
+            _resultValue.delimiter = delimiter;
+            _resultValue.includeTags = includeTags;
+            _resultValue.name = name;
+            _resultValue.prefix = prefix;
+            _resultValue.projectId = projectId;
+            _resultValue.provider = provider;
+            _resultValue.public_ = public_;
+            _resultValue.readPreference = readPreference;
+            _resultValue.region = region;
+            _resultValue.urls = urls;
+            return _resultValue;
         }
     }
 }

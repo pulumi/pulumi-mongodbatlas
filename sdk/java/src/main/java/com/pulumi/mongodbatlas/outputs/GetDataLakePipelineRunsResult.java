@@ -222,18 +222,18 @@ public final class GetDataLakePipelineRunsResult {
             return stats(List.of(stats));
         }
         public GetDataLakePipelineRunsResult build() {
-            final var o = new GetDataLakePipelineRunsResult();
-            o.backupFrequencyType = backupFrequencyType;
-            o.createdDate = createdDate;
-            o.id = id;
-            o.lastUpdatedDate = lastUpdatedDate;
-            o.phase = phase;
-            o.pipelineId = pipelineId;
-            o.pipelineRunId = pipelineRunId;
-            o.snapshotId = snapshotId;
-            o.state = state;
-            o.stats = stats;
-            return o;
+            final var _resultValue = new GetDataLakePipelineRunsResult();
+            _resultValue.backupFrequencyType = backupFrequencyType;
+            _resultValue.createdDate = createdDate;
+            _resultValue.id = id;
+            _resultValue.lastUpdatedDate = lastUpdatedDate;
+            _resultValue.phase = phase;
+            _resultValue.pipelineId = pipelineId;
+            _resultValue.pipelineRunId = pipelineRunId;
+            _resultValue.snapshotId = snapshotId;
+            _resultValue.state = state;
+            _resultValue.stats = stats;
+            return _resultValue;
         }
     }
 }

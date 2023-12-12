@@ -138,14 +138,14 @@ public final class GetFederatedSettingsResult {
             return this;
         }
         public GetFederatedSettingsResult build() {
-            final var o = new GetFederatedSettingsResult();
-            o.federatedDomains = federatedDomains;
-            o.hasRoleMappings = hasRoleMappings;
-            o.id = id;
-            o.identityProviderId = identityProviderId;
-            o.identityProviderStatus = identityProviderStatus;
-            o.orgId = orgId;
-            return o;
+            final var _resultValue = new GetFederatedSettingsResult();
+            _resultValue.federatedDomains = federatedDomains;
+            _resultValue.hasRoleMappings = hasRoleMappings;
+            _resultValue.id = id;
+            _resultValue.identityProviderId = identityProviderId;
+            _resultValue.identityProviderStatus = identityProviderStatus;
+            _resultValue.orgId = orgId;
+            return _resultValue;
         }
     }
 }

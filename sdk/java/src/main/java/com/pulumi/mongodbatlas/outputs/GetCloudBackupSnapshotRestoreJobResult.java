@@ -327,26 +327,26 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
             return this;
         }
         public GetCloudBackupSnapshotRestoreJobResult build() {
-            final var o = new GetCloudBackupSnapshotRestoreJobResult();
-            o.cancelled = cancelled;
-            o.clusterName = clusterName;
-            o.createdAt = createdAt;
-            o.deliveryType = deliveryType;
-            o.deliveryUrls = deliveryUrls;
-            o.expired = expired;
-            o.expiresAt = expiresAt;
-            o.finishedAt = finishedAt;
-            o.id = id;
-            o.jobId = jobId;
-            o.oplogInc = oplogInc;
-            o.oplogTs = oplogTs;
-            o.pointInTimeUtcSeconds = pointInTimeUtcSeconds;
-            o.projectId = projectId;
-            o.snapshotId = snapshotId;
-            o.targetClusterName = targetClusterName;
-            o.targetProjectId = targetProjectId;
-            o.timestamp = timestamp;
-            return o;
+            final var _resultValue = new GetCloudBackupSnapshotRestoreJobResult();
+            _resultValue.cancelled = cancelled;
+            _resultValue.clusterName = clusterName;
+            _resultValue.createdAt = createdAt;
+            _resultValue.deliveryType = deliveryType;
+            _resultValue.deliveryUrls = deliveryUrls;
+            _resultValue.expired = expired;
+            _resultValue.expiresAt = expiresAt;
+            _resultValue.finishedAt = finishedAt;
+            _resultValue.id = id;
+            _resultValue.jobId = jobId;
+            _resultValue.oplogInc = oplogInc;
+            _resultValue.oplogTs = oplogTs;
+            _resultValue.pointInTimeUtcSeconds = pointInTimeUtcSeconds;
+            _resultValue.projectId = projectId;
+            _resultValue.snapshotId = snapshotId;
+            _resultValue.targetClusterName = targetClusterName;
+            _resultValue.targetProjectId = targetProjectId;
+            _resultValue.timestamp = timestamp;
+            return _resultValue;
         }
     }
 }

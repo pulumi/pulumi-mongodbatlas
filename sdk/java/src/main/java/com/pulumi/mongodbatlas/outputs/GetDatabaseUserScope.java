@@ -65,10 +65,10 @@ public final class GetDatabaseUserScope {
             return this;
         }
         public GetDatabaseUserScope build() {
-            final var o = new GetDatabaseUserScope();
-            o.name = name;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetDatabaseUserScope();
+            _resultValue.name = name;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

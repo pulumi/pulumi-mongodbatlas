@@ -70,11 +70,11 @@ public final class GetAlertConfigurationOutput {
             return this;
         }
         public GetAlertConfigurationOutput build() {
-            final var o = new GetAlertConfigurationOutput();
-            o.label = label;
-            o.type = type;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetAlertConfigurationOutput();
+            _resultValue.label = label;
+            _resultValue.type = type;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

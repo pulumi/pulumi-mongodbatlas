@@ -49,10 +49,10 @@ public final class GetOnlineArchiveDataProcessRegion {
             return this;
         }
         public GetOnlineArchiveDataProcessRegion build() {
-            final var o = new GetOnlineArchiveDataProcessRegion();
-            o.cloudProvider = cloudProvider;
-            o.region = region;
-            return o;
+            final var _resultValue = new GetOnlineArchiveDataProcessRegion();
+            _resultValue.cloudProvider = cloudProvider;
+            _resultValue.region = region;
+            return _resultValue;
         }
     }
 }

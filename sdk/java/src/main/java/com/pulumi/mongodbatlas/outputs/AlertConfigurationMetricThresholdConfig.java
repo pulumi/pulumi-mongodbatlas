@@ -129,13 +129,13 @@ public final class AlertConfigurationMetricThresholdConfig {
             return this;
         }
         public AlertConfigurationMetricThresholdConfig build() {
-            final var o = new AlertConfigurationMetricThresholdConfig();
-            o.metricName = metricName;
-            o.mode = mode;
-            o.operator = operator;
-            o.threshold = threshold;
-            o.units = units;
-            return o;
+            final var _resultValue = new AlertConfigurationMetricThresholdConfig();
+            _resultValue.metricName = metricName;
+            _resultValue.mode = mode;
+            _resultValue.operator = operator;
+            _resultValue.threshold = threshold;
+            _resultValue.units = units;
+            return _resultValue;
         }
     }
 }

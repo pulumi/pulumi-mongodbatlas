@@ -54,10 +54,10 @@ public final class GetFederatedDatabaseInstancesResultStorageDatabaseCollection 
             return this;
         }
         public GetFederatedDatabaseInstancesResultStorageDatabaseCollection build() {
-            final var o = new GetFederatedDatabaseInstancesResultStorageDatabaseCollection();
-            o.dataSources = dataSources;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstancesResultStorageDatabaseCollection();
+            _resultValue.dataSources = dataSources;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

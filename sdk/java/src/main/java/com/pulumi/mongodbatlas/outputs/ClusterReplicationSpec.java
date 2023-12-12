@@ -115,12 +115,12 @@ public final class ClusterReplicationSpec {
             return this;
         }
         public ClusterReplicationSpec build() {
-            final var o = new ClusterReplicationSpec();
-            o.id = id;
-            o.numShards = numShards;
-            o.regionsConfigs = regionsConfigs;
-            o.zoneName = zoneName;
-            return o;
+            final var _resultValue = new ClusterReplicationSpec();
+            _resultValue.id = id;
+            _resultValue.numShards = numShards;
+            _resultValue.regionsConfigs = regionsConfigs;
+            _resultValue.zoneName = zoneName;
+            return _resultValue;
         }
     }
 }

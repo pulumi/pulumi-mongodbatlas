@@ -92,12 +92,12 @@ public final class GetEventTriggersInvokeResult {
             return results(List.of(results));
         }
         public GetEventTriggersInvokeResult build() {
-            final var o = new GetEventTriggersInvokeResult();
-            o.appId = appId;
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetEventTriggersInvokeResult();
+            _resultValue.appId = appId;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

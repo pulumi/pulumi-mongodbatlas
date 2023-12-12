@@ -448,30 +448,30 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         public GetAdvancedClusterResult build() {
-            final var o = new GetAdvancedClusterResult();
-            o.advancedConfigurations = advancedConfigurations;
-            o.backupEnabled = backupEnabled;
-            o.biConnectorConfigs = biConnectorConfigs;
-            o.clusterType = clusterType;
-            o.connectionStrings = connectionStrings;
-            o.createDate = createDate;
-            o.diskSizeGb = diskSizeGb;
-            o.encryptionAtRestProvider = encryptionAtRestProvider;
-            o.id = id;
-            o.labels = labels;
-            o.mongoDbMajorVersion = mongoDbMajorVersion;
-            o.mongoDbVersion = mongoDbVersion;
-            o.name = name;
-            o.paused = paused;
-            o.pitEnabled = pitEnabled;
-            o.projectId = projectId;
-            o.replicationSpecs = replicationSpecs;
-            o.rootCertType = rootCertType;
-            o.stateName = stateName;
-            o.tags = tags;
-            o.terminationProtectionEnabled = terminationProtectionEnabled;
-            o.versionReleaseSystem = versionReleaseSystem;
-            return o;
+            final var _resultValue = new GetAdvancedClusterResult();
+            _resultValue.advancedConfigurations = advancedConfigurations;
+            _resultValue.backupEnabled = backupEnabled;
+            _resultValue.biConnectorConfigs = biConnectorConfigs;
+            _resultValue.clusterType = clusterType;
+            _resultValue.connectionStrings = connectionStrings;
+            _resultValue.createDate = createDate;
+            _resultValue.diskSizeGb = diskSizeGb;
+            _resultValue.encryptionAtRestProvider = encryptionAtRestProvider;
+            _resultValue.id = id;
+            _resultValue.labels = labels;
+            _resultValue.mongoDbMajorVersion = mongoDbMajorVersion;
+            _resultValue.mongoDbVersion = mongoDbVersion;
+            _resultValue.name = name;
+            _resultValue.paused = paused;
+            _resultValue.pitEnabled = pitEnabled;
+            _resultValue.projectId = projectId;
+            _resultValue.replicationSpecs = replicationSpecs;
+            _resultValue.rootCertType = rootCertType;
+            _resultValue.stateName = stateName;
+            _resultValue.tags = tags;
+            _resultValue.terminationProtectionEnabled = terminationProtectionEnabled;
+            _resultValue.versionReleaseSystem = versionReleaseSystem;
+            return _resultValue;
         }
     }
 }

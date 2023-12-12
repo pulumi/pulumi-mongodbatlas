@@ -60,11 +60,11 @@ public final class CloudProviderAccessAuthorizationAzure {
             return this;
         }
         public CloudProviderAccessAuthorizationAzure build() {
-            final var o = new CloudProviderAccessAuthorizationAzure();
-            o.atlasAzureAppId = atlasAzureAppId;
-            o.servicePrincipalId = servicePrincipalId;
-            o.tenantId = tenantId;
-            return o;
+            final var _resultValue = new CloudProviderAccessAuthorizationAzure();
+            _resultValue.atlasAzureAppId = atlasAzureAppId;
+            _resultValue.servicePrincipalId = servicePrincipalId;
+            _resultValue.tenantId = tenantId;
+            return _resultValue;
         }
     }
 }

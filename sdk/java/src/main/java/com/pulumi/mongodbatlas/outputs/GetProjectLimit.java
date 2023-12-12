@@ -95,13 +95,13 @@ public final class GetProjectLimit {
             return this;
         }
         public GetProjectLimit build() {
-            final var o = new GetProjectLimit();
-            o.currentUsage = currentUsage;
-            o.defaultLimit = defaultLimit;
-            o.maximumLimit = maximumLimit;
-            o.name = name;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetProjectLimit();
+            _resultValue.currentUsage = currentUsage;
+            _resultValue.defaultLimit = defaultLimit;
+            _resultValue.maximumLimit = maximumLimit;
+            _resultValue.name = name;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

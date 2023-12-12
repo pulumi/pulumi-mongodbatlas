@@ -84,11 +84,11 @@ public final class GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingR
             return this;
         }
         public GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment build() {
-            final var o = new GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment();
-            o.groupId = groupId;
-            o.orgId = orgId;
-            o.role = role;
-            return o;
+            final var _resultValue = new GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment();
+            _resultValue.groupId = groupId;
+            _resultValue.orgId = orgId;
+            _resultValue.role = role;
+            return _resultValue;
         }
     }
 }

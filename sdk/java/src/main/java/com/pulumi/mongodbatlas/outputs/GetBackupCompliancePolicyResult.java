@@ -280,23 +280,23 @@ public final class GetBackupCompliancePolicyResult {
             return this;
         }
         public GetBackupCompliancePolicyResult build() {
-            final var o = new GetBackupCompliancePolicyResult();
-            o.authorizedEmail = authorizedEmail;
-            o.copyProtectionEnabled = copyProtectionEnabled;
-            o.encryptionAtRestEnabled = encryptionAtRestEnabled;
-            o.id = id;
-            o.onDemandPolicyItem = onDemandPolicyItem;
-            o.pitEnabled = pitEnabled;
-            o.policyItemDaily = policyItemDaily;
-            o.policyItemHourly = policyItemHourly;
-            o.policyItemMonthlies = policyItemMonthlies;
-            o.policyItemWeeklies = policyItemWeeklies;
-            o.projectId = projectId;
-            o.restoreWindowDays = restoreWindowDays;
-            o.state = state;
-            o.updatedDate = updatedDate;
-            o.updatedUser = updatedUser;
-            return o;
+            final var _resultValue = new GetBackupCompliancePolicyResult();
+            _resultValue.authorizedEmail = authorizedEmail;
+            _resultValue.copyProtectionEnabled = copyProtectionEnabled;
+            _resultValue.encryptionAtRestEnabled = encryptionAtRestEnabled;
+            _resultValue.id = id;
+            _resultValue.onDemandPolicyItem = onDemandPolicyItem;
+            _resultValue.pitEnabled = pitEnabled;
+            _resultValue.policyItemDaily = policyItemDaily;
+            _resultValue.policyItemHourly = policyItemHourly;
+            _resultValue.policyItemMonthlies = policyItemMonthlies;
+            _resultValue.policyItemWeeklies = policyItemWeeklies;
+            _resultValue.projectId = projectId;
+            _resultValue.restoreWindowDays = restoreWindowDays;
+            _resultValue.state = state;
+            _resultValue.updatedDate = updatedDate;
+            _resultValue.updatedUser = updatedUser;
+            return _resultValue;
         }
     }
 }

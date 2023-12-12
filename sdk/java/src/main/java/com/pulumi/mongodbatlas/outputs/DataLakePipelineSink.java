@@ -114,12 +114,12 @@ public final class DataLakePipelineSink {
             return this;
         }
         public DataLakePipelineSink build() {
-            final var o = new DataLakePipelineSink();
-            o.partitionFields = partitionFields;
-            o.provider = provider;
-            o.region = region;
-            o.type = type;
-            return o;
+            final var _resultValue = new DataLakePipelineSink();
+            _resultValue.partitionFields = partitionFields;
+            _resultValue.provider = provider;
+            _resultValue.region = region;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

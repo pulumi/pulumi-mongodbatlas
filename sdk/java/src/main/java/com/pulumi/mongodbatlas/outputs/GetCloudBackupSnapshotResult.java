@@ -335,25 +335,25 @@ public final class GetCloudBackupSnapshotResult {
             return this;
         }
         public GetCloudBackupSnapshotResult build() {
-            final var o = new GetCloudBackupSnapshotResult();
-            o.cloudProvider = cloudProvider;
-            o.clusterName = clusterName;
-            o.createdAt = createdAt;
-            o.description = description;
-            o.expiresAt = expiresAt;
-            o.id = id;
-            o.masterKeyUuid = masterKeyUuid;
-            o.members = members;
-            o.mongodVersion = mongodVersion;
-            o.projectId = projectId;
-            o.replicaSetName = replicaSetName;
-            o.snapshotId = snapshotId;
-            o.snapshotIds = snapshotIds;
-            o.snapshotType = snapshotType;
-            o.status = status;
-            o.storageSizeBytes = storageSizeBytes;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetCloudBackupSnapshotResult();
+            _resultValue.cloudProvider = cloudProvider;
+            _resultValue.clusterName = clusterName;
+            _resultValue.createdAt = createdAt;
+            _resultValue.description = description;
+            _resultValue.expiresAt = expiresAt;
+            _resultValue.id = id;
+            _resultValue.masterKeyUuid = masterKeyUuid;
+            _resultValue.members = members;
+            _resultValue.mongodVersion = mongodVersion;
+            _resultValue.projectId = projectId;
+            _resultValue.replicaSetName = replicaSetName;
+            _resultValue.snapshotId = snapshotId;
+            _resultValue.snapshotIds = snapshotIds;
+            _resultValue.snapshotType = snapshotType;
+            _resultValue.status = status;
+            _resultValue.storageSizeBytes = storageSizeBytes;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

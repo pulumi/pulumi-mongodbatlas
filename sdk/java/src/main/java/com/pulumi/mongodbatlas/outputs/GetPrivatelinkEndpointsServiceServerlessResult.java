@@ -171,16 +171,16 @@ public final class GetPrivatelinkEndpointsServiceServerlessResult {
             return this;
         }
         public GetPrivatelinkEndpointsServiceServerlessResult build() {
-            final var o = new GetPrivatelinkEndpointsServiceServerlessResult();
-            o.cloudProviderEndpointId = cloudProviderEndpointId;
-            o.comment = comment;
-            o.endpointId = endpointId;
-            o.endpointServiceName = endpointServiceName;
-            o.errorMessage = errorMessage;
-            o.privateEndpointIpAddress = privateEndpointIpAddress;
-            o.privateLinkServiceResourceId = privateLinkServiceResourceId;
-            o.status = status;
-            return o;
+            final var _resultValue = new GetPrivatelinkEndpointsServiceServerlessResult();
+            _resultValue.cloudProviderEndpointId = cloudProviderEndpointId;
+            _resultValue.comment = comment;
+            _resultValue.endpointId = endpointId;
+            _resultValue.endpointServiceName = endpointServiceName;
+            _resultValue.errorMessage = errorMessage;
+            _resultValue.privateEndpointIpAddress = privateEndpointIpAddress;
+            _resultValue.privateLinkServiceResourceId = privateLinkServiceResourceId;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

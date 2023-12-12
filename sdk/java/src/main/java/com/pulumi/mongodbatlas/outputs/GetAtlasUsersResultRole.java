@@ -68,11 +68,11 @@ public final class GetAtlasUsersResultRole {
             return this;
         }
         public GetAtlasUsersResultRole build() {
-            final var o = new GetAtlasUsersResultRole();
-            o.groupId = groupId;
-            o.orgId = orgId;
-            o.roleName = roleName;
-            return o;
+            final var _resultValue = new GetAtlasUsersResultRole();
+            _resultValue.groupId = groupId;
+            _resultValue.orgId = orgId;
+            _resultValue.roleName = roleName;
+            return _resultValue;
         }
     }
 }

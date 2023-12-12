@@ -49,10 +49,10 @@ public final class GetServerlessInstancesResultLink {
             return this;
         }
         public GetServerlessInstancesResultLink build() {
-            final var o = new GetServerlessInstancesResultLink();
-            o.href = href;
-            o.rel = rel;
-            return o;
+            final var _resultValue = new GetServerlessInstancesResultLink();
+            _resultValue.href = href;
+            _resultValue.rel = rel;
+            return _resultValue;
         }
     }
 }

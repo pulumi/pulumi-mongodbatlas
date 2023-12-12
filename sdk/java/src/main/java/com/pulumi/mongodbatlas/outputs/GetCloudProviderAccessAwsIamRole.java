@@ -184,16 +184,16 @@ public final class GetCloudProviderAccessAwsIamRole {
             return this;
         }
         public GetCloudProviderAccessAwsIamRole build() {
-            final var o = new GetCloudProviderAccessAwsIamRole();
-            o.atlasAssumedRoleExternalId = atlasAssumedRoleExternalId;
-            o.atlasAwsAccountArn = atlasAwsAccountArn;
-            o.authorizedDate = authorizedDate;
-            o.createdDate = createdDate;
-            o.featureUsages = featureUsages;
-            o.iamAssumedRoleArn = iamAssumedRoleArn;
-            o.providerName = providerName;
-            o.roleId = roleId;
-            return o;
+            final var _resultValue = new GetCloudProviderAccessAwsIamRole();
+            _resultValue.atlasAssumedRoleExternalId = atlasAssumedRoleExternalId;
+            _resultValue.atlasAwsAccountArn = atlasAwsAccountArn;
+            _resultValue.authorizedDate = authorizedDate;
+            _resultValue.createdDate = createdDate;
+            _resultValue.featureUsages = featureUsages;
+            _resultValue.iamAssumedRoleArn = iamAssumedRoleArn;
+            _resultValue.providerName = providerName;
+            _resultValue.roleId = roleId;
+            return _resultValue;
         }
     }
 }

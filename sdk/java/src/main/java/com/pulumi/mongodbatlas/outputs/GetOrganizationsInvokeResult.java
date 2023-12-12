@@ -121,15 +121,15 @@ public final class GetOrganizationsInvokeResult {
             return this;
         }
         public GetOrganizationsInvokeResult build() {
-            final var o = new GetOrganizationsInvokeResult();
-            o.id = id;
-            o.includeDeletedOrgs = includeDeletedOrgs;
-            o.itemsPerPage = itemsPerPage;
-            o.name = name;
-            o.pageNum = pageNum;
-            o.results = results;
-            o.totalCount = totalCount;
-            return o;
+            final var _resultValue = new GetOrganizationsInvokeResult();
+            _resultValue.id = id;
+            _resultValue.includeDeletedOrgs = includeDeletedOrgs;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.name = name;
+            _resultValue.pageNum = pageNum;
+            _resultValue.results = results;
+            _resultValue.totalCount = totalCount;
+            return _resultValue;
         }
     }
 }

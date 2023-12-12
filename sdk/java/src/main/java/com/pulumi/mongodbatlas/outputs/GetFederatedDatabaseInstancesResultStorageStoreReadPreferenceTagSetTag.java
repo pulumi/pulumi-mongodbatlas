@@ -49,10 +49,10 @@ public final class GetFederatedDatabaseInstancesResultStorageStoreReadPreference
             return this;
         }
         public GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag build() {
-            final var o = new GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag();
-            o.name = name;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSetTag();
+            _resultValue.name = name;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

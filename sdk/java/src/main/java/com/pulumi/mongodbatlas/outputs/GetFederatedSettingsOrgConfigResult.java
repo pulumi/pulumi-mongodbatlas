@@ -190,17 +190,17 @@ public final class GetFederatedSettingsOrgConfigResult {
             return userConflicts(List.of(userConflicts));
         }
         public GetFederatedSettingsOrgConfigResult build() {
-            final var o = new GetFederatedSettingsOrgConfigResult();
-            o.domainAllowLists = domainAllowLists;
-            o.domainRestrictionEnabled = domainRestrictionEnabled;
-            o.federationSettingsId = federationSettingsId;
-            o.id = id;
-            o.identityProviderId = identityProviderId;
-            o.orgId = orgId;
-            o.postAuthRoleGrants = postAuthRoleGrants;
-            o.roleMappings = roleMappings;
-            o.userConflicts = userConflicts;
-            return o;
+            final var _resultValue = new GetFederatedSettingsOrgConfigResult();
+            _resultValue.domainAllowLists = domainAllowLists;
+            _resultValue.domainRestrictionEnabled = domainRestrictionEnabled;
+            _resultValue.federationSettingsId = federationSettingsId;
+            _resultValue.id = id;
+            _resultValue.identityProviderId = identityProviderId;
+            _resultValue.orgId = orgId;
+            _resultValue.postAuthRoleGrants = postAuthRoleGrants;
+            _resultValue.roleMappings = roleMappings;
+            _resultValue.userConflicts = userConflicts;
+            return _resultValue;
         }
     }
 }

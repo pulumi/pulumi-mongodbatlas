@@ -86,11 +86,11 @@ public final class GetAlertConfigurationsResultMatcher {
             return this;
         }
         public GetAlertConfigurationsResultMatcher build() {
-            final var o = new GetAlertConfigurationsResultMatcher();
-            o.fieldName = fieldName;
-            o.operator = operator;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetAlertConfigurationsResultMatcher();
+            _resultValue.fieldName = fieldName;
+            _resultValue.operator = operator;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

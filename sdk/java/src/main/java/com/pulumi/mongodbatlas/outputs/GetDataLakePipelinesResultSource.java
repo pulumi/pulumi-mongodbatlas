@@ -122,13 +122,13 @@ public final class GetDataLakePipelinesResultSource {
             return this;
         }
         public GetDataLakePipelinesResultSource build() {
-            final var o = new GetDataLakePipelinesResultSource();
-            o.clusterName = clusterName;
-            o.collectionName = collectionName;
-            o.databaseName = databaseName;
-            o.projectId = projectId;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetDataLakePipelinesResultSource();
+            _resultValue.clusterName = clusterName;
+            _resultValue.collectionName = collectionName;
+            _resultValue.databaseName = databaseName;
+            _resultValue.projectId = projectId;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

@@ -317,23 +317,23 @@ public final class GetProjectsResult {
             return teams(List.of(teams));
         }
         public GetProjectsResult build() {
-            final var o = new GetProjectsResult();
-            o.clusterCount = clusterCount;
-            o.created = created;
-            o.id = id;
-            o.isCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
-            o.isDataExplorerEnabled = isDataExplorerEnabled;
-            o.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
-            o.isPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
-            o.isRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
-            o.isSchemaAdvisorEnabled = isSchemaAdvisorEnabled;
-            o.limits = limits;
-            o.name = name;
-            o.orgId = orgId;
-            o.projectId = projectId;
-            o.regionUsageRestrictions = regionUsageRestrictions;
-            o.teams = teams;
-            return o;
+            final var _resultValue = new GetProjectsResult();
+            _resultValue.clusterCount = clusterCount;
+            _resultValue.created = created;
+            _resultValue.id = id;
+            _resultValue.isCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
+            _resultValue.isDataExplorerEnabled = isDataExplorerEnabled;
+            _resultValue.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
+            _resultValue.isPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
+            _resultValue.isRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
+            _resultValue.isSchemaAdvisorEnabled = isSchemaAdvisorEnabled;
+            _resultValue.limits = limits;
+            _resultValue.name = name;
+            _resultValue.orgId = orgId;
+            _resultValue.projectId = projectId;
+            _resultValue.regionUsageRestrictions = regionUsageRestrictions;
+            _resultValue.teams = teams;
+            return _resultValue;
         }
     }
 }

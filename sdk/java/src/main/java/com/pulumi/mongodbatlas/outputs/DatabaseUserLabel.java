@@ -67,10 +67,10 @@ public final class DatabaseUserLabel {
             return this;
         }
         public DatabaseUserLabel build() {
-            final var o = new DatabaseUserLabel();
-            o.key = key;
-            o.value = value;
-            return o;
+            final var _resultValue = new DatabaseUserLabel();
+            _resultValue.key = key;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

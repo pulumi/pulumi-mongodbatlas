@@ -418,28 +418,28 @@ public final class GetAdvancedClustersResult {
             return this;
         }
         public GetAdvancedClustersResult build() {
-            final var o = new GetAdvancedClustersResult();
-            o.advancedConfigurations = advancedConfigurations;
-            o.backupEnabled = backupEnabled;
-            o.biConnectorConfigs = biConnectorConfigs;
-            o.clusterType = clusterType;
-            o.connectionStrings = connectionStrings;
-            o.createDate = createDate;
-            o.diskSizeGb = diskSizeGb;
-            o.encryptionAtRestProvider = encryptionAtRestProvider;
-            o.labels = labels;
-            o.mongoDbMajorVersion = mongoDbMajorVersion;
-            o.mongoDbVersion = mongoDbVersion;
-            o.name = name;
-            o.paused = paused;
-            o.pitEnabled = pitEnabled;
-            o.replicationSpecs = replicationSpecs;
-            o.rootCertType = rootCertType;
-            o.stateName = stateName;
-            o.tags = tags;
-            o.terminationProtectionEnabled = terminationProtectionEnabled;
-            o.versionReleaseSystem = versionReleaseSystem;
-            return o;
+            final var _resultValue = new GetAdvancedClustersResult();
+            _resultValue.advancedConfigurations = advancedConfigurations;
+            _resultValue.backupEnabled = backupEnabled;
+            _resultValue.biConnectorConfigs = biConnectorConfigs;
+            _resultValue.clusterType = clusterType;
+            _resultValue.connectionStrings = connectionStrings;
+            _resultValue.createDate = createDate;
+            _resultValue.diskSizeGb = diskSizeGb;
+            _resultValue.encryptionAtRestProvider = encryptionAtRestProvider;
+            _resultValue.labels = labels;
+            _resultValue.mongoDbMajorVersion = mongoDbMajorVersion;
+            _resultValue.mongoDbVersion = mongoDbVersion;
+            _resultValue.name = name;
+            _resultValue.paused = paused;
+            _resultValue.pitEnabled = pitEnabled;
+            _resultValue.replicationSpecs = replicationSpecs;
+            _resultValue.rootCertType = rootCertType;
+            _resultValue.stateName = stateName;
+            _resultValue.tags = tags;
+            _resultValue.terminationProtectionEnabled = terminationProtectionEnabled;
+            _resultValue.versionReleaseSystem = versionReleaseSystem;
+            return _resultValue;
         }
     }
 }

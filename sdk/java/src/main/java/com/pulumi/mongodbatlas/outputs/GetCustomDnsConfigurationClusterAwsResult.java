@@ -77,11 +77,11 @@ public final class GetCustomDnsConfigurationClusterAwsResult {
             return this;
         }
         public GetCustomDnsConfigurationClusterAwsResult build() {
-            final var o = new GetCustomDnsConfigurationClusterAwsResult();
-            o.enabled = enabled;
-            o.id = id;
-            o.projectId = projectId;
-            return o;
+            final var _resultValue = new GetCustomDnsConfigurationClusterAwsResult();
+            _resultValue.enabled = enabled;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            return _resultValue;
         }
     }
 }

@@ -96,13 +96,13 @@ public final class GetOnlineArchivesInvokeResult {
             return this;
         }
         public GetOnlineArchivesInvokeResult build() {
-            final var o = new GetOnlineArchivesInvokeResult();
-            o.clusterName = clusterName;
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            o.totalCount = totalCount;
-            return o;
+            final var _resultValue = new GetOnlineArchivesInvokeResult();
+            _resultValue.clusterName = clusterName;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            _resultValue.totalCount = totalCount;
+            return _resultValue;
         }
     }
 }

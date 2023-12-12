@@ -117,14 +117,14 @@ public final class GetCloudBackupSnapshotExportBucketResult {
             return this;
         }
         public GetCloudBackupSnapshotExportBucketResult build() {
-            final var o = new GetCloudBackupSnapshotExportBucketResult();
-            o.bucketName = bucketName;
-            o.cloudProvider = cloudProvider;
-            o.exportBucketId = exportBucketId;
-            o.iamRoleId = iamRoleId;
-            o.id = id;
-            o.projectId = projectId;
-            return o;
+            final var _resultValue = new GetCloudBackupSnapshotExportBucketResult();
+            _resultValue.bucketName = bucketName;
+            _resultValue.cloudProvider = cloudProvider;
+            _resultValue.exportBucketId = exportBucketId;
+            _resultValue.iamRoleId = iamRoleId;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            return _resultValue;
         }
     }
 }

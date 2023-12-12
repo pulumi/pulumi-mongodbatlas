@@ -86,11 +86,11 @@ public final class CloudBackupSnapshotMember {
             return this;
         }
         public CloudBackupSnapshotMember build() {
-            final var o = new CloudBackupSnapshotMember();
-            o.cloudProvider = cloudProvider;
-            o.id = id;
-            o.replicaSetName = replicaSetName;
-            return o;
+            final var _resultValue = new CloudBackupSnapshotMember();
+            _resultValue.cloudProvider = cloudProvider;
+            _resultValue.id = id;
+            _resultValue.replicaSetName = replicaSetName;
+            return _resultValue;
         }
     }
 }

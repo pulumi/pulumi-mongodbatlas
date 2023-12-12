@@ -49,10 +49,10 @@ public final class GetLdapVerifyLink {
             return this;
         }
         public GetLdapVerifyLink build() {
-            final var o = new GetLdapVerifyLink();
-            o.href = href;
-            o.rel = rel;
-            return o;
+            final var _resultValue = new GetLdapVerifyLink();
+            _resultValue.href = href;
+            _resultValue.rel = rel;
+            return _resultValue;
         }
     }
 }

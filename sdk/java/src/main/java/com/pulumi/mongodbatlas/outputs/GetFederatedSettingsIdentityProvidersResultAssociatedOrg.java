@@ -160,15 +160,15 @@ public final class GetFederatedSettingsIdentityProvidersResultAssociatedOrg {
             return userConflicts(List.of(userConflicts));
         }
         public GetFederatedSettingsIdentityProvidersResultAssociatedOrg build() {
-            final var o = new GetFederatedSettingsIdentityProvidersResultAssociatedOrg();
-            o.domainAllowLists = domainAllowLists;
-            o.domainRestrictionEnabled = domainRestrictionEnabled;
-            o.identityProviderId = identityProviderId;
-            o.orgId = orgId;
-            o.postAuthRoleGrants = postAuthRoleGrants;
-            o.roleMappings = roleMappings;
-            o.userConflicts = userConflicts;
-            return o;
+            final var _resultValue = new GetFederatedSettingsIdentityProvidersResultAssociatedOrg();
+            _resultValue.domainAllowLists = domainAllowLists;
+            _resultValue.domainRestrictionEnabled = domainRestrictionEnabled;
+            _resultValue.identityProviderId = identityProviderId;
+            _resultValue.orgId = orgId;
+            _resultValue.postAuthRoleGrants = postAuthRoleGrants;
+            _resultValue.roleMappings = roleMappings;
+            _resultValue.userConflicts = userConflicts;
+            return _resultValue;
         }
     }
 }

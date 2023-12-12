@@ -301,23 +301,23 @@ public final class GetServerlessInstancesResult {
             return this;
         }
         public GetServerlessInstancesResult build() {
-            final var o = new GetServerlessInstancesResult();
-            o.connectionStringsPrivateEndpointSrvs = connectionStringsPrivateEndpointSrvs;
-            o.connectionStringsStandardSrv = connectionStringsStandardSrv;
-            o.continuousBackupEnabled = continuousBackupEnabled;
-            o.createDate = createDate;
-            o.id = id;
-            o.links = links;
-            o.mongoDbVersion = mongoDbVersion;
-            o.name = name;
-            o.projectId = projectId;
-            o.providerSettingsBackingProviderName = providerSettingsBackingProviderName;
-            o.providerSettingsProviderName = providerSettingsProviderName;
-            o.providerSettingsRegionName = providerSettingsRegionName;
-            o.stateName = stateName;
-            o.tags = tags;
-            o.terminationProtectionEnabled = terminationProtectionEnabled;
-            return o;
+            final var _resultValue = new GetServerlessInstancesResult();
+            _resultValue.connectionStringsPrivateEndpointSrvs = connectionStringsPrivateEndpointSrvs;
+            _resultValue.connectionStringsStandardSrv = connectionStringsStandardSrv;
+            _resultValue.continuousBackupEnabled = continuousBackupEnabled;
+            _resultValue.createDate = createDate;
+            _resultValue.id = id;
+            _resultValue.links = links;
+            _resultValue.mongoDbVersion = mongoDbVersion;
+            _resultValue.name = name;
+            _resultValue.projectId = projectId;
+            _resultValue.providerSettingsBackingProviderName = providerSettingsBackingProviderName;
+            _resultValue.providerSettingsProviderName = providerSettingsProviderName;
+            _resultValue.providerSettingsRegionName = providerSettingsRegionName;
+            _resultValue.stateName = stateName;
+            _resultValue.tags = tags;
+            _resultValue.terminationProtectionEnabled = terminationProtectionEnabled;
+            return _resultValue;
         }
     }
 }

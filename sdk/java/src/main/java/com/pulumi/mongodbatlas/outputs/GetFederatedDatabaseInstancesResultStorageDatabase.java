@@ -81,12 +81,12 @@ public final class GetFederatedDatabaseInstancesResultStorageDatabase {
             return views(List.of(views));
         }
         public GetFederatedDatabaseInstancesResultStorageDatabase build() {
-            final var o = new GetFederatedDatabaseInstancesResultStorageDatabase();
-            o.collections = collections;
-            o.maxWildcardCollections = maxWildcardCollections;
-            o.name = name;
-            o.views = views;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstancesResultStorageDatabase();
+            _resultValue.collections = collections;
+            _resultValue.maxWildcardCollections = maxWildcardCollections;
+            _resultValue.name = name;
+            _resultValue.views = views;
+            return _resultValue;
         }
     }
 }

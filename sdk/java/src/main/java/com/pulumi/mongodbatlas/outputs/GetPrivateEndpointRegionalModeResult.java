@@ -71,11 +71,11 @@ public final class GetPrivateEndpointRegionalModeResult {
             return this;
         }
         public GetPrivateEndpointRegionalModeResult build() {
-            final var o = new GetPrivateEndpointRegionalModeResult();
-            o.enabled = enabled;
-            o.id = id;
-            o.projectId = projectId;
-            return o;
+            final var _resultValue = new GetPrivateEndpointRegionalModeResult();
+            _resultValue.enabled = enabled;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            return _resultValue;
         }
     }
 }

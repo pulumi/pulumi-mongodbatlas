@@ -104,13 +104,13 @@ public final class GetProjectApiKeysResult {
             return this;
         }
         public GetProjectApiKeysResult build() {
-            final var o = new GetProjectApiKeysResult();
-            o.apiKeyId = apiKeyId;
-            o.description = description;
-            o.privateKey = privateKey;
-            o.projectAssignments = projectAssignments;
-            o.publicKey = publicKey;
-            return o;
+            final var _resultValue = new GetProjectApiKeysResult();
+            _resultValue.apiKeyId = apiKeyId;
+            _resultValue.description = description;
+            _resultValue.privateKey = privateKey;
+            _resultValue.projectAssignments = projectAssignments;
+            _resultValue.publicKey = publicKey;
+            return _resultValue;
         }
     }
 }

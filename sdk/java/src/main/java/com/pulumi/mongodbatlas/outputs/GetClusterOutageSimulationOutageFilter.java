@@ -84,11 +84,11 @@ public final class GetClusterOutageSimulationOutageFilter {
             return this;
         }
         public GetClusterOutageSimulationOutageFilter build() {
-            final var o = new GetClusterOutageSimulationOutageFilter();
-            o.cloudProvider = cloudProvider;
-            o.regionName = regionName;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetClusterOutageSimulationOutageFilter();
+            _resultValue.cloudProvider = cloudProvider;
+            _resultValue.regionName = regionName;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

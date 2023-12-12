@@ -103,12 +103,12 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResu
             return this;
         }
         public GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult build() {
-            final var o = new GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult();
-            o.comment = comment;
-            o.endpointId = endpointId;
-            o.providerName = providerName;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult();
+            _resultValue.comment = comment;
+            _resultValue.endpointId = endpointId;
+            _resultValue.providerName = providerName;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

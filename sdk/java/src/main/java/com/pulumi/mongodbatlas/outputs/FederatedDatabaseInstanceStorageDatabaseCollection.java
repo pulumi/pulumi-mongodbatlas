@@ -68,10 +68,10 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollection {
             return this;
         }
         public FederatedDatabaseInstanceStorageDatabaseCollection build() {
-            final var o = new FederatedDatabaseInstanceStorageDatabaseCollection();
-            o.dataSources = dataSources;
-            o.name = name;
-            return o;
+            final var _resultValue = new FederatedDatabaseInstanceStorageDatabaseCollection();
+            _resultValue.dataSources = dataSources;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

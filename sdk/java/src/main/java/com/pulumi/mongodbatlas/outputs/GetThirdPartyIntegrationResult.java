@@ -321,25 +321,25 @@ public final class GetThirdPartyIntegrationResult {
             return this;
         }
         public GetThirdPartyIntegrationResult build() {
-            final var o = new GetThirdPartyIntegrationResult();
-            o.accountId = accountId;
-            o.apiKey = apiKey;
-            o.channelName = channelName;
-            o.enabled = enabled;
-            o.id = id;
-            o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
-            o.projectId = projectId;
-            o.region = region;
-            o.routingKey = routingKey;
-            o.scheme = scheme;
-            o.secret = secret;
-            o.serviceDiscovery = serviceDiscovery;
-            o.serviceKey = serviceKey;
-            o.teamName = teamName;
-            o.type = type;
-            o.url = url;
-            o.userName = userName;
-            return o;
+            final var _resultValue = new GetThirdPartyIntegrationResult();
+            _resultValue.accountId = accountId;
+            _resultValue.apiKey = apiKey;
+            _resultValue.channelName = channelName;
+            _resultValue.enabled = enabled;
+            _resultValue.id = id;
+            _resultValue.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
+            _resultValue.projectId = projectId;
+            _resultValue.region = region;
+            _resultValue.routingKey = routingKey;
+            _resultValue.scheme = scheme;
+            _resultValue.secret = secret;
+            _resultValue.serviceDiscovery = serviceDiscovery;
+            _resultValue.serviceKey = serviceKey;
+            _resultValue.teamName = teamName;
+            _resultValue.type = type;
+            _resultValue.url = url;
+            _resultValue.userName = userName;
+            return _resultValue;
         }
     }
 }

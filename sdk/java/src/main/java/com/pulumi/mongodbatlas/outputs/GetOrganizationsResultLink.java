@@ -49,10 +49,10 @@ public final class GetOrganizationsResultLink {
             return this;
         }
         public GetOrganizationsResultLink build() {
-            final var o = new GetOrganizationsResultLink();
-            o.href = href;
-            o.rel = rel;
-            return o;
+            final var _resultValue = new GetOrganizationsResultLink();
+            _resultValue.href = href;
+            _resultValue.rel = rel;
+            return _resultValue;
         }
     }
 }

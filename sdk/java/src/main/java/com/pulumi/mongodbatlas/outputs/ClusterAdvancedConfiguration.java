@@ -250,19 +250,19 @@ public final class ClusterAdvancedConfiguration {
             return this;
         }
         public ClusterAdvancedConfiguration build() {
-            final var o = new ClusterAdvancedConfiguration();
-            o.defaultReadConcern = defaultReadConcern;
-            o.defaultWriteConcern = defaultWriteConcern;
-            o.failIndexKeyTooLong = failIndexKeyTooLong;
-            o.javascriptEnabled = javascriptEnabled;
-            o.minimumEnabledTlsProtocol = minimumEnabledTlsProtocol;
-            o.noTableScan = noTableScan;
-            o.oplogMinRetentionHours = oplogMinRetentionHours;
-            o.oplogSizeMb = oplogSizeMb;
-            o.sampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
-            o.sampleSizeBiConnector = sampleSizeBiConnector;
-            o.transactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
-            return o;
+            final var _resultValue = new ClusterAdvancedConfiguration();
+            _resultValue.defaultReadConcern = defaultReadConcern;
+            _resultValue.defaultWriteConcern = defaultWriteConcern;
+            _resultValue.failIndexKeyTooLong = failIndexKeyTooLong;
+            _resultValue.javascriptEnabled = javascriptEnabled;
+            _resultValue.minimumEnabledTlsProtocol = minimumEnabledTlsProtocol;
+            _resultValue.noTableScan = noTableScan;
+            _resultValue.oplogMinRetentionHours = oplogMinRetentionHours;
+            _resultValue.oplogSizeMb = oplogSizeMb;
+            _resultValue.sampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
+            _resultValue.sampleSizeBiConnector = sampleSizeBiConnector;
+            _resultValue.transactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
+            return _resultValue;
         }
     }
 }

@@ -49,10 +49,10 @@ public final class GetAtlasUserLink {
             return this;
         }
         public GetAtlasUserLink build() {
-            final var o = new GetAtlasUserLink();
-            o.href = href;
-            o.rel = rel;
-            return o;
+            final var _resultValue = new GetAtlasUserLink();
+            _resultValue.href = href;
+            _resultValue.rel = rel;
+            return _resultValue;
         }
     }
 }

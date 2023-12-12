@@ -122,13 +122,13 @@ public final class GetFederatedSettingsOrgConfigsResultUserConflict {
             return this;
         }
         public GetFederatedSettingsOrgConfigsResultUserConflict build() {
-            final var o = new GetFederatedSettingsOrgConfigsResultUserConflict();
-            o.emailAddress = emailAddress;
-            o.federationSettingsId = federationSettingsId;
-            o.firstName = firstName;
-            o.lastName = lastName;
-            o.userId = userId;
-            return o;
+            final var _resultValue = new GetFederatedSettingsOrgConfigsResultUserConflict();
+            _resultValue.emailAddress = emailAddress;
+            _resultValue.federationSettingsId = federationSettingsId;
+            _resultValue.firstName = firstName;
+            _resultValue.lastName = lastName;
+            _resultValue.userId = userId;
+            return _resultValue;
         }
     }
 }

@@ -122,13 +122,13 @@ public final class GetFederatedDatabaseInstancesResultCloudProviderConfigAws {
             return this;
         }
         public GetFederatedDatabaseInstancesResultCloudProviderConfigAws build() {
-            final var o = new GetFederatedDatabaseInstancesResultCloudProviderConfigAws();
-            o.externalId = externalId;
-            o.iamAssumedRoleArn = iamAssumedRoleArn;
-            o.iamUserArn = iamUserArn;
-            o.roleId = roleId;
-            o.testS3Bucket = testS3Bucket;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstancesResultCloudProviderConfigAws();
+            _resultValue.externalId = externalId;
+            _resultValue.iamAssumedRoleArn = iamAssumedRoleArn;
+            _resultValue.iamUserArn = iamUserArn;
+            _resultValue.roleId = roleId;
+            _resultValue.testS3Bucket = testS3Bucket;
+            return _resultValue;
         }
     }
 }

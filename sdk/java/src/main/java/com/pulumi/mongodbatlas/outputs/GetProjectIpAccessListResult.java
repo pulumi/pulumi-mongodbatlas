@@ -101,14 +101,14 @@ public final class GetProjectIpAccessListResult {
             return this;
         }
         public GetProjectIpAccessListResult build() {
-            final var o = new GetProjectIpAccessListResult();
-            o.awsSecurityGroup = awsSecurityGroup;
-            o.cidrBlock = cidrBlock;
-            o.comment = comment;
-            o.id = id;
-            o.ipAddress = ipAddress;
-            o.projectId = projectId;
-            return o;
+            final var _resultValue = new GetProjectIpAccessListResult();
+            _resultValue.awsSecurityGroup = awsSecurityGroup;
+            _resultValue.cidrBlock = cidrBlock;
+            _resultValue.comment = comment;
+            _resultValue.id = id;
+            _resultValue.ipAddress = ipAddress;
+            _resultValue.projectId = projectId;
+            return _resultValue;
         }
     }
 }

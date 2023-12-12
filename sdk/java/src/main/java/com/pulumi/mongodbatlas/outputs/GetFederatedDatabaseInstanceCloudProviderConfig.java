@@ -38,9 +38,9 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig {
             return this;
         }
         public GetFederatedDatabaseInstanceCloudProviderConfig build() {
-            final var o = new GetFederatedDatabaseInstanceCloudProviderConfig();
-            o.aws = aws;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstanceCloudProviderConfig();
+            _resultValue.aws = aws;
+            return _resultValue;
         }
     }
 }

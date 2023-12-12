@@ -81,11 +81,11 @@ public final class GetServerlessInstancesInvokeResult {
             return results(List.of(results));
         }
         public GetServerlessInstancesInvokeResult build() {
-            final var o = new GetServerlessInstancesInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetServerlessInstancesInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

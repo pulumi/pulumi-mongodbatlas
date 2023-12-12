@@ -81,11 +81,11 @@ public final class GetClustersInvokeResult {
             return results(List.of(results));
         }
         public GetClustersInvokeResult build() {
-            final var o = new GetClustersInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetClustersInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

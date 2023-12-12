@@ -216,21 +216,21 @@ public final class GetOnlineArchivesResult {
             return this;
         }
         public GetOnlineArchivesResult build() {
-            final var o = new GetOnlineArchivesResult();
-            o.archiveId = archiveId;
-            o.clusterName = clusterName;
-            o.collName = collName;
-            o.collectionType = collectionType;
-            o.criterias = criterias;
-            o.dataExpirationRules = dataExpirationRules;
-            o.dataProcessRegions = dataProcessRegions;
-            o.dbName = dbName;
-            o.partitionFields = partitionFields;
-            o.paused = paused;
-            o.projectId = projectId;
-            o.schedules = schedules;
-            o.state = state;
-            return o;
+            final var _resultValue = new GetOnlineArchivesResult();
+            _resultValue.archiveId = archiveId;
+            _resultValue.clusterName = clusterName;
+            _resultValue.collName = collName;
+            _resultValue.collectionType = collectionType;
+            _resultValue.criterias = criterias;
+            _resultValue.dataExpirationRules = dataExpirationRules;
+            _resultValue.dataProcessRegions = dataProcessRegions;
+            _resultValue.dbName = dbName;
+            _resultValue.partitionFields = partitionFields;
+            _resultValue.paused = paused;
+            _resultValue.projectId = projectId;
+            _resultValue.schedules = schedules;
+            _resultValue.state = state;
+            return _resultValue;
         }
     }
 }

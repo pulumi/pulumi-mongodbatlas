@@ -94,13 +94,13 @@ public final class GetTeamResult {
             return usernames(List.of(usernames));
         }
         public GetTeamResult build() {
-            final var o = new GetTeamResult();
-            o.id = id;
-            o.name = name;
-            o.orgId = orgId;
-            o.teamId = teamId;
-            o.usernames = usernames;
-            return o;
+            final var _resultValue = new GetTeamResult();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.orgId = orgId;
+            _resultValue.teamId = teamId;
+            _resultValue.usernames = usernames;
+            return _resultValue;
         }
     }
 }

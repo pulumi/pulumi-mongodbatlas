@@ -200,17 +200,17 @@ public final class GetLdapVerifyResult {
             return validations(List.of(validations));
         }
         public GetLdapVerifyResult build() {
-            final var o = new GetLdapVerifyResult();
-            o.bindUsername = bindUsername;
-            o.hostname = hostname;
-            o.id = id;
-            o.links = links;
-            o.port = port;
-            o.projectId = projectId;
-            o.requestId = requestId;
-            o.status = status;
-            o.validations = validations;
-            return o;
+            final var _resultValue = new GetLdapVerifyResult();
+            _resultValue.bindUsername = bindUsername;
+            _resultValue.hostname = hostname;
+            _resultValue.id = id;
+            _resultValue.links = links;
+            _resultValue.port = port;
+            _resultValue.projectId = projectId;
+            _resultValue.requestId = requestId;
+            _resultValue.status = status;
+            _resultValue.validations = validations;
+            return _resultValue;
         }
     }
 }

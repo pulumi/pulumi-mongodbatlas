@@ -117,14 +117,14 @@ public final class GetFederatedSettingsOrgRoleMappingsInvokeResult {
             return results(List.of(results));
         }
         public GetFederatedSettingsOrgRoleMappingsInvokeResult build() {
-            final var o = new GetFederatedSettingsOrgRoleMappingsInvokeResult();
-            o.federationSettingsId = federationSettingsId;
-            o.id = id;
-            o.itemsPerPage = itemsPerPage;
-            o.orgId = orgId;
-            o.pageNum = pageNum;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetFederatedSettingsOrgRoleMappingsInvokeResult();
+            _resultValue.federationSettingsId = federationSettingsId;
+            _resultValue.id = id;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.orgId = orgId;
+            _resultValue.pageNum = pageNum;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

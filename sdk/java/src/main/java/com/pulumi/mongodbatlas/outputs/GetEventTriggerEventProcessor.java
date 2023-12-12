@@ -42,9 +42,9 @@ public final class GetEventTriggerEventProcessor {
             return awsEventbridges(List.of(awsEventbridges));
         }
         public GetEventTriggerEventProcessor build() {
-            final var o = new GetEventTriggerEventProcessor();
-            o.awsEventbridges = awsEventbridges;
-            return o;
+            final var _resultValue = new GetEventTriggerEventProcessor();
+            _resultValue.awsEventbridges = awsEventbridges;
+            return _resultValue;
         }
     }
 }

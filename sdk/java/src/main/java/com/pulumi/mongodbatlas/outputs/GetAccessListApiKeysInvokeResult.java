@@ -109,14 +109,14 @@ public final class GetAccessListApiKeysInvokeResult {
             return results(List.of(results));
         }
         public GetAccessListApiKeysInvokeResult build() {
-            final var o = new GetAccessListApiKeysInvokeResult();
-            o.apiKeyId = apiKeyId;
-            o.id = id;
-            o.itemsPerPage = itemsPerPage;
-            o.orgId = orgId;
-            o.pageNum = pageNum;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetAccessListApiKeysInvokeResult();
+            _resultValue.apiKeyId = apiKeyId;
+            _resultValue.id = id;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.orgId = orgId;
+            _resultValue.pageNum = pageNum;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

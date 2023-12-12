@@ -67,10 +67,10 @@ public final class DatabaseUserScope {
             return this;
         }
         public DatabaseUserScope build() {
-            final var o = new DatabaseUserScope();
-            o.name = name;
-            o.type = type;
-            return o;
+            final var _resultValue = new DatabaseUserScope();
+            _resultValue.name = name;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

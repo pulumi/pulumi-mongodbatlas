@@ -62,10 +62,10 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseCollection {
             return this;
         }
         public GetFederatedDatabaseInstanceStorageDatabaseCollection build() {
-            final var o = new GetFederatedDatabaseInstanceStorageDatabaseCollection();
-            o.dataSources = dataSources;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstanceStorageDatabaseCollection();
+            _resultValue.dataSources = dataSources;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

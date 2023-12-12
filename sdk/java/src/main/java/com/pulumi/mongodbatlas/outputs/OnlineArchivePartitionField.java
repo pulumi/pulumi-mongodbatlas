@@ -87,11 +87,11 @@ public final class OnlineArchivePartitionField {
             return this;
         }
         public OnlineArchivePartitionField build() {
-            final var o = new OnlineArchivePartitionField();
-            o.fieldName = fieldName;
-            o.fieldType = fieldType;
-            o.order = order;
-            return o;
+            final var _resultValue = new OnlineArchivePartitionField();
+            _resultValue.fieldName = fieldName;
+            _resultValue.fieldType = fieldType;
+            _resultValue.order = order;
+            return _resultValue;
         }
     }
 }

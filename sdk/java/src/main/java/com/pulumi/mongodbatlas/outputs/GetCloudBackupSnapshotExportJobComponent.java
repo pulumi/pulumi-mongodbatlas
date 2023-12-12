@@ -65,10 +65,10 @@ public final class GetCloudBackupSnapshotExportJobComponent {
             return this;
         }
         public GetCloudBackupSnapshotExportJobComponent build() {
-            final var o = new GetCloudBackupSnapshotExportJobComponent();
-            o.exportId = exportId;
-            o.replicaSetName = replicaSetName;
-            return o;
+            final var _resultValue = new GetCloudBackupSnapshotExportJobComponent();
+            _resultValue.exportId = exportId;
+            _resultValue.replicaSetName = replicaSetName;
+            return _resultValue;
         }
     }
 }

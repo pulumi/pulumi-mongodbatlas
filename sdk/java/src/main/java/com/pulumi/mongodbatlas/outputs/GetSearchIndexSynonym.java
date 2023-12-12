@@ -76,11 +76,11 @@ public final class GetSearchIndexSynonym {
             return this;
         }
         public GetSearchIndexSynonym build() {
-            final var o = new GetSearchIndexSynonym();
-            o.analyzer = analyzer;
-            o.name = name;
-            o.sourceCollection = sourceCollection;
-            return o;
+            final var _resultValue = new GetSearchIndexSynonym();
+            _resultValue.analyzer = analyzer;
+            _resultValue.name = name;
+            _resultValue.sourceCollection = sourceCollection;
+            return _resultValue;
         }
     }
 }

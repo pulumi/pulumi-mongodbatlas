@@ -155,19 +155,19 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource 
             return urls(List.of(urls));
         }
         public FederatedDatabaseInstanceStorageDatabaseCollectionDataSource build() {
-            final var o = new FederatedDatabaseInstanceStorageDatabaseCollectionDataSource();
-            o.allowInsecure = allowInsecure;
-            o.collection = collection;
-            o.collectionRegex = collectionRegex;
-            o.database = database;
-            o.databaseRegex = databaseRegex;
-            o.datasetName = datasetName;
-            o.defaultFormat = defaultFormat;
-            o.path = path;
-            o.provenanceFieldName = provenanceFieldName;
-            o.storeName = storeName;
-            o.urls = urls;
-            return o;
+            final var _resultValue = new FederatedDatabaseInstanceStorageDatabaseCollectionDataSource();
+            _resultValue.allowInsecure = allowInsecure;
+            _resultValue.collection = collection;
+            _resultValue.collectionRegex = collectionRegex;
+            _resultValue.database = database;
+            _resultValue.databaseRegex = databaseRegex;
+            _resultValue.datasetName = datasetName;
+            _resultValue.defaultFormat = defaultFormat;
+            _resultValue.path = path;
+            _resultValue.provenanceFieldName = provenanceFieldName;
+            _resultValue.storeName = storeName;
+            _resultValue.urls = urls;
+            return _resultValue;
         }
     }
 }

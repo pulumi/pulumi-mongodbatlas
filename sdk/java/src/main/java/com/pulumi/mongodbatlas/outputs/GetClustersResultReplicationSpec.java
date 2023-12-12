@@ -109,12 +109,12 @@ public final class GetClustersResultReplicationSpec {
             return this;
         }
         public GetClustersResultReplicationSpec build() {
-            final var o = new GetClustersResultReplicationSpec();
-            o.id = id;
-            o.numShards = numShards;
-            o.regionsConfigs = regionsConfigs;
-            o.zoneName = zoneName;
-            return o;
+            final var _resultValue = new GetClustersResultReplicationSpec();
+            _resultValue.id = id;
+            _resultValue.numShards = numShards;
+            _resultValue.regionsConfigs = regionsConfigs;
+            _resultValue.zoneName = zoneName;
+            return _resultValue;
         }
     }
 }

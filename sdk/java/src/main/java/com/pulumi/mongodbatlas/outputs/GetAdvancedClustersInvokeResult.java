@@ -81,11 +81,11 @@ public final class GetAdvancedClustersInvokeResult {
             return results(List.of(results));
         }
         public GetAdvancedClustersInvokeResult build() {
-            final var o = new GetAdvancedClustersInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetAdvancedClustersInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

@@ -66,10 +66,10 @@ public final class GetAdvancedClustersResultBiConnectorConfig {
             return this;
         }
         public GetAdvancedClustersResultBiConnectorConfig build() {
-            final var o = new GetAdvancedClustersResultBiConnectorConfig();
-            o.enabled = enabled;
-            o.readPreference = readPreference;
-            return o;
+            final var _resultValue = new GetAdvancedClustersResultBiConnectorConfig();
+            _resultValue.enabled = enabled;
+            _resultValue.readPreference = readPreference;
+            return _resultValue;
         }
     }
 }

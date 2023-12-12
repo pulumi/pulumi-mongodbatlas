@@ -74,11 +74,11 @@ public final class ClusterConnectionStringPrivateEndpointEndpoint {
             return this;
         }
         public ClusterConnectionStringPrivateEndpointEndpoint build() {
-            final var o = new ClusterConnectionStringPrivateEndpointEndpoint();
-            o.endpointId = endpointId;
-            o.providerName = providerName;
-            o.region = region;
-            return o;
+            final var _resultValue = new ClusterConnectionStringPrivateEndpointEndpoint();
+            _resultValue.endpointId = endpointId;
+            _resultValue.providerName = providerName;
+            _resultValue.region = region;
+            return _resultValue;
         }
     }
 }

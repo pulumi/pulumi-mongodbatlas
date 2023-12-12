@@ -515,32 +515,32 @@ public final class AlertConfigurationNotification {
             return this;
         }
         public AlertConfigurationNotification build() {
-            final var o = new AlertConfigurationNotification();
-            o.apiToken = apiToken;
-            o.channelName = channelName;
-            o.datadogApiKey = datadogApiKey;
-            o.datadogRegion = datadogRegion;
-            o.delayMin = delayMin;
-            o.emailAddress = emailAddress;
-            o.emailEnabled = emailEnabled;
-            o.intervalMin = intervalMin;
-            o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
-            o.mobileNumber = mobileNumber;
-            o.notifierId = notifierId;
-            o.opsGenieApiKey = opsGenieApiKey;
-            o.opsGenieRegion = opsGenieRegion;
-            o.roles = roles;
-            o.serviceKey = serviceKey;
-            o.smsEnabled = smsEnabled;
-            o.teamId = teamId;
-            o.teamName = teamName;
-            o.typeName = typeName;
-            o.username = username;
-            o.victorOpsApiKey = victorOpsApiKey;
-            o.victorOpsRoutingKey = victorOpsRoutingKey;
-            o.webhookSecret = webhookSecret;
-            o.webhookUrl = webhookUrl;
-            return o;
+            final var _resultValue = new AlertConfigurationNotification();
+            _resultValue.apiToken = apiToken;
+            _resultValue.channelName = channelName;
+            _resultValue.datadogApiKey = datadogApiKey;
+            _resultValue.datadogRegion = datadogRegion;
+            _resultValue.delayMin = delayMin;
+            _resultValue.emailAddress = emailAddress;
+            _resultValue.emailEnabled = emailEnabled;
+            _resultValue.intervalMin = intervalMin;
+            _resultValue.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
+            _resultValue.mobileNumber = mobileNumber;
+            _resultValue.notifierId = notifierId;
+            _resultValue.opsGenieApiKey = opsGenieApiKey;
+            _resultValue.opsGenieRegion = opsGenieRegion;
+            _resultValue.roles = roles;
+            _resultValue.serviceKey = serviceKey;
+            _resultValue.smsEnabled = smsEnabled;
+            _resultValue.teamId = teamId;
+            _resultValue.teamName = teamName;
+            _resultValue.typeName = typeName;
+            _resultValue.username = username;
+            _resultValue.victorOpsApiKey = victorOpsApiKey;
+            _resultValue.victorOpsRoutingKey = victorOpsRoutingKey;
+            _resultValue.webhookSecret = webhookSecret;
+            _resultValue.webhookUrl = webhookUrl;
+            return _resultValue;
         }
     }
 }

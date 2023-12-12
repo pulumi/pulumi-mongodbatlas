@@ -106,12 +106,12 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAnalytics
             return this;
         }
         public GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs build() {
-            final var o = new GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs();
-            o.diskIops = diskIops;
-            o.ebsVolumeType = ebsVolumeType;
-            o.instanceSize = instanceSize;
-            o.nodeCount = nodeCount;
-            return o;
+            final var _resultValue = new GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs();
+            _resultValue.diskIops = diskIops;
+            _resultValue.ebsVolumeType = ebsVolumeType;
+            _resultValue.instanceSize = instanceSize;
+            _resultValue.nodeCount = nodeCount;
+            return _resultValue;
         }
     }
 }

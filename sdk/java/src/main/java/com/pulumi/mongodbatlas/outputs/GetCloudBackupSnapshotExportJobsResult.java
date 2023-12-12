@@ -243,20 +243,20 @@ public final class GetCloudBackupSnapshotExportJobsResult {
             return this;
         }
         public GetCloudBackupSnapshotExportJobsResult build() {
-            final var o = new GetCloudBackupSnapshotExportJobsResult();
-            o.components = components;
-            o.createdAt = createdAt;
-            o.customDatas = customDatas;
-            o.errMsg = errMsg;
-            o.exportBucketId = exportBucketId;
-            o.exportJobId = exportJobId;
-            o.exportStatusExportedCollections = exportStatusExportedCollections;
-            o.exportStatusTotalCollections = exportStatusTotalCollections;
-            o.finishedAt = finishedAt;
-            o.prefix = prefix;
-            o.snapshotId = snapshotId;
-            o.state = state;
-            return o;
+            final var _resultValue = new GetCloudBackupSnapshotExportJobsResult();
+            _resultValue.components = components;
+            _resultValue.createdAt = createdAt;
+            _resultValue.customDatas = customDatas;
+            _resultValue.errMsg = errMsg;
+            _resultValue.exportBucketId = exportBucketId;
+            _resultValue.exportJobId = exportJobId;
+            _resultValue.exportStatusExportedCollections = exportStatusExportedCollections;
+            _resultValue.exportStatusTotalCollections = exportStatusTotalCollections;
+            _resultValue.finishedAt = finishedAt;
+            _resultValue.prefix = prefix;
+            _resultValue.snapshotId = snapshotId;
+            _resultValue.state = state;
+            return _resultValue;
         }
     }
 }

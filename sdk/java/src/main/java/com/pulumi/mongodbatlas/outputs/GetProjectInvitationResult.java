@@ -159,16 +159,16 @@ public final class GetProjectInvitationResult {
             return this;
         }
         public GetProjectInvitationResult build() {
-            final var o = new GetProjectInvitationResult();
-            o.createdAt = createdAt;
-            o.expiresAt = expiresAt;
-            o.id = id;
-            o.invitationId = invitationId;
-            o.inviterUsername = inviterUsername;
-            o.projectId = projectId;
-            o.roles = roles;
-            o.username = username;
-            return o;
+            final var _resultValue = new GetProjectInvitationResult();
+            _resultValue.createdAt = createdAt;
+            _resultValue.expiresAt = expiresAt;
+            _resultValue.id = id;
+            _resultValue.invitationId = invitationId;
+            _resultValue.inviterUsername = inviterUsername;
+            _resultValue.projectId = projectId;
+            _resultValue.roles = roles;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

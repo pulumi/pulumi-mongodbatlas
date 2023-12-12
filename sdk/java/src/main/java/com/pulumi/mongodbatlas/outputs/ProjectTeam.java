@@ -73,10 +73,10 @@ public final class ProjectTeam {
             return this;
         }
         public ProjectTeam build() {
-            final var o = new ProjectTeam();
-            o.roleNames = roleNames;
-            o.teamId = teamId;
-            return o;
+            final var _resultValue = new ProjectTeam();
+            _resultValue.roleNames = roleNames;
+            _resultValue.teamId = teamId;
+            return _resultValue;
         }
     }
 }

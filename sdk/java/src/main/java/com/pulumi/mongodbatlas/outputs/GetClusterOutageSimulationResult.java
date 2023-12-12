@@ -149,15 +149,15 @@ public final class GetClusterOutageSimulationResult {
             return this;
         }
         public GetClusterOutageSimulationResult build() {
-            final var o = new GetClusterOutageSimulationResult();
-            o.clusterName = clusterName;
-            o.id = id;
-            o.outageFilters = outageFilters;
-            o.projectId = projectId;
-            o.simulationId = simulationId;
-            o.startRequestDate = startRequestDate;
-            o.state = state;
-            return o;
+            final var _resultValue = new GetClusterOutageSimulationResult();
+            _resultValue.clusterName = clusterName;
+            _resultValue.id = id;
+            _resultValue.outageFilters = outageFilters;
+            _resultValue.projectId = projectId;
+            _resultValue.simulationId = simulationId;
+            _resultValue.startRequestDate = startRequestDate;
+            _resultValue.state = state;
+            return _resultValue;
         }
     }
 }

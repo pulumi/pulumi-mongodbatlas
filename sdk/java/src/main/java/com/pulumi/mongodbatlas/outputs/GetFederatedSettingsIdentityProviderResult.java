@@ -336,24 +336,24 @@ public final class GetFederatedSettingsIdentityProviderResult {
             return this;
         }
         public GetFederatedSettingsIdentityProviderResult build() {
-            final var o = new GetFederatedSettingsIdentityProviderResult();
-            o.acsUrl = acsUrl;
-            o.associatedDomains = associatedDomains;
-            o.associatedOrgs = associatedOrgs;
-            o.audienceUri = audienceUri;
-            o.displayName = displayName;
-            o.federationSettingsId = federationSettingsId;
-            o.id = id;
-            o.identityProviderId = identityProviderId;
-            o.issuerUri = issuerUri;
-            o.oktaIdpId = oktaIdpId;
-            o.pemFileInfos = pemFileInfos;
-            o.requestBinding = requestBinding;
-            o.responseSignatureAlgorithm = responseSignatureAlgorithm;
-            o.ssoDebugEnabled = ssoDebugEnabled;
-            o.ssoUrl = ssoUrl;
-            o.status = status;
-            return o;
+            final var _resultValue = new GetFederatedSettingsIdentityProviderResult();
+            _resultValue.acsUrl = acsUrl;
+            _resultValue.associatedDomains = associatedDomains;
+            _resultValue.associatedOrgs = associatedOrgs;
+            _resultValue.audienceUri = audienceUri;
+            _resultValue.displayName = displayName;
+            _resultValue.federationSettingsId = federationSettingsId;
+            _resultValue.id = id;
+            _resultValue.identityProviderId = identityProviderId;
+            _resultValue.issuerUri = issuerUri;
+            _resultValue.oktaIdpId = oktaIdpId;
+            _resultValue.pemFileInfos = pemFileInfos;
+            _resultValue.requestBinding = requestBinding;
+            _resultValue.responseSignatureAlgorithm = responseSignatureAlgorithm;
+            _resultValue.ssoDebugEnabled = ssoDebugEnabled;
+            _resultValue.ssoUrl = ssoUrl;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

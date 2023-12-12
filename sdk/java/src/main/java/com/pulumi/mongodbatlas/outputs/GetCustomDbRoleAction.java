@@ -70,10 +70,10 @@ public final class GetCustomDbRoleAction {
             return resources(List.of(resources));
         }
         public GetCustomDbRoleAction build() {
-            final var o = new GetCustomDbRoleAction();
-            o.action = action;
-            o.resources = resources;
-            return o;
+            final var _resultValue = new GetCustomDbRoleAction();
+            _resultValue.action = action;
+            _resultValue.resources = resources;
+            return _resultValue;
         }
     }
 }
