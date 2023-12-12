@@ -13,4 +13,3 @@ plugins:
   - name: gcp 
     version: "5.0.0"
 team: ecosystem
-javaGenVersion: "v0.9.5"
