@@ -329,51 +329,6 @@
                 "current": "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws",
                 "majorVersion": 3
             },
-            "mongodbatlas_data_lake": {
-                "current": "mongodbatlas:index/dataLake:DataLake",
-                "majorVersion": 3,
-                "fields": {
-                    "aws": {
-                        "maxItemsOne": true
-                    },
-                    "data_process_region": {
-                        "maxItemsOne": true
-                    },
-                    "hostnames": {
-                        "maxItemsOne": false
-                    },
-                    "storage_databases": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "collections": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "data_sources": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                },
-                                "views": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    },
-                    "storage_stores": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "additional_storage_classes": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    }
-                }
-            },
             "mongodbatlas_data_lake_pipeline": {
                 "current": "mongodbatlas:index/dataLakePipeline:DataLakePipeline",
                 "majorVersion": 3,
@@ -708,10 +663,6 @@
                     }
                 }
             },
-            "mongodbatlas_privatelink_endpoint_service_adl": {
-                "current": "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl",
-                "majorVersion": 3
-            },
             "mongodbatlas_privatelink_endpoint_service_data_federation_online_archive": {
                 "current": "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive",
                 "majorVersion": 3
@@ -995,11 +946,9 @@
                     "notification": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "roles": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "roles": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -1025,32 +974,28 @@
                     "results": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "matcher": {
-                                        "maxItemsOne": false
-                                    },
-                                    "metric_threshold_config": {
-                                        "maxItemsOne": false
-                                    },
-                                    "notification": {
-                                        "maxItemsOne": false,
-                                        "elem": {
-                                            "elem": {
-                                                "fields": {
-                                                    "roles": {
-                                                        "maxItemsOne": false
-                                                    }
-                                                }
+                            "fields": {
+                                "matcher": {
+                                    "maxItemsOne": false
+                                },
+                                "metric_threshold_config": {
+                                    "maxItemsOne": false
+                                },
+                                "notification": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "roles": {
+                                                "maxItemsOne": false
                                             }
                                         }
-                                    },
-                                    "output": {
-                                        "maxItemsOne": false
-                                    },
-                                    "threshold_config": {
-                                        "maxItemsOne": false
                                     }
+                                },
+                                "output": {
+                                    "maxItemsOne": false
+                                },
+                                "threshold_config": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -1104,17 +1049,15 @@
                     "results": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "links": {
-                                        "maxItemsOne": false
-                                    },
-                                    "roles": {
-                                        "maxItemsOne": false
-                                    },
-                                    "team_ids": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "links": {
+                                    "maxItemsOne": false
+                                },
+                                "roles": {
+                                    "maxItemsOne": false
+                                },
+                                "team_ids": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -1305,22 +1248,6 @@
                     }
                 }
             },
-            "mongodbatlas_cloud_provider_snapshot": {
-                "current": "mongodbatlas:index/getCloudProviderSnapshot:getCloudProviderSnapshot",
-                "majorVersion": 3
-            },
-            "mongodbatlas_cloud_provider_snapshot_backup_policy": {
-                "current": "mongodbatlas:index/getCloudProviderSnapshotBackupPolicy:getCloudProviderSnapshotBackupPolicy",
-                "majorVersion": 3
-            },
-            "mongodbatlas_cloud_provider_snapshot_restore_jobs": {
-                "current": "mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs",
-                "majorVersion": 3
-            },
-            "mongodbatlas_cloud_provider_snapshots": {
-                "current": "mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots",
-                "majorVersion": 3
-            },
             "mongodbatlas_cluster": {
                 "current": "mongodbatlas:index/getCluster:getCluster",
                 "majorVersion": 3,
@@ -1510,51 +1437,6 @@
                 "current": "mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws",
                 "majorVersion": 3
             },
-            "mongodbatlas_data_lake": {
-                "current": "mongodbatlas:index/getDataLake:getDataLake",
-                "majorVersion": 3,
-                "fields": {
-                    "aws": {
-                        "maxItemsOne": false
-                    },
-                    "data_process_region": {
-                        "maxItemsOne": false
-                    },
-                    "hostnames": {
-                        "maxItemsOne": false
-                    },
-                    "storage_databases": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "collections": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "data_sources": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                },
-                                "views": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    },
-                    "storage_stores": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "additional_storage_classes": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    }
-                }
-            },
             "mongodbatlas_data_lake_pipeline": {
                 "current": "mongodbatlas:index/getDataLakePipeline:getDataLakePipeline",
                 "majorVersion": 3,
@@ -1644,58 +1526,6 @@
                     }
                 }
             },
-            "mongodbatlas_data_lakes": {
-                "current": "mongodbatlas:index/getDataLakes:getDataLakes",
-                "majorVersion": 3,
-                "fields": {
-                    "results": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "aws": {
-                                    "maxItemsOne": false
-                                },
-                                "data_process_region": {
-                                    "maxItemsOne": false
-                                },
-                                "hostnames": {
-                                    "maxItemsOne": false
-                                },
-                                "storage_databases": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "collections": {
-                                                "maxItemsOne": false,
-                                                "elem": {
-                                                    "fields": {
-                                                        "data_sources": {
-                                                            "maxItemsOne": false
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            "views": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                },
-                                "storage_stores": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "additional_storage_classes": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
             "mongodbatlas_database_user": {
                 "current": "mongodbatlas:index/getDatabaseUser:getDatabaseUser",
                 "majorVersion": 3,
@@ -1718,17 +1548,15 @@
                     "results": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "labels": {
-                                        "maxItemsOne": false
-                                    },
-                                    "roles": {
-                                        "maxItemsOne": false
-                                    },
-                                    "scopes": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "labels": {
+                                    "maxItemsOne": false
+                                },
+                                "roles": {
+                                    "maxItemsOne": false
+                                },
+                                "scopes": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -2341,10 +2169,6 @@
                     }
                 }
             },
-            "mongodbatlas_privatelink_endpoint_service_adl": {
-                "current": "mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl",
-                "majorVersion": 3
-            },
             "mongodbatlas_privatelink_endpoint_service_data_federation_online_archive": {
                 "current": "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive",
                 "majorVersion": 3
@@ -2361,18 +2185,6 @@
             "mongodbatlas_privatelink_endpoint_service_serverless": {
                 "current": "mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless",
                 "majorVersion": 3
-            },
-            "mongodbatlas_privatelink_endpoints_service_adl": {
-                "current": "mongodbatlas:index/getPrivatelinkEndpointsServiceAdl:getPrivatelinkEndpointsServiceAdl",
-                "majorVersion": 3,
-                "fields": {
-                    "links": {
-                        "maxItemsOne": false
-                    },
-                    "results": {
-                        "maxItemsOne": false
-                    }
-                }
             },
             "mongodbatlas_privatelink_endpoints_service_serverless": {
                 "current": "mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless",
@@ -2393,11 +2205,9 @@
                     "teams": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "role_names": {
-                                        "maxItemsOne": false
-                                    }
+                            "fields": {
+                                "role_names": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -2463,20 +2273,16 @@
                     "results": {
                         "maxItemsOne": false,
                         "elem": {
-                            "elem": {
-                                "fields": {
-                                    "limits": {
-                                        "maxItemsOne": false
-                                    },
-                                    "teams": {
-                                        "maxItemsOne": false,
-                                        "elem": {
-                                            "elem": {
-                                                "fields": {
-                                                    "role_names": {
-                                                        "maxItemsOne": false
-                                                    }
-                                                }
+                            "fields": {
+                                "limits": {
+                                    "maxItemsOne": false
+                                },
+                                "teams": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "role_names": {
+                                                "maxItemsOne": false
                                             }
                                         }
                                     }
@@ -2633,6 +2439,15 @@
                         "maxItemsOne": false
                     }
                 }
+            }
+        }
+    },
+    "auto-settings": {
+        "datasources": {
+            "mongodbatlas_x509_authentication_database_user": {
+                "renames": [
+                    "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser"
+                ]
             }
         }
     },
