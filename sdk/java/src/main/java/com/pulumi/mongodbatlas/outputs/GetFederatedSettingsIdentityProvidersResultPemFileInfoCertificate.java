@@ -65,10 +65,10 @@ public final class GetFederatedSettingsIdentityProvidersResultPemFileInfoCertifi
             return this;
         }
         public GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate build() {
-            final var o = new GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate();
-            o.notAfter = notAfter;
-            o.notBefore = notBefore;
-            return o;
+            final var _resultValue = new GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate();
+            _resultValue.notAfter = notAfter;
+            _resultValue.notBefore = notBefore;
+            return _resultValue;
         }
     }
 }

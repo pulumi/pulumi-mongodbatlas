@@ -51,10 +51,10 @@ public final class ServerlessInstanceLink {
             return this;
         }
         public ServerlessInstanceLink build() {
-            final var o = new ServerlessInstanceLink();
-            o.href = href;
-            o.rel = rel;
-            return o;
+            final var _resultValue = new ServerlessInstanceLink();
+            _resultValue.href = href;
+            _resultValue.rel = rel;
+            return _resultValue;
         }
     }
 }

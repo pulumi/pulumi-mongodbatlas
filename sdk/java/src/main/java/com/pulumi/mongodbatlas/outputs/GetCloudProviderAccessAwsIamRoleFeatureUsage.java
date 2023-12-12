@@ -51,10 +51,10 @@ public final class GetCloudProviderAccessAwsIamRoleFeatureUsage {
             return this;
         }
         public GetCloudProviderAccessAwsIamRoleFeatureUsage build() {
-            final var o = new GetCloudProviderAccessAwsIamRoleFeatureUsage();
-            o.featureId = featureId;
-            o.featureType = featureType;
-            return o;
+            final var _resultValue = new GetCloudProviderAccessAwsIamRoleFeatureUsage();
+            _resultValue.featureId = featureId;
+            _resultValue.featureType = featureType;
+            return _resultValue;
         }
     }
 }

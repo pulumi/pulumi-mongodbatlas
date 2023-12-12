@@ -106,11 +106,11 @@ public final class AlertConfigurationMatcher {
             return this;
         }
         public AlertConfigurationMatcher build() {
-            final var o = new AlertConfigurationMatcher();
-            o.fieldName = fieldName;
-            o.operator = operator;
-            o.value = value;
-            return o;
+            final var _resultValue = new AlertConfigurationMatcher();
+            _resultValue.fieldName = fieldName;
+            _resultValue.operator = operator;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

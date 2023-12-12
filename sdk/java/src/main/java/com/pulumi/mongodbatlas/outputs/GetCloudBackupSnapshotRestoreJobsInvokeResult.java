@@ -128,15 +128,15 @@ public final class GetCloudBackupSnapshotRestoreJobsInvokeResult {
             return this;
         }
         public GetCloudBackupSnapshotRestoreJobsInvokeResult build() {
-            final var o = new GetCloudBackupSnapshotRestoreJobsInvokeResult();
-            o.clusterName = clusterName;
-            o.id = id;
-            o.itemsPerPage = itemsPerPage;
-            o.pageNum = pageNum;
-            o.projectId = projectId;
-            o.results = results;
-            o.totalCount = totalCount;
-            return o;
+            final var _resultValue = new GetCloudBackupSnapshotRestoreJobsInvokeResult();
+            _resultValue.clusterName = clusterName;
+            _resultValue.id = id;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.pageNum = pageNum;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            _resultValue.totalCount = totalCount;
+            return _resultValue;
         }
     }
 }

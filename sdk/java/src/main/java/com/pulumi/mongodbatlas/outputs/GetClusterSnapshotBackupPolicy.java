@@ -122,16 +122,16 @@ public final class GetClusterSnapshotBackupPolicy {
             return this;
         }
         public GetClusterSnapshotBackupPolicy build() {
-            final var o = new GetClusterSnapshotBackupPolicy();
-            o.clusterId = clusterId;
-            o.clusterName = clusterName;
-            o.nextSnapshot = nextSnapshot;
-            o.policies = policies;
-            o.referenceHourOfDay = referenceHourOfDay;
-            o.referenceMinuteOfHour = referenceMinuteOfHour;
-            o.restoreWindowDays = restoreWindowDays;
-            o.updateSnapshots = updateSnapshots;
-            return o;
+            final var _resultValue = new GetClusterSnapshotBackupPolicy();
+            _resultValue.clusterId = clusterId;
+            _resultValue.clusterName = clusterName;
+            _resultValue.nextSnapshot = nextSnapshot;
+            _resultValue.policies = policies;
+            _resultValue.referenceHourOfDay = referenceHourOfDay;
+            _resultValue.referenceMinuteOfHour = referenceMinuteOfHour;
+            _resultValue.restoreWindowDays = restoreWindowDays;
+            _resultValue.updateSnapshots = updateSnapshots;
+            return _resultValue;
         }
     }
 }

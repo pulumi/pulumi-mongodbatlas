@@ -84,11 +84,11 @@ public final class SearchIndexSynonym {
             return this;
         }
         public SearchIndexSynonym build() {
-            final var o = new SearchIndexSynonym();
-            o.analyzer = analyzer;
-            o.name = name;
-            o.sourceCollection = sourceCollection;
-            return o;
+            final var _resultValue = new SearchIndexSynonym();
+            _resultValue.analyzer = analyzer;
+            _resultValue.name = name;
+            _resultValue.sourceCollection = sourceCollection;
+            return _resultValue;
         }
     }
 }

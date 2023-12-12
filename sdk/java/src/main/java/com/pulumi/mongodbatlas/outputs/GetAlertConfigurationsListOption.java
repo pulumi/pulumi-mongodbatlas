@@ -63,11 +63,11 @@ public final class GetAlertConfigurationsListOption {
             return this;
         }
         public GetAlertConfigurationsListOption build() {
-            final var o = new GetAlertConfigurationsListOption();
-            o.includeCount = includeCount;
-            o.itemsPerPage = itemsPerPage;
-            o.pageNum = pageNum;
-            return o;
+            final var _resultValue = new GetAlertConfigurationsListOption();
+            _resultValue.includeCount = includeCount;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.pageNum = pageNum;
+            return _resultValue;
         }
     }
 }

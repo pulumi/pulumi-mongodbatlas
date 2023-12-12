@@ -159,17 +159,17 @@ public final class GetFederatedQueryLimitsResult {
             return this;
         }
         public GetFederatedQueryLimitsResult build() {
-            final var o = new GetFederatedQueryLimitsResult();
-            o.currentUsage = currentUsage;
-            o.defaultLimit = defaultLimit;
-            o.lastModifiedDate = lastModifiedDate;
-            o.limitName = limitName;
-            o.maximumLimit = maximumLimit;
-            o.overrunPolicy = overrunPolicy;
-            o.projectId = projectId;
-            o.tenantName = tenantName;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetFederatedQueryLimitsResult();
+            _resultValue.currentUsage = currentUsage;
+            _resultValue.defaultLimit = defaultLimit;
+            _resultValue.lastModifiedDate = lastModifiedDate;
+            _resultValue.limitName = limitName;
+            _resultValue.maximumLimit = maximumLimit;
+            _resultValue.overrunPolicy = overrunPolicy;
+            _resultValue.projectId = projectId;
+            _resultValue.tenantName = tenantName;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

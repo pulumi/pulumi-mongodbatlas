@@ -89,13 +89,13 @@ public final class AdvancedClusterConnectionStringPrivateEndpoint {
             return this;
         }
         public AdvancedClusterConnectionStringPrivateEndpoint build() {
-            final var o = new AdvancedClusterConnectionStringPrivateEndpoint();
-            o.connectionString = connectionString;
-            o.endpoints = endpoints;
-            o.srvConnectionString = srvConnectionString;
-            o.srvShardOptimizedConnectionString = srvShardOptimizedConnectionString;
-            o.type = type;
-            return o;
+            final var _resultValue = new AdvancedClusterConnectionStringPrivateEndpoint();
+            _resultValue.connectionString = connectionString;
+            _resultValue.endpoints = endpoints;
+            _resultValue.srvConnectionString = srvConnectionString;
+            _resultValue.srvShardOptimizedConnectionString = srvShardOptimizedConnectionString;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

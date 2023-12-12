@@ -92,12 +92,12 @@ public final class GetFederatedQueryLimitsInvokeResult {
             return this;
         }
         public GetFederatedQueryLimitsInvokeResult build() {
-            final var o = new GetFederatedQueryLimitsInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            o.tenantName = tenantName;
-            return o;
+            final var _resultValue = new GetFederatedQueryLimitsInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            _resultValue.tenantName = tenantName;
+            return _resultValue;
         }
     }
 }

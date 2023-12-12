@@ -137,13 +137,13 @@ public final class ClusterReplicationSpecRegionsConfig {
             return this;
         }
         public ClusterReplicationSpecRegionsConfig build() {
-            final var o = new ClusterReplicationSpecRegionsConfig();
-            o.analyticsNodes = analyticsNodes;
-            o.electableNodes = electableNodes;
-            o.priority = priority;
-            o.readOnlyNodes = readOnlyNodes;
-            o.regionName = regionName;
-            return o;
+            final var _resultValue = new ClusterReplicationSpecRegionsConfig();
+            _resultValue.analyticsNodes = analyticsNodes;
+            _resultValue.electableNodes = electableNodes;
+            _resultValue.priority = priority;
+            _resultValue.readOnlyNodes = readOnlyNodes;
+            _resultValue.regionName = regionName;
+            return _resultValue;
         }
     }
 }

@@ -145,18 +145,18 @@ public final class GetSharedTierSnapshotResult {
             return this;
         }
         public GetSharedTierSnapshotResult build() {
-            final var o = new GetSharedTierSnapshotResult();
-            o.clusterName = clusterName;
-            o.expiration = expiration;
-            o.finishTime = finishTime;
-            o.id = id;
-            o.mongoDbVersion = mongoDbVersion;
-            o.projectId = projectId;
-            o.scheduledTime = scheduledTime;
-            o.snapshotId = snapshotId;
-            o.startTime = startTime;
-            o.status = status;
-            return o;
+            final var _resultValue = new GetSharedTierSnapshotResult();
+            _resultValue.clusterName = clusterName;
+            _resultValue.expiration = expiration;
+            _resultValue.finishTime = finishTime;
+            _resultValue.id = id;
+            _resultValue.mongoDbVersion = mongoDbVersion;
+            _resultValue.projectId = projectId;
+            _resultValue.scheduledTime = scheduledTime;
+            _resultValue.snapshotId = snapshotId;
+            _resultValue.startTime = startTime;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

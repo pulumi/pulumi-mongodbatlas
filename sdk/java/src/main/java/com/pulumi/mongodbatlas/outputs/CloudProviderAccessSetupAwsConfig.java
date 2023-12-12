@@ -51,10 +51,10 @@ public final class CloudProviderAccessSetupAwsConfig {
             return this;
         }
         public CloudProviderAccessSetupAwsConfig build() {
-            final var o = new CloudProviderAccessSetupAwsConfig();
-            o.atlasAssumedRoleExternalId = atlasAssumedRoleExternalId;
-            o.atlasAwsAccountArn = atlasAwsAccountArn;
-            return o;
+            final var _resultValue = new CloudProviderAccessSetupAwsConfig();
+            _resultValue.atlasAssumedRoleExternalId = atlasAssumedRoleExternalId;
+            _resultValue.atlasAwsAccountArn = atlasAwsAccountArn;
+            return _resultValue;
         }
     }
 }

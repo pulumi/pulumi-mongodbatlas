@@ -65,10 +65,10 @@ public final class GetClusterLabel {
             return this;
         }
         public GetClusterLabel build() {
-            final var o = new GetClusterLabel();
-            o.key = key;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetClusterLabel();
+            _resultValue.key = key;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

@@ -87,13 +87,13 @@ public final class GetAdvancedClusterConnectionString {
             return this;
         }
         public GetAdvancedClusterConnectionString build() {
-            final var o = new GetAdvancedClusterConnectionString();
-            o.private_ = private_;
-            o.privateEndpoints = privateEndpoints;
-            o.privateSrv = privateSrv;
-            o.standard = standard;
-            o.standardSrv = standardSrv;
-            return o;
+            final var _resultValue = new GetAdvancedClusterConnectionString();
+            _resultValue.private_ = private_;
+            _resultValue.privateEndpoints = privateEndpoints;
+            _resultValue.privateSrv = privateSrv;
+            _resultValue.standard = standard;
+            _resultValue.standardSrv = standardSrv;
+            return _resultValue;
         }
     }
 }

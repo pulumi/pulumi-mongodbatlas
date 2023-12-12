@@ -89,11 +89,11 @@ public final class GetDatabaseUsersInvokeResult {
             return results(List.of(results));
         }
         public GetDatabaseUsersInvokeResult build() {
-            final var o = new GetDatabaseUsersInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetDatabaseUsersInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

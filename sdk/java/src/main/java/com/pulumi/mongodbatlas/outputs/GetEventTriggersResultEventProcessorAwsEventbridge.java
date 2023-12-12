@@ -49,10 +49,10 @@ public final class GetEventTriggersResultEventProcessorAwsEventbridge {
             return this;
         }
         public GetEventTriggersResultEventProcessorAwsEventbridge build() {
-            final var o = new GetEventTriggersResultEventProcessorAwsEventbridge();
-            o.configAccountId = configAccountId;
-            o.configRegion = configRegion;
-            return o;
+            final var _resultValue = new GetEventTriggersResultEventProcessorAwsEventbridge();
+            _resultValue.configAccountId = configAccountId;
+            _resultValue.configRegion = configRegion;
+            return _resultValue;
         }
     }
 }

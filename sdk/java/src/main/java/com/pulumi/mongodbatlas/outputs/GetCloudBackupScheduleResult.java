@@ -345,25 +345,25 @@ public final class GetCloudBackupScheduleResult {
             return this;
         }
         public GetCloudBackupScheduleResult build() {
-            final var o = new GetCloudBackupScheduleResult();
-            o.autoExportEnabled = autoExportEnabled;
-            o.clusterId = clusterId;
-            o.clusterName = clusterName;
-            o.copySettings = copySettings;
-            o.exports = exports;
-            o.id = id;
-            o.idPolicy = idPolicy;
-            o.nextSnapshot = nextSnapshot;
-            o.policyItemDailies = policyItemDailies;
-            o.policyItemHourlies = policyItemHourlies;
-            o.policyItemMonthlies = policyItemMonthlies;
-            o.policyItemWeeklies = policyItemWeeklies;
-            o.projectId = projectId;
-            o.referenceHourOfDay = referenceHourOfDay;
-            o.referenceMinuteOfHour = referenceMinuteOfHour;
-            o.restoreWindowDays = restoreWindowDays;
-            o.useOrgAndGroupNamesInExportPrefix = useOrgAndGroupNamesInExportPrefix;
-            return o;
+            final var _resultValue = new GetCloudBackupScheduleResult();
+            _resultValue.autoExportEnabled = autoExportEnabled;
+            _resultValue.clusterId = clusterId;
+            _resultValue.clusterName = clusterName;
+            _resultValue.copySettings = copySettings;
+            _resultValue.exports = exports;
+            _resultValue.id = id;
+            _resultValue.idPolicy = idPolicy;
+            _resultValue.nextSnapshot = nextSnapshot;
+            _resultValue.policyItemDailies = policyItemDailies;
+            _resultValue.policyItemHourlies = policyItemHourlies;
+            _resultValue.policyItemMonthlies = policyItemMonthlies;
+            _resultValue.policyItemWeeklies = policyItemWeeklies;
+            _resultValue.projectId = projectId;
+            _resultValue.referenceHourOfDay = referenceHourOfDay;
+            _resultValue.referenceMinuteOfHour = referenceMinuteOfHour;
+            _resultValue.restoreWindowDays = restoreWindowDays;
+            _resultValue.useOrgAndGroupNamesInExportPrefix = useOrgAndGroupNamesInExportPrefix;
+            return _resultValue;
         }
     }
 }

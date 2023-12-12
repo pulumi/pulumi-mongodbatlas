@@ -81,11 +81,11 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvo
             return results(List.of(results));
         }
         public GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult build() {
-            final var o = new GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

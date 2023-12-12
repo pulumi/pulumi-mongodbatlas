@@ -38,9 +38,9 @@ public final class CloudProviderAccessAuthorizationAws {
             return this;
         }
         public CloudProviderAccessAuthorizationAws build() {
-            final var o = new CloudProviderAccessAuthorizationAws();
-            o.iamAssumedRoleArn = iamAssumedRoleArn;
-            return o;
+            final var _resultValue = new CloudProviderAccessAuthorizationAws();
+            _resultValue.iamAssumedRoleArn = iamAssumedRoleArn;
+            return _resultValue;
         }
     }
 }

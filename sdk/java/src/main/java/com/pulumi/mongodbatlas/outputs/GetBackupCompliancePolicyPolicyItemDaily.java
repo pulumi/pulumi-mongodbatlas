@@ -123,13 +123,13 @@ public final class GetBackupCompliancePolicyPolicyItemDaily {
             return this;
         }
         public GetBackupCompliancePolicyPolicyItemDaily build() {
-            final var o = new GetBackupCompliancePolicyPolicyItemDaily();
-            o.frequencyInterval = frequencyInterval;
-            o.frequencyType = frequencyType;
-            o.id = id;
-            o.retentionUnit = retentionUnit;
-            o.retentionValue = retentionValue;
-            return o;
+            final var _resultValue = new GetBackupCompliancePolicyPolicyItemDaily();
+            _resultValue.frequencyInterval = frequencyInterval;
+            _resultValue.frequencyType = frequencyType;
+            _resultValue.id = id;
+            _resultValue.retentionUnit = retentionUnit;
+            _resultValue.retentionValue = retentionValue;
+            return _resultValue;
         }
     }
 }

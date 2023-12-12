@@ -156,15 +156,15 @@ public final class GetMaintenanceWindowResult {
             return this;
         }
         public GetMaintenanceWindowResult build() {
-            final var o = new GetMaintenanceWindowResult();
-            o.autoDeferOnceEnabled = autoDeferOnceEnabled;
-            o.dayOfWeek = dayOfWeek;
-            o.hourOfDay = hourOfDay;
-            o.id = id;
-            o.numberOfDeferrals = numberOfDeferrals;
-            o.projectId = projectId;
-            o.startAsap = startAsap;
-            return o;
+            final var _resultValue = new GetMaintenanceWindowResult();
+            _resultValue.autoDeferOnceEnabled = autoDeferOnceEnabled;
+            _resultValue.dayOfWeek = dayOfWeek;
+            _resultValue.hourOfDay = hourOfDay;
+            _resultValue.id = id;
+            _resultValue.numberOfDeferrals = numberOfDeferrals;
+            _resultValue.projectId = projectId;
+            _resultValue.startAsap = startAsap;
+            return _resultValue;
         }
     }
 }

@@ -40,9 +40,9 @@ public final class EventTriggerEventProcessors {
             return this;
         }
         public EventTriggerEventProcessors build() {
-            final var o = new EventTriggerEventProcessors();
-            o.awsEventbridge = awsEventbridge;
-            return o;
+            final var _resultValue = new EventTriggerEventProcessors();
+            _resultValue.awsEventbridge = awsEventbridge;
+            return _resultValue;
         }
     }
 }

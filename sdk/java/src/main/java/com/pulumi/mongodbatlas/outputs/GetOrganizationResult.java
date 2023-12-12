@@ -112,13 +112,13 @@ public final class GetOrganizationResult {
             return this;
         }
         public GetOrganizationResult build() {
-            final var o = new GetOrganizationResult();
-            o.id = id;
-            o.isDeleted = isDeleted;
-            o.links = links;
-            o.name = name;
-            o.orgId = orgId;
-            return o;
+            final var _resultValue = new GetOrganizationResult();
+            _resultValue.id = id;
+            _resultValue.isDeleted = isDeleted;
+            _resultValue.links = links;
+            _resultValue.name = name;
+            _resultValue.orgId = orgId;
+            return _resultValue;
         }
     }
 }

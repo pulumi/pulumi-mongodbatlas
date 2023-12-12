@@ -92,11 +92,11 @@ public final class FederatedSettingsOrgRoleMappingRoleAssignment {
             return roles(List.of(roles));
         }
         public FederatedSettingsOrgRoleMappingRoleAssignment build() {
-            final var o = new FederatedSettingsOrgRoleMappingRoleAssignment();
-            o.groupId = groupId;
-            o.orgId = orgId;
-            o.roles = roles;
-            return o;
+            final var _resultValue = new FederatedSettingsOrgRoleMappingRoleAssignment();
+            _resultValue.groupId = groupId;
+            _resultValue.orgId = orgId;
+            _resultValue.roles = roles;
+            return _resultValue;
         }
     }
 }

@@ -51,10 +51,10 @@ public final class ProjectIpAccessListTimeouts {
             return this;
         }
         public ProjectIpAccessListTimeouts build() {
-            final var o = new ProjectIpAccessListTimeouts();
-            o.delete = delete;
-            o.read = read;
-            return o;
+            final var _resultValue = new ProjectIpAccessListTimeouts();
+            _resultValue.delete = delete;
+            _resultValue.read = read;
+            return _resultValue;
         }
     }
 }

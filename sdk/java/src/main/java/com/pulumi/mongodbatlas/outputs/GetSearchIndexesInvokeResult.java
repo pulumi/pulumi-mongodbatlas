@@ -198,17 +198,17 @@ public final class GetSearchIndexesInvokeResult {
             return this;
         }
         public GetSearchIndexesInvokeResult build() {
-            final var o = new GetSearchIndexesInvokeResult();
-            o.clusterName = clusterName;
-            o.collectionName = collectionName;
-            o.database = database;
-            o.id = id;
-            o.itemsPerPage = itemsPerPage;
-            o.pageNum = pageNum;
-            o.projectId = projectId;
-            o.results = results;
-            o.totalCount = totalCount;
-            return o;
+            final var _resultValue = new GetSearchIndexesInvokeResult();
+            _resultValue.clusterName = clusterName;
+            _resultValue.collectionName = collectionName;
+            _resultValue.database = database;
+            _resultValue.id = id;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.pageNum = pageNum;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            _resultValue.totalCount = totalCount;
+            return _resultValue;
         }
     }
 }

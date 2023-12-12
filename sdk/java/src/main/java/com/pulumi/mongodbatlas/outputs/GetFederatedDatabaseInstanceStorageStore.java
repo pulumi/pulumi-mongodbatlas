@@ -251,24 +251,24 @@ public final class GetFederatedDatabaseInstanceStorageStore {
             return urls(List.of(urls));
         }
         public GetFederatedDatabaseInstanceStorageStore build() {
-            final var o = new GetFederatedDatabaseInstanceStorageStore();
-            o.additionalStorageClasses = additionalStorageClasses;
-            o.allowInsecure = allowInsecure;
-            o.bucket = bucket;
-            o.clusterId = clusterId;
-            o.clusterName = clusterName;
-            o.defaultFormat = defaultFormat;
-            o.delimiter = delimiter;
-            o.includeTags = includeTags;
-            o.name = name;
-            o.prefix = prefix;
-            o.projectId = projectId;
-            o.provider = provider;
-            o.public_ = public_;
-            o.readPreferences = readPreferences;
-            o.region = region;
-            o.urls = urls;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstanceStorageStore();
+            _resultValue.additionalStorageClasses = additionalStorageClasses;
+            _resultValue.allowInsecure = allowInsecure;
+            _resultValue.bucket = bucket;
+            _resultValue.clusterId = clusterId;
+            _resultValue.clusterName = clusterName;
+            _resultValue.defaultFormat = defaultFormat;
+            _resultValue.delimiter = delimiter;
+            _resultValue.includeTags = includeTags;
+            _resultValue.name = name;
+            _resultValue.prefix = prefix;
+            _resultValue.projectId = projectId;
+            _resultValue.provider = provider;
+            _resultValue.public_ = public_;
+            _resultValue.readPreferences = readPreferences;
+            _resultValue.region = region;
+            _resultValue.urls = urls;
+            return _resultValue;
         }
     }
 }

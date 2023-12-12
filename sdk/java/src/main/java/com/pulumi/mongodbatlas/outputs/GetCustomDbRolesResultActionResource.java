@@ -69,11 +69,11 @@ public final class GetCustomDbRolesResultActionResource {
             return this;
         }
         public GetCustomDbRolesResultActionResource build() {
-            final var o = new GetCustomDbRolesResultActionResource();
-            o.cluster = cluster;
-            o.collectionName = collectionName;
-            o.databaseName = databaseName;
-            return o;
+            final var _resultValue = new GetCustomDbRolesResultActionResource();
+            _resultValue.cluster = cluster;
+            _resultValue.collectionName = collectionName;
+            _resultValue.databaseName = databaseName;
+            return _resultValue;
         }
     }
 }

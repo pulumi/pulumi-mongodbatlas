@@ -110,14 +110,14 @@ public final class GetAccessListApiKeysResult {
             return this;
         }
         public GetAccessListApiKeysResult build() {
-            final var o = new GetAccessListApiKeysResult();
-            o.accessCount = accessCount;
-            o.cidrBlock = cidrBlock;
-            o.created = created;
-            o.ipAddress = ipAddress;
-            o.lastUsed = lastUsed;
-            o.lastUsedAddress = lastUsedAddress;
-            return o;
+            final var _resultValue = new GetAccessListApiKeysResult();
+            _resultValue.accessCount = accessCount;
+            _resultValue.cidrBlock = cidrBlock;
+            _resultValue.created = created;
+            _resultValue.ipAddress = ipAddress;
+            _resultValue.lastUsed = lastUsed;
+            _resultValue.lastUsedAddress = lastUsedAddress;
+            return _resultValue;
         }
     }
 }

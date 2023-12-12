@@ -424,31 +424,31 @@ public final class GetNetworkPeeringResult {
             return this;
         }
         public GetNetworkPeeringResult build() {
-            final var o = new GetNetworkPeeringResult();
-            o.accepterRegionName = accepterRegionName;
-            o.atlasCidrBlock = atlasCidrBlock;
-            o.atlasId = atlasId;
-            o.awsAccountId = awsAccountId;
-            o.azureDirectoryId = azureDirectoryId;
-            o.azureSubscriptionId = azureSubscriptionId;
-            o.connectionId = connectionId;
-            o.containerId = containerId;
-            o.errorMessage = errorMessage;
-            o.errorState = errorState;
-            o.errorStateName = errorStateName;
-            o.gcpProjectId = gcpProjectId;
-            o.id = id;
-            o.networkName = networkName;
-            o.peeringId = peeringId;
-            o.projectId = projectId;
-            o.providerName = providerName;
-            o.resourceGroupName = resourceGroupName;
-            o.routeTableCidrBlock = routeTableCidrBlock;
-            o.status = status;
-            o.statusName = statusName;
-            o.vnetName = vnetName;
-            o.vpcId = vpcId;
-            return o;
+            final var _resultValue = new GetNetworkPeeringResult();
+            _resultValue.accepterRegionName = accepterRegionName;
+            _resultValue.atlasCidrBlock = atlasCidrBlock;
+            _resultValue.atlasId = atlasId;
+            _resultValue.awsAccountId = awsAccountId;
+            _resultValue.azureDirectoryId = azureDirectoryId;
+            _resultValue.azureSubscriptionId = azureSubscriptionId;
+            _resultValue.connectionId = connectionId;
+            _resultValue.containerId = containerId;
+            _resultValue.errorMessage = errorMessage;
+            _resultValue.errorState = errorState;
+            _resultValue.errorStateName = errorStateName;
+            _resultValue.gcpProjectId = gcpProjectId;
+            _resultValue.id = id;
+            _resultValue.networkName = networkName;
+            _resultValue.peeringId = peeringId;
+            _resultValue.projectId = projectId;
+            _resultValue.providerName = providerName;
+            _resultValue.resourceGroupName = resourceGroupName;
+            _resultValue.routeTableCidrBlock = routeTableCidrBlock;
+            _resultValue.status = status;
+            _resultValue.statusName = statusName;
+            _resultValue.vnetName = vnetName;
+            _resultValue.vpcId = vpcId;
+            return _resultValue;
         }
     }
 }

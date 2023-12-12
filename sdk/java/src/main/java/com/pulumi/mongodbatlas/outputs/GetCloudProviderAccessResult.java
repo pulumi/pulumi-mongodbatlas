@@ -81,11 +81,11 @@ public final class GetCloudProviderAccessResult {
             return this;
         }
         public GetCloudProviderAccessResult build() {
-            final var o = new GetCloudProviderAccessResult();
-            o.awsIamRoles = awsIamRoles;
-            o.id = id;
-            o.projectId = projectId;
-            return o;
+            final var _resultValue = new GetCloudProviderAccessResult();
+            _resultValue.awsIamRoles = awsIamRoles;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            return _resultValue;
         }
     }
 }

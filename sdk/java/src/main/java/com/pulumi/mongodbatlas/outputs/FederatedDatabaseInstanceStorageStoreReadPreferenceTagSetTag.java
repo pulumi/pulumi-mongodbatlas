@@ -63,10 +63,10 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag 
             return this;
         }
         public FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag build() {
-            final var o = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag();
-            o.name = name;
-            o.value = value;
-            return o;
+            final var _resultValue = new FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag();
+            _resultValue.name = name;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

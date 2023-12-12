@@ -104,15 +104,15 @@ public final class GetSharedTierSnapshotsResult {
             return this;
         }
         public GetSharedTierSnapshotsResult build() {
-            final var o = new GetSharedTierSnapshotsResult();
-            o.expiration = expiration;
-            o.finishTime = finishTime;
-            o.mongoDbVersion = mongoDbVersion;
-            o.scheduledTime = scheduledTime;
-            o.snapshotId = snapshotId;
-            o.startTime = startTime;
-            o.status = status;
-            return o;
+            final var _resultValue = new GetSharedTierSnapshotsResult();
+            _resultValue.expiration = expiration;
+            _resultValue.finishTime = finishTime;
+            _resultValue.mongoDbVersion = mongoDbVersion;
+            _resultValue.scheduledTime = scheduledTime;
+            _resultValue.snapshotId = snapshotId;
+            _resultValue.startTime = startTime;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

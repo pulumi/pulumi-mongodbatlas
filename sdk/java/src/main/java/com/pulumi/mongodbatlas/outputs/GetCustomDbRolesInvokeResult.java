@@ -81,11 +81,11 @@ public final class GetCustomDbRolesInvokeResult {
             return results(List.of(results));
         }
         public GetCustomDbRolesInvokeResult build() {
-            final var o = new GetCustomDbRolesInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetCustomDbRolesInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

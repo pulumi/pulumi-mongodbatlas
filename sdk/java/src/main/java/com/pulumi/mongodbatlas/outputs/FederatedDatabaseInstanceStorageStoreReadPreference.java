@@ -68,11 +68,11 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreference {
             return tagSets(List.of(tagSets));
         }
         public FederatedDatabaseInstanceStorageStoreReadPreference build() {
-            final var o = new FederatedDatabaseInstanceStorageStoreReadPreference();
-            o.maxStalenessSeconds = maxStalenessSeconds;
-            o.mode = mode;
-            o.tagSets = tagSets;
-            return o;
+            final var _resultValue = new FederatedDatabaseInstanceStorageStoreReadPreference();
+            _resultValue.maxStalenessSeconds = maxStalenessSeconds;
+            _resultValue.mode = mode;
+            _resultValue.tagSets = tagSets;
+            return _resultValue;
         }
     }
 }

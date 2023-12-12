@@ -199,21 +199,21 @@ public final class GetDataLakePipelineSnapshot {
             return this;
         }
         public GetDataLakePipelineSnapshot build() {
-            final var o = new GetDataLakePipelineSnapshot();
-            o.copyRegion = copyRegion;
-            o.createdAt = createdAt;
-            o.expiresAt = expiresAt;
-            o.frequencyYype = frequencyYype;
-            o.id = id;
-            o.masterKey = masterKey;
-            o.mongodVersion = mongodVersion;
-            o.policies = policies;
-            o.provider = provider;
-            o.replicaSetName = replicaSetName;
-            o.size = size;
-            o.status = status;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetDataLakePipelineSnapshot();
+            _resultValue.copyRegion = copyRegion;
+            _resultValue.createdAt = createdAt;
+            _resultValue.expiresAt = expiresAt;
+            _resultValue.frequencyYype = frequencyYype;
+            _resultValue.id = id;
+            _resultValue.masterKey = masterKey;
+            _resultValue.mongodVersion = mongodVersion;
+            _resultValue.policies = policies;
+            _resultValue.provider = provider;
+            _resultValue.replicaSetName = replicaSetName;
+            _resultValue.size = size;
+            _resultValue.status = status;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

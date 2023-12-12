@@ -105,12 +105,12 @@ public final class PrivateLinkEndpointServiceEndpoint {
             return this;
         }
         public PrivateLinkEndpointServiceEndpoint build() {
-            final var o = new PrivateLinkEndpointServiceEndpoint();
-            o.endpointName = endpointName;
-            o.ipAddress = ipAddress;
-            o.serviceAttachmentName = serviceAttachmentName;
-            o.status = status;
-            return o;
+            final var _resultValue = new PrivateLinkEndpointServiceEndpoint();
+            _resultValue.endpointName = endpointName;
+            _resultValue.ipAddress = ipAddress;
+            _resultValue.serviceAttachmentName = serviceAttachmentName;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

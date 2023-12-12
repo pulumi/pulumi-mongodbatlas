@@ -112,12 +112,12 @@ public final class GetDataLakePipelinesResultSink {
             return this;
         }
         public GetDataLakePipelinesResultSink build() {
-            final var o = new GetDataLakePipelinesResultSink();
-            o.partitionFields = partitionFields;
-            o.provider = provider;
-            o.region = region;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetDataLakePipelinesResultSink();
+            _resultValue.partitionFields = partitionFields;
+            _resultValue.provider = provider;
+            _resultValue.region = region;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

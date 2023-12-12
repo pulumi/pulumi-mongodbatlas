@@ -125,13 +125,13 @@ public final class CloudBackupSchedulePolicyItemMonthly {
             return this;
         }
         public CloudBackupSchedulePolicyItemMonthly build() {
-            final var o = new CloudBackupSchedulePolicyItemMonthly();
-            o.frequencyInterval = frequencyInterval;
-            o.frequencyType = frequencyType;
-            o.id = id;
-            o.retentionUnit = retentionUnit;
-            o.retentionValue = retentionValue;
-            return o;
+            final var _resultValue = new CloudBackupSchedulePolicyItemMonthly();
+            _resultValue.frequencyInterval = frequencyInterval;
+            _resultValue.frequencyType = frequencyType;
+            _resultValue.id = id;
+            _resultValue.retentionUnit = retentionUnit;
+            _resultValue.retentionValue = retentionValue;
+            return _resultValue;
         }
     }
 }

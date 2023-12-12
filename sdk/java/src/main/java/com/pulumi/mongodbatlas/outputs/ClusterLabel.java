@@ -71,10 +71,10 @@ public final class ClusterLabel {
             return this;
         }
         public ClusterLabel build() {
-            final var o = new ClusterLabel();
-            o.key = key;
-            o.value = value;
-            return o;
+            final var _resultValue = new ClusterLabel();
+            _resultValue.key = key;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

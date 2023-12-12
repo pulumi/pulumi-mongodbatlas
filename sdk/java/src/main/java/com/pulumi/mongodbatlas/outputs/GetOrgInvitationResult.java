@@ -181,17 +181,17 @@ public final class GetOrgInvitationResult {
             return this;
         }
         public GetOrgInvitationResult build() {
-            final var o = new GetOrgInvitationResult();
-            o.createdAt = createdAt;
-            o.expiresAt = expiresAt;
-            o.id = id;
-            o.invitationId = invitationId;
-            o.inviterUsername = inviterUsername;
-            o.orgId = orgId;
-            o.roles = roles;
-            o.teamsIds = teamsIds;
-            o.username = username;
-            return o;
+            final var _resultValue = new GetOrgInvitationResult();
+            _resultValue.createdAt = createdAt;
+            _resultValue.expiresAt = expiresAt;
+            _resultValue.id = id;
+            _resultValue.invitationId = invitationId;
+            _resultValue.inviterUsername = inviterUsername;
+            _resultValue.orgId = orgId;
+            _resultValue.roles = roles;
+            _resultValue.teamsIds = teamsIds;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

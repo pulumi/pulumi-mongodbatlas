@@ -65,10 +65,10 @@ public final class GetClustersResultTag {
             return this;
         }
         public GetClustersResultTag build() {
-            final var o = new GetClustersResultTag();
-            o.key = key;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetClustersResultTag();
+            _resultValue.key = key;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

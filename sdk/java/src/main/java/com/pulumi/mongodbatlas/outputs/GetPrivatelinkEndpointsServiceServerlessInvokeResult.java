@@ -117,14 +117,14 @@ public final class GetPrivatelinkEndpointsServiceServerlessInvokeResult {
             return results(List.of(results));
         }
         public GetPrivatelinkEndpointsServiceServerlessInvokeResult build() {
-            final var o = new GetPrivatelinkEndpointsServiceServerlessInvokeResult();
-            o.id = id;
-            o.instanceName = instanceName;
-            o.itemsPerPage = itemsPerPage;
-            o.pageNum = pageNum;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetPrivatelinkEndpointsServiceServerlessInvokeResult();
+            _resultValue.id = id;
+            _resultValue.instanceName = instanceName;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.pageNum = pageNum;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

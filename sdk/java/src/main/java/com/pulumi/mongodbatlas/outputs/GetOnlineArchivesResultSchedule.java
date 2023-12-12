@@ -107,15 +107,15 @@ public final class GetOnlineArchivesResultSchedule {
             return this;
         }
         public GetOnlineArchivesResultSchedule build() {
-            final var o = new GetOnlineArchivesResultSchedule();
-            o.dayOfMonth = dayOfMonth;
-            o.dayOfWeek = dayOfWeek;
-            o.endHour = endHour;
-            o.endMinute = endMinute;
-            o.startHour = startHour;
-            o.startMinute = startMinute;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetOnlineArchivesResultSchedule();
+            _resultValue.dayOfMonth = dayOfMonth;
+            _resultValue.dayOfWeek = dayOfWeek;
+            _resultValue.endHour = endHour;
+            _resultValue.endMinute = endMinute;
+            _resultValue.startHour = startHour;
+            _resultValue.startMinute = startMinute;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

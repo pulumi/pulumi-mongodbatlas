@@ -60,11 +60,11 @@ public final class GetLdapConfigurationUserToDnMapping {
             return this;
         }
         public GetLdapConfigurationUserToDnMapping build() {
-            final var o = new GetLdapConfigurationUserToDnMapping();
-            o.ldapQuery = ldapQuery;
-            o.match = match;
-            o.substitution = substitution;
-            return o;
+            final var _resultValue = new GetLdapConfigurationUserToDnMapping();
+            _resultValue.ldapQuery = ldapQuery;
+            _resultValue.match = match;
+            _resultValue.substitution = substitution;
+            return _resultValue;
         }
     }
 }

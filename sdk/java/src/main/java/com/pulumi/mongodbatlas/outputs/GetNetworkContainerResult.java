@@ -282,22 +282,22 @@ public final class GetNetworkContainerResult {
             return this;
         }
         public GetNetworkContainerResult build() {
-            final var o = new GetNetworkContainerResult();
-            o.atlasCidrBlock = atlasCidrBlock;
-            o.azureSubscriptionId = azureSubscriptionId;
-            o.containerId = containerId;
-            o.gcpProjectId = gcpProjectId;
-            o.id = id;
-            o.networkName = networkName;
-            o.projectId = projectId;
-            o.providerName = providerName;
-            o.provisioned = provisioned;
-            o.region = region;
-            o.regionName = regionName;
-            o.regions = regions;
-            o.vnetName = vnetName;
-            o.vpcId = vpcId;
-            return o;
+            final var _resultValue = new GetNetworkContainerResult();
+            _resultValue.atlasCidrBlock = atlasCidrBlock;
+            _resultValue.azureSubscriptionId = azureSubscriptionId;
+            _resultValue.containerId = containerId;
+            _resultValue.gcpProjectId = gcpProjectId;
+            _resultValue.id = id;
+            _resultValue.networkName = networkName;
+            _resultValue.projectId = projectId;
+            _resultValue.providerName = providerName;
+            _resultValue.provisioned = provisioned;
+            _resultValue.region = region;
+            _resultValue.regionName = regionName;
+            _resultValue.regions = regions;
+            _resultValue.vnetName = vnetName;
+            _resultValue.vpcId = vpcId;
+            return _resultValue;
         }
     }
 }

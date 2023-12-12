@@ -113,13 +113,13 @@ public final class GetGlobalClusterConfigResult {
             return this;
         }
         public GetGlobalClusterConfigResult build() {
-            final var o = new GetGlobalClusterConfigResult();
-            o.clusterName = clusterName;
-            o.customZoneMapping = customZoneMapping;
-            o.id = id;
-            o.managedNamespaces = managedNamespaces;
-            o.projectId = projectId;
-            return o;
+            final var _resultValue = new GetGlobalClusterConfigResult();
+            _resultValue.clusterName = clusterName;
+            _resultValue.customZoneMapping = customZoneMapping;
+            _resultValue.id = id;
+            _resultValue.managedNamespaces = managedNamespaces;
+            _resultValue.projectId = projectId;
+            return _resultValue;
         }
     }
 }

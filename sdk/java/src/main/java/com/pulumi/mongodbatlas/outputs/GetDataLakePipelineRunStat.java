@@ -65,10 +65,10 @@ public final class GetDataLakePipelineRunStat {
             return this;
         }
         public GetDataLakePipelineRunStat build() {
-            final var o = new GetDataLakePipelineRunStat();
-            o.bytesExported = bytesExported;
-            o.numDocs = numDocs;
-            return o;
+            final var _resultValue = new GetDataLakePipelineRunStat();
+            _resultValue.bytesExported = bytesExported;
+            _resultValue.numDocs = numDocs;
+            return _resultValue;
         }
     }
 }

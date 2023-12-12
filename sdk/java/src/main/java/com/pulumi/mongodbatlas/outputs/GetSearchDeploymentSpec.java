@@ -66,10 +66,10 @@ public final class GetSearchDeploymentSpec {
             return this;
         }
         public GetSearchDeploymentSpec build() {
-            final var o = new GetSearchDeploymentSpec();
-            o.instanceSize = instanceSize;
-            o.nodeCount = nodeCount;
-            return o;
+            final var _resultValue = new GetSearchDeploymentSpec();
+            _resultValue.instanceSize = instanceSize;
+            _resultValue.nodeCount = nodeCount;
+            return _resultValue;
         }
     }
 }

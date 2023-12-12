@@ -185,17 +185,17 @@ public final class GetCloudProviderAccessSetupResult {
             return this;
         }
         public GetCloudProviderAccessSetupResult build() {
-            final var o = new GetCloudProviderAccessSetupResult();
-            o.aws = aws;
-            o.awsConfigs = awsConfigs;
-            o.azureConfigs = azureConfigs;
-            o.createdDate = createdDate;
-            o.id = id;
-            o.lastUpdatedDate = lastUpdatedDate;
-            o.projectId = projectId;
-            o.providerName = providerName;
-            o.roleId = roleId;
-            return o;
+            final var _resultValue = new GetCloudProviderAccessSetupResult();
+            _resultValue.aws = aws;
+            _resultValue.awsConfigs = awsConfigs;
+            _resultValue.azureConfigs = azureConfigs;
+            _resultValue.createdDate = createdDate;
+            _resultValue.id = id;
+            _resultValue.lastUpdatedDate = lastUpdatedDate;
+            _resultValue.projectId = projectId;
+            _resultValue.providerName = providerName;
+            _resultValue.roleId = roleId;
+            return _resultValue;
         }
     }
 }

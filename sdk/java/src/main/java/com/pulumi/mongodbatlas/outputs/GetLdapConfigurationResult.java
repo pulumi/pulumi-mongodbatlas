@@ -241,19 +241,19 @@ public final class GetLdapConfigurationResult {
             return userToDnMappings(List.of(userToDnMappings));
         }
         public GetLdapConfigurationResult build() {
-            final var o = new GetLdapConfigurationResult();
-            o.authenticationEnabled = authenticationEnabled;
-            o.authorizationEnabled = authorizationEnabled;
-            o.authzQueryTemplate = authzQueryTemplate;
-            o.bindPassword = bindPassword;
-            o.bindUsername = bindUsername;
-            o.caCertificate = caCertificate;
-            o.hostname = hostname;
-            o.id = id;
-            o.port = port;
-            o.projectId = projectId;
-            o.userToDnMappings = userToDnMappings;
-            return o;
+            final var _resultValue = new GetLdapConfigurationResult();
+            _resultValue.authenticationEnabled = authenticationEnabled;
+            _resultValue.authorizationEnabled = authorizationEnabled;
+            _resultValue.authzQueryTemplate = authzQueryTemplate;
+            _resultValue.bindPassword = bindPassword;
+            _resultValue.bindUsername = bindUsername;
+            _resultValue.caCertificate = caCertificate;
+            _resultValue.hostname = hostname;
+            _resultValue.id = id;
+            _resultValue.port = port;
+            _resultValue.projectId = projectId;
+            _resultValue.userToDnMappings = userToDnMappings;
+            return _resultValue;
         }
     }
 }

@@ -305,24 +305,24 @@ public final class GetSearchIndexesResult {
             return this;
         }
         public GetSearchIndexesResult build() {
-            final var o = new GetSearchIndexesResult();
-            o.analyzer = analyzer;
-            o.analyzers = analyzers;
-            o.clusterName = clusterName;
-            o.collectionName = collectionName;
-            o.database = database;
-            o.fields = fields;
-            o.indexId = indexId;
-            o.mappingsDynamic = mappingsDynamic;
-            o.mappingsFields = mappingsFields;
-            o.name = name;
-            o.projectId = projectId;
-            o.searchAnalyzer = searchAnalyzer;
-            o.status = status;
-            o.synonyms = synonyms;
-            o.type = type;
-            o.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
-            return o;
+            final var _resultValue = new GetSearchIndexesResult();
+            _resultValue.analyzer = analyzer;
+            _resultValue.analyzers = analyzers;
+            _resultValue.clusterName = clusterName;
+            _resultValue.collectionName = collectionName;
+            _resultValue.database = database;
+            _resultValue.fields = fields;
+            _resultValue.indexId = indexId;
+            _resultValue.mappingsDynamic = mappingsDynamic;
+            _resultValue.mappingsFields = mappingsFields;
+            _resultValue.name = name;
+            _resultValue.projectId = projectId;
+            _resultValue.searchAnalyzer = searchAnalyzer;
+            _resultValue.status = status;
+            _resultValue.synonyms = synonyms;
+            _resultValue.type = type;
+            _resultValue.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
+            return _resultValue;
         }
     }
 }

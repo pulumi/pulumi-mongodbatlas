@@ -131,14 +131,14 @@ public final class GetAlertConfigurationsInvokeResult {
             return this;
         }
         public GetAlertConfigurationsInvokeResult build() {
-            final var o = new GetAlertConfigurationsInvokeResult();
-            o.id = id;
-            o.listOptions = listOptions;
-            o.outputTypes = outputTypes;
-            o.projectId = projectId;
-            o.results = results;
-            o.totalCount = totalCount;
-            return o;
+            final var _resultValue = new GetAlertConfigurationsInvokeResult();
+            _resultValue.id = id;
+            _resultValue.listOptions = listOptions;
+            _resultValue.outputTypes = outputTypes;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            _resultValue.totalCount = totalCount;
+            return _resultValue;
         }
     }
 }

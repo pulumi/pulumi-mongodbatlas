@@ -92,12 +92,12 @@ public final class GetDataLakePipelineRunsInvokeResult {
             return results(List.of(results));
         }
         public GetDataLakePipelineRunsInvokeResult build() {
-            final var o = new GetDataLakePipelineRunsInvokeResult();
-            o.id = id;
-            o.pipelineName = pipelineName;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetDataLakePipelineRunsInvokeResult();
+            _resultValue.id = id;
+            _resultValue.pipelineName = pipelineName;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

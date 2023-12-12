@@ -134,14 +134,14 @@ public final class GetAuditingResult {
             return this;
         }
         public GetAuditingResult build() {
-            final var o = new GetAuditingResult();
-            o.auditAuthorizationSuccess = auditAuthorizationSuccess;
-            o.auditFilter = auditFilter;
-            o.configurationType = configurationType;
-            o.enabled = enabled;
-            o.id = id;
-            o.projectId = projectId;
-            return o;
+            final var _resultValue = new GetAuditingResult();
+            _resultValue.auditAuthorizationSuccess = auditAuthorizationSuccess;
+            _resultValue.auditFilter = auditFilter;
+            _resultValue.configurationType = configurationType;
+            _resultValue.enabled = enabled;
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            return _resultValue;
         }
     }
 }

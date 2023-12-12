@@ -68,11 +68,11 @@ public final class GetAlertConfigurationsResultOutput {
             return this;
         }
         public GetAlertConfigurationsResultOutput build() {
-            final var o = new GetAlertConfigurationsResultOutput();
-            o.label = label;
-            o.type = type;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetAlertConfigurationsResultOutput();
+            _resultValue.label = label;
+            _resultValue.type = type;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

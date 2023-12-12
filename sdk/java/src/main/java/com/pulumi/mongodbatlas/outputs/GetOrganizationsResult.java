@@ -105,12 +105,12 @@ public final class GetOrganizationsResult {
             return this;
         }
         public GetOrganizationsResult build() {
-            final var o = new GetOrganizationsResult();
-            o.id = id;
-            o.isDeleted = isDeleted;
-            o.links = links;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetOrganizationsResult();
+            _resultValue.id = id;
+            _resultValue.isDeleted = isDeleted;
+            _resultValue.links = links;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

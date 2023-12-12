@@ -102,13 +102,13 @@ public final class GetProjectsInvokeResult {
             return this;
         }
         public GetProjectsInvokeResult build() {
-            final var o = new GetProjectsInvokeResult();
-            o.id = id;
-            o.itemsPerPage = itemsPerPage;
-            o.pageNum = pageNum;
-            o.results = results;
-            o.totalCount = totalCount;
-            return o;
+            final var _resultValue = new GetProjectsInvokeResult();
+            _resultValue.id = id;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.pageNum = pageNum;
+            _resultValue.results = results;
+            _resultValue.totalCount = totalCount;
+            return _resultValue;
         }
     }
 }

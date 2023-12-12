@@ -101,13 +101,13 @@ public final class ProjectLimit {
             return this;
         }
         public ProjectLimit build() {
-            final var o = new ProjectLimit();
-            o.currentUsage = currentUsage;
-            o.defaultLimit = defaultLimit;
-            o.maximumLimit = maximumLimit;
-            o.name = name;
-            o.value = value;
-            return o;
+            final var _resultValue = new ProjectLimit();
+            _resultValue.currentUsage = currentUsage;
+            _resultValue.defaultLimit = defaultLimit;
+            _resultValue.maximumLimit = maximumLimit;
+            _resultValue.name = name;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

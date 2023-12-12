@@ -135,14 +135,14 @@ public final class DataLakePipelineSource {
             return this;
         }
         public DataLakePipelineSource build() {
-            final var o = new DataLakePipelineSource();
-            o.clusterName = clusterName;
-            o.collectionName = collectionName;
-            o.databaseName = databaseName;
-            o.policyItemId = policyItemId;
-            o.projectId = projectId;
-            o.type = type;
-            return o;
+            final var _resultValue = new DataLakePipelineSource();
+            _resultValue.clusterName = clusterName;
+            _resultValue.collectionName = collectionName;
+            _resultValue.databaseName = databaseName;
+            _resultValue.policyItemId = policyItemId;
+            _resultValue.projectId = projectId;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

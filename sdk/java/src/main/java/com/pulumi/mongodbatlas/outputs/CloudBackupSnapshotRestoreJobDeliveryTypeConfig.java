@@ -135,16 +135,16 @@ public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
             return this;
         }
         public CloudBackupSnapshotRestoreJobDeliveryTypeConfig build() {
-            final var o = new CloudBackupSnapshotRestoreJobDeliveryTypeConfig();
-            o.automated = automated;
-            o.download = download;
-            o.oplogInc = oplogInc;
-            o.oplogTs = oplogTs;
-            o.pointInTime = pointInTime;
-            o.pointInTimeUtcSeconds = pointInTimeUtcSeconds;
-            o.targetClusterName = targetClusterName;
-            o.targetProjectId = targetProjectId;
-            return o;
+            final var _resultValue = new CloudBackupSnapshotRestoreJobDeliveryTypeConfig();
+            _resultValue.automated = automated;
+            _resultValue.download = download;
+            _resultValue.oplogInc = oplogInc;
+            _resultValue.oplogTs = oplogTs;
+            _resultValue.pointInTime = pointInTime;
+            _resultValue.pointInTimeUtcSeconds = pointInTimeUtcSeconds;
+            _resultValue.targetClusterName = targetClusterName;
+            _resultValue.targetProjectId = targetProjectId;
+            return _resultValue;
         }
     }
 }

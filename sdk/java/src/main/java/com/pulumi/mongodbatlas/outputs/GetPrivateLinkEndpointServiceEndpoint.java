@@ -103,12 +103,12 @@ public final class GetPrivateLinkEndpointServiceEndpoint {
             return this;
         }
         public GetPrivateLinkEndpointServiceEndpoint build() {
-            final var o = new GetPrivateLinkEndpointServiceEndpoint();
-            o.endpointName = endpointName;
-            o.ipAddress = ipAddress;
-            o.serviceAttachmentName = serviceAttachmentName;
-            o.status = status;
-            return o;
+            final var _resultValue = new GetPrivateLinkEndpointServiceEndpoint();
+            _resultValue.endpointName = endpointName;
+            _resultValue.ipAddress = ipAddress;
+            _resultValue.serviceAttachmentName = serviceAttachmentName;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

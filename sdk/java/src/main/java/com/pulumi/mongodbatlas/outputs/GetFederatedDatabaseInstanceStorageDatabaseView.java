@@ -68,11 +68,11 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseView {
             return this;
         }
         public GetFederatedDatabaseInstanceStorageDatabaseView build() {
-            final var o = new GetFederatedDatabaseInstanceStorageDatabaseView();
-            o.name = name;
-            o.pipeline = pipeline;
-            o.source = source;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstanceStorageDatabaseView();
+            _resultValue.name = name;
+            _resultValue.pipeline = pipeline;
+            _resultValue.source = source;
+            return _resultValue;
         }
     }
 }

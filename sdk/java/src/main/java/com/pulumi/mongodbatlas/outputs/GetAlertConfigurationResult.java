@@ -238,20 +238,20 @@ public final class GetAlertConfigurationResult {
             return this;
         }
         public GetAlertConfigurationResult build() {
-            final var o = new GetAlertConfigurationResult();
-            o.alertConfigurationId = alertConfigurationId;
-            o.created = created;
-            o.enabled = enabled;
-            o.eventType = eventType;
-            o.id = id;
-            o.matchers = matchers;
-            o.metricThresholdConfigs = metricThresholdConfigs;
-            o.notifications = notifications;
-            o.outputs = outputs;
-            o.projectId = projectId;
-            o.thresholdConfigs = thresholdConfigs;
-            o.updated = updated;
-            return o;
+            final var _resultValue = new GetAlertConfigurationResult();
+            _resultValue.alertConfigurationId = alertConfigurationId;
+            _resultValue.created = created;
+            _resultValue.enabled = enabled;
+            _resultValue.eventType = eventType;
+            _resultValue.id = id;
+            _resultValue.matchers = matchers;
+            _resultValue.metricThresholdConfigs = metricThresholdConfigs;
+            _resultValue.notifications = notifications;
+            _resultValue.outputs = outputs;
+            _resultValue.projectId = projectId;
+            _resultValue.thresholdConfigs = thresholdConfigs;
+            _resultValue.updated = updated;
+            return _resultValue;
         }
     }
 }

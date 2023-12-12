@@ -399,28 +399,28 @@ public final class GetEventTriggersResult {
             return this;
         }
         public GetEventTriggersResult build() {
-            final var o = new GetEventTriggersResult();
-            o.configCollection = configCollection;
-            o.configDatabase = configDatabase;
-            o.configFullDocument = configFullDocument;
-            o.configFullDocumentBefore = configFullDocumentBefore;
-            o.configMatch = configMatch;
-            o.configOperationType = configOperationType;
-            o.configOperationTypes = configOperationTypes;
-            o.configProject = configProject;
-            o.configProviders = configProviders;
-            o.configSchedule = configSchedule;
-            o.configScheduleType = configScheduleType;
-            o.configServiceId = configServiceId;
-            o.disabled = disabled;
-            o.eventProcessors = eventProcessors;
-            o.functionId = functionId;
-            o.functionName = functionName;
-            o.name = name;
-            o.triggerId = triggerId;
-            o.type = type;
-            o.unordered = unordered;
-            return o;
+            final var _resultValue = new GetEventTriggersResult();
+            _resultValue.configCollection = configCollection;
+            _resultValue.configDatabase = configDatabase;
+            _resultValue.configFullDocument = configFullDocument;
+            _resultValue.configFullDocumentBefore = configFullDocumentBefore;
+            _resultValue.configMatch = configMatch;
+            _resultValue.configOperationType = configOperationType;
+            _resultValue.configOperationTypes = configOperationTypes;
+            _resultValue.configProject = configProject;
+            _resultValue.configProviders = configProviders;
+            _resultValue.configSchedule = configSchedule;
+            _resultValue.configScheduleType = configScheduleType;
+            _resultValue.configServiceId = configServiceId;
+            _resultValue.disabled = disabled;
+            _resultValue.eventProcessors = eventProcessors;
+            _resultValue.functionId = functionId;
+            _resultValue.functionName = functionName;
+            _resultValue.name = name;
+            _resultValue.triggerId = triggerId;
+            _resultValue.type = type;
+            _resultValue.unordered = unordered;
+            return _resultValue;
         }
     }
 }

@@ -151,16 +151,16 @@ public final class GetAtlasUsersInvokeResult {
             return this;
         }
         public GetAtlasUsersInvokeResult build() {
-            final var o = new GetAtlasUsersInvokeResult();
-            o.id = id;
-            o.itemsPerPage = itemsPerPage;
-            o.orgId = orgId;
-            o.pageNum = pageNum;
-            o.projectId = projectId;
-            o.results = results;
-            o.teamId = teamId;
-            o.totalCount = totalCount;
-            return o;
+            final var _resultValue = new GetAtlasUsersInvokeResult();
+            _resultValue.id = id;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.orgId = orgId;
+            _resultValue.pageNum = pageNum;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            _resultValue.teamId = teamId;
+            _resultValue.totalCount = totalCount;
+            return _resultValue;
         }
     }
 }

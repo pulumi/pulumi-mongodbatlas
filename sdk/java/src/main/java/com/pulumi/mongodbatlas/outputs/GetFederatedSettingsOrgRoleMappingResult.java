@@ -122,14 +122,14 @@ public final class GetFederatedSettingsOrgRoleMappingResult {
             return this;
         }
         public GetFederatedSettingsOrgRoleMappingResult build() {
-            final var o = new GetFederatedSettingsOrgRoleMappingResult();
-            o.externalGroupName = externalGroupName;
-            o.federationSettingsId = federationSettingsId;
-            o.id = id;
-            o.orgId = orgId;
-            o.roleAssignments = roleAssignments;
-            o.roleMappingId = roleMappingId;
-            return o;
+            final var _resultValue = new GetFederatedSettingsOrgRoleMappingResult();
+            _resultValue.externalGroupName = externalGroupName;
+            _resultValue.federationSettingsId = federationSettingsId;
+            _resultValue.id = id;
+            _resultValue.orgId = orgId;
+            _resultValue.roleAssignments = roleAssignments;
+            _resultValue.roleMappingId = roleMappingId;
+            return _resultValue;
         }
     }
 }

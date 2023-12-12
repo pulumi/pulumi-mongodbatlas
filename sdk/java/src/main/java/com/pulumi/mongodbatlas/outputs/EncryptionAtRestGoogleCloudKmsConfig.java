@@ -87,11 +87,11 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
             return this;
         }
         public EncryptionAtRestGoogleCloudKmsConfig build() {
-            final var o = new EncryptionAtRestGoogleCloudKmsConfig();
-            o.enabled = enabled;
-            o.keyVersionResourceId = keyVersionResourceId;
-            o.serviceAccountKey = serviceAccountKey;
-            return o;
+            final var _resultValue = new EncryptionAtRestGoogleCloudKmsConfig();
+            _resultValue.enabled = enabled;
+            _resultValue.keyVersionResourceId = keyVersionResourceId;
+            _resultValue.serviceAccountKey = serviceAccountKey;
+            return _resultValue;
         }
     }
 }

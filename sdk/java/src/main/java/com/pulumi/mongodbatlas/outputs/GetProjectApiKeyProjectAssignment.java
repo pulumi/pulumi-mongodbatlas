@@ -69,10 +69,10 @@ public final class GetProjectApiKeyProjectAssignment {
             return roleNames(List.of(roleNames));
         }
         public GetProjectApiKeyProjectAssignment build() {
-            final var o = new GetProjectApiKeyProjectAssignment();
-            o.projectId = projectId;
-            o.roleNames = roleNames;
-            return o;
+            final var _resultValue = new GetProjectApiKeyProjectAssignment();
+            _resultValue.projectId = projectId;
+            _resultValue.roleNames = roleNames;
+            return _resultValue;
         }
     }
 }

@@ -84,11 +84,11 @@ public final class GetCloudProviderAccessSetupAzureConfig {
             return this;
         }
         public GetCloudProviderAccessSetupAzureConfig build() {
-            final var o = new GetCloudProviderAccessSetupAzureConfig();
-            o.atlasAzureAppId = atlasAzureAppId;
-            o.servicePrincipalId = servicePrincipalId;
-            o.tenantId = tenantId;
-            return o;
+            final var _resultValue = new GetCloudProviderAccessSetupAzureConfig();
+            _resultValue.atlasAzureAppId = atlasAzureAppId;
+            _resultValue.servicePrincipalId = servicePrincipalId;
+            _resultValue.tenantId = tenantId;
+            return _resultValue;
         }
     }
 }

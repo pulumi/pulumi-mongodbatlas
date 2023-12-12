@@ -38,9 +38,9 @@ public final class GetOnlineArchivesResultDataExpirationRule {
             return this;
         }
         public GetOnlineArchivesResultDataExpirationRule build() {
-            final var o = new GetOnlineArchivesResultDataExpirationRule();
-            o.expireAfterDays = expireAfterDays;
-            return o;
+            final var _resultValue = new GetOnlineArchivesResultDataExpirationRule();
+            _resultValue.expireAfterDays = expireAfterDays;
+            return _resultValue;
         }
     }
 }

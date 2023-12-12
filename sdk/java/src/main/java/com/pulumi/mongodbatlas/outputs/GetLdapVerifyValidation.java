@@ -57,10 +57,10 @@ public final class GetLdapVerifyValidation {
             return this;
         }
         public GetLdapVerifyValidation build() {
-            final var o = new GetLdapVerifyValidation();
-            o.status = status;
-            o.validationType = validationType;
-            return o;
+            final var _resultValue = new GetLdapVerifyValidation();
+            _resultValue.status = status;
+            _resultValue.validationType = validationType;
+            return _resultValue;
         }
     }
 }

@@ -69,10 +69,10 @@ public final class CustomDbRoleInheritedRole {
             return this;
         }
         public CustomDbRoleInheritedRole build() {
-            final var o = new CustomDbRoleInheritedRole();
-            o.databaseName = databaseName;
-            o.roleName = roleName;
-            return o;
+            final var _resultValue = new CustomDbRoleInheritedRole();
+            _resultValue.databaseName = databaseName;
+            _resultValue.roleName = roleName;
+            return _resultValue;
         }
     }
 }

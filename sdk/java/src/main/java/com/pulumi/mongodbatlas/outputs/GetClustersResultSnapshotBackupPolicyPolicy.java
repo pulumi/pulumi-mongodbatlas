@@ -62,10 +62,10 @@ public final class GetClustersResultSnapshotBackupPolicyPolicy {
             return policyItems(List.of(policyItems));
         }
         public GetClustersResultSnapshotBackupPolicyPolicy build() {
-            final var o = new GetClustersResultSnapshotBackupPolicyPolicy();
-            o.id = id;
-            o.policyItems = policyItems;
-            return o;
+            final var _resultValue = new GetClustersResultSnapshotBackupPolicyPolicy();
+            _resultValue.id = id;
+            _resultValue.policyItems = policyItems;
+            return _resultValue;
         }
     }
 }

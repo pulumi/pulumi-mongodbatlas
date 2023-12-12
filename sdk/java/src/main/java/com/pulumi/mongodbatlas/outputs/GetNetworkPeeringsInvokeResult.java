@@ -81,11 +81,11 @@ public final class GetNetworkPeeringsInvokeResult {
             return results(List.of(results));
         }
         public GetNetworkPeeringsInvokeResult build() {
-            final var o = new GetNetworkPeeringsInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetNetworkPeeringsInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

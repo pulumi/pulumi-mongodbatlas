@@ -65,10 +65,10 @@ public final class GetServerlessInstancesResultTag {
             return this;
         }
         public GetServerlessInstancesResultTag build() {
-            final var o = new GetServerlessInstancesResultTag();
-            o.key = key;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetServerlessInstancesResultTag();
+            _resultValue.key = key;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

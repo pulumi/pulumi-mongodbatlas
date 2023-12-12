@@ -121,13 +121,13 @@ public final class GetAdvancedClusterReplicationSpec {
             return this;
         }
         public GetAdvancedClusterReplicationSpec build() {
-            final var o = new GetAdvancedClusterReplicationSpec();
-            o.containerId = containerId;
-            o.id = id;
-            o.numShards = numShards;
-            o.regionConfigs = regionConfigs;
-            o.zoneName = zoneName;
-            return o;
+            final var _resultValue = new GetAdvancedClusterReplicationSpec();
+            _resultValue.containerId = containerId;
+            _resultValue.id = id;
+            _resultValue.numShards = numShards;
+            _resultValue.regionConfigs = regionConfigs;
+            _resultValue.zoneName = zoneName;
+            return _resultValue;
         }
     }
 }

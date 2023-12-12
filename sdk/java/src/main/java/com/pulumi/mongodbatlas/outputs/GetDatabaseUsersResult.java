@@ -254,20 +254,20 @@ public final class GetDatabaseUsersResult {
             return this;
         }
         public GetDatabaseUsersResult build() {
-            final var o = new GetDatabaseUsersResult();
-            o.authDatabaseName = authDatabaseName;
-            o.awsIamType = awsIamType;
-            o.id = id;
-            o.labels = labels;
-            o.ldapAuthType = ldapAuthType;
-            o.oidcAuthType = oidcAuthType;
-            o.password = password;
-            o.projectId = projectId;
-            o.roles = roles;
-            o.scopes = scopes;
-            o.username = username;
-            o.x509Type = x509Type;
-            return o;
+            final var _resultValue = new GetDatabaseUsersResult();
+            _resultValue.authDatabaseName = authDatabaseName;
+            _resultValue.awsIamType = awsIamType;
+            _resultValue.id = id;
+            _resultValue.labels = labels;
+            _resultValue.ldapAuthType = ldapAuthType;
+            _resultValue.oidcAuthType = oidcAuthType;
+            _resultValue.password = password;
+            _resultValue.projectId = projectId;
+            _resultValue.roles = roles;
+            _resultValue.scopes = scopes;
+            _resultValue.username = username;
+            _resultValue.x509Type = x509Type;
+            return _resultValue;
         }
     }
 }

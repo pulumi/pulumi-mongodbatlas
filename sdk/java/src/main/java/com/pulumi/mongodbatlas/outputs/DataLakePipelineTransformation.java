@@ -59,10 +59,10 @@ public final class DataLakePipelineTransformation {
             return this;
         }
         public DataLakePipelineTransformation build() {
-            final var o = new DataLakePipelineTransformation();
-            o.field = field;
-            o.type = type;
-            return o;
+            final var _resultValue = new DataLakePipelineTransformation();
+            _resultValue.field = field;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

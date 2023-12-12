@@ -53,10 +53,10 @@ public final class GetProjectTeam {
             return this;
         }
         public GetProjectTeam build() {
-            final var o = new GetProjectTeam();
-            o.roleNames = roleNames;
-            o.teamId = teamId;
-            return o;
+            final var _resultValue = new GetProjectTeam();
+            _resultValue.roleNames = roleNames;
+            _resultValue.teamId = teamId;
+            return _resultValue;
         }
     }
 }

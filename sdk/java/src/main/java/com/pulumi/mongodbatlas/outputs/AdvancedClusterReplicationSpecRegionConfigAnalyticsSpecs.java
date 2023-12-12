@@ -106,12 +106,12 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
             return this;
         }
         public AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs build() {
-            final var o = new AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs();
-            o.diskIops = diskIops;
-            o.ebsVolumeType = ebsVolumeType;
-            o.instanceSize = instanceSize;
-            o.nodeCount = nodeCount;
-            return o;
+            final var _resultValue = new AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs();
+            _resultValue.diskIops = diskIops;
+            _resultValue.ebsVolumeType = ebsVolumeType;
+            _resultValue.instanceSize = instanceSize;
+            _resultValue.nodeCount = nodeCount;
+            return _resultValue;
         }
     }
 }

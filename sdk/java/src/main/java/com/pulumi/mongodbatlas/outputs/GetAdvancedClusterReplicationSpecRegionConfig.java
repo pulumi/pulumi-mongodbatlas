@@ -213,17 +213,17 @@ public final class GetAdvancedClusterReplicationSpecRegionConfig {
             return this;
         }
         public GetAdvancedClusterReplicationSpecRegionConfig build() {
-            final var o = new GetAdvancedClusterReplicationSpecRegionConfig();
-            o.analyticsAutoScalings = analyticsAutoScalings;
-            o.analyticsSpecs = analyticsSpecs;
-            o.autoScalings = autoScalings;
-            o.backingProviderName = backingProviderName;
-            o.electableSpecs = electableSpecs;
-            o.priority = priority;
-            o.providerName = providerName;
-            o.readOnlySpecs = readOnlySpecs;
-            o.regionName = regionName;
-            return o;
+            final var _resultValue = new GetAdvancedClusterReplicationSpecRegionConfig();
+            _resultValue.analyticsAutoScalings = analyticsAutoScalings;
+            _resultValue.analyticsSpecs = analyticsSpecs;
+            _resultValue.autoScalings = autoScalings;
+            _resultValue.backingProviderName = backingProviderName;
+            _resultValue.electableSpecs = electableSpecs;
+            _resultValue.priority = priority;
+            _resultValue.providerName = providerName;
+            _resultValue.readOnlySpecs = readOnlySpecs;
+            _resultValue.regionName = regionName;
+            return _resultValue;
         }
     }
 }

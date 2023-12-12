@@ -83,13 +83,13 @@ public final class GetOnlineArchivesResultCriteria {
             return this;
         }
         public GetOnlineArchivesResultCriteria build() {
-            final var o = new GetOnlineArchivesResultCriteria();
-            o.dateField = dateField;
-            o.dateFormat = dateFormat;
-            o.expireAfterDays = expireAfterDays;
-            o.query = query;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetOnlineArchivesResultCriteria();
+            _resultValue.dateField = dateField;
+            _resultValue.dateFormat = dateFormat;
+            _resultValue.expireAfterDays = expireAfterDays;
+            _resultValue.query = query;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

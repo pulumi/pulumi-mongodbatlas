@@ -284,22 +284,22 @@ public final class GetPrivateLinkEndpointResult {
             return this;
         }
         public GetPrivateLinkEndpointResult build() {
-            final var o = new GetPrivateLinkEndpointResult();
-            o.endpointGroupNames = endpointGroupNames;
-            o.endpointServiceName = endpointServiceName;
-            o.errorMessage = errorMessage;
-            o.id = id;
-            o.interfaceEndpoints = interfaceEndpoints;
-            o.privateEndpoints = privateEndpoints;
-            o.privateLinkId = privateLinkId;
-            o.privateLinkServiceName = privateLinkServiceName;
-            o.privateLinkServiceResourceId = privateLinkServiceResourceId;
-            o.projectId = projectId;
-            o.providerName = providerName;
-            o.regionName = regionName;
-            o.serviceAttachmentNames = serviceAttachmentNames;
-            o.status = status;
-            return o;
+            final var _resultValue = new GetPrivateLinkEndpointResult();
+            _resultValue.endpointGroupNames = endpointGroupNames;
+            _resultValue.endpointServiceName = endpointServiceName;
+            _resultValue.errorMessage = errorMessage;
+            _resultValue.id = id;
+            _resultValue.interfaceEndpoints = interfaceEndpoints;
+            _resultValue.privateEndpoints = privateEndpoints;
+            _resultValue.privateLinkId = privateLinkId;
+            _resultValue.privateLinkServiceName = privateLinkServiceName;
+            _resultValue.privateLinkServiceResourceId = privateLinkServiceResourceId;
+            _resultValue.projectId = projectId;
+            _resultValue.providerName = providerName;
+            _resultValue.regionName = regionName;
+            _resultValue.serviceAttachmentNames = serviceAttachmentNames;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

@@ -212,22 +212,22 @@ public final class DataLakePipelineSnapshot {
             return this;
         }
         public DataLakePipelineSnapshot build() {
-            final var o = new DataLakePipelineSnapshot();
-            o.copyRegion = copyRegion;
-            o.createdAt = createdAt;
-            o.expiresAt = expiresAt;
-            o.frequencyYype = frequencyYype;
-            o.id = id;
-            o.masterKey = masterKey;
-            o.mongodVersion = mongodVersion;
-            o.policies = policies;
-            o.provider = provider;
-            o.replicaSetName = replicaSetName;
-            o.size = size;
-            o.snapshotType = snapshotType;
-            o.status = status;
-            o.type = type;
-            return o;
+            final var _resultValue = new DataLakePipelineSnapshot();
+            _resultValue.copyRegion = copyRegion;
+            _resultValue.createdAt = createdAt;
+            _resultValue.expiresAt = expiresAt;
+            _resultValue.frequencyYype = frequencyYype;
+            _resultValue.id = id;
+            _resultValue.masterKey = masterKey;
+            _resultValue.mongodVersion = mongodVersion;
+            _resultValue.policies = policies;
+            _resultValue.provider = provider;
+            _resultValue.replicaSetName = replicaSetName;
+            _resultValue.size = size;
+            _resultValue.snapshotType = snapshotType;
+            _resultValue.status = status;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

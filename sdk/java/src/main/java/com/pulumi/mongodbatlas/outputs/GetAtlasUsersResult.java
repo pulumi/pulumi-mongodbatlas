@@ -272,21 +272,21 @@ public final class GetAtlasUsersResult {
             return this;
         }
         public GetAtlasUsersResult build() {
-            final var o = new GetAtlasUsersResult();
-            o.country = country;
-            o.createdAt = createdAt;
-            o.emailAddress = emailAddress;
-            o.firstName = firstName;
-            o.id = id;
-            o.lastAuth = lastAuth;
-            o.lastName = lastName;
-            o.links = links;
-            o.mobileNumber = mobileNumber;
-            o.roles = roles;
-            o.teamIds = teamIds;
-            o.userId = userId;
-            o.username = username;
-            return o;
+            final var _resultValue = new GetAtlasUsersResult();
+            _resultValue.country = country;
+            _resultValue.createdAt = createdAt;
+            _resultValue.emailAddress = emailAddress;
+            _resultValue.firstName = firstName;
+            _resultValue.id = id;
+            _resultValue.lastAuth = lastAuth;
+            _resultValue.lastName = lastName;
+            _resultValue.links = links;
+            _resultValue.mobileNumber = mobileNumber;
+            _resultValue.roles = roles;
+            _resultValue.teamIds = teamIds;
+            _resultValue.userId = userId;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

@@ -98,13 +98,13 @@ public final class GetProjectApiKeysInvokeResult {
             return results(List.of(results));
         }
         public GetProjectApiKeysInvokeResult build() {
-            final var o = new GetProjectApiKeysInvokeResult();
-            o.id = id;
-            o.itemsPerPage = itemsPerPage;
-            o.pageNum = pageNum;
-            o.projectId = projectId;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetProjectApiKeysInvokeResult();
+            _resultValue.id = id;
+            _resultValue.itemsPerPage = itemsPerPage;
+            _resultValue.pageNum = pageNum;
+            _resultValue.projectId = projectId;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

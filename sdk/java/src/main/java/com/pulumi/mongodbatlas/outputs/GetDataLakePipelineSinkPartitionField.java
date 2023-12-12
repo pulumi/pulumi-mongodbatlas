@@ -50,10 +50,10 @@ public final class GetDataLakePipelineSinkPartitionField {
             return this;
         }
         public GetDataLakePipelineSinkPartitionField build() {
-            final var o = new GetDataLakePipelineSinkPartitionField();
-            o.fieldName = fieldName;
-            o.order = order;
-            return o;
+            final var _resultValue = new GetDataLakePipelineSinkPartitionField();
+            _resultValue.fieldName = fieldName;
+            _resultValue.order = order;
+            return _resultValue;
         }
     }
 }

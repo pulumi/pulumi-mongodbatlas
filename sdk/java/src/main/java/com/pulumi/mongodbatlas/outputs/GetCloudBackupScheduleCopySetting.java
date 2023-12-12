@@ -127,13 +127,13 @@ public final class GetCloudBackupScheduleCopySetting {
             return this;
         }
         public GetCloudBackupScheduleCopySetting build() {
-            final var o = new GetCloudBackupScheduleCopySetting();
-            o.cloudProvider = cloudProvider;
-            o.frequencies = frequencies;
-            o.regionName = regionName;
-            o.replicationSpecId = replicationSpecId;
-            o.shouldCopyOplogs = shouldCopyOplogs;
-            return o;
+            final var _resultValue = new GetCloudBackupScheduleCopySetting();
+            _resultValue.cloudProvider = cloudProvider;
+            _resultValue.frequencies = frequencies;
+            _resultValue.regionName = regionName;
+            _resultValue.replicationSpecId = replicationSpecId;
+            _resultValue.shouldCopyOplogs = shouldCopyOplogs;
+            return _resultValue;
         }
     }
 }

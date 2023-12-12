@@ -96,10 +96,10 @@ public final class CustomDbRoleAction {
             return resources(List.of(resources));
         }
         public CustomDbRoleAction build() {
-            final var o = new CustomDbRoleAction();
-            o.action = action;
-            o.resources = resources;
-            return o;
+            final var _resultValue = new CustomDbRoleAction();
+            _resultValue.action = action;
+            _resultValue.resources = resources;
+            return _resultValue;
         }
     }
 }

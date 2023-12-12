@@ -103,12 +103,12 @@ public final class GetApiKeysResult {
             return roleNames(List.of(roleNames));
         }
         public GetApiKeysResult build() {
-            final var o = new GetApiKeysResult();
-            o.apiKeyId = apiKeyId;
-            o.description = description;
-            o.publicKey = publicKey;
-            o.roleNames = roleNames;
-            return o;
+            final var _resultValue = new GetApiKeysResult();
+            _resultValue.apiKeyId = apiKeyId;
+            _resultValue.description = description;
+            _resultValue.publicKey = publicKey;
+            _resultValue.roleNames = roleNames;
+            return _resultValue;
         }
     }
 }

@@ -67,10 +67,10 @@ public final class OnlineArchiveDataProcessRegion {
             return this;
         }
         public OnlineArchiveDataProcessRegion build() {
-            final var o = new OnlineArchiveDataProcessRegion();
-            o.cloudProvider = cloudProvider;
-            o.region = region;
-            return o;
+            final var _resultValue = new OnlineArchiveDataProcessRegion();
+            _resultValue.cloudProvider = cloudProvider;
+            _resultValue.region = region;
+            return _resultValue;
         }
     }
 }

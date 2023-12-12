@@ -65,10 +65,10 @@ public final class GetDatabaseUsersResultLabel {
             return this;
         }
         public GetDatabaseUsersResultLabel build() {
-            final var o = new GetDatabaseUsersResultLabel();
-            o.key = key;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetDatabaseUsersResultLabel();
+            _resultValue.key = key;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

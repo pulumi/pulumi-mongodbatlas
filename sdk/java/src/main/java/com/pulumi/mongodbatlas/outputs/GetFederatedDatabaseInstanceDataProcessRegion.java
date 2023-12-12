@@ -65,10 +65,10 @@ public final class GetFederatedDatabaseInstanceDataProcessRegion {
             return this;
         }
         public GetFederatedDatabaseInstanceDataProcessRegion build() {
-            final var o = new GetFederatedDatabaseInstanceDataProcessRegion();
-            o.cloudProvider = cloudProvider;
-            o.region = region;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstanceDataProcessRegion();
+            _resultValue.cloudProvider = cloudProvider;
+            _resultValue.region = region;
+            return _resultValue;
         }
     }
 }

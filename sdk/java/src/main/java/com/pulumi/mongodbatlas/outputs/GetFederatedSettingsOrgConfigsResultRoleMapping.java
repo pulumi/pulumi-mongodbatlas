@@ -89,11 +89,11 @@ public final class GetFederatedSettingsOrgConfigsResultRoleMapping {
             return roleAssignments(List.of(roleAssignments));
         }
         public GetFederatedSettingsOrgConfigsResultRoleMapping build() {
-            final var o = new GetFederatedSettingsOrgConfigsResultRoleMapping();
-            o.externalGroupName = externalGroupName;
-            o.id = id;
-            o.roleAssignments = roleAssignments;
-            return o;
+            final var _resultValue = new GetFederatedSettingsOrgConfigsResultRoleMapping();
+            _resultValue.externalGroupName = externalGroupName;
+            _resultValue.id = id;
+            _resultValue.roleAssignments = roleAssignments;
+            return _resultValue;
         }
     }
 }

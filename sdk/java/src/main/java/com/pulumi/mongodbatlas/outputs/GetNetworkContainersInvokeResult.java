@@ -100,12 +100,12 @@ public final class GetNetworkContainersInvokeResult {
             return results(List.of(results));
         }
         public GetNetworkContainersInvokeResult build() {
-            final var o = new GetNetworkContainersInvokeResult();
-            o.id = id;
-            o.projectId = projectId;
-            o.providerName = providerName;
-            o.results = results;
-            return o;
+            final var _resultValue = new GetNetworkContainersInvokeResult();
+            _resultValue.id = id;
+            _resultValue.projectId = projectId;
+            _resultValue.providerName = providerName;
+            _resultValue.results = results;
+            return _resultValue;
         }
     }
 }

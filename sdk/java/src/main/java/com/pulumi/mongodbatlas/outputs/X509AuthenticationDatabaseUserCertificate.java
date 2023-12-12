@@ -85,13 +85,13 @@ public final class X509AuthenticationDatabaseUserCertificate {
             return this;
         }
         public X509AuthenticationDatabaseUserCertificate build() {
-            final var o = new X509AuthenticationDatabaseUserCertificate();
-            o.createdAt = createdAt;
-            o.groupId = groupId;
-            o.id = id;
-            o.notAfter = notAfter;
-            o.subject = subject;
-            return o;
+            final var _resultValue = new X509AuthenticationDatabaseUserCertificate();
+            _resultValue.createdAt = createdAt;
+            _resultValue.groupId = groupId;
+            _resultValue.id = id;
+            _resultValue.notAfter = notAfter;
+            _resultValue.subject = subject;
+            return _resultValue;
         }
     }
 }

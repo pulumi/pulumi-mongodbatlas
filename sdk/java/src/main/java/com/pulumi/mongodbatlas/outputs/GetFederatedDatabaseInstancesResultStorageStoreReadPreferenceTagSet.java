@@ -42,9 +42,9 @@ public final class GetFederatedDatabaseInstancesResultStorageStoreReadPreference
             return tags(List.of(tags));
         }
         public GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet build() {
-            final var o = new GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet();
-            o.tags = tags;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstancesResultStorageStoreReadPreferenceTagSet();
+            _resultValue.tags = tags;
+            return _resultValue;
         }
     }
 }

@@ -71,10 +71,10 @@ public final class AdvancedClusterLabel {
             return this;
         }
         public AdvancedClusterLabel build() {
-            final var o = new AdvancedClusterLabel();
-            o.key = key;
-            o.value = value;
-            return o;
+            final var _resultValue = new AdvancedClusterLabel();
+            _resultValue.key = key;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

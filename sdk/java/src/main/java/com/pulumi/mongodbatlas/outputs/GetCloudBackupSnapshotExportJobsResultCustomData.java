@@ -65,10 +65,10 @@ public final class GetCloudBackupSnapshotExportJobsResultCustomData {
             return this;
         }
         public GetCloudBackupSnapshotExportJobsResultCustomData build() {
-            final var o = new GetCloudBackupSnapshotExportJobsResultCustomData();
-            o.key = key;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetCloudBackupSnapshotExportJobsResultCustomData();
+            _resultValue.key = key;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

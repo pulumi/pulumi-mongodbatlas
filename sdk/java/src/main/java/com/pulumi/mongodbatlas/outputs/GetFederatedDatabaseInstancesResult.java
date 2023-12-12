@@ -252,16 +252,16 @@ public final class GetFederatedDatabaseInstancesResult {
             return storageStores(List.of(storageStores));
         }
         public GetFederatedDatabaseInstancesResult build() {
-            final var o = new GetFederatedDatabaseInstancesResult();
-            o.cloudProviderConfig = cloudProviderConfig;
-            o.dataProcessRegions = dataProcessRegions;
-            o.hostnames = hostnames;
-            o.name = name;
-            o.projectId = projectId;
-            o.state = state;
-            o.storageDatabases = storageDatabases;
-            o.storageStores = storageStores;
-            return o;
+            final var _resultValue = new GetFederatedDatabaseInstancesResult();
+            _resultValue.cloudProviderConfig = cloudProviderConfig;
+            _resultValue.dataProcessRegions = dataProcessRegions;
+            _resultValue.hostnames = hostnames;
+            _resultValue.name = name;
+            _resultValue.projectId = projectId;
+            _resultValue.state = state;
+            _resultValue.storageDatabases = storageDatabases;
+            _resultValue.storageStores = storageStores;
+            return _resultValue;
         }
     }
 }

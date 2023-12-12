@@ -53,10 +53,10 @@ public final class CloudProviderAccessFeatureUsage {
             return this;
         }
         public CloudProviderAccessFeatureUsage build() {
-            final var o = new CloudProviderAccessFeatureUsage();
-            o.featureId = featureId;
-            o.featureType = featureType;
-            return o;
+            final var _resultValue = new CloudProviderAccessFeatureUsage();
+            _resultValue.featureId = featureId;
+            _resultValue.featureType = featureType;
+            return _resultValue;
         }
     }
 }

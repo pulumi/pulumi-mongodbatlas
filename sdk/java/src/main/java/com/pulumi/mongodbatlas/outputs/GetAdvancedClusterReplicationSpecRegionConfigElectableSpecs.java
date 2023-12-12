@@ -106,12 +106,12 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
             return this;
         }
         public GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs build() {
-            final var o = new GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs();
-            o.diskIops = diskIops;
-            o.ebsVolumeType = ebsVolumeType;
-            o.instanceSize = instanceSize;
-            o.nodeCount = nodeCount;
-            return o;
+            final var _resultValue = new GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs();
+            _resultValue.diskIops = diskIops;
+            _resultValue.ebsVolumeType = ebsVolumeType;
+            _resultValue.instanceSize = instanceSize;
+            _resultValue.nodeCount = nodeCount;
+            return _resultValue;
         }
     }
 }
