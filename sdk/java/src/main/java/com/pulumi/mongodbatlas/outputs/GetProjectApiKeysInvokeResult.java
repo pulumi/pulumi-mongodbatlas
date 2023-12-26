@@ -21,7 +21,15 @@ public final class GetProjectApiKeysInvokeResult {
     private String id;
     private @Nullable Integer itemsPerPage;
     private @Nullable Integer pageNum;
+    /**
+     * @return Project ID to assign to Access Key
+     * 
+     */
     private String projectId;
+    /**
+     * @return A list where each element represents a API Key assigned to the project.
+     * 
+     */
     private List<GetProjectApiKeysResult> results;
 
     private GetProjectApiKeysInvokeResult() {}
@@ -38,9 +46,17 @@ public final class GetProjectApiKeysInvokeResult {
     public Optional<Integer> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }
+    /**
+     * @return Project ID to assign to Access Key
+     * 
+     */
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return A list where each element represents a API Key assigned to the project.
+     * 
+     */
     public List<GetProjectApiKeysResult> results() {
         return this.results;
     }

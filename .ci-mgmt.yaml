@@ -13,3 +13,6 @@ plugins:
   - name: gcp 
     version: "5.0.0"
 team: ecosystem
+license:
+  ignore:
+    - github.com/mongodb/terraform-provider-mongodbatlas/shim

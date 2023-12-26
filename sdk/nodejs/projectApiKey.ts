@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  *         projectId: "64259ee860c43338194b0f8e",
  *         roleNames: ["GROUP_OWNER"],
  *     }],
- *     projectId: "64259ee860c43338194b0f8e",
  * });
  * ```
  * ### Create And Assign PAK To Multiple Projects
@@ -44,7 +43,6 @@ import * as utilities from "./utilities";
  *             roleNames: ["GROUP_READ_ONLY"],
  *         },
  *     ],
- *     projectId: "64259ee860c43338194b0f8e",
  * });
  * ```
  *
@@ -91,14 +89,16 @@ export class ProjectApiKey extends pulumi.CustomResource {
     public /*out*/ readonly apiKeyId!: pulumi.Output<string>;
     /**
      * Description of this Project API key.
-     *
-     * > **NOTE:** Project created by API Keys must belong to an existing organization.
      */
     public readonly description!: pulumi.Output<string>;
     public /*out*/ readonly privateKey!: pulumi.Output<string>;
-    public readonly projectAssignments!: pulumi.Output<outputs.ProjectApiKeyProjectAssignment[] | undefined>;
+    public readonly projectAssignments!: pulumi.Output<outputs.ProjectApiKeyProjectAssignment[]>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
+     *
+     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
      */
     public readonly projectId!: pulumi.Output<string>;
     public /*out*/ readonly publicKey!: pulumi.Output<string>;
@@ -127,8 +127,8 @@ export class ProjectApiKey extends pulumi.CustomResource {
             if ((!args || args.description === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'description'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'projectId'");
+            if ((!args || args.projectAssignments === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'projectAssignments'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["projectAssignments"] = args ? args.projectAssignments : undefined;
@@ -154,14 +154,16 @@ export interface ProjectApiKeyState {
     apiKeyId?: pulumi.Input<string>;
     /**
      * Description of this Project API key.
-     *
-     * > **NOTE:** Project created by API Keys must belong to an existing organization.
      */
     description?: pulumi.Input<string>;
     privateKey?: pulumi.Input<string>;
     projectAssignments?: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
+     *
+     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
      */
     projectId?: pulumi.Input<string>;
     publicKey?: pulumi.Input<string>;
@@ -173,13 +175,15 @@ export interface ProjectApiKeyState {
 export interface ProjectApiKeyArgs {
     /**
      * Description of this Project API key.
-     *
-     * > **NOTE:** Project created by API Keys must belong to an existing organization.
      */
     description: pulumi.Input<string>;
-    projectAssignments?: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;
+    projectAssignments: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+     *
+     * > **NOTE:** Project created by API Keys must belong to an existing organization.
+     *
+     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
      */
-    projectId: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
 }

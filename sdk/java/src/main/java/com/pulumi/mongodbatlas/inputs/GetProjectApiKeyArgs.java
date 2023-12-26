@@ -13,9 +13,17 @@ public final class GetProjectApiKeyArgs extends com.pulumi.resources.InvokeArgs 
 
     public static final GetProjectApiKeyArgs Empty = new GetProjectApiKeyArgs();
 
+    /**
+     * Unique identifier for this Project API key.
+     * 
+     */
     @Import(name="apiKeyId", required=true)
     private Output<String> apiKeyId;
 
+    /**
+     * @return Unique identifier for this Project API key.
+     * 
+     */
     public Output<String> apiKeyId() {
         return this.apiKeyId;
     }
@@ -60,11 +68,23 @@ public final class GetProjectApiKeyArgs extends com.pulumi.resources.InvokeArgs 
             $ = new GetProjectApiKeyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param apiKeyId Unique identifier for this Project API key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiKeyId(Output<String> apiKeyId) {
             $.apiKeyId = apiKeyId;
             return this;
         }
 
+        /**
+         * @param apiKeyId Unique identifier for this Project API key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiKeyId(String apiKeyId) {
             return apiKeyId(Output.of(apiKeyId));
         }

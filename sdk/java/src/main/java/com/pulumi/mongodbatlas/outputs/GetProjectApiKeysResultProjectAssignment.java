@@ -11,21 +11,19 @@ import java.util.Objects;
 @CustomType
 public final class GetProjectApiKeysResultProjectAssignment {
     /**
-     * @return Project ID to assign to Access Key
+     * @return The unique ID for the project.
      * 
      */
     private String projectId;
     /**
      * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
      * 
-     * See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
-     * 
      */
     private List<String> roleNames;
 
     private GetProjectApiKeysResultProjectAssignment() {}
     /**
-     * @return Project ID to assign to Access Key
+     * @return The unique ID for the project.
      * 
      */
     public String projectId() {
@@ -33,8 +31,6 @@ public final class GetProjectApiKeysResultProjectAssignment {
     }
     /**
      * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-     * 
-     * See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
      * 
      */
     public List<String> roleNames() {

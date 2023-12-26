@@ -43,6 +43,14 @@ export interface GetBackupCompliancePolicyResult {
      */
     readonly authorizedEmail: string;
     /**
+     * First name of the user who authorized to update the Backup Compliance Policy settings.
+     */
+    readonly authorizedUserFirstName: string;
+    /**
+     * Last name of the user who authorized to update the Backup Compliance Policy settings.
+     */
+    readonly authorizedUserLastName: string;
+    /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      */
     readonly copyProtectionEnabled: boolean;

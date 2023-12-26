@@ -1901,7 +1901,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cloudBackup")
-    def cloud_backup(self) -> pulumi.Output[Optional[bool]]:
+    def cloud_backup(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "cloud_backup")
 
     @property

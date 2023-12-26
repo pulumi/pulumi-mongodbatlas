@@ -65,7 +65,7 @@ type Cluster struct {
 	BackupEnabled pulumi.BoolOutput `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigOutput `pulumi:"biConnectorConfig"`
-	CloudBackup       pulumi.BoolPtrOutput           `pulumi:"cloudBackup"`
+	CloudBackup       pulumi.BoolOutput              `pulumi:"cloudBackup"`
 	// The cluster ID.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -852,8 +852,8 @@ func (o ClusterOutput) BiConnectorConfig() ClusterBiConnectorConfigOutput {
 	return o.ApplyT(func(v *Cluster) ClusterBiConnectorConfigOutput { return v.BiConnectorConfig }).(ClusterBiConnectorConfigOutput)
 }
 
-func (o ClusterOutput) CloudBackup() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.CloudBackup }).(pulumi.BoolPtrOutput)
+func (o ClusterOutput) CloudBackup() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.CloudBackup }).(pulumi.BoolOutput)
 }
 
 // The cluster ID.

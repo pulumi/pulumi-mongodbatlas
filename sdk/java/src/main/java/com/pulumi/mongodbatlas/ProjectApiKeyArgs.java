@@ -20,8 +20,6 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Description of this Project API key.
      * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
      */
     @Import(name="description", required=true)
     private Output<String> description;
@@ -29,33 +27,43 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Description of this Project API key.
      * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
      */
     public Output<String> description() {
         return this.description;
     }
 
-    @Import(name="projectAssignments")
-    private @Nullable Output<List<ProjectApiKeyProjectAssignmentArgs>> projectAssignments;
+    @Import(name="projectAssignments", required=true)
+    private Output<List<ProjectApiKeyProjectAssignmentArgs>> projectAssignments;
 
-    public Optional<Output<List<ProjectApiKeyProjectAssignmentArgs>>> projectAssignments() {
-        return Optional.ofNullable(this.projectAssignments);
+    public Output<List<ProjectApiKeyProjectAssignmentArgs>> projectAssignments() {
+        return this.projectAssignments;
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
      * 
      */
-    @Import(name="projectId", required=true)
-    private Output<String> projectId;
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
      * 
      */
-    public Output<String> projectId() {
-        return this.projectId;
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
     }
 
     private ProjectApiKeyArgs() {}
@@ -87,8 +95,6 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param description Description of this Project API key.
          * 
-         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-         * 
          * @return builder
          * 
          */
@@ -100,8 +106,6 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param description Description of this Project API key.
          * 
-         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-         * 
          * @return builder
          * 
          */
@@ -109,7 +113,7 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
             return description(Output.of(description));
         }
 
-        public Builder projectAssignments(@Nullable Output<List<ProjectApiKeyProjectAssignmentArgs>> projectAssignments) {
+        public Builder projectAssignments(Output<List<ProjectApiKeyProjectAssignmentArgs>> projectAssignments) {
             $.projectAssignments = projectAssignments;
             return this;
         }
@@ -123,29 +127,41 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+         * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 
+         * @deprecated
+         * this parameter is deprecated and will be removed in version 1.16.0
+         * 
          */
-        public Builder projectId(Output<String> projectId) {
+        @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
+        public Builder projectId(@Nullable Output<String> projectId) {
             $.projectId = projectId;
             return this;
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+         * 
+         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
          * 
          * @return builder
          * 
+         * @deprecated
+         * this parameter is deprecated and will be removed in version 1.16.0
+         * 
          */
+        @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
         }
 
         public ProjectApiKeyArgs build() {
             $.description = Objects.requireNonNull($.description, "expected parameter 'description' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            $.projectAssignments = Objects.requireNonNull($.projectAssignments, "expected parameter 'projectAssignments' to be non-null");
             return $;
         }
     }

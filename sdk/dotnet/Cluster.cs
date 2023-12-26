@@ -84,7 +84,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.ClusterBiConnectorConfig> BiConnectorConfig { get; private set; } = null!;
 
         [Output("cloudBackup")]
-        public Output<bool?> CloudBackup { get; private set; } = null!;
+        public Output<bool> CloudBackup { get; private set; } = null!;
 
         /// <summary>
         /// The cluster ID.

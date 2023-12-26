@@ -17,6 +17,8 @@ __all__ = ['BackupCompliancePolicyArgs', 'BackupCompliancePolicy']
 class BackupCompliancePolicyArgs:
     def __init__(__self__, *,
                  authorized_email: pulumi.Input[str],
+                 authorized_user_first_name: pulumi.Input[str],
+                 authorized_user_last_name: pulumi.Input[str],
                  copy_protection_enabled: pulumi.Input[bool],
                  encryption_at_rest_enabled: pulumi.Input[bool],
                  on_demand_policy_item: pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs'],
@@ -30,6 +32,8 @@ class BackupCompliancePolicyArgs:
         """
         The set of arguments for constructing a BackupCompliancePolicy resource.
         :param pulumi.Input[str] authorized_email: Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
+        :param pulumi.Input[str] authorized_user_first_name: First name of the user who authorized to update the Backup Compliance Policy settings.
+        :param pulumi.Input[str] authorized_user_last_name: Last name of the user who authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[bool] copy_protection_enabled: Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] encryption_at_rest_enabled: Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -37,6 +41,8 @@ class BackupCompliancePolicyArgs:
         :param pulumi.Input[int] restore_window_days: Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         """
         pulumi.set(__self__, "authorized_email", authorized_email)
+        pulumi.set(__self__, "authorized_user_first_name", authorized_user_first_name)
+        pulumi.set(__self__, "authorized_user_last_name", authorized_user_last_name)
         pulumi.set(__self__, "copy_protection_enabled", copy_protection_enabled)
         pulumi.set(__self__, "encryption_at_rest_enabled", encryption_at_rest_enabled)
         pulumi.set(__self__, "on_demand_policy_item", on_demand_policy_item)
@@ -64,6 +70,30 @@ class BackupCompliancePolicyArgs:
     @authorized_email.setter
     def authorized_email(self, value: pulumi.Input[str]):
         pulumi.set(self, "authorized_email", value)
+
+    @property
+    @pulumi.getter(name="authorizedUserFirstName")
+    def authorized_user_first_name(self) -> pulumi.Input[str]:
+        """
+        First name of the user who authorized to update the Backup Compliance Policy settings.
+        """
+        return pulumi.get(self, "authorized_user_first_name")
+
+    @authorized_user_first_name.setter
+    def authorized_user_first_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "authorized_user_first_name", value)
+
+    @property
+    @pulumi.getter(name="authorizedUserLastName")
+    def authorized_user_last_name(self) -> pulumi.Input[str]:
+        """
+        Last name of the user who authorized to update the Backup Compliance Policy settings.
+        """
+        return pulumi.get(self, "authorized_user_last_name")
+
+    @authorized_user_last_name.setter
+    def authorized_user_last_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "authorized_user_last_name", value)
 
     @property
     @pulumi.getter(name="copyProtectionEnabled")
@@ -175,6 +205,8 @@ class BackupCompliancePolicyArgs:
 class _BackupCompliancePolicyState:
     def __init__(__self__, *,
                  authorized_email: Optional[pulumi.Input[str]] = None,
+                 authorized_user_first_name: Optional[pulumi.Input[str]] = None,
+                 authorized_user_last_name: Optional[pulumi.Input[str]] = None,
                  copy_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  encryption_at_rest_enabled: Optional[pulumi.Input[bool]] = None,
                  on_demand_policy_item: Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']] = None,
@@ -191,6 +223,8 @@ class _BackupCompliancePolicyState:
         """
         Input properties used for looking up and filtering BackupCompliancePolicy resources.
         :param pulumi.Input[str] authorized_email: Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
+        :param pulumi.Input[str] authorized_user_first_name: First name of the user who authorized to update the Backup Compliance Policy settings.
+        :param pulumi.Input[str] authorized_user_last_name: Last name of the user who authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[bool] copy_protection_enabled: Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] encryption_at_rest_enabled: Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -202,6 +236,10 @@ class _BackupCompliancePolicyState:
         """
         if authorized_email is not None:
             pulumi.set(__self__, "authorized_email", authorized_email)
+        if authorized_user_first_name is not None:
+            pulumi.set(__self__, "authorized_user_first_name", authorized_user_first_name)
+        if authorized_user_last_name is not None:
+            pulumi.set(__self__, "authorized_user_last_name", authorized_user_last_name)
         if copy_protection_enabled is not None:
             pulumi.set(__self__, "copy_protection_enabled", copy_protection_enabled)
         if encryption_at_rest_enabled is not None:
@@ -240,6 +278,30 @@ class _BackupCompliancePolicyState:
     @authorized_email.setter
     def authorized_email(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "authorized_email", value)
+
+    @property
+    @pulumi.getter(name="authorizedUserFirstName")
+    def authorized_user_first_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        First name of the user who authorized to update the Backup Compliance Policy settings.
+        """
+        return pulumi.get(self, "authorized_user_first_name")
+
+    @authorized_user_first_name.setter
+    def authorized_user_first_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authorized_user_first_name", value)
+
+    @property
+    @pulumi.getter(name="authorizedUserLastName")
+    def authorized_user_last_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Last name of the user who authorized to update the Backup Compliance Policy settings.
+        """
+        return pulumi.get(self, "authorized_user_last_name")
+
+    @authorized_user_last_name.setter
+    def authorized_user_last_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authorized_user_last_name", value)
 
     @property
     @pulumi.getter(name="copyProtectionEnabled")
@@ -389,6 +451,8 @@ class BackupCompliancePolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authorized_email: Optional[pulumi.Input[str]] = None,
+                 authorized_user_first_name: Optional[pulumi.Input[str]] = None,
+                 authorized_user_last_name: Optional[pulumi.Input[str]] = None,
                  copy_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  encryption_at_rest_enabled: Optional[pulumi.Input[bool]] = None,
                  on_demand_policy_item: Optional[pulumi.Input[pulumi.InputType['BackupCompliancePolicyOnDemandPolicyItemArgs']]] = None,
@@ -415,6 +479,8 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authorized_email: Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
+        :param pulumi.Input[str] authorized_user_first_name: First name of the user who authorized to update the Backup Compliance Policy settings.
+        :param pulumi.Input[str] authorized_user_last_name: Last name of the user who authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[bool] copy_protection_enabled: Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] encryption_at_rest_enabled: Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -455,6 +521,8 @@ class BackupCompliancePolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authorized_email: Optional[pulumi.Input[str]] = None,
+                 authorized_user_first_name: Optional[pulumi.Input[str]] = None,
+                 authorized_user_last_name: Optional[pulumi.Input[str]] = None,
                  copy_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  encryption_at_rest_enabled: Optional[pulumi.Input[bool]] = None,
                  on_demand_policy_item: Optional[pulumi.Input[pulumi.InputType['BackupCompliancePolicyOnDemandPolicyItemArgs']]] = None,
@@ -477,6 +545,12 @@ class BackupCompliancePolicy(pulumi.CustomResource):
             if authorized_email is None and not opts.urn:
                 raise TypeError("Missing required property 'authorized_email'")
             __props__.__dict__["authorized_email"] = authorized_email
+            if authorized_user_first_name is None and not opts.urn:
+                raise TypeError("Missing required property 'authorized_user_first_name'")
+            __props__.__dict__["authorized_user_first_name"] = authorized_user_first_name
+            if authorized_user_last_name is None and not opts.urn:
+                raise TypeError("Missing required property 'authorized_user_last_name'")
+            __props__.__dict__["authorized_user_last_name"] = authorized_user_last_name
             if copy_protection_enabled is None and not opts.urn:
                 raise TypeError("Missing required property 'copy_protection_enabled'")
             __props__.__dict__["copy_protection_enabled"] = copy_protection_enabled
@@ -511,6 +585,8 @@ class BackupCompliancePolicy(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             authorized_email: Optional[pulumi.Input[str]] = None,
+            authorized_user_first_name: Optional[pulumi.Input[str]] = None,
+            authorized_user_last_name: Optional[pulumi.Input[str]] = None,
             copy_protection_enabled: Optional[pulumi.Input[bool]] = None,
             encryption_at_rest_enabled: Optional[pulumi.Input[bool]] = None,
             on_demand_policy_item: Optional[pulumi.Input[pulumi.InputType['BackupCompliancePolicyOnDemandPolicyItemArgs']]] = None,
@@ -532,6 +608,8 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authorized_email: Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
+        :param pulumi.Input[str] authorized_user_first_name: First name of the user who authorized to update the Backup Compliance Policy settings.
+        :param pulumi.Input[str] authorized_user_last_name: Last name of the user who authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[bool] copy_protection_enabled: Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] encryption_at_rest_enabled: Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -546,6 +624,8 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         __props__ = _BackupCompliancePolicyState.__new__(_BackupCompliancePolicyState)
 
         __props__.__dict__["authorized_email"] = authorized_email
+        __props__.__dict__["authorized_user_first_name"] = authorized_user_first_name
+        __props__.__dict__["authorized_user_last_name"] = authorized_user_last_name
         __props__.__dict__["copy_protection_enabled"] = copy_protection_enabled
         __props__.__dict__["encryption_at_rest_enabled"] = encryption_at_rest_enabled
         __props__.__dict__["on_demand_policy_item"] = on_demand_policy_item
@@ -568,6 +648,22 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
         """
         return pulumi.get(self, "authorized_email")
+
+    @property
+    @pulumi.getter(name="authorizedUserFirstName")
+    def authorized_user_first_name(self) -> pulumi.Output[str]:
+        """
+        First name of the user who authorized to update the Backup Compliance Policy settings.
+        """
+        return pulumi.get(self, "authorized_user_first_name")
+
+    @property
+    @pulumi.getter(name="authorizedUserLastName")
+    def authorized_user_last_name(self) -> pulumi.Output[str]:
+        """
+        Last name of the user who authorized to update the Backup Compliance Policy settings.
+        """
+        return pulumi.get(self, "authorized_user_last_name")
 
     @property
     @pulumi.getter(name="copyProtectionEnabled")

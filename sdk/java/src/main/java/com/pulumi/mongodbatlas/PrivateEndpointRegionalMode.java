@@ -12,7 +12,6 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.PrivateEndpointRegionalModeState;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -36,7 +35,7 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
      * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> enabled;
+    private Output<Boolean> enabled;
 
     /**
      * @return Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can&#39;t disable this setting if you have:
@@ -45,8 +44,8 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
      *   You can create only sharded clusters when you enable the regionalized private endpoint setting. You can&#39;t create replica sets.
      * 
      */
-    public Output<Optional<Boolean>> enabled() {
-        return Codegen.optional(this.enabled);
+    public Output<Boolean> enabled() {
+        return this.enabled;
     }
     /**
      * Unique identifier for the project.

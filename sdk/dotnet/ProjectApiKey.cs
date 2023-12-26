@@ -35,7 +35,6 @@ namespace Pulumi.Mongodbatlas
     ///                 },
     ///             },
     ///         },
-    ///         ProjectId = "64259ee860c43338194b0f8e",
     ///     });
     /// 
     /// });
@@ -73,7 +72,6 @@ namespace Pulumi.Mongodbatlas
     ///                 },
     ///             },
     ///         },
-    ///         ProjectId = "64259ee860c43338194b0f8e",
     ///     });
     /// 
     /// });
@@ -99,8 +97,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Description of this Project API key.
-        /// 
-        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
@@ -112,7 +108,9 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.ProjectApiKeyProjectAssignment>> ProjectAssignments { get; private set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+        /// 
+        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -172,13 +170,11 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Description of this Project API key.
-        /// 
-        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
         [Input("description", required: true)]
         public Input<string> Description { get; set; } = null!;
 
-        [Input("projectAssignments")]
+        [Input("projectAssignments", required: true)]
         private InputList<Inputs.ProjectApiKeyProjectAssignmentArgs>? _projectAssignments;
         public InputList<Inputs.ProjectApiKeyProjectAssignmentArgs> ProjectAssignments
         {
@@ -187,10 +183,12 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+        /// 
+        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
-        [Input("projectId", required: true)]
-        public Input<string> ProjectId { get; set; } = null!;
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         public ProjectApiKeyArgs()
         {
@@ -208,8 +206,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Description of this Project API key.
-        /// 
-        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -235,7 +231,9 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+        /// 
+        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

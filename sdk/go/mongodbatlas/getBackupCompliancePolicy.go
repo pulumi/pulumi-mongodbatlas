@@ -36,6 +36,10 @@ type LookupBackupCompliancePolicyArgs struct {
 type LookupBackupCompliancePolicyResult struct {
 	// Email address of the user who is authorized to update the Backup Compliance Policy settings.
 	AuthorizedEmail string `pulumi:"authorizedEmail"`
+	// First name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserFirstName string `pulumi:"authorizedUserFirstName"`
+	// Last name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserLastName string `pulumi:"authorizedUserLastName"`
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
 	CopyProtectionEnabled bool `pulumi:"copyProtectionEnabled"`
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -106,6 +110,16 @@ func (o LookupBackupCompliancePolicyResultOutput) ToLookupBackupCompliancePolicy
 // Email address of the user who is authorized to update the Backup Compliance Policy settings.
 func (o LookupBackupCompliancePolicyResultOutput) AuthorizedEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) string { return v.AuthorizedEmail }).(pulumi.StringOutput)
+}
+
+// First name of the user who authorized to update the Backup Compliance Policy settings.
+func (o LookupBackupCompliancePolicyResultOutput) AuthorizedUserFirstName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) string { return v.AuthorizedUserFirstName }).(pulumi.StringOutput)
+}
+
+// Last name of the user who authorized to update the Backup Compliance Policy settings.
+func (o LookupBackupCompliancePolicyResultOutput) AuthorizedUserLastName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) string { return v.AuthorizedUserLastName }).(pulumi.StringOutput)
 }
 
 // Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.

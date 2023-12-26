@@ -23,14 +23,14 @@ import (
 	// Enable embedding metadata
 	_ "embed"
 
-	"github.com/mongodb/terraform-provider-mongodbatlas/mongodbatlas"
-	upstreamVersion "github.com/mongodb/terraform-provider-mongodbatlas/version"
-	"github.com/pulumi/pulumi-mongodbatlas/provider/v3/pkg/version"
+	mongodbatlas "github.com/mongodb/terraform-provider-mongodbatlas/shim"
 	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+
+	"github.com/pulumi/pulumi-mongodbatlas/provider/v3/pkg/version"
 )
 
 // all of the token components used below.
@@ -68,22 +68,21 @@ func Provider() tfbridge.ProviderInfo {
 	ctx := context.Background()
 	// Instantiate the Terraform provider
 	p := pfbridge.MuxShimWithPF(ctx,
-		shimv2.NewProvider(mongodbatlas.NewSdkV2Provider()),
-		mongodbatlas.NewFrameworkProvider())
+		shimv2.NewProvider(mongodbatlas.SDKProvider()),
+		mongodbatlas.FrameworkProvider())
 
 	trueValue := true
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:                 p,
-		Name:              "mongodbatlas",
-		Description:       "A Pulumi package for creating and managing mongodbatlas cloud resources.",
-		Keywords:          []string{"pulumi", "mongodbatlas"},
-		License:           "Apache-2.0",
-		Homepage:          "https://pulumi.io",
-		Repository:        "https://github.com/pulumi/pulumi-mongodbatlas",
-		GitHubOrg:         "mongodb",
-		Version:           version.Version,
-		TFProviderVersion: upstreamVersion.ProviderVersion,
+		P:           p,
+		Name:        "mongodbatlas",
+		Description: "A Pulumi package for creating and managing mongodbatlas cloud resources.",
+		Keywords:    []string{"pulumi", "mongodbatlas"},
+		License:     "Apache-2.0",
+		Homepage:    "https://pulumi.io",
+		Repository:  "https://github.com/pulumi/pulumi-mongodbatlas",
+		GitHubOrg:   "mongodb",
+		Version:     version.Version,
 		Config: map[string]*tfbridge.SchemaInfo{
 			"private_key": {MarkAsOptional: &trueValue},
 			"public_key":  {MarkAsOptional: &trueValue},

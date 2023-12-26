@@ -24,6 +24,7 @@ func LookupProjectApiKey(ctx *pulumi.Context, args *LookupProjectApiKeyArgs, opt
 
 // A collection of arguments for invoking getProjectApiKey.
 type LookupProjectApiKeyArgs struct {
+	// Unique identifier for this Project API key.
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
@@ -60,6 +61,7 @@ func LookupProjectApiKeyOutput(ctx *pulumi.Context, args LookupProjectApiKeyOutp
 
 // A collection of arguments for invoking getProjectApiKey.
 type LookupProjectApiKeyOutputArgs struct {
+	// Unique identifier for this Project API key.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
 	// The unique ID for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`

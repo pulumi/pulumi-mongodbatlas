@@ -25,6 +25,16 @@ public final class GetBackupCompliancePolicyResult {
      */
     private String authorizedEmail;
     /**
+     * @return First name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    private String authorizedUserFirstName;
+    /**
+     * @return Last name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    private String authorizedUserLastName;
+    /**
      * @return Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      * 
      */
@@ -78,6 +88,20 @@ public final class GetBackupCompliancePolicyResult {
      */
     public String authorizedEmail() {
         return this.authorizedEmail;
+    }
+    /**
+     * @return First name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    public String authorizedUserFirstName() {
+        return this.authorizedUserFirstName;
+    }
+    /**
+     * @return Last name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    public String authorizedUserLastName() {
+        return this.authorizedUserLastName;
     }
     /**
      * @return Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
@@ -164,6 +188,8 @@ public final class GetBackupCompliancePolicyResult {
     @CustomType.Builder
     public static final class Builder {
         private String authorizedEmail;
+        private String authorizedUserFirstName;
+        private String authorizedUserLastName;
         private Boolean copyProtectionEnabled;
         private Boolean encryptionAtRestEnabled;
         private String id;
@@ -182,6 +208,8 @@ public final class GetBackupCompliancePolicyResult {
         public Builder(GetBackupCompliancePolicyResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.authorizedEmail = defaults.authorizedEmail;
+    	      this.authorizedUserFirstName = defaults.authorizedUserFirstName;
+    	      this.authorizedUserLastName = defaults.authorizedUserLastName;
     	      this.copyProtectionEnabled = defaults.copyProtectionEnabled;
     	      this.encryptionAtRestEnabled = defaults.encryptionAtRestEnabled;
     	      this.id = defaults.id;
@@ -201,6 +229,16 @@ public final class GetBackupCompliancePolicyResult {
         @CustomType.Setter
         public Builder authorizedEmail(String authorizedEmail) {
             this.authorizedEmail = Objects.requireNonNull(authorizedEmail);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder authorizedUserFirstName(String authorizedUserFirstName) {
+            this.authorizedUserFirstName = Objects.requireNonNull(authorizedUserFirstName);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder authorizedUserLastName(String authorizedUserLastName) {
+            this.authorizedUserLastName = Objects.requireNonNull(authorizedUserLastName);
             return this;
         }
         @CustomType.Setter
@@ -282,6 +320,8 @@ public final class GetBackupCompliancePolicyResult {
         public GetBackupCompliancePolicyResult build() {
             final var _resultValue = new GetBackupCompliancePolicyResult();
             _resultValue.authorizedEmail = authorizedEmail;
+            _resultValue.authorizedUserFirstName = authorizedUserFirstName;
+            _resultValue.authorizedUserLastName = authorizedUserLastName;
             _resultValue.copyProtectionEnabled = copyProtectionEnabled;
             _resultValue.encryptionAtRestEnabled = encryptionAtRestEnabled;
             _resultValue.id = id;

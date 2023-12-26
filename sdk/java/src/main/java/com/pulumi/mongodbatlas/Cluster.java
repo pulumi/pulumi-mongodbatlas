@@ -197,10 +197,10 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.biConnectorConfig;
     }
     @Export(name="cloudBackup", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> cloudBackup;
+    private Output<Boolean> cloudBackup;
 
-    public Output<Optional<Boolean>> cloudBackup() {
-        return Codegen.optional(this.cloudBackup);
+    public Output<Boolean> cloudBackup() {
+        return this.cloudBackup;
     }
     /**
      * The cluster ID.

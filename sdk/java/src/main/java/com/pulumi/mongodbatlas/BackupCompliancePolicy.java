@@ -52,6 +52,34 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
         return this.authorizedEmail;
     }
     /**
+     * First name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    @Export(name="authorizedUserFirstName", refs={String.class}, tree="[0]")
+    private Output<String> authorizedUserFirstName;
+
+    /**
+     * @return First name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    public Output<String> authorizedUserFirstName() {
+        return this.authorizedUserFirstName;
+    }
+    /**
+     * Last name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    @Export(name="authorizedUserLastName", refs={String.class}, tree="[0]")
+    private Output<String> authorizedUserLastName;
+
+    /**
+     * @return Last name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    public Output<String> authorizedUserLastName() {
+        return this.authorizedUserLastName;
+    }
+    /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      * 
      */
