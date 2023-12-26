@@ -3268,6 +3268,8 @@
             },
             "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy": {
                 "authorizedEmail": "authorized_email",
+                "authorizedUserFirstName": "authorized_user_first_name",
+                "authorizedUserLastName": "authorized_user_last_name",
                 "copyProtectionEnabled": "copy_protection_enabled",
                 "encryptionAtRestEnabled": "encryption_at_rest_enabled",
                 "onDemandPolicyItem": "on_demand_policy_item",
@@ -3890,6 +3892,8 @@
             },
             "mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy": {
                 "authorizedEmail": "authorized_email",
+                "authorizedUserFirstName": "authorized_user_first_name",
+                "authorizedUserLastName": "authorized_user_last_name",
                 "copyProtectionEnabled": "copy_protection_enabled",
                 "encryptionAtRestEnabled": "encryption_at_rest_enabled",
                 "onDemandPolicyItem": "on_demand_policy_item",
