@@ -31,6 +31,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetProjectApiKeyArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Unique identifier for this Project API key.
+        /// </summary>
         [Input("apiKeyId", required: true)]
         public string ApiKeyId { get; set; } = null!;
 
@@ -48,6 +51,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetProjectApiKeyInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Unique identifier for this Project API key.
+        /// </summary>
         [Input("apiKeyId", required: true)]
         public Input<string> ApiKeyId { get; set; } = null!;
 

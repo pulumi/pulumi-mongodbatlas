@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getProjectApiKeys({
+ *     itemsPerPage: 5,
+ *     pageNum: 1,
+ *     projectId: "32b6e34b3d91647abb20e7b8",
+ * });
+ * ```
+ */
 export function getProjectApiKeys(args: GetProjectApiKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectApiKeysResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -29,7 +43,7 @@ export interface GetProjectApiKeysArgs {
      */
     pageNum?: number;
     /**
-     * Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * The unique ID for the project.
      */
     projectId: string;
 }
@@ -44,9 +58,29 @@ export interface GetProjectApiKeysResult {
     readonly id: string;
     readonly itemsPerPage?: number;
     readonly pageNum?: number;
+    /**
+     * Project ID to assign to Access Key
+     */
     readonly projectId: string;
+    /**
+     * A list where each element represents a API Key assigned to the project.
+     */
     readonly results: outputs.GetProjectApiKeysResult[];
 }
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getProjectApiKeys({
+ *     itemsPerPage: 5,
+ *     pageNum: 1,
+ *     projectId: "32b6e34b3d91647abb20e7b8",
+ * });
+ * ```
+ */
 export function getProjectApiKeysOutput(args: GetProjectApiKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectApiKeysResult> {
     return pulumi.output(args).apply((a: any) => getProjectApiKeys(a, opts))
 }
@@ -64,7 +98,7 @@ export interface GetProjectApiKeysOutputArgs {
      */
     pageNum?: pulumi.Input<number>;
     /**
-     * Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * The unique ID for the project.
      */
     projectId: pulumi.Input<string>;
 }

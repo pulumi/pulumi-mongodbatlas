@@ -19139,11 +19139,8 @@ class GetProjectApiKeysResultProjectAssignmentResult(dict):
                  project_id: str,
                  role_names: Sequence[str]):
         """
-        :param str project_id: Project ID to assign to Access Key
+        :param str project_id: The unique ID for the project.
         :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-               
-               
-               See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "role_names", role_names)
@@ -19152,7 +19149,7 @@ class GetProjectApiKeysResultProjectAssignmentResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        Project ID to assign to Access Key
+        The unique ID for the project.
         """
         return pulumi.get(self, "project_id")
 
@@ -19161,9 +19158,6 @@ class GetProjectApiKeysResultProjectAssignmentResult(dict):
     def role_names(self) -> Sequence[str]:
         """
         List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-
-
-        See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
         """
         return pulumi.get(self, "role_names")
 

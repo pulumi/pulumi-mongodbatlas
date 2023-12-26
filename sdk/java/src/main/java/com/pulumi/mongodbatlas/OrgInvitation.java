@@ -12,7 +12,6 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.OrgInvitationState;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -216,14 +215,14 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="teamsIds", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> teamsIds;
+    private Output<List<String>> teamsIds;
 
     /**
      * @return An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
      * 
      */
-    public Output<Optional<List<String>>> teamsIds() {
-        return Codegen.optional(this.teamsIds);
+    public Output<List<String>> teamsIds() {
+        return this.teamsIds;
     }
     /**
      * Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.

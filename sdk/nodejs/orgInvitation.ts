@@ -113,7 +113,7 @@ export class OrgInvitation extends pulumi.CustomResource {
     /**
      * An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
      */
-    public readonly teamsIds!: pulumi.Output<string[] | undefined>;
+    public readonly teamsIds!: pulumi.Output<string[]>;
     /**
      * Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
      */

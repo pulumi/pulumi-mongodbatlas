@@ -39,6 +39,36 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * First name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    @Import(name="authorizedUserFirstName", required=true)
+    private Output<String> authorizedUserFirstName;
+
+    /**
+     * @return First name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    public Output<String> authorizedUserFirstName() {
+        return this.authorizedUserFirstName;
+    }
+
+    /**
+     * Last name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    @Import(name="authorizedUserLastName", required=true)
+    private Output<String> authorizedUserLastName;
+
+    /**
+     * @return Last name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    public Output<String> authorizedUserLastName() {
+        return this.authorizedUserLastName;
+    }
+
+    /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      * 
      */
@@ -152,6 +182,8 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
 
     private BackupCompliancePolicyArgs(BackupCompliancePolicyArgs $) {
         this.authorizedEmail = $.authorizedEmail;
+        this.authorizedUserFirstName = $.authorizedUserFirstName;
+        this.authorizedUserLastName = $.authorizedUserLastName;
         this.copyProtectionEnabled = $.copyProtectionEnabled;
         this.encryptionAtRestEnabled = $.encryptionAtRestEnabled;
         this.onDemandPolicyItem = $.onDemandPolicyItem;
@@ -201,6 +233,48 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
          */
         public Builder authorizedEmail(String authorizedEmail) {
             return authorizedEmail(Output.of(authorizedEmail));
+        }
+
+        /**
+         * @param authorizedUserFirstName First name of the user who authorized to update the Backup Compliance Policy settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizedUserFirstName(Output<String> authorizedUserFirstName) {
+            $.authorizedUserFirstName = authorizedUserFirstName;
+            return this;
+        }
+
+        /**
+         * @param authorizedUserFirstName First name of the user who authorized to update the Backup Compliance Policy settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizedUserFirstName(String authorizedUserFirstName) {
+            return authorizedUserFirstName(Output.of(authorizedUserFirstName));
+        }
+
+        /**
+         * @param authorizedUserLastName Last name of the user who authorized to update the Backup Compliance Policy settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizedUserLastName(Output<String> authorizedUserLastName) {
+            $.authorizedUserLastName = authorizedUserLastName;
+            return this;
+        }
+
+        /**
+         * @param authorizedUserLastName Last name of the user who authorized to update the Backup Compliance Policy settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizedUserLastName(String authorizedUserLastName) {
+            return authorizedUserLastName(Output.of(authorizedUserLastName));
         }
 
         /**
@@ -363,6 +437,8 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
 
         public BackupCompliancePolicyArgs build() {
             $.authorizedEmail = Objects.requireNonNull($.authorizedEmail, "expected parameter 'authorizedEmail' to be non-null");
+            $.authorizedUserFirstName = Objects.requireNonNull($.authorizedUserFirstName, "expected parameter 'authorizedUserFirstName' to be non-null");
+            $.authorizedUserLastName = Objects.requireNonNull($.authorizedUserLastName, "expected parameter 'authorizedUserLastName' to be non-null");
             $.copyProtectionEnabled = Objects.requireNonNull($.copyProtectionEnabled, "expected parameter 'copyProtectionEnabled' to be non-null");
             $.encryptionAtRestEnabled = Objects.requireNonNull($.encryptionAtRestEnabled, "expected parameter 'encryptionAtRestEnabled' to be non-null");
             $.onDemandPolicyItem = Objects.requireNonNull($.onDemandPolicyItem, "expected parameter 'onDemandPolicyItem' to be non-null");

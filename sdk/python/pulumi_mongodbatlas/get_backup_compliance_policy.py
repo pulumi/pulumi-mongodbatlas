@@ -23,10 +23,16 @@ class GetBackupCompliancePolicyResult:
     """
     A collection of values returned by getBackupCompliancePolicy.
     """
-    def __init__(__self__, authorized_email=None, copy_protection_enabled=None, encryption_at_rest_enabled=None, id=None, on_demand_policy_item=None, pit_enabled=None, policy_item_daily=None, policy_item_hourly=None, policy_item_monthlies=None, policy_item_weeklies=None, project_id=None, restore_window_days=None, state=None, updated_date=None, updated_user=None):
+    def __init__(__self__, authorized_email=None, authorized_user_first_name=None, authorized_user_last_name=None, copy_protection_enabled=None, encryption_at_rest_enabled=None, id=None, on_demand_policy_item=None, pit_enabled=None, policy_item_daily=None, policy_item_hourly=None, policy_item_monthlies=None, policy_item_weeklies=None, project_id=None, restore_window_days=None, state=None, updated_date=None, updated_user=None):
         if authorized_email and not isinstance(authorized_email, str):
             raise TypeError("Expected argument 'authorized_email' to be a str")
         pulumi.set(__self__, "authorized_email", authorized_email)
+        if authorized_user_first_name and not isinstance(authorized_user_first_name, str):
+            raise TypeError("Expected argument 'authorized_user_first_name' to be a str")
+        pulumi.set(__self__, "authorized_user_first_name", authorized_user_first_name)
+        if authorized_user_last_name and not isinstance(authorized_user_last_name, str):
+            raise TypeError("Expected argument 'authorized_user_last_name' to be a str")
+        pulumi.set(__self__, "authorized_user_last_name", authorized_user_last_name)
         if copy_protection_enabled and not isinstance(copy_protection_enabled, bool):
             raise TypeError("Expected argument 'copy_protection_enabled' to be a bool")
         pulumi.set(__self__, "copy_protection_enabled", copy_protection_enabled)
@@ -77,6 +83,22 @@ class GetBackupCompliancePolicyResult:
         Email address of the user who is authorized to update the Backup Compliance Policy settings.
         """
         return pulumi.get(self, "authorized_email")
+
+    @property
+    @pulumi.getter(name="authorizedUserFirstName")
+    def authorized_user_first_name(self) -> str:
+        """
+        First name of the user who authorized to update the Backup Compliance Policy settings.
+        """
+        return pulumi.get(self, "authorized_user_first_name")
+
+    @property
+    @pulumi.getter(name="authorizedUserLastName")
+    def authorized_user_last_name(self) -> str:
+        """
+        Last name of the user who authorized to update the Backup Compliance Policy settings.
+        """
+        return pulumi.get(self, "authorized_user_last_name")
 
     @property
     @pulumi.getter(name="copyProtectionEnabled")
@@ -180,6 +202,8 @@ class AwaitableGetBackupCompliancePolicyResult(GetBackupCompliancePolicyResult):
             yield self
         return GetBackupCompliancePolicyResult(
             authorized_email=self.authorized_email,
+            authorized_user_first_name=self.authorized_user_first_name,
+            authorized_user_last_name=self.authorized_user_last_name,
             copy_protection_enabled=self.copy_protection_enabled,
             encryption_at_rest_enabled=self.encryption_at_rest_enabled,
             id=self.id,
@@ -220,6 +244,8 @@ def get_backup_compliance_policy(on_demand_policy_item: Optional[pulumi.InputTyp
 
     return AwaitableGetBackupCompliancePolicyResult(
         authorized_email=pulumi.get(__ret__, 'authorized_email'),
+        authorized_user_first_name=pulumi.get(__ret__, 'authorized_user_first_name'),
+        authorized_user_last_name=pulumi.get(__ret__, 'authorized_user_last_name'),
         copy_protection_enabled=pulumi.get(__ret__, 'copy_protection_enabled'),
         encryption_at_rest_enabled=pulumi.get(__ret__, 'encryption_at_rest_enabled'),
         id=pulumi.get(__ret__, 'id'),

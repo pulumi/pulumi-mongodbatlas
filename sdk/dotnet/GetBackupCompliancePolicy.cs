@@ -106,6 +106,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string AuthorizedEmail;
         /// <summary>
+        /// First name of the user who authorized to update the Backup Compliance Policy settings.
+        /// </summary>
+        public readonly string AuthorizedUserFirstName;
+        /// <summary>
+        /// Last name of the user who authorized to update the Backup Compliance Policy settings.
+        /// </summary>
+        public readonly string AuthorizedUserLastName;
+        /// <summary>
         /// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         /// </summary>
         public readonly bool CopyProtectionEnabled;
@@ -148,6 +156,10 @@ namespace Pulumi.Mongodbatlas
         private GetBackupCompliancePolicyResult(
             string authorizedEmail,
 
+            string authorizedUserFirstName,
+
+            string authorizedUserLastName,
+
             bool copyProtectionEnabled,
 
             bool encryptionAtRestEnabled,
@@ -177,6 +189,8 @@ namespace Pulumi.Mongodbatlas
             string updatedUser)
         {
             AuthorizedEmail = authorizedEmail;
+            AuthorizedUserFirstName = authorizedUserFirstName;
+            AuthorizedUserLastName = authorizedUserLastName;
             CopyProtectionEnabled = copyProtectionEnabled;
             EncryptionAtRestEnabled = encryptionAtRestEnabled;
             Id = id;

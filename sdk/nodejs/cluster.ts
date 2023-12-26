@@ -83,7 +83,7 @@ export class Cluster extends pulumi.CustomResource {
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
     public readonly biConnectorConfig!: pulumi.Output<outputs.ClusterBiConnectorConfig>;
-    public readonly cloudBackup!: pulumi.Output<boolean | undefined>;
+    public readonly cloudBackup!: pulumi.Output<boolean>;
     /**
      * The cluster ID.
      */

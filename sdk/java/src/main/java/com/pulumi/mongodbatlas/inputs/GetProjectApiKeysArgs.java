@@ -47,14 +47,14 @@ public final class GetProjectApiKeysArgs extends com.pulumi.resources.InvokeArgs
     }
 
     /**
-     * Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * The unique ID for the project.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return The unique ID for the project.
      * 
      */
     public Output<String> projectId() {
@@ -130,7 +130,7 @@ public final class GetProjectApiKeysArgs extends com.pulumi.resources.InvokeArgs
         }
 
         /**
-         * @param projectId Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId The unique ID for the project.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class GetProjectApiKeysArgs extends com.pulumi.resources.InvokeArgs
         }
 
         /**
-         * @param projectId Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId The unique ID for the project.
          * 
          * @return builder
          * 

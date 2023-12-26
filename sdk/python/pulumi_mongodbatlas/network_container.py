@@ -723,7 +723,7 @@ class NetworkContainer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def regions(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def regions(self) -> pulumi.Output[Sequence[str]]:
         """
         Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
         """

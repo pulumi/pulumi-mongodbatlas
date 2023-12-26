@@ -300,14 +300,14 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="regions", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> regions;
+    private Output<List<String>> regions;
 
     /**
      * @return Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
      * 
      */
-    public Output<Optional<List<String>>> regions() {
-        return Codegen.optional(this.regions);
+    public Output<List<String>> regions() {
+        return this.regions;
     }
     /**
      * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.

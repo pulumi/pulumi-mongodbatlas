@@ -1,7 +1,7 @@
 {
     "name": "@pulumi/mongodbatlas",
     "version": "${VERSION}",
-    "description": "A Pulumi package for creating and managing mongodbatlas cloud resources.. Based on terraform-provider-mongodbatlas: version vdevel",
+    "description": "A Pulumi package for creating and managing mongodbatlas cloud resources.",
     "keywords": [
         "pulumi",
         "mongodbatlas"

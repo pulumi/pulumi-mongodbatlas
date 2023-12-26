@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
         /// You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
         /// </summary>
         [Output("enabled")]
-        public Output<bool?> Enabled { get; private set; } = null!;
+        public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
         /// Unique identifier for the project.

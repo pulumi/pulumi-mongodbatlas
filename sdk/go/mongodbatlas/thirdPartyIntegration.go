@@ -66,29 +66,29 @@ type ThirdPartyIntegration struct {
 	pulumi.CustomResourceState
 
 	// Your API Key.
-	ApiKey      pulumi.StringPtrOutput `pulumi:"apiKey"`
-	ChannelName pulumi.StringPtrOutput `pulumi:"channelName"`
+	ApiKey      pulumi.StringOutput `pulumi:"apiKey"`
+	ChannelName pulumi.StringOutput `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
-	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// Your Microsoft Teams incoming webhook URL.
-	MicrosoftTeamsWebhookUrl pulumi.StringPtrOutput `pulumi:"microsoftTeamsWebhookUrl"`
+	MicrosoftTeamsWebhookUrl pulumi.StringOutput `pulumi:"microsoftTeamsWebhookUrl"`
 	// Your Prometheus password.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
+	Password pulumi.StringOutput `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// An optional field for your Routing Key.
-	RoutingKey pulumi.StringPtrOutput `pulumi:"routingKey"`
+	RoutingKey pulumi.StringOutput `pulumi:"routingKey"`
 	// Your Prometheus protocol scheme configured for requests.
-	Scheme pulumi.StringPtrOutput `pulumi:"scheme"`
+	Scheme pulumi.StringOutput `pulumi:"scheme"`
 	// An optional field for your webhook secret.
 	Secret pulumi.StringPtrOutput `pulumi:"secret"`
 	// Indicates which service discovery method is used, either file or http.
-	ServiceDiscovery pulumi.StringPtrOutput `pulumi:"serviceDiscovery"`
+	ServiceDiscovery pulumi.StringOutput `pulumi:"serviceDiscovery"`
 	// Your Service Key.
-	ServiceKey pulumi.StringPtrOutput `pulumi:"serviceKey"`
-	TeamName   pulumi.StringPtrOutput `pulumi:"teamName"`
+	ServiceKey pulumi.StringOutput `pulumi:"serviceKey"`
+	TeamName   pulumi.StringOutput `pulumi:"teamName"`
 	// Third-Party Integration Settings type
 	// * PAGER_DUTY
 	// * DATADOG
@@ -99,9 +99,9 @@ type ThirdPartyIntegration struct {
 	// * PROMETHEUS
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Your webhook URL.
-	Url pulumi.StringPtrOutput `pulumi:"url"`
+	Url pulumi.StringOutput `pulumi:"url"`
 	// Your Prometheus username.
-	UserName pulumi.StringPtrOutput `pulumi:"userName"`
+	UserName pulumi.StringOutput `pulumi:"userName"`
 }
 
 // NewThirdPartyIntegration registers a new resource with the given unique name, arguments, and options.
@@ -427,27 +427,27 @@ func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationOutputWithContext(ct
 }
 
 // Your API Key.
-func (o ThirdPartyIntegrationOutput) ApiKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.ApiKey }).(pulumi.StringOutput)
 }
 
-func (o ThirdPartyIntegrationOutput) ChannelName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ChannelName }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) ChannelName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.ChannelName }).(pulumi.StringOutput)
 }
 
 // Whether your cluster has Prometheus enabled.
-func (o ThirdPartyIntegrationOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+func (o ThirdPartyIntegrationOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
 // Your Microsoft Teams incoming webhook URL.
-func (o ThirdPartyIntegrationOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) MicrosoftTeamsWebhookUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringOutput)
 }
 
 // Your Prometheus password.
-func (o ThirdPartyIntegrationOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
 // The unique ID for the project to get all Third-Party service integrations
@@ -461,13 +461,13 @@ func (o ThirdPartyIntegrationOutput) Region() pulumi.StringOutput {
 }
 
 // An optional field for your Routing Key.
-func (o ThirdPartyIntegrationOutput) RoutingKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.RoutingKey }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) RoutingKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.RoutingKey }).(pulumi.StringOutput)
 }
 
 // Your Prometheus protocol scheme configured for requests.
-func (o ThirdPartyIntegrationOutput) Scheme() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Scheme }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) Scheme() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Scheme }).(pulumi.StringOutput)
 }
 
 // An optional field for your webhook secret.
@@ -476,17 +476,17 @@ func (o ThirdPartyIntegrationOutput) Secret() pulumi.StringPtrOutput {
 }
 
 // Indicates which service discovery method is used, either file or http.
-func (o ThirdPartyIntegrationOutput) ServiceDiscovery() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ServiceDiscovery }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) ServiceDiscovery() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.ServiceDiscovery }).(pulumi.StringOutput)
 }
 
 // Your Service Key.
-func (o ThirdPartyIntegrationOutput) ServiceKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ServiceKey }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) ServiceKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.ServiceKey }).(pulumi.StringOutput)
 }
 
-func (o ThirdPartyIntegrationOutput) TeamName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.TeamName }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) TeamName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.TeamName }).(pulumi.StringOutput)
 }
 
 // Third-Party Integration Settings type
@@ -502,13 +502,13 @@ func (o ThirdPartyIntegrationOutput) Type() pulumi.StringOutput {
 }
 
 // Your webhook URL.
-func (o ThirdPartyIntegrationOutput) Url() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }
 
 // Your Prometheus username.
-func (o ThirdPartyIntegrationOutput) UserName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
+func (o ThirdPartyIntegrationOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }
 
 type ThirdPartyIntegrationArrayOutput struct{ *pulumi.OutputState }

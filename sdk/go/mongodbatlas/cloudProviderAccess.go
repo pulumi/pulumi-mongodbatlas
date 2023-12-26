@@ -231,7 +231,7 @@ type CloudProviderAccess struct {
 	// Atlas features this AWS IAM role is linked to.
 	FeatureUsages CloudProviderAccessFeatureUsageArrayOutput `pulumi:"featureUsages"`
 	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
-	IamAssumedRoleArn pulumi.StringPtrOutput `pulumi:"iamAssumedRoleArn"`
+	IamAssumedRoleArn pulumi.StringOutput `pulumi:"iamAssumedRoleArn"`
 	// The unique ID for the project
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The cloud provider for which to create a new role. Currently only AWS is supported.
@@ -459,8 +459,8 @@ func (o CloudProviderAccessOutput) FeatureUsages() CloudProviderAccessFeatureUsa
 }
 
 // ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
-func (o CloudProviderAccessOutput) IamAssumedRoleArn() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringPtrOutput { return v.IamAssumedRoleArn }).(pulumi.StringPtrOutput)
+func (o CloudProviderAccessOutput) IamAssumedRoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringOutput { return v.IamAssumedRoleArn }).(pulumi.StringOutput)
 }
 
 // The unique ID for the project

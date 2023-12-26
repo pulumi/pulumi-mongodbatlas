@@ -22,6 +22,9 @@ export function getProjectApiKey(args: GetProjectApiKeyArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getProjectApiKey.
  */
 export interface GetProjectApiKeyArgs {
+    /**
+     * Unique identifier for this Project API key.
+     */
     apiKeyId: string;
     /**
      * The unique ID for the project.
@@ -67,6 +70,9 @@ export function getProjectApiKeyOutput(args: GetProjectApiKeyOutputArgs, opts?: 
  * A collection of arguments for invoking getProjectApiKey.
  */
 export interface GetProjectApiKeyOutputArgs {
+    /**
+     * Unique identifier for this Project API key.
+     */
     apiKeyId: pulumi.Input<string>;
     /**
      * The unique ID for the project.

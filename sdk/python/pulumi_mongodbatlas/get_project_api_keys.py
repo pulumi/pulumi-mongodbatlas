@@ -60,11 +60,17 @@ class GetProjectApiKeysResult:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
+        """
+        Project ID to assign to Access Key
+        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
     def results(self) -> Sequence['outputs.GetProjectApiKeysResultResult']:
+        """
+        A list where each element represents a API Key assigned to the project.
+        """
         return pulumi.get(self, "results")
 
 
@@ -86,11 +92,21 @@ def get_project_api_keys(items_per_page: Optional[int] = None,
                          project_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectApiKeysResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_project_api_keys(items_per_page=5,
+        page_num=1,
+        project_id="32b6e34b3d91647abb20e7b8")
+    ```
+
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param int page_num: The page to return. Defaults to `1`.
-    :param str project_id: Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
     __args__['itemsPerPage'] = items_per_page
@@ -113,10 +129,20 @@ def get_project_api_keys_output(items_per_page: Optional[pulumi.Input[Optional[i
                                 project_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectApiKeysResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_project_api_keys(items_per_page=5,
+        page_num=1,
+        project_id="32b6e34b3d91647abb20e7b8")
+    ```
+
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param int page_num: The page to return. Defaults to `1`.
-    :param str project_id: Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param str project_id: The unique ID for the project.
     """
     ...

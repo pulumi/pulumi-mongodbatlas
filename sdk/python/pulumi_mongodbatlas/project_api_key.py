@@ -17,27 +17,28 @@ __all__ = ['ProjectApiKeyArgs', 'ProjectApiKey']
 class ProjectApiKeyArgs:
     def __init__(__self__, *,
                  description: pulumi.Input[str],
-                 project_id: pulumi.Input[str],
-                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None):
+                 project_assignments: pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]],
+                 project_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ProjectApiKey resource.
         :param pulumi.Input[str] description: Description of this Project API key.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
                
                > **NOTE:** Project created by API Keys must belong to an existing organization.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
         pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "project_id", project_id)
-        if project_assignments is not None:
-            pulumi.set(__self__, "project_assignments", project_assignments)
+        pulumi.set(__self__, "project_assignments", project_assignments)
+        if project_id is not None:
+            warnings.warn("""this parameter is deprecated and will be removed in version 1.16.0""", DeprecationWarning)
+            pulumi.log.warn("""project_id is deprecated: this parameter is deprecated and will be removed in version 1.16.0""")
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Input[str]:
         """
         Description of this Project API key.
-
-        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "description")
 
@@ -46,25 +47,30 @@ class ProjectApiKeyArgs:
         pulumi.set(self, "description", value)
 
     @property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> pulumi.Input[str]:
-        """
-        Unique 24-hexadecimal digit string that identifies your project.
-        """
-        return pulumi.get(self, "project_id")
-
-    @project_id.setter
-    def project_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "project_id", value)
-
-    @property
     @pulumi.getter(name="projectAssignments")
-    def project_assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]]:
+    def project_assignments(self) -> pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]:
         return pulumi.get(self, "project_assignments")
 
     @project_assignments.setter
-    def project_assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]]):
+    def project_assignments(self, value: pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]):
         pulumi.set(self, "project_assignments", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
+        """
+        warnings.warn("""this parameter is deprecated and will be removed in version 1.16.0""", DeprecationWarning)
+        pulumi.log.warn("""project_id is deprecated: this parameter is deprecated and will be removed in version 1.16.0""")
+
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
 
 
 @pulumi.input_type
@@ -80,9 +86,9 @@ class _ProjectApiKeyState:
         Input properties used for looking up and filtering ProjectApiKey resources.
         :param pulumi.Input[str] api_key_id: Unique identifier for this Project API key.
         :param pulumi.Input[str] description: Description of this Project API key.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
                
                > **NOTE:** Project created by API Keys must belong to an existing organization.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
         if api_key_id is not None:
             pulumi.set(__self__, "api_key_id", api_key_id)
@@ -92,6 +98,9 @@ class _ProjectApiKeyState:
             pulumi.set(__self__, "private_key", private_key)
         if project_assignments is not None:
             pulumi.set(__self__, "project_assignments", project_assignments)
+        if project_id is not None:
+            warnings.warn("""this parameter is deprecated and will be removed in version 1.16.0""", DeprecationWarning)
+            pulumi.log.warn("""project_id is deprecated: this parameter is deprecated and will be removed in version 1.16.0""")
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if public_key is not None:
@@ -114,8 +123,6 @@ class _ProjectApiKeyState:
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         Description of this Project API key.
-
-        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "description")
 
@@ -145,8 +152,13 @@ class _ProjectApiKeyState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
+        warnings.warn("""this parameter is deprecated and will be removed in version 1.16.0""", DeprecationWarning)
+        pulumi.log.warn("""project_id is deprecated: this parameter is deprecated and will be removed in version 1.16.0""")
+
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -185,8 +197,7 @@ class ProjectApiKey(pulumi.CustomResource):
             project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
                 project_id="64259ee860c43338194b0f8e",
                 role_names=["GROUP_OWNER"],
-            )],
-            project_id="64259ee860c43338194b0f8e")
+            )])
         ```
         ### Create And Assign PAK To Multiple Projects
 
@@ -208,8 +219,7 @@ class ProjectApiKey(pulumi.CustomResource):
                     project_id="74259ee860c43338194b0f8e",
                     role_names=["GROUP_READ_ONLY"],
                 ),
-            ],
-            project_id="64259ee860c43338194b0f8e")
+            ])
         ```
 
         ## Import
@@ -224,9 +234,9 @@ class ProjectApiKey(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of this Project API key.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
                
                > **NOTE:** Project created by API Keys must belong to an existing organization.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
         ...
     @overload
@@ -247,8 +257,7 @@ class ProjectApiKey(pulumi.CustomResource):
             project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
                 project_id="64259ee860c43338194b0f8e",
                 role_names=["GROUP_OWNER"],
-            )],
-            project_id="64259ee860c43338194b0f8e")
+            )])
         ```
         ### Create And Assign PAK To Multiple Projects
 
@@ -270,8 +279,7 @@ class ProjectApiKey(pulumi.CustomResource):
                     project_id="74259ee860c43338194b0f8e",
                     role_names=["GROUP_READ_ONLY"],
                 ),
-            ],
-            project_id="64259ee860c43338194b0f8e")
+            ])
         ```
 
         ## Import
@@ -313,9 +321,9 @@ class ProjectApiKey(pulumi.CustomResource):
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
+            if project_assignments is None and not opts.urn:
+                raise TypeError("Missing required property 'project_assignments'")
             __props__.__dict__["project_assignments"] = project_assignments
-            if project_id is None and not opts.urn:
-                raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["api_key_id"] = None
             __props__.__dict__["private_key"] = None
@@ -347,9 +355,9 @@ class ProjectApiKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_key_id: Unique identifier for this Project API key.
         :param pulumi.Input[str] description: Description of this Project API key.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
                
                > **NOTE:** Project created by API Keys must belong to an existing organization.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -376,8 +384,6 @@ class ProjectApiKey(pulumi.CustomResource):
     def description(self) -> pulumi.Output[str]:
         """
         Description of this Project API key.
-
-        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
         return pulumi.get(self, "description")
 
@@ -388,15 +394,20 @@ class ProjectApiKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectAssignments")
-    def project_assignments(self) -> pulumi.Output[Optional[Sequence['outputs.ProjectApiKeyProjectAssignment']]]:
+    def project_assignments(self) -> pulumi.Output[Sequence['outputs.ProjectApiKeyProjectAssignment']]:
         return pulumi.get(self, "project_assignments")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+
+        > **NOTE:** Project created by API Keys must belong to an existing organization.
         """
+        warnings.warn("""this parameter is deprecated and will be removed in version 1.16.0""", DeprecationWarning)
+        pulumi.log.warn("""project_id is deprecated: this parameter is deprecated and will be removed in version 1.16.0""")
+
         return pulumi.get(self, "project_id")
 
     @property

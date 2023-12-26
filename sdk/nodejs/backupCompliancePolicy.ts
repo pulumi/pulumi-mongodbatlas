@@ -51,6 +51,14 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
      */
     public readonly authorizedEmail!: pulumi.Output<string>;
     /**
+     * First name of the user who authorized to update the Backup Compliance Policy settings.
+     */
+    public readonly authorizedUserFirstName!: pulumi.Output<string>;
+    /**
+     * Last name of the user who authorized to update the Backup Compliance Policy settings.
+     */
+    public readonly authorizedUserLastName!: pulumi.Output<string>;
+    /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      */
     public readonly copyProtectionEnabled!: pulumi.Output<boolean>;
@@ -102,6 +110,8 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as BackupCompliancePolicyState | undefined;
             resourceInputs["authorizedEmail"] = state ? state.authorizedEmail : undefined;
+            resourceInputs["authorizedUserFirstName"] = state ? state.authorizedUserFirstName : undefined;
+            resourceInputs["authorizedUserLastName"] = state ? state.authorizedUserLastName : undefined;
             resourceInputs["copyProtectionEnabled"] = state ? state.copyProtectionEnabled : undefined;
             resourceInputs["encryptionAtRestEnabled"] = state ? state.encryptionAtRestEnabled : undefined;
             resourceInputs["onDemandPolicyItem"] = state ? state.onDemandPolicyItem : undefined;
@@ -120,6 +130,12 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
             if ((!args || args.authorizedEmail === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'authorizedEmail'");
             }
+            if ((!args || args.authorizedUserFirstName === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'authorizedUserFirstName'");
+            }
+            if ((!args || args.authorizedUserLastName === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'authorizedUserLastName'");
+            }
             if ((!args || args.copyProtectionEnabled === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'copyProtectionEnabled'");
             }
@@ -136,6 +152,8 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
                 throw new Error("Missing required property 'projectId'");
             }
             resourceInputs["authorizedEmail"] = args ? args.authorizedEmail : undefined;
+            resourceInputs["authorizedUserFirstName"] = args ? args.authorizedUserFirstName : undefined;
+            resourceInputs["authorizedUserLastName"] = args ? args.authorizedUserLastName : undefined;
             resourceInputs["copyProtectionEnabled"] = args ? args.copyProtectionEnabled : undefined;
             resourceInputs["encryptionAtRestEnabled"] = args ? args.encryptionAtRestEnabled : undefined;
             resourceInputs["onDemandPolicyItem"] = args ? args.onDemandPolicyItem : undefined;
@@ -163,6 +181,14 @@ export interface BackupCompliancePolicyState {
      * Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
      */
     authorizedEmail?: pulumi.Input<string>;
+    /**
+     * First name of the user who authorized to update the Backup Compliance Policy settings.
+     */
+    authorizedUserFirstName?: pulumi.Input<string>;
+    /**
+     * Last name of the user who authorized to update the Backup Compliance Policy settings.
+     */
+    authorizedUserLastName?: pulumi.Input<string>;
     /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      */
@@ -210,6 +236,14 @@ export interface BackupCompliancePolicyArgs {
      * Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
      */
     authorizedEmail: pulumi.Input<string>;
+    /**
+     * First name of the user who authorized to update the Backup Compliance Policy settings.
+     */
+    authorizedUserFirstName: pulumi.Input<string>;
+    /**
+     * Last name of the user who authorized to update the Backup Compliance Policy settings.
+     */
+    authorizedUserLastName: pulumi.Input<string>;
     /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      */

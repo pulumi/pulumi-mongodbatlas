@@ -13,7 +13,6 @@ import com.pulumi.mongodbatlas.inputs.CloudProviderAccessState;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessFeatureUsage;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -323,14 +322,14 @@ public class CloudProviderAccess extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="iamAssumedRoleArn", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> iamAssumedRoleArn;
+    private Output<String> iamAssumedRoleArn;
 
     /**
      * @return ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
      * 
      */
-    public Output<Optional<String>> iamAssumedRoleArn() {
-        return Codegen.optional(this.iamAssumedRoleArn);
+    public Output<String> iamAssumedRoleArn() {
+        return this.iamAssumedRoleArn;
     }
     /**
      * The unique ID for the project

@@ -69,20 +69,20 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     /**
      * Your API Key.
      */
-    public readonly apiKey!: pulumi.Output<string | undefined>;
-    public readonly channelName!: pulumi.Output<string | undefined>;
+    public readonly apiKey!: pulumi.Output<string>;
+    public readonly channelName!: pulumi.Output<string>;
     /**
      * Whether your cluster has Prometheus enabled.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    public readonly enabled!: pulumi.Output<boolean>;
     /**
      * Your Microsoft Teams incoming webhook URL.
      */
-    public readonly microsoftTeamsWebhookUrl!: pulumi.Output<string | undefined>;
+    public readonly microsoftTeamsWebhookUrl!: pulumi.Output<string>;
     /**
      * Your Prometheus password.
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    public readonly password!: pulumi.Output<string>;
     /**
      * The unique ID for the project to get all Third-Party service integrations
      */
@@ -94,11 +94,11 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     /**
      * An optional field for your Routing Key.
      */
-    public readonly routingKey!: pulumi.Output<string | undefined>;
+    public readonly routingKey!: pulumi.Output<string>;
     /**
      * Your Prometheus protocol scheme configured for requests.
      */
-    public readonly scheme!: pulumi.Output<string | undefined>;
+    public readonly scheme!: pulumi.Output<string>;
     /**
      * An optional field for your webhook secret.
      */
@@ -106,12 +106,12 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     /**
      * Indicates which service discovery method is used, either file or http.
      */
-    public readonly serviceDiscovery!: pulumi.Output<string | undefined>;
+    public readonly serviceDiscovery!: pulumi.Output<string>;
     /**
      * Your Service Key.
      */
-    public readonly serviceKey!: pulumi.Output<string | undefined>;
-    public readonly teamName!: pulumi.Output<string | undefined>;
+    public readonly serviceKey!: pulumi.Output<string>;
+    public readonly teamName!: pulumi.Output<string>;
     /**
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
@@ -126,11 +126,11 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     /**
      * Your webhook URL.
      */
-    public readonly url!: pulumi.Output<string | undefined>;
+    public readonly url!: pulumi.Output<string>;
     /**
      * Your Prometheus username.
      */
-    public readonly userName!: pulumi.Output<string | undefined>;
+    public readonly userName!: pulumi.Output<string>;
 
     /**
      * Create a ThirdPartyIntegration resource with the given unique name, arguments, and options.

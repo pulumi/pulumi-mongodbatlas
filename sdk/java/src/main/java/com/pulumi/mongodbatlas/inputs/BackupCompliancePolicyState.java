@@ -39,6 +39,36 @@ public final class BackupCompliancePolicyState extends com.pulumi.resources.Reso
     }
 
     /**
+     * First name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    @Import(name="authorizedUserFirstName")
+    private @Nullable Output<String> authorizedUserFirstName;
+
+    /**
+     * @return First name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    public Optional<Output<String>> authorizedUserFirstName() {
+        return Optional.ofNullable(this.authorizedUserFirstName);
+    }
+
+    /**
+     * Last name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    @Import(name="authorizedUserLastName")
+    private @Nullable Output<String> authorizedUserLastName;
+
+    /**
+     * @return Last name of the user who authorized to update the Backup Compliance Policy settings.
+     * 
+     */
+    public Optional<Output<String>> authorizedUserLastName() {
+        return Optional.ofNullable(this.authorizedUserLastName);
+    }
+
+    /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      * 
      */
@@ -197,6 +227,8 @@ public final class BackupCompliancePolicyState extends com.pulumi.resources.Reso
 
     private BackupCompliancePolicyState(BackupCompliancePolicyState $) {
         this.authorizedEmail = $.authorizedEmail;
+        this.authorizedUserFirstName = $.authorizedUserFirstName;
+        this.authorizedUserLastName = $.authorizedUserLastName;
         this.copyProtectionEnabled = $.copyProtectionEnabled;
         this.encryptionAtRestEnabled = $.encryptionAtRestEnabled;
         this.onDemandPolicyItem = $.onDemandPolicyItem;
@@ -249,6 +281,48 @@ public final class BackupCompliancePolicyState extends com.pulumi.resources.Reso
          */
         public Builder authorizedEmail(String authorizedEmail) {
             return authorizedEmail(Output.of(authorizedEmail));
+        }
+
+        /**
+         * @param authorizedUserFirstName First name of the user who authorized to update the Backup Compliance Policy settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizedUserFirstName(@Nullable Output<String> authorizedUserFirstName) {
+            $.authorizedUserFirstName = authorizedUserFirstName;
+            return this;
+        }
+
+        /**
+         * @param authorizedUserFirstName First name of the user who authorized to update the Backup Compliance Policy settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizedUserFirstName(String authorizedUserFirstName) {
+            return authorizedUserFirstName(Output.of(authorizedUserFirstName));
+        }
+
+        /**
+         * @param authorizedUserLastName Last name of the user who authorized to update the Backup Compliance Policy settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizedUserLastName(@Nullable Output<String> authorizedUserLastName) {
+            $.authorizedUserLastName = authorizedUserLastName;
+            return this;
+        }
+
+        /**
+         * @param authorizedUserLastName Last name of the user who authorized to update the Backup Compliance Policy settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizedUserLastName(String authorizedUserLastName) {
+            return authorizedUserLastName(Output.of(authorizedUserLastName));
         }
 
         /**

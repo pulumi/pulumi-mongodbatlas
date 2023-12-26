@@ -31,6 +31,18 @@ namespace Pulumi.Mongodbatlas
         public Output<string> AuthorizedEmail { get; private set; } = null!;
 
         /// <summary>
+        /// First name of the user who authorized to update the Backup Compliance Policy settings.
+        /// </summary>
+        [Output("authorizedUserFirstName")]
+        public Output<string> AuthorizedUserFirstName { get; private set; } = null!;
+
+        /// <summary>
+        /// Last name of the user who authorized to update the Backup Compliance Policy settings.
+        /// </summary>
+        [Output("authorizedUserLastName")]
+        public Output<string> AuthorizedUserLastName { get; private set; } = null!;
+
+        /// <summary>
         /// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         /// </summary>
         [Output("copyProtectionEnabled")]
@@ -146,6 +158,18 @@ namespace Pulumi.Mongodbatlas
         public Input<string> AuthorizedEmail { get; set; } = null!;
 
         /// <summary>
+        /// First name of the user who authorized to update the Backup Compliance Policy settings.
+        /// </summary>
+        [Input("authorizedUserFirstName", required: true)]
+        public Input<string> AuthorizedUserFirstName { get; set; } = null!;
+
+        /// <summary>
+        /// Last name of the user who authorized to update the Backup Compliance Policy settings.
+        /// </summary>
+        [Input("authorizedUserLastName", required: true)]
+        public Input<string> AuthorizedUserLastName { get; set; } = null!;
+
+        /// <summary>
         /// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         /// </summary>
         [Input("copyProtectionEnabled", required: true)]
@@ -213,6 +237,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("authorizedEmail")]
         public Input<string>? AuthorizedEmail { get; set; }
+
+        /// <summary>
+        /// First name of the user who authorized to update the Backup Compliance Policy settings.
+        /// </summary>
+        [Input("authorizedUserFirstName")]
+        public Input<string>? AuthorizedUserFirstName { get; set; }
+
+        /// <summary>
+        /// Last name of the user who authorized to update the Backup Compliance Policy settings.
+        /// </summary>
+        [Input("authorizedUserLastName")]
+        public Input<string>? AuthorizedUserLastName { get; set; }
 
         /// <summary>
         /// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.

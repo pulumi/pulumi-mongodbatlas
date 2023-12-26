@@ -118,6 +118,7 @@ def get_project_api_key(api_key_id: Optional[str] = None,
     ## Example Usage
 
 
+    :param str api_key_id: Unique identifier for this Project API key.
     :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
@@ -144,6 +145,7 @@ def get_project_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
     ## Example Usage
 
 
+    :param str api_key_id: Unique identifier for this Project API key.
     :param str project_id: The unique ID for the project.
     """
     ...

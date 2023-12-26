@@ -13,7 +13,6 @@ import com.pulumi.mongodbatlas.inputs.ProjectApiKeyState;
 import com.pulumi.mongodbatlas.outputs.ProjectApiKeyProjectAssignment;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -47,7 +46,6 @@ import javax.annotation.Nullable;
  *                 .projectId(&#34;64259ee860c43338194b0f8e&#34;)
  *                 .roleNames(&#34;GROUP_OWNER&#34;)
  *                 .build())
- *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
  *             .build());
  * 
  *     }
@@ -89,7 +87,6 @@ import javax.annotation.Nullable;
  *                     .projectId(&#34;74259ee860c43338194b0f8e&#34;)
  *                     .roleNames(&#34;GROUP_READ_ONLY&#34;)
  *                     .build())
- *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
  *             .build());
  * 
  *     }
@@ -125,16 +122,12 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
     /**
      * Description of this Project API key.
      * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
      * @return Description of this Project API key.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
      * 
      */
     public Output<String> description() {
@@ -147,20 +140,28 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
         return this.privateKey;
     }
     @Export(name="projectAssignments", refs={List.class,ProjectApiKeyProjectAssignment.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<ProjectApiKeyProjectAssignment>> projectAssignments;
+    private Output<List<ProjectApiKeyProjectAssignment>> projectAssignments;
 
-    public Output<Optional<List<ProjectApiKeyProjectAssignment>>> projectAssignments() {
-        return Codegen.optional(this.projectAssignments);
+    public Output<List<ProjectApiKeyProjectAssignment>> projectAssignments() {
+        return this.projectAssignments;
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
+     * 
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
      * 
      */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
+     * 
+     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
      * 
      */
     public Output<String> projectId() {

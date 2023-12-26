@@ -77,62 +77,62 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> apiKey;
+    private Output<String> apiKey;
 
     /**
      * @return Your API Key.
      * 
      */
-    public Output<Optional<String>> apiKey() {
-        return Codegen.optional(this.apiKey);
+    public Output<String> apiKey() {
+        return this.apiKey;
     }
     @Export(name="channelName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> channelName;
+    private Output<String> channelName;
 
-    public Output<Optional<String>> channelName() {
-        return Codegen.optional(this.channelName);
+    public Output<String> channelName() {
+        return this.channelName;
     }
     /**
      * Whether your cluster has Prometheus enabled.
      * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> enabled;
+    private Output<Boolean> enabled;
 
     /**
      * @return Whether your cluster has Prometheus enabled.
      * 
      */
-    public Output<Optional<Boolean>> enabled() {
-        return Codegen.optional(this.enabled);
+    public Output<Boolean> enabled() {
+        return this.enabled;
     }
     /**
      * Your Microsoft Teams incoming webhook URL.
      * 
      */
     @Export(name="microsoftTeamsWebhookUrl", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> microsoftTeamsWebhookUrl;
+    private Output<String> microsoftTeamsWebhookUrl;
 
     /**
      * @return Your Microsoft Teams incoming webhook URL.
      * 
      */
-    public Output<Optional<String>> microsoftTeamsWebhookUrl() {
-        return Codegen.optional(this.microsoftTeamsWebhookUrl);
+    public Output<String> microsoftTeamsWebhookUrl() {
+        return this.microsoftTeamsWebhookUrl;
     }
     /**
      * Your Prometheus password.
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> password;
+    private Output<String> password;
 
     /**
      * @return Your Prometheus password.
      * 
      */
-    public Output<Optional<String>> password() {
-        return Codegen.optional(this.password);
+    public Output<String> password() {
+        return this.password;
     }
     /**
      * The unique ID for the project to get all Third-Party service integrations
@@ -167,28 +167,28 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="routingKey", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> routingKey;
+    private Output<String> routingKey;
 
     /**
      * @return An optional field for your Routing Key.
      * 
      */
-    public Output<Optional<String>> routingKey() {
-        return Codegen.optional(this.routingKey);
+    public Output<String> routingKey() {
+        return this.routingKey;
     }
     /**
      * Your Prometheus protocol scheme configured for requests.
      * 
      */
     @Export(name="scheme", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> scheme;
+    private Output<String> scheme;
 
     /**
      * @return Your Prometheus protocol scheme configured for requests.
      * 
      */
-    public Output<Optional<String>> scheme() {
-        return Codegen.optional(this.scheme);
+    public Output<String> scheme() {
+        return this.scheme;
     }
     /**
      * An optional field for your webhook secret.
@@ -209,34 +209,34 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="serviceDiscovery", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> serviceDiscovery;
+    private Output<String> serviceDiscovery;
 
     /**
      * @return Indicates which service discovery method is used, either file or http.
      * 
      */
-    public Output<Optional<String>> serviceDiscovery() {
-        return Codegen.optional(this.serviceDiscovery);
+    public Output<String> serviceDiscovery() {
+        return this.serviceDiscovery;
     }
     /**
      * Your Service Key.
      * 
      */
     @Export(name="serviceKey", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> serviceKey;
+    private Output<String> serviceKey;
 
     /**
      * @return Your Service Key.
      * 
      */
-    public Output<Optional<String>> serviceKey() {
-        return Codegen.optional(this.serviceKey);
+    public Output<String> serviceKey() {
+        return this.serviceKey;
     }
     @Export(name="teamName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> teamName;
+    private Output<String> teamName;
 
-    public Output<Optional<String>> teamName() {
-        return Codegen.optional(this.teamName);
+    public Output<String> teamName() {
+        return this.teamName;
     }
     /**
      * Third-Party Integration Settings type
@@ -271,28 +271,28 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="url", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> url;
+    private Output<String> url;
 
     /**
      * @return Your webhook URL.
      * 
      */
-    public Output<Optional<String>> url() {
-        return Codegen.optional(this.url);
+    public Output<String> url() {
+        return this.url;
     }
     /**
      * Your Prometheus username.
      * 
      */
     @Export(name="userName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> userName;
+    private Output<String> userName;
 
     /**
      * @return Your Prometheus username.
      * 
      */
-    public Output<Optional<String>> userName() {
-        return Codegen.optional(this.userName);
+    public Output<String> userName() {
+        return this.userName;
     }
 
     /**

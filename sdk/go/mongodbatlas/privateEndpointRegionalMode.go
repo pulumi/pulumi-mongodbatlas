@@ -30,7 +30,7 @@ type PrivateEndpointRegionalMode struct {
 	// * More than one private endpoint in more than one region, or
 	// * More than one private endpoint in one region and one private endpoint in one or more regions.
 	//   You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
-	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// Unique identifier for the project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 }
@@ -203,8 +203,8 @@ func (o PrivateEndpointRegionalModeOutput) ToPrivateEndpointRegionalModeOutputWi
 //   - More than one private endpoint in more than one region, or
 //   - More than one private endpoint in one region and one private endpoint in one or more regions.
 //     You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
-func (o PrivateEndpointRegionalModeOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *PrivateEndpointRegionalMode) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+func (o PrivateEndpointRegionalModeOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *PrivateEndpointRegionalMode) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
 // Unique identifier for the project.

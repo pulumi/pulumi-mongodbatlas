@@ -5324,14 +5324,11 @@ export interface GetProjectApiKeysResult {
 
 export interface GetProjectApiKeysResultProjectAssignment {
     /**
-     * Project ID to assign to Access Key
+     * The unique ID for the project.
      */
     projectId: string;
     /**
      * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
-     *
-     *
-     * See [MongoDB Atlas API - API Keys](https://www.mongodb.com/docs/atlas/reference/api/projectApiKeys/get-all-apiKeys-in-one-project/) - Documentation for more information.
      */
     roleNames: string[];
 }

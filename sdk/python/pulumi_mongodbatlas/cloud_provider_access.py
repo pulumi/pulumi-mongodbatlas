@@ -571,7 +571,7 @@ class CloudProviderAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="iamAssumedRoleArn")
-    def iam_assumed_role_arn(self) -> pulumi.Output[Optional[str]]:
+    def iam_assumed_role_arn(self) -> pulumi.Output[str]:
         """
         ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
         """

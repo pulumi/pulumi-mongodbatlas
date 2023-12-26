@@ -808,7 +808,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> pulumi.Output[Optional[str]]:
+    def api_key(self) -> pulumi.Output[str]:
         """
         Your API Key.
         """
@@ -816,12 +816,12 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="channelName")
-    def channel_name(self) -> pulumi.Output[Optional[str]]:
+    def channel_name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "channel_name")
 
     @property
     @pulumi.getter
-    def enabled(self) -> pulumi.Output[Optional[bool]]:
+    def enabled(self) -> pulumi.Output[bool]:
         """
         Whether your cluster has Prometheus enabled.
         """
@@ -829,7 +829,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
-    def microsoft_teams_webhook_url(self) -> pulumi.Output[Optional[str]]:
+    def microsoft_teams_webhook_url(self) -> pulumi.Output[str]:
         """
         Your Microsoft Teams incoming webhook URL.
         """
@@ -837,7 +837,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def password(self) -> pulumi.Output[Optional[str]]:
+    def password(self) -> pulumi.Output[str]:
         """
         Your Prometheus password.
         """
@@ -861,7 +861,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="routingKey")
-    def routing_key(self) -> pulumi.Output[Optional[str]]:
+    def routing_key(self) -> pulumi.Output[str]:
         """
         An optional field for your Routing Key.
         """
@@ -869,7 +869,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def scheme(self) -> pulumi.Output[Optional[str]]:
+    def scheme(self) -> pulumi.Output[str]:
         """
         Your Prometheus protocol scheme configured for requests.
         """
@@ -885,7 +885,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceDiscovery")
-    def service_discovery(self) -> pulumi.Output[Optional[str]]:
+    def service_discovery(self) -> pulumi.Output[str]:
         """
         Indicates which service discovery method is used, either file or http.
         """
@@ -893,7 +893,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceKey")
-    def service_key(self) -> pulumi.Output[Optional[str]]:
+    def service_key(self) -> pulumi.Output[str]:
         """
         Your Service Key.
         """
@@ -901,7 +901,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="teamName")
-    def team_name(self) -> pulumi.Output[Optional[str]]:
+    def team_name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "team_name")
 
     @property
@@ -921,7 +921,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def url(self) -> pulumi.Output[Optional[str]]:
+    def url(self) -> pulumi.Output[str]:
         """
         Your webhook URL.
         """
@@ -929,7 +929,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="userName")
-    def user_name(self) -> pulumi.Output[Optional[str]]:
+    def user_name(self) -> pulumi.Output[str]:
         """
         Your Prometheus username.
         """

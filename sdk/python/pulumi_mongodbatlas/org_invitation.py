@@ -481,7 +481,7 @@ class OrgInvitation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="teamsIds")
-    def teams_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def teams_ids(self) -> pulumi.Output[Sequence[str]]:
         """
         An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
         """

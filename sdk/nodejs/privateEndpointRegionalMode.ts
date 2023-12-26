@@ -48,7 +48,7 @@ export class PrivateEndpointRegionalMode extends pulumi.CustomResource {
      * * More than one private endpoint in one region and one private endpoint in one or more regions.
      * You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    public readonly enabled!: pulumi.Output<boolean>;
     /**
      * Unique identifier for the project.
      */

@@ -11,6 +11,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.LookupProjectApiKeys(ctx, &mongodbatlas.LookupProjectApiKeysArgs{
+//				ItemsPerPage: pulumi.IntRef(5),
+//				PageNum:      pulumi.IntRef(1),
+//				ProjectId:    "32b6e34b3d91647abb20e7b8",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupProjectApiKeys(ctx *pulumi.Context, args *LookupProjectApiKeysArgs, opts ...pulumi.InvokeOption) (*LookupProjectApiKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectApiKeysResult
@@ -27,18 +54,20 @@ type LookupProjectApiKeysArgs struct {
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
 	// The page to return. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
-	// Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// The unique ID for the project.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getProjectApiKeys.
 type LookupProjectApiKeysResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id           string                    `pulumi:"id"`
-	ItemsPerPage *int                      `pulumi:"itemsPerPage"`
-	PageNum      *int                      `pulumi:"pageNum"`
-	ProjectId    string                    `pulumi:"projectId"`
-	Results      []GetProjectApiKeysResult `pulumi:"results"`
+	Id           string `pulumi:"id"`
+	ItemsPerPage *int   `pulumi:"itemsPerPage"`
+	PageNum      *int   `pulumi:"pageNum"`
+	// Project ID to assign to Access Key
+	ProjectId string `pulumi:"projectId"`
+	// A list where each element represents a API Key assigned to the project.
+	Results []GetProjectApiKeysResult `pulumi:"results"`
 }
 
 func LookupProjectApiKeysOutput(ctx *pulumi.Context, args LookupProjectApiKeysOutputArgs, opts ...pulumi.InvokeOption) LookupProjectApiKeysResultOutput {
@@ -60,7 +89,7 @@ type LookupProjectApiKeysOutputArgs struct {
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
 	// The page to return. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
-	// Unique identifier for the project whose API keys you want to retrieve. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// The unique ID for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -96,10 +125,12 @@ func (o LookupProjectApiKeysResultOutput) PageNum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupProjectApiKeysResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }
 
+// Project ID to assign to Access Key
 func (o LookupProjectApiKeysResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectApiKeysResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// A list where each element represents a API Key assigned to the project.
 func (o LookupProjectApiKeysResultOutput) Results() GetProjectApiKeysResultArrayOutput {
 	return o.ApplyT(func(v LookupProjectApiKeysResult) []GetProjectApiKeysResult { return v.Results }).(GetProjectApiKeysResultArrayOutput)
 }

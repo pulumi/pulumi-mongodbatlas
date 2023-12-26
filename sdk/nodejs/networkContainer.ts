@@ -148,7 +148,7 @@ export class NetworkContainer extends pulumi.CustomResource {
     /**
      * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
      */
-    public readonly regions!: pulumi.Output<string[] | undefined>;
+    public readonly regions!: pulumi.Output<string[]>;
     /**
      * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */

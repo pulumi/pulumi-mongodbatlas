@@ -30,6 +30,10 @@ type BackupCompliancePolicy struct {
 
 	// Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
 	AuthorizedEmail pulumi.StringOutput `pulumi:"authorizedEmail"`
+	// First name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserFirstName pulumi.StringOutput `pulumi:"authorizedUserFirstName"`
+	// Last name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserLastName pulumi.StringOutput `pulumi:"authorizedUserLastName"`
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
 	CopyProtectionEnabled pulumi.BoolOutput `pulumi:"copyProtectionEnabled"`
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -62,6 +66,12 @@ func NewBackupCompliancePolicy(ctx *pulumi.Context,
 
 	if args.AuthorizedEmail == nil {
 		return nil, errors.New("invalid value for required argument 'AuthorizedEmail'")
+	}
+	if args.AuthorizedUserFirstName == nil {
+		return nil, errors.New("invalid value for required argument 'AuthorizedUserFirstName'")
+	}
+	if args.AuthorizedUserLastName == nil {
+		return nil, errors.New("invalid value for required argument 'AuthorizedUserLastName'")
 	}
 	if args.CopyProtectionEnabled == nil {
 		return nil, errors.New("invalid value for required argument 'CopyProtectionEnabled'")
@@ -103,6 +113,10 @@ func GetBackupCompliancePolicy(ctx *pulumi.Context,
 type backupCompliancePolicyState struct {
 	// Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
 	AuthorizedEmail *string `pulumi:"authorizedEmail"`
+	// First name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserFirstName *string `pulumi:"authorizedUserFirstName"`
+	// Last name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserLastName *string `pulumi:"authorizedUserLastName"`
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
 	CopyProtectionEnabled *bool `pulumi:"copyProtectionEnabled"`
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -129,6 +143,10 @@ type backupCompliancePolicyState struct {
 type BackupCompliancePolicyState struct {
 	// Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
 	AuthorizedEmail pulumi.StringPtrInput
+	// First name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserFirstName pulumi.StringPtrInput
+	// Last name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserLastName pulumi.StringPtrInput
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
 	CopyProtectionEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -159,6 +177,10 @@ func (BackupCompliancePolicyState) ElementType() reflect.Type {
 type backupCompliancePolicyArgs struct {
 	// Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
 	AuthorizedEmail string `pulumi:"authorizedEmail"`
+	// First name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserFirstName string `pulumi:"authorizedUserFirstName"`
+	// Last name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserLastName string `pulumi:"authorizedUserLastName"`
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
 	CopyProtectionEnabled bool `pulumi:"copyProtectionEnabled"`
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -180,6 +202,10 @@ type backupCompliancePolicyArgs struct {
 type BackupCompliancePolicyArgs struct {
 	// Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
 	AuthorizedEmail pulumi.StringInput
+	// First name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserFirstName pulumi.StringInput
+	// Last name of the user who authorized to update the Backup Compliance Policy settings.
+	AuthorizedUserLastName pulumi.StringInput
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
 	CopyProtectionEnabled pulumi.BoolInput
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -287,6 +313,16 @@ func (o BackupCompliancePolicyOutput) ToBackupCompliancePolicyOutputWithContext(
 // Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
 func (o BackupCompliancePolicyOutput) AuthorizedEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.StringOutput { return v.AuthorizedEmail }).(pulumi.StringOutput)
+}
+
+// First name of the user who authorized to update the Backup Compliance Policy settings.
+func (o BackupCompliancePolicyOutput) AuthorizedUserFirstName() pulumi.StringOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.StringOutput { return v.AuthorizedUserFirstName }).(pulumi.StringOutput)
+}
+
+// Last name of the user who authorized to update the Backup Compliance Policy settings.
+func (o BackupCompliancePolicyOutput) AuthorizedUserLastName() pulumi.StringOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.StringOutput { return v.AuthorizedUserLastName }).(pulumi.StringOutput)
 }
 
 // Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.

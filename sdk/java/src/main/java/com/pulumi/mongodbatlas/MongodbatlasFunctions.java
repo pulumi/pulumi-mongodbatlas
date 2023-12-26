@@ -3318,6 +3318,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
@@ -3331,6 +3332,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
@@ -3344,6 +3346,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
@@ -3357,6 +3360,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
@@ -3518,6 +3522,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
@@ -3582,6 +3587,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
@@ -3646,6 +3652,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
@@ -3710,6 +3717,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
@@ -10268,15 +10276,12 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ProjectApiKey;
-     * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
      * import java.util.List;
@@ -10292,13 +10297,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectApiKey = new ProjectApiKey(&#34;testProjectApiKey&#34;, ProjectApiKeyArgs.builder()        
-     *             .description(&#34;Description of the API key&#34;)
-     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
-     *             .roleNames(&#34;GROUP_READ_ONLY&#34;)
-     *             .build());
-     * 
-     *         final var testProjectApiKeys = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
+     *         final var test = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
      *             .itemsPerPage(5)
      *             .pageNum(1)
      *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
@@ -10314,15 +10313,12 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ProjectApiKey;
-     * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
      * import java.util.List;
@@ -10338,13 +10334,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectApiKey = new ProjectApiKey(&#34;testProjectApiKey&#34;, ProjectApiKeyArgs.builder()        
-     *             .description(&#34;Description of the API key&#34;)
-     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
-     *             .roleNames(&#34;GROUP_READ_ONLY&#34;)
-     *             .build());
-     * 
-     *         final var testProjectApiKeys = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
+     *         final var test = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
      *             .itemsPerPage(5)
      *             .pageNum(1)
      *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
@@ -10360,15 +10350,12 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ProjectApiKey;
-     * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
      * import java.util.List;
@@ -10384,13 +10371,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectApiKey = new ProjectApiKey(&#34;testProjectApiKey&#34;, ProjectApiKeyArgs.builder()        
-     *             .description(&#34;Description of the API key&#34;)
-     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
-     *             .roleNames(&#34;GROUP_READ_ONLY&#34;)
-     *             .build());
-     * 
-     *         final var testProjectApiKeys = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
+     *         final var test = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
      *             .itemsPerPage(5)
      *             .pageNum(1)
      *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
@@ -10406,15 +10387,12 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ProjectApiKey;
-     * import com.pulumi.mongodbatlas.ProjectApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
      * import java.util.List;
@@ -10430,13 +10408,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectApiKey = new ProjectApiKey(&#34;testProjectApiKey&#34;, ProjectApiKeyArgs.builder()        
-     *             .description(&#34;Description of the API key&#34;)
-     *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
-     *             .roleNames(&#34;GROUP_READ_ONLY&#34;)
-     *             .build());
-     * 
-     *         final var testProjectApiKeys = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
+     *         final var test = MongodbatlasFunctions.getProjectApiKeys(GetProjectApiKeysArgs.builder()
      *             .itemsPerPage(5)
      *             .pageNum(1)
      *             .projectId(&#34;32b6e34b3d91647abb20e7b8&#34;)
