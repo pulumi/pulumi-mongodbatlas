@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -198,52 +199,82 @@ public final class GetNetworkContainersResult {
 
         @CustomType.Setter
         public Builder atlasCidrBlock(String atlasCidrBlock) {
-            this.atlasCidrBlock = Objects.requireNonNull(atlasCidrBlock);
+            if (atlasCidrBlock == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "atlasCidrBlock");
+            }
+            this.atlasCidrBlock = atlasCidrBlock;
             return this;
         }
         @CustomType.Setter
         public Builder azureSubscriptionId(String azureSubscriptionId) {
-            this.azureSubscriptionId = Objects.requireNonNull(azureSubscriptionId);
+            if (azureSubscriptionId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "azureSubscriptionId");
+            }
+            this.azureSubscriptionId = azureSubscriptionId;
             return this;
         }
         @CustomType.Setter
         public Builder gcpProjectId(String gcpProjectId) {
-            this.gcpProjectId = Objects.requireNonNull(gcpProjectId);
+            if (gcpProjectId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "gcpProjectId");
+            }
+            this.gcpProjectId = gcpProjectId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder networkName(String networkName) {
-            this.networkName = Objects.requireNonNull(networkName);
+            if (networkName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "networkName");
+            }
+            this.networkName = networkName;
             return this;
         }
         @CustomType.Setter
         public Builder providerName(String providerName) {
-            this.providerName = Objects.requireNonNull(providerName);
+            if (providerName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "providerName");
+            }
+            this.providerName = providerName;
             return this;
         }
         @CustomType.Setter
         public Builder provisioned(Boolean provisioned) {
-            this.provisioned = Objects.requireNonNull(provisioned);
+            if (provisioned == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "provisioned");
+            }
+            this.provisioned = provisioned;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder regionName(String regionName) {
-            this.regionName = Objects.requireNonNull(regionName);
+            if (regionName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "regionName");
+            }
+            this.regionName = regionName;
             return this;
         }
         @CustomType.Setter
         public Builder regions(List<String> regions) {
-            this.regions = Objects.requireNonNull(regions);
+            if (regions == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "regions");
+            }
+            this.regions = regions;
             return this;
         }
         public Builder regions(String... regions) {
@@ -251,12 +282,18 @@ public final class GetNetworkContainersResult {
         }
         @CustomType.Setter
         public Builder vnetName(String vnetName) {
-            this.vnetName = Objects.requireNonNull(vnetName);
+            if (vnetName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "vnetName");
+            }
+            this.vnetName = vnetName;
             return this;
         }
         @CustomType.Setter
         public Builder vpcId(String vpcId) {
-            this.vpcId = Objects.requireNonNull(vpcId);
+            if (vpcId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkContainersResult", "vpcId");
+            }
+            this.vpcId = vpcId;
             return this;
         }
         public GetNetworkContainersResult build() {

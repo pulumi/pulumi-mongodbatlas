@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
 import java.lang.String;
 import java.util.Objects;
@@ -220,9 +221,15 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
         }
 
         public CloudBackupSnapshotRestoreJobArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.snapshotId = Objects.requireNonNull($.snapshotId, "expected parameter 'snapshotId' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotRestoreJobArgs", "clusterName");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotRestoreJobArgs", "projectId");
+            }
+            if ($.snapshotId == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotRestoreJobArgs", "snapshotId");
+            }
             return $;
         }
     }

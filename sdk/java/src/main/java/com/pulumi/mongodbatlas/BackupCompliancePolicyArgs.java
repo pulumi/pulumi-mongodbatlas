@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyOnDemandPolicyItemArgs;
 import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemDailyArgs;
 import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemHourlyArgs;
@@ -436,14 +437,30 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
         }
 
         public BackupCompliancePolicyArgs build() {
-            $.authorizedEmail = Objects.requireNonNull($.authorizedEmail, "expected parameter 'authorizedEmail' to be non-null");
-            $.authorizedUserFirstName = Objects.requireNonNull($.authorizedUserFirstName, "expected parameter 'authorizedUserFirstName' to be non-null");
-            $.authorizedUserLastName = Objects.requireNonNull($.authorizedUserLastName, "expected parameter 'authorizedUserLastName' to be non-null");
-            $.copyProtectionEnabled = Objects.requireNonNull($.copyProtectionEnabled, "expected parameter 'copyProtectionEnabled' to be non-null");
-            $.encryptionAtRestEnabled = Objects.requireNonNull($.encryptionAtRestEnabled, "expected parameter 'encryptionAtRestEnabled' to be non-null");
-            $.onDemandPolicyItem = Objects.requireNonNull($.onDemandPolicyItem, "expected parameter 'onDemandPolicyItem' to be non-null");
-            $.pitEnabled = Objects.requireNonNull($.pitEnabled, "expected parameter 'pitEnabled' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.authorizedEmail == null) {
+                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "authorizedEmail");
+            }
+            if ($.authorizedUserFirstName == null) {
+                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "authorizedUserFirstName");
+            }
+            if ($.authorizedUserLastName == null) {
+                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "authorizedUserLastName");
+            }
+            if ($.copyProtectionEnabled == null) {
+                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "copyProtectionEnabled");
+            }
+            if ($.encryptionAtRestEnabled == null) {
+                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "encryptionAtRestEnabled");
+            }
+            if ($.onDemandPolicyItem == null) {
+                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "onDemandPolicyItem");
+            }
+            if ($.pitEnabled == null) {
+                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "pitEnabled");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "projectId");
+            }
             return $;
         }
     }

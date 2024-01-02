@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -117,9 +118,15 @@ public final class GetDataLakePipelineRunPlainArgs extends com.pulumi.resources.
         }
 
         public GetDataLakePipelineRunPlainArgs build() {
-            $.pipelineName = Objects.requireNonNull($.pipelineName, "expected parameter 'pipelineName' to be non-null");
-            $.pipelineRunId = Objects.requireNonNull($.pipelineRunId, "expected parameter 'pipelineRunId' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.pipelineName == null) {
+                throw new MissingRequiredPropertyException("GetDataLakePipelineRunPlainArgs", "pipelineName");
+            }
+            if ($.pipelineRunId == null) {
+                throw new MissingRequiredPropertyException("GetDataLakePipelineRunPlainArgs", "pipelineRunId");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetDataLakePipelineRunPlainArgs", "projectId");
+            }
             return $;
         }
     }

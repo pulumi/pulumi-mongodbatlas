@@ -106,31 +106,37 @@ public final class DataLakePipelineSource {
 
         @CustomType.Setter
         public Builder clusterName(@Nullable String clusterName) {
+
             this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder collectionName(@Nullable String collectionName) {
+
             this.collectionName = collectionName;
             return this;
         }
         @CustomType.Setter
         public Builder databaseName(@Nullable String databaseName) {
+
             this.databaseName = databaseName;
             return this;
         }
         @CustomType.Setter
         public Builder policyItemId(@Nullable String policyItemId) {
+
             this.policyItemId = policyItemId;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(@Nullable String projectId) {
+
             this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }

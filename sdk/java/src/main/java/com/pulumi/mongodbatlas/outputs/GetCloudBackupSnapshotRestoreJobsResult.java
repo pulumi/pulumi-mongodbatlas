@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -217,22 +218,34 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
 
         @CustomType.Setter
         public Builder cancelled(Boolean cancelled) {
-            this.cancelled = Objects.requireNonNull(cancelled);
+            if (cancelled == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "cancelled");
+            }
+            this.cancelled = cancelled;
             return this;
         }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder deliveryType(String deliveryType) {
-            this.deliveryType = Objects.requireNonNull(deliveryType);
+            if (deliveryType == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "deliveryType");
+            }
+            this.deliveryType = deliveryType;
             return this;
         }
         @CustomType.Setter
         public Builder deliveryUrls(List<String> deliveryUrls) {
-            this.deliveryUrls = Objects.requireNonNull(deliveryUrls);
+            if (deliveryUrls == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "deliveryUrls");
+            }
+            this.deliveryUrls = deliveryUrls;
             return this;
         }
         public Builder deliveryUrls(String... deliveryUrls) {
@@ -240,57 +253,90 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
         }
         @CustomType.Setter
         public Builder expired(Boolean expired) {
-            this.expired = Objects.requireNonNull(expired);
+            if (expired == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "expired");
+            }
+            this.expired = expired;
             return this;
         }
         @CustomType.Setter
         public Builder expiresAt(String expiresAt) {
-            this.expiresAt = Objects.requireNonNull(expiresAt);
+            if (expiresAt == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "expiresAt");
+            }
+            this.expiresAt = expiresAt;
             return this;
         }
         @CustomType.Setter
         public Builder finishedAt(String finishedAt) {
-            this.finishedAt = Objects.requireNonNull(finishedAt);
+            if (finishedAt == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "finishedAt");
+            }
+            this.finishedAt = finishedAt;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder oplogInc(Integer oplogInc) {
-            this.oplogInc = Objects.requireNonNull(oplogInc);
+            if (oplogInc == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "oplogInc");
+            }
+            this.oplogInc = oplogInc;
             return this;
         }
         @CustomType.Setter
         public Builder oplogTs(Integer oplogTs) {
-            this.oplogTs = Objects.requireNonNull(oplogTs);
+            if (oplogTs == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "oplogTs");
+            }
+            this.oplogTs = oplogTs;
             return this;
         }
         @CustomType.Setter
         public Builder pointInTimeUtcSeconds(Integer pointInTimeUtcSeconds) {
-            this.pointInTimeUtcSeconds = Objects.requireNonNull(pointInTimeUtcSeconds);
+            if (pointInTimeUtcSeconds == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "pointInTimeUtcSeconds");
+            }
+            this.pointInTimeUtcSeconds = pointInTimeUtcSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotId(String snapshotId) {
-            this.snapshotId = Objects.requireNonNull(snapshotId);
+            if (snapshotId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "snapshotId");
+            }
+            this.snapshotId = snapshotId;
             return this;
         }
         @CustomType.Setter
         public Builder targetClusterName(String targetClusterName) {
-            this.targetClusterName = Objects.requireNonNull(targetClusterName);
+            if (targetClusterName == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "targetClusterName");
+            }
+            this.targetClusterName = targetClusterName;
             return this;
         }
         @CustomType.Setter
         public Builder targetProjectId(String targetProjectId) {
-            this.targetProjectId = Objects.requireNonNull(targetProjectId);
+            if (targetProjectId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "targetProjectId");
+            }
+            this.targetProjectId = targetProjectId;
             return this;
         }
         @CustomType.Setter
         public Builder timestamp(String timestamp) {
-            this.timestamp = Objects.requireNonNull(timestamp);
+            if (timestamp == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "timestamp");
+            }
+            this.timestamp = timestamp;
             return this;
         }
         public GetCloudBackupSnapshotRestoreJobsResult build() {

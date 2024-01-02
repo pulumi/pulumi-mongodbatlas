@@ -196,56 +196,67 @@ public final class AdvancedClusterAdvancedConfiguration {
 
         @CustomType.Setter
         public Builder defaultReadConcern(@Nullable String defaultReadConcern) {
+
             this.defaultReadConcern = defaultReadConcern;
             return this;
         }
         @CustomType.Setter
         public Builder defaultWriteConcern(@Nullable String defaultWriteConcern) {
+
             this.defaultWriteConcern = defaultWriteConcern;
             return this;
         }
         @CustomType.Setter
         public Builder failIndexKeyTooLong(@Nullable Boolean failIndexKeyTooLong) {
+
             this.failIndexKeyTooLong = failIndexKeyTooLong;
             return this;
         }
         @CustomType.Setter
         public Builder javascriptEnabled(@Nullable Boolean javascriptEnabled) {
+
             this.javascriptEnabled = javascriptEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder minimumEnabledTlsProtocol(@Nullable String minimumEnabledTlsProtocol) {
+
             this.minimumEnabledTlsProtocol = minimumEnabledTlsProtocol;
             return this;
         }
         @CustomType.Setter
         public Builder noTableScan(@Nullable Boolean noTableScan) {
+
             this.noTableScan = noTableScan;
             return this;
         }
         @CustomType.Setter
         public Builder oplogMinRetentionHours(@Nullable Integer oplogMinRetentionHours) {
+
             this.oplogMinRetentionHours = oplogMinRetentionHours;
             return this;
         }
         @CustomType.Setter
         public Builder oplogSizeMb(@Nullable Integer oplogSizeMb) {
+
             this.oplogSizeMb = oplogSizeMb;
             return this;
         }
         @CustomType.Setter
         public Builder sampleRefreshIntervalBiConnector(@Nullable Integer sampleRefreshIntervalBiConnector) {
+
             this.sampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             return this;
         }
         @CustomType.Setter
         public Builder sampleSizeBiConnector(@Nullable Integer sampleSizeBiConnector) {
+
             this.sampleSizeBiConnector = sampleSizeBiConnector;
             return this;
         }
         @CustomType.Setter
         public Builder transactionLifetimeLimitSeconds(@Nullable Integer transactionLifetimeLimitSeconds) {
+
             this.transactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
             return this;
         }

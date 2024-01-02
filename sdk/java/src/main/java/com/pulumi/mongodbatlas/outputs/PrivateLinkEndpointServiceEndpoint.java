@@ -86,21 +86,25 @@ public final class PrivateLinkEndpointServiceEndpoint {
 
         @CustomType.Setter
         public Builder endpointName(@Nullable String endpointName) {
+
             this.endpointName = endpointName;
             return this;
         }
         @CustomType.Setter
         public Builder ipAddress(@Nullable String ipAddress) {
+
             this.ipAddress = ipAddress;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAttachmentName(@Nullable String serviceAttachmentName) {
+
             this.serviceAttachmentName = serviceAttachmentName;
             return this;
         }
         @CustomType.Setter
         public Builder status(@Nullable String status) {
+
             this.status = status;
             return this;
         }

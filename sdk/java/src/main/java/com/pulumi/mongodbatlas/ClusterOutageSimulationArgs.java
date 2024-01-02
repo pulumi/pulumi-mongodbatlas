@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.ClusterOutageSimulationOutageFilterArgs;
 import java.lang.String;
 import java.util.List;
@@ -160,9 +161,15 @@ public final class ClusterOutageSimulationArgs extends com.pulumi.resources.Reso
         }
 
         public ClusterOutageSimulationArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.outageFilters = Objects.requireNonNull($.outageFilters, "expected parameter 'outageFilters' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("ClusterOutageSimulationArgs", "clusterName");
+            }
+            if ($.outageFilters == null) {
+                throw new MissingRequiredPropertyException("ClusterOutageSimulationArgs", "outageFilters");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("ClusterOutageSimulationArgs", "projectId");
+            }
             return $;
         }
     }

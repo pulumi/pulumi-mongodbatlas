@@ -70,6 +70,7 @@ public final class FederatedDatabaseInstanceStorageDatabase {
 
         @CustomType.Setter
         public Builder collections(@Nullable List<FederatedDatabaseInstanceStorageDatabaseCollection> collections) {
+
             this.collections = collections;
             return this;
         }
@@ -78,16 +79,19 @@ public final class FederatedDatabaseInstanceStorageDatabase {
         }
         @CustomType.Setter
         public Builder maxWildcardCollections(@Nullable Integer maxWildcardCollections) {
+
             this.maxWildcardCollections = maxWildcardCollections;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder views(@Nullable List<FederatedDatabaseInstanceStorageDatabaseView> views) {
+
             this.views = views;
             return this;
         }

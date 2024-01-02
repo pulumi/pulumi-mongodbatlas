@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -34,7 +35,10 @@ public final class CloudProviderAccessAuthorizationAws {
 
         @CustomType.Setter
         public Builder iamAssumedRoleArn(String iamAssumedRoleArn) {
-            this.iamAssumedRoleArn = Objects.requireNonNull(iamAssumedRoleArn);
+            if (iamAssumedRoleArn == null) {
+              throw new MissingRequiredPropertyException("CloudProviderAccessAuthorizationAws", "iamAssumedRoleArn");
+            }
+            this.iamAssumedRoleArn = iamAssumedRoleArn;
             return this;
         }
         public CloudProviderAccessAuthorizationAws build() {

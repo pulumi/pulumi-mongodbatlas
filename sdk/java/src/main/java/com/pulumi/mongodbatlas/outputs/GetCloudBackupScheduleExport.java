@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -56,12 +57,18 @@ public final class GetCloudBackupScheduleExport {
 
         @CustomType.Setter
         public Builder exportBucketId(String exportBucketId) {
-            this.exportBucketId = Objects.requireNonNull(exportBucketId);
+            if (exportBucketId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleExport", "exportBucketId");
+            }
+            this.exportBucketId = exportBucketId;
             return this;
         }
         @CustomType.Setter
         public Builder frequencyType(String frequencyType) {
-            this.frequencyType = Objects.requireNonNull(frequencyType);
+            if (frequencyType == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleExport", "frequencyType");
+            }
+            this.frequencyType = frequencyType;
             return this;
         }
         public GetCloudBackupScheduleExport build() {

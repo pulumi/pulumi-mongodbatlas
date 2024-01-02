@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.Get509AuthenticationDatabaseUserCertificate;
 import java.lang.String;
 import java.util.List;
@@ -78,7 +79,10 @@ public final class Get509AuthenticationDatabaseUserResult {
 
         @CustomType.Setter
         public Builder certificates(List<Get509AuthenticationDatabaseUserCertificate> certificates) {
-            this.certificates = Objects.requireNonNull(certificates);
+            if (certificates == null) {
+              throw new MissingRequiredPropertyException("Get509AuthenticationDatabaseUserResult", "certificates");
+            }
+            this.certificates = certificates;
             return this;
         }
         public Builder certificates(Get509AuthenticationDatabaseUserCertificate... certificates) {
@@ -86,21 +90,31 @@ public final class Get509AuthenticationDatabaseUserResult {
         }
         @CustomType.Setter
         public Builder customerX509Cas(String customerX509Cas) {
-            this.customerX509Cas = Objects.requireNonNull(customerX509Cas);
+            if (customerX509Cas == null) {
+              throw new MissingRequiredPropertyException("Get509AuthenticationDatabaseUserResult", "customerX509Cas");
+            }
+            this.customerX509Cas = customerX509Cas;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("Get509AuthenticationDatabaseUserResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("Get509AuthenticationDatabaseUserResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder username(@Nullable String username) {
+
             this.username = username;
             return this;
         }

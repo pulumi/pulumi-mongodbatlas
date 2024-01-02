@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -225,9 +226,15 @@ public final class GlobalClusterConfigManagedNamespaceArgs extends com.pulumi.re
         }
 
         public GlobalClusterConfigManagedNamespaceArgs build() {
-            $.collection = Objects.requireNonNull($.collection, "expected parameter 'collection' to be non-null");
-            $.customShardKey = Objects.requireNonNull($.customShardKey, "expected parameter 'customShardKey' to be non-null");
-            $.db = Objects.requireNonNull($.db, "expected parameter 'db' to be non-null");
+            if ($.collection == null) {
+                throw new MissingRequiredPropertyException("GlobalClusterConfigManagedNamespaceArgs", "collection");
+            }
+            if ($.customShardKey == null) {
+                throw new MissingRequiredPropertyException("GlobalClusterConfigManagedNamespaceArgs", "customShardKey");
+            }
+            if ($.db == null) {
+                throw new MissingRequiredPropertyException("GlobalClusterConfigManagedNamespaceArgs", "db");
+            }
             return $;
         }
     }

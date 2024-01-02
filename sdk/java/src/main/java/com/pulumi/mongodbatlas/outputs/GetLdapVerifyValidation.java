@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -48,12 +49,18 @@ public final class GetLdapVerifyValidation {
 
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyValidation", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder validationType(String validationType) {
-            this.validationType = Objects.requireNonNull(validationType);
+            if (validationType == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyValidation", "validationType");
+            }
+            this.validationType = validationType;
             return this;
         }
         public GetLdapVerifyValidation build() {

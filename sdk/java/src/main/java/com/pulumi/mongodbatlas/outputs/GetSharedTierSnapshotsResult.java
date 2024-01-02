@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -70,37 +71,58 @@ public final class GetSharedTierSnapshotsResult {
 
         @CustomType.Setter
         public Builder expiration(String expiration) {
-            this.expiration = Objects.requireNonNull(expiration);
+            if (expiration == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsResult", "expiration");
+            }
+            this.expiration = expiration;
             return this;
         }
         @CustomType.Setter
         public Builder finishTime(String finishTime) {
-            this.finishTime = Objects.requireNonNull(finishTime);
+            if (finishTime == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsResult", "finishTime");
+            }
+            this.finishTime = finishTime;
             return this;
         }
         @CustomType.Setter
         public Builder mongoDbVersion(String mongoDbVersion) {
-            this.mongoDbVersion = Objects.requireNonNull(mongoDbVersion);
+            if (mongoDbVersion == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsResult", "mongoDbVersion");
+            }
+            this.mongoDbVersion = mongoDbVersion;
             return this;
         }
         @CustomType.Setter
         public Builder scheduledTime(String scheduledTime) {
-            this.scheduledTime = Objects.requireNonNull(scheduledTime);
+            if (scheduledTime == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsResult", "scheduledTime");
+            }
+            this.scheduledTime = scheduledTime;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotId(String snapshotId) {
-            this.snapshotId = Objects.requireNonNull(snapshotId);
+            if (snapshotId == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsResult", "snapshotId");
+            }
+            this.snapshotId = snapshotId;
             return this;
         }
         @CustomType.Setter
         public Builder startTime(String startTime) {
-            this.startTime = Objects.requireNonNull(startTime);
+            if (startTime == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsResult", "startTime");
+            }
+            this.startTime = startTime;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsResult", "status");
+            }
+            this.status = status;
             return this;
         }
         public GetSharedTierSnapshotsResult build() {

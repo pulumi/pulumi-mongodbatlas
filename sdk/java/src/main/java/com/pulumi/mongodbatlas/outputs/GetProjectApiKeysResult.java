@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetProjectApiKeysResultProjectAssignment;
 import java.lang.String;
 import java.util.List;
@@ -77,21 +78,31 @@ public final class GetProjectApiKeysResult {
 
         @CustomType.Setter
         public Builder apiKeyId(String apiKeyId) {
-            this.apiKeyId = Objects.requireNonNull(apiKeyId);
+            if (apiKeyId == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeysResult", "apiKeyId");
+            }
+            this.apiKeyId = apiKeyId;
             return this;
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeysResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder privateKey(String privateKey) {
-            this.privateKey = Objects.requireNonNull(privateKey);
+            if (privateKey == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeysResult", "privateKey");
+            }
+            this.privateKey = privateKey;
             return this;
         }
         @CustomType.Setter
         public Builder projectAssignments(@Nullable List<GetProjectApiKeysResultProjectAssignment> projectAssignments) {
+
             this.projectAssignments = projectAssignments;
             return this;
         }
@@ -100,7 +111,10 @@ public final class GetProjectApiKeysResult {
         }
         @CustomType.Setter
         public Builder publicKey(String publicKey) {
-            this.publicKey = Objects.requireNonNull(publicKey);
+            if (publicKey == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeysResult", "publicKey");
+            }
+            this.publicKey = publicKey;
             return this;
         }
         public GetProjectApiKeysResult build() {

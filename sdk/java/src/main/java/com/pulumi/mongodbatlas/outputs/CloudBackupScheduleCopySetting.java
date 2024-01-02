@@ -102,11 +102,13 @@ public final class CloudBackupScheduleCopySetting {
 
         @CustomType.Setter
         public Builder cloudProvider(@Nullable String cloudProvider) {
+
             this.cloudProvider = cloudProvider;
             return this;
         }
         @CustomType.Setter
         public Builder frequencies(@Nullable List<String> frequencies) {
+
             this.frequencies = frequencies;
             return this;
         }
@@ -115,16 +117,19 @@ public final class CloudBackupScheduleCopySetting {
         }
         @CustomType.Setter
         public Builder regionName(@Nullable String regionName) {
+
             this.regionName = regionName;
             return this;
         }
         @CustomType.Setter
         public Builder replicationSpecId(@Nullable String replicationSpecId) {
+
             this.replicationSpecId = replicationSpecId;
             return this;
         }
         @CustomType.Setter
         public Builder shouldCopyOplogs(@Nullable Boolean shouldCopyOplogs) {
+
             this.shouldCopyOplogs = shouldCopyOplogs;
             return this;
         }

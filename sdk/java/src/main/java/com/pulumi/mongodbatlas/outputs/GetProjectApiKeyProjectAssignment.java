@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -57,12 +58,18 @@ public final class GetProjectApiKeyProjectAssignment {
 
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeyProjectAssignment", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder roleNames(List<String> roleNames) {
-            this.roleNames = Objects.requireNonNull(roleNames);
+            if (roleNames == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeyProjectAssignment", "roleNames");
+            }
+            this.roleNames = roleNames;
             return this;
         }
         public Builder roleNames(String... roleNames) {

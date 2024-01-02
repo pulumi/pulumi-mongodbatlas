@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetEventTriggerEventProcessorAwsEventbridge;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +36,10 @@ public final class GetEventTriggerEventProcessor {
 
         @CustomType.Setter
         public Builder awsEventbridges(List<GetEventTriggerEventProcessorAwsEventbridge> awsEventbridges) {
-            this.awsEventbridges = Objects.requireNonNull(awsEventbridges);
+            if (awsEventbridges == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggerEventProcessor", "awsEventbridges");
+            }
+            this.awsEventbridges = awsEventbridges;
             return this;
         }
         public Builder awsEventbridges(GetEventTriggerEventProcessorAwsEventbridge... awsEventbridges) {

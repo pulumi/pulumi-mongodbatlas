@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -132,42 +133,66 @@ public final class GetDataLakePipelineSnapshot {
 
         @CustomType.Setter
         public Builder copyRegion(String copyRegion) {
-            this.copyRegion = Objects.requireNonNull(copyRegion);
+            if (copyRegion == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "copyRegion");
+            }
+            this.copyRegion = copyRegion;
             return this;
         }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder expiresAt(String expiresAt) {
-            this.expiresAt = Objects.requireNonNull(expiresAt);
+            if (expiresAt == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "expiresAt");
+            }
+            this.expiresAt = expiresAt;
             return this;
         }
         @CustomType.Setter
         public Builder frequencyYype(String frequencyYype) {
-            this.frequencyYype = Objects.requireNonNull(frequencyYype);
+            if (frequencyYype == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "frequencyYype");
+            }
+            this.frequencyYype = frequencyYype;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder masterKey(String masterKey) {
-            this.masterKey = Objects.requireNonNull(masterKey);
+            if (masterKey == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "masterKey");
+            }
+            this.masterKey = masterKey;
             return this;
         }
         @CustomType.Setter
         public Builder mongodVersion(String mongodVersion) {
-            this.mongodVersion = Objects.requireNonNull(mongodVersion);
+            if (mongodVersion == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "mongodVersion");
+            }
+            this.mongodVersion = mongodVersion;
             return this;
         }
         @CustomType.Setter
         public Builder policies(List<String> policies) {
-            this.policies = Objects.requireNonNull(policies);
+            if (policies == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "policies");
+            }
+            this.policies = policies;
             return this;
         }
         public Builder policies(String... policies) {
@@ -175,27 +200,42 @@ public final class GetDataLakePipelineSnapshot {
         }
         @CustomType.Setter
         public Builder provider(String provider) {
-            this.provider = Objects.requireNonNull(provider);
+            if (provider == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "provider");
+            }
+            this.provider = provider;
             return this;
         }
         @CustomType.Setter
         public Builder replicaSetName(String replicaSetName) {
-            this.replicaSetName = Objects.requireNonNull(replicaSetName);
+            if (replicaSetName == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "replicaSetName");
+            }
+            this.replicaSetName = replicaSetName;
             return this;
         }
         @CustomType.Setter
         public Builder size(Integer size) {
-            this.size = Objects.requireNonNull(size);
+            if (size == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "size");
+            }
+            this.size = size;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineSnapshot", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetDataLakePipelineSnapshot build() {

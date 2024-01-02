@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -75,9 +76,15 @@ public final class GetSharedTierSnapshotPlainArgs extends com.pulumi.resources.I
         }
 
         public GetSharedTierSnapshotPlainArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.snapshotId = Objects.requireNonNull($.snapshotId, "expected parameter 'snapshotId' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("GetSharedTierSnapshotPlainArgs", "clusterName");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetSharedTierSnapshotPlainArgs", "projectId");
+            }
+            if ($.snapshotId == null) {
+                throw new MissingRequiredPropertyException("GetSharedTierSnapshotPlainArgs", "snapshotId");
+            }
             return $;
         }
     }

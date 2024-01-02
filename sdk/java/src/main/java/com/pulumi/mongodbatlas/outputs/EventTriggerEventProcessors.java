@@ -36,6 +36,7 @@ public final class EventTriggerEventProcessors {
 
         @CustomType.Setter
         public Builder awsEventbridge(@Nullable EventTriggerEventProcessorsAwsEventbridge awsEventbridge) {
+
             this.awsEventbridge = awsEventbridge;
             return this;
         }

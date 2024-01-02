@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -84,22 +85,34 @@ public final class GetPrivateLinkEndpointServiceEndpoint {
 
         @CustomType.Setter
         public Builder endpointName(String endpointName) {
-            this.endpointName = Objects.requireNonNull(endpointName);
+            if (endpointName == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceEndpoint", "endpointName");
+            }
+            this.endpointName = endpointName;
             return this;
         }
         @CustomType.Setter
         public Builder ipAddress(String ipAddress) {
-            this.ipAddress = Objects.requireNonNull(ipAddress);
+            if (ipAddress == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceEndpoint", "ipAddress");
+            }
+            this.ipAddress = ipAddress;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAttachmentName(String serviceAttachmentName) {
-            this.serviceAttachmentName = Objects.requireNonNull(serviceAttachmentName);
+            if (serviceAttachmentName == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceEndpoint", "serviceAttachmentName");
+            }
+            this.serviceAttachmentName = serviceAttachmentName;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceEndpoint", "status");
+            }
+            this.status = status;
             return this;
         }
         public GetPrivateLinkEndpointServiceEndpoint build() {

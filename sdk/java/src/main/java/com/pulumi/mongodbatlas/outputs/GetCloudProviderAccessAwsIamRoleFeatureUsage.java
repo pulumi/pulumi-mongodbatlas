@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -42,12 +43,18 @@ public final class GetCloudProviderAccessAwsIamRoleFeatureUsage {
 
         @CustomType.Setter
         public Builder featureId(Map<String,Object> featureId) {
-            this.featureId = Objects.requireNonNull(featureId);
+            if (featureId == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessAwsIamRoleFeatureUsage", "featureId");
+            }
+            this.featureId = featureId;
             return this;
         }
         @CustomType.Setter
         public Builder featureType(String featureType) {
-            this.featureType = Objects.requireNonNull(featureType);
+            if (featureType == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessAwsIamRoleFeatureUsage", "featureType");
+            }
+            this.featureType = featureType;
             return this;
         }
         public GetCloudProviderAccessAwsIamRoleFeatureUsage build() {

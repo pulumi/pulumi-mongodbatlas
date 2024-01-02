@@ -72,16 +72,19 @@ public final class CloudBackupSnapshotMember {
 
         @CustomType.Setter
         public Builder cloudProvider(@Nullable String cloudProvider) {
+
             this.cloudProvider = cloudProvider;
             return this;
         }
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder replicaSetName(@Nullable String replicaSetName) {
+
             this.replicaSetName = replicaSetName;
             return this;
         }

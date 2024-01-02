@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationOutputArgs;
 import java.lang.String;
 import java.util.List;
@@ -167,8 +168,12 @@ public final class GetAlertConfigurationArgs extends com.pulumi.resources.Invoke
         }
 
         public GetAlertConfigurationArgs build() {
-            $.alertConfigurationId = Objects.requireNonNull($.alertConfigurationId, "expected parameter 'alertConfigurationId' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.alertConfigurationId == null) {
+                throw new MissingRequiredPropertyException("GetAlertConfigurationArgs", "alertConfigurationId");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetAlertConfigurationArgs", "projectId");
+            }
             return $;
         }
     }

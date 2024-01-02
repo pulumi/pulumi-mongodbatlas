@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotMember;
 import java.lang.Integer;
 import java.lang.String;
@@ -245,42 +246,66 @@ public final class GetCloudBackupSnapshotResult {
 
         @CustomType.Setter
         public Builder cloudProvider(String cloudProvider) {
-            this.cloudProvider = Objects.requireNonNull(cloudProvider);
+            if (cloudProvider == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "cloudProvider");
+            }
+            this.cloudProvider = cloudProvider;
             return this;
         }
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder expiresAt(String expiresAt) {
-            this.expiresAt = Objects.requireNonNull(expiresAt);
+            if (expiresAt == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "expiresAt");
+            }
+            this.expiresAt = expiresAt;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder masterKeyUuid(String masterKeyUuid) {
-            this.masterKeyUuid = Objects.requireNonNull(masterKeyUuid);
+            if (masterKeyUuid == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "masterKeyUuid");
+            }
+            this.masterKeyUuid = masterKeyUuid;
             return this;
         }
         @CustomType.Setter
         public Builder members(List<GetCloudBackupSnapshotMember> members) {
-            this.members = Objects.requireNonNull(members);
+            if (members == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "members");
+            }
+            this.members = members;
             return this;
         }
         public Builder members(GetCloudBackupSnapshotMember... members) {
@@ -288,27 +313,42 @@ public final class GetCloudBackupSnapshotResult {
         }
         @CustomType.Setter
         public Builder mongodVersion(String mongodVersion) {
-            this.mongodVersion = Objects.requireNonNull(mongodVersion);
+            if (mongodVersion == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "mongodVersion");
+            }
+            this.mongodVersion = mongodVersion;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder replicaSetName(String replicaSetName) {
-            this.replicaSetName = Objects.requireNonNull(replicaSetName);
+            if (replicaSetName == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "replicaSetName");
+            }
+            this.replicaSetName = replicaSetName;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotId(String snapshotId) {
-            this.snapshotId = Objects.requireNonNull(snapshotId);
+            if (snapshotId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "snapshotId");
+            }
+            this.snapshotId = snapshotId;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotIds(List<String> snapshotIds) {
-            this.snapshotIds = Objects.requireNonNull(snapshotIds);
+            if (snapshotIds == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "snapshotIds");
+            }
+            this.snapshotIds = snapshotIds;
             return this;
         }
         public Builder snapshotIds(String... snapshotIds) {
@@ -316,22 +356,34 @@ public final class GetCloudBackupSnapshotResult {
         }
         @CustomType.Setter
         public Builder snapshotType(String snapshotType) {
-            this.snapshotType = Objects.requireNonNull(snapshotType);
+            if (snapshotType == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "snapshotType");
+            }
+            this.snapshotType = snapshotType;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder storageSizeBytes(Integer storageSizeBytes) {
-            this.storageSizeBytes = Objects.requireNonNull(storageSizeBytes);
+            if (storageSizeBytes == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "storageSizeBytes");
+            }
+            this.storageSizeBytes = storageSizeBytes;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotResult", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetCloudBackupSnapshotResult build() {

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -117,37 +118,58 @@ public final class GetProjectInvitationResult {
 
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetProjectInvitationResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder expiresAt(String expiresAt) {
-            this.expiresAt = Objects.requireNonNull(expiresAt);
+            if (expiresAt == null) {
+              throw new MissingRequiredPropertyException("GetProjectInvitationResult", "expiresAt");
+            }
+            this.expiresAt = expiresAt;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetProjectInvitationResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder invitationId(String invitationId) {
-            this.invitationId = Objects.requireNonNull(invitationId);
+            if (invitationId == null) {
+              throw new MissingRequiredPropertyException("GetProjectInvitationResult", "invitationId");
+            }
+            this.invitationId = invitationId;
             return this;
         }
         @CustomType.Setter
         public Builder inviterUsername(String inviterUsername) {
-            this.inviterUsername = Objects.requireNonNull(inviterUsername);
+            if (inviterUsername == null) {
+              throw new MissingRequiredPropertyException("GetProjectInvitationResult", "inviterUsername");
+            }
+            this.inviterUsername = inviterUsername;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetProjectInvitationResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder roles(List<String> roles) {
-            this.roles = Objects.requireNonNull(roles);
+            if (roles == null) {
+              throw new MissingRequiredPropertyException("GetProjectInvitationResult", "roles");
+            }
+            this.roles = roles;
             return this;
         }
         public Builder roles(String... roles) {
@@ -155,7 +177,10 @@ public final class GetProjectInvitationResult {
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("GetProjectInvitationResult", "username");
+            }
+            this.username = username;
             return this;
         }
         public GetProjectInvitationResult build() {

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -99,27 +100,42 @@ public final class GetBackupCompliancePolicyPolicyItemDaily {
 
         @CustomType.Setter
         public Builder frequencyInterval(Integer frequencyInterval) {
-            this.frequencyInterval = Objects.requireNonNull(frequencyInterval);
+            if (frequencyInterval == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPolicyItemDaily", "frequencyInterval");
+            }
+            this.frequencyInterval = frequencyInterval;
             return this;
         }
         @CustomType.Setter
         public Builder frequencyType(String frequencyType) {
-            this.frequencyType = Objects.requireNonNull(frequencyType);
+            if (frequencyType == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPolicyItemDaily", "frequencyType");
+            }
+            this.frequencyType = frequencyType;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPolicyItemDaily", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder retentionUnit(String retentionUnit) {
-            this.retentionUnit = Objects.requireNonNull(retentionUnit);
+            if (retentionUnit == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPolicyItemDaily", "retentionUnit");
+            }
+            this.retentionUnit = retentionUnit;
             return this;
         }
         @CustomType.Setter
         public Builder retentionValue(Integer retentionValue) {
-            this.retentionValue = Objects.requireNonNull(retentionValue);
+            if (retentionValue == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPolicyItemDaily", "retentionValue");
+            }
+            this.retentionValue = retentionValue;
             return this;
         }
         public GetBackupCompliancePolicyPolicyItemDaily build() {

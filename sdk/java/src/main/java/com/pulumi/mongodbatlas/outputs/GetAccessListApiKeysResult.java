@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -81,32 +82,50 @@ public final class GetAccessListApiKeysResult {
 
         @CustomType.Setter
         public Builder accessCount(Integer accessCount) {
-            this.accessCount = Objects.requireNonNull(accessCount);
+            if (accessCount == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeysResult", "accessCount");
+            }
+            this.accessCount = accessCount;
             return this;
         }
         @CustomType.Setter
         public Builder cidrBlock(String cidrBlock) {
-            this.cidrBlock = Objects.requireNonNull(cidrBlock);
+            if (cidrBlock == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeysResult", "cidrBlock");
+            }
+            this.cidrBlock = cidrBlock;
             return this;
         }
         @CustomType.Setter
         public Builder created(String created) {
-            this.created = Objects.requireNonNull(created);
+            if (created == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeysResult", "created");
+            }
+            this.created = created;
             return this;
         }
         @CustomType.Setter
         public Builder ipAddress(String ipAddress) {
-            this.ipAddress = Objects.requireNonNull(ipAddress);
+            if (ipAddress == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeysResult", "ipAddress");
+            }
+            this.ipAddress = ipAddress;
             return this;
         }
         @CustomType.Setter
         public Builder lastUsed(String lastUsed) {
-            this.lastUsed = Objects.requireNonNull(lastUsed);
+            if (lastUsed == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeysResult", "lastUsed");
+            }
+            this.lastUsed = lastUsed;
             return this;
         }
         @CustomType.Setter
         public Builder lastUsedAddress(String lastUsedAddress) {
-            this.lastUsedAddress = Objects.requireNonNull(lastUsedAddress);
+            if (lastUsedAddress == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeysResult", "lastUsedAddress");
+            }
+            this.lastUsedAddress = lastUsedAddress;
             return this;
         }
         public GetAccessListApiKeysResult build() {

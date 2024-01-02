@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAtlasUsersResult;
 import java.lang.Integer;
 import java.lang.String;
@@ -109,32 +110,42 @@ public final class GetAtlasUsersInvokeResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUsersInvokeResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
+
             this.itemsPerPage = itemsPerPage;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(@Nullable String orgId) {
+
             this.orgId = orgId;
             return this;
         }
         @CustomType.Setter
         public Builder pageNum(@Nullable Integer pageNum) {
+
             this.pageNum = pageNum;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(@Nullable String projectId) {
+
             this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder results(List<GetAtlasUsersResult> results) {
-            this.results = Objects.requireNonNull(results);
+            if (results == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUsersInvokeResult", "results");
+            }
+            this.results = results;
             return this;
         }
         public Builder results(GetAtlasUsersResult... results) {
@@ -142,12 +153,16 @@ public final class GetAtlasUsersInvokeResult {
         }
         @CustomType.Setter
         public Builder teamId(@Nullable String teamId) {
+
             this.teamId = teamId;
             return this;
         }
         @CustomType.Setter
         public Builder totalCount(Integer totalCount) {
-            this.totalCount = Objects.requireNonNull(totalCount);
+            if (totalCount == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUsersInvokeResult", "totalCount");
+            }
+            this.totalCount = totalCount;
             return this;
         }
         public GetAtlasUsersInvokeResult build() {

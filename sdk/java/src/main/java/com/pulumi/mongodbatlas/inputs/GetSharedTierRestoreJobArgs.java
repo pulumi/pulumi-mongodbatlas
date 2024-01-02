@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -88,9 +89,15 @@ public final class GetSharedTierRestoreJobArgs extends com.pulumi.resources.Invo
         }
 
         public GetSharedTierRestoreJobArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.jobId = Objects.requireNonNull($.jobId, "expected parameter 'jobId' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("GetSharedTierRestoreJobArgs", "clusterName");
+            }
+            if ($.jobId == null) {
+                throw new MissingRequiredPropertyException("GetSharedTierRestoreJobArgs", "jobId");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetSharedTierRestoreJobArgs", "projectId");
+            }
             return $;
         }
     }

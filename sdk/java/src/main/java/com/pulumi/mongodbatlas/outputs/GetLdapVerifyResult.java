@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetLdapVerifyLink;
 import com.pulumi.mongodbatlas.outputs.GetLdapVerifyValidation;
 import java.lang.Integer;
@@ -150,22 +151,34 @@ public final class GetLdapVerifyResult {
 
         @CustomType.Setter
         public Builder bindUsername(String bindUsername) {
-            this.bindUsername = Objects.requireNonNull(bindUsername);
+            if (bindUsername == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyResult", "bindUsername");
+            }
+            this.bindUsername = bindUsername;
             return this;
         }
         @CustomType.Setter
         public Builder hostname(String hostname) {
-            this.hostname = Objects.requireNonNull(hostname);
+            if (hostname == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyResult", "hostname");
+            }
+            this.hostname = hostname;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder links(List<GetLdapVerifyLink> links) {
-            this.links = Objects.requireNonNull(links);
+            if (links == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyResult", "links");
+            }
+            this.links = links;
             return this;
         }
         public Builder links(GetLdapVerifyLink... links) {
@@ -173,27 +186,42 @@ public final class GetLdapVerifyResult {
         }
         @CustomType.Setter
         public Builder port(Integer port) {
-            this.port = Objects.requireNonNull(port);
+            if (port == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyResult", "port");
+            }
+            this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder requestId(String requestId) {
-            this.requestId = Objects.requireNonNull(requestId);
+            if (requestId == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyResult", "requestId");
+            }
+            this.requestId = requestId;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyResult", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder validations(List<GetLdapVerifyValidation> validations) {
-            this.validations = Objects.requireNonNull(validations);
+            if (validations == null) {
+              throw new MissingRequiredPropertyException("GetLdapVerifyResult", "validations");
+            }
+            this.validations = validations;
             return this;
         }
         public Builder validations(GetLdapVerifyValidation... validations) {

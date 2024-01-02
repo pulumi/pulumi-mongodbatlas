@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource;
 import java.lang.String;
 import java.util.List;
@@ -50,7 +51,10 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseCollection {
 
         @CustomType.Setter
         public Builder dataSources(List<GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource> dataSources) {
-            this.dataSources = Objects.requireNonNull(dataSources);
+            if (dataSources == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollection", "dataSources");
+            }
+            this.dataSources = dataSources;
             return this;
         }
         public Builder dataSources(GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource... dataSources) {
@@ -58,7 +62,10 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseCollection {
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollection", "name");
+            }
+            this.name = name;
             return this;
         }
         public GetFederatedDatabaseInstanceStorageDatabaseCollection build() {

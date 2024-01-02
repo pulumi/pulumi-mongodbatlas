@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
 import java.lang.Integer;
 import java.lang.String;
@@ -208,7 +209,9 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
         }
 
         public ClusterReplicationSpecArgs build() {
-            $.numShards = Objects.requireNonNull($.numShards, "expected parameter 'numShards' to be non-null");
+            if ($.numShards == null) {
+                throw new MissingRequiredPropertyException("ClusterReplicationSpecArgs", "numShards");
+            }
             return $;
         }
     }

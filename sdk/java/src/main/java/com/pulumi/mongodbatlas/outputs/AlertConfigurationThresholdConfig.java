@@ -77,16 +77,19 @@ public final class AlertConfigurationThresholdConfig {
 
         @CustomType.Setter
         public Builder operator(@Nullable String operator) {
+
             this.operator = operator;
             return this;
         }
         @CustomType.Setter
         public Builder threshold(@Nullable Double threshold) {
+
             this.threshold = threshold;
             return this;
         }
         @CustomType.Setter
         public Builder units(@Nullable String units) {
+
             this.units = units;
             return this;
         }

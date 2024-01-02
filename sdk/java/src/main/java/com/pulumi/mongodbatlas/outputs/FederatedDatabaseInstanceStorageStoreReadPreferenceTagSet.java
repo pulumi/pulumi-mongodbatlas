@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +36,10 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
 
         @CustomType.Setter
         public Builder tags(List<FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag> tags) {
-            this.tags = Objects.requireNonNull(tags);
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet", "tags");
+            }
+            this.tags = tags;
             return this;
         }
         public Builder tags(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag... tags) {

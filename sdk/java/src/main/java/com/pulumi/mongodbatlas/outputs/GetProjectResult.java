@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetProjectLimit;
 import com.pulumi.mongodbatlas.outputs.GetProjectTeam;
 import java.lang.Boolean;
@@ -227,52 +228,82 @@ public final class GetProjectResult {
 
         @CustomType.Setter
         public Builder clusterCount(Integer clusterCount) {
-            this.clusterCount = Objects.requireNonNull(clusterCount);
+            if (clusterCount == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "clusterCount");
+            }
+            this.clusterCount = clusterCount;
             return this;
         }
         @CustomType.Setter
         public Builder created(String created) {
-            this.created = Objects.requireNonNull(created);
+            if (created == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "created");
+            }
+            this.created = created;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder isCollectDatabaseSpecificsStatisticsEnabled(Boolean isCollectDatabaseSpecificsStatisticsEnabled) {
-            this.isCollectDatabaseSpecificsStatisticsEnabled = Objects.requireNonNull(isCollectDatabaseSpecificsStatisticsEnabled);
+            if (isCollectDatabaseSpecificsStatisticsEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "isCollectDatabaseSpecificsStatisticsEnabled");
+            }
+            this.isCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder isDataExplorerEnabled(Boolean isDataExplorerEnabled) {
-            this.isDataExplorerEnabled = Objects.requireNonNull(isDataExplorerEnabled);
+            if (isDataExplorerEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "isDataExplorerEnabled");
+            }
+            this.isDataExplorerEnabled = isDataExplorerEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder isExtendedStorageSizesEnabled(Boolean isExtendedStorageSizesEnabled) {
-            this.isExtendedStorageSizesEnabled = Objects.requireNonNull(isExtendedStorageSizesEnabled);
+            if (isExtendedStorageSizesEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "isExtendedStorageSizesEnabled");
+            }
+            this.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder isPerformanceAdvisorEnabled(Boolean isPerformanceAdvisorEnabled) {
-            this.isPerformanceAdvisorEnabled = Objects.requireNonNull(isPerformanceAdvisorEnabled);
+            if (isPerformanceAdvisorEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "isPerformanceAdvisorEnabled");
+            }
+            this.isPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder isRealtimePerformancePanelEnabled(Boolean isRealtimePerformancePanelEnabled) {
-            this.isRealtimePerformancePanelEnabled = Objects.requireNonNull(isRealtimePerformancePanelEnabled);
+            if (isRealtimePerformancePanelEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "isRealtimePerformancePanelEnabled");
+            }
+            this.isRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder isSchemaAdvisorEnabled(Boolean isSchemaAdvisorEnabled) {
-            this.isSchemaAdvisorEnabled = Objects.requireNonNull(isSchemaAdvisorEnabled);
+            if (isSchemaAdvisorEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "isSchemaAdvisorEnabled");
+            }
+            this.isSchemaAdvisorEnabled = isSchemaAdvisorEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder limits(List<GetProjectLimit> limits) {
-            this.limits = Objects.requireNonNull(limits);
+            if (limits == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "limits");
+            }
+            this.limits = limits;
             return this;
         }
         public Builder limits(GetProjectLimit... limits) {
@@ -280,27 +311,38 @@ public final class GetProjectResult {
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(String orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+            if (orgId == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "orgId");
+            }
+            this.orgId = orgId;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(@Nullable String projectId) {
+
             this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder regionUsageRestrictions(String regionUsageRestrictions) {
-            this.regionUsageRestrictions = Objects.requireNonNull(regionUsageRestrictions);
+            if (regionUsageRestrictions == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "regionUsageRestrictions");
+            }
+            this.regionUsageRestrictions = regionUsageRestrictions;
             return this;
         }
         @CustomType.Setter
         public Builder teams(List<GetProjectTeam> teams) {
-            this.teams = Objects.requireNonNull(teams);
+            if (teams == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "teams");
+            }
+            this.teams = teams;
             return this;
         }
         public Builder teams(GetProjectTeam... teams) {

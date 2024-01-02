@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultConnectionStringPrivateEndpoint;
 import java.lang.String;
 import java.util.List;
@@ -60,12 +61,18 @@ public final class GetAdvancedClustersResultConnectionString {
 
         @CustomType.Setter("private")
         public Builder private_(String private_) {
-            this.private_ = Objects.requireNonNull(private_);
+            if (private_ == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultConnectionString", "private_");
+            }
+            this.private_ = private_;
             return this;
         }
         @CustomType.Setter
         public Builder privateEndpoints(List<GetAdvancedClustersResultConnectionStringPrivateEndpoint> privateEndpoints) {
-            this.privateEndpoints = Objects.requireNonNull(privateEndpoints);
+            if (privateEndpoints == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultConnectionString", "privateEndpoints");
+            }
+            this.privateEndpoints = privateEndpoints;
             return this;
         }
         public Builder privateEndpoints(GetAdvancedClustersResultConnectionStringPrivateEndpoint... privateEndpoints) {
@@ -73,17 +80,26 @@ public final class GetAdvancedClustersResultConnectionString {
         }
         @CustomType.Setter
         public Builder privateSrv(String privateSrv) {
-            this.privateSrv = Objects.requireNonNull(privateSrv);
+            if (privateSrv == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultConnectionString", "privateSrv");
+            }
+            this.privateSrv = privateSrv;
             return this;
         }
         @CustomType.Setter
         public Builder standard(String standard) {
-            this.standard = Objects.requireNonNull(standard);
+            if (standard == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultConnectionString", "standard");
+            }
+            this.standard = standard;
             return this;
         }
         @CustomType.Setter
         public Builder standardSrv(String standardSrv) {
-            this.standardSrv = Objects.requireNonNull(standardSrv);
+            if (standardSrv == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultConnectionString", "standardSrv");
+            }
+            this.standardSrv = standardSrv;
             return this;
         }
         public GetAdvancedClustersResultConnectionString build() {

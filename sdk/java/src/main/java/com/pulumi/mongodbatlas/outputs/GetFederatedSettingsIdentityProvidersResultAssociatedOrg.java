@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict;
 import java.lang.Boolean;
@@ -114,7 +115,10 @@ public final class GetFederatedSettingsIdentityProvidersResultAssociatedOrg {
 
         @CustomType.Setter
         public Builder domainAllowLists(List<String> domainAllowLists) {
-            this.domainAllowLists = Objects.requireNonNull(domainAllowLists);
+            if (domainAllowLists == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultAssociatedOrg", "domainAllowLists");
+            }
+            this.domainAllowLists = domainAllowLists;
             return this;
         }
         public Builder domainAllowLists(String... domainAllowLists) {
@@ -122,22 +126,34 @@ public final class GetFederatedSettingsIdentityProvidersResultAssociatedOrg {
         }
         @CustomType.Setter
         public Builder domainRestrictionEnabled(Boolean domainRestrictionEnabled) {
-            this.domainRestrictionEnabled = Objects.requireNonNull(domainRestrictionEnabled);
+            if (domainRestrictionEnabled == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultAssociatedOrg", "domainRestrictionEnabled");
+            }
+            this.domainRestrictionEnabled = domainRestrictionEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder identityProviderId(String identityProviderId) {
-            this.identityProviderId = Objects.requireNonNull(identityProviderId);
+            if (identityProviderId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultAssociatedOrg", "identityProviderId");
+            }
+            this.identityProviderId = identityProviderId;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(String orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+            if (orgId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultAssociatedOrg", "orgId");
+            }
+            this.orgId = orgId;
             return this;
         }
         @CustomType.Setter
         public Builder postAuthRoleGrants(List<String> postAuthRoleGrants) {
-            this.postAuthRoleGrants = Objects.requireNonNull(postAuthRoleGrants);
+            if (postAuthRoleGrants == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultAssociatedOrg", "postAuthRoleGrants");
+            }
+            this.postAuthRoleGrants = postAuthRoleGrants;
             return this;
         }
         public Builder postAuthRoleGrants(String... postAuthRoleGrants) {
@@ -145,7 +161,10 @@ public final class GetFederatedSettingsIdentityProvidersResultAssociatedOrg {
         }
         @CustomType.Setter
         public Builder roleMappings(List<GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping> roleMappings) {
-            this.roleMappings = Objects.requireNonNull(roleMappings);
+            if (roleMappings == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultAssociatedOrg", "roleMappings");
+            }
+            this.roleMappings = roleMappings;
             return this;
         }
         public Builder roleMappings(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping... roleMappings) {
@@ -153,7 +172,10 @@ public final class GetFederatedSettingsIdentityProvidersResultAssociatedOrg {
         }
         @CustomType.Setter
         public Builder userConflicts(List<GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict> userConflicts) {
-            this.userConflicts = Objects.requireNonNull(userConflicts);
+            if (userConflicts == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultAssociatedOrg", "userConflicts");
+            }
+            this.userConflicts = userConflicts;
             return this;
         }
         public Builder userConflicts(GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict... userConflicts) {

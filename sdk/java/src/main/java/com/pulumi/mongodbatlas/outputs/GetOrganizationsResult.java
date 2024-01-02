@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetOrganizationsResultLink;
 import java.lang.Boolean;
 import java.lang.String;
@@ -83,17 +84,26 @@ public final class GetOrganizationsResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder isDeleted(Boolean isDeleted) {
-            this.isDeleted = Objects.requireNonNull(isDeleted);
+            if (isDeleted == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationsResult", "isDeleted");
+            }
+            this.isDeleted = isDeleted;
             return this;
         }
         @CustomType.Setter
         public Builder links(List<GetOrganizationsResultLink> links) {
-            this.links = Objects.requireNonNull(links);
+            if (links == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationsResult", "links");
+            }
+            this.links = links;
             return this;
         }
         public Builder links(GetOrganizationsResultLink... links) {
@@ -101,7 +111,10 @@ public final class GetOrganizationsResult {
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationsResult", "name");
+            }
+            this.name = name;
             return this;
         }
         public GetOrganizationsResult build() {

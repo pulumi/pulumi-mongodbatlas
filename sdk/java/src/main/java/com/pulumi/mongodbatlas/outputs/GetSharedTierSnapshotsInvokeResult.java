@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierSnapshotsResult;
 import java.lang.Integer;
 import java.lang.String;
@@ -69,22 +70,34 @@ public final class GetSharedTierSnapshotsInvokeResult {
 
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsInvokeResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsInvokeResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsInvokeResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder results(List<GetSharedTierSnapshotsResult> results) {
-            this.results = Objects.requireNonNull(results);
+            if (results == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsInvokeResult", "results");
+            }
+            this.results = results;
             return this;
         }
         public Builder results(GetSharedTierSnapshotsResult... results) {
@@ -92,7 +105,10 @@ public final class GetSharedTierSnapshotsInvokeResult {
         }
         @CustomType.Setter
         public Builder totalCount(Integer totalCount) {
-            this.totalCount = Objects.requireNonNull(totalCount);
+            if (totalCount == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotsInvokeResult", "totalCount");
+            }
+            this.totalCount = totalCount;
             return this;
         }
         public GetSharedTierSnapshotsInvokeResult build() {

@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -150,8 +151,12 @@ public final class CloudProviderAccessArgs extends com.pulumi.resources.Resource
         }
 
         public CloudProviderAccessArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.providerName = Objects.requireNonNull($.providerName, "expected parameter 'providerName' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("CloudProviderAccessArgs", "projectId");
+            }
+            if ($.providerName == null) {
+                throw new MissingRequiredPropertyException("CloudProviderAccessArgs", "providerName");
+            }
             return $;
         }
     }

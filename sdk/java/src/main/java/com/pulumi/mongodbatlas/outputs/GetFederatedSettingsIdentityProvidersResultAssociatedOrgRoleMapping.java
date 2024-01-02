@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment;
 import java.lang.String;
 import java.util.List;
@@ -72,17 +73,26 @@ public final class GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleM
 
         @CustomType.Setter
         public Builder externalGroupName(String externalGroupName) {
-            this.externalGroupName = Objects.requireNonNull(externalGroupName);
+            if (externalGroupName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping", "externalGroupName");
+            }
+            this.externalGroupName = externalGroupName;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder roleAssignments(List<GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment> roleAssignments) {
-            this.roleAssignments = Objects.requireNonNull(roleAssignments);
+            if (roleAssignments == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping", "roleAssignments");
+            }
+            this.roleAssignments = roleAssignments;
             return this;
         }
         public Builder roleAssignments(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment... roleAssignments) {

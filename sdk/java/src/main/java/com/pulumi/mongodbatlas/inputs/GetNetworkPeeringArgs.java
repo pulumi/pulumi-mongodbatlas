@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -111,8 +112,12 @@ public final class GetNetworkPeeringArgs extends com.pulumi.resources.InvokeArgs
         }
 
         public GetNetworkPeeringArgs build() {
-            $.peeringId = Objects.requireNonNull($.peeringId, "expected parameter 'peeringId' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.peeringId == null) {
+                throw new MissingRequiredPropertyException("GetNetworkPeeringArgs", "peeringId");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetNetworkPeeringArgs", "projectId");
+            }
             return $;
         }
     }

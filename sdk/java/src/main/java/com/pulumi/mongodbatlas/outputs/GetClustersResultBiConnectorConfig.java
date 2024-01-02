@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -57,12 +58,18 @@ public final class GetClustersResultBiConnectorConfig {
 
         @CustomType.Setter
         public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultBiConnectorConfig", "enabled");
+            }
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder readPreference(String readPreference) {
-            this.readPreference = Objects.requireNonNull(readPreference);
+            if (readPreference == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultBiConnectorConfig", "readPreference");
+            }
+            this.readPreference = readPreference;
             return this;
         }
         public GetClustersResultBiConnectorConfig build() {

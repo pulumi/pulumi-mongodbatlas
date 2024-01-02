@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -90,7 +91,9 @@ public final class GetTeamArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetTeamArgs build() {
-            $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
+            if ($.orgId == null) {
+                throw new MissingRequiredPropertyException("GetTeamArgs", "orgId");
+            }
             return $;
         }
     }

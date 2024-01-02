@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -87,21 +88,27 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
 
         @CustomType.Setter
         public Builder diskIops(@Nullable Integer diskIops) {
+
             this.diskIops = diskIops;
             return this;
         }
         @CustomType.Setter
         public Builder ebsVolumeType(@Nullable String ebsVolumeType) {
+
             this.ebsVolumeType = ebsVolumeType;
             return this;
         }
         @CustomType.Setter
         public Builder instanceSize(String instanceSize) {
-            this.instanceSize = Objects.requireNonNull(instanceSize);
+            if (instanceSize == null) {
+              throw new MissingRequiredPropertyException("AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs", "instanceSize");
+            }
+            this.instanceSize = instanceSize;
             return this;
         }
         @CustomType.Setter
         public Builder nodeCount(@Nullable Integer nodeCount) {
+
             this.nodeCount = nodeCount;
             return this;
         }

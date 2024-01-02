@@ -96,41 +96,49 @@ public final class CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
 
         @CustomType.Setter
         public Builder automated(@Nullable Boolean automated) {
+
             this.automated = automated;
             return this;
         }
         @CustomType.Setter
         public Builder download(@Nullable Boolean download) {
+
             this.download = download;
             return this;
         }
         @CustomType.Setter
         public Builder oplogInc(@Nullable Integer oplogInc) {
+
             this.oplogInc = oplogInc;
             return this;
         }
         @CustomType.Setter
         public Builder oplogTs(@Nullable Integer oplogTs) {
+
             this.oplogTs = oplogTs;
             return this;
         }
         @CustomType.Setter
         public Builder pointInTime(@Nullable Boolean pointInTime) {
+
             this.pointInTime = pointInTime;
             return this;
         }
         @CustomType.Setter
         public Builder pointInTimeUtcSeconds(@Nullable Integer pointInTimeUtcSeconds) {
+
             this.pointInTimeUtcSeconds = pointInTimeUtcSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder targetClusterName(@Nullable String targetClusterName) {
+
             this.targetClusterName = targetClusterName;
             return this;
         }
         @CustomType.Setter
         public Builder targetProjectId(@Nullable String targetProjectId) {
+
             this.targetProjectId = targetProjectId;
             return this;
         }

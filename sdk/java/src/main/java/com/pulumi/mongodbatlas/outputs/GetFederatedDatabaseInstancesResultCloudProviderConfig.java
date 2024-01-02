@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAws;
 import java.util.Objects;
 
@@ -34,7 +35,10 @@ public final class GetFederatedDatabaseInstancesResultCloudProviderConfig {
 
         @CustomType.Setter
         public Builder aws(GetFederatedDatabaseInstancesResultCloudProviderConfigAws aws) {
-            this.aws = Objects.requireNonNull(aws);
+            if (aws == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstancesResultCloudProviderConfig", "aws");
+            }
+            this.aws = aws;
             return this;
         }
         public GetFederatedDatabaseInstancesResultCloudProviderConfig build() {

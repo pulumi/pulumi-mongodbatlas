@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -96,57 +97,90 @@ public final class GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSour
 
         @CustomType.Setter
         public Builder allowInsecure(Boolean allowInsecure) {
-            this.allowInsecure = Objects.requireNonNull(allowInsecure);
+            if (allowInsecure == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "allowInsecure");
+            }
+            this.allowInsecure = allowInsecure;
             return this;
         }
         @CustomType.Setter
         public Builder collection(String collection) {
-            this.collection = Objects.requireNonNull(collection);
+            if (collection == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "collection");
+            }
+            this.collection = collection;
             return this;
         }
         @CustomType.Setter
         public Builder collectionRegex(String collectionRegex) {
-            this.collectionRegex = Objects.requireNonNull(collectionRegex);
+            if (collectionRegex == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "collectionRegex");
+            }
+            this.collectionRegex = collectionRegex;
             return this;
         }
         @CustomType.Setter
         public Builder database(String database) {
-            this.database = Objects.requireNonNull(database);
+            if (database == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "database");
+            }
+            this.database = database;
             return this;
         }
         @CustomType.Setter
         public Builder databaseRegex(String databaseRegex) {
-            this.databaseRegex = Objects.requireNonNull(databaseRegex);
+            if (databaseRegex == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "databaseRegex");
+            }
+            this.databaseRegex = databaseRegex;
             return this;
         }
         @CustomType.Setter
         public Builder datasetName(String datasetName) {
-            this.datasetName = Objects.requireNonNull(datasetName);
+            if (datasetName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "datasetName");
+            }
+            this.datasetName = datasetName;
             return this;
         }
         @CustomType.Setter
         public Builder defaultFormat(String defaultFormat) {
-            this.defaultFormat = Objects.requireNonNull(defaultFormat);
+            if (defaultFormat == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "defaultFormat");
+            }
+            this.defaultFormat = defaultFormat;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "path");
+            }
+            this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder provenanceFieldName(String provenanceFieldName) {
-            this.provenanceFieldName = Objects.requireNonNull(provenanceFieldName);
+            if (provenanceFieldName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "provenanceFieldName");
+            }
+            this.provenanceFieldName = provenanceFieldName;
             return this;
         }
         @CustomType.Setter
         public Builder storeName(String storeName) {
-            this.storeName = Objects.requireNonNull(storeName);
+            if (storeName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "storeName");
+            }
+            this.storeName = storeName;
             return this;
         }
         @CustomType.Setter
         public Builder urls(List<String> urls) {
-            this.urls = Objects.requireNonNull(urls);
+            if (urls == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSource", "urls");
+            }
+            this.urls = urls;
             return this;
         }
         public Builder urls(String... urls) {

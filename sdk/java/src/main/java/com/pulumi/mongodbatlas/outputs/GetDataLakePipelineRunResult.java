@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelineRunStat;
 import java.lang.String;
 import java.util.List;
@@ -188,67 +189,106 @@ public final class GetDataLakePipelineRunResult {
 
         @CustomType.Setter
         public Builder backupFrequencyType(String backupFrequencyType) {
-            this.backupFrequencyType = Objects.requireNonNull(backupFrequencyType);
+            if (backupFrequencyType == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "backupFrequencyType");
+            }
+            this.backupFrequencyType = backupFrequencyType;
             return this;
         }
         @CustomType.Setter
         public Builder createdDate(String createdDate) {
-            this.createdDate = Objects.requireNonNull(createdDate);
+            if (createdDate == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "createdDate");
+            }
+            this.createdDate = createdDate;
             return this;
         }
         @CustomType.Setter
         public Builder datasetName(String datasetName) {
-            this.datasetName = Objects.requireNonNull(datasetName);
+            if (datasetName == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "datasetName");
+            }
+            this.datasetName = datasetName;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder lastUpdatedDate(String lastUpdatedDate) {
-            this.lastUpdatedDate = Objects.requireNonNull(lastUpdatedDate);
+            if (lastUpdatedDate == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "lastUpdatedDate");
+            }
+            this.lastUpdatedDate = lastUpdatedDate;
             return this;
         }
         @CustomType.Setter
         public Builder phase(String phase) {
-            this.phase = Objects.requireNonNull(phase);
+            if (phase == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "phase");
+            }
+            this.phase = phase;
             return this;
         }
         @CustomType.Setter
         public Builder pipelineId(String pipelineId) {
-            this.pipelineId = Objects.requireNonNull(pipelineId);
+            if (pipelineId == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "pipelineId");
+            }
+            this.pipelineId = pipelineId;
             return this;
         }
         @CustomType.Setter
         public Builder pipelineName(String pipelineName) {
-            this.pipelineName = Objects.requireNonNull(pipelineName);
+            if (pipelineName == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "pipelineName");
+            }
+            this.pipelineName = pipelineName;
             return this;
         }
         @CustomType.Setter
         public Builder pipelineRunId(String pipelineRunId) {
-            this.pipelineRunId = Objects.requireNonNull(pipelineRunId);
+            if (pipelineRunId == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "pipelineRunId");
+            }
+            this.pipelineRunId = pipelineRunId;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotId(String snapshotId) {
-            this.snapshotId = Objects.requireNonNull(snapshotId);
+            if (snapshotId == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "snapshotId");
+            }
+            this.snapshotId = snapshotId;
             return this;
         }
         @CustomType.Setter
         public Builder state(String state) {
-            this.state = Objects.requireNonNull(state);
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "state");
+            }
+            this.state = state;
             return this;
         }
         @CustomType.Setter
         public Builder stats(List<GetDataLakePipelineRunStat> stats) {
-            this.stats = Objects.requireNonNull(stats);
+            if (stats == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunResult", "stats");
+            }
+            this.stats = stats;
             return this;
         }
         public Builder stats(GetDataLakePipelineRunStat... stats) {

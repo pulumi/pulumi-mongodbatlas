@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
 import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
 import com.pulumi.mongodbatlas.inputs.DatabaseUserScopeArgs;
@@ -412,9 +413,15 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public DatabaseUserArgs build() {
-            $.authDatabaseName = Objects.requireNonNull($.authDatabaseName, "expected parameter 'authDatabaseName' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.authDatabaseName == null) {
+                throw new MissingRequiredPropertyException("DatabaseUserArgs", "authDatabaseName");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("DatabaseUserArgs", "projectId");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("DatabaseUserArgs", "username");
+            }
             return $;
         }
     }

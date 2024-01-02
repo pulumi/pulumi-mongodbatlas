@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet;
 import java.lang.Integer;
 import java.lang.String;
@@ -49,17 +50,26 @@ public final class GetFederatedDatabaseInstanceStorageStoreReadPreference {
 
         @CustomType.Setter
         public Builder maxStalenessSeconds(Integer maxStalenessSeconds) {
-            this.maxStalenessSeconds = Objects.requireNonNull(maxStalenessSeconds);
+            if (maxStalenessSeconds == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStoreReadPreference", "maxStalenessSeconds");
+            }
+            this.maxStalenessSeconds = maxStalenessSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder mode(String mode) {
-            this.mode = Objects.requireNonNull(mode);
+            if (mode == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStoreReadPreference", "mode");
+            }
+            this.mode = mode;
             return this;
         }
         @CustomType.Setter
         public Builder tagSets(List<GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet> tagSets) {
-            this.tagSets = Objects.requireNonNull(tagSets);
+            if (tagSets == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStoreReadPreference", "tagSets");
+            }
+            this.tagSets = tagSets;
             return this;
         }
         public Builder tagSets(GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSet... tagSets) {

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -172,11 +173,21 @@ public final class GetGlobalClusterConfigManagedNamespace extends com.pulumi.res
         }
 
         public GetGlobalClusterConfigManagedNamespace build() {
-            $.collection = Objects.requireNonNull($.collection, "expected parameter 'collection' to be non-null");
-            $.customShardKey = Objects.requireNonNull($.customShardKey, "expected parameter 'customShardKey' to be non-null");
-            $.db = Objects.requireNonNull($.db, "expected parameter 'db' to be non-null");
-            $.isCustomShardKeyHashed = Objects.requireNonNull($.isCustomShardKeyHashed, "expected parameter 'isCustomShardKeyHashed' to be non-null");
-            $.isShardKeyUnique = Objects.requireNonNull($.isShardKeyUnique, "expected parameter 'isShardKeyUnique' to be non-null");
+            if ($.collection == null) {
+                throw new MissingRequiredPropertyException("GetGlobalClusterConfigManagedNamespace", "collection");
+            }
+            if ($.customShardKey == null) {
+                throw new MissingRequiredPropertyException("GetGlobalClusterConfigManagedNamespace", "customShardKey");
+            }
+            if ($.db == null) {
+                throw new MissingRequiredPropertyException("GetGlobalClusterConfigManagedNamespace", "db");
+            }
+            if ($.isCustomShardKeyHashed == null) {
+                throw new MissingRequiredPropertyException("GetGlobalClusterConfigManagedNamespace", "isCustomShardKeyHashed");
+            }
+            if ($.isShardKeyUnique == null) {
+                throw new MissingRequiredPropertyException("GetGlobalClusterConfigManagedNamespace", "isShardKeyUnique");
+            }
             return $;
         }
     }

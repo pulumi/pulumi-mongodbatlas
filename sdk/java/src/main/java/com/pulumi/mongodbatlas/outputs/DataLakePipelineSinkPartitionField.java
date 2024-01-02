@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -41,12 +42,18 @@ public final class DataLakePipelineSinkPartitionField {
 
         @CustomType.Setter
         public Builder fieldName(String fieldName) {
-            this.fieldName = Objects.requireNonNull(fieldName);
+            if (fieldName == null) {
+              throw new MissingRequiredPropertyException("DataLakePipelineSinkPartitionField", "fieldName");
+            }
+            this.fieldName = fieldName;
             return this;
         }
         @CustomType.Setter
         public Builder order(Integer order) {
-            this.order = Objects.requireNonNull(order);
+            if (order == null) {
+              throw new MissingRequiredPropertyException("DataLakePipelineSinkPartitionField", "order");
+            }
+            this.order = order;
             return this;
         }
         public DataLakePipelineSinkPartitionField build() {

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -100,12 +101,18 @@ public final class GetCloudBackupScheduleCopySetting {
 
         @CustomType.Setter
         public Builder cloudProvider(String cloudProvider) {
-            this.cloudProvider = Objects.requireNonNull(cloudProvider);
+            if (cloudProvider == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleCopySetting", "cloudProvider");
+            }
+            this.cloudProvider = cloudProvider;
             return this;
         }
         @CustomType.Setter
         public Builder frequencies(List<String> frequencies) {
-            this.frequencies = Objects.requireNonNull(frequencies);
+            if (frequencies == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleCopySetting", "frequencies");
+            }
+            this.frequencies = frequencies;
             return this;
         }
         public Builder frequencies(String... frequencies) {
@@ -113,17 +120,26 @@ public final class GetCloudBackupScheduleCopySetting {
         }
         @CustomType.Setter
         public Builder regionName(String regionName) {
-            this.regionName = Objects.requireNonNull(regionName);
+            if (regionName == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleCopySetting", "regionName");
+            }
+            this.regionName = regionName;
             return this;
         }
         @CustomType.Setter
         public Builder replicationSpecId(String replicationSpecId) {
-            this.replicationSpecId = Objects.requireNonNull(replicationSpecId);
+            if (replicationSpecId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleCopySetting", "replicationSpecId");
+            }
+            this.replicationSpecId = replicationSpecId;
             return this;
         }
         @CustomType.Setter
         public Builder shouldCopyOplogs(Boolean shouldCopyOplogs) {
-            this.shouldCopyOplogs = Objects.requireNonNull(shouldCopyOplogs);
+            if (shouldCopyOplogs == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleCopySetting", "shouldCopyOplogs");
+            }
+            this.shouldCopyOplogs = shouldCopyOplogs;
             return this;
         }
         public GetCloudBackupScheduleCopySetting build() {

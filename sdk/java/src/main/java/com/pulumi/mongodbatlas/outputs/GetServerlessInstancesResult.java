@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetServerlessInstancesResultLink;
 import com.pulumi.mongodbatlas.outputs.GetServerlessInstancesResultTag;
 import java.lang.Boolean;
@@ -218,7 +219,10 @@ public final class GetServerlessInstancesResult {
 
         @CustomType.Setter
         public Builder connectionStringsPrivateEndpointSrvs(List<String> connectionStringsPrivateEndpointSrvs) {
-            this.connectionStringsPrivateEndpointSrvs = Objects.requireNonNull(connectionStringsPrivateEndpointSrvs);
+            if (connectionStringsPrivateEndpointSrvs == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "connectionStringsPrivateEndpointSrvs");
+            }
+            this.connectionStringsPrivateEndpointSrvs = connectionStringsPrivateEndpointSrvs;
             return this;
         }
         public Builder connectionStringsPrivateEndpointSrvs(String... connectionStringsPrivateEndpointSrvs) {
@@ -226,27 +230,42 @@ public final class GetServerlessInstancesResult {
         }
         @CustomType.Setter
         public Builder connectionStringsStandardSrv(String connectionStringsStandardSrv) {
-            this.connectionStringsStandardSrv = Objects.requireNonNull(connectionStringsStandardSrv);
+            if (connectionStringsStandardSrv == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "connectionStringsStandardSrv");
+            }
+            this.connectionStringsStandardSrv = connectionStringsStandardSrv;
             return this;
         }
         @CustomType.Setter
         public Builder continuousBackupEnabled(Boolean continuousBackupEnabled) {
-            this.continuousBackupEnabled = Objects.requireNonNull(continuousBackupEnabled);
+            if (continuousBackupEnabled == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "continuousBackupEnabled");
+            }
+            this.continuousBackupEnabled = continuousBackupEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder createDate(String createDate) {
-            this.createDate = Objects.requireNonNull(createDate);
+            if (createDate == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "createDate");
+            }
+            this.createDate = createDate;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder links(List<GetServerlessInstancesResultLink> links) {
-            this.links = Objects.requireNonNull(links);
+            if (links == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "links");
+            }
+            this.links = links;
             return this;
         }
         public Builder links(GetServerlessInstancesResultLink... links) {
@@ -254,42 +273,66 @@ public final class GetServerlessInstancesResult {
         }
         @CustomType.Setter
         public Builder mongoDbVersion(String mongoDbVersion) {
-            this.mongoDbVersion = Objects.requireNonNull(mongoDbVersion);
+            if (mongoDbVersion == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "mongoDbVersion");
+            }
+            this.mongoDbVersion = mongoDbVersion;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder providerSettingsBackingProviderName(String providerSettingsBackingProviderName) {
-            this.providerSettingsBackingProviderName = Objects.requireNonNull(providerSettingsBackingProviderName);
+            if (providerSettingsBackingProviderName == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "providerSettingsBackingProviderName");
+            }
+            this.providerSettingsBackingProviderName = providerSettingsBackingProviderName;
             return this;
         }
         @CustomType.Setter
         public Builder providerSettingsProviderName(String providerSettingsProviderName) {
-            this.providerSettingsProviderName = Objects.requireNonNull(providerSettingsProviderName);
+            if (providerSettingsProviderName == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "providerSettingsProviderName");
+            }
+            this.providerSettingsProviderName = providerSettingsProviderName;
             return this;
         }
         @CustomType.Setter
         public Builder providerSettingsRegionName(String providerSettingsRegionName) {
-            this.providerSettingsRegionName = Objects.requireNonNull(providerSettingsRegionName);
+            if (providerSettingsRegionName == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "providerSettingsRegionName");
+            }
+            this.providerSettingsRegionName = providerSettingsRegionName;
             return this;
         }
         @CustomType.Setter
         public Builder stateName(String stateName) {
-            this.stateName = Objects.requireNonNull(stateName);
+            if (stateName == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "stateName");
+            }
+            this.stateName = stateName;
             return this;
         }
         @CustomType.Setter
         public Builder tags(List<GetServerlessInstancesResultTag> tags) {
-            this.tags = Objects.requireNonNull(tags);
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "tags");
+            }
+            this.tags = tags;
             return this;
         }
         public Builder tags(GetServerlessInstancesResultTag... tags) {
@@ -297,7 +340,10 @@ public final class GetServerlessInstancesResult {
         }
         @CustomType.Setter
         public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
-            this.terminationProtectionEnabled = Objects.requireNonNull(terminationProtectionEnabled);
+            if (terminationProtectionEnabled == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstancesResult", "terminationProtectionEnabled");
+            }
+            this.terminationProtectionEnabled = terminationProtectionEnabled;
             return this;
         }
         public GetServerlessInstancesResult build() {

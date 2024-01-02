@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -59,27 +60,42 @@ public final class GetOnlineArchivesResultCriteria {
 
         @CustomType.Setter
         public Builder dateField(String dateField) {
-            this.dateField = Objects.requireNonNull(dateField);
+            if (dateField == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResultCriteria", "dateField");
+            }
+            this.dateField = dateField;
             return this;
         }
         @CustomType.Setter
         public Builder dateFormat(String dateFormat) {
-            this.dateFormat = Objects.requireNonNull(dateFormat);
+            if (dateFormat == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResultCriteria", "dateFormat");
+            }
+            this.dateFormat = dateFormat;
             return this;
         }
         @CustomType.Setter
         public Builder expireAfterDays(Integer expireAfterDays) {
-            this.expireAfterDays = Objects.requireNonNull(expireAfterDays);
+            if (expireAfterDays == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResultCriteria", "expireAfterDays");
+            }
+            this.expireAfterDays = expireAfterDays;
             return this;
         }
         @CustomType.Setter
         public Builder query(String query) {
-            this.query = Objects.requireNonNull(query);
+            if (query == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResultCriteria", "query");
+            }
+            this.query = query;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResultCriteria", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetOnlineArchivesResultCriteria build() {

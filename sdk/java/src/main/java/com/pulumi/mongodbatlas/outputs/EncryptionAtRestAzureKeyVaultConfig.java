@@ -157,46 +157,55 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
 
         @CustomType.Setter
         public Builder azureEnvironment(@Nullable String azureEnvironment) {
+
             this.azureEnvironment = azureEnvironment;
             return this;
         }
         @CustomType.Setter
         public Builder clientId(@Nullable String clientId) {
+
             this.clientId = clientId;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(@Nullable Boolean enabled) {
+
             this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder keyIdentifier(@Nullable String keyIdentifier) {
+
             this.keyIdentifier = keyIdentifier;
             return this;
         }
         @CustomType.Setter
         public Builder keyVaultName(@Nullable String keyVaultName) {
+
             this.keyVaultName = keyVaultName;
             return this;
         }
         @CustomType.Setter
         public Builder resourceGroupName(@Nullable String resourceGroupName) {
+
             this.resourceGroupName = resourceGroupName;
             return this;
         }
         @CustomType.Setter
         public Builder secret(@Nullable String secret) {
+
             this.secret = secret;
             return this;
         }
         @CustomType.Setter
         public Builder subscriptionId(@Nullable String subscriptionId) {
+
             this.subscriptionId = subscriptionId;
             return this;
         }
         @CustomType.Setter
         public Builder tenantId(@Nullable String tenantId) {
+
             this.tenantId = tenantId;
             return this;
         }

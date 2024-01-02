@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
 import java.lang.Integer;
 import java.lang.String;
@@ -198,7 +199,9 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
         }
 
         public AdvancedClusterReplicationSpecArgs build() {
-            $.regionConfigs = Objects.requireNonNull($.regionConfigs, "expected parameter 'regionConfigs' to be non-null");
+            if ($.regionConfigs == null) {
+                throw new MissingRequiredPropertyException("AdvancedClusterReplicationSpecArgs", "regionConfigs");
+            }
             return $;
         }
     }

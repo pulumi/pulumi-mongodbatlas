@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -96,52 +97,82 @@ public final class GetSharedTierSnapshotResult {
 
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder expiration(String expiration) {
-            this.expiration = Objects.requireNonNull(expiration);
+            if (expiration == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotResult", "expiration");
+            }
+            this.expiration = expiration;
             return this;
         }
         @CustomType.Setter
         public Builder finishTime(String finishTime) {
-            this.finishTime = Objects.requireNonNull(finishTime);
+            if (finishTime == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotResult", "finishTime");
+            }
+            this.finishTime = finishTime;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder mongoDbVersion(String mongoDbVersion) {
-            this.mongoDbVersion = Objects.requireNonNull(mongoDbVersion);
+            if (mongoDbVersion == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotResult", "mongoDbVersion");
+            }
+            this.mongoDbVersion = mongoDbVersion;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder scheduledTime(String scheduledTime) {
-            this.scheduledTime = Objects.requireNonNull(scheduledTime);
+            if (scheduledTime == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotResult", "scheduledTime");
+            }
+            this.scheduledTime = scheduledTime;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotId(String snapshotId) {
-            this.snapshotId = Objects.requireNonNull(snapshotId);
+            if (snapshotId == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotResult", "snapshotId");
+            }
+            this.snapshotId = snapshotId;
             return this;
         }
         @CustomType.Setter
         public Builder startTime(String startTime) {
-            this.startTime = Objects.requireNonNull(startTime);
+            if (startTime == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotResult", "startTime");
+            }
+            this.startTime = startTime;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierSnapshotResult", "status");
+            }
+            this.status = status;
             return this;
         }
         public GetSharedTierSnapshotResult build() {

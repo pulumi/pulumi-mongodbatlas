@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -54,17 +55,26 @@ public final class GetClusterConnectionStringPrivateEndpointEndpoint {
 
         @CustomType.Setter
         public Builder endpointId(String endpointId) {
-            this.endpointId = Objects.requireNonNull(endpointId);
+            if (endpointId == null) {
+              throw new MissingRequiredPropertyException("GetClusterConnectionStringPrivateEndpointEndpoint", "endpointId");
+            }
+            this.endpointId = endpointId;
             return this;
         }
         @CustomType.Setter
         public Builder providerName(String providerName) {
-            this.providerName = Objects.requireNonNull(providerName);
+            if (providerName == null) {
+              throw new MissingRequiredPropertyException("GetClusterConnectionStringPrivateEndpointEndpoint", "providerName");
+            }
+            this.providerName = providerName;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetClusterConnectionStringPrivateEndpointEndpoint", "region");
+            }
+            this.region = region;
             return this;
         }
         public GetClusterConnectionStringPrivateEndpointEndpoint build() {

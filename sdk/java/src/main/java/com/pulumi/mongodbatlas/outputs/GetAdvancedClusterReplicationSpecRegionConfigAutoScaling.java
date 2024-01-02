@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -101,27 +102,42 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
 
         @CustomType.Setter
         public Builder computeEnabled(Boolean computeEnabled) {
-            this.computeEnabled = Objects.requireNonNull(computeEnabled);
+            if (computeEnabled == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpecRegionConfigAutoScaling", "computeEnabled");
+            }
+            this.computeEnabled = computeEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder computeMaxInstanceSize(String computeMaxInstanceSize) {
-            this.computeMaxInstanceSize = Objects.requireNonNull(computeMaxInstanceSize);
+            if (computeMaxInstanceSize == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpecRegionConfigAutoScaling", "computeMaxInstanceSize");
+            }
+            this.computeMaxInstanceSize = computeMaxInstanceSize;
             return this;
         }
         @CustomType.Setter
         public Builder computeMinInstanceSize(String computeMinInstanceSize) {
-            this.computeMinInstanceSize = Objects.requireNonNull(computeMinInstanceSize);
+            if (computeMinInstanceSize == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpecRegionConfigAutoScaling", "computeMinInstanceSize");
+            }
+            this.computeMinInstanceSize = computeMinInstanceSize;
             return this;
         }
         @CustomType.Setter
         public Builder computeScaleDownEnabled(Boolean computeScaleDownEnabled) {
-            this.computeScaleDownEnabled = Objects.requireNonNull(computeScaleDownEnabled);
+            if (computeScaleDownEnabled == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpecRegionConfigAutoScaling", "computeScaleDownEnabled");
+            }
+            this.computeScaleDownEnabled = computeScaleDownEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder diskGbEnabled(Boolean diskGbEnabled) {
-            this.diskGbEnabled = Objects.requireNonNull(diskGbEnabled);
+            if (diskGbEnabled == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpecRegionConfigAutoScaling", "diskGbEnabled");
+            }
+            this.diskGbEnabled = diskGbEnabled;
             return this;
         }
         public GetAdvancedClusterReplicationSpecRegionConfigAutoScaling build() {

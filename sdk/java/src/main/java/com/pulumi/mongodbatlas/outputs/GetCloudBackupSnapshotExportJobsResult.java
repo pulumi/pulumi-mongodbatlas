@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotExportJobsResultComponent;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotExportJobsResultCustomData;
 import java.lang.Integer;
@@ -178,7 +179,10 @@ public final class GetCloudBackupSnapshotExportJobsResult {
 
         @CustomType.Setter
         public Builder components(List<GetCloudBackupSnapshotExportJobsResultComponent> components) {
-            this.components = Objects.requireNonNull(components);
+            if (components == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "components");
+            }
+            this.components = components;
             return this;
         }
         public Builder components(GetCloudBackupSnapshotExportJobsResultComponent... components) {
@@ -186,12 +190,18 @@ public final class GetCloudBackupSnapshotExportJobsResult {
         }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder customDatas(List<GetCloudBackupSnapshotExportJobsResultCustomData> customDatas) {
-            this.customDatas = Objects.requireNonNull(customDatas);
+            if (customDatas == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "customDatas");
+            }
+            this.customDatas = customDatas;
             return this;
         }
         public Builder customDatas(GetCloudBackupSnapshotExportJobsResultCustomData... customDatas) {
@@ -199,47 +209,74 @@ public final class GetCloudBackupSnapshotExportJobsResult {
         }
         @CustomType.Setter
         public Builder errMsg(String errMsg) {
-            this.errMsg = Objects.requireNonNull(errMsg);
+            if (errMsg == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "errMsg");
+            }
+            this.errMsg = errMsg;
             return this;
         }
         @CustomType.Setter
         public Builder exportBucketId(String exportBucketId) {
-            this.exportBucketId = Objects.requireNonNull(exportBucketId);
+            if (exportBucketId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "exportBucketId");
+            }
+            this.exportBucketId = exportBucketId;
             return this;
         }
         @CustomType.Setter
         public Builder exportJobId(String exportJobId) {
-            this.exportJobId = Objects.requireNonNull(exportJobId);
+            if (exportJobId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "exportJobId");
+            }
+            this.exportJobId = exportJobId;
             return this;
         }
         @CustomType.Setter
         public Builder exportStatusExportedCollections(Integer exportStatusExportedCollections) {
-            this.exportStatusExportedCollections = Objects.requireNonNull(exportStatusExportedCollections);
+            if (exportStatusExportedCollections == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "exportStatusExportedCollections");
+            }
+            this.exportStatusExportedCollections = exportStatusExportedCollections;
             return this;
         }
         @CustomType.Setter
         public Builder exportStatusTotalCollections(Integer exportStatusTotalCollections) {
-            this.exportStatusTotalCollections = Objects.requireNonNull(exportStatusTotalCollections);
+            if (exportStatusTotalCollections == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "exportStatusTotalCollections");
+            }
+            this.exportStatusTotalCollections = exportStatusTotalCollections;
             return this;
         }
         @CustomType.Setter
         public Builder finishedAt(String finishedAt) {
-            this.finishedAt = Objects.requireNonNull(finishedAt);
+            if (finishedAt == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "finishedAt");
+            }
+            this.finishedAt = finishedAt;
             return this;
         }
         @CustomType.Setter
         public Builder prefix(String prefix) {
-            this.prefix = Objects.requireNonNull(prefix);
+            if (prefix == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "prefix");
+            }
+            this.prefix = prefix;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotId(String snapshotId) {
-            this.snapshotId = Objects.requireNonNull(snapshotId);
+            if (snapshotId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "snapshotId");
+            }
+            this.snapshotId = snapshotId;
             return this;
         }
         @CustomType.Setter
         public Builder state(String state) {
-            this.state = Objects.requireNonNull(state);
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobsResult", "state");
+            }
+            this.state = state;
             return this;
         }
         public GetCloudBackupSnapshotExportJobsResult build() {

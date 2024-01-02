@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetApiKeysResult;
 import java.lang.Integer;
 import java.lang.String;
@@ -71,27 +72,38 @@ public final class GetApiKeysInvokeResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetApiKeysInvokeResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
+
             this.itemsPerPage = itemsPerPage;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(String orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+            if (orgId == null) {
+              throw new MissingRequiredPropertyException("GetApiKeysInvokeResult", "orgId");
+            }
+            this.orgId = orgId;
             return this;
         }
         @CustomType.Setter
         public Builder pageNum(@Nullable Integer pageNum) {
+
             this.pageNum = pageNum;
             return this;
         }
         @CustomType.Setter
         public Builder results(List<GetApiKeysResult> results) {
-            this.results = Objects.requireNonNull(results);
+            if (results == null) {
+              throw new MissingRequiredPropertyException("GetApiKeysInvokeResult", "results");
+            }
+            this.results = results;
             return this;
         }
         public Builder results(GetApiKeysResult... results) {

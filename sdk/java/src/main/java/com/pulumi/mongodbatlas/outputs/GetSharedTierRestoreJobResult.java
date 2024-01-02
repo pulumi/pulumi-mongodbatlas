@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -120,72 +121,114 @@ public final class GetSharedTierRestoreJobResult {
 
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder deliveryType(String deliveryType) {
-            this.deliveryType = Objects.requireNonNull(deliveryType);
+            if (deliveryType == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "deliveryType");
+            }
+            this.deliveryType = deliveryType;
             return this;
         }
         @CustomType.Setter
         public Builder expirationDate(String expirationDate) {
-            this.expirationDate = Objects.requireNonNull(expirationDate);
+            if (expirationDate == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "expirationDate");
+            }
+            this.expirationDate = expirationDate;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder jobId(String jobId) {
-            this.jobId = Objects.requireNonNull(jobId);
+            if (jobId == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "jobId");
+            }
+            this.jobId = jobId;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder restoreFinishedDate(String restoreFinishedDate) {
-            this.restoreFinishedDate = Objects.requireNonNull(restoreFinishedDate);
+            if (restoreFinishedDate == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "restoreFinishedDate");
+            }
+            this.restoreFinishedDate = restoreFinishedDate;
             return this;
         }
         @CustomType.Setter
         public Builder restoreScheduledDate(String restoreScheduledDate) {
-            this.restoreScheduledDate = Objects.requireNonNull(restoreScheduledDate);
+            if (restoreScheduledDate == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "restoreScheduledDate");
+            }
+            this.restoreScheduledDate = restoreScheduledDate;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotFinishedDate(String snapshotFinishedDate) {
-            this.snapshotFinishedDate = Objects.requireNonNull(snapshotFinishedDate);
+            if (snapshotFinishedDate == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "snapshotFinishedDate");
+            }
+            this.snapshotFinishedDate = snapshotFinishedDate;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotId(String snapshotId) {
-            this.snapshotId = Objects.requireNonNull(snapshotId);
+            if (snapshotId == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "snapshotId");
+            }
+            this.snapshotId = snapshotId;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotUrl(String snapshotUrl) {
-            this.snapshotUrl = Objects.requireNonNull(snapshotUrl);
+            if (snapshotUrl == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "snapshotUrl");
+            }
+            this.snapshotUrl = snapshotUrl;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder targetDeploymentItemName(String targetDeploymentItemName) {
-            this.targetDeploymentItemName = Objects.requireNonNull(targetDeploymentItemName);
+            if (targetDeploymentItemName == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "targetDeploymentItemName");
+            }
+            this.targetDeploymentItemName = targetDeploymentItemName;
             return this;
         }
         @CustomType.Setter
         public Builder targetProjectId(String targetProjectId) {
-            this.targetProjectId = Objects.requireNonNull(targetProjectId);
+            if (targetProjectId == null) {
+              throw new MissingRequiredPropertyException("GetSharedTierRestoreJobResult", "targetProjectId");
+            }
+            this.targetProjectId = targetProjectId;
             return this;
         }
         public GetSharedTierRestoreJobResult build() {

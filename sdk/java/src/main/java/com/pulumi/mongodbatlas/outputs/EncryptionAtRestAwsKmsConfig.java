@@ -99,31 +99,37 @@ public final class EncryptionAtRestAwsKmsConfig {
 
         @CustomType.Setter
         public Builder accessKeyId(@Nullable String accessKeyId) {
+
             this.accessKeyId = accessKeyId;
             return this;
         }
         @CustomType.Setter
         public Builder customerMasterKeyId(@Nullable String customerMasterKeyId) {
+
             this.customerMasterKeyId = customerMasterKeyId;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(@Nullable Boolean enabled) {
+
             this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder roleId(@Nullable String roleId) {
+
             this.roleId = roleId;
             return this;
         }
         @CustomType.Setter
         public Builder secretAccessKey(@Nullable String secretAccessKey) {
+
             this.secretAccessKey = secretAccessKey;
             return this;
         }

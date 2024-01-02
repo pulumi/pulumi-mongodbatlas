@@ -58,11 +58,13 @@ public final class OnlineArchiveDataProcessRegion {
 
         @CustomType.Setter
         public Builder cloudProvider(@Nullable String cloudProvider) {
+
             this.cloudProvider = cloudProvider;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }

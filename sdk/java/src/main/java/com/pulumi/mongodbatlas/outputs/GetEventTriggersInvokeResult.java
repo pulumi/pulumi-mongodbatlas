@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetEventTriggersResult;
 import java.lang.String;
 import java.util.List;
@@ -70,22 +71,34 @@ public final class GetEventTriggersInvokeResult {
 
         @CustomType.Setter
         public Builder appId(String appId) {
-            this.appId = Objects.requireNonNull(appId);
+            if (appId == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersInvokeResult", "appId");
+            }
+            this.appId = appId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersInvokeResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersInvokeResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder results(List<GetEventTriggersResult> results) {
-            this.results = Objects.requireNonNull(results);
+            if (results == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersInvokeResult", "results");
+            }
+            this.results = results;
             return this;
         }
         public Builder results(GetEventTriggersResult... results) {

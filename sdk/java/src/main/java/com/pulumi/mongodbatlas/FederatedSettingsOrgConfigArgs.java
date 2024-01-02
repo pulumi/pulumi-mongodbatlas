@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -151,10 +152,18 @@ public final class FederatedSettingsOrgConfigArgs extends com.pulumi.resources.R
         }
 
         public FederatedSettingsOrgConfigArgs build() {
-            $.domainRestrictionEnabled = Objects.requireNonNull($.domainRestrictionEnabled, "expected parameter 'domainRestrictionEnabled' to be non-null");
-            $.federationSettingsId = Objects.requireNonNull($.federationSettingsId, "expected parameter 'federationSettingsId' to be non-null");
-            $.identityProviderId = Objects.requireNonNull($.identityProviderId, "expected parameter 'identityProviderId' to be non-null");
-            $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
+            if ($.domainRestrictionEnabled == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsOrgConfigArgs", "domainRestrictionEnabled");
+            }
+            if ($.federationSettingsId == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsOrgConfigArgs", "federationSettingsId");
+            }
+            if ($.identityProviderId == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsOrgConfigArgs", "identityProviderId");
+            }
+            if ($.orgId == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsOrgConfigArgs", "orgId");
+            }
             return $;
         }
     }

@@ -90,21 +90,25 @@ public final class ClusterSnapshotBackupPolicy {
 
         @CustomType.Setter
         public Builder clusterId(@Nullable String clusterId) {
+
             this.clusterId = clusterId;
             return this;
         }
         @CustomType.Setter
         public Builder clusterName(@Nullable String clusterName) {
+
             this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder nextSnapshot(@Nullable String nextSnapshot) {
+
             this.nextSnapshot = nextSnapshot;
             return this;
         }
         @CustomType.Setter
         public Builder policies(@Nullable List<ClusterSnapshotBackupPolicyPolicy> policies) {
+
             this.policies = policies;
             return this;
         }
@@ -113,21 +117,25 @@ public final class ClusterSnapshotBackupPolicy {
         }
         @CustomType.Setter
         public Builder referenceHourOfDay(@Nullable Integer referenceHourOfDay) {
+
             this.referenceHourOfDay = referenceHourOfDay;
             return this;
         }
         @CustomType.Setter
         public Builder referenceMinuteOfHour(@Nullable Integer referenceMinuteOfHour) {
+
             this.referenceMinuteOfHour = referenceMinuteOfHour;
             return this;
         }
         @CustomType.Setter
         public Builder restoreWindowDays(@Nullable Integer restoreWindowDays) {
+
             this.restoreWindowDays = restoreWindowDays;
             return this;
         }
         @CustomType.Setter
         public Builder updateSnapshots(@Nullable Boolean updateSnapshots) {
+
             this.updateSnapshots = updateSnapshots;
             return this;
         }

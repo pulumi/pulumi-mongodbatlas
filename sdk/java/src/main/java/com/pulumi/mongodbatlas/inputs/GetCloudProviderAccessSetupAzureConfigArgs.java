@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -148,9 +149,15 @@ public final class GetCloudProviderAccessSetupAzureConfigArgs extends com.pulumi
         }
 
         public GetCloudProviderAccessSetupAzureConfigArgs build() {
-            $.atlasAzureAppId = Objects.requireNonNull($.atlasAzureAppId, "expected parameter 'atlasAzureAppId' to be non-null");
-            $.servicePrincipalId = Objects.requireNonNull($.servicePrincipalId, "expected parameter 'servicePrincipalId' to be non-null");
-            $.tenantId = Objects.requireNonNull($.tenantId, "expected parameter 'tenantId' to be non-null");
+            if ($.atlasAzureAppId == null) {
+                throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupAzureConfigArgs", "atlasAzureAppId");
+            }
+            if ($.servicePrincipalId == null) {
+                throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupAzureConfigArgs", "servicePrincipalId");
+            }
+            if ($.tenantId == null) {
+                throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupAzureConfigArgs", "tenantId");
+            }
             return $;
         }
     }

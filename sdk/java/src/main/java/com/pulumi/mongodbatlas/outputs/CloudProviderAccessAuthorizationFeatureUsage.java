@@ -44,11 +44,13 @@ public final class CloudProviderAccessAuthorizationFeatureUsage {
 
         @CustomType.Setter
         public Builder featureId(@Nullable Map<String,Object> featureId) {
+
             this.featureId = featureId;
             return this;
         }
         @CustomType.Setter
         public Builder featureType(@Nullable String featureType) {
+
             this.featureType = featureType;
             return this;
         }

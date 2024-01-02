@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -225,9 +226,15 @@ public final class CloudBackupSchedulePolicyItemDailyArgs extends com.pulumi.res
         }
 
         public CloudBackupSchedulePolicyItemDailyArgs build() {
-            $.frequencyInterval = Objects.requireNonNull($.frequencyInterval, "expected parameter 'frequencyInterval' to be non-null");
-            $.retentionUnit = Objects.requireNonNull($.retentionUnit, "expected parameter 'retentionUnit' to be non-null");
-            $.retentionValue = Objects.requireNonNull($.retentionValue, "expected parameter 'retentionValue' to be non-null");
+            if ($.frequencyInterval == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSchedulePolicyItemDailyArgs", "frequencyInterval");
+            }
+            if ($.retentionUnit == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSchedulePolicyItemDailyArgs", "retentionUnit");
+            }
+            if ($.retentionValue == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSchedulePolicyItemDailyArgs", "retentionValue");
+            }
             return $;
         }
     }

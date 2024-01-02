@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetDatabaseUsersResultLabel;
 import com.pulumi.mongodbatlas.outputs.GetDatabaseUsersResultRole;
 import com.pulumi.mongodbatlas.outputs.GetDatabaseUsersResultScope;
@@ -186,22 +187,34 @@ public final class GetDatabaseUsersResult {
 
         @CustomType.Setter
         public Builder authDatabaseName(String authDatabaseName) {
-            this.authDatabaseName = Objects.requireNonNull(authDatabaseName);
+            if (authDatabaseName == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "authDatabaseName");
+            }
+            this.authDatabaseName = authDatabaseName;
             return this;
         }
         @CustomType.Setter
         public Builder awsIamType(String awsIamType) {
-            this.awsIamType = Objects.requireNonNull(awsIamType);
+            if (awsIamType == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "awsIamType");
+            }
+            this.awsIamType = awsIamType;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder labels(List<GetDatabaseUsersResultLabel> labels) {
-            this.labels = Objects.requireNonNull(labels);
+            if (labels == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "labels");
+            }
+            this.labels = labels;
             return this;
         }
         public Builder labels(GetDatabaseUsersResultLabel... labels) {
@@ -209,27 +222,42 @@ public final class GetDatabaseUsersResult {
         }
         @CustomType.Setter
         public Builder ldapAuthType(String ldapAuthType) {
-            this.ldapAuthType = Objects.requireNonNull(ldapAuthType);
+            if (ldapAuthType == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "ldapAuthType");
+            }
+            this.ldapAuthType = ldapAuthType;
             return this;
         }
         @CustomType.Setter
         public Builder oidcAuthType(String oidcAuthType) {
-            this.oidcAuthType = Objects.requireNonNull(oidcAuthType);
+            if (oidcAuthType == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "oidcAuthType");
+            }
+            this.oidcAuthType = oidcAuthType;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder roles(List<GetDatabaseUsersResultRole> roles) {
-            this.roles = Objects.requireNonNull(roles);
+            if (roles == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "roles");
+            }
+            this.roles = roles;
             return this;
         }
         public Builder roles(GetDatabaseUsersResultRole... roles) {
@@ -237,7 +265,10 @@ public final class GetDatabaseUsersResult {
         }
         @CustomType.Setter
         public Builder scopes(List<GetDatabaseUsersResultScope> scopes) {
-            this.scopes = Objects.requireNonNull(scopes);
+            if (scopes == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "scopes");
+            }
+            this.scopes = scopes;
             return this;
         }
         public Builder scopes(GetDatabaseUsersResultScope... scopes) {
@@ -245,12 +276,18 @@ public final class GetDatabaseUsersResult {
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "username");
+            }
+            this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder x509Type(String x509Type) {
-            this.x509Type = Objects.requireNonNull(x509Type);
+            if (x509Type == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "x509Type");
+            }
+            this.x509Type = x509Type;
             return this;
         }
         public GetDatabaseUsersResult build() {

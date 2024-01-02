@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -96,27 +97,42 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAws {
 
         @CustomType.Setter
         public Builder externalId(String externalId) {
-            this.externalId = Objects.requireNonNull(externalId);
+            if (externalId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAws", "externalId");
+            }
+            this.externalId = externalId;
             return this;
         }
         @CustomType.Setter
         public Builder iamAssumedRoleArn(String iamAssumedRoleArn) {
-            this.iamAssumedRoleArn = Objects.requireNonNull(iamAssumedRoleArn);
+            if (iamAssumedRoleArn == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAws", "iamAssumedRoleArn");
+            }
+            this.iamAssumedRoleArn = iamAssumedRoleArn;
             return this;
         }
         @CustomType.Setter
         public Builder iamUserArn(String iamUserArn) {
-            this.iamUserArn = Objects.requireNonNull(iamUserArn);
+            if (iamUserArn == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAws", "iamUserArn");
+            }
+            this.iamUserArn = iamUserArn;
             return this;
         }
         @CustomType.Setter
         public Builder roleId(String roleId) {
-            this.roleId = Objects.requireNonNull(roleId);
+            if (roleId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAws", "roleId");
+            }
+            this.roleId = roleId;
             return this;
         }
         @CustomType.Setter
         public Builder testS3Bucket(String testS3Bucket) {
-            this.testS3Bucket = Objects.requireNonNull(testS3Bucket);
+            if (testS3Bucket == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAws", "testS3Bucket");
+            }
+            this.testS3Bucket = testS3Bucket;
             return this;
         }
         public GetFederatedDatabaseInstanceCloudProviderConfigAws build() {

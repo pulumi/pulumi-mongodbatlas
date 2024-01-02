@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAtlasUserLink;
 import com.pulumi.mongodbatlas.outputs.GetAtlasUserRole;
 import java.lang.String;
@@ -197,42 +198,66 @@ public final class GetAtlasUserResult {
 
         @CustomType.Setter
         public Builder country(String country) {
-            this.country = Objects.requireNonNull(country);
+            if (country == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "country");
+            }
+            this.country = country;
             return this;
         }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder emailAddress(String emailAddress) {
-            this.emailAddress = Objects.requireNonNull(emailAddress);
+            if (emailAddress == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "emailAddress");
+            }
+            this.emailAddress = emailAddress;
             return this;
         }
         @CustomType.Setter
         public Builder firstName(String firstName) {
-            this.firstName = Objects.requireNonNull(firstName);
+            if (firstName == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "firstName");
+            }
+            this.firstName = firstName;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder lastAuth(String lastAuth) {
-            this.lastAuth = Objects.requireNonNull(lastAuth);
+            if (lastAuth == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "lastAuth");
+            }
+            this.lastAuth = lastAuth;
             return this;
         }
         @CustomType.Setter
         public Builder lastName(String lastName) {
-            this.lastName = Objects.requireNonNull(lastName);
+            if (lastName == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "lastName");
+            }
+            this.lastName = lastName;
             return this;
         }
         @CustomType.Setter
         public Builder links(List<GetAtlasUserLink> links) {
-            this.links = Objects.requireNonNull(links);
+            if (links == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "links");
+            }
+            this.links = links;
             return this;
         }
         public Builder links(GetAtlasUserLink... links) {
@@ -240,12 +265,18 @@ public final class GetAtlasUserResult {
         }
         @CustomType.Setter
         public Builder mobileNumber(String mobileNumber) {
-            this.mobileNumber = Objects.requireNonNull(mobileNumber);
+            if (mobileNumber == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "mobileNumber");
+            }
+            this.mobileNumber = mobileNumber;
             return this;
         }
         @CustomType.Setter
         public Builder roles(List<GetAtlasUserRole> roles) {
-            this.roles = Objects.requireNonNull(roles);
+            if (roles == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "roles");
+            }
+            this.roles = roles;
             return this;
         }
         public Builder roles(GetAtlasUserRole... roles) {
@@ -253,7 +284,10 @@ public final class GetAtlasUserResult {
         }
         @CustomType.Setter
         public Builder teamIds(List<String> teamIds) {
-            this.teamIds = Objects.requireNonNull(teamIds);
+            if (teamIds == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUserResult", "teamIds");
+            }
+            this.teamIds = teamIds;
             return this;
         }
         public Builder teamIds(String... teamIds) {
@@ -261,11 +295,13 @@ public final class GetAtlasUserResult {
         }
         @CustomType.Setter
         public Builder userId(@Nullable String userId) {
+
             this.userId = userId;
             return this;
         }
         @CustomType.Setter
         public Builder username(@Nullable String username) {
+
             this.username = username;
             return this;
         }

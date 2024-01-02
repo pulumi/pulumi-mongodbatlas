@@ -69,26 +69,31 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
 
         @CustomType.Setter
         public Builder frequencyInterval(@Nullable Integer frequencyInterval) {
+
             this.frequencyInterval = frequencyInterval;
             return this;
         }
         @CustomType.Setter
         public Builder frequencyType(@Nullable String frequencyType) {
+
             this.frequencyType = frequencyType;
             return this;
         }
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder retentionUnit(@Nullable String retentionUnit) {
+
             this.retentionUnit = retentionUnit;
             return this;
         }
         @CustomType.Setter
         public Builder retentionValue(@Nullable Integer retentionValue) {
+
             this.retentionValue = retentionValue;
             return this;
         }

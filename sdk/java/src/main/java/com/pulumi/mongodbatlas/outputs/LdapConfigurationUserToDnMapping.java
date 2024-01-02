@@ -48,16 +48,19 @@ public final class LdapConfigurationUserToDnMapping {
 
         @CustomType.Setter
         public Builder ldapQuery(@Nullable String ldapQuery) {
+
             this.ldapQuery = ldapQuery;
             return this;
         }
         @CustomType.Setter
         public Builder match(@Nullable String match) {
+
             this.match = match;
             return this;
         }
         @CustomType.Setter
         public Builder substitution(@Nullable String substitution) {
+
             this.substitution = substitution;
             return this;
         }

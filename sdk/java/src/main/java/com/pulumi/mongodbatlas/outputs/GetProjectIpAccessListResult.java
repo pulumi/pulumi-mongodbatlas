@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -72,32 +73,50 @@ public final class GetProjectIpAccessListResult {
 
         @CustomType.Setter
         public Builder awsSecurityGroup(String awsSecurityGroup) {
-            this.awsSecurityGroup = Objects.requireNonNull(awsSecurityGroup);
+            if (awsSecurityGroup == null) {
+              throw new MissingRequiredPropertyException("GetProjectIpAccessListResult", "awsSecurityGroup");
+            }
+            this.awsSecurityGroup = awsSecurityGroup;
             return this;
         }
         @CustomType.Setter
         public Builder cidrBlock(String cidrBlock) {
-            this.cidrBlock = Objects.requireNonNull(cidrBlock);
+            if (cidrBlock == null) {
+              throw new MissingRequiredPropertyException("GetProjectIpAccessListResult", "cidrBlock");
+            }
+            this.cidrBlock = cidrBlock;
             return this;
         }
         @CustomType.Setter
         public Builder comment(String comment) {
-            this.comment = Objects.requireNonNull(comment);
+            if (comment == null) {
+              throw new MissingRequiredPropertyException("GetProjectIpAccessListResult", "comment");
+            }
+            this.comment = comment;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetProjectIpAccessListResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder ipAddress(String ipAddress) {
-            this.ipAddress = Objects.requireNonNull(ipAddress);
+            if (ipAddress == null) {
+              throw new MissingRequiredPropertyException("GetProjectIpAccessListResult", "ipAddress");
+            }
+            this.ipAddress = ipAddress;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetProjectIpAccessListResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         public GetProjectIpAccessListResult build() {

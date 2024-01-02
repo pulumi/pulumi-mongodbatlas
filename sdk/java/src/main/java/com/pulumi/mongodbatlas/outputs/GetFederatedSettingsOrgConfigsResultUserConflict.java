@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -98,27 +99,42 @@ public final class GetFederatedSettingsOrgConfigsResultUserConflict {
 
         @CustomType.Setter
         public Builder emailAddress(String emailAddress) {
-            this.emailAddress = Objects.requireNonNull(emailAddress);
+            if (emailAddress == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgConfigsResultUserConflict", "emailAddress");
+            }
+            this.emailAddress = emailAddress;
             return this;
         }
         @CustomType.Setter
         public Builder federationSettingsId(String federationSettingsId) {
-            this.federationSettingsId = Objects.requireNonNull(federationSettingsId);
+            if (federationSettingsId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgConfigsResultUserConflict", "federationSettingsId");
+            }
+            this.federationSettingsId = federationSettingsId;
             return this;
         }
         @CustomType.Setter
         public Builder firstName(String firstName) {
-            this.firstName = Objects.requireNonNull(firstName);
+            if (firstName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgConfigsResultUserConflict", "firstName");
+            }
+            this.firstName = firstName;
             return this;
         }
         @CustomType.Setter
         public Builder lastName(String lastName) {
-            this.lastName = Objects.requireNonNull(lastName);
+            if (lastName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgConfigsResultUserConflict", "lastName");
+            }
+            this.lastName = lastName;
             return this;
         }
         @CustomType.Setter
         public Builder userId(String userId) {
-            this.userId = Objects.requireNonNull(userId);
+            if (userId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgConfigsResultUserConflict", "userId");
+            }
+            this.userId = userId;
             return this;
         }
         public GetFederatedSettingsOrgConfigsResultUserConflict build() {

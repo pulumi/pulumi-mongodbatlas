@@ -61,26 +61,31 @@ public final class X509AuthenticationDatabaseUserCertificate {
 
         @CustomType.Setter
         public Builder createdAt(@Nullable String createdAt) {
+
             this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder groupId(@Nullable String groupId) {
+
             this.groupId = groupId;
             return this;
         }
         @CustomType.Setter
         public Builder id(@Nullable Integer id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder notAfter(@Nullable String notAfter) {
+
             this.notAfter = notAfter;
             return this;
         }
         @CustomType.Setter
         public Builder subject(@Nullable String subject) {
+
             this.subject = subject;
             return this;
         }

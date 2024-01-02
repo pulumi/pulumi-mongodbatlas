@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -99,27 +100,42 @@ public final class GetGlobalClusterConfigManagedNamespace {
 
         @CustomType.Setter
         public Builder collection(String collection) {
-            this.collection = Objects.requireNonNull(collection);
+            if (collection == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigManagedNamespace", "collection");
+            }
+            this.collection = collection;
             return this;
         }
         @CustomType.Setter
         public Builder customShardKey(String customShardKey) {
-            this.customShardKey = Objects.requireNonNull(customShardKey);
+            if (customShardKey == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigManagedNamespace", "customShardKey");
+            }
+            this.customShardKey = customShardKey;
             return this;
         }
         @CustomType.Setter
         public Builder db(String db) {
-            this.db = Objects.requireNonNull(db);
+            if (db == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigManagedNamespace", "db");
+            }
+            this.db = db;
             return this;
         }
         @CustomType.Setter
         public Builder isCustomShardKeyHashed(Boolean isCustomShardKeyHashed) {
-            this.isCustomShardKeyHashed = Objects.requireNonNull(isCustomShardKeyHashed);
+            if (isCustomShardKeyHashed == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigManagedNamespace", "isCustomShardKeyHashed");
+            }
+            this.isCustomShardKeyHashed = isCustomShardKeyHashed;
             return this;
         }
         @CustomType.Setter
         public Builder isShardKeyUnique(Boolean isShardKeyUnique) {
-            this.isShardKeyUnique = Objects.requireNonNull(isShardKeyUnique);
+            if (isShardKeyUnique == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigManagedNamespace", "isShardKeyUnique");
+            }
+            this.isShardKeyUnique = isShardKeyUnique;
             return this;
         }
         public GetGlobalClusterConfigManagedNamespace build() {

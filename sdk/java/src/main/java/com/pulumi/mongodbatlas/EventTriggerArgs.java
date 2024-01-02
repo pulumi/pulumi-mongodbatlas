@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.EventTriggerEventProcessorsArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -757,9 +758,15 @@ public final class EventTriggerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public EventTriggerArgs build() {
-            $.appId = Objects.requireNonNull($.appId, "expected parameter 'appId' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.appId == null) {
+                throw new MissingRequiredPropertyException("EventTriggerArgs", "appId");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("EventTriggerArgs", "projectId");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("EventTriggerArgs", "type");
+            }
             return $;
         }
     }

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -120,7 +121,9 @@ public final class GetCloudBackupSnapshotExportBucketsPlainArgs extends com.pulu
         }
 
         public GetCloudBackupSnapshotExportBucketsPlainArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketsPlainArgs", "projectId");
+            }
             return $;
         }
     }

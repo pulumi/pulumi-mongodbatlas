@@ -73,16 +73,19 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
 
         @CustomType.Setter
         public Builder enabled(@Nullable Boolean enabled) {
+
             this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder keyVersionResourceId(@Nullable String keyVersionResourceId) {
+
             this.keyVersionResourceId = keyVersionResourceId;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAccountKey(@Nullable String serviceAccountKey) {
+
             this.serviceAccountKey = serviceAccountKey;
             return this;
         }

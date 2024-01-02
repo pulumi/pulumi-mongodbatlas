@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionResourceArgs;
 import java.lang.String;
 import java.util.List;
@@ -187,8 +188,12 @@ public final class CustomDbRoleActionArgs extends com.pulumi.resources.ResourceA
         }
 
         public CustomDbRoleActionArgs build() {
-            $.action = Objects.requireNonNull($.action, "expected parameter 'action' to be non-null");
-            $.resources = Objects.requireNonNull($.resources, "expected parameter 'resources' to be non-null");
+            if ($.action == null) {
+                throw new MissingRequiredPropertyException("CustomDbRoleActionArgs", "action");
+            }
+            if ($.resources == null) {
+                throw new MissingRequiredPropertyException("CustomDbRoleActionArgs", "resources");
+            }
             return $;
         }
     }

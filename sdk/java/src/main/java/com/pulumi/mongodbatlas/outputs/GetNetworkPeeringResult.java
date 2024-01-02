@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -310,117 +311,186 @@ public final class GetNetworkPeeringResult {
 
         @CustomType.Setter
         public Builder accepterRegionName(String accepterRegionName) {
-            this.accepterRegionName = Objects.requireNonNull(accepterRegionName);
+            if (accepterRegionName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "accepterRegionName");
+            }
+            this.accepterRegionName = accepterRegionName;
             return this;
         }
         @CustomType.Setter
         public Builder atlasCidrBlock(String atlasCidrBlock) {
-            this.atlasCidrBlock = Objects.requireNonNull(atlasCidrBlock);
+            if (atlasCidrBlock == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "atlasCidrBlock");
+            }
+            this.atlasCidrBlock = atlasCidrBlock;
             return this;
         }
         @CustomType.Setter
         public Builder atlasId(String atlasId) {
-            this.atlasId = Objects.requireNonNull(atlasId);
+            if (atlasId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "atlasId");
+            }
+            this.atlasId = atlasId;
             return this;
         }
         @CustomType.Setter
         public Builder awsAccountId(String awsAccountId) {
-            this.awsAccountId = Objects.requireNonNull(awsAccountId);
+            if (awsAccountId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "awsAccountId");
+            }
+            this.awsAccountId = awsAccountId;
             return this;
         }
         @CustomType.Setter
         public Builder azureDirectoryId(String azureDirectoryId) {
-            this.azureDirectoryId = Objects.requireNonNull(azureDirectoryId);
+            if (azureDirectoryId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "azureDirectoryId");
+            }
+            this.azureDirectoryId = azureDirectoryId;
             return this;
         }
         @CustomType.Setter
         public Builder azureSubscriptionId(String azureSubscriptionId) {
-            this.azureSubscriptionId = Objects.requireNonNull(azureSubscriptionId);
+            if (azureSubscriptionId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "azureSubscriptionId");
+            }
+            this.azureSubscriptionId = azureSubscriptionId;
             return this;
         }
         @CustomType.Setter
         public Builder connectionId(String connectionId) {
-            this.connectionId = Objects.requireNonNull(connectionId);
+            if (connectionId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "connectionId");
+            }
+            this.connectionId = connectionId;
             return this;
         }
         @CustomType.Setter
         public Builder containerId(String containerId) {
-            this.containerId = Objects.requireNonNull(containerId);
+            if (containerId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "containerId");
+            }
+            this.containerId = containerId;
             return this;
         }
         @CustomType.Setter
         public Builder errorMessage(String errorMessage) {
-            this.errorMessage = Objects.requireNonNull(errorMessage);
+            if (errorMessage == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "errorMessage");
+            }
+            this.errorMessage = errorMessage;
             return this;
         }
         @CustomType.Setter
         public Builder errorState(String errorState) {
-            this.errorState = Objects.requireNonNull(errorState);
+            if (errorState == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "errorState");
+            }
+            this.errorState = errorState;
             return this;
         }
         @CustomType.Setter
         public Builder errorStateName(String errorStateName) {
-            this.errorStateName = Objects.requireNonNull(errorStateName);
+            if (errorStateName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "errorStateName");
+            }
+            this.errorStateName = errorStateName;
             return this;
         }
         @CustomType.Setter
         public Builder gcpProjectId(String gcpProjectId) {
-            this.gcpProjectId = Objects.requireNonNull(gcpProjectId);
+            if (gcpProjectId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "gcpProjectId");
+            }
+            this.gcpProjectId = gcpProjectId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder networkName(String networkName) {
-            this.networkName = Objects.requireNonNull(networkName);
+            if (networkName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "networkName");
+            }
+            this.networkName = networkName;
             return this;
         }
         @CustomType.Setter
         public Builder peeringId(String peeringId) {
-            this.peeringId = Objects.requireNonNull(peeringId);
+            if (peeringId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "peeringId");
+            }
+            this.peeringId = peeringId;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder providerName(String providerName) {
-            this.providerName = Objects.requireNonNull(providerName);
+            if (providerName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "providerName");
+            }
+            this.providerName = providerName;
             return this;
         }
         @CustomType.Setter
         public Builder resourceGroupName(String resourceGroupName) {
-            this.resourceGroupName = Objects.requireNonNull(resourceGroupName);
+            if (resourceGroupName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "resourceGroupName");
+            }
+            this.resourceGroupName = resourceGroupName;
             return this;
         }
         @CustomType.Setter
         public Builder routeTableCidrBlock(String routeTableCidrBlock) {
-            this.routeTableCidrBlock = Objects.requireNonNull(routeTableCidrBlock);
+            if (routeTableCidrBlock == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "routeTableCidrBlock");
+            }
+            this.routeTableCidrBlock = routeTableCidrBlock;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder statusName(String statusName) {
-            this.statusName = Objects.requireNonNull(statusName);
+            if (statusName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "statusName");
+            }
+            this.statusName = statusName;
             return this;
         }
         @CustomType.Setter
         public Builder vnetName(String vnetName) {
-            this.vnetName = Objects.requireNonNull(vnetName);
+            if (vnetName == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "vnetName");
+            }
+            this.vnetName = vnetName;
             return this;
         }
         @CustomType.Setter
         public Builder vpcId(String vpcId) {
-            this.vpcId = Objects.requireNonNull(vpcId);
+            if (vpcId == null) {
+              throw new MissingRequiredPropertyException("GetNetworkPeeringResult", "vpcId");
+            }
+            this.vpcId = vpcId;
             return this;
         }
         public GetNetworkPeeringResult build() {

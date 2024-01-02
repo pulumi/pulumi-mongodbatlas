@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -71,27 +72,42 @@ public final class GetProjectLimit {
 
         @CustomType.Setter
         public Builder currentUsage(Integer currentUsage) {
-            this.currentUsage = Objects.requireNonNull(currentUsage);
+            if (currentUsage == null) {
+              throw new MissingRequiredPropertyException("GetProjectLimit", "currentUsage");
+            }
+            this.currentUsage = currentUsage;
             return this;
         }
         @CustomType.Setter
         public Builder defaultLimit(Integer defaultLimit) {
-            this.defaultLimit = Objects.requireNonNull(defaultLimit);
+            if (defaultLimit == null) {
+              throw new MissingRequiredPropertyException("GetProjectLimit", "defaultLimit");
+            }
+            this.defaultLimit = defaultLimit;
             return this;
         }
         @CustomType.Setter
         public Builder maximumLimit(Integer maximumLimit) {
-            this.maximumLimit = Objects.requireNonNull(maximumLimit);
+            if (maximumLimit == null) {
+              throw new MissingRequiredPropertyException("GetProjectLimit", "maximumLimit");
+            }
+            this.maximumLimit = maximumLimit;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetProjectLimit", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder value(Integer value) {
-            this.value = Objects.requireNonNull(value);
+            if (value == null) {
+              throw new MissingRequiredPropertyException("GetProjectLimit", "value");
+            }
+            this.value = value;
             return this;
         }
         public GetProjectLimit build() {

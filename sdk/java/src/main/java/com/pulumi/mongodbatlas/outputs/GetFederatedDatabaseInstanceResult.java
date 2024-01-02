@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceCloudProviderConfig;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceDataProcessRegion;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceStorageDatabase;
@@ -207,12 +208,18 @@ public final class GetFederatedDatabaseInstanceResult {
 
         @CustomType.Setter
         public Builder cloudProviderConfig(GetFederatedDatabaseInstanceCloudProviderConfig cloudProviderConfig) {
-            this.cloudProviderConfig = Objects.requireNonNull(cloudProviderConfig);
+            if (cloudProviderConfig == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "cloudProviderConfig");
+            }
+            this.cloudProviderConfig = cloudProviderConfig;
             return this;
         }
         @CustomType.Setter
         public Builder dataProcessRegions(List<GetFederatedDatabaseInstanceDataProcessRegion> dataProcessRegions) {
-            this.dataProcessRegions = Objects.requireNonNull(dataProcessRegions);
+            if (dataProcessRegions == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "dataProcessRegions");
+            }
+            this.dataProcessRegions = dataProcessRegions;
             return this;
         }
         public Builder dataProcessRegions(GetFederatedDatabaseInstanceDataProcessRegion... dataProcessRegions) {
@@ -220,7 +227,10 @@ public final class GetFederatedDatabaseInstanceResult {
         }
         @CustomType.Setter
         public Builder hostnames(List<String> hostnames) {
-            this.hostnames = Objects.requireNonNull(hostnames);
+            if (hostnames == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "hostnames");
+            }
+            this.hostnames = hostnames;
             return this;
         }
         public Builder hostnames(String... hostnames) {
@@ -228,27 +238,42 @@ public final class GetFederatedDatabaseInstanceResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder state(String state) {
-            this.state = Objects.requireNonNull(state);
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "state");
+            }
+            this.state = state;
             return this;
         }
         @CustomType.Setter
         public Builder storageDatabases(List<GetFederatedDatabaseInstanceStorageDatabase> storageDatabases) {
-            this.storageDatabases = Objects.requireNonNull(storageDatabases);
+            if (storageDatabases == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "storageDatabases");
+            }
+            this.storageDatabases = storageDatabases;
             return this;
         }
         public Builder storageDatabases(GetFederatedDatabaseInstanceStorageDatabase... storageDatabases) {
@@ -256,7 +281,10 @@ public final class GetFederatedDatabaseInstanceResult {
         }
         @CustomType.Setter
         public Builder storageStores(List<GetFederatedDatabaseInstanceStorageStore> storageStores) {
-            this.storageStores = Objects.requireNonNull(storageStores);
+            if (storageStores == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "storageStores");
+            }
+            this.storageStores = storageStores;
             return this;
         }
         public Builder storageStores(GetFederatedDatabaseInstanceStorageStore... storageStores) {

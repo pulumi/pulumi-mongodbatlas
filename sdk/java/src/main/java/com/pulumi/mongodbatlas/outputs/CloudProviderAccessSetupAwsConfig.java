@@ -42,11 +42,13 @@ public final class CloudProviderAccessSetupAwsConfig {
 
         @CustomType.Setter
         public Builder atlasAssumedRoleExternalId(@Nullable String atlasAssumedRoleExternalId) {
+
             this.atlasAssumedRoleExternalId = atlasAssumedRoleExternalId;
             return this;
         }
         @CustomType.Setter
         public Builder atlasAwsAccountArn(@Nullable String atlasAwsAccountArn) {
+
             this.atlasAwsAccountArn = atlasAwsAccountArn;
             return this;
         }

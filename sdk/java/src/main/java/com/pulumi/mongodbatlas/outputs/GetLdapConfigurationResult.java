@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetLdapConfigurationUserToDnMapping;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -184,57 +185,90 @@ public final class GetLdapConfigurationResult {
 
         @CustomType.Setter
         public Builder authenticationEnabled(Boolean authenticationEnabled) {
-            this.authenticationEnabled = Objects.requireNonNull(authenticationEnabled);
+            if (authenticationEnabled == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "authenticationEnabled");
+            }
+            this.authenticationEnabled = authenticationEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder authorizationEnabled(Boolean authorizationEnabled) {
-            this.authorizationEnabled = Objects.requireNonNull(authorizationEnabled);
+            if (authorizationEnabled == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "authorizationEnabled");
+            }
+            this.authorizationEnabled = authorizationEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder authzQueryTemplate(String authzQueryTemplate) {
-            this.authzQueryTemplate = Objects.requireNonNull(authzQueryTemplate);
+            if (authzQueryTemplate == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "authzQueryTemplate");
+            }
+            this.authzQueryTemplate = authzQueryTemplate;
             return this;
         }
         @CustomType.Setter
         public Builder bindPassword(String bindPassword) {
-            this.bindPassword = Objects.requireNonNull(bindPassword);
+            if (bindPassword == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "bindPassword");
+            }
+            this.bindPassword = bindPassword;
             return this;
         }
         @CustomType.Setter
         public Builder bindUsername(String bindUsername) {
-            this.bindUsername = Objects.requireNonNull(bindUsername);
+            if (bindUsername == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "bindUsername");
+            }
+            this.bindUsername = bindUsername;
             return this;
         }
         @CustomType.Setter
         public Builder caCertificate(String caCertificate) {
-            this.caCertificate = Objects.requireNonNull(caCertificate);
+            if (caCertificate == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "caCertificate");
+            }
+            this.caCertificate = caCertificate;
             return this;
         }
         @CustomType.Setter
         public Builder hostname(String hostname) {
-            this.hostname = Objects.requireNonNull(hostname);
+            if (hostname == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "hostname");
+            }
+            this.hostname = hostname;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder port(Integer port) {
-            this.port = Objects.requireNonNull(port);
+            if (port == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "port");
+            }
+            this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder userToDnMappings(List<GetLdapConfigurationUserToDnMapping> userToDnMappings) {
-            this.userToDnMappings = Objects.requireNonNull(userToDnMappings);
+            if (userToDnMappings == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationResult", "userToDnMappings");
+            }
+            this.userToDnMappings = userToDnMappings;
             return this;
         }
         public Builder userToDnMappings(GetLdapConfigurationUserToDnMapping... userToDnMappings) {

@@ -62,11 +62,13 @@ public final class ClusterConnectionString {
 
         @CustomType.Setter("private")
         public Builder private_(@Nullable String private_) {
+
             this.private_ = private_;
             return this;
         }
         @CustomType.Setter
         public Builder privateEndpoints(@Nullable List<ClusterConnectionStringPrivateEndpoint> privateEndpoints) {
+
             this.privateEndpoints = privateEndpoints;
             return this;
         }
@@ -75,16 +77,19 @@ public final class ClusterConnectionString {
         }
         @CustomType.Setter
         public Builder privateSrv(@Nullable String privateSrv) {
+
             this.privateSrv = privateSrv;
             return this;
         }
         @CustomType.Setter
         public Builder standard(@Nullable String standard) {
+
             this.standard = standard;
             return this;
         }
         @CustomType.Setter
         public Builder standardSrv(@Nullable String standardSrv) {
+
             this.standardSrv = standardSrv;
             return this;
         }
