@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -119,8 +120,12 @@ public final class GetPrivatelinkEndpointsServiceServerlessPlainArgs extends com
         }
 
         public GetPrivatelinkEndpointsServiceServerlessPlainArgs build() {
-            $.instanceName = Objects.requireNonNull($.instanceName, "expected parameter 'instanceName' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.instanceName == null) {
+                throw new MissingRequiredPropertyException("GetPrivatelinkEndpointsServiceServerlessPlainArgs", "instanceName");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetPrivatelinkEndpointsServiceServerlessPlainArgs", "projectId");
+            }
             return $;
         }
     }

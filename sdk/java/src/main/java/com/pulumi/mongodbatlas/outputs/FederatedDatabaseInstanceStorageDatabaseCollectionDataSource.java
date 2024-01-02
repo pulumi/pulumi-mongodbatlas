@@ -98,56 +98,67 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollectionDataSource 
 
         @CustomType.Setter
         public Builder allowInsecure(@Nullable Boolean allowInsecure) {
+
             this.allowInsecure = allowInsecure;
             return this;
         }
         @CustomType.Setter
         public Builder collection(@Nullable String collection) {
+
             this.collection = collection;
             return this;
         }
         @CustomType.Setter
         public Builder collectionRegex(@Nullable String collectionRegex) {
+
             this.collectionRegex = collectionRegex;
             return this;
         }
         @CustomType.Setter
         public Builder database(@Nullable String database) {
+
             this.database = database;
             return this;
         }
         @CustomType.Setter
         public Builder databaseRegex(@Nullable String databaseRegex) {
+
             this.databaseRegex = databaseRegex;
             return this;
         }
         @CustomType.Setter
         public Builder datasetName(@Nullable String datasetName) {
+
             this.datasetName = datasetName;
             return this;
         }
         @CustomType.Setter
         public Builder defaultFormat(@Nullable String defaultFormat) {
+
             this.defaultFormat = defaultFormat;
             return this;
         }
         @CustomType.Setter
         public Builder path(@Nullable String path) {
+
             this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder provenanceFieldName(@Nullable String provenanceFieldName) {
+
             this.provenanceFieldName = provenanceFieldName;
             return this;
         }
         @CustomType.Setter
         public Builder storeName(@Nullable String storeName) {
+
             this.storeName = storeName;
             return this;
         }
         @CustomType.Setter
         public Builder urls(@Nullable List<String> urls) {
+
             this.urls = urls;
             return this;
         }

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -369,72 +370,114 @@ public final class GetAlertConfigurationsResultNotification {
 
         @CustomType.Setter
         public Builder apiToken(String apiToken) {
-            this.apiToken = Objects.requireNonNull(apiToken);
+            if (apiToken == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "apiToken");
+            }
+            this.apiToken = apiToken;
             return this;
         }
         @CustomType.Setter
         public Builder channelName(String channelName) {
-            this.channelName = Objects.requireNonNull(channelName);
+            if (channelName == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "channelName");
+            }
+            this.channelName = channelName;
             return this;
         }
         @CustomType.Setter
         public Builder datadogApiKey(String datadogApiKey) {
-            this.datadogApiKey = Objects.requireNonNull(datadogApiKey);
+            if (datadogApiKey == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "datadogApiKey");
+            }
+            this.datadogApiKey = datadogApiKey;
             return this;
         }
         @CustomType.Setter
         public Builder datadogRegion(String datadogRegion) {
-            this.datadogRegion = Objects.requireNonNull(datadogRegion);
+            if (datadogRegion == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "datadogRegion");
+            }
+            this.datadogRegion = datadogRegion;
             return this;
         }
         @CustomType.Setter
         public Builder delayMin(Integer delayMin) {
-            this.delayMin = Objects.requireNonNull(delayMin);
+            if (delayMin == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "delayMin");
+            }
+            this.delayMin = delayMin;
             return this;
         }
         @CustomType.Setter
         public Builder emailAddress(String emailAddress) {
-            this.emailAddress = Objects.requireNonNull(emailAddress);
+            if (emailAddress == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "emailAddress");
+            }
+            this.emailAddress = emailAddress;
             return this;
         }
         @CustomType.Setter
         public Builder emailEnabled(Boolean emailEnabled) {
-            this.emailEnabled = Objects.requireNonNull(emailEnabled);
+            if (emailEnabled == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "emailEnabled");
+            }
+            this.emailEnabled = emailEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder intervalMin(Integer intervalMin) {
-            this.intervalMin = Objects.requireNonNull(intervalMin);
+            if (intervalMin == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "intervalMin");
+            }
+            this.intervalMin = intervalMin;
             return this;
         }
         @CustomType.Setter
         public Builder microsoftTeamsWebhookUrl(String microsoftTeamsWebhookUrl) {
-            this.microsoftTeamsWebhookUrl = Objects.requireNonNull(microsoftTeamsWebhookUrl);
+            if (microsoftTeamsWebhookUrl == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "microsoftTeamsWebhookUrl");
+            }
+            this.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             return this;
         }
         @CustomType.Setter
         public Builder mobileNumber(String mobileNumber) {
-            this.mobileNumber = Objects.requireNonNull(mobileNumber);
+            if (mobileNumber == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "mobileNumber");
+            }
+            this.mobileNumber = mobileNumber;
             return this;
         }
         @CustomType.Setter
         public Builder notifierId(String notifierId) {
-            this.notifierId = Objects.requireNonNull(notifierId);
+            if (notifierId == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "notifierId");
+            }
+            this.notifierId = notifierId;
             return this;
         }
         @CustomType.Setter
         public Builder opsGenieApiKey(String opsGenieApiKey) {
-            this.opsGenieApiKey = Objects.requireNonNull(opsGenieApiKey);
+            if (opsGenieApiKey == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "opsGenieApiKey");
+            }
+            this.opsGenieApiKey = opsGenieApiKey;
             return this;
         }
         @CustomType.Setter
         public Builder opsGenieRegion(String opsGenieRegion) {
-            this.opsGenieRegion = Objects.requireNonNull(opsGenieRegion);
+            if (opsGenieRegion == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "opsGenieRegion");
+            }
+            this.opsGenieRegion = opsGenieRegion;
             return this;
         }
         @CustomType.Setter
         public Builder roles(List<String> roles) {
-            this.roles = Objects.requireNonNull(roles);
+            if (roles == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "roles");
+            }
+            this.roles = roles;
             return this;
         }
         public Builder roles(String... roles) {
@@ -442,52 +485,82 @@ public final class GetAlertConfigurationsResultNotification {
         }
         @CustomType.Setter
         public Builder serviceKey(String serviceKey) {
-            this.serviceKey = Objects.requireNonNull(serviceKey);
+            if (serviceKey == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "serviceKey");
+            }
+            this.serviceKey = serviceKey;
             return this;
         }
         @CustomType.Setter
         public Builder smsEnabled(Boolean smsEnabled) {
-            this.smsEnabled = Objects.requireNonNull(smsEnabled);
+            if (smsEnabled == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "smsEnabled");
+            }
+            this.smsEnabled = smsEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder teamId(String teamId) {
-            this.teamId = Objects.requireNonNull(teamId);
+            if (teamId == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "teamId");
+            }
+            this.teamId = teamId;
             return this;
         }
         @CustomType.Setter
         public Builder teamName(String teamName) {
-            this.teamName = Objects.requireNonNull(teamName);
+            if (teamName == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "teamName");
+            }
+            this.teamName = teamName;
             return this;
         }
         @CustomType.Setter
         public Builder typeName(String typeName) {
-            this.typeName = Objects.requireNonNull(typeName);
+            if (typeName == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "typeName");
+            }
+            this.typeName = typeName;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "username");
+            }
+            this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder victorOpsApiKey(String victorOpsApiKey) {
-            this.victorOpsApiKey = Objects.requireNonNull(victorOpsApiKey);
+            if (victorOpsApiKey == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "victorOpsApiKey");
+            }
+            this.victorOpsApiKey = victorOpsApiKey;
             return this;
         }
         @CustomType.Setter
         public Builder victorOpsRoutingKey(String victorOpsRoutingKey) {
-            this.victorOpsRoutingKey = Objects.requireNonNull(victorOpsRoutingKey);
+            if (victorOpsRoutingKey == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "victorOpsRoutingKey");
+            }
+            this.victorOpsRoutingKey = victorOpsRoutingKey;
             return this;
         }
         @CustomType.Setter
         public Builder webhookSecret(String webhookSecret) {
-            this.webhookSecret = Objects.requireNonNull(webhookSecret);
+            if (webhookSecret == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "webhookSecret");
+            }
+            this.webhookSecret = webhookSecret;
             return this;
         }
         @CustomType.Setter
         public Builder webhookUrl(String webhookUrl) {
-            this.webhookUrl = Objects.requireNonNull(webhookUrl);
+            if (webhookUrl == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "webhookUrl");
+            }
+            this.webhookUrl = webhookUrl;
             return this;
         }
         public GetAlertConfigurationsResultNotification build() {

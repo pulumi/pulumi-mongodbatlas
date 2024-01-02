@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -300,8 +301,12 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
         }
 
         public NetworkContainerArgs build() {
-            $.atlasCidrBlock = Objects.requireNonNull($.atlasCidrBlock, "expected parameter 'atlasCidrBlock' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.atlasCidrBlock == null) {
+                throw new MissingRequiredPropertyException("NetworkContainerArgs", "atlasCidrBlock");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("NetworkContainerArgs", "projectId");
+            }
             return $;
         }
     }

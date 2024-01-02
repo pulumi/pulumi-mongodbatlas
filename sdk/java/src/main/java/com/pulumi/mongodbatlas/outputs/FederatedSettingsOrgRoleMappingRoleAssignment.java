@@ -75,16 +75,19 @@ public final class FederatedSettingsOrgRoleMappingRoleAssignment {
 
         @CustomType.Setter
         public Builder groupId(@Nullable String groupId) {
+
             this.groupId = groupId;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(@Nullable String orgId) {
+
             this.orgId = orgId;
             return this;
         }
         @CustomType.Setter
         public Builder roles(@Nullable List<String> roles) {
+
             this.roles = roles;
             return this;
         }

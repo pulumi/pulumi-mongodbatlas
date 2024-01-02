@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivesResultCriteria;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivesResultDataExpirationRule;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivesResultDataProcessRegion;
@@ -137,27 +138,42 @@ public final class GetOnlineArchivesResult {
 
         @CustomType.Setter
         public Builder archiveId(String archiveId) {
-            this.archiveId = Objects.requireNonNull(archiveId);
+            if (archiveId == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "archiveId");
+            }
+            this.archiveId = archiveId;
             return this;
         }
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder collName(String collName) {
-            this.collName = Objects.requireNonNull(collName);
+            if (collName == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "collName");
+            }
+            this.collName = collName;
             return this;
         }
         @CustomType.Setter
         public Builder collectionType(String collectionType) {
-            this.collectionType = Objects.requireNonNull(collectionType);
+            if (collectionType == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "collectionType");
+            }
+            this.collectionType = collectionType;
             return this;
         }
         @CustomType.Setter
         public Builder criterias(List<GetOnlineArchivesResultCriteria> criterias) {
-            this.criterias = Objects.requireNonNull(criterias);
+            if (criterias == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "criterias");
+            }
+            this.criterias = criterias;
             return this;
         }
         public Builder criterias(GetOnlineArchivesResultCriteria... criterias) {
@@ -165,7 +181,10 @@ public final class GetOnlineArchivesResult {
         }
         @CustomType.Setter
         public Builder dataExpirationRules(List<GetOnlineArchivesResultDataExpirationRule> dataExpirationRules) {
-            this.dataExpirationRules = Objects.requireNonNull(dataExpirationRules);
+            if (dataExpirationRules == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "dataExpirationRules");
+            }
+            this.dataExpirationRules = dataExpirationRules;
             return this;
         }
         public Builder dataExpirationRules(GetOnlineArchivesResultDataExpirationRule... dataExpirationRules) {
@@ -173,7 +192,10 @@ public final class GetOnlineArchivesResult {
         }
         @CustomType.Setter
         public Builder dataProcessRegions(List<GetOnlineArchivesResultDataProcessRegion> dataProcessRegions) {
-            this.dataProcessRegions = Objects.requireNonNull(dataProcessRegions);
+            if (dataProcessRegions == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "dataProcessRegions");
+            }
+            this.dataProcessRegions = dataProcessRegions;
             return this;
         }
         public Builder dataProcessRegions(GetOnlineArchivesResultDataProcessRegion... dataProcessRegions) {
@@ -181,12 +203,18 @@ public final class GetOnlineArchivesResult {
         }
         @CustomType.Setter
         public Builder dbName(String dbName) {
-            this.dbName = Objects.requireNonNull(dbName);
+            if (dbName == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "dbName");
+            }
+            this.dbName = dbName;
             return this;
         }
         @CustomType.Setter
         public Builder partitionFields(List<GetOnlineArchivesResultPartitionField> partitionFields) {
-            this.partitionFields = Objects.requireNonNull(partitionFields);
+            if (partitionFields == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "partitionFields");
+            }
+            this.partitionFields = partitionFields;
             return this;
         }
         public Builder partitionFields(GetOnlineArchivesResultPartitionField... partitionFields) {
@@ -194,17 +222,26 @@ public final class GetOnlineArchivesResult {
         }
         @CustomType.Setter
         public Builder paused(Boolean paused) {
-            this.paused = Objects.requireNonNull(paused);
+            if (paused == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "paused");
+            }
+            this.paused = paused;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder schedules(List<GetOnlineArchivesResultSchedule> schedules) {
-            this.schedules = Objects.requireNonNull(schedules);
+            if (schedules == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "schedules");
+            }
+            this.schedules = schedules;
             return this;
         }
         public Builder schedules(GetOnlineArchivesResultSchedule... schedules) {
@@ -212,7 +249,10 @@ public final class GetOnlineArchivesResult {
         }
         @CustomType.Setter
         public Builder state(String state) {
-            this.state = Objects.requireNonNull(state);
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResult", "state");
+            }
+            this.state = state;
             return this;
         }
         public GetOnlineArchivesResult build() {

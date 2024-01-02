@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -392,13 +393,27 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
         }
 
         public FederatedSettingsIdentityProviderArgs build() {
-            $.federationSettingsId = Objects.requireNonNull($.federationSettingsId, "expected parameter 'federationSettingsId' to be non-null");
-            $.issuerUri = Objects.requireNonNull($.issuerUri, "expected parameter 'issuerUri' to be non-null");
-            $.requestBinding = Objects.requireNonNull($.requestBinding, "expected parameter 'requestBinding' to be non-null");
-            $.responseSignatureAlgorithm = Objects.requireNonNull($.responseSignatureAlgorithm, "expected parameter 'responseSignatureAlgorithm' to be non-null");
-            $.ssoDebugEnabled = Objects.requireNonNull($.ssoDebugEnabled, "expected parameter 'ssoDebugEnabled' to be non-null");
-            $.ssoUrl = Objects.requireNonNull($.ssoUrl, "expected parameter 'ssoUrl' to be non-null");
-            $.status = Objects.requireNonNull($.status, "expected parameter 'status' to be non-null");
+            if ($.federationSettingsId == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "federationSettingsId");
+            }
+            if ($.issuerUri == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "issuerUri");
+            }
+            if ($.requestBinding == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "requestBinding");
+            }
+            if ($.responseSignatureAlgorithm == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "responseSignatureAlgorithm");
+            }
+            if ($.ssoDebugEnabled == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "ssoDebugEnabled");
+            }
+            if ($.ssoUrl == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "ssoUrl");
+            }
+            if ($.status == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "status");
+            }
             return $;
         }
     }

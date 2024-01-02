@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -90,8 +91,12 @@ public final class GetCloudBackupSchedulePlainArgs extends com.pulumi.resources.
         }
 
         public GetCloudBackupSchedulePlainArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("GetCloudBackupSchedulePlainArgs", "clusterName");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetCloudBackupSchedulePlainArgs", "projectId");
+            }
             return $;
         }
     }

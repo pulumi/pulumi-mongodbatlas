@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -240,8 +241,12 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAwsArgs extends c
         }
 
         public FederatedDatabaseInstanceCloudProviderConfigAwsArgs build() {
-            $.roleId = Objects.requireNonNull($.roleId, "expected parameter 'roleId' to be non-null");
-            $.testS3Bucket = Objects.requireNonNull($.testS3Bucket, "expected parameter 'testS3Bucket' to be non-null");
+            if ($.roleId == null) {
+                throw new MissingRequiredPropertyException("FederatedDatabaseInstanceCloudProviderConfigAwsArgs", "roleId");
+            }
+            if ($.testS3Bucket == null) {
+                throw new MissingRequiredPropertyException("FederatedDatabaseInstanceCloudProviderConfigAwsArgs", "testS3Bucket");
+            }
             return $;
         }
     }

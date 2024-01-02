@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -152,9 +153,15 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
         }
 
         public PrivateLinkEndpointArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.providerName = Objects.requireNonNull($.providerName, "expected parameter 'providerName' to be non-null");
-            $.region = Objects.requireNonNull($.region, "expected parameter 'region' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("PrivateLinkEndpointArgs", "projectId");
+            }
+            if ($.providerName == null) {
+                throw new MissingRequiredPropertyException("PrivateLinkEndpointArgs", "providerName");
+            }
+            if ($.region == null) {
+                throw new MissingRequiredPropertyException("PrivateLinkEndpointArgs", "region");
+            }
             return $;
         }
     }

@@ -49,16 +49,19 @@ public final class GetAlertConfigurationsListOption {
 
         @CustomType.Setter
         public Builder includeCount(@Nullable Boolean includeCount) {
+
             this.includeCount = includeCount;
             return this;
         }
         @CustomType.Setter
         public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
+
             this.itemsPerPage = itemsPerPage;
             return this;
         }
         @CustomType.Setter
         public Builder pageNum(@Nullable Integer pageNum) {
+
             this.pageNum = pageNum;
             return this;
         }

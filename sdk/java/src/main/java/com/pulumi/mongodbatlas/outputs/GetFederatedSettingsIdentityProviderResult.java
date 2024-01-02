@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsIdentityProviderAssociatedOrg;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsIdentityProviderPemFileInfo;
 import java.lang.Boolean;
@@ -248,12 +249,18 @@ public final class GetFederatedSettingsIdentityProviderResult {
 
         @CustomType.Setter
         public Builder acsUrl(String acsUrl) {
-            this.acsUrl = Objects.requireNonNull(acsUrl);
+            if (acsUrl == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "acsUrl");
+            }
+            this.acsUrl = acsUrl;
             return this;
         }
         @CustomType.Setter
         public Builder associatedDomains(List<String> associatedDomains) {
-            this.associatedDomains = Objects.requireNonNull(associatedDomains);
+            if (associatedDomains == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "associatedDomains");
+            }
+            this.associatedDomains = associatedDomains;
             return this;
         }
         public Builder associatedDomains(String... associatedDomains) {
@@ -261,7 +268,10 @@ public final class GetFederatedSettingsIdentityProviderResult {
         }
         @CustomType.Setter
         public Builder associatedOrgs(List<GetFederatedSettingsIdentityProviderAssociatedOrg> associatedOrgs) {
-            this.associatedOrgs = Objects.requireNonNull(associatedOrgs);
+            if (associatedOrgs == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "associatedOrgs");
+            }
+            this.associatedOrgs = associatedOrgs;
             return this;
         }
         public Builder associatedOrgs(GetFederatedSettingsIdentityProviderAssociatedOrg... associatedOrgs) {
@@ -269,42 +279,66 @@ public final class GetFederatedSettingsIdentityProviderResult {
         }
         @CustomType.Setter
         public Builder audienceUri(String audienceUri) {
-            this.audienceUri = Objects.requireNonNull(audienceUri);
+            if (audienceUri == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "audienceUri");
+            }
+            this.audienceUri = audienceUri;
             return this;
         }
         @CustomType.Setter
         public Builder displayName(String displayName) {
-            this.displayName = Objects.requireNonNull(displayName);
+            if (displayName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "displayName");
+            }
+            this.displayName = displayName;
             return this;
         }
         @CustomType.Setter
         public Builder federationSettingsId(String federationSettingsId) {
-            this.federationSettingsId = Objects.requireNonNull(federationSettingsId);
+            if (federationSettingsId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "federationSettingsId");
+            }
+            this.federationSettingsId = federationSettingsId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder identityProviderId(String identityProviderId) {
-            this.identityProviderId = Objects.requireNonNull(identityProviderId);
+            if (identityProviderId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "identityProviderId");
+            }
+            this.identityProviderId = identityProviderId;
             return this;
         }
         @CustomType.Setter
         public Builder issuerUri(String issuerUri) {
-            this.issuerUri = Objects.requireNonNull(issuerUri);
+            if (issuerUri == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "issuerUri");
+            }
+            this.issuerUri = issuerUri;
             return this;
         }
         @CustomType.Setter
         public Builder oktaIdpId(String oktaIdpId) {
-            this.oktaIdpId = Objects.requireNonNull(oktaIdpId);
+            if (oktaIdpId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "oktaIdpId");
+            }
+            this.oktaIdpId = oktaIdpId;
             return this;
         }
         @CustomType.Setter
         public Builder pemFileInfos(List<GetFederatedSettingsIdentityProviderPemFileInfo> pemFileInfos) {
-            this.pemFileInfos = Objects.requireNonNull(pemFileInfos);
+            if (pemFileInfos == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "pemFileInfos");
+            }
+            this.pemFileInfos = pemFileInfos;
             return this;
         }
         public Builder pemFileInfos(GetFederatedSettingsIdentityProviderPemFileInfo... pemFileInfos) {
@@ -312,27 +346,42 @@ public final class GetFederatedSettingsIdentityProviderResult {
         }
         @CustomType.Setter
         public Builder requestBinding(String requestBinding) {
-            this.requestBinding = Objects.requireNonNull(requestBinding);
+            if (requestBinding == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "requestBinding");
+            }
+            this.requestBinding = requestBinding;
             return this;
         }
         @CustomType.Setter
         public Builder responseSignatureAlgorithm(String responseSignatureAlgorithm) {
-            this.responseSignatureAlgorithm = Objects.requireNonNull(responseSignatureAlgorithm);
+            if (responseSignatureAlgorithm == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "responseSignatureAlgorithm");
+            }
+            this.responseSignatureAlgorithm = responseSignatureAlgorithm;
             return this;
         }
         @CustomType.Setter
         public Builder ssoDebugEnabled(Boolean ssoDebugEnabled) {
-            this.ssoDebugEnabled = Objects.requireNonNull(ssoDebugEnabled);
+            if (ssoDebugEnabled == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "ssoDebugEnabled");
+            }
+            this.ssoDebugEnabled = ssoDebugEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder ssoUrl(String ssoUrl) {
-            this.ssoUrl = Objects.requireNonNull(ssoUrl);
+            if (ssoUrl == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "ssoUrl");
+            }
+            this.ssoUrl = ssoUrl;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderResult", "status");
+            }
+            this.status = status;
             return this;
         }
         public GetFederatedSettingsIdentityProviderResult build() {

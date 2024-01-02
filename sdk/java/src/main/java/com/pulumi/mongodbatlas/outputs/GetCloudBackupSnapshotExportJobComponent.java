@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -56,12 +57,18 @@ public final class GetCloudBackupSnapshotExportJobComponent {
 
         @CustomType.Setter
         public Builder exportId(String exportId) {
-            this.exportId = Objects.requireNonNull(exportId);
+            if (exportId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobComponent", "exportId");
+            }
+            this.exportId = exportId;
             return this;
         }
         @CustomType.Setter
         public Builder replicaSetName(String replicaSetName) {
-            this.replicaSetName = Objects.requireNonNull(replicaSetName);
+            if (replicaSetName == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportJobComponent", "replicaSetName");
+            }
+            this.replicaSetName = replicaSetName;
             return this;
         }
         public GetCloudBackupSnapshotExportJobComponent build() {

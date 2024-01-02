@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.LdapConfigurationUserToDnMappingArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -438,11 +439,21 @@ public final class LdapConfigurationArgs extends com.pulumi.resources.ResourceAr
         }
 
         public LdapConfigurationArgs build() {
-            $.authenticationEnabled = Objects.requireNonNull($.authenticationEnabled, "expected parameter 'authenticationEnabled' to be non-null");
-            $.bindPassword = Objects.requireNonNull($.bindPassword, "expected parameter 'bindPassword' to be non-null");
-            $.bindUsername = Objects.requireNonNull($.bindUsername, "expected parameter 'bindUsername' to be non-null");
-            $.hostname = Objects.requireNonNull($.hostname, "expected parameter 'hostname' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.authenticationEnabled == null) {
+                throw new MissingRequiredPropertyException("LdapConfigurationArgs", "authenticationEnabled");
+            }
+            if ($.bindPassword == null) {
+                throw new MissingRequiredPropertyException("LdapConfigurationArgs", "bindPassword");
+            }
+            if ($.bindUsername == null) {
+                throw new MissingRequiredPropertyException("LdapConfigurationArgs", "bindUsername");
+            }
+            if ($.hostname == null) {
+                throw new MissingRequiredPropertyException("LdapConfigurationArgs", "hostname");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("LdapConfigurationArgs", "projectId");
+            }
             return $;
         }
     }

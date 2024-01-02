@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
@@ -75,17 +76,26 @@ public final class GetAlertConfigurationThresholdConfig {
 
         @CustomType.Setter
         public Builder operator(String operator) {
-            this.operator = Objects.requireNonNull(operator);
+            if (operator == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationThresholdConfig", "operator");
+            }
+            this.operator = operator;
             return this;
         }
         @CustomType.Setter
         public Builder threshold(Double threshold) {
-            this.threshold = Objects.requireNonNull(threshold);
+            if (threshold == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationThresholdConfig", "threshold");
+            }
+            this.threshold = threshold;
             return this;
         }
         @CustomType.Setter
         public Builder units(String units) {
-            this.units = Objects.requireNonNull(units);
+            if (units == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationThresholdConfig", "units");
+            }
+            this.units = units;
             return this;
         }
         public GetAlertConfigurationThresholdConfig build() {

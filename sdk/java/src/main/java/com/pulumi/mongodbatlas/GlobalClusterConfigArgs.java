@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigCustomZoneMappingArgs;
 import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigManagedNamespaceArgs;
 import java.lang.String;
@@ -210,8 +211,12 @@ public final class GlobalClusterConfigArgs extends com.pulumi.resources.Resource
         }
 
         public GlobalClusterConfigArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("GlobalClusterConfigArgs", "clusterName");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GlobalClusterConfigArgs", "projectId");
+            }
             return $;
         }
     }

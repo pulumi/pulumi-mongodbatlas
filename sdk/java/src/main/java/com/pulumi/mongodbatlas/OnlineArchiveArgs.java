@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.OnlineArchiveCriteriaArgs;
 import com.pulumi.mongodbatlas.inputs.OnlineArchiveDataExpirationRuleArgs;
 import com.pulumi.mongodbatlas.inputs.OnlineArchiveDataProcessRegionArgs;
@@ -480,11 +481,21 @@ public final class OnlineArchiveArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public OnlineArchiveArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.collName = Objects.requireNonNull($.collName, "expected parameter 'collName' to be non-null");
-            $.criteria = Objects.requireNonNull($.criteria, "expected parameter 'criteria' to be non-null");
-            $.dbName = Objects.requireNonNull($.dbName, "expected parameter 'dbName' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("OnlineArchiveArgs", "clusterName");
+            }
+            if ($.collName == null) {
+                throw new MissingRequiredPropertyException("OnlineArchiveArgs", "collName");
+            }
+            if ($.criteria == null) {
+                throw new MissingRequiredPropertyException("OnlineArchiveArgs", "criteria");
+            }
+            if ($.dbName == null) {
+                throw new MissingRequiredPropertyException("OnlineArchiveArgs", "dbName");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("OnlineArchiveArgs", "projectId");
+            }
             return $;
         }
     }

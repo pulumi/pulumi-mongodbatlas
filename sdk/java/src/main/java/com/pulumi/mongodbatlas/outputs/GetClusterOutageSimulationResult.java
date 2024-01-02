@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetClusterOutageSimulationOutageFilter;
 import java.lang.String;
 import java.util.List;
@@ -112,17 +113,26 @@ public final class GetClusterOutageSimulationResult {
 
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetClusterOutageSimulationResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClusterOutageSimulationResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder outageFilters(List<GetClusterOutageSimulationOutageFilter> outageFilters) {
-            this.outageFilters = Objects.requireNonNull(outageFilters);
+            if (outageFilters == null) {
+              throw new MissingRequiredPropertyException("GetClusterOutageSimulationResult", "outageFilters");
+            }
+            this.outageFilters = outageFilters;
             return this;
         }
         public Builder outageFilters(GetClusterOutageSimulationOutageFilter... outageFilters) {
@@ -130,22 +140,34 @@ public final class GetClusterOutageSimulationResult {
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetClusterOutageSimulationResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder simulationId(String simulationId) {
-            this.simulationId = Objects.requireNonNull(simulationId);
+            if (simulationId == null) {
+              throw new MissingRequiredPropertyException("GetClusterOutageSimulationResult", "simulationId");
+            }
+            this.simulationId = simulationId;
             return this;
         }
         @CustomType.Setter
         public Builder startRequestDate(String startRequestDate) {
-            this.startRequestDate = Objects.requireNonNull(startRequestDate);
+            if (startRequestDate == null) {
+              throw new MissingRequiredPropertyException("GetClusterOutageSimulationResult", "startRequestDate");
+            }
+            this.startRequestDate = startRequestDate;
             return this;
         }
         @CustomType.Setter
         public Builder state(String state) {
-            this.state = Objects.requireNonNull(state);
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetClusterOutageSimulationResult", "state");
+            }
+            this.state = state;
             return this;
         }
         public GetClusterOutageSimulationResult build() {

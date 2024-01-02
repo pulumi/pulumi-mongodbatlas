@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -203,7 +204,10 @@ public final class GetPrivateLinkEndpointResult {
 
         @CustomType.Setter
         public Builder endpointGroupNames(List<String> endpointGroupNames) {
-            this.endpointGroupNames = Objects.requireNonNull(endpointGroupNames);
+            if (endpointGroupNames == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "endpointGroupNames");
+            }
+            this.endpointGroupNames = endpointGroupNames;
             return this;
         }
         public Builder endpointGroupNames(String... endpointGroupNames) {
@@ -211,22 +215,34 @@ public final class GetPrivateLinkEndpointResult {
         }
         @CustomType.Setter
         public Builder endpointServiceName(String endpointServiceName) {
-            this.endpointServiceName = Objects.requireNonNull(endpointServiceName);
+            if (endpointServiceName == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "endpointServiceName");
+            }
+            this.endpointServiceName = endpointServiceName;
             return this;
         }
         @CustomType.Setter
         public Builder errorMessage(String errorMessage) {
-            this.errorMessage = Objects.requireNonNull(errorMessage);
+            if (errorMessage == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "errorMessage");
+            }
+            this.errorMessage = errorMessage;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder interfaceEndpoints(List<String> interfaceEndpoints) {
-            this.interfaceEndpoints = Objects.requireNonNull(interfaceEndpoints);
+            if (interfaceEndpoints == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "interfaceEndpoints");
+            }
+            this.interfaceEndpoints = interfaceEndpoints;
             return this;
         }
         public Builder interfaceEndpoints(String... interfaceEndpoints) {
@@ -234,7 +250,10 @@ public final class GetPrivateLinkEndpointResult {
         }
         @CustomType.Setter
         public Builder privateEndpoints(List<String> privateEndpoints) {
-            this.privateEndpoints = Objects.requireNonNull(privateEndpoints);
+            if (privateEndpoints == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "privateEndpoints");
+            }
+            this.privateEndpoints = privateEndpoints;
             return this;
         }
         public Builder privateEndpoints(String... privateEndpoints) {
@@ -242,37 +261,58 @@ public final class GetPrivateLinkEndpointResult {
         }
         @CustomType.Setter
         public Builder privateLinkId(String privateLinkId) {
-            this.privateLinkId = Objects.requireNonNull(privateLinkId);
+            if (privateLinkId == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "privateLinkId");
+            }
+            this.privateLinkId = privateLinkId;
             return this;
         }
         @CustomType.Setter
         public Builder privateLinkServiceName(String privateLinkServiceName) {
-            this.privateLinkServiceName = Objects.requireNonNull(privateLinkServiceName);
+            if (privateLinkServiceName == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "privateLinkServiceName");
+            }
+            this.privateLinkServiceName = privateLinkServiceName;
             return this;
         }
         @CustomType.Setter
         public Builder privateLinkServiceResourceId(String privateLinkServiceResourceId) {
-            this.privateLinkServiceResourceId = Objects.requireNonNull(privateLinkServiceResourceId);
+            if (privateLinkServiceResourceId == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "privateLinkServiceResourceId");
+            }
+            this.privateLinkServiceResourceId = privateLinkServiceResourceId;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder providerName(String providerName) {
-            this.providerName = Objects.requireNonNull(providerName);
+            if (providerName == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "providerName");
+            }
+            this.providerName = providerName;
             return this;
         }
         @CustomType.Setter
         public Builder regionName(String regionName) {
-            this.regionName = Objects.requireNonNull(regionName);
+            if (regionName == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "regionName");
+            }
+            this.regionName = regionName;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAttachmentNames(List<String> serviceAttachmentNames) {
-            this.serviceAttachmentNames = Objects.requireNonNull(serviceAttachmentNames);
+            if (serviceAttachmentNames == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "serviceAttachmentNames");
+            }
+            this.serviceAttachmentNames = serviceAttachmentNames;
             return this;
         }
         public Builder serviceAttachmentNames(String... serviceAttachmentNames) {
@@ -280,7 +320,10 @@ public final class GetPrivateLinkEndpointResult {
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "status");
+            }
+            this.status = status;
             return this;
         }
         public GetPrivateLinkEndpointResult build() {

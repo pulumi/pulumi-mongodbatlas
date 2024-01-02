@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -151,8 +152,12 @@ public final class OnlineArchivePartitionFieldArgs extends com.pulumi.resources.
         }
 
         public OnlineArchivePartitionFieldArgs build() {
-            $.fieldName = Objects.requireNonNull($.fieldName, "expected parameter 'fieldName' to be non-null");
-            $.order = Objects.requireNonNull($.order, "expected parameter 'order' to be non-null");
+            if ($.fieldName == null) {
+                throw new MissingRequiredPropertyException("OnlineArchivePartitionFieldArgs", "fieldName");
+            }
+            if ($.order == null) {
+                throw new MissingRequiredPropertyException("OnlineArchivePartitionFieldArgs", "order");
+            }
             return $;
         }
     }

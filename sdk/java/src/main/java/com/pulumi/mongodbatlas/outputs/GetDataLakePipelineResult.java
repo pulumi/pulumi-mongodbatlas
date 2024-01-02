@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelineIngestionSchedule;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelineSink;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelineSnapshot;
@@ -206,17 +207,26 @@ public final class GetDataLakePipelineResult {
 
         @CustomType.Setter
         public Builder createdDate(String createdDate) {
-            this.createdDate = Objects.requireNonNull(createdDate);
+            if (createdDate == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "createdDate");
+            }
+            this.createdDate = createdDate;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder ingestionSchedules(List<GetDataLakePipelineIngestionSchedule> ingestionSchedules) {
-            this.ingestionSchedules = Objects.requireNonNull(ingestionSchedules);
+            if (ingestionSchedules == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "ingestionSchedules");
+            }
+            this.ingestionSchedules = ingestionSchedules;
             return this;
         }
         public Builder ingestionSchedules(GetDataLakePipelineIngestionSchedule... ingestionSchedules) {
@@ -224,22 +234,34 @@ public final class GetDataLakePipelineResult {
         }
         @CustomType.Setter
         public Builder lastUpdatedDate(String lastUpdatedDate) {
-            this.lastUpdatedDate = Objects.requireNonNull(lastUpdatedDate);
+            if (lastUpdatedDate == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "lastUpdatedDate");
+            }
+            this.lastUpdatedDate = lastUpdatedDate;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder sinks(List<GetDataLakePipelineSink> sinks) {
-            this.sinks = Objects.requireNonNull(sinks);
+            if (sinks == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "sinks");
+            }
+            this.sinks = sinks;
             return this;
         }
         public Builder sinks(GetDataLakePipelineSink... sinks) {
@@ -247,7 +269,10 @@ public final class GetDataLakePipelineResult {
         }
         @CustomType.Setter
         public Builder snapshots(List<GetDataLakePipelineSnapshot> snapshots) {
-            this.snapshots = Objects.requireNonNull(snapshots);
+            if (snapshots == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "snapshots");
+            }
+            this.snapshots = snapshots;
             return this;
         }
         public Builder snapshots(GetDataLakePipelineSnapshot... snapshots) {
@@ -255,7 +280,10 @@ public final class GetDataLakePipelineResult {
         }
         @CustomType.Setter
         public Builder sources(List<GetDataLakePipelineSource> sources) {
-            this.sources = Objects.requireNonNull(sources);
+            if (sources == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "sources");
+            }
+            this.sources = sources;
             return this;
         }
         public Builder sources(GetDataLakePipelineSource... sources) {
@@ -263,12 +291,18 @@ public final class GetDataLakePipelineResult {
         }
         @CustomType.Setter
         public Builder state(String state) {
-            this.state = Objects.requireNonNull(state);
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "state");
+            }
+            this.state = state;
             return this;
         }
         @CustomType.Setter
         public Builder transformations(List<GetDataLakePipelineTransformation> transformations) {
-            this.transformations = Objects.requireNonNull(transformations);
+            if (transformations == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineResult", "transformations");
+            }
+            this.transformations = transformations;
             return this;
         }
         public Builder transformations(GetDataLakePipelineTransformation... transformations) {

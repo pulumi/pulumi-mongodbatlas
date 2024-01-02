@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -129,9 +130,15 @@ public final class GetFederatedQueryLimitPlainArgs extends com.pulumi.resources.
         }
 
         public GetFederatedQueryLimitPlainArgs build() {
-            $.limitName = Objects.requireNonNull($.limitName, "expected parameter 'limitName' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.tenantName = Objects.requireNonNull($.tenantName, "expected parameter 'tenantName' to be non-null");
+            if ($.limitName == null) {
+                throw new MissingRequiredPropertyException("GetFederatedQueryLimitPlainArgs", "limitName");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetFederatedQueryLimitPlainArgs", "projectId");
+            }
+            if ($.tenantName == null) {
+                throw new MissingRequiredPropertyException("GetFederatedQueryLimitPlainArgs", "tenantName");
+            }
             return $;
         }
     }

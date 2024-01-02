@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetEventTriggersResultEventProcessor;
 import java.lang.Boolean;
 import java.lang.String;
@@ -291,37 +292,58 @@ public final class GetEventTriggersResult {
 
         @CustomType.Setter
         public Builder configCollection(String configCollection) {
-            this.configCollection = Objects.requireNonNull(configCollection);
+            if (configCollection == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configCollection");
+            }
+            this.configCollection = configCollection;
             return this;
         }
         @CustomType.Setter
         public Builder configDatabase(String configDatabase) {
-            this.configDatabase = Objects.requireNonNull(configDatabase);
+            if (configDatabase == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configDatabase");
+            }
+            this.configDatabase = configDatabase;
             return this;
         }
         @CustomType.Setter
         public Builder configFullDocument(Boolean configFullDocument) {
-            this.configFullDocument = Objects.requireNonNull(configFullDocument);
+            if (configFullDocument == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configFullDocument");
+            }
+            this.configFullDocument = configFullDocument;
             return this;
         }
         @CustomType.Setter
         public Builder configFullDocumentBefore(Boolean configFullDocumentBefore) {
-            this.configFullDocumentBefore = Objects.requireNonNull(configFullDocumentBefore);
+            if (configFullDocumentBefore == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configFullDocumentBefore");
+            }
+            this.configFullDocumentBefore = configFullDocumentBefore;
             return this;
         }
         @CustomType.Setter
         public Builder configMatch(String configMatch) {
-            this.configMatch = Objects.requireNonNull(configMatch);
+            if (configMatch == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configMatch");
+            }
+            this.configMatch = configMatch;
             return this;
         }
         @CustomType.Setter
         public Builder configOperationType(String configOperationType) {
-            this.configOperationType = Objects.requireNonNull(configOperationType);
+            if (configOperationType == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configOperationType");
+            }
+            this.configOperationType = configOperationType;
             return this;
         }
         @CustomType.Setter
         public Builder configOperationTypes(List<String> configOperationTypes) {
-            this.configOperationTypes = Objects.requireNonNull(configOperationTypes);
+            if (configOperationTypes == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configOperationTypes");
+            }
+            this.configOperationTypes = configOperationTypes;
             return this;
         }
         public Builder configOperationTypes(String... configOperationTypes) {
@@ -329,12 +351,18 @@ public final class GetEventTriggersResult {
         }
         @CustomType.Setter
         public Builder configProject(String configProject) {
-            this.configProject = Objects.requireNonNull(configProject);
+            if (configProject == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configProject");
+            }
+            this.configProject = configProject;
             return this;
         }
         @CustomType.Setter
         public Builder configProviders(List<String> configProviders) {
-            this.configProviders = Objects.requireNonNull(configProviders);
+            if (configProviders == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configProviders");
+            }
+            this.configProviders = configProviders;
             return this;
         }
         public Builder configProviders(String... configProviders) {
@@ -342,27 +370,42 @@ public final class GetEventTriggersResult {
         }
         @CustomType.Setter
         public Builder configSchedule(String configSchedule) {
-            this.configSchedule = Objects.requireNonNull(configSchedule);
+            if (configSchedule == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configSchedule");
+            }
+            this.configSchedule = configSchedule;
             return this;
         }
         @CustomType.Setter
         public Builder configScheduleType(String configScheduleType) {
-            this.configScheduleType = Objects.requireNonNull(configScheduleType);
+            if (configScheduleType == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configScheduleType");
+            }
+            this.configScheduleType = configScheduleType;
             return this;
         }
         @CustomType.Setter
         public Builder configServiceId(String configServiceId) {
-            this.configServiceId = Objects.requireNonNull(configServiceId);
+            if (configServiceId == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "configServiceId");
+            }
+            this.configServiceId = configServiceId;
             return this;
         }
         @CustomType.Setter
         public Builder disabled(Boolean disabled) {
-            this.disabled = Objects.requireNonNull(disabled);
+            if (disabled == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "disabled");
+            }
+            this.disabled = disabled;
             return this;
         }
         @CustomType.Setter
         public Builder eventProcessors(List<GetEventTriggersResultEventProcessor> eventProcessors) {
-            this.eventProcessors = Objects.requireNonNull(eventProcessors);
+            if (eventProcessors == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "eventProcessors");
+            }
+            this.eventProcessors = eventProcessors;
             return this;
         }
         public Builder eventProcessors(GetEventTriggersResultEventProcessor... eventProcessors) {
@@ -370,32 +413,50 @@ public final class GetEventTriggersResult {
         }
         @CustomType.Setter
         public Builder functionId(String functionId) {
-            this.functionId = Objects.requireNonNull(functionId);
+            if (functionId == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "functionId");
+            }
+            this.functionId = functionId;
             return this;
         }
         @CustomType.Setter
         public Builder functionName(String functionName) {
-            this.functionName = Objects.requireNonNull(functionName);
+            if (functionName == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "functionName");
+            }
+            this.functionName = functionName;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder triggerId(String triggerId) {
-            this.triggerId = Objects.requireNonNull(triggerId);
+            if (triggerId == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "triggerId");
+            }
+            this.triggerId = triggerId;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "type");
+            }
+            this.type = type;
             return this;
         }
         @CustomType.Setter
         public Builder unordered(Boolean unordered) {
-            this.unordered = Objects.requireNonNull(unordered);
+            if (unordered == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResult", "unordered");
+            }
+            this.unordered = unordered;
             return this;
         }
         public GetEventTriggersResult build() {

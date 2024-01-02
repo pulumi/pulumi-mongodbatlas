@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -113,27 +114,34 @@ public final class ClusterReplicationSpecRegionsConfig {
 
         @CustomType.Setter
         public Builder analyticsNodes(@Nullable Integer analyticsNodes) {
+
             this.analyticsNodes = analyticsNodes;
             return this;
         }
         @CustomType.Setter
         public Builder electableNodes(@Nullable Integer electableNodes) {
+
             this.electableNodes = electableNodes;
             return this;
         }
         @CustomType.Setter
         public Builder priority(@Nullable Integer priority) {
+
             this.priority = priority;
             return this;
         }
         @CustomType.Setter
         public Builder readOnlyNodes(@Nullable Integer readOnlyNodes) {
+
             this.readOnlyNodes = readOnlyNodes;
             return this;
         }
         @CustomType.Setter
         public Builder regionName(String regionName) {
-            this.regionName = Objects.requireNonNull(regionName);
+            if (regionName == null) {
+              throw new MissingRequiredPropertyException("ClusterReplicationSpecRegionsConfig", "regionName");
+            }
+            this.regionName = regionName;
             return this;
         }
         public ClusterReplicationSpecRegionsConfig build() {

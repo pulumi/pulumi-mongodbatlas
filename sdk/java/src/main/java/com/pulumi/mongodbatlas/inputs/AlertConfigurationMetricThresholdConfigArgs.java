@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
@@ -233,7 +234,9 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
         }
 
         public AlertConfigurationMetricThresholdConfigArgs build() {
-            $.metricName = Objects.requireNonNull($.metricName, "expected parameter 'metricName' to be non-null");
+            if ($.metricName == null) {
+                throw new MissingRequiredPropertyException("AlertConfigurationMetricThresholdConfigArgs", "metricName");
+            }
             return $;
         }
     }

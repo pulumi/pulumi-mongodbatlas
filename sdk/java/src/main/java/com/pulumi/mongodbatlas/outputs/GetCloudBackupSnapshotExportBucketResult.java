@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -88,32 +89,50 @@ public final class GetCloudBackupSnapshotExportBucketResult {
 
         @CustomType.Setter
         public Builder bucketName(String bucketName) {
-            this.bucketName = Objects.requireNonNull(bucketName);
+            if (bucketName == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketResult", "bucketName");
+            }
+            this.bucketName = bucketName;
             return this;
         }
         @CustomType.Setter
         public Builder cloudProvider(String cloudProvider) {
-            this.cloudProvider = Objects.requireNonNull(cloudProvider);
+            if (cloudProvider == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketResult", "cloudProvider");
+            }
+            this.cloudProvider = cloudProvider;
             return this;
         }
         @CustomType.Setter
         public Builder exportBucketId(String exportBucketId) {
-            this.exportBucketId = Objects.requireNonNull(exportBucketId);
+            if (exportBucketId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketResult", "exportBucketId");
+            }
+            this.exportBucketId = exportBucketId;
             return this;
         }
         @CustomType.Setter
         public Builder iamRoleId(String iamRoleId) {
-            this.iamRoleId = Objects.requireNonNull(iamRoleId);
+            if (iamRoleId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketResult", "iamRoleId");
+            }
+            this.iamRoleId = iamRoleId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         public GetCloudBackupSnapshotExportBucketResult build() {

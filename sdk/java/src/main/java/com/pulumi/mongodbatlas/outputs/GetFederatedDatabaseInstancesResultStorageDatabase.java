@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultStorageDatabaseCollection;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultStorageDatabaseView;
 import java.lang.Integer;
@@ -56,7 +57,10 @@ public final class GetFederatedDatabaseInstancesResultStorageDatabase {
 
         @CustomType.Setter
         public Builder collections(List<GetFederatedDatabaseInstancesResultStorageDatabaseCollection> collections) {
-            this.collections = Objects.requireNonNull(collections);
+            if (collections == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstancesResultStorageDatabase", "collections");
+            }
+            this.collections = collections;
             return this;
         }
         public Builder collections(GetFederatedDatabaseInstancesResultStorageDatabaseCollection... collections) {
@@ -64,17 +68,26 @@ public final class GetFederatedDatabaseInstancesResultStorageDatabase {
         }
         @CustomType.Setter
         public Builder maxWildcardCollections(Integer maxWildcardCollections) {
-            this.maxWildcardCollections = Objects.requireNonNull(maxWildcardCollections);
+            if (maxWildcardCollections == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstancesResultStorageDatabase", "maxWildcardCollections");
+            }
+            this.maxWildcardCollections = maxWildcardCollections;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstancesResultStorageDatabase", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder views(List<GetFederatedDatabaseInstancesResultStorageDatabaseView> views) {
-            this.views = Objects.requireNonNull(views);
+            if (views == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstancesResultStorageDatabase", "views");
+            }
+            this.views = views;
             return this;
         }
         public Builder views(GetFederatedDatabaseInstancesResultStorageDatabaseView... views) {

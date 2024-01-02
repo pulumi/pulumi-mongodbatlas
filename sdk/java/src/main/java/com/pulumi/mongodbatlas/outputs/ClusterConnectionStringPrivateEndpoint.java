@@ -62,11 +62,13 @@ public final class ClusterConnectionStringPrivateEndpoint {
 
         @CustomType.Setter
         public Builder connectionString(@Nullable String connectionString) {
+
             this.connectionString = connectionString;
             return this;
         }
         @CustomType.Setter
         public Builder endpoints(@Nullable List<ClusterConnectionStringPrivateEndpointEndpoint> endpoints) {
+
             this.endpoints = endpoints;
             return this;
         }
@@ -75,16 +77,19 @@ public final class ClusterConnectionStringPrivateEndpoint {
         }
         @CustomType.Setter
         public Builder srvConnectionString(@Nullable String srvConnectionString) {
+
             this.srvConnectionString = srvConnectionString;
             return this;
         }
         @CustomType.Setter
         public Builder srvShardOptimizedConnectionString(@Nullable String srvShardOptimizedConnectionString) {
+
             this.srvShardOptimizedConnectionString = srvShardOptimizedConnectionString;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }

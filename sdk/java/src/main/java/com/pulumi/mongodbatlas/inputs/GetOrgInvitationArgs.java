@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -148,9 +149,15 @@ public final class GetOrgInvitationArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         public GetOrgInvitationArgs build() {
-            $.invitationId = Objects.requireNonNull($.invitationId, "expected parameter 'invitationId' to be non-null");
-            $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.invitationId == null) {
+                throw new MissingRequiredPropertyException("GetOrgInvitationArgs", "invitationId");
+            }
+            if ($.orgId == null) {
+                throw new MissingRequiredPropertyException("GetOrgInvitationArgs", "orgId");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("GetOrgInvitationArgs", "username");
+            }
             return $;
         }
     }

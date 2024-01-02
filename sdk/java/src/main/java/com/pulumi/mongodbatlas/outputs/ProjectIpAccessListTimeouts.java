@@ -42,11 +42,13 @@ public final class ProjectIpAccessListTimeouts {
 
         @CustomType.Setter
         public Builder delete(@Nullable String delete) {
+
             this.delete = delete;
             return this;
         }
         @CustomType.Setter
         public Builder read(@Nullable String read) {
+
             this.read = read;
             return this;
         }

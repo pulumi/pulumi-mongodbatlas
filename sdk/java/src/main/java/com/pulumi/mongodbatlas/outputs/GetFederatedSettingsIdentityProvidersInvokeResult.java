@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsIdentityProvidersResult;
 import java.lang.Integer;
 import java.lang.String;
@@ -87,27 +88,38 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
 
         @CustomType.Setter
         public Builder federationSettingsId(String federationSettingsId) {
-            this.federationSettingsId = Objects.requireNonNull(federationSettingsId);
+            if (federationSettingsId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersInvokeResult", "federationSettingsId");
+            }
+            this.federationSettingsId = federationSettingsId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersInvokeResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
+
             this.itemsPerPage = itemsPerPage;
             return this;
         }
         @CustomType.Setter
         public Builder pageNum(@Nullable Integer pageNum) {
+
             this.pageNum = pageNum;
             return this;
         }
         @CustomType.Setter
         public Builder results(List<GetFederatedSettingsIdentityProvidersResult> results) {
-            this.results = Objects.requireNonNull(results);
+            if (results == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersInvokeResult", "results");
+            }
+            this.results = results;
             return this;
         }
         public Builder results(GetFederatedSettingsIdentityProvidersResult... results) {

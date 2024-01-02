@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -129,37 +130,46 @@ public final class OnlineArchiveSchedule {
 
         @CustomType.Setter
         public Builder dayOfMonth(@Nullable Integer dayOfMonth) {
+
             this.dayOfMonth = dayOfMonth;
             return this;
         }
         @CustomType.Setter
         public Builder dayOfWeek(@Nullable Integer dayOfWeek) {
+
             this.dayOfWeek = dayOfWeek;
             return this;
         }
         @CustomType.Setter
         public Builder endHour(@Nullable Integer endHour) {
+
             this.endHour = endHour;
             return this;
         }
         @CustomType.Setter
         public Builder endMinute(@Nullable Integer endMinute) {
+
             this.endMinute = endMinute;
             return this;
         }
         @CustomType.Setter
         public Builder startHour(@Nullable Integer startHour) {
+
             this.startHour = startHour;
             return this;
         }
         @CustomType.Setter
         public Builder startMinute(@Nullable Integer startMinute) {
+
             this.startMinute = startMinute;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("OnlineArchiveSchedule", "type");
+            }
+            this.type = type;
             return this;
         }
         public OnlineArchiveSchedule build() {

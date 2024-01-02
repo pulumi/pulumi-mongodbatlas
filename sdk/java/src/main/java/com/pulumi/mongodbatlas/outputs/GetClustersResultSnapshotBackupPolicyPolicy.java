@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItem;
 import java.lang.String;
 import java.util.List;
@@ -50,12 +51,18 @@ public final class GetClustersResultSnapshotBackupPolicyPolicy {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultSnapshotBackupPolicyPolicy", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder policyItems(List<GetClustersResultSnapshotBackupPolicyPolicyPolicyItem> policyItems) {
-            this.policyItems = Objects.requireNonNull(policyItems);
+            if (policyItems == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultSnapshotBackupPolicyPolicy", "policyItems");
+            }
+            this.policyItems = policyItems;
             return this;
         }
         public Builder policyItems(GetClustersResultSnapshotBackupPolicyPolicyPolicyItem... policyItems) {

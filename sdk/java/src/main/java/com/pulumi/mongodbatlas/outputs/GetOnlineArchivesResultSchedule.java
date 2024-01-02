@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -73,37 +74,54 @@ public final class GetOnlineArchivesResultSchedule {
 
         @CustomType.Setter
         public Builder dayOfMonth(@Nullable Integer dayOfMonth) {
+
             this.dayOfMonth = dayOfMonth;
             return this;
         }
         @CustomType.Setter
         public Builder dayOfWeek(@Nullable Integer dayOfWeek) {
+
             this.dayOfWeek = dayOfWeek;
             return this;
         }
         @CustomType.Setter
         public Builder endHour(Integer endHour) {
-            this.endHour = Objects.requireNonNull(endHour);
+            if (endHour == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResultSchedule", "endHour");
+            }
+            this.endHour = endHour;
             return this;
         }
         @CustomType.Setter
         public Builder endMinute(Integer endMinute) {
-            this.endMinute = Objects.requireNonNull(endMinute);
+            if (endMinute == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResultSchedule", "endMinute");
+            }
+            this.endMinute = endMinute;
             return this;
         }
         @CustomType.Setter
         public Builder startHour(Integer startHour) {
-            this.startHour = Objects.requireNonNull(startHour);
+            if (startHour == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResultSchedule", "startHour");
+            }
+            this.startHour = startHour;
             return this;
         }
         @CustomType.Setter
         public Builder startMinute(Integer startMinute) {
-            this.startMinute = Objects.requireNonNull(startMinute);
+            if (startMinute == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResultSchedule", "startMinute");
+            }
+            this.startMinute = startMinute;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchivesResultSchedule", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetOnlineArchivesResultSchedule build() {

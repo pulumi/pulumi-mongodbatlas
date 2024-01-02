@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexesResultSynonym;
 import java.lang.Boolean;
 import java.lang.String;
@@ -223,71 +224,99 @@ public final class GetSearchIndexesResult {
 
         @CustomType.Setter
         public Builder analyzer(@Nullable String analyzer) {
+
             this.analyzer = analyzer;
             return this;
         }
         @CustomType.Setter
         public Builder analyzers(@Nullable String analyzers) {
+
             this.analyzers = analyzers;
             return this;
         }
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder collectionName(String collectionName) {
-            this.collectionName = Objects.requireNonNull(collectionName);
+            if (collectionName == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "collectionName");
+            }
+            this.collectionName = collectionName;
             return this;
         }
         @CustomType.Setter
         public Builder database(String database) {
-            this.database = Objects.requireNonNull(database);
+            if (database == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "database");
+            }
+            this.database = database;
             return this;
         }
         @CustomType.Setter
         public Builder fields(@Nullable String fields) {
+
             this.fields = fields;
             return this;
         }
         @CustomType.Setter
         public Builder indexId(String indexId) {
-            this.indexId = Objects.requireNonNull(indexId);
+            if (indexId == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "indexId");
+            }
+            this.indexId = indexId;
             return this;
         }
         @CustomType.Setter
         public Builder mappingsDynamic(@Nullable Boolean mappingsDynamic) {
+
             this.mappingsDynamic = mappingsDynamic;
             return this;
         }
         @CustomType.Setter
         public Builder mappingsFields(@Nullable String mappingsFields) {
+
             this.mappingsFields = mappingsFields;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder searchAnalyzer(@Nullable String searchAnalyzer) {
+
             this.searchAnalyzer = searchAnalyzer;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder synonyms(@Nullable List<GetSearchIndexesResultSynonym> synonyms) {
+
             this.synonyms = synonyms;
             return this;
         }
@@ -296,11 +325,13 @@ public final class GetSearchIndexesResult {
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }
         @CustomType.Setter
         public Builder waitForIndexBuildCompletion(@Nullable Boolean waitForIndexBuildCompletion) {
+
             this.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
             return this;
         }

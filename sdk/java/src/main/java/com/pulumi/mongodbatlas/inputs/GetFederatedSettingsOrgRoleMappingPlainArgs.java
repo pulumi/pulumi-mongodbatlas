@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -103,9 +104,15 @@ public final class GetFederatedSettingsOrgRoleMappingPlainArgs extends com.pulum
         }
 
         public GetFederatedSettingsOrgRoleMappingPlainArgs build() {
-            $.federationSettingsId = Objects.requireNonNull($.federationSettingsId, "expected parameter 'federationSettingsId' to be non-null");
-            $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
-            $.roleMappingId = Objects.requireNonNull($.roleMappingId, "expected parameter 'roleMappingId' to be non-null");
+            if ($.federationSettingsId == null) {
+                throw new MissingRequiredPropertyException("GetFederatedSettingsOrgRoleMappingPlainArgs", "federationSettingsId");
+            }
+            if ($.orgId == null) {
+                throw new MissingRequiredPropertyException("GetFederatedSettingsOrgRoleMappingPlainArgs", "orgId");
+            }
+            if ($.roleMappingId == null) {
+                throw new MissingRequiredPropertyException("GetFederatedSettingsOrgRoleMappingPlainArgs", "roleMappingId");
+            }
             return $;
         }
     }

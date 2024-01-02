@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -62,17 +63,26 @@ public final class GetSearchIndexSynonym {
 
         @CustomType.Setter
         public Builder analyzer(String analyzer) {
-            this.analyzer = Objects.requireNonNull(analyzer);
+            if (analyzer == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexSynonym", "analyzer");
+            }
+            this.analyzer = analyzer;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexSynonym", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder sourceCollection(String sourceCollection) {
-            this.sourceCollection = Objects.requireNonNull(sourceCollection);
+            if (sourceCollection == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexSynonym", "sourceCollection");
+            }
+            this.sourceCollection = sourceCollection;
             return this;
         }
         public GetSearchIndexSynonym build() {

@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs;
@@ -390,9 +391,15 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         public AdvancedClusterReplicationSpecRegionConfigArgs build() {
-            $.priority = Objects.requireNonNull($.priority, "expected parameter 'priority' to be non-null");
-            $.providerName = Objects.requireNonNull($.providerName, "expected parameter 'providerName' to be non-null");
-            $.regionName = Objects.requireNonNull($.regionName, "expected parameter 'regionName' to be non-null");
+            if ($.priority == null) {
+                throw new MissingRequiredPropertyException("AdvancedClusterReplicationSpecRegionConfigArgs", "priority");
+            }
+            if ($.providerName == null) {
+                throw new MissingRequiredPropertyException("AdvancedClusterReplicationSpecRegionConfigArgs", "providerName");
+            }
+            if ($.regionName == null) {
+                throw new MissingRequiredPropertyException("AdvancedClusterReplicationSpecRegionConfigArgs", "regionName");
+            }
             return $;
         }
     }

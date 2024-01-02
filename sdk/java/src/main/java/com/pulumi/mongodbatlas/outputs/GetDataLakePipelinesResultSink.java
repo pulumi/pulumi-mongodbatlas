@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelinesResultSinkPartitionField;
 import java.lang.String;
 import java.util.List;
@@ -90,7 +91,10 @@ public final class GetDataLakePipelinesResultSink {
 
         @CustomType.Setter
         public Builder partitionFields(List<GetDataLakePipelinesResultSinkPartitionField> partitionFields) {
-            this.partitionFields = Objects.requireNonNull(partitionFields);
+            if (partitionFields == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResultSink", "partitionFields");
+            }
+            this.partitionFields = partitionFields;
             return this;
         }
         public Builder partitionFields(GetDataLakePipelinesResultSinkPartitionField... partitionFields) {
@@ -98,17 +102,26 @@ public final class GetDataLakePipelinesResultSink {
         }
         @CustomType.Setter
         public Builder provider(String provider) {
-            this.provider = Objects.requireNonNull(provider);
+            if (provider == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResultSink", "provider");
+            }
+            this.provider = provider;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResultSink", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResultSink", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetDataLakePipelinesResultSink build() {

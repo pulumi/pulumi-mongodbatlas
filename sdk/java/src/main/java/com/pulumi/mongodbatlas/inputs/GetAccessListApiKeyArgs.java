@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -156,9 +157,15 @@ public final class GetAccessListApiKeyArgs extends com.pulumi.resources.InvokeAr
         }
 
         public GetAccessListApiKeyArgs build() {
-            $.apiKeyId = Objects.requireNonNull($.apiKeyId, "expected parameter 'apiKeyId' to be non-null");
-            $.ipAddress = Objects.requireNonNull($.ipAddress, "expected parameter 'ipAddress' to be non-null");
-            $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
+            if ($.apiKeyId == null) {
+                throw new MissingRequiredPropertyException("GetAccessListApiKeyArgs", "apiKeyId");
+            }
+            if ($.ipAddress == null) {
+                throw new MissingRequiredPropertyException("GetAccessListApiKeyArgs", "ipAddress");
+            }
+            if ($.orgId == null) {
+                throw new MissingRequiredPropertyException("GetAccessListApiKeyArgs", "orgId");
+            }
             return $;
         }
     }

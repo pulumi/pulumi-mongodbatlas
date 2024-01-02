@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.ClusterReplicationSpecRegionsConfig;
 import java.lang.Integer;
 import java.lang.String;
@@ -93,16 +94,21 @@ public final class ClusterReplicationSpec {
 
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder numShards(Integer numShards) {
-            this.numShards = Objects.requireNonNull(numShards);
+            if (numShards == null) {
+              throw new MissingRequiredPropertyException("ClusterReplicationSpec", "numShards");
+            }
+            this.numShards = numShards;
             return this;
         }
         @CustomType.Setter
         public Builder regionsConfigs(@Nullable List<ClusterReplicationSpecRegionsConfig> regionsConfigs) {
+
             this.regionsConfigs = regionsConfigs;
             return this;
         }
@@ -111,6 +117,7 @@ public final class ClusterReplicationSpec {
         }
         @CustomType.Setter
         public Builder zoneName(@Nullable String zoneName) {
+
             this.zoneName = zoneName;
             return this;
         }

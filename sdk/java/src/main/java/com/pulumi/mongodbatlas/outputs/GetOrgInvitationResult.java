@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -131,37 +132,58 @@ public final class GetOrgInvitationResult {
 
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetOrgInvitationResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder expiresAt(String expiresAt) {
-            this.expiresAt = Objects.requireNonNull(expiresAt);
+            if (expiresAt == null) {
+              throw new MissingRequiredPropertyException("GetOrgInvitationResult", "expiresAt");
+            }
+            this.expiresAt = expiresAt;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetOrgInvitationResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder invitationId(String invitationId) {
-            this.invitationId = Objects.requireNonNull(invitationId);
+            if (invitationId == null) {
+              throw new MissingRequiredPropertyException("GetOrgInvitationResult", "invitationId");
+            }
+            this.invitationId = invitationId;
             return this;
         }
         @CustomType.Setter
         public Builder inviterUsername(String inviterUsername) {
-            this.inviterUsername = Objects.requireNonNull(inviterUsername);
+            if (inviterUsername == null) {
+              throw new MissingRequiredPropertyException("GetOrgInvitationResult", "inviterUsername");
+            }
+            this.inviterUsername = inviterUsername;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(String orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+            if (orgId == null) {
+              throw new MissingRequiredPropertyException("GetOrgInvitationResult", "orgId");
+            }
+            this.orgId = orgId;
             return this;
         }
         @CustomType.Setter
         public Builder roles(List<String> roles) {
-            this.roles = Objects.requireNonNull(roles);
+            if (roles == null) {
+              throw new MissingRequiredPropertyException("GetOrgInvitationResult", "roles");
+            }
+            this.roles = roles;
             return this;
         }
         public Builder roles(String... roles) {
@@ -169,7 +191,10 @@ public final class GetOrgInvitationResult {
         }
         @CustomType.Setter
         public Builder teamsIds(List<String> teamsIds) {
-            this.teamsIds = Objects.requireNonNull(teamsIds);
+            if (teamsIds == null) {
+              throw new MissingRequiredPropertyException("GetOrgInvitationResult", "teamsIds");
+            }
+            this.teamsIds = teamsIds;
             return this;
         }
         public Builder teamsIds(String... teamsIds) {
@@ -177,7 +202,10 @@ public final class GetOrgInvitationResult {
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("GetOrgInvitationResult", "username");
+            }
+            this.username = username;
             return this;
         }
         public GetOrgInvitationResult build() {

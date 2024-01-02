@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -77,27 +78,36 @@ public final class ProjectLimit {
 
         @CustomType.Setter
         public Builder currentUsage(@Nullable Integer currentUsage) {
+
             this.currentUsage = currentUsage;
             return this;
         }
         @CustomType.Setter
         public Builder defaultLimit(@Nullable Integer defaultLimit) {
+
             this.defaultLimit = defaultLimit;
             return this;
         }
         @CustomType.Setter
         public Builder maximumLimit(@Nullable Integer maximumLimit) {
+
             this.maximumLimit = maximumLimit;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ProjectLimit", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder value(Integer value) {
-            this.value = Objects.requireNonNull(value);
+            if (value == null) {
+              throw new MissingRequiredPropertyException("ProjectLimit", "value");
+            }
+            this.value = value;
             return this;
         }
         public ProjectLimit build() {

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint;
 import java.lang.String;
 import java.util.List;
@@ -60,12 +61,18 @@ public final class GetAdvancedClustersResultConnectionStringPrivateEndpoint {
 
         @CustomType.Setter
         public Builder connectionString(String connectionString) {
-            this.connectionString = Objects.requireNonNull(connectionString);
+            if (connectionString == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultConnectionStringPrivateEndpoint", "connectionString");
+            }
+            this.connectionString = connectionString;
             return this;
         }
         @CustomType.Setter
         public Builder endpoints(List<GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint> endpoints) {
-            this.endpoints = Objects.requireNonNull(endpoints);
+            if (endpoints == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultConnectionStringPrivateEndpoint", "endpoints");
+            }
+            this.endpoints = endpoints;
             return this;
         }
         public Builder endpoints(GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint... endpoints) {
@@ -73,17 +80,26 @@ public final class GetAdvancedClustersResultConnectionStringPrivateEndpoint {
         }
         @CustomType.Setter
         public Builder srvConnectionString(String srvConnectionString) {
-            this.srvConnectionString = Objects.requireNonNull(srvConnectionString);
+            if (srvConnectionString == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultConnectionStringPrivateEndpoint", "srvConnectionString");
+            }
+            this.srvConnectionString = srvConnectionString;
             return this;
         }
         @CustomType.Setter
         public Builder srvShardOptimizedConnectionString(String srvShardOptimizedConnectionString) {
-            this.srvShardOptimizedConnectionString = Objects.requireNonNull(srvShardOptimizedConnectionString);
+            if (srvShardOptimizedConnectionString == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultConnectionStringPrivateEndpoint", "srvShardOptimizedConnectionString");
+            }
+            this.srvShardOptimizedConnectionString = srvShardOptimizedConnectionString;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultConnectionStringPrivateEndpoint", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetAdvancedClustersResultConnectionStringPrivateEndpoint build() {

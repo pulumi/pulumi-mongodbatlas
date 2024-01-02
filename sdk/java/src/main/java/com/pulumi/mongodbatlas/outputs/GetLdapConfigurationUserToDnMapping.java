@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -46,17 +47,26 @@ public final class GetLdapConfigurationUserToDnMapping {
 
         @CustomType.Setter
         public Builder ldapQuery(String ldapQuery) {
-            this.ldapQuery = Objects.requireNonNull(ldapQuery);
+            if (ldapQuery == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationUserToDnMapping", "ldapQuery");
+            }
+            this.ldapQuery = ldapQuery;
             return this;
         }
         @CustomType.Setter
         public Builder match(String match) {
-            this.match = Objects.requireNonNull(match);
+            if (match == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationUserToDnMapping", "match");
+            }
+            this.match = match;
             return this;
         }
         @CustomType.Setter
         public Builder substitution(String substitution) {
-            this.substitution = Objects.requireNonNull(substitution);
+            if (substitution == null) {
+              throw new MissingRequiredPropertyException("GetLdapConfigurationUserToDnMapping", "substitution");
+            }
+            this.substitution = substitution;
             return this;
         }
         public GetLdapConfigurationUserToDnMapping build() {

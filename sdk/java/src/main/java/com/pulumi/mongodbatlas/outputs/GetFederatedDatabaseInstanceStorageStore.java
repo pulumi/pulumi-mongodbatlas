@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceStorageStoreReadPreference;
 import java.lang.Boolean;
 import java.lang.String;
@@ -163,7 +164,10 @@ public final class GetFederatedDatabaseInstanceStorageStore {
 
         @CustomType.Setter
         public Builder additionalStorageClasses(List<String> additionalStorageClasses) {
-            this.additionalStorageClasses = Objects.requireNonNull(additionalStorageClasses);
+            if (additionalStorageClasses == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "additionalStorageClasses");
+            }
+            this.additionalStorageClasses = additionalStorageClasses;
             return this;
         }
         public Builder additionalStorageClasses(String... additionalStorageClasses) {
@@ -171,67 +175,106 @@ public final class GetFederatedDatabaseInstanceStorageStore {
         }
         @CustomType.Setter
         public Builder allowInsecure(Boolean allowInsecure) {
-            this.allowInsecure = Objects.requireNonNull(allowInsecure);
+            if (allowInsecure == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "allowInsecure");
+            }
+            this.allowInsecure = allowInsecure;
             return this;
         }
         @CustomType.Setter
         public Builder bucket(String bucket) {
-            this.bucket = Objects.requireNonNull(bucket);
+            if (bucket == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "bucket");
+            }
+            this.bucket = bucket;
             return this;
         }
         @CustomType.Setter
         public Builder clusterId(String clusterId) {
-            this.clusterId = Objects.requireNonNull(clusterId);
+            if (clusterId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "clusterId");
+            }
+            this.clusterId = clusterId;
             return this;
         }
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder defaultFormat(String defaultFormat) {
-            this.defaultFormat = Objects.requireNonNull(defaultFormat);
+            if (defaultFormat == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "defaultFormat");
+            }
+            this.defaultFormat = defaultFormat;
             return this;
         }
         @CustomType.Setter
         public Builder delimiter(String delimiter) {
-            this.delimiter = Objects.requireNonNull(delimiter);
+            if (delimiter == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "delimiter");
+            }
+            this.delimiter = delimiter;
             return this;
         }
         @CustomType.Setter
         public Builder includeTags(Boolean includeTags) {
-            this.includeTags = Objects.requireNonNull(includeTags);
+            if (includeTags == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "includeTags");
+            }
+            this.includeTags = includeTags;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder prefix(String prefix) {
-            this.prefix = Objects.requireNonNull(prefix);
+            if (prefix == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "prefix");
+            }
+            this.prefix = prefix;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder provider(String provider) {
-            this.provider = Objects.requireNonNull(provider);
+            if (provider == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "provider");
+            }
+            this.provider = provider;
             return this;
         }
         @CustomType.Setter("public")
         public Builder public_(String public_) {
-            this.public_ = Objects.requireNonNull(public_);
+            if (public_ == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "public_");
+            }
+            this.public_ = public_;
             return this;
         }
         @CustomType.Setter
         public Builder readPreferences(List<GetFederatedDatabaseInstanceStorageStoreReadPreference> readPreferences) {
-            this.readPreferences = Objects.requireNonNull(readPreferences);
+            if (readPreferences == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "readPreferences");
+            }
+            this.readPreferences = readPreferences;
             return this;
         }
         public Builder readPreferences(GetFederatedDatabaseInstanceStorageStoreReadPreference... readPreferences) {
@@ -239,12 +282,18 @@ public final class GetFederatedDatabaseInstanceStorageStore {
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder urls(List<String> urls) {
-            this.urls = Objects.requireNonNull(urls);
+            if (urls == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageStore", "urls");
+            }
+            this.urls = urls;
             return this;
         }
         public Builder urls(String... urls) {

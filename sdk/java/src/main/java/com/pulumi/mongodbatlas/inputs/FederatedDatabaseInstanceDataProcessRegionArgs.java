@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -111,8 +112,12 @@ public final class FederatedDatabaseInstanceDataProcessRegionArgs extends com.pu
         }
 
         public FederatedDatabaseInstanceDataProcessRegionArgs build() {
-            $.cloudProvider = Objects.requireNonNull($.cloudProvider, "expected parameter 'cloudProvider' to be non-null");
-            $.region = Objects.requireNonNull($.region, "expected parameter 'region' to be non-null");
+            if ($.cloudProvider == null) {
+                throw new MissingRequiredPropertyException("FederatedDatabaseInstanceDataProcessRegionArgs", "cloudProvider");
+            }
+            if ($.region == null) {
+                throw new MissingRequiredPropertyException("FederatedDatabaseInstanceDataProcessRegionArgs", "region");
+            }
             return $;
         }
     }

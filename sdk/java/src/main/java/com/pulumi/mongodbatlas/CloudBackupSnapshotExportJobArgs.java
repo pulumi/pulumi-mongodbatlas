@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
 import java.lang.String;
 import java.util.List;
@@ -234,11 +235,21 @@ public final class CloudBackupSnapshotExportJobArgs extends com.pulumi.resources
         }
 
         public CloudBackupSnapshotExportJobArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.customDatas = Objects.requireNonNull($.customDatas, "expected parameter 'customDatas' to be non-null");
-            $.exportBucketId = Objects.requireNonNull($.exportBucketId, "expected parameter 'exportBucketId' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.snapshotId = Objects.requireNonNull($.snapshotId, "expected parameter 'snapshotId' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotExportJobArgs", "clusterName");
+            }
+            if ($.customDatas == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotExportJobArgs", "customDatas");
+            }
+            if ($.exportBucketId == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotExportJobArgs", "exportBucketId");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotExportJobArgs", "projectId");
+            }
+            if ($.snapshotId == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotExportJobArgs", "snapshotId");
+            }
             return $;
         }
     }

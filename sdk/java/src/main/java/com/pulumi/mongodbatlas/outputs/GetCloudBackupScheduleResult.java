@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupScheduleCopySetting;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupScheduleExport;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSchedulePolicyItemDaily;
@@ -243,22 +244,34 @@ public final class GetCloudBackupScheduleResult {
 
         @CustomType.Setter
         public Builder autoExportEnabled(Boolean autoExportEnabled) {
-            this.autoExportEnabled = Objects.requireNonNull(autoExportEnabled);
+            if (autoExportEnabled == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "autoExportEnabled");
+            }
+            this.autoExportEnabled = autoExportEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder clusterId(String clusterId) {
-            this.clusterId = Objects.requireNonNull(clusterId);
+            if (clusterId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "clusterId");
+            }
+            this.clusterId = clusterId;
             return this;
         }
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder copySettings(List<GetCloudBackupScheduleCopySetting> copySettings) {
-            this.copySettings = Objects.requireNonNull(copySettings);
+            if (copySettings == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "copySettings");
+            }
+            this.copySettings = copySettings;
             return this;
         }
         public Builder copySettings(GetCloudBackupScheduleCopySetting... copySettings) {
@@ -266,7 +279,10 @@ public final class GetCloudBackupScheduleResult {
         }
         @CustomType.Setter
         public Builder exports(List<GetCloudBackupScheduleExport> exports) {
-            this.exports = Objects.requireNonNull(exports);
+            if (exports == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "exports");
+            }
+            this.exports = exports;
             return this;
         }
         public Builder exports(GetCloudBackupScheduleExport... exports) {
@@ -274,22 +290,34 @@ public final class GetCloudBackupScheduleResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder idPolicy(String idPolicy) {
-            this.idPolicy = Objects.requireNonNull(idPolicy);
+            if (idPolicy == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "idPolicy");
+            }
+            this.idPolicy = idPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder nextSnapshot(String nextSnapshot) {
-            this.nextSnapshot = Objects.requireNonNull(nextSnapshot);
+            if (nextSnapshot == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "nextSnapshot");
+            }
+            this.nextSnapshot = nextSnapshot;
             return this;
         }
         @CustomType.Setter
         public Builder policyItemDailies(List<GetCloudBackupSchedulePolicyItemDaily> policyItemDailies) {
-            this.policyItemDailies = Objects.requireNonNull(policyItemDailies);
+            if (policyItemDailies == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "policyItemDailies");
+            }
+            this.policyItemDailies = policyItemDailies;
             return this;
         }
         public Builder policyItemDailies(GetCloudBackupSchedulePolicyItemDaily... policyItemDailies) {
@@ -297,7 +325,10 @@ public final class GetCloudBackupScheduleResult {
         }
         @CustomType.Setter
         public Builder policyItemHourlies(List<GetCloudBackupSchedulePolicyItemHourly> policyItemHourlies) {
-            this.policyItemHourlies = Objects.requireNonNull(policyItemHourlies);
+            if (policyItemHourlies == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "policyItemHourlies");
+            }
+            this.policyItemHourlies = policyItemHourlies;
             return this;
         }
         public Builder policyItemHourlies(GetCloudBackupSchedulePolicyItemHourly... policyItemHourlies) {
@@ -305,7 +336,10 @@ public final class GetCloudBackupScheduleResult {
         }
         @CustomType.Setter
         public Builder policyItemMonthlies(List<GetCloudBackupSchedulePolicyItemMonthly> policyItemMonthlies) {
-            this.policyItemMonthlies = Objects.requireNonNull(policyItemMonthlies);
+            if (policyItemMonthlies == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "policyItemMonthlies");
+            }
+            this.policyItemMonthlies = policyItemMonthlies;
             return this;
         }
         public Builder policyItemMonthlies(GetCloudBackupSchedulePolicyItemMonthly... policyItemMonthlies) {
@@ -313,7 +347,10 @@ public final class GetCloudBackupScheduleResult {
         }
         @CustomType.Setter
         public Builder policyItemWeeklies(List<GetCloudBackupSchedulePolicyItemWeekly> policyItemWeeklies) {
-            this.policyItemWeeklies = Objects.requireNonNull(policyItemWeeklies);
+            if (policyItemWeeklies == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "policyItemWeeklies");
+            }
+            this.policyItemWeeklies = policyItemWeeklies;
             return this;
         }
         public Builder policyItemWeeklies(GetCloudBackupSchedulePolicyItemWeekly... policyItemWeeklies) {
@@ -321,27 +358,42 @@ public final class GetCloudBackupScheduleResult {
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder referenceHourOfDay(Integer referenceHourOfDay) {
-            this.referenceHourOfDay = Objects.requireNonNull(referenceHourOfDay);
+            if (referenceHourOfDay == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "referenceHourOfDay");
+            }
+            this.referenceHourOfDay = referenceHourOfDay;
             return this;
         }
         @CustomType.Setter
         public Builder referenceMinuteOfHour(Integer referenceMinuteOfHour) {
-            this.referenceMinuteOfHour = Objects.requireNonNull(referenceMinuteOfHour);
+            if (referenceMinuteOfHour == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "referenceMinuteOfHour");
+            }
+            this.referenceMinuteOfHour = referenceMinuteOfHour;
             return this;
         }
         @CustomType.Setter
         public Builder restoreWindowDays(Integer restoreWindowDays) {
-            this.restoreWindowDays = Objects.requireNonNull(restoreWindowDays);
+            if (restoreWindowDays == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "restoreWindowDays");
+            }
+            this.restoreWindowDays = restoreWindowDays;
             return this;
         }
         @CustomType.Setter
         public Builder useOrgAndGroupNamesInExportPrefix(Boolean useOrgAndGroupNamesInExportPrefix) {
-            this.useOrgAndGroupNamesInExportPrefix = Objects.requireNonNull(useOrgAndGroupNamesInExportPrefix);
+            if (useOrgAndGroupNamesInExportPrefix == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "useOrgAndGroupNamesInExportPrefix");
+            }
+            this.useOrgAndGroupNamesInExportPrefix = useOrgAndGroupNamesInExportPrefix;
             return this;
         }
         public GetCloudBackupScheduleResult build() {

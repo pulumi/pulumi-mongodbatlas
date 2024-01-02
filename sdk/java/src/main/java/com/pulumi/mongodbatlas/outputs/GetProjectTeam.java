@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -41,7 +42,10 @@ public final class GetProjectTeam {
 
         @CustomType.Setter
         public Builder roleNames(List<String> roleNames) {
-            this.roleNames = Objects.requireNonNull(roleNames);
+            if (roleNames == null) {
+              throw new MissingRequiredPropertyException("GetProjectTeam", "roleNames");
+            }
+            this.roleNames = roleNames;
             return this;
         }
         public Builder roleNames(String... roleNames) {
@@ -49,7 +53,10 @@ public final class GetProjectTeam {
         }
         @CustomType.Setter
         public Builder teamId(String teamId) {
-            this.teamId = Objects.requireNonNull(teamId);
+            if (teamId == null) {
+              throw new MissingRequiredPropertyException("GetProjectTeam", "teamId");
+            }
+            this.teamId = teamId;
             return this;
         }
         public GetProjectTeam build() {

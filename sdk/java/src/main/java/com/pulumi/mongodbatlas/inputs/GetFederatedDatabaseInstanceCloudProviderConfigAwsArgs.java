@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -214,11 +215,21 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs extend
         }
 
         public GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs build() {
-            $.externalId = Objects.requireNonNull($.externalId, "expected parameter 'externalId' to be non-null");
-            $.iamAssumedRoleArn = Objects.requireNonNull($.iamAssumedRoleArn, "expected parameter 'iamAssumedRoleArn' to be non-null");
-            $.iamUserArn = Objects.requireNonNull($.iamUserArn, "expected parameter 'iamUserArn' to be non-null");
-            $.roleId = Objects.requireNonNull($.roleId, "expected parameter 'roleId' to be non-null");
-            $.testS3Bucket = Objects.requireNonNull($.testS3Bucket, "expected parameter 'testS3Bucket' to be non-null");
+            if ($.externalId == null) {
+                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs", "externalId");
+            }
+            if ($.iamAssumedRoleArn == null) {
+                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs", "iamAssumedRoleArn");
+            }
+            if ($.iamUserArn == null) {
+                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs", "iamUserArn");
+            }
+            if ($.roleId == null) {
+                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs", "roleId");
+            }
+            if ($.testS3Bucket == null) {
+                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs", "testS3Bucket");
+            }
             return $;
         }
     }

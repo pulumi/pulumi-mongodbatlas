@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -117,9 +118,15 @@ public final class GetPrivateLinkEndpointPlainArgs extends com.pulumi.resources.
         }
 
         public GetPrivateLinkEndpointPlainArgs build() {
-            $.privateLinkId = Objects.requireNonNull($.privateLinkId, "expected parameter 'privateLinkId' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.providerName = Objects.requireNonNull($.providerName, "expected parameter 'providerName' to be non-null");
+            if ($.privateLinkId == null) {
+                throw new MissingRequiredPropertyException("GetPrivateLinkEndpointPlainArgs", "privateLinkId");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetPrivateLinkEndpointPlainArgs", "projectId");
+            }
+            if ($.providerName == null) {
+                throw new MissingRequiredPropertyException("GetPrivateLinkEndpointPlainArgs", "providerName");
+            }
             return $;
         }
     }

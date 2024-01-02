@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
 import java.lang.String;
 import java.util.List;
@@ -96,8 +97,12 @@ public final class CloudProviderAccessSetupArgs extends com.pulumi.resources.Res
         }
 
         public CloudProviderAccessSetupArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.providerName = Objects.requireNonNull($.providerName, "expected parameter 'providerName' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("CloudProviderAccessSetupArgs", "projectId");
+            }
+            if ($.providerName == null) {
+                throw new MissingRequiredPropertyException("CloudProviderAccessSetupArgs", "providerName");
+            }
             return $;
         }
     }

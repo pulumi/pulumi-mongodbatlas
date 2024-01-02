@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
 import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
 import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
@@ -208,7 +209,9 @@ public final class DataLakePipelineArgs extends com.pulumi.resources.ResourceArg
         }
 
         public DataLakePipelineArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("DataLakePipelineArgs", "projectId");
+            }
             return $;
         }
     }

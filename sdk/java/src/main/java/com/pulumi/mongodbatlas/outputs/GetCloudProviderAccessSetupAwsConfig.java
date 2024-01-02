@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -56,12 +57,18 @@ public final class GetCloudProviderAccessSetupAwsConfig {
 
         @CustomType.Setter
         public Builder atlasAssumedRoleExternalId(String atlasAssumedRoleExternalId) {
-            this.atlasAssumedRoleExternalId = Objects.requireNonNull(atlasAssumedRoleExternalId);
+            if (atlasAssumedRoleExternalId == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupAwsConfig", "atlasAssumedRoleExternalId");
+            }
+            this.atlasAssumedRoleExternalId = atlasAssumedRoleExternalId;
             return this;
         }
         @CustomType.Setter
         public Builder atlasAwsAccountArn(String atlasAwsAccountArn) {
-            this.atlasAwsAccountArn = Objects.requireNonNull(atlasAwsAccountArn);
+            if (atlasAwsAccountArn == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupAwsConfig", "atlasAwsAccountArn");
+            }
+            this.atlasAwsAccountArn = atlasAwsAccountArn;
             return this;
         }
         public GetCloudProviderAccessSetupAwsConfig build() {

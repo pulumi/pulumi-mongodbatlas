@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs;
 import java.util.List;
 import java.util.Objects;
@@ -59,7 +60,9 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs
         }
 
         public FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs build() {
-            $.tags = Objects.requireNonNull($.tags, "expected parameter 'tags' to be non-null");
+            if ($.tags == null) {
+                throw new MissingRequiredPropertyException("FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs", "tags");
+            }
             return $;
         }
     }

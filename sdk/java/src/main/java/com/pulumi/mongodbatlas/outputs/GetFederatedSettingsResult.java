@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -106,7 +107,10 @@ public final class GetFederatedSettingsResult {
 
         @CustomType.Setter
         public Builder federatedDomains(List<String> federatedDomains) {
-            this.federatedDomains = Objects.requireNonNull(federatedDomains);
+            if (federatedDomains == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsResult", "federatedDomains");
+            }
+            this.federatedDomains = federatedDomains;
             return this;
         }
         public Builder federatedDomains(String... federatedDomains) {
@@ -114,27 +118,42 @@ public final class GetFederatedSettingsResult {
         }
         @CustomType.Setter
         public Builder hasRoleMappings(Boolean hasRoleMappings) {
-            this.hasRoleMappings = Objects.requireNonNull(hasRoleMappings);
+            if (hasRoleMappings == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsResult", "hasRoleMappings");
+            }
+            this.hasRoleMappings = hasRoleMappings;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder identityProviderId(String identityProviderId) {
-            this.identityProviderId = Objects.requireNonNull(identityProviderId);
+            if (identityProviderId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsResult", "identityProviderId");
+            }
+            this.identityProviderId = identityProviderId;
             return this;
         }
         @CustomType.Setter
         public Builder identityProviderStatus(String identityProviderStatus) {
-            this.identityProviderStatus = Objects.requireNonNull(identityProviderStatus);
+            if (identityProviderStatus == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsResult", "identityProviderStatus");
+            }
+            this.identityProviderStatus = identityProviderStatus;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(String orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+            if (orgId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsResult", "orgId");
+            }
+            this.orgId = orgId;
             return this;
         }
         public GetFederatedSettingsResult build() {

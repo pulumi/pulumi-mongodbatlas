@@ -61,16 +61,19 @@ public final class CustomDbRoleActionResource {
 
         @CustomType.Setter
         public Builder cluster(@Nullable Boolean cluster) {
+
             this.cluster = cluster;
             return this;
         }
         @CustomType.Setter
         public Builder collectionName(@Nullable String collectionName) {
+
             this.collectionName = collectionName;
             return this;
         }
         @CustomType.Setter
         public Builder databaseName(@Nullable String databaseName) {
+
             this.databaseName = databaseName;
             return this;
         }

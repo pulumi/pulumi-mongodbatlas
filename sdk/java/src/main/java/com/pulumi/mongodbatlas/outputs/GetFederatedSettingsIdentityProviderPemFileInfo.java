@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsIdentityProviderPemFileInfoCertificate;
 import java.lang.String;
 import java.util.List;
@@ -50,7 +51,10 @@ public final class GetFederatedSettingsIdentityProviderPemFileInfo {
 
         @CustomType.Setter
         public Builder certificates(List<GetFederatedSettingsIdentityProviderPemFileInfoCertificate> certificates) {
-            this.certificates = Objects.requireNonNull(certificates);
+            if (certificates == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderPemFileInfo", "certificates");
+            }
+            this.certificates = certificates;
             return this;
         }
         public Builder certificates(GetFederatedSettingsIdentityProviderPemFileInfoCertificate... certificates) {
@@ -58,7 +62,10 @@ public final class GetFederatedSettingsIdentityProviderPemFileInfo {
         }
         @CustomType.Setter
         public Builder fileName(String fileName) {
-            this.fileName = Objects.requireNonNull(fileName);
+            if (fileName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderPemFileInfo", "fileName");
+            }
+            this.fileName = fileName;
             return this;
         }
         public GetFederatedSettingsIdentityProviderPemFileInfo build() {

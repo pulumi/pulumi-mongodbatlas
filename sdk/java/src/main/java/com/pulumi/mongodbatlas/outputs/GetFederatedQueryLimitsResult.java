@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -115,47 +116,74 @@ public final class GetFederatedQueryLimitsResult {
 
         @CustomType.Setter
         public Builder currentUsage(Integer currentUsage) {
-            this.currentUsage = Objects.requireNonNull(currentUsage);
+            if (currentUsage == null) {
+              throw new MissingRequiredPropertyException("GetFederatedQueryLimitsResult", "currentUsage");
+            }
+            this.currentUsage = currentUsage;
             return this;
         }
         @CustomType.Setter
         public Builder defaultLimit(Integer defaultLimit) {
-            this.defaultLimit = Objects.requireNonNull(defaultLimit);
+            if (defaultLimit == null) {
+              throw new MissingRequiredPropertyException("GetFederatedQueryLimitsResult", "defaultLimit");
+            }
+            this.defaultLimit = defaultLimit;
             return this;
         }
         @CustomType.Setter
         public Builder lastModifiedDate(String lastModifiedDate) {
-            this.lastModifiedDate = Objects.requireNonNull(lastModifiedDate);
+            if (lastModifiedDate == null) {
+              throw new MissingRequiredPropertyException("GetFederatedQueryLimitsResult", "lastModifiedDate");
+            }
+            this.lastModifiedDate = lastModifiedDate;
             return this;
         }
         @CustomType.Setter
         public Builder limitName(String limitName) {
-            this.limitName = Objects.requireNonNull(limitName);
+            if (limitName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedQueryLimitsResult", "limitName");
+            }
+            this.limitName = limitName;
             return this;
         }
         @CustomType.Setter
         public Builder maximumLimit(Integer maximumLimit) {
-            this.maximumLimit = Objects.requireNonNull(maximumLimit);
+            if (maximumLimit == null) {
+              throw new MissingRequiredPropertyException("GetFederatedQueryLimitsResult", "maximumLimit");
+            }
+            this.maximumLimit = maximumLimit;
             return this;
         }
         @CustomType.Setter
         public Builder overrunPolicy(String overrunPolicy) {
-            this.overrunPolicy = Objects.requireNonNull(overrunPolicy);
+            if (overrunPolicy == null) {
+              throw new MissingRequiredPropertyException("GetFederatedQueryLimitsResult", "overrunPolicy");
+            }
+            this.overrunPolicy = overrunPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedQueryLimitsResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder tenantName(String tenantName) {
-            this.tenantName = Objects.requireNonNull(tenantName);
+            if (tenantName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedQueryLimitsResult", "tenantName");
+            }
+            this.tenantName = tenantName;
             return this;
         }
         @CustomType.Setter
         public Builder value(Integer value) {
-            this.value = Objects.requireNonNull(value);
+            if (value == null) {
+              throw new MissingRequiredPropertyException("GetFederatedQueryLimitsResult", "value");
+            }
+            this.value = value;
             return this;
         }
         public GetFederatedQueryLimitsResult build() {

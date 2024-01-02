@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
 import java.lang.String;
 import java.util.List;
@@ -160,8 +161,12 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ProjectApiKeyArgs build() {
-            $.description = Objects.requireNonNull($.description, "expected parameter 'description' to be non-null");
-            $.projectAssignments = Objects.requireNonNull($.projectAssignments, "expected parameter 'projectAssignments' to be non-null");
+            if ($.description == null) {
+                throw new MissingRequiredPropertyException("ProjectApiKeyArgs", "description");
+            }
+            if ($.projectAssignments == null) {
+                throw new MissingRequiredPropertyException("ProjectApiKeyArgs", "projectAssignments");
+            }
             return $;
         }
     }

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetCustomDbRolesResultAction;
 import com.pulumi.mongodbatlas.outputs.GetCustomDbRolesResultInheritedRole;
 import java.lang.String;
@@ -57,7 +58,10 @@ public final class GetCustomDbRolesResult {
 
         @CustomType.Setter
         public Builder actions(List<GetCustomDbRolesResultAction> actions) {
-            this.actions = Objects.requireNonNull(actions);
+            if (actions == null) {
+              throw new MissingRequiredPropertyException("GetCustomDbRolesResult", "actions");
+            }
+            this.actions = actions;
             return this;
         }
         public Builder actions(GetCustomDbRolesResultAction... actions) {
@@ -65,7 +69,10 @@ public final class GetCustomDbRolesResult {
         }
         @CustomType.Setter
         public Builder inheritedRoles(List<GetCustomDbRolesResultInheritedRole> inheritedRoles) {
-            this.inheritedRoles = Objects.requireNonNull(inheritedRoles);
+            if (inheritedRoles == null) {
+              throw new MissingRequiredPropertyException("GetCustomDbRolesResult", "inheritedRoles");
+            }
+            this.inheritedRoles = inheritedRoles;
             return this;
         }
         public Builder inheritedRoles(GetCustomDbRolesResultInheritedRole... inheritedRoles) {
@@ -73,7 +80,10 @@ public final class GetCustomDbRolesResult {
         }
         @CustomType.Setter
         public Builder roleName(String roleName) {
-            this.roleName = Objects.requireNonNull(roleName);
+            if (roleName == null) {
+              throw new MissingRequiredPropertyException("GetCustomDbRolesResult", "roleName");
+            }
+            this.roleName = roleName;
             return this;
         }
         public GetCustomDbRolesResult build() {

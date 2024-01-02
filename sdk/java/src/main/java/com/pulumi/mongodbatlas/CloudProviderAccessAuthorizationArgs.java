@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAzureArgs;
 import java.lang.String;
@@ -109,8 +110,12 @@ public final class CloudProviderAccessAuthorizationArgs extends com.pulumi.resou
         }
 
         public CloudProviderAccessAuthorizationArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.roleId = Objects.requireNonNull($.roleId, "expected parameter 'roleId' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("CloudProviderAccessAuthorizationArgs", "projectId");
+            }
+            if ($.roleId == null) {
+                throw new MissingRequiredPropertyException("CloudProviderAccessAuthorizationArgs", "roleId");
+            }
             return $;
         }
     }

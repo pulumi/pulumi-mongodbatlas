@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -375,9 +376,15 @@ public final class GetSearchIndexPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         public GetSearchIndexPlainArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.indexId = Objects.requireNonNull($.indexId, "expected parameter 'indexId' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("GetSearchIndexPlainArgs", "clusterName");
+            }
+            if ($.indexId == null) {
+                throw new MissingRequiredPropertyException("GetSearchIndexPlainArgs", "indexId");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetSearchIndexPlainArgs", "projectId");
+            }
             return $;
         }
     }

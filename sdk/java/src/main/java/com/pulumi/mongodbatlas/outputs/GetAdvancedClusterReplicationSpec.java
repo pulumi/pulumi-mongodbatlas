@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterReplicationSpecRegionConfig;
 import java.lang.Integer;
 import java.lang.String;
@@ -94,22 +95,34 @@ public final class GetAdvancedClusterReplicationSpec {
 
         @CustomType.Setter
         public Builder containerId(Map<String,String> containerId) {
-            this.containerId = Objects.requireNonNull(containerId);
+            if (containerId == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpec", "containerId");
+            }
+            this.containerId = containerId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpec", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder numShards(Integer numShards) {
-            this.numShards = Objects.requireNonNull(numShards);
+            if (numShards == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpec", "numShards");
+            }
+            this.numShards = numShards;
             return this;
         }
         @CustomType.Setter
         public Builder regionConfigs(List<GetAdvancedClusterReplicationSpecRegionConfig> regionConfigs) {
-            this.regionConfigs = Objects.requireNonNull(regionConfigs);
+            if (regionConfigs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpec", "regionConfigs");
+            }
+            this.regionConfigs = regionConfigs;
             return this;
         }
         public Builder regionConfigs(GetAdvancedClusterReplicationSpecRegionConfig... regionConfigs) {
@@ -117,7 +130,10 @@ public final class GetAdvancedClusterReplicationSpec {
         }
         @CustomType.Setter
         public Builder zoneName(String zoneName) {
-            this.zoneName = Objects.requireNonNull(zoneName);
+            if (zoneName == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpec", "zoneName");
+            }
+            this.zoneName = zoneName;
             return this;
         }
         public GetAdvancedClusterReplicationSpec build() {

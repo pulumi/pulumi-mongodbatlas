@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceStorageDatabaseCollection;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceStorageDatabaseView;
 import java.lang.Integer;
@@ -64,7 +65,10 @@ public final class GetFederatedDatabaseInstanceStorageDatabase {
 
         @CustomType.Setter
         public Builder collections(List<GetFederatedDatabaseInstanceStorageDatabaseCollection> collections) {
-            this.collections = Objects.requireNonNull(collections);
+            if (collections == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabase", "collections");
+            }
+            this.collections = collections;
             return this;
         }
         public Builder collections(GetFederatedDatabaseInstanceStorageDatabaseCollection... collections) {
@@ -72,17 +76,26 @@ public final class GetFederatedDatabaseInstanceStorageDatabase {
         }
         @CustomType.Setter
         public Builder maxWildcardCollections(Integer maxWildcardCollections) {
-            this.maxWildcardCollections = Objects.requireNonNull(maxWildcardCollections);
+            if (maxWildcardCollections == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabase", "maxWildcardCollections");
+            }
+            this.maxWildcardCollections = maxWildcardCollections;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabase", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder views(List<GetFederatedDatabaseInstanceStorageDatabaseView> views) {
-            this.views = Objects.requireNonNull(views);
+            if (views == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceStorageDatabase", "views");
+            }
+            this.views = views;
             return this;
         }
         public Builder views(GetFederatedDatabaseInstanceStorageDatabaseView... views) {

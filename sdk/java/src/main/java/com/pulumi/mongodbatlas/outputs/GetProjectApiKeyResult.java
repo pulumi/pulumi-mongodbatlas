@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetProjectApiKeyProjectAssignment;
 import java.lang.String;
 import java.util.List;
@@ -112,27 +113,42 @@ public final class GetProjectApiKeyResult {
 
         @CustomType.Setter
         public Builder apiKeyId(String apiKeyId) {
-            this.apiKeyId = Objects.requireNonNull(apiKeyId);
+            if (apiKeyId == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeyResult", "apiKeyId");
+            }
+            this.apiKeyId = apiKeyId;
             return this;
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeyResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeyResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder privateKey(String privateKey) {
-            this.privateKey = Objects.requireNonNull(privateKey);
+            if (privateKey == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeyResult", "privateKey");
+            }
+            this.privateKey = privateKey;
             return this;
         }
         @CustomType.Setter
         public Builder projectAssignments(List<GetProjectApiKeyProjectAssignment> projectAssignments) {
-            this.projectAssignments = Objects.requireNonNull(projectAssignments);
+            if (projectAssignments == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeyResult", "projectAssignments");
+            }
+            this.projectAssignments = projectAssignments;
             return this;
         }
         public Builder projectAssignments(GetProjectApiKeyProjectAssignment... projectAssignments) {
@@ -140,12 +156,18 @@ public final class GetProjectApiKeyResult {
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeyResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder publicKey(String publicKey) {
-            this.publicKey = Objects.requireNonNull(publicKey);
+            if (publicKey == null) {
+              throw new MissingRequiredPropertyException("GetProjectApiKeyResult", "publicKey");
+            }
+            this.publicKey = publicKey;
             return this;
         }
         public GetProjectApiKeyResult build() {

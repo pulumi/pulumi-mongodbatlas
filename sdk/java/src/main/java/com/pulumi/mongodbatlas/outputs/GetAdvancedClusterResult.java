@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterAdvancedConfiguration;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterBiConnectorConfig;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterConnectionString;
@@ -321,7 +322,10 @@ public final class GetAdvancedClusterResult {
 
         @CustomType.Setter
         public Builder advancedConfigurations(List<GetAdvancedClusterAdvancedConfiguration> advancedConfigurations) {
-            this.advancedConfigurations = Objects.requireNonNull(advancedConfigurations);
+            if (advancedConfigurations == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "advancedConfigurations");
+            }
+            this.advancedConfigurations = advancedConfigurations;
             return this;
         }
         public Builder advancedConfigurations(GetAdvancedClusterAdvancedConfiguration... advancedConfigurations) {
@@ -329,12 +333,18 @@ public final class GetAdvancedClusterResult {
         }
         @CustomType.Setter
         public Builder backupEnabled(Boolean backupEnabled) {
-            this.backupEnabled = Objects.requireNonNull(backupEnabled);
+            if (backupEnabled == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "backupEnabled");
+            }
+            this.backupEnabled = backupEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder biConnectorConfigs(List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs) {
-            this.biConnectorConfigs = Objects.requireNonNull(biConnectorConfigs);
+            if (biConnectorConfigs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "biConnectorConfigs");
+            }
+            this.biConnectorConfigs = biConnectorConfigs;
             return this;
         }
         public Builder biConnectorConfigs(GetAdvancedClusterBiConnectorConfig... biConnectorConfigs) {
@@ -342,12 +352,18 @@ public final class GetAdvancedClusterResult {
         }
         @CustomType.Setter
         public Builder clusterType(String clusterType) {
-            this.clusterType = Objects.requireNonNull(clusterType);
+            if (clusterType == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "clusterType");
+            }
+            this.clusterType = clusterType;
             return this;
         }
         @CustomType.Setter
         public Builder connectionStrings(List<GetAdvancedClusterConnectionString> connectionStrings) {
-            this.connectionStrings = Objects.requireNonNull(connectionStrings);
+            if (connectionStrings == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "connectionStrings");
+            }
+            this.connectionStrings = connectionStrings;
             return this;
         }
         public Builder connectionStrings(GetAdvancedClusterConnectionString... connectionStrings) {
@@ -355,27 +371,42 @@ public final class GetAdvancedClusterResult {
         }
         @CustomType.Setter
         public Builder createDate(String createDate) {
-            this.createDate = Objects.requireNonNull(createDate);
+            if (createDate == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "createDate");
+            }
+            this.createDate = createDate;
             return this;
         }
         @CustomType.Setter
         public Builder diskSizeGb(Double diskSizeGb) {
-            this.diskSizeGb = Objects.requireNonNull(diskSizeGb);
+            if (diskSizeGb == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "diskSizeGb");
+            }
+            this.diskSizeGb = diskSizeGb;
             return this;
         }
         @CustomType.Setter
         public Builder encryptionAtRestProvider(String encryptionAtRestProvider) {
-            this.encryptionAtRestProvider = Objects.requireNonNull(encryptionAtRestProvider);
+            if (encryptionAtRestProvider == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "encryptionAtRestProvider");
+            }
+            this.encryptionAtRestProvider = encryptionAtRestProvider;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder labels(List<GetAdvancedClusterLabel> labels) {
-            this.labels = Objects.requireNonNull(labels);
+            if (labels == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "labels");
+            }
+            this.labels = labels;
             return this;
         }
         public Builder labels(GetAdvancedClusterLabel... labels) {
@@ -383,37 +414,58 @@ public final class GetAdvancedClusterResult {
         }
         @CustomType.Setter
         public Builder mongoDbMajorVersion(String mongoDbMajorVersion) {
-            this.mongoDbMajorVersion = Objects.requireNonNull(mongoDbMajorVersion);
+            if (mongoDbMajorVersion == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "mongoDbMajorVersion");
+            }
+            this.mongoDbMajorVersion = mongoDbMajorVersion;
             return this;
         }
         @CustomType.Setter
         public Builder mongoDbVersion(String mongoDbVersion) {
-            this.mongoDbVersion = Objects.requireNonNull(mongoDbVersion);
+            if (mongoDbVersion == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "mongoDbVersion");
+            }
+            this.mongoDbVersion = mongoDbVersion;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder paused(Boolean paused) {
-            this.paused = Objects.requireNonNull(paused);
+            if (paused == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "paused");
+            }
+            this.paused = paused;
             return this;
         }
         @CustomType.Setter
         public Builder pitEnabled(Boolean pitEnabled) {
-            this.pitEnabled = Objects.requireNonNull(pitEnabled);
+            if (pitEnabled == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "pitEnabled");
+            }
+            this.pitEnabled = pitEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder replicationSpecs(List<GetAdvancedClusterReplicationSpec> replicationSpecs) {
-            this.replicationSpecs = Objects.requireNonNull(replicationSpecs);
+            if (replicationSpecs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "replicationSpecs");
+            }
+            this.replicationSpecs = replicationSpecs;
             return this;
         }
         public Builder replicationSpecs(GetAdvancedClusterReplicationSpec... replicationSpecs) {
@@ -421,17 +473,26 @@ public final class GetAdvancedClusterResult {
         }
         @CustomType.Setter
         public Builder rootCertType(String rootCertType) {
-            this.rootCertType = Objects.requireNonNull(rootCertType);
+            if (rootCertType == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "rootCertType");
+            }
+            this.rootCertType = rootCertType;
             return this;
         }
         @CustomType.Setter
         public Builder stateName(String stateName) {
-            this.stateName = Objects.requireNonNull(stateName);
+            if (stateName == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "stateName");
+            }
+            this.stateName = stateName;
             return this;
         }
         @CustomType.Setter
         public Builder tags(List<GetAdvancedClusterTag> tags) {
-            this.tags = Objects.requireNonNull(tags);
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "tags");
+            }
+            this.tags = tags;
             return this;
         }
         public Builder tags(GetAdvancedClusterTag... tags) {
@@ -439,12 +500,18 @@ public final class GetAdvancedClusterResult {
         }
         @CustomType.Setter
         public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
-            this.terminationProtectionEnabled = Objects.requireNonNull(terminationProtectionEnabled);
+            if (terminationProtectionEnabled == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "terminationProtectionEnabled");
+            }
+            this.terminationProtectionEnabled = terminationProtectionEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder versionReleaseSystem(String versionReleaseSystem) {
-            this.versionReleaseSystem = Objects.requireNonNull(versionReleaseSystem);
+            if (versionReleaseSystem == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "versionReleaseSystem");
+            }
+            this.versionReleaseSystem = versionReleaseSystem;
             return this;
         }
         public GetAdvancedClusterResult build() {

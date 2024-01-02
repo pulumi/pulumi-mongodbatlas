@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -62,17 +63,26 @@ public final class GetDatabaseUserRole {
 
         @CustomType.Setter
         public Builder collectionName(String collectionName) {
-            this.collectionName = Objects.requireNonNull(collectionName);
+            if (collectionName == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUserRole", "collectionName");
+            }
+            this.collectionName = collectionName;
             return this;
         }
         @CustomType.Setter
         public Builder databaseName(String databaseName) {
-            this.databaseName = Objects.requireNonNull(databaseName);
+            if (databaseName == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUserRole", "databaseName");
+            }
+            this.databaseName = databaseName;
             return this;
         }
         @CustomType.Setter
         public Builder roleName(String roleName) {
-            this.roleName = Objects.requireNonNull(roleName);
+            if (roleName == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseUserRole", "roleName");
+            }
+            this.roleName = roleName;
             return this;
         }
         public GetDatabaseUserRole build() {

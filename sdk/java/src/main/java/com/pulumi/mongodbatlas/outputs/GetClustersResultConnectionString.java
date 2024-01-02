@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultConnectionStringPrivateEndpoint;
 import java.lang.Object;
 import java.lang.String;
@@ -74,22 +75,34 @@ public final class GetClustersResultConnectionString {
 
         @CustomType.Setter
         public Builder awsPrivateLink(Map<String,Object> awsPrivateLink) {
-            this.awsPrivateLink = Objects.requireNonNull(awsPrivateLink);
+            if (awsPrivateLink == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultConnectionString", "awsPrivateLink");
+            }
+            this.awsPrivateLink = awsPrivateLink;
             return this;
         }
         @CustomType.Setter
         public Builder awsPrivateLinkSrv(Map<String,Object> awsPrivateLinkSrv) {
-            this.awsPrivateLinkSrv = Objects.requireNonNull(awsPrivateLinkSrv);
+            if (awsPrivateLinkSrv == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultConnectionString", "awsPrivateLinkSrv");
+            }
+            this.awsPrivateLinkSrv = awsPrivateLinkSrv;
             return this;
         }
         @CustomType.Setter("private")
         public Builder private_(String private_) {
-            this.private_ = Objects.requireNonNull(private_);
+            if (private_ == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultConnectionString", "private_");
+            }
+            this.private_ = private_;
             return this;
         }
         @CustomType.Setter
         public Builder privateEndpoints(List<GetClustersResultConnectionStringPrivateEndpoint> privateEndpoints) {
-            this.privateEndpoints = Objects.requireNonNull(privateEndpoints);
+            if (privateEndpoints == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultConnectionString", "privateEndpoints");
+            }
+            this.privateEndpoints = privateEndpoints;
             return this;
         }
         public Builder privateEndpoints(GetClustersResultConnectionStringPrivateEndpoint... privateEndpoints) {
@@ -97,17 +110,26 @@ public final class GetClustersResultConnectionString {
         }
         @CustomType.Setter
         public Builder privateSrv(String privateSrv) {
-            this.privateSrv = Objects.requireNonNull(privateSrv);
+            if (privateSrv == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultConnectionString", "privateSrv");
+            }
+            this.privateSrv = privateSrv;
             return this;
         }
         @CustomType.Setter
         public Builder standard(String standard) {
-            this.standard = Objects.requireNonNull(standard);
+            if (standard == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultConnectionString", "standard");
+            }
+            this.standard = standard;
             return this;
         }
         @CustomType.Setter
         public Builder standardSrv(String standardSrv) {
-            this.standardSrv = Objects.requireNonNull(standardSrv);
+            if (standardSrv == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultConnectionString", "standardSrv");
+            }
+            this.standardSrv = standardSrv;
             return this;
         }
         public GetClustersResultConnectionString build() {

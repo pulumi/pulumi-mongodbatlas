@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -186,10 +187,18 @@ public final class CloudBackupSnapshotArgs extends com.pulumi.resources.Resource
         }
 
         public CloudBackupSnapshotArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.description = Objects.requireNonNull($.description, "expected parameter 'description' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.retentionInDays = Objects.requireNonNull($.retentionInDays, "expected parameter 'retentionInDays' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotArgs", "clusterName");
+            }
+            if ($.description == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotArgs", "description");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotArgs", "projectId");
+            }
+            if ($.retentionInDays == null) {
+                throw new MissingRequiredPropertyException("CloudBackupSnapshotArgs", "retentionInDays");
+            }
             return $;
         }
     }

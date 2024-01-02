@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -76,8 +77,12 @@ public final class GetApiKeyPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetApiKeyPlainArgs build() {
-            $.apiKeyId = Objects.requireNonNull($.apiKeyId, "expected parameter 'apiKeyId' to be non-null");
-            $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
+            if ($.apiKeyId == null) {
+                throw new MissingRequiredPropertyException("GetApiKeyPlainArgs", "apiKeyId");
+            }
+            if ($.orgId == null) {
+                throw new MissingRequiredPropertyException("GetApiKeyPlainArgs", "orgId");
+            }
             return $;
         }
     }

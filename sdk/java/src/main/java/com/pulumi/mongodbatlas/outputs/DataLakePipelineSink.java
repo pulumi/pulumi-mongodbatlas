@@ -92,6 +92,7 @@ public final class DataLakePipelineSink {
 
         @CustomType.Setter
         public Builder partitionFields(@Nullable List<DataLakePipelineSinkPartitionField> partitionFields) {
+
             this.partitionFields = partitionFields;
             return this;
         }
@@ -100,16 +101,19 @@ public final class DataLakePipelineSink {
         }
         @CustomType.Setter
         public Builder provider(@Nullable String provider) {
+
             this.provider = provider;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.util.Objects;
 
@@ -56,12 +57,18 @@ public final class GetDataLakePipelineRunsResultStat {
 
         @CustomType.Setter
         public Builder bytesExported(Integer bytesExported) {
-            this.bytesExported = Objects.requireNonNull(bytesExported);
+            if (bytesExported == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunsResultStat", "bytesExported");
+            }
+            this.bytesExported = bytesExported;
             return this;
         }
         @CustomType.Setter
         public Builder numDocs(Integer numDocs) {
-            this.numDocs = Objects.requireNonNull(numDocs);
+            if (numDocs == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelineRunsResultStat", "numDocs");
+            }
+            this.numDocs = numDocs;
             return this;
         }
         public GetDataLakePipelineRunsResultStat build() {
