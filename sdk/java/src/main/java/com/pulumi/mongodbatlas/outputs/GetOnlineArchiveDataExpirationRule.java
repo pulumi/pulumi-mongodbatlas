@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.util.Objects;
 
@@ -34,7 +35,10 @@ public final class GetOnlineArchiveDataExpirationRule {
 
         @CustomType.Setter
         public Builder expireAfterDays(Integer expireAfterDays) {
-            this.expireAfterDays = Objects.requireNonNull(expireAfterDays);
+            if (expireAfterDays == null) {
+              throw new MissingRequiredPropertyException("GetOnlineArchiveDataExpirationRule", "expireAfterDays");
+            }
+            this.expireAfterDays = expireAfterDays;
             return this;
         }
         public GetOnlineArchiveDataExpirationRule build() {

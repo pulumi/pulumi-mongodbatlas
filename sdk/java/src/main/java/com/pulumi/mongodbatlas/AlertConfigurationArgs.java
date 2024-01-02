@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
 import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
 import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
@@ -248,8 +249,12 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
         }
 
         public AlertConfigurationArgs build() {
-            $.eventType = Objects.requireNonNull($.eventType, "expected parameter 'eventType' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.eventType == null) {
+                throw new MissingRequiredPropertyException("AlertConfigurationArgs", "eventType");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("AlertConfigurationArgs", "projectId");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -295,11 +296,21 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
         }
 
         public FederatedQueryLimitArgs build() {
-            $.limitName = Objects.requireNonNull($.limitName, "expected parameter 'limitName' to be non-null");
-            $.overrunPolicy = Objects.requireNonNull($.overrunPolicy, "expected parameter 'overrunPolicy' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.tenantName = Objects.requireNonNull($.tenantName, "expected parameter 'tenantName' to be non-null");
-            $.value = Objects.requireNonNull($.value, "expected parameter 'value' to be non-null");
+            if ($.limitName == null) {
+                throw new MissingRequiredPropertyException("FederatedQueryLimitArgs", "limitName");
+            }
+            if ($.overrunPolicy == null) {
+                throw new MissingRequiredPropertyException("FederatedQueryLimitArgs", "overrunPolicy");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("FederatedQueryLimitArgs", "projectId");
+            }
+            if ($.tenantName == null) {
+                throw new MissingRequiredPropertyException("FederatedQueryLimitArgs", "tenantName");
+            }
+            if ($.value == null) {
+                throw new MissingRequiredPropertyException("FederatedQueryLimitArgs", "value");
+            }
             return $;
         }
     }

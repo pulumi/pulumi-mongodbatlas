@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.PrivateLinkEndpointServiceEndpointArgs;
 import java.lang.String;
 import java.util.List;
@@ -310,10 +311,18 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         public PrivateLinkEndpointServiceArgs build() {
-            $.endpointServiceId = Objects.requireNonNull($.endpointServiceId, "expected parameter 'endpointServiceId' to be non-null");
-            $.privateLinkId = Objects.requireNonNull($.privateLinkId, "expected parameter 'privateLinkId' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.providerName = Objects.requireNonNull($.providerName, "expected parameter 'providerName' to be non-null");
+            if ($.endpointServiceId == null) {
+                throw new MissingRequiredPropertyException("PrivateLinkEndpointServiceArgs", "endpointServiceId");
+            }
+            if ($.privateLinkId == null) {
+                throw new MissingRequiredPropertyException("PrivateLinkEndpointServiceArgs", "privateLinkId");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("PrivateLinkEndpointServiceArgs", "projectId");
+            }
+            if ($.providerName == null) {
+                throw new MissingRequiredPropertyException("PrivateLinkEndpointServiceArgs", "providerName");
+            }
             return $;
         }
     }

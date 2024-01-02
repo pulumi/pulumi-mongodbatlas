@@ -169,6 +169,7 @@ public final class FederatedDatabaseInstanceStorageStore {
 
         @CustomType.Setter
         public Builder additionalStorageClasses(@Nullable List<String> additionalStorageClasses) {
+
             this.additionalStorageClasses = additionalStorageClasses;
             return this;
         }
@@ -177,76 +178,91 @@ public final class FederatedDatabaseInstanceStorageStore {
         }
         @CustomType.Setter
         public Builder allowInsecure(@Nullable Boolean allowInsecure) {
+
             this.allowInsecure = allowInsecure;
             return this;
         }
         @CustomType.Setter
         public Builder bucket(@Nullable String bucket) {
+
             this.bucket = bucket;
             return this;
         }
         @CustomType.Setter
         public Builder clusterId(@Nullable String clusterId) {
+
             this.clusterId = clusterId;
             return this;
         }
         @CustomType.Setter
         public Builder clusterName(@Nullable String clusterName) {
+
             this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder defaultFormat(@Nullable String defaultFormat) {
+
             this.defaultFormat = defaultFormat;
             return this;
         }
         @CustomType.Setter
         public Builder delimiter(@Nullable String delimiter) {
+
             this.delimiter = delimiter;
             return this;
         }
         @CustomType.Setter
         public Builder includeTags(@Nullable Boolean includeTags) {
+
             this.includeTags = includeTags;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder prefix(@Nullable String prefix) {
+
             this.prefix = prefix;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(@Nullable String projectId) {
+
             this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder provider(@Nullable String provider) {
+
             this.provider = provider;
             return this;
         }
         @CustomType.Setter("public")
         public Builder public_(@Nullable String public_) {
+
             this.public_ = public_;
             return this;
         }
         @CustomType.Setter
         public Builder readPreference(@Nullable FederatedDatabaseInstanceStorageStoreReadPreference readPreference) {
+
             this.readPreference = readPreference;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder urls(@Nullable List<String> urls) {
+
             this.urls = urls;
             return this;
         }

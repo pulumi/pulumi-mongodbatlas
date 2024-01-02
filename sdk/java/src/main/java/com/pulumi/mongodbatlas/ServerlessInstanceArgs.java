@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.ServerlessInstanceLinkArgs;
 import com.pulumi.mongodbatlas.inputs.ServerlessInstanceTagArgs;
 import java.lang.Boolean;
@@ -407,10 +408,18 @@ public final class ServerlessInstanceArgs extends com.pulumi.resources.ResourceA
         }
 
         public ServerlessInstanceArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.providerSettingsBackingProviderName = Objects.requireNonNull($.providerSettingsBackingProviderName, "expected parameter 'providerSettingsBackingProviderName' to be non-null");
-            $.providerSettingsProviderName = Objects.requireNonNull($.providerSettingsProviderName, "expected parameter 'providerSettingsProviderName' to be non-null");
-            $.providerSettingsRegionName = Objects.requireNonNull($.providerSettingsRegionName, "expected parameter 'providerSettingsRegionName' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("ServerlessInstanceArgs", "projectId");
+            }
+            if ($.providerSettingsBackingProviderName == null) {
+                throw new MissingRequiredPropertyException("ServerlessInstanceArgs", "providerSettingsBackingProviderName");
+            }
+            if ($.providerSettingsProviderName == null) {
+                throw new MissingRequiredPropertyException("ServerlessInstanceArgs", "providerSettingsProviderName");
+            }
+            if ($.providerSettingsRegionName == null) {
+                throw new MissingRequiredPropertyException("ServerlessInstanceArgs", "providerSettingsRegionName");
+            }
             return $;
         }
     }

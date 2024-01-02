@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -393,71 +394,85 @@ public final class AlertConfigurationNotification {
 
         @CustomType.Setter
         public Builder apiToken(@Nullable String apiToken) {
+
             this.apiToken = apiToken;
             return this;
         }
         @CustomType.Setter
         public Builder channelName(@Nullable String channelName) {
+
             this.channelName = channelName;
             return this;
         }
         @CustomType.Setter
         public Builder datadogApiKey(@Nullable String datadogApiKey) {
+
             this.datadogApiKey = datadogApiKey;
             return this;
         }
         @CustomType.Setter
         public Builder datadogRegion(@Nullable String datadogRegion) {
+
             this.datadogRegion = datadogRegion;
             return this;
         }
         @CustomType.Setter
         public Builder delayMin(@Nullable Integer delayMin) {
+
             this.delayMin = delayMin;
             return this;
         }
         @CustomType.Setter
         public Builder emailAddress(@Nullable String emailAddress) {
+
             this.emailAddress = emailAddress;
             return this;
         }
         @CustomType.Setter
         public Builder emailEnabled(@Nullable Boolean emailEnabled) {
+
             this.emailEnabled = emailEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder intervalMin(@Nullable Integer intervalMin) {
+
             this.intervalMin = intervalMin;
             return this;
         }
         @CustomType.Setter
         public Builder microsoftTeamsWebhookUrl(@Nullable String microsoftTeamsWebhookUrl) {
+
             this.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             return this;
         }
         @CustomType.Setter
         public Builder mobileNumber(@Nullable String mobileNumber) {
+
             this.mobileNumber = mobileNumber;
             return this;
         }
         @CustomType.Setter
         public Builder notifierId(@Nullable String notifierId) {
+
             this.notifierId = notifierId;
             return this;
         }
         @CustomType.Setter
         public Builder opsGenieApiKey(@Nullable String opsGenieApiKey) {
+
             this.opsGenieApiKey = opsGenieApiKey;
             return this;
         }
         @CustomType.Setter
         public Builder opsGenieRegion(@Nullable String opsGenieRegion) {
+
             this.opsGenieRegion = opsGenieRegion;
             return this;
         }
         @CustomType.Setter
         public Builder roles(@Nullable List<String> roles) {
+
             this.roles = roles;
             return this;
         }
@@ -466,51 +481,63 @@ public final class AlertConfigurationNotification {
         }
         @CustomType.Setter
         public Builder serviceKey(@Nullable String serviceKey) {
+
             this.serviceKey = serviceKey;
             return this;
         }
         @CustomType.Setter
         public Builder smsEnabled(@Nullable Boolean smsEnabled) {
+
             this.smsEnabled = smsEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder teamId(@Nullable String teamId) {
+
             this.teamId = teamId;
             return this;
         }
         @CustomType.Setter
         public Builder teamName(@Nullable String teamName) {
+
             this.teamName = teamName;
             return this;
         }
         @CustomType.Setter
         public Builder typeName(String typeName) {
-            this.typeName = Objects.requireNonNull(typeName);
+            if (typeName == null) {
+              throw new MissingRequiredPropertyException("AlertConfigurationNotification", "typeName");
+            }
+            this.typeName = typeName;
             return this;
         }
         @CustomType.Setter
         public Builder username(@Nullable String username) {
+
             this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder victorOpsApiKey(@Nullable String victorOpsApiKey) {
+
             this.victorOpsApiKey = victorOpsApiKey;
             return this;
         }
         @CustomType.Setter
         public Builder victorOpsRoutingKey(@Nullable String victorOpsRoutingKey) {
+
             this.victorOpsRoutingKey = victorOpsRoutingKey;
             return this;
         }
         @CustomType.Setter
         public Builder webhookSecret(@Nullable String webhookSecret) {
+
             this.webhookSecret = webhookSecret;
             return this;
         }
         @CustomType.Setter
         public Builder webhookUrl(@Nullable String webhookUrl) {
+
             this.webhookUrl = webhookUrl;
             return this;
         }

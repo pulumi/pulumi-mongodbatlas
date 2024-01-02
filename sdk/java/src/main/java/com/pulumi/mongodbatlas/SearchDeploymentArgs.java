@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
 import com.pulumi.mongodbatlas.inputs.SearchDeploymentTimeoutsArgs;
 import java.lang.String;
@@ -180,9 +181,15 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         }
 
         public SearchDeploymentArgs build() {
-            $.clusterName = Objects.requireNonNull($.clusterName, "expected parameter 'clusterName' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.specs = Objects.requireNonNull($.specs, "expected parameter 'specs' to be non-null");
+            if ($.clusterName == null) {
+                throw new MissingRequiredPropertyException("SearchDeploymentArgs", "clusterName");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("SearchDeploymentArgs", "projectId");
+            }
+            if ($.specs == null) {
+                throw new MissingRequiredPropertyException("SearchDeploymentArgs", "specs");
+            }
             return $;
         }
     }

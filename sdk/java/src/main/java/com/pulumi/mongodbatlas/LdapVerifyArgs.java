@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -299,11 +300,21 @@ public final class LdapVerifyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public LdapVerifyArgs build() {
-            $.bindPassword = Objects.requireNonNull($.bindPassword, "expected parameter 'bindPassword' to be non-null");
-            $.bindUsername = Objects.requireNonNull($.bindUsername, "expected parameter 'bindUsername' to be non-null");
-            $.hostname = Objects.requireNonNull($.hostname, "expected parameter 'hostname' to be non-null");
-            $.port = Objects.requireNonNull($.port, "expected parameter 'port' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.bindPassword == null) {
+                throw new MissingRequiredPropertyException("LdapVerifyArgs", "bindPassword");
+            }
+            if ($.bindUsername == null) {
+                throw new MissingRequiredPropertyException("LdapVerifyArgs", "bindUsername");
+            }
+            if ($.hostname == null) {
+                throw new MissingRequiredPropertyException("LdapVerifyArgs", "hostname");
+            }
+            if ($.port == null) {
+                throw new MissingRequiredPropertyException("LdapVerifyArgs", "port");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("LdapVerifyArgs", "projectId");
+            }
             return $;
         }
     }

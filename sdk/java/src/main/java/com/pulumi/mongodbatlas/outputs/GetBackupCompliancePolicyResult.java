@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyOnDemandPolicyItem;
 import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyPolicyItemDaily;
 import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyPolicyItemHourly;
@@ -228,56 +229,81 @@ public final class GetBackupCompliancePolicyResult {
 
         @CustomType.Setter
         public Builder authorizedEmail(String authorizedEmail) {
-            this.authorizedEmail = Objects.requireNonNull(authorizedEmail);
+            if (authorizedEmail == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "authorizedEmail");
+            }
+            this.authorizedEmail = authorizedEmail;
             return this;
         }
         @CustomType.Setter
         public Builder authorizedUserFirstName(String authorizedUserFirstName) {
-            this.authorizedUserFirstName = Objects.requireNonNull(authorizedUserFirstName);
+            if (authorizedUserFirstName == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "authorizedUserFirstName");
+            }
+            this.authorizedUserFirstName = authorizedUserFirstName;
             return this;
         }
         @CustomType.Setter
         public Builder authorizedUserLastName(String authorizedUserLastName) {
-            this.authorizedUserLastName = Objects.requireNonNull(authorizedUserLastName);
+            if (authorizedUserLastName == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "authorizedUserLastName");
+            }
+            this.authorizedUserLastName = authorizedUserLastName;
             return this;
         }
         @CustomType.Setter
         public Builder copyProtectionEnabled(Boolean copyProtectionEnabled) {
-            this.copyProtectionEnabled = Objects.requireNonNull(copyProtectionEnabled);
+            if (copyProtectionEnabled == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "copyProtectionEnabled");
+            }
+            this.copyProtectionEnabled = copyProtectionEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder encryptionAtRestEnabled(Boolean encryptionAtRestEnabled) {
-            this.encryptionAtRestEnabled = Objects.requireNonNull(encryptionAtRestEnabled);
+            if (encryptionAtRestEnabled == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "encryptionAtRestEnabled");
+            }
+            this.encryptionAtRestEnabled = encryptionAtRestEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder onDemandPolicyItem(@Nullable GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem) {
+
             this.onDemandPolicyItem = onDemandPolicyItem;
             return this;
         }
         @CustomType.Setter
         public Builder pitEnabled(Boolean pitEnabled) {
-            this.pitEnabled = Objects.requireNonNull(pitEnabled);
+            if (pitEnabled == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "pitEnabled");
+            }
+            this.pitEnabled = pitEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder policyItemDaily(@Nullable GetBackupCompliancePolicyPolicyItemDaily policyItemDaily) {
+
             this.policyItemDaily = policyItemDaily;
             return this;
         }
         @CustomType.Setter
         public Builder policyItemHourly(@Nullable GetBackupCompliancePolicyPolicyItemHourly policyItemHourly) {
+
             this.policyItemHourly = policyItemHourly;
             return this;
         }
         @CustomType.Setter
         public Builder policyItemMonthlies(@Nullable List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies) {
+
             this.policyItemMonthlies = policyItemMonthlies;
             return this;
         }
@@ -286,6 +312,7 @@ public final class GetBackupCompliancePolicyResult {
         }
         @CustomType.Setter
         public Builder policyItemWeeklies(@Nullable List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies) {
+
             this.policyItemWeeklies = policyItemWeeklies;
             return this;
         }
@@ -294,27 +321,42 @@ public final class GetBackupCompliancePolicyResult {
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder restoreWindowDays(Integer restoreWindowDays) {
-            this.restoreWindowDays = Objects.requireNonNull(restoreWindowDays);
+            if (restoreWindowDays == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "restoreWindowDays");
+            }
+            this.restoreWindowDays = restoreWindowDays;
             return this;
         }
         @CustomType.Setter
         public Builder state(String state) {
-            this.state = Objects.requireNonNull(state);
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "state");
+            }
+            this.state = state;
             return this;
         }
         @CustomType.Setter
         public Builder updatedDate(String updatedDate) {
-            this.updatedDate = Objects.requireNonNull(updatedDate);
+            if (updatedDate == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "updatedDate");
+            }
+            this.updatedDate = updatedDate;
             return this;
         }
         @CustomType.Setter
         public Builder updatedUser(String updatedUser) {
-            this.updatedUser = Objects.requireNonNull(updatedUser);
+            if (updatedUser == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "updatedUser");
+            }
+            this.updatedUser = updatedUser;
             return this;
         }
         public GetBackupCompliancePolicyResult build() {

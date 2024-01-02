@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetGlobalClusterConfigManagedNamespace;
 import java.lang.Object;
 import java.lang.String;
@@ -86,22 +87,34 @@ public final class GetGlobalClusterConfigResult {
 
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder customZoneMapping(Map<String,Object> customZoneMapping) {
-            this.customZoneMapping = Objects.requireNonNull(customZoneMapping);
+            if (customZoneMapping == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigResult", "customZoneMapping");
+            }
+            this.customZoneMapping = customZoneMapping;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder managedNamespaces(List<GetGlobalClusterConfigManagedNamespace> managedNamespaces) {
-            this.managedNamespaces = Objects.requireNonNull(managedNamespaces);
+            if (managedNamespaces == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigResult", "managedNamespaces");
+            }
+            this.managedNamespaces = managedNamespaces;
             return this;
         }
         public Builder managedNamespaces(GetGlobalClusterConfigManagedNamespace... managedNamespaces) {
@@ -109,7 +122,10 @@ public final class GetGlobalClusterConfigResult {
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetGlobalClusterConfigResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         public GetGlobalClusterConfigResult build() {

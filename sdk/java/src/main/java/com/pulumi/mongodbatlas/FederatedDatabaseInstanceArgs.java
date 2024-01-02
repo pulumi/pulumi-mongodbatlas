@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceCloudProviderConfigArgs;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceDataProcessRegionArgs;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceStorageDatabaseArgs;
@@ -454,7 +455,9 @@ public final class FederatedDatabaseInstanceArgs extends com.pulumi.resources.Re
         }
 
         public FederatedDatabaseInstanceArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("FederatedDatabaseInstanceArgs", "projectId");
+            }
             return $;
         }
     }

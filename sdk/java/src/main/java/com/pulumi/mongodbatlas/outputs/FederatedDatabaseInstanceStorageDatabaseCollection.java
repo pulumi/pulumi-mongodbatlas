@@ -56,6 +56,7 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollection {
 
         @CustomType.Setter
         public Builder dataSources(@Nullable List<FederatedDatabaseInstanceStorageDatabaseCollectionDataSource> dataSources) {
+
             this.dataSources = dataSources;
             return this;
         }
@@ -64,6 +65,7 @@ public final class FederatedDatabaseInstanceStorageDatabaseCollection {
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -113,27 +114,34 @@ public final class OnlineArchiveCriteria {
 
         @CustomType.Setter
         public Builder dateField(@Nullable String dateField) {
+
             this.dateField = dateField;
             return this;
         }
         @CustomType.Setter
         public Builder dateFormat(@Nullable String dateFormat) {
+
             this.dateFormat = dateFormat;
             return this;
         }
         @CustomType.Setter
         public Builder expireAfterDays(@Nullable Integer expireAfterDays) {
+
             this.expireAfterDays = expireAfterDays;
             return this;
         }
         @CustomType.Setter
         public Builder query(@Nullable String query) {
+
             this.query = query;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("OnlineArchiveCriteria", "type");
+            }
+            this.type = type;
             return this;
         }
         public OnlineArchiveCriteria build() {

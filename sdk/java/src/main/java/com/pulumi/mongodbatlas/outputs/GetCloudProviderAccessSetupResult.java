@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessSetupAwsConfig;
 import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessSetupAzureConfig;
 import java.lang.String;
@@ -135,12 +136,18 @@ public final class GetCloudProviderAccessSetupResult {
 
         @CustomType.Setter
         public Builder aws(Map<String,String> aws) {
-            this.aws = Objects.requireNonNull(aws);
+            if (aws == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupResult", "aws");
+            }
+            this.aws = aws;
             return this;
         }
         @CustomType.Setter
         public Builder awsConfigs(List<GetCloudProviderAccessSetupAwsConfig> awsConfigs) {
-            this.awsConfigs = Objects.requireNonNull(awsConfigs);
+            if (awsConfigs == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupResult", "awsConfigs");
+            }
+            this.awsConfigs = awsConfigs;
             return this;
         }
         public Builder awsConfigs(GetCloudProviderAccessSetupAwsConfig... awsConfigs) {
@@ -148,6 +155,7 @@ public final class GetCloudProviderAccessSetupResult {
         }
         @CustomType.Setter
         public Builder azureConfigs(@Nullable List<GetCloudProviderAccessSetupAzureConfig> azureConfigs) {
+
             this.azureConfigs = azureConfigs;
             return this;
         }
@@ -156,32 +164,50 @@ public final class GetCloudProviderAccessSetupResult {
         }
         @CustomType.Setter
         public Builder createdDate(String createdDate) {
-            this.createdDate = Objects.requireNonNull(createdDate);
+            if (createdDate == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupResult", "createdDate");
+            }
+            this.createdDate = createdDate;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder lastUpdatedDate(String lastUpdatedDate) {
-            this.lastUpdatedDate = Objects.requireNonNull(lastUpdatedDate);
+            if (lastUpdatedDate == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupResult", "lastUpdatedDate");
+            }
+            this.lastUpdatedDate = lastUpdatedDate;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder providerName(String providerName) {
-            this.providerName = Objects.requireNonNull(providerName);
+            if (providerName == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupResult", "providerName");
+            }
+            this.providerName = providerName;
             return this;
         }
         @CustomType.Setter
         public Builder roleId(String roleId) {
-            this.roleId = Objects.requireNonNull(roleId);
+            if (roleId == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessSetupResult", "roleId");
+            }
+            this.roleId = roleId;
             return this;
         }
         public GetCloudProviderAccessSetupResult build() {

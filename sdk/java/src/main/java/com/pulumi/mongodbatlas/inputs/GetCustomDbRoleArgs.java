@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleInheritedRoleArgs;
 import java.lang.String;
 import java.util.List;
@@ -136,8 +137,12 @@ public final class GetCustomDbRoleArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetCustomDbRoleArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.roleName = Objects.requireNonNull($.roleName, "expected parameter 'roleName' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetCustomDbRoleArgs", "projectId");
+            }
+            if ($.roleName == null) {
+                throw new MissingRequiredPropertyException("GetCustomDbRoleArgs", "roleName");
+            }
             return $;
         }
     }

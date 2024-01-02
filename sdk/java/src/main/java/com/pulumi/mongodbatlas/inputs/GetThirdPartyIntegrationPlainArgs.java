@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -249,8 +250,12 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
         }
 
         public GetThirdPartyIntegrationPlainArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetThirdPartyIntegrationPlainArgs", "projectId");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("GetThirdPartyIntegrationPlainArgs", "type");
+            }
             return $;
         }
     }

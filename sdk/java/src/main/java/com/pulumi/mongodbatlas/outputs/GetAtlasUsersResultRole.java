@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -54,17 +55,26 @@ public final class GetAtlasUsersResultRole {
 
         @CustomType.Setter
         public Builder groupId(String groupId) {
-            this.groupId = Objects.requireNonNull(groupId);
+            if (groupId == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUsersResultRole", "groupId");
+            }
+            this.groupId = groupId;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(String orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+            if (orgId == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUsersResultRole", "orgId");
+            }
+            this.orgId = orgId;
             return this;
         }
         @CustomType.Setter
         public Builder roleName(String roleName) {
-            this.roleName = Objects.requireNonNull(roleName);
+            if (roleName == null) {
+              throw new MissingRequiredPropertyException("GetAtlasUsersResultRole", "roleName");
+            }
+            this.roleName = roleName;
             return this;
         }
         public GetAtlasUsersResultRole build() {

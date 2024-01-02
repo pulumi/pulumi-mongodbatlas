@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyOnDemandPolicyItem;
 import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyPolicyItemDaily;
 import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyPolicyItemHourly;
@@ -144,7 +145,9 @@ public final class GetBackupCompliancePolicyPlainArgs extends com.pulumi.resourc
         }
 
         public GetBackupCompliancePolicyPlainArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPlainArgs", "projectId");
+            }
             return $;
         }
     }

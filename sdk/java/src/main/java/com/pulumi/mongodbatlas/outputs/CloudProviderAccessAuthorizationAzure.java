@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -46,17 +47,26 @@ public final class CloudProviderAccessAuthorizationAzure {
 
         @CustomType.Setter
         public Builder atlasAzureAppId(String atlasAzureAppId) {
-            this.atlasAzureAppId = Objects.requireNonNull(atlasAzureAppId);
+            if (atlasAzureAppId == null) {
+              throw new MissingRequiredPropertyException("CloudProviderAccessAuthorizationAzure", "atlasAzureAppId");
+            }
+            this.atlasAzureAppId = atlasAzureAppId;
             return this;
         }
         @CustomType.Setter
         public Builder servicePrincipalId(String servicePrincipalId) {
-            this.servicePrincipalId = Objects.requireNonNull(servicePrincipalId);
+            if (servicePrincipalId == null) {
+              throw new MissingRequiredPropertyException("CloudProviderAccessAuthorizationAzure", "servicePrincipalId");
+            }
+            this.servicePrincipalId = servicePrincipalId;
             return this;
         }
         @CustomType.Setter
         public Builder tenantId(String tenantId) {
-            this.tenantId = Objects.requireNonNull(tenantId);
+            if (tenantId == null) {
+              throw new MissingRequiredPropertyException("CloudProviderAccessAuthorizationAzure", "tenantId");
+            }
+            this.tenantId = tenantId;
             return this;
         }
         public CloudProviderAccessAuthorizationAzure build() {

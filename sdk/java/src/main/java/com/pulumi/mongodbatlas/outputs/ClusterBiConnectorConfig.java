@@ -77,11 +77,13 @@ public final class ClusterBiConnectorConfig {
 
         @CustomType.Setter
         public Builder enabled(@Nullable Boolean enabled) {
+
             this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder readPreference(@Nullable String readPreference) {
+
             this.readPreference = readPreference;
             return this;
         }

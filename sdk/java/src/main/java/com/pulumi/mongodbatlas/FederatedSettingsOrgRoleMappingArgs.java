@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs;
 import java.lang.String;
 import java.util.List;
@@ -197,10 +198,18 @@ public final class FederatedSettingsOrgRoleMappingArgs extends com.pulumi.resour
         }
 
         public FederatedSettingsOrgRoleMappingArgs build() {
-            $.externalGroupName = Objects.requireNonNull($.externalGroupName, "expected parameter 'externalGroupName' to be non-null");
-            $.federationSettingsId = Objects.requireNonNull($.federationSettingsId, "expected parameter 'federationSettingsId' to be non-null");
-            $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
-            $.roleAssignments = Objects.requireNonNull($.roleAssignments, "expected parameter 'roleAssignments' to be non-null");
+            if ($.externalGroupName == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsOrgRoleMappingArgs", "externalGroupName");
+            }
+            if ($.federationSettingsId == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsOrgRoleMappingArgs", "federationSettingsId");
+            }
+            if ($.orgId == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsOrgRoleMappingArgs", "orgId");
+            }
+            if ($.roleAssignments == null) {
+                throw new MissingRequiredPropertyException("FederatedSettingsOrgRoleMappingArgs", "roleAssignments");
+            }
             return $;
         }
     }

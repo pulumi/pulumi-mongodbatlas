@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -56,12 +57,18 @@ public final class GetFederatedSettingsIdentityProvidersResultPemFileInfoCertifi
 
         @CustomType.Setter
         public Builder notAfter(String notAfter) {
-            this.notAfter = Objects.requireNonNull(notAfter);
+            if (notAfter == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate", "notAfter");
+            }
+            this.notAfter = notAfter;
             return this;
         }
         @CustomType.Setter
         public Builder notBefore(String notBefore) {
-            this.notBefore = Objects.requireNonNull(notBefore);
+            if (notBefore == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate", "notBefore");
+            }
+            this.notBefore = notBefore;
             return this;
         }
         public GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate build() {

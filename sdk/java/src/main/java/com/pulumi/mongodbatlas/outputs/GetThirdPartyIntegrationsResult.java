@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -231,81 +232,119 @@ public final class GetThirdPartyIntegrationsResult {
 
         @CustomType.Setter
         public Builder accountId(String accountId) {
-            this.accountId = Objects.requireNonNull(accountId);
+            if (accountId == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "accountId");
+            }
+            this.accountId = accountId;
             return this;
         }
         @CustomType.Setter
         public Builder apiKey(String apiKey) {
-            this.apiKey = Objects.requireNonNull(apiKey);
+            if (apiKey == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "apiKey");
+            }
+            this.apiKey = apiKey;
             return this;
         }
         @CustomType.Setter
         public Builder channelName(String channelName) {
-            this.channelName = Objects.requireNonNull(channelName);
+            if (channelName == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "channelName");
+            }
+            this.channelName = channelName;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(@Nullable Boolean enabled) {
+
             this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder microsoftTeamsWebhookUrl(@Nullable String microsoftTeamsWebhookUrl) {
+
             this.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder routingKey(String routingKey) {
-            this.routingKey = Objects.requireNonNull(routingKey);
+            if (routingKey == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "routingKey");
+            }
+            this.routingKey = routingKey;
             return this;
         }
         @CustomType.Setter
         public Builder scheme(@Nullable String scheme) {
+
             this.scheme = scheme;
             return this;
         }
         @CustomType.Setter
         public Builder secret(String secret) {
-            this.secret = Objects.requireNonNull(secret);
+            if (secret == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "secret");
+            }
+            this.secret = secret;
             return this;
         }
         @CustomType.Setter
         public Builder serviceDiscovery(@Nullable String serviceDiscovery) {
+
             this.serviceDiscovery = serviceDiscovery;
             return this;
         }
         @CustomType.Setter
         public Builder serviceKey(String serviceKey) {
-            this.serviceKey = Objects.requireNonNull(serviceKey);
+            if (serviceKey == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "serviceKey");
+            }
+            this.serviceKey = serviceKey;
             return this;
         }
         @CustomType.Setter
         public Builder teamName(String teamName) {
-            this.teamName = Objects.requireNonNull(teamName);
+            if (teamName == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "teamName");
+            }
+            this.teamName = teamName;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "type");
+            }
+            this.type = type;
             return this;
         }
         @CustomType.Setter
         public Builder url(String url) {
-            this.url = Objects.requireNonNull(url);
+            if (url == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "url");
+            }
+            this.url = url;
             return this;
         }
         @CustomType.Setter
         public Builder userName(@Nullable String userName) {
+
             this.userName = userName;
             return this;
         }

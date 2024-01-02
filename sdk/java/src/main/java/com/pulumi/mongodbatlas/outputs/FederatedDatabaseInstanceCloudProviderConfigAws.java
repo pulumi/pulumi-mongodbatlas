@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -108,27 +109,36 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAws {
 
         @CustomType.Setter
         public Builder externalId(@Nullable String externalId) {
+
             this.externalId = externalId;
             return this;
         }
         @CustomType.Setter
         public Builder iamAssumedRoleArn(@Nullable String iamAssumedRoleArn) {
+
             this.iamAssumedRoleArn = iamAssumedRoleArn;
             return this;
         }
         @CustomType.Setter
         public Builder iamUserArn(@Nullable String iamUserArn) {
+
             this.iamUserArn = iamUserArn;
             return this;
         }
         @CustomType.Setter
         public Builder roleId(String roleId) {
-            this.roleId = Objects.requireNonNull(roleId);
+            if (roleId == null) {
+              throw new MissingRequiredPropertyException("FederatedDatabaseInstanceCloudProviderConfigAws", "roleId");
+            }
+            this.roleId = roleId;
             return this;
         }
         @CustomType.Setter
         public Builder testS3Bucket(String testS3Bucket) {
-            this.testS3Bucket = Objects.requireNonNull(testS3Bucket);
+            if (testS3Bucket == null) {
+              throw new MissingRequiredPropertyException("FederatedDatabaseInstanceCloudProviderConfigAws", "testS3Bucket");
+            }
+            this.testS3Bucket = testS3Bucket;
             return this;
         }
         public FederatedDatabaseInstanceCloudProviderConfigAws build() {

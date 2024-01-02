@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -90,8 +91,12 @@ public final class GetNetworkContainersPlainArgs extends com.pulumi.resources.In
         }
 
         public GetNetworkContainersPlainArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.providerName = Objects.requireNonNull($.providerName, "expected parameter 'providerName' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetNetworkContainersPlainArgs", "projectId");
+            }
+            if ($.providerName == null) {
+                throw new MissingRequiredPropertyException("GetNetworkContainersPlainArgs", "providerName");
+            }
             return $;
         }
     }

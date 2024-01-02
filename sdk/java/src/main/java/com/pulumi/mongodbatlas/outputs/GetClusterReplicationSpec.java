@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetClusterReplicationSpecRegionsConfig;
 import java.lang.Integer;
 import java.lang.String;
@@ -87,17 +88,26 @@ public final class GetClusterReplicationSpec {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClusterReplicationSpec", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder numShards(Integer numShards) {
-            this.numShards = Objects.requireNonNull(numShards);
+            if (numShards == null) {
+              throw new MissingRequiredPropertyException("GetClusterReplicationSpec", "numShards");
+            }
+            this.numShards = numShards;
             return this;
         }
         @CustomType.Setter
         public Builder regionsConfigs(List<GetClusterReplicationSpecRegionsConfig> regionsConfigs) {
-            this.regionsConfigs = Objects.requireNonNull(regionsConfigs);
+            if (regionsConfigs == null) {
+              throw new MissingRequiredPropertyException("GetClusterReplicationSpec", "regionsConfigs");
+            }
+            this.regionsConfigs = regionsConfigs;
             return this;
         }
         public Builder regionsConfigs(GetClusterReplicationSpecRegionsConfig... regionsConfigs) {
@@ -105,7 +115,10 @@ public final class GetClusterReplicationSpec {
         }
         @CustomType.Setter
         public Builder zoneName(String zoneName) {
-            this.zoneName = Objects.requireNonNull(zoneName);
+            if (zoneName == null) {
+              throw new MissingRequiredPropertyException("GetClusterReplicationSpec", "zoneName");
+            }
+            this.zoneName = zoneName;
             return this;
         }
         public GetClusterReplicationSpec build() {

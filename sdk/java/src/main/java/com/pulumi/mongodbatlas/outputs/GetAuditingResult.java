@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -105,32 +106,50 @@ public final class GetAuditingResult {
 
         @CustomType.Setter
         public Builder auditAuthorizationSuccess(Boolean auditAuthorizationSuccess) {
-            this.auditAuthorizationSuccess = Objects.requireNonNull(auditAuthorizationSuccess);
+            if (auditAuthorizationSuccess == null) {
+              throw new MissingRequiredPropertyException("GetAuditingResult", "auditAuthorizationSuccess");
+            }
+            this.auditAuthorizationSuccess = auditAuthorizationSuccess;
             return this;
         }
         @CustomType.Setter
         public Builder auditFilter(String auditFilter) {
-            this.auditFilter = Objects.requireNonNull(auditFilter);
+            if (auditFilter == null) {
+              throw new MissingRequiredPropertyException("GetAuditingResult", "auditFilter");
+            }
+            this.auditFilter = auditFilter;
             return this;
         }
         @CustomType.Setter
         public Builder configurationType(String configurationType) {
-            this.configurationType = Objects.requireNonNull(configurationType);
+            if (configurationType == null) {
+              throw new MissingRequiredPropertyException("GetAuditingResult", "configurationType");
+            }
+            this.configurationType = configurationType;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetAuditingResult", "enabled");
+            }
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAuditingResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetAuditingResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         public GetAuditingResult build() {

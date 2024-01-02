@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -95,8 +96,12 @@ public final class TeamsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public TeamsArgs build() {
-            $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
-            $.usernames = Objects.requireNonNull($.usernames, "expected parameter 'usernames' to be non-null");
+            if ($.orgId == null) {
+                throw new MissingRequiredPropertyException("TeamsArgs", "orgId");
+            }
+            if ($.usernames == null) {
+                throw new MissingRequiredPropertyException("TeamsArgs", "usernames");
+            }
             return $;
         }
     }

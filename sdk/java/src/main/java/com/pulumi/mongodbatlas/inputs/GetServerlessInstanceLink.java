@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -62,8 +63,12 @@ public final class GetServerlessInstanceLink extends com.pulumi.resources.Invoke
         }
 
         public GetServerlessInstanceLink build() {
-            $.href = Objects.requireNonNull($.href, "expected parameter 'href' to be non-null");
-            $.rel = Objects.requireNonNull($.rel, "expected parameter 'rel' to be non-null");
+            if ($.href == null) {
+                throw new MissingRequiredPropertyException("GetServerlessInstanceLink", "href");
+            }
+            if ($.rel == null) {
+                throw new MissingRequiredPropertyException("GetServerlessInstanceLink", "rel");
+            }
             return $;
         }
     }

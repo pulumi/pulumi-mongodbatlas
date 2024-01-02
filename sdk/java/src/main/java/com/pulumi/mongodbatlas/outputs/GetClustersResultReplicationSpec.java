@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultReplicationSpecRegionsConfig;
 import java.lang.Integer;
 import java.lang.String;
@@ -87,17 +88,26 @@ public final class GetClustersResultReplicationSpec {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultReplicationSpec", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder numShards(Integer numShards) {
-            this.numShards = Objects.requireNonNull(numShards);
+            if (numShards == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultReplicationSpec", "numShards");
+            }
+            this.numShards = numShards;
             return this;
         }
         @CustomType.Setter
         public Builder regionsConfigs(List<GetClustersResultReplicationSpecRegionsConfig> regionsConfigs) {
-            this.regionsConfigs = Objects.requireNonNull(regionsConfigs);
+            if (regionsConfigs == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultReplicationSpec", "regionsConfigs");
+            }
+            this.regionsConfigs = regionsConfigs;
             return this;
         }
         public Builder regionsConfigs(GetClustersResultReplicationSpecRegionsConfig... regionsConfigs) {
@@ -105,7 +115,10 @@ public final class GetClustersResultReplicationSpec {
         }
         @CustomType.Setter
         public Builder zoneName(String zoneName) {
-            this.zoneName = Objects.requireNonNull(zoneName);
+            if (zoneName == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultReplicationSpec", "zoneName");
+            }
+            this.zoneName = zoneName;
             return this;
         }
         public GetClustersResultReplicationSpec build() {

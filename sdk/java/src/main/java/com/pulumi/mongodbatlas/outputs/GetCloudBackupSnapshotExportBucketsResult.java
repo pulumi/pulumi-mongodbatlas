@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -84,22 +85,34 @@ public final class GetCloudBackupSnapshotExportBucketsResult {
 
         @CustomType.Setter
         public Builder bucketName(String bucketName) {
-            this.bucketName = Objects.requireNonNull(bucketName);
+            if (bucketName == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketsResult", "bucketName");
+            }
+            this.bucketName = bucketName;
             return this;
         }
         @CustomType.Setter
         public Builder cloudProvider(String cloudProvider) {
-            this.cloudProvider = Objects.requireNonNull(cloudProvider);
+            if (cloudProvider == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketsResult", "cloudProvider");
+            }
+            this.cloudProvider = cloudProvider;
             return this;
         }
         @CustomType.Setter
         public Builder exportBucketId(String exportBucketId) {
-            this.exportBucketId = Objects.requireNonNull(exportBucketId);
+            if (exportBucketId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketsResult", "exportBucketId");
+            }
+            this.exportBucketId = exportBucketId;
             return this;
         }
         @CustomType.Setter
         public Builder iamRoleId(String iamRoleId) {
-            this.iamRoleId = Objects.requireNonNull(iamRoleId);
+            if (iamRoleId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketsResult", "iamRoleId");
+            }
+            this.iamRoleId = iamRoleId;
             return this;
         }
         public GetCloudBackupSnapshotExportBucketsResult build() {

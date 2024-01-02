@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -99,27 +100,42 @@ public final class GetClustersResultReplicationSpecRegionsConfig {
 
         @CustomType.Setter
         public Builder analyticsNodes(Integer analyticsNodes) {
-            this.analyticsNodes = Objects.requireNonNull(analyticsNodes);
+            if (analyticsNodes == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultReplicationSpecRegionsConfig", "analyticsNodes");
+            }
+            this.analyticsNodes = analyticsNodes;
             return this;
         }
         @CustomType.Setter
         public Builder electableNodes(Integer electableNodes) {
-            this.electableNodes = Objects.requireNonNull(electableNodes);
+            if (electableNodes == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultReplicationSpecRegionsConfig", "electableNodes");
+            }
+            this.electableNodes = electableNodes;
             return this;
         }
         @CustomType.Setter
         public Builder priority(Integer priority) {
-            this.priority = Objects.requireNonNull(priority);
+            if (priority == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultReplicationSpecRegionsConfig", "priority");
+            }
+            this.priority = priority;
             return this;
         }
         @CustomType.Setter
         public Builder readOnlyNodes(Integer readOnlyNodes) {
-            this.readOnlyNodes = Objects.requireNonNull(readOnlyNodes);
+            if (readOnlyNodes == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultReplicationSpecRegionsConfig", "readOnlyNodes");
+            }
+            this.readOnlyNodes = readOnlyNodes;
             return this;
         }
         @CustomType.Setter
         public Builder regionName(String regionName) {
-            this.regionName = Objects.requireNonNull(regionName);
+            if (regionName == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultReplicationSpecRegionsConfig", "regionName");
+            }
+            this.regionName = regionName;
             return this;
         }
         public GetClustersResultReplicationSpecRegionsConfig build() {

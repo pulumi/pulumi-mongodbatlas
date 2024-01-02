@@ -42,11 +42,13 @@ public final class EventTriggerEventProcessorsAwsEventbridge {
 
         @CustomType.Setter
         public Builder configAccountId(@Nullable String configAccountId) {
+
             this.configAccountId = configAccountId;
             return this;
         }
         @CustomType.Setter
         public Builder configRegion(@Nullable String configRegion) {
+
             this.configRegion = configRegion;
             return this;
         }

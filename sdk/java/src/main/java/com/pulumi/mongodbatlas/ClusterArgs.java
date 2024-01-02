@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.ClusterAdvancedConfigurationArgs;
 import com.pulumi.mongodbatlas.inputs.ClusterBiConnectorConfigArgs;
 import com.pulumi.mongodbatlas.inputs.ClusterLabelArgs;
@@ -1468,9 +1469,15 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ClusterArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.providerInstanceSizeName = Objects.requireNonNull($.providerInstanceSizeName, "expected parameter 'providerInstanceSizeName' to be non-null");
-            $.providerName = Objects.requireNonNull($.providerName, "expected parameter 'providerName' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("ClusterArgs", "projectId");
+            }
+            if ($.providerInstanceSizeName == null) {
+                throw new MissingRequiredPropertyException("ClusterArgs", "providerInstanceSizeName");
+            }
+            if ($.providerName == null) {
+                throw new MissingRequiredPropertyException("ClusterArgs", "providerName");
+            }
             return $;
         }
     }

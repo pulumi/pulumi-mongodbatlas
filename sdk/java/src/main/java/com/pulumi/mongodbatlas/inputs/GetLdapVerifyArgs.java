@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -111,8 +112,12 @@ public final class GetLdapVerifyArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetLdapVerifyArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.requestId = Objects.requireNonNull($.requestId, "expected parameter 'requestId' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetLdapVerifyArgs", "projectId");
+            }
+            if ($.requestId == null) {
+                throw new MissingRequiredPropertyException("GetLdapVerifyArgs", "requestId");
+            }
             return $;
         }
     }

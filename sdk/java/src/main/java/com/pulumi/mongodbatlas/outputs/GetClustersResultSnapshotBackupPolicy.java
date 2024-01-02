@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultSnapshotBackupPolicyPolicy;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -80,22 +81,34 @@ public final class GetClustersResultSnapshotBackupPolicy {
 
         @CustomType.Setter
         public Builder clusterId(String clusterId) {
-            this.clusterId = Objects.requireNonNull(clusterId);
+            if (clusterId == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultSnapshotBackupPolicy", "clusterId");
+            }
+            this.clusterId = clusterId;
             return this;
         }
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultSnapshotBackupPolicy", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder nextSnapshot(String nextSnapshot) {
-            this.nextSnapshot = Objects.requireNonNull(nextSnapshot);
+            if (nextSnapshot == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultSnapshotBackupPolicy", "nextSnapshot");
+            }
+            this.nextSnapshot = nextSnapshot;
             return this;
         }
         @CustomType.Setter
         public Builder policies(List<GetClustersResultSnapshotBackupPolicyPolicy> policies) {
-            this.policies = Objects.requireNonNull(policies);
+            if (policies == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultSnapshotBackupPolicy", "policies");
+            }
+            this.policies = policies;
             return this;
         }
         public Builder policies(GetClustersResultSnapshotBackupPolicyPolicy... policies) {
@@ -103,22 +116,34 @@ public final class GetClustersResultSnapshotBackupPolicy {
         }
         @CustomType.Setter
         public Builder referenceHourOfDay(Integer referenceHourOfDay) {
-            this.referenceHourOfDay = Objects.requireNonNull(referenceHourOfDay);
+            if (referenceHourOfDay == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultSnapshotBackupPolicy", "referenceHourOfDay");
+            }
+            this.referenceHourOfDay = referenceHourOfDay;
             return this;
         }
         @CustomType.Setter
         public Builder referenceMinuteOfHour(Integer referenceMinuteOfHour) {
-            this.referenceMinuteOfHour = Objects.requireNonNull(referenceMinuteOfHour);
+            if (referenceMinuteOfHour == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultSnapshotBackupPolicy", "referenceMinuteOfHour");
+            }
+            this.referenceMinuteOfHour = referenceMinuteOfHour;
             return this;
         }
         @CustomType.Setter
         public Builder restoreWindowDays(Integer restoreWindowDays) {
-            this.restoreWindowDays = Objects.requireNonNull(restoreWindowDays);
+            if (restoreWindowDays == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultSnapshotBackupPolicy", "restoreWindowDays");
+            }
+            this.restoreWindowDays = restoreWindowDays;
             return this;
         }
         @CustomType.Setter
         public Builder updateSnapshots(Boolean updateSnapshots) {
-            this.updateSnapshots = Objects.requireNonNull(updateSnapshots);
+            if (updateSnapshots == null) {
+              throw new MissingRequiredPropertyException("GetClustersResultSnapshotBackupPolicy", "updateSnapshots");
+            }
+            this.updateSnapshots = updateSnapshots;
             return this;
         }
         public GetClustersResultSnapshotBackupPolicy build() {

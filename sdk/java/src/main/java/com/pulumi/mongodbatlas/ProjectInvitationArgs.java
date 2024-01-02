@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -159,9 +160,15 @@ public final class ProjectInvitationArgs extends com.pulumi.resources.ResourceAr
         }
 
         public ProjectInvitationArgs build() {
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.roles = Objects.requireNonNull($.roles, "expected parameter 'roles' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("ProjectInvitationArgs", "projectId");
+            }
+            if ($.roles == null) {
+                throw new MissingRequiredPropertyException("ProjectInvitationArgs", "roles");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("ProjectInvitationArgs", "username");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterAdvancedConfigurationArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterBiConnectorConfigArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterLabelArgs;
@@ -796,9 +797,15 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public AdvancedClusterArgs build() {
-            $.clusterType = Objects.requireNonNull($.clusterType, "expected parameter 'clusterType' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.replicationSpecs = Objects.requireNonNull($.replicationSpecs, "expected parameter 'replicationSpecs' to be non-null");
+            if ($.clusterType == null) {
+                throw new MissingRequiredPropertyException("AdvancedClusterArgs", "clusterType");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("AdvancedClusterArgs", "projectId");
+            }
+            if ($.replicationSpecs == null) {
+                throw new MissingRequiredPropertyException("AdvancedClusterArgs", "replicationSpecs");
+            }
             return $;
         }
     }

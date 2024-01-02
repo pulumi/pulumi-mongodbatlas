@@ -51,16 +51,19 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreference {
 
         @CustomType.Setter
         public Builder maxStalenessSeconds(@Nullable Integer maxStalenessSeconds) {
+
             this.maxStalenessSeconds = maxStalenessSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder mode(@Nullable String mode) {
+
             this.mode = mode;
             return this;
         }
         @CustomType.Setter
         public Builder tagSets(@Nullable List<FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet> tagSets) {
+
             this.tagSets = tagSets;
             return this;
         }

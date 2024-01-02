@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -172,11 +173,21 @@ public final class GetBackupCompliancePolicyPolicyItemHourly extends com.pulumi.
         }
 
         public GetBackupCompliancePolicyPolicyItemHourly build() {
-            $.frequencyInterval = Objects.requireNonNull($.frequencyInterval, "expected parameter 'frequencyInterval' to be non-null");
-            $.frequencyType = Objects.requireNonNull($.frequencyType, "expected parameter 'frequencyType' to be non-null");
-            $.id = Objects.requireNonNull($.id, "expected parameter 'id' to be non-null");
-            $.retentionUnit = Objects.requireNonNull($.retentionUnit, "expected parameter 'retentionUnit' to be non-null");
-            $.retentionValue = Objects.requireNonNull($.retentionValue, "expected parameter 'retentionValue' to be non-null");
+            if ($.frequencyInterval == null) {
+                throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPolicyItemHourly", "frequencyInterval");
+            }
+            if ($.frequencyType == null) {
+                throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPolicyItemHourly", "frequencyType");
+            }
+            if ($.id == null) {
+                throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPolicyItemHourly", "id");
+            }
+            if ($.retentionUnit == null) {
+                throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPolicyItemHourly", "retentionUnit");
+            }
+            if ($.retentionValue == null) {
+                throw new MissingRequiredPropertyException("GetBackupCompliancePolicyPolicyItemHourly", "retentionValue");
+            }
             return $;
         }
     }

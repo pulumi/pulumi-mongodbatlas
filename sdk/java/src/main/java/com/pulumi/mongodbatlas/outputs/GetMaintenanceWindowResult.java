@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -122,37 +123,58 @@ public final class GetMaintenanceWindowResult {
 
         @CustomType.Setter
         public Builder autoDeferOnceEnabled(Boolean autoDeferOnceEnabled) {
-            this.autoDeferOnceEnabled = Objects.requireNonNull(autoDeferOnceEnabled);
+            if (autoDeferOnceEnabled == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "autoDeferOnceEnabled");
+            }
+            this.autoDeferOnceEnabled = autoDeferOnceEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder dayOfWeek(Integer dayOfWeek) {
-            this.dayOfWeek = Objects.requireNonNull(dayOfWeek);
+            if (dayOfWeek == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "dayOfWeek");
+            }
+            this.dayOfWeek = dayOfWeek;
             return this;
         }
         @CustomType.Setter
         public Builder hourOfDay(Integer hourOfDay) {
-            this.hourOfDay = Objects.requireNonNull(hourOfDay);
+            if (hourOfDay == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "hourOfDay");
+            }
+            this.hourOfDay = hourOfDay;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder numberOfDeferrals(Integer numberOfDeferrals) {
-            this.numberOfDeferrals = Objects.requireNonNull(numberOfDeferrals);
+            if (numberOfDeferrals == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "numberOfDeferrals");
+            }
+            this.numberOfDeferrals = numberOfDeferrals;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder startAsap(Boolean startAsap) {
-            this.startAsap = Objects.requireNonNull(startAsap);
+            if (startAsap == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "startAsap");
+            }
+            this.startAsap = startAsap;
             return this;
         }
         public GetMaintenanceWindowResult build() {

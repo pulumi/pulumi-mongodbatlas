@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetOrganizationLink;
 import java.lang.Boolean;
 import java.lang.String;
@@ -85,17 +86,26 @@ public final class GetOrganizationResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder isDeleted(Boolean isDeleted) {
-            this.isDeleted = Objects.requireNonNull(isDeleted);
+            if (isDeleted == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationResult", "isDeleted");
+            }
+            this.isDeleted = isDeleted;
             return this;
         }
         @CustomType.Setter
         public Builder links(List<GetOrganizationLink> links) {
-            this.links = Objects.requireNonNull(links);
+            if (links == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationResult", "links");
+            }
+            this.links = links;
             return this;
         }
         public Builder links(GetOrganizationLink... links) {
@@ -103,12 +113,18 @@ public final class GetOrganizationResult {
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(String orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+            if (orgId == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationResult", "orgId");
+            }
+            this.orgId = orgId;
             return this;
         }
         public GetOrganizationResult build() {

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -40,12 +41,18 @@ public final class GetEventTriggersResultEventProcessorAwsEventbridge {
 
         @CustomType.Setter
         public Builder configAccountId(String configAccountId) {
-            this.configAccountId = Objects.requireNonNull(configAccountId);
+            if (configAccountId == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResultEventProcessorAwsEventbridge", "configAccountId");
+            }
+            this.configAccountId = configAccountId;
             return this;
         }
         @CustomType.Setter
         public Builder configRegion(String configRegion) {
-            this.configRegion = Objects.requireNonNull(configRegion);
+            if (configRegion == null) {
+              throw new MissingRequiredPropertyException("GetEventTriggersResultEventProcessorAwsEventbridge", "configRegion");
+            }
+            this.configRegion = configRegion;
             return this;
         }
         public GetEventTriggersResultEventProcessorAwsEventbridge build() {

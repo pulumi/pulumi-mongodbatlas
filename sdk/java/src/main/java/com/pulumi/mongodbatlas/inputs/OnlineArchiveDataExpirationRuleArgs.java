@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.util.Objects;
 
@@ -74,7 +75,9 @@ public final class OnlineArchiveDataExpirationRuleArgs extends com.pulumi.resour
         }
 
         public OnlineArchiveDataExpirationRuleArgs build() {
-            $.expireAfterDays = Objects.requireNonNull($.expireAfterDays, "expected parameter 'expireAfterDays' to be non-null");
+            if ($.expireAfterDays == null) {
+                throw new MissingRequiredPropertyException("OnlineArchiveDataExpirationRuleArgs", "expireAfterDays");
+            }
             return $;
         }
     }

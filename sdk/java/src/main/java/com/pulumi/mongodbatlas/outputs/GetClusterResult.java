@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetClusterAdvancedConfiguration;
 import com.pulumi.mongodbatlas.outputs.GetClusterBiConnectorConfig;
 import com.pulumi.mongodbatlas.outputs.GetClusterConnectionString;
@@ -639,7 +640,10 @@ public final class GetClusterResult {
 
         @CustomType.Setter
         public Builder advancedConfigurations(List<GetClusterAdvancedConfiguration> advancedConfigurations) {
-            this.advancedConfigurations = Objects.requireNonNull(advancedConfigurations);
+            if (advancedConfigurations == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "advancedConfigurations");
+            }
+            this.advancedConfigurations = advancedConfigurations;
             return this;
         }
         public Builder advancedConfigurations(GetClusterAdvancedConfiguration... advancedConfigurations) {
@@ -647,32 +651,50 @@ public final class GetClusterResult {
         }
         @CustomType.Setter
         public Builder autoScalingComputeEnabled(Boolean autoScalingComputeEnabled) {
-            this.autoScalingComputeEnabled = Objects.requireNonNull(autoScalingComputeEnabled);
+            if (autoScalingComputeEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "autoScalingComputeEnabled");
+            }
+            this.autoScalingComputeEnabled = autoScalingComputeEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder autoScalingComputeScaleDownEnabled(Boolean autoScalingComputeScaleDownEnabled) {
-            this.autoScalingComputeScaleDownEnabled = Objects.requireNonNull(autoScalingComputeScaleDownEnabled);
+            if (autoScalingComputeScaleDownEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "autoScalingComputeScaleDownEnabled");
+            }
+            this.autoScalingComputeScaleDownEnabled = autoScalingComputeScaleDownEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder autoScalingDiskGbEnabled(Boolean autoScalingDiskGbEnabled) {
-            this.autoScalingDiskGbEnabled = Objects.requireNonNull(autoScalingDiskGbEnabled);
+            if (autoScalingDiskGbEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "autoScalingDiskGbEnabled");
+            }
+            this.autoScalingDiskGbEnabled = autoScalingDiskGbEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder backingProviderName(String backingProviderName) {
-            this.backingProviderName = Objects.requireNonNull(backingProviderName);
+            if (backingProviderName == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "backingProviderName");
+            }
+            this.backingProviderName = backingProviderName;
             return this;
         }
         @CustomType.Setter
         public Builder backupEnabled(Boolean backupEnabled) {
-            this.backupEnabled = Objects.requireNonNull(backupEnabled);
+            if (backupEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "backupEnabled");
+            }
+            this.backupEnabled = backupEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder biConnectorConfigs(List<GetClusterBiConnectorConfig> biConnectorConfigs) {
-            this.biConnectorConfigs = Objects.requireNonNull(biConnectorConfigs);
+            if (biConnectorConfigs == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "biConnectorConfigs");
+            }
+            this.biConnectorConfigs = biConnectorConfigs;
             return this;
         }
         public Builder biConnectorConfigs(GetClusterBiConnectorConfig... biConnectorConfigs) {
@@ -680,12 +702,18 @@ public final class GetClusterResult {
         }
         @CustomType.Setter
         public Builder clusterType(String clusterType) {
-            this.clusterType = Objects.requireNonNull(clusterType);
+            if (clusterType == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "clusterType");
+            }
+            this.clusterType = clusterType;
             return this;
         }
         @CustomType.Setter
         public Builder connectionStrings(List<GetClusterConnectionString> connectionStrings) {
-            this.connectionStrings = Objects.requireNonNull(connectionStrings);
+            if (connectionStrings == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "connectionStrings");
+            }
+            this.connectionStrings = connectionStrings;
             return this;
         }
         public Builder connectionStrings(GetClusterConnectionString... connectionStrings) {
@@ -693,27 +721,42 @@ public final class GetClusterResult {
         }
         @CustomType.Setter
         public Builder containerId(String containerId) {
-            this.containerId = Objects.requireNonNull(containerId);
+            if (containerId == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "containerId");
+            }
+            this.containerId = containerId;
             return this;
         }
         @CustomType.Setter
         public Builder diskSizeGb(Double diskSizeGb) {
-            this.diskSizeGb = Objects.requireNonNull(diskSizeGb);
+            if (diskSizeGb == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "diskSizeGb");
+            }
+            this.diskSizeGb = diskSizeGb;
             return this;
         }
         @CustomType.Setter
         public Builder encryptionAtRestProvider(String encryptionAtRestProvider) {
-            this.encryptionAtRestProvider = Objects.requireNonNull(encryptionAtRestProvider);
+            if (encryptionAtRestProvider == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "encryptionAtRestProvider");
+            }
+            this.encryptionAtRestProvider = encryptionAtRestProvider;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder labels(List<GetClusterLabel> labels) {
-            this.labels = Objects.requireNonNull(labels);
+            if (labels == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "labels");
+            }
+            this.labels = labels;
             return this;
         }
         public Builder labels(GetClusterLabel... labels) {
@@ -721,117 +764,186 @@ public final class GetClusterResult {
         }
         @CustomType.Setter
         public Builder mongoDbMajorVersion(String mongoDbMajorVersion) {
-            this.mongoDbMajorVersion = Objects.requireNonNull(mongoDbMajorVersion);
+            if (mongoDbMajorVersion == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "mongoDbMajorVersion");
+            }
+            this.mongoDbMajorVersion = mongoDbMajorVersion;
             return this;
         }
         @CustomType.Setter
         public Builder mongoDbVersion(String mongoDbVersion) {
-            this.mongoDbVersion = Objects.requireNonNull(mongoDbVersion);
+            if (mongoDbVersion == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "mongoDbVersion");
+            }
+            this.mongoDbVersion = mongoDbVersion;
             return this;
         }
         @CustomType.Setter
         public Builder mongoUri(String mongoUri) {
-            this.mongoUri = Objects.requireNonNull(mongoUri);
+            if (mongoUri == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "mongoUri");
+            }
+            this.mongoUri = mongoUri;
             return this;
         }
         @CustomType.Setter
         public Builder mongoUriUpdated(String mongoUriUpdated) {
-            this.mongoUriUpdated = Objects.requireNonNull(mongoUriUpdated);
+            if (mongoUriUpdated == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "mongoUriUpdated");
+            }
+            this.mongoUriUpdated = mongoUriUpdated;
             return this;
         }
         @CustomType.Setter
         public Builder mongoUriWithOptions(String mongoUriWithOptions) {
-            this.mongoUriWithOptions = Objects.requireNonNull(mongoUriWithOptions);
+            if (mongoUriWithOptions == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "mongoUriWithOptions");
+            }
+            this.mongoUriWithOptions = mongoUriWithOptions;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder numShards(Integer numShards) {
-            this.numShards = Objects.requireNonNull(numShards);
+            if (numShards == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "numShards");
+            }
+            this.numShards = numShards;
             return this;
         }
         @CustomType.Setter
         public Builder paused(Boolean paused) {
-            this.paused = Objects.requireNonNull(paused);
+            if (paused == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "paused");
+            }
+            this.paused = paused;
             return this;
         }
         @CustomType.Setter
         public Builder pitEnabled(Boolean pitEnabled) {
-            this.pitEnabled = Objects.requireNonNull(pitEnabled);
+            if (pitEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "pitEnabled");
+            }
+            this.pitEnabled = pitEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder providerAutoScalingComputeMaxInstanceSize(String providerAutoScalingComputeMaxInstanceSize) {
-            this.providerAutoScalingComputeMaxInstanceSize = Objects.requireNonNull(providerAutoScalingComputeMaxInstanceSize);
+            if (providerAutoScalingComputeMaxInstanceSize == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerAutoScalingComputeMaxInstanceSize");
+            }
+            this.providerAutoScalingComputeMaxInstanceSize = providerAutoScalingComputeMaxInstanceSize;
             return this;
         }
         @CustomType.Setter
         public Builder providerAutoScalingComputeMinInstanceSize(String providerAutoScalingComputeMinInstanceSize) {
-            this.providerAutoScalingComputeMinInstanceSize = Objects.requireNonNull(providerAutoScalingComputeMinInstanceSize);
+            if (providerAutoScalingComputeMinInstanceSize == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerAutoScalingComputeMinInstanceSize");
+            }
+            this.providerAutoScalingComputeMinInstanceSize = providerAutoScalingComputeMinInstanceSize;
             return this;
         }
         @CustomType.Setter
         public Builder providerBackupEnabled(Boolean providerBackupEnabled) {
-            this.providerBackupEnabled = Objects.requireNonNull(providerBackupEnabled);
+            if (providerBackupEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerBackupEnabled");
+            }
+            this.providerBackupEnabled = providerBackupEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder providerDiskIops(Integer providerDiskIops) {
-            this.providerDiskIops = Objects.requireNonNull(providerDiskIops);
+            if (providerDiskIops == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerDiskIops");
+            }
+            this.providerDiskIops = providerDiskIops;
             return this;
         }
         @CustomType.Setter
         public Builder providerDiskTypeName(String providerDiskTypeName) {
-            this.providerDiskTypeName = Objects.requireNonNull(providerDiskTypeName);
+            if (providerDiskTypeName == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerDiskTypeName");
+            }
+            this.providerDiskTypeName = providerDiskTypeName;
             return this;
         }
         @CustomType.Setter
         public Builder providerEncryptEbsVolume(Boolean providerEncryptEbsVolume) {
-            this.providerEncryptEbsVolume = Objects.requireNonNull(providerEncryptEbsVolume);
+            if (providerEncryptEbsVolume == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerEncryptEbsVolume");
+            }
+            this.providerEncryptEbsVolume = providerEncryptEbsVolume;
             return this;
         }
         @CustomType.Setter
         public Builder providerEncryptEbsVolumeFlag(Boolean providerEncryptEbsVolumeFlag) {
-            this.providerEncryptEbsVolumeFlag = Objects.requireNonNull(providerEncryptEbsVolumeFlag);
+            if (providerEncryptEbsVolumeFlag == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerEncryptEbsVolumeFlag");
+            }
+            this.providerEncryptEbsVolumeFlag = providerEncryptEbsVolumeFlag;
             return this;
         }
         @CustomType.Setter
         public Builder providerInstanceSizeName(String providerInstanceSizeName) {
-            this.providerInstanceSizeName = Objects.requireNonNull(providerInstanceSizeName);
+            if (providerInstanceSizeName == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerInstanceSizeName");
+            }
+            this.providerInstanceSizeName = providerInstanceSizeName;
             return this;
         }
         @CustomType.Setter
         public Builder providerName(String providerName) {
-            this.providerName = Objects.requireNonNull(providerName);
+            if (providerName == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerName");
+            }
+            this.providerName = providerName;
             return this;
         }
         @CustomType.Setter
         public Builder providerRegionName(String providerRegionName) {
-            this.providerRegionName = Objects.requireNonNull(providerRegionName);
+            if (providerRegionName == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerRegionName");
+            }
+            this.providerRegionName = providerRegionName;
             return this;
         }
         @CustomType.Setter
         public Builder providerVolumeType(String providerVolumeType) {
-            this.providerVolumeType = Objects.requireNonNull(providerVolumeType);
+            if (providerVolumeType == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "providerVolumeType");
+            }
+            this.providerVolumeType = providerVolumeType;
             return this;
         }
         @CustomType.Setter
         public Builder replicationFactor(Integer replicationFactor) {
-            this.replicationFactor = Objects.requireNonNull(replicationFactor);
+            if (replicationFactor == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "replicationFactor");
+            }
+            this.replicationFactor = replicationFactor;
             return this;
         }
         @CustomType.Setter
         public Builder replicationSpecs(List<GetClusterReplicationSpec> replicationSpecs) {
-            this.replicationSpecs = Objects.requireNonNull(replicationSpecs);
+            if (replicationSpecs == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "replicationSpecs");
+            }
+            this.replicationSpecs = replicationSpecs;
             return this;
         }
         public Builder replicationSpecs(GetClusterReplicationSpec... replicationSpecs) {
@@ -839,7 +951,10 @@ public final class GetClusterResult {
         }
         @CustomType.Setter
         public Builder snapshotBackupPolicies(List<GetClusterSnapshotBackupPolicy> snapshotBackupPolicies) {
-            this.snapshotBackupPolicies = Objects.requireNonNull(snapshotBackupPolicies);
+            if (snapshotBackupPolicies == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "snapshotBackupPolicies");
+            }
+            this.snapshotBackupPolicies = snapshotBackupPolicies;
             return this;
         }
         public Builder snapshotBackupPolicies(GetClusterSnapshotBackupPolicy... snapshotBackupPolicies) {
@@ -847,17 +962,26 @@ public final class GetClusterResult {
         }
         @CustomType.Setter
         public Builder srvAddress(String srvAddress) {
-            this.srvAddress = Objects.requireNonNull(srvAddress);
+            if (srvAddress == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "srvAddress");
+            }
+            this.srvAddress = srvAddress;
             return this;
         }
         @CustomType.Setter
         public Builder stateName(String stateName) {
-            this.stateName = Objects.requireNonNull(stateName);
+            if (stateName == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "stateName");
+            }
+            this.stateName = stateName;
             return this;
         }
         @CustomType.Setter
         public Builder tags(List<GetClusterTag> tags) {
-            this.tags = Objects.requireNonNull(tags);
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "tags");
+            }
+            this.tags = tags;
             return this;
         }
         public Builder tags(GetClusterTag... tags) {
@@ -865,12 +989,18 @@ public final class GetClusterResult {
         }
         @CustomType.Setter
         public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
-            this.terminationProtectionEnabled = Objects.requireNonNull(terminationProtectionEnabled);
+            if (terminationProtectionEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "terminationProtectionEnabled");
+            }
+            this.terminationProtectionEnabled = terminationProtectionEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder versionReleaseSystem(String versionReleaseSystem) {
-            this.versionReleaseSystem = Objects.requireNonNull(versionReleaseSystem);
+            if (versionReleaseSystem == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "versionReleaseSystem");
+            }
+            this.versionReleaseSystem = versionReleaseSystem;
             return this;
         }
         public GetClusterResult build() {

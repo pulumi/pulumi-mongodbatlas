@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -91,47 +92,74 @@ public final class GetAccessListApiKeyResult {
 
         @CustomType.Setter
         public Builder accessCount(Integer accessCount) {
-            this.accessCount = Objects.requireNonNull(accessCount);
+            if (accessCount == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeyResult", "accessCount");
+            }
+            this.accessCount = accessCount;
             return this;
         }
         @CustomType.Setter
         public Builder apiKeyId(String apiKeyId) {
-            this.apiKeyId = Objects.requireNonNull(apiKeyId);
+            if (apiKeyId == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeyResult", "apiKeyId");
+            }
+            this.apiKeyId = apiKeyId;
             return this;
         }
         @CustomType.Setter
         public Builder cidrBlock(String cidrBlock) {
-            this.cidrBlock = Objects.requireNonNull(cidrBlock);
+            if (cidrBlock == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeyResult", "cidrBlock");
+            }
+            this.cidrBlock = cidrBlock;
             return this;
         }
         @CustomType.Setter
         public Builder created(String created) {
-            this.created = Objects.requireNonNull(created);
+            if (created == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeyResult", "created");
+            }
+            this.created = created;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeyResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder ipAddress(String ipAddress) {
-            this.ipAddress = Objects.requireNonNull(ipAddress);
+            if (ipAddress == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeyResult", "ipAddress");
+            }
+            this.ipAddress = ipAddress;
             return this;
         }
         @CustomType.Setter
         public Builder lastUsed(String lastUsed) {
-            this.lastUsed = Objects.requireNonNull(lastUsed);
+            if (lastUsed == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeyResult", "lastUsed");
+            }
+            this.lastUsed = lastUsed;
             return this;
         }
         @CustomType.Setter
         public Builder lastUsedAddress(String lastUsedAddress) {
-            this.lastUsedAddress = Objects.requireNonNull(lastUsedAddress);
+            if (lastUsedAddress == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeyResult", "lastUsedAddress");
+            }
+            this.lastUsedAddress = lastUsedAddress;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(String orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+            if (orgId == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeyResult", "orgId");
+            }
+            this.orgId = orgId;
             return this;
         }
         public GetAccessListApiKeyResult build() {

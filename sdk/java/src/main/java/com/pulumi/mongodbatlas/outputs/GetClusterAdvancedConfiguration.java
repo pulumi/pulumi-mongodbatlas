@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -184,57 +185,90 @@ public final class GetClusterAdvancedConfiguration {
 
         @CustomType.Setter
         public Builder defaultReadConcern(String defaultReadConcern) {
-            this.defaultReadConcern = Objects.requireNonNull(defaultReadConcern);
+            if (defaultReadConcern == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "defaultReadConcern");
+            }
+            this.defaultReadConcern = defaultReadConcern;
             return this;
         }
         @CustomType.Setter
         public Builder defaultWriteConcern(String defaultWriteConcern) {
-            this.defaultWriteConcern = Objects.requireNonNull(defaultWriteConcern);
+            if (defaultWriteConcern == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "defaultWriteConcern");
+            }
+            this.defaultWriteConcern = defaultWriteConcern;
             return this;
         }
         @CustomType.Setter
         public Builder failIndexKeyTooLong(Boolean failIndexKeyTooLong) {
-            this.failIndexKeyTooLong = Objects.requireNonNull(failIndexKeyTooLong);
+            if (failIndexKeyTooLong == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "failIndexKeyTooLong");
+            }
+            this.failIndexKeyTooLong = failIndexKeyTooLong;
             return this;
         }
         @CustomType.Setter
         public Builder javascriptEnabled(Boolean javascriptEnabled) {
-            this.javascriptEnabled = Objects.requireNonNull(javascriptEnabled);
+            if (javascriptEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "javascriptEnabled");
+            }
+            this.javascriptEnabled = javascriptEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder minimumEnabledTlsProtocol(String minimumEnabledTlsProtocol) {
-            this.minimumEnabledTlsProtocol = Objects.requireNonNull(minimumEnabledTlsProtocol);
+            if (minimumEnabledTlsProtocol == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "minimumEnabledTlsProtocol");
+            }
+            this.minimumEnabledTlsProtocol = minimumEnabledTlsProtocol;
             return this;
         }
         @CustomType.Setter
         public Builder noTableScan(Boolean noTableScan) {
-            this.noTableScan = Objects.requireNonNull(noTableScan);
+            if (noTableScan == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "noTableScan");
+            }
+            this.noTableScan = noTableScan;
             return this;
         }
         @CustomType.Setter
         public Builder oplogMinRetentionHours(Integer oplogMinRetentionHours) {
-            this.oplogMinRetentionHours = Objects.requireNonNull(oplogMinRetentionHours);
+            if (oplogMinRetentionHours == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "oplogMinRetentionHours");
+            }
+            this.oplogMinRetentionHours = oplogMinRetentionHours;
             return this;
         }
         @CustomType.Setter
         public Builder oplogSizeMb(Integer oplogSizeMb) {
-            this.oplogSizeMb = Objects.requireNonNull(oplogSizeMb);
+            if (oplogSizeMb == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "oplogSizeMb");
+            }
+            this.oplogSizeMb = oplogSizeMb;
             return this;
         }
         @CustomType.Setter
         public Builder sampleRefreshIntervalBiConnector(Integer sampleRefreshIntervalBiConnector) {
-            this.sampleRefreshIntervalBiConnector = Objects.requireNonNull(sampleRefreshIntervalBiConnector);
+            if (sampleRefreshIntervalBiConnector == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "sampleRefreshIntervalBiConnector");
+            }
+            this.sampleRefreshIntervalBiConnector = sampleRefreshIntervalBiConnector;
             return this;
         }
         @CustomType.Setter
         public Builder sampleSizeBiConnector(Integer sampleSizeBiConnector) {
-            this.sampleSizeBiConnector = Objects.requireNonNull(sampleSizeBiConnector);
+            if (sampleSizeBiConnector == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "sampleSizeBiConnector");
+            }
+            this.sampleSizeBiConnector = sampleSizeBiConnector;
             return this;
         }
         @CustomType.Setter
         public Builder transactionLifetimeLimitSeconds(Integer transactionLifetimeLimitSeconds) {
-            this.transactionLifetimeLimitSeconds = Objects.requireNonNull(transactionLifetimeLimitSeconds);
+            if (transactionLifetimeLimitSeconds == null) {
+              throw new MissingRequiredPropertyException("GetClusterAdvancedConfiguration", "transactionLifetimeLimitSeconds");
+            }
+            this.transactionLifetimeLimitSeconds = transactionLifetimeLimitSeconds;
             return this;
         }
         public GetClusterAdvancedConfiguration build() {

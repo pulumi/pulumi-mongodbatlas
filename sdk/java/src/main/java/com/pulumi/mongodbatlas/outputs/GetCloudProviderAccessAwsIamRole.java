@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessAwsIamRoleFeatureUsage;
 import java.lang.String;
 import java.util.List;
@@ -142,27 +143,42 @@ public final class GetCloudProviderAccessAwsIamRole {
 
         @CustomType.Setter
         public Builder atlasAssumedRoleExternalId(String atlasAssumedRoleExternalId) {
-            this.atlasAssumedRoleExternalId = Objects.requireNonNull(atlasAssumedRoleExternalId);
+            if (atlasAssumedRoleExternalId == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessAwsIamRole", "atlasAssumedRoleExternalId");
+            }
+            this.atlasAssumedRoleExternalId = atlasAssumedRoleExternalId;
             return this;
         }
         @CustomType.Setter
         public Builder atlasAwsAccountArn(String atlasAwsAccountArn) {
-            this.atlasAwsAccountArn = Objects.requireNonNull(atlasAwsAccountArn);
+            if (atlasAwsAccountArn == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessAwsIamRole", "atlasAwsAccountArn");
+            }
+            this.atlasAwsAccountArn = atlasAwsAccountArn;
             return this;
         }
         @CustomType.Setter
         public Builder authorizedDate(String authorizedDate) {
-            this.authorizedDate = Objects.requireNonNull(authorizedDate);
+            if (authorizedDate == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessAwsIamRole", "authorizedDate");
+            }
+            this.authorizedDate = authorizedDate;
             return this;
         }
         @CustomType.Setter
         public Builder createdDate(String createdDate) {
-            this.createdDate = Objects.requireNonNull(createdDate);
+            if (createdDate == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessAwsIamRole", "createdDate");
+            }
+            this.createdDate = createdDate;
             return this;
         }
         @CustomType.Setter
         public Builder featureUsages(List<GetCloudProviderAccessAwsIamRoleFeatureUsage> featureUsages) {
-            this.featureUsages = Objects.requireNonNull(featureUsages);
+            if (featureUsages == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessAwsIamRole", "featureUsages");
+            }
+            this.featureUsages = featureUsages;
             return this;
         }
         public Builder featureUsages(GetCloudProviderAccessAwsIamRoleFeatureUsage... featureUsages) {
@@ -170,17 +186,26 @@ public final class GetCloudProviderAccessAwsIamRole {
         }
         @CustomType.Setter
         public Builder iamAssumedRoleArn(String iamAssumedRoleArn) {
-            this.iamAssumedRoleArn = Objects.requireNonNull(iamAssumedRoleArn);
+            if (iamAssumedRoleArn == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessAwsIamRole", "iamAssumedRoleArn");
+            }
+            this.iamAssumedRoleArn = iamAssumedRoleArn;
             return this;
         }
         @CustomType.Setter
         public Builder providerName(String providerName) {
-            this.providerName = Objects.requireNonNull(providerName);
+            if (providerName == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessAwsIamRole", "providerName");
+            }
+            this.providerName = providerName;
             return this;
         }
         @CustomType.Setter
         public Builder roleId(String roleId) {
-            this.roleId = Objects.requireNonNull(roleId);
+            if (roleId == null) {
+              throw new MissingRequiredPropertyException("GetCloudProviderAccessAwsIamRole", "roleId");
+            }
+            this.roleId = roleId;
             return this;
         }
         public GetCloudProviderAccessAwsIamRole build() {

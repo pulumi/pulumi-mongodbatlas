@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -101,27 +102,38 @@ public final class BackupCompliancePolicyPolicyItemDaily {
 
         @CustomType.Setter
         public Builder frequencyInterval(Integer frequencyInterval) {
-            this.frequencyInterval = Objects.requireNonNull(frequencyInterval);
+            if (frequencyInterval == null) {
+              throw new MissingRequiredPropertyException("BackupCompliancePolicyPolicyItemDaily", "frequencyInterval");
+            }
+            this.frequencyInterval = frequencyInterval;
             return this;
         }
         @CustomType.Setter
         public Builder frequencyType(@Nullable String frequencyType) {
+
             this.frequencyType = frequencyType;
             return this;
         }
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder retentionUnit(String retentionUnit) {
-            this.retentionUnit = Objects.requireNonNull(retentionUnit);
+            if (retentionUnit == null) {
+              throw new MissingRequiredPropertyException("BackupCompliancePolicyPolicyItemDaily", "retentionUnit");
+            }
+            this.retentionUnit = retentionUnit;
             return this;
         }
         @CustomType.Setter
         public Builder retentionValue(Integer retentionValue) {
-            this.retentionValue = Objects.requireNonNull(retentionValue);
+            if (retentionValue == null) {
+              throw new MissingRequiredPropertyException("BackupCompliancePolicyPolicyItemDaily", "retentionValue");
+            }
+            this.retentionValue = retentionValue;
             return this;
         }
         public BackupCompliancePolicyPolicyItemDaily build() {

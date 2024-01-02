@@ -42,11 +42,13 @@ public final class ServerlessInstanceLink {
 
         @CustomType.Setter
         public Builder href(@Nullable String href) {
+
             this.href = href;
             return this;
         }
         @CustomType.Setter
         public Builder rel(@Nullable String rel) {
+
             this.rel = rel;
             return this;
         }

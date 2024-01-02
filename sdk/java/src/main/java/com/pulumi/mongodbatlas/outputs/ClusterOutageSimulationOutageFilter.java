@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -72,16 +73,23 @@ public final class ClusterOutageSimulationOutageFilter {
 
         @CustomType.Setter
         public Builder cloudProvider(String cloudProvider) {
-            this.cloudProvider = Objects.requireNonNull(cloudProvider);
+            if (cloudProvider == null) {
+              throw new MissingRequiredPropertyException("ClusterOutageSimulationOutageFilter", "cloudProvider");
+            }
+            this.cloudProvider = cloudProvider;
             return this;
         }
         @CustomType.Setter
         public Builder regionName(String regionName) {
-            this.regionName = Objects.requireNonNull(regionName);
+            if (regionName == null) {
+              throw new MissingRequiredPropertyException("ClusterOutageSimulationOutageFilter", "regionName");
+            }
+            this.regionName = regionName;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }

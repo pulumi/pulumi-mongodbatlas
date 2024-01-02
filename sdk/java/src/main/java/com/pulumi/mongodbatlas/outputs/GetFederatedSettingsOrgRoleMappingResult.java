@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsOrgRoleMappingRoleAssignment;
 import java.lang.String;
 import java.util.List;
@@ -90,27 +91,42 @@ public final class GetFederatedSettingsOrgRoleMappingResult {
 
         @CustomType.Setter
         public Builder externalGroupName(String externalGroupName) {
-            this.externalGroupName = Objects.requireNonNull(externalGroupName);
+            if (externalGroupName == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgRoleMappingResult", "externalGroupName");
+            }
+            this.externalGroupName = externalGroupName;
             return this;
         }
         @CustomType.Setter
         public Builder federationSettingsId(String federationSettingsId) {
-            this.federationSettingsId = Objects.requireNonNull(federationSettingsId);
+            if (federationSettingsId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgRoleMappingResult", "federationSettingsId");
+            }
+            this.federationSettingsId = federationSettingsId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgRoleMappingResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(String orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+            if (orgId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgRoleMappingResult", "orgId");
+            }
+            this.orgId = orgId;
             return this;
         }
         @CustomType.Setter
         public Builder roleAssignments(List<GetFederatedSettingsOrgRoleMappingRoleAssignment> roleAssignments) {
-            this.roleAssignments = Objects.requireNonNull(roleAssignments);
+            if (roleAssignments == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgRoleMappingResult", "roleAssignments");
+            }
+            this.roleAssignments = roleAssignments;
             return this;
         }
         public Builder roleAssignments(GetFederatedSettingsOrgRoleMappingRoleAssignment... roleAssignments) {
@@ -118,7 +134,10 @@ public final class GetFederatedSettingsOrgRoleMappingResult {
         }
         @CustomType.Setter
         public Builder roleMappingId(String roleMappingId) {
-            this.roleMappingId = Objects.requireNonNull(roleMappingId);
+            if (roleMappingId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgRoleMappingResult", "roleMappingId");
+            }
+            this.roleMappingId = roleMappingId;
             return this;
         }
         public GetFederatedSettingsOrgRoleMappingResult build() {

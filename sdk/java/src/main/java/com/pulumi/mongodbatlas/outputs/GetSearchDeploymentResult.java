@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetSearchDeploymentSpec;
 import java.lang.String;
 import java.util.List;
@@ -76,22 +77,34 @@ public final class GetSearchDeploymentResult {
 
         @CustomType.Setter
         public Builder clusterName(String clusterName) {
-            this.clusterName = Objects.requireNonNull(clusterName);
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetSearchDeploymentResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetSearchDeploymentResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetSearchDeploymentResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder specs(List<GetSearchDeploymentSpec> specs) {
-            this.specs = Objects.requireNonNull(specs);
+            if (specs == null) {
+              throw new MissingRequiredPropertyException("GetSearchDeploymentResult", "specs");
+            }
+            this.specs = specs;
             return this;
         }
         public Builder specs(GetSearchDeploymentSpec... specs) {
@@ -99,7 +112,10 @@ public final class GetSearchDeploymentResult {
         }
         @CustomType.Setter
         public Builder stateName(String stateName) {
-            this.stateName = Objects.requireNonNull(stateName);
+            if (stateName == null) {
+              throw new MissingRequiredPropertyException("GetSearchDeploymentResult", "stateName");
+            }
+            this.stateName = stateName;
             return this;
         }
         public GetSearchDeploymentResult build() {

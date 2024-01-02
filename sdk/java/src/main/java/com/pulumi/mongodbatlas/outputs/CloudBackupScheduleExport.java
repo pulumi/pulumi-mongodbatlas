@@ -58,11 +58,13 @@ public final class CloudBackupScheduleExport {
 
         @CustomType.Setter
         public Builder exportBucketId(@Nullable String exportBucketId) {
+
             this.exportBucketId = exportBucketId;
             return this;
         }
         @CustomType.Setter
         public Builder frequencyType(@Nullable String frequencyType) {
+
             this.frequencyType = frequencyType;
             return this;
         }

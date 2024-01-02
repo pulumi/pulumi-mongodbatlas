@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs;
 import java.util.Objects;
 
@@ -54,7 +55,9 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigArgs extends c
         }
 
         public GetFederatedDatabaseInstanceCloudProviderConfigArgs build() {
-            $.aws = Objects.requireNonNull($.aws, "expected parameter 'aws' to be non-null");
+            if ($.aws == null) {
+                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigArgs", "aws");
+            }
             return $;
         }
     }

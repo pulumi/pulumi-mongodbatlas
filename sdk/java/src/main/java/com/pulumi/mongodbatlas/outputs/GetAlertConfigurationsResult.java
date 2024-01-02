@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationsResultMatcher;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationsResultMetricThresholdConfig;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationsResultNotification;
@@ -187,32 +188,50 @@ public final class GetAlertConfigurationsResult {
 
         @CustomType.Setter
         public Builder alertConfigurationId(String alertConfigurationId) {
-            this.alertConfigurationId = Objects.requireNonNull(alertConfigurationId);
+            if (alertConfigurationId == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "alertConfigurationId");
+            }
+            this.alertConfigurationId = alertConfigurationId;
             return this;
         }
         @CustomType.Setter
         public Builder created(String created) {
-            this.created = Objects.requireNonNull(created);
+            if (created == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "created");
+            }
+            this.created = created;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "enabled");
+            }
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder eventType(String eventType) {
-            this.eventType = Objects.requireNonNull(eventType);
+            if (eventType == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "eventType");
+            }
+            this.eventType = eventType;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder matchers(List<GetAlertConfigurationsResultMatcher> matchers) {
-            this.matchers = Objects.requireNonNull(matchers);
+            if (matchers == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "matchers");
+            }
+            this.matchers = matchers;
             return this;
         }
         public Builder matchers(GetAlertConfigurationsResultMatcher... matchers) {
@@ -220,7 +239,10 @@ public final class GetAlertConfigurationsResult {
         }
         @CustomType.Setter
         public Builder metricThresholdConfigs(List<GetAlertConfigurationsResultMetricThresholdConfig> metricThresholdConfigs) {
-            this.metricThresholdConfigs = Objects.requireNonNull(metricThresholdConfigs);
+            if (metricThresholdConfigs == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "metricThresholdConfigs");
+            }
+            this.metricThresholdConfigs = metricThresholdConfigs;
             return this;
         }
         public Builder metricThresholdConfigs(GetAlertConfigurationsResultMetricThresholdConfig... metricThresholdConfigs) {
@@ -228,7 +250,10 @@ public final class GetAlertConfigurationsResult {
         }
         @CustomType.Setter
         public Builder notifications(List<GetAlertConfigurationsResultNotification> notifications) {
-            this.notifications = Objects.requireNonNull(notifications);
+            if (notifications == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "notifications");
+            }
+            this.notifications = notifications;
             return this;
         }
         public Builder notifications(GetAlertConfigurationsResultNotification... notifications) {
@@ -236,7 +261,10 @@ public final class GetAlertConfigurationsResult {
         }
         @CustomType.Setter
         public Builder outputs(List<GetAlertConfigurationsResultOutput> outputs) {
-            this.outputs = Objects.requireNonNull(outputs);
+            if (outputs == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "outputs");
+            }
+            this.outputs = outputs;
             return this;
         }
         public Builder outputs(GetAlertConfigurationsResultOutput... outputs) {
@@ -244,12 +272,18 @@ public final class GetAlertConfigurationsResult {
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder thresholdConfigs(List<GetAlertConfigurationsResultThresholdConfig> thresholdConfigs) {
-            this.thresholdConfigs = Objects.requireNonNull(thresholdConfigs);
+            if (thresholdConfigs == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "thresholdConfigs");
+            }
+            this.thresholdConfigs = thresholdConfigs;
             return this;
         }
         public Builder thresholdConfigs(GetAlertConfigurationsResultThresholdConfig... thresholdConfigs) {
@@ -257,7 +291,10 @@ public final class GetAlertConfigurationsResult {
         }
         @CustomType.Setter
         public Builder updated(String updated) {
-            this.updated = Objects.requireNonNull(updated);
+            if (updated == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResult", "updated");
+            }
+            this.updated = updated;
             return this;
         }
         public GetAlertConfigurationsResult build() {

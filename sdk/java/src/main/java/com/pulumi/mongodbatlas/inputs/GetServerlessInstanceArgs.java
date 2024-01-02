@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceLinkArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -211,8 +212,12 @@ public final class GetServerlessInstanceArgs extends com.pulumi.resources.Invoke
         }
 
         public GetServerlessInstanceArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("GetServerlessInstanceArgs", "name");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetServerlessInstanceArgs", "projectId");
+            }
             return $;
         }
     }

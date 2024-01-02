@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetCustomDbRolesResultActionResource;
 import java.lang.String;
 import java.util.List;
@@ -58,12 +59,18 @@ public final class GetCustomDbRolesResultAction {
 
         @CustomType.Setter
         public Builder action(String action) {
-            this.action = Objects.requireNonNull(action);
+            if (action == null) {
+              throw new MissingRequiredPropertyException("GetCustomDbRolesResultAction", "action");
+            }
+            this.action = action;
             return this;
         }
         @CustomType.Setter
         public Builder resources(List<GetCustomDbRolesResultActionResource> resources) {
-            this.resources = Objects.requireNonNull(resources);
+            if (resources == null) {
+              throw new MissingRequiredPropertyException("GetCustomDbRolesResultAction", "resources");
+            }
+            this.resources = resources;
             return this;
         }
         public Builder resources(GetCustomDbRolesResultActionResource... resources) {

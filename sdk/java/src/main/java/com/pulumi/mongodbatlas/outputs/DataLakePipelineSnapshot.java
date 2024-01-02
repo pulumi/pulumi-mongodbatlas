@@ -140,41 +140,49 @@ public final class DataLakePipelineSnapshot {
 
         @CustomType.Setter
         public Builder copyRegion(@Nullable String copyRegion) {
+
             this.copyRegion = copyRegion;
             return this;
         }
         @CustomType.Setter
         public Builder createdAt(@Nullable String createdAt) {
+
             this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder expiresAt(@Nullable String expiresAt) {
+
             this.expiresAt = expiresAt;
             return this;
         }
         @CustomType.Setter
         public Builder frequencyYype(@Nullable String frequencyYype) {
+
             this.frequencyYype = frequencyYype;
             return this;
         }
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder masterKey(@Nullable String masterKey) {
+
             this.masterKey = masterKey;
             return this;
         }
         @CustomType.Setter
         public Builder mongodVersion(@Nullable String mongodVersion) {
+
             this.mongodVersion = mongodVersion;
             return this;
         }
         @CustomType.Setter
         public Builder policies(@Nullable List<String> policies) {
+
             this.policies = policies;
             return this;
         }
@@ -183,31 +191,37 @@ public final class DataLakePipelineSnapshot {
         }
         @CustomType.Setter
         public Builder provider(@Nullable String provider) {
+
             this.provider = provider;
             return this;
         }
         @CustomType.Setter
         public Builder replicaSetName(@Nullable String replicaSetName) {
+
             this.replicaSetName = replicaSetName;
             return this;
         }
         @CustomType.Setter
         public Builder size(@Nullable Integer size) {
+
             this.size = size;
             return this;
         }
         @CustomType.Setter
         public Builder snapshotType(@Nullable String snapshotType) {
+
             this.snapshotType = snapshotType;
             return this;
         }
         @CustomType.Setter
         public Builder status(@Nullable String status) {
+
             this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }

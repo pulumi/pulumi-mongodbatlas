@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetCustomDbRoleAction;
 import com.pulumi.mongodbatlas.outputs.GetCustomDbRoleInheritedRole;
 import java.lang.String;
@@ -78,7 +79,10 @@ public final class GetCustomDbRoleResult {
 
         @CustomType.Setter
         public Builder actions(List<GetCustomDbRoleAction> actions) {
-            this.actions = Objects.requireNonNull(actions);
+            if (actions == null) {
+              throw new MissingRequiredPropertyException("GetCustomDbRoleResult", "actions");
+            }
+            this.actions = actions;
             return this;
         }
         public Builder actions(GetCustomDbRoleAction... actions) {
@@ -86,11 +90,15 @@ public final class GetCustomDbRoleResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetCustomDbRoleResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder inheritedRoles(@Nullable List<GetCustomDbRoleInheritedRole> inheritedRoles) {
+
             this.inheritedRoles = inheritedRoles;
             return this;
         }
@@ -99,12 +107,18 @@ public final class GetCustomDbRoleResult {
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetCustomDbRoleResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder roleName(String roleName) {
-            this.roleName = Objects.requireNonNull(roleName);
+            if (roleName == null) {
+              throw new MissingRequiredPropertyException("GetCustomDbRoleResult", "roleName");
+            }
+            this.roleName = roleName;
             return this;
         }
         public GetCustomDbRoleResult build() {

@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -101,26 +102,37 @@ public final class GlobalClusterConfigManagedNamespace {
 
         @CustomType.Setter
         public Builder collection(String collection) {
-            this.collection = Objects.requireNonNull(collection);
+            if (collection == null) {
+              throw new MissingRequiredPropertyException("GlobalClusterConfigManagedNamespace", "collection");
+            }
+            this.collection = collection;
             return this;
         }
         @CustomType.Setter
         public Builder customShardKey(String customShardKey) {
-            this.customShardKey = Objects.requireNonNull(customShardKey);
+            if (customShardKey == null) {
+              throw new MissingRequiredPropertyException("GlobalClusterConfigManagedNamespace", "customShardKey");
+            }
+            this.customShardKey = customShardKey;
             return this;
         }
         @CustomType.Setter
         public Builder db(String db) {
-            this.db = Objects.requireNonNull(db);
+            if (db == null) {
+              throw new MissingRequiredPropertyException("GlobalClusterConfigManagedNamespace", "db");
+            }
+            this.db = db;
             return this;
         }
         @CustomType.Setter
         public Builder isCustomShardKeyHashed(@Nullable Boolean isCustomShardKeyHashed) {
+
             this.isCustomShardKeyHashed = isCustomShardKeyHashed;
             return this;
         }
         @CustomType.Setter
         public Builder isShardKeyUnique(@Nullable Boolean isShardKeyUnique) {
+
             this.isShardKeyUnique = isShardKeyUnique;
             return this;
         }

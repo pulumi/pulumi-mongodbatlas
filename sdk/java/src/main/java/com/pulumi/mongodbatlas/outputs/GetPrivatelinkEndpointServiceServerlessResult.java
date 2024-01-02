@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -134,57 +135,90 @@ public final class GetPrivatelinkEndpointServiceServerlessResult {
 
         @CustomType.Setter
         public Builder cloudProviderEndpointId(String cloudProviderEndpointId) {
-            this.cloudProviderEndpointId = Objects.requireNonNull(cloudProviderEndpointId);
+            if (cloudProviderEndpointId == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "cloudProviderEndpointId");
+            }
+            this.cloudProviderEndpointId = cloudProviderEndpointId;
             return this;
         }
         @CustomType.Setter
         public Builder comment(String comment) {
-            this.comment = Objects.requireNonNull(comment);
+            if (comment == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "comment");
+            }
+            this.comment = comment;
             return this;
         }
         @CustomType.Setter
         public Builder endpointId(String endpointId) {
-            this.endpointId = Objects.requireNonNull(endpointId);
+            if (endpointId == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "endpointId");
+            }
+            this.endpointId = endpointId;
             return this;
         }
         @CustomType.Setter
         public Builder endpointServiceName(String endpointServiceName) {
-            this.endpointServiceName = Objects.requireNonNull(endpointServiceName);
+            if (endpointServiceName == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "endpointServiceName");
+            }
+            this.endpointServiceName = endpointServiceName;
             return this;
         }
         @CustomType.Setter
         public Builder errorMessage(String errorMessage) {
-            this.errorMessage = Objects.requireNonNull(errorMessage);
+            if (errorMessage == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "errorMessage");
+            }
+            this.errorMessage = errorMessage;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder instanceName(String instanceName) {
-            this.instanceName = Objects.requireNonNull(instanceName);
+            if (instanceName == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "instanceName");
+            }
+            this.instanceName = instanceName;
             return this;
         }
         @CustomType.Setter
         public Builder privateEndpointIpAddress(String privateEndpointIpAddress) {
-            this.privateEndpointIpAddress = Objects.requireNonNull(privateEndpointIpAddress);
+            if (privateEndpointIpAddress == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "privateEndpointIpAddress");
+            }
+            this.privateEndpointIpAddress = privateEndpointIpAddress;
             return this;
         }
         @CustomType.Setter
         public Builder privateLinkServiceResourceId(String privateLinkServiceResourceId) {
-            this.privateLinkServiceResourceId = Objects.requireNonNull(privateLinkServiceResourceId);
+            if (privateLinkServiceResourceId == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "privateLinkServiceResourceId");
+            }
+            this.privateLinkServiceResourceId = privateLinkServiceResourceId;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceServerlessResult", "status");
+            }
+            this.status = status;
             return this;
         }
         public GetPrivatelinkEndpointServiceServerlessResult build() {

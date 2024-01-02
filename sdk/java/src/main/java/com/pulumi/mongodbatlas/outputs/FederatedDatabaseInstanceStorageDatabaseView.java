@@ -60,16 +60,19 @@ public final class FederatedDatabaseInstanceStorageDatabaseView {
 
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder pipeline(@Nullable String pipeline) {
+
             this.pipeline = pipeline;
             return this;
         }
         @CustomType.Setter
         public Builder source(@Nullable String source) {
+
             this.source = source;
             return this;
         }

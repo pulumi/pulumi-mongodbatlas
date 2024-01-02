@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelinesResultSink;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelinesResultSource;
 import com.pulumi.mongodbatlas.outputs.GetDataLakePipelinesResultTransformation;
@@ -138,32 +139,50 @@ public final class GetDataLakePipelinesResult {
 
         @CustomType.Setter
         public Builder createdDate(String createdDate) {
-            this.createdDate = Objects.requireNonNull(createdDate);
+            if (createdDate == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResult", "createdDate");
+            }
+            this.createdDate = createdDate;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder lastUpdatedDate(String lastUpdatedDate) {
-            this.lastUpdatedDate = Objects.requireNonNull(lastUpdatedDate);
+            if (lastUpdatedDate == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResult", "lastUpdatedDate");
+            }
+            this.lastUpdatedDate = lastUpdatedDate;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResult", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder sinks(List<GetDataLakePipelinesResultSink> sinks) {
-            this.sinks = Objects.requireNonNull(sinks);
+            if (sinks == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResult", "sinks");
+            }
+            this.sinks = sinks;
             return this;
         }
         public Builder sinks(GetDataLakePipelinesResultSink... sinks) {
@@ -171,7 +190,10 @@ public final class GetDataLakePipelinesResult {
         }
         @CustomType.Setter
         public Builder sources(List<GetDataLakePipelinesResultSource> sources) {
-            this.sources = Objects.requireNonNull(sources);
+            if (sources == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResult", "sources");
+            }
+            this.sources = sources;
             return this;
         }
         public Builder sources(GetDataLakePipelinesResultSource... sources) {
@@ -179,12 +201,18 @@ public final class GetDataLakePipelinesResult {
         }
         @CustomType.Setter
         public Builder state(String state) {
-            this.state = Objects.requireNonNull(state);
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResult", "state");
+            }
+            this.state = state;
             return this;
         }
         @CustomType.Setter
         public Builder transformations(List<GetDataLakePipelinesResultTransformation> transformations) {
-            this.transformations = Objects.requireNonNull(transformations);
+            if (transformations == null) {
+              throw new MissingRequiredPropertyException("GetDataLakePipelinesResult", "transformations");
+            }
+            this.transformations = transformations;
             return this;
         }
         public Builder transformations(GetDataLakePipelinesResultTransformation... transformations) {

@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -74,7 +75,9 @@ public final class GetFederatedSettingsArgs extends com.pulumi.resources.InvokeA
         }
 
         public GetFederatedSettingsArgs build() {
-            $.orgId = Objects.requireNonNull($.orgId, "expected parameter 'orgId' to be non-null");
+            if ($.orgId == null) {
+                throw new MissingRequiredPropertyException("GetFederatedSettingsArgs", "orgId");
+            }
             return $;
         }
     }

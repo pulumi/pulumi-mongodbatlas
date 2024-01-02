@@ -60,16 +60,19 @@ public final class ClusterConnectionStringPrivateEndpointEndpoint {
 
         @CustomType.Setter
         public Builder endpointId(@Nullable String endpointId) {
+
             this.endpointId = endpointId;
             return this;
         }
         @CustomType.Setter
         public Builder providerName(@Nullable String providerName) {
+
             this.providerName = providerName;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }

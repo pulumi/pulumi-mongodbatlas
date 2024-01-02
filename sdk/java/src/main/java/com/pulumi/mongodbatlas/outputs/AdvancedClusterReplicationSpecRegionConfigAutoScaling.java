@@ -85,26 +85,31 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScaling {
 
         @CustomType.Setter
         public Builder computeEnabled(@Nullable Boolean computeEnabled) {
+
             this.computeEnabled = computeEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder computeMaxInstanceSize(@Nullable String computeMaxInstanceSize) {
+
             this.computeMaxInstanceSize = computeMaxInstanceSize;
             return this;
         }
         @CustomType.Setter
         public Builder computeMinInstanceSize(@Nullable String computeMinInstanceSize) {
+
             this.computeMinInstanceSize = computeMinInstanceSize;
             return this;
         }
         @CustomType.Setter
         public Builder computeScaleDownEnabled(@Nullable Boolean computeScaleDownEnabled) {
+
             this.computeScaleDownEnabled = computeScaleDownEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder diskGbEnabled(@Nullable Boolean diskGbEnabled) {
+
             this.diskGbEnabled = diskGbEnabled;
             return this;
         }

@@ -58,11 +58,13 @@ public final class GlobalClusterConfigCustomZoneMapping {
 
         @CustomType.Setter
         public Builder location(@Nullable String location) {
+
             this.location = location;
             return this;
         }
         @CustomType.Setter
         public Builder zone(@Nullable String zone) {
+
             this.zone = zone;
             return this;
         }

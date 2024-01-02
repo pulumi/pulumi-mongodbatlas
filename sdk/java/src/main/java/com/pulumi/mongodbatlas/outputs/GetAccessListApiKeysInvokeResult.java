@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAccessListApiKeysResult;
 import java.lang.Integer;
 import java.lang.String;
@@ -77,32 +78,46 @@ public final class GetAccessListApiKeysInvokeResult {
 
         @CustomType.Setter
         public Builder apiKeyId(String apiKeyId) {
-            this.apiKeyId = Objects.requireNonNull(apiKeyId);
+            if (apiKeyId == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeysInvokeResult", "apiKeyId");
+            }
+            this.apiKeyId = apiKeyId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeysInvokeResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
+
             this.itemsPerPage = itemsPerPage;
             return this;
         }
         @CustomType.Setter
         public Builder orgId(String orgId) {
-            this.orgId = Objects.requireNonNull(orgId);
+            if (orgId == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeysInvokeResult", "orgId");
+            }
+            this.orgId = orgId;
             return this;
         }
         @CustomType.Setter
         public Builder pageNum(@Nullable Integer pageNum) {
+
             this.pageNum = pageNum;
             return this;
         }
         @CustomType.Setter
         public Builder results(List<GetAccessListApiKeysResult> results) {
-            this.results = Objects.requireNonNull(results);
+            if (results == null) {
+              throw new MissingRequiredPropertyException("GetAccessListApiKeysInvokeResult", "results");
+            }
+            this.results = results;
             return this;
         }
         public Builder results(GetAccessListApiKeysResult... results) {

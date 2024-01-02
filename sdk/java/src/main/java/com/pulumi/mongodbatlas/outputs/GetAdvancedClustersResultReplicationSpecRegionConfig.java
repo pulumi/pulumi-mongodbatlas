@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling;
@@ -163,7 +164,10 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
 
         @CustomType.Setter
         public Builder analyticsAutoScalings(List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings) {
-            this.analyticsAutoScalings = Objects.requireNonNull(analyticsAutoScalings);
+            if (analyticsAutoScalings == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "analyticsAutoScalings");
+            }
+            this.analyticsAutoScalings = analyticsAutoScalings;
             return this;
         }
         public Builder analyticsAutoScalings(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling... analyticsAutoScalings) {
@@ -171,12 +175,16 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
         }
         @CustomType.Setter
         public Builder analyticsSpecs(@Nullable GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs) {
+
             this.analyticsSpecs = analyticsSpecs;
             return this;
         }
         @CustomType.Setter
         public Builder autoScalings(List<GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling> autoScalings) {
-            this.autoScalings = Objects.requireNonNull(autoScalings);
+            if (autoScalings == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "autoScalings");
+            }
+            this.autoScalings = autoScalings;
             return this;
         }
         public Builder autoScalings(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling... autoScalings) {
@@ -184,32 +192,46 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
         }
         @CustomType.Setter
         public Builder backingProviderName(String backingProviderName) {
-            this.backingProviderName = Objects.requireNonNull(backingProviderName);
+            if (backingProviderName == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "backingProviderName");
+            }
+            this.backingProviderName = backingProviderName;
             return this;
         }
         @CustomType.Setter
         public Builder electableSpecs(@Nullable GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs electableSpecs) {
+
             this.electableSpecs = electableSpecs;
             return this;
         }
         @CustomType.Setter
         public Builder priority(Integer priority) {
-            this.priority = Objects.requireNonNull(priority);
+            if (priority == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "priority");
+            }
+            this.priority = priority;
             return this;
         }
         @CustomType.Setter
         public Builder providerName(String providerName) {
-            this.providerName = Objects.requireNonNull(providerName);
+            if (providerName == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "providerName");
+            }
+            this.providerName = providerName;
             return this;
         }
         @CustomType.Setter
         public Builder readOnlySpecs(@Nullable GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs) {
+
             this.readOnlySpecs = readOnlySpecs;
             return this;
         }
         @CustomType.Setter
         public Builder regionName(String regionName) {
-            this.regionName = Objects.requireNonNull(regionName);
+            if (regionName == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "regionName");
+            }
+            this.regionName = regionName;
             return this;
         }
         public GetAdvancedClustersResultReplicationSpecRegionConfig build() {

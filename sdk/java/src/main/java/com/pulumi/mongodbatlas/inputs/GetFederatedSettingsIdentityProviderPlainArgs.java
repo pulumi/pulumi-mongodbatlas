@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -90,8 +91,12 @@ public final class GetFederatedSettingsIdentityProviderPlainArgs extends com.pul
         }
 
         public GetFederatedSettingsIdentityProviderPlainArgs build() {
-            $.federationSettingsId = Objects.requireNonNull($.federationSettingsId, "expected parameter 'federationSettingsId' to be non-null");
-            $.identityProviderId = Objects.requireNonNull($.identityProviderId, "expected parameter 'identityProviderId' to be non-null");
+            if ($.federationSettingsId == null) {
+                throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderPlainArgs", "federationSettingsId");
+            }
+            if ($.identityProviderId == null) {
+                throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProviderPlainArgs", "identityProviderId");
+            }
             return $;
         }
     }
