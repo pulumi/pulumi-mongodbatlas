@@ -18,10 +18,12 @@ package main
 
 import (
 	"context"
+
 	_ "embed"
 
-	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v3"
 	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+
+	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v3"
 )
 
 //go:embed schema-embed.json
